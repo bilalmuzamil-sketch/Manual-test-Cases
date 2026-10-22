@@ -31,10 +31,7 @@
   "role": "Office User",
   "clockable": true,
   "active": true,
-  "log": [
-   "create 201",
-   "change 201"
-  ]
+  "log": []
  },
  "staff_Tim": {
   "role": "Time Clock User",
@@ -46,1199 +43,216 @@
   "esther.howard": 1,
   "billy.nobill": 0
  },
- "staffInputs_Ina Active": [
-  "Type to search"
- ],
- "staffRowHtml_Ina Active": "\" data-test-id=\"staff_billable_badge\">Yes</div></td><td data-v-4d443fd3=\"\" class=\"q-td q-table--col-auto-width text-right\"><button data-v-68e00a17=\"\" data-v-4d443fd3=\"\" class=\"q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--round text-dark q-btn--actionable q-focusable q-hoverable q-mx-xs\" tabindex=\"0\" type=\"button\" data-test-id=\"staff_edit_button\" filled=\"true\" style=\"font-size: 10px; padding: 4px; min-width: 0px; min-height: 0px;\"><span class=\"q-focus-helper\"></span><span class=\"q-btn__content text-center col items-center q-anchor--skip justify-center row\"><i class=\"q-icon notranslate material-icons\" aria-hidden=\"true\" role=\"img\">edit_note</i><!----></span></button></td></tr>",
- "C96930": {
-  "inaDeactivate": {
-   "done": true,
-   "label": "Deactivate Account",
-   "confirm": [],
-   "calls": [
-    "POST /api/iam/change-status {\"id\":\"ef40f153-d17c-4362-8d7a-4392d38abf0c\"}"
-   ]
-  },
-  "inaActiveNow": false,
-  "tech": {
-   "Esther Howard": true,
-   "Billy Nobill": true,
-   "Ina Active": false,
-   "Nick Noclock": false,
-   "Olive Office": false,
-   "Tim Clockuser": false,
-   "Ella Elsewhere": false
-  },
-  "techGroups": 64,
-  "board": {
-   "Esther Howard": true,
-   "Billy Nobill": true,
-   "Ina Active": false,
-   "Nick Noclock": false,
-   "Olive Office": false,
-   "Tim Clockuser": false,
-   "Ella Elsewhere": false
-  },
-  "boardColumns": 64,
-  "inaKeptInactive": "Ina Active stays deactivated: that is her set-up for this case",
-  "staffProof": {
-   "Esther Howard": {
-    "email": "zz.wob.esther.howard@staging.shopview.local",
-    "role": "Technician",
-    "timeClock": true,
-    "active": true,
-    "billable": 1,
-    "location": "Truck Hill 1",
-    "workplaces": [
-     "Truck Hill 1/Department1"
-    ]
-   },
-   "Billy Nobill": {
-    "email": "zz.wob.billy.nobill@staging.shopview.local",
-    "role": "Technician",
-    "timeClock": true,
-    "active": true,
-    "billable": 0,
-    "location": "Truck Hill 1",
-    "workplaces": [
-     "Truck Hill 1/Department1"
-    ]
-   },
-   "Ina Active": {
-    "email": "zz.wob.ina.active@staging.shopview.local",
-    "role": "Technician",
-    "timeClock": true,
-    "active": false,
-    "billable": 1,
-    "location": "Truck Hill 1",
-    "workplaces": [
-     "Truck Hill 1/Department1"
-    ]
-   },
-   "Nick Noclock": {
-    "email": "zz.wob.nick.noclock@staging.shopview.local",
-    "role": "Technician",
-    "timeClock": false,
-    "active": true,
-    "billable": 0,
-    "location": "Truck Hill 1",
-    "workplaces": [
-     "Truck Hill 1/Department1"
-    ]
-   },
-   "Olive Office": {
-    "email": "zz.wob.olive.office@staging.shopview.local",
-    "role": "Office User",
-    "timeClock": true,
-    "active": true,
-    "billable": 0,
-    "location": "Truck Hill 1",
-    "workplaces": [
-     "Truck Hill 1/Department1"
-    ]
-   },
-   "Tim Clockuser": {
-    "email": "zz.wob.tim.clockuser@staging.shopview.local",
-    "role": "Time Clock User",
-    "timeClock": true,
-    "active": true,
-    "billable": 0,
-    "location": "Truck Hill 1",
-    "workplaces": [
-     "Truck Hill 1/Department1"
-    ]
-   },
-   "Ella Elsewhere": {
-    "email": "zz.wob.ella.elsewhere@staging.shopview.local",
-    "role": "Technician",
-    "timeClock": true,
-    "active": true,
-    "billable": 0,
-    "location": "Trucks Hill 2",
-    "workplaces": [
-     "Trucks Hill 2/Department1"
-    ]
-   }
-  },
-  "offeredAsLead": {
-   "Esther Howard": true,
-   "Billy Nobill": true,
-   "Ina Active": true,
-   "Nick Noclock": false,
-   "Olive Office": false,
-   "Tim Clockuser": false,
-   "Ella Elsewhere": false
-  },
-  "pictures": {
-   "tech": {
-    "Esther Howard": {
-     "shows": "Esther Howard",
-     "exists": true,
-     "picture": "C96930-tech-Esther-Howard.png"
-    },
-    "Billy Nobill": {
-     "shows": "Billy Nobill",
-     "exists": true,
-     "picture": "C96930-tech-Billy-Nobill.png"
-    },
-    "Ina Active": {
-     "shows": "Jenny Wilson",
-     "before": "Floyd Miles",
-     "after": "Jenny Wilson",
-     "exists": false,
-     "picture": "C96930-tech-Ina-Active.png"
-    },
-    "Nick Noclock": {
-     "shows": "Nina Newtech",
-     "before": "Maximiliana Fitzgerald-Montgomery",
-     "after": "Nina Newtech",
-     "exists": false,
-     "picture": "C96930-tech-Nick-Noclock.png"
-    },
-    "Olive Office": {
-     "shows": "Ralph Edwards",
-     "before": "Nina Newtech",
-     "after": "Ralph Edwards",
-     "exists": false,
-     "picture": "C96930-tech-Olive-Office.png"
-    },
-    "Tim Clockuser": {
-     "shows": "ZZAUTOTEST Deleted Lead 46045",
-     "before": "Theresa Webb",
-     "after": "ZZAUTOTEST Deleted Lead 46045",
-     "exists": false,
-     "picture": "C96930-tech-Tim-Clockuser.png"
-    },
-    "Ella Elsewhere": {
-     "shows": "Esther Howard",
-     "before": "Dana Ortiz",
-     "after": "Esther Howard",
-     "exists": false,
-     "picture": "C96930-tech-Ella-Elsewhere.png"
-    }
-   },
-   "board": {
-    "Esther Howard": {
-     "shows": "Esther Howard",
-     "exists": true,
-     "picture": "C96930-board-Esther-Howard.png",
-     "reached": true
-    },
-    "Billy Nobill": {
-     "shows": "Billy Nobill",
-     "exists": true,
-     "picture": "C96930-board-Billy-Nobill.png",
-     "reached": true
-    },
-    "Ina Active": {
-     "shows": "Jenny Wilson",
-     "before": "Floyd Miles",
-     "after": "Jenny Wilson",
-     "exists": false,
-     "picture": "C96930-board-Ina-Active.png",
-     "reached": true
-    },
-    "Nick Noclock": {
-     "shows": "Nina Newtech",
-     "before": "Maximiliana Fitzgerald-Montgomery",
-     "after": "Nina Newtech",
-     "exists": false,
-     "picture": "C96930-board-Nick-Noclock.png",
-     "reached": true
-    },
-    "Olive Office": {
-     "shows": "Ralph Edwards",
-     "before": "Nina Newtech",
-     "after": "Ralph Edwards",
-     "exists": false,
-     "picture": "C96930-board-Olive-Office.png",
-     "reached": true
-    },
-    "Tim Clockuser": {
-     "shows": "ZZAUTOTEST Deleted Lead 46045",
-     "before": "Theresa Webb",
-     "after": "ZZAUTOTEST Deleted Lead 46045",
-     "exists": false,
-     "picture": "C96930-board-Tim-Clockuser.png",
-     "reached": true
-    },
-    "Ella Elsewhere": {
-     "shows": "Esther Howard",
-     "before": "Dana Ortiz",
-     "after": "Esther Howard",
-     "exists": false,
-     "picture": "C96930-board-Ella-Elsewhere.png",
-     "reached": true
-    }
-   }
-  },
-  "techOrderLength": 64,
-  "boardOrderLength": 65
- },
  "C96926": {
   "wo1_firstChrisLee": "S1-1393",
   "wo2_secondChrisLee": "S1-1394",
-  "error": "Cannot read properties of undefined (reading 'id')"
- },
- "C96929": {
-  "error": "Carol Neal is not offered as a technician at this location"
- },
- "C368127": {
-  "user": {
-   "email": "zzautotest.wob.unassigned.1792688334987@staging.shopview.local",
-   "role": "Admin",
-   "log": [
-    "create 201"
-   ]
-  },
-  "savedPrefAtStart": null,
-  "opensCollapsed": false,
-  "count": 289,
-  "scroll": [
-   {
-    "y": 600,
-    "at": 600,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 1200,
-    "at": 1200,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 1800,
-    "at": 1800,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 2400,
-    "at": 2400,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 3000,
-    "at": 3000,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 3600,
-    "at": 3600,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 4200,
-    "at": 4200,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 4800,
-    "at": 4800,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 5400,
-    "at": 5400,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 6000,
-    "at": 6000,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 6600,
-    "at": 6600,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 7200,
-    "at": 7200,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 7800,
-    "at": 7800,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 8400,
-    "at": 8400,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 9000,
-    "at": 9000,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 9600,
-    "at": 9600,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 10200,
-    "at": 10200,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 10800,
-    "at": 10800,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 11400,
-    "at": 11400,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 12000,
-    "at": 12000,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 12600,
-    "at": 12600,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 13200,
-    "at": 13200,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 13800,
-    "at": 13800,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 14400,
-    "at": 14400,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 15000,
-    "at": 15000,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 15600,
-    "at": 15600,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 16200,
-    "at": 16200,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 16800,
-    "at": 16800,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 17400,
-    "at": 17400,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 18000,
-    "at": 18000,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 18600,
-    "at": 18600,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 19200,
-    "at": 19200,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 19800,
-    "at": 19800,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 20400,
-    "at": 20400,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 21000,
-    "at": 21000,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 21600,
-    "at": 21600,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 22200,
-    "at": 22200,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 22800,
-    "at": 22800,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 23400,
-    "at": 23400,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   },
-   {
-    "y": 24000,
-    "at": 24000,
-    "spinner": {
-     "spinners": [
-      "q-loading-bar q-loading-bar--top bg-primary"
-     ],
-     "loadingText": false
-    }
-   }
+  "pinsB": null,
+  "techAll": [
+   "Unassigned",
+   "Aaron Baker",
+   "Aaron Zed",
+   "Admin ShopView",
+   "Ahtasham Amjad",
+   "Ahtesham ABCPROD",
+   "Ayesha Khan",
+   "more_90e2ab51-512e-4393-865c-0fd555be389f",
+   "Bilal Muzamil",
+   "Bilal Muzammil",
+   "Billy Nobill",
+   "Branko Cicovic",
+   "Brenda Martinez",
+   "Cameron Williamson",
+   "Carol Neal",
+   "Chris Lee (first)",
+   "Chris Lee (second)",
+   "more_fefca605-85d1-41e1-aee9-e7e1b6ae2d3e",
+   "Dana Ortiz",
+   "more_aa128b1b-a25d-4ad9-84e5-b71a073b489b",
+   "Esther Howard",
+   "more_3adb78a3-933b-4205-baa0-981211c9356b",
+   "Floyd Miles",
+   "Jenny Wilson",
+   "Kristin Watson",
+   "Maximiliana Fitzgerald-Montgomery",
+   "Nina Newtech",
+   "Ralph Edwards",
+   "more_76a46d3b-9c11-4274-a9de-414fd29caf41",
+   "Service Advisor No Reports (Admin)",
+   "more_85b4e46a-efdb-4ac6-9117-6df102430474",
+   "Service advisor. No Reports",
+   "more_1e19e572-1c88-4d75-a8d6-551bb22a21fc",
+   "Technician 1",
+   "more_a1d7fb4a-8d44-4557-bb7e-cb7d2b0c6acb",
+   "Theresa Webb",
+   "more_4535d090-ba5e-45e7-b140-8305d46d2162",
+   "ZZAUTOTEST Deleted Lead 46045",
+   "ZZAUTOTEST Aaron Able 932906",
+   "ZZAUTOTEST Ana Alpha",
+   "more_a91c7eb7-22d6-4f3c-a64d-8ccd460ebc06",
+   "ZZAUTOTEST Ben Bravo",
+   "more_48e57869-f6c5-4615-b2e9-43ab7494b31d",
+   "ZZAUTOTEST C614719 Ana",
+   "ZZAUTOTEST C614719 Ben",
+   "ZZAUTOTEST Cal Charlie",
+   "ZZAUTOTEST Dan Delta",
+   "ZZAUTOTEST DC01 Ana Icons",
+   "ZZAUTOTEST DC02 Ben Tooltip",
+   "more_30975c67-6029-4967-bdff-d91a9f7d768f",
+   "ZZAUTOTEST DC03 Cara Edge",
+   "more_127e6685-141d-4187-beea-87ae9d78bf72",
+   "ZZAUTOTEST DC04 Dan Columns",
+   "more_5caa3e00-06a9-46ca-9669-e2a35da97cc4",
+   "ZZAUTOTEST DC05 Eva Cells",
+   "ZZAUTOTEST DC06 Gia Pills",
+   "more_ddd8b750-cf22-4e98-ad2e-47e9b197319e",
+   "ZZAUTOTEST DC07 Hana Grip",
+   "more_098b525e-4c51-4b68-922f-400587c1ade9",
+   "ZZAUTOTEST DC08 Ines Header",
+   "ZZAUTOTEST DC09 Kai Board",
+   "more_267d64f4-320e-47f2-a0db-bf072f434a46",
+   "ZZAUTOTEST DC10 Lea Pin",
+   "more_b4ea1c1c-4b5d-40e4-a9f9-238e97992253",
+   "ZZAUTOTEST DC10 Max Pin",
+   "more_2a70493c-f4d0-4e42-aeb6-ce4a82a700e3",
+   "ZZAUTOTEST DC10 Nia Pin",
+   "ZZAUTOTEST DC10 Oli Pin",
+   "ZZAUTOTEST DC11-65540 Pia Card",
+   "more_11a8ee19-97df-41d9-b990-a39d5d02ad48",
+   "ZZAUTOTEST DC11-65540 Quinn Card",
+   "ZZAUTOTEST DC11-88821 Pia Card",
+   "more_1058ca41-7c31-451a-b9b5-485637ba4de8",
+   "ZZAUTOTEST DC11-88821 Quinn Card",
+   "ZZAUTOTEST DC12 Rae Menu",
+   "ZZAUTOTEST DC13 Sam Idle",
+   "ZZAUTOTEST DC14 Tia Drag",
+   "ZZAUTOTEST DC14-88821 Tia Drag",
+   "ZZAUTOTEST DC14-88821 Uma Drag",
+   "ZZAUTOTEST DC15 Vic Hover",
+   "more_dbdfc063-f2e3-4b27-bb9b-24203f15f914",
+   "ZZAUTOTEST DC15 Wes Hover",
+   "ZZAUTOTEST DC16 Xia Dark",
+   "more_97bb3185-1bd7-438c-9551-d98cd1bd90b8",
+   "ZZAUTOTEST DC17 Maximiliana Abernathy-Kowalczyk",
+   "ZZAUTOTEST DC18 Yan Filter",
+   "more_0778b292-9dfd-46d5-b837-c23890199705",
+   "ZZAUTOTEST DC19 Abe Density",
+   "ZZAUTOTEST DC19 Zoe Density",
+   "more_435a40ff-0c32-4562-9aae-ba85501a2383",
+   "ZZAUTOTEST DC20 Bea Dialog",
+   "more_c6476a61-ed45-41a7-afed-793afaacd28f",
+   "ZZAUTOTEST DC20 Cal Dialog",
+   "ZZAUTOTEST DC21 Dee Toast",
+   "more_80572172-6099-4815-94fd-fbf4ffe0406d",
+   "ZZAUTOTEST Ezra Echo 932906",
+   "ZZAUTOTEST F3 Count Ben Bravo",
+   "more_c665eacd-e6f3-47ac-af27-09142c4bc0da",
+   "ZZAUTOTEST N3 Tia",
+   "more_7f93e46d-f143-43c3-8fda-7cc86472968e",
+   "ZZAUTOTEST N4 Ana",
+   "more_2e6f407c-7639-4416-913e-4ca4a88b9134",
+   "ZZAUTOTEST N4 Ben",
+   "ZZAUTOTEST N4 Cal",
+   "ZZAUTOTEST N4 Dee",
+   "ZZAUTOTEST N4 Eve",
+   "ZZAUTOTEST N4 Fay",
+   "ZZAUTOTEST Photo Tech 277231",
+   "more_d986b9b9-ff1d-4431-9624-ccab108931f3",
+   "ZZAUTOTEST S6 Pia Pills",
+   "more_95312673-fa2b-4b49-8dba-f7cae8cf9f74",
+   "deleted",
+   "more_deleted"
   ],
-  "listRequests": [],
-  "loadingPause": "a loading spinner or \"Loading\" text was seen (see scroll[], picture C368127-loading)",
-  "midScrollBoxes": {
-   "headRow": {
-    "top": -1360,
-    "bottom": -1312,
-    "h": 48
-   },
-   "unassignedHeader": null,
-   "unassignedPosition": null,
-   "justUnderHeadings": null,
-   "scrollTop": 1500
-  },
-  "beforeClick": {
-   "sticky": true,
-   "text": "Unassigned 289 289 work orders",
-   "icon": "",
-   "iconBox": {
-    "x": 89,
-    "y": 197,
-    "w": 28
-   },
-   "scrollTop": 1500,
-   "rowsDrawn": 68
-  },
-  "savedBeforeClick": null,
-  "headerIcons": [
-   {
-    "tag": "button",
-    "icon": "",
-    "aria": "Collapse Unassigned",
-    "tid": "button_tech_view_sticky_group_toggle",
-    "x": 49,
-    "y": 200,
-    "w": 23,
-    "h": 23
-   },
-   {
-    "tag": "svg",
-    "icon": "chevron-down",
-    "aria": "Collapse Unassigned",
-    "tid": "button_tech_view_sticky_group_toggle",
-    "x": 52,
-    "y": 203,
-    "w": 16,
-    "h": 16
-   },
-   {
-    "tag": "svg",
-    "icon": "user-round",
-    "aria": null,
-    "tid": "tech_view_sticky_group",
-    "x": 96,
-    "y": 204,
-    "w": 14,
-    "h": 14
-   },
-   {
-    "tag": "svg",
-    "icon": "clipboard-list",
-    "aria": null,
-    "tid": "tech_view_sticky_group",
-    "x": 236,
-    "y": 203,
-    "w": 16,
-    "h": 16
-   }
+  "tech": [
+   "Unassigned",
+   "Aaron Baker",
+   "Aaron Zed",
+   "Brenda Martinez",
+   "Chris Lee (first)",
+   "Chris Lee (second)"
   ],
-  "stickyArrow": {
-   "arrow": {
-    "icon": "",
-    "cx": 60,
-    "cy": 211,
-    "under": "svg.lucide-icon",
-    "onArrow": true
-   },
-   "readsUnassigned": true,
-   "clicked": "the leftmost icon's centre (60, 211)"
-  },
-  "afterClickInPlace": {
-   "sticky": false,
-   "text": null,
-   "icon": null,
-   "iconBox": null,
-   "scrollTop": 0,
-   "rowsDrawn": 0,
-   "saved": [
-    "unassigned"
-   ],
-   "groupCollapsedNow": "true"
-  },
-  "scrolledBackUp": true,
-  "afterClick": {
-   "collapsed": true,
-   "savedCollapsed": [
-    "unassigned"
-   ]
-  },
-  "listAllTab": {
-   "rows": 609,
-   "withoutLead": 289,
-   "pages": 2,
-   "firstPageMeta": "{\"sortBy\":\"company_name\",\"descending\":false,\"page\":1,\"rowsPerPage\":500,\"totalWorkOrderPrice\":105238994}",
-   "matchesHeader": true
-  }
- },
- "C96927_prefReset": 200,
- "C96927": {
-  "wo": [
-   "S1-1395"
+  "techNeighbours": [
+   "Unassigned",
+   "Aaron Baker",
+   "Aaron Zed",
+   "Admin ShopView",
+   "Ahtasham Amjad",
+   "Ahtesham ABCPROD",
+   "Ayesha Khan",
+   "more_90e2ab51-512e-4393-865c-0fd555be389f",
+   "Bilal Muzamil",
+   "Bilal Muzammil",
+   "Billy Nobill",
+   "Branko Cicovic"
   ],
-  "techViewButton": 1,
-  "listMenu": [
-   "Waiting On Parts",
-   "Asset",
-   "VIN/Serial #",
-   "Progress",
-   "Service Advisor",
-   "Lead Technician",
-   "Clocked In",
-   "Lines",
-   "Total price",
-   "Created on",
-   "Invoiced Date",
-   "Days open",
-   "Parts",
-   "Returns"
+  "board": [
+   "Unassigned",
+   "Aaron Baker",
+   "Aaron Zed",
+   "Brenda Martinez",
+   "Chris Lee (first)",
+   "Chris Lee (second)"
   ],
-  "techMenuFull": [
-   {
-    "label": "On Site",
-    "key": "vehicle_here",
-    "on": "false",
-    "locked": false
-   },
-   {
-    "label": "Waiting On Parts",
-    "key": "unreceived_part_requests_count",
-    "on": "true",
-    "locked": false
-   },
-   {
-    "label": "Unit",
-    "key": "unit",
-    "on": "true",
-    "locked": false
-   },
-   {
-    "label": "Asset",
-    "key": "vehicle",
-    "on": "true",
-    "locked": false
-   },
-   {
-    "label": "VIN/Serial #",
-    "key": "vin",
-    "on": "false",
-    "locked": false
-   },
-   {
-    "label": "Progress",
-    "key": "progress",
-    "on": "true",
-    "locked": false
-   },
-   {
-    "label": "Service Advisor",
-    "key": "service_advisor",
-    "on": "true",
-    "locked": false
-   },
-   {
-    "label": "Lead Technician",
-    "key": "technician",
-    "on": "false",
-    "locked": false
-   },
-   {
-    "label": "Clocked In",
-    "key": "clocked_in_technicians",
-    "on": "true",
-    "locked": false
-   },
-   {
-    "label": "Lines",
-    "key": "lines_count",
-    "on": "true",
-    "locked": false
-   },
-   {
-    "label": "Assigned Techs",
-    "key": "assigned_techs",
-    "on": "true",
-    "locked": false
-   },
-   {
-    "label": "Created on",
-    "key": "start_date",
-    "on": "true",
-    "locked": false
-   },
-   {
-    "label": "Total price",
-    "key": "total_price",
-    "on": "true",
-    "locked": false
-   },
-   {
-    "label": "Invoiced Date",
-    "key": "invoiced_date",
-    "on": "false",
-    "locked": false
-   },
-   {
-    "label": "Days open",
-    "key": "days_open",
-    "on": "false",
-    "locked": false
-   },
-   {
-    "label": "Parts",
-    "key": "part_requests_count",
-    "on": "false",
-    "locked": false
-   },
-   {
-    "label": "Returns",
-    "key": "part_return_requests_count",
-    "on": "false",
-    "locked": false
-   }
-  ],
-  "listOffersAssignedTechs": false,
-  "techOffersAssignedTechs": true,
-  "inListNotInTech": [],
-  "inTechNotInList": [
-   "On Site",
-   "Unit",
-   "Assigned Techs"
-  ],
-  "s8_10": {
-   "onSite": "false -> true",
-   "vin": "false -> true",
-   "lead": "false -> true"
-  },
-  "s11_headers": [
-   "On Site",
-   "Status",
-   "Waiting On Parts",
-   "Number",
-   "Customer",
-   "Unit",
-   "Asset",
-   "VIN/Serial #",
-   "Progress",
-   "Service Advisor",
-   "Lead Technician",
-   "Clocked In",
-   "Lines",
-   "Assigned Techs",
-   "Created On",
-   "Total Price"
-  ],
-  "s13": "true -> false",
-  "s14_headers": [
-   "On Site",
-   "Status",
-   "Waiting On Parts",
-   "Number",
-   "Customer",
-   "Unit",
-   "Asset",
-   "VIN/Serial #",
-   "Progress",
-   "Service Advisor",
-   "Lead Technician",
-   "Clocked In",
-   "Lines",
-   "Created On",
-   "Total Price"
-  ],
-  "s15": "false -> true",
-  "s16_headers": [
-   "On Site",
-   "Status",
-   "Waiting On Parts",
-   "Number",
-   "Customer",
-   "Unit",
-   "Asset",
-   "VIN/Serial #",
-   "Progress",
-   "Service Advisor",
-   "Lead Technician",
-   "Clocked In",
-   "Lines",
-   "Assigned Techs",
-   "Created On",
-   "Total Price"
-  ],
-  "s17": {
-   "Status": "not in the menu",
-   "Number": "not in the menu",
-   "Customer": "not in the menu"
-  },
-  "s18_unit": "true -> false",
-  "s17_menuNow": [
-   "On Site=true",
-   "Waiting On Parts=true",
-   "Unit=false",
-   "Asset=true",
-   "VIN/Serial #=true",
-   "Progress=true",
-   "Service Advisor=true",
-   "Lead Technician=true",
-   "Clocked In=true",
-   "Lines=true",
-   "Assigned Techs=true",
-   "Created on=true",
-   "Total price=true",
-   "Invoiced Date=false",
-   "Days open=false",
-   "Parts=false",
-   "Returns=false"
-  ],
-  "s19_headers": [
-   "On Site",
-   "Status",
-   "Waiting On Parts",
-   "Number",
-   "Customer",
-   "Asset",
-   "VIN/Serial #",
-   "Progress",
-   "Service Advisor",
-   "Lead Technician",
-   "Clocked In",
-   "Lines",
-   "Assigned Techs",
-   "Created On",
-   "Total Price"
-  ],
-  "s20_unit": "false -> true",
-  "s20_headers": [
-   "On Site",
-   "Status",
-   "Waiting On Parts",
-   "Number",
-   "Customer",
-   "Unit",
-   "Asset",
-   "VIN/Serial #",
-   "Progress",
-   "Service Advisor",
-   "Lead Technician",
-   "Clocked In",
-   "Lines",
-   "Assigned Techs",
-   "Created On",
-   "Total Price"
-  ],
-  "prefRestored": 200,
-  "listHeaders": [
-   "On Site",
-   "Status",
-   "Waiting On Parts",
-   "Number",
-   "Customer",
-   "Asset",
-   "Unit",
-   "VIN/Serial #",
-   "Progress",
-   "Service Advisor",
-   "Lead Technician",
-   "Clocked In",
-   "Lines",
-   "Total Price",
-   "Created On",
-   "Invoiced Date",
-   "Days Open",
-   "Parts",
-   "Returns"
-  ]
- },
- "C368161": {
-  "wo": "S1-1396",
-  "lead": "Theresa Webb",
-  "leadStaff": "4535d090",
-  "theresaLog": [],
-  "lineTech": "Jenny Wilson",
-  "created": {
-   "approve": 201,
-   "lead": 201,
-   "line": 201
-  },
-  "olderWorkOrders": [],
-  "lineTechsBefore": [
-   "Theresa Webb"
-  ],
-  "canned": "Test",
-  "editorOpen": 0,
-  "lineTechsAfterEditor": [
-   "Theresa Webb"
-  ],
-  "fallback": "the line editor did not give the line to Jenny Wilson; the same save the editor makes was sent: 200",
-  "lineTechsAfterFallback": [
-   "Jenny Wilson"
-  ],
-  "lineCalls": [
-   "POST /api/user/recent-entities/touch {\"type\":\"customers\",\"id\":\"273a0bd7-c720-4e74-a084-67cfb2cb2d17\"}",
-   "PUT /api/work-orders/lines/a141a8c0-2c0f-427a-8ff7-6a4e09c72650/technicians {\"staffIds\":[\"bd39bb49-c650-48e7-8128-cebda29f96ba\"]}"
-  ],
-  "reach": {
-   "found": true,
-   "wasOpen": false
-  },
-  "header": {
-   "avatar": "TW",
-   "hasImg": false,
-   "text": "TW Theresa Webb 1 1 work order"
-  },
-  "rowAvatars": {
-   "avatars": [
-    "SA",
-    "TW",
-    "JW"
-   ],
-   "brokenImg": 0
-  },
-  "boardHeader": null,
-  "fieldsButton": "Column Selection",
-  "fieldsMenu": [
-   "Lead technician=true",
-   "Customer=true",
-   "Asset=true",
-   "VIN/serial=false",
-   "Progress=true",
-   "Service advisor=false",
-   "Clocked in=false",
-   "Line count=false",
-   "Line technicians=true",
-   "Estimated hours=true",
-   "Total price=true",
-   "On-site=false",
-   "Created date=false"
-  ],
-  "lineTechOn": null,
-  "cardAvatars": null
- },
- "C96938": {
-  "techA": "Ayesha Khan",
-  "reachA": true,
-  "avatarA": {
-   "found": true,
-   "tooltip": "",
-   "titleUnderPointer": [
-    "div title=\"Ayesha Khan\""
-   ]
-  },
-  "reachLong": true,
-  "nameLong": {
-   "found": true,
-   "tooltip": "",
-   "titleUnderPointer": [
-    "span title=\"Maximiliana Fitzgerald-Montgomery\""
-   ]
-  },
-  "avatarLong": {
-   "found": true,
-   "tooltip": "",
-   "titleUnderPointer": [
-    "div title=\"Maximiliana Fitzgerald-Montgomery\""
-   ]
-  },
-  "nameLongShown": {
-   "text": "Maximiliana Fitzgerald-Montgomery",
-   "title": "Maximiliana Fitzgerald-Montgomery",
-   "truncated": false
-  }
- },
- "staffInputs_Ralph Edwards": [
-  "Type to search"
- ],
- "staffRowHtml_Ralph Edwards": "\" data-test-id=\"staff_billable_badge\">Yes</div></td><td data-v-4d443fd3=\"\" class=\"q-td q-table--col-auto-width text-right\"><button data-v-68e00a17=\"\" data-v-4d443fd3=\"\" class=\"q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--round text-dark q-btn--actionable q-focusable q-hoverable q-mx-xs\" tabindex=\"0\" type=\"button\" data-test-id=\"staff_edit_button\" filled=\"true\" style=\"font-size: 10px; padding: 4px; min-width: 0px; min-height: 0px;\"><span class=\"q-focus-helper\"></span><span class=\"q-btn__content text-center col items-center q-anchor--skip justify-center row\"><i class=\"q-icon notranslate material-icons\" aria-hidden=\"true\" role=\"img\">edit_note</i><!----></span></button></td></tr>",
- "C96934": {
-  "deactivate": {
-   "done": true,
-   "label": "Deactivate Account",
-   "confirm": [],
-   "calls": [
-    "POST /api/iam/change-status {\"id\":\"3a1cebd8-b928-4463-89e0-b507400f7c47\"}"
-   ]
-  },
-  "activeNow": false,
-  "reach": {
-   "found": true,
-   "wasOpen": false
-  },
-  "group": {
-   "name": "Ralph Edwards",
-   "id": "76a46d3b-9c11-4274-a9de-414fd29caf41",
-   "count": 2,
-   "collapsed": false,
-   "pin": {
-    "pressed": "false",
-    "disabled": false,
-    "label": "Pin Ralph Edwards"
-   },
-   "empty": null,
-   "rows": [
-    "S1-1399",
-    "S1-1400"
-   ]
-  },
-  "header": "RE Ralph Edwards Inactive 2 2 work orders",
-  "inactiveMarker": [
-   "Inactive"
-  ],
-  "reactivate": 201,
-  "activeAfter": true
- },
- "C368125": {
-  "leadFixes": [],
-  "pinnedNow": [],
-  "collapsedBefore": true,
-  "countBefore": 38,
-  "during": {
-   "count": 1,
-   "collapsed": true,
-   "rows": []
-  },
-  "expanded": {
-   "count": 1,
-   "collapsed": false,
-   "rows": [
-    "S1-1401"
-   ]
-  },
-  "kept": [
-   "S1-1401"
-  ],
-  "other": [
-   "S1-1402"
+  "boardAll": [
+   "Unassigned",
+   "Aaron Baker",
+   "Aaron Zed",
+   "Admin ShopView",
+   "Ahtasham Amjad",
+   "Ahtesham ABCPROD",
+   "Ayesha Khan",
+   "Bilal Muzamil",
+   "Bilal Muzammil",
+   "Billy Nobill",
+   "Branko Cicovic",
+   "Brenda Martinez",
+   "Cameron Williamson",
+   "Carol Neal",
+   "Chris Lee (first)",
+   "Chris Lee (second)",
+   "Dana Ortiz",
+   "Esther Howard",
+   "Floyd Miles",
+   "Jenny Wilson",
+   "Kristin Watson",
+   "Maximiliana Fitzgerald-Montgomery",
+   "Nina Newtech",
+   "Ralph Edwards",
+   "Service Advisor No Reports (Admin)",
+   "Service advisor. No Reports",
+   "Technician 1",
+   "Theresa Webb",
+   "ZZAUTOTEST Deleted Lead 46045",
+   "ZZAUTOTEST Aaron Able 932906",
+   "ZZAUTOTEST Ana Alpha",
+   "ZZAUTOTEST Ben Bravo",
+   "ZZAUTOTEST C614719 Ana",
+   "ZZAUTOTEST C614719 Ben",
+   "ZZAUTOTEST Cal Charlie",
+   "ZZAUTOTEST Dan Delta",
+   "ZZAUTOTEST DC01 Ana Icons",
+   "ZZAUTOTEST DC02 Ben Tooltip",
+   "ZZAUTOTEST DC03 Cara Edge",
+   "ZZAUTOTEST DC04 Dan Columns",
+   "ZZAUTOTEST DC05 Eva Cells",
+   "ZZAUTOTEST DC06 Gia Pills",
+   "ZZAUTOTEST DC07 Hana Grip",
+   "ZZAUTOTEST DC08 Ines Header",
+   "ZZAUTOTEST DC09 Kai Board",
+   "ZZAUTOTEST DC10 Lea Pin",
+   "ZZAUTOTEST DC10 Max Pin",
+   "ZZAUTOTEST DC10 Nia Pin",
+   "ZZAUTOTEST DC10 Oli Pin",
+   "ZZAUTOTEST DC11-65540 Pia Card",
+   "ZZAUTOTEST DC11-65540 Quinn Card",
+   "ZZAUTOTEST DC11-88821 Pia Card",
+   "ZZAUTOTEST DC11-88821 Quinn Card",
+   "ZZAUTOTEST DC12 Rae Menu",
+   "ZZAUTOTEST DC13 Sam Idle",
+   "ZZAUTOTEST DC14 Tia Drag",
+   "ZZAUTOTEST DC14-88821 Tia Drag",
+   "ZZAUTOTEST DC14-88821 Uma Drag",
+   "ZZAUTOTEST DC15 Vic Hover",
+   "ZZAUTOTEST DC15 Wes Hover"
   ]
  }
 }

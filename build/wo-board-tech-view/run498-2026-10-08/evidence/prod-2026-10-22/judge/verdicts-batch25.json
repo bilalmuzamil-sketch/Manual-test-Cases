@@ -1,0 +1,212 @@
+{
+ "C97025": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: a new admin person was made for this test and signed in on a fresh page, so the usage records start a new session; Board View started with Service advisor off, Customer on and Regular spacing (the starting values the test needs).",
+   "Step 1: Work Orders was opened from the top menu and Board View was clicked.",
+   "Step 2: in Fields to display, Service advisor was turned on and Customer turned off, then the picker was closed.",
+   "Step 3: exactly 2 field change usage records were sent: Service advisor on, and Customer off.",
+   "Step 4: Tech View was clicked, the spacing (density) control opened and Compact picked.",
+   "Step 5: exactly 1 spacing change usage record was sent, naming Compact (in Tech View).",
+   "Step 6: in Tech View the spacing control was opened again and Compact picked again.",
+   "Step 7: Board View was clicked and Fields to display opened and closed with no change.",
+   "Step 8: 0 new change usage records since step 5.",
+   "Failed save: not checked by hand.",
+   "No picture: what is checked here is the usage record the page sends, which does not show on the screen."
+  ],
+  "pictures": [],
+  "reason_for_reviewer": "analytics-batch.mts C97025, re-run 22:14-22:16 UTC (redo3 #36), fresh admin user 'ZZAUTOTEST GA Changes', analytics allowed, events read from the page's own Google Analytics requests (unread 0). openWO clicks the top-menu Work Orders link from /customers (viewAs opens /customers on production). step3 = field_toggle board_view service_advisor on + company_name off; step5 = density_change tech_view compact (the only one); step8 (all *toggle*/*change* events after step 5, incl. re-pick Compact and Board View picker open/close) = []. Density steps in Tech View per the case as rewritten 22 Oct (PRD v73 S3-R11/S6-R1). C97025-end.png is the runner's own page (byte-identical for C97025/27/35) and C97025-error.png is the 16:16 first attempt; neither is evidence, so no picture."
+ },
+ "C97027": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 3: every value the run read was only a field or setting name (no customer, technician, work order number, VIN, search text or dollar amount), but it read only the record's own settings, not the page address and page title that each usage record also carries; the Work Orders address holds the search text, so whether \"ZZAUTOTEST Bravo\" travels in the usage records is not known.",
+  "bold_steps": [
+   3
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1 and 2 were followed; at step 3 not every part of each usage record was read.",
+   "Set-up: customer \"ZZAUTOTEST Bravo GA <number> Bravo Co\" with a contact and an asset, and one Approved work order led by ZZAUTOTEST Ana Alpha with a total price; a new admin person signed in on a fresh page.",
+   "Step 1: Work Orders was opened from the top menu, the customer was searched (the search text was \"ZZAUTOTEST Bravo GA\" plus a number, which contains \"ZZAUTOTEST Bravo\"), then Tech View and Board View were clicked.",
+   "Step 2: in Fields to display VIN/Serial was turned on; then Tech View was clicked and the spacing changed to Comfortable.",
+   "Step 3: 37 Work Orders usage records were read. Their settings hold only names and values such as board_view, tech_view, list, total_price, vin, service_advisor, on, off, regular, comfortable, default, saved. None holds the customer name, a technician name, a work order number, a VIN, the search text or a dollar amount.",
+   "Step 3 (NOT FULLY READ): the page address and page title that each usage record also carries were not read. After a search the Work Orders address holds the search text, so it may appear there.",
+   "No picture: what is checked here is the usage record the page sends, which does not show on the screen."
+  ],
+  "pictures": [],
+  "reason_for_reviewer": "ROUTE-ONLY: no. analytics-batch.mts C97027, re-run 22:16-22:17 UTC (redo3 #36). tap() keeps only ep./epn./up./upn. parameters; the automatic dl (page_location) / dt (page_title) / dr are dropped, and DebugView shows page_location on every event. The Work Orders search is written into the address (?search=ZZAUTOTEST+...; seen across this run's evidence), so dl after step 1's search very likely carries the search text unless the app strips it; S12-R5 bars search text in analytics and the Expected says no event contains it. Every ep value read is a key/setting value (one 'default\\r' with a stray carriage return); hits [] against Bravo/Ana/Alpha/WO number/search text/ZZAUTOTEST/$/vin. VIN lookup used workOrders()[0].vin, which may be absent (fallback '#none#'), but no read value looks like a VIN. Search text typed was s.q ('ZZAUTOTEST Bravo GA <RUNNO>'), not exactly 'ZZAUTOTEST Bravo' (superset; minor). Pictures: -end is the runner's page, -error is the 16:17 first attempt.",
+  "todo": "In DebugView (or the browser's network panel), after searching \"ZZAUTOTEST Bravo\" open a Work Orders usage record sent after the search and read its page address (page_location) and page title. If the search text appears there, the test fails; if not, it passes (everything else already matched)."
+ },
+ "C97035": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 7: all counts matched (5 display views, 30 field records, 1 spacing record, 3 field changes, 1 spacing change, total 40), but nothing shows that scrolling at step 7 actually loaded more cards, so \"Step 7 adds nothing\" was not tested against a real load of more cards.",
+  "bold_steps": [
+   7
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1 to 6 and 8 were followed and every count matched; at step 7 there is no sign that more cards loaded.",
+   "Set-up: a new admin person (saved display List, spacing never changed, Board View fields Service advisor, Line count and Created date off) signed in on a fresh page.",
+   "Steps 1 to 4: Work Orders opened (List) from the top menu; Tech View, Board View and Tech View were clicked; Compact was picked from Tech View's spacing button.",
+   "Step 5: Board View was clicked and in Fields to display Service advisor, Line count and Created date were turned on quickly, one after another.",
+   "Step 6: the spacing was left as it was.",
+   "Step 7 (NOT CONFIRMED): the mouse wheel was turned over the board six times, but nothing was read to show that more cards loaded.",
+   "Step 8: work_orders_display_view 5, work_orders_field_load 30, work_orders_density_load 1, work_orders_field_toggle 3 (one per changed field), work_orders_density_change 1; grand total 40. The 3 field changes reached the usage records a few seconds after step 5 (they are sent in a batch); no other record came after step 5.",
+   "No picture: what is checked here is the usage record the page sends, which does not show on the screen."
+  ],
+  "pictures": [],
+  "reason_for_reviewer": "ROUTE-ONLY: no. analytics-batch.mts C97035, re-run 22:17-22:19 UTC (redo3 #36), Expected as changed by the QA lead 22 Oct (density_load 1, total 40) - all five counts and the total match exactly. step7new holds the three step-5 field_toggle events because n6 was taken 1.5 s after the picker closed and GA batches; toggles total 3, so nothing extra. Step 7 = six mouse.wheel(0,900) at viewport (800,600) with no reading of cards loaded before/after (no card count, no scroller position). At x=800 the third board column sits under the pointer, which may be short (e.g. Aaron Baker 10 cards in the admin's board), and C96953 showed a wheel over empty space moves the page instead; so whether a 'load more' happened is unknown. Pictures: -end is the runner's page, -error the 16:22 first attempt.",
+  "todo": "Run step 7 by hand: in Board View scroll the Unassigned column (it holds hundreds of work orders) until new cards appear at the bottom, wait a few seconds, then check in DebugView that no new Work Orders usage record appeared. Every other count already matched (total 40)."
+ },
+ "C368153": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 1: the person who did the steps had a role with Work Orders View only, not View and Create & Edit as the test asks. Everything read matched: 12 field records and 16 field records with none for total price, Total price not in Fields to display, and no dollar amount on the card.",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The steps were followed and every reading matched, but the person did not have the role the test asks for.",
+   "Set-up (NOT AS WRITTEN): the role \"ZZAUTOTEST WO View Only\" (see financial data off) has Work Orders View but not Create & Edit; the test asks for View and Create & Edit without see financial data. A new person with that role, who never changed Fields to display, was used; no Create Work Order button shows on their board (seen on the picture).",
+   "Step 1: as that person, Work Orders was opened from the top menu and Board View clicked.",
+   "Step 2: 12 field usage records, none for total price.",
+   "Step 3: Tech View was clicked.",
+   "Step 4: 16 new field usage records, none for total price.",
+   "Step 5: in Board View, Fields to display offers 12 fields and Total price is not among them; the one card on screen (S1-1674) shows no dollar amount (seen on the picture).",
+   "Total for this person: 12 + 16 = 28.",
+   "No picture: what is checked here is the usage record the page sends, which does not show on the screen."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368153-board.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. analytics-batch.mts C368153, re-run 22:32-22:34 UTC (redo3 #39). User = fresh('NoMoney', VIEW_ROLE) where VIEW_ROLE = 'ZZAUTOTEST WO View Only' (Work orders View on, Create & Edit off: C368207/C97003 set-up, RERUN.md role-restore); setFin false behind the screen before step 1 (was already false; restored false). Precondition requires View AND Create & Edit; the picture confirms no Create Work Order button. Readings: step2 n 12 totalPrice 0; step4 n 16 totalPrice 0 (labels listed, assigned_techs included); step5 pickerHasTotal 0, 12 picker items, 8 cards counted on the page, dollarOnCards 0. Picker itself not pictured (reading only). C368153-end.png is the runner's admin board (identical to C97023-end.png, shows dollar amounts because the admin has the permission) and is not evidence for this person.",
+  "todo": "Repeat with a role that has Work Orders View and Create & Edit but see financial data off (for example a copy of the Admin role with see financial data turned off), with a person who never changed Fields to display: expect 12 field records then 16, none for total price, Total price not in Fields to display and no dollar amount on any card."
+ },
+ "C97023": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 5: the display view counts matched at every step (1, then 3, then 5, nothing new in steps 5 to 7, total 5), but nothing shows that scrolling at step 5 actually loaded more cards, so \"loading more rows is not a new view\" was not tested against a real load of more cards.",
+  "bold_steps": [
+   5
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Every count matched; at step 5 there is no sign that more cards loaded.",
+   "Set-up: a new admin person (saved display List) signed in on a fresh page that was not Work Orders.",
+   "Step 1: Work Orders was opened from the top menu; exactly 1 display view was recorded, for List on the All tab.",
+   "Steps 2 and 3: Tech View and then Board View each added 1, naming Tech View then Board View (running total 3).",
+   "Step 4: the Estimates tab and then the All tab each added 1, naming Estimates then All (running total 5).",
+   "Step 5 (NOT CONFIRMED): the mouse wheel was turned over the board six times and the run waited 30 seconds, but nothing was read to show that more cards loaded.",
+   "Steps 6 and 7: \"ZZAUTOTEST\" was typed in Search, Approved ticked in Status, and the window narrowed to 900 px and widened back; no new display view was recorded during steps 5 to 7.",
+   "Step 8: total 5 display views (1 + 2 + 2), each naming the display and tab above. The page worked as usual.",
+   "No picture: what is checked here is the usage record the page sends, which does not show on the screen."
+  ],
+  "pictures": [],
+  "reason_for_reviewer": "ROUTE-ONLY: no. analytics-batch.mts C97023, re-run 22:35-22:38 UTC (redo3 #40), fixed since the first attempt: viewAs now pre-opens /customers (no Work Orders events) and openWO clicks the top-menu Work Orders link, so step 1 = exactly 1 'display_view list all default'. step3/step4 lists exact; step5to7new []; total 5. Step 5 = six mouse.wheel(0,900) at viewport (800,600) then settle 30 s, with no card count or scroller reading before/after; the column under x=800 may be short and a wheel over empty space moves the page (C96953), so a 'load more' is not shown. C97023-end.png is the runner's admin board (identical to C368153-end.png), not this person's screen.",
+  "todo": "Run step 5 by hand: in Board View scroll the Unassigned column until new cards appear at the bottom, wait 30 seconds and check DebugView shows no new work_orders_display_view. All other steps already matched (total 5)."
+ },
+ "C96936": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 5: the run used Ralph Edwards as the second technician instead of Aaron Baker (the test's expected results name Aaron Baker), and the lead change was made behind the screen, not on the work order page: on production the work order page showed Lead technician \"Esther Howard\" as plain text with no list to pick from.",
+  "bold_steps": [
+   5
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1 to 4 and 6 to 8 were followed; step 5 was not done as written and the second technician was not the one the test names.",
+   "Set-up (NOT AS WRITTEN): customer ZZAUTOTEST F2 Refresh Lead with five Approved work orders: S1-1385, S1-1386 and S1-1387 led by Esther Howard, and S1-1388 and S1-1389 led by Ralph Edwards, not Aaron Baker as the test asks.",
+   "Steps 1 to 4: in tab A, Work Orders, the All tab, Search \"ZZAUTOTEST F2 Refresh Lead\" and Tech View: Esther Howard shows 3 (S1-1385, S1-1386, S1-1387) and Ralph Edwards 2 (seen on the picture).",
+   "Step 5 (NOT DONE AS WRITTEN): in tab B, S1-1385 opened; its Lead technician reads \"Esther Howard\" as plain text and no list of technicians could be opened (seen on the picture). The lead was changed to Ralph Edwards behind the screen instead.",
+   "Step 6: before the refresh tab A still showed S1-1385 under Esther Howard (allowed).",
+   "Steps 7 and 8: after the refresh S1-1385 is under Ralph Edwards; Esther Howard shows 2 and Ralph Edwards 3 (seen on the picture). Aaron Baker shows 0 throughout.",
+   "Manual check: change the lead on the work order page to Aaron Baker as the test says."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96936-tabA-start.png",
+   "evidence/prod-2026-10-22/C96936-tabB-lead-field.png",
+   "evidence/prod-2026-10-22/C96936-after-refresh.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. s2-batchB.mts C96936, re-run 22:20-22:22 UTC (redo3 #37). The script still seeds/prefers 'Ralph Edwards' (pickTech prefer ['Ralph Edwards']), although the case (QA lead decision 19 Oct) names Aaron Baker. Tab B lead candidates: only 'lead_technician_readonly=Esther Howard' found, list count 0 (readingValid false), so the change was POST change-lead-technician (201) - 'the same save the page makes'. Pictures confirm: Lead technician shown as plain text on S1-1385's page; after refresh Esther 2 / Ralph 3 with S1-1385 under Ralph. The product's refresh behaviour matches S2-E2 with Ralph; not judged against Aaron Baker. Worth checking by hand whether Lead Technician can be changed on the work order page on production at all (read-only display here; staging 19 Oct picked from a list).",
+  "todo": "Do step 5 by hand: set up {Work-order-4} and {Work-order-5} led by Aaron Baker, then in tab B open {Work-order-1} and change Lead Technician to Aaron Baker on the work order page; refresh tab A and check it moves under Aaron Baker with Esther Howard 2 and Aaron Baker 3. If the Lead Technician field cannot be changed on the work order page, write that in the result."
+ },
+ "C368180": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 1: the customer's Assets page was opened by its address instead of Customers > the customer > Assets tab, and the set-up was not as written: [WO-A] was Approved, not an Estimate (seen on the picture), so whether an Estimate is listed was not tested. The table listed exactly A, B and C (3 rows), not D, with no error message.",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The table matched, but step 1 was partly done by address and one work order was not in the state the test asks for.",
+   "Set-up (NOT AS WRITTEN): customer ZZAUTOTEST Asset Tab 95305 with assets TRK-201 and TRK-202; on TRK-201 S1-1666 [WO-A], S1-1667 [WO-B] and S1-1668 [WO-C] Complete; on TRK-202 S1-1669 [WO-D]. [WO-A] was Approved, not an Estimate (seen on the picture).",
+   "Step 1 (NOT DONE AS WRITTEN): the customer's Assets page was opened by its address (not Customers in the top menu > the customer > Assets tab); the TRK-201 row was then clicked and the asset's Work Orders tab clicked.",
+   "Step 2: the table lists S1-1666, S1-1667 and S1-1668 (3 rows) and nothing else; S1-1669 (TRK-202) is not listed. No error message appeared and the table finished loading (seen on the picture).",
+   "Manual check: reach the asset from Customers in the top menu, with [WO-A] still an Estimate."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368180-tab.png",
+   "evidence/prod-2026-10-22/C368180-end.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. high1-batch.mts C368180, re-run 22:23-22:24 UTC (redo3 #38). assetTab() = goto /customers/<id>/vehicles, then click TRK-201 row, then Work Orders tab. tabSet() leaves A as 'estimate' but then posts change-lead-technician on A (Ana) - on production A shows Approved (S1-1666 Approved on the picture; also S1-1670 Approved on the customer tab), so the start state 'Estimate' was not held. rows = expect (S1-1666/7/8), D S1-1669 absent, toasts []. tab.png and end.png are byte-identical (same md5; also = C368181-end/-staging).",
+  "todo": "Make [WO-A] an Estimate (one line, Line Approved off, no lead), then click Customers in the top menu, open the customer, click Assets, click TRK-201 and its Work Orders tab: expect A, B and C only (3 rows), not D, and no error."
+ },
+ "C368181": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1 and 4: the customer's Assets page (step 1) and the Customers page (step 4) were opened by their address instead of from the top menu, and the set-up was not as written: [WO-A] was Approved, not an Estimate (seen on the picture). What was read matched: TRK-201's Work Orders tab has 3 rows and shows no count, and production also shows no count on an asset's Work Orders tab.",
+  "bold_steps": [
+   1,
+   4
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). What was read matched, but two pages were opened by address and one work order was not in the state the test asks for.",
+   "Set-up (NOT AS WRITTEN): the same customer as the asset list test (ZZAUTOTEST Asset Tab 95305), TRK-201 with S1-1666, S1-1667 and S1-1668, TRK-202 with S1-1669. [WO-A] was Approved, not an Estimate (seen on the picture).",
+   "Step 1 (NOT DONE AS WRITTEN): the customer's Assets page was opened by its address; TRK-201 and its Work Orders tab were then clicked.",
+   "Step 2: no count shows: the tab reads \"Work Orders\" and there is nothing above or under the table (seen on the picture).",
+   "Step 3: the table has 3 rows.",
+   "Step 4 (NOT DONE AS WRITTEN): a second tab was opened on production's Customers page by its address, not by clicking Customers in the top menu.",
+   "Step 5: a customer (Ahsan) was opened, its Assets tab clicked and an asset with work orders (2019 Freightliner) opened.",
+   "Step 6: its Work Orders tab lists 8 rows and shows no count, on the tab or around the table (seen on the picture). So no count is how production already works, as the test allows.",
+   "Manual check: reach both pages from Customers in the top menu, with [WO-A] still an Estimate."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368181-staging.png",
+   "evidence/prod-2026-10-22/C368181-production.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. high1-batch.mts C368181, re-run 22:24-22:30 UTC (redo3 #38). Steps 1-3 via assetTab() (goto /customers/<id>/vehicles); rowCount 3, tab 'Work Orders', bottom null. 'C368181-staging.png' is mis-named: it is production's TRK-201 asset tab (byte-identical to C368180-tab.png). Steps 4-6 in a second tab of the same session (a second sign-in would end the run's session, L0511): goto /customers, then row clicks, Assets tab, asset row clicks (returns to the customer by goto), found Ahsan's 2019 Freightliner: 8 rows, tabLabel 'Work Orders', bottom null, countShown false (C368181-production.png; -production-asset-work-orders.png is identical). WO-A Approved instead of Estimate (see C368180).",
+  "todo": "Make [WO-A] an Estimate, then click Customers in the top menu > the customer > Assets > TRK-201 > Work Orders: expect 3 rows and, if a count shows, 3. In another tab click Customers in the top menu > any customer > Assets > an asset with work orders > Work Orders and note whether a count shows (this run saw none on production)."
+ },
+ "C368184": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 1: the customer's Work Orders tab was opened by its address instead of Customers > the customer > Work Orders tab, and the set-up was not as written: [WO-A] was Approved, not an Estimate (seen on the picture). The table listed exactly A, B, C and D (4 rows), no other customer's work orders, with no error message.",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The table matched, but step 1 was done by address and one work order was not in the state the test asks for.",
+   "Set-up (NOT AS WRITTEN): customer ZZAUTOTEST Customer Tab 95305 with TRK-201 (S1-1670 [WO-A], S1-1671 [WO-B], S1-1672 [WO-C] Complete) and TRK-202 (S1-1673 [WO-D]). [WO-A] was Approved, not an Estimate (seen on the picture).",
+   "Step 1 (NOT DONE AS WRITTEN): the customer's Work Orders tab was opened by its address, not from Customers in the top menu; the tab label reads \"Work Orders (4)\" (seen on the picture).",
+   "Step 2: the table lists S1-1673, S1-1672, S1-1671 and S1-1670 (4 rows) and nothing else; no other customer's work orders. No error message appeared and the table finished loading (seen on the picture).",
+   "Manual check: reach the tab from Customers in the top menu, with [WO-A] still an Estimate."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368184-tab.png",
+   "evidence/prod-2026-10-22/C368184-end.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. high1-batch.mts C368184, re-run 22:30-22:31 UTC (redo3 #38). customerTab() = goto /customers/<id>/work-orders (no top-menu click, no customer opened from the list). rows S1-1673/2/1/0 = expect, toasts []. WO-A (S1-1670) shows Approved with lead ZZAUTOTEST Ana Alpha on the picture (tabSet posts a lead change on A). tab.png and end.png byte-identical (also = C368185-end.png).",
+  "todo": "Make [WO-A] an Estimate, then click Customers in the top menu, open the customer and click its Work Orders tab: expect A, B, C and D only (4 rows) and no error."
+ },
+ "C368185": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 1: the customer's Work Orders tab was opened by its address instead of Customers > the customer > Work Orders tab, and the set-up was not as written: [WO-A] was Approved, not an Estimate (seen on the picture). The count read 4 (\"Work Orders (4)\") and the table had 4 rows.",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The count and rows matched, but step 1 was done by address and one work order was not in the state the test asks for.",
+   "Set-up (NOT AS WRITTEN): the same customer as the customer list test (ZZAUTOTEST Customer Tab 95305), four work orders. [WO-A] was Approved, not an Estimate (seen on the picture).",
+   "Step 1 (NOT DONE AS WRITTEN): the customer's Work Orders tab was opened by its address, not from Customers in the top menu.",
+   "Step 2: the tab label reads \"Work Orders (4)\"; there is nothing under the table (seen on the picture).",
+   "Step 3: the table has 4 rows; the two numbers are the same.",
+   "Manual check: reach the tab from Customers in the top menu, with [WO-A] still an Estimate."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368185-end.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. high1-batch.mts C368185, re-run 22:31 UTC (redo3 #38). customerTab() goto; tab 'Work Orders (4)', bottom null, rowCount 4. Only one picture exists for this test (C368185-end.png, byte-identical to C368184-tab/-end, same customer and page). WO-A Approved instead of Estimate (see C368184).",
+  "todo": "Make [WO-A] an Estimate, then click Customers in the top menu, open the customer and click its Work Orders tab: expect the count to read 4 and 4 rows."
+ }
+}
