@@ -345,6 +345,24 @@
    "what_we_knew": "Feature spec: \"Two different people on one work order are always two rows.\"; \"A new work order for a customer that is not split starts with the customer's representative in its one Sales Representative field.\"; the Assignments export \"lists one row per customer per person\". The report spec's own updated rules already agree on 1 and 3: a split invoice \"appears under both\", and the export has \"one row per customer per assigned person\".",
    "answer_verbatim": "38. (a) The feature spec wins on all three; I'll update the Sales By Representative spec.",
    "where_found": "Sales By Representative spec v28 key decisions (line 36), S19-R3, S15-R9 (all unchanged since v24); PRD v8 S5-R11, S4-R23, S4-R24 to S4-R26; Sales By Representative spec v28 S6-R7, S15-R4"
+  },
+  {
+   "sheet_row": 46,
+   "no": 39,
+   "topic": "Splitting Sales Representatives: labor columns on a Part Sales row",
+   "question": "Sheet 17Ry1Bt row 46 (added 20 Oct 2026)",
+   "what_we_knew": "Design shows a dash in the labor columns of a Part Sales row; today's report shows 0.00 / $0.00.",
+   "answer_verbatim": "39. (a) A dash on screen and in the PDF, and an empty cell in the CSV, as the design shows. A part sale has no labor, so the labor columns don't apply to it; it's the same rule as answers 24 and 25. This changes today's 0.00 / $0.00, so it's now listed under Release day. New S5-R15b, PRD v11.",
+   "where_found": "Sheet 17Ry1BtRTPEkecBP5TlgAE0T93Ai1TQewdJ7B7WpWDBQ cell E46, read 22 Oct 2026"
+  },
+  {
+   "sheet_row": 47,
+   "no": 40,
+   "topic": "Splitting Sales Representatives: Lead Technician message below its field",
+   "question": "Sheet 17Ry1Bt row 47 (added 20 Oct 2026)",
+   "what_we_knew": "S1-R6a describes a Lead Technician message; nothing on the card was known to trigger one.",
+   "answer_verbatim": "40. (b) Nothing triggers a message today. On the work order card, Lead Technician isn't required and has no hint, so it never shows one, and the 20px strip it kept was always empty. Please test that no blank strip remains under Lead Technician and that every gap is 16px. S1-R6a only applies if a message is added later. Context note added, PRD v11.",
+   "where_found": "Sheet 17Ry1BtRTPEkecBP5TlgAE0T93Ai1TQewdJ7B7WpWDBQ cell E47, read 22 Oct 2026"
   }
  ]
 }

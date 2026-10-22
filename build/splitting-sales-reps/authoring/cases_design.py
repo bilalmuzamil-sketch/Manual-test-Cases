@@ -3,7 +3,7 @@ the design pictures of its boards ATTACHED and named in the preconditions; every
 PRD sentence quoted where it speaks; the design's own board title and note quoted (Exact quotes); the boards named in Source.
 Where design and PRD disagree the case follows the PRD (latest); since 20 Oct 2026 each such note quotes Chris Ward's ruling (answers of 19 Oct 2026)."""
 import os, json, glob, re
-from ssr_lib import C, P, AQ
+from ssr_lib import C, P, AQ, prd_line
 from common import *
 
 CANVAS = "https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm"
@@ -50,9 +50,9 @@ D("D-01", "Work order card at rest matches the design",
    "Measure the gaps between Lead Technician, Service Advisor and Sales Representative.",
    "Open {Work-order-2} and compare the card with the picture of board 1.5."],
   ["Step 1: \"Sales Representative\" sits directly under Service Advisor, label on the first line and \"Unassigned\" on the second, in the same text style, size, weight and left edge as Lead Technician and Service Advisor; no box, no arrow and no button at rest, as in the picture.",
-   "Step 2: with no message showing under Lead Technician, every gap is 16 px, including the gap under Lead Technician.",
+   "Step 2: no blank strip remains under Lead Technician, and every gap is 16 px, including the gap under Lead Technician.",
    "Step 3: the name {Sales-rep-A} on the second line as plain text, no box, as in the picture."],
-  ["S1-R1", "S1-R2", "S1-R3", "S1-R6", "S1-R6a", "S1-R7"], ["1.2", "1.5"])
+  ["S1-R1", "S1-R2", "S1-R3", "S1-R6", "S1-R6a", ("S1-R6a context note", prd_line("* Context note (S1-R6a)")), "S1-R7", AQ(40)], ["1.2", "1.5"])
 
 D("D-02", "Hovering the Sales Representative row shows the box, arrow and +",
   [ADMIN, REPS2, CUST, WO('its one "Sales Representative" field reads {Sales-rep-A}'), W],
@@ -207,22 +207,22 @@ D("D-15", "Sales By Representative screen, filter and column look as designed",
    "Open the column selector and compare with the pictures of boards 4.8 and 4.9 as you turn Sales Type on.",
    "Expand both representatives and compare with the picture of board 4.10."],
   ["Step 1: one row per representative; the filter reads \"Sales Type: All\"; no Sales Type column by default.",
-   "Step 2: the split invoice shows under both representatives; a side a representative did not sell shows a dash (including Shop Supplies on the Parts row); the part sale with no shop supplies shows a dash under Shop Supplies.",
+   "Step 2: the split invoice shows under both representatives; a side a representative did not sell shows a dash (including Shop Supplies on the Parts row); the part sale with no shop supplies shows a dash under Shop Supplies and under Labor Delta, Labor Invoiced and Labor Margin.",
    "Step 3: the filter lists \"Labor\", \"Parts\", \"Part Sales\", all ticked.",
    "Step 4: only the labor side of each work order shows, as in the picture.",
    "Step 5: \"Sales Type\" is the first entry, off by default; switching it on adds the column right after Status (and before Location when the Location column shows).",
    "Step 6: the Sales Type column reads \"Labor\", \"Parts\", \"Part Sales\" and \"Labor, Parts\"; columns line up as in the picture and nothing overlaps."],
-  ["S5-R10", "S5-R15", "S5-R15a", "S5-R19", "S5-R20", "S5-R21", "S8-R1", "S8-R3", AQ(24), AQ(25), AQ(26), AQ(36)], ["4.4", "4.5", "4.6", "4.7", "4.8", "4.9", "4.10"],
+  ["S5-R10", "S5-R15", "S5-R15a", "S5-R15b", "S5-R19", "S5-R20", "S5-R21", "S8-R1", "S8-R3", AQ(24), AQ(25), AQ(26), AQ(36), AQ(39)], ["4.4", "4.5", "4.6", "4.7", "4.8", "4.9", "4.10"],
   note="The pictures show $0.00 under Shop Supplies on the Parts row (boards 4.5 and 4.10) and on the part sales, while the board 4.5 note (quoted below) says a side a rep did not sell shows a dash. Chris Ward ruled on 19 Oct 2026 for the PRD's dash, and said the design's $0.00 on the part sales is a sample-data mistake (answers 24 and 25, quoted above); this case follows them. The \"Column Selection\" tooltip covering the Sales Type switch (board 4.8) is acceptable as today (answer 36).")
 
 D("D-16", "Sales By Representative Expanded CSV and PDF look as designed",
-  [ADMIN, REPS2, CUST, ("Today has one invoiced split work order (Labor {Sales-rep-A}, Parts {Sales-rep-B}).", None),
+  [ADMIN, REPS2, CUST, ("Today has one invoiced split work order (Labor {Sales-rep-A}, Parts {Sales-rep-B}) and one invoiced part sale.", None),
    START("Reports > Sales By Representative is open in that browser window, with the Sales Type column off")],
   ["Export the Expanded CSV and compare it with the picture of board 4.11.",
    "Export the Expanded PDF and compare it with the picture of board 4.12."],
-  ["Step 1: the file has the Sales Type column right after Status (and before any Location column) even though it is off on screen; the cells of the side a row is not credited with are blank.",
-   "Step 2: the PDF has the Sales Type column in the same place; those cells show a dash; the header lines name the filters, including \"Sales Type: All\"."],
-  ["S5-R23", "S8-R4", AQ(24), AQ(26)], ["4.11", "4.12"],
+  ["Step 1: the file has the Sales Type column right after Status (and before any Location column) even though it is off on screen; the cells of the side a row is not credited with are blank, and so are the part sale's labor and hours cells.",
+   "Step 2: the PDF has the Sales Type column in the same place; those cells, and the part sale's labor and hours cells, show a dash; the header lines name the filters, including \"Sales Type: All\"."],
+  ["S5-R15b", "S5-R23", "S8-R4", AQ(24), AQ(26), AQ(39)], ["4.11", "4.12"],
   note="The export pictures show 0.00 / $0.00 under Shop Supplies on the Parts row. Chris Ward ruled on 19 Oct 2026 for the PRD: blank in the CSV and a dash in the PDF (answer 24, quoted above); this case follows it.")
 
 D("D-17", "Sales By Customer Sales Type filter looks as designed",

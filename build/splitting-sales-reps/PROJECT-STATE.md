@@ -33,7 +33,12 @@ Intake: INTAKE-2026-10-19.md. Worker brief: WORKER-BRIEF.md.
 ## 22 Oct 2026 — Chris answered 39 and 40; PRD v11
 
 - PRD 919928833 **v11** (21 Oct; diff `prd-v11-2026-10-22/PRD-DIFF-v10-to-v11.diff`): new S5-R15b (Part Sales row: dash in Labor Delta, Labor Invoiced, Labor Margin; blank in CSV; added to Release day), S1-R6a context note (no Lead Technician message exists today; test no blank strip, every gap 16px).
-- Waiting on the QA lead (asked 22 Oct): release C690660 (DR-03), delete C690665 (DR-08), suite to v11 (C665968, C666031, C666032, C666017 change; the rest the version line).
+- QA lead 22 Oct: "1. Yes do what is right to do". Done 22 Oct (v11-update-2026-10-22/):
+  - Every case re-checked against PRD v11 by the build (143 PRD codes covered, 0 problems); 124 updated and read back. Content changed in C665968 (S5-07), C666017 (D-01: no blank strip under Lead Technician, every gap 16px, answer 40), C666031 (D-15), C666032 (D-16); the rest only say "version 11, read 22 Oct 2026".
+  - New: C715271 (S5-18, part sale labor cells in the downloads) and C715272 (REL-16, the Release day display change, totals unchanged).
+  - C690660 (DR-03) released: S5-R15b and answer 39 quoted, marker "not yet build-verified (no build yet)". Five other DR cases' PRD line moved to v11.
+  - C690665 (DR-08) deleted (snapshot design-recheck-2026-10-20/deleted/C690665-before-delete.json; get_case answers 400).
+  - Run 547: 135 tests (was 132; added C690660, C715271, C715272), none lost, no result changed. Id map 135 rows. Setup file regenerated. No PO question open.
 - QA lead 21 Oct: the 41 report-suite cases this feature breaks wait until the feature is live. 2.47 MB design viewer code: skip still to be confirmed.
 
 ## 20 Oct 2026 (afternoon) — suite brought to PRD v10 and Chris Ward's answers

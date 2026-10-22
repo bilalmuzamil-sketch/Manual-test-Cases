@@ -82,3 +82,17 @@ C("S2-13", "S2", "Moving lines into an existing work order does not change its r
    "Step 2: {Work-order-2} still has one Sales Representative, {Sales-rep-C}.",
    "Step 3: {Work-order-1} still has Labor {Sales-rep-A} and Parts {Sales-rep-B}."],
   ["S4-R29", ("Tech plan, Phase 6 split and move", "Moving lines to an EXISTING target WO does not touch reps.")])
+
+C("S5-18", "S5", "A part sale's labor cells show a dash in the PDF and are blank in the CSV",
+  [ADMIN, REPS2, CUST,
+   ("Part sale {Part-sale-1} for {Customer-A} has Sales Representative {Sales-rep-A} and one part at $80.00, and was invoiced today.", "For example: {Part-sale-1} is P-30001."),
+   START("Reports > Sales By Representative is open in a desktop browser at least 1024 px wide, set to today")],
+  ["Export the CSV and find {Part-sale-1}'s row.",
+   "Export the PDF and find the same row.",
+   "Export the Expanded CSV and find {Part-sale-1}'s row.",
+   "Export the Expanded PDF and find the same row."],
+  ["Step 1: Labor Delta, Labor Invoiced and Labor Margin are empty cells, not 0.00.",
+   "Step 2: Labor Delta, Labor Invoiced and Labor Margin show a dash, not 0.00 or $0.00.",
+   "Step 3: every labor and hours cell of the row is empty, not 0.00.",
+   "Step 4: every labor and hours cell of the row shows a dash, not 0.00 or $0.00."],
+  ["S5-R15b", AQ(39)])

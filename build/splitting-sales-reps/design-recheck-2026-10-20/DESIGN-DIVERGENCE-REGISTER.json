@@ -10,12 +10,11 @@
   "SHOWN-WHEN-DRIVEN"
  ],
  "counts": {
-  "PO-RULED": 13,
-  "QUESTION-NEEDED": 2,
+  "PO-RULED": 15,
   "DESIGN-SILENT": 40,
   "SHOWN-WHEN-DRIVEN": 4
  },
- "unsent_questions": 2,
+ "unsent_questions": 0,
  "rows": {
   "S2-N2|Sales representative": {
    "outcome": "PO-RULED",
@@ -232,33 +231,47 @@
    "ruled": "Chris Ward's answer 9 (19 Oct 2026): \"9. (a) as the feature spec: the card's existing edit button, unchanged.\" QA lead, 20 Oct 2026: the question (sheet 17Ry1Bt…, briefly question 40) is withdrawn as already answered by answer 9, and the held design-version case DR-05 (C690662) deleted (snapshot design-recheck-2026-10-20/deleted/)."
   },
   "S5-R9|part sale labor columns": {
-   "outcome": "QUESTION-NEEDED",
+   "outcome": "PO-RULED",
    "boards": "4.3 (today) vs 4.5, 4.10, 4.11, 4.12",
    "design_shows": "part sale rows show \"—\" in Labor Delta, Labor Invoiced and Labor Margin on screen and in the PDF, blank cells (and blank hours) in the CSV; today's report (4.3) shows 0.00 / $0.00 for a part sale",
    "prd_v10": "S5-R9: \"A part sale is one \"Part Sales\" row holding every dollar of the invoice.\" S5-R15 and S5-R15a name the dash only for Labor/Parts rows and for a part sale's Shop Supplies.",
    "cases": [
-    "draft DR-03 (held)"
+    "C690660 (DR-03, released 22 Oct 2026)",
+    "C665968 (S5-07)",
+    "C666031 (D-15)",
+    "C666032 (D-16)",
+    "C715271 (S5-18)",
+    "C715272 (REL-16)"
    ],
    "question_drafted_not_sent": "On Sales By Representative, a part sale row has no labor. The design shows a dash in Labor Delta, Labor Invoiced and Labor Margin (and blank hours and labor cells in the CSV); today's report shows 0.00 and $0.00 there. The feature spec gives the dash rule only for a work order's Labor and Parts rows and for a part sale's Shop Supplies. What should a part sale row show in the labor and hours columns? (a) a dash on screen and in the PDF, blank in the CSV, as the design shows; (b) 0.00 / $0.00 as today.",
    "sent_on": null,
-   "where": "question drafted 20 Oct 2026, NOT sent (lane session sends)"
+   "where": "question drafted 20 Oct 2026, NOT sent (lane session sends)",
+   "po_answer": {
+    "answer_no": 39,
+    "answer_verbatim": "39. (a) A dash on screen and in the PDF, and an empty cell in the CSV, as the design shows. A part sale has no labor, so the labor columns don't apply to it; it's the same rule as answers 24 and 25. This changes today's 0.00 / $0.00, so it's now listed under Release day. New S5-R15b, PRD v11.",
+    "sheet_row": 46
+   },
+   "prd_v11": "S5-R15b: \"On a Part Sales row, Labor Delta, Labor Invoiced and Labor Margin, and the labor and hours cells of the Expanded downloads, show a dash on screen and in the PDF and are blank in the CSV. A part sale has no labor, so these columns don't apply to it.\"",
+   "closed": "22 Oct 2026: design version is now the PRD (v11 S5-R15b); DR-03 released into run 547."
   },
   "S1-R6a|Lead Technician message": {
-   "outcome": "QUESTION-NEEDED",
+   "outcome": "PO-RULED",
    "boards": "none (no board shows a Lead Technician message)",
    "design_shows": "not drawn",
    "prd_v10": "S1-R6a: \"A Lead Technician message shows directly below the Lead Technician field and pushes the fields under it down while it shows.\"",
    "cases": [
-    "draft DR-08 (held)"
+    "C666017 (D-01: no blank strip under Lead Technician, every gap 16px)",
+    "C690665 (DR-08) deleted 22 Oct 2026"
    ],
    "po_answer": {
-    "answer_no": 4,
-    "answer_verbatim": "4. (a) Below the field, pushing the fields under it down while the message shows.",
-    "sheet_row": 9
+    "answer_no": 40,
+    "answer_verbatim": "40. (b) Nothing triggers a message today. On the work order card, Lead Technician isn't required and has no hint, so it never shows one, and the 20px strip it kept was always empty. Please test that no blank strip remains under Lead Technician and that every gap is 16px. S1-R6a only applies if a message is added later. Context note added, PRD v11.",
+    "sheet_row": 47
    },
    "question_drafted_not_sent": "The feature spec now says a Lead Technician message shows directly below the Lead Technician field and pushes the fields under it down (your answer 4). What makes that message show, so a manual tester can see it? Please name the message or the action (the tech plan says Lead Technician is not a required field, so no validation message is expected).",
    "sent_on": null,
-   "where": "question drafted 20 Oct 2026, NOT sent (lane session sends)"
+   "where": "question drafted 20 Oct 2026, NOT sent (lane session sends)",
+   "closed": "22 Oct 2026: nothing triggers a message today; DR-08 could not be run and was deleted; Chris's check is in D-01."
   },
   "S5-R19|before Location": {
    "outcome": "DESIGN-SILENT",

@@ -104,11 +104,13 @@ C("S5-07", "S5", "A part sale is one Part Sales row holding the whole sale",
    START("the Part Sales page is open in a desktop browser at least 1024 px wide")],
   ["Invoice {Part-sale-1}, {Part-sale-2} and {Part-sale-3}.",
    SBR_STEP,
-   "Read {Sales-rep-A}'s rows for the three part sales."],
+   "Read {Sales-rep-A}'s rows for the three part sales.",
+   "Read Labor Delta, Labor Invoiced and Labor Margin on the three part sale rows."],
   ["Step 1: all three are invoiced.",
    "Step 2: the report shows today's invoices.",
-   "Step 3: each part sale is one row with Sales Type \"Part Sales\" holding every dollar: {Part-sale-1} $80.00 of parts with Shop Supplies $5.00; {Part-sale-2} $40.00 with Shop Supplies showing a dash; {Part-sale-3} $30.00 with Shop Supplies $0.00."],
-  ["S5-R9", "S5-R15a", "S5-R3", AQ(25)])
+   "Step 3: each part sale is one row with Sales Type \"Part Sales\" holding every dollar: {Part-sale-1} $80.00 of parts with Shop Supplies $5.00; {Part-sale-2} $40.00 with Shop Supplies showing a dash; {Part-sale-3} $30.00 with Shop Supplies $0.00.",
+   "Step 4: on all three rows Labor Delta, Labor Invoiced and Labor Margin show a dash, not 0.00 or $0.00."],
+  ["S5-R9", "S5-R15a", "S5-R15b", "S5-R3", AQ(25), AQ(39)])
 
 C("S5-08", "S5", "One person on both sides shows one Labor, Parts row",
   [ADMIN, REPS2, CUST, ("{Location-A}'s Shop Supplies Charge is 0%, and nothing else is invoiced at {Location-A} today.", None),

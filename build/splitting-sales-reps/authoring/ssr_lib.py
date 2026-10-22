@@ -20,7 +20,7 @@ def md_to_text(md):
             out += [x.strip() for x in t.strip().strip("|").split("|") if x.strip() and not re.fullmatch(r"-+", x.strip())]
         else: out.append(t)
     return "\n".join(out)
-PRD_TXT = md_to_text(open(f"{P}/prd-v10-2026-10-20/CONFLUENCE-919928833-v10-2026-10-20.md").read())
+PRD_TXT = md_to_text(open(f"{P}/prd-v11-2026-10-22/CONFLUENCE-919928833-v11-2026-10-22.md").read())
 PRDW = ws(PRD_TXT)
 TPW = ws(open(f"{P}/sources/Tech-Plan-Splitting-Sales-Representatives-2026-10-19-upload.md").read())
 SBRW = ws(open(f"{P}/report-specs/SBR-585629698-v28-2026-10-19.txt").read())
@@ -48,14 +48,14 @@ STORY = {1: ("SV-11265", "Story 1, Give a work order its sales representative"),
          7: ("SV-11271", "Story 7, Record representative changes in the work order log"),
          8: ("SV-11272", "Story 8, Filter both sales reports by Sales Type")}
 DESIGN_PAGE = {1: "1", 2: "1", 3: "6", 4: "2", 5: "4", 6: "1", 8: "4 and 5"}
-PRD_NAME = 'PRD "Splitting Sales Representatives", Confluence 919928833, version 10 (19 Oct 2026, Chris Ward)'
+PRD_NAME = 'PRD "Splitting Sales Representatives", Confluence 919928833, version 11 (21 Oct 2026, Chris Ward)'
 # Chris Ward's answers to our question sheet (Google Sheet 17Ry1Bt..., rows 6-43), saved 20 Oct 2026 (design-recheck-2026-10-20/chris-answers.json)
-ANS_NAME = "Chris Ward's answers to the Splitting Sales Representatives question sheet (19 Oct 2026)"
+ANS_NAME = "Chris Ward's answers to the Splitting Sales Representatives question sheet (answers 1 to 38, 19 Oct 2026; answers 39 and 40, 21 Oct 2026)"
 ANS = {a["no"]: a["answer_verbatim"] for a in json.load(open(f"{P}/design-recheck-2026-10-20/chris-answers.json"))["answers"]}
 def AQ(n, part=None):
     """Quote Chris Ward's answer n (verbatim, or one verbatim sentence of it)."""
     return (f"Chris Ward's answer {n}", part or ANS[n])
-READ = {"PRD": "read 20 Oct 2026", "Chris Ward's answer": "read 20 Oct 2026"}
+READ = {"PRD": "read 22 Oct 2026", "Chris Ward's answer": "read 22 Oct 2026"}
 NOBUILD = "The build is not yet available to check this case against."
 MARKER = "AUTOMATION: HOLD - not yet build-verified (no build yet)"
 BLOCKED = 'If any record above is missing, mark this test Blocked: "setup not done".'

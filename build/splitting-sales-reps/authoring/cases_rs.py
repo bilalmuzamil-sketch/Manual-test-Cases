@@ -1,6 +1,6 @@
 """Cases for testable behaviour the updated report specs add for this feature (report-specs/REPORT-SPECS-REVIEW-2026-10-19.md, ADD rows)."""
 import re, os
-from ssr_lib import C, P
+from ssr_lib import C, P, prd_line, AQ
 from common import *
 
 def spec(path, code):
@@ -78,3 +78,15 @@ C("REL-15", "REL", "Reversed invoices stay out of Sales By Customer with both ty
   ["Make sure both Sales Type options are selected and read {Customer-A}'s row."],
   ["Step 1: only the invoiced work order counts; the reversed invoice is not a row and adds nothing to any count or total."],
   ["S8-N1", SBC("S7-N2")], stories=[8])
+
+C("REL-16", "REL", "Part sale rows show a dash in the labor columns and the totals do not change",
+  [ADMIN, REPS2, CUST, ("{Location-A}'s Shop Supplies Charge is 0%, and nothing else is invoiced at {Location-A} today.", None),
+   ("Part sale {Part-sale-1} (one part at $80.00) and work order {Work-order-1} (one labor line of 2.00 hours at $100.00 an hour) for {Customer-A} both have Sales Representative {Sales-rep-A}.", "For example: {Part-sale-1} is P-30001 and {Work-order-1} is S2-40001."),
+   START("the Part Sales page is open in a desktop browser at least 1024 px wide")],
+  ["Invoice {Part-sale-1} and {Work-order-1}.",
+   "Open Reports > Sales By Representative for today and read the part sale's row.",
+   "Read {Sales-rep-A}'s Labor Invoiced total and Parts Invoiced total."],
+  ["Step 1: both are invoiced.",
+   "Step 2: Labor Delta, Labor Invoiced and Labor Margin show a dash where the report used to show 0.00 and $0.00.",
+   "Step 3: Labor Invoiced is $200.00 and Parts Invoiced is $80.00, the same totals as before the release."],
+  [("Release day", prd_line("One display change on Sales By Representative")), "S5-R15b", AQ(39)], stories=[5])

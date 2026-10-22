@@ -30,7 +30,7 @@ L += ["# Splitting Sales Representatives: setup file for Claude sessions",
       "",
       "## 1. Header",
       f"- Feature: Splitting Sales Representatives (epic SV-10890; stories SV-11265 to SV-11272). TestRail group 84266, {len(ssr_lib.CASES) + len(DR)} cases.",
-      "- Generated: 19 Oct 2026, with the cases; regenerated 20 Oct 2026 for PRD version 10, Chris Ward's answers, the 7 new cases and the 8 design cases DR-01 to DR-08.",
+      "- Generated: 19 Oct 2026, with the cases; regenerated 20 Oct 2026 for PRD version 10, Chris Ward's answers, the 7 new cases and the 8 design cases DR-01 to DR-08; regenerated 22 Oct 2026 for PRD version 11 (answers 39 and 40, new cases S5-18 and REL-16, DR-03 released, DR-08 deleted).",
       "- Sources: PRD Confluence 919928833 version 10 (19 Oct 2026, Chris Ward); Chris Ward's answers to the question sheet (19 Oct 2026); tech plan (dated 14 Oct 2026, uploaded 19 Oct 2026); "
       "Claude design canvas https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm (export read 19 Oct 2026); Sales By Representative spec "
       "Confluence 585629698 version 28; Sales By Customer spec Confluence 577634305 version 21.",
@@ -91,6 +91,6 @@ L += ["", "## 6. Dependencies and shared fixtures",
       "Every case's expected results quote their source sentences word for word (PRD v10, Chris Ward's answers, tech plan, report specs); the checker `authoring/build.py` refuses any quote not found verbatim. All 142 PRD version 10 requirement codes are covered.",
       "", "## 9. VIU status", "- Every case and recipe: UNVERIFIED — the build is not yet available.",
       "", "## 10. Open questions",
-      "- Chris Ward answered all 38 questions of the first sheet on 19 Oct 2026 (design-recheck-2026-10-20/chris-answers.json).", "- Two design questions are questions 39 and 40 (rows 46 and 47, light green) of the same sheet, added 20 Oct 2026 (https://docs.google.com/spreadsheets/d/17Ry1BtRTPEkecBP5TlgAE0T93Ai1TQewdJ7B7WpWDBQ); " + link("DR-03") + " and " + link("DR-08") + " are held until he answers. (A third, on the phone control, was withdrawn on 20 Oct 2026 as answered by answer 9; its held case DR-05 was deleted.)"]
+      "- Chris Ward answered all 38 questions of the first sheet on 19 Oct 2026 (design-recheck-2026-10-20/chris-answers.json).", "- Questions 39 and 40 (rows 46 and 47, light green) of the same sheet (https://docs.google.com/spreadsheets/d/17Ry1BtRTPEkecBP5TlgAE0T93Ai1TQewdJ7B7WpWDBQ) were answered by Chris Ward on 21 Oct 2026 and became PRD version 11: " + link("DR-03") + " was released; DR-08 (C690665) was deleted on 22 Oct 2026 because nothing makes a Lead Technician message show today (answer 40). (A third, on the phone control, was withdrawn on 20 Oct 2026 as answered by answer 9; its held case DR-05 was deleted.) No question is open."]
 open(f"{P}/SPLITTING-SALES-REPS-SETUP-FILE.md", "w").write("\n".join(L) + "\n")
 print("setup file:", len(L), "lines")
