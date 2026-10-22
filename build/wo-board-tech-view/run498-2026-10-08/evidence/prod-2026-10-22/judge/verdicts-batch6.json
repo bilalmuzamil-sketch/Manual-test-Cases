@@ -1,0 +1,247 @@
+{
+ "C97005": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 8: the first dispatcher never signed out and back in. The run opened a new browser window with the same sign-in instead. Manual check: on production, as the first dispatcher, click your initials > Logout, sign back in, open Work Orders > All > Tech View, search \"ZZAUTOTEST F3 Shared Order\" and confirm that Ana's group reads Charlie Co, Alpha Co, Bravo Co.",
+  "bold_steps": [
+   8
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Step 8 needs a real sign-out and sign-in, and that was not done. Every other step matches the expected result.",
+   "Step 3: at the start Ana's group reads Alpha Co, Bravo Co, Charlie Co.",
+   "Step 4: after dragging Charlie Co above Alpha Co, Ana's group reads Charlie Co, Alpha Co, Bravo Co.",
+   "Step 6: Board View shows the same order in Ana's column: Charlie Co, Alpha Co, Bravo Co.",
+   "Step 7: the second dispatcher, who did nothing, sees Charlie Co, Alpha Co, Bravo Co in both Tech View and Board View. Their technician order is Ana before Ben.",
+   "Step 8 (NOT CHECKED AS WRITTEN): a new browser window with the same sign-in still shows Charlie Co, Alpha Co, Bravo Co. This was not a sign-out and sign-in.",
+   "Step 9: the first dispatcher dragged Ben's group above Ana's, so their screen now reads Ben, Ana. After a refresh the second dispatcher still has Ana before Ben."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C97005-step9-second.png",
+   "evidence/prod-2026-10-22/C97005-step9-first.png",
+   "evidence/prod-2026-10-22/C97005-step8-new-window.png",
+   "evidence/prod-2026-10-22/C97005-end.png"
+  ],
+  "reason_for_reviewer": "Readings: step3 [Alpha,Bravo,Charlie]; step4, step6, step7tech, step7board, step8.tech and step8board all [Charlie,Alpha,Bravo]; step7techOrderBefore [Ana,Ben]; step9 first before [Ana,Ben], drag ok, after [Ben,Ana]; step9second [Ana,Ben]. The second dispatcher was a freshly made Admin-role user opened by switch-user (avatar Z1 in the picture). Step 8 was explicitly a new browser context carrying the same cookies and user record, which s9-batchB.mts labels 'NOT a real sign-out/sign-in'. 0 differences from staging."
+ },
+ "C97031": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Step 4: at the start Board View counts read Unassigned 2, Ana 3, Ben 2, Cal 0 (7 in all).",
+   "Step 5: after dragging Alpha Co from Ana to Cal, with no reload, the counts read Ana 2 and Cal 1. Unassigned (2) and Ben (2) did not change, so the total is still 7.",
+   "Step 6: after moving Bravo Co to Unassigned with \"Reassign lead technician\", the counts read Ana 1 and Unassigned 3. Ben 2 and Cal 1 did not change, so the total is still 7.",
+   "Step 7: dragging Golf Co above Hotel Co inside Unassigned changed no count (Unassigned shows Bravo Co, Golf Co, Hotel Co).",
+   "Step 8: dragging Echo Co (Invoiced) to Cal was not accepted. Echo Co still belongs to Ben and no count changed.",
+   "Steps 9 and 10: Tech View shows Unassigned 3, Ana 1, Ben 2, Cal 1 (7 in all), both before and after a refresh."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C97031-end.png"
+  ],
+  "reason_for_reviewer": "Board counts (shown/total): step4 U2 A3 B2 C0; step5 U2 A2 B2 C1; step6 U3 A1 B2 C1; step7 and step8 unchanged; step8 echoLead still 'ZZAUTOTEST Ben Bravo'. Tech counts at step9 and step10 (after goP reload) U3 A1 B2 C1. Counts were read straight after each action with no reload in between. Step 5 used a drag, step 6 used more-actions > Reassign > Unassigned + confirm, matching the case. The end picture confirms the Tech View groups (Unassigned 3, Ana 1, Ben 2, Cal 1). There is no staging reading to compare with."
+ },
+ "C154649": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 and 2: at full width Board View was chosen.",
+   "Steps 3 and 4: at 900 px wide the page shows the phone list of work order cards (tabs, Search, sort button, Create Work Order, and the Status, Assigned to me and Asset on Site filters). There is no display switcher, no density button and no column picker.",
+   "Step 5: after a refresh at that width there is still no switcher, density button, column picker or board. The saved choice is still Board View.",
+   "Step 6: back at full width the page opens in Board View again. List, Tech View and Board View are all offered in the switcher."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C154649-narrow.png",
+   "evidence/prod-2026-10-22/C154649-wide.png"
+  ],
+  "reason_for_reviewer": "saved0 board_view. At 900 px both before and after the refresh: switcher 0, density 0, fields 0, board columns 0; savedNarrow board_view. At 1600 px: board columns 83, column picker 1, saved board_view. The switcher locator only counts the Board View and Tech View buttons, hence 'switcher: 2'. The picture shows all three. At full width Board View has no density button, which is correct under PRD v73 S3-R11, and the Expected does not ask for one there. The narrow picture was taken before the refresh. After the refresh only the absence readings exist, but with no board and no switcher at 900 px only the phone list can be showing."
+ },
+ "C368158": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 6: the work order was never opened, so its Lead Technician and Asset on site were not read on the work order page. Manual check: open S1-1285 on production and confirm that Lead Technician reads ZZAUTOTEST Ana Alpha and the Asset on site pin is on.",
+  "bold_steps": [
+   6
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Step 6 asks to open the work order, and the run did not open it. Every reading the run took agrees with the expected result.",
+   "Steps 1 to 3: the List shows the Invoiced work order S1-1285 for \"ZZAUTOTEST F3 Invoiced On Site\", led by ZZAUTOTEST Ana Alpha.",
+   "Step 4: clicking its On Site toggle was accepted with no error message.",
+   "Step 5: after a refresh the On Site pin is green and its tip reads \"Asset here. Click to toggle status.\" The change was kept.",
+   "Step 6 (NOT CHECKED AS WRITTEN): the work order page was not opened. In the List after the refresh, Lead Technician still reads ZZAUTOTEST Ana Alpha, and the saved record shows the asset on site."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368158-end.png"
+  ],
+  "reason_for_reviewer": "status invoiced; is_vehicle_here before '0', after reload '1'; no message shown; leadOf after = 'ZZAUTOTEST Ana Alpha'. Lead and on-site were read from the saved work order record (API) and from the List picture, not on the work order page that step 6 names."
+ },
+ "C368159": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 7: browser 1 never opened the work order, so its Lead Technician was not read on the work order page. Manual check: in the first browser open S1-1286 and confirm that Lead Technician reads ZZAUTOTEST Ben Bravo.",
+  "bold_steps": [
+   7
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Step 7 asks to open the work order in the first browser, and the run did not. Every reading the run took agrees with the expected result.",
+   "Steps 1 and 2: the List on the All tab shows S1-1286 (\"ZZAUTOTEST F3 Stale On Site\"), led by ZZAUTOTEST Ana Alpha.",
+   "Steps 3 and 4: in a second window the work order page opens. Lead Technician is changed to ZZAUTOTEST Ben Bravo and the page shows the new name straight away.",
+   "Step 5: in the first window, without refreshing, the On Site toggle was clicked.",
+   "Step 6: after refreshing the first window, the On Site pin is green (kept on). The List's Lead Technician column reads ZZAUTOTEST Ben Bravo, so the older page did not put Ana back.",
+   "Step 7 (NOT CHECKED AS WRITTEN): the work order was not opened from the first window. The saved record still names Ben Bravo as the lead."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368159-end.png",
+   "evidence/prod-2026-10-22/C368159-browser2-lead.png",
+   "evidence/prod-2026-10-22/C368159-browser2-lead-typed.png"
+  ],
+  "reason_for_reviewer": "before: here '0', lead Ana Alpha; browser 2 picked 'Ben Bravo' by typing; leadAfterB2 Ben Bravo (leadIsThisBen true); after the stale toggle + reload: here '1', lead Ben Bravo. Also note that 'browser 2' was a second tab of the same signed-in account (p.context().newPage()), not the separate User-B the preconditions name. The behaviour under test (a stale page must not resend the old lead) does not depend on who browser 2 is, but a tester re-running step 7 could also do steps 3 and 4 as a second user."
+ },
+ "C96970": {
+  "verdict": "Blocked",
+  "failed_steps": "Blocked at steps 3 (Technician C part), 6, 7 and 9 to 13: production could not remove Truck Hill 1 from the test technician Mona Moved, so she is still a normal technician here and the case's setup is not in place.",
+  "bold_steps": [
+   3,
+   6,
+   7,
+   9,
+   10,
+   11,
+   12,
+   13
+  ],
+  "observed": [
+   "Result: Blocked on production (v26.43.0-ffea43c). One of the three technicians could not be moved away from this location on production, so the part of the test about her could not run.",
+   "Setup: Ina Inactive was deactivated. Mona Moved could not be moved to another location: the Location list in her staff record did not offer the second location, and removing her department here was refused. She stayed an active, pinned technician at Truck Hill 1.",
+   "Step 3 (Ina part): Ina Inactive's column is still shown, holding S1-1289, and is marked \"Inactive\". MATCHES.",
+   "Step 3 (Mona part): Mona Moved is still a pinned column, because she was never moved. NOT JUDGED.",
+   "Steps 4 and 5: dragging S1-1290 onto Ina Inactive's column shows \"This technician can't be assigned work orders.\" and S1-1290 stays in Mia Holder's column. MATCHES.",
+   "Steps 6 and 7: dropping S1-1290 on Mona Moved's column was accepted (\"Lead technician updated\"), because she is still an ordinary technician here. This is not a product fault. NOT JUDGED.",
+   "Steps 9 to 13: after that move S1-1290 belonged to Mona, so the Tech View steps no longer test what the case describes. NOT JUDGED."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96970-stg4-step5-holding.png",
+   "evidence/prod-2026-10-22/C96970-stg4-step3-techA.png",
+   "evidence/prod-2026-10-22/C96970-stg4-step3-techC.png",
+   "evidence/prod-2026-10-22/C96970-stg4-step7-just-dropped.png"
+  ],
+  "reason_for_reviewer": "Ina: setupDeactivateA 201, aActive false; step3Headers.A 'Aaa ZZAUTOTEST Ina Inactive Inactive 1 work order' holding S1-1289; step4 shows the denied banner 'This technician can't be assigned work orders.' and leads unchanged; step5 [Mia Holder]. Mona: moveC.locationFieldError timeout waiting for option 'Trucks Hill 2' in the Location field; unenrol 400 'department_id Missing required parameter'; eligibleAfterUnenrol true; cStillActive true; pinned true. Step6 drop accepted with 'Lead technician updated', and S1-1290's lead became Mona. Every enrol/unenrol call on production returned 400 'department_id Missing required parameter': this production build needs a department id that the script did not send. The pictures named 'stg4' are this production run (S1- numbers, Truck Hill 1).",
+  "todo": "On production: Settings > Staff > Aaa ZZAUTOTEST Mona Moved > edit, set Location to the second location (\"Trucks Hill 2\" was not offered in the list; find its exact name), then Department(s) > bin icon on Truck Hill 1. Put S1-1290 back under Aaa ZZAUTOTEST Mia Holder, then re-run steps 3 and 6 to 13."
+ },
+ "C368131": {
+  "verdict": "Blocked",
+  "failed_steps": "Blocked at steps 3, 7 (Theresa part), 8, 10 to 13 and 15 (Theresa part): production could not move the test technician Theresa Pinned to another location, so the case's setup is not in place.",
+  "bold_steps": [
+   3,
+   7,
+   8,
+   10,
+   11,
+   12,
+   13,
+   15
+  ],
+  "observed": [
+   "Result: Blocked on production (v26.43.0-ffea43c). Step 3 (moving one technician to another location) could not be done on production, so the steps that depend on it could not run.",
+   "Step 2: Jenny Pinned was deactivated with \"Deactivate Account\".",
+   "Step 3: Theresa Pinned could not be moved. The second location was not offered in her Location field, and removing her department here was refused. She is still a normal technician at Truck Hill 1.",
+   "Step 7 (Jenny part): right after Unassigned, Jenny Pinned's column is still pinned, marked \"Inactive\", empty, and reads \"No work orders\". MATCHES.",
+   "Step 7 (Theresa part) and step 8: Theresa Pinned is still a pinned column holding S1-1288, because she was never moved. NOT JUDGED.",
+   "Step 9: S1-1287 could not be dropped on Jenny Pinned's column (\"This technician can't be assigned work orders.\"). It stayed with Tara Lead. MATCHES.",
+   "Steps 10 to 13: dropping S1-1287 on Theresa Pinned's column was accepted (\"Lead technician updated\"), because she is still an ordinary technician here. This is not a product fault. NOT JUDGED.",
+   "Step 15: for the view-only user, Jenny Pinned's pinned column also reads \"No work orders\" (MATCHES). Theresa Pinned's column is still there because of the failed setup (NOT JUDGED)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368131-stg4-step7-pinned.png",
+   "evidence/prod-2026-10-22/C368131-stg4-step9.png",
+   "evidence/prod-2026-10-22/C368131-stg4-step15-viewonly.png",
+   "evidence/prod-2026-10-22/C368131-stg4-step8-techC.png"
+  ],
+  "reason_for_reviewer": "step2 done via the Staff screen, activeNow false. step3: locationFieldError timeout waiting for option 'Trucks Hill 2'; unenrolHeavy 400 'department_id Missing required parameter'; eligibleAfterUnenrol true. step7: Jenny header 'Inactive 0 work orders', empty text 'No work orders', pinned true, directly after Unassigned. Theresa pinned true with S1-1288. step9 leads unchanged (S1-1287 Tara Lead). step10 message 'Lead technician updated' and S1-1287 moved to Theresa (staging refused this drop after Theresa was really moved). Same production setup failure as C96970: the enrolment calls need a department id.",
+  "todo": "On production: Settings > Staff > Aaa ZZAUTOTEST Theresa Pinned > edit > Location = the second location (find its exact name; \"Trucks Hill 2\" was not offered) > Save & Close, then Department(s) > bin icon on Truck Hill 1. Put S1-1287 back under Aaa ZZAUTOTEST Tara Lead and re-pin Theresa for both users, then re-run steps 7 to 15."
+ },
+ "C581896": {
+  "verdict": "Blocked",
+  "failed_steps": "Blocked at steps 6 and 16: production has no imported work order at Truck Hill 1, so \"No work orders match these filters\" shows and no work order can be seen listed.",
+  "bold_steps": [
+   6,
+   16
+  ],
+  "observed": [
+   "Result: Blocked on production (v26.43.0-ffea43c). The only thing not checked is whether the imported work order is listed, because none exists on production. Everything else matches.",
+   "Step 4: Board View is chosen in the first tab.",
+   "Step 6: the link with Imported opens in List, not Board View, and the filter reads \"Status: Imported\". No imported work order exists here, so the page reads \"No work orders match these filters\".",
+   "Steps 7 and 8: Board View and Tech View are greyed out, each with the tooltip \"Not available while Imported is selected.\"",
+   "Step 11: a new tab without Imported opens in Board View, so the saved choice did not change.",
+   "Step 16: after ticking Imported in the second tab, a new tab opens in List with \"Status: Imported\" still chosen and Board View and Tech View greyed out. Again no work order is listed."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C581896-step6-imported-link.png",
+   "evidence/prod-2026-10-22/C581896-step16-new-tab.png",
+   "evidence/prod-2026-10-22/C581896-step11-saved-display.png"
+  ],
+  "reason_for_reviewer": "step6 display List, chip 'Status: Imported', rows []; step7 and step8 disabled true with tooltip 'Not available while Imported is selected.'; step11 Board View; step13 List; step16 List, chip Imported, rows [], boardGreyed and techGreyed true. 0 differences from staging. The tabs and actions followed the case's steps (sched-r5.mts). The only gap is '{Work-order-1} is listed', which needs an imported work order.",
+  "todo": "On production, create or find an imported work order (from an invoice import) at Truck Hill 1, then re-run steps 5, 6 and 14 to 16 and confirm that it is listed."
+ },
+ "C707076": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c). The year now shows, so the fix for SV-11576 has shipped (outcome 3 of the known problem). Please tell the QA lead.",
+   "Step 1: List's Asset column for S1-1295 reads \"2022 Freightliner M2\": year, then make, then model.",
+   "Step 2: Tech View shows, with S1-1295 in the Unassigned group.",
+   "Step 3: Tech View's Asset column reads the same, \"2022 Freightliner M2\"."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C707076-1021-s1-list.png",
+   "evidence/prod-2026-10-22/C707076-1021-s3-tech.png"
+  ],
+  "reason_for_reviewer": "Asset C11576-U1 · 2022 Freightliner M2 on Approved S1-1295. The List cell reading returned null, but the row text and the picture both show '2022 Freightliner M2' in the Asset column. s2_group unassigned; s3_tech asset '2022 Freightliner M2'. Known-problem outcome 3, so Passed and the QA lead must be told that SV-11576 has shipped to production. The ticket's status was not read live in this pass."
+ },
+ "C698883": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c). The 50-value message never showed, so the fix for SV-11575 has shipped (outcome 3 of the known problem). Please tell the QA lead.",
+   "Steps 1 and 2: in Tech View the Technician list opens with \"Unassigned\" first and nothing ticked. The message \"This change would exceed the 50-value limit across all filters\" does not show.",
+   "Step 3: \"Unassigned\" is ticked and the message does not show.",
+   "Step 4: Escape closes the list.",
+   "Step 5: Board View shows.",
+   "Step 6: Board View's Technician list opens with \"Unassigned\" still ticked, and no message.",
+   "Step 7: after unticking \"Unassigned\" nothing is ticked, and still no message.",
+   "Extra check: with 50 technicians ticked the list reads \"50 selected (max 50 across all filters)\", so the limit itself still works."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C698883-1021-s2-list-open.png",
+   "evidence/prod-2026-10-22/C698883-1021-s6-board-list.png",
+   "evidence/prod-2026-10-22/C698883-1021-s7-untick.png",
+   "evidence/prod-2026-10-22/C698883-1021-control-over-50.png"
+  ],
+  "reason_for_reviewer": "s1_2, s3, s6 and s7 all message false; first 'Unassigned'; ticked [] / [Unassigned] / [Unassigned] / []. s4 open false; s5 true. Control: 59 ticks tried, and the picture shows 50 ticked with the counter text. Known-problem outcome 3, so Passed and the QA lead must be told that SV-11575 has shipped to production. The ticket's status was not read live in this pass."
+ },
+ "C698884": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c). Board View has no density button and the picker is called \"Column Selection\", so the change for SV-11580 has shipped (outcome 3 of the known problem). Please tell the QA lead.",
+   "Step 1: Board View's toolbar has no density button. \"Column Selection\" sits between the two dividers with even space on either side, and there is no empty gap or double divider.",
+   "Step 2: \"Column Selection\" opens the card fields picker (Lead technician, Customer, Asset, VIN/serial, Progress, Service advisor, Clocked in, Line count, Line technicians, Estimated hours, Total price, On-site, Created date).",
+   "Step 3: Escape closes the picker, and the cards keep the same spacing as before.",
+   "Step 4: Tech View shows, and its toolbar still has the density button.",
+   "Step 5: its menu offers \"Compact\", \"Regular\" and \"Comfortable\"."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C698884-1021-s1-board-toolbar.png",
+   "evidence/prod-2026-10-22/C698884-1021-s2-picker.png",
+   "evidence/prod-2026-10-22/C698884-1021-s4-tech-toolbar.png",
+   "evidence/prod-2026-10-22/C698884-1021-s5-density-menu.png"
+  ],
+  "reason_for_reviewer": "Board densityButtons 0. Column Selection button x1190 w55 between dividers x1176 and x1257: gapLeft 13, gapRight 12, centred true, doubleDivider false, tooltip 'Column Selection'. The card gap is 8 px before and after the picker opens and closes; menusOpen 0 after Escape. Tech View densityButtons 1, options Compact/Regular/Comfortable. Known-problem outcome 3, so Passed and the QA lead must be told that SV-11580 has shipped to production. The ticket's status was not read live in this pass."
+ },
+ "C97000": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Step 1: S1-1257 (\"ZZAUTOTEST F3 No Story Marker\") opens on its Lines tab with two lines. Line 1 has the story \"Brought unit in. Completed inspection.\" and line 2 shows only \"Add tech story for this line\".",
+   "Step 2: neither line shows any check mark, icon, badge or colour about the tech story.",
+   "Step 3: the same work order opened by the technician Esther Howard, in the technician's work order mode, also shows no story marker on either line."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C97000-lines-admin.png",
+   "evidence/prod-2026-10-22/C97000-lines-tech-mode.png"
+  ],
+  "reason_for_reviewer": "Re-run of s7-batch made 22 Oct 14:07 to 14:08. Line 1 has a story (saved 201); line 2 has none. Both the admin page and Esther Howard's page: checkIcons [] and no story-related elements beyond the story text and the edit/add controls. The icon lists hold only general icons (edit_note, edit, add, more_vert and so on). The technician picture shows the cut-down technician mode (only the Lines, Notes and Stats tabs, Start buttons, no prices). The line names differ from staging (data only)."
+ }
+}
