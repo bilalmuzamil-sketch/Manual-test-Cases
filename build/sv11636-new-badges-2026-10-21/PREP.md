@@ -77,3 +77,10 @@ Extra cells:
 - Staging still v26.40.20-7405769 (same etag f90e347f…, last-modified 21 Oct 19:49:03 GMT) — Minja's ETA is ~08:00 UTC.
 - The staging cookies (supplied 21 Oct 07:18 UTC) are now past ~24 h: quick-login → HTTP 401, browser lands on the Google sign-in.
   Fresh `sv_sso_session` / `PHPSESSID` / `cf_clearance` for .staging.shopview.com needed before any live check can run.
+
+## 22 Oct 08:03 UTC — fresh staging cookies received, login 200
+- Staging still v26.40.20-7405769; live at 1440 px: 0 "New" badges. This session lands on the Staging Heavy Duty location, where the
+  right-hand nav is wider than the baseline's DVI Test location (switcher x 1266 vs 1116, search 870.7+153.3 same) — so the
+  before-baseline must be re-captured with THIS login and location (same user, same location) the moment the badges appear, or
+  before taking the "after", using prep/ only as the earlier reference.
+- Waiting on Minja's deploy (ETA ~08:00 UTC); 08:05 routine + 08:30 one-shot will test as soon as the build moves.
