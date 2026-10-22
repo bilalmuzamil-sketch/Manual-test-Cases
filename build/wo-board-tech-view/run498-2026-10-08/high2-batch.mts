@@ -12,7 +12,7 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, switchLocUI } from './wob.mts';
+import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, switchLocUI, ensureLocation } from './wob.mts';
 import { staffRows, person, roleIds, HEAVY } from './staff.mts';
 import { viewAs } from './viewas.mts';
 import { candidates, setRequireReview } from './data.mts';
@@ -352,10 +352,19 @@ await run('C368212', async () => { const o: any = {}; o.toLeth = say(await a.pos
     // 15 Oct 2026 (wave 25, seventh pass): the switch back left the screen on Lethbridge (picture C368212-end). If the top bar does not
     // read Heavy Duty, set the location the way the Schedule/API does and reload, then read the top bar again (recorded either way).
     // fix-up 2 (17 Oct 2026): switching back left the runner at Lethbridge on 16 Oct — heavyMenu() tries the menu twice (logging the picker's options) before the API call
-    if (!String(o.backTopBar).includes(LOC1_NAME)) o.backHeavy = await heavyMenu(); o.backTopBarFinal = await topBar(); }
+    if (!String(o.backTopBar).includes(LOC1_NAME)) o.backHeavy = await heavyMenu(); o.backTopBarFinal = await topBar();
+    if (!String(o.backTopBarFinal).includes(LOC1_NAME)) o.backHome = await backHome(); }
   R.C368212 = o; });
 
-await run('C368214', async () => { const s = await mkSet('ZZAUTOTEST Back Forward', [{ co: 'One Co', lead: ANA }]); const num = s.w['One Co'].number; const o: any = {};
+// 22 Oct 2026 (production): C368212's switch back left the screen on Trucks Hill 2, so C368214 (next) could not find its work order at
+// Truck Hill 1. backHome(): the shared helper (server set + reload, then the menu), then the menu in a fresh tab of the same session.
+async function backHome() { const r: any = {}; process.env.WOB_LOC_TRIES = '3'; r.ensure = await ensureLocation(p, a, HEAVY).catch((e) => 'failed: ' + String(e).slice(0, 100));
+  if (!String(r.ensure).includes(LOC1_NAME)) { const np = await p.context().newPage(); await np.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await np.waitForTimeout(6000);
+    r.freshTab = await switchLocUI(np, LOC1_NAME); await np.close().catch(() => {}); await p.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(6000);
+    r.after = (await p.locator('[data-test-id="profile_menu_button"]').innerText().catch(() => '')).replace(/\s+/g, ' ').trim(); }
+  return r; }
+await run('C368214', async () => { const o: any = {}; o.startLocation = await backHome();
+  const s = await mkSet('ZZAUTOTEST Back Forward', [{ co: 'One Co', lead: ANA }]); const num = s.w['One Co'].number;
   await p.goto(APP + '/workorders', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4500); await tab(p, 'Work Orders'); await display(p, 'List'); o.statusButton = await p.locator('[data-test-id="filter_chip_status"]:visible').count();
   if (o.statusButton) { await p.locator('[data-test-id="filter_chip_status"]').click(); await p.waitForTimeout(800); await p.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: /^\s*Approved\s*$/ }).first().click(); await p.waitForTimeout(1200); await p.keyboard.press('Escape'); }
   await search(p, s.q); const st = async () => ({ tab: await activeTabName(), search: await searchBox(), rows: await rowsList(), url: p.url().replace(APP, '') });
