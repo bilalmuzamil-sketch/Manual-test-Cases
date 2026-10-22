@@ -626,3 +626,10 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 ## L0506 — 2026-10-22 — A long unattended run keeps writing evidence: autosave it, path-scoped, behind the secret scan
 - The production run of run 498 writes pictures and logs for hours; the Stop hook flags every new file. `run498-2026-10-08/autosave-prod.sh` (started with nohup) commits only `evidence/prod-2026-10-22` every 10 minutes after `scan_secrets.py --staged` passes, pushes, and stops by itself when both the full run (`/tmp/queue-prod-full.log`) and the re-run queue (`/tmp/queue-prod-redo.log`) say QUEUE-DONE. Copy it (change the folder and the queue names) for the next long run instead of committing by hand between notices.
 #run498 #autosave #rule29 #rule75 → L0505
+
+## L0507 — 2026-10-22 — A new environment needs the suite's standard people first (seed-staff.mts + seed-staff-extra-1022.mts)
+- The first production full run reached step 13 with almost every test stopping at `Cannot read properties of undefined (reading 'id' / 'staff_id')`: the scripts look up people that exist on staging/QA but not on a fresh environment — `zz.wob.*@staging.shopview.local` (Esther Howard, Ralph Edwards, Jenny Wilson, Kristin Watson, Theresa Webb, Dana Ortiz, Ina Active, Billy Nobill, Nick Noclock, Tim Clockuser, Ella Elsewhere at the second location…) and "Ayesha Khan" (s1-batch3's Technician A).
+- **Before step 6 of any new environment:** `./wob-run.sh seed-staff.mts` (8 Oct list, also learns the Deactivate route on Ina Active) then `./wob-run.sh seed-staff-extra-1022.mts` (the five added later). Read back with `candidates()` — all must be lead-eligible.
+- Production has no **"Office User"** role (roles: Technician, Admin, Senior Service Advisor, Time Clock User, Foreman), so "Olive Office" cannot be made; checks that she is NOT offered are weaker there and their results must say so.
+- Check every step's JSON for `"error"` as soon as it ends (`evidence/<env>/<script>.json`); a whole batch of errors in under a minute means set-up, not the product. The failed first attempt's logs are kept in `logs-full-first-attempt/`.
+#run498 #production #seeding → L0505, L0506
