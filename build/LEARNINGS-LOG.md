@@ -744,3 +744,8 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 ## L0527 — 2026-10-22 — Location names hide in PATTERNS too, not only in quoted strings
 - L0516 replaced the quoted staging names, but step 59 (s5-batchA3) still stopped: its location reader looked for a top-bar line ending in `/ - \d{3,5}$/` (staging's "Staging Heavy Duty - 9919") and tested `/Heavy Duty/`; production's "Truck Hill 1" matches neither, so the reader returned null and the script refused to start. ui-fallback had `/Lethbridge/` the same way. Fixed with the profile's `LOC1_NAME` / `LOC2_NAME`. The new-environment grep must include regex literals: `grep -n "/Heavy Duty/\|/Lethbridge/\| - \\\\d{3,5}" <scripts>`.
 #run498 #production #location → L0516
+
+## L0528 — 2026-10-22 — Scripts that measure MORE than their case can fail on the extra; cut the extra, keep the case
+- C96990's case is Tech View only (row text 14 px at every density), but `s6-batch.mts` also set density on Board View "for completeness" — on production (no Board View density, PRD v73) that extra stopped the test after every case step had been read. C96992's script did the same. Fixed by dropping the extra (one Board reading kept for reference). When a step outside the case errors, judge the case from the readings it did take; never Unsure/Blocked a case for a step it does not have.
+- Four more scripts (s5-batchA, s6-batch, s6b-batch, ui-fallback) carried the staging-only location reader `/ - \d{3,5}$/` and `/lethbridge/i` (L0527) — now also match `LOC1_NAME` / `LOC2_NAME`.
+#run498 #production #density #location → L0526, L0527
