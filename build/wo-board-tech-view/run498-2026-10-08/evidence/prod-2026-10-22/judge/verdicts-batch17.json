@@ -104,7 +104,8 @@
    "Step 9: the arrow keys moved the ring to S1-1614's card in Ben's column.",
    "Step 10: Tab moved to S1-1614's More actions (...) button.",
    "Step 11: Enter opened the menu (Reassign lead technician, Unassign).",
-   "Step 12 (FAILED): the arrow keys reached \"Unassign\" and Enter moved S1-1614 to the Unassigned column, but the message read \"Lead technician removed\" (green, with a Close button) - not \"S1-1614 moved to Unassigned\" and no Undo button."
+   "Step 12 (FAILED): the arrow keys reached \"Unassign\" and Enter moved S1-1614 to the Unassigned column, but the message read \"Lead technician removed\" (green, with a Close button) - not \"S1-1614 moved to Unassigned\" and no Undo button.",
+   "This is the known problem in https://shopview.atlassian.net/browse/SV-11524 (status Code Review on 22 Oct 2026, so the fix is not on production yet). No new report raised."
   ],
   "pictures": [
    "evidence/prod-2026-10-22/C368152-s5-menu.png",
@@ -112,7 +113,12 @@
    "evidence/prod-2026-10-22/C368152-s8-after-reassign.png",
    "evidence/prod-2026-10-22/C368152-s12-after-unassign.png"
   ],
-  "reason_for_reviewer": "kbd-fix4.mts C368152: start wo1Column Technician-A, wo2Column Technician-B; s2 landed board_card Golf (unassigned); s3 -> Alpha; s4 Tab 'More actions for S1-1613', moreShows true; s5 menu [Reassign lead technician, Unassign]; s6 ArrowDown reached Reassign, Enter, dialog 1 'Reassign lead technician S1-1613 ...'; s7 typed 'ZZAUTOTEST Be', rows [Unassigned, ZB ZZAUTOTEST Ben Bravo 26 open]; s8 Tab to the list then arrows to Ben, Enter, Tab to the dialog's confirm button (labelled 'Reassign' in the s6 picture), Enter (the dialog needs it; the case step does not mention it), messages ['Lead technician updated'], dialogsLeft 0, wo1Column Technician-B, lead Ben Bravo; s9 arrows -> Bravo card; s10 Tab -> 'More actions for S1-1614'; s11 menu [Reassign, Unassign]; s12 Unassign, messages ['Lead technician removed'], wo2Column unassigned, lead none. Pictures s8/s12: green toast with check and 'Close', text as read. The Expected follows PRD v68 S4-R5 (toast '{number} assigned to {name}' / '{number} moved to Unassigned' with Undo, white design toast); the case was 'Not yet checked against a build in this wording' and the staging pass (17 Oct) predates the rewrite and also saw the old wording. Ben was not on any line of S1-1613, so the 'lead technician set to' variant does not apply; neither variant appeared. No known ticket in the case; none raised (holds stand). 0 differences from staging readings."
+  "reason_for_reviewer": "kbd-fix4.mts C368152: start wo1Column Technician-A, wo2Column Technician-B; s2 landed board_card Golf (unassigned); s3 -> Alpha; s4 Tab 'More actions for S1-1613', moreShows true; s5 menu [Reassign lead technician, Unassign]; s6 ArrowDown reached Reassign, Enter, dialog 1 'Reassign lead technician S1-1613 ...'; s7 typed 'ZZAUTOTEST Be', rows [Unassigned, ZB ZZAUTOTEST Ben Bravo 26 open]; s8 Tab to the list then arrows to Ben, Enter, Tab to the dialog's confirm button (labelled 'Reassign' in the s6 picture), Enter (the dialog needs it; the case step does not mention it), messages ['Lead technician updated'], dialogsLeft 0, wo1Column Technician-B, lead Ben Bravo; s9 arrows -> Bravo card; s10 Tab -> 'More actions for S1-1614'; s11 menu [Reassign, Unassign]; s12 Unassign, messages ['Lead technician removed'], wo2Column unassigned, lead none. Pictures s8/s12: green toast with check and 'Close', text as read. The Expected follows PRD v68 S4-R5 (toast '{number} assigned to {name}' / '{number} moved to Unassigned' with Undo, white design toast); the case was 'Not yet checked against a build in this wording' and the staging pass (17 Oct) predates the rewrite and also saw the old wording. Ben was not on any line of S1-1613, so the 'lead technician set to' variant does not apply; neither variant appeared. No known ticket in the case; none raised (holds stand). 0 differences from staging readings.",
+  "ticket": "https://shopview.atlassian.net/browse/SV-11524 (Board View UX Improvements, status Code Review, read 22 Oct 2026)",
+  "defects": [
+   "SV-11524"
+  ],
+  "todo": "Re-run this test once the fix in SV-11524 reaches production; nothing else to do now."
  },
  "C97003": {
   "verdict": "Passed",
