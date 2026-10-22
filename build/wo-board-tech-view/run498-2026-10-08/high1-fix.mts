@@ -162,6 +162,15 @@ const clickSearch = async (pg: Page) => { const box = pg.locator('[data-test-id=
 
 const ES = await tech('Esther', 'Howard', 'esther.howard'), RE = await tech('Ralph', 'Edwards', 'ralph.edwards'), DO = await tech('Dana', 'Ortiz', 'dana.ortiz'), JW = await tech('Jenny', 'Wilson', 'jenny.wilson');
 const NAMES: Record<string, string> = { [ES.staff_id]: 'Esther', [RE.staff_id]: 'Ralph', [DO.staff_id]: 'Dana', [JW.staff_id]: 'Jenny' };
+// 22 Oct 2026 (production judging): "Open the work order" through the screen — Work Orders > All > Search its number > click its row
+// (then the Lines tab when asked), never by its address; falls back to the address and SAYS so.
+const uiPage = async (w: any, lines = false, pg: Page = p) => { const r: any = {}; await pg.goto(`${APP}/workorders?tab=all`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000);
+  await tab(pg, 'All').catch(() => {}); await search(pg, w.number); await pg.waitForTimeout(2500); const row = pg.locator('tbody tr').filter({ hasText: w.number }).first(); r.rowShown = await row.count();
+  if (r.rowShown) { await row.locator('td').nth(2).click().catch(() => row.click()); for (let i = 0; i < 12 && !/\/workorders\/[0-9a-f-]{36}/.test(pg.url()); i++) await pg.waitForTimeout(800); }
+  r.opened = /\/workorders\/[0-9a-f-]{36}/.test(pg.url()); if (!r.opened) { r.fallback = 'NOT FROM THE LIST: opened by address'; await page(w.id, 'lines', pg); return r; }
+  await pg.waitForTimeout(6000); await pg.keyboard.press('Escape').catch(() => {});
+  if (lines) { await pg.getByRole('tab', { name: /^\s*Lines\s*$/ }).first().click().catch(async () => { await pg.getByText('Lines', { exact: true }).first().click().catch(() => {}); }); await pg.waitForTimeout(3000); r.linesTab = true; }
+  return r; };
 const page = async (id: string, tabName = 'lines', pg: Page = p) => { await pg.goto(`${APP}/workorders/${id}/${tabName}`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(7000); };
 const view = async (id: string) => (await a.get(`/api/work-orders/view/${id}`)).body?.data ?? {};
 const leadName = async (id: string) => { const v = await view(id); const j = JSON.stringify(v); return Object.keys(NAMES).find((k) => j.includes(`"${k}"`)) ? NAMES[Object.keys(NAMES).find((k) => j.includes(`"${k}"`))!] : (v.tech_assigned_id ?? v.techAssignedId ?? null); };
@@ -223,7 +232,7 @@ const seenToasts = (pg: Page = p) => pg.evaluate('window.__tl || []').catch(() =
 
 await run('C368166', async () => { const w = await one('ZZAUTOTEST Lead Change Page', ES); const o: any = { wo: w.number };
   console.log(t(), 'START STATE found C368166', JSON.stringify({ wo: w.number, status: await statusOf(w.id), lead: await apiLeadName(w.id) }));
-  await page(w.id); o.before = await leadText(); await watchToasts();
+  o.route = await uiPage(w); o.before = await leadText(); await shot(p, 'C368166-before'); await watchToasts();
   o.techB = await pickB('C368166', ['Esther Howard']); o.used = o.techB.picked; await p.waitForTimeout(1500);
   o.after = await leadText(); o.toasts = [...new Set([...(await seenToasts()), ...(await toastsOn(p))])]; await shot(p, 'C368166-after');
   await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.afterReload = await leadText(); o.apiLead = await apiLeadName(w.id); await shot(p, 'C368166-after-reload');
@@ -277,7 +286,7 @@ await run('C368167', async () => { const w = await one('ZZAUTOTEST Refused Lead 
 
 await run('C368168', async () => { const w = await one('ZZAUTOTEST Lead Moves Lines', ES, 2); const o: any = { wo: w.number };
   await page(w.id); await p.getByText(lineName(2), { exact: false }).first().click(); await p.waitForTimeout(2500); let d = dlg(); o.removed = await rosterRemove(d, ES.staff_id); o.added = await rosterAdd(d, p, /Dana Ortiz/); o.roster = await roster(d); o.saved = await save(d);
-  o.before = Object.values(await lineTechs(w.id)); await page(w.id); o.laborBefore = await laborRows();
+  o.before = Object.values(await lineTechs(w.id)); o.route = await uiPage(w, true); o.laborBefore = await laborRows(); await shot(p, 'C368168-before-lines');
   console.log(t(), 'START STATE found C368168', JSON.stringify({ wo: w.number, lead: await apiLeadName(w.id), lines: o.before, laborOnScreen: o.laborBefore }));
   o.techB = await pickB('C368168', ['Esther Howard', 'Dana Ortiz']); o.used = o.techB.picked; await p.waitForTimeout(1500);
   o.shiftQuestion = await p.locator('.q-dialog').filter({ hasText: /scheduled shifts/i }).count(); o.toasts = await toastsOn(p);
