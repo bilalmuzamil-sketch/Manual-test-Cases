@@ -1,0 +1,189 @@
+{
+ "C590110": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Step 1 (List): the switcher shows three thin outline icons side by side in a light-grey rounded track: a bulleted list, a person and a board, 20 px each, in slate grey.",
+   "Step 2: Search shows a magnifier; Status a circle of short strokes, Assigned to me a clipboard, Asset on Site a truck, all thin outlines.",
+   "Steps 3 and 4 (Tech View): the Tech View button is the white raised segment, the other two are flat; the density button shows lines with an up-and-down arrow and Column Selection a rectangle split into three columns, both slate outlines.",
+   "Step 6: the density menu offers Compact, Regular and Comfortable, with a tick on Regular.",
+   "Steps 5, 7 and 8: Board View is the white raised segment, the switcher keeps the same slate grey, and Search and the filter chips show the same icons as in List.",
+   "Step 9: back in List, the other toolbar icons (Column Selection, Create Work Order) look as they do in production today.",
+   "Also seen (not judged by this test): a small blue \"New\" label sits above the switcher, and Tech View and Board View have an extra Technician filter chip."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C590110-s1-list-switcher.png",
+   "evidence/prod-2026-10-22/C590110-s2-tech-toolbar.png",
+   "evidence/prod-2026-10-22/C590110-s3-density-menu.png",
+   "evidence/prod-2026-10-22/C590110-s5-board-toolbar.png"
+  ],
+  "reason_for_reviewer": "Switcher icons are list / user-round / square-kanban at 20 px; the active segment is white with a shadow and its icon is #364152, inactive icons #697586, the same values staging passed with (track #EEF2F6, radius 8 px). Density menu: Compact, Regular (ticked), Comfortable. Filter icons are identical in List, Tech View and Board View; Board View has no density button, which matches PRD v71 and is not checked by this case."
+ },
+ "C590111": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 2 to 4 (Tech View, 1440 px): the tooltips read List, Tech View and Board View, and each one opens above the switcher, about 8 px above it.",
+   "No tooltip touches the table's column header row (Status, Waiting On Parts, Number \u2026), which starts well below the switcher.",
+   "Step 6 (Board View): the same three tooltips open above the switcher and cover none of the technician column headers.",
+   "Step 9 (Tech View, 1536 px): the tooltips still open above the switcher and the column header row stays fully readable."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C590111-tech1440-TechView.png",
+   "evidence/prod-2026-10-22/C590111-board1440-List.png",
+   "evidence/prod-2026-10-22/C590111-tech1536-BoardView.png"
+  ],
+  "reason_for_reviewer": "All nine tooltips read the expected word, sit above the button (gap 7.6 px, centred within 0.1 px) and do not overlap the header row (tooltip bottom ~74 px against a header row from 196 px in Tech View and 217 px in Board View). The readings are the same as staging's (0 differences after masking)."
+ },
+ "C590112": {
+  "verdict": "Unsure",
+  "failed_steps": "Failed at step(s) 4: not judged, because the script stopped the sideways scroll before the table's right end, so the far right of the table was never seen.",
+  "bold_steps": [
+   4
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c).",
+   "Steps 1 and 5: Tech View's table is white and runs from the page's left edge to its right edge at 1440 px and at 1536 px, with no grey strip, card or shadow around it.",
+   "Step 2: a double grey line sits above each group header.",
+   "Step 3: after scrolling down, the column header row stays at the top while the rows move under it.",
+   "Step 4: the table scrolls sideways and each visible header sits above its own column, but the screen stopped short of the right end: \"Total price\" is cut by the window edge, so whether the last columns are squeezed or cut off could not be judged.",
+   "Steps 6 and 7: the Status column is 88 px with Approved and Estimate pills (72 px pills), and 130 px with a Ready For Review pill (114 px pill), with no empty space after the pills.",
+   "Step 8: List keeps its grey margin around the table, as in production today."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C590112-s1-tech-1440.png",
+   "evidence/prod-2026-10-22/C590112-s4-scrolled-sideways.png",
+   "evidence/prod-2026-10-22/C590112-s6-status-column-customer-a.png",
+   "evidence/prod-2026-10-22/C590112-s7-status-column-customer-b.png"
+  ],
+  "reason_for_reviewer": "The script set the scroll to its maximum when the table was 1766 px wide (scroll stopped at 326 px). The table then widened to 1883 px (443 px of scroll room) as rows re-rendered, so its 'cut: Number, Total price' flag comes from the window edges, not from a squeezed column. Every other step matches staging: table 0 to 1440/1536 px on white, Status column 88.4 / 130 px. Step 4 needs one manual sideways scroll to the true right end."
+ },
+ "C590115": {
+  "verdict": "Unsure",
+  "failed_steps": "Failed at step(s) 2, 3, 5, 6: the red number was not set up on production, so the red number and its tooltip were never compared between List and Tech View.",
+  "bold_steps": [
+   2,
+   3,
+   5,
+   6
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c).",
+   "Steps 2 and 3 (List): the work order's Approved pill shows only a blue 1, whose tooltip reads \"1 Part Ready to Order\". There is no red number, because the setup did not add a line waiting for approval.",
+   "Steps 5 and 6 (Tech View): the same pill, with the same green colours, word, rounded shape and width (72 px), the same blue 1 and the same tooltip.",
+   "Steps 8 and 10: the pill is 16 px tall at Compact and at Regular.",
+   "Step 12: at Comfortable the pill is 22 px tall and keeps its 72 px width.",
+   "Step 13: List's pill is unchanged after the density changes (72 by 21 px, same colours and blue number)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C590115-s2-list-pill.png",
+   "evidence/prod-2026-10-22/C590115-s5-tech-pill.png",
+   "evidence/prod-2026-10-22/C590115-compact-tech.png",
+   "evidence/prod-2026-10-22/C590115-comfortable-tech.png"
+  ],
+  "reason_for_reviewer": "Everything measured matches: width 72.4 px in both views; Tech View height 16 / 16 / 22 px at Compact / Regular / Comfortable; List height 21 px before and after. The precondition asks for a red and a blue number, but the production setup only made a part request (blue 1), so the red half of steps 2, 3, 5 and 6 was not observed. The staging pass had both numbers. Re-run with a second line waiting for approval."
+ },
+ "C590116": {
+  "verdict": "Unsure",
+  "failed_steps": "Failed at step(s) 5, 9: not judged, because the script dropped the row into the wrong group at step 5, and step 9 was never run (no view-only user on production).",
+  "bold_steps": [
+   5,
+   9
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c).",
+   "Step 2: every technician group header shows the six-dot grip at its left edge; the Unassigned header shows none.",
+   "Step 3: every row shows the same six-dot grip at its left edge, including the estimate's row in Unassigned.",
+   "Step 4: the hovered row turns light grey and its grip stays visible.",
+   "Step 5: the drag started from the Customer cell (the row lifted and followed the mouse), but the script let go two groups lower, over \"Ahtasham Amjad\". The work order moved there with \"Lead technician updated\" instead of landing just below the second work order, so the expected result was not tried.",
+   "Step 6: a plain click on the row opened the work order and did not start a drag.",
+   "Step 9: not run; production has no view-only role for the second user, so the view-only check is missing."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C590116-s2-group-headers.png",
+   "evidence/prod-2026-10-22/C590116-s4-row-hover.png",
+   "evidence/prod-2026-10-22/C590116-s5-dragging.png",
+   "evidence/prod-2026-10-22/C590116-s6-after-click.png"
+  ],
+  "reason_for_reviewer": "Grips: grip-vertical 16 px on rows and technician headers, none on Unassigned; hover grey is confirmed in the picture (the background reading did not change on staging either). In the drag picture the blue drop line is under the Ahtasham Amjad group, not under the second work order. The same script reading on staging gave the same reassignment, and the staging pass came from a later re-run, so this is the script's drop point, not the product. Step 9 says: no 'ZZAUTOTEST WO View Only' role in this organisation. Note: the drop moved S1-996's lead to Ahtasham Amjad on production."
+ },
+ "C590118": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Step 2: Board View's columns sit directly on the page's light-grey background, which runs from the left edge to the right edge; there is no grey rounded box or margin around the set of columns.",
+   "Step 3: each column, including the test technician's, is its own white card with rounded corners and a soft shadow, with the same gap between neighbouring columns.",
+   "Step 4: after scrolling the board to its far right, Unassigned stays at the left while the technician columns slide past it.",
+   "Step 5: at 1536 px the board looks the same way, edge to edge on the grey background."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C590118-s2-board-1440.png",
+   "evidence/prod-2026-10-22/C590118-s4-far-right.png",
+   "evidence/prod-2026-10-22/C590118-s5-board-1536.png"
+  ],
+  "reason_for_reviewer": "The page background (#F9FAFB) spans 0 to 1440 / 1536 px with no panel. The scroll reached its true end (4048 of 5168 minus 1120 px), and Unassigned stayed at x = 8 px before and after. The readings are the same as staging's (0 differences after masking), and the pictures show white rounded cards with even gaps."
+ },
+ "C590120": {
+  "verdict": "Blocked",
+  "failed_steps": "Blocked at steps 6 and 7: they ask for Board View's density button, which the latest spec removed, so Compact and Comfortable cannot be chosen.",
+  "bold_steps": [
+   6,
+   7
+  ],
+  "observed": [
+   "Result: Blocked on production (v26.43.0-ffea43c) at steps 6 and 7 - steps 1 to 5 meet the expected result.",
+   "Step 1 (List): the Approved work order shows a blue 1, the Invoiced work order no numbers, and another estimate a red 1.",
+   "Step 2: the card shows the blue number at top left, the pill at top right, the dark customer name, the smaller grey \"TRK-118 \u00b7 2022 Freightliner M2\" line, a thin blue progress bar and divider, two overlapping technician avatars on the left and the total at the right, on a white card with rounded corners and a thin grey border.",
+   "Step 3: number, customer and total are 14 px at weight 500; the unit and asset line is 12 px grey.",
+   "Step 4: each Board pill matches List's word, colours, rounded shape and red or blue number, and is 22 px tall.",
+   "Step 5: an outline padlock sits right after the Invoiced work order's number.",
+   "Steps 6 and 7: not done. Board View on production has no density button (only Column Selection), so Compact and Comfortable cannot be chosen.",
+   "Why: the spec now says \"Board View shows no Density control in this release\" (PRD v73, S3-R11), so these two steps cannot be followed. The test is with the QA lead to bring steps 6 and 7 in line with the spec."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C590120-s2-card-regular.png",
+   "evidence/prod-2026-10-22/C590120-s4-card-red-count-pill.png",
+   "evidence/prod-2026-10-22/C590120-s5-wo2-number.png"
+  ],
+  "reason_for_reviewer": "Steps 1 to 5 match staging: 14 px / 500 for number, customer and total; 12 px grey for the asset line; pills 22 px with the same colours and numbers as List; lock icon 12 px after the number. The script timed out looking for the density button, and the Board toolbar picture (also in C590110) shows none. PRD v71 (S3-R11, S6-R1) removed Board View density, so the case's steps 6 and 7 look out of date rather than the product being wrong. A reviewer should decide; the Expected text is left unchanged.",
+  "todo": "QA lead to decide on updating steps 6 and 7 to the current spec; then re-run."
+ },
+ "C590122": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Step 1: the technician group with no work orders shows \"No work orders\" in grey, centred, with the clipboard outline icon before it.",
+   "Steps 2 and 3: Board View shows, and the technician's empty column holds a dashed rounded box with a light-grey circle, the clipboard icon and \"Drag a work order here to assign it\".",
+   "Step 4: the Status chip shows \"Status: Paid\".",
+   "Steps 5 to 7: Board View, List and Tech View each show the same empty state centred on the page: a magnifier in a grey circle, \"No work orders match these filters\", \"Try removing a filter to widen your results.\" and a \"Clear all filters\" button.",
+   "Step 8: Clear all filters clears the Status filter and \"zzzz\" stays in Search.",
+   "Steps 9 and 10: Tech View and then List show \"No work orders match the search \"zzzz\".\" with no button, centred."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C590122-s2-empty-group.png",
+   "evidence/prod-2026-10-22/C590122-s4-empty-column.png",
+   "evidence/prod-2026-10-22/C590122-s7-board-filter-and-search.png",
+   "evidence/prod-2026-10-22/C590122-s12-tech-search-only.png"
+  ],
+  "reason_for_reviewer": "All texts match exactly in all three views. The empty-group text is #697586, 14 px, and its text-plus-icon is centred (text midpoint 732 px, about 12 px right of the 720 px page centre because of the icon before it). The no-results title is 17 px / 600, centred, with the magnifier circle. After Clear all filters the chips show no Paid and Search still holds zzzz."
+ },
+ "C590123": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Step 2: while the estimate is dragged over the first technician's column, its card in Unassigned looks faded and a thin blue line (3 px) shows at the top of that column.",
+   "Step 3: on release it lands at the top of that column, where the blue line was, and \"Lead technician updated\" shows.",
+   "Step 4: while the Invoiced card is held over the same column, no blue line shows; a small dark message with a no-entry icon appears at the top of the column: \"The lead technician can't be changed once a work order is Invoiced or Paid.\"",
+   "Step 5: the Invoiced work order stays in the second technician's column.",
+   "Steps 7 and 8 (Tech View): a thin blue line shows below the second work order's row, and after release the first work order sits below the second.",
+   "Steps 9 and 10: a thin blue line shows between the groups, and the first technician's group then sits below the second technician's group."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C590123-s2-drag-allowed.png",
+   "evidence/prod-2026-10-22/C590123-s4-drag-refused.png",
+   "evidence/prod-2026-10-22/C590123-s7-row-reorder.png",
+   "evidence/prod-2026-10-22/C590123-s9-group-reorder.png"
+  ],
+  "reason_for_reviewer": "Drop line: #257CFF, 3 px tall, radius 2 px, in Board View and Tech View. Refusal message: dark #121926 background, white 12 px text, radius 6 px, with a no-entry icon, centred over the target column, and no drop line while it shows. Orders after release: Tia WO-3, WO-2, WO-1; groups Uma then Tia. Same outcome as the staging pass."
+ }
+}

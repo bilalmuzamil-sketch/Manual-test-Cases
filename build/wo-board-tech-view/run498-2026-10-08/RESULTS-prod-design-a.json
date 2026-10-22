@@ -1,0 +1,95 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - design-a"
+ },
+ "results": {
+  "C590110": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Step 1 (List): the switcher shows three thin outline icons side by side in a light-grey rounded track: a bulleted list, a person and a board, 20 px each, in slate grey.",
+    "Step 2: Search shows a magnifier; Status a circle of short strokes, Assigned to me a clipboard, Asset on Site a truck, all thin outlines.",
+    "Steps 3 and 4 (Tech View): the Tech View button is the white raised segment, the other two are flat; the density button shows lines with an up-and-down arrow and Column Selection a rectangle split into three columns, both slate outlines.",
+    "Step 6: the density menu offers Compact, Regular and Comfortable, with a tick on Regular.",
+    "Steps 5, 7 and 8: Board View is the white raised segment, the switcher keeps the same slate grey, and Search and the filter chips show the same icons as in List.",
+    "Step 9: back in List, the other toolbar icons (Column Selection, Create Work Order) look as they do in production today.",
+    "Also seen (not judged by this test): a small blue \"New\" label sits above the switcher, and Tech View and Board View have an extra Technician filter chip."
+   ],
+   "pictures": [
+    "pictures-prod/C590110-1-prod-1022.png",
+    "pictures-prod/C590110-2-prod-1022.png",
+    "pictures-prod/C590110-3-prod-1022.png",
+    "pictures-prod/C590110-4-prod-1022.png"
+   ]
+  },
+  "C590111": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 2 to 4 (Tech View, 1440 px): the tooltips read List, Tech View and Board View, and each one opens above the switcher, about 8 px above it.",
+    "No tooltip touches the table's column header row (Status, Waiting On Parts, Number \u2026), which starts well below the switcher.",
+    "Step 6 (Board View): the same three tooltips open above the switcher and cover none of the technician column headers.",
+    "Step 9 (Tech View, 1536 px): the tooltips still open above the switcher and the column header row stays fully readable."
+   ],
+   "pictures": [
+    "pictures-prod/C590111-1-prod-1022.png",
+    "pictures-prod/C590111-2-prod-1022.png",
+    "pictures-prod/C590111-3-prod-1022.png"
+   ]
+  },
+  "C590118": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Step 2: Board View's columns sit directly on the page's light-grey background, which runs from the left edge to the right edge; there is no grey rounded box or margin around the set of columns.",
+    "Step 3: each column, including the test technician's, is its own white card with rounded corners and a soft shadow, with the same gap between neighbouring columns.",
+    "Step 4: after scrolling the board to its far right, Unassigned stays at the left while the technician columns slide past it.",
+    "Step 5: at 1536 px the board looks the same way, edge to edge on the grey background."
+   ],
+   "pictures": [
+    "pictures-prod/C590118-1-prod-1022.png",
+    "pictures-prod/C590118-2-prod-1022.png",
+    "pictures-prod/C590118-3-prod-1022.png"
+   ]
+  },
+  "C590122": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Step 1: the technician group with no work orders shows \"No work orders\" in grey, centred, with the clipboard outline icon before it.",
+    "Steps 2 and 3: Board View shows, and the technician's empty column holds a dashed rounded box with a light-grey circle, the clipboard icon and \"Drag a work order here to assign it\".",
+    "Step 4: the Status chip shows \"Status: Paid\".",
+    "Steps 5 to 7: Board View, List and Tech View each show the same empty state centred on the page: a magnifier in a grey circle, \"No work orders match these filters\", \"Try removing a filter to widen your results.\" and a \"Clear all filters\" button.",
+    "Step 8: Clear all filters clears the Status filter and \"zzzz\" stays in Search.",
+    "Steps 9 and 10: Tech View and then List show \"No work orders match the search \"zzzz\".\" with no button, centred."
+   ],
+   "pictures": [
+    "pictures-prod/C590122-1-prod-1022.png",
+    "pictures-prod/C590122-2-prod-1022.png",
+    "pictures-prod/C590122-3-prod-1022.png",
+    "pictures-prod/C590122-4-prod-1022.png"
+   ]
+  },
+  "C590123": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Step 2: while the estimate is dragged over the first technician's column, its card in Unassigned looks faded and a thin blue line (3 px) shows at the top of that column.",
+    "Step 3: on release it lands at the top of that column, where the blue line was, and \"Lead technician updated\" shows.",
+    "Step 4: while the Invoiced card is held over the same column, no blue line shows; a small dark message with a no-entry icon appears at the top of the column: \"The lead technician can't be changed once a work order is Invoiced or Paid.\"",
+    "Step 5: the Invoiced work order stays in the second technician's column.",
+    "Steps 7 and 8 (Tech View): a thin blue line shows below the second work order's row, and after release the first work order sits below the second.",
+    "Steps 9 and 10: a thin blue line shows between the groups, and the first technician's group then sits below the second technician's group."
+   ],
+   "pictures": [
+    "pictures-prod/C590123-1-prod-1022.png",
+    "pictures-prod/C590123-2-prod-1022.png",
+    "pictures-prod/C590123-3-prod-1022.png",
+    "pictures-prod/C590123-4-prod-1022.png"
+   ]
+  }
+ }
+}

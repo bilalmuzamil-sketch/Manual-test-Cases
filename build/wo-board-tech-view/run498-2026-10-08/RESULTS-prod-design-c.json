@@ -1,0 +1,34 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - design-c"
+ },
+ "results": {
+  "C590120": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on production (v26.43.0-ffea43c) at steps 6 and 7 - steps 1 to 5 meet the expected result.",
+    "Step 1 (List): the Approved work order shows a blue 1, the Invoiced work order no numbers, and another estimate a red 1.",
+    "Step 2: the card shows the blue number at top left, the pill at top right, the dark customer name, the smaller grey \"TRK-118 \u00b7 2022 Freightliner M2\" line, a thin blue progress bar and divider, two overlapping technician avatars on the left and the total at the right, on a white card with rounded corners and a thin grey border.",
+    "Step 3: number, customer and total are 14 px at weight 500; the unit and asset line is 12 px grey.",
+    "Step 4: each Board pill matches List's word, colours, rounded shape and red or blue number, and is 22 px tall.",
+    "Step 5: an outline padlock sits right after the Invoiced work order's number.",
+    "Steps 6 and 7: not done. Board View on production has no density button (only Column Selection), so Compact and Comfortable cannot be chosen.",
+    "Why: the spec now says \"Board View shows no Density control in this release\" (PRD v73, S3-R11), so these two steps cannot be followed. The test is with the QA lead to bring steps 6 and 7 in line with the spec."
+   ],
+   "pictures": [
+    "pictures-prod/C590120-1-prod-1022.png",
+    "pictures-prod/C590120-2-prod-1022.png",
+    "pictures-prod/C590120-3-prod-1022.png"
+   ],
+   "failed_steps": "Blocked at steps 6 and 7: they ask for Board View's density button, which the latest spec removed, so Compact and Comfortable cannot be chosen.",
+   "bold_steps": [
+    6,
+    7
+   ],
+   "todo": "QA lead to decide on updating steps 6 and 7 to the current spec; then re-run."
+  }
+ }
+}

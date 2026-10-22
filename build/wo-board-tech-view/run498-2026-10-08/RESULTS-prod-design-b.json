@@ -1,0 +1,110 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - design-b"
+ },
+ "results": {
+  "C590124": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Step 2: in Tech View the hovered row for S1-1008 turns light grey; the row stays 48 px tall and nothing in it moves.",
+    "Step 3: pointing at the first avatar in Assigned Techs shows a small dark bubble with light text reading \"ZZAUTOTEST DC15 Vic Hover\", about 6 px above the avatar and centred on it.",
+    "Step 5: in Board View the hovered card's border turns darker and a soft shadow appears; the card stays 262 x 213 px and does not move.",
+    "Step 6: pointing at the first avatar at the bottom left of the card shows the same dark bubble with \"ZZAUTOTEST DC15 Vic Hover\" above the avatar."
+   ],
+   "pictures": [
+    "pictures-prod/C590124-1-prod-1022.png",
+    "pictures-prod/C590124-2-prod-1022.png",
+    "pictures-prod/C590124-3-prod-1022.png",
+    "pictures-prod/C590124-4-prod-1022.png"
+   ]
+  },
+  "C590125": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Step 2: the profile menu offers Light and Dark, and Dark was chosen.",
+    "Step 3: in Tech View the page, table, column header row and group headers are dark with light text; nothing is left white (0 white areas) and none of 154 texts checked is dark on dark.",
+    "Step 4: the hovered row for S1-1009 turns a slightly lighter dark grey and its text stays readable (picture).",
+    "Step 6: in Board View the board, columns, column headers and cards are dark; card text, numbers, status pills and avatars are readable; 0 white areas and none of 89 texts is hard to read.",
+    "Step 7: after choosing Light, Board View and Tech View are both light again."
+   ],
+   "pictures": [
+    "pictures-prod/C590125-1-prod-1022.png",
+    "pictures-prod/C590125-2-prod-1022.png",
+    "pictures-prod/C590125-3-prod-1022.png",
+    "pictures-prod/C590125-4-prod-1022.png"
+   ]
+  },
+  "C590126": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 2 to 7 (Tech View at 1024, 1280, 1366, 1440, 1536 and 1920 px): no toolbar label or column heading touches another (smallest gap 20 px in the toolbar, 32.6 px in the headings).",
+    "At 1024 px the toolbar runs on three lines, and at 1280 to 1536 px on two lines, instead of running into the filters; at 1920 px it fits on one line.",
+    "Up to 1536 px the table is wider than the window (1883 px) and scrolls sideways.",
+    "Steps 8 to 12 (Board View at 1920, 1536, 1440, 1280 and 1024 px): no toolbar label or column heading touches another.",
+    "The long name \"ZZAUTOTEST DC17 Maximiliana Abernathy-Kowalczyk\" ends with \"...\" 13 px before the pin icon at every width, and the board scrolls sideways (8816 px wide)."
+   ],
+   "pictures": [
+    "pictures-prod/C590126-1-prod-1022.png",
+    "pictures-prod/C590126-2-prod-1022.png",
+    "pictures-prod/C590126-3-prod-1022.png",
+    "pictures-prod/C590126-4-prod-1022.png"
+   ]
+  },
+  "C590128": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 and 2 (Compact): rows 36 px; row and Service Advisor avatars 20 px; group header avatar 24 px; progress bar 48 x 4 px; same 15 columns and same values; row text 14 px; no hours line under the bar.",
+    "Steps 3 and 4 (Regular): the density menu showed Compact had been in use; rows 48 px; row and Service Advisor avatars 24 px; group header avatar 28 px; bar 64 x 6 px; same columns and values; no hours line.",
+    "Steps 5 and 6 (Comfortable): rows 64 px; row and Service Advisor avatars 32 px; group header avatar 36 px; same columns and values; no hours line; column header labels and the percentage stay 12 px.",
+    "Step 7: Board View shows the card for S1-1012. Board View has no density button, as the case now expects.",
+    "Step 8: on the card the avatars measure about 24 px in the picture (48 pixels in the double-size picture). That is smaller than the 32 px row avatars at Comfortable and the same as the Regular row avatars."
+   ],
+   "pictures": [
+    "pictures-prod/C590128-1-prod-1022.png",
+    "pictures-prod/C590128-2-prod-1022.png",
+    "pictures-prod/C590128-3-prod-1022.png",
+    "pictures-prod/C590128-4-prod-1022.png"
+   ]
+  },
+  "C590129": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Step 5: a white window with rounded corners, 480 px wide, sits over a dimmed page. It has the title \"Reassign lead technician\", \"S1-1013 \u00b7 ZZAUTOTEST DC20 Reassign Dialog 88821\" in grey under it, and an X at the top right.",
+    "Step 5: there is a \"Search technicians\" box with a magnifier icon. Unassigned is the first row, then the technicians in one list with no grouping, each with a round avatar, the name and a grey \"N open\" line.",
+    "Step 5: ZZAUTOTEST DC20 Bea Dialog's row shows her photo and \"Current \u00b7 1 open\", is tinted light blue and has a blue tick. ZZAUTOTEST DC20 Cal Dialog shows grey initials \"ZD\" on a light-grey circle with \"0 open\". Cancel is at the bottom right.",
+    "Step 6: typing \"Cal\" narrows the list to ZZAUTOTEST DC20 Cal Dialog (Unassigned stays at the top).",
+    "Step 7: Cancel closes the window and S1-1013's lead is still ZZAUTOTEST DC20 Bea Dialog."
+   ],
+   "pictures": [
+    "pictures-prod/C590129-1-prod-1022.png",
+    "pictures-prod/C590129-2-prod-1022.png",
+    "pictures-prod/C590129-3-prod-1022.png",
+    "pictures-prod/C590129-4-prod-1022.png"
+   ]
+  },
+  "C590131": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Step 3: well into the Unassigned group (198 work orders), the column headings stay at the top. The Unassigned header, with its arrow and count 198, stays just under them while its rows scroll past.",
+    "Steps 4 and 5: as the Ahtasham Amjad header comes up, it pushes the Unassigned header up and off, then takes its place just under the column headings.",
+    "Scrolling further, the Ahtesham ABCPROD header pushes Ahtasham Amjad off in the same way. Later the Service Advisor No Reports (Admin) header is the one held.",
+    "Only one group header is held under the column headings at a time (checked at 17 scroll positions)."
+   ],
+   "pictures": [
+    "pictures-prod/C590131-1-prod-1022.png",
+    "pictures-prod/C590131-2-prod-1022.png",
+    "pictures-prod/C590131-3-prod-1022.png",
+    "pictures-prod/C590131-4-prod-1022.png"
+   ]
+  }
+ }
+}

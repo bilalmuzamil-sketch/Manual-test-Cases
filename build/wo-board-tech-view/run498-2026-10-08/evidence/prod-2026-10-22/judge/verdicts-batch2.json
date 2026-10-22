@@ -1,0 +1,149 @@
+{
+  "C590124": {
+    "verdict": "Passed",
+    "observed": [
+      "Result: Passed on production (v26.43.0-ffea43c).",
+      "Step 2: in Tech View the hovered row for S1-1008 turns light grey; the row stays 48 px tall and nothing in it moves.",
+      "Step 3: pointing at the first avatar in Assigned Techs shows a small dark bubble with light text reading \"ZZAUTOTEST DC15 Vic Hover\", about 6 px above the avatar and centred on it.",
+      "Step 5: in Board View the hovered card's border turns darker and a soft shadow appears; the card stays 262 x 213 px and does not move.",
+      "Step 6: pointing at the first avatar at the bottom left of the card shows the same dark bubble with \"ZZAUTOTEST DC15 Vic Hover\" above the avatar."
+    ],
+    "pictures": [
+      "evidence/prod-2026-10-22/C590124-s2-row-hover.png",
+      "evidence/prod-2026-10-22/C590124-s3-avatar-hover.png",
+      "evidence/prod-2026-10-22/C590124-s5-card-hover.png",
+      "evidence/prod-2026-10-22/C590124-s6-card-avatar-hover.png"
+    ],
+    "reason_for_reviewer": "Row hover: the picture shows the grey row; box unchanged (48 px tall, same position). Name bubble found above the avatar in both views (gap 5.6/5.7 px, centred within 0.1 px), text light rgb(250,250,250) on rgb(117,117,117), same as the staging pass. Card hover: border rgb(227,232,239) to rgb(205,213,223), shadow added, box unchanged 262x213.3. No difference from the staging reading."
+  },
+  "C590125": {
+    "verdict": "Passed",
+    "observed": [
+      "Result: Passed on production (v26.43.0-ffea43c).",
+      "Step 2: the profile menu offers Light and Dark, and Dark was chosen.",
+      "Step 3: in Tech View the page, table, column header row and group headers are dark with light text; nothing is left white (0 white areas) and none of 154 texts checked is dark on dark.",
+      "Step 4: the hovered row for S1-1009 turns a slightly lighter dark grey and its text stays readable (picture).",
+      "Step 6: in Board View the board, columns, column headers and cards are dark; card text, numbers, status pills and avatars are readable; 0 white areas and none of 89 texts is hard to read.",
+      "Step 7: after choosing Light, Board View and Tech View are both light again."
+    ],
+    "pictures": [
+      "evidence/prod-2026-10-22/C590125-s3-tech-dark.png",
+      "evidence/prod-2026-10-22/C590125-s4-row-hover-dark.png",
+      "evidence/prod-2026-10-22/C590125-s6-board-dark.png",
+      "evidence/prod-2026-10-22/C590125-s7-tech-light.png"
+    ],
+    "reason_for_reviewer": "Judged the same way staging was (full look check, not only that a dark theme is offered). Dark: page rgb(15,17,26), table/cards rgb(32,41,57), white text; whiteAreas 0 and lowContrast 0 in both views (staging had 5 and 1 low-contrast hits and still passed). The row-hover reading did not catch a colour change on the cells, but the step-4 picture clearly shows the hovered row lighter than its neighbours. Light again after step 7: page rgb(249,250,251), cards white, and the Tech View picture is light."
+  },
+  "C590126": {
+    "verdict": "Passed",
+    "observed": [
+      "Result: Passed on production (v26.43.0-ffea43c).",
+      "Steps 2 to 7 (Tech View at 1024, 1280, 1366, 1440, 1536 and 1920 px): no toolbar label or column heading touches another (smallest gap 20 px in the toolbar, 32.6 px in the headings).",
+      "At 1024 px the toolbar runs on three lines, and at 1280 to 1536 px on two lines, instead of running into the filters; at 1920 px it fits on one line.",
+      "Up to 1536 px the table is wider than the window (1883 px) and scrolls sideways.",
+      "Steps 8 to 12 (Board View at 1920, 1536, 1440, 1280 and 1024 px): no toolbar label or column heading touches another.",
+      "The long name \"ZZAUTOTEST DC17 Maximiliana Abernathy-Kowalczyk\" ends with \"...\" 13 px before the pin icon at every width, and the board scrolls sideways (8816 px wide)."
+    ],
+    "pictures": [
+      "evidence/prod-2026-10-22/C590126-tech-1024.png",
+      "evidence/prod-2026-10-22/C590126-tech-1920.png",
+      "evidence/prod-2026-10-22/C590126-board-1280.png",
+      "evidence/prod-2026-10-22/C590126-board-1024.png"
+    ],
+    "reason_for_reviewer": "Overlap lists empty at all 11 widths (toolbar controls, toolbar texts, header row, board column headers). Toolbar rows: 3 at 1024, 2 at 1280-1536, 1 at 1920. Tech table scrollW 1883 vs clientW 1024-1536; board scrollWidth 8816 vs clientWidth 704-1600. Long name: ellipsis, 354 px of text in a 103 px box, nameRightToPin 13 px, same as staging. The only differences from staging are data (counts and other technicians' names cut with an ellipsis)."
+  },
+  "C590127": {
+    "verdict": "Unsure",
+    "failed_steps": "Unsure at step 5: the test run did not record whether the Technician list closed when Escape was pressed.",
+    "bold_steps": [5],
+    "observed": [
+      "Result: Unsure on production (v26.43.0-ffea43c): step 5 was not recorded; every other step meets the expected result.",
+      "Step 1: the Technician filter sits directly after Assigned to me, with the thin outline wrench icon, the word Technician and a down arrow. There is no Department filter.",
+      "Steps 2 and 3: the list opens directly below the filter. It starts with Unassigned, then the technicians in first-name order (Ahtasham Amjad, Ahtesham ABCPROD, Bilal Muzammil ...), each with a tick box.",
+      "Step 4: ZZAUTOTEST DC18 Yan Filter is ticked and the chip reads \"Technician: ZZAUTOTEST DC18...\".",
+      "Step 5: NOT CHECKED. The run pressed Escape and then clicked elsewhere on the page before looking, and no picture was taken in between, so we cannot tell whether Escape alone closed the list.",
+      "Step 6: Board View shows the same Technician filter in the same place, still showing ZZAUTOTEST DC18 Yan Filter, and only that technician's column.",
+      "Step 7: List's filter bar has Search, Status, Assigned to me and Asset on Site, and no Technician filter."
+    ],
+    "pictures": [
+      "evidence/prod-2026-10-22/C590127-s4-technician-list.png",
+      "evidence/prod-2026-10-22/C590127-s5-ticked.png",
+      "evidence/prod-2026-10-22/C590127-s7-board.png",
+      "evidence/prod-2026-10-22/C590127-s8-list.png"
+    ],
+    "reason_for_reviewer": "The script (design-stg5.mts line 1003) presses Escape and then calls away() before its next reading, so step 5 is not isolated. Staging's pass relied on a separate after-Escape picture (C590127-1020-s5-after-escape.png), which this production run does not have. The list items were also not read (count 0), so step 3 is judged from the picture only. Chip order: Status x516, Assigned to me x639, Technician x797, Asset on Site x945; menu top y117 is at or below the chip bottom (y111); the List chips have no lead_technician chip. One quick manual check of step 5 would settle this as Passed."
+  },
+  "C590128": {
+    "verdict": "Passed",
+    "observed": [
+      "Result: Passed on production (v26.43.0-ffea43c).",
+      "Steps 1 and 2 (Compact): rows 36 px; row and Service Advisor avatars 20 px; group header avatar 24 px; progress bar 48 x 4 px; same 15 columns and same values; row text 14 px; no hours line under the bar.",
+      "Steps 3 and 4 (Regular): the density menu showed Compact had been in use; rows 48 px; row and Service Advisor avatars 24 px; group header avatar 28 px; bar 64 x 6 px; same columns and values; no hours line.",
+      "Steps 5 and 6 (Comfortable): rows 64 px; row and Service Advisor avatars 32 px; group header avatar 36 px; same columns and values; no hours line; column header labels and the percentage stay 12 px.",
+      "Step 7: Board View shows the card for S1-1012. Board View has no density button, as the case now expects.",
+      "Step 8: on the card the avatars measure about 24 px in the picture (48 pixels in the double-size picture). That is smaller than the 32 px row avatars at Comfortable and the same as the Regular row avatars."
+    ],
+    "pictures": [
+      "evidence/prod-2026-10-22/C590128-s1-s2-compact.png",
+      "evidence/prod-2026-10-22/C590128-s3-s4-regular.png",
+      "evidence/prod-2026-10-22/C590128-s5-s6-comfortable.png",
+      "evidence/prod-2026-10-22/C590128-error.png"
+    ],
+    "reason_for_reviewer": "Tech View readings match every number in steps 2/4/6 (row h 36/48/64; advisor 20/24/32; header avatar 24/28/36; bar 48x4 then 64x6; text 14px, labels and % 12px; ths/tds 15/15 at each density). The script errored afterwards: it was still looking for Board View's density button, which PRD v71 removed and the current Expected no longer uses. So step 8 was not read by the script. I measured it from the Board View picture taken after Comfortable (C590128-error.png): the card avatar circle is about 48-49 px wide at 2x, which is 24 CSS px, within about 1 px."
+  },
+  "C590129": {
+    "verdict": "Passed",
+    "observed": [
+      "Result: Passed on production (v26.43.0-ffea43c).",
+      "Step 5: a white window with rounded corners, 480 px wide, sits over a dimmed page. It has the title \"Reassign lead technician\", \"S1-1013 · ZZAUTOTEST DC20 Reassign Dialog 88821\" in grey under it, and an X at the top right.",
+      "Step 5: there is a \"Search technicians\" box with a magnifier icon. Unassigned is the first row, then the technicians in one list with no grouping, each with a round avatar, the name and a grey \"N open\" line.",
+      "Step 5: ZZAUTOTEST DC20 Bea Dialog's row shows her photo and \"Current · 1 open\", is tinted light blue and has a blue tick. ZZAUTOTEST DC20 Cal Dialog shows grey initials \"ZD\" on a light-grey circle with \"0 open\". Cancel is at the bottom right.",
+      "Step 6: typing \"Cal\" narrows the list to ZZAUTOTEST DC20 Cal Dialog (Unassigned stays at the top).",
+      "Step 7: Cancel closes the window and S1-1013's lead is still ZZAUTOTEST DC20 Bea Dialog."
+    ],
+    "pictures": [
+      "evidence/prod-2026-10-22/C590129-s5-dialog.png",
+      "evidence/prod-2026-10-22/C590129-s5-row-Technician-A.png",
+      "evidence/prod-2026-10-22/C590129-s6-typed-Cal.png",
+      "evidence/prod-2026-10-22/C590129-s7-after-cancel.png"
+    ],
+    "reason_for_reviewer": "Dialog card 480 px wide on a backdrop of rgba(0,0,0,0.4). Row 0 is Unassigned; 30 rows, flat list. Bea's row has a photo and background rgb(233,245,255), and the picture shows the blue check. Cal has no photo and a ZD initials avatar. Typing Cal leaves [Unassigned, Cal]. After Cancel the dialog is closed and the lead is Bea. The 22 differences from staging are data only: row 3 is a different person (Bilal Muzammil has a photo on production)."
+  },
+  "C590131": {
+    "verdict": "Passed",
+    "observed": [
+      "Result: Passed on production (v26.43.0-ffea43c).",
+      "Step 3: well into the Unassigned group (198 work orders), the column headings stay at the top. The Unassigned header, with its arrow and count 198, stays just under them while its rows scroll past.",
+      "Steps 4 and 5: as the Ahtasham Amjad header comes up, it pushes the Unassigned header up and off, then takes its place just under the column headings.",
+      "Scrolling further, the Ahtesham ABCPROD header pushes Ahtasham Amjad off in the same way. Later the Service Advisor No Reports (Admin) header is the one held.",
+      "Only one group header is held under the column headings at a time (checked at 17 scroll positions)."
+    ],
+    "pictures": [
+      "evidence/prod-2026-10-22/C590131-s3-scrolled.png",
+      "evidence/prod-2026-10-22/C590131-s5-handover-10.png",
+      "evidence/prod-2026-10-22/C590131-s5-handover-14.png",
+      "evidence/prod-2026-10-22/C590131-s5-after-handover.png"
+    ],
+    "reason_for_reviewer": "At step 3 the script reported that the in-table Unassigned header had scrolled away. Production holds the header as a separate layer pinned at y=244, which is the bottom of the column headings, and the step-3 picture shows it there with its arrow and 198. In the walk the held layer is Unassigned at y=244 (steps 0-8), is pushed to 240 and then 220 while Ahtasham's header arrives at 284 and 264, then Ahtasham is held at 244 (steps 11-15), then Ahtesham ABCPROD (step 16). Exactly one held layer at every position."
+  },
+  "C598326": {
+    "verdict": "Unsure",
+    "failed_steps": "Unsure at step(s) 3 and 5: the second work order could not be put in Ready For Review (it stayed Complete), so the pills the test compares were not on the screen.",
+    "bold_steps": [3, 5],
+    "observed": [
+      "Result: Unsure on production (v26.43.0-ffea43c): the test's set-up was not done. The second work order (S1-1016) is Complete instead of Ready For Review, because production refused to change its status.",
+      "Step 3: in List, the Approved pill and the Complete pill are the same width (about 72 px) and 21 px tall. No Ready For Review pill was on the page.",
+      "Step 5: in Tech View the same two pills are 114 px wide and 16 px tall. They are not the 72 px List showed for these two work orders, but the test asks for this comparison with a Ready For Review pill on the page.",
+      "Steps 6 and 7: Compact makes the pills 16 px tall and Comfortable 22 px tall; their width stays 114 px.",
+      "Step 9: back in List the pills look exactly as at step 3 (about 72 px wide, 21 px tall).",
+      "To finish: re-run with a new work order for this customer moved to Ready For Review, then compare List and Tech View widths again."
+    ],
+    "pictures": [
+      "evidence/prod-2026-10-22/C598326-s3-list-pills.png",
+      "evidence/prod-2026-10-22/C598326-s5-tech-pills.png",
+      "evidence/prod-2026-10-22/C598326-s7-comfortable-pills.png",
+      "evidence/prod-2026-10-22/C598326-s9-list-pills.png"
+    ],
+    "reason_for_reviewer": "The wo2 set-up failed: 'Complete work order cannot change its status again' (400). List measured Approved and Complete at w=72.4 h=21. Tech View measured w=114 with h=16/16/22 for Regular/Compact/Comfortable, and List after was unchanged. List pills take a shared column width, so List probably widens to fit Ready For Review (staging measured 114 in both views with a Ready For Review pill). The 72 vs 114 gap may therefore come from the missing Ready For Review row and not from the product. Do not call it Failed until it is re-run with the right data; if List still shows 72 px next to a Ready For Review pill, or Tech View differs from List, it fails at step 5."
+  }
+}
