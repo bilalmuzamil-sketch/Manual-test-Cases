@@ -1,0 +1,113 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - batch17"
+ },
+ "results": {
+  "C97021": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: four Approved work orders at Truck Hill 1 found by the search \"ZZAUTOTEST F3 Keyboard Reach 9792\": S1-1604 (Work order 1) and S1-1605 (Work order 2) led by ZZAUTOTEST Ana Alpha (Technician A), S1-1606 (Work order 3) led by ZZAUTOTEST Ben Bravo (Technician B), S1-1607 (Work order 4) with no lead. Ana then Ben pinned, no other pins, no filters, Assigned to me off, window 1600 px wide, All tab, Board View. Signed in as ZZ WOB Runner. Each work order has its own customer whose name starts with the searched words (\"... Alpha Co\", \"... Bravo Co\", \"... Charlie Co\", \"... Golf Co\") instead of one shared customer; the search shows exactly these four.",
+    "Step 1: the cursor is in Search (it holds the customer words) and nothing on the board has a focus ring.",
+    "Step 2: after the toolbar buttons, Tab lands on the first card on the board, S1-1607 (Work order 4) in Unassigned, with a blue focus ring; no column header got the ring on the way.",
+    "Step 3: pressing the Right arrow key moved the ring to S1-1604 in ZZAUTOTEST Ana Alpha's column.",
+    "Step 4: pressing the Down arrow key moved the ring to the next card in Ana's column, S1-1605.",
+    "Step 5: Tab moved to that same card's own More actions (...) button (\"More actions for S1-1605\"), not to another card.",
+    "Step 6: Tab again left the board; no card or column header shows a focus ring.",
+    "Step 7: Tech View shows Unassigned first (S1-1607), then ZZAUTOTEST Ana Alpha's group (S1-1604, S1-1605), then ZZAUTOTEST Ben Bravo's group (S1-1606).",
+    "Step 8: the cursor is in Search and nothing in the table has a focus ring.",
+    "Step 9: Tab lands on the first work order row, S1-1607 in Unassigned, not on a group header.",
+    "Step 10: pressing the Down arrow key moved the ring to ZZAUTOTEST Ana Alpha's group header."
+   ],
+   "pictures": [
+    "pictures-prod/C97021-1-prod-1022.png",
+    "pictures-prod/C97021-2-prod-1022.png",
+    "pictures-prod/C97021-3-prod-1022.png",
+    "pictures-prod/C97021-4-prod-1022.png"
+   ]
+  },
+  "C368150": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: four Approved work orders at Truck Hill 1 found by the search \"ZZAUTOTEST F3 Keyboard Enter Opens 9792\": S1-1608 (Work order 1) and S1-1609 led by ZZAUTOTEST Ana Alpha (Technician A), S1-1610 led by ZZAUTOTEST Ben Bravo (Technician B), S1-1611 (Work order 4) with no lead. Ana and Ben pinned, no other pins, no filters, Assigned to me off, All tab, Board View, window 1600 px wide. Signed in as ZZ WOB Runner. Each work order has its own customer starting with the searched words (for example \"ZZAUTOTEST F3 Keyboard Enter Opens 9792 Alpha Co\") instead of one shared customer.",
+    "Step 1: the cursor is in Search.",
+    "Step 2: Tab lands on the first card in Unassigned, S1-1611 (Work order 4), with a focus ring.",
+    "Step 3: using the arrow keys (Up to the Unassigned header, Right to Ana's header, Down) the ring reached S1-1608's card.",
+    "Step 4: Space, then Shift with the Up, Down, Left and Right arrow keys were pressed: S1-1608 stayed first in Ana's column (Ana still holds S1-1608 and S1-1609), its lead is still ZZAUTOTEST Ana Alpha, and no message about a lead change appeared.",
+    "Step 5: Enter opened the work order page for S1-1608 (Lines tab, lead ZZAUTOTEST Ana Alpha).",
+    "Step 6: the browser Back button brought back Board View with the same search.",
+    "Step 7: Tech View shows the same work orders: Unassigned 1, Ana 2, Ben 1, as on the board.",
+    "Step 8: the cursor is in Search.",
+    "Step 9: Tab lands on a work order row (S1-1611 in Unassigned) with a focus ring.",
+    "Step 10: the Down arrow key moved the ring to Ana's group header and then to S1-1608's row.",
+    "Step 11: Enter opened the work order page for S1-1608.",
+    "Step 12: the browser Back button brought back Tech View.",
+    "Step 13: a plain mouse click (no movement while held) on S1-1608's row opened its work order page."
+   ],
+   "pictures": [
+    "pictures-prod/C368150-1-prod-1022.png",
+    "pictures-prod/C368150-2-prod-1022.png",
+    "pictures-prod/C368150-3-prod-1022.png",
+    "pictures-prod/C368150-4-prod-1022.png"
+   ]
+  },
+  "C97003": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: at Truck Hill 1, two Approved work orders found by the search \"ZZAUTOTEST F3 Viewer Column Order 31653\": S1-1616 (Alpha Co, lead ZZAUTOTEST Ana Alpha) and S1-1617 (Golf Co, no lead). Technicians ZZAUTOTEST Ana Alpha, Ben Bravo, Cal Charlie (and Dan Delta). A brand-new view-only user \"ZZAUTOTEST Viewer4 ...\" (role ZZAUTOTEST WO View Only: under Work orders only View) with no pins and no saved order; the dispatcher is the admin ZZ WOB Runner. The view-only user was opened by switching into that person's account in a second window (initials Z9, top menu shows only Work Orders), 2560 px wide.",
+    "Steps 1 to 5: as the view-only user, Work Orders > All tab, the search typed, Board View; the order of the test technicians read Unassigned, Ana, Ben, Cal (Dan after them).",
+    "Step 6: Cal's column was dragged by its six-dot handle before Ana's; the order became Unassigned, Cal, Ana, Ben.",
+    "Step 7: Ben's column was dragged to the left of Unassigned and released; Ben landed just after Unassigned (Unassigned, Ben, Cal, Ana) and Unassigned stayed the first column.",
+    "Step 8: Unassigned has no drag handle; pressing on its header and dragging to the right of Cal changed nothing. Order written down: Unassigned, Ben, Cal, Ana.",
+    "Step 9: Tech View clicked.",
+    "Step 10: Ben's group was dragged by its handle above the Unassigned group and released; Unassigned stayed the first group and Ben stayed right below it.",
+    "Step 11: after a refresh, Tech View reads Unassigned, Ben, Cal, Ana and Board View reads Unassigned, Ben, Cal, Ana - the order written down at step 8.",
+    "Step 12: in the dispatcher's own window (ZZ WOB Runner), Work Orders > All > Board View still reads Unassigned, Ana, Ben, Cal - unchanged."
+   ],
+   "pictures": [
+    "pictures-prod/C97003-1-prod-1022.png",
+    "pictures-prod/C97003-2-prod-1022.png",
+    "pictures-prod/C97003-3-prod-1022.png",
+    "pictures-prod/C97003-4-prod-1022.png"
+   ]
+  },
+  "C368152": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: three Approved work orders at Truck Hill 1 found by the search \"ZZAUTOTEST F3 Keyboard Reassign 9792\": S1-1613 (Work order 1) led by ZZAUTOTEST Ana Alpha (Technician A), S1-1614 (Work order 2) led by ZZAUTOTEST Ben Bravo (Technician B), S1-1615 (Work order 3) with no lead. Ana and Ben pinned, no filters, Assigned to me off, All tab, Board View, window 1600 px wide. Signed in as ZZ WOB Runner. Each work order has its own customer starting with the searched words instead of one shared customer.",
+    "Step 1: the cursor is in Search.",
+    "Step 2: Tab lands on the first card in Unassigned, S1-1615 (Work order 3), with a focus ring.",
+    "Step 3: the arrow keys moved the ring to S1-1613's card in Ana's column.",
+    "Step 4: Tab moved to S1-1613's own More actions (...) button, which shows and has the focus.",
+    "Step 5: Enter opened the menu with \"Reassign lead technician\" and \"Unassign\".",
+    "Step 6: the Down arrow key reached \"Reassign lead technician\" and Enter opened the \"Reassign lead technician S1-1613\" dialog.",
+    "Step 7: typing \"ZZAUTOTEST Be\" narrowed the list to Unassigned and ZZAUTOTEST Ben Bravo.",
+    "Step 8 (FAILED): Ben Bravo was chosen with the arrow keys and Enter, then the dialog's Reassign button was reached with Tab and pressed with Enter. The dialog closed and S1-1613 moved to Ben's column, but the message read \"Lead technician updated\" (green, with a Close button) - not \"S1-1613 assigned to ZZAUTOTEST Ben Bravo\" and no Undo button.",
+    "Step 9: the arrow keys moved the ring to S1-1614's card in Ben's column.",
+    "Step 10: Tab moved to S1-1614's More actions (...) button.",
+    "Step 11: Enter opened the menu (Reassign lead technician, Unassign).",
+    "Step 12 (FAILED): the arrow keys reached \"Unassign\" and Enter moved S1-1614 to the Unassigned column, but the message read \"Lead technician removed\" (green, with a Close button) - not \"S1-1614 moved to Unassigned\" and no Undo button.",
+    "This is the known problem in https://shopview.atlassian.net/browse/SV-11524 (status Code Review on 22 Oct 2026, so the fix is not on production yet). No new report raised."
+   ],
+   "pictures": [
+    "pictures-prod/C368152-1-prod-1022.png",
+    "pictures-prod/C368152-2-prod-1022.png",
+    "pictures-prod/C368152-3-prod-1022.png",
+    "pictures-prod/C368152-4-prod-1022.png"
+   ],
+   "failed_steps": "Failed at step(s) 8, 12: after the keyboard reassign the message read \"Lead technician updated\" (green, with Close) instead of \"S1-1613 assigned to ZZAUTOTEST Ben Bravo\" with an Undo button; after Unassign it read \"Lead technician removed\" instead of \"S1-1614 moved to Unassigned\" with an Undo button. The work orders did move as expected.",
+   "bold_steps": [
+    8,
+    12
+   ],
+   "ticket": "https://shopview.atlassian.net/browse/SV-11524 (Board View UX Improvements, status Code Review, read 22 Oct 2026)",
+   "todo": "Re-run this test once the fix in SV-11524 reaches production; nothing else to do now."
+  }
+ }
+}
