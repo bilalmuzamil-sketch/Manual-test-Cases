@@ -1,0 +1,1998 @@
+{
+ "issues": {
+  "nodes": [
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "52110",
+    "key": "SV-7192",
+    "fields": {
+     "summary": "A/R & A/P report: add option to alphabetize customer names for print/PDF output to match QuickBooks",
+     "issuetype": {
+      "id": "10245",
+      "description": "Stories track functionality or features expressed as user goals.",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+      "name": "Story",
+      "subtask": false,
+      "avatarId": 10315,
+      "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-05-05T13:23:37.123-0500",
+     "reporter": {
+      "accountId": "70121:59b11fb5-abbe-465e-a549-8cf1667c0dc8",
+      "avatarUrls": {
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/70121:59b11fb5-abbe-465e-a549-8cf1667c0dc8/7d3fa8f5-3b96-4dbd-94c8-cacfca17fbd5/48",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/70121:59b11fb5-abbe-465e-a549-8cf1667c0dc8/7d3fa8f5-3b96-4dbd-94c8-cacfca17fbd5/24",
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/70121:59b11fb5-abbe-465e-a549-8cf1667c0dc8/7d3fa8f5-3b96-4dbd-94c8-cacfca17fbd5/16",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/70121:59b11fb5-abbe-465e-a549-8cf1667c0dc8/7d3fa8f5-3b96-4dbd-94c8-cacfca17fbd5/32"
+      },
+      "displayName": "Ryan Fyfe",
+      "active": true,
+      "timeZone": "America/Bogota",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-15T15:03:13.812-0500",
+     "status": {
+      "description": "",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Blocked",
+      "id": "10184",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-7192"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "57246",
+    "key": "SV-10798",
+    "fields": {
+     "summary": "Enable sorting AP/AR report lists by clicking column headers",
+     "issuetype": {
+      "id": "10245",
+      "description": "Stories track functionality or features expressed as user goals.",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+      "name": "Story",
+      "subtask": false,
+      "avatarId": 10315,
+      "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-10-02T13:13:21.236-0500",
+     "reporter": {
+      "accountId": "70121:59b11fb5-abbe-465e-a549-8cf1667c0dc8",
+      "avatarUrls": {
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/70121:59b11fb5-abbe-465e-a549-8cf1667c0dc8/7d3fa8f5-3b96-4dbd-94c8-cacfca17fbd5/48",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/70121:59b11fb5-abbe-465e-a549-8cf1667c0dc8/7d3fa8f5-3b96-4dbd-94c8-cacfca17fbd5/24",
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/70121:59b11fb5-abbe-465e-a549-8cf1667c0dc8/7d3fa8f5-3b96-4dbd-94c8-cacfca17fbd5/16",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/70121:59b11fb5-abbe-465e-a549-8cf1667c0dc8/7d3fa8f5-3b96-4dbd-94c8-cacfca17fbd5/32"
+      },
+      "displayName": "Ryan Fyfe",
+      "active": true,
+      "timeZone": "America/Bogota",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-15T15:03:12.331-0500",
+     "status": {
+      "description": "",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Blocked",
+      "id": "10184",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-10798"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "57808",
+    "key": "SV-11315",
+    "fields": {
+     "summary": "A/R and A/P report sorting",
+     "issuetype": {
+      "id": "10006",
+      "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+      "name": "Epic",
+      "subtask": false,
+      "avatarId": 10306,
+      "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+      "hierarchyLevel": 1
+     },
+     "reporter": {
+      "accountId": "712020:aa00b8d6-a71f-4259-8919-82a304227c20",
+      "avatarUrls": {
+       "48x48": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "24x24": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "16x16": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "32x32": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png"
+      },
+      "displayName": "Chris Ward",
+      "active": true,
+      "timeZone": "America/Bogota",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-21T11:15:14.873-0500",
+     "created": "2026-10-14T13:14:39.038-0500",
+     "status": {
+      "description": "",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Design In Progress",
+      "id": "10385",
+      "statusCategory": {
+       "id": 4,
+       "key": "indeterminate",
+       "colorName": "yellow",
+       "name": "In Progress"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-11315"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "57935",
+    "key": "SV-11441",
+    "fields": {
+     "summary": "A/R and A/P aging: credit dated on the as-of day lands in 1-30 instead of Current",
+     "issuetype": {
+      "id": "10008",
+      "description": "Bugs track problems or errors. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10303?size=medium",
+      "name": "Bug",
+      "subtask": false,
+      "avatarId": 10303,
+      "entityId": "28af1af2-ae8b-4de4-94eb-bcecd7d4031c",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-10-16T11:21:24.357-0500",
+     "reporter": {
+      "accountId": "712020:aa00b8d6-a71f-4259-8919-82a304227c20",
+      "avatarUrls": {
+       "48x48": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "24x24": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "16x16": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "32x32": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png"
+      },
+      "displayName": "Chris Ward",
+      "active": true,
+      "timeZone": "America/Bogota",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-16T11:21:24.455-0500",
+     "status": {
+      "description": "",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-11441"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "57936",
+    "key": "SV-11442",
+    "fields": {
+     "summary": "A/R and A/P aging: configurable aging periods (e.g. 15-day buckets)",
+     "issuetype": {
+      "id": "10245",
+      "description": "Stories track functionality or features expressed as user goals.",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+      "name": "Story",
+      "subtask": false,
+      "avatarId": 10315,
+      "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-10-16T11:21:25.520-0500",
+     "reporter": {
+      "accountId": "712020:aa00b8d6-a71f-4259-8919-82a304227c20",
+      "avatarUrls": {
+       "48x48": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "24x24": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "16x16": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "32x32": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png"
+      },
+      "displayName": "Chris Ward",
+      "active": true,
+      "timeZone": "America/Bogota",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-16T11:21:25.893-0500",
+     "status": {
+      "description": "",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-11442"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "57937",
+    "key": "SV-11443",
+    "fields": {
+     "summary": "A/R reports: send a statement to a customer from the report",
+     "issuetype": {
+      "id": "10245",
+      "description": "Stories track functionality or features expressed as user goals.",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+      "name": "Story",
+      "subtask": false,
+      "avatarId": 10315,
+      "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-10-16T11:21:26.714-0500",
+     "reporter": {
+      "accountId": "712020:aa00b8d6-a71f-4259-8919-82a304227c20",
+      "avatarUrls": {
+       "48x48": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "24x24": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "16x16": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "32x32": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png"
+      },
+      "displayName": "Chris Ward",
+      "active": true,
+      "timeZone": "America/Bogota",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-16T11:21:26.794-0500",
+     "status": {
+      "description": "",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-11443"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "57938",
+    "key": "SV-11444",
+    "fields": {
+     "summary": "A/R reports: filter by salesperson and by Parts vs Service",
+     "issuetype": {
+      "id": "10245",
+      "description": "Stories track functionality or features expressed as user goals.",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+      "name": "Story",
+      "subtask": false,
+      "avatarId": 10315,
+      "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-10-16T11:21:27.608-0500",
+     "reporter": {
+      "accountId": "712020:aa00b8d6-a71f-4259-8919-82a304227c20",
+      "avatarUrls": {
+       "48x48": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "24x24": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "16x16": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "32x32": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png"
+      },
+      "displayName": "Chris Ward",
+      "active": true,
+      "timeZone": "America/Bogota",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-16T11:21:27.681-0500",
+     "status": {
+      "description": "",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-11444"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "57939",
+    "key": "SV-11445",
+    "fields": {
+     "summary": "A/R and A/P exports: background export with an in-app download notification for very large reports",
+     "issuetype": {
+      "id": "10245",
+      "description": "Stories track functionality or features expressed as user goals.",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+      "name": "Story",
+      "subtask": false,
+      "avatarId": 10315,
+      "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-10-16T11:21:28.631-0500",
+     "reporter": {
+      "accountId": "712020:aa00b8d6-a71f-4259-8919-82a304227c20",
+      "avatarUrls": {
+       "48x48": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "24x24": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "16x16": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "32x32": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png"
+      },
+      "displayName": "Chris Ward",
+      "active": true,
+      "timeZone": "America/Bogota",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-20T10:12:26.482-0500",
+     "status": {
+      "description": "",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-11445"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "57940",
+    "key": "SV-11446",
+    "fields": {
+     "summary": "A/R Summary: last payment date and credit limit columns",
+     "issuetype": {
+      "id": "10245",
+      "description": "Stories track functionality or features expressed as user goals.",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+      "name": "Story",
+      "subtask": false,
+      "avatarId": 10315,
+      "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-10-16T11:21:29.775-0500",
+     "reporter": {
+      "accountId": "712020:aa00b8d6-a71f-4259-8919-82a304227c20",
+      "avatarUrls": {
+       "48x48": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "24x24": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "16x16": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "32x32": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png"
+      },
+      "displayName": "Chris Ward",
+      "active": true,
+      "timeZone": "America/Bogota",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-16T11:21:29.873-0500",
+     "status": {
+      "description": "",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-11446"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "57941",
+    "key": "SV-11447",
+    "fields": {
+     "summary": "A/R Collection: collection notes and follow-up log",
+     "issuetype": {
+      "id": "10245",
+      "description": "Stories track functionality or features expressed as user goals.",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+      "name": "Story",
+      "subtask": false,
+      "avatarId": 10315,
+      "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-10-16T11:21:30.710-0500",
+     "reporter": {
+      "accountId": "712020:aa00b8d6-a71f-4259-8919-82a304227c20",
+      "avatarUrls": {
+       "48x48": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "24x24": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "16x16": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "32x32": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png"
+      },
+      "displayName": "Chris Ward",
+      "active": true,
+      "timeZone": "America/Bogota",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-16T11:21:30.799-0500",
+     "status": {
+      "description": "",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-11447"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "58029",
+    "key": "SV-11531",
+    "fields": {
+     "summary": "A/R and A/P Report Sorting - Story 1 - Reports open in QuickBooks name order",
+     "issuetype": {
+      "id": "10245",
+      "description": "Stories track functionality or features expressed as user goals.",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+      "name": "Story",
+      "subtask": false,
+      "avatarId": 10315,
+      "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-10-19T13:23:39.629-0500",
+     "reporter": {
+      "accountId": "712020:aa00b8d6-a71f-4259-8919-82a304227c20",
+      "avatarUrls": {
+       "48x48": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "24x24": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "16x16": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "32x32": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png"
+      },
+      "displayName": "Chris Ward",
+      "active": true,
+      "timeZone": "America/Bogota",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-21T11:21:26.603-0500",
+     "status": {
+      "description": "",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-11531"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "58030",
+    "key": "SV-11532",
+    "fields": {
+     "summary": "A/R and A/P Report Sorting - Story 2 - Sort by clicking any column header",
+     "issuetype": {
+      "id": "10245",
+      "description": "Stories track functionality or features expressed as user goals.",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+      "name": "Story",
+      "subtask": false,
+      "avatarId": 10315,
+      "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-10-19T13:23:40.808-0500",
+     "reporter": {
+      "accountId": "712020:aa00b8d6-a71f-4259-8919-82a304227c20",
+      "avatarUrls": {
+       "48x48": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "24x24": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "16x16": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "32x32": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png"
+      },
+      "displayName": "Chris Ward",
+      "active": true,
+      "timeZone": "America/Bogota",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-21T12:16:46.545-0500",
+     "status": {
+      "description": "",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-11532"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "58031",
+    "key": "SV-11533",
+    "fields": {
+     "summary": "A/R and A/P Report Sorting - Story 3 - Export to PDF and CSV",
+     "issuetype": {
+      "id": "10245",
+      "description": "Stories track functionality or features expressed as user goals.",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+      "name": "Story",
+      "subtask": false,
+      "avatarId": 10315,
+      "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-10-19T13:23:41.736-0500",
+     "reporter": {
+      "accountId": "712020:aa00b8d6-a71f-4259-8919-82a304227c20",
+      "avatarUrls": {
+       "48x48": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "24x24": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "16x16": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "32x32": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png"
+      },
+      "displayName": "Chris Ward",
+      "active": true,
+      "timeZone": "America/Bogota",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-21T12:12:11.960-0500",
+     "status": {
+      "description": "",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-11533"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "58032",
+    "key": "SV-11534",
+    "fields": {
+     "summary": "A/R and A/P Report Sorting - Story 4 - Collapse all, Expand all and pinned group rows",
+     "issuetype": {
+      "id": "10245",
+      "description": "Stories track functionality or features expressed as user goals.",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+      "name": "Story",
+      "subtask": false,
+      "avatarId": 10315,
+      "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-10-19T13:23:42.597-0500",
+     "reporter": {
+      "accountId": "712020:aa00b8d6-a71f-4259-8919-82a304227c20",
+      "avatarUrls": {
+       "48x48": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "24x24": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "16x16": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "32x32": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png"
+      },
+      "displayName": "Chris Ward",
+      "active": true,
+      "timeZone": "America/Bogota",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-21T11:15:59.721-0500",
+     "status": {
+      "description": "",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-11534"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "58033",
+    "key": "SV-11535",
+    "fields": {
+     "summary": "A/R and A/P Report Sorting - Story 5 - Filters: customer or vendor, past due and location",
+     "issuetype": {
+      "id": "10245",
+      "description": "Stories track functionality or features expressed as user goals.",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+      "name": "Story",
+      "subtask": false,
+      "avatarId": 10315,
+      "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-10-19T13:23:43.661-0500",
+     "reporter": {
+      "accountId": "712020:aa00b8d6-a71f-4259-8919-82a304227c20",
+      "avatarUrls": {
+       "48x48": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "24x24": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "16x16": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "32x32": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png"
+      },
+      "displayName": "Chris Ward",
+      "active": true,
+      "timeZone": "America/Bogota",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-21T11:19:07.378-0500",
+     "status": {
+      "description": "",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-11535"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "58034",
+    "key": "SV-11536",
+    "fields": {
+     "summary": "A/R and A/P Report Sorting - Story 6 - Location column",
+     "issuetype": {
+      "id": "10245",
+      "description": "Stories track functionality or features expressed as user goals.",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+      "name": "Story",
+      "subtask": false,
+      "avatarId": 10315,
+      "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-10-19T13:23:44.715-0500",
+     "reporter": {
+      "accountId": "712020:aa00b8d6-a71f-4259-8919-82a304227c20",
+      "avatarUrls": {
+       "48x48": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "24x24": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "16x16": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "32x32": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png"
+      },
+      "displayName": "Chris Ward",
+      "active": true,
+      "timeZone": "America/Bogota",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-21T11:45:51.235-0500",
+     "status": {
+      "description": "",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-11536"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "58035",
+    "key": "SV-11537",
+    "fields": {
+     "summary": "A/R and A/P Report Sorting - Story 7 - Document links open where they can",
+     "issuetype": {
+      "id": "10245",
+      "description": "Stories track functionality or features expressed as user goals.",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+      "name": "Story",
+      "subtask": false,
+      "avatarId": 10315,
+      "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-10-19T13:23:45.551-0500",
+     "reporter": {
+      "accountId": "712020:aa00b8d6-a71f-4259-8919-82a304227c20",
+      "avatarUrls": {
+       "48x48": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "24x24": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "16x16": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "32x32": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png"
+      },
+      "displayName": "Chris Ward",
+      "active": true,
+      "timeZone": "America/Bogota",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-21T11:50:13.424-0500",
+     "status": {
+      "description": "",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-11537"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "58036",
+    "key": "SV-11538",
+    "fields": {
+     "summary": "A/R and A/P Report Sorting - Story 8 - Report descriptions and layout",
+     "issuetype": {
+      "id": "10245",
+      "description": "Stories track functionality or features expressed as user goals.",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+      "name": "Story",
+      "subtask": false,
+      "avatarId": 10315,
+      "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-10-19T13:23:46.583-0500",
+     "reporter": {
+      "accountId": "712020:aa00b8d6-a71f-4259-8919-82a304227c20",
+      "avatarUrls": {
+       "48x48": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "24x24": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "16x16": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "32x32": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png"
+      },
+      "displayName": "Chris Ward",
+      "active": true,
+      "timeZone": "America/Bogota",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-21T11:17:41.450-0500",
+     "status": {
+      "description": "",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-11538"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "58037",
+    "key": "SV-11539",
+    "fields": {
+     "summary": "A/R and A/P Report Sorting - Story 9 - A/R Collection call list",
+     "issuetype": {
+      "id": "10245",
+      "description": "Stories track functionality or features expressed as user goals.",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10315?size=medium",
+      "name": "Story",
+      "subtask": false,
+      "avatarId": 10315,
+      "entityId": "2d932db9-30a4-451f-aa74-561885726568",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-10-19T13:23:47.693-0500",
+     "reporter": {
+      "accountId": "712020:aa00b8d6-a71f-4259-8919-82a304227c20",
+      "avatarUrls": {
+       "48x48": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "24x24": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "16x16": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png",
+       "32x32": "https://secure.gravatar.com/avatar/b59acd73249e0b9e1cc3b64c79748f37?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCW-1.png"
+      },
+      "displayName": "Chris Ward",
+      "active": true,
+      "timeZone": "America/Bogota",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-21T11:49:02.401-0500",
+     "status": {
+      "description": "",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Open",
+      "id": "10349",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-11539"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "58093",
+    "key": "SV-11595",
+    "fields": {
+     "summary": "A/R & A/P aging \u2014 verify Phase 2: A/R Summary and A/P Summary",
+     "issuetype": {
+      "id": "10005",
+      "description": "Tasks track small, distinct pieces of work. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10321?size=medium",
+      "name": "Task",
+      "subtask": false,
+      "avatarId": 10321,
+      "entityId": "bbce579c-61d9-4635-aa13-ce7ec404c25a",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-10-21T09:49:57.711-0500",
+     "reporter": {
+      "accountId": "557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56",
+      "avatarUrls": {
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/48",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/24",
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/16",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/32"
+      },
+      "displayName": "Milan Zivanovic",
+      "active": true,
+      "timeZone": "Europe/Belgrade",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-21T11:23:11.388-0500",
+     "status": {
+      "description": "(Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Board Backlog",
+      "id": "10007",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-11595"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "58094",
+    "key": "SV-11596",
+    "fields": {
+     "summary": "A/R & A/P aging \u2014 verify Phase 3: A/R Collection and A/P Unpaid Invoices",
+     "issuetype": {
+      "id": "10005",
+      "description": "Tasks track small, distinct pieces of work. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10321?size=medium",
+      "name": "Task",
+      "subtask": false,
+      "avatarId": 10321,
+      "entityId": "bbce579c-61d9-4635-aa13-ce7ec404c25a",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-10-21T09:53:47.670-0500",
+     "reporter": {
+      "accountId": "557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56",
+      "avatarUrls": {
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/48",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/24",
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/16",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/32"
+      },
+      "displayName": "Milan Zivanovic",
+      "active": true,
+      "timeZone": "Europe/Belgrade",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-21T12:12:11.921-0500",
+     "status": {
+      "description": "(Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Board Backlog",
+      "id": "10007",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-11596"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "58095",
+    "key": "SV-11597",
+    "fields": {
+     "summary": "A/R & A/P aging \u2014 verify Phase 1: shared report kit",
+     "issuetype": {
+      "id": "10005",
+      "description": "Tasks track small, distinct pieces of work. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10321?size=medium",
+      "name": "Task",
+      "subtask": false,
+      "avatarId": 10321,
+      "entityId": "bbce579c-61d9-4635-aa13-ce7ec404c25a",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-10-21T09:53:53.774-0500",
+     "reporter": {
+      "accountId": "557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56",
+      "avatarUrls": {
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/48",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/24",
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/16",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/32"
+      },
+      "displayName": "Milan Zivanovic",
+      "active": true,
+      "timeZone": "Europe/Belgrade",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-21T11:25:24.937-0500",
+     "status": {
+      "description": "(Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Board Backlog",
+      "id": "10007",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-11597"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "58096",
+    "key": "SV-11598",
+    "fields": {
+     "summary": "A/R & A/P aging \u2014 verify Phase 4: A/R Detail and A/P Detail",
+     "issuetype": {
+      "id": "10005",
+      "description": "Tasks track small, distinct pieces of work. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10321?size=medium",
+      "name": "Task",
+      "subtask": false,
+      "avatarId": 10321,
+      "entityId": "bbce579c-61d9-4635-aa13-ce7ec404c25a",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-10-21T09:56:39.372-0500",
+     "reporter": {
+      "accountId": "557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56",
+      "avatarUrls": {
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/48",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/24",
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/16",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/32"
+      },
+      "displayName": "Milan Zivanovic",
+      "active": true,
+      "timeZone": "Europe/Belgrade",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-21T12:16:46.515-0500",
+     "status": {
+      "description": "(Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Board Backlog",
+      "id": "10007",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-11598"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "58097",
+    "key": "SV-11599",
+    "fields": {
+     "summary": "A/R & A/P aging \u2014 verify Phase 5: legacy aging code retired",
+     "issuetype": {
+      "id": "10005",
+      "description": "Tasks track small, distinct pieces of work. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10321?size=medium",
+      "name": "Task",
+      "subtask": false,
+      "avatarId": 10321,
+      "entityId": "bbce579c-61d9-4635-aa13-ce7ec404c25a",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-10-21T09:56:41.384-0500",
+     "reporter": {
+      "accountId": "557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56",
+      "avatarUrls": {
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/48",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/24",
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/16",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/32"
+      },
+      "displayName": "Milan Zivanovic",
+      "active": true,
+      "timeZone": "Europe/Belgrade",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-21T11:20:21.499-0500",
+     "status": {
+      "description": "(Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Board Backlog",
+      "id": "10007",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-11599"
+   },
+   {
+    "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+    "id": "58098",
+    "key": "SV-11600",
+    "fields": {
+     "summary": "A/R & A/P aging \u2014 verify Phase 1: shared report kit",
+     "issuetype": {
+      "id": "10005",
+      "description": "Tasks track small, distinct pieces of work. (Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10321?size=medium",
+      "name": "Task",
+      "subtask": false,
+      "avatarId": 10321,
+      "entityId": "bbce579c-61d9-4635-aa13-ce7ec404c25a",
+      "hierarchyLevel": 0
+     },
+     "parent": {
+      "id": "57808",
+      "key": "SV-11315",
+      "fields": {
+       "summary": "A/R and A/P report sorting",
+       "status": {
+        "description": "",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+        "name": "Design In Progress",
+        "id": "10385",
+        "statusCategory": {
+         "id": 4,
+         "key": "indeterminate",
+         "colorName": "yellow",
+         "name": "In Progress"
+        }
+       },
+       "priority": {
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/images/icons/priorities/medium_new.svg",
+        "name": "Medium",
+        "id": "3"
+       },
+       "issuetype": {
+        "id": "10006",
+        "description": "Epics track collections of related bugs, stories, and tasks. (Migrated on 31 Dec 2023 09:01 UTC)",
+        "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10306?size=medium",
+        "name": "Epic",
+        "subtask": false,
+        "avatarId": 10306,
+        "entityId": "b16adb77-4b77-44c6-9be7-926745903790",
+        "hierarchyLevel": 1
+       }
+      }
+     },
+     "created": "2026-10-21T10:03:08.682-0500",
+     "reporter": {
+      "accountId": "557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56",
+      "avatarUrls": {
+       "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/48",
+       "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/24",
+       "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/16",
+       "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/557058:ead5f72a-46e9-4c4c-adfc-6860a050ad56/7744b05f-e315-4c29-85d0-7c5fa4bf036b/32"
+      },
+      "displayName": "Milan Zivanovic",
+      "active": true,
+      "timeZone": "Europe/Belgrade",
+      "accountType": "atlassian"
+     },
+     "updated": "2026-10-21T10:03:08.771-0500",
+     "status": {
+      "description": "(Migrated on 31 Dec 2023 09:01 UTC)",
+      "iconUrl": "https://jira-prod-us-44-as-5.prod.atl-paas.net/",
+      "name": "Board Backlog",
+      "id": "10007",
+      "statusCategory": {
+       "id": 2,
+       "key": "new",
+       "colorName": "blue-gray",
+       "name": "To Do"
+      }
+     }
+    },
+    "webUrl": "https://shopview.atlassian.net/browse/SV-11600"
+   }
+  ],
+  "webUrl": "https://shopview.atlassian.net/issues?jql=key%20%3D%20SV-11315%20OR%20parent%20%3D%20SV-11315%20OR%20%22Epic%20Link%22%20%3D%20SV-11315%20ORDER%20BY%20key",
+  "pageInfo": {
+   "hasNextPage": false,
+   "endCursor": null
+  }
+ },
+ "context": {
+  "atlassianAccountId": "712020:6d590212-5c9b-4135-ae11-277f3826110e",
+  "cloudId": "19fdd96d-a135-46c4-83e7-d2cc218a4e63",
+  "toolsExposure": "primary",
+  "clientName": "claude.ai",
+  "mcpClientName": "unknown",
+  "toolName": "searchJiraIssuesUsingJql",
+  "endpoint": "v2:streamable-http",
+  "sessionId": "r11-60ccfaee-95ac-45af-831c-fd8fab22f04a",
+  "invocationId": "58dc2329-814f-476b-b906-9926094f4940",
+  "env": "prod",
+  "featureFlags": {
+   "mcp-app-v2-primary": true,
+   "mcp-jira-instrumentation-phase-1": true,
+   "ken-4811-4724-jira-mcp-status-assignee-fields": false,
+   "mcp-ui-local-cache": false,
+   "jira-mcp-app-loading-skeleton-and-error-case": false,
+   "jira-mcp-app-shared-row-components": true,
+   "claude_mcp_ui_theme_fix_jac-99665": true
+  }
+ }
+}

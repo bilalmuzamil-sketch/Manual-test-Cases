@@ -93,6 +93,25 @@ Every design reference in a case (design link, boards or pages, attached picture
 4. The case that follows the PRD names the difference under "References from Design".
 5. The hand-over gate below fails while the tool exits 1.
 
+## 6d · The design-case checklist — nothing obvious in the design goes without a case (Rule 133, QA lead, 22 Oct 2026, permanent)
+
+Every design pass, every project, before the hand-over gate. Each line is ticked with the case(s) that cover it, or the register row
+(ruling or sent question) that closes it. An unticked line means the suite is not done.
+
+1. **Every screen and every state the design draws** (rest, hover, focus, open, loading, empty, error, read-only, invoiced, phone,
+   dark theme, each density/size) has a "Design: … looks as in the design" case with the board picture attached (Rule 126, L-01).
+2. **Every menu, dialog, tooltip, toast, prompt and empty state** is listed by hand with its title, rows, options and buttons, in
+   order, and compared row by row with the PRD (L-02: the missing Unassigned row and the missing confirm button).
+3. **Every label is compared letter for letter**, capitals included (L-04: "Sales representative" vs "Sales Representative").
+4. **Every design behaviour that differs from the PRD** has a held "design version" case and a SENT PO question (Rule 130).
+5. **Both directions are checked:** design → cases (text and visual inventory) and PRD → design (`spec_to_design_check.py`).
+6. **Sizes, spacing, colours, icons, column order, widths at 1440 and 1536 px, no overlap, no truncation** are checked where the design
+   or the PRD states them; design-library "always/never" sentences are in scope.
+7. **Every PRD look sentence** (native component, position, style) has a design case even when no design file is available yet; when
+   the design arrives, the whole design is driven again and every case is re-checked (Rules 120, 122).
+8. **The result is written down** in the project's DESIGN-DIVERGENCE-REGISTER.json and the proof file; the checklist with its ticks is
+   committed beside them.
+
 ## 7 · Hand-over gate
 Only when steps 2–6 (including 4b and 6b) are done: commit `DESIGN-COVERAGE-<date>.md` (the file-reading table; the sweep totals; the
 VISUAL inventory counts and the unsent-question count, which must be 0 (Rule 126); the text

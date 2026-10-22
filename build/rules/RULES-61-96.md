@@ -3423,3 +3423,15 @@ part to never miss."*
    an answer that has arrived is acted on, not reminded about.
 4. This reminder is never dropped because the QA lead said not to be reminded about something else; only he can stop it, for a named
    sheet or question.
+
+## 133 · DESIGN CASES MISS NOTHING THE DESIGN SHOWS — THE DESIGN-CASE CHECKLIST IS PASSED EVERY TIME (all projects, permanent)
+
+**Ordered by the QA lead, 22 Oct 2026, verbatim:** *"the test cases for DESIGN should from now onward include everything learning from
+the mistakes, in the past we have missed alot for the design cases and did not create cases which were obvious in design. So now and
+going forward we MUST not repeat the mistakes."*
+
+Every design pass on every project runs the checklist in `build/skills/21-DESIGN-DRIVE-PROTOCOL.md` §6d (every screen and state, every
+menu/dialog/tooltip/toast row by row, letter-for-letter labels, held design-version cases with sent questions, both directions,
+sizes and widths, every PRD look sentence, written down) and applies every row of `build/LESSONS-REGISTER.md`. A suite whose
+checklist has an unticked line is not complete and is not reported as complete. When a design arrives after the cases were written,
+the whole design is driven and every case re-checked (Rules 120, 122).
