@@ -1,0 +1,136 @@
+{
+ "C97001": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 4: with the search \"ZZAUTOTEST F3 Drag Order\" in Tech View, Ana's group read Alpha Co, Bravo Co, Charlie Co.",
+   "Step 5: Charlie Co dragged above Alpha Co; Ana's group then read Charlie Co, Alpha Co, Bravo Co.",
+   "Step 6: Bravo Co dragged into Ben's group below Delta Co; the message \"Lead technician updated\" showed, Ben's group read Delta Co, Bravo Co and Bravo Co was gone from Ana's group.",
+   "Step 8: in Board View Bravo Co dragged above Delta Co; Ben's column read Bravo Co, Delta Co.",
+   "Step 9: Echo Co dragged from Cal's column to the bottom of Ana's column; \"Lead technician updated\" showed, Ana's column read Charlie Co, Alpha Co, Echo Co and Cal's column was empty (count 0).",
+   "Every drag was allowed and each row or card stayed where it was released, also after reloading the page."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C97001-end.png",
+   "evidence/prod-2026-10-22/C97001-board.png"
+  ],
+  "reason_for_reviewer": "Readings: anaStart [Alpha,Bravo,Charlie]; step5 [Charlie,Alpha,Bravo]; step6 ana [Charlie,Alpha] ben [Delta,Bravo] toast 'Lead technician updated'; step8 [Bravo,Delta]; step9 ana [Charlie,Alpha,Echo] cal [] toast; afterReload identical. Board pictures show Ana 3 (S1-1192 Charlie, S1-1190 Alpha, S1-1194 Echo), Ben 2 (S1-1191 Bravo, S1-1193 Delta), Cal 0. Tech View steps 5-6 are evidenced by readings only (no Tech View picture). 0 differences from the staging reading. Not affected by the signed-in-user or time-zone traps."
+ },
+ "C97004": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 4: Board View with the search \"ZZAUTOTEST F3 Pinned Reorder\" read Unassigned, Ana, Ben (both pinned), Cal, Dan; counts Ana 1, Ben 2, Cal 1, Dan 0.",
+   "Step 5: Ben's column dragged by its handle before Ana's; the order became Unassigned, Ben, Ana, Cal, Dan.",
+   "Step 6: Ben's column dragged to after Cal's; he did not leave the pinned area: the order read Unassigned, Ana, Ben, Cal, Dan, and only Ana and Ben were pinned.",
+   "Step 8: Tech View showed the pinned groups right after Unassigned in the same order (Ana, Ben); dragging Ana's group below Cal's left Ana among the pinned groups (Unassigned, Ben, Ana, Cal, Dan).",
+   "Step 9: counts unchanged (Ana 1, Ben 2, Cal 1, Dan 0) and Bravo Co's Lead Technician is still ZZAUTOTEST Ben Bravo.",
+   "Other technicians on production (for example Aaron Baker, Aaron Zed) sit among the unpinned columns; Cal and Dan are still after the pinned ones."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C97004-step5.png",
+   "evidence/prod-2026-10-22/C97004-end.png"
+  ],
+  "reason_for_reviewer": "Readings: start [Unassigned,Ana,Ben,Cal,Dan]; step5 [Unassigned,Ben,Ana,Cal,Dan]; step6 [Unassigned,Ana,Ben,Cal,Dan] pinned [Ana,Ben]; step8 Tech View [Unassigned,Ana,Ben,Cal,Dan]; step8after [Unassigned,Ben,Ana,Cal,Dan]; step9 counts identical, bravoLead 'ZZAUTOTEST Ben Bravo'. The order lists are filtered to the case's four technicians; production has extra unpinned staff (Aaron Baker, Aaron Zed ...) between the pinned area and Cal/Dan, which the pictures show. The 2 differences vs staging are only that the staging reading listed fewer technicians. The pinned order Tech View showed at step 8 (Ana, Ben) matches the Board View order left by step 6. Pins are per user; set-up pinned them for the signed-in account, so the 'me' trap does not apply."
+ },
+ "C97006": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 4: List with the search \"ZZAUTOTEST F3 List Sort Kept\", sorted by Created On with the arrow on Created On, newest first: Charlie Co, Bravo Co, Alpha Co.",
+   "Steps 5 and 6: in Tech View the two rows in Ana's group were reordered by dragging (they then read Bravo Co, Alpha Co).",
+   "Steps 7 and 8: in Board View a card in Ana's column was dragged (the column then read Alpha Co, Bravo Co). The run reordered Ana's own cards rather than moving Charlie Co over from Ben's column, so Charlie Co stayed with Ben.",
+   "Step 9: back in List it is still sorted by Created On, same direction, same arrow, and the rows read Charlie Co, Bravo Co, Alpha Co exactly as before."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C97006-end.png",
+   "evidence/prod-2026-10-22/C97006-list.png"
+  ],
+  "reason_for_reviewer": "Readings: step4 sort 'Created On arrow_drop_up desc', rows [Charlie,Bravo,Alpha]; techAfter [Bravo,Alpha]; boardAfter [Alpha,Bravo]; step9 sort and rows identical to step4. Picture: List with Created On header arrow, S1-1203 (lead Ben), S1-1202, S1-1201 (lead Ana). Caveat: s9-batchA5 drags the 2nd item above the 1st in Ana's group/column (lines 210-211), so step 6 was effectively 'Bravo above Alpha' and step 8 was a reorder inside Ana's column, not 'Charlie Co from Ben's column into Ana's'. The staging pass carried the same deviation. The Expected only concerns the List's sort and row order after manual drags in both views, which was observed; if the reviewer wants the literal cross-column move of step 8, re-check that one drag by hand. 0 differences from staging."
+ },
+ "C97011": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 4: Board View with the search \"ZZAUTOTEST F3 Cancelled Drag\": Ana's column read Alpha Co, Bravo Co; counts Ana 2, Ben 1.",
+   "Step 5: Bravo Co dragged over Ben's column and Escape pressed before release: nothing moved, Ana still Alpha Co, Bravo Co, counts 2 and 1, no message.",
+   "Step 6: Bravo Co dragged above Alpha Co and Escape pressed: nothing moved, no message.",
+   "Step 7: Bravo Co dropped on the toolbar outside every column: nothing moved, counts 2 and 1, no message.",
+   "Step 9: in Tech View, Bravo Co's row dragged over Ben's group and Escape pressed: Ana's group still Alpha Co, Bravo Co, Ben's group Charlie Co, counts 2 and 1, no message.",
+   "Step 10: after a refresh nothing changed and Bravo Co's Lead Technician is still ZZAUTOTEST Ana Alpha."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C97011-end.png",
+   "evidence/prod-2026-10-22/C97011-tech.png",
+   "evidence/prod-2026-10-22/C97011-board.png"
+  ],
+  "reason_for_reviewer": "Readings: start ana [Alpha,Bravo] a2 b1; escOverBen, escAboveAlpha, dropOutside and techEscOverBen all ana [Alpha,Bravo], ben [Charlie], counts 2/1, msg []; afterRefresh ana [Alpha,Bravo], lead 'ZZAUTOTEST Ana Alpha'. Escape did cancel, so the Expected's fallback clause (judge step 7 alone) was not needed. Pictures: Board Ana 2 (S1-1219 Alpha, S1-1220 Bravo), Ben 1 (S1-1221 Charlie); Tech View the same. 0 differences from staging."
+ },
+ "C97013": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 4: Tech View with the search \"ZZAUTOTEST F3 Filtered Reorder\": Ana's group read Alpha Co, Bravo Co, Charlie Co, Delta Co (Alpha and Charlie In Progress).",
+   "Step 5: Status \"In progress\" only: Ana's group showed Alpha Co and Charlie Co.",
+   "Steps 6 and 7: Charlie Co dragged above Alpha Co; after Clear selection Ana's group read Charlie Co, Alpha Co, Bravo Co, Delta Co (C, A, B, D).",
+   "Step 8: rows dragged back to Alpha Co, Bravo Co, Charlie Co, Delta Co.",
+   "Steps 9 and 10: filtered again, Alpha Co dragged below Charlie Co; after Clear selection the group read Bravo Co, Charlie Co, Alpha Co, Delta Co (B, C, A, D).",
+   "Step 11: Board View shows Ana's column in the same order: Bravo Co, Charlie Co, Alpha Co, Delta Co."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C97013-step7.png",
+   "evidence/prod-2026-10-22/C97013-step10.png",
+   "evidence/prod-2026-10-22/C97013-board.png",
+   "evidence/prod-2026-10-22/C97013-step5.png"
+  ],
+  "reason_for_reviewer": "Readings: step4 [A,B,C,D]; step5 [Alpha,Charlie]; step7 [Charlie,Alpha,Bravo,Delta]; step8 [A,B,C,D]; step10 [Bravo,Charlie,Alpha,Delta]; step11 Board [Bravo,Charlie,Alpha,Delta]. Step-7 picture: S1-1224 (Charlie, In Progress), S1-1222 (Alpha, In Progress), S1-1223 (Bravo), S1-1225 (Delta). Board picture: S1-1223 Bravo, S1-1224 Charlie, S1-1222 Alpha, S1-1225 Delta. 0 differences from staging."
+ },
+ "C368145": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 4: Board View with the search \"ZZAUTOTEST F3 Created With Lead\": Ben's column read Bravo Co, then Delta Co.",
+   "Step 5: the New Work Order window offers only Customer and Asset (no Lead Technician field), so the test's other route was used: a line of the Bravo Co work order was split off into a new work order with \"Split work order\". The new work order (S1-1232) kept ZZAUTOTEST Ben Bravo as Lead Technician.",
+   "Step 6: Ben's column read S1-1232 (Bravo Co, split off), S1-1230 (Bravo Co), S1-1231 (Delta Co): the split-off work order took its customer-name place and is not at the bottom."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368145-end.png",
+   "evidence/prod-2026-10-22/C368145-split-dialog.png"
+  ],
+  "reason_for_reviewer": "Readings: step4 [Bravo,Delta]; newWindowLabels only Customer/Asset; bulk menu offered 'Split work order'; new work order page S1-1232 shows Lead Technician 'ZZAUTOTEST Ben Bravo'; all: S1-1232 Bravo lead Ben, S1-1230 Bravo lead Ben, S1-1231 Delta lead Ben; step6 [Bravo (split), Bravo, Delta]. The Expected's split clause applies ('the split-off work order also takes its customer-name place, not the bottom'): it sits with the other Bravo Co work order, newest first, above Delta Co. Route used: Split. 0 differences from staging."
+ },
+ "C368148": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 3: Board View with the search \"ZZAUTOTEST F3 Hidden Tech Order\": the columns read Unassigned, Ana, Ben, Cal, Dan.",
+   "Step 4: with Assigned to me on, only Ana's and Cal's columns showed (the signed-in account is the Service Advisor on Alpha Co and Charlie Co only).",
+   "Step 5: Cal's column dragged by its handle before Ana's: Cal, Ana.",
+   "Step 6: with Assigned to me off again the order read Unassigned, Cal, Ana, Ben, Dan: the hidden Ben and Dan kept their order.",
+   "Other technicians on production (for example \"...sa Webb\" and another ZZAUTOTEST staff member with 0 work orders) sit before Cal; this does not affect the order of the four test technicians."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368148-after.png",
+   "evidence/prod-2026-10-22/C368148-start.png"
+  ],
+  "reason_for_reviewer": "Readings: start [Unassigned,Ana,Ben,Cal,Dan]; assignedToMe [Ana,Cal]; afterDrag [Cal,Ana]; step6 [Unassigned,Cal,Ana,Ben,Dan] (lists filtered to the four case technicians). The 'Assigned to me' set-up used the signed-in runner as Service Advisor (s9-batchA5 line 405-407: the runner creates the work orders and Bravo/Delta are moved to another advisor), not 'Admin ShopView', so the set-up trap does not apply; the reading confirms only Ana and Cal showed. Pictures: start ZA Ana, ZB Ben, ZC Cal; after ZC Cal, ZA Ana, ZB Ben; Dan is off-screen to the right (his position comes from the reading). The 'ZD' column with 0 work orders left of Cal is another staff member, not Dan (Dan has Delta Co, count 1). 0 differences from staging."
+ },
+ "C96917": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 4 (Board View): on the All tab the board was scrolled right and the long Unassigned column scrolled down.",
+   "Steps 5 and 6: after clicking Estimates and then All, the board was back at the top-left: Unassigned and the first technicians (Ayesha Khan, Aaron Baker, Aaron Zed, Admin ShopView) in view, every column at its first card.",
+   "Steps 7 to 9: after scrolling again, going to Schedule and back through Work Orders, the board was again at the top-left and still in Board View.",
+   "Steps 10 to 12: after scrolling again, clicking Work Orders in the top navigation while on Board View left the board exactly where it was (same columns and the same card at the top of Unassigned).",
+   "Step 13 and the repeat in Tech View: top-left after a tab click; top-left and still Tech View after Schedule and back; unchanged scroll after clicking Work Orders while already on Tech View."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96917-BoardView-after-tab.png",
+   "evidence/prod-2026-10-22/C96917-BoardView-after-same-nav.png",
+   "evidence/prod-2026-10-22/C96917-TechView-after-schedule.png",
+   "evidence/prod-2026-10-22/C96917-TechView-after-same-nav.png"
+  ],
+  "reason_for_reviewer": "Re-run of s1-batch4b today (pictures 13:36-13:37; C96917-error.png is a 12:29 leftover and ignored). Board View: scrolled1/2/3 left 2400 top 900 (Unassigned column scrolled 900 of 3383 extra); afterTabClick and afterSchedule left 0 top 0, all column tops 0 or no-scroll, first column Unassigned then Ayesha Khan; afterSameNav left 2400 top 900, same first visible S1-860, display still board_view, url /workorders. Tech View: scrolled left 283 top 900; afterTabClick and afterSchedule 0/0 (first row S1-915), cameBackIn tech_view; afterSameNav 283/900, first row S1-518. The 14 differences vs staging are only staff names and column lengths on each environment. The test does not depend on the signed-in user's own work orders or on time of day."
+ }
+}
