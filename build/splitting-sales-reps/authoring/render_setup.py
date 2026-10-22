@@ -21,7 +21,7 @@ for r in csv.DictReader(open(f"{P}/testrail-id-map.csv")):
         a = json.load(open(f"{P}/design-recheck-2026-10-20/applied/C{r['case_id']}-after.json"))
         pre = [(_h.unescape(re.sub(r"<[^>]+>", "", x.replace("<br>", "\n"))).split("\n") + [""])[:2] for x in re.findall(r"<li>(.*?)</li>", a["custom_preconds"], re.S)]
         DR.append({"key": r["key"], "sec": "DESIGN", "title": a["title"], "pre": [(x[0], x[1]) for x in pre]})
-link = lambda k: f"[C{ids[k]}](https://shopview.testrail.io/index.php?/cases/view/{ids[k]})"
+link = lambda k: f"[C{ids[k]}](https://shopview.testrail.io/index.php?/cases/view/{ids[k]})" if k in ids else f"{k} (new 22 Oct 2026, tech plan pass; not yet in TestRail)"
 L = []
 L += ["# Splitting Sales Representatives: setup file for Claude sessions",
       "",
@@ -30,8 +30,8 @@ L += ["# Splitting Sales Representatives: setup file for Claude sessions",
       "",
       "## 1. Header",
       f"- Feature: Splitting Sales Representatives (epic SV-10890; stories SV-11265 to SV-11272). TestRail group 84266, {len(ssr_lib.CASES) + len(DR)} cases.",
-      "- Generated: 19 Oct 2026, with the cases; regenerated 20 Oct 2026 for PRD version 10, Chris Ward's answers, the 7 new cases and the 8 design cases DR-01 to DR-08; regenerated 22 Oct 2026 for PRD version 11 (answers 39 and 40, new cases S5-18 and REL-16, DR-03 released, DR-08 deleted).",
-      "- Sources: PRD Confluence 919928833 version 10 (19 Oct 2026, Chris Ward); Chris Ward's answers to the question sheet (19 Oct 2026); tech plan (dated 14 Oct 2026, uploaded 19 Oct 2026); "
+      "- Generated: 19 Oct 2026, with the cases; regenerated 20 Oct 2026 for PRD version 10, Chris Ward's answers, the 7 new cases and the 8 design cases DR-01 to DR-08; regenerated 22 Oct 2026 for PRD version 11 (answers 39 and 40, new cases S5-18 and REL-16, DR-03 released, DR-08 deleted); regenerated again 22 Oct 2026 for the tech plan pass (Rule 134: 13 cases changed, 9 new draft cases S2-15, S2-16, S4-27, S4-28, S5-19, S5-20, REL-17, REL-18, REL-19, not yet in TestRail).",
+      "- Sources: PRD Confluence 919928833 version 11 (21 Oct 2026, Chris Ward); Chris Ward's answers 1 to 40 to the question sheet (19 and 21 Oct 2026); tech plan (dated 14 Oct 2026, uploaded 19 Oct 2026 and again, byte-identical, 22 Oct 2026; read in full 22 Oct 2026); "
       "Claude design canvas https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm (export read 19 Oct 2026); Sales By Representative spec "
       "Confluence 585629698 version 28; Sales By Customer spec Confluence 577634305 version 21.",
       "- **No build yet** (QA lead, 19 Oct 2026). Every recipe below is UNVERIFIED until the build verification session runs it.",
@@ -45,7 +45,8 @@ L += ["# Splitting Sales Representatives: setup file for Claude sessions",
       "| ACCOUNT-C (work orders only) | custom role with Work Orders — Create & Edit, no Customers — Create & Edit | New Customer from a work order | " + link("S4-24") + " |",
       "| ACCOUNT-D (no reports) | custom role without Reports — Page Access | report access | " + link("REL-13") + " |",
       "| ACCOUNT-E (part sales only) | custom role with Part Sales — Create & Edit, no Customers — Create & Edit, no Work Orders — Create & Edit | New Customer from a part sale | " + link("S4-25") + " |",
-      "| Developer check | not a UI account: only a data repair makes a staff record stop existing or belong to another organization | developers set this up; manual QA cannot | " + link("S1-11") + ", " + link("S7-05") + ", " + link("S6-05") + " |",
+      "| ACCOUNT-F (customers only) | custom role with Customers — Create & Edit, no Work Orders — View, no Work Orders — Create & Edit | the representative list in Edit Customer | " + link("S4-28") + " |",
+      "| Developer check | not a UI account: only a data repair makes a staff record stop existing or belong to another organization | developers set this up; manual QA cannot | " + link("S1-11") + ", " + link("S7-05") + ", " + link("S6-05") + ", " + link("S5-19") + " |",
       "",
       "## 3. Flags and settings",
       "- Always on: no feature setting (PRD Key Decisions: \"Always on.\").",
@@ -65,6 +66,9 @@ L += ["# Splitting Sales Representatives: setup file for Claude sessions",
       "| P-PARTSALE | Part Sales > New Part Sale for the customer; add the part(s) and shop supplies named. | The part sale shows the named Sales Representative. |",
       "| P-FEE | On the work order Finance tab add the whole-invoice fee or discount (not on a line) or the line fee/discount the case names. | The Finance tab totals match the case's numbers. |",
       "| P-INVOICE | Finance tab > Create Invoice (close the payment dialog without paying). | The invoice exists; the card is read-only. |",
+      "| P-HISTORY | Open the work order's history and open a saved version (the read-only card). | The version opens read-only. |",
+      "| P-SPLIT / P-REOPEN | Split Work Order or Split Part Sale moving one line or part to the new document; or pay the invoice in full and reopen the paid work order. | A new work order or part sale exists, made from the first. |",
+      "| P-TAX-EXEMPT | Mark the customer tax exempt so no tax applies to its invoices; add a non-taxable whole-invoice discount on the Finance tab. | The invoice total before tax equals the total. |",
       "| P-PRE-RELEASE | For release-day cases: create the named records and export the named report on the site BEFORE the release is installed; keep the files. | Files saved with their dates. |",
       "",
       "### One recipe per case: the placeholder values (the examples in the case are the values)"]
@@ -88,9 +92,9 @@ L += ["", "## 6. Dependencies and shared fixtures",
       "", "## 7. Reset and cleanup",
       "- Leave ZZAUTOTEST records in place. Turn back on any \"Sales Representative\" switch a case turned off, and reactivate any staff member a case deactivated, before reusing them.",
       "", "## 8. Traceability",
-      "Every case's expected results quote their source sentences word for word (PRD v10, Chris Ward's answers, tech plan, report specs); the checker `authoring/build.py` refuses any quote not found verbatim. All 142 PRD version 10 requirement codes are covered.",
+      "Every case's expected results quote their source sentences word for word (PRD v11, Chris Ward's answers, tech plan, report specs); the checker `authoring/build.py` refuses any quote not found verbatim. All 143 PRD version 11 requirement codes are covered (138 library cases, 22 Oct 2026).",
       "", "## 9. VIU status", "- Every case and recipe: UNVERIFIED — the build is not yet available.",
       "", "## 10. Open questions",
-      "- Chris Ward answered all 38 questions of the first sheet on 19 Oct 2026 (design-recheck-2026-10-20/chris-answers.json).", "- Questions 39 and 40 (rows 46 and 47, light green) of the same sheet (https://docs.google.com/spreadsheets/d/17Ry1BtRTPEkecBP5TlgAE0T93Ai1TQewdJ7B7WpWDBQ) were answered by Chris Ward on 21 Oct 2026 and became PRD version 11: " + link("DR-03") + " was released; DR-08 (C690665) was deleted on 22 Oct 2026 because nothing makes a Lead Technician message show today (answer 40). (A third, on the phone control, was withdrawn on 20 Oct 2026 as answered by answer 9; its held case DR-05 was deleted.) No question is open."]
+      "- Chris Ward answered all 38 questions of the first sheet on 19 Oct 2026 (design-recheck-2026-10-20/chris-answers.json).", "- Questions 39 and 40 (rows 46 and 47, light green) of the same sheet (https://docs.google.com/spreadsheets/d/17Ry1BtRTPEkecBP5TlgAE0T93Ai1TQewdJ7B7WpWDBQ) were answered by Chris Ward on 21 Oct 2026 and became PRD version 11: " + link("DR-03") + " was released; DR-08 (C690665) was deleted on 22 Oct 2026 because nothing makes a Lead Technician message show today (answer 40). (A third, on the phone control, was withdrawn on 20 Oct 2026 as answered by answer 9; its held case DR-05 was deleted.) Question 41 (a customer adds the Part Sales field while its Service Parts or one representative has the switch off: what does the new field start with?) was drafted on 22 Oct 2026 in tech-plan-pass-2026-10-22/NEW-QUESTIONS.md; it is not yet in the sheet and not sent (the QA lead sends it)."]
 open(f"{P}/SPLITTING-SALES-REPS-SETUP-FILE.md", "w").write("\n".join(L) + "\n")
 print("setup file:", len(L), "lines")

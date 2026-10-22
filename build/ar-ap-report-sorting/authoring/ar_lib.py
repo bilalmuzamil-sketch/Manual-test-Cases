@@ -38,6 +38,14 @@ JIRAW = ws(open(JIRA_FILE).read())
 
 PRD_NAME = 'PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 5 (21 Oct 2026, Chris Ward)'
 PRD_READ = "read 22 Oct 2026"
+# The engineering tech plan (uploaded by the QA lead 22 Oct 2026; Rules 30, 115, 134): quoted word for word as the page reads (markdown
+# marks removed, as for the PRD); it informs and never overrules the PRD (Rule 30; QA lead's ruling of 12 Aug 2026).
+TP_FILE = f"{P}/sources/Tech-Plan-AR-AP-2026-10-22-upload.md"
+TP_MD = open(TP_FILE).read()
+TPW = ws(md_to_text(TP_MD))
+TP_RAWW = ws(re.sub(r"\[([^\]]*)\]\(([^)]*)\)", r"\1", TP_MD).replace("`", ""))
+TP_NAME = ('Tech plan "A/R and A/P Report Sorting, Export and Location Filter — Technical Implementation Plan" (2026-10-21, '
+           'uploaded 22 Oct 2026)')
 JIRA_NAME = "Developer verify task SV-11597 \"A/R & A/P aging — verify Phase 1: shared report kit\" (updated 21 Oct 2026)"
 DESIGN_URL = "https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4"
 SETUP_URL = ("https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/"
@@ -285,16 +293,17 @@ def design_block(c):
 def quotes_block(c):
     """Rule 117 eleventh amendment: each document quoted gets a "From:" line above its own quotes; the epic and the stories go on
     the first "From:" line; the build line follows the last quote."""
-    prd, jira = [], []
+    prd, tp, jira = [], [], []
     for l, t in quotes(c):
-        (jira if l.startswith("Jira SV-") else prd).append((l, t))
+        (jira if l.startswith("Jira SV-") else tp if l.startswith("Tech plan") else prd).append((l, t))
     sto = ", ".join(f"story {STORY[n][0]} ({STORY[n][1]})" for n in story_nums(c))
     h = "<p><strong>Exact quotes from the source (for reproducibility)</strong></p>"
-    h += f"<p>From: {e(PRD_NAME)}, {PRD_READ} &middot; Epic SV-11315, {e(sto)}</p>"
-    h += "<ul>" + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in prd) + "</ul>"
-    if jira:
-        h += f"<p>From: {e(JIRA_NAME)}, {PRD_READ}</p>"
-        h += "<ul>" + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in jira) + "</ul>"
+    first = True
+    for name, group in ((PRD_NAME, prd), (TP_NAME, tp), (JIRA_NAME, jira)):
+        if not group: continue
+        h += f"<p>From: {e(name)}, {PRD_READ}" + (f" &middot; Epic SV-11315, {e(sto)}" if first else "") + "</p>"
+        h += "<ul>" + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in group) + "</ul>"
+        first = False
     return h + f"<p>{e(NOBUILD)}</p>"
 
 def render(c):
@@ -335,7 +344,9 @@ def check(c):
     if JARGON.search(tester): p.append(f"{k}: technical term in tester text: {JARGON.search(tester).group(0)}")
     for l, t in quotes(c):
         src = JIRAW if l.startswith("Jira SV-") else None
-        if src is not None:
+        if l.startswith("Tech plan"):
+            if ws(t) not in TPW and ws(t) not in TP_RAWW: p.append(f"{k}: quote {l} not verbatim in the tech plan")
+        elif src is not None:
             if ws(t) not in src: p.append(f"{k}: quote {l} not verbatim in the Jira reading record")
         elif ws(t) not in PRDW and ws(t) not in PRD_RAWW: p.append(f"{k}: quote {l} not verbatim in PRD v5")
     if not c["q"]: p.append(f"{k}: no source quote (Rule 64)")

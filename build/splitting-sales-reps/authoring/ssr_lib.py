@@ -29,7 +29,7 @@ import json as _json
 _DI = _json.load(open(f"{P}/design-drive-2026-10-19/design-text-inventory-2026-10-19.json"))
 DESW = ws(" ".join(x["text"].replace(" / ", " ") for x in _DI if x["src"] in ("A-title", "A-note")))
 SPEC_NAMES = {"Sales By Representative spec": "\"SBR (Sales By Representative) Report\" spec, Confluence 585629698, version 28 (12 Oct 2026)", "Sales By Customer spec": "\"SBC (Sales By Customer) Report\" spec, Confluence 577634305, version 21 (6 Oct 2026)"}
-TP_NAME = "Tech plan \"Splitting Sales Representatives — Technical Implementation Plan\" (dated 14 Oct 2026, uploaded 19 Oct 2026)"
+TP_NAME = "Tech plan \"Splitting Sales Representatives — Technical Implementation Plan\" (dated 14 Oct 2026, planned against PRD version 8; uploaded 19 Oct 2026 and again, byte-identical, 22 Oct 2026)"
 CODE = {}
 for line in PRD_TXT.split("\n"):
     m = re.match(r"^-?\s*(S\d+-[RNE]\d+[a-z]?):\s*(.*)$", line)
@@ -55,7 +55,7 @@ ANS = {a["no"]: a["answer_verbatim"] for a in json.load(open(f"{P}/design-rechec
 def AQ(n, part=None):
     """Quote Chris Ward's answer n (verbatim, or one verbatim sentence of it)."""
     return (f"Chris Ward's answer {n}", part or ANS[n])
-READ = {"PRD": "read 22 Oct 2026", "Chris Ward's answer": "read 22 Oct 2026"}
+READ = {"PRD": "read 22 Oct 2026", "Chris Ward's answer": "read 22 Oct 2026", "Tech plan": "read in full 22 Oct 2026"}
 NOBUILD = "The build is not yet available to check this case against."
 MARKER = "AUTOMATION: HOLD - not yet build-verified (no build yet)"
 BLOCKED = 'If any record above is missing, mark this test Blocked: "setup not done".'

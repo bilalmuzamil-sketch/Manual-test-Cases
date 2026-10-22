@@ -6,6 +6,8 @@ SBR_STEP = "Open Reports > Sales By Representative, set the date range to today,
 LOC0 = ("{Location-A}'s Shop Supplies Charge is 0%, and nothing else is invoiced at {Location-A} today.", None)
 
 # ---------------- Story 5: credit on the invoice and in Sales By Representative ----------------
+# 22 Oct 2026, tech plan pass (Rule 134): rewritten top to bottom; new step 6 from the tech plan (Phase 9: the representative's row and
+# the Totals row have no single Sales Type, so their merged cells span the Sales Type column).
 C("S5-01", "S5", "A split invoice gives the Labor rep a Labor row and the Parts rep a Parts row",
   [ADMIN, REPS2, CUST, LOC0,
    WO('it has one labor line of 2.00 hours at $100.00 an hour (Tech Time 2.00) and one part sold at $50.00; "Sales Representative - Labor" reads {Sales-rep-A} and "Sales Representative - Parts" reads {Sales-rep-B}'),
@@ -14,14 +16,17 @@ C("S5-01", "S5", "A split invoice gives the Labor rep a Labor row and the Parts 
    SBR_STEP,
    "Read {Sales-rep-A}'s invoice row for {Work-order-1}.",
    "Read {Sales-rep-B}'s invoice row for {Work-order-1}.",
-   "Read each representative's summary row and invoice count."],
+   "Read each representative's summary row and invoice count.",
+   "Look at the Sales Type column on each representative's summary row and on the Totals row."],
   ["Step 1: the invoice is created.",
    "Step 2: the report shows two rows for {Work-order-1}'s invoice, one under {Sales-rep-A} and one under {Sales-rep-B}; the Sales Type column shows right after Status, and before Location when the Location column shows.",
    "Step 3: Sales Type \"Labor\"; Labor Invoiced $200.00, Hrs Invoiced 2.00, labor columns filled; Parts Invoiced and Parts Margin show a dash, not $0.00.",
    "Step 4: Sales Type \"Parts\"; Parts Invoiced $50.00; Labor Invoiced, Labor Margin, Hrs Worked, Hrs Invoiced, Labor Delta and Shop Supplies show a dash.",
-   "Step 5: each summary row shows real sums (no dashes): {Sales-rep-A} $200.00 of labor, {Sales-rep-B} $50.00 of parts; each counts the invoice once."],
-  ["S5-R1", "S5-R3", "S5-R4", "S5-R5", "S5-R11", "S5-R13", "S5-R15", "S5-R16", "S5-R19", "S2-R13", AQ(24), AQ(26)],
-  note="The Sales By Representative spec, version 28 (12 Oct 2026, S9-N1), shows Labor Delta as 0.0 on a Parts row, and it also places Location right after Status (S18-R13). Chris Ward ruled on 19 Oct 2026 for the PRD (answers 24 and 26, quoted below): a dash on the Parts row, and the order Status, Sales Type, Location. This case follows PRD version 10.")
+   "Step 5: each summary row shows real sums (no dashes): {Sales-rep-A} $200.00 of labor, {Sales-rep-B} $50.00 of parts; each counts the invoice once.",
+   "Step 6: neither summary row nor the Totals row shows a Sales Type value: the representative's name cell and the Totals cell stretch across the Sales Type column."],
+  ["S5-R1", "S5-R3", "S5-R4", "S5-R5", "S5-R11", "S5-R13", "S5-R15", "S5-R16", "S5-R19", "S2-R13", AQ(24), AQ(26),
+   ("Tech plan, Phase 9 browser walk", "turn on → column after Status, rep and Totals merged cells span it")],
+  note="The Sales By Representative spec, version 28 (12 Oct 2026, S9-N1), shows Labor Delta as 0.0 on a Parts row, and it also places Location right after Status (S18-R13). Chris Ward ruled on 19 Oct 2026 for the PRD (answers 24 and 26, quoted below): a dash on the Parts row, and the order Status, Sales Type, Location. This case follows PRD version 11.")
 
 C("S5-02", "S5", "All shop supplies, including a hand-typed amount, go to the Labor row",
   [ADMIN, REPS2, CUST, ("{Location-A}'s Shop Supplies Charge is 10% of labor, and nothing else is invoiced at {Location-A} today.", None),
@@ -212,12 +217,21 @@ C("S5-14", "S5", "A renamed rep stays one row under the current name in the repo
 
 # ---------------- Story 6: print ----------------
 PR = "Open the work order's menu, click Print Work Order and read the Sales Representative row."
+# 22 Oct 2026, tech plan pass (Rule 134): rewritten top to bottom; a SPLIT work order with the same person on both sides now prints the
+# one name too (tech plan Phase 5 print: "one person both sides (split or not) -> one name"; PRD S6-R1 "when one person holds both sides").
 C("S6-01", "S6", "Printed work order names the one person who holds both sides",
-  [ADMIN, REPS2, CUST, WO('its one "Sales Representative" reads {Sales-rep-A}'), WO_START],
-  [PR, "Turn {Sales-rep-A}'s \"Sales Representative\" switch off in Settings > Staff, then print {Work-order-1} again."],
+  [ADMIN, REPS2, CUST,
+   ('Work order {Work-order-1} for {Customer-A} has one "Sales Representative" field reading {Sales-rep-A}; work order {Work-order-2} for {Customer-A} shows "Sales Representative - Labor" and "Sales Representative - Parts", both reading {Sales-rep-A}.', "For example: {Work-order-1} is S2-40001 and {Work-order-2} is S2-40002."),
+   WO_START],
+  [PR,
+   "Open {Work-order-2} and print it the same way.",
+   "Turn {Sales-rep-A}'s \"Sales Representative\" switch off in Settings > Staff, then print {Work-order-1} again."],
   ["Step 1: the row reads {Sales-rep-A} (one name).",
-   "Step 2: the row reads \"{Sales-rep-A} (Inactive)\"."],
-  ["S6-R1"])
+   "Step 2: the row reads {Sales-rep-A} (one name), not \"{Sales-rep-A} (Parts) · {Sales-rep-A} (Labor)\".",
+   "Step 3: the row reads \"{Sales-rep-A} (Inactive)\"."],
+  ["S6-R1",
+   ("Tech plan, print tests (Phase 5)", "one person both sides (split or not) -> one name"),
+   ("Tech plan, print and audit log (Phase 5)", "Note the deliberate difference from print: a split entry reads both sides even when one person holds both (S7-R3 says \"a split work order reads both sides\"; S6-R1 collapses only on paper).")])
 
 C("S6-02", "S6", "Printed work order names both people, Parts first",
   [ADMIN, REPS2, CUST, WO('Labor reads {Sales-rep-A} and Parts reads {Sales-rep-B}'), WO_START],
@@ -370,3 +384,38 @@ C("S8-12", "S8", "Exports with no rows still download a file with only the headi
    "Step 3: \"Empty export\" does not show; a CSV downloads with the filter line \"Sales Type: All Sales\", the column headings and no rows.",
    "Step 4: a PDF downloads with the filter line \"Sales Type: All Sales\", the column headings and no rows."],
   ["S8-R4", "S8-R9", AQ(27)])
+
+
+# ---------------- 22 Oct 2026, tech plan pass (Rule 134): new cases ----------------
+C("S5-19", "S5", "A rep whose staff record is gone shows the name kept on the invoice",
+  [ADMIN, REPS2, CUST, LOC0,
+   ('Work order {Work-order-1} for {Customer-A} was invoiced today with "Sales Representative - Labor" {Sales-rep-A} and "Sales Representative - Parts" {Staff-member-C}; since then {Staff-member-C}\'s staff record no longer exists.',
+    "For example: {Work-order-1} is S2-40001 and {Staff-member-C} is ZZAUTOTEST Gone Rep."),
+   SBR],
+  [SBR_STEP,
+   "Find {Work-order-1}'s Parts row and read the representative it is listed under."],
+  ["Step 1: the report shows today's invoices.",
+   "Step 2: the Parts row is listed under the name captured on the invoice, {Staff-member-C}; it is not moved to Unassigned and not dropped."],
+  ["S5-R2", "S5-R1", ("Story 6 context note (S6-N1, S1-E3, S7-R6)", prd_line("* Context note (S6-N1, S1-E3, S7-R6)")), AQ(30),
+   ("Tech plan, Phase 8 fetcher tests (section 8.4)", "A cross-org staff id on an invoice gives a null live name and falls back to the captured name with inactive set (D4).")],
+  marker="AUTOMATION: HOLD - only a data repair makes a staff record stop existing; developers check this, manual QA cannot set it up",
+  note="A manual tester cannot set up this case: a staff record stops existing only through a data repair. The developers check it.")
+
+C("S5-20", "DATA", "A discount bigger than the invoice is shared by size and both rows end at $0.00",
+  [ADMIN, REPS2, ("Customer {Customer-A} has no sales representative, and no tax applies to its invoices.", "For example: {Customer-A} is ZZAUTOTEST SSR Tax Exempt, set as tax exempt."),
+   ("{Location-A}'s Shop Supplies Charge is 0%, and nothing else is invoiced at {Location-A} today.", None),
+   WO('it has one labor line of 1.00 hour at $100.00 ($100.00), one part sold at $50.00 and a non-taxable whole-invoice discount of $200.00 (not on any line); Labor reads {Sales-rep-A} and Parts reads {Sales-rep-B}'),
+   WO_START],
+  ["Invoice {Work-order-1}.",
+   SBR_STEP,
+   "Read {Sales-rep-A}'s Labor row for the invoice.",
+   "Read {Sales-rep-B}'s Parts row for the invoice.",
+   "Add the two rows' subtotals."],
+  ["Step 1: the invoice total is $0.00: the discount does not take it below zero (100.00 + 50.00 − 200.00 would be −50.00, so $50.00 is added back).",
+   "Step 2: two rows show for the invoice, a Labor row and a Parts row.",
+   "Step 3: Labor row: Labor Invoiced $100.00, Adjustments ($100.00), its share of the −$150.00 net whole-invoice amount (100 ÷ 150 × 150), subtotal $0.00.",
+   "Step 4: Parts row: Parts Invoiced $50.00, Adjustments ($50.00) (50 ÷ 150 × 150), subtotal $0.00.",
+   "Step 5: $0.00 + $0.00 = $0.00, the invoice total; neither row goes below zero and the report total for the invoice is $0.00."],
+  ["S5-R6", AQ(22),
+   ("Tech plan, line fees and the whole-invoice pool (section 8.2)", "`invoice_level_adjustments` holds only the whole-invoice pool (`Invoice.orm.xml:58-68`: \"scopes whole_wo / whole_parts_sale, the processing fee, the legacy invoice.discount rate and the §5 subtotal floor\")"),
+   ("Tech plan, end-to-end test N1 (section 7)", "a whole-work-order $50 flat taxable discount (avoids the non-taxable clamp)")])

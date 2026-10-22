@@ -3,9 +3,9 @@
 This file is for a Claude session. A manual tester never needs it: each test case is complete on its own. **It is prepared but not linked from the test cases** (QA lead, 19 Oct 2026). It holds no environment address, credentials, cookies or session data.
 
 ## 1. Header
-- Feature: Splitting Sales Representatives (epic SV-10890; stories SV-11265 to SV-11272). TestRail group 84266, 135 cases.
-- Generated: 19 Oct 2026, with the cases; regenerated 20 Oct 2026 for PRD version 10, Chris Ward's answers, the 7 new cases and the 8 design cases DR-01 to DR-08; regenerated 22 Oct 2026 for PRD version 11 (answers 39 and 40, new cases S5-18 and REL-16, DR-03 released, DR-08 deleted).
-- Sources: PRD Confluence 919928833 version 10 (19 Oct 2026, Chris Ward); Chris Ward's answers to the question sheet (19 Oct 2026); tech plan (dated 14 Oct 2026, uploaded 19 Oct 2026); Claude design canvas https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm (export read 19 Oct 2026); Sales By Representative spec Confluence 585629698 version 28; Sales By Customer spec Confluence 577634305 version 21.
+- Feature: Splitting Sales Representatives (epic SV-10890; stories SV-11265 to SV-11272). TestRail group 84266, 144 cases.
+- Generated: 19 Oct 2026, with the cases; regenerated 20 Oct 2026 for PRD version 10, Chris Ward's answers, the 7 new cases and the 8 design cases DR-01 to DR-08; regenerated 22 Oct 2026 for PRD version 11 (answers 39 and 40, new cases S5-18 and REL-16, DR-03 released, DR-08 deleted); regenerated again 22 Oct 2026 for the tech plan pass (Rule 134: 13 cases changed, 9 new draft cases S2-15, S2-16, S4-27, S4-28, S5-19, S5-20, REL-17, REL-18, REL-19, not yet in TestRail).
+- Sources: PRD Confluence 919928833 version 11 (21 Oct 2026, Chris Ward); Chris Ward's answers 1 to 40 to the question sheet (19 and 21 Oct 2026); tech plan (dated 14 Oct 2026, uploaded 19 Oct 2026 and again, byte-identical, 22 Oct 2026; read in full 22 Oct 2026); Claude design canvas https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm (export read 19 Oct 2026); Sales By Representative spec Confluence 585629698 version 28; Sales By Customer spec Confluence 577634305 version 21.
 - **No build yet** (QA lead, 19 Oct 2026). Every recipe below is UNVERIFIED until the build verification session runs it.
 - At session start, ask the user for: the site to use and how to sign in as ACCOUNT-A (and ACCOUNT-B/C/D where a case needs them).
 
@@ -17,7 +17,8 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 | ACCOUNT-C (work orders only) | custom role with Work Orders — Create & Edit, no Customers — Create & Edit | New Customer from a work order | [C665990](https://shopview.testrail.io/index.php?/cases/view/665990) |
 | ACCOUNT-D (no reports) | custom role without Reports — Page Access | report access | [C666015](https://shopview.testrail.io/index.php?/cases/view/666015) |
 | ACCOUNT-E (part sales only) | custom role with Part Sales — Create & Edit, no Customers — Create & Edit, no Work Orders — Create & Edit | New Customer from a part sale | [C690668](https://shopview.testrail.io/index.php?/cases/view/690668) |
-| Developer check | not a UI account: only a data repair makes a staff record stop existing or belong to another organization | developers set this up; manual QA cannot | [C690666](https://shopview.testrail.io/index.php?/cases/view/690666), [C690670](https://shopview.testrail.io/index.php?/cases/view/690670), [C665980](https://shopview.testrail.io/index.php?/cases/view/665980) |
+| ACCOUNT-F (customers only) | custom role with Customers — Create & Edit, no Work Orders — View, no Work Orders — Create & Edit | the representative list in Edit Customer | S4-28 (new 22 Oct 2026, tech plan pass; not yet in TestRail) |
+| Developer check | not a UI account: only a data repair makes a staff record stop existing or belong to another organization | developers set this up; manual QA cannot | [C690666](https://shopview.testrail.io/index.php?/cases/view/690666), [C690670](https://shopview.testrail.io/index.php?/cases/view/690670), [C665980](https://shopview.testrail.io/index.php?/cases/view/665980), S5-19 (new 22 Oct 2026, tech plan pass; not yet in TestRail) |
 
 ## 3. Flags and settings
 - Always on: no feature setting (PRD Key Decisions: "Always on.").
@@ -37,6 +38,9 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 | P-PARTSALE | Part Sales > New Part Sale for the customer; add the part(s) and shop supplies named. | The part sale shows the named Sales Representative. |
 | P-FEE | On the work order Finance tab add the whole-invoice fee or discount (not on a line) or the line fee/discount the case names. | The Finance tab totals match the case's numbers. |
 | P-INVOICE | Finance tab > Create Invoice (close the payment dialog without paying). | The invoice exists; the card is read-only. |
+| P-HISTORY | Open the work order's history and open a saved version (the read-only card). | The version opens read-only. |
+| P-SPLIT / P-REOPEN | Split Work Order or Split Part Sale moving one line or part to the new document; or pay the invoice in full and reopen the paid work order. | A new work order or part sale exists, made from the first. |
+| P-TAX-EXEMPT | Mark the customer tax exempt so no tax applies to its invoices; add a non-taxable whole-invoice discount on the Finance tab. | The invoice total before tax equals the total. |
 | P-PRE-RELEASE | For release-day cases: create the named records and export the named report on the site BEFORE the release is installed; keep the files. | Files saved with their dates. |
 
 ### One recipe per case: the placeholder values (the examples in the case are the values)
@@ -244,14 +248,14 @@ Satisfies these precondition lines, exactly as the case states them:
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
 
-#### SETUP-S2-07 — [C665931](https://shopview.testrail.io/index.php?/cases/view/665931) An inactive person keeps their side and the other side can change
+#### SETUP-S2-07 — [C665931](https://shopview.testrail.io/index.php?/cases/view/665931) An inactive person is copied to Parts and keeps the Labor side
 Sub folder: Story 2 — Separate Labor and Parts representatives (section 84268).
 Satisfies these precondition lines, exactly as the case states them:
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
-- Staff member {Sales-rep-C} held the Labor side and has since had the "Sales Representative" switch turned off. For example: {Sales-rep-C} is ZZAUTOTEST Cara Able.
+- Staff member {Sales-rep-C} had the "Sales Representative" switch on, was picked on {Work-order-1}, and has since had the switch turned off (the account is still active). For example: {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
-- Work order {Work-order-1} for {Customer-A} is open and not invoiced; it has one approved labor line and one part, and its card shows "Sales Representative - Labor" reading "{Sales-rep-C} (Inactive)" and "Sales Representative - Parts" reading {Sales-rep-A}. For example: {Work-order-1} is S2-40001.
+- Work order {Work-order-1} for {Customer-A} is open and not invoiced; it has one approved labor line and one part, and its one "Sales Representative" field reads "{Sales-rep-C} (Inactive)". For example: {Work-order-1} is S2-40001.
 - Starting screen: {Work-order-1} is open in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
@@ -293,13 +297,13 @@ Satisfies these precondition lines, exactly as the case states them:
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
 
-#### SETUP-S2-11 — [C665935](https://shopview.testrail.io/index.php?/cases/view/665935) A part sale's card keeps one Sales Representative field and no +
+#### SETUP-S2-11 — [C665935](https://shopview.testrail.io/index.php?/cases/view/665935) A part sale's single Sales Representative field still saves and logs
 Sub folder: Story 2 — Separate Labor and Parts representatives (section 84268).
 Satisfies these precondition lines, exactly as the case states them:
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
-- Part sale {Part-sale-1} for {Customer-A} is open and not invoiced. For example: {Part-sale-1} is P-30001.
+- Part sale {Part-sale-1} for {Customer-A} is open and not invoiced; its Sales Representative field reads "Unassigned". For example: {Part-sale-1} is P-30001.
 - Starting screen: {Part-sale-1} is open in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
@@ -328,6 +332,30 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+
+#### SETUP-S2-15 — S2-15 (new 22 Oct 2026, tech plan pass; not yet in TestRail) A work order opened from its history shows its reps as plain text
+Sub folder: Story 2 — Separate Labor and Parts representatives (section 84268).
+Satisfies these precondition lines, exactly as the case states them:
+- You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
+- Customer {Customer-A} has {Sales-rep-C} as its one sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
+- Work order {Work-order-1} for {Customer-A} is open and not invoiced; it has one approved labor line and one part, and its card shows "Sales Representative - Labor" reading {Sales-rep-A} and "Sales Representative - Parts" reading {Sales-rep-B}, and its history holds a version saved after both were set (for example after a line was added). For example: {Work-order-1} is S2-40001.
+- Starting screen: {Work-order-1} is open in a desktop browser at least 1024 px wide.
+- If any record above is missing, mark this test Blocked: "setup not done".
+Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
+Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+
+#### SETUP-S2-16 — S2-16 (new 22 Oct 2026, tech plan pass; not yet in TestRail) Reopening a paid work order keeps its representatives
+Sub folder: Story 2 — Separate Labor and Parts representatives (section 84268).
+Satisfies these precondition lines, exactly as the case states them:
+- You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
+- Customer {Customer-A} has {Sales-rep-C} as its one sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
+- Work order {Work-order-1} for {Customer-A} shows "Sales Representative - Labor" {Sales-rep-A} and "Sales Representative - Parts" {Sales-rep-B}; it has been invoiced and paid in full. For example: {Work-order-1} is S2-40001.
+- Starting screen: {Work-order-1} is open in a desktop browser at least 1024 px wide.
+- If any record above is missing, mark this test Blocked: "setup not done".
+Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
+Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
 
 #### SETUP-S3-01 — [C665937](https://shopview.testrail.io/index.php?/cases/view/665937) On a phone the representatives show after the card is expanded
 Sub folder: Story 3 — Representatives on a phone (section 84269).
@@ -574,23 +602,23 @@ Satisfies these precondition lines, exactly as the case states them:
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
 
-#### SETUP-S4-20 — [C665959](https://shopview.testrail.io/index.php?/cases/view/665959) Renaming a rep updates customer fields and a switched-off rep stays
+#### SETUP-S4-20 — [C665959](https://shopview.testrail.io/index.php?/cases/view/665959) Renaming a rep updates every customer, and a switched-off rep stays
 Sub folder: Story 4 — A customer's default representatives (section 84270).
 Satisfies these precondition lines, exactly as the case states them:
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
-- Customer {Customer-A} shows "Sales Representative - Service Labor" {Sales-rep-A} and "Sales Representative - Service Parts" {Sales-rep-B}. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
+- Customer {Customer-A} shows "Sales Representative - Service Labor" {Sales-rep-A} and "Sales Representative - Service Parts" {Sales-rep-B}; customer {Customer-B} has {Sales-rep-B} as its one sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet and {Customer-B} is ZZAUTOTEST SSR Other.
 - Starting screen: Settings > Staff is open in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
-Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Placeholders used: {Customer-A}, {Customer-B}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
 
 #### SETUP-S4-21 — [C665960](https://shopview.testrail.io/index.php?/cases/view/665960) The assignments export lists one row per customer per person with Side
 Sub folder: Story 4 — A customer's default representatives (section 84270).
 Satisfies these precondition lines, exactly as the case states them:
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
-- Customer {Customer-A} has {Sales-rep-A} as its one representative; customer {Customer-B} shows Service Labor {Sales-rep-A} and Service Parts {Sales-rep-B}; customer {Customer-C} has {Sales-rep-C} as its one representative and "Sales Representative - Part Sales" {Sales-rep-C}. For example: {Customer-A} is ZZAUTOTEST SSR One, {Customer-B} is ZZAUTOTEST SSR Two and {Customer-C} is ZZAUTOTEST SSR Three.
+- Customer {Customer-A} has {Sales-rep-A} as its one representative; customer {Customer-B} shows Service Labor {Sales-rep-A} and Service Parts {Sales-rep-B}; customer {Customer-C} has {Sales-rep-C} as its one representative and "Sales Representative - Part Sales" {Sales-rep-C}. The customer names sort A to Z as {Customer-A}, {Customer-B}, {Customer-C}, and {Sales-rep-A}'s name sorts before {Sales-rep-B}'s. For example: {Customer-A} is ZZAUTOTEST SSR A-One, {Customer-B} is ZZAUTOTEST SSR B-Two and {Customer-C} is ZZAUTOTEST SSR C-Three.
 - Starting screen: the page with the Sales Representative Assignments export is open in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
@@ -641,6 +669,30 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+
+#### SETUP-S4-27 — S4-27 (new 22 Oct 2026, tech plan pass; not yet in TestRail) A part sale split off another keeps its representative
+Sub folder: Story 4 — A customer's default representatives (section 84270).
+Satisfies these precondition lines, exactly as the case states them:
+- You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
+- Customer {Customer-A} shows "Sales Representative - Part Sales" {Sales-rep-C}. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
+- Part sale {Part-sale-1} for {Customer-A} is open and not invoiced, with Sales Representative {Sales-rep-A} and two parts. For example: {Part-sale-1} is P-30001.
+- Starting screen: {Part-sale-1} is open in a desktop browser at least 1024 px wide.
+- If any record above is missing, mark this test Blocked: "setup not done".
+Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
+Placeholders used: {Customer-A}, {Location-A}, {Part-sale-1}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+
+#### SETUP-S4-28 — S4-28 (new 22 Oct 2026, tech plan pass; not yet in TestRail) A customers-only user sees the representatives in Edit Customer
+Sub folder: Story 4 — A customer's default representatives (section 84270).
+Satisfies these precondition lines, exactly as the case states them:
+- You are signed in as {User-B}, whose role has "Customers — Create & Edit" but neither "Work Orders — View" nor "Work Orders — Create & Edit", at {Location-A}. For example: {User-B} is ZZAUTOTEST SSR Customers Only with the custom role ZZAUTOTEST SSR Customers Only; {Location-A} is Staging Heavy Duty - 9919.
+- Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
+- Staff member {Staff-member-D} is active at {Location-A} with the "Sales Representative" switch off. For example: {Staff-member-D} is ZZAUTOTEST Dan Noswitch.
+- Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
+- Starting screen: {Customer-A}'s page is open in a desktop browser at least 1024 px wide.
+- If any record above is missing, mark this test Blocked: "setup not done".
+Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
+Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Staff-member-D}, {User-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
 
 #### SETUP-S5-01 — [C665962](https://shopview.testrail.io/index.php?/cases/view/665962) A split invoice gives the Labor rep a Labor row and the Parts rep a Parts row
 Sub folder: Story 5 — Credit on the invoice and in Sales By Representative (section 84271).
@@ -825,11 +877,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
-- Work order {Work-order-1} for {Customer-A} is open and not invoiced; it has one approved labor line and one part, and its one "Sales Representative" reads {Sales-rep-A}. For example: {Work-order-1} is S2-40001.
+- Work order {Work-order-1} for {Customer-A} has one "Sales Representative" field reading {Sales-rep-A}; work order {Work-order-2} for {Customer-A} shows "Sales Representative - Labor" and "Sales Representative - Parts", both reading {Sales-rep-A}. For example: {Work-order-1} is S2-40001 and {Work-order-2} is S2-40002.
 - Starting screen: {Work-order-1} is open in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
-Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}, {Work-order-2}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
 
 #### SETUP-S6-02 — [C665977](https://shopview.testrail.io/index.php?/cases/view/665977) Printed work order names both people, Parts first
 Sub folder: Story 6 — Printed work order (section 84273).
@@ -983,6 +1035,32 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
 Placeholders used: {Date-A}, {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+
+#### SETUP-S5-19 — S5-19 (new 22 Oct 2026, tech plan pass; not yet in TestRail) A rep whose staff record is gone shows the name kept on the invoice
+Sub folder: Story 5 — Credit on the invoice and in Sales By Representative (section 84271).
+Satisfies these precondition lines, exactly as the case states them:
+- You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
+- Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
+- {Location-A}'s Shop Supplies Charge is 0%, and nothing else is invoiced at {Location-A} today.
+- Work order {Work-order-1} for {Customer-A} was invoiced today with "Sales Representative - Labor" {Sales-rep-A} and "Sales Representative - Parts" {Staff-member-C}; since then {Staff-member-C}'s staff record no longer exists. For example: {Work-order-1} is S2-40001 and {Staff-member-C} is ZZAUTOTEST Gone Rep.
+- Starting screen: Reports > Sales By Representative is open in a desktop browser at least 1024 px wide.
+- If any record above is missing, mark this test Blocked: "setup not done".
+Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
+Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Staff-member-C}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+
+#### SETUP-S5-20 — S5-20 (new 22 Oct 2026, tech plan pass; not yet in TestRail) A discount bigger than the invoice is shared by size and both rows end at $0.00
+Sub folder: Credit and totals — exact amounts (section 84272).
+Satisfies these precondition lines, exactly as the case states them:
+- You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
+- Customer {Customer-A} has no sales representative, and no tax applies to its invoices. For example: {Customer-A} is ZZAUTOTEST SSR Tax Exempt, set as tax exempt.
+- {Location-A}'s Shop Supplies Charge is 0%, and nothing else is invoiced at {Location-A} today.
+- Work order {Work-order-1} for {Customer-A} is open and not invoiced; it has one labor line of 1.00 hour at $100.00 ($100.00), one part sold at $50.00 and a non-taxable whole-invoice discount of $200.00 (not on any line); Labor reads {Sales-rep-A} and Parts reads {Sales-rep-B}. For example: {Work-order-1} is S2-40001.
+- Starting screen: {Work-order-1} is open in a desktop browser at least 1024 px wide.
+- If any record above is missing, mark this test Blocked: "setup not done".
+Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
+Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
 
 #### SETUP-S4-23 — [C665989](https://shopview.testrail.io/index.php?/cases/view/665989) Saving a customer with a rep turned off in another tab is refused
 Sub folder: Story 4 — A customer's default representatives (section 84270).
@@ -1321,6 +1399,41 @@ Satisfies these precondition lines, exactly as the case states them:
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
 
+#### SETUP-REL-17 — REL-17 (new 22 Oct 2026, tech plan pass; not yet in TestRail) Filter labels on other reports read as before
+Sub folder: Release day and what must not change (section 84276).
+Satisfies these precondition lines, exactly as the case states them:
+- You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- At least three locations are open to you: {Location-A}, {Location-B} and {Location-C}. For example: Staging Heavy Duty - 9919, QA Testing and ZZAUTOTEST SSR Third Location.
+- Starting screen: Reports > Parts Velocity is open in a desktop browser at least 1024 px wide.
+- If any record above is missing, mark this test Blocked: "setup not done".
+Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
+Placeholders used: {Location-A}, {Location-B}, {Location-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+
+#### SETUP-REL-18 — REL-18 (new 22 Oct 2026, tech plan pass; not yet in TestRail) A unit's invoice list and the invoice preview still open after a split
+Sub folder: Release day and what must not change (section 84276).
+Satisfies these precondition lines, exactly as the case states them:
+- You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
+- Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
+- Customer {Customer-A} has a unit (vehicle), {Unit-A}. For example: {Unit-A} is ZZAUTOTEST SSR Truck 1.
+- Work order {Work-order-1} for {Customer-A} on {Unit-A} is open and not invoiced; it has one labor line and one part; "Sales Representative - Labor" reads {Sales-rep-A} and "Sales Representative - Parts" reads {Sales-rep-B}. For example: {Work-order-1} is S2-40001.
+- Starting screen: {Work-order-1} is open in a desktop browser at least 1024 px wide.
+- If any record above is missing, mark this test Blocked: "setup not done".
+Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
+Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Unit-A}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+
+#### SETUP-REL-19 — REL-19 (new 22 Oct 2026, tech plan pass; not yet in TestRail) Log entries and history saved before the release read one representative
+Sub folder: Release day and what must not change (section 84276).
+Satisfies these precondition lines, exactly as the case states them:
+- You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
+- Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
+- Before the release was installed, work order {Work-order-1} for {Customer-A} had its Sales Representative changed from {Sales-rep-A} to {Sales-rep-B}, which wrote a "Sales representative changed" entry, and a version of it was saved to its history with {Sales-rep-B}; it is still open and not invoiced. For example: {Work-order-1} is S2-39002.
+- Starting screen: the release is installed and {Work-order-1} is open in a desktop browser at least 1024 px wide.
+- If any record above is missing, mark this test Blocked: "setup not done".
+Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.
+Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+
 #### SETUP-D-01 — [C666017](https://shopview.testrail.io/index.php?/cases/view/666017) Work order card at rest matches the design
 Sub folder: Design — how it looks (section 84277).
 Satisfies these precondition lines, exactly as the case states them:
@@ -1629,15 +1742,15 @@ Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Wo
 | Sub folder | Cases |
 |---|---|
 | Story 1 — One Sales Representative field on the work order | [C665915](https://shopview.testrail.io/index.php?/cases/view/665915), [C665916](https://shopview.testrail.io/index.php?/cases/view/665916), [C665917](https://shopview.testrail.io/index.php?/cases/view/665917), [C665918](https://shopview.testrail.io/index.php?/cases/view/665918), [C665919](https://shopview.testrail.io/index.php?/cases/view/665919), [C665920](https://shopview.testrail.io/index.php?/cases/view/665920), [C665921](https://shopview.testrail.io/index.php?/cases/view/665921), [C665922](https://shopview.testrail.io/index.php?/cases/view/665922), [C665923](https://shopview.testrail.io/index.php?/cases/view/665923), [C665924](https://shopview.testrail.io/index.php?/cases/view/665924), [C690666](https://shopview.testrail.io/index.php?/cases/view/690666) |
-| Story 2 — Separate Labor and Parts representatives | [C665925](https://shopview.testrail.io/index.php?/cases/view/665925), [C665926](https://shopview.testrail.io/index.php?/cases/view/665926), [C665927](https://shopview.testrail.io/index.php?/cases/view/665927), [C665928](https://shopview.testrail.io/index.php?/cases/view/665928), [C665929](https://shopview.testrail.io/index.php?/cases/view/665929), [C665930](https://shopview.testrail.io/index.php?/cases/view/665930), [C665931](https://shopview.testrail.io/index.php?/cases/view/665931), [C665932](https://shopview.testrail.io/index.php?/cases/view/665932), [C665933](https://shopview.testrail.io/index.php?/cases/view/665933), [C665934](https://shopview.testrail.io/index.php?/cases/view/665934), [C665935](https://shopview.testrail.io/index.php?/cases/view/665935), [C665936](https://shopview.testrail.io/index.php?/cases/view/665936), [C690667](https://shopview.testrail.io/index.php?/cases/view/690667), [C665995](https://shopview.testrail.io/index.php?/cases/view/665995) |
+| Story 2 — Separate Labor and Parts representatives | [C665925](https://shopview.testrail.io/index.php?/cases/view/665925), [C665926](https://shopview.testrail.io/index.php?/cases/view/665926), [C665927](https://shopview.testrail.io/index.php?/cases/view/665927), [C665928](https://shopview.testrail.io/index.php?/cases/view/665928), [C665929](https://shopview.testrail.io/index.php?/cases/view/665929), [C665930](https://shopview.testrail.io/index.php?/cases/view/665930), [C665931](https://shopview.testrail.io/index.php?/cases/view/665931), [C665932](https://shopview.testrail.io/index.php?/cases/view/665932), [C665933](https://shopview.testrail.io/index.php?/cases/view/665933), [C665934](https://shopview.testrail.io/index.php?/cases/view/665934), [C665935](https://shopview.testrail.io/index.php?/cases/view/665935), [C665936](https://shopview.testrail.io/index.php?/cases/view/665936), [C690667](https://shopview.testrail.io/index.php?/cases/view/690667), S2-15 (new 22 Oct 2026, tech plan pass; not yet in TestRail), S2-16 (new 22 Oct 2026, tech plan pass; not yet in TestRail), [C665995](https://shopview.testrail.io/index.php?/cases/view/665995) |
 | Story 3 — Representatives on a phone | [C665937](https://shopview.testrail.io/index.php?/cases/view/665937), [C665938](https://shopview.testrail.io/index.php?/cases/view/665938), [C665939](https://shopview.testrail.io/index.php?/cases/view/665939), [C690672](https://shopview.testrail.io/index.php?/cases/view/690672) |
-| Story 4 — A customer's default representatives | [C665940](https://shopview.testrail.io/index.php?/cases/view/665940), [C665941](https://shopview.testrail.io/index.php?/cases/view/665941), [C665942](https://shopview.testrail.io/index.php?/cases/view/665942), [C665943](https://shopview.testrail.io/index.php?/cases/view/665943), [C665944](https://shopview.testrail.io/index.php?/cases/view/665944), [C665945](https://shopview.testrail.io/index.php?/cases/view/665945), [C665946](https://shopview.testrail.io/index.php?/cases/view/665946), [C665947](https://shopview.testrail.io/index.php?/cases/view/665947), [C665948](https://shopview.testrail.io/index.php?/cases/view/665948), [C665949](https://shopview.testrail.io/index.php?/cases/view/665949), [C665950](https://shopview.testrail.io/index.php?/cases/view/665950), [C665951](https://shopview.testrail.io/index.php?/cases/view/665951), [C665952](https://shopview.testrail.io/index.php?/cases/view/665952), [C665953](https://shopview.testrail.io/index.php?/cases/view/665953), [C665954](https://shopview.testrail.io/index.php?/cases/view/665954), [C665955](https://shopview.testrail.io/index.php?/cases/view/665955), [C665956](https://shopview.testrail.io/index.php?/cases/view/665956), [C665957](https://shopview.testrail.io/index.php?/cases/view/665957), [C665958](https://shopview.testrail.io/index.php?/cases/view/665958), [C665959](https://shopview.testrail.io/index.php?/cases/view/665959), [C665960](https://shopview.testrail.io/index.php?/cases/view/665960), [C665961](https://shopview.testrail.io/index.php?/cases/view/665961), [C690668](https://shopview.testrail.io/index.php?/cases/view/690668), [C690669](https://shopview.testrail.io/index.php?/cases/view/690669), [C665989](https://shopview.testrail.io/index.php?/cases/view/665989), [C665990](https://shopview.testrail.io/index.php?/cases/view/665990) |
-| Story 5 — Credit on the invoice and in Sales By Representative | [C665962](https://shopview.testrail.io/index.php?/cases/view/665962), [C665963](https://shopview.testrail.io/index.php?/cases/view/665963), [C665968](https://shopview.testrail.io/index.php?/cases/view/665968), [C665969](https://shopview.testrail.io/index.php?/cases/view/665969), [C665972](https://shopview.testrail.io/index.php?/cases/view/665972), [C665973](https://shopview.testrail.io/index.php?/cases/view/665973), [C665975](https://shopview.testrail.io/index.php?/cases/view/665975), [C665991](https://shopview.testrail.io/index.php?/cases/view/665991), [C715271](https://shopview.testrail.io/index.php?/cases/view/715271) |
-| Credit and totals — exact amounts | [C665964](https://shopview.testrail.io/index.php?/cases/view/665964), [C665965](https://shopview.testrail.io/index.php?/cases/view/665965), [C665966](https://shopview.testrail.io/index.php?/cases/view/665966), [C665967](https://shopview.testrail.io/index.php?/cases/view/665967), [C665970](https://shopview.testrail.io/index.php?/cases/view/665970), [C665971](https://shopview.testrail.io/index.php?/cases/view/665971), [C665974](https://shopview.testrail.io/index.php?/cases/view/665974), [C665992](https://shopview.testrail.io/index.php?/cases/view/665992), [C665993](https://shopview.testrail.io/index.php?/cases/view/665993) |
+| Story 4 — A customer's default representatives | [C665940](https://shopview.testrail.io/index.php?/cases/view/665940), [C665941](https://shopview.testrail.io/index.php?/cases/view/665941), [C665942](https://shopview.testrail.io/index.php?/cases/view/665942), [C665943](https://shopview.testrail.io/index.php?/cases/view/665943), [C665944](https://shopview.testrail.io/index.php?/cases/view/665944), [C665945](https://shopview.testrail.io/index.php?/cases/view/665945), [C665946](https://shopview.testrail.io/index.php?/cases/view/665946), [C665947](https://shopview.testrail.io/index.php?/cases/view/665947), [C665948](https://shopview.testrail.io/index.php?/cases/view/665948), [C665949](https://shopview.testrail.io/index.php?/cases/view/665949), [C665950](https://shopview.testrail.io/index.php?/cases/view/665950), [C665951](https://shopview.testrail.io/index.php?/cases/view/665951), [C665952](https://shopview.testrail.io/index.php?/cases/view/665952), [C665953](https://shopview.testrail.io/index.php?/cases/view/665953), [C665954](https://shopview.testrail.io/index.php?/cases/view/665954), [C665955](https://shopview.testrail.io/index.php?/cases/view/665955), [C665956](https://shopview.testrail.io/index.php?/cases/view/665956), [C665957](https://shopview.testrail.io/index.php?/cases/view/665957), [C665958](https://shopview.testrail.io/index.php?/cases/view/665958), [C665959](https://shopview.testrail.io/index.php?/cases/view/665959), [C665960](https://shopview.testrail.io/index.php?/cases/view/665960), [C665961](https://shopview.testrail.io/index.php?/cases/view/665961), [C690668](https://shopview.testrail.io/index.php?/cases/view/690668), [C690669](https://shopview.testrail.io/index.php?/cases/view/690669), S4-27 (new 22 Oct 2026, tech plan pass; not yet in TestRail), S4-28 (new 22 Oct 2026, tech plan pass; not yet in TestRail), [C665989](https://shopview.testrail.io/index.php?/cases/view/665989), [C665990](https://shopview.testrail.io/index.php?/cases/view/665990) |
+| Story 5 — Credit on the invoice and in Sales By Representative | [C665962](https://shopview.testrail.io/index.php?/cases/view/665962), [C665963](https://shopview.testrail.io/index.php?/cases/view/665963), [C665968](https://shopview.testrail.io/index.php?/cases/view/665968), [C665969](https://shopview.testrail.io/index.php?/cases/view/665969), [C665972](https://shopview.testrail.io/index.php?/cases/view/665972), [C665973](https://shopview.testrail.io/index.php?/cases/view/665973), [C665975](https://shopview.testrail.io/index.php?/cases/view/665975), S5-19 (new 22 Oct 2026, tech plan pass; not yet in TestRail), [C665991](https://shopview.testrail.io/index.php?/cases/view/665991), [C715271](https://shopview.testrail.io/index.php?/cases/view/715271) |
+| Credit and totals — exact amounts | [C665964](https://shopview.testrail.io/index.php?/cases/view/665964), [C665965](https://shopview.testrail.io/index.php?/cases/view/665965), [C665966](https://shopview.testrail.io/index.php?/cases/view/665966), [C665967](https://shopview.testrail.io/index.php?/cases/view/665967), [C665970](https://shopview.testrail.io/index.php?/cases/view/665970), [C665971](https://shopview.testrail.io/index.php?/cases/view/665971), [C665974](https://shopview.testrail.io/index.php?/cases/view/665974), S5-20 (new 22 Oct 2026, tech plan pass; not yet in TestRail), [C665992](https://shopview.testrail.io/index.php?/cases/view/665992), [C665993](https://shopview.testrail.io/index.php?/cases/view/665993) |
 | Story 6 — Printed work order | [C665976](https://shopview.testrail.io/index.php?/cases/view/665976), [C665977](https://shopview.testrail.io/index.php?/cases/view/665977), [C665978](https://shopview.testrail.io/index.php?/cases/view/665978), [C665979](https://shopview.testrail.io/index.php?/cases/view/665979), [C665980](https://shopview.testrail.io/index.php?/cases/view/665980) |
 | Story 7 — Work order log | [C665981](https://shopview.testrail.io/index.php?/cases/view/665981), [C665982](https://shopview.testrail.io/index.php?/cases/view/665982), [C665983](https://shopview.testrail.io/index.php?/cases/view/665983), [C690670](https://shopview.testrail.io/index.php?/cases/view/690670), [C665994](https://shopview.testrail.io/index.php?/cases/view/665994) |
 | Story 8 — Sales Type filters on both sales reports | [C665984](https://shopview.testrail.io/index.php?/cases/view/665984), [C665985](https://shopview.testrail.io/index.php?/cases/view/665985), [C665986](https://shopview.testrail.io/index.php?/cases/view/665986), [C665987](https://shopview.testrail.io/index.php?/cases/view/665987), [C665988](https://shopview.testrail.io/index.php?/cases/view/665988), [C690671](https://shopview.testrail.io/index.php?/cases/view/690671), [C665996](https://shopview.testrail.io/index.php?/cases/view/665996), [C665997](https://shopview.testrail.io/index.php?/cases/view/665997), [C665998](https://shopview.testrail.io/index.php?/cases/view/665998), [C665999](https://shopview.testrail.io/index.php?/cases/view/665999), [C666000](https://shopview.testrail.io/index.php?/cases/view/666000), [C666001](https://shopview.testrail.io/index.php?/cases/view/666001) |
-| Release day and what must not change | [C666002](https://shopview.testrail.io/index.php?/cases/view/666002), [C715272](https://shopview.testrail.io/index.php?/cases/view/715272), [C666003](https://shopview.testrail.io/index.php?/cases/view/666003), [C666004](https://shopview.testrail.io/index.php?/cases/view/666004), [C666005](https://shopview.testrail.io/index.php?/cases/view/666005), [C666006](https://shopview.testrail.io/index.php?/cases/view/666006), [C666007](https://shopview.testrail.io/index.php?/cases/view/666007), [C666008](https://shopview.testrail.io/index.php?/cases/view/666008), [C666009](https://shopview.testrail.io/index.php?/cases/view/666009), [C666010](https://shopview.testrail.io/index.php?/cases/view/666010), [C666011](https://shopview.testrail.io/index.php?/cases/view/666011), [C666012](https://shopview.testrail.io/index.php?/cases/view/666012), [C666013](https://shopview.testrail.io/index.php?/cases/view/666013), [C666014](https://shopview.testrail.io/index.php?/cases/view/666014), [C666015](https://shopview.testrail.io/index.php?/cases/view/666015), [C666016](https://shopview.testrail.io/index.php?/cases/view/666016) |
+| Release day and what must not change | [C666002](https://shopview.testrail.io/index.php?/cases/view/666002), [C715272](https://shopview.testrail.io/index.php?/cases/view/715272), [C666003](https://shopview.testrail.io/index.php?/cases/view/666003), [C666004](https://shopview.testrail.io/index.php?/cases/view/666004), [C666005](https://shopview.testrail.io/index.php?/cases/view/666005), [C666006](https://shopview.testrail.io/index.php?/cases/view/666006), [C666007](https://shopview.testrail.io/index.php?/cases/view/666007), [C666008](https://shopview.testrail.io/index.php?/cases/view/666008), [C666009](https://shopview.testrail.io/index.php?/cases/view/666009), [C666010](https://shopview.testrail.io/index.php?/cases/view/666010), [C666011](https://shopview.testrail.io/index.php?/cases/view/666011), [C666012](https://shopview.testrail.io/index.php?/cases/view/666012), [C666013](https://shopview.testrail.io/index.php?/cases/view/666013), [C666014](https://shopview.testrail.io/index.php?/cases/view/666014), [C666015](https://shopview.testrail.io/index.php?/cases/view/666015), [C666016](https://shopview.testrail.io/index.php?/cases/view/666016), REL-17 (new 22 Oct 2026, tech plan pass; not yet in TestRail), REL-18 (new 22 Oct 2026, tech plan pass; not yet in TestRail), REL-19 (new 22 Oct 2026, tech plan pass; not yet in TestRail) |
 | Design — how it looks | [C666017](https://shopview.testrail.io/index.php?/cases/view/666017), [C666018](https://shopview.testrail.io/index.php?/cases/view/666018), [C666019](https://shopview.testrail.io/index.php?/cases/view/666019), [C666020](https://shopview.testrail.io/index.php?/cases/view/666020), [C666021](https://shopview.testrail.io/index.php?/cases/view/666021), [C666022](https://shopview.testrail.io/index.php?/cases/view/666022), [C666023](https://shopview.testrail.io/index.php?/cases/view/666023), [C666024](https://shopview.testrail.io/index.php?/cases/view/666024), [C666025](https://shopview.testrail.io/index.php?/cases/view/666025), [C666026](https://shopview.testrail.io/index.php?/cases/view/666026), [C666027](https://shopview.testrail.io/index.php?/cases/view/666027), [C666028](https://shopview.testrail.io/index.php?/cases/view/666028), [C666029](https://shopview.testrail.io/index.php?/cases/view/666029), [C666030](https://shopview.testrail.io/index.php?/cases/view/666030), [C666031](https://shopview.testrail.io/index.php?/cases/view/666031), [C666032](https://shopview.testrail.io/index.php?/cases/view/666032), [C666033](https://shopview.testrail.io/index.php?/cases/view/666033), [C666034](https://shopview.testrail.io/index.php?/cases/view/666034), [C690658](https://shopview.testrail.io/index.php?/cases/view/690658), [C690659](https://shopview.testrail.io/index.php?/cases/view/690659), [C690660](https://shopview.testrail.io/index.php?/cases/view/690660), [C690661](https://shopview.testrail.io/index.php?/cases/view/690661), [C690663](https://shopview.testrail.io/index.php?/cases/view/690663), [C690664](https://shopview.testrail.io/index.php?/cases/view/690664) |
 
 ## 6. Dependencies and shared fixtures
@@ -1647,11 +1760,11 @@ Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Wo
 - Leave ZZAUTOTEST records in place. Turn back on any "Sales Representative" switch a case turned off, and reactivate any staff member a case deactivated, before reusing them.
 
 ## 8. Traceability
-Every case's expected results quote their source sentences word for word (PRD v10, Chris Ward's answers, tech plan, report specs); the checker `authoring/build.py` refuses any quote not found verbatim. All 142 PRD version 10 requirement codes are covered.
+Every case's expected results quote their source sentences word for word (PRD v11, Chris Ward's answers, tech plan, report specs); the checker `authoring/build.py` refuses any quote not found verbatim. All 143 PRD version 11 requirement codes are covered (138 library cases, 22 Oct 2026).
 
 ## 9. VIU status
 - Every case and recipe: UNVERIFIED — the build is not yet available.
 
 ## 10. Open questions
 - Chris Ward answered all 38 questions of the first sheet on 19 Oct 2026 (design-recheck-2026-10-20/chris-answers.json).
-- Questions 39 and 40 (rows 46 and 47, light green) of the same sheet (https://docs.google.com/spreadsheets/d/17Ry1BtRTPEkecBP5TlgAE0T93Ai1TQewdJ7B7WpWDBQ) were answered by Chris Ward on 21 Oct 2026 and became PRD version 11: [C690660](https://shopview.testrail.io/index.php?/cases/view/690660) was released; DR-08 (C690665) was deleted on 22 Oct 2026 because nothing makes a Lead Technician message show today (answer 40). (A third, on the phone control, was withdrawn on 20 Oct 2026 as answered by answer 9; its held case DR-05 was deleted.) No question is open.
+- Questions 39 and 40 (rows 46 and 47, light green) of the same sheet (https://docs.google.com/spreadsheets/d/17Ry1BtRTPEkecBP5TlgAE0T93Ai1TQewdJ7B7WpWDBQ) were answered by Chris Ward on 21 Oct 2026 and became PRD version 11: [C690660](https://shopview.testrail.io/index.php?/cases/view/690660) was released; DR-08 (C690665) was deleted on 22 Oct 2026 because nothing makes a Lead Technician message show today (answer 40). (A third, on the phone control, was withdrawn on 20 Oct 2026 as answered by answer 9; its held case DR-05 was deleted.) Question 41 (a customer adds the Part Sales field while its Service Parts or one representative has the switch off: what does the new field start with?) was drafted on 22 Oct 2026 in tech-plan-pass-2026-10-22/NEW-QUESTIONS.md; it is not yet in the sheet and not sent (the QA lead sends it).

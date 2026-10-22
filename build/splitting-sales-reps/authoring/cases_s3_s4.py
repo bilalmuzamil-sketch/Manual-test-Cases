@@ -257,35 +257,51 @@ C("S4-19", "S4", "The Deactivate window counts a customer once when a rep holds 
    "Step 4: the switch stays on and nothing changes."],
   ["S4-R21", AQ(13)])
 
-C("S4-20", "S4", "Renaming a rep updates customer fields and a switched-off rep stays",
+# 22 Oct 2026, tech plan pass (Rule 134): rewritten top to bottom. The tech plan says today a rename reaches only ONE customer
+# ("it updates one, `findOneBy`") and tests "the new name on every customer holding them"; it also tests that a customer still holding a
+# switched-off rep can be saved ("An already-held unflagged id saves (S4-N2)"). Was: one customer, no save.
+C("S4-20", "S4", "Renaming a rep updates every customer, and a switched-off rep stays",
   [ADMIN, REPS2,
-   ('Customer {Customer-A} shows "Sales Representative - Service Labor" {Sales-rep-A} and "Sales Representative - Service Parts" {Sales-rep-B}.', "For example: {Customer-A} is ZZAUTOTEST SSR Fleet."),
+   ('Customer {Customer-A} shows "Sales Representative - Service Labor" {Sales-rep-A} and "Sales Representative - Service Parts" {Sales-rep-B}; customer {Customer-B} has {Sales-rep-B} as its one sales representative.', "For example: {Customer-A} is ZZAUTOTEST SSR Fleet and {Customer-B} is ZZAUTOTEST SSR Other."),
    START("Settings > Staff is open in a desktop browser at least 1024 px wide")],
   ["Change {Sales-rep-B}'s last name (for example to \"Brook\") and save.",
    "Open {Customer-A}'s page.",
+   "Open {Customer-B}'s page.",
    "Turn {Sales-rep-A}'s \"Sales Representative\" switch off (keep the account active) and save.",
    "Open {Customer-A}'s page again.",
-   "Open Edit Customer and click the \"Sales Representative - Service Labor\" field."],
+   "Open Edit Customer and click the \"Sales Representative - Service Labor\" field.",
+   "Close the dropdown without picking anything and save the customer."],
   ["Step 1: the staff record saves.",
    "Step 2: Service Parts shows {Sales-rep-B}'s new name.",
-   "Step 3: the staff record saves.",
-   "Step 4: Service Labor still shows {Sales-rep-A}, now reading \"{Sales-rep-A} (Inactive)\".",
-   "Step 5: the field reads \"{Sales-rep-A} (Inactive)\"; {Sales-rep-A} is not offered in the dropdown and no option is checked."],
-  ["S4-R22", "S4-N2", AQ(14)])
+   "Step 3: \"Sales Representative\" also shows {Sales-rep-B}'s new name.",
+   "Step 4: the staff record saves.",
+   "Step 5: Service Labor still shows {Sales-rep-A}, now reading \"{Sales-rep-A} (Inactive)\".",
+   "Step 6: the field reads \"{Sales-rep-A} (Inactive)\"; {Sales-rep-A} is not offered in the dropdown and no option is checked.",
+   "Step 7: the customer saves with no error message, and its page still shows Service Labor \"{Sales-rep-A} (Inactive)\" and Service Parts with {Sales-rep-B}'s new name."],
+  ["S4-R22", "S4-N2", AQ(14),
+   ("Tech plan, what the code does today (section 1)", "Assumed but not true today: a rename updates every customer (it updates one, `findOneBy`)"),
+   ("Tech plan, Phase 2 functional tests (section 3.7, rename)", "Rename the user, then the view shows the new name on every customer holding them (S4-R22)."),
+   ("Tech plan, Phase 2 functional tests (section 3.7, already held)", "An already-held unflagged id saves (S4-N2).")])
 
+# 22 Oct 2026, tech plan pass (Rule 134): rewritten top to bottom. The tech plan's export query sorts by customer name, then
+# representative name, and folds the rows into one per customer per person (section 4.1); the example names now sort in a known order.
 C("S4-21", "S4", "The assignments export lists one row per customer per person with Side",
   [ADMIN, REPS3,
-   ('Customer {Customer-A} has {Sales-rep-A} as its one representative; customer {Customer-B} shows Service Labor {Sales-rep-A} and Service Parts {Sales-rep-B}; customer {Customer-C} has {Sales-rep-C} as its one representative and "Sales Representative - Part Sales" {Sales-rep-C}.',
-    "For example: {Customer-A} is ZZAUTOTEST SSR One, {Customer-B} is ZZAUTOTEST SSR Two and {Customer-C} is ZZAUTOTEST SSR Three."),
+   ('Customer {Customer-A} has {Sales-rep-A} as its one representative; customer {Customer-B} shows Service Labor {Sales-rep-A} and Service Parts {Sales-rep-B}; customer {Customer-C} has {Sales-rep-C} as its one representative and "Sales Representative - Part Sales" {Sales-rep-C}. The customer names sort A to Z as {Customer-A}, {Customer-B}, {Customer-C}, and {Sales-rep-A}\'s name sorts before {Sales-rep-B}\'s.',
+    "For example: {Customer-A} is ZZAUTOTEST SSR A-One, {Customer-B} is ZZAUTOTEST SSR B-Two and {Customer-C} is ZZAUTOTEST SSR C-Three."),
    START("the page with the Sales Representative Assignments export is open in a desktop browser at least 1024 px wide")],
   ["Download the Sales Representative Assignments export.",
    "Find the column after \"Representative is active?\".",
-   "Find the rows for {Customer-A}, {Customer-B} and {Customer-C}."],
+   "Find the rows for {Customer-A}, {Customer-B} and {Customer-C}.",
+   "Read the order of those rows."],
   ["Step 1: a file named sales-representative-assignments.csv downloads.",
    "Step 2: it is a column named \"Side\".",
-   "Step 3: {Customer-A}: one row, {Sales-rep-A}, Side \"Parts and Service\". {Customer-B}: two rows, {Sales-rep-A} \"Service Labor\" and {Sales-rep-B} \"Service Parts\". {Customer-C}: one row, {Sales-rep-C}, Side \"Parts and Service, Part Sales\"."],
-  ["S4-R23", AQ(17), AQ(18)],
-  note="The Sales By Representative spec, version 28 (12 Oct 2026, S15-R1, S15-R4, S15-R5 and S15-R9), names the export, its heading (\"Rep is active?\") and its Side values differently. Chris Ward ruled on 19 Oct 2026 for the PRD (answers 17 and 18, quoted below); this case follows PRD version 10.")
+   "Step 3: {Customer-A}: one row, {Sales-rep-A}, Side \"Parts and Service\". {Customer-B}: two rows, {Sales-rep-A} \"Service Labor\" and {Sales-rep-B} \"Service Parts\". {Customer-C}: one row, {Sales-rep-C}, Side \"Parts and Service, Part Sales\".",
+   "Step 4: the rows run by customer name, A to Z ({Customer-A}, then {Customer-B}, then {Customer-C}), and within {Customer-B} {Sales-rep-A}'s row comes before {Sales-rep-B}'s."],
+  ["S4-R23", AQ(17), AQ(18),
+   ("Tech plan, Assignments export (section 4.1, row order)", "ORDER BY LOWER(co.name), LOWER(sales_rep_name), co.id, csr.user_id"),
+   ("Tech plan, Assignments export (section 4.1, one row per person)", "Then fold in PHP into one row per (customer id, user id).")],
+  note="The Sales By Representative spec, version 28 (12 Oct 2026, S15-R1, S15-R4, S15-R5 and S15-R9), names the export, its heading (\"Rep is active?\") and its Side values differently. Chris Ward ruled on 19 Oct 2026 for the PRD (answers 17 and 18, quoted below); this case follows PRD version 11.")
 
 C("S4-22", "S4", "Re-importing a customer keeps all its representatives",
   [ADMIN, REPS3,
@@ -344,3 +360,34 @@ C("S3-04", "S3", "On a wide touch tablet the card opens expanded with its button
    "Step 4: both fields show their dropdown arrow, and the remove x shows beside \"Sales Representative - Parts\", without any hover."],
   [AQ(10), "S3-R2", "S3-R4", "S2-R5"],
   note="Chris Ward's answer 10 chose option (a) of the question sheet: on a wide touch screen with no mouse the card opens expanded, with the + and remove x always shown. Touch decides the buttons; the screen width decides whether the card is collapsed.")
+
+
+# ---------------- 22 Oct 2026, tech plan pass (Rule 134): new cases ----------------
+C("S4-27", "S4", "A part sale split off another keeps its representative",
+  [ADMIN, REPS3,
+   ('Customer {Customer-A} shows "Sales Representative - Part Sales" {Sales-rep-C}.', "For example: {Customer-A} is ZZAUTOTEST SSR Fleet."),
+   ("Part sale {Part-sale-1} for {Customer-A} is open and not invoiced, with Sales Representative {Sales-rep-A} and two parts.", "For example: {Part-sale-1} is P-30001."),
+   START("{Part-sale-1} is open in a desktop browser at least 1024 px wide")],
+  ["Split {Part-sale-1} with Split Part Sale, moving one part to the new part sale.",
+   "Open the new part sale and read its Sales Representative field."],
+  ["Step 1: a new part sale is created.",
+   "Step 2: its one Sales Representative field reads {Sales-rep-A}, not the customer's {Sales-rep-C}, and there is no + beside it."],
+  ["S4-R29", "S2-N2",
+   ("Tech plan, Phase 6 files (copy on split and reopen)", "Copy the source's reps + split state")],
+  note="Split Part Sale comes from Part Sales Update v1 (SV-10266). If that is not on the build being tested, mark this case Blocked and say so.")
+
+C("S4-28", "S4", "A customers-only user sees the representatives in Edit Customer",
+  [('You are signed in as {User-B}, whose role has "Customers — Create & Edit" but neither "Work Orders — View" nor "Work Orders — Create & Edit", at {Location-A}.',
+    "For example: {User-B} is ZZAUTOTEST SSR Customers Only with the custom role ZZAUTOTEST SSR Customers Only; {Location-A} is Staging Heavy Duty - 9919."),
+   REPS2, ('Staff member {Staff-member-D} is active at {Location-A} with the "Sales Representative" switch off.', "For example: {Staff-member-D} is ZZAUTOTEST Dan Noswitch."),
+   CUST, CPAGE],
+  ["Open Edit Customer.",
+   "Click the Sales Representative field.",
+   "Read the options in the dropdown from top to bottom.",
+   "Pick {Sales-rep-A} and save the customer."],
+  ["Step 1: the Edit Customer window opens with a Sales Representative field.",
+   "Step 2: the dropdown opens and lists the sales representatives; it is not empty and shows no access-denied message.",
+   "Step 3: \"Unassigned\" is first, then every active sales representative sorted by first name, then last name, A to Z (including {Sales-rep-A} and {Sales-rep-B}); {Staff-member-D} is not listed; there is no search box.",
+   "Step 4: the customer saves and its page shows \"Sales Representative\" {Sales-rep-A}."],
+  [("Story 4 prerequisites", prd_line("User has 'Customers — Create & Edit' enabled, or 'Work Orders — Create & Edit'")), "S4-R3", "S4-R1",
+   ("Tech plan, security considerations (section 9)", "The picker widens to work-order view, work-order create/edit and customer create/edit (D14) — it exposes only names + ids of the organization's active sales reps, which those roles can already see on the card.")])

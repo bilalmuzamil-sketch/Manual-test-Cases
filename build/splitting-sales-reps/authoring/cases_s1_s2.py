@@ -197,15 +197,23 @@ C("S2-06", "S2", "Removing Parts when Labor is Unassigned leaves nobody",
   ["Step 1: one \"Sales Representative\" field shows, reading \"Unassigned\"; {Sales-rep-B} is no longer on the work order."],
   ["S2-R16", "S2-E3"])
 
-C("S2-07", "S2", "An inactive person keeps their side and the other side can change",
+# 22 Oct 2026, tech plan pass (Rule 134): rewritten top to bottom so the inactive person is also COPIED onto Parts when the field is
+# added (tech plan §5 0.1 and §7 "Edge cases to watch"; PRD S2-R6 with S2-E1). Was: Labor already inactive, Parts changed, Parts removed.
+C("S2-07", "S2", "An inactive person is copied to Parts and keeps the Labor side",
   [ADMIN, REPS2,
-   ('Staff member {Sales-rep-C} held the Labor side and has since had the "Sales Representative" switch turned off.', "For example: {Sales-rep-C} is ZZAUTOTEST Cara Able."),
-   CUST, WO('its card shows "Sales Representative - Labor" reading "{Sales-rep-C} (Inactive)" and "Sales Representative - Parts" reading {Sales-rep-A}'), WO_START],
-  ["Click \"Sales Representative - Parts\" and pick {Sales-rep-B}.",
+   ('Staff member {Sales-rep-C} had the "Sales Representative" switch on, was picked on {Work-order-1}, and has since had the switch turned off (the account is still active).', "For example: {Sales-rep-C} is ZZAUTOTEST Cara Able."),
+   CUST, WO('its one "Sales Representative" field reads "{Sales-rep-C} (Inactive)"'), WO_START],
+  ["Hover over the Sales Representative field, click the + and click \"Sales Representative - Parts\".",
+   "Reload the page.",
+   "Click \"Sales Representative - Parts\" and pick {Sales-rep-A}.",
    "Click the remove x beside \"Sales Representative - Parts\"."],
-  ["Step 1: the change is saved: Parts reads {Sales-rep-B}; Labor still reads \"{Sales-rep-C} (Inactive)\".",
-   "Step 2: one \"Sales Representative\" field shows, reading \"{Sales-rep-C} (Inactive)\"."],
-  ["S2-E1", "S2-E2", "S1-E2"])
+  ["Step 1: the change is saved, not refused: \"Sales Representative - Labor\" and \"Sales Representative - Parts\" both read \"{Sales-rep-C} (Inactive)\", and no error message shows.",
+   "Step 2: both fields still show and both still read \"{Sales-rep-C} (Inactive)\".",
+   "Step 3: the change is saved: Parts reads {Sales-rep-A}; Labor still reads \"{Sales-rep-C} (Inactive)\".",
+   "Step 4: one \"Sales Representative\" field shows, reading \"{Sales-rep-C} (Inactive)\"."],
+  ["S2-R6", "S2-E1", "S2-E2", "S1-E2",
+   ("Tech plan, change-sales-rep rule (section 5, 0.1)", "An id the WO already holds is accepted as-is, so an inactive holder can stay, move between sides, or be copied onto Parts when the field is added (S1-E2, S2-E1, S2-R6, S2-E2)."),
+   ("Tech plan, edge cases to watch (section 7)", "an inactive holder copied onto Parts (S2-E1/R6)")])
 
 C("S2-08", "S2", "An invoiced split work order shows both names as plain text",
   [ADMIN, REPS2, CUST, WO('its card shows "Sales Representative - Labor" reading {Sales-rep-A} and "Sales Representative - Parts" reading {Sales-rep-B}; it has just been invoiced'), WO_START],
@@ -240,15 +248,26 @@ C("S2-10", "S2", "Reversing the invoice unlocks the field and the next invoice r
    "Step 4: the new invoice of {Work-order-1} is credited to {Sales-rep-B}, not {Sales-rep-A}."],
   ["S2-E4", "S5-R1"])
 
-C("S2-11", "S2", "A part sale's card keeps one Sales Representative field and no +",
-  [ADMIN, REPS2, CUST, ("Part sale {Part-sale-1} for {Customer-A} is open and not invoiced.", "For example: {Part-sale-1} is P-30001."),
+# 22 Oct 2026, tech plan pass (Rule 134): rewritten top to bottom. The tech plan moves the part sale's field onto the new work order
+# field (D18) and lists the part-sale rep change and its log as regressions to verify (Phase 4, R-12), so the case now proves the pick
+# is saved and logged as before (PRD S2-N2 "its look and behavior do not change").
+C("S2-11", "S2", "A part sale's single Sales Representative field still saves and logs",
+  [ADMIN, REPS2, CUST, ("Part sale {Part-sale-1} for {Customer-A} is open and not invoiced; its Sales Representative field reads \"Unassigned\".", "For example: {Part-sale-1} is P-30001."),
    START("{Part-sale-1} is open in a desktop browser at least 1024 px wide")],
   ["Hover over the part sale's Sales Representative field.",
-   "Click the field and pick {Sales-rep-A}."],
+   "Click the field and pick {Sales-rep-A}.",
+   "Reload the page.",
+   "Open the part sale's log from its menu and read the newest entry."],
   ["Step 1: there is one representative field, labelled \"Sales representative\" with a small \"r\", and no + button beside it.",
-   "Step 2: the field reads {Sales-rep-A}; its label still reads \"Sales representative\"; still no + and no remove x."],
-  ["S2-N2", AQ(7), "S4-R32"],
-  note="The part sale's Sales Representative field comes from Part Sales Update v1 (SV-10266). If that is not on the build being tested, mark this case Blocked and say so.")
+   "Step 2: the field reads {Sales-rep-A}; its label still reads \"Sales representative\"; still no + and no remove x.",
+   "Step 3: the field still reads {Sales-rep-A}; the pick was saved.",
+   "Step 4: the log has an entry for the representative change to {Sales-rep-A}, as Part Sales Update v1 records it."],
+  ["S2-N2", AQ(7), "S4-R32",
+   ("Story 7 context note", prd_line("* Context note: Part Sales Update v1 adds the log entry for a single representative")),
+   ("Tech plan, regressions to verify (R-12)", "Regressions to verify: the part-sale rep change, lock message and log are unchanged"),
+   ("Tech plan, Phase 4 smoke check", "confirm a part sale's rep change, lock message and log entry are unchanged.")],
+  stories=[2, 4, 7],
+  note="The part sale's Sales Representative field and its log entry come from Part Sales Update v1 (SV-10266). If that is not on the build being tested, mark this case Blocked and say so.")
 
 C("S2-12", "S2", "A work order split off another keeps its representatives",
   [ADMIN, REPS3,
@@ -275,3 +294,38 @@ C("S2-14", "S2", "Two windows: the later pick on the one field wins and Parts go
    "Step 4: the first window now shows one \"Sales Representative\" field reading {Sales-rep-B}; the Parts field is gone.",
    "Step 5: the second window still shows one \"Sales Representative\" field reading {Sales-rep-B}."],
   ["S2-E6", AQ(6)])
+
+
+# ---------------- 22 Oct 2026, tech plan pass (Rule 134): new cases ----------------
+C("S2-15", "S2", "A work order opened from its history shows its reps as plain text",
+  [ADMIN, REPS3,
+   ("Customer {Customer-A} has {Sales-rep-C} as its one sales representative.", "For example: {Customer-A} is ZZAUTOTEST SSR Fleet."),
+   WO('its card shows "Sales Representative - Labor" reading {Sales-rep-A} and "Sales Representative - Parts" reading {Sales-rep-B}, and its history holds a version saved after both were set (for example after a line was added)'),
+   WO_START],
+  ["Open {Work-order-1}'s history and open the version saved after both representatives were set.",
+   "Without hovering, read the representative fields.",
+   "Hover over the representative rows and click \"Sales Representative - Parts\".",
+   "Measure the gaps between Lead Technician, Service Advisor and both representative fields.",
+   "Open the work order's menu and look for Print Work Order."],
+  ["Step 1: that version of the work order opens.",
+   "Step 2: \"Sales Representative - Labor\" {Sales-rep-A} and \"Sales Representative - Parts\" {Sales-rep-B} show as plain text with their labels; the customer's {Sales-rep-C} is not shown.",
+   "Step 3: no box, no arrow, no + and no remove x; nothing opens and nothing can be changed.",
+   "Step 4: every gap is 16 px.",
+   "Step 5: Print Work Order is not offered."],
+  ["S2-R17", "S1-N1", "S1-R6", ("Story 6 prerequisites", prd_line("The work order is printed from its menu, with Print Work Order.")),
+   ("Tech plan, history snapshot (section 4.2)", "Nothing on the read-only historical card reads the customer's reps (the WO card reads `workOrder.sales_rep_*`)."),
+   ("Tech plan, S1-R6 gap measurement (Phase 5)", "measure the vertical gap between Lead Technician → Service Advisor → each Sales Representative field in all of: the editable card, the read-only card (invoiced), the history card, the split card (Labor + Parts)")],
+  stories=[1, 2])
+
+C("S2-16", "S2", "Reopening a paid work order keeps its representatives",
+  [ADMIN, REPS3,
+   ("Customer {Customer-A} has {Sales-rep-C} as its one sales representative.", "For example: {Customer-A} is ZZAUTOTEST SSR Fleet."),
+   ('Work order {Work-order-1} for {Customer-A} shows "Sales Representative - Labor" {Sales-rep-A} and "Sales Representative - Parts" {Sales-rep-B}; it has been invoiced and paid in full.', "For example: {Work-order-1} is S2-40001."),
+   WO_START],
+  ["Reopen {Work-order-1}.",
+   "Open the work order that reopening made and read its representative fields."],
+  ["Step 1: a work order is made from {Work-order-1} and can be edited.",
+   "Step 2: it shows \"Sales Representative - Labor\" reading {Sales-rep-A} and \"Sales Representative - Parts\" reading {Sales-rep-B}, not the customer's {Sales-rep-C}."],
+  ["S4-R29",
+   ("Tech plan, Phase 6 browser walk", "Split Work Order and reopen a paid work order → reps copied")],
+  stories=[2, 4])
