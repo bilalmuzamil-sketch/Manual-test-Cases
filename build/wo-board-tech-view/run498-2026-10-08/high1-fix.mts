@@ -170,7 +170,15 @@ const laborRows = (pg: Page = p) => pg.evaluate(`Object.fromEntries([...document
 const leadField = (pg: Page = p) => pg.locator('[data-test-id="select_lead_technician"]').first();
 const leadText = async (pg: Page = p) => (await leadField(pg).innerText().catch(() => '')).replace(/\s+/g, ' ').replace('arrow_drop_down', '').trim();
 async function pickLeadOnPage(name: string, pg: Page = p) { await leadField(pg).click(); await pg.waitForTimeout(800); await pg.keyboard.type(name, { delay: 40 }); await pg.waitForTimeout(1500); const opt = pg.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: new RegExp(name, 'i') }).first(); const n = await opt.count(); if (n) await opt.click(); await pg.waitForTimeout(2500); return n; }
-const one = async (name: string, lead: any, lines = 1, unit = 'TRK-201') => { const c = await customer(a, `${name} ${RUNNO}`, unit); const id = await workOrder(a, c, 'estimate', null); const ls: string[] = []; for (let i = 0; i < lines; i++) ls.push(await mkLine(id, i + 1));
+// 22 Oct 2026: a canned line's NAME is not always the title the work order page shows (production: canned "ZX" makes the line titled
+// "New York State Inspection"), so after one() makes its lines their titles are read off the page, in order, in a side tab of the
+// same session (the main page is not moved), and lineName(i) answers the title of the i-th line made; the canned name stays the fallback.
+const LT: Record<number, string> = {};
+const readTitles = async (id: string) => { for (const k of Object.keys(LT)) delete LT[+k]; const pg2 = await p.context().newPage();
+  try { await pg2.goto(`${APP}/workorders/${id}/lines`, { waitUntil: 'domcontentloaded' }); await pg2.waitForTimeout(6000);
+    const tt = await pg2.evaluate(`[...document.querySelectorAll('[data-test-id="line_title"]')].map(e => (e.innerText || '').split('\\n')[0].trim())`) as string[];
+    tt.forEach((x, k) => { if (x) LT[k + 1] = x; }); } catch { /* fallback: canned names */ } finally { await pg2.close().catch(() => {}); } };
+const one = async (name: string, lead: any, lines = 1, unit = 'TRK-201') => { const c = await customer(a, `${name} ${RUNNO}`, unit); const id = await workOrder(a, c, 'estimate', null); const ls: string[] = []; for (let i = 0; i < lines; i++) ls.push(await mkLine(id, i + 1)); await readTitles(id);
   await a.post('/api/work-orders/change-status', { id, status: 'approved' }); if (lead) await a.post('/api/work-orders/change-lead-technician', { work_order_id: id, tech_assigned_id: lead.staff_id });
   const number = (await workOrders(a, `${name} ${RUNNO}`)).find((w: any) => w.id === id)?.number; return { c, id, ls, number, q: `${name} ${RUNNO}` }; };
 const dlg = (pg: Page = p) => pg.locator('.q-dialog').last();
@@ -178,7 +186,7 @@ async function editLine(lineName: string, remove: string | null, add: string | n
   if (remove) { const chip = d.locator('.q-chip').filter({ hasText: new RegExp(remove, 'i') }).first(); o.chip = await chip.count(); await chip.locator('.q-chip__icon--remove, i:text-is("cancel"), i:text-is("close")').first().click().catch(() => {}); await pg.waitForTimeout(600); }
   if (add) { await d.locator('[data-test-id="select_line_roster_add_technician"]').click().catch(async () => { await d.locator('.q-field').filter({ hasText: /Add Technician/ }).first().click(); }); await pg.waitForTimeout(700); await pg.keyboard.type(add, { delay: 40 }); await pg.waitForTimeout(1500); const opt = pg.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: new RegExp(add, 'i') }).first(); o.opt = await opt.count(); await opt.click().catch(() => {}); await pg.waitForTimeout(700); await d.locator('[data-test-id="dialog_title"], .text-h6').first().click().catch(() => {}); }
   await d.locator('[data-test-id="button_save_close"], button:has-text("Save & Close")').first().click(); await pg.waitForTimeout(3500); o.toasts = await toastsOn(pg); return o; }
-const lineName = (i: number) => String(canned[i % canned.length].canned_line_name ?? canned[i % canned.length].name ?? '').trim();
+const lineName = (i: number) => LT[i] ?? String(canned[i % canned.length].canned_line_name ?? canned[i % canned.length].name ?? '').trim();
 
 
 // Schedule rows are drawn for technicians in the Service department (case preconditions): enrol Esther and Jenny there,

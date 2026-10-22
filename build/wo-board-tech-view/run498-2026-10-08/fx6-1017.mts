@@ -59,7 +59,12 @@ export async function clickOption(pg: Page, name: string) {
       const clean = (x) => String(x || '').replace(/\\s+/g, ' ').replace(/^(check_box_outline_blank|check_box|check|done)\\s+/i, '').replace(/\\s+(check|done)$/i, '').trim();
       const m = [...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().width > 0).pop(); if (!m) return false;
       const it = [...m.querySelectorAll('.q-item')].find(e => clean(e.innerText) === ${JSON.stringify(name)}); if (!it) return false; it.setAttribute('data-zz-pick', '1'); return true; })()`).catch(() => false);
-    if (hit) { await pg.locator('[data-zz-pick="1"]').first().scrollIntoViewIfNeeded().catch(() => {}); await pg.locator('[data-zz-pick="1"]').first().click(); await pg.waitForTimeout(2000); return true; }
+    // 22 Oct 2026 (production, C368166): the option was found but Playwright's click waited 30 s (the option sat outside the menu's
+    // visible scroll area); a short real click first, then the option's own click() in the page — the same event the app listens for.
+    if (hit) { const el = pg.locator('[data-zz-pick="1"]').first(); await el.scrollIntoViewIfNeeded().catch(() => {});
+      const ok = await el.click({ timeout: 6000 }).then(() => true).catch(() => false);
+      if (!ok) await pg.evaluate(`document.querySelector('[data-zz-pick="1"]')?.click()`);
+      await pg.waitForTimeout(2000); return true; }
     const moved = await pg.evaluate(`(() => { const m = [...document.querySelectorAll('.q-menu')].filter(e => e.getBoundingClientRect().width > 0).pop(); const s = m && ([m, ...m.querySelectorAll('*')].find(e => e.scrollHeight > e.clientHeight + 4) || m); if (!s) return false; const b = s.scrollTop; s.scrollTop += 250; return s.scrollTop !== b; })()`).catch(() => false);
     await pg.waitForTimeout(250); if (!moved) break;
   }
