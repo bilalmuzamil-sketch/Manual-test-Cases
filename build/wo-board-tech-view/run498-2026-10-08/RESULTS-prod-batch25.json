@@ -1,0 +1,28 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - batch25"
+ },
+ "results": {
+  "C97025": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: a new admin person was made for this test and signed in on a fresh page, so the usage records start a new session; Board View started with Service advisor off, Customer on and Regular spacing (the starting values the test needs).",
+    "Step 1: Work Orders was opened from the top menu and Board View was clicked.",
+    "Step 2: in Fields to display, Service advisor was turned on and Customer turned off, then the picker was closed.",
+    "Step 3: exactly 2 field change usage records were sent: Service advisor on, and Customer off.",
+    "Step 4: Tech View was clicked, the spacing (density) control opened and Compact picked.",
+    "Step 5: exactly 1 spacing change usage record was sent, naming Compact (in Tech View).",
+    "Step 6: in Tech View the spacing control was opened again and Compact picked again.",
+    "Step 7: Board View was clicked and Fields to display opened and closed with no change.",
+    "Step 8: 0 new change usage records since step 5.",
+    "Failed save: not checked by hand.",
+    "No picture: what is checked here is the usage record the page sends, which does not show on the screen."
+   ],
+   "pictures": []
+  }
+ }
+}
