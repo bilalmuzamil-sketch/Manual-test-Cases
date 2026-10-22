@@ -9,6 +9,7 @@
  *   GS_APP=https://app.staging.shopview.com WOB_API=https://api.staging.shopview.com TZ=Asia/Karachi WOB_LOC_TZ=Asia/Karachi \
  *   WOB_EV=<abs evidence dir> [ONLY=C581889,...] npx tsx ../../wo-board-tech-view/run498-2026-10-08/stg6.mts
  */
+import { LOC1_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -42,7 +43,7 @@ async function switchLoc(name: string) {
   await pg.keyboard.press('Escape').catch(() => {}); await pg.waitForTimeout(1000);
   const h = await header(); if (!h.includes(name)) throw new Error(`location switch to ${name} did not take: header "${h}"`); return h;
 }
-R.meta.homeLocation = await switchLoc('Staging Heavy Duty - 9919');
+R.meta.homeLocation = await switchLoc(LOC1_NAME);
 
 // ---------- staff (Rule 107: made here when missing; Service department, a technician role, Time Clock on) ----------
 const D = '@staging.shopview.local';
@@ -201,7 +202,7 @@ await run('C581889', async () => {
   await pg.evaluate(`[...document.querySelectorAll('[data-test-id^="tech_view_group_"][data-collapsed="true"]')].forEach(g => { const id = g.getAttribute('data-test-id').replace('tech_view_group_', ''); document.querySelector('[data-test-id="button_tech_view_group_toggle_' + id + '"]')?.click(); })`); await pg.waitForTimeout(2500);
   const num = o.wo[0].split(' ')[0]; o.step14.woShows = await pg.evaluate(`(document.querySelector('main, .q-page') || document.body).innerText.includes(${JSON.stringify(num)})`); o.step14.empty = await emptyState();
   await shot('C581889-step14-tech');
-  } finally { R.C581889.backHome = await switchLoc('Staging Heavy Duty - 9919').catch((e) => String(e).slice(0, 150)); }
+  } finally { R.C581889.backHome = await switchLoc(LOC1_NAME).catch((e) => String(e).slice(0, 150)); }
 });
 
 // =========================== C368133 — prompt only for unfinished whole-work-order shifts ===========================

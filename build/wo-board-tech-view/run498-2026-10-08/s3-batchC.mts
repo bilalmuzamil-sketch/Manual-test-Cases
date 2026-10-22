@@ -1,6 +1,6 @@
 /** S3 Board View, batch C (2026-10-08): C96950 and C368131 again, now seeing the view-only person's own screen
  *  (viewas.mts), and moving Theresa Webb off this location through her staff form's Location field. */
-import { ME_NAME } from './profile.mts';
+import { ME_NAME, LOC1_NAME, LOC2_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import { open, done, APP } from './session.mts';
@@ -76,7 +76,7 @@ await run('C368131', async () => {
   { const v = await viewAs(browser, p, a, VO.id, me.id); try { await ensurePins(v.page, [JW.staff_id, TW.staff_id], true); } finally { await v.close(); } }
   // step 1: deactivate Jenny Wilson; step 2: take Staging Heavy Duty off Theresa Webb (her Location field)
   R.C368131 = { jennyDeactivate: (await a.post('/api/iam/change-status', { id: JW.id })).status };
-  try { R.C368131.movedOff = await setStaffLocation(p, 'ayesha.khan', 'Staging Lethbridge'); } catch (e: any) { R.C368131.moveError = String(e.message).slice(0, 160); }
+  try { R.C368131.movedOff = await setStaffLocation(p, 'ayesha.khan', LOC2_NAME); } catch (e: any) { R.C368131.moveError = String(e.message).slice(0, 160); }
   R.C368131.ayeshaEligibleHere = (await candidates(a)).some((x) => x.name === 'Ayesha Khan');
   try {
     await bv(p, n);
@@ -95,7 +95,7 @@ await run('C368131', async () => {
     finally { await v.close(); }
   } finally {
     R.C368131.restore = { jenny: (await a.post('/api/iam/change-status', { id: JW.id })).status };
-    try { R.C368131.restore.ayesha = await setStaffLocation(p, 'ayesha.khan', 'Staging Heavy Duty'); } catch (e: any) { R.C368131.restore.ayeshaError = String(e.message).slice(0, 160); }
+    try { R.C368131.restore.ayesha = await setStaffLocation(p, 'ayesha.khan', LOC1_NAME); } catch (e: any) { R.C368131.restore.ayeshaError = String(e.message).slice(0, 160); }
     R.C368131.restoreRead = { jennyActive: (await sid('jenny.wilson'))?.is_active, ayeshaAt: (await staffRows(a, 'ayesha.khan@shopview.com'))[0]?.defaultWorkplaceName, ayeshaEligible: (await candidates(a)).some((x) => x.name === 'Ayesha Khan') };
     await ensurePins(p, [JW.staff_id, TW.staff_id], false).catch(() => {}); await ensurePins(p, pinsBefore, true).catch(() => {});
     const v = await viewAs(browser, p, a, VO.id, me.id); try { await ensurePins(v.page, [JW.staff_id, TW.staff_id], false); } catch { /* */ } finally { await v.close(); }

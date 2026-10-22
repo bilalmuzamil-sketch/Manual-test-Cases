@@ -5,7 +5,7 @@
  * no financial data (C368206), view-only (C368207, C368208), phone width (C368209, C368210, C368211), another location
  * (C368212), Back / Forward (C368214). Runs as our own test admin (runner.mts); other people by viewAs.
  */
-import { ME_NAME, LETH } from './profile.mts';
+import { ME_NAME, LETH, LOC1_NAME, LOC2_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -113,11 +113,11 @@ const order = (cols: any[], ids: Record<string, string>) => cols.map((c) => Obje
 // "START STATE found / set" and "END STATE" lines are logged per case.
 const topBarOf = async (pg: Page = p) => (await pg.locator('[data-test-id="profile_menu_button"]').innerText().catch(() => '')).replace(/\s+/g, ' ').trim();
 async function heavyMenu(pg: Page = p) { const o: any = { tries: [] as string[] };
-  for (let k = 0; k < 3; k++) { const now = await topBarOf(pg); if (now.includes('Staging Heavy Duty')) { o.now = now; return o; }
-    if (k === 0) o.tries.push(`switchLocUI -> ${await switchLocUI(pg, 'Staging Heavy Duty')}`);
+  for (let k = 0; k < 3; k++) { const now = await topBarOf(pg); if (now.includes(LOC1_NAME)) { o.now = now; return o; }
+    if (k === 0) o.tries.push(`switchLocUI -> ${await switchLocUI(pg, LOC1_NAME)}`);
     else if (k === 1) { await pg.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(4500); await pg.locator('[data-test-id="profile_menu_button"]').click().catch(() => {}); await pg.waitForTimeout(1200); await pg.locator('[data-test-id="select_location"]').click().catch(() => {}); await pg.waitForTimeout(1500);
       o.options = (await pg.locator('.q-menu .q-item').allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').trim()).slice(0, 20);
-      await pg.locator('.q-menu .q-item').filter({ hasText: 'Staging Heavy Duty' }).filter({ hasNotText: /Change Location/i }).last().click().catch(() => {}); await pg.waitForTimeout(6000); await pg.keyboard.press('Escape').catch(() => {}); o.tries.push(`picker by hand -> ${await topBarOf(pg)}`); }
+      await pg.locator('.q-menu .q-item').filter({ hasText: LOC1_NAME }).filter({ hasNotText: /Change Location/i }).last().click().catch(() => {}); await pg.waitForTimeout(6000); await pg.keyboard.press('Escape').catch(() => {}); o.tries.push(`picker by hand -> ${await topBarOf(pg)}`); }
     else { o.tries.push(`api ${say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }))}`); await pg.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await pg.waitForTimeout(5000); } }
   o.now = await topBarOf(pg); return o; }
 async function caseEdge(id: string, when: 'START' | 'END') {
@@ -345,14 +345,14 @@ await run('C368212', async () => { const o: any = {}; o.toLeth = say(await a.pos
     { const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = dd.find((d: any) => (d.name ?? d.label) === 'Service');
       o.enrolRunner = say(await a.post('/api/staff/enrollment/create', { staffId: RUN.staffId, workplaceId: LETH, departmentId: svc?.id })); }
     const topBar = async () => p.locator('[data-test-id="profile_menu_button"]').innerText().then((x) => x.replace(/\s+/g, ' ').trim()).catch(() => '');
-    o.switched = await switchLocUI(p, 'Staging Lethbridge'); await goList(p, 'Loc2'); o.lethTopBar = await topBar();
-    if (!o.lethTopBar.includes('Lethbridge')) { o.switchedAgain = await switchLocUI(p, 'Staging Lethbridge'); await tab(p, 'All'); await search(p, 'Loc2'); o.lethTopBar = await topBar(); }
-    if (o.lethTopBar.includes('Lethbridge')) { o.lethLoc2 = (await rowsList()).includes(num); await shot(p, 'C368212-lethbridge'); } else o.lethLoc2 = 'not read: the screen did not switch';
-    o.backTopBar = await switchLocUI(p, 'Staging Heavy Duty');
+    o.switched = await switchLocUI(p, LOC2_NAME); await goList(p, 'Loc2'); o.lethTopBar = await topBar();
+    if (!o.lethTopBar.includes(LOC2_NAME)) { o.switchedAgain = await switchLocUI(p, LOC2_NAME); await tab(p, 'All'); await search(p, 'Loc2'); o.lethTopBar = await topBar(); }
+    if (o.lethTopBar.includes(LOC2_NAME)) { o.lethLoc2 = (await rowsList()).includes(num); await shot(p, 'C368212-lethbridge'); } else o.lethLoc2 = 'not read: the screen did not switch';
+    o.backTopBar = await switchLocUI(p, LOC1_NAME);
     // 15 Oct 2026 (wave 25, seventh pass): the switch back left the screen on Lethbridge (picture C368212-end). If the top bar does not
     // read Heavy Duty, set the location the way the Schedule/API does and reload, then read the top bar again (recorded either way).
     // fix-up 2 (17 Oct 2026): switching back left the runner at Lethbridge on 16 Oct — heavyMenu() tries the menu twice (logging the picker's options) before the API call
-    if (!String(o.backTopBar).includes('Heavy Duty')) o.backHeavy = await heavyMenu(); o.backTopBarFinal = await topBar(); }
+    if (!String(o.backTopBar).includes(LOC1_NAME)) o.backHeavy = await heavyMenu(); o.backTopBarFinal = await topBar(); }
   R.C368212 = o; });
 
 await run('C368214', async () => { const s = await mkSet('ZZAUTOTEST Back Forward', [{ co: 'One Co', lead: ANA }]); const num = s.w['One Co'].number; const o: any = {};

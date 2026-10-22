@@ -9,6 +9,7 @@
  *  Steps exactly as the case: dispatcher on Board View (All, Search "ZZAUTOTEST F3 Stale Drop …"), Admin invoices Alpha Co, dispatcher
  *  drags Alpha Co to Ben without refreshing, alert read, refresh, lead read; Admin unticks Create & Edit on [Role-D]; dispatcher drags
  *  Bravo Co without refreshing; refresh, lead read. Every message watched from the press. json EV/C97012-2p.json, pictures C97012-2p-*. */
+import { LOC1_NAME } from './profile.mts';
 import fs from 'node:fs'; import path from 'node:path';
 import { chromium, type Page } from 'playwright';
 import { open, done, APP } from './session.mts';
@@ -72,7 +73,7 @@ try {
   const fe = (await da.get('/api/auth/me/fe-permissions')).body?.data; o.dispatcherPerms = (Array.isArray(fe) ? fe : fe?.fe_permissions ?? []).map((x: any) => x.code ?? x.name ?? x);
   o.adminStillSignedIn = (await a.get('/api/auth/me/fe-permissions')).status;   // the two sessions are separate: the Admin's must still answer 200
   o.dispatcherTop0 = await pg.locator('[data-test-id="profile_menu_button"]').innerText().then((x) => x.replace(/\s+/g, ' ')).catch(() => null);
-  if (!String(o.dispatcherTop0 ?? '').includes('Staging Heavy Duty')) o.dispatcherLoc = await switchLocUI(pg, 'Staging Heavy Duty');
+  if (!String(o.dispatcherTop0 ?? '').includes(LOC1_NAME)) o.dispatcherLoc = await switchLocUI(pg, LOC1_NAME);
   { const PREF = '/api/users/me/preferences/work-orders-list'; const pv = (await da.get(PREF)).body?.data?.value ?? {}; o.pinPut = (await da.put(PREF, { value: { ...pv, pinnedTechnicianIds: [ANA.staff_id, BEN.staff_id], filters: {} } })).status; }
   await pg.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000); await tab(pg, 'All'); await display(pg, 'Board View'); await search(pg, q); await toColumn(pg, ANA.staff_id);
   const card = (co: string) => `[data-test-id="board_card_${w[co]}"]`;

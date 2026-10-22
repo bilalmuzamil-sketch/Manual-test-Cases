@@ -4,7 +4,7 @@
  * C96923 changing location. [User-B] is a fresh ZZAUTOTEST staff member, reached by switching user inside
  * the admin session (staging's quick sign-in has only the admin account); always switched back.
  */
-import { ME_NAME, HEAVY } from './profile.mts';
+import { ME_NAME, HEAVY, LOC1_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -139,7 +139,7 @@ await run('C96912', async () => {
   R.C96912.locSteps = await changeLocationUI(loc2.name, s2.page);
   if (!/workorders/.test(s2.page.url())) { await s2.page.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await s2.page.waitForTimeout(5000); }
   R.C96912.loc2 = { url: s2.page.url().replace(APP, ''), location: await s2.page.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => / - \\d{3,5}$/.test(l)) || null`), display: await active(s2.page) }; await shot(s2.page, 'C96912-loc2');
-  await changeLocationUI('Staging Heavy Duty', s2.page).catch(() => a2.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }));
+  await changeLocationUI(LOC1_NAME, s2.page).catch(() => a2.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }));
   // the first browser: is it still signed in, and what does it show now?
   await p.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(5000);
   R.C96912.firstBrowser = { url: p.url().replace(APP, ''), display: await active(p) };
@@ -196,7 +196,7 @@ await run('C96923', async () => {
   // (three tries, location then unknown), and the script never went back to the first location. Now it follows the case's
   // steps between the first location (Staging Heavy Duty - 9919) and [Loc-2] (Staging Lethbridge - 4310) only:
   // List baseline -> back to the first location, Assigned to me off -> Board View + on -> Loc-2 -> Tech View -> back to the first.
-  const LOC1 = wps.find((w) => w.id === HEAVY)?.name ?? 'Staging Heavy Duty - 9919';
+  const LOC1 = wps.find((w) => w.id === HEAVY)?.name ?? LOC1_NAME;
   R.C96923 = { loc1: LOC1, loc2: loc2?.name };
   await go(); R.C96923.start = await changeLocationUI(LOC1); await go();
   // steps 1-4: today's List behaviour (the baseline)

@@ -7,6 +7,7 @@
  * rows on screen, so a group must be expanded and the search kept small before rows can be read;
  * Board View columns = data-test-id board_column_<staffId|unassigned>.
  */
+import { LOC1_NAME } from './profile.mts';
 import path from 'node:path';
 import type { Page } from 'playwright';
 
@@ -264,7 +265,7 @@ export async function listAllOptions(pg: Page) {
  *  by another session between steps (L0490, 21 Oct: the page showed S1- work orders and an empty location name, so switchLocUI found no
  *  header to read). Sets the location through the API (as asRunner does), reloads, reads the header back; falls back to the on-screen
  *  switch. Throws if the header still does not read the location — never read a list at the wrong location. */
-export async function ensureLocation(p: Page, a: any, workplaceId: string, name = 'Staging Heavy Duty - 9919') {
+export async function ensureLocation(p: Page, a: any, workplaceId: string, name = LOC1_NAME) {
   const header = () => p.locator('[data-test-id="profile_menu_button"]').innerText().then((x) => x.replace(/\s+/g, ' ').trim()).catch(() => '');
   for (let i = 0; i < Number(process.env.WOB_LOC_TRIES || 2); i++) {   // 21 Oct: WOB_LOC_TRIES raises the retries (the location is moved under us)
     if ((await header()).includes(name.slice(0, 20))) return await header();

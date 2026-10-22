@@ -4,7 +4,7 @@
  * C96927, C368125, C96929, C368127, C368130. Staff are made by staff.mts; deactivation goes through the
  * screen (Settings > Staff > edit > Deactivate Account) and is undone afterwards.
  */
-import { ME_NAME } from './profile.mts';
+import { ME_NAME, LOC2_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -519,7 +519,7 @@ await run('C368130-not-here', async () => {
     if (process.env.WOB_LOC_SELECT) await switchLocUI(p, process.env.WOB_EMPTY_LOC || 'ZZAUTOTEST Empty Shop'); else {
     await p.locator('[data-test-id="profile_menu_button"]').click(); await p.waitForTimeout(1200);
     await p.locator('.q-menu').getByText(/ - \d{3,5}$|ZZAUTOTEST Empty Shop/).first().click(); await p.waitForTimeout(1500);
-    await p.locator('.q-menu').filter({ hasText: 'Staging Lethbridge' }).locator('.q-item').filter({ hasText: 'ZZAUTOTEST Empty Shop' }).first().click(); await p.waitForTimeout(6000); await p.keyboard.press('Escape').catch(() => {}); }
+    await p.locator('.q-menu').filter({ hasText: LOC2_NAME }).locator('.q-item').filter({ hasText: 'ZZAUTOTEST Empty Shop' }).first().click(); await p.waitForTimeout(6000); await p.keyboard.press('Escape').catch(() => {}); }
     R.C368130.location = await p.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => /Empty Shop| - \\d{3,5}$/.test(l)) || null`);
     await tab(p, 'All'); await display(p, 'Tech View');
     R.C368130.tech = { groups: (await groups(p)).map((g) => `${g.name}(${g.count}) [${g.rows.join(' ')}]`), text: ((await p.evaluate(`(document.querySelector('[data-test-id="tech_view"]') || document.body).innerText`)) as string).replace(/\s+/g, ' ').slice(0, 500) };

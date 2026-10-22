@@ -27,3 +27,8 @@ export const PROFILE_FILE = file;
 // 22 Oct 2026: the staff name of the SIGNED-IN user ("me" in Assigned to me, my own group). Staging/QA: Admin ShopView. Production signs in
 // with the second admin test account, whose staff name is in its profile (meName). Scripts pick "me" by this, never by a literal.
 export const ME_NAME: string = process.env.WOB_ME_NAME || saved.meName || 'Admin ShopView';
+
+// 22 Oct 2026: the two test locations' NAMES as the top bar shows them (staging: Staging Heavy Duty - 9919 / Staging Lethbridge - 4310;
+// production: Truck Hill 1 / Trucks Hill 2). Scripts match locations by these, never by a staging literal.
+export const LOC1_NAME: string = process.env.WOB_LOC1_NAME || saved.heavyName || 'Staging Heavy Duty - 9919';
+export const LOC2_NAME: string = process.env.WOB_LOC2_NAME || saved.lethName || 'Staging Lethbridge - 4310';

@@ -8,7 +8,7 @@
  * Sizes are read with getComputedStyle / getBoundingClientRect: font-size of the text in a row or card, row height,
  * card height and padding.
  */
-import { ME_NAME } from './profile.mts';
+import { ME_NAME, LOC1_NAME, LOC2_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -163,9 +163,9 @@ await run('C96989', async () => {
   const meRow = (await staffRows(a, RUNNER_EMAIL)).find((x) => x.email === RUNNER_EMAIL);
   const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = dd.find((d: any) => (d.name ?? d.label) === 'Service');
   if (meRow) o.enrolLeth = say(await a.post('/api/staff/enrollment/create', { staffId: meRow.staff_id, workplaceId: LETH, departmentId: svc?.id }));
-  await go('Tech View'); o.switched = await switchLocUI(p, 'Staging Lethbridge'); o.at = await where(p);
+  await go('Tech View'); o.switched = await switchLocUI(p, LOC2_NAME); o.at = await where(p);
   if (/lethbridge/i.test(String(o.at))) { await go('Tech View'); o.atAfterOpen = await where(p); o.loc2Tech = (await density(p, 'C96989-lethbridge-tech-density-menu-open')).selected; await display(p, 'Board View'); await p.waitForTimeout(1500); o.loc2Board = (await density(p, 'C96989-lethbridge-board-density-menu-open')).selected; }
-  o.backOnScreen = await switchLocUI(p, 'Staging Heavy Duty');
+  o.backOnScreen = await switchLocUI(p, LOC1_NAME);
   o.back = say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }));
 });
 

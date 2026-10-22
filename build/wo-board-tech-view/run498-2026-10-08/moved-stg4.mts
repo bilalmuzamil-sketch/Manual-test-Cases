@@ -20,7 +20,7 @@
  * and then deactivating them with no work orders left, so their columns do not stand in front of other checks; the next run
  * reactivates them.
  */
-import { ME_NAME } from './profile.mts';
+import { ME_NAME, LOC1_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -53,7 +53,7 @@ const SERVICE = deps.find((d) => (d.name ?? d.label) === 'Service')?.id;
 const me = (await candidates(a)).find((x) => x.name === ME_NAME)!;
 const wps = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/workplaces')).body?.data);
 const LETH_NAME = wps.find((w: any) => w.id === LETH)?.name ?? 'Staging Lethbridge - 4310';
-const HEAVY_NAME = wps.find((w: any) => w.id === HEAVY)?.name ?? 'Staging Heavy Duty - 9919';
+const HEAVY_NAME = wps.find((w: any) => w.id === HEAVY)?.name ?? LOC1_NAME;
 const say = (r: any) => `${r.status}${r.status >= 300 ? ' ' + JSON.stringify(r.body).slice(0, 140) : ''}`;
 const row = async (email: string) => (await staffRows(a, email)).find((x) => String(x.email).toLowerCase() === email.toLowerCase());
 const eligible = async (staffId: string) => (await candidates(a)).some((c) => c.id === staffId);

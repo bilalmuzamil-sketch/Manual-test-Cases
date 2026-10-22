@@ -10,6 +10,7 @@
  * (C368246) and an imported work order's lead (C368247). Pages are reached by the menus' own words, as a tester would.
  * Runs as our own test admin (runner.mts). Every page is photographed; the filter state is read from the open menu.
  */
+import { LOC1_NAME, LOC2_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -95,7 +96,7 @@ await run('C368221', async () => { await nav('Parts', 'Returns'); const c = p.lo
 await run('C368222', async () => { await nav('Parts', 'Part Sales'); R.C368222 = { page: p.url().replace(APP, '') }; Object.assign(R.C368222, await keepAfterReload('C368222', 'Status', 'Complete')); });
 await run('C368224', async () => { await nav('Parts', 'Catalog'); R.C368224 = { page: p.url().replace(APP, '') }; Object.assign(R.C368224, await keepAfterReload('C368224', 'Manufacturer', 0, undefined, { restore: true })); });
 await run('C368225', async () => { await nav('Parts', 'Inventory'); R.C368225 = { page: p.url().replace(APP, '') }; Object.assign(R.C368225, await keepAfterReload('C368225', 'Category', 0, undefined, { restore: true })); });
-const reportsKeep: [string, string, string, number | string][] = [['C368226', 'Work In Progress', 'Location', 'Lethbridge'], ['C368227', 'Sales By Customer', 'Customer', 2], ['C368228', 'Parts Velocity', 'Vendor', 2], ['C368229', 'Inventory Value', 'Category', 2], ['C368230', 'Technician Utilization', 'Technician', 2], ['C368231', 'Sales By Representative', 'Location', 'Lethbridge']];
+const reportsKeep: [string, string, string, number | string][] = [['C368226', 'Work In Progress', 'Location', LOC2_NAME], ['C368227', 'Sales By Customer', 'Customer', 2], ['C368228', 'Parts Velocity', 'Vendor', 2], ['C368229', 'Inventory Value', 'Category', 2], ['C368230', 'Technician Utilization', 'Technician', 2], ['C368231', 'Sales By Representative', 'Location', LOC2_NAME]];
 for (const [id, rep, label, pick] of reportsKeep) await run(id, async () => { await nav('Reports', rep); R[id] = { page: p.url().replace(APP, '') }; Object.assign(R[id], await keepAfterReload(id, label, pick)); });
 const reportsTick: [string, string, string][] = [['C368232', 'Work In Progress', 'Location'], ['C368233', 'Sales By Customer', 'Customer'], ['C368234', 'Parts Velocity', 'Vendor'], ['C368235', 'Inventory Value', 'Category'], ['C368236', 'Technician Utilization', 'Technician'], ['C368237', 'Sales By Representative', 'Location']];
 // ───────── FIX-UP 2 (17 Oct 2026, C368233-C368235): the 16 Oct run never did step 6 (the "All …" row was looked for with ^All, but its
@@ -221,7 +222,7 @@ await run('C368247', async () => {
   const cust = `ZZAUTOTEST Imported Lead ${Date.now() % 100000}`; await (await import('./data.mts')).customer(a, cust, 'IMP-1');
   const hdr = '*Shop Location,*Customer,VIN,Year,Make,Model,Unit #,Unit Type,Mileage,Hours,*Invoice Number,*Invoice Date,PO,Service Advisor,*Item,*Line Title - What are you doing,Line Description - Why are you doing it,Tech Story,Part #,Part Description,*Qty,*Rate,*Total,*Tax Amount';   // FIX: the app's own template marks required columns with *
   const d = new Date(); const mdy = `${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}/${d.getFullYear()}`; const inv = `ZZAUTOTEST-IMP-${Date.now() % 100000}`;
-  const csv = [hdr, `Staging Heavy Duty - 9919,${cust},,2015,Freightliner,Cascadia,IMP-1,Truck,120000,,${inv},${mdy},ZZAUTOTEST,,Labor,ZZAUTOTEST imported labor,Imported lead check,,,,1,100.00,100.00,5.00`].join('\n') + '\n';
+  const csv = [hdr, `${LOC1_NAME},${cust},,2015,Freightliner,Cascadia,IMP-1,Truck,120000,,${inv},${mdy},ZZAUTOTEST,,Labor,ZZAUTOTEST imported labor,Imported lead check,,,,1,100.00,100.00,5.00`].join('\n') + '\n';
   const imp = await p.evaluate(async ([api, body]) => { const fd = new FormData(); fd.append('file', new Blob([body as string], { type: 'text/csv' }), 'zzautotest-imported.csv'); const r = await fetch(`${api}/api/imports/work-order-historical`, { method: 'POST', body: fd, credentials: 'include' }); return { status: r.status, body: (await r.text()).slice(0, 200) }; }, [(await import('./profile.mts')).API, csv]);
   R.C368247seed = { inv, imp, listed: ((await a.get('/api/work-orders-imported?pagination[page]=1&pagination[rowsPerPage]=50')).body?.data?.work_orders ?? (await a.get('/api/work-orders-imported?pagination[page]=1&pagination[rowsPerPage]=50')).body?.data?.collection ?? []).length };
   await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4500);

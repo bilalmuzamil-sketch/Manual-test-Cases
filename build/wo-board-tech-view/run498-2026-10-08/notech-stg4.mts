@@ -19,6 +19,7 @@
  *   (5) switched back to Staging Heavy Duty - 9919.
  * Work order numbers at a new location carry that location's own prefix, so numbers are matched as LETTERS-DIGITS, never S\d+-.
  */
+import { LOC1_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import { open, done, APP } from './session.mts';
@@ -35,7 +36,7 @@ const CUST = 'ZZAUTOTEST F2 No Tech Location 2';
 const { browser, page: p0 } = await open('/workorders?tab=all');
 const a0 = api(p0);
 const wpList = async () => { const d = (await a0.get('/api/workplaces')).body?.data; return (Array.isArray(d) ? d : d?.collection ?? []) as any[]; };
-const HEAVY_NAME = (await wpList()).find((w) => w.id === HEAVY)?.name ?? 'Staging Heavy Duty - 9919';
+const HEAVY_NAME = (await wpList()).find((w) => w.id === HEAVY)?.name ?? LOC1_NAME;
 const NUM = /\b[A-Z][A-Z0-9]*-\d{3,}\b/g;
 
 if (want('C368130')) {

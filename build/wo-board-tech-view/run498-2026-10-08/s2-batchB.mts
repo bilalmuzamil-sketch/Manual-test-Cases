@@ -3,7 +3,7 @@
  * C368125 collapsed group during search, C96937 with the advisor set as the case says, C368162 Collapse all
  * looked for in the Tech View code) and C96936, C368126, C368127, C96929, C368130.
  */
-import { ME_NAME, HEAVY } from './profile.mts';
+import { ME_NAME, HEAVY, LOC2_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -265,7 +265,7 @@ await run('C368130', async () => {
   if (process.env.WOB_LOC_SELECT) await switchLocUI(p, EMPTY_NAME); else {
   await p.locator('header').getByText(/^[A-Z]{2}$/).last().click(); await p.waitForTimeout(1500);
   await p.locator('.q-menu').getByText(/ - \d{3,5}$|ZZAUTOTEST Empty Shop/).first().click(); await p.waitForTimeout(1500);
-  await p.locator('.q-menu').filter({ hasText: 'Staging Lethbridge' }).locator('.q-item').filter({ hasText: 'ZZAUTOTEST Empty Shop' }).first().click(); await p.waitForTimeout(6000); }
+  await p.locator('.q-menu').filter({ hasText: LOC2_NAME }).locator('.q-item').filter({ hasText: 'ZZAUTOTEST Empty Shop' }).first().click(); await p.waitForTimeout(6000); }
   await p.keyboard.press('Escape').catch(() => {});
   R.C368130.location = await p.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => /Empty Shop| - \\d{3,5}$/.test(l)) || null`);
   await tab(p, 'All'); await display(p, 'Tech View');

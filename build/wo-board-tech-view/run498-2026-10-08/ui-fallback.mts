@@ -6,6 +6,7 @@
  *  (2) make the assets of C96982 / C96984 through Customers > (customer) > Assets > New Asset (Year, Make, Model, Unit),
  *      then their work orders, and read the cards (unit, or the asset in the unit's place).
  */
+import { LOC2_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -46,7 +47,7 @@ await run('enrol', async () => {
   const leth = p.locator('.q-menu:visible .q-item').filter({ hasText: /Lethbridge/ }).first();
   if (await leth.count()) { R.enrol.picked = (await leth.innerText()).replace(/\s+/g, ' ').trim(); await leth.click(); await p.waitForTimeout(1000); }
   else { // options may be grouped: open the Lethbridge group / type it
-    await p.keyboard.type('Lethbridge'); await p.waitForTimeout(1500); R.enrol.optionsTyped = (await p.locator('.q-menu:visible .q-item').allInnerTexts()).slice(0, 10);
+    await p.keyboard.type(LOC2_NAME); await p.waitForTimeout(1500); R.enrol.optionsTyped = (await p.locator('.q-menu:visible .q-item').allInnerTexts()).slice(0, 10);
     const l2 = p.locator('.q-menu:visible .q-item').first(); if (await l2.count()) { R.enrol.picked = (await l2.innerText()).trim(); await l2.click(); await p.waitForTimeout(1000); } }
   await p.keyboard.press('Escape').catch(() => {}); await p.waitForTimeout(500); await shot(p, 'ui-enrol-form');
   const save = p.locator('button:visible').filter({ hasText: 'Save & Close' }).last(); await save.click({ timeout: 10_000 }).catch((e) => { R.enrol.saveError = String(e).slice(0, 100); }); await p.waitForTimeout(3500);

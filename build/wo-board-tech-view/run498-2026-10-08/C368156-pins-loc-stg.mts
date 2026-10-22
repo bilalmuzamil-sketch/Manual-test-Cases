@@ -7,6 +7,7 @@
  *  columns counted · step 4 pin Xia, Yan, Zoe · step 5 reload (settled page), read the Change Location field, menu > Staging Heavy Duty,
  *  top bar read back (if the field already showed the target: detour through another location first, then retry once on a settled page,
  *  menu photographed), Board View, pinned columns read. Saved pins put back at the end. json EV/C368156-b40.json, pictures C368156-b40-*. */
+import { LOC1_NAME, LOC2_NAME } from './profile.mts';
 import fs from 'node:fs'; import path from 'node:path';
 import { open, done, APP } from './session.mts'; import { api } from './data.mts';
 import { EV, t, display, tab, toColumn, boardCols, switchLocUI, toasts } from './wob.mts';
@@ -37,7 +38,7 @@ const locField = async () => { await p.locator('[data-test-id="profile_menu_butt
 try {
   await a.put(PREF, { value: { ...(await prefGet()), pinnedTechnicianIds: [], filters: {} } });
   // start at Heavy Duty, through the menu
-  o.start = await top(); if (!o.start.includes('Staging Heavy Duty')) o.startSwitch = await switchLocUI(p, 'Staging Heavy Duty');
+  o.start = await top(); if (!o.start.includes(LOC1_NAME)) o.startSwitch = await switchLocUI(p, LOC1_NAME);
   // step 1
   await board(); o.s1_top = await top(); o.s1_pins = { Ana: await pin(ANA), Ben: await pin(BEN), Cal: await pin(CAL) }; o.s1_pref = named((await prefGet()).pinnedTechnicianIds ?? []); o.s1_left = await leftCols(); await shot('s1-heavy-pinned');
   // step 2
@@ -45,23 +46,23 @@ try {
   o.s2 = { disabled: await d4.isDisabled().catch(() => null), cls: ((await d4.getAttribute('class').catch(() => '')) ?? '').match(/disabled|board-column-header__pin--\w+/g) }; await d4.hover({ force: true }).catch(() => {}); await p.waitForTimeout(1500);
   o.s2.tip = await p.evaluate(`[...document.querySelectorAll('.q-tooltip')].map(e => e.innerText).join(' | ')`); await shot('s2-fourth-pin');
   // step 3
-  o.s3_switch = await switchLocUI(p, 'Staging Lethbridge'); await board(); o.s3_top = await top(); o.s3_pinnedCols = await pinnedCount(); o.s3_left = await leftCols(); await shot('s3-loc2-board');
+  o.s3_switch = await switchLocUI(p, LOC2_NAME); await board(); o.s3_top = await top(); o.s3_pinnedCols = await pinnedCount(); o.s3_left = await leftCols(); await shot('s3-loc2-board');
   // step 4
-  if (o.s3_top.includes('Staging Lethbridge')) { o.s4_pins = { Xia: await pin(XIA), Yan: await pin(YAN), Zoe: await pin(ZOE) }; o.s4_left = await leftCols(); o.s4_pinnedCols = await pinnedCount(); o.s4_pref = named((await prefGet()).pinnedTechnicianIds ?? []); await shot('s4-loc2-pinned'); }
+  if (o.s3_top.includes(LOC2_NAME)) { o.s4_pins = { Xia: await pin(XIA), Yan: await pin(YAN), Zoe: await pin(ZOE) }; o.s4_left = await leftCols(); o.s4_pinnedCols = await pinnedCount(); o.s4_pref = named((await prefGet()).pinnedTechnicianIds ?? []); await shot('s4-loc2-pinned'); }
   // step 5 — reload, read the field, switch back like a person
   await p.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(7000);
   o.s5_fieldBefore = await locField(); o.s5_topBefore = await top();
-  o.s5_switch1 = await switchLocUI(p, 'Staging Heavy Duty'); await p.waitForTimeout(2000); o.s5_top1 = await top();
-  if (!o.s5_top1.includes('Staging Heavy Duty')) { // retry once on a settled page; photograph the menu; detour if the field already shows the target
+  o.s5_switch1 = await switchLocUI(p, LOC1_NAME); await p.waitForTimeout(2000); o.s5_top1 = await top();
+  if (!o.s5_top1.includes(LOC1_NAME)) { // retry once on a settled page; photograph the menu; detour if the field already shows the target
     await p.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(8000); o.s5_fieldRetry = await locField();
     await p.locator('[data-test-id="profile_menu_button"]').click().catch(() => {}); await p.waitForTimeout(1200); await p.locator('[data-test-id="select_location"]').click().catch(() => {}); await p.waitForTimeout(1500);
     o.s5_menuRetry = (await p.locator('.q-menu .q-item').allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').trim()).slice(0, 14); await shot('s5-location-menu-retry'); await p.keyboard.press('Escape'); await p.keyboard.press('Escape'); await p.waitForTimeout(800);
-    if (String(o.s5_fieldRetry ?? '').includes('Heavy Duty')) o.s5_detour = await switchLocUI(p, 'QB Location');
-    o.s5_switch2 = await switchLocUI(p, 'Staging Heavy Duty'); await p.waitForTimeout(2000); o.s5_top2 = await top(); }
+    if (String(o.s5_fieldRetry ?? '').includes(LOC1_NAME)) o.s5_detour = await switchLocUI(p, 'QB Location');
+    o.s5_switch2 = await switchLocUI(p, LOC1_NAME); await p.waitForTimeout(2000); o.s5_top2 = await top(); }
   await board(); o.s5_top = await top(); o.s5_left = await leftCols(); o.s5_pinnedCols = await pinnedCount(); o.s5_pref = named((await prefGet()).pinnedTechnicianIds ?? []); await shot('s5-heavy-board');
 } catch (e: any) { o.error = String(e?.message || e).slice(0, 300); await shot('error'); }
 finally {
   o.restore = (await a.put(PREF, { value: { ...(await prefGet()), pinnedTechnicianIds: ORIGINAL.pinnedTechnicianIds ?? [] } })).status;
-  if (!(await top()).includes('Staging Heavy Duty')) o.endSwitch = await switchLocUI(p, 'Staging Heavy Duty');
+  if (!(await top()).includes(LOC1_NAME)) o.endSwitch = await switchLocUI(p, LOC1_NAME);
   fs.writeFileSync(path.join(EV, 'C368156-b40.json'), JSON.stringify(o, null, 1)); console.log(t(), 'C368156', JSON.stringify(o).slice(0, 5000)); await done(browser);
 }

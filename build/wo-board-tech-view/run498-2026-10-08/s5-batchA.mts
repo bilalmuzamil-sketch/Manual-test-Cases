@@ -8,7 +8,7 @@
  * work-orders-list preference (columns / techViewColumns / boardFields). The admin's preference is saved at the start
  * and put back at the end. "A second browser" = a new browser with the sign-in cookies only (no page storage).
  */
-import { HEAVY } from './profile.mts';
+import { HEAVY, LOC1_NAME, LOC2_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -116,9 +116,9 @@ const topLoc = async () => (await p.locator('[data-test-id="profile_menu_button"
 async function atHeavy(tag: string) {
   await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4500);
   const found = await topLoc(); console.log(t(), 'START STATE found', tag, JSON.stringify({ location: found }));
-  let now = found; if (!found.includes('Staging Heavy Duty')) { now = await switchLocUI(p, 'Staging Heavy Duty'); if (!now.includes('Staging Heavy Duty')) now = await switchLocUI(p, 'Staging Heavy Duty'); }
+  let now = found; if (!found.includes(LOC1_NAME)) { now = await switchLocUI(p, LOC1_NAME); if (!now.includes(LOC1_NAME)) now = await switchLocUI(p, LOC1_NAME); }
   console.log(t(), 'START STATE set', tag, JSON.stringify({ location: now, switched: now !== found }));
-  if (!now.includes('Staging Heavy Duty')) throw new Error(`not at Staging Heavy Duty - 9919 (top bar reads "${now}")`);
+  if (!now.includes(LOC1_NAME)) throw new Error(`not at Staging Heavy Duty - 9919 (top bar reads "${now}")`);
   return { found, now };
 }
 await run('C96977', async () => {
@@ -164,15 +164,15 @@ await run('C96983', async () => {
 await run('loc2', async () => {
   const where = () => p.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => / - \\d{3,5}$/.test(l)) || null`) as Promise<string | null>;
   await go('List'); await p.locator('header').getByText(/^[A-Z]{2}$/).last().click(); await p.waitForTimeout(1500);
-  if (process.env.WOB_LOC_SELECT) { await p.keyboard.press('Escape').catch(() => {}); await switchLocUI(p, 'Lethbridge'); } else {
+  if (process.env.WOB_LOC_SELECT) { await p.keyboard.press('Escape').catch(() => {}); await switchLocUI(p, LOC2_NAME); } else {
   await p.locator('.q-menu').getByText(/ - \d{3,5}$/).first().click(); await p.waitForTimeout(1500);
-  await p.locator('.q-menu').filter({ hasText: 'ZZAUTOTEST Empty Shop' }).locator('.q-item').filter({ hasText: 'Lethbridge' }).first().click(); await p.waitForTimeout(6000); }
+  await p.locator('.q-menu').filter({ hasText: 'ZZAUTOTEST Empty Shop' }).locator('.q-item').filter({ hasText: LOC2_NAME }).first().click(); await p.waitForTimeout(6000); }
   R.loc2 = { at: await where() };
   await go('Tech View'); R.loc2.tech = onKeys(await menu('Tech View')); await close();
   await display(p, 'Board View'); R.loc2.board = onKeys(await menu('Board View')); await close();
   await display(p, 'List'); R.loc2.list = onKeys(await menu('List')); await close(); await shot(p, 'S5-loc2');
   await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') });
-  R.loc2.back = await switchLocUI(p, 'Staging Heavy Duty');   // fix-up 2: the API call alone does not move the top bar (L0399)
+  R.loc2.back = await switchLocUI(p, LOC1_NAME);   // fix-up 2: the API call alone does not move the top bar (L0399)
 });
 
 const BACK = ORIGINAL; await a.put(PREF, { value: BACK }); R.restored = JSON.stringify(await prefGet()) === JSON.stringify(BACK);

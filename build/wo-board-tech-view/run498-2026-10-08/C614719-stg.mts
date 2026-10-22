@@ -10,6 +10,7 @@
  *  Positive control (Rule 104): before step 1 the Search box must take the click (activeElement = page_search_input); if Tab never enters
  *  the table within 15 presses the reading is reported as "not reached", never as a product result.
  *  Output EV/C614719-stg.json, pictures C614719-stg-*.png. */
+import { LOC1_NAME } from './profile.mts';
 import fs from 'node:fs'; import path from 'node:path';
 import { open, done, APP } from './session.mts'; import { api, customer, workOrder, workOrders } from './data.mts';
 import { EV, t, display, tab, search, groups, boardCols, activeTab, searchValue, switchLocUI } from './wob.mts';
@@ -42,7 +43,7 @@ try {
   o.leadFix = []; for (const [w, lead] of [[WO1, ANA.staff_id], [WO2, BEN.staff_id], [WO3, null]] as [any, string | null][]) { if (!w) continue; if (!/^approved$/i.test(String(w.status))) o.leadFix.push(`${w.number} status ${(await a.post('/api/work-orders/change-status', { id: w.id, status: 'approved' })).status}`); if ((w.techAssignedId ?? w.tech_assigned_id ?? null) !== lead) o.leadFix.push(`${w.number} lead ${(await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: lead })).status}`); }
   const clean: any = {}; for (const [k, v] of Object.entries(ORIGINAL)) if (!/collaps/i.test(k)) clean[k] = v; // no saved collapsed groups (C590131-orgb.mts)
   await a.put(PREF, { value: { ...clean, tab: 'all', filters: {}, pinnedTechnicianIds: [ANA.staff_id, BEN.staff_id] } });
-  { await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await W(5000); const topNow = await p.locator('[data-test-id="profile_menu_button"]').innerText().catch(() => ''); if (!/Staging Heavy Duty/.test(topNow)) o.locationSwitch = await switchLocUI(p, 'Staging Heavy Duty'); }
+  { await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await W(5000); const topNow = await p.locator('[data-test-id="profile_menu_button"]').innerText().catch(() => ''); if (!/Staging Heavy Duty/.test(topNow)) o.locationSwitch = await switchLocUI(p, LOC1_NAME); }
   await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await W(5000); await tab(p, 'All').catch(() => {}); await display(p, 'Tech View'); await search(p, Q); await W(2000);
   await p.reload({ waitUntil: 'domcontentloaded' }); await W(7000); // freshly opened: nothing has had keyboard focus
   if ((await activeTab(p)) !== 'All') { o.tabClickedAgain = await activeTab(p); await tab(p, 'All').catch(() => {}); await W(2000); }

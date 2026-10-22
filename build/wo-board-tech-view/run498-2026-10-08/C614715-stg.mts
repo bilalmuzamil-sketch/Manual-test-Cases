@@ -10,6 +10,7 @@
  *  Steps: menu > Change Location (switchLocUI, L0333) · Work Orders > All > Tech View · Board View · the empty state's "Create Work Order"
  *  (the window's title compared with the page's own button's window) · close without saving · List. ALWAYS switched back to Heavy Duty.
  *  Output EV/C614715-stg.json, pictures C614715-stg-*.png. */
+import { LOC1_NAME } from './profile.mts';
 import fs from 'node:fs'; import path from 'node:path';
 import { open, done, APP } from './session.mts'; import { api } from './data.mts';
 import { EV, t, display, tab, switchLocUI } from './wob.mts';
@@ -82,5 +83,5 @@ try {
   // ---- step 6: List
   await display(p, 'List'); await W(2500); o.s6 = { text: await mainText(), firstRun: /No work orders yet/.test(await mainText()), rows: await p.locator('tbody tr').count() }; await shot('s6-list');
 } catch (e: any) { o.error = String(e?.message || e).slice(0, 300); }
-finally { o.back = await switchLocUI(p, 'Staging Heavy Duty').catch(() => null); }
+finally { o.back = await switchLocUI(p, LOC1_NAME).catch(() => null); }
 fs.writeFileSync(path.join(EV, 'C614715-stg.json'), JSON.stringify(o, null, 1)); console.log(t(), 'C614715', JSON.stringify(o).slice(0, 2500)); await done(browser);
