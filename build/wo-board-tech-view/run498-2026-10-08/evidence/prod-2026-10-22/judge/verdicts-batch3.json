@@ -1,0 +1,363 @@
+{
+ "C96909": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 and 2: on the All tab with List chosen, the switcher at the right of the toolbar shows exactly three buttons, and List (the left one) is the highlighted one.",
+   "Steps 3 to 5: pointing at the buttons from left to right shows the tooltips \"List\", \"Tech View\" and \"Board View\", in that order.",
+   "Steps 6 and 7: after clicking Tech View, only Tech View is highlighted.",
+   "Steps 8 and 9: after clicking Board View, only Board View is highlighted.",
+   "Steps 10 and 11: after clicking List, only List is highlighted."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96909-1-list.png",
+   "evidence/prod-2026-10-22/C96909-tip-TechView.png",
+   "evidence/prod-2026-10-22/C96909-BoardView.png",
+   "evidence/prod-2026-10-22/C96909-TechView.png"
+  ],
+  "reason_for_reviewer": "Three switcher buttons (List x1284, Tech View x1328, Board View x1372). In each state exactly one button is pressed=true with the --active class (white rgb(255,255,255), dark icon rgb(54,65,82)); the other two are transparent with rgb(105,117,134). Start: List; after Tech View: Tech View; after Board View: Board View; after List: List. Tooltip texts read List / Tech View / Board View. The 75 'differences' are only because no staging reading exists for this script; the staging pass was a written result."
+ },
+ "C154885": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 and 2: at full width (1600 px) Board View was chosen and is the highlighted button.",
+   "Steps 3 and 4: at 900 px wide the page shows the List's phone layout (cards with Asset, VIN/Serial # and Unit #, a sort button, Create Work Order, and the Status, Assigned to me and Asset on Site filters) and there is no display switcher.",
+   "Steps 5 and 6: back at 1600 px the switcher (List, Tech View, Board View) is shown again and Board View is still the chosen display, so the narrow window did not change the saved choice.",
+   "Step 7 (optional, tablet held sideways) was not checked. Edge not checked by hand."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C154885-narrow-900.png",
+   "evidence/prod-2026-10-22/C154885-wide-1600.png"
+  ],
+  "reason_for_reviewer": "Before narrowing: switcher 3 buttons, active Board View. At 900 px: none of the three switcher buttons present; page text starts 'All Estimates Work Orders Completed Search swap_vert Create Work Order Status ...' followed by cards. At 1600 px: three buttons, Board View pressed=true; saved display still board_view. 0 differences from the staging reading. The optional tablet step and the exact 1024 px edge were not tried (the case asks for 'edge not checked by hand' in the comment)."
+ },
+ "C96921": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 and 2: Work Orders opened in tab A and tab B as the same user; both started in List.",
+   "Step 3: tab A chose Tech View. Step 4: a few seconds later tab B chose Board View.",
+   "Steps 5 to 7: after refreshing, tab A and tab B both open in Board View, and a new tab C also opens in Board View, the last choice made.",
+   "No warning or conflict message appeared in any tab."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96921-tabA.png",
+   "evidence/prod-2026-10-22/C96921-tabB.png",
+   "evidence/prod-2026-10-22/C96921-tabC.png"
+  ],
+  "reason_for_reviewer": "startA/startB List; saved after A tech_view, after B board_view; A, B and C after refresh all Board View; saved at end board_view; warnings []. The tab A picture still shows a 'Tech View' tooltip because the pointer was resting on that button, but the highlighted button is Board View and the screen is the board. 0 differences from staging."
+ },
+ "C96913": {
+  "verdict": "Blocked",
+  "failed_steps": "Blocked at steps 2 to 16: the test customer \"ZZAUTOTEST F1 Tabs\" and its three work orders do not exist on production, so every tab shows \"No work orders match the search\".",
+  "bold_steps": [
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16
+  ],
+  "observed": [
+   "Result: Blocked on production (v26.43.0-ffea43c). The work orders this test needs were never set up on production.",
+   "Step 1: List, Tech View and Board View all show the four tabs All, Estimates, Work Orders and Completed.",
+   "Steps 2 to 16: searching \"ZZAUTOTEST F1 Tabs\" finds nothing in any tab of any display; the screen reads: No work orders match the search \"ZZAUTOTEST F1 Tabs\".",
+   "So which work orders each tab shows could not be compared."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96913-List-All.png",
+   "evidence/prod-2026-10-22/C96913-BoardView-Completed.png",
+   "evidence/prod-2026-10-22/C96913-TechView-All.png"
+  ],
+  "reason_for_reviewer": "Every one of the 12 readings (3 displays x 4 tabs) is an empty object; the pictures show the empty-search message. The 54 differences are all staging work orders (S2-...) that have no production counterpart. Nothing about the product is judged except that the four tabs are present in all three displays.",
+  "todo": "On production create customer \"ZZAUTOTEST F1 Tabs\" with three work orders led by one technician (one Estimate, one Approved, one Complete), then re-run steps 2 to 16."
+ },
+ "C154884": {
+  "verdict": "Blocked",
+  "failed_steps": "Blocked at steps 3 to 9: the test customer \"ZZAUTOTEST F1 Assigned To Me\" and its four work orders do not exist on production, so nothing could be compared.",
+  "bold_steps": [
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "observed": [
+   "Result: Blocked on production (v26.43.0-ffea43c). The work orders this test needs were never set up on production.",
+   "Steps 3 to 5: in List, the search for \"ZZAUTOTEST F1 Assigned To Me\" with Assigned to me turned on shows \"No work orders match these filters\".",
+   "Steps 6 to 9: Tech View and Board View show the same empty result, so there was nothing to compare between the displays."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C154884-asSetUp-List.png",
+   "evidence/prod-2026-10-22/C154884-asSetUp-TechView.png",
+   "evidence/prod-2026-10-22/C154884-asSetUp-BoardView.png"
+  ],
+  "reason_for_reviewer": "allBefore [] (no work orders for the customer even before Assigned to me), changes [], readBack [], List/Tech View/Board View readings all empty, for both the as-set-up pass and the other-advisor pass. Assigned to me chip pressed=true. The 65 differences are the staging work orders with no production counterpart.",
+  "todo": "On production create customer \"ZZAUTOTEST F1 Assigned To Me\" with four Approved work orders (two led by the signed-in user, one by another technician, one with no lead; the last two with someone else as Service Advisor), then re-run steps 3 to 9."
+ },
+ "C96911": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 6: on the All tab, with \"ZZAUTOTEST Fibridge\" in Search and Status: Approved, List shows 3 rows: S1-1019, S1-1020 and S1-1021.",
+   "Steps 7 and 8: clicking Tech View changes the layout straight away, without reloading the page; the same 3 work orders show as Unassigned 1 (S1-1019) + Aaron Baker 1 (S1-1020) + Ayesha Khan 1 (S1-1021) = 3.",
+   "Steps 9 and 10: Board View shows the same 3 cards: Unassigned 1, Aaron Baker 1, Ayesha Khan 1.",
+   "Step 11: back in List the same 3 rows show.",
+   "After every switch the All tab is still selected, the search still reads \"ZZAUTOTEST Fibridge\" and the filter still reads \"Status: Approved\".",
+   "The \"ZZAUTOTEST Fisquare\" work order (S1-1056) appears in none of the displays."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96911-List.png",
+   "evidence/prod-2026-10-22/C96911-TechView.png",
+   "evidence/prod-2026-10-22/C96911-BoardView.png"
+  ],
+  "reason_for_reviewer": "Seeded Fibridge: S1-1021 (Ayesha), S1-1020 (Aaron), S1-1019 (no lead); Fisquare S1-1056. Each state: noReload true, tab All, search 'ZZAUTOTEST Fibridge', status chip 'Status: Approved', exactly S1-1019/1020/1021. Board counts 'Unassigned | 1', 'Aaron Baker | 1', 'Ayesha Khan | 1'. Differences from staging are only work-order numbers and counts (staging also matched two older Fibridge customers). The C96911-error.png file is from an earlier aborted attempt (11:51) and is not used. Not judged: in Tech View and Board View the switcher and Create Work Order wrap onto a second toolbar line in these pictures."
+ },
+ "C96914": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 3 to 8: searching the unit ZZSR2B shows only S1-1058 in List, in Tech View (under Aaron Baker) and in Board View (in Aaron Baker's column).",
+   "Step 9: with the search cleared and Asset on Site: Yes on, the only one of this test's three work orders shown is S1-1057, in all three displays.",
+   "Steps 10 and 11: after going to Schedule and clicking Work Orders in the top menu, \"Asset on Site: Yes\" is still on in Board View, in Tech View and in List alike, so Tech View and Board View keep the filter exactly as List does."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96914-search-TechView.png",
+   "evidence/prod-2026-10-22/C96914-filter-List.png",
+   "evidence/prod-2026-10-22/C96914-roundtrip-TechView.png",
+   "evidence/prod-2026-10-22/C96914-roundtrip-List.png"
+  ],
+  "reason_for_reviewer": "Seeded S1-1057 (ZZSR1A, on site, Ayesha), S1-1058 (ZZSR2B, Aaron), S1-1059 (ZZSR3C, no lead). bySearch: only S1-1058 in all three. byFilter: chip 'Asset on Site: Yes', only S1-1057 in all three. roundTrip: back URL /workorders?vehicleHere=1 and the chip present in Board View, Tech View and List. The roundTrip 'wos' figures (13 / 67 / 30) are how many work orders each display had drawn on screen at that moment (cards, rows, first page), not a result-set count, and the Expected does not ask for them. C96914-error.png is from the earlier aborted attempt (11:51)."
+ },
+ "C96920": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 3: Board View was chosen and a refresh opened Board View.",
+   "Step 4: Tech View, List and Board View were each loaded while online.",
+   "Steps 5 to 8: with the network off, clicking Tech View switched the display to Tech View and clicking List switched it to List; a red \"Network Error\" message showed because the choice could not be saved.",
+   "Steps 9 and 10: after the network came back and the page was refreshed, it opened in Board View, so the offline changes were not saved.",
+   "Steps 11 and 12: Tech View chosen again while online, then a refresh: the page opens in Tech View."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96920-offline-tech.png",
+   "evidence/prod-2026-10-22/C96920-after-reconnect.png",
+   "evidence/prod-2026-10-22/C96920-after-online-switch.png",
+   "evidence/prod-2026-10-22/C96920-step4-loaded-online.png"
+  ],
+  "reason_for_reviewer": "savedBeforeOffline board_view; offlineTech 'Tech View', offlineList 'List'; two preference saves failed with ERR_INTERNET_DISCONNECTED; offlineMessages 'Network Error'; afterReconnect 'Board View'; afterOnlineSwitch 'Tech View'. The 'offline: false' field is the same on staging (it is not the switch result). Differences from staging are only how many cards were drawn and the save method name. C96920-error.png is from the earlier aborted attempt."
+ },
+ "C96915": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 4: on the All tab, List sorted by Created On, newest first: S1-1063, S1-1062, S1-1061 (all led by Ayesha Khan).",
+   "Steps 5 and 6: in Tech View Ayesha Khan's group first read S1-1061, S1-1062, S1-1063; the last one (S1-1063) was dragged to the top, and the group then reads S1-1063, S1-1061, S1-1062.",
+   "Steps 7 and 8: Board View shows the same dragged order in Ayesha Khan's column: S1-1063, S1-1061, S1-1062.",
+   "Steps 9 and 10: back in List the table is still sorted by Created On, newest first (S1-1063, S1-1062, S1-1061), and the sort is still on Created On. The dragged order does not appear in List."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96915-tech-after-drag.png",
+   "evidence/prod-2026-10-22/C96915-list-back.png",
+   "evidence/prod-2026-10-22/C96915-list-sorted.png",
+   "evidence/prod-2026-10-22/C96915-board.png"
+  ],
+  "reason_for_reviewer": "Created times 12:23:38 / :41 / :43. Header before 'sortable', after the click 'sorted sort-desc'; after coming back 'sorted sort-desc' on Created On. techAfter and board [S1-1063, S1-1061, S1-1062]; listBack [S1-1063, S1-1062, S1-1061]. 0 differences from staging. In the List picture the Created On header is cut at the right edge, so the sort arrow itself is seen only in the reading, not the picture. The Board picture shows Ayesha Khan's column only partly (cut at the right edge); the order comes from the reading."
+ },
+ "C96916": {
+  "verdict": "Blocked",
+  "failed_steps": "Blocked at steps 5, 6, 9 and 10: the run started on the Work Orders tab without the Status filter (not the All tab with Status: Approved the test asks for), and in Tech View the script never opened a work order, so Back was not tested there.",
+  "bold_steps": [
+   5,
+   6,
+   9,
+   10
+  ],
+  "observed": [
+   "Result: Blocked on production (v26.43.0-ffea43c). The test run did not set up the starting screen the test asks for and did not reach the Tech View half.",
+   "Starting screen: the run used the Work Orders tab with the search \"ZZAUTOTEST F1 Scroll Back Theresa\" and no Status filter, instead of the All tab with Status: Approved.",
+   "Steps 1 to 3 (Board View): the board was scrolled right until Theresa Webb's column (20 work orders) was fully in view, and down until card S1-1071 sat at the top of her column.",
+   "Step 4: clicking card S1-1073 opened its work order page.",
+   "Step 5: after Back, Board View came back on the same tab (Work Orders) with the same search, the same columns in view at exactly the same sideways position, and S1-1071 back at the top of the column, fully shown. Whether \"All\" and \"Status: Approved\" come back was not checked, because they were never set.",
+   "Step 6: Tech View shows the same work orders as the board (Theresa Webb 20, every other technician 2), still on the Work Orders tab and with the same search.",
+   "Steps 7 and 8: Tech View was scrolled down and to the right (in the earlier attempt, S1-1042 at the top).",
+   "Steps 9 and 10: NOT DONE. The script found no row to click (the Number column was scrolled out of view), so no work order opened and the Back result says nothing; the second attempt stopped with a connection error before this point."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96916-s5-board-after-back.png",
+   "evidence/prod-2026-10-22/C96916-s2-s3-board-before.png",
+   "evidence/prod-2026-10-22/C96916-s4-wo-page.png",
+   "evidence/prod-2026-10-22/C96916-s9-wo-page.png"
+  ],
+  "reason_for_reviewer": "Two attempts. The pack's readings are attempt 1 (11:54-11:58, H = 'Technician 1', 22 work orders); most pictures are attempt 2 (12:27-12:29, H = Theresa Webb, 20 + 2 each, read from logs-full/10-s1-batch4b.log line 10). Both: statusSetup.statusReachable=false, start tab 'Work Orders', statusChip null, so the case's All + Status Approved start (QA lead decision 19 Oct) was not reproduced; the script still uses the older Work Orders tab route. Board half, attempt 2: left 5424 before and after Back (sideways 0), top card S1-1071 index 5 before and after, offset 8 -> 2 px, fullyShown, drift -19 px (attempt 1 the same: S1-1028, left 560). Tech half, attempt 1: before scrollTop 700 / scrollLeft 275, top row S1-1042; numberLink 0, tries [], step9.workOrderPageOpened=false; the 'after' readings (scroll 0/0, search gone, top row S1-915) come from Back going to an earlier page, not from a work order, so they are not a product result. s9-wo-page.png is identical to s7-s8 (no work order opened). Attempt 2 ended with 'page.evaluate: TypeError: Failed to fetch' before the Tech View readings. Do not use C96916-s10-tech-after-back.png or C96916-end.png as evidence: they are from attempt 1's invalid Back.",
+  "todo": "Re-run by hand (or fix the script): start on the All tab with Status: Approved and the search, repeat steps 1 to 5 to confirm All and Status: Approved come back, then in Tech View click a row in view (a customer name cell), press Back and check steps 9 and 10."
+ },
+ "C96924": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 5: with \"ZZAUTOTEST F2 Tech Grouping\" searched, Tech View is split into groups, one per lead technician, with a thin grey line between groups.",
+   "Step 6: Ayesha Khan's header shows her initials \"AK\", her name and the number 3.",
+   "Step 7: 3 rows are listed under her (S1-1104, S1-1105, S1-1106); Bilal Muzamil shows 2 with 2 rows; Unassigned shows 1 with 1 row.",
+   "Steps 8 and 9: with Status: Approved only, Ayesha Khan's number becomes 2 and 2 rows are listed (S1-1104, S1-1105): 3 minus the 1 Estimate."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96924-all.png",
+   "evidence/prod-2026-10-22/C96924-approved.png"
+  ],
+  "reason_for_reviewer": "Ayesha Khan = [Tech-A] (two Approved, one Estimate), Bilal Muzamil = [Tech-B]. Header text 'AK Ayesha Khan 3 3 work orders', avatar AK. Counts equal row counts in every group, before and after the filter. The header's own border reads 0 px; the separator is drawn on the rows around it and is visible in both pictures. Differences from staging are only pin and collapsed states left from other tests."
+ },
+ "C96925": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 5: with \"ZZAUTOTEST F2 Unassigned First\" searched, Tech View's first group is Unassigned and it holds exactly the two work orders with no lead, S1-1110 and S1-1111, before every technician group.",
+   "Steps 6 and 7: after dragging Ayesha Khan's group by its six-dot handle above Unassigned, Unassigned is still first and Ayesha Khan's group lands right after it."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96925-after-drag.png"
+  ],
+  "reason_for_reviewer": "Before: Unassigned(2) S1-1110 S1-1111, then Aaron Baker(0), Aaron Zed(0), Admin ShopView(0). After the drag: Unassigned(2), Ayesha Khan(1), Aaron Baker(0), Aaron Zed(0). Ayesha Khan = [Tech-A]. There is no picture of the state before the drag; the before order is from the reading only. Note: this drag leaves Ayesha Khan's group saved just after Unassigned on production, which changes the starting order for later tests (see C96935)."
+ },
+ "C96931": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 7: Bilal Muzamil's group (the second technician) was collapsed, so whether it shows \"No work orders\" was not seen.",
+  "bold_steps": [
+   7
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). One group the test names was collapsed, so its text could not be read; everything else meets the expected result.",
+   "Steps 1 to 5: with \"ZZAUTOTEST F2 No Work Text\" searched, Branko Cicovic (the technician who leads nothing for this customer) still has a group, with count 0 and the text \"No work orders\".",
+   "Steps 6 and 7: with S1-1117 searched, Ayesha Khan's group lists S1-1117, and Unassigned and Branko Cicovic's group each show \"No work orders\"; every other open empty group shows the same text.",
+   "Step 7, Bilal Muzamil: NOT SEEN. His group is collapsed (left from an earlier choice), so only its header (count 0) shows and no text is visible.",
+   "The wording \"No work orders assigned\" from the design does not appear anywhere."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96931-by-number.png",
+   "evidence/prod-2026-10-22/C96931-by-name.png"
+  ],
+  "reason_for_reviewer": "[Tech-A]=Ayesha Khan (S1-1117), [Tech-B]=Bilal Muzamil (1 work order, group collapsed so its number was not read), [Tech-C]=Branko Cicovic, no lead S1-1119. byNumber: Unassigned count 0 text 'No work orders'; Ayesha 1 row S1-1117; Bilal 0 collapsed, text null; Branko 0 'No work orders'. The staging pass accepted the same collapsed Bilal group, but the Expected names Ralph Edwards' group (= Bilal) as showing the text, so it is not observed. One manual check settles it: with S1-1117 searched in Tech View, click the arrow on Bilal Muzamil's header to expand it and read whether it says \"No work orders\"."
+ },
+ "C96932": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 4: in Tech View, clicking the customer name in row S1-1099 opened that work order.",
+   "Steps 5 and 6: clicking an empty part of the same row also opened it.",
+   "Steps 7 and 8: a press with a movement of one or two pixels also opened the work order and did not start a drag.",
+   "Steps 9 and 10: the row's three-dots button opened its menu (Reassign lead technician, Unassign) and the work order did not open.",
+   "Step 11: pressing and moving the pointer well away started a drag: the row faded and a small card for S1-1099 followed the pointer, with a blue drop line (picture). It was let go in place and the lead stayed Ayesha Khan."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96932-dragging.png",
+   "evidence/prod-2026-10-22/C96932-more-actions.png"
+  ],
+  "reason_for_reviewer": "customerClick, emptyClick and tinySlip all landed on /workorders/<id>/lines (the work order). moreActions: URL stayed on the list, menu 'Reassign lead technician', 'Unassign'. clearMove reading says moving=false (the 'moving' marker was not caught), but the dragging picture plainly shows the lifted copy following the pointer and the drop line, which is what the Expected describes. leadAfter Ayesha Khan. Differences from staging: no Status filter in the URL and the menu has an extra 'Unassign' item, neither of which the Expected is about."
+ },
+ "C96933": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 6: with \"ZZAUTOTEST F2 Empty Unassigned Drop\" searched and Assigned to me off, the Unassigned group is still on screen, first, showing \"No work orders\"; Ayesha Khan's group holds S1-1101 and S1-1100.",
+   "Steps 7 and 8: S1-1100 dragged onto Unassigned lands there: Unassigned shows 1 (S1-1100), Ayesha Khan's count drops from 2 to 1, and the message \"Lead technician removed\" appears."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96933-after.png",
+   "evidence/prod-2026-10-22/C96933-before.png"
+  ],
+  "reason_for_reviewer": "Setup gave both work orders lead Ayesha Khan (S1-1100 fixed from no lead). before: Unassigned count 0, empty 'No work orders', first group; Ayesha 2. after: Unassigned 1 [S1-1100], Ayesha 1 [S1-1101]; toast 'Lead technician removed'. 0 differences from staging."
+ },
+ "C96935": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 7: on production other technicians' empty groups sat between Ayesha Khan's and Bilal Muzamil's, so Bilal Muzamil's header never met hers and the hand-over the test describes could not be seen.",
+  "bold_steps": [
+   7
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The group order on production did not match the test's set-up, so step 7 could not be seen as written; everything else meets the expected result.",
+   "Steps 1 to 5: with \"ZZAUTOTEST F2 Sticky Header\" searched, scrolling down through Ayesha Khan's 25 rows keeps her header (name and count 25) on screen just under the column header row, down to her last row.",
+   "Step 6 and 7: on production the next group after Ayesha Khan's is Aaron Baker's, not Bilal Muzamil's: her group had been moved to just after Unassigned by an earlier test. Aaron Baker's header pushed hers off and took her place, then each empty group's header did the same in turn, and later Bilal Muzamil's header took the place just under the column header row.",
+   "At every stop only one group header was held under the column headings."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96935-mid-500.png",
+   "evidence/prod-2026-10-22/C96935-stop-1250.png",
+   "evidence/prod-2026-10-22/C96935-stop-1375.png",
+   "evidence/prod-2026-10-22/C96935-stop-1875.png"
+  ],
+  "reason_for_reviewer": "Order on production: Unassigned, Ayesha Khan, Aaron Baker, Aaron Zed, Admin ShopView, Ahtasham Amjad, Ahtesham ABCPROD, Bilal Muzamil. Normal order puts Ayesha just before Bilal; the C96925 drag on production saved Ayesha just after Unassigned, so the case's 'no reordering' set-up was not met. Sticky spot by scroll: 250-1250 Ayesha Khan; 1375 Aaron Baker; 1500 Admin ShopView; 1625 Ahtasham Amjad; 1750 Ahtesham ABCPROD; 1875 Bilal Muzamil; 2000 Bilal Muzammil; copies [] at every stop (one header only). The namesTechA=false flags come from a text reading that drops the letter 's' ('Aye ha Khan'); the pictures show the full name. The hand-over pattern is the one the PRD quote describes, but the Expected names Bilal pushing Ayesha. One manual check settles it: reset or drag Bilal Muzamil's group to sit directly under Ayesha Khan's, then scroll from her last rows into his and watch his header push hers off."
+ },
+ "C368128": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 5: with \"ZZAUTOTEST F2 No Pin Assigned\" searched and Assigned to me off, every technician group header shows a pin control (Unassigned has none).",
+   "Steps 6 and 7: with Assigned to me on, the groups still shown (Admin ShopView, Bilal Muzamil) show no pin control.",
+   "Steps 8 and 9: Board View with Assigned to me on shows no pin control on any column header either.",
+   "Step 10: turning Assigned to me off brings the pin controls back on every technician group."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368128-assigned-on.png"
+  ],
+  "reason_for_reviewer": "off: Unassigned no pin; Ayesha Khan, Aaron Baker, Aaron Zed, Admin ShopView, Ahtasham Amjad: pin. on: Admin ShopView no pin, Bilal Muzamil no pin. boardOnPins 0. offAgain same as off. Differences from staging are only which groups were read first. There is no picture of Board View with Assigned to me on, and none of Assigned to me off; those come from the readings."
+ },
+ "C368129": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 3: with \"ZZAUTOTEST F2 No Total Row\" searched, List still ends with its total row under Total Price, reading $0.00.",
+   "Steps 4 and 5: Tech View with the Total Price column shown.",
+   "Steps 6 and 7: Tech View has no total row: nothing below Ayesha Khan's group (S1-1102, S1-1103) or after the last group adds up prices."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368129-list.png",
+   "evidence/prod-2026-10-22/C368129-tech.png"
+  ],
+  "reason_for_reviewer": "list total row ['$0.00']; tech total rows []; Tech View headers include 'Total Price'; the last rows of the Tech View table are group headers and 'No work orders', with nothing after. The precondition asks for priced work orders; both have no lines, so the totals are $0.00 (the staging pass had the same). The Expected is only about the row being there in List and absent in Tech View, so the amount does not change the verdict."
+ },
+ "C96939": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 4: with \"ZZAUTOTEST F2 Tech Pin Limit\" searched, every technician group header in Tech View has a pin control.",
+   "Steps 5 to 7: Bilal Muzamil, Aaron Baker and Aaron Zed were pinned (3 pins; their controls now read \"Unpin ...\").",
+   "Step 8: the pin controls on Ayesha Khan's and Branko Cicovic's headers are disabled; pointing at Ayesha Khan's shows \"You can pin up to 3 technicians.\" Clicking it pins nobody: still 3 pins."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96939-three-pinned.png"
+  ],
+  "reason_for_reviewer": "Technicians stand in for the case's names (Ralph/Theresa/Kristin pinned = Bilal Muzamil/Aaron Baker/Aaron Zed; Esther = Ayesha Khan). after3: three pressed=true 'Unpin ...'; Ayesha and Branko pressed=false disabled=true. fourthTip 'You can pin up to 3 technicians.'; afterFourth still the same three; savedPins has 3 ids. The script unpinned all afterwards."
+ },
+ "C96937": {
+  "verdict": "Blocked",
+  "failed_steps": "Blocked at steps 3 and 5: the work orders were set up for the staff member \"Admin ShopView\", but production is signed in as a different person, so the test's \"my\" work orders did not exist.",
+  "bold_steps": [
+   3,
+   5
+  ],
+  "observed": [
+   "Result: Blocked on production (v26.43.0-ffea43c). The set-up used the wrong person for \"me\", so the first expected result could not be checked.",
+   "Set-up: S1-1155 is led by Admin ShopView, S1-1156 is led by Ralph Edwards, and S1-1157 has no lead with Admin ShopView as its Service Advisor; Jenny Wilson is pinned. On production the signed-in person is not Admin ShopView (the initials at the top right read \"S(\").",
+   "Step 3: List with Assigned to me on shows only S1-1155 (its Service Advisor is Service Advisor No Reports (Admin)); S1-1157 does not show, because it is not assigned to the signed-in person.",
+   "Step 5: Tech View with Assigned to me on shows only Admin ShopView's group holding S1-1155. Ralph Edwards, Esther Howard and the pinned Jenny Wilson are hidden. Unassigned is not shown because no unassigned work order matched.",
+   "Step 6: with Assigned to me off every group comes back (34 groups): Unassigned first, then Jenny Wilson still pinned, and Ralph Edwards and Esther Howard shown."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96937-assigned-on.png"
+  ],
+  "reason_for_reviewer": "s2-batchA.mts line 23 takes me = by('Admin ShopView'), and the set-up gives [WO-1] lead = that staff member and [WO-3] advisor = that staff member. On production Assigned to me matched S1-1155 (lead Admin ShopView, advisor 'Service Advisor No Reports (Admin)') and not S1-1157 (no lead, advisor Admin ShopView), which shows the signed-in user is not Admin ShopView; the C368128 run on production shows the same (Assigned to me matched through the advisor 'Service Advisor No Reports (Admin)'). So 'Unassigned holding [WO-3]' and 'your own group holding [WO-1]' were never set up. The parts that were seen agree with the Expected: Ralph/Esther/pinned Jenny hidden, everything back with Jenny still pinned when off. Not a product failure.",
+  "todo": "Find the signed-in production user's own staff record, make it a technician at this location, then set [WO-1] led by that user and [WO-3] with no lead and that user as Service Advisor; re-run steps 3 to 6."
+ }
+}

@@ -1,0 +1,320 @@
+{
+ "C96950": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 5 (Admin ShopView, All tab, search \"ZZAUTOTEST F2 Empty Columns\", Board View): Jenny Wilson's empty column and the empty Unassigned column each read \"Drag a work order here to assign it\".",
+   "Steps 6 to 10 (the view-only user in a second browser, same search, Board View): the same two columns each read \"No work orders\".",
+   "Each empty column shows a single line of text under a small clipboard icon; no other wording was seen."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96950-admin.png",
+   "evidence/prod-2026-10-22/C96950-viewonly.png"
+  ],
+  "reason_for_reviewer": "Readings: admin jenny/unassigned = \"Drag a work order here to assign it\"; viewOnly (perms 2) jenny/unassigned = \"No work orders\"; 0 differences from staging. Jenny Wilson's column was read by her staff id after scrolling to it; the pictures show the Unassigned column and other empty columns with the same wording, but Jenny's own column is off-screen in both pictures. C96950-error.png is a leftover from an earlier attempt (the result record has no error and the picture is identical to C96950-admin.png)."
+ },
+ "C96959": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Step 3 (Board View, search \"ZZAUTOTEST F1 Header Counts\"): the headers read Esther Howard 3, Ralph Edwards 1, Unassigned 0.",
+   "Steps 4 to 6: straight after dragging one of Esther Howard's cards to Ralph Edwards' column, without a reload: Esther Howard 2, Ralph Edwards 2, Unassigned 0.",
+   "Steps 7 to 9: straight after Reassign lead technician > Unassigned on Ralph Edwards' card: Ralph Edwards 1, Unassigned 1, Esther Howard still 2, with the message \"Lead technician removed\".",
+   "Step 10: Tech View's group headers show the same three numbers: Unassigned 1, Esther Howard 2, Ralph Edwards 1."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96959-after-dialog.png",
+   "evidence/prod-2026-10-22/C96959-tech.png",
+   "evidence/prod-2026-10-22/C96959-after-drag.png",
+   "evidence/prod-2026-10-22/C96959-before.png"
+  ],
+  "reason_for_reviewer": "before {esther 3, ralph 1, unassigned 0}; afterDrag {2,2,0}; afterDialog {esther 2, ralph 1, unassigned 1}; tech {2,1,1}. Leads were reset from the records first (4 x 201). Only differences from staging are pin ids and the 4th column name (data). C96959-error.png is a stale List-view picture from an earlier attempt; the record has no error."
+ },
+ "C368163": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 5 and 8: Jenny Wilson's row in the full list was not read, and no Office User exists on production to search for at step 8.",
+  "bold_steps": [
+   5,
+   8
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c): step 8 could not be judged because no Office User was set up on production, and at step 5 the third technician's row was not read; every other step meets the expected result.",
+   "Step 5: the dialog reads \"Reassign lead technician\" with \"S1-1167 · ZZAUTOTEST F1 Dialog Search\" under it, Esther Howard is marked \"Current\", the first row is Unassigned and the technicians follow with no grouping. NOT CHECKED: whether Jenny Wilson (the third technician) is in the list; only the first rows were read.",
+   "Steps 6 and 7: \"Ral\" and \"ral\" give the same list: Unassigned, Maximiliana Fitzgerald-Montgomery and Ralph Edwards. Esther Howard drops out. Maximiliana's surname contains \"ral\", so only names containing the letters remain.",
+   "Step 8: \"Olive\" lists no technician and the dialog says No technicians match \"Olive\". NOT SETTLED: production has no Office User called Olive (that person could not be created on production), so this does not show that an Office User is left out.",
+   "Step 9: \"zzqx\" shows No technicians match \"zzqx\".",
+   "Step 10: clearing the box brings back the whole list (57 rows, as at the start).",
+   "Step 11: Cancel leaves Esther Howard as the lead and no message appears. Step 13: the search box is empty when the dialog opens again.",
+   "Step 17: Tech View's dialog narrows the same way to Ralph Edwards (and Maximiliana Fitzgerald-Montgomery), and after Cancel the row stays in Esther Howard's group."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368163-board-Ral.png",
+   "evidence/prod-2026-10-22/C368163-tech-Olive.png",
+   "evidence/prod-2026-10-22/C368163-board.png",
+   "evidence/prod-2026-10-22/C368163-end.png"
+  ],
+  "reason_for_reviewer": "Board and Tech readings identical: top 'S1-1167 · ZZAUTOTEST F1 Dialog Search', current 'EH Esther Howard Current · 7 open', rows[0]=Unassigned, nonRowItemsInList [], full 57 = cleared 57, Ral/ral -> [Unassigned, Maximiliana Fitzgerald-Montgomery, Ralph Edwards], zzqx empty text 'No technicians match “zzqx”', afterCancel message [] lead Esther Howard, searchOnReopen ''. Step 8: the script hard-codes 'Olive'; seed-staff.json records zz.wob.olive.office as 'NO ROLE FOUND' (no Office User role at Truck Hill 1 during seeding), so no Office User exists to search for. Step 5: detail.rows only captures the first 12 rows (to Brenda Martinez); Jenny Wilson (Tech-C) is eligible at the location (seed-staff-extra) and shows as a Tech View group, but her dialog row was not read. Precondition 'no other eligible technician has ral in its name' is not met on production (Maximiliana Fitzgerald-Montgomery), as on staging; the behaviour rule still holds. Manual check that settles both: create an Office User 'Olive Office' at Truck Hill 1, open the dialog, scroll to confirm Jenny Wilson is listed, then type 'Olive' and confirm no technician appears."
+ },
+ "C368134": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 3: the card for \"ZZAUTOTEST F1 Prompt Wording\" (S1-1168) was dragged from Esther Howard's column to Ralph Edwards' column and a question opened.",
+   "Step 4 (title): \"Clear Esther Howard's scheduled shifts?\"",
+   "Step 4 (text): \"Esther Howard has shifts scheduled for this whole work order. Clearing removes shifts that haven't started and ends one that's under way now. Shifts on individual lines and recorded time don't change.\"",
+   "Step 4 (buttons): Cancel, Keep Shifts and Clear Shifts (3 buttons) plus a close (X). The buttons capitalise \"Shifts\"; the words are the same.",
+   "Step 5: after Keep shifts the message \"Lead technician updated\" shows, Ralph Edwards is the lead and Esther Howard's shift is still on the Schedule.",
+   "No-name title not checked by hand."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368134-prompt.png",
+   "evidence/prod-2026-10-22/C368134-end.png"
+  ],
+  "reason_for_reviewer": "title exact; dialog text exact; buttons text 'Cancel' / 'Keep shifts' / 'Clear shifts' with CSS text-transform uppercase, shown on screen as 'Keep Shifts' / 'Clear Shifts' (capitalisation only, which the house rule does not count as a word difference; staging passed the same). after: lead S1-1168 = Ralph Edwards, shifts ['Esther 2026-10-23 12:00-16:00 whole'], message 'Lead technician updated'. Only differences from staging are work-order numbers."
+ },
+ "C154888": {
+  "verdict": "Blocked",
+  "failed_steps": "Blocked at step 4: the shift meant to be running at the moment of the change had not started yet, because the location's time zone does not match the browser's, so the running-shift check could not be made.",
+  "bold_steps": [
+   4
+  ],
+  "observed": [
+   "Result: Blocked on production (v26.43.0-ffea43c): the \"running\" shift for today was in fact still in the future when the lead was changed, so the part of the test about trimming a running shift could not be checked.",
+   "Set-up: fresh customer \"ZZAUTOTEST F1 Shift Trim 78897\", work order led by Esther Howard, with three whole-work-order shifts made for yesterday, today and tomorrow.",
+   "Step 4: at 5:58 PM (browser time) the card was dragged to Ralph Edwards; the question about her shifts appeared and Clear shifts was clicked. Ralph Edwards is now the lead.",
+   "Step 6, yesterday: the ended shift is still there, unchanged.",
+   "Step 6, tomorrow: the future shift is gone.",
+   "Step 6, today: today's shift is gone completely. But on the same clock it ran from 8:45 PM to 11:45 PM, nearly three hours after the change, so it had not started; removing it is what the rules say for a shift that has not started. No shift was under way, so the trimming could not be seen.",
+   "The Schedule pictures searched for the work order show \"No matches\" on all three days and do not show Esther Howard's row, so they do not help settle this."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C154888-schedule-today.png",
+   "evidence/prod-2026-10-22/C154888-schedule-yesterday.png",
+   "evidence/prod-2026-10-22/C154888-schedule-tomorrow.png",
+   "evidence/prod-2026-10-22/C154888-end.png"
+  ],
+  "reason_for_reviewer": "Script times are Asia/Karachi (WOB_LOC_TZ). made: -1 08:00 240m, 0 16:45 180m, 1 08:00 240m (startTime is sent in the location's zone). Read back in Karachi time: yesterday 12:00-16:00, today 20:45-23:45, tomorrow 12:00-16:00, i.e. the location is 4 h behind Karachi (about UTC+1), not Asia/Karachi. changedAt 17:58 Karachi < today's start 20:45 Karachi, so the 'running' shift was a future shift. after.shifts = ['Esther 2026-10-21 12:00-16:00 whole'] only: ended shift kept (meets bullet 1), future shifts removed (meets bullet 2), running-shift trim (bullet 3) not exercised. The same zone mismatch is visible in C368134/C154890 (an 08:00 shift reads 12:00-16:00). Schedule pictures: search S1-1173 shows 'No matches' on each day (even yesterday, whose shift still exists), so they are not evidence either way. Not a Failed: the reading does not contradict S4-R25.",
+  "todo": "Set Truck Hill 1's Timezone to Asia/Karachi (Locations > edit > Timezone), prove it with tz-match-check.mjs (Rule 125), then re-run this test so today's shift starts before the change and ends after it."
+ },
+ "C154890": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 3: the card for \"ZZAUTOTEST F1 Clear Fails\" (S1-1174) was dragged from Esther Howard to Ralph Edwards and the question about her shifts opened.",
+   "Steps 4 and 5: saving was made to fail (the change was refused, standing in for the network being off) and Clear Shifts was clicked.",
+   "Step 6: the alert reads \"Failed to update lead technician, please try again.\" with a Close button, and the card is back in Esther Howard's column.",
+   "Step 7: Esther Howard is still the lead and her whole-work-order shift for tomorrow is still on the Schedule. Nothing was half done.",
+   "Clearing-only failure not checked by hand."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C154890-after-failed-save.png",
+   "evidence/prod-2026-10-22/C154890-end.png"
+  ],
+  "reason_for_reviewer": "refusedCalls: POST .../board-move (refused by the script in place of switching the network off, as on staging). message ['Failed to update lead technician, please try again.'], cardBack true, after.lead Esther Howard, after.shifts ['Esther 2026-10-23 12:00-16:00 whole'] (the 8:00-12:00 shift in the location's zone, shown in Karachi time). 0 differences from staging."
+ },
+ "C96979": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 6 and 9: the run did not record which columns Tech View's menu offers, and it did not open Tech View as a user without financial access.",
+  "bold_steps": [
+   6,
+   9
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c): steps 6 and 9 were not fully recorded; every other step meets the expected result.",
+   "Step 3 (brand-new user Nora New, List): On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total Price, Created On. There is no Assigned Techs column.",
+   "Step 5 (her Tech View): exactly 13 columns in this order: Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created On, Total Price. On Site, VIN/Serial # and Lead Technician are not shown.",
+   "Step 6: in the Column Selection menu Assigned Techs is on, and On Site, VIN/Serial # and Lead Technician are off. NOT CHECKED: whether those three are offered in the menu (the list of offered columns was not recorded).",
+   "Step 9: NOT CHECKED. The run did not open Tech View as a user without See Financial Data, so the 12-column list without Total price was not seen.",
+   "Steps 14 and 18 (my own List): Service Advisor stays off and Created On stays on after the reload, and again after switching to Tech View and back and reloading.",
+   "Pre-release List choice not checked."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96979-nora-techview.png",
+   "evidence/prod-2026-10-22/C96979-end.png"
+  ],
+  "reason_for_reviewer": "nora.prefBefore null; list.heads 14 columns, no Assigned Techs; tech.heads = the 13 in PRD order; tech.on = unreceived_part_requests_count, unit, vehicle, progress, service_advisor, clocked_in_technicians, lines_count, assigned_techs, start_date, total_price (vehicle_here, vin, technician absent = off). The script (s5-batchB.mts C96979) records only onKeys of the Tech View menu, not the offered items, and has no User-C (no-financial) pass; C96986 on production shows Nate Nofinance's Tech View after his permission was turned off (12 columns ending Lines, Assigned Techs, Created On, menu offering On Site, VIN/Serial #, Lead Technician), but that is a different test with a user who had a saved choice, so it is not used to settle this one. mineAfterReload and mineAfterSwitchAndReload both lack serviceAdvisor and include startDate. Manual check: as a new user, open Tech View's Column Selection and confirm On Site, VIN/Serial # and Lead Technician are listed (off); then as a brand-new user without See Financial Data open Tech View and read the 12 columns."
+ },
+ "C96980": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 and 2 (Fay Financial, Board View, \"ZZAUTOTEST F2 Board Default Fields\"): the S1-1176 card shows the number, Approved, the customer, unit ZZF2BD, Progress 0%, Esther Howard and $0.00.",
+   "Her Fields to display has Lead technician, Customer, Asset, Progress and Total price on (number, unit and status always show). VIN/serial, service advisor, clocked in, line count, line technicians, estimated hours, on-site and created date are off.",
+   "Step 3 (Nate Nofinance): the same defaults without total price; his card shows no dollar amount, and Total price is not offered in his Fields to display."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96980-fay.png",
+   "evidence/prod-2026-10-22/C96980-nate.png",
+   "evidence/prod-2026-10-22/C96980-end.png"
+  ],
+  "reason_for_reviewer": "fay.on = technician, company_name, vehicle, progress, total_price; offered 13 incl. total_price. nate.on = technician, company_name, vehicle, progress; offered 12, no total_price. Nate's role had seeFinancialData false (roleViewOnlyBefore). 0 differences from staging. Note: Asset is ticked on for both, but the seeded asset has only a year (no make/model), so no asset line is visible on the card, exactly as on staging; this is test data, not a product difference."
+ },
+ "C96986": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Set-up: with See Financial Data on, Nate Nofinance's Tech View showed Total Price and his card showed $0.00; his saved choices had Total price on in both views.",
+   "Steps 1 to 3 (See Financial Data turned off, Tech View, \"ZZAUTOTEST F2 No Dollar Amounts\"): no Total Price column, the row shows no dollar amount, and the Column Selection menu does not offer Total price.",
+   "Step 4: Status, Assigned to me, Technician and Asset on Site offer no dollar-amount option.",
+   "Step 5 (Board View): the card shows no dollar amount, and Fields to display does not offer Total price. His earlier saved choice did not bring any dollar value back.",
+   "List is as production shows it for this user (no Total Price column)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96986-techview.png",
+   "evidence/prod-2026-10-22/C96986-board.png",
+   "evidence/prod-2026-10-22/C96986-end.png"
+  ],
+  "reason_for_reviewer": "setOn 200 then setOff 200 (seeFinancialData false). withoutFinance: techHeads 12 (no Total Price), techOffered has no Total price, techRowDollars [], filterDollars [], cardDollars [], boardOffered 12 without Total price; pref had totalPrice true in tech and board beforehand. Only difference from staging: production also has the Technician filter chip (list of names, no dollar option)."
+ },
+ "C96993": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 4 (Board View, \"ZZAUTOTEST F3 Avatar Group 8913\", line technicians on): the S1-1178 card shows an avatar group of 4: EH, RE, DO, JW.",
+   "Step 5: hovering each shows Esther Howard, Ralph Edwards, Dana Ortiz, Jenny Wilson. Jenny Wilson is there only because of her Schedule shift on Line 3.",
+   "Steps 6 to 8: Tech View's Assigned Techs cell shows the same 4 avatars with the same names.",
+   "Steps 9 and 10: List's Column Selection does not offer Assigned Techs."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96993-board.png",
+   "evidence/prod-2026-10-22/C96993-tech.png",
+   "evidence/prod-2026-10-22/C96993-end.png"
+  ],
+  "reason_for_reviewer": "Lead Esther Howard; giveLine Ralph -> line 1, Dana -> line 2 (200, 200); Jenny Wilson only via a Schedule shift on line 3 ('ok'). board/tech list EH RE DO JW with hovers matching, plus null. listOffers has no Assigned Techs. Differences from staging are only the work-order id."
+ },
+ "C96994": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 5 (Board View, line technicians on): the card shows 2 avatars, EH first (hover: Esther Howard), then RE (hover: Ralph Edwards).",
+   "Esther Howard appears once although she is the lead and on Line 1; Ralph Edwards appears once although he is on Lines 2 and 3.",
+   "Steps 6 to 9: Tech View's Assigned Techs cell shows the same 2 avatars, Esther Howard first, each once."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96994-board.png",
+   "evidence/prod-2026-10-22/C96994-tech.png",
+   "evidence/prod-2026-10-22/C96994-end.png"
+  ],
+  "reason_for_reviewer": "giveLine: Esther -> line 1, Ralph -> lines 2 and 3 (200 x3). board 'Line technicians EH RE', tech 'EH RE', hovers Esther Howard / Ralph Edwards. Differences from staging are only the work-order id."
+ },
+ "C96995": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 4 (Board View, line technicians on): the card shows 4 avatars (EH, RE, DO, JW) then \"+2\"; 4 + 2 = 6.",
+   "Step 5: hovering each avatar shows only its own name: Esther Howard, Ralph Edwards, Dana Ortiz, Jenny Wilson.",
+   "Step 6: hovering \"+2\" shows \"Kristin Watson, Theresa Webb\", so all 6 can be found by name.",
+   "Steps 7 to 11: Tech View's Assigned Techs cell behaves the same: 4 avatars and \"+2\", the same single names on hover, and \"+2\" lists Kristin Watson and Theresa Webb."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96995-board.png",
+   "evidence/prod-2026-10-22/C96995-tech.png",
+   "evidence/prod-2026-10-22/C96995-end.png"
+  ],
+  "reason_for_reviewer": "giveLine x5 (200). board and tech list: EH/RE/DO/JW each with a single hover name, '+2' hover ['Kristin Watson, Theresa Webb']; whole 'EH RE DO JW +2'. Each hover reading holds exactly one name, so no tooltip lingered from the previous avatar."
+ },
+ "C96996": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Step 4 (Board View, \"ZZAUTOTEST F3 Blank Technician 36687\", line technicians on): S1-1181 (no lead, no line technician) has no technician field; S1-1182 shows RE (Ralph Edwards); S1-1183 shows EH (Esther Howard). Only 1 of the 3 is blank.",
+   "Step 7 (Tech View): the Assigned Techs cell is empty for S1-1181, shows RE for S1-1182 and EH for S1-1183."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96996-board.png",
+   "evidence/prod-2026-10-22/C96996-tech.png",
+   "evidence/prod-2026-10-22/C96996-end.png"
+  ],
+  "reason_for_reviewer": "ids a=S1-1181 (no lead, no line tech), b=S1-1182 (Ralph on the line), c=S1-1183 (lead Esther). board: a's line-technicians field is absent (blank), b 'RE', c 'EH'; tech: a '', b 'RE', c 'EH'. Picture confirms the card mapping."
+ },
+ "C368141": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 3 and 4: a brand-new user who never changed anything (Nora New, seen in the same run under the companion test) has Assigned Techs on in Tech View, directly to the right of Lines.",
+   "Steps 5 and 6: with Assigned Techs turned off in the Column Selection menu, its column no longer shows.",
+   "Steps 7 and 8: turned back on, the columns read Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created On, Total Price: Assigned Techs is again directly to the right of Lines."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368141-on.png",
+   "evidence/prod-2026-10-22/C96979-nora-techview.png",
+   "evidence/prod-2026-10-22/C368141-end.png"
+  ],
+  "reason_for_reviewer": "This script (s7-batch.mts C368141) uses the admin's own user and first switches Assigned Techs off (startOn false is that deliberate state), so the brand-new-user default for steps 3-4 comes from the same production run's C96979 reading for Nora New (a never-configured Admin): tech.heads '... Lines, Assigned Techs, Created On, Total Price' and assigned_techs in tech.on; staging's pass used the same source. Turned on: rightOfLines 'Assigned Techs'; turned off: afterOff false (column absent)."
+ },
+ "C368142": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Step 1: work order S1-1185 (\"ZZAUTOTEST F3 Scheduled Techs Lines 6658\"), no lead, three approved lines with no labor technician and Schedule shifts on lines 2 and 3.",
+   "Step 2: Line 2's Labor row reads \"Jenny Wilson\" instead of \"Unassigned\".",
+   "Step 3: Line 3's Labor row reads \"Dana Ortiz, Ralph Edwards\" (2 names).",
+   "Step 4: neither row shows a \"Needs techs\" badge or any other badge. Line 1, with nobody scheduled, still reads Unassigned."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368142-lines.png",
+   "evidence/prod-2026-10-22/C368142-end.png"
+  ],
+  "reason_for_reviewer": "shifts ok x3 (Jenny on line 2; Ralph and Dana on line 3); labor rows: 'Unassigned', 'Jenny Wilson', 'Dana Ortiz, Ralph Edwards'; needsTechs false. The only badges on the page are the line status (Approved) and part status badges on the line/part rows, not on the Labor rows; the '(General Labor)' box in the picture is a hover tooltip."
+ },
+ "C368143": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 and 2: on the work order for \"ZZAUTOTEST F3 Unassigned Labor Row\", Line 1 has no labor technician and nobody scheduled; its Labor row reads \"Unassigned\".",
+   "Step 3: after Ralph Edwards was set as Line 1's labor technician, the row reads \"Ralph Edwards\". The other lines still show their scheduled technicians."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368143-lines.png",
+   "evidence/prod-2026-10-22/C368143-after.png",
+   "evidence/prod-2026-10-22/C368143-end.png"
+  ],
+  "reason_for_reviewer": "labor before: line 1 'Unassigned'; giveLine1 200; labor after: line 1 'Ralph Edwards'. As on staging, Ralph Edwards was given to Line 1 with the same save the labor screen makes, not by clicking through Edit labor."
+ },
+ "C96997": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 and 2 (Admin, work order S1-1187, Lines tab): Line 1 shows its story \"Brought unit in. Completed inspection.\" and there is no check mark anywhere on the line.",
+   "Step 3 (Esther Howard, technician work order mode): the same line shows the story and a Start button, with no check mark."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96997-lines-admin.png",
+   "evidence/prod-2026-10-22/C96997-lines-tech-mode.png",
+   "evidence/prod-2026-10-22/C96997-end.png"
+  ],
+  "reason_for_reviewer": "Story saved 201. admin.checkIcons [] and techMode.checkIcons [] while other icons were read (expand_more, edit, add, ...), so the reading works. Tech mode user Esther Howard (perms 6); her page has no Rate/Margin/Total columns and no Parts/Finance tabs, which is the technician work order mode."
+ },
+ "C96999": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 and 2: work order S1-1188, Line 1 with no tech story: the Story row reads \"Add tech story for this line\", and there is no check mark.",
+   "Step 3: compared with the same kind of line on production before this release (picture taken 16 Oct 2026 on the earlier production build): the same Story row with the same \"Add tech story for this line\" prompt, Labor row below it, same layout, no new mark and nothing missing."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96999-lines-admin.png",
+   "evidence/staging-full-2026-10-14/C96999-production-line.png",
+   "evidence/prod-2026-10-22/C96999-production-line.png"
+  ],
+  "reason_for_reviewer": "admin.storyRows include 'Add tech story for this line', checkIcons []. The run's own 'production' comparison (S1-914 'Bugtest') is on today's production, which already carries this release, so it is not a 'before' picture; the before reference used is evidence/staging-full-2026-10-14/C96999-production-line.png (production v26.40.19-d2441a9, line 'EMpty LIne', no story): Story 'Add tech story for this line', Labor row, no mark. Layout matches."
+ },
+ "C96998": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Set-up: the shop's \"Require tech stories\" setting was off; it was turned on for this check and put back off afterwards (both read back).",
+   "Step 1: Line 1's story \"First note\" was added and saved; the row shows \"First note\".",
+   "Step 2: edited to \"First note, edited\" and saved; the edited text shows.",
+   "Step 3: Complete on Line 2 with no story opens the \"Tech stories\" window asking for the story, with \"Complete Line\" unavailable; the line is not completed.",
+   "Step 4: after adding \"Second note\", Line 2 completes."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96998-complete-without-story.png",
+   "evidence/prod-2026-10-22/C96998-edit-saved.png",
+   "evidence/prod-2026-10-22/C96998-add-saved.png",
+   "evidence/prod-2026-10-22/C96998-complete-with-story.png"
+  ],
+  "reason_for_reviewer": "requireTechStories false -> true (readBack true) -> false (readBack false). add rowNow 'First note'; edit rowNow 'First note, edited', storedLine1 same; completeNoStory dialog 'Tech stories ... Tech Story 0 Cancel Complete Line', status stays 'authorized'; add2 'Second note'; completeWithStory status 'complete'. Same as staging's pass."
+ }
+}
