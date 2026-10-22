@@ -1,0 +1,40 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - batch14"
+ },
+ "results": {
+  "C96987": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: a new Admin user who had never chosen a spacing (no saved choice), and customer \"ZZAUTOTEST F1 Density Choices\" with Approved work order S1-1566, no lead technician.",
+    "Step 1: List has no density button in the toolbar.",
+    "Step 2: Tech View opens with a density button in its toolbar.",
+    "Step 3: the Density menu offers Compact, Regular and Comfortable, with Regular ticked."
+   ],
+   "pictures": [
+    "pictures-prod/C96987-1-prod-1022.png",
+    "pictures-prod/C96987-2-prod-1022.png"
+   ]
+  },
+  "C96991": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: customer \"ZZAUTOTEST F1 Density Load Failure\" with Approved work order S1-1568, no lead technician.",
+    "Step 1: Comfortable chosen in Tech View's Density menu.",
+    "Step 2: after a reload, the Density menu still has Comfortable ticked.",
+    "Step 3: the saved choice was made to fail to load on purpose (done by the test tool, standing in for the developer), then the page reloaded: the Density menu has Regular ticked.",
+    "The red message \"Oooops! An error occurred\" shows at the bottom right; it comes from the load failure made on purpose. The test's expected result does not mention a message either way.",
+    "The saved choice itself is still Comfortable afterwards, so nothing was lost."
+   ],
+   "pictures": [
+    "pictures-prod/C96991-1-prod-1022.png",
+    "pictures-prod/C96991-2-prod-1022.png"
+   ]
+  }
+ }
+}
