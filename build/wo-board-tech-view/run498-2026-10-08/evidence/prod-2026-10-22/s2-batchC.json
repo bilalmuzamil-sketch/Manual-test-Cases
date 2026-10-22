@@ -43,49 +43,78 @@
   "esther.howard": 1,
   "billy.nobill": 0
  },
- "C96929_midNumbers": [
-  "S1-1677",
-  "S1-1678"
- ],
- "C96929": {
-  "lead": "Carol Neal",
-  "seeded": {
-   "S1-1675": "Zeta Hauling",
-   "S1-1676": "Alpha Freight",
-   "S1-1677": "Mid Trucking S1-1677",
-   "S1-1678": "Mid Trucking S1-1678"
+ "C368161": {
+  "wo": "S1-1679",
+  "lead": "Theresa Webb",
+  "leadStaff": "4535d090",
+  "theresaLog": [],
+  "lineTech": "Jenny Wilson",
+  "created": {
+   "approve": 201,
+   "lead": 201,
+   "line": 201
   },
-  "otherWorkOrdersUnassigned": [
-   "S1-1664 -> no lead 201"
+  "olderWorkOrders": [
+   "S1-1396 approved lead=Theresa Webb"
   ],
-  "user": {
-   "email": "zzautotest.wob.sort.1792709200410@staging.shopview.local",
-   "role": "Admin",
-   "create": 201,
-   "savedPref": null
+  "lineTechsBefore": [
+   "Theresa Webb"
+  ],
+  "canned": "Test",
+  "editorOpen": 0,
+  "lineTechsAfterEditor": [
+   "Theresa Webb"
+  ],
+  "fallback": "the line editor did not give the line to Jenny Wilson; the same save the editor makes was sent: 200",
+  "lineTechsAfterFallback": [
+   "Jenny Wilson"
+  ],
+  "lineCalls": [
+   "POST /api/user/recent-entities/touch {\"type\":\"customers\",\"id\":\"273a0bd7-c720-4e74-a084-67cfb2cb2d17\"}",
+   "PUT /api/work-orders/lines/6cc699a0-a4f8-4bab-a09d-d0ca74b24be9/technicians {\"staffIds\":[\"bd39bb49-c650-48e7-8128-cebda29f96ba\"]}"
+  ],
+  "reach": {
+   "found": true,
+   "wasOpen": true
   },
-  "listSortHeader": [
-   "Customerarrow_drop_up "
+  "header": {
+   "avatar": "TW",
+   "hasImg": false,
+   "text": "TW Theresa Webb 2 2 work orders"
+  },
+  "rowAvatars": {
+   "avatars": [
+    "SA",
+    "TW",
+    "JW"
+   ],
+   "brokenImg": 0
+  },
+  "columnReached": 1,
+  "boardHeader": "TW",
+  "fieldsButton": "Column Selection",
+  "fieldsMenu": [
+   "Lead technician=true",
+   "Customer=true",
+   "Asset=true",
+   "VIN/serial=true",
+   "Progress=true",
+   "Service advisor=false",
+   "Clocked in=true",
+   "Line count=false",
+   "Line technicians=true",
+   "Estimated hours=true",
+   "Total price=true",
+   "On-site=true",
+   "Created date=false"
   ],
-  "list": [
-   "Alpha Freight",
-   "Mid Trucking S1-1678",
-   "Mid Trucking S1-1677",
-   "Zeta Hauling"
-  ],
-  "techGroupFound": true,
-  "tech": [
-   "Zeta Hauling",
-   "Alpha Freight",
-   "Mid Trucking S1-1677",
-   "Mid Trucking S1-1678"
-  ],
-  "boardColumnFound": true,
-  "board": [
-   "Zeta Hauling",
-   "Alpha Freight",
-   "Mid Trucking S1-1677",
-   "Mid Trucking S1-1678"
-  ]
+  "lineTechOn": "true",
+  "cardAvatars": {
+   "avatars": [
+    "TW",
+    "JW"
+   ],
+   "text": "S1-1679 Approved 3 Customer ZZAUTOTEST F2 Initials Avatar TRK-118 VIN/serial VIN ZZWOB179270930131 Estimated hours Est. 1.0 hrs Progress 0% Line technicians TW JW Lead technician Theresa Webb Total pr"
+  }
  }
 }

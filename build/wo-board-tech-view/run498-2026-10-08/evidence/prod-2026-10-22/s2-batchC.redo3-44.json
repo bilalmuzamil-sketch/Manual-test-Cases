@@ -1,0 +1,120 @@
+{
+ "roles": {
+  "count": 32,
+  "labels": [
+   "9898",
+   "ZZAUTOTEST Complete Only",
+   "Sales Representative",
+   "BIlal Bug Admin",
+   "Senior Service Advisor",
+   "Admin",
+   "Technician",
+   "66",
+   "Time Clock User",
+   "Parts Manager",
+   "ZZAUTOTEST Review Only",
+   "ZZAUTOTEST No Work Orders Or Vendors",
+   "ABC",
+   "ZZAUTOTEST WO View Only",
+   "Office User",
+   "ZZAUTOTEST No Vendor Order View",
+   "ZZAUTOTEST Receive Later",
+   "ZZAUTOTEST No Part Sales View",
+   "ZZAUTOTEST Lines Read Only",
+   "ZZAUTOTEST No Financial Data"
+  ],
+  "techRole": "31e70dbe-8d9f-485b-9e32-457acd069743",
+  "officeRole": "6b99183b-f9c4-44f3-a76e-aa8d61352160",
+  "tcRole": "36cbed0d-935b-455e-8ef0-03e4462de14d"
+ },
+ "staff_Olive": {
+  "role": "Office User",
+  "clockable": true,
+  "active": true,
+  "log": []
+ },
+ "staff_Tim": {
+  "role": "Time Clock User",
+  "clockable": true,
+  "active": true,
+  "log": []
+ },
+ "billable": {
+  "esther.howard": 1,
+  "billy.nobill": 0
+ },
+ "C368161": {
+  "wo": "S1-1679",
+  "lead": "Theresa Webb",
+  "leadStaff": "4535d090",
+  "theresaLog": [],
+  "lineTech": "Jenny Wilson",
+  "created": {
+   "approve": 201,
+   "lead": 201,
+   "line": 201
+  },
+  "olderWorkOrders": [
+   "S1-1396 approved lead=Theresa Webb"
+  ],
+  "lineTechsBefore": [
+   "Theresa Webb"
+  ],
+  "canned": "Test",
+  "editorOpen": 0,
+  "lineTechsAfterEditor": [
+   "Theresa Webb"
+  ],
+  "fallback": "the line editor did not give the line to Jenny Wilson; the same save the editor makes was sent: 200",
+  "lineTechsAfterFallback": [
+   "Jenny Wilson"
+  ],
+  "lineCalls": [
+   "POST /api/user/recent-entities/touch {\"type\":\"customers\",\"id\":\"273a0bd7-c720-4e74-a084-67cfb2cb2d17\"}",
+   "PUT /api/work-orders/lines/6cc699a0-a4f8-4bab-a09d-d0ca74b24be9/technicians {\"staffIds\":[\"bd39bb49-c650-48e7-8128-cebda29f96ba\"]}"
+  ],
+  "reach": {
+   "found": true,
+   "wasOpen": true
+  },
+  "header": {
+   "avatar": "TW",
+   "hasImg": false,
+   "text": "TW Theresa Webb 2 2 work orders"
+  },
+  "rowAvatars": {
+   "avatars": [
+    "SA",
+    "TW",
+    "JW"
+   ],
+   "brokenImg": 0
+  },
+  "columnReached": 1,
+  "boardHeader": "TW",
+  "fieldsButton": "Column Selection",
+  "fieldsMenu": [
+   "Lead technician=true",
+   "Customer=true",
+   "Asset=true",
+   "VIN/serial=true",
+   "Progress=true",
+   "Service advisor=false",
+   "Clocked in=true",
+   "Line count=false",
+   "Line technicians=true",
+   "Estimated hours=true",
+   "Total price=true",
+   "On-site=true",
+   "Created date=false"
+  ],
+  "lineTechOn": "true",
+  "cardAvatars": {
+   "avatars": [
+    "TW",
+    "JW"
+   ],
+   "text": "S1-1679 Approved 3 Customer ZZAUTOTEST F2 Initials Avatar TRK-118 VIN/serial VIN ZZWOB179270930131 Estimated hours Est. 1.0 hrs Progress 0% Line technicians TW JW Lead technician Theresa Webb Total pr"
+  }
+ }
+}
