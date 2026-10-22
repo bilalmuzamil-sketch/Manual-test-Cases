@@ -303,7 +303,11 @@ await run('C368154', async () => {
   const fresh = await mkUser('ZZAUTOTEST', `Fresh ${stamp}`, ADMIN_ROLE, 'fresh'); const v = await asUser(fresh); const o: any = {};
   try { const pg = v.page; o.savedBefore = (await prefFor()) ?? null; await pg.goto(APP + '/workorders', { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000);
     o.step2active = await pg.evaluate(`(['List','Tech View','Board View'].find(l => { const e = [...document.querySelectorAll('[aria-label="' + l + '"]')].find(x => x.getBoundingClientRect().width > 0); return e && (e.getAttribute('aria-pressed') === 'true' || /active|selected|bg-/.test(e.className)); }) || null)`);
-    await shot(pg, 'C368154-fresh-start'); await display(pg, 'Board View'); await pg.waitForTimeout(1500);
+    // 22 Oct 2026: step 4 rewritten by the QA lead's decision (PRD v73 S3-R11 / S6-R1: Board View has no density control) — Board View
+    // (step 3), then Tech View for the density reading (step 4), back to Board View for the fields (step 5). R holds the readings as they come.
+    R.C368154 = o;
+    await shot(pg, 'C368154-fresh-start'); await display(pg, 'Board View'); await pg.waitForTimeout(1500); await shot(pg, 'C368154-s3-board');
+    await display(pg, 'Tech View'); await pg.waitForTimeout(1500);
     await pg.locator('[data-test-id="button_density"]').click(); await pg.waitForTimeout(800);
     // 17 Oct 2026: fix-up — on 16 Oct step 4 read [] : the items were filtered on the word "check" in their text, which the staging menu
     // does not carry. Now (as design-stg5's menu reading does) every density item is read — its words, aria-selected / aria-checked on the
@@ -320,9 +324,11 @@ await run('C368154', async () => {
     o.step4menu = dens; o.step4 = dens.length ? sel.map((d) => d.text.replace(/^(check|done|radio_button_checked)\s*/, '').replace(/\s*(check|done|radio_button_checked)$/, '').trim() || d.tid) : 'menu not read';
     console.log(t(), 'C368154 density menu', JSON.stringify(dens));
     await shot(pg, 'C368154-density'); await pg.keyboard.press('Escape');
+    await display(pg, 'Board View'); await pg.waitForTimeout(1500);
     await pg.locator('[data-test-id="button_board_fields_selection"]').click(); await pg.waitForTimeout(900);
     o.step5 = await pg.evaluate(`[...document.querySelectorAll('.q-menu [data-test-id^="toggle_board_field_"]')].filter(e => (e.querySelector('[role=switch], [role=checkbox], [aria-checked]') || e).getAttribute('aria-checked') === 'true' || e.querySelector('.q-toggle__inner--truthy, .q-checkbox__inner--truthy')).map(e => (e.innerText.trim() || (e.closest('.q-item') || e).innerText.trim()) + ' [' + e.getAttribute('data-test-id').replace('toggle_board_field_', '') + ']')`);
     o.step5all = await pg.evaluate(`[...document.querySelectorAll('.q-menu [data-test-id^="toggle_board_field_"]')].map(e => e.getAttribute('data-test-id').replace('toggle_board_field_', '') + '=' + ((e.querySelector('[aria-checked]') || e).getAttribute('aria-checked')) + '/' + (e.querySelector('.q-toggle__inner--truthy, .q-checkbox__inner--truthy') ? 'on' : 'off'))`); await shot(pg, 'C368154-fields'); await pg.keyboard.press('Escape');
+    await shot(pg, 'C368154-s5-fields');
   } finally { await v.close(); }
   R.C368154 = o;
 });

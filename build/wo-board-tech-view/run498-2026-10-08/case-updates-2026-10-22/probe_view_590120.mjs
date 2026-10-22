@@ -6,7 +6,7 @@ const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromi
 const page = await (await browser.newContext({ ignoreHTTPSErrors: true })).newPage();
 const UI = JSON.parse(fs.readFileSync('/tmp/testrail/creds-ui.json', 'utf8'));
 await page.goto(`${HOST}/index.php?/auth/login/`, { waitUntil: 'networkidle' }); await page.fill('#name', UI.email); await page.fill('#password', UI.password); await page.click('#button_primary'); await page.waitForLoadState('networkidle');
-await page.goto(`${HOST}/index.php?/cases/view/590120`, { waitUntil: 'networkidle' }); await page.waitForTimeout(3000);
+await page.goto(`${HOST}/index.php?/cases/view/${process.env.CID || 590120}`, { waitUntil: 'networkidle' }); await page.waitForTimeout(3000);
 const r = await page.evaluate(() => ({ literalTags: document.body.innerText.match(/<\/?(br|p|ul|li|ol)>/gi) || [], served: [...document.querySelectorAll('div[class^="markdown"]')].filter((d) => !d.id).map((d) => d.className.trim() + ' :: ' + d.innerText.slice(0, 60).replace(/\s+/g, ' ')), url: location.href, disabled: document.querySelector('#accept')?.disabled,
   empties: [...document.querySelectorAll('select, input, textarea')].filter((e) => e.id && (e.required || e.closest('.form-group, .column')?.querySelector('.required, .form-required')) && !e.value && e.type !== 'hidden').map((e) => e.id).slice(0, 20),
   msgs: [...document.querySelectorAll('.message, .message-error, .error, .fr-counter')].map((x) => x.innerText.trim()).filter(Boolean).slice(0, 10),
