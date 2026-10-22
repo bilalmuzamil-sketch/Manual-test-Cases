@@ -293,3 +293,149 @@ artboard keys only file/x/y/w/h/title/page; note keys only id/x/y/w/text/page (n
 renders as a plain 14 px yellow sticky); 68 `*.dc.html` files = 68 listed (none missing, none extra, no duplicates); longest
 title 42 chars (< 120); longest note 1,004 chars (< 5,000); artboard w 390-2,625, h 600-1,000; note w 390-1,400 (all inside
 the clamps). So NOTHING in our canvas.json is cut, dropped, clamped or re-styled by this parser.
+
+### Chunk 15: lines 64,001-65,100 (read)
+What it is: the sticky-note component `Vne` (64011-64192): rendering, drag, double-click to type, Escape/blur commit, right-edge
+resize; template encoders (`sc-camel-*` attributes, `<sc-raw-table>` etc., `<helmet>` -> `<sc-helmet>`; 64193-64233); cursor
+overrides; line/arrow SVG builders (64283-64319); beforeunload guard; HTML escaping; `<x-dc>` block extraction (`wi`), data-props
+read/write (`Xa`, `ZT`), script replacement; prop-text commit rules (16 KB cap); a JS string-literal scanner (`JF`, used for
+inline text editing); file-name normaliser that turns smart quotes/dashes to ASCII and REMOVES "#" from new file names
+(64726-64751); dc file save with optimistic-concurrency (64805-64983); atomic CSS string (65002); inline style parser.
+Found:
+- 64130-64142, 64126-64132: a note's text is rendered as PLAIN TEXT with `white-space: pre-wrap; word-break` (line breaks kept,
+  long words wrapped); no Markdown, no links, no truncation and no height limit (the note grows with its text; width = the
+  note's `w`). Empty notes show nothing in view mode ("Double-click to type" only while editing). So the 74 notes display
+  exactly their canvas.json text, wrapped to their width.
+- 64026-64045: notes are positioned absolutely at x/y with their width; in view mode they are `pointer-events:none` (cannot be
+  clicked); plain notes have a medium shadow and a 1 px black/10 % ring.
+No ShopView content.
+
+### Chunk 16: lines 65,101-66,300 (read)
+What it is: CSS rule/value helpers for the editor's style panel (class rule parser, var() resolver, numeric scrubbing, named
+colours, transform parser, shorthand expanders margin/padding/border/list-style/text-decoration, grid track count), the property
+panel definition `G0` (Font, Size, Color, Weight Thin..Black, Style, Align, Leading, Tracking, Case, Display, Direction, Wrap,
+Justify, Align, Gap, Columns, Rows, position, padding, margin, Width/Height/Min/Max, Grow, Align self, Background, Border width/
+style/color, Radius, Overflow, Opacity, Shadow, Text shadow, Transform, Filter; 65605-65886), element role labels (Section,
+Heading, Table cell, ...; 66041-66089), deck-stage helpers (default slide 1920x1080), and the editor's template model class `Ih`
+(restamp, serialize, snapshot, setStyleProperty, setText, setAttribute, ensureWebfontLink to Google Fonts; 66145-66300).
+Found: editor-only (Edit mode style panel); nothing that changes a board in view. 66280-66295: adding a font in the editor
+inserts a Google Fonts stylesheet link (only when someone edits). No ShopView content.
+
+### Chunk 17: lines 66,301-67,500 (read)
+What it is: rest of the editor template model `Ih` (deck-stage/speaker notes, attributes, restamp, wrap/unwrap, duplicate, insert,
+move, class-rule resolution, display inference, text-editable detection, the OUTLINE builder with layer labels "Component",
+"Conditional group", "Repeating group", "Row", "Column", "Grid", "Text", element role names, label = data-om-label / data-label /
+data-screen-label / aria-label / label, text preview cut to 26 chars; 66816-66957), directive map, undo stack (100), and the
+`dc-model` editing hook `lz` (reads/writes `*.dc.html` files, autosave after 800 ms, version-conflict handling "routing the edit
+to Claude", revert to disk; 67033-67500).
+Found: editor-only. 66818-66820: the editor's layers outline shortens element text to 26 characters + "…" (viewer chrome only,
+not the board). No ShopView content.
+
+### Chunk 18: lines 67,501-68,700 (read)
+What it is: end of the `dc-model` hook (flushAll, external file adoption, entry check, mutate/undo), "This file changed" dialog
+("Discard and reload" / "Keep them", 67796-67849), design-system token resolution helpers, a line diff (unified diff with
+"… (truncated)" past 20,000 chars; 67918-68017), an HTML SANITIZER for pasted/agent-inserted markup (removes script, style, link,
+meta, iframe, object, embed, noscript, template, x-import, helmet, event handlers, unsafe URLs; only http/https/mailto/tel and
+data:image allowed; 68018-68292), style/position validators, insert payload validator, the editor context, per-file unsaved prop
+values store, and the component PROPS ("Tweaks") hook `vz` reading `propsMeta` from the board and pushing values with
+`__dcSetProps` (68587-68700).
+Found:
+- 68587-68598, 68677-68690: a design component can declare editable props (`data-props`, editors text/color/int/float/range/
+  boolean/enum); when the props panel is enabled the viewer pushes each prop's DEFAULT (or the user's unsaved value) into the board.
+  If our boards declare props, what a viewer shows can depend on these values. (Check by script whether any of our 68 files has
+  `data-props`; recorded in the final record.)
+No ShopView content.
+Script probe of our 68 board files (read only, for the findings so far): 0 use `data-props`, 0 declare
+`design_doc_mode`, 0 contain iframe/object/embed/noscript/frame, 0 use `_blob/` assets, 0 contain `<details>`, 0 contain `{{ }}`
+holes, 0 use dc-import/x-import, 0 have a `data-dc-script`; all 68 have `<x-dc>`, `<helmet>` and `./support.js`; images are inline
+`data:image/png;base64` (e.g. sbr-08..sbr-12). So the props, placeholder-image, frame-removal, unresolved-hole, details-opening and
+canvas-mode-meta behaviours found so far do NOT apply to any of our boards.
+
+### Chunk 19: lines 68,701-70,000 (read)
+What it is: rest of the props ("Tweaks") hook (Save as defaults writes `data-props` back into the file), the props panel UI
+(boolean toggle, number with drag-scrub, range slider, segmented enum, select, colour wells/palette cards, text; "This component
+has no tweakable props.", "Reset", "Save as defaults"; 68805-69363), design-system colour token picker (69369-69483), image source
+picker ("https://… or ./file.png", "Upload image…", "Project images", "No images in this project yet — upload one or paste a URL.";
+69484-69735), scrub hook, gradient and shadow parsers, panel row widgets (69808-70000).
+Found: editor/props-panel only; none of our 68 boards declares props (see probe above). No ShopView content.
+
+### Chunk 20: lines 70,001-71,400 (read)
+What it is: Edit-mode style panel widgets: number field with scrub, background fill editor (Color / Gradient / Image / None,
+image size Cover / Contain / Original, gradient stops up to 8; 70073-70378), shadow editor ("Add shadow", X/Y/Blur/Spread/Color,
+"Remove shadow"; 70379-70503), size field with Hug / Fixed / Fill (70504-70619), generic CSS value rows, grid track count,
+select rows ("Inherited — right-click to keep unset"), transform X/Y/angle/scale rows, alignment glyph icons, type style
+Italic/Underline/Strikethrough, font picker with system fonts (Arial, Helvetica, Georgia, Times New Roman, Courier New, Verdana,
+Tahoma, Trebuchet MS) and Google fonts (Inter, Roboto, Open Sans, Lato, Montserrat, Poppins, Raleway, Nunito, Playfair Display,
+Merriweather, Work Sans, DM Sans, Manrope, Space Grotesk, Lora, Bebas Neue, Caveat) (71262-71344), colour row (71358-).
+Found: editor-only; no font is substituted in view mode by this code (the list only feeds the Font picker). No ShopView content.
+
+### Chunk 21: lines 71,401-72,800 (read)
+What it is: Edit-mode property row dispatcher with context menu ("Unset property", "Edit as text", "Copy declaration", "Remove
+row"; 71412-71622), imported-component props section ("Edit <name> →", "Bound to data — edit in Code mode"; 71623-71735), the
+section builder `Aoe` for the inspector (Image Source/Fit, Link Destination/"Open in new tab", Video/Embed source, List style,
+Divider, Text "Content", SVG Fill & stroke, Control Placeholder/Checked/Prefilled text/Type, then Sizing, Position, Typography,
+Contents layout, Padding, Margin, Appearance, Border, Effects; 71736-72504), border defaults, line-axis detection, page font and
+font-size harvesters (72591-72610), and the layers outline tree component (chips, "on"/"off", "N items" badges, drag reorder;
+72611-72800).
+Found: editor-only; no effect on view. No ShopView content.
+
+### Chunk 22: lines 72,801-74,200 (read)
+What it is: rest of the layers outline (rename, hide/show eye, artboard rows with "w × h", "No elements yet", "Drag to resize";
+72801-73002), the CSS "code pane" for a selection (73003-73185), the bottom-sheet/side-panel layout for narrow (<600 px, "sheet")
+vs wide screens (73186-73465), tap helper, snapshot undo adaptor, panel storage keys (`dc-panel-aside`, `dc-editor-props-open-v2`,
+`dc-editor-mode`), colour-target inference, eye-dropper, prop/script undo-redo logic, copy/paste/delete helpers, drag-out layout
+freeze, image-drop patch flow, lazy link popover, and the start of the "Artboard" settings section (74185-).
+Found: editor-only. No ShopView content.
+
+### Chunk 23: lines 74,201-75,600 (read)
+What it is: the "Artboard" settings section with "Print mode" Flow ("Content past the frame flows onto more pages (up to 40) —
+for document-like artboards") / Fixed ("Exactly one page"), note "Export PDF: Fixed is one page; Flow paginates long content at
+this frame's size (816 × 1056 = US Letter)." (74185-74248); small panel widgets; tool glyphs (select, interact, rect, frame, grid,
+oval, arrow, line, text, draw, note; 74385-74504); default inserted objects (grey #b6b0a7 rectangle 120x120, white Frame, Grid,
+oval 96, "Your text here", arrow/line #8a8378; 74505-74524); toolbar tools Text T, Frame F, Note N, Rectangle R, Oval O, Arrow A,
+Draw P (74525-74533); and the big editor panel hook `nH` (74545-): selection export, live-DOM sync check, write-error toast,
+file-changed entry check, undo coalescing, text-edit commit (prop / script literal / template; "That text is too long to commit as
+an inline edit."), link set/unwrap, drag move preview/commit, resize, line endpoint commit.
+Found:
+- 74206-74243: confirms artboard `print` values are "flow" or "fixed" (fixed = default, not stored). Our canvas.json sets no
+  `print`, so every artboard is "Fixed" = one page in PDF export (content past the frame is not in a PDF). Viewer-export only.
+No ShopView content.
+
+### Chunk 24: lines 75,601-77,000 (read)
+What it is: editor panel hook continued: style preview/revert handlers, the message router for events from the in-board editor
+(select, textEdit, linkEdit, textEditDenied messages "This component is still streaming…", "This text lives inside a nested
+component…", "This element mixes text with other layout…", move/resize/insert/fileDrop/filePaste/contextMenu/zoom; 75652-75875),
+text-editable push, design-token detection, style/attribute commits (Google Font link auto-added when a listed Google font is
+chosen; 76136-76146), delete ("This component manages itself — it can't be deleted.", "Nothing deleted — repeated rows…"),
+undo/redo, insert/paste/duplicate, copy/paste style (localStorage `dc-editor-style-clipboard`), tool insert, image drop/paste
+(max 6, grey #b6b0a7 placeholder while uploading), image source pick, eye-dropper, keyboard intents.
+Found: editor-only. No ShopView content.
+
+### Chunk 25: lines 77,001-78,400 (read)
+What it is: editor panel continued: paste handling, editor keyboard shortcuts (R/F/N/O/T/A/L/P tools, Enter edit text, Shift+Enter
+parent, arrows nudge 1/10 px or reorder, [ ] send back/front, Escape, Delete, Cmd+Z/C/V/X/D/A/B/G), non-DC "describe edits to
+Claude" message with a DOM diff (77182-77211), save/settle on exit, inspector inputs, imported component props, outline actions
+(hide = display:none, rename = data-om-label, move), reorder/nudge, Group/Ungroup, bold toggle, select children/parent/siblings,
+"Wrap in flex"/"Wrap in grid" auto layout, context menu (Copy/Paste/Delete/Group/Ungroup/Wrap in flex/Wrap in grid), tool row
+("Point" Esc, Text, Frame, Note, Rectangle, Oval, Arrow, Draw), panel header tabs "Edit" / "Outline" / "Code" / "Tweaks",
+messages "This file does not support automatic edits…", "This design has no tweakable controls yet…", "<tag> isn't part of the
+template — read-only.", "This element belongs to X.dc.html — open that file to edit it.", "This component manages itself —
+editing is disabled.", "This element is code-driven. Ask Claude in chat…".
+Found: editor-only. No ShopView content.
+
+### Chunk 26: lines 78,401-79,800 (read)
+What it is: end of the inspector (Border "Add border"/"Reset", Padding/Margin None/All/X & Y/Individual, Position Inline/Absolute,
+Absolute/Fixed/Sticky, "Offset", "Advanced", "Export selection" PNG/JPEG at 0.5x/1x/2x/4x, "Duplicate"/"Delete", "Debug";
+78401-78965), "Nothing selected" / "Click any element in the design to edit it here." (79021-79039), side panel 312 px wide or
+bottom sheet; then `rH` (79169-79234) = per-board installer of the editor script: injects `kSe`, passes the app theme via
+setAppTheme, enables full Edit or pan/zoom-only preview, re-injects at 700 ms and 2,000 ms, and arms canvas pan/zoom only if the
+board posts `__dc_design_mode` "canvas"; file-name validator; the per-artboard "tweaks" strip (36 px high, shown above an artboard
+only when its component has props; 79246-79519); and the ARTBOARD FRAME component `Sie` (79528-): reads every `file/*` from the
+document store, inlines images (`pJ`), builds the import graph (`P0`), inlines blob assets (`H5`), assembles the sandboxed board
+document (`Xee`) and mounts it; liveness/hello handling; routes previewClick, booted, drag and panZoom events.
+Found:
+- 79187-79189, 79225: a board is treated as a canvas page ONLY if its own runtime reports design_doc_mode "canvas". None of our
+  68 files declares it (probe above), so our boards are plain pages: no in-board boot-fit, no grey canvas background, no wheel pan
+  inside the board; the viewer's outer multi-artboard canvas does the pan/zoom.
+- 79246-79363 + 79680: the 36 px tweaks strip appears above an artboard only when it has props — none of ours do.
+No ShopView content.
