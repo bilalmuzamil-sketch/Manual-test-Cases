@@ -69,7 +69,7 @@ await run('C96941', async () => {
   await bv(n);
   const pos = () => p.evaluate(`(() => { const u = document.querySelector('[data-test-id="board_column_unassigned"]'); const h = document.querySelector('[data-test-id="board_view_scroller"]'); const first = [...document.querySelectorAll('[data-test-id^="board_column_header_"]')].map(e => e.getAttribute('data-test-id').replace('board_column_header_', ''))[0]; return { unassignedLeft: u ? Math.round(u.getBoundingClientRect().left) : null, scrollLeft: Math.round(h.scrollLeft), firstColumn: first }; })()`);
   R.C96941 = { start: await pos() };
-  for (const x of [1200, 3000]) { await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"]').scrollLeft = ${x}`); await p.waitForTimeout(1000); R.C96941['at' + x] = await pos(); }
+  for (const x of [1200, 3000, 999999]) { /* 22 Oct 2026: 999999 = the board's right END (about 64 columns on production; judged Unsure without it) */ await p.evaluate(`document.querySelector('[data-test-id="board_view_scroller"]').scrollLeft = ${x}`); await p.waitForTimeout(1000); R.C96941['at' + x] = await pos(); }
   await shot(p, 'C96941-scrolled');
 });
 
@@ -79,7 +79,7 @@ await run('C96942', async () => {
   await bv(n); await toColumn(p, ES.staff_id);
   const st = () => p.evaluate(`(() => { const h = document.querySelector('[data-test-id="board_column_header_${ES.staff_id}"]'); const b = document.querySelector('[data-test-id="board_column_${ES.staff_id}"] .board-column__body'); const others = [...document.querySelectorAll('[data-test-id^="board_column_header_"]')].slice(0, 4).map(e => Math.round(e.getBoundingClientRect().top)); return { headerTop: Math.round(h.getBoundingClientRect().top), headerText: h.innerText.replace(/\\s+/g, ' '), bodyScroll: b ? Math.round(b.scrollTop) : null, otherHeaderTops: others }; })()`);
   R.C96942 = { start: await st() };
-  for (const y of [600, 2000]) { await p.evaluate(`(() => { const b = document.querySelector('[data-test-id="board_column_${ES.staff_id}"] .board-column__body'); if (b) b.scrollTop = ${y}; })()`); await p.waitForTimeout(900); R.C96942['at' + y] = await st(); }
+  for (const y of [600, 2000, 999999]) { /* 22 Oct 2026: 999999 = the column's LAST card (judged Unsure without it) */ await p.evaluate(`(() => { const b = document.querySelector('[data-test-id="board_column_${ES.staff_id}"] .board-column__body'); if (b) b.scrollTop = ${y}; })()`); await p.waitForTimeout(900); R.C96942['at' + y] = await st(); }
   await shot(p, 'C96942-scrolled');
 });
 
