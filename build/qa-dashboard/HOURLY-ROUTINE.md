@@ -1,5 +1,10 @@
 # Making the dashboard update itself every hour
 
+> **Branch (since 2026-10-22): `claude/qa-dashboard`** — the dashboard now lives on its OWN
+> branch so it no longer shares (and collides with) the multi-lane `claude/dashboard-update-4jbw2p`.
+> Only ever touch files under `build/qa-dashboard/`; never force-push; path-scope every commit.
+
+
 The dashboard is a published Artifact, so it does not poll Jira on its own — something has to
 re-run the pull and republish the page. That something is a **Routine**: a scheduled Claude Code
 session that runs the refresh and pushes to the same artifact URL.
@@ -53,7 +58,7 @@ Key facts:
 - All dates are Pakistan time (PKT, UTC+5). "today" = the system clock in Asia/Karachi.
 - Fixed artifact URL to republish, so the link never changes:
   https://claude.ai/code/artifact/db96d3fa-b068-4044-88d2-bdc5efa52544   (favicon 🧪)
-- Branch for commits: claude/dashboard-update-4jbw2p
+- Branch for commits: claude/qa-dashboard
 
 Steps:
 1. Make a workdir. Copy build/qa-dashboard/epic-scope-tools/*.py and
