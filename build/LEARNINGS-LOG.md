@@ -633,3 +633,8 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - Production has no **"Office User"** role (roles: Technician, Admin, Senior Service Advisor, Time Clock User, Foreman), so "Olive Office" cannot be made; checks that she is NOT offered are weaker there and their results must say so.
 - Check every step's JSON for `"error"` as soon as it ends (`evidence/<env>/<script>.json`); a whole batch of errors in under a minute means set-up, not the product. The failed first attempt's logs are kept in `logs-full-first-attempt/`.
 #run498 #production #seeding → L0505, L0506
+
+## L0508 — 2026-10-22 — Rule 114(c) applied: rewriting named steps of a case to the current PRD (C590120)
+- QA lead: "YES (Rewrite the test case and never the PRD)" to the ask to bring C590120's steps 6–7 (Board View density, removed by PRD v73 S3-R11) to the current spec. Only those two steps and their two Expected lines changed; new Expected lines are verbatim PRD v73 quotes (S3-R11, S6-E1) read live the same day, with a plain restatement marked "(our restatement)"; the source paragraph gained one dated line naming the version and his decision in one sentence (114(d) amendment: his own ruling = one short dated line). Script: `case-updates-2026-10-22/c590120_steps67.py` (exact old text must occur once; before/after JSON; reads back that preconditions and title are untouched), then the served-page check (`probe_view_590120.mjs`: fr-view, no literal tags).
+- The test's script must follow the rewritten steps before the re-run (design-stg5 C590120 block: step 6 counts Board density buttons; step 7 changes density in Tech View and compares WO1's card with a baseline read just before).
+#run498 #rule114 #case-update → L0505
