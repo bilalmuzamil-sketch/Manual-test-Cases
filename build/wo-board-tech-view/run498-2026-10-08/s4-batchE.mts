@@ -83,27 +83,41 @@ async function sixLines(n: string, unit: string) {
 }
 const stopClock = async (_t6: string) => asTech(ES.id, async () => { const cur = (await a.get('/api/technician-tasks/my-current-task')).body?.data; return cur?.technician_task?.id ? (await a.post('/api/technician-tasks/check-out', { task_id: cur.technician_task.id })).status : 'no clock running'; });
 
+
+/** 22 Oct 2026: steps 5-6 of C96960/C96961 as written — open the work order by clicking its card, go to the Lines tab and read each
+ *  line's Labor technician and whether a clock is shown running, on screen (the old run read them behind the screen only). */
+async function linesOnScreen(woId: string, pic: string) {
+  const card = p.locator(`[data-test-id="board_card_${woId}"]`).first(); const r: any = { cardShown: await card.count() };
+  if (r.cardShown) { await card.click().catch(() => {}); for (let i = 0; i < 12 && !/\/workorders\/[0-9a-f-]{36}/.test(p.url()); i++) await p.waitForTimeout(800); }
+  r.opened = /\/workorders\/[0-9a-f-]{36}/.test(p.url()); if (!r.opened) { r.fallbackGoto = true; await p.goto(`${APP}/workorders/${woId}/lines`, { waitUntil: 'domcontentloaded' }); }
+  await p.waitForTimeout(5000); await p.locator('.q-tab, [role=tab]').filter({ hasText: /^\s*Lines/ }).first().click().catch(() => {}); await p.waitForTimeout(3000);
+  r.labor = await p.evaluate(`[...document.querySelectorAll('[data-test-id^="line_labor_name_"]')].map(e => e.innerText.replace(/\\s+/g, ' ').trim())`);
+  r.titles = await p.evaluate(`[...document.querySelectorAll('[data-test-id="line_title"]')].map(e => (e.innerText || '').split('\\n')[0].trim())`);
+  r.clockText = ((await p.evaluate('document.body.innerText')) as string).match(/(Clocked in|In progress|Running|\\d+:\\d\\d:\\d\\d)[^\\n]{0,60}/i)?.[0] ?? null;
+  await shot(p, pic); await p.goto(`${APP}/workorders?tab=all`, { waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(3000); return r; }
 await run('C96960', async () => {
-  const s = await sixLines(`ZZAUTOTEST F1 Drag Moves Open Lines ${Date.now() % 100000}`, 'ZZF4DM');
+  const nm60 = `ZZAUTOTEST F1 Drag Moves Open Lines ${Date.now() % 100000}`; const s = await sixLines(nm60, 'ZZF4DM');
   R.C96960 = { wo: s.num, clock: s.clock, before: await lineTechs(s.wo, s.L) };
-  await bv(s.num);
+  await bv(nm60); // 22 Oct 2026: step 2 searches the customer's name
   await drag(p, `[data-test-id="board_card_${s.wo}"]`, `[data-test-id="board_column_${RE.staff_id}"]`, 120); await shiftPrompt(p, 'Keep shifts');
   R.C96960.message = await toasts(p);
   R.C96960.after = await lineTechs(s.wo, s.L);
+  R.C96960.onScreen = await linesOnScreen(s.wo, 'C96960-s6-lines-tab');
   R.C96960.clockStillRunning = await asTech(ES.id, myTask);
   R.C96960.stopClock = await stopClock(s.t6);
 });
 
 await run('C96961', async () => {
-  const s = await sixLines(`ZZAUTOTEST F1 Remove Lead Lines ${Date.now() % 100000}`, 'ZZF4RM');
+  const nm61 = `ZZAUTOTEST F1 Remove Lead Lines ${Date.now() % 100000}`; const s = await sixLines(nm61, 'ZZF4RM');
   R.C96961 = { wo: s.num, clock: s.clock, before: await lineTechs(s.wo, s.L) };
-  await bv(s.num);
+  await bv(nm61); // 22 Oct 2026: the customer's name in Search
   const o = await openReassign(p, s.wo); await o.item.click(); await p.waitForTimeout(1200);
   await p.locator('[data-test-id="option_lead_technician_unassigned"]').click(); await p.locator('[data-test-id="button_confirm_reassign_lead_technician"]').click(); await shiftPrompt(p, 'Keep shifts');
   R.C96961.message = await toasts(p);
   R.C96961.lead = (await a.get(`/api/work-orders/view/${s.wo}`)).body?.data?.work_order?.tech_assigned_id ?? 'none';
   R.C96961.inUnassigned = (await boardCols(p)).find((c) => c.id === 'unassigned')?.cards.includes(s.num);
   R.C96961.after = await lineTechs(s.wo, s.L);
+  R.C96961.onScreen = await linesOnScreen(s.wo, 'C96961-s7-lines-tab');
   R.C96961.clockStillRunning = await asTech(ES.id, myTask);
   R.C96961.stopClock = await stopClock(s.t6);
 });

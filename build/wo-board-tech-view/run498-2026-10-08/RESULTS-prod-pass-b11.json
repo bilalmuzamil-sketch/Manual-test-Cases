@@ -1,0 +1,102 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - pass-b11"
+ },
+ "results": {
+  "C96940": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 4: on the All tab, with \"ZZAUTOTEST F2 Board Columns\" searched, Board View shows one column for each of the 64 technicians who can lead work at Truck Hill 1, plus Unassigned (65 columns).",
+    "Steps 5 and 6: each header shows the name, the avatar (Esther Howard shows \"EH\") and a number that matches its cards: Unassigned 2, Esther Howard 3, Ralph Edwards 2, Jenny Wilson 0 (her column reads \"Drag a work order here to assign it\").",
+    "Steps 7 and 8: with the Status filter on Approved only, Esther Howard's header shows 2 and her column lists 2 cards (the Estimate has dropped out)."
+   ],
+   "pictures": [
+    "pictures-prod/C96940-1-prod-1022.png",
+    "pictures-prod/C96940-2-prod-1022.png"
+   ]
+  },
+  "C96945": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Start: Esther Howard is pinned; with nothing pointed at and nothing selected, the card S1-1436 shows no \"More actions\" (\u2026) button.",
+    "Step 1: pointing at the card makes the \"More actions\" (\u2026) button appear on it.",
+    "Steps 2 and 3: clicking it opens the card's menu, which offers \"Reassign lead technician\" (and \"Unassign\").",
+    "Step 4: pressing Escape closes the menu.",
+    "Step 5: after moving the mouse off the card and clicking once on an empty part of the page, the \"More actions\" button is hidden again.",
+    "Step 6: after clicking once in Search, the cursor is in the Search box (it holds \"ZZAUTOTEST F2 Card Menu\").",
+    "Step 7: pressing Tab moves through the toolbar and then lands on the card S1-1436, which shows a blue focus ring.",
+    "Step 8: S1-1436 is the only card on the board, so no arrow key was needed; with the focus ring on it and the mouse away from it, its \"More actions\" (\u2026) button shows."
+   ],
+   "pictures": [
+    "pictures-prod/C96945-1-prod-1022.png",
+    "pictures-prod/C96945-2-prod-1022.png",
+    "pictures-prod/C96945-3-prod-1022.png",
+    "pictures-prod/C96945-4-prod-1022.png"
+   ]
+  },
+  "C96946": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 and 2: on the All tab, with \"ZZAUTOTEST F2 Card Click\" searched, Board View shows the card S1-1438 in Esther Howard's column.",
+    "Step 3: clicking the customer name on the card opens that work order (its Lines page).",
+    "Steps 4 and 5: after the browser Back button, clicking an empty part of the card opens the same work order.",
+    "Steps 6 and 7: after Back again, pointing at the card and clicking its \"More actions\" (\u2026) button opens its menu (\"Reassign lead technician\", \"Unassign\") and the page stays on Work Orders: the work order does not open."
+   ],
+   "pictures": [
+    "pictures-prod/C96946-1-prod-1022.png"
+   ]
+  },
+  "C96947": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 5: on the All tab, with \"ZZAUTOTEST F2 Board Pin Order\" searched and no pins shown, Board View reads Unassigned, Esther Howard, Jenny Wilson, Kristin Watson, Ralph Edwards; every technician header has a pin button.",
+    "Steps 6 and 7: after clicking the pin on Ralph Edwards' header the order is Unassigned, Ralph Edwards (pinned), Esther Howard, Jenny Wilson, Kristin Watson, with Ralph right after Unassigned.",
+    "Steps 8 and 9: after pinning Esther Howard the order is Unassigned, Ralph Edwards (pinned), Esther Howard (pinned), Jenny Wilson, Kristin Watson: the newest pin goes after the existing one."
+   ],
+   "pictures": [
+    "pictures-prod/C96947-1-prod-1022.png",
+    "pictures-prod/C96947-2-prod-1022.png"
+   ]
+  },
+  "C96949": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 3: on the All tab, with \"ZZAUTOTEST F2 Board Pin Limit\" searched, Ralph Edwards, Jenny Wilson and Theresa Webb were pinned in Board View.",
+    "Step 4: Kristin Watson's pin button is turned off and pointing at it shows \"You can pin up to 3 technicians.\"",
+    "Step 5: clicking it pins nobody: the pins stay Ralph Edwards, Theresa Webb, Jenny Wilson.",
+    "Steps 6 and 7: after unpinning Jenny Wilson, Esther Howard could be pinned (pins: Ralph Edwards, Theresa Webb, Esther Howard).",
+    "Steps 8 and 9: Tech View shows the same three pinned groups (Ralph Edwards, Theresa Webb, Esther Howard), and Kristin Watson's pin button there is turned off with the same words \"You can pin up to 3 technicians.\"",
+    "The limit is 3 and the wording is exactly as the requirement says (not the design's 5 / \"Up to 5 pinned columns, unpin one first\")."
+   ],
+   "pictures": [
+    "pictures-prod/C96949-1-prod-1022.png",
+    "pictures-prod/C96949-2-prod-1022.png",
+    "pictures-prod/C96949-3-prod-1022.png",
+    "pictures-prod/C96949-4-prod-1022.png"
+   ]
+  },
+  "C96951": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 3: on the All tab, with \"ZZAUTOTEST F2 Board Assigned\" searched and Jenny Wilson pinned, Board View was opened.",
+    "Steps 4 and 5: with Assigned to me on, Board View shows only Unassigned (holding S1-1451) and my own column, \"Service Advisor No Reports (Admin)\" (holding S1-1449).",
+    "Ralph Edwards, Esther Howard and the pinned Jenny Wilson are hidden.",
+    "Step 6: neither column shown has a pin button.",
+    "Step 7: turning Assigned to me off brings back every column (65) and the pin buttons, with Jenny Wilson still pinned right after Unassigned."
+   ],
+   "pictures": [
+    "pictures-prod/C96951-1-prod-1022.png",
+    "pictures-prod/C96951-2-prod-1022.png"
+   ]
+  }
+ }
+}

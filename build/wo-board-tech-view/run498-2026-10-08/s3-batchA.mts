@@ -285,12 +285,14 @@ await run('C96953', async () => {
   await seedCase(a, n, 'ZZF3CS', [...Array(25).fill({ lead: null }), ...Array(20).fill({ lead: ES.staff_id }), { lead: RE.staff_id }, { lead: JW.staff_id }]);
   await bv(n);
   const st = () => p.evaluate(`(() => { const u = document.querySelector('[data-test-id="board_column_unassigned"] .board-column__body'); const hs = [...document.querySelectorAll('[data-test-id^="board_column_header_"]')].slice(0, 4).map(e => Math.round(e.getBoundingClientRect().top)); const second = document.querySelectorAll('[data-test-id^="board_column_"] .board-column__body')[1]; return { uBody: u ? Math.round(u.scrollTop) : null, headers: hs, secondBodyScroll: second ? Math.round(second.scrollTop) : null, page: Math.round(scrollY), docScroll: Math.round(document.scrollingElement.scrollTop) }; })()`);
-  R.C96953 = { start: await st() };
+  // 22 Oct 2026 (production, judged Failed at step 7 on the first attempt): the page's own height against the window, read before the
+  // wheel, so a second attempt shows whether the page is taller than the window and by how much (Rule 104, two attempts).
+  R.C96953 = { start: await st(), sizes: await p.evaluate(`({ innerHeight, innerWidth, docHeight: document.documentElement.scrollHeight, bodyHeight: document.body.scrollHeight })`) };
   await p.evaluate(`document.querySelector('[data-test-id="board_column_unassigned"] .board-column__body').scrollTop = 1200`); await p.waitForTimeout(900); R.C96953.unassignedScrolled = await st();
   // wheel over empty space below a short column
   const short = await p.locator('[data-test-id^="board_column_empty_"]').first().boundingBox();
   if (short) { await p.mouse.move(short.x + short.width / 2, Math.min(950, short.y + short.height + 200)); await p.mouse.wheel(0, 1500); await p.waitForTimeout(900); }
-  R.C96953.afterWheelOnEmpty = await st();
+  R.C96953.afterWheelOnEmpty = await st(); await shot(p, 'C96953-after-wheel-on-empty');
   await toColumn(p, ES.staff_id); await p.evaluate(`(() => { const b = document.querySelector('[data-test-id="board_column_${ES.staff_id}"] .board-column__body'); if (b) b.scrollTop = 1200; })()`); await p.waitForTimeout(900); R.C96953.estherScrolled = await st();
   await shot(p, 'C96953-columns');
   const all = await allBoardCols(p); R.C96953.technicianColumns = all.filter((c) => c.id !== 'unassigned').length; R.C96953.eligible = techs.length;

@@ -139,7 +139,7 @@ await run('C96968', async () => {
   R.C96968 = {};
   for (const where of ['board', 'tech'] as const) {
     await bvOn(p, n, where === 'board' ? 'Board View' : 'Tech View');
-    const calls: string[] = []; const h = refuse(calls); await p.route('**/api/work-orders/**', h);
+    const calls: string[] = []; const h = refuse(calls); /* 22 Oct 2026: on production the network is really switched off, as the case says (the refused-save stand-in was for the QA branch's sleep guard) */ const realOff = !!process.env.WOB_PROD_LOGIN; if (realOff) await p.context().setOffline(true); else await p.route('**/api/work-orders/**', h);
     await dragOn(p, w.id, RE.staff_id, where); await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(1500);
     const msg1 = await toasts(p);
     const home = where === 'board' ? (await boardCols(p)).find((c) => c.id === ES.staff_id)?.cards.includes(w.number) : (await groups(p)).find((g) => g.id === ES.staff_id)?.rows.includes(w.number);
@@ -147,7 +147,7 @@ await run('C96968', async () => {
     await p.waitForTimeout(10_000); const msg10 = await toasts(p);
     await p.locator('.q-notification button').filter({ hasText: /close/i }).first().click().catch(() => {}); await p.waitForTimeout(1200);
     const afterX = await toasts(p);
-    await p.unroute('**/api/work-orders/**', h);
+    if (realOff) await p.context().setOffline(false); else await p.unroute('**/api/work-orders/**', h);
     await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000);
     R.C96968[where] = { refused: calls, message: msg1, cardBack: home, after10s: msg10, afterX, leadAfterReload: (await lead(n))[w.number] };
   }
@@ -162,12 +162,12 @@ await run('C368137', async () => {
     const order = async () => where === 'board' ? (await boardCols(p)).find((c) => c.id === ES.staff_id)?.cards ?? [] : (await groups(p)).find((g) => g.id === ES.staff_id)?.rows ?? [];
     const before = await order();
     const last = ws.find((w: any) => w.number === before[before.length - 1]), first = ws.find((w: any) => w.number === before[0]);
-    const calls: string[] = []; const h = refuse(calls); await p.route('**/api/work-orders/**', h);
+    const calls: string[] = []; const h = refuse(calls); /* 22 Oct 2026: on production the network is really switched off, as the case says (the refused-save stand-in was for the QA branch's sleep guard) */ const realOff = !!process.env.WOB_PROD_LOGIN; if (realOff) await p.context().setOffline(true); else await p.route('**/api/work-orders/**', h);
     if (where === 'board') await drag(p, `[data-test-id="board_card_${last.id}"]`, `[data-test-id="board_card_${first.id}"]`, 4);
     else await drag(p, `[data-test-id="tech_view_row_${last.id}"]`, `[data-test-id="tech_view_row_${first.id}"]`, 4);
     await p.waitForTimeout(1500);
     const msg = await toasts(p); const after = await order(); await shot(p, `C368137-${where}`);
-    await p.unroute('**/api/work-orders/**', h);
+    if (realOff) await p.context().setOffline(false); else await p.unroute('**/api/work-orders/**', h);
     await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4500); await search(p, n);
     R.C368137[where] = { before, refused: calls, message: msg, after, afterReload: await order() };
   }

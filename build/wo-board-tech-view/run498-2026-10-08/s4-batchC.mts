@@ -267,11 +267,12 @@ await run('C154890', async () => {
   R.C154890 = { prompt: !!(await promptLoc().count()) };
   // "network off" stand-in (the QA branch's sleep guard takes the page away on a dropped request): the server refuses every save
   const calls: string[] = []; const fail = (r: any) => { if (r.request().method() !== 'GET') { calls.push(r.request().method() + ' ' + r.request().url().replace(/^https:\/\/[^/]+/, '')); return r.fulfill({ status: 500, contentType: 'application/json', body: '{"errors":[{"error":"zz test: save refused"}]}' }); } return r.continue(); };
-  await p.route('**/api/work-orders/**', fail); await p.route('**/api/schedule/**', fail);
+  // 22 Oct 2026: on production the network is really switched off, as the case says
+  const realOff = !!process.env.WOB_PROD_LOGIN; R.C154890.networkOff = realOff ? 'browser offline' : 'saves refused (stand-in)'; if (realOff) await p.context().setOffline(true); else { await p.route('**/api/work-orders/**', fail); await p.route('**/api/schedule/**', fail); }
   await shiftPrompt(p, 'Clear shifts'); await p.waitForTimeout(2500);
   R.C154890.refusedCalls = calls; R.C154890.message = await toasts(p); await shot(p, 'C154890-after-failed-save');
   R.C154890.cardBack = (await boardCols(p)).find((c) => c.id === ES.staff_id)?.cards.includes(w.number);
-  await p.unroute('**/api/work-orders/**', fail); await p.unroute('**/api/schedule/**', fail);
+  if (realOff) await p.context().setOffline(false); else { await p.unroute('**/api/work-orders/**', fail); await p.unroute('**/api/schedule/**', fail); }
   R.C154890.after = { lead: (await lead(n))[w.number], shifts: await shiftsOn(a, w.id, names) };
 });
 

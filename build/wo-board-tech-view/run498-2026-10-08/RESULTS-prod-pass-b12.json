@@ -1,0 +1,72 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - pass-b12"
+ },
+ "results": {
+  "C96943": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 4: on the All tab, with \"ZZAUTOTEST F2 Card Required Fields\" in Search, Board View was chosen. Esther Howard's column holds S1-1520 (unit TRK-118) and S1-1521 (an asset with no unit).",
+    "Steps 5 and 6: the fields button opens a list of 13 fields with switches (Lead technician, Customer, Asset, VIN/serial, Progress, Service advisor, Clocked in, Line count, Line technicians, Estimated hours, Total price, On-site, Created date). Work order number, unit number and status are not in the list, so they cannot be turned off.",
+    "Step 7: every field in the list was switched off and the list closed.",
+    "Step 8: the S1-1520 card still shows S1-1520, TRK-118 and Approved. The S1-1521 card shows S1-1521 and Approved, and no unit number because it has none.",
+    "The board has a fields button, so the last line of the expected result (no button at all would be a fail) does not apply."
+   ],
+   "pictures": [
+    "pictures-prod/C96943-1-prod-1022.png",
+    "pictures-prod/C96943-2-prod-1022.png"
+   ]
+  },
+  "C154886": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Set-up check: both work orders for \"ZZAUTOTEST F2 Board Empty Unassigned\" (S1-1522 and S1-1523) are Approved and led by Esther Howard; none for this customer is without a lead. Nothing had to be changed.",
+    "Steps 1 to 5: All tab, Search for the customer, Assigned to me was already off, Board View chosen.",
+    "Step 6: the Unassigned column is on screen, first, with 0 work orders and the text \"Drag a work order here to assign it\". Esther Howard's column shows 2.",
+    "Step 7: S1-1523 was dragged from Esther Howard's column onto Unassigned and let go. No shift question appeared.",
+    "Step 8: Unassigned now shows 1 card (S1-1523) and Esther Howard's count dropped from 2 to 1."
+   ],
+   "pictures": [
+    "pictures-prod/C154886-1-prod-1022.png",
+    "pictures-prod/C154886-2-prod-1022.png"
+   ]
+  },
+  "C368132": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Set-up: both work orders for \"ZZAUTOTEST F2 Empty Tech Column\" (S1-1524 and S1-1525) are led by Esther Howard; Jenny Wilson leads none of them.",
+    "Steps 1 to 6: All tab, Search for the customer, Assigned to me off, Board View chosen. Jenny Wilson's column is on the board with 0 work orders and \"Drag a work order here to assign it\".",
+    "Step 7: no button, switch or menu item to hide empty columns was found on the page, in the column headers or in the fields list.",
+    "Steps 8 and 9: S1-1524 was dragged onto Jenny Wilson's column; \"Lead technician updated\" appeared with no shift question. Jenny Wilson now shows 1 and Esther Howard dropped from 2 to 1.",
+    "To have both columns side by side for the drag, Esther Howard and Jenny Wilson were pinned first (counts and leads are not affected by pins) and unpinned afterwards."
+   ],
+   "pictures": [
+    "pictures-prod/C368132-1-prod-1022.png",
+    "pictures-prod/C368132-2-prod-1022.png"
+   ]
+  },
+  "C96974": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Set-up check: Nina Newtech leads eight work orders for \"ZZAUTOTEST F1 Open Count\", one in each status: Estimate S1-1526, Invoiced S1-1527, In Progress S1-1528, Review S1-1529, Complete S1-1530, Approved S1-1531, Paid S1-1532, Declined S1-1533. She leads nothing else at Truck Hill 1.",
+    "Set-up check: S1-1535 is Approved and led by Esther Howard, with Nina Newtech only as the technician on its line. At Trucks Hill 2, S2-1536 is Approved and led by Nina Newtech.",
+    "Steps 1 to 3 on the Work Orders tab in Board View: More actions > Reassign lead technician on a card in Esther Howard's column opens the dialog, and Nina Newtech reads \"4 open\".",
+    "The same on the All tab: Nina Newtech still reads \"4 open\", so the tab does not change the number.",
+    "Step 4: Cancel closed the dialog each time.",
+    "4 = Approved 1 + In Progress 1 + Review 1 + Complete 1; Estimate, Invoiced, Paid, Declined, the line-only work order and the other location's work order are not counted."
+   ],
+   "pictures": [
+    "pictures-prod/C96974-1-prod-1022.png",
+    "pictures-prod/C96974-2-prod-1022.png",
+    "pictures-prod/C96974-3-prod-1022.png"
+   ]
+  }
+ }
+}
