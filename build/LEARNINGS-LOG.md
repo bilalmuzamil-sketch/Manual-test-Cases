@@ -414,3 +414,8 @@
 - **Report Location filter starts with ALL locations ticked on production** (Work In Progress, Sales By Representative), while the cases (written on staging) say "the first location is the only one ticked by default". A "tick the second as well" step then UNticks it. `medium-fix3.mts keepAfterReload` now unticks the case's pick first (start state read back, picture `<C-id>-start-first-only.png`) and step 3 ticks it.
 - **Left-menu links on Parts pages**: `p.locator('a, .q-item, …').filter({hasText}).first()` picked a hidden copy and timed out, so the script fell back to the address (judged route-only Unsure, C368218/C368219/C368223). Use `:visible` on every candidate (`a:visible, .q-item:visible, …`).
 #run498 #production #filters #route → L0541, L0543
+
+## L0545 — 2026-10-22 — A usage-tracking case whose SET-UP saves Board View with a density cannot exist on production
+- C97029's set-up says the dispatcher is saved on Board View with a density; production's Board View has no density (PRD v73 S3-R11). The script saved Tech View + Comfortable instead, so clicking Tech View at step 3 was not a switch and only 1 display record was sent (case expects 2). Same family as C97024/C97025/C97027/C97035, which the QA lead had moved to Tech View on 22 Oct — a set-up change for C97029 is HIS call (preconditions are editable, Expected is not, Rule 114): ask, don't patch the script to a different start.
+- Pattern for judges: when a case's set-up is impossible on an environment, the verdict is Unsure with "set-up cannot exist here" — never a pass on a substitute set-up.
+#run498 #production #analytics #density → L0522
