@@ -1,0 +1,207 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - batch16"
+ },
+ "results": {
+  "C368193": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: no records of its own are needed for the result; the words \"ZZAUTOTEST Tab Clears Search\" were used as the search. At Truck Hill 1, signed in as ZZ WOB Runner.",
+    "Step 1: Work Orders opened in the List and the All tab clicked.",
+    "Step 2: Search clicked and \"ZZAUTOTEST Tab Clears Search\" typed; the search box read exactly that.",
+    "Step 3: the Estimates tab clicked.",
+    "Step 4: the search box is closed back to the plain Search button with nothing in it, and the Estimates tab shows its work orders for many customers (Ahsan, aqeel transport 56 and others, 30 rows, all Estimate), so the search is not applied."
+   ],
+   "pictures": [
+    "pictures-prod/C368193-1-prod-1022.png"
+   ]
+  },
+  "C368194": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: needs no records. At the start Days open was off in Column Selection (read from the menu). At Truck Hill 1, signed in as ZZ WOB Runner.",
+    "Step 1: Work Orders opened in the List and the All tab clicked.",
+    "Steps 2 to 4: Column Selection clicked, the Days open switch turned on, the menu closed with Escape; the List headings now include Days Open.",
+    "Step 5: after reloading the page the List headings still end with Days Open (On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total Price, Created On, Days Open). The picture shows the List after the reload; Days Open sits past the right edge of the window."
+   ],
+   "pictures": [
+    "pictures-prod/C368194-1-prod-1022.png"
+   ]
+  },
+  "C368195": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: a brand-new user \"ZZAUTOTEST ListNew Tech ...\" with Role = Technician was made at Truck Hill 1 and had no saved Work Orders settings (never opened Work Orders). The steps were done signed in as that user.",
+    "Step 1: as the new user, Work Orders opened, List clicked, All tab clicked.",
+    "Step 2: the headings are On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Created On.",
+    "Step 3: Column Selection shows these off: Waiting On Parts, Invoiced Date, Days open, Parts, Returns (5 columns off); every other choice (Asset, VIN, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Created On) is on and shown. Total Price is not offered to this Technician user."
+   ],
+   "pictures": [
+    "pictures-prod/C368195-1-prod-1022.png",
+    "pictures-prod/C368195-2-prod-1022.png"
+   ]
+  },
+  "C368198": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: customer \"ZZAUTOTEST Invoice Order 88884\" with two Invoiced work orders at Truck Hill 1: S1-1597 (X) invoiced first and S1-1598 (Y) invoiced about one minute later.",
+    "Step 1: Work Orders opened in the List and the All tab clicked.",
+    "Step 2: Status clicked and Invoiced ticked; the button reads \"Status: Invoiced\".",
+    "Step 3: Column Selection clicked and Invoiced Date turned on; the Invoiced Date column shows, with its sort arrow pointing down.",
+    "Step 4: Search clicked and \"ZZAUTOTEST Invoice Order\" typed.",
+    "Step 5: the rows read S1-1598 (Y) first, then S1-1597 (X); both Invoiced, both Invoiced Date \"Today\". Y is above X."
+   ],
+   "pictures": [
+    "pictures-prod/C368198-1-prod-1022.png"
+   ]
+  },
+  "C368199": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: needs no records; the site has work orders on every tab. At Truck Hill 1, signed in as ZZ WOB Runner.",
+    "Step 1: Work Orders opened in the List and the All tab clicked.",
+    "Step 2: Estimates, Completed, Work Orders and Completed clicked one after another as fast as possible.",
+    "Step 3: waited for the List to finish loading.",
+    "Step 4: the Completed tab is selected and every row reads Complete (S1-1064, S1-722, S1-668 and on); no error message appeared.",
+    "Requests the page stops on the way: not checked by hand."
+   ],
+   "pictures": [
+    "pictures-prod/C368199-1-prod-1022.png"
+   ]
+  },
+  "C368200": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: customer \"ZZAUTOTEST Row Toggle 88884 One Co\" with one Approved work order S1-1599 at Truck Hill 1, its asset not on site at the start.",
+    "Step 1: Work Orders opened, All tab clicked, \"ZZAUTOTEST Row Toggle\" searched; S1-1599 is the only row.",
+    "Step 2: the location pin in the S1-1599 row's On Site column clicked.",
+    "Step 3: the page is still the Work Orders List (the work order did not open), and the pin is now green with the hover text \"Asset here. Click to toggle status.\" (it was off before the click)."
+   ],
+   "pictures": [
+    "pictures-prod/C368200-1-prod-1022.png"
+   ]
+  },
+  "C368201": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: customer \"ZZAUTOTEST Back Status 88884\" with one Approved work order S1-1600 at Truck Hill 1 with one approved ready-made line (the grease service line is not on production, so the first ready-made line was used). The shop's \"Require Review Before Completion\" setting was off on production, so it was switched on before step 1 and put back afterwards; without it a finished line goes straight to Complete.",
+    "Step 1: Work Orders opened, All tab clicked, \"ZZAUTOTEST Back Status\" searched; S1-1600 listed.",
+    "Step 2: the S1-1600 row clicked; the work order opened on its Lines tab.",
+    "Step 3: Complete clicked on the line; no Tech Story or Missing Details window came up on production. The line reads Complete and the work order's status reads Review (the \"Work order sent to review.\" message was not caught on the picture).",
+    "Step 4: the browser Back button pressed; the Work Orders List is shown again with the search still applied.",
+    "Step 5: the S1-1600 row reads \"Ready For Review\" straight away, with no reload. \"Ready For Review\" is the List's name for the same status the work order page shows as Review."
+   ],
+   "pictures": [
+    "pictures-prod/C368201-1-prod-1022.png",
+    "pictures-prod/C368201-2-prod-1022.png"
+   ]
+  },
+  "C368203": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: needs no records. The saved List was on the All tab with Assigned to me off at the start. At Truck Hill 1, signed in as ZZ WOB Runner.",
+    "Step 1: the Work Orders address with ?tab=estimate&assigned_to_me=1 added was opened in the address bar.",
+    "Step 2: the Estimates tab is selected and Assigned to me is highlighted (on); the List shows only Estimate work orders."
+   ],
+   "pictures": [
+    "pictures-prod/C368203-1-prod-1022.png"
+   ]
+  },
+  "C368205": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: needs no records. The All tab was open with no Status or Asset on Site filter and Assigned to me off; it showed 30 rows, starting S1-915, S1-979, S1-914 (Ahsan). At Truck Hill 1, signed in as ZZ WOB Runner.",
+    "Step 1: the Work Orders address with ?vehicleHere=2 added was opened.",
+    "Step 2: Asset on Site clicked: Yes and No are both unticked (only Yes / No / Clear selection offered); the List still shows 30 rows starting S1-915, S1-979, S1-914, the same as before; no error message appeared."
+   ],
+   "pictures": [
+    "pictures-prod/C368205-1-prod-1022.png"
+   ]
+  },
+  "C368206": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: the test role \"ZZAUTOTEST WO View Only\" (Work orders > View) had See Financial Data turned off (put back afterwards), and a new user \"ZZAUTOTEST NoFin ...\" with that role was made at Truck Hill 1. The steps were done signed in as that user.",
+    "Step 1: as that user, Work Orders opened, List clicked, All tab clicked.",
+    "Step 2: the headings are On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Created On: no Total Price column.",
+    "Step 3: Column Selection offers Waiting On Parts, Asset, VIN, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Created On, Invoiced Date, Days open, Parts, Returns: Total Price is not offered.",
+    "Step 4: after scrolling to the bottom there is no total row and no money figure anywhere on the page."
+   ],
+   "pictures": [
+    "pictures-prod/C368206-1-prod-1022.png"
+   ]
+  },
+  "C368207": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: a new user \"ZZAUTOTEST VO ...\" with the role \"ZZAUTOTEST WO View Only\" (Work orders > View on, Create & Edit off) at Truck Hill 1. The steps were done signed in as that user.",
+    "Step 1: as that user, Work Orders opened, List clicked, All tab clicked.",
+    "Step 2: there is no Create Work Order button on the toolbar (Search, Status, Assigned to me, Asset on Site, the column and display buttons only)."
+   ],
+   "pictures": [
+    "pictures-prod/C368207-1-prod-1022.png"
+   ]
+  },
+  "C368208": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: customer \"ZZAUTOTEST View Only Toggle 88884 One Co\" with one Approved work order S1-1601 at Truck Hill 1 (its asset not on site, red pin), and a new user \"ZZAUTOTEST VOT ...\" with the role \"ZZAUTOTEST WO View Only\". The steps were done signed in as that user.",
+    "Step 1: as that user, Work Orders opened, List and All tab clicked, \"ZZAUTOTEST View Only Toggle\" searched; S1-1601 is the only row.",
+    "Step 2: the pin in S1-1601's On Site column is shown disabled (greyed, not-allowed pointer; hover text \"Asset not here. Click to toggle status.\"); clicking it changed nothing, the pin stays red.",
+    "Step 3: after the reload the pin is still red and disabled; the work order's asset is still not on site."
+   ],
+   "pictures": [
+    "pictures-prod/C368208-1-prod-1022.png",
+    "pictures-prod/C368208-2-prod-1022.png",
+    "pictures-prod/C368208-3-prod-1022.png"
+   ]
+  },
+  "C368210": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: needs no records; the All tab holds far more than one page of work orders. Phone width 390 px, at Truck Hill 1, signed in as ZZ WOB Runner.",
+    "Step 1: Work Orders opened at phone width and the All tab tapped.",
+    "Step 2: without scrolling, 30 different work order cards are on the page (first S1-915, S1-979, S1-914).",
+    "Step 3: the cards scrolled to the bottom.",
+    "Step 4: 390 different work order cards are now on the page, none shown twice; more cards appeared only after the scroll."
+   ],
+   "pictures": [
+    "pictures-prod/C368210-1-prod-1022.png",
+    "pictures-prod/C368210-2-prod-1022.png"
+   ]
+  },
+  "C368212": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: customer \"ZZAUTOTEST Loc2 Customer 88884\" with work order S2-1602, made while Trucks Hill 2 was the chosen location; then the location was set back to Truck Hill 1 before step 1. Signed in as ZZ WOB Runner.",
+    "Step 1: at Truck Hill 1, Work Orders opened and the All tab clicked.",
+    "Step 2: Search \"Loc2\": the List reads \"No work orders match the search \"Loc2\".\"; S2-1602 does not appear.",
+    "Step 3: searched by its number S2-1602 instead: \"No work orders match the search \"S2-1602\".\"; it does not appear at Truck Hill 1.",
+    "Step 4: initials > Change Location > Trucks Hill 2 (the name next to the bell reads Trucks Hill 2), Work Orders, All, search \"Loc2\": S2-1602 (ZZAUTOTEST Loc2 Customer 88884) is listed, so the record exists and is only hidden where it does not belong.",
+    "After the test the screen stayed on Trucks Hill 2 (the switch back is not part of this test's steps)."
+   ],
+   "pictures": [
+    "pictures-prod/C368212-1-prod-1022.png",
+    "pictures-prod/C368212-2-prod-1022.png",
+    "pictures-prod/C368212-3-prod-1022.png"
+   ]
+  }
+ }
+}

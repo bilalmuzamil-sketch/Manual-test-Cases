@@ -309,7 +309,14 @@ const phone = async () => { await p.setViewportSize({ width: 390, height: 844 })
 const desk = async () => { await p.setViewportSize({ width: 1600, height: 1000 }); await p.waitForTimeout(1500); };
 const cardNums = () => p.evaluate(`[...new Set((document.querySelector('main, .q-page') || document.body).innerText.match(/S\\d+-\\d+/g) || [])]`) as Promise<string[]>;
 await run('C368209', async () => { await phone(); await p.goto(APP + '/workorders', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); const o: any = {};
-  const sb = p.locator('[aria-label="Sort work orders"]').first(); o.sortButton = await sb.count(); if (o.sortButton) { await sb.click(); await p.waitForTimeout(900); o.options = await p.locator('.q-menu .q-item').allInnerTexts(); await p.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: /Customer A-Z/i }).first().click().catch(() => {}); await p.waitForTimeout(2500); }
+  const sb = p.locator('[aria-label="Sort work orders"]').first(); o.sortButton = await sb.count();
+  // 22 Oct 2026 (production): the sort was already on Customer A-Z from an earlier run, so picking it proved nothing. Set the case's
+  // starting sort (Newest First) and reload first, then do step 3.
+  if (o.sortButton) { await sb.click(); await p.waitForTimeout(900); await p.locator('.q-menu .q-item').filter({ hasText: /Newest First/i }).first().click().catch(() => { o.startSortErr = 'no Newest First'; }); await p.waitForTimeout(1500); await p.keyboard.press('Escape').catch(() => {});
+    await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); await sb.click(); await p.waitForTimeout(900);
+    o.tickedBefore = await p.evaluate(`[...document.querySelectorAll('.q-menu .q-item')].filter(e => e.getBoundingClientRect().width > 0 && (/check/.test(e.innerText) || e.classList.contains('q-item--active'))).map(e => e.innerText.replace(/\\s+/g, ' ').trim())`).catch(() => null);
+    await shot(p, 'C368209-start-newest-first'); await p.keyboard.press('Escape').catch(() => {}); await p.waitForTimeout(600); }
+  if (o.sortButton) { await sb.click(); await p.waitForTimeout(900); o.options = await p.locator('.q-menu .q-item').allInnerTexts(); await p.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: /Customer A-Z/i }).first().click().catch(() => {}); await p.waitForTimeout(2500); }
   await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); if (o.sortButton) { await sb.click(); await p.waitForTimeout(900); o.ticked = await p.evaluate(`[...document.querySelectorAll('.q-menu .q-item')].filter(e => /check/.test(e.innerText) || e.classList.contains('q-item--active')).map(e => e.innerText.replace('check','').trim())`); await p.keyboard.press('Escape'); }
   // 15 Oct 2026 (staging second pass): the customer was read as the first text line of each card, which is the On Site icon's
   // name ("location_on"), and only the first screen was read. Now each card's customer is the first line that is not an icon name,
