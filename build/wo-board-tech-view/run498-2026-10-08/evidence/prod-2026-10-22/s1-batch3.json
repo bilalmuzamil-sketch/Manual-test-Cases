@@ -4,7 +4,7 @@
    "saved": {
     "status": 200,
     "display": "list",
-    "collapsedGroups": null,
+    "collapsedGroups": [],
     "pinned": [],
     "filters": {
      "assigned_to_me": []
@@ -20,7 +20,7 @@
   "savedAfter": {
    "status": 200,
    "display": "list",
-   "collapsedGroups": null,
+   "collapsedGroups": [],
    "pinned": [],
    "filters": {
     "assigned_to_me": []
@@ -30,16 +30,252 @@
   }
  },
  "C96911": {
-  "error": "Cannot read properties of undefined (reading 'id')"
+  "fibridge": [
+   "S1-1021 approved Ayesha",
+   "S1-1020 approved Aaron",
+   "S1-1019 approved none"
+  ],
+  "fisquare": [
+   "S1-1056"
+  ],
+  "List": {
+   "active": "List",
+   "noReload": true,
+   "tab": "All",
+   "search": "ZZAUTOTEST Fibridge",
+   "statusChip": "Status: Approved\nkeyboard_arrow_down\ncancel",
+   "wos": {
+    "S1-1021": "list",
+    "S1-1019": "list",
+    "S1-1020": "list"
+   },
+   "ms": 3054
+  },
+  "Tech View": {
+   "active": "Tech View",
+   "noReload": true,
+   "tab": "All",
+   "search": "ZZAUTOTEST Fibridge",
+   "statusChip": "Status: Approved\nkeyboard_arrow_down\ncancel",
+   "wos": {
+    "S1-1019": "Unassigned",
+    "S1-1020": "Aaron Baker",
+    "S1-1021": "Ayesha Khan"
+   },
+   "counts": {
+    "Unassigned": 1,
+    "Aaron Baker": 1,
+    "Ayesha Khan": 1
+   },
+   "ms": 3118
+  },
+  "Board View": {
+   "active": "Board View",
+   "noReload": true,
+   "tab": "All",
+   "search": "ZZAUTOTEST Fibridge",
+   "statusChip": "Status: Approved\nkeyboard_arrow_down\ncancel",
+   "wos": {
+    "S1-1019": "board_column_unassigned",
+    "S1-1020": "board_column_3d600422-d257-412e-a762-31ea1c61eee1",
+    "S1-1021": "board_column_90e2ab51-512e-4393-865c-0fd555be389f"
+   },
+   "counts": {
+    "board_column_unassigned": "Unassigned | 1 | 1 work order",
+    "board_column_3d600422-d257-412e-a762-31ea1c61eee1": "AB | Aaron Baker | 1",
+    "board_column_90e2ab51-512e-4393-865c-0fd555be389f": "AK | Ayesha Khan | 1"
+   },
+   "ms": 3147
+  },
+  "List (back)": {
+   "active": "List",
+   "noReload": true,
+   "tab": "All",
+   "search": "ZZAUTOTEST Fibridge",
+   "statusChip": "Status: Approved\nkeyboard_arrow_down\ncancel",
+   "wos": {
+    "S1-1021": "list",
+    "S1-1019": "list",
+    "S1-1020": "list"
+   },
+   "ms": 3118
+  }
  },
  "C96914": {
-  "error": "Cannot read properties of undefined (reading 'id')"
+  "wos": [
+   "S1-1059 unit=ZZSR3C here=false lead=none",
+   "S1-1058 unit=ZZSR2B here=false lead=Aaron",
+   "S1-1057 unit=ZZSR1A here=true lead=Ayesha"
+  ],
+  "bySearch": {
+   "List": {
+    "S1-1058": "list"
+   },
+   "Tech View": {
+    "S1-1058": "Aaron Baker"
+   },
+   "Board View": {
+    "S1-1058": "board_column_3d600422-d257-412e-a762-31ea1c61eee1"
+   }
+  },
+  "byFilter": {
+   "List": {
+    "chip": "Asset on Site: Yes\nkeyboard_arrow_down\ncancel",
+    "wos": {
+     "S1-1057": "list"
+    }
+   },
+   "Tech View": {
+    "chip": "Asset on Site: Yes\nkeyboard_arrow_down\ncancel",
+    "wos": {
+     "S1-1057": "Ayesha Khan"
+    }
+   },
+   "Board View": {
+    "chip": "Asset on Site: Yes\nkeyboard_arrow_down\ncancel",
+    "wos": {
+     "S1-1057": "board_column_90e2ab51-512e-4393-865c-0fd555be389f"
+    }
+   }
+  },
+  "roundTrip": {
+   "Board View": {
+    "scheduleUrl": "/schedule",
+    "back": "/workorders?vehicleHere=1",
+    "display": "Board View",
+    "chip": "Asset on Site: Yes\nkeyboard_arrow_down\ncancel",
+    "search": null,
+    "wos": 13
+   },
+   "Tech View": {
+    "scheduleUrl": "/schedule",
+    "back": "/workorders?vehicleHere=1",
+    "display": "Tech View",
+    "chip": "Asset on Site: Yes\nkeyboard_arrow_down\ncancel",
+    "search": null,
+    "wos": 67
+   },
+   "List": {
+    "scheduleUrl": "/schedule",
+    "back": "/workorders?vehicleHere=1",
+    "display": "List",
+    "chip": "Asset on Site: Yes\nkeyboard_arrow_down\ncancel",
+    "search": null,
+    "wos": 30
+   }
+  }
  },
  "C96920": {
-  "error": "Cannot read properties of undefined (reading 'id')"
+  "step2": {
+   "want": "Board View",
+   "tries": [
+    {
+     "before": "List",
+     "switcherFound": 3,
+     "screen": "Board View",
+     "saved": "board_view"
+    }
+   ],
+   "ok": true
+  },
+  "start": "Board View",
+  "savedAtStart": "board_view",
+  "failed": [
+   "GET /api/iam/view-avatar/1d610634-2618-4c70-9ce4-791f8d201642",
+   "PATCH /api/users/me/preferences/work-orders-list",
+   "PATCH /api/users/me/preferences/work-orders-list"
+  ],
+  "errors": [
+   "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+   "Failed to load resource: net::ERR_INTERNET_DISCONNECTED",
+   "Failed to load resource: net::ERR_INTERNET_DISCONNECTED"
+  ],
+  "loadedOnline": {
+   "Tech View": {
+    "display": "Tech View",
+    "numbers": 67,
+    "cards": 0,
+    "techRows": 346,
+    "groups": 1,
+    "listRows": 70
+   },
+   "List": {
+    "display": "List",
+    "numbers": 30,
+    "cards": 0,
+    "techRows": 0,
+    "groups": 0,
+    "listRows": 33
+   },
+   "Board View": {
+    "display": "Board View",
+    "numbers": 27,
+    "cards": 27,
+    "techRows": 0,
+    "groups": 0,
+    "listRows": 0
+   }
+  },
+  "savedBeforeOffline": "board_view",
+  "offline": false,
+  "offlineTech": "Tech View",
+  "bodyText": "Skip to main content\nShopHub\nexpand_more\nWork Orders\nSchedule\nCustomers\nParts\nReports\nDashboard\nNew\nsearch\nSearch customers, work orders, parts...\nCtrl\nK\ntimer\nClock In\nnotifications\nTruck Hill 1\nS(\nAll\nEstimates\nWork Orders\nCompleted\nSearch\nStatus\nkeyboard_arrow_down\nAssigned to me\nTechnician\nkeybo",
+  "offlineList": "List",
+  "offlineMessages": [
+   "warning\nNetwork Error\nClose\n2"
+  ],
+  "afterReconnect": "Board View",
+  "afterOnlineSwitch": "Tech View"
  },
  "C96915": {
-  "error": "Cannot read properties of undefined (reading 'id')"
+  "wos": [
+   "S1-1063 2026-10-22 12:23:43",
+   "S1-1062 2026-10-22 12:23:41",
+   "S1-1061 2026-10-22 12:23:38"
+  ],
+  "headerBefore": "text-left sortable | aria-sort=null | Created Onarrow_drop_up",
+  "listOrder": [
+   "S1-1063",
+   "S1-1062",
+   "S1-1061"
+  ],
+  "newestFirst": [
+   "S1-1063",
+   "S1-1062",
+   "S1-1061"
+  ],
+  "headerChosen": "text-left sortable sorted sort-desc | aria-sort=null | Created Onarrow_drop_up",
+  "techBefore": [
+   "S1-1061",
+   "S1-1062",
+   "S1-1063"
+  ],
+  "rowAttrs": "draggable=null class=cursor-pointer grip=true",
+  "techAfter": [
+   "S1-1063",
+   "S1-1061",
+   "S1-1062"
+  ],
+  "toasts": [],
+  "board": [
+   "S1-1063",
+   "S1-1061",
+   "S1-1062"
+  ],
+  "listBack": [
+   "S1-1063",
+   "S1-1062",
+   "S1-1061"
+  ],
+  "headerBack": "text-left sortable sorted sort-desc | aria-sort=null | Created Onarrow_drop_up"
  },
- "prefCalls": []
+ "prefCalls": [
+  "GET /js/usePagePreferences.DKnopSxS.js ",
+  "GET /api/users/me/preferences/work-orders-list ",
+  "PUT /api/users/me/preferences/work-orders-list {\"value\":{\"tab\":\"all\",\"filters\":{\"assigned_to_me\":[],\"status\":[\"approved\"]},\"columns\":{\"unreceivedPartRequestsCount\":true,\"vehicle\":true,\"vin\":true,\"progress\":true,\"serviceAdvisor\":true,\"technician\":t",
+  "PATCH /api/users/me/preferences/work-orders-list {\"value\":{\"display\":\"tech_view\"}}",
+  "PATCH /api/users/me/preferences/work-orders-list {\"value\":{\"display\":\"board_view\"}}",
+  "PATCH /api/users/me/preferences/work-orders-list {\"value\":{\"display\":\"list\"}}",
+  "PUT /api/users/me/preferences/work-orders-list {\"value\":{\"tab\":\"all\",\"filters\":{\"vehicleHere\":[\"1\"]},\"columns\":{\"unreceivedPartRequestsCount\":true,\"vehicle\":true,\"vin\":true,\"progress\":true,\"serviceAdvisor\":true,\"technician\":true,\"clockedInTechnici"
+ ]
 }
