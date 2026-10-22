@@ -7,7 +7,7 @@
  * Sizes are read with getComputedStyle / getBoundingClientRect: font-size of the text in a row or card, row height,
  * card height and padding.
  */
-import { ME_NAME } from './profile.mts';
+import { ME_NAME, LOC1_NAME, LOC2_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -78,7 +78,7 @@ const second = async () => { const st = await p.context().storageState(); const 
 
 
 const say = (r: any) => `${r.status}${r.status >= 300 ? ' ' + JSON.stringify(r.body).slice(0, 200) : ''}`;
-const where = (pg: Page) => pg.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => / - \\d{3,5}$/.test(l)) || null`) as Promise<string | null>;
+const where = (pg: Page) => pg.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => (/ - \\d{3,5}$/.test(l) || l.includes(${JSON.stringify(LOC1_NAME)}) || l.includes(${JSON.stringify(LOC2_NAME)}))) || null`) as Promise<string | null>;
 // 15 Oct 2026 (wave 10): `pic` = take that picture WHILE the Density menu is open, so the ticked option shows (C96987, C96991)
 const density = async (pg: Page = p, pic?: string) => {
   const b = pg.locator('[data-test-id="button_density"]'); if (!(await b.count()) || !(await b.isVisible())) return { present: false };
@@ -151,8 +151,9 @@ await run('C96990', async () => {
   for (const d of ['regular', 'compact', 'comfortable']) { await setDensity(d); await p.evaluate(`document.querySelector('${rowSel(wo).replace(/'/g, "\\'")}')?.scrollIntoView({ block: 'center' })`).catch(() => {}); await p.waitForTimeout(600);
     R.C96990[`tech_${d}`] = { row: await texts(rowSel(wo)), headers: await headLabels(), percentage: await pct(rowSel(wo)), size: await sizes(p, rowSel(wo)) }; await shot(p, `C96990-tech-${d}`); }
   await display(p, 'Board View'); await p.waitForTimeout(1500); if (!(await searchValue(p))) await search(p, n);
-  for (const d of ['regular', 'compact']) { await setDensity(d); await p.evaluate(`document.querySelector('${cardSel(wo)}')?.scrollIntoView({ block: 'center', inline: 'center' })`).catch(() => {}); await p.waitForTimeout(600);
-    R.C96990[`board_${d}`] = { card: await texts(cardSel(wo)), size: await sizes(p, cardSel(wo)) }; await shot(p, `C96990-board-${d}`); }
+  // 22 Oct 2026: the Board View density readings were an extra outside the case's steps, and Board View has no density in this release
+  // (PRD v73 S3-R11) — one Board card reading at the current setting is kept for reference only.
+  R.C96990.board_reference = { card: await texts(cardSel(wo)), size: await sizes(p, cardSel(wo)) };
   await setDensity('regular'); R.C96990.bodyFont = await p.evaluate(`parseFloat(getComputedStyle(document.body).fontSize)`);
 });
 

@@ -6,7 +6,7 @@
  *  (2) make the assets of C96982 / C96984 through Customers > (customer) > Assets > New Asset (Year, Make, Model, Unit),
  *      then their work orders, and read the cards (unit, or the asset in the unit's place).
  */
-import { LOC2_NAME } from './profile.mts';
+import { LOC2_NAME, LOC1_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -19,7 +19,7 @@ const { browser, page: p0 } = await open('/workorders?tab=all');
 const RUN = await asRunner(browser, p0, api(p0)); const p = RUN.p; p.setDefaultTimeout(30_000); const a = api(p);
 const R: Record<string, any> = {};
 const sends: string[] = []; p.on('request', (q) => { if (q.method() !== 'GET' && /\/api\/(staff|iam|vehicles|customers)/.test(q.url())) sends.push(`${q.method()} ${q.url().replace(/^https:\/\/[^/]+/, '')} ${(q.postData() || '').slice(0, 500)}`); });
-const where = () => p.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => / - \\d{3,5}$/.test(l)) || null`) as Promise<string | null>;
+const where = () => p.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => (/ - \\d{3,5}$/.test(l) || l.includes(${JSON.stringify(LOC1_NAME)}) || l.includes(${JSON.stringify(LOC2_NAME)}))) || null`) as Promise<string | null>;
 const PREF = '/api/users/me/preferences/work-orders-list';
 const ONLYS = (process.env.ONLY || '').split(',').filter(Boolean);
 async function run(id: string, f: () => Promise<void>) { if (ONLYS.length && !ONLYS.includes(id)) return; try { await f(); await (globalThis as any).__shotEach?.(id); } catch (e: any) { R[id] = { ...(R[id] || {}), error: String(e?.message || e).slice(0, 300) }; await shot(p, `${id}-error`); }

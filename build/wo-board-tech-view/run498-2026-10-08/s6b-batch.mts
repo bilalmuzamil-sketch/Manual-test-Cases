@@ -79,7 +79,7 @@ const second = async () => { const st = await p.context().storageState(); const 
 
 
 const say = (r: any) => `${r.status}${r.status >= 300 ? ' ' + JSON.stringify(r.body).slice(0, 200) : ''}`;
-const where = (pg: Page) => pg.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => / - \\d{3,5}$/.test(l)) || null`) as Promise<string | null>;
+const where = (pg: Page) => pg.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => / - \\d{3,5}$/.test(l) || l.includes(${JSON.stringify(LOC1_NAME)}) || l.includes(${JSON.stringify(LOC2_NAME)})) || null /* 22 Oct 2026: production names have no ' - 9919' */`) as Promise<string | null>;
 // 15 Oct 2026 (wave 12): `pic` = take that picture WHILE the Density menu is open, so the ticked choice shows (C96989)
 const density = async (pg: Page = p, pic?: string) => {
   const b = pg.locator('[data-test-id="button_density"]'); if (!(await b.count()) || !(await b.isVisible())) return { present: false };
@@ -139,7 +139,8 @@ await run('C96992', async () => {
   await setDensity('compact'); o.tech.compact = await rowH('[data-test-id^="tech_view_row_"]'); await shot(p, 'C96992-tech-compact');
   // step 3: Board View cards at Compact (and Regular as the reference, then back to Compact)
   await display(p, 'Board View'); await p.waitForTimeout(1500); o.board = { selected: (await density()).selected, compact: await cardsIn(ES.staff_id) }; await shot(p, 'C96992-board-compact');
-  await setDensity('regular'); o.board.regular = await cardsIn(ES.staff_id); await setDensity('compact');
+  // 22 Oct 2026: the case (PRD v73) reads Board View with NO density button — nothing is set on Board View; the card is read as it is
+  o.board.densityButtons = await p.locator('[data-test-id="button_density"]:visible').count();
   // step 4: List again
   await display(p, 'List'); await p.waitForTimeout(1500); o.listAfter = await rowH('tbody tr'); await shot(p, 'C96992-list-after');
   // step 5: Customers again
@@ -164,7 +165,7 @@ await run('C96989', async () => {
   const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = (dd.find((d: any) => (d.name ?? d.label) === 'Service') ?? dd[0]);
   if (meRow) o.enrolLeth = say(await a.post('/api/staff/enrollment/create', { staffId: meRow.staff_id, workplaceId: LETH, departmentId: svc?.id }));
   await go('Tech View'); o.switched = await switchLocUI(p, LOC2_NAME); o.at = await where(p);
-  if (/lethbridge/i.test(String(o.at))) { await go('Tech View'); o.atAfterOpen = await where(p); o.loc2Tech = (await density(p, 'C96989-lethbridge-tech-density-menu-open')).selected; await display(p, 'Board View'); await p.waitForTimeout(1500); o.loc2Board = (await density(p, 'C96989-lethbridge-board-density-menu-open')).selected; }
+  if (String(o.at).includes(LOC2_NAME)) { await go('Tech View'); o.atAfterOpen = await where(p); o.loc2Tech = (await density(p, 'C96989-lethbridge-tech-density-menu-open')).selected; await display(p, 'Board View'); await p.waitForTimeout(1500); o.loc2Board = (await density(p, 'C96989-lethbridge-board-density-menu-open')).selected; }
   o.backOnScreen = await switchLocUI(p, LOC1_NAME);
   o.back = say(await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }));
 });

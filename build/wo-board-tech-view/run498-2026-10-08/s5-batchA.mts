@@ -162,7 +162,7 @@ await run('C96983', async () => {
 
 // [Loc-2] for C96975 / C96976 — last, because the location menu cannot reliably switch back in one sign-in
 await run('loc2', async () => {
-  const where = () => p.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => / - \\d{3,5}$/.test(l)) || null`) as Promise<string | null>;
+  const where = () => p.evaluate(`(document.querySelector('header') || document.body).innerText.split('\\n').find(l => (/ - \\d{3,5}$/.test(l) || l.includes(${JSON.stringify(LOC1_NAME)}) || l.includes(${JSON.stringify(LOC2_NAME)}))) || null`) as Promise<string | null>;
   await go('List'); await p.locator('header').getByText(/^[A-Z]{2}$/).last().click(); await p.waitForTimeout(1500);
   if (process.env.WOB_LOC_SELECT) { await p.keyboard.press('Escape').catch(() => {}); await switchLocUI(p, LOC2_NAME); } else {
   await p.locator('.q-menu').getByText(/ - \d{3,5}$/).first().click(); await p.waitForTimeout(1500);
