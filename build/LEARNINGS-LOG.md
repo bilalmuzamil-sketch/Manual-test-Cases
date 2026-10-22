@@ -824,3 +824,8 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - Read-only probe (`impersonate-probe-prod-1022.mts`): `/impersonate-user/<user id>` answers 200 but lands on Work Orders as the admin with no "Account Access Mode" bar; Settings > Staff row offers only "1 Department" and the edit pencil, no account-access item. `POST /api/switch-user {user_id}` still works behind the screen (viewAs, seeds). So cases whose STEPS start/exit account access on screen (C368238, C368239) cannot run with the production test account as it stands.
 - Next route queued: `role-access-probe-1022.mts` (read only) lists the test admin role's permission codes vs the built-in Admin role's, filtered for impersonation/account/switch, before any role is changed (Rule 107 allows the change; Rule 118 for anything measured on that role).
 #run498 #production #account-access → L0539
+
+## L0543 — 2026-10-22 — Open-from-list helpers must switch to List first: the saved display may be Tech View
+- C368173 (`high1-fix5.mts`) searched for its work order on Work Orders > All and clicked "the row" — but the account's saved display was Tech View (left by an earlier test), whose rows are not `tbody tr` of the List, so no row was found and the script fell back to the address (judged Unsure). Every open-from-list helper (`uiOpen` in high1-fix5 / editwo-fix, `uiPage` in high1-fix, `woPage` in s11-batch) now calls `display(p, 'List')` after the All tab and before the search.
+- Judging note for the report: an analogy to one of the QA lead's decisions (C368233 "production compared with itself") is NOT his decision for sister cases C368234/C368235 — those are held and asked.
+#run498 #production #route #display → L0541
