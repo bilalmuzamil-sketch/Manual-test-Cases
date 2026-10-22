@@ -67,3 +67,9 @@
 - TestRail write done 22 Oct 2026 (applied/design-2026-10-22-log.jsonl): 257 updated + 32 added (C715532-C715563), all read back OK;
   555 pictures uploaded, attachments read back OK on all 259 cases with pictures. Run 549: 253 → 279 tests (26 new non-held design
   cases), none lost. Held out of run 549: C715279, C715322, C715463, C715464 (q1, q6, q9) and C715558-C715563 (q11-q15, q4).
+- 22 Oct 2026 tech-plan pass applied (Rule 134; tech-plan-pass-2026-10-22/PASS-REPORT.md, per-part record per case): plan (21 Oct,
+  against PRD v4) read in full. 259 confirmed, 30 updated (incl. C715279 S1-07 released: plan D4 gives the accent tie order; question 1
+  stays open and Chris's answer wins), 0 retired, 12 new C715573-C715584 (S1-16 C715573 held on question 16). All read back OK; 24
+  pictures uploaded. Run 549: 279 → 291 (11 new + C715279), none lost. Question 16 added to sheet rows 22-23 (light orange, F3).
+  For the QA lead: the plan says the developers will add 7 cases and edit C27260-C27264, C26553-C26560, C29451 (not ours; C26553-C26560
+  describe the reports as gated by the A/R and A/P permissions, which the plan says is wrong). Not touched.
