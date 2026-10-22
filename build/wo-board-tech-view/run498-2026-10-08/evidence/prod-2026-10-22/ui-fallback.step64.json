@@ -1,0 +1,139 @@
+{
+ "C96982": {
+  "m2": {
+   "labels": [
+    "Contact *",
+    "VIN/Serial #",
+    "Year",
+    "Make *",
+    "Model",
+    "Trim",
+    "Engine",
+    "Drivetrain",
+    "Unit",
+    "Type",
+    "Mileage",
+    "Engine Hours",
+    "Licence Plate",
+    "Color",
+    "Notes"
+   ],
+   "contact": "picked /ZZAUTOTEST/",
+   "year": "typed 2022 (now 2022)",
+   "make": "picked /Freightliner/",
+   "model": "picked /(^|check\\s+)M2\\s*$/",
+   "toasts": []
+  },
+  "explorer": {
+   "labels": [
+    "Contact *",
+    "VIN/Serial #",
+    "Year",
+    "Make *",
+    "Model",
+    "Trim",
+    "Engine",
+    "Drivetrain",
+    "Unit",
+    "Type",
+    "Mileage",
+    "Engine Hours",
+    "Licence Plate",
+    "Color",
+    "Notes"
+   ],
+   "contact": "picked /ZZAUTOTEST/",
+   "year": "typed 1999 (now 1999)",
+   "make": "picked /(^|check\\s+)Ford\\s*$/",
+   "model": "picked /(^|check\\s+)Explorer\\s*$/",
+   "toasts": []
+  },
+  "vehicles": [
+   "2021   unit=ZZTMP",
+   "1999 Ford Explorer unit=",
+   "2022 Freightliner M2 unit=TRK-118"
+  ],
+  "wo1": "fa2507c5-0561-46e9-9f86-4af55a700058",
+  "wo2": "3664bcb9-ed82-4417-8b5e-34fe381b6ad8",
+  "cards": {
+   "wo1": "S1-1591 Approved TRK-118",
+   "wo2": "S1-1592 Approved 1999 Ford Explorer",
+   "wo3": null
+  },
+  "sent": [
+   "POST /api/customers/create {\"name\":\"ZZAUTOTEST F2 Required Only UI 83413\"}",
+   "POST /api/vehicles/create {\"company_id\":\"d812070f-4400-4092-96da-71fca2a3713d\",\"customer_id\":\"32c38556-fd3f-436e-9513-0ab3f133bf70\",\"year\":2021,\"unit\":\"ZZTMP\",\"vin\":\"ZZWOB179269368448\"}",
+   "POST /api/vehicles/create {\"company_id\":\"d812070f-4400-4092-96da-71fca2a3713d\",\"customer_id\":\"32c38556-fd3f-436e-9513-0ab3f133bf70\",\"engine_hours\":\"\",\"maker_name\":\"Freightliner\",\"mileage\":\"\",\"model_name\":\"M2\",\"notes\":null,\"pin_notes\":false,\"unit\":\"TRK-118\",\"vehicle_id\":null,\"vehicle_maker_id\":\"258d9d6c-4cea-4352-9826-1e0f636dc0cd\",\"vehicle_model_id\":\"2f0fd7e6-5f2a-47d3-9fe6-3f59da73e925\",\"vehicle_type_id\":null,\"year\":\"2022\",\"shouldChangeAll\":true}",
+   "POST /api/vehicles/create {\"company_id\":\"d812070f-4400-4092-96da-71fca2a3713d\",\"customer_id\":\"32c38556-fd3f-436e-9513-0ab3f133bf70\",\"engine_hours\":\"\",\"maker_name\":\"Ford\",\"mileage\":\"\",\"model_name\":\"Explorer\",\"notes\":null,\"pin_notes\":false,\"vehicle_id\":null,\"vehicle_maker_id\":\"a41400f2-eceb-42c2-a2b6-23ab9502f90b\",\"vehicle_model_id\":\"b5ee174b-d390-44ba-aa8d-af9ba0b11f60\",\"vehicle_type_id\":null,\"year\":\"1999\",\"shouldChangeAll\":true}"
+  ]
+ },
+ "C96984": {
+  "m2": {
+   "labels": [
+    "Contact *",
+    "VIN/Serial #",
+    "Year",
+    "Make *",
+    "Model",
+    "Trim",
+    "Engine",
+    "Drivetrain",
+    "Unit",
+    "Type",
+    "Mileage",
+    "Engine Hours",
+    "Licence Plate",
+    "Color",
+    "Notes"
+   ],
+   "contact": "picked /ZZAUTOTEST/",
+   "year": "typed 2022 (now 2022)",
+   "make": "picked /Freightliner/",
+   "model": "picked /(^|check\\s+)M2\\s*$/",
+   "toasts": []
+  },
+  "explorer": {
+   "labels": [
+    "Contact *",
+    "VIN/Serial #",
+    "Year",
+    "Make *",
+    "Model",
+    "Trim",
+    "Engine",
+    "Drivetrain",
+    "Unit",
+    "Type",
+    "Mileage",
+    "Engine Hours",
+    "Licence Plate",
+    "Color",
+    "Notes"
+   ],
+   "contact": "picked /ZZAUTOTEST/",
+   "year": "typed 1999 (now 1999)",
+   "make": "picked /(^|check\\s+)Ford\\s*$/",
+   "model": "picked /(^|check\\s+)Explorer\\s*$/",
+   "toasts": []
+  },
+  "vehicles": [
+   "2021   unit=ZZTMP",
+   "1999 Ford Explorer unit=",
+   "2022 Freightliner M2 unit=TRK-118"
+  ],
+  "wo1": "0c5ea725-50c7-44de-a9e4-7d058155d792",
+  "wo2": "3db7aea8-a71b-45e6-a42f-f290bc7a88e6",
+  "wo3": "f40a40de-da22-4afb-84b4-1d004e473d2b",
+  "cards": {
+   "wo1": "S1-1593 Approved TRK-118· Asset 2022 Freightliner M2 Line count 0 lines Progress 0% Total price $0.00",
+   "wo2": "S1-1594 Approved 1999 Ford Explorer Line count 0 lines Progress 0% Total price $0.00",
+   "wo3": "S1-1595 Approved ZZTMP Line count 0 lines Progress 0% Total price $0.00"
+  },
+  "sent": [
+   "POST /api/customers/create {\"name\":\"ZZAUTOTEST F2 Unit Fallback UI 55464\"}",
+   "POST /api/vehicles/create {\"company_id\":\"6fc09903-fb1e-4854-93d6-3462a33fff20\",\"customer_id\":\"3013ee24-1f03-452d-b89a-fdb9c90533b9\",\"year\":2021,\"unit\":\"ZZTMP\",\"vin\":\"ZZWOB179269395607\"}",
+   "POST /api/vehicles/create {\"company_id\":\"6fc09903-fb1e-4854-93d6-3462a33fff20\",\"customer_id\":\"3013ee24-1f03-452d-b89a-fdb9c90533b9\",\"engine_hours\":\"\",\"maker_name\":\"Freightliner\",\"mileage\":\"\",\"model_name\":\"M2\",\"notes\":null,\"pin_notes\":false,\"unit\":\"TRK-118\",\"vehicle_id\":null,\"vehicle_maker_id\":\"258d9d6c-4cea-4352-9826-1e0f636dc0cd\",\"vehicle_model_id\":\"2f0fd7e6-5f2a-47d3-9fe6-3f59da73e925\",\"vehicle_type_id\":null,\"year\":\"2022\",\"shouldChangeAll\":true}",
+   "POST /api/vehicles/create {\"company_id\":\"6fc09903-fb1e-4854-93d6-3462a33fff20\",\"customer_id\":\"3013ee24-1f03-452d-b89a-fdb9c90533b9\",\"engine_hours\":\"\",\"maker_name\":\"Ford\",\"mileage\":\"\",\"model_name\":\"Explorer\",\"notes\":null,\"pin_notes\":false,\"vehicle_id\":null,\"vehicle_maker_id\":\"a41400f2-eceb-42c2-a2b6-23ab9502f90b\",\"vehicle_model_id\":\"b5ee174b-d390-44ba-aa8d-af9ba0b11f60\",\"vehicle_type_id\":null,\"year\":\"1999\",\"shouldChangeAll\":true}"
+  ]
+ }
+}
