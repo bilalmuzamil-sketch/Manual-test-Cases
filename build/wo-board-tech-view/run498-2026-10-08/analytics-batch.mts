@@ -208,10 +208,11 @@ await run('C97025', async () => { const o: any = {}; const u = await fresh('Chan
     await pg.locator('[data-test-id="button_board_fields_selection"]').click(); await pg.waitForTimeout(900);
     await pg.locator('[data-test-id="toggle_board_field_service_advisor"]').click(); await pg.waitForTimeout(1500); await pg.locator('[data-test-id="toggle_board_field_company_name"]').click(); await pg.waitForTimeout(1500); await pg.keyboard.press('Escape'); await settle(pg);
     o.step3 = evs(ev, 'work_orders_field_toggle', n0).map(brief); const n3 = ev.length;
-    await pg.locator('[data-test-id="button_density"]').click(); await pg.waitForTimeout(800); await pg.locator('[data-test-id="option_density_compact"]').click(); await settle(pg);
+    // 22 Oct 2026 (QA lead, case rewritten): the density steps are done in Tech View; step 7 goes back to Board View
+    await display(pg, 'Tech View'); await settle(pg, 3000); await pg.locator('[data-test-id="button_density"]').click(); await pg.waitForTimeout(800); await pg.locator('[data-test-id="option_density_compact"]').click(); await settle(pg);
     o.step5 = evs(ev, 'work_orders_density_change', n3).map(brief); const n5 = ev.length;
     await pg.keyboard.press('Escape'); await pg.locator('[data-test-id="button_density"]').click(); await pg.waitForTimeout(800); await pg.locator('[data-test-id="option_density_compact"]').click(); await pg.waitForTimeout(1500); await pg.keyboard.press('Escape');
-    await pg.locator('[data-test-id="button_board_fields_selection"]').click(); await pg.waitForTimeout(900); await pg.keyboard.press('Escape'); await settle(pg);
+    await display(pg, 'Board View'); await settle(pg, 3000); await pg.locator('[data-test-id="button_board_fields_selection"]').click(); await pg.waitForTimeout(900); await pg.keyboard.press('Escape'); await settle(pg);
     o.step8 = ev.slice(n5).filter((e) => /toggle|change/.test(e.en)).map(brief); o.note = 'failed save: not checked by hand'; });
   R.C97025 = o; });
 
@@ -219,6 +220,7 @@ await run('C97027', async () => { const o: any = {}; const s = await mkSet('ZZAU
   const vin = ((await workOrders(a, s.q))[0] as any)?.vin ?? null;
   await withUser(await fresh('Privacy'), async (pg, ev) => { await openWO(pg); await search(pg, s.q); await pg.waitForTimeout(2500); await display(pg, 'Tech View'); await settle(pg, 4000); await display(pg, 'Board View'); await settle(pg, 4000);
     await pg.locator('[data-test-id="button_board_fields_selection"]').click(); await pg.waitForTimeout(900); await pg.locator('[data-test-id="toggle_board_field_vin"]').click(); await pg.waitForTimeout(1500); await pg.keyboard.press('Escape');
+    await display(pg, 'Tech View'); await settle(pg, 3000); // 22 Oct 2026 (QA lead, case rewritten): density in Tech View
     await pg.locator('[data-test-id="button_density"]').click(); await pg.waitForTimeout(800); await pg.locator('[data-test-id="option_density_comfortable"]').click(); await settle(pg);
     const wo = ev.filter(WO); o.events = wo.length; o.values = [...new Set(wo.flatMap((e) => Object.entries(e.ep).map(([k, v]) => `${k}=${v}`)))].sort();
     const banned = ['Bravo', 'Ana', 'Alpha', w.number, s.q, 'ZZAUTOTEST', '$', String(vin ?? '#none#')].filter(Boolean);
@@ -246,9 +248,11 @@ await run('C97029', async () => { const o: any = {};
 
 await run('C97035', async () => { const o: any = {};
   await withUser(await fresh('Totals'), async (pg, ev) => { await openWO(pg); await settle(pg, 4000); await display(pg, 'Tech View'); await settle(pg, 4000); await display(pg, 'Board View'); await settle(pg, 4000); await display(pg, 'Tech View'); await settle(pg, 4000);
+    // 22 Oct 2026 (QA lead, case rewritten): step 4 picks Compact in Tech View; step 6 leaves the density as it is
+    await pg.locator('[data-test-id="button_density"]').click(); await pg.waitForTimeout(800); await pg.locator('[data-test-id="option_density_compact"]').click(); await settle(pg);
     await display(pg, 'Board View'); await settle(pg, 3000); await pg.locator('[data-test-id="button_board_fields_selection"]').click(); await pg.waitForTimeout(900);
     for (const f of ['service_advisor', 'lines_count', 'start_date']) { const l = pg.locator(`[data-test-id="toggle_board_field_${f}"]`); o[`has ${f}`] = await l.count(); await l.click().catch(() => {}); await pg.waitForTimeout(250); }
-    await pg.keyboard.press('Escape'); await pg.waitForTimeout(1500); await pg.locator('[data-test-id="button_density"]').click(); await pg.waitForTimeout(800); await pg.locator('[data-test-id="option_density_compact"]').click(); await settle(pg); const n6 = ev.length;
+    await pg.keyboard.press('Escape'); await pg.waitForTimeout(1500); const n6 = ev.length;
     await pg.mouse.move(800, 600); for (let i = 0; i < 6; i++) { await pg.mouse.wheel(0, 900); await pg.waitForTimeout(400); } await settle(pg);
     const names = ['work_orders_display_view', 'work_orders_field_load', 'work_orders_density_load', 'work_orders_field_toggle', 'work_orders_density_change'];
     o.counts = Object.fromEntries(names.map((n) => [n, evs(ev, n).length])); o.total = names.reduce((s, n) => s + evs(ev, n).length, 0); o.step7new = ev.slice(n6).filter(WO).map(brief); o.toggles = evs(ev, 'work_orders_field_toggle').map(brief); o.otherWOEvents = [...new Set(ev.filter(WO).map((e) => e.en))]; });

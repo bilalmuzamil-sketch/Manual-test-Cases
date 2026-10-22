@@ -1,0 +1,46 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - decisions-1022"
+ },
+ "results": {
+  "C368233": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 3: Reports > Sales By Customer; the Customer filter opens with \"All customers\" ticked.",
+    "Step 4: clicking one customer ticks only that one, the list shows \"1 selected\", and the report narrows to that customer.",
+    "Step 5: clicking it again goes back to \"All customers\" ticked and the full report.",
+    "Step 6: clicking the ticked \"All customers\" box unticks everything (the report still shows every customer); clicking it again ticks \"All customers\" again.",
+    "Step 7: there is no separate Clear selection button.",
+    "Step 8: the filter was closed and reads \"Customer: All customers\".",
+    "Step 9: the second sign-in was also production (app.shopview.com, same build), at Trucks Hill 2. Every step behaved the same there. No error message on either.",
+    "QA lead decision, 22 Oct 2026: on production this test compares production with itself; it is marked Passed on the behaviours it describes."
+   ],
+   "pictures": [
+    "pictures-prod/C368233-1-prod-1022.png",
+    "pictures-prod/C368233-2-prod-1022.png",
+    "pictures-prod/C368233-3-prod-1022.png",
+    "pictures-prod/C368233-4-prod-1022.png"
+   ]
+  },
+  "C368197": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Set-up: 35 work orders were made for customers \"ZZAUTOTEST List Paging 49731 Co 01\" to \"Co 35\".",
+    "Step 1: Work Orders opened on the All tab (by its address), List chosen, Search \"ZZAUTOTEST List Paging 49731\".",
+    "Step 2: there is no rows-per-page choice at the bottom of the List.",
+    "Step 3: the first load shows 30 work orders.",
+    "Steps 4 and 5: scrolling down loads the next 30-row batch; the List then shows 35. Together they show all 35 work orders exactly once: none twice and none missing (the total reads $8,469.30 = 35 x $241.98).",
+    "QA lead decision, 22 Oct 2026: the list's \"load 30 more as you scroll\" counts as its pages (as on staging, 17 Oct); marked Passed."
+   ],
+   "pictures": [
+    "pictures-prod/C368197-1-prod-1022.png",
+    "pictures-prod/C368197-2-prod-1022.png"
+   ]
+  }
+ }
+}
