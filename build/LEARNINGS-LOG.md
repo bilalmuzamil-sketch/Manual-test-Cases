@@ -622,3 +622,7 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - Full run: `run-full-prod-1022.sh` + `full-order-prod-1022.txt` (made from the 16 Oct staging runner: block A / Org B dropped per QA lead 9 Oct, Fast-follow cases removed, 20–21 Oct scripts swapped in). Rule 125: `stg6-tz.mts` set Truck Hill 1 to Asia/Karachi and proved the Schedule clock (exit 0).
 - Judging: `prod_compare.py <script>.json` (positions masked; staging baseline = each test's latest committed staging reading) and `judge_pack.py <script>.json C…` (case text + staging pass + production readings + diffs + pictures → `evidence/prod-2026-10-22/judge/<C>.md`).
 #run498 #production #harness #rule126 → L0494, L0504
+
+## L0506 — 2026-10-22 — A long unattended run keeps writing evidence: autosave it, path-scoped, behind the secret scan
+- The production run of run 498 writes pictures and logs for hours; the Stop hook flags every new file. `run498-2026-10-08/autosave-prod.sh` (started with nohup) commits only `evidence/prod-2026-10-22` every 10 minutes after `scan_secrets.py --staged` passes, pushes, and stops by itself when both the full run (`/tmp/queue-prod-full.log`) and the re-run queue (`/tmp/queue-prod-redo.log`) say QUEUE-DONE. Copy it (change the folder and the queue names) for the next long run instead of committing by hand between notices.
+#run498 #autosave #rule29 #rule75 → L0505
