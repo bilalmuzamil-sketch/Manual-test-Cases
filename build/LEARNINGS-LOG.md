@@ -697,3 +697,8 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - Judges caught three "end state right, step not done" cases (C368158 / C368159 never opened the work order; C97005 step 8): `s11-batch.mts woPage()` opens `/workorders/<id>/lines` and reads Lead Technician + the On Site control with a picture.
 - Three Known-problem cases reached outcome 3 on production v26.43.0 (fix shipped): C707076 → SV-11576, C698883 → SV-11575, C698884 → SV-11580 — all three tickets Done (read live 22 Oct).
 #run498 #production #department #signout → L0510, L0513
+
+## L0519 — 2026-10-22 — On production a canned line's NAME is not the line's TITLE; and a found-but-unclickable list option
+- `high1-fix.mts` C368168 clicked `getByText(lineName(2))` = the canned line's name "ZX"; on production that canned line makes a line titled **"New York State Inspection"** (the page shows titles, `[data-test-id="line_title"]`). high1-fix / high1-fix5 / high1-batch now read the titles of the lines `one()` made off the work order page, in a side tab of the same session (`readTitles`), and `lineName(i)` answers those (canned name as fallback). The Schedule "Choose lines" matching uses the same lineName.
+- `fx6-1017.mts clickOption` found the Lead Technician option (`data-zz-pick`) but Playwright's click waited 30 s (option outside the menu's visible scroll area) — C368166. It now tries a 6 s real click, then the option's own `click()` in the page.
+#run498 #production #lines #picker → L0517
