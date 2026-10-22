@@ -1,0 +1,176 @@
+{
+ "meta": {
+  "at": "2026-10-22T15:02:22.314Z",
+  "esther": [
+   "Truck Hill 1/Department1"
+  ],
+  "ralph": [
+   "Truck Hill 1/Department1"
+  ]
+ },
+ "C581893": {
+  "drops": {
+   "WO-1": {
+    "day": "Fri, Oct 23",
+    "card": 1,
+    "lane": true,
+    "dialog": "S1-1296 · ZZAUTOTEST S4R28 Line Added UI 10221502 Esther Howard close Entire work order Choose lines Hours − 6h + calendar_month 1 shift · 6h Oct 23 to Oct 23 · every day, per tech hours expand_more Cancel Create 1 shift",
+    "entireClicked": true,
+    "toasts": [],
+    "payload": [
+     {
+      "workOrderId": "fd374b61-691b-404b-bfd9-6194a9ba10eb",
+      "lineIds": [
+       "bb90f3fb-e9af-4b3e-a59c-3034695e85e5",
+       "82e6afdf-117e-4b40-8466-5a86ab4ced1c"
+      ],
+      "staffId": "3adb78a3-933b-4205-baa0-981211c9356b",
+      "departmentId": null,
+      "startDate": "2026-10-23",
+      "startTime": "07:45",
+      "spreadMode": "single",
+      "totalMinutes": 360,
+      "perDayMinutes": null,
+      "color": null,
+      "note": null,
+      "isAllDay": false,
+      "acknowledgeLongSeries": false
+     }
+    ]
+   },
+   "WO-2": {
+    "day": "Fri, Oct 23",
+    "card": 1,
+    "lane": true,
+    "dialog": "S1-1297 · ZZAUTOTEST S4R28 Line Added UI 10221502 Esther Howard close Entire work order Choose lines Hours − 6h + calendar_month 1 shift · 6h Oct 23 to Oct 23 · every day, per tech hours expand_more Cancel Create 1 shift",
+    "entireClicked": true,
+    "toasts": [],
+    "payload": [
+     {
+      "workOrderId": "4fc3fd22-ef72-48d4-8bf2-774e0ec4267e",
+      "lineIds": [
+       "600f1cd6-d87c-4bb9-9b02-450d3b4bf421",
+       "f150eb98-6a9c-4b1b-ba79-6780547903ec"
+      ],
+      "staffId": "3adb78a3-933b-4205-baa0-981211c9356b",
+      "departmentId": null,
+      "startDate": "2026-10-23",
+      "startTime": "13:00",
+      "spreadMode": "single",
+      "totalMinutes": 360,
+      "perDayMinutes": null,
+      "color": null,
+      "note": null,
+      "isAllDay": false,
+      "acknowledgeLongSeries": false
+     }
+    ]
+   },
+   "WO-3 control": {
+    "day": "Fri, Oct 23",
+    "card": 1,
+    "lane": true,
+    "dialog": "S1-1298 · ZZAUTOTEST S4R28 Line Added UI 10221502 Esther Howard close Entire work order Choose lines Hours − 6h + calendar_month 1 shift · 6h Oct 23 to Oct 23 · every day, per tech hours expand_more Cancel Create 1 shift",
+    "entireClicked": true,
+    "toasts": [],
+    "payload": [
+     {
+      "workOrderId": "fe94f80d-5ffb-4ee2-b772-8c1ed74abfb9",
+      "lineIds": [
+       "ef98ab31-9aef-4ca5-b154-23ca8f7986c1",
+       "b820593e-e9cb-4e0f-9332-fe72caa647a9"
+      ],
+      "staffId": "3adb78a3-933b-4205-baa0-981211c9356b",
+      "departmentId": null,
+      "startDate": "2026-10-23",
+      "startTime": "15:00",
+      "spreadMode": "single",
+      "totalMinutes": 360,
+      "perDayMinutes": null,
+      "color": null,
+      "note": null,
+      "isAllDay": false,
+      "acknowledgeLongSeries": false
+     }
+    ]
+   }
+  },
+  "beforeLines": {
+   "WO-1": [
+    "Esther 2026-10-23 07:45-13:45 lines"
+   ],
+   "WO-2": [
+    "Esther 2026-10-23 13:00-19:00 lines"
+   ],
+   "WO-3": [
+    "Esther 2026-10-23 15:00-21:00 lines"
+   ]
+  },
+  "setup": {
+   "WO-1 S1-1296": {
+    "lines": [
+     "Body work of a car. ( Repair/R=authorized",
+     "New York State Inspection=authorized",
+     "Line 1=authorized"
+    ],
+    "shifts": [
+     "Esther 2026-10-23 07:45-13:45 lines"
+    ]
+   },
+   "WO-2 S1-1297": {
+    "lines": [
+     "Body work of a car. ( Repair/R=authorized",
+     "New York State Inspection=authorized",
+     "Line 1=authorization_required"
+    ],
+    "shifts": [
+     "Esther 2026-10-23 13:00-19:00 lines"
+    ]
+   },
+   "WO-3 S1-1298": {
+    "lines": [
+     "Body work of a car. ( Repair/R=authorized",
+     "New York State Inspection=authorized"
+    ],
+    "shifts": [
+     "Esther 2026-10-23 15:00-21:00 lines"
+    ]
+   }
+  },
+  "step4": {
+   "prompt": false,
+   "title": null,
+   "toasts": [
+    "Lead technician updated"
+   ],
+   "inB": true
+  },
+  "step6": {
+   "prompt": true,
+   "title": "Clear Esther Howard's scheduled shifts?",
+   "toasts": [
+    "Lead technician updated"
+   ],
+   "inB": true
+  },
+  "control": {
+   "prompt": true,
+   "title": "Clear Esther Howard's scheduled shifts?",
+   "toasts": [
+    "Lead technician updated"
+   ],
+   "inB": true
+  },
+  "shiftsAfter": {
+   "WO-1": [
+    "Esther 2026-10-23 07:45-13:45 lines"
+   ],
+   "WO-2": [
+    "Esther 2026-10-23 13:00-19:00 lines"
+   ],
+   "WO-3": [
+    "Esther 2026-10-23 15:00-21:00 lines"
+   ]
+  }
+ }
+}
