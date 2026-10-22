@@ -439,3 +439,24 @@ Found:
   inside the board; the viewer's outer multi-artboard canvas does the pan/zoom.
 - 79246-79363 + 79680: the 36 px tweaks strip appears above an artboard only when it has props — none of ours do.
 No ShopView content.
+
+### Chunk 27: lines 79,801-81,200 (read)
+What it is: rest of the artboard frame component `Sie`: panZoom/repeatRefused/textEditState/select relays, live `dc-update`
+pushes into the board, the dc-model hook with toasts ("Couldn't save edits in X — focus that artboard to retry.", "Save conflicted
+with another change — reloaded.", "Couldn't save that change — reverted."), editor install (`rH`), host pan/zoom vs native scroll
+(`qte(..., expanded ? "scroll" : true)`; 79985-79994), the handle API for the canvas, and the RENDER (80429-80516): error panes
+"Couldn't load this artboard: …" and "Preview stopped: … If the design navigates its own preview, that is not supported…", the
+tweaks strip, the board `<iframe sandbox="allow-scripts" srcDoc=…>` (80461-80494), and a grey "Loading artboard…" spinner overlay
+until the frame says hello (80495-80513). Then comments support: anchor encoding for element/artboard/note/canvas comments
+(80519-80671) and the comment layer (`Iie`, 80683-81106) with orange #D97757 pin cursor and hover outline; editor format strip
+helpers (font sizes 12-48 px, system fonts list; 81107-81200).
+Found:
+- 80461-80467: every board runs in `<iframe sandbox="allow-scripts">` from `srcDoc` — no same-origin, no popups, no forms, no
+  modals (alert/confirm/prompt), no top navigation. So in the viewer (including Play), links that open a new tab or navigate, form
+  submits, and browser dialogs in a board DO NOTHING. Our boards are static pictures/HTML without data-dc-script (probe), so this
+  matters only if a tester expects a board link/button to go somewhere.
+- 80495-80513: until a board's frame answers the liveness handshake it shows a grey "Loading artboard…" overlay; a board picture
+  taken too early shows that overlay instead of the design.
+- 79990, 81049-81071: in an EXPANDED (full-window) artboard the board scrolls natively (mouse wheel scrolls the board); on the
+  canvas the wheel pans/zooms the canvas.
+No ShopView content.
