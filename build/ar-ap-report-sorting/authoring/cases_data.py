@@ -4,6 +4,7 @@ Detail parity, Past due range boundaries (S5-R15), and the export limits by row 
 from ar_lib import C
 from common import *
 from po_questions import QN
+import tech_plan as TP
 
 ORDER = {"n": 0}
 def nk():
@@ -43,14 +44,16 @@ for code in ("ARD", "APD"):
        START(code, ", with every bucket collapsed")],
       ["Choose \"Download (CSV)\" from the ⋯ menu.", "Count the CSV rows whose bucket is {Bucket-A}.",
        "Expand {Bucket-A} and scroll to its end, letting every batch load, writing down each document number.",
-       "Click the \"Amount\" header.", "Scroll to the end of {Bucket-A} again (expand it if it closed), writing down each number.",
+       "Click the \"Amount\" header.", "Look at {Bucket-A} and count its lines before any more load.",
+       "Scroll to the end of {Bucket-A} again, letting every batch load, writing down each number.",
        "Compare the two lists with the CSV."],
       ["Step 1: the CSV downloads.", "Step 2: note the count (for example 250).",
        "Step 3: the first 100 lines show, then more load as you scroll; every document appears exactly once.",
        "Step 4: the rows sort by Amount, largest first, inside each bucket.",
-       "Step 5: in this sort too, every document appears exactly once.",
-       "Step 6: both lists hold exactly the CSV's documents for {Bucket-A}: none repeated, none missing."],
-      ["S1-R8", "S4-R4"])
+       "Step 5: {Bucket-A} is still expanded and starts again from its first 100 lines, now in Amount order (largest first).",
+       "Step 6: more lines load as you scroll; in this sort too, every document appears exactly once.",
+       "Step 7: both lists hold exactly the CSV's documents for {Bucket-A}: none repeated, none missing."],
+      ["S1-R8", "S4-R4", "S4-R8"] + TP.q("P4-sort"))
 
 # ---------------- the Totals row under every filter, on screen, in the PDF and the CSV ----------------
 AR_DATA = ("{Customer-A} has an invoice of $1,000.00 at {Location-A} 15 days past due, an invoice of $400.00 at {Location-B} 45 days past due and an unused credit memo of $150.00 at {Location-A}; "
@@ -174,12 +177,14 @@ C(k, "DATA", "A/P Detail: a PDF of exactly 2,000 lines downloads, 2,001 is refus
    "In the Vendor filter, also tick {Vendor-B}.", "Choose \"Download (PDF)\" from the ⋯ menu.", "Count the messages and look at the browser's downloads."],
   ["Step 1: only the lines of the ticked vendors remain.", "Step 2: the CSV downloads with the \"Success\" message.",
    "Step 3: exactly 2,000 document rows.",
-   "Step 4: the PDF downloads with the \"Success\" message: exactly 2,000 rows is allowed, and bucket rows, subtotals and the Totals row are not counted.",
+   "Step 4: after a wait (a 2,000-row PDF can take about 30 seconds), the PDF downloads with the \"Success\" message: exactly 2,000 rows is allowed, and bucket rows, subtotals and the Totals row are not counted.",
    "Step 5: {Vendor-B}'s line is added, so the report now has 2,001 document rows.",
    "Step 6: \"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\"",
    "Step 7: exactly one message, and no PDF was downloaded."],
-  ["S3-R9", "S3-N1", "S3-N3", "S3-R10", "S5-R13"],
-  note="The QA organization has far more than 2,000 open A/P lines, so the exact boundary is reached by ticking vendors whose lines add up to 2,000; the setup file lists them for the day of the test.")
+  ["S3-R9", "S3-N1", "S3-N3", "S3-R10", "S5-R13"] + TP.q("PDF30", "PDFENV"),
+  note=("The QA organization has far more than 2,000 open A/P lines, so the exact boundary is reached by ticking vendors whose lines add up to 2,000; the setup file lists them for the day of the test. "
+        "If step 4 shows \"We couldn't export this report. Please try again.\" while the CSV in step 2 worked, the test site may not have its PDF generator set up (tech plan): mark this test "
+        "Blocked: \"PDF generator not available on this site\" and tell the QA lead."))
 
 k = nk()
 C(k, "DATA", "A/P Detail: a CSV of 50,000 rows downloads, 50,001 is refused",
@@ -192,3 +197,20 @@ C(k, "DATA", "A/P Detail: a CSV of 50,000 rows downloads, 50,001 is refused",
    "Step 5: exactly one message, and nothing downloaded.", "Step 6: there is no offer to email the export or prepare it in the background (that comes in a later phase)."],
   ["S3-N2", "S3-N3", "UFS-2", "S3-R9", "OOS-1"], marker=LIMIT_HOLD,
   note="No test site has 50,000 open A/P lines (the QA organization has 13,540), so a manual tester cannot reach this limit; the developers check it in their own check task (SV-11598).")
+
+# ---------------- freshness: a payment shows on reload (Rule 116; tech plan, 22 Oct 2026 pass) ----------------
+k = nk()
+C(k, "DATA", "A/R Summary: a payment shows as soon as the report is reloaded",
+  [ADMIN(), ("Customer {Customer-A} has one open invoice, {Invoice-A}, of $500.00 on today's date, and nothing else open.", f"For example: {{Customer-A}} is {ex(k, 'Fresh Payment')[0]}."),
+   ("{Invoice-A}'s page is open in a second browser tab, ready to record a payment.", None),
+   START("ARS", ", with the Customer filter showing only {Customer-A} ticked")],
+  ["Read {Customer-A}'s Total and the Totals row.", "In the second tab, record a payment of $200.00 on {Invoice-A}.",
+   "Back on A/R Summary, reload the page.", "Read {Customer-A}'s Total and the Totals row."],
+  ["Step 1: both read $500.00.", "Step 2: the payment is saved and the invoice's balance is $300.00.",
+   "Step 3: the report reloads, still with only {Customer-A} ticked.",
+   "Step 4: both read $300.00 (500.00 − 200.00): the payment shows straight away."],
+  ["S8-R1 ARS", "S5-R18"] + TP.q("LAG", "D1"),
+  note=("On a test site the reports read the same data the payment is written to (tech plan: \"Staging/QA reader = writer\"), so the reload shows it at once. "
+        f"In production they read a copy that can be about a second behind; question {QN['parity']} (part 2) asks Chris Ward whether a delay is acceptable. "
+        "If this case is run on production, wait a few seconds before step 3."))
+

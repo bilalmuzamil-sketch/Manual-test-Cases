@@ -4,6 +4,7 @@ expanded groups untouched (S2-R9), Vendor Name not clickable (S2-N1), all-equal 
 from ar_lib import C, ALL6, GROUPED
 from common import *
 from po_questions import QN
+import tech_plan as TP
 
 ORDER = {"S2": 0}
 def nk():
@@ -230,7 +231,7 @@ for code in ALL6:
            START(code)]
     steps = [f"Click the \"{sortcol}\" header once.",
              "Change the as-of date to yesterday.",
-             ("Go to the next page." if code in ("ARS", "APS", "ARC", "APU") else "Expand the largest bucket and scroll down until more lines load."),
+             ("Go to the next page (or scroll until the next ones load)." if code in ("ARS", "APS", "ARC", "APU") else "Expand the largest bucket and scroll down until more lines load."),
              f"Open the {r['Party']} filter and tick {{{r['Party']}-A}}.",
              "In the Location filter, untick {Location-B}.",
              f"Look at the \"{sortcol}\" header."]
@@ -242,7 +243,8 @@ for code in ALL6:
            f"Step 5: only {{Location-A}} rows remain{gx}, still sorted by {sortcol}, largest first.",
            f"Step 6: \"{sortcol}\" is still marked as the sorted column."]
     C(k, "S2", f"{r['n']}: the sort stays while changing date, page and filters", pre, steps, res,
-      ["S2-R7", "S2-R2"])
+      ["S2-R7", "S2-R2"] + (TP.q("P3-walk") if code in ("ARC", "APU") else []),
+      note=(f"How the next 30 {r['parties']} are reached (page buttons or scrolling) is question {QN['paging']}; the step works either way." if code in ("ARS", "APS", "ARC", "APU") else ""))
 
 # ---------------- the Past due filter and the sort (held: the PRD does not say) ----------------
 k = nk()

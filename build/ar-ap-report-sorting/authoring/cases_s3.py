@@ -2,6 +2,7 @@
 from ar_lib import C, ALL6
 from common import *
 from po_questions import QN
+import tech_plan as TP
 
 ORDER = {"n": 0}
 def nk():
@@ -91,17 +92,23 @@ for code in ("ARS", "APD"):
       ["S3-R5"])
 
 k = nk()
-C(k, "S3", "A/R Detail: exports list every ticked location by name",
-  [ADMIN(), ("The organization has open A/R documents at three locations, {Location-A}, {Location-B} and {Location-C}, and you are enrolled at all three.",
-             f"For example: {{Location-A}} is {LOC_A}, {{Location-B}} is {LOC_B} and {{Location-C}} is another staging location."),
+C(k, "S3", "A/R Detail: exports list the ticked locations in the order you ticked them",
+  [ADMIN(), ("The organization has open A/R documents at three locations, {Location-A}, {Location-B} and {Location-C}, and you are enrolled at all three; in A to Z order {Location-A}'s name comes before {Location-C}'s.",
+             f"For example: {{Location-A}} is {LOC_A}, {{Location-B}} is {LOC_B} and {{Location-C}} is another staging location whose name starts with a later letter."),
    START("ARD")],
-  ["In the Location filter, untick {Location-B}.", "Choose \"Download (PDF)\" from the ⋯ menu.", "Read the Locations line under the PDF's title.",
+  ["In the Location menu, click \"Clear selection\".", "Tick {Location-C}.", "Tick {Location-A}.",
+   "Choose \"Download (PDF)\" from the ⋯ menu.", "Read the Locations line under the PDF's title.",
    "Choose \"Download (CSV)\" from the ⋯ menu.", "Read the Locations line at the top of the CSV."],
-  ["Step 1: {Location-A} and {Location-C} stay ticked; the chip reads \"Location: 2 locations\".", "Step 2: the PDF downloads.",
-   "Step 3: it reads \"Locations: \" followed by the names of {Location-A} and {Location-C}, and not {Location-B}.",
-   "Step 4: the CSV downloads.", "Step 5: the same Locations line, with both names."],
-  ["S3-R5", "S5-R6"],
-  note=f"The order and separator of several location names are not stated in the PRD (question {QN['export-lines']}); the case checks that both names, and only they, appear.")
+  ["Step 1: no location is ticked; the chip reads \"Location: No locations\".",
+   "Step 2: {Location-C} is ticked; the chip reads \"Location: \" and {Location-C}'s name.",
+   "Step 3: {Location-A} is ticked as well; the chip reads \"Location: 2 locations\".",
+   "Step 4: the PDF downloads.",
+   "Step 5: it reads \"Locations: \" followed by {Location-C}'s name, then {Location-A}'s name: the order you ticked them, not the menu's A to Z order; {Location-B} is not named.",
+   "Step 6: the CSV downloads.", "Step 7: the same Locations line, with the two names in the same order."],
+  ["S3-R5", "S5-R6"] + TP.q("D30-tick"),
+  note=(f"The PRD does not say in what order several locations are listed (question {QN['export-lines']}, part 1, on Chris Ward's sheet). The tech plan "
+        "(21 Oct 2026) says selections keep the order they were ticked, and nothing in the PRD contradicts it, so this case follows the tech plan (QA lead's "
+        "ruling of 12 Aug 2026); if Chris answers differently, his answer wins and this case changes. What separates the names is not stated anywhere; the case does not check it."))
 
 # ---- CSV shape: Summaries (with "91 And Over")
 for code in ("ARS", "APS"):
@@ -172,3 +179,35 @@ for code, kind in (("ARD", "CSV"), ("APS", "PDF")):
        "Step 5: the connection is back; a new export works again."],
       ["EH", "UFS-8"],
       note="The server-error half of the same sentence cannot be caused by hand; the developers' automated tests cover it. This case covers the lost connection.")
+
+# ---- an export from a Detail report with every bucket closed (tech plan D28)
+for code in ("ARD", "APD"):
+    r = R[code]; k = nk(); P = r["Party"]; d = r["doc"]
+    C(k, "S3", f"{r['n']}: exporting with every bucket closed still downloads every row",
+      [ADMIN(), (f"{P} {{{P}-A}} has three open {d}s on today's date, in two different aging buckets.", f"For example: {{{P}-A}} is {ex(k, 'Closed Buckets')[0]}."),
+       START(code, f", with the {P} filter showing only {{{P}-A}} ticked")],
+      ["Click the chevron button in the table's top-left header cell until its tooltip reads \"Expand all\" (every bucket closed).",
+       "Choose \"Download (CSV)\" from the ⋯ menu.", "Open the CSV and read its rows.",
+       "Choose \"Download (PDF)\" from the ⋯ menu.", "Open the PDF and read its rows."],
+      ["Step 1: every bucket is closed: no document row shows on screen.",
+       "Step 2: the CSV downloads with the \"Success\" message \"Data exported successfully.\"; no \"Empty export\" warning shows.",
+       f"Step 3: one row for each of {{{P}-A}}'s three {d}s, then the Totals row: the same rows the report has with its buckets open.",
+       "Step 4: the PDF downloads with the \"Success\" message.",
+       f"Step 5: the same three {d}s and the Totals row."],
+      ["S3-R3", "S3-R10"] + TP.q("D28-why", "D28"))
+
+k = nk()
+C(k, "S3", "A/R Summary: a name starting with = opens in the CSV as plain text",
+  [ADMIN(), ("Customer {Customer-A} has an open invoice on today's date, and its name starts with \"=\" so that it reads like a spreadsheet formula.",
+             f"For example: {{Customer-A}} is =2+3 {ex(k, 'Formula')[0]}."),
+   ("A spreadsheet program is installed on the computer.", "For example: Microsoft Excel, Google Sheets or LibreOffice Calc."),
+   START("ARS", ", with the Customer filter showing only {Customer-A} ticked")],
+  ["Read {Customer-A}'s name on screen.", "Choose \"Download (CSV)\" from the ⋯ menu.", "Open the CSV in the spreadsheet program.",
+   "Read {Customer-A}'s name cell."],
+  ["Step 1: the name shows as it was typed, starting with \"=\".",
+   "Step 2: the CSV downloads with the \"Success\" message.",
+   "Step 3: the spreadsheet opens the file.",
+   "Step 4: the cell shows the name's own characters as text (a mark may be added in front of them so the spreadsheet keeps them as text); it does not show a calculated number (such as 5) or an error (such as #NAME?)."],
+  ["S3-R3"] + TP.q("CSVINJ"),
+  note="Why: a name that a spreadsheet would run as a formula is a known risk in exported files; the tech plan says the CSV guards against it.")
+

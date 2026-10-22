@@ -3,6 +3,7 @@ and the A/R Collection call list. The look of Story 8 (pinned bold column, width
 from ar_lib import C, ALL6
 from common import *
 from po_questions import QN
+import tech_plan as TP
 
 ORDER = {"S6": 0, "S7": 0, "S8": 0, "S9": 0}
 def nk(s):
@@ -63,9 +64,10 @@ k = nk("S7")
 C(k, "S7", "A/R Collection: a part sale invoice at your location opens its finance page",
   [ADMIN(), ("Customer {Customer-A} has an overdue part sale invoice {Invoice-A} made at {Location-A}.", f"For example: {{Customer-A}} is {ex(k, 'Counter Sale')[0]}."),
    START("ARC", ", with {Customer-A}'s group expanded")],
-  ["Click {Invoice-A}'s Open balance cell.", "Click {Invoice-A}'s number."],
-  ["Step 1: nothing opens.", "Step 2: the part sale's finance page opens, as today."],
-  ["S7-R1", "S7-R2", "WC-6"])
+  ["Hover over {Invoice-A}'s Open balance cell.", "Click {Invoice-A}'s Open balance cell.", "Click {Invoice-A}'s number."],
+  ["Step 1: the pointer does not turn into a hand and the row's text is not blue: only the number is a link.",
+   "Step 2: nothing opens.", "Step 3: the part sale's finance page opens, as today."],
+  ["S7-R1", "S7-R2", "WC-6"] + TP.q("P3-rowclick"))
 
 for code, kind, word in (("ARD", "work order", "This work order is in"), ("ARC", "part sale", "This part sale is in")):
     r = R[code]; k = nk("S7")
@@ -84,9 +86,10 @@ C(k, "S7", "A/R Collection: Cancel on the switch prompt leaves the report as it 
    START("ARC", ", with \"Past due: 1-30 days\" ticked, the \"Amount\" header clicked once, {Customer-A}'s group expanded and the page scrolled so {Invoice-A} is in the middle of the screen")],
   ["Copy the page address.", "Note which rows are at the top and bottom of the screen.", "Click {Invoice-A}'s number.", "Click \"Cancel\".",
    "Compare the page address with the copied one.", "Look at the filters, the sort, the expanded groups and the scroll position."],
-  ["Step 1: the address is copied.", "Step 2: noted.", "Step 3: the \"Switch location?\" dialog opens.", "Step 4: the dialog closes and you stay on the report.",
+  ["Step 1: the address is copied.", "Step 2: noted.", "Step 3: the \"Switch location?\" dialog opens.",
+   "Step 4: the dialog closes, no message pops up, and you stay on the report.",
    "Step 5: the address is the same.", "Step 6: the same Past due filter, the Amount sort, {Customer-A}'s group still expanded and the same scroll position."],
-  ["S7-R5", "UFS-3"])
+  ["S7-R5", "UFS-3"] + TP.q("STAY"))
 
 k = nk("S7")
 C(k, "S7", "A/P Detail: a bill opens its delivery here and is plain text elsewhere",

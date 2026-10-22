@@ -2,6 +2,7 @@
 from ar_lib import C, ALL6
 from common import *
 from po_questions import QN
+import tech_plan as TP
 
 ORDER = {"n": 0}
 def nk():
@@ -125,24 +126,26 @@ C(k, "S5", "A/R Detail: each row belongs to its own document's location",
 k = nk()
 C(k, "S5", "A/P Detail: a bill belongs to the location of its delivery",
   [ADMIN(), TWO_LOC,
-   ("Vendor {Vendor-A}, whose own location is {Location-A}, has an unpaid bill {Bill-A} received on a delivery at {Location-B}.",
-    f"For example: {{Vendor-A}} is {ex(k, 'Delivered Elsewhere')[0]}."),
+   ("Vendor {Vendor-A} has two unpaid bills: {Bill-A}, received on a delivery at {Location-A}, and {Bill-B}, received on a delivery at {Location-B}.",
+    f"For example: {{Vendor-A}} is {ex(k, 'Delivered Elsewhere')[0]}; {{Bill-A}} and {{Bill-B}} are the bills of two vendor orders, one received at each location."),
    START("APD", ", with the Vendor filter showing {Vendor-A} ticked and every bucket expanded")],
-  ["Read {Bill-A}'s Location.", "In the Location menu, untick {Location-B}.", "Expand every bucket and look for {Bill-A}."],
-  ["Step 1: {Location-B}, the delivery's location, not the vendor's.", "Step 2: the report narrows to {Location-A}.",
-   "Step 3: {Bill-A} is not listed."],
-  ["S5-R7"])
+  ["Read the Location of {Bill-A} and {Bill-B}.", "In the Location menu, untick {Location-B}.", "Expand every bucket and look for {Bill-A} and {Bill-B}."],
+  ["Step 1: {Bill-A} shows {Location-A} and {Bill-B} shows {Location-B}: each bill shows the location of the delivery it was received on.",
+   "Step 2: the report narrows to {Location-A}.",
+   "Step 3: {Bill-A} is listed and {Bill-B} is not."],
+  ["S5-R7"] + TP.q("Q2"))
 
 k = nk()
 C(k, "S5", "A/P Unpaid Invoices: a vendor credit belongs to its return or vendor",
   [ADMIN(), TWO_LOC,
-   ("Vendor {Vendor-A}, whose own location is {Location-A}, has two unused vendor credits: {Vendor-credit-A} from a vendor return made at {Location-B}, and {Vendor-credit-B} not from a vendor return.",
+   ("Vendor {Vendor-A} has two unused vendor credits: {Vendor-credit-A}, from a vendor return made at {Location-B}, and {Vendor-credit-B}, entered directly (not from a vendor return) while signed in at {Location-A}.",
     f"For example: {{Vendor-A}} is {ex(k, 'Credit Home')[0]}."),
    START("APU", ", with the Vendor filter showing {Vendor-A} ticked and its group expanded")],
   ["Read the Location of {Vendor-credit-A} and {Vendor-credit-B}.", "In the Location menu, untick {Location-A}.", "Expand {Vendor-A}'s group."],
-  ["Step 1: {Vendor-credit-A} shows {Location-B} (the return's location); {Vendor-credit-B} shows {Location-A} (the vendor's location, as today).",
+  ["Step 1: {Vendor-credit-A} shows {Location-B} (the return's location); {Vendor-credit-B} shows {Location-A} (the vendor's location for that credit, where it was entered, as today).",
    "Step 2: the report narrows to {Location-B}.", "Step 3: only {Vendor-credit-A} is listed."],
-  ["S5-R7"])
+  ["S5-R7"] + TP.q("Q2", "D13"),
+  note="A vendor has no single location of its own: each bill or credit is written to the vendor's account at one location, and that is the location it shows (tech plan, 21 Oct 2026).")
 
 # ---- when the chip shows
 k = nk()
@@ -170,38 +173,48 @@ C(k, "S5", "A/R Collection: ticked locations survive reload, Back and a shared l
 
 k = nk()
 C(k, "S5", "A/P Summary: a link naming several locations or every location",
-  [ADMIN(), ("The organization has open A/P documents at three locations, {Location-A}, {Location-B} and {Location-C}.", f"For example: {{Location-A}} is {LOC_A} and {{Location-B}} is {LOC_B}."),
+  [ADMIN(), ("The organization has open A/P documents at three locations, {Location-A}, {Location-B} and {Location-C}, and you are enrolled at all three.", f"For example: {{Location-A}} is {LOC_A} and {{Location-B}} is {LOC_B}."),
    START("APS")],
-  ["In the Location menu, untick {Location-C}.", "Copy the page address.", "Paste the address into a new tab.",
-   "In the Location menu, tick {Location-C} again.", "Look at the page address.",
-   "In the copied address, add {Location-C} to the listed locations, separated by a comma, and open it."],
-  ["Step 1: the report narrows to {Location-A} and {Location-B}.", "Step 2: the address carries the two ticked locations.",
+  ["In the Location menu, untick {Location-C}.", "Copy the page address.", "Open the copied address in a new browser tab.",
+   "In the new tab's address, replace the two \"locationIds=\" entries with one: \"locationIds=\" followed by the two codes separated by a comma, and press Enter.",
+   "In the first tab's Location menu, click \"Clear selection\".", "Tick {Location-C} and look at the page address.",
+   "In the new tab's address, add a comma and {Location-C}'s code after the two codes, and press Enter.",
+   "In the first tab's Location menu, click \"Select all\" and look at the page address."],
+  ["Step 1: the report narrows to {Location-A} and {Location-B}.",
+   "Step 2: the address carries the two ticked locations as two \"locationIds=\" entries, each followed by a long code (the location's code, not its name).",
    "Step 3: the report opens with {Location-A} and {Location-B} ticked (\"Location: 2 locations\").",
-   "Step 4: every location is ticked.", "Step 5: with every location ticked the address no longer lists locations.",
-   "Step 6: a link naming every location opens as \"Location: All locations\"."],
-  ["S5-R10"],
-  note="The tester copies the address after ticking and edits only the list of locations in it.")
+   "Step 4: the same: a link listing locations separated by commas opens with those two ticked (\"Location: 2 locations\").",
+   "Step 5: no location is ticked.",
+   "Step 6: only {Location-C} is ticked, and the address holds one \"locationIds=\" entry: {Location-C}'s code. Note it.",
+   "Step 7: a link naming every location opens as \"Location: All locations\".",
+   "Step 8: every location is ticked and the address no longer lists locations."],
+  ["S5-R10"] + TP.q("D30-keys"),
+  note="The tester edits only the location part of the copied address.")
 
 k = nk()
 C(k, "S5", "A/R Detail: a link with an unknown location ignores it",
   [ADMIN(), TWO_LOC, START("ARD")],
   ["In the Location menu, untick {Location-B}.", "Copy the page address.",
-   "In the copied address, add a location that does not exist (for example \"Nowhere\"), separated by a comma, and open it.",
+   "In the copied address, after {Location-A}'s code (the text after \"locationIds=\"), add a comma and \"Nowhere\", and open it.",
+   "Read the Location chip and look for the Location column.",
+   "In the copied address, replace everything after \"locationIds=\" with \"Nowhere\", and open it.",
    "Read the Location chip and look for the Location column."],
-  ["Step 1: the report narrows to {Location-A}.", "Step 2: the address carries {Location-A}.", "Step 3: the report loads normally, with no error.",
-   "Step 4: the chip reads as if only {Location-A} were in the link (\"Location: \" and {Location-A}'s name), and the Location column is hidden, following the remaining choice."],
-  ["S5-N2"],
+  ["Step 1: the report narrows to {Location-A}.", "Step 2: the address carries one \"locationIds=\" entry, {Location-A}'s code.", "Step 3: the report loads normally, with no error.",
+   "Step 4: the chip reads as if only {Location-A} were in the link (\"Location: \" and {Location-A}'s name), and the Location column is hidden, following the remaining choice.",
+   "Step 5: the report loads normally, with no error.",
+   "Step 6: with no valid location left, the link opens on \"Location: All locations\" and the Location column shows (two locations in the list)."],
+  ["S5-N2"] + TP.q("D29", "P1-FE-invalid"),
   note="The tester edits only the list of locations in the copied address.")
 
 k = nk()
 C(k, "S5", "A/P Unpaid Invoices: a Past due value the chip does not offer reads Any",
   [ADMIN(), START("APU")],
   ["In the Past due filter, tick \"31-60 days\".", "Copy the page address.",
-   "In the copied address, replace the Past due value with 5 and open it.", "Read the Past due chip.",
-   "In the copied address, replace the Past due value with \"any\" and open it.", "Read the Past due chip."],
-  ["Step 1: the chip reads \"Past due: 31-60 days\".", "Step 2: the address is copied.", "Step 3: the report loads normally.",
+   "In the copied address, replace the 31-60 after \"pastDue=\" with 5, and open it.", "Read the Past due chip.",
+   "In the copied address, replace the value after \"pastDue=\" with any, and open it.", "Read the Past due chip."],
+  ["Step 1: the chip reads \"Past due: 31-60 days\".", "Step 2: the address carries \"pastDue=31-60\".", "Step 3: the report loads normally.",
    "Step 4: \"Past due: Any\" in the resting (grey) style.", "Step 5: the report loads normally.", "Step 6: \"Past due: Any\"."],
-  ["S5-N3", "S5-R15"],
+  ["S5-N3", "S5-R15"] + TP.q("D16", "P1-FE-invalid"),
   note="The tester edits only the Past due value in the copied address.")
 
 k = nk()
@@ -217,14 +230,14 @@ C(k, "S5", "A/R Summary: ticked customers and ranges survive reload and Back",
 
 k = nk()
 C(k, "S5", "A/R Collection: a customer ticked by link is named even if hard to find",
-  [ADMIN(), ("More than 50 customers have overdue invoices on today's date; {Customer-A}'s name comes late in name order, so it is not among the first results of the Customer search.",
+  [ADMIN(), ("The organization has more than 50 customers (the Customer menu lists at most 50 until you search), and {Customer-A}, who has overdue invoices on today's date, comes after the first 50 in name order.",
              f"For example: {{Customer-A}} is {ex(k, 'Late In The List')[0]}."),
    START("ARC")],
   ["In the Customer filter, search for {Customer-A} and tick it.", "Copy the page address.", "Paste the address into a new tab.",
    "Read the Customer chip.", "Open the Customer menu."],
   ["Step 1: the chip reads \"Customer: \" and {Customer-A}'s name.", "Step 2: the address is copied.", "Step 3: the report opens with only {Customer-A}'s group.",
    "Step 4: the chip reads \"Customer: \" and {Customer-A}'s name.", "Step 5: {Customer-A} is shown ticked in the menu."],
-  ["S5-R14"])
+  ["S5-R14"] + TP.q("D31", "API-cust"))
 
 k = nk()
 C(k, "S5", "A/P Unpaid Invoices: opening from the Reports menu starts with no filters",
@@ -248,7 +261,10 @@ for code in ("ARS", "APS"):
       ["Step 1: the report shows yesterday.", "Step 2: the chip reads \"Past due: 91+ days\".", "Step 3: the report narrows to {Location-A}.",
        f"Step 4: {to} opens.",
        f"Step 5: only {{{P}-A}} is ticked on the {P} chip, the as-of date is yesterday, \"Past due: 91+ days\", and only {{Location-A}} is ticked."],
-      ["S5-R11", "KD-DRILL", "WC-6"], reports=[code, DRILL_TO[code]])
+      ["S5-R11", "KD-DRILL", "WC-6"] + TP.q("P3-drill", "P2-interim"), reports=[code, DRILL_TO[code]],
+      note=(f"The developers deliver the reports family by family (tech plan, 21 Oct 2026): until {to} itself is updated on the build, the click opens it with "
+            f"only the as-of date and the {r['party']}, as today. If {to} on the build still looks as before the release (no Past due or Location chip), mark this "
+            f"test Blocked: \"{to} not yet updated on this build\", not Failed."))
 
 # ---- the Customer and Vendor menus
 for code in ("ARD", "APD"):
@@ -256,8 +272,9 @@ for code in ("ARD", "APD"):
     srch = "with a search box" if P == "Customer" else "with a search box whose placeholder reads \"Search vendors\""
     C(k, "S5", f"{r['n']}: the {P} menu ticks several {Ps} and the chip counts them",
       [ADMIN(), (f"{P}s {{{P}-A}} and {{{P}-B}} have open {r['doc']}s on today's date; {{{P}-B}}'s name is longer than the chip can show.",
-                 f"For example: {{{P}-A}} is {ex(k, 'Short')[0]} and {{{P}-B}} is {ex(k, 'Northern Alberta Heavy Equipment and Trailer Repair')[0]}."),
-       START(code)],
+                 f"For example: {{{P}-A}} is {ex(k, 'Short')[0]} and {{{P}-B}} is {ex(k, 'Northern Alberta Heavy Equipment and Trailer Repair')[0]}.")]
+      + ([("The organization has more than 8 vendors (the Vendor menu shows its search box only then, as on Inventory Value).", "For example: the QA organization (437 vendors).")] if P == "Vendor" else [])
+      + [START(code)],
       [f"Click the {P} chip and read the menu from top to bottom.", f"Type part of {{{P}-B}}'s name in the search box and tick {{{P}-B}}.",
        "Read the chip.", f"Search for {{{P}-A}} and tick it.", "Read the chip and expand every group.", f"Untick both {Ps}.", "Read the chip."],
       [f"Step 1: the menu opens {srch}, an \"All {Ps}\" row, the line \"All {Ps} are included. Pick one or more to narrow.\" and the list of {Ps}.",
@@ -267,7 +284,7 @@ for code in ("ARD", "APD"):
        f"Step 5: the chip reads \"{P}: 2 {Ps}\"; only the two {Ps}' rows remain.",
        f"Step 6: no {P.lower()} is ticked.",
        f"Step 7: \"{P}: All {Ps}\" in the resting (grey) style."],
-      ["S5-R13"],
+      ["S5-R13"] + (TP.q("D18") if P == "Vendor" else []),
       note=f"The {P} chip is the native one (as on " + ("Sales By Customer" if P == "Customer" else "Inventory Value") + "): with one name ticked, and for a long name, it reads as that chip does.")
 
 # ---- the Past due menu
@@ -277,10 +294,10 @@ for code in ("ARC", "APS"):
       [ADMIN(), START(code)],
       ["Click the Past due chip and read the menu from top to bottom.", "Tick \"91+ days\" and read the chip.", "Tick \"31-60 days\" and read the chip.",
        "Tick \"1-30 days\" and \"61-90 days\" and read the chip.", "Untick all four and read the chip."],
-      ["Step 1: an \"Any\" row, the line \"All ranges are included. Pick one or more to narrow.\", then \"1-30 days\", \"31-60 days\", \"61-90 days\", \"91+ days\", in that order.",
+      ["Step 1: an \"Any\" row (ticked, as no range is), the line \"All ranges are included. Pick one or more to narrow.\", then \"1-30 days\", \"31-60 days\", \"61-90 days\", \"91+ days\", in that order.",
        "Step 2: \"Past due: 91+ days\".", "Step 3: \"Past due: 2 ranges\".",
-       "Step 4: \"Past due: 4 ranges\", not Any.", "Step 5: \"Past due: Any\" in the resting (grey) style."],
-      ["S5-R15"])
+       "Step 4: \"Past due: 4 ranges\", not Any, and the \"Any\" row is not ticked.", "Step 5: \"Past due: Any\" in the resting (grey) style, and the \"Any\" row is ticked again."],
+      ["S5-R15"] + TP.q("FSN"))
 
 # ---- empty after a customer with nothing at the chosen location
 k = nk()
@@ -307,3 +324,48 @@ for code in ("ARC", "APD"):
        "Step 3: the same rows, back in the opening order (the Amount sort is gone).", "Step 4: every group is collapsed and the page is back at the top.",
        f"Step 5: {link}."],
       ["S5-E2", "OOS-8", "S7-E1"])
+
+# ---- tech plan, 22 Oct 2026 pass: unknown customers and vendors in a link (D29), the As of date (D20), quick ticks (NFR-005)
+for code, key_word in (("ARC", "customerIds"), ("APU", "vendorIds")):
+    r = R[code]; k = nk(); P = r["Party"]; Ps = r["parties"]
+    C(k, "S5", f"{r['n']}: a link with an unknown {r['party']} ignores it",
+      [ADMIN(), (f"{P} {{{P}-A}} has overdue {r['doc']}s on today's date.", f"For example: {{{P}-A}} is {ex(k, 'Old Link')[0]}."), START(code)],
+      [f"In the {P} filter, tick {{{P}-A}}.", "Copy the page address.",
+       f"In the copied address, after {{{P}-A}}'s code (the text after \"{key_word}=\"), add a comma and \"Nobody\", and open it.",
+       f"Read the {P} chip and the groups.",
+       f"In the copied address, replace everything after \"{key_word}=\" with \"Nobody\", and open it.",
+       f"Read the {P} chip."],
+      [f"Step 1: the chip reads \"{P}: \" and {{{P}-A}}'s name; only {{{P}-A}}'s group is listed.",
+       f"Step 2: the address carries \"{key_word}=\" followed by {{{P}-A}}'s code (a long code, not the name).",
+       "Step 3: the report loads normally, with no error.",
+       f"Step 4: the chip reads \"{P}: \" and {{{P}-A}}'s name and only {{{P}-A}}'s group is listed: the unknown {r['party']} is ignored.",
+       "Step 5: the report loads normally, with no error.",
+       f"Step 6: \"{P}: All {Ps}\" in the resting (grey) style: with no known {r['party']} left, the link opens as if none were ticked."],
+      ["S5-R19", "S5-R14"] + TP.q("D29", "D29-why", "D30-keys"),
+      note=f"Why: a link saved earlier can name a {r['party']} that was since deleted or merged; the tech plan says such a link must still open the report.")
+
+k = nk()
+C(k, "S5", "A/R Summary: the As of date cannot be set later than today",
+  [ADMIN(), START("ARS")],
+  ["Click the date chip (\"As of: \" and today's date).", "Try to pick tomorrow's date in the calendar."],
+  ["Step 1: a calendar opens with today's date selected.",
+   "Step 2: tomorrow, and every date after it, cannot be picked; the chip still reads \"As of: \" and today's date."],
+  ["S5-R1", "KD-REUSE"] + TP.q("D20"))
+
+k = nk()
+C(k, "S5", "A/R Summary: ticking several customers quickly shows rows for all of them",
+  [ADMIN(), ("Five customers, {Customer-A}, {Customer-B}, {Customer-C}, {Customer-D} and {Customer-E}, each have one open invoice on today's date, of different amounts, and nothing else open.",
+             f"For example: {{Customer-A}} to {{Customer-E}} are {ex(k, 'Quick 1')[0]} to {ex(k, 'Quick 5')[0]}, with invoices of $100.00, $200.00, $300.00, $400.00 and $500.00."),
+   START("ARS")],
+  ["Click the Customer chip.",
+   "Tick {Customer-A}, {Customer-B}, {Customer-C}, {Customer-D} and {Customer-E} one after another, as fast as you can (within about two seconds).",
+   "Close the menu and wait until the report stops loading.",
+   "Read the chip, the rows and the Totals row.",
+   "Wait ten seconds without touching anything, then read the rows and the Totals row again."],
+  ["Step 1: the Customer menu opens.",
+   "Step 2: all five are ticked.",
+   "Step 3: the report loads once more and shows its rows.",
+   "Step 4: the chip reads \"Customer: 5 customers\"; exactly five rows, one per customer, and the Totals row's Total is the five amounts added up (with the example amounts 100.00 + 200.00 + 300.00 + 400.00 + 500.00 = $1,500.00).",
+   "Step 5: the same five rows and the same Totals: no late answer for an earlier tick replaces them."],
+  ["S5-R13", "S5-R18"] + TP.q("NFR5", "P1-rapid"),
+  note="Why: the report waits until you stop ticking and then asks once, dropping any answer still on its way for an earlier tick (tech plan). The wait itself is too short to see; the end state is what a tester checks.")

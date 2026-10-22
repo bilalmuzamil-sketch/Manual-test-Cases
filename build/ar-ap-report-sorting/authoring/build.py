@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build and check every A/R and A/P Report Sorting case. python3 build.py   (exit 1 on any PROBLEM line)
 Gates: title <= 80 and no semicolon; design titles start "Design: "; steps = results, each "Step N:"; placeholders defined;
-quotes verbatim in PRD v5 (or the Jira reading record); every PRD code and every named PRD item (error handling, User Feedback
+quotes verbatim in PRD v5 (or the Jira reading record, or the tech plan); every PRD code and every named PRD item (error handling, User Feedback
 Summary rows, What changes, Out of Scope, key decisions) covered or listed as not testable with the reason; every report a
 requirement names covered; one AUTOMATION line, last; the "From:" / build line / "References from Design" layout."""
 import sys, json, os, importlib, re
@@ -73,6 +73,21 @@ for code, r in CM.R.items():
         lab = CM.namecol(code) if col == "name" else f'"{col}"'
         if not any(x.startswith("Click the") and lab in x for x in st): probs.append(f"{code}: column {col} is never clicked in a sort case")
     if not any("a third time" in x for x in st): probs.append(f"{code}: no third click in a sort case")
+# ---- the tech plan (Rules 30, 115, 134): every testable statement has a verdict; every case it names exists; an ADD, CHANGE or DIVERGE
+# statement is quoted word for word by a case it names (the quotes are checked against the plan in L.check)
+import tech_plan as TP
+BYKEY = {c["key"]: c for c in L.CASES}
+for st in TP.S:
+    if st["verdict"] not in ("CONFIRM", "ADD", "CHANGE", "DIVERGE", "EXCLUDED"): probs.append(f"{st['id']}: unknown verdict")
+    if not st["reason"]: probs.append(f"{st['id']}: no reason")
+    for k in st["cases"]:
+        if k not in BYKEY and not k.startswith("all "): probs.append(f"{st['id']}: names case {k}, which does not exist")
+    if st["verdict"] in ("ADD", "CHANGE", "DIVERGE"):
+        if not any(isinstance(x, tuple) and x[0].startswith("Tech plan") for k in st["cases"] if k in BYKEY for x in BYKEY[k]["q"]):
+            probs.append(f"{st['id']}: no case it names quotes the tech plan")
+    if st["verdict"] == "EXCLUDED" and st["cases"]: probs.append(f"{st['id']}: EXCLUDED but names cases")
+print("tech plan statements", len(TP.S), dict(Counter(st["verdict"] for st in TP.S)),
+      "| cases quoting the tech plan", sum(1 for c in L.CASES if any(isinstance(x, tuple) and x[0].startswith("Tech plan") for x in c["q"])))
 markers = Counter(c["marker"] for c in L.CASES)
 print("markers", dict(markers))
 for p in probs: print("PROBLEM", p)

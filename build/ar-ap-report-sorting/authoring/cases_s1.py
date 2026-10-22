@@ -2,6 +2,7 @@
 from ar_lib import C, ALL6, GROUPED
 from common import *
 from po_questions import QN
+import tech_plan as TP
 
 def names(code, key, words, letters="ABCDEF"):
     P = R[code]["Party"]
@@ -71,12 +72,14 @@ C("S1-07", "S1", "A/R Summary lists Emile before Émile when only the accent dif
    START("ARS")],
   ["Find {Customer-A} and {Customer-B} in the list.",
    "Note which one is higher."],
-  ["Step 1: the two customers sit next to each other.",
-   "Step 2: {Customer-A} (no accent) is above {Customer-B} (with the accent)."],
-  ["S1-R4", "S1-R3"],
-  note=("Held for the PO: the PRD says names that compare equal are ordered \"by the plain lower-cased name\". We read that as the "
-        f"lower-cased name with its accent kept, so \"emile\" comes before \"émile\". The question sheet asks Chris Ward to confirm (question {QN['tie-accent']})."),
-  marker=f"AUTOMATION: HOLD - waiting on the PO (question {QN['tie-accent']}: tie order of accented names)")
+  ["Step 1: the two customers sit next to each other (with accents ignored their names are the same).",
+   "Step 2: {Customer-A} (no accent) is above {Customer-B} (with the accent): the tie is broken by the lower-cased names as they are written, and a plain \"e\" comes before \"é\"."],
+  ["S1-R4", "S1-R3"] + TP.q("D4"),
+  note=(f"The PRD says names that compare equal are ordered \"by the plain lower-cased name\" but not how an accent counts; question {QN['tie-accent']} "
+        "on Chris Ward's sheet (sent 22 Oct 2026) asks. The tech plan (21 Oct 2026) says it: the lower-cased names are compared as written, so "
+        "\"emile\" comes before \"émile\". Nothing in the PRD contradicts it, so this case follows the tech plan (QA lead's ruling of 12 Aug 2026). "
+        "If Chris answers differently, his answer wins and this case changes."))
+
 
 for key, code in [("S1-08", "ARD"), ("S1-09", "APD")]:
     r = R[code]; P = r["Party"]; d = r["doc"]; Dc = d.capitalize()
@@ -152,3 +155,17 @@ C("S1-15", "S1", "A customer with nothing open on the as-of date is not listed",
    "Step 3: the report reloads for yesterday.",
    "Step 4: {Customer-B} is not listed: on yesterday's date it had nothing open."],
   ["S1-E1", "S1-R1"])
+
+C("S1-16", "S1", "A/R Summary sorts names that start with a punctuation mark by character",
+  [ADMIN(), ("Four customers have open invoices on today's date: {Customer-A}, {Customer-B}, {Customer-C} and {Customer-D}. After the same first words, {Customer-A}'s name goes on with \"#\", {Customer-B}'s with \"-\", {Customer-C}'s with a digit and {Customer-D}'s with \"@\".",
+             "For example: {Customer-A} is ZZAUTOTEST S1-16 #1 Diesel, {Customer-B} is ZZAUTOTEST S1-16 -1 Diesel, {Customer-C} is ZZAUTOTEST S1-16 10 Trucking and {Customer-D} is ZZAUTOTEST S1-16 @Home Towing."),
+   START("ARS")],
+  ["Without clicking any column header, find the four customers in the list.",
+   "Read their order from top to bottom."],
+  ["Step 1: all four customers are listed.",
+   "Step 2: they read {Customer-A}, {Customer-B}, {Customer-C}, {Customer-D}: plain character order, where \"#\" comes before \"-\", both come before the digits, and \"@\" comes after them."],
+  ["S1-R2", ("Key Decisions, name order", "Names sort the way QuickBooks sorts them: plain character order, capitals ignored, accented letters with their base letter.")] + TP.q("UCA"),
+  note=("Held for the PO: the PRD says names compare \"in plain character order: digits and punctuation compare as characters\", the way QuickBooks orders "
+        "them, which this case follows. The tech plan (21 Oct 2026) says the developers' order puts every punctuation mark before every digit and orders the marks "
+        "differently (\"-\" before \"#\"), which would give {Customer-B} first, then {Customer-A} and {Customer-D}, then {Customer-C}. Question 16 asks Chris Ward which order is right."),
+  marker="AUTOMATION: HOLD - waiting on the PO (question 16: names that start with a punctuation mark)")

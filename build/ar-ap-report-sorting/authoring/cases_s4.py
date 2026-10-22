@@ -2,6 +2,7 @@
 from ar_lib import C, GROUPED
 from common import *
 from po_questions import QN
+import tech_plan as TP
 
 ORDER = {"n": 0}
 def nk():
@@ -69,25 +70,33 @@ for code in ("ARD", "APD"):
 for code in GROUPED:
     r = R[code]; k = nk(); g = gname(code)
     tall = ("two buckets, {Bucket-A} and the next bucket below it, {Bucket-B}, each with more lines than fit on the screen" if r["group"] == "aging bucket"
-            else f"two {r['parties']} next to each other in name order, {{{r['Party']}-A}} then {{{r['Party']}-B}}, each with more overdue {r['doc']}s than fit on the screen")
+            else f"two {r['parties']} next to each other in name order, {{{r['Party']}-A}} then {{{r['Party']}-B}}, each with more overdue {r['doc']}s than fit on the screen"
+            + (" and with a phone number and a credit term on its customer card" if code == "ARC" else ""))
     A, B = ("{Bucket-A}", "{Bucket-B}") if r["group"] == "aging bucket" else (f"{{{r['Party']}-A}}", f"{{{r['Party']}-B}}")
     exl = ("For example: {Bucket-A} is \"31-60 days past due\" and {Bucket-B} is \"1-30 days past due\"." if r["group"] == "aging bucket"
            else f"For example: {{{r['Party']}-A}} is {ex(k, 'Long List A')[0]} and {{{r['Party']}-B}} is {ex(k, 'Long List B')[0]}, each with 25 overdue {r['doc']}s.")
-    C(k, "S4", f"{r['n']}: the group row stays pinned under the headings",
-      [ADMIN(), (f"On today's date the report has {tall}.", exl), START(code, f", with the groups of {A} and {B} expanded")],
+    label = {"aging bucket": f"the bucket's name and count", "customer": f"{A}'s name and count, then \"Phone: \" and the phone number and \"Credit term: \" and the credit term",
+             "vendor": f"{A}'s name and count"}[r["group"]]
+    pre = [ADMIN()] + ([('Your role has the "View and Manage AP/AR Data" switch on.', None)] if code == "ARC" else []) + [
+           (f"On today's date the report has {tall}.", exl), START(code, f", with the groups of {A} and {B} expanded")]
+    C(k, "S4", f"{r['n']}: the group row stays pinned under the headings", pre,
       [f"Scroll down slowly into {A}'s rows.",
+       "Look at the pinned row.",
        f"Keep scrolling until {B}'s row reaches the top.",
-       "Keep scrolling into {B}'s rows.".replace("{B}", B),
+       f"Keep scrolling into {B}'s rows.",
        f"Scroll back up slowly until you are inside {A}'s rows again.",
+       f"Scroll down fast through {A}'s and {B}'s rows, then fast back up.",
        "Make the browser window 1200 px wide.",
        "Scroll the table sideways to the right."],
       [f"Step 1: {A}'s row stays pinned just under the column headings while its rows scroll beneath it.",
-       f"Step 2: {B}'s row pushes {A}'s row up and off and takes its place; only one group row is pinned at a time.",
-       f"Step 3: {B}'s row stays pinned.",
-       f"Step 4: the change reverses: {A}'s row comes back down into the pinned place.",
-       "Step 5: the table now scrolls sideways (narrower than 1440 px).",
-       f"Step 6: each group row's label ({A}'s name) stays visible at the left while the columns move."],
-      ["S4-R6", "S4-R7", "S8-R3"])
+       f"Step 2: it shows the {g}'s chevron (pointing down) and its label: {label}; it shows no amounts (the {g}'s sums stay in its own subtotal row).",
+       f"Step 3: {B}'s row pushes {A}'s row up and off and takes its place; only one group row is pinned at a time.",
+       f"Step 4: {B}'s row stays pinned.",
+       f"Step 5: the change reverses: {A}'s row comes back down into the pinned place.",
+       "Step 6: at speed too, each pinned row is pushed up and replaced cleanly: it never covers the column headings or the Totals row at the bottom, and two group rows never overlap.",
+       "Step 7: the table now scrolls sideways (narrower than 1440 px).",
+       f"Step 8: each group row's label ({A}'s label) stays visible at the left while the columns move."],
+      ["S4-R6", "S4-R7", "S8-R3"] + TP.q("D21", "CHK3") + (["S9-R1", "S9-R2"] if code == "ARC" else []))
 
 for code in ("ARC", "APU"):
     r = R[code]; k = nk(); P = r["Party"]

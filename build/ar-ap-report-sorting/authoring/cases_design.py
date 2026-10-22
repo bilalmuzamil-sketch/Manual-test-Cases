@@ -10,6 +10,8 @@ from ar_lib import C, ALL6, GROUPED, DESIGN_URL, CASES, DESIGN_HOLD
 import design_data as DD
 from common import *
 from po_questions import QN
+import tech_plan as TP
+VEND8 = ("The organization has more than 8 vendors (the Vendor menu shows its search box only then, as on Inventory Value).", "For example: the QA organization (437 vendors).")
 
 ORDER = {"n": 0}
 def nk():
@@ -161,14 +163,14 @@ C(k, "DESIGN", "Design: A/R Customer chip and menu match Sales By Customer's",
 
 k = nk()
 C(k, "DESIGN", "Design: A/P Vendor chip and menu match Inventory Value's",
-  [ADMIN(), ("Vendor {Vendor-A} has unpaid bills on today's date.", f"For example: {{Vendor-A}} is {ex(k, 'Truck Icon')[0]}."),
+  [ADMIN(), ("Vendor {Vendor-A} has unpaid bills on today's date.", f"For example: {{Vendor-A}} is {ex(k, 'Truck Icon')[0]}."), VEND8,
    START("APD", " in light theme at 100% zoom"), "Reports > Inventory > Inventory Value is open in a second tab of the same window, for comparison."],
   ["Look at the Vendor chip and compare with Inventory Value's Vendor chip.", "Click it and read the menu, row by row, letter for letter.",
    "Compare the open menu with Inventory Value's open Vendor menu."],
   ["Step 1: \"Vendor: All vendors\" with the truck icon, in the resting (grey) style, as on Inventory Value.",
    "Step 2: in this order: a search box with the placeholder \"Search vendors\", \"All vendors\", the line \"All vendors are included. Pick one or more to narrow.\", then the vendors.",
    "Step 3: the same menu: rows, order, tick boxes, spacing and position."],
-  ["S5-R13", "KD-REUSE"], design=DREF("page 7 (Filters and call list)"))
+  ["S5-R13", "KD-REUSE"] + TP.q("D18"), design=DREF("page 7 (Filters and call list)"))
 
 for fam, code in (("A/R", "ARS"), ("A/P", "APD")):
     k = nk()
@@ -566,13 +568,13 @@ P(k, "Design: Past due with two ranges ticked matches the design picture",
 
 k = nk()  # D-73
 P(k, "Design: the Vendor menu matches the design picture",
-  [ADMIN(), START("APS", " in light theme at 100% zoom"), "Reports > Inventory > Inventory Value is open in a second tab of the same window, for comparison.", PICS("I40")],
+  [ADMIN(), VEND8, START("APS", " in light theme at 100% zoom"), "Reports > Inventory > Inventory Value is open in a second tab of the same window, for comparison.", PICS("I40")],
   ["Click the Vendor chip.", "Compare the chip and the menu with the picture.", "Read the menu rows, top to bottom.", "Look at the boxes of the vendor rows.",
    "Compare the order of the vendors with Inventory Value's Vendor menu."],
   ["the menu opens.", "while the menu is open the chip (\"Vendor: All vendors\", truck icon) has a light-grey background; the menu opens under it.",
    "a search box with a magnifier and the placeholder \"Search vendors\", \"All vendors\" (ticked), a dividing line, the grey line \"All vendors are included. Pick one or more to narrow.\", then the vendors (the picture's placeholder differs: see References from Design).",
    "each vendor box shows a grey dash while \"All vendors\" is ticked.", "the same order as Inventory Value's Vendor menu."],
-  ["S5-R13", "KD-REUSE"], ["I40"], reports=["APS"])
+  ["S5-R13", "KD-REUSE"] + TP.q("D18"), ["I40"], reports=["APS"])
 
 k = nk()  # D-74
 P(k, "Design: two customers ticked look as in the design picture",
@@ -615,10 +617,10 @@ P(k, "Design: the switch-location dialog as the design draws it",
 
 k = nk()  # D-77
 P(k, "Design: the Vendor menu's search box reads Search vendor",
-  [ADMIN(), START("APD", " in light theme at 100% zoom"), PICS("I40")],
+  [ADMIN(), VEND8, START("APD", " in light theme at 100% zoom"), PICS("I40")],
   ["Click the Vendor chip.", "Read the placeholder in the search box, letter for letter."],
   ["the menu opens with a search box at the top.", "\"Search vendor\" (singular), as in the picture."],
-  ["S5-R13"], ["I40"], reports=["APD"], marker=DESIGN_HOLD, note=HOLDNOTE(12))
+  ["S5-R13"] + TP.q("D18"), ["I40"], reports=["APD"], marker=DESIGN_HOLD, note=HOLDNOTE(12))
 
 k = nk()  # D-78
 P(k, "Design: with No locations a Totals row of $0.00 shows",

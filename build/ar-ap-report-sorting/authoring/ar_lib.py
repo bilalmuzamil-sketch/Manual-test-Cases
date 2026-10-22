@@ -262,6 +262,8 @@ def design_block(c):
     elif figs: why = ("Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD quotes above, "
                       "the pictures give the look and the on-screen labels.")
     else: why = "The design draws no picture of this behaviour (all 7 boards and 45 figures checked); the case follows the PRD."
+    if any(isinstance(x, tuple) and x[0].startswith("Tech plan") for x in c["q"]):
+        why = why.replace("from the PRD quotes above", "from the PRD and tech plan quotes above")
     lead = 'Design canvas "A/R and A/P Report Sorting" (' + DD.URL + "), " + DD.READ + ": " + "; ".join(DD.PAGE_TEXT[n] for n in pages) + ". " + why
     h = "<p></p><p><strong>References from Design</strong></p>" + "<p>" + e(lead) + "</p>"
     if figs:

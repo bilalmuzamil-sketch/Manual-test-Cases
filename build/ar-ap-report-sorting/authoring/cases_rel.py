@@ -6,6 +6,7 @@ they were before the release need records and screenshots captured before the re
 from ar_lib import C, PRE_REL
 from common import *
 from po_questions import QN
+import tech_plan as TP
 
 ORDER = {"n": 0}
 def nk():
@@ -32,13 +33,15 @@ for fam, codes in (("A/R", AR3), ("A/P", AP3)):
 k = nk()
 C(k, "REL", "A/R PDF prints the as-of date you picked, late in the day too",
   [ADMIN(), ("Customer {Customer-A} has open invoices on today's date.", f"For example: {{Customer-A}} is {ex(k, 'Evening Print')[0]}."),
-   ("The test is run in the evening, after 7 pm your local time, when the date in UTC is already tomorrow.", None),
+   ("The test is run in the evening at {Location-A}'s local time, when the date in UTC is already tomorrow, and this computer's clock is set to {Location-A}'s time zone.",
+    "For example: after 6 pm at a location on Mountain Time (UTC-6 in summer, UTC-7 in winter)."),
    START("ARD")],
   ["Check that the date chip shows today's date.", "Choose \"Download (PDF)\" from the ⋯ menu.", "Read the as-of line of the PDF.", "Compare the PDF's row order with the screen."],
-  ["Step 1: \"As of: \" and today's date.", "Step 2: the PDF downloads (A/R has an Export menu, no Print button).",
-   "Step 3: \"As of \" and today's date in the three-letter month form, not tomorrow's date.",
+  ["Step 1: \"As of: \" and today's date at {Location-A}.", "Step 2: the PDF downloads (A/R has an Export menu, no Print button).",
+   "Step 3: \"As of \" and that same date: three-letter month, the day without a leading zero, four-digit year (for example \"As of Oct 5, 2026\"), not tomorrow's date.",
    "Step 4: the PDF prints the on-screen order."],
-  ["WC-3", "S3-R4", "S3-R3"])
+  ["WC-3", "S3-R4", "S3-R3"] + TP.q("D9", "D9-why"),
+  note="The date is the location's own date: the tech plan says the as-of line uses the location's time zone, which is what fixes today's next-day date.")
 
 k = nk()
 C(k, "REL", "Reports page access alone opens and exports all six reports with amounts",
@@ -114,3 +117,45 @@ C(k, "REL", "The location switcher in the top right is unchanged",
   ["Step 1: it opens.", "Step 2: it looks and lists the locations exactly as before the release.",
    "Step 3: it switches as it always has; A/R Summary reloads with the same filters and rows, in the opening order, at the top."],
   ["S7-E1", "OOS-8", "S5-E2"], marker=PRE_REL)
+
+# ---------------- tech plan, 22 Oct 2026 pass: old links and the shared filter kit (Rule 96, shared component) ----------------
+k = nk()
+C(k, "REL", "A drill-down link saved before the release still opens on its customer",
+  [ADMIN(), ("Before the release was installed, you clicked {Customer-A}'s name on A/R Summary and saved the address of the A/R Collection page it opened, and did the same for {Vendor-A} on A/P Summary.",
+             f"For example: {{Customer-A}} is {ex(k, 'Old Bookmark')[0]} and {{Vendor-A}} is {ex(k, 'Old Bookmark Parts')[0]}."),
+   ("{Customer-A} had overdue invoices and {Vendor-A} unpaid bills on the day the addresses were saved.", None),
+   "Starting screen: the release is installed; the ShopView home page is open in a desktop browser window 1440 px wide."],
+  ["Open the A/R Collection address saved before the release.", "Read the Customer chip and the groups.",
+   "Open the A/P Unpaid Invoices address saved before the release.", "Read the Vendor chip and the groups."],
+  ["Step 1: A/R Collection opens, with no error.", "Step 2: the chip reads \"Customer: \" and {Customer-A}'s name, and only {Customer-A}'s group is listed.",
+   "Step 3: A/P Unpaid Invoices opens, with no error.", "Step 4: the chip reads \"Vendor: \" and {Vendor-A}'s name, and only {Vendor-A}'s group is listed."],
+  ["S5-R14", "KD-DRILL"] + TP.q("D30-keys", "P2-interim"), stories=[5], reports=["ARC", "APU"], marker=PRE_REL,
+  note="Why: today's drill-down writes the customer or vendor into the address in an older form; the tech plan says the new reports still read it, so bookmarks made before the release keep working.")
+
+k = nk()
+steps, res = [], []
+for nm in ("Sales By Customer", "Inventory Value", "Work In Progress"):
+    n0 = len(steps)
+    steps += [f"Open {nm} and untick {{Location-B}} in its Location filter.", f"Open A/R Summary, then open {nm} again from the Reports menu.", f"Read {nm}'s Location chip."]
+    res += [f"Step {n0+1}: {nm} narrows to {{Location-A}}.", f"Step {n0+2}: {nm} opens again.",
+            f"Step {n0+3}: the Location filter is kept, or forgotten, exactly as you noted for {nm} before the release."]
+C(k, "REL", "Other reports keep or forget their filters between visits as before",
+  [ADMIN(), TWO_LOC, ("Before the release was installed, you did the steps below on Sales By Customer, Inventory Value and Work In Progress and noted for each whether the unticked location was still unticked when you came back.", None),
+   "Starting screen: the release is installed; Reports is open in a desktop browser window 1440 px wide."],
+  steps, res, ["KD-REUSE", J597] + TP.q("REGR"), stories=[5], marker=PRE_REL,
+  note="Why: the six reports must not remember filters (they reuse the shared filter parts with that switched off); the other reports must keep doing whatever they did before (Rule 96, shared component).")
+
+k = nk()
+C(k, "REL", "Sales By Customer's filter menus behave as before the release",
+  [ADMIN(), TWO_LOC, ("Before the release was installed, you did the steps below on Sales By Customer and noted the Location chip and the page address after \"Select all\", whether the cursor stayed in the Customer menu's search box while you typed, and how the filter row looked at 900 px.", None),
+   "Starting screen: the release is installed; Reports > Finance > Sales By Customer is open in a desktop browser window 1440 px wide."],
+  ["In the Location menu, click \"Clear selection\".", "Click \"Select all\".", "Read the Location chip and the page address.",
+   "Open the Customer menu and type a few letters of a customer's name into its search box.", "Keep typing without clicking the box again.",
+   "Make the browser window 900 px wide and look at the filter row."],
+  ["Step 1: no location is ticked.", "Step 2: every location is ticked.",
+   "Step 3: the chip and the address read exactly as you noted before the release.",
+   "Step 4: the list narrows as you type.", "Step 5: the cursor stays in the search box and every letter appears, as before the release.",
+   "Step 6: the mobile filter row shows, as before the release."],
+  ["KD-REUSE", J597] + TP.q("REGR", "FSN"), stories=[5], reports=[], marker=PRE_REL,
+  note="Why: the release changes the shared filter parts (an opt-in setting for the aging reports' Past due menu); Sales By Customer, which the aging reports copy, must not change.")
+
