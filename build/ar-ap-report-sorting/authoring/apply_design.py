@@ -10,6 +10,8 @@ sys.path.insert(0, D); import design_data as DD
 PROP = json.load(open(f"{D}/proposals.json")); MAP = f"{P}/testrail-id-map.csv"
 ids = {r["key"]: int(r["case_id"]) for r in csv.DictReader(open(MAP))}
 HOLD = "AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO"
+TAG = "techplan-2026-10-22"  # was design-2026-10-22 for the design pass
+RELEASED = ["S1-07"]  # released from hold by the tech plan pass (plan D4)
 PICRE = re.compile(r"ar-ap-p\d-[a-z0-9-]+\.png")
 def pics(f): return sorted(set(PICRE.findall(f["custom_preconds"] + f["custom_expected"])))
 def same(prev, f):
@@ -37,13 +39,13 @@ def upload(cid, name, path):
 def attached(cid):
     d = api(f"get_attachments_for_case/{cid}"); d = d.get("attachments", d) if isinstance(d, dict) else d
     return {a.get("name") or a.get("filename") for a in d}
-os.makedirs(f"{P}/applied/before-2026-10-22-design", exist_ok=True)
-log = open(f"{P}/applied/design-2026-10-22-log.jsonl", "a"); bad = 0
+os.makedirs(f"{P}/applied/before-{TAG}", exist_ok=True)
+log = open(f"{P}/applied/{TAG}-log.jsonl", "a"); bad = 0
 def L(r): log.write(json.dumps(r, ensure_ascii=False) + "\n"); log.flush()
 for k, cid, f in upd:
     prev = json.load(open(f"{P}/applied/C{cid}-after.json")); live = api(f"get_case/{cid}")
     if live["updated_on"] != prev["updated_on"]: L({"op": "refused_edit_lock", "case": f"C{cid}"}); bad += 1; continue
-    json.dump(live, open(f"{P}/applied/before-2026-10-22-design/C{cid}-before.json", "w"), indent=1, ensure_ascii=False)
+    json.dump(live, open(f"{P}/applied/before-{TAG}/C{cid}-before.json", "w"), indent=1, ensure_ascii=False)
     diff = same(prev, f); api(f"update_case/{cid}", {x: f[x] for x in diff}); st = LAST["status"]; a = api(f"get_case/{cid}")
     b = same(a, f); bad += bool(b)
     json.dump(a, open(f"{P}/applied/C{cid}-after.json", "w"), indent=1, ensure_ascii=False)
@@ -70,7 +72,9 @@ def tests(run):
         if len(t) < 250: return out
         off += 250
 b4 = tests(549); json.dump(b4, open(f"{P}/applied/run549-tests-before-design.json", "w"))
-new_run = [ids[k] for k in add if HOLD not in PROP[k]["fields"]["custom_expected"]]
+PO_HOLD = "AUTOMATION: HOLD - waiting on the PO"
+new_run = [ids[k] for k in add if HOLD not in PROP[k]["fields"]["custom_expected"] and PO_HOLD not in PROP[k]["fields"]["custom_expected"]]
+new_run += [ids[k] for k in RELEASED]
 api("update_run/549", {"include_all": False, "case_ids": sorted({t["case_id"] for t in b4} | set(new_run))}); st = LAST["status"]
 af = tests(549); lost = {t["case_id"] for t in b4} - {t["case_id"] for t in af}; bad += bool(lost) or not set(new_run) <= {t["case_id"] for t in af}
 L({"op": "update_run", "run": 549, "http": st, "before": len(b4), "after": len(af), "added": new_run, "lost": sorted(lost)})

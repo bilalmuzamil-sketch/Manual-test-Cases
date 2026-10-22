@@ -18,3 +18,10 @@
   * NEW: S1-16 (held Q16), S3-28, S3-29 (collapsed Detail exports), S3-30 (CSV formula), S5-35, S5-36 (unknown customer/vendor in link),
     S5-37 (no future as-of), S5-38 (quick ticks), DATA-22 (freshness), REL-11 (old drill-down links), REL-12, REL-13 (shared filter kit).
   * RETIRE: none.
+- DONE (authoring): ar_lib.py (tech plan loaded; third "From:" group; quotes checked verbatim against the plan; design "why" names the
+  tech plan quotes where a case has them), tech_plan.py (84 statements, 37 quotes, all verified), build.py (tech plan gate), cases_* edits,
+  render_setup.py (header, test-site facts, recipes list tech plan quotes, Q16), render_outputs.py (reading row, coverage, outstanding).
+- Result: 301 cases (289 + 12 new); 30 changed, 259 byte-identical to git 5f10e1005 (proved by make_pass_report.py), 0 retired.
+  build.py 0 PROBLEM; setup file and outputs regenerated; only changed cases' setup recipes changed.
+- Note: the parent session's checkpoint commits (8626b1a4b and later) picked up these drafts; this worker made no commit.
+- Outputs: TECH-PLAN-STATEMENTS.md, PASS-REPORT.md, READING-RECORD.md, NEW-QUESTIONS.py (Q16), make_pass_report.py.

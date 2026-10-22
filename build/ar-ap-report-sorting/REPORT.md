@@ -2,7 +2,7 @@
 
 ## What I did
 
-- Drafted the whole suite as authoring files: **289 cases** in 12 sections, every one in the Rule 117 shape (all twelve amendments). `python3 authoring/build.py` passes with **0 PROBLEM lines**; it wrote `authoring/proposals.json` (one entry per case: section, title, refs, the three HTML fields).
+- Drafted the whole suite as authoring files: **301 cases** in 12 sections, every one in the Rule 117 shape (all twelve amendments). `python3 authoring/build.py` passes with **0 PROBLEM lines**; it wrote `authoring/proposals.json` (one entry per case: section, title, refs, the three HTML fields).
 - Nothing was written to TestRail, Jira, Slack or Google, and nothing was committed.
 - Saved PRD v5 (Confluence 947650561, 21 Oct 2026, Chris Ward) and checked the saved copy word for word against the page's HTML (352 text blocks, 0 missing apart from the epic link's display form).
 - Read every ticket under the epic (25) and listed every sentence that differs from the PRD.
@@ -11,30 +11,30 @@
 
 | Section | TestRail section | Cases |
 |---|---|---|
-| Story 1 | 90419 | 15 |
+| Story 1 | 90419 | 16 |
 | Story 2 | 90420 | 39 |
-| Story 3 | 90421 | 27 |
+| Story 3 | 90421 | 30 |
 | Story 4 | 90422 | 21 |
-| Story 5 | 90423 | 34 |
+| Story 5 | 90423 | 38 |
 | Story 6 | 90424 | 5 |
 | Story 7 | 90425 | 19 |
 | Story 8 | 90426 | 13 |
 | Story 9 | 90427 | 4 |
-| Totals and counts — exact amounts | 90428 | 21 |
-| Release day and what must not change | 90429 | 10 |
+| Totals and counts — exact amounts | 90428 | 22 |
+| Release day and what must not change | 90429 | 13 |
 | Design — how it looks | 90430 | 81 |
-| **Total** | group 90418 | **289** |
+| **Total** | group 90418 | **301** |
 
 ## Automation markers (read back from the cases)
 
 | Marker | Cases |
 |---|---|
-| `AUTOMATION: HOLD - not yet build-verified (no build yet)` | 271 |
-| `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site` | 6 |
+| `AUTOMATION: HOLD - not yet build-verified (no build yet)` | 280 |
+| `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site` | 9 |
 | `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO` | 6 |
 | `AUTOMATION: HOLD - waiting on the PO (question 9: should Summary and Detail Totals agree)` | 2 |
 | `AUTOMATION: HOLD - needs more rows than any test site holds; the developers check this limit in their own check tasks (SV-11595, SV-11598)` | 2 |
-| `AUTOMATION: HOLD - waiting on the PO (question 1: tie order of accented names)` | 1 |
+| `AUTOMATION: HOLD - waiting on the PO (question 16: names that start with a punctuation mark)` | 1 |
 | `AUTOMATION: HOLD - waiting on the PO (question 6: does the Past due filter keep the sort)` | 1 |
 
 Every case is HOLD today because no build exists (Rule 85: source-verified only). READY + EXPECT-FAIL = 0 = total − HOLD.
@@ -43,7 +43,7 @@ Every case is HOLD today because no build exists (Rule 85: source-verified only)
 
 | Case | Title | Why held |
 |---|---|---|
-| S1-07 | A/R Summary lists Emile before Émile when only the accent differs | waiting on the PO (question 1: tie order of accented names) |
+| S1-16 | A/R Summary sorts names that start with a punctuation mark by character | waiting on the PO (question 16: names that start with a punctuation mark) |
 | S2-35 | A/R Collection: changing the Past due filter keeps the sort | waiting on the PO (question 6: does the Past due filter keep the sort) |
 | DATA-14 | A/R Summary and A/R Detail show the same Totals for the same filters | waiting on the PO (question 9: should Summary and Detail Totals agree) |
 | DATA-15 | A/P Summary and A/P Detail show the same Totals for the same filters | waiting on the PO (question 9: should Summary and Detail Totals agree) |
@@ -55,6 +55,9 @@ Every case is HOLD today because no build exists (Rule 85: source-verified only)
 | REL-06 | Other reports keep their own export error message | needs records and screenshots captured before the release is installed on the test site |
 | REL-08 | A credit dated on the as-of date stays in the same bucket as before | needs records and screenshots captured before the release is installed on the test site |
 | REL-10 | The location switcher in the top right is unchanged | needs records and screenshots captured before the release is installed on the test site |
+| REL-11 | A drill-down link saved before the release still opens on its customer | needs records and screenshots captured before the release is installed on the test site |
+| REL-12 | Other reports keep or forget their filters between visits as before | needs records and screenshots captured before the release is installed on the test site |
+| REL-13 | Sales By Customer's filter menus behave as before the release | needs records and screenshots captured before the release is installed on the test site |
 | D-76 | Design: the switch-location dialog as the design draws it | the design differs from the PRD, waiting on the PO |
 | D-77 | Design: the Vendor menu's search box reads Search vendor | the design differs from the PRD, waiting on the PO |
 | D-78 | Design: with No locations a Totals row of $0.00 shows | the design differs from the PRD, waiting on the PO |
@@ -67,7 +70,7 @@ Every case is HOLD today because no build exists (Rule 85: source-verified only)
 | Code | Cases | Reports covered |
 |---|---|---|
 | S1-R1 | S1-01, S1-02, S1-03, S1-04, S1-15, D-50, D-54 | A/R Summary, A/P Summary |
-| S1-R2 | S1-01, S1-02, S1-05, S1-06, D-50 | A/R Summary, A/P Summary |
+| S1-R2 | S1-01, S1-02, S1-05, S1-06, S1-16, D-50 | A/R Summary, A/P Summary |
 | S1-R3 | S1-03, S1-04, S1-07 | A/R Summary, A/P Summary |
 | S1-R4 | S1-05, S1-06, S1-07, D-79 | A/R Summary, A/R Collection, A/P Summary |
 | S1-R5 | S1-08, S1-09, D-52, D-63 | A/R Detail, A/P Detail |
@@ -89,7 +92,7 @@ Every case is HOLD today because no build exists (Rule 85: source-verified only)
 | S2-E1 | S2-39 | A/R Collection |
 | S3-R1 | S3-01, S3-02, D-35, D-36, D-53, D-54 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S3-R2 | S1-05, S1-06, S3-03, S3-04, S3-05, S3-06, S3-07, S3-08 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
-| S3-R3 | S3-03, S3-04, S3-05, S3-06, S3-07, S3-08, REL-03 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S3-R3 | S3-03, S3-04, S3-05, S3-06, S3-07, S3-08, S3-28, S3-29, S3-30, REL-03 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S3-R4 | S3-09, S3-10, S3-11, S3-12, S3-13, S3-14, REL-03, D-46 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S3-R5 | S3-09, S3-10, S3-11, S3-12, S3-13, S3-14, S3-15, S3-16, S3-17, D-46 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S3-R6 | S3-03, S3-04, S3-05, S3-06, S3-07, S3-08, S3-09, S3-10, S3-11, S3-12, S3-13, S3-14 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
@@ -97,7 +100,7 @@ Every case is HOLD today because no build exists (Rule 85: source-verified only)
 | S3-R8 | S3-18, S3-19, S3-20, S3-21, S3-22, S3-23 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S3-R8a | S9-03, S9-04 | A/R Collection |
 | S3-R9 | DATA-18, DATA-19, DATA-20, DATA-21 | A/R Summary, A/P Detail |
-| S3-R10 | S3-03, S3-04, S3-05, S3-06, S3-07, S3-08, S3-24, S3-25, DATA-20, D-37 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S3-R10 | S3-03, S3-04, S3-05, S3-06, S3-07, S3-08, S3-24, S3-25, S3-28, S3-29, DATA-20, D-37 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S3-N1 | DATA-18, DATA-19, DATA-20, D-38, D-55 | A/R Summary, A/P Detail |
 | S3-N2 | DATA-21 | A/P Detail |
 | S3-N3 | DATA-18, DATA-19, DATA-20, DATA-21, D-55 | A/R Summary, A/P Detail |
@@ -108,11 +111,11 @@ Every case is HOLD today because no build exists (Rule 85: source-verified only)
 | S4-R5 | S4-01, S4-02, S4-03, S4-04, D-25, D-26, D-27, D-28, D-52, D-56, D-59 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
 | S4-R6 | S4-09, S4-10, S4-11, S4-12, D-25, D-26, D-27, D-28, D-57, D-58, D-61 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
 | S4-R7 | S4-09, S4-10, S4-11, S4-12, D-47, D-48 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
-| S4-R8 | S2-25, S2-26, S2-27, S2-28, S4-13, S4-14 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
+| S4-R8 | S2-25, S2-26, S2-27, S2-28, S4-13, S4-14, DATA-05, DATA-06 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
 | S4-R9 | S4-15, S4-16 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
 | S4-N1 | S4-17, S4-18, S4-19, S4-20 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
 | S4-N2 | S4-21 | A/R Summary, A/P Summary |
-| S5-R1 | S3-09, S3-10, S3-11, S3-12, S3-13, S3-14, S5-01, S5-02, S5-03, S5-04, S5-05, S5-06, D-50, D-52, D-54, D-65 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S5-R1 | S3-09, S3-10, S3-11, S3-12, S3-13, S3-14, S5-01, S5-02, S5-03, S5-04, S5-05, S5-06, S5-37, D-50, D-52, D-54, D-65 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S5-R2 | S5-01, S5-02, S5-03, S5-04, S5-05, S5-06, S5-07, S5-08, S5-09, D-29, D-30, D-66, D-67 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S5-R3 | S5-10, S5-11 | A/R Collection, A/P Unpaid Invoices |
 | S5-R4 | S5-12, D-65, D-66 | A/R Detail |
@@ -126,13 +129,13 @@ Every case is HOLD today because no build exists (Rule 85: source-verified only)
 | S5-R10a | S5-01, S5-02, S5-03, S5-04, S5-05, S5-06, S5-25 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S5-R11 | S5-26, S5-27, D-70 | A/R Summary, A/R Collection, A/P Summary, A/P Unpaid Invoices |
 | S5-R12 | S5-10, S5-11, S7-11 | A/R Detail, A/R Collection, A/P Unpaid Invoices |
-| S5-R13 | S3-09, S3-10, S3-11, S3-12, S3-13, S3-14, S5-01, S5-02, S5-03, S5-04, S5-05, S5-06, S5-28, S5-29, DATA-20, D-02, D-05, D-08, D-11, D-14, D-17, D-31, D-32, D-50, D-70, D-73, D-74, D-75, D-77 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
-| S5-R14 | S5-24 | A/R Collection |
+| S5-R13 | S3-09, S3-10, S3-11, S3-12, S3-13, S3-14, S5-01, S5-02, S5-03, S5-04, S5-05, S5-06, S5-28, S5-29, S5-38, DATA-20, D-02, D-05, D-08, D-11, D-14, D-17, D-31, D-32, D-50, D-70, D-73, D-74, D-75, D-77 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S5-R14 | S5-24, S5-35, S5-36, REL-11 | A/R Collection, A/P Unpaid Invoices |
 | S5-R15 | S5-01, S5-02, S5-03, S5-04, S5-05, S5-06, S5-22, S5-30, S5-31, DATA-16, DATA-17, D-02, D-05, D-08, D-11, D-14, D-17, D-33, D-34, D-50, D-71, D-72 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S5-R16 | S2-35, DATA-09, DATA-10, DATA-11, DATA-12, DATA-16, DATA-17 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
 | S5-R17 | DATA-07, DATA-08, D-72 | A/R Summary, A/P Summary |
-| S5-R18 | DATA-01, DATA-02, DATA-03, DATA-04, DATA-07, DATA-08, DATA-09, DATA-10, DATA-11, DATA-12, DATA-13, DATA-14, DATA-15, DATA-16, DATA-17, D-51, D-70, D-72, D-74, D-75 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
-| S5-R19 | S5-23 | A/R Summary |
+| S5-R18 | S5-38, DATA-01, DATA-02, DATA-03, DATA-04, DATA-07, DATA-08, DATA-09, DATA-10, DATA-11, DATA-12, DATA-13, DATA-14, DATA-15, DATA-16, DATA-17, DATA-22, D-51, D-70, D-72, D-74, D-75 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S5-R19 | S5-23, S5-35, S5-36 | A/R Summary, A/R Collection, A/P Unpaid Invoices |
 | S5-N1 | S5-18 | A/R Collection |
 | S5-N2 | S5-21 | A/R Detail |
 | S5-N3 | S5-22 | A/P Unpaid Invoices |
@@ -157,15 +160,15 @@ Every case is HOLD today because no build exists (Rule 85: source-verified only)
 | S7-N1 | S7-11 | A/R Detail |
 | S7-N2 | S7-12, S7-13, S7-14, S7-17 | A/R Detail, A/R Collection, A/P Detail |
 | S7-E1 | S5-33, S5-34, REL-10 | A/R Summary, A/R Collection, A/P Detail |
-| S8-R1 | S8-01, S8-02, S8-03, S8-04, S8-05, S8-06, S8-07, S8-13, D-41, D-42, D-59, D-60 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S8-R1 | S8-01, S8-02, S8-03, S8-04, S8-05, S8-06, S8-07, S8-13, DATA-22, D-41, D-42, D-59, D-60 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S8-R2 | D-01, D-03, D-04, D-06, D-07, D-09, D-10, D-12, D-13, D-15, D-16, D-18, D-50, D-59 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S8-R3 | S4-09, S4-10, S4-11, S4-12, D-01, D-02, D-03, D-04, D-05, D-06, D-07, D-08, D-09, D-10, D-11, D-12, D-13, D-14, D-15, D-16, D-17, D-18, D-47, D-48, D-50, D-56, D-58, D-61, D-62 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S8-R4 | D-01, D-02, D-03, D-04, D-05, D-06, D-07, D-08, D-09, D-10, D-11, D-12, D-13, D-14, D-15, D-16, D-17, D-18, D-50, D-61 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S8-R5 | S5-14, S5-32, S8-08, S8-09, S8-12, D-19, D-20, D-21, D-22, D-23, D-24, D-68 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S8-R6 | S8-10, S8-11, D-19, D-20, D-21, D-22, D-23, D-24 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S8-N1 | S8-07 | A/R Summary, A/P Unpaid Invoices |
-| S9-R1 | S9-01, D-43, D-56, D-57, D-59, D-75 | A/R Collection |
-| S9-R2 | S9-01, D-43, D-56, D-59, D-75 | A/R Collection |
+| S9-R1 | S4-10, S9-01, D-43, D-56, D-57, D-59, D-75 | A/R Collection |
+| S9-R2 | S4-10, S9-01, D-43, D-56, D-59, D-75 | A/R Collection |
 | S9-R3 | S9-03, D-46 | A/R Collection |
 | S9-N1 | S9-02, D-43 | A/R Collection |
 | S9-N2 | S9-04 | A/R Collection |
@@ -206,8 +209,8 @@ Every case is HOLD today because no build exists (Rule 85: source-verified only)
 | OOS-9 | Out of Scope: A phone or tablet layout. Narrower than 1024 pixels, the reports show the native mobile fi… | D-49 |
 | KD-PERM | Key Decisions, Permissions: Permissions. Viewing all six reports, and exporting them, is governed by 'Reports → Page A… | S1-14, S9-04, REL-04 |
 | KD-ROW | Key Decisions, row location: A row belongs to the location of its own open document (the invoice, credit memo or deposi… | S5-15, DATA-07, DATA-08 |
-| KD-REUSE | Key Decisions, reuse rule: The reuse rule. Every control on these reports reuses an existing ShopView pattern: the na… | REL-05, REL-07, D-01, D-04, D-07, D-10, D-13, D-16, D-25, D-26, D-27, D-28, D-29, D-30, D-31, D-32, D-33, D-34, D-35, D-36, D-39, D-40, D-41, D-42, D-50, D-53, D-71, D-73 |
-| KD-DRILL | Key Decisions, drill-down: Drill-down keeps the report's scope. Clicking a customer or vendor on a Summary opens Coll… | S5-26, S5-27, D-70 |
+| KD-REUSE | Key Decisions, reuse rule: The reuse rule. Every control on these reports reuses an existing ShopView pattern: the na… | S5-37, REL-05, REL-07, REL-12, REL-13, D-01, D-04, D-07, D-10, D-13, D-16, D-25, D-26, D-27, D-28, D-29, D-30, D-31, D-32, D-33, D-34, D-35, D-36, D-39, D-40, D-41, D-42, D-50, D-53, D-71, D-73 |
+| KD-DRILL | Key Decisions, drill-down: Drill-down keeps the report's scope. Clicking a customer or vendor on a Summary opens Coll… | S5-26, S5-27, REL-11, D-70 |
 | KD-ORG | Key Decisions, organization-wide: The reports stay organization-wide, by decision. Everyone with access sees every location'… | S5-10, S5-11, REL-01, REL-02 |
 | GOAL-ACCESS | Goals: Nobody gains or loses access to any data, and no setup is needed. | S5-10, S5-11, REL-04 |
 | ASSUME-13540 | Assumptions: A shop's A/P Detail can carry well over 10,000 open lines (the QA organization has 13,540 … | DATA-18 |
@@ -235,7 +238,7 @@ Code baseline: NOT AVAILABLE (no product source code in this pass), so the invar
 | S1-N1: If the user lacks 'Reports → Page Access', the reports are not available, as today. | S1-14, REL-04 |
 | S1-E1: A customer with no open documents on the as-of date does not appear, as today. | S1-15, D-74 |
 | S4-R5: Each group's own expand toggle uses the same chevron: pointing down when open, right when closed. Behavior is … | S4-01, S4-02, S4-03, S4-04, D-25, D-26, D-27, D-28, D-52, D-56, D-59 |
-| KD-REUSE: The reuse rule. Every control on these reports reuses an existing ShopView pattern: the native filter chips, t… | REL-05, REL-07, D-01, D-04, D-07, D-10, D-13, D-16, D-25, D-26, D-27, D-28, D-29, D-30, D-31, D-32, D-33, D-34, D-35, D-36, D-39, D-40, D-41, D-42, D-50, D-53, D-71, D-73 |
+| KD-REUSE: The reuse rule. Every control on these reports reuses an existing ShopView pattern: the native filter chips, t… | S5-37, REL-05, REL-07, REL-12, REL-13, D-01, D-04, D-07, D-10, D-13, D-16, D-25, D-26, D-27, D-28, D-29, D-30, D-31, D-32, D-33, D-34, D-35, D-36, D-39, D-40, D-41, D-42, D-50, D-53, D-71, D-73 |
 | EH: If an export fails for any other reason (a server error or a lost connection), nothing downloads and one error… | S3-26, S3-27, REL-06, D-38 |
 | S7-R2: An invoice or part sale at the user's current location opens its finance page, as today. | S7-01, S7-02, S7-14 |
 | S7-R6: A bill at the user's current location opens its delivery, as today. A bill at another location shows as plain … | S7-06, S7-07, S7-08, S7-15, S7-16, D-58, D-62 |
@@ -266,7 +269,11 @@ Code baseline: NOT AVAILABLE (no product source code in this pass), so the invar
 | Rules: LESSONS-REGISTER.md (L-01 to L-05); RULES-61-96.md Rules 96, 113, 114, 115, 116, 117 (all twelve amendments), 122, 126, 130, 133 | repo | — | 100% of those sections |
 | Skills: 17-REGRESSION-IMPACT-V1-TO-V2.md (whole), 21-DESIGN-DRIVE-PROTOCOL.md (whole, incl. §4b, §6b, §6c, §6d), IDEAL-TEST-CASE-STANDARD.md (whole) | repo | — | 100% |
 | Design canvas https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4 (saved in design-2026-10-22/) | 7 boards, 45 figures, 43 screenshots | — | 100% (DESIGN-READING-RECORD.md) |
-| Tech plan | — | — | **not available** |
+| Tech plan (`sources/Tech-Plan-AR-AP-2026-10-22-upload.md`, 2026-10-21, uploaded 22 Oct 2026) | 88,174 bytes | 647 | 100% (lines 1–647; `tech-plan-pass-2026-10-22/READING-RECORD.md`) |
+
+## Tech plan coverage (Rules 30, 115, 134; 22 Oct 2026)
+
+Every testable statement of the tech plan has a verdict in `tech-plan-pass-2026-10-22/TECH-PLAN-STATEMENTS.md` (84 statements: CONFIRM 50, CHANGE 18, ADD 8, EXCLUDED 7, DIVERGE 1); every case's verdict and per-part record is in `tech-plan-pass-2026-10-22/PASS-REPORT.md`. One contradiction with PRD v5 (names that start with a punctuation mark): question 16, held case S1-16.
 
 ## Outputs
 
@@ -281,12 +288,12 @@ Code baseline: NOT AVAILABLE (no product source code in this pass), so the invar
 | What | Who | What it blocks | Since |
 |---|---|---|---|
 | Send questions 11 to 15 (design differences) to Chris Ward in the same sheet (Rule 131) | QA lead | the 5 new held design-version cases (D-76 to D-80) | 22 Oct 2026 |
-| The tech plan | QA lead | Rule 115 coverage from the tech plan | 22 Oct 2026 |
+| Send question 16 (tech plan: names that start with a punctuation mark) to Chris Ward in the same sheet (Rule 131) | QA lead | S1-16 (held) | 22 Oct 2026 |
+| Decide whether S1-07 and S3-17 follow the tech plan now (as drafted, QA lead's ruling of 12 Aug 2026) or wait for Chris Ward's answers to questions 1 and 7 | QA lead | S1-07 released from hold in the draft | 22 Oct 2026 |
 | Permission to add the cases to TestRail (Rule 6) and to the project's run (Rule 123) | QA lead | Every case stays a draft | 22 Oct 2026 |
-| Send the question sheet to Chris Ward (18 questions) | QA lead | 9 held cases; exact words in several cases | 22 Oct 2026 |
 | A test data set with exactly 2,000/2,001 and 50,000/50,001 rows, or a lower test limit | developers | 3 held export-limit cases | 22 Oct 2026 |
 | A build of the feature | developers | every case is HOLD (no build yet) | 22 Oct 2026 |
 
 ### Waiting on the PO
 
-Sheet: `PO-QUESTIONS-DRAFT.md` (draft, not sent). Unanswered: questions 1 to 18. Cases held on them: S1-07 (Q1), S2-35 (Q6), DATA-14 (Q9), DATA-15 (Q9).
+Sheet https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA: questions 1 to 10 sent 22 Oct 2026, none answered; 11 to 15 (design) and 16 (tech plan) drafted, not yet in the sheet. Cases held on them: S1-16 (Q16), S2-35 (Q6), DATA-14 (Q9), DATA-15 (Q9).

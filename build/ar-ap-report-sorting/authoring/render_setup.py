@@ -19,13 +19,13 @@ NAMES = {"S1": "Story 1 — Reports open in QuickBooks name order", "S2": "Story
 PROC = [
  ("P-LOC", "Locations", "Two staging locations the Admin is enrolled at ({Location-A}, {Location-B}); a third ({Location-C}) and nine in all only where a case asks. Settings > Locations (UNVERIFIED path). A long-named location for the chip case.", "The top-right location switcher lists them."),
  ("P-CUST", "Customer", "Customers > New Customer: the example name, a phone number and a credit term where the case names them (none where it says none). Every name carries ZZAUTOTEST and the case key.", "The customer card shows the name, phone and credit term."),
- ("P-VENDOR", "Vendor", "Vendors > New Vendor with the example name; its own location as the case says.", "The vendor page shows it."),
+ ("P-VENDOR", "Vendor", "Vendors > New Vendor with the example name. A vendor has no single location of its own: each bill or credit belongs to the location it is received or entered at (tech plan, 21 Oct 2026, Q2 and D13).", "The vendor page shows it."),
  ("P-INV-WO", "Work order invoice", "Work Orders > Create Work Order for the customer at the named location; add a labor line or part to reach the amount; Finance tab > Create Invoice (close the payment dialog unpaid).", "The invoice shows on A/R Detail with the amount."),
  ("P-INV-PS", "Part sale invoice", "Part Sales > New Part Sale for the customer at the named location; add a part to reach the amount; invoice it unpaid.", "The invoice shows on A/R Detail."),
  ("P-PAY", "Partial payment", "On the invoice record the payment amount the case names; for a payment taken elsewhere, switch the active location first.", "The open balance equals amount minus payment."),
  ("P-CM", "Credit memo / deposit", "Create an unused credit memo or a deposit for the customer at the named location, for the amount named.", "It shows on A/R Detail as its own row."),
  ("P-BILL", "Bill", "Vendor Order Management: create a vendor order, receive it on a delivery at the named location and enter the bill with the amount; leave it unpaid.", "The bill shows on A/P Detail."),
- ("P-VC", "Vendor credit", "From a vendor return made at the named location (vendor credit from a return), or a vendor credit entered without a return, for the amount named.", "It shows on A/P Detail and A/P Unpaid Invoices."),
+ ("P-VC", "Vendor credit", "From a vendor return made at the named location (vendor credit from a return), or a vendor credit entered without a return while signed in at the named location, for the amount named.", "It shows on A/P Detail and A/P Unpaid Invoices, at that location."),
  ("P-AGE", "Dates and due dates", "UNVERIFIED: the aging cases need documents whose date and due date sit a set number of days before the as-of date (5, 10, 15, 20, 30, 31, 35, 40, 45, 60, 61, 90, 91, 100 days). If the build cannot back-date, use payment terms (Net 30 etc.) and existing records of the right age, or move the as-of date forward and adjust the expected days; record which in the run notes.", "The Past due column shows the expected days."),
  ("P-ROLE", "Custom role and user", "Settings > Roles: copy a role and set only the permissions the case names (Reports → Page Access always on unless the case says off); Settings > Staff: a user with that role, enrolled at the locations the case names.", "Signing in as the user shows only what the case expects."),
  ("P-PRE-RELEASE", "Before-the-release capture", "For REL cases marked PRE_REL: before the release is installed, create the records, take the screenshots or exports named and keep them with their dates.", "Files saved and dated."),
@@ -47,7 +47,7 @@ def procs_for(c):
     if "custom role" in t or "{User-" in t: out.append("P-ROLE")
     if c["marker"].startswith("AUTOMATION: HOLD - needs records and screenshots"): out.append("P-PRE-RELEASE")
     if "network" in t: out.append("P-OFFLINE")
-    if re.search(r"More than 30|more than 100|more than 150|2,000|50,000|13,540|More than 50|between 101|Between 31", t): out.append("P-VOLUME")
+    if re.search(r"More than 30|more than 100|more than 150|2,000|50,000|13,540|More than 50|more than 50 customers|more than 8 vendors|between 101|Between 31", t): out.append("P-VOLUME")
     return out
 
 link = lambda k: f"{k}"
@@ -63,7 +63,7 @@ A(f"- Feature: A/R and A/P Report Sorting, Export and Location Filter (epic SV-1
 A(f"- PRD: {L.PRD_NAME}; saved `sources/CONFLUENCE-947650561-v5-2026-10-22.md` (checked word for word against the page's HTML, `sources/CONFLUENCE-947650561-v5-2026-10-22-html.json`).")
 A("- Jira: every ticket under the epic read 22 Oct 2026, `sources/JIRA-READING-2026-10-22.md` (differences from the PRD listed there).")
 A(f"- Design: {L.DESIGN_URL} — read in full 22 Oct 2026, saved in `design-2026-10-22/` (7 boards, 45 figures; the 43 screenshots in `design-2026-10-22/images/`, every word transcribed in `TRANSCRIPTS.md`). Each recipe below names the pictures its case compares with. Design-vs-PRD differences: `DESIGN-DIVERGENCE-REGISTER.json`.")
-A("- Tech plan: not available (a second full pass follows when it arrives: Rules 115, 122).")
+A("- Tech plan: \"A/R and A/P Report Sorting, Export and Location Filter — Technical Implementation Plan\" (2026-10-21, written against PRD v4), uploaded by the QA lead 22 Oct 2026, saved `sources/Tech-Plan-AR-AP-2026-10-22-upload.md`; read in full and every case checked against it (`tech-plan-pass-2026-10-22/`). Its quotes sit under their own \"From:\" line in the cases that use them.")
 A("- No build yet. Every recipe below is UNVERIFIED until the build verification session runs it.")
 A("- At session start, ask the user for the site to use and how to sign in as each slot below. Never write a secret into this file.")
 A("")
@@ -92,6 +92,7 @@ A("- Browser: desktop, window 1440 px wide at 100% zoom unless the case names 15
 A("- Every report is opened from the Reports menu so nothing is remembered from an earlier visit. On screen (design pictures): Reports in the top menu; the left menu lists \"A/R Aging Summary\", \"A/R Aging Detail\", \"A/R Aging Collection\" under ACCOUNTS RECEIVABLE and \"A/P Aging Summary\", \"A/P Aging Detail\", \"A/P Unpaid Invoices\" under ACCOUNTS PAYABLE (page title \"A/P Unpaid Invoices Report\"); Sales By Customer and Work In Progress under PERFORMANCE, Inventory Value under PARTS.")
 A("- Design picture cases (D-50 to D-81): open the named picture from `design-2026-10-22/images/` (in TestRail, attached to the case) at 100% zoom beside the browser.")
 A("- Comparison tabs: design cases open Sales By Customer, Inventory Value or Work In Progress in a second tab, as the case says.")
+A("- Test-site facts from the tech plan (21 Oct 2026): (1) on staging and QA the reports read the main database (\"Staging/QA reader = writer\"), so a change shows on reload at once; production reads a copy about a second behind. (2) The PDF generator is \"not configured on every environment\": if every PDF fails with \"We couldn't export this report. Please try again.\" while CSVs work, the site lacks it; record Blocked, not Failed. (3) A 2,000-row PDF takes about 30 seconds. (4) Enrolling the shared Admin at another location changes the Location chip of every other report; prefer a separate user for multi-location setups. (5) The Customer menu lists at most 50 customers until you search, from all the organization's customers; the Vendor menu lists all the organization's vendors and shows its search box only above 8. (6) Every default role with report access also has the \"View and Manage AP/AR Data\" switch, and the default Technician role has no report access: a permission split needs a custom role. (7) The page address keeps the filters as asOfDate, customerIds / vendorIds, pastDue (1-30, 31-60, 61-90, 91-plus) and locationIds, each id a long code written as its own entry; a comma list is also read.")
 A("")
 A("## 4. Shared procedures (UNVERIFIED click paths; no build yet)")
 A("| Procedure | What | How | Check |")
@@ -107,7 +108,8 @@ for c in L.CASES:
     phs = sorted(set(re.findall(r"\{([A-Z][^{}]*)\}", " ".join(a for a, _ in c["pre"]))))
     A("Placeholders: " + (", ".join("{" + p + "}" for p in phs) or "none") + ". Values: the \"For example\" lines above; write the real document numbers here after setup.")
     A("Procedures: " + ", ".join(procs_for(c)) + ".")
-    A("Sources (verbatim text in section 9): " + ", ".join(sorted(L.codes_of(c))) + ".")
+    tpl = [x[0] for x in c["q"] if isinstance(x, tuple) and x[0].startswith("Tech plan")]
+    A("Sources (verbatim text in section 9): " + ", ".join(sorted(L.codes_of(c))) + (("; " + "; ".join(tpl)) if tpl else "") + ".")
     h = L.render(c)["custom_expected"].split("References from Design")[-1]
     pics = [f"`design-2026-10-22/{DD.pic(f)}` ({f['iid']}, \"{f['heading']}\")" for f in DD.FIGS if DD.pic(f) in h]
     A("Design pictures: " + (", ".join(dict.fromkeys(pics)) if pics else "none (the design does not draw this; the case follows the PRD)") + ".")
@@ -135,13 +137,15 @@ oth = {(x[0], x[1]) for c in L.CASES for x in c["q"] if isinstance(x, tuple) and
 for l, t in sorted(oth): A(f"- **{l}**: \"{t}\"")
 A("")
 A("## 10. VIU status")
-A("- Every case and recipe: UNVERIFIED — the build is not yet available. The design was read and every case re-checked against it on 22 Oct 2026; the tech plan has not been received.")
+A("- Every case and recipe: UNVERIFIED — the build is not yet available. The design was read and every case re-checked against it on 22 Oct 2026; the tech plan was read and every case re-checked against it the same day.")
 A("")
-A("## 11. Open questions (Chris Ward's sheet, questions 1 to 10 sent 22 Oct 2026; 11 to 15 drafted from the design, not yet sent)")
+A("## 11. Open questions (Chris Ward's sheet, questions 1 to 10 sent 22 Oct 2026; 11 to 15 drafted from the design; 16 drafted from the tech plan, not yet sent)")
 for i, (slug, q, basis, opts, holds) in enumerate(QUESTIONS, 1):
     A(f"- Q{i}: {q} — {holds}")
 import importlib.util as _u
 _sp = _u.spec_from_file_location("newq", f"{L.P}/design-2026-10-22/NEW-QUESTIONS.py"); _m = _u.module_from_spec(_sp); _sp.loader.exec_module(_m)
 for r in _m.ROWS: A(f"- Q{r[0]} (drafted, not sent): {r[1].split(': ', 1)[1]} — cases {', '.join(r[5])}")
+_sp = _u.spec_from_file_location("newq16", f"{L.P}/tech-plan-pass-2026-10-22/NEW-QUESTIONS.py"); _m = _u.module_from_spec(_sp); _sp.loader.exec_module(_m)
+for r in _m.ROWS: A(f"- Q{r[0]} (drafted from the tech plan, not sent): {r[1].split(': ', 1)[1]} — cases {', '.join(r[5])}")
 open(f"{L.P}/AR-AP-SETUP-FILE.md", "w").write("\n".join(Lines) + "\n")
 print("setup file:", len(Lines), "lines")

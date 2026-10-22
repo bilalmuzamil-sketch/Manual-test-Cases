@@ -5,6 +5,7 @@ import os, sys, re, json, importlib
 from collections import Counter, defaultdict
 D = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, D)
 import ar_lib as L
+import tech_plan as TP
 for m in ["cases_s1", "cases_s2", "cases_s3", "cases_s4", "cases_s5", "cases_s6_s9", "cases_data", "cases_rel", "cases_design"]: importlib.import_module(m)
 from po_questions import QUESTIONS, QN
 QPAT = r"question (\d+)"
@@ -170,7 +171,11 @@ R += ["| Stories SV-11531 to SV-11539 (description, requirements, acceptance cri
       "| Rules: LESSONS-REGISTER.md (L-01 to L-05); RULES-61-96.md Rules 96, 113, 114, 115, 116, 117 (all twelve amendments), 122, 126, 130, 133 | repo | — | 100% of those sections |",
       "| Skills: 17-REGRESSION-IMPACT-V1-TO-V2.md (whole), 21-DESIGN-DRIVE-PROTOCOL.md (whole, incl. §4b, §6b, §6c, §6d), IDEAL-TEST-CASE-STANDARD.md (whole) | repo | — | 100% |",
       f"| Design canvas {L.DESIGN_URL} (saved in design-2026-10-22/) | 7 boards, 45 figures, 43 screenshots | — | 100% (DESIGN-READING-RECORD.md) |",
-      "| Tech plan | — | — | **not available** |", "",
+      f"| Tech plan (`sources/Tech-Plan-AR-AP-2026-10-22-upload.md`, 2026-10-21, uploaded 22 Oct 2026) | {fsize(f'{P}/sources/Tech-Plan-AR-AP-2026-10-22-upload.md')[0]:,} bytes | {fsize(f'{P}/sources/Tech-Plan-AR-AP-2026-10-22-upload.md')[1]} | 100% (lines 1–{fsize(f'{P}/sources/Tech-Plan-AR-AP-2026-10-22-upload.md')[1]}; `tech-plan-pass-2026-10-22/READING-RECORD.md`) |", "",
+      "## Tech plan coverage (Rules 30, 115, 134; 22 Oct 2026)", "",
+      f"Every testable statement of the tech plan has a verdict in `tech-plan-pass-2026-10-22/TECH-PLAN-STATEMENTS.md` ({len(TP.S)} statements: "
+      + ", ".join(f"{v} {n}" for v, n in Counter(st['verdict'] for st in TP.S).most_common()) + "); every case's verdict and per-part record is in "
+      "`tech-plan-pass-2026-10-22/PASS-REPORT.md`. One contradiction with PRD v5 (names that start with a punctuation mark): question 16, held case S1-16.", "",
       "## Outputs", "",
       "- `authoring/` — `ar_lib.py`, `common.py`, `po_questions.py`, `cases_*.py`, `build.py`, `render_setup.py`, `render_outputs.py`, `proposals.json`.",
       "- `AR-AP-SETUP-FILE.md` — the setup file for Claude sessions (Rule 117 ninth amendment).",
@@ -180,13 +185,13 @@ R += ["| Stories SV-11531 to SV-11539 (description, requirements, acceptance cri
       "## OUTSTANDING — what I need from you", "",
       "| What | Who | What it blocks | Since |", "|---|---|---|---|",
       "| Send questions 11 to 15 (design differences) to Chris Ward in the same sheet (Rule 131) | QA lead | the 5 new held design-version cases (D-76 to D-80) | 22 Oct 2026 |",
-      "| The tech plan | QA lead | Rule 115 coverage from the tech plan | 22 Oct 2026 |",
+      "| Send question 16 (tech plan: names that start with a punctuation mark) to Chris Ward in the same sheet (Rule 131) | QA lead | S1-16 (held) | 22 Oct 2026 |",
+      "| Decide whether S1-07 and S3-17 follow the tech plan now (as drafted, QA lead's ruling of 12 Aug 2026) or wait for Chris Ward's answers to questions 1 and 7 | QA lead | S1-07 released from hold in the draft | 22 Oct 2026 |",
       "| Permission to add the cases to TestRail (Rule 6) and to the project's run (Rule 123) | QA lead | Every case stays a draft | 22 Oct 2026 |",
-      "| Send the question sheet to Chris Ward (18 questions) | QA lead | 9 held cases; exact words in several cases | 22 Oct 2026 |",
       "| A test data set with exactly 2,000/2,001 and 50,000/50,001 rows, or a lower test limit | developers | 3 held export-limit cases | 22 Oct 2026 |",
       "| A build of the feature | developers | every case is HOLD (no build yet) | 22 Oct 2026 |", "",
       "### Waiting on the PO", "",
-      "Sheet: `PO-QUESTIONS-DRAFT.md` (draft, not sent). Unanswered: questions 1 to 18. Cases held on them: "
+      "Sheet https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA: questions 1 to 10 sent 22 Oct 2026, none answered; 11 to 15 (design) and 16 (tech plan) drafted, not yet in the sheet. Cases held on them: "
       + ", ".join(c["key"] + " (Q" + re.search(QPAT, c["marker"]).group(1) + ")" for c in CASES if re.search(QPAT, c["marker"])) + "."]
 open(f"{P}/REPORT.md", "w").write("\n".join(R) + "\n")
 print("ledger rows", len(ledger), "| questions", len(QUESTIONS), "| report lines", len(R))
