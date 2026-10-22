@@ -15,6 +15,8 @@ def md_to_text(md):
         t = line.replace("\\", "")
         t = re.sub(r"^>\s*", "", t)
         t = t.replace("**", "")
+        t = re.sub(r"(?<![\w*])\*(\S[^*]*?)\*(?![\w*])", r"\1", t)   # *italic* -> italic (as the page shows it)
+        t = t.replace("`", "")
         t = re.sub(r"\[([^\]]*)\]\(([^)]*)\)", r"\1", t)
         t = re.sub(r"^#+\s*", "", t)
         if t.startswith("|"):

@@ -33,12 +33,12 @@ for code in ALL6:
             f"For example: {{{P}-A}} is {ex(k, 'Export One')[0]} and {{{P}-B}} is {ex(k, 'Export Two')[0]}."),
            START(code, f", with the {P} filter showing {{{P}-A}} and {{{P}-B}} ticked" + (" and every group expanded (Expand all)" if grouped else ""))]
     steps = [f"Click the \"{r['headline']}\" header once.",
-             "Click the ⋯ button and click \"Download (PDF)\".",
+             "Choose \"Download (PDF)\" from the ⋯ menu.",
              "Open the downloaded PDF and compare its rows with the screen, top to bottom.",
-             "Click the ⋯ button and click \"Download (CSV)\".",
+             "Choose \"Download (CSV)\" from the ⋯ menu.",
              "Open the CSV in a spreadsheet program and compare its rows with the screen.",
              f"Without refreshing the page, click the {othercol} header.",
-             "Click the ⋯ button and click \"Download (CSV)\" again.",
+             "Choose \"Download (CSV)\" from the ⋯ menu again.",
              "Open the new CSV and compare its rows with the screen."]
     res = [f"Step 1: the rows sort by {r['headline']}, largest first.",
            "Step 2: the PDF downloads as a file and the \"Success\" message \"Data exported successfully.\" shows.",
@@ -59,12 +59,12 @@ for code in ALL6:
             f"For example: {{{P}-A}} is {ex(k, 'First Ticked')[0]} and {{{P}-B}} is {ex(k, 'Second Ticked')[0]}."),
            START(code)]
     steps = ["Set the as-of date to 10/15/2026.",
-             "Open the Location filter and untick {Location-B}.",
-             "Open the Past due filter and tick \"91+ days\", then \"31-60 days\".",
-             f"Open the {P} filter and tick {{{P}-B}}, then {{{P}-A}}.",
-             "Click the ⋯ button and click \"Download (PDF)\".",
+             "In the Location filter, untick {Location-B}.",
+             "In the Past due filter, tick \"91+ days\", then \"31-60 days\".",
+             f"In the {P} filter, tick {{{P}-B}}, then {{{P}-A}}.",
+             "Choose \"Download (PDF)\" from the ⋯ menu.",
              "Read the lines under the PDF's title.",
-             "Click the ⋯ button and click \"Download (CSV)\".",
+             "Choose \"Download (CSV)\" from the ⋯ menu.",
              "Read the lines at the top of the CSV."]
     res = ["Step 1: the date chip reads \"As of: 10/15/2026\".",
            "Step 2: only {Location-A} is ticked and the Location column disappears from the screen.",
@@ -81,8 +81,8 @@ for code in ("ARS", "APD"):
     r = R[code]; k = nk(); P = r["Party"]
     C(k, "S3", f"{r['n']}: exports say All locations and add only the lines that are set",
       [ADMIN(), TWO_LOC, (f"{P} {{{P}-A}} has open {r['doc']}s on today's date.", f"For example: {{{P}-A}} is {ex(k, 'Only One')[0]}."), START(code)],
-      ["Click the ⋯ button and click \"Download (PDF)\".", "Read the lines under the PDF's title.",
-       f"Open the {P} filter and tick {{{P}-A}} only.", "Click the ⋯ button and click \"Download (CSV)\".", "Read the lines at the top of the CSV."],
+      ["Choose \"Download (PDF)\" from the ⋯ menu.", "Read the lines under the PDF's title.",
+       f"In the {P} filter, tick {{{P}-A}} only.", "Choose \"Download (CSV)\" from the ⋯ menu.", "Read the lines at the top of the CSV."],
       ["Step 1: the PDF downloads.",
        f"Step 2: under the as-of line it reads \"Locations: All locations\"; there is no \"Past due: \" line and no \"{P}: \" line.",
        f"Step 3: only {{{P}-A}} is ticked.",
@@ -95,8 +95,8 @@ C(k, "S3", "A/R Detail: exports list every ticked location by name",
   [ADMIN(), ("The organization has open A/R documents at three locations, {Location-A}, {Location-B} and {Location-C}, and you are enrolled at all three.",
              f"For example: {{Location-A}} is {LOC_A}, {{Location-B}} is {LOC_B} and {{Location-C}} is another staging location."),
    START("ARD")],
-  ["Open the Location filter and untick {Location-B}.", "Click the ⋯ button and click \"Download (PDF)\".", "Read the Locations line under the PDF's title.",
-   "Click the ⋯ button and click \"Download (CSV)\".", "Read the Locations line at the top of the CSV."],
+  ["In the Location filter, untick {Location-B}.", "Choose \"Download (PDF)\" from the ⋯ menu.", "Read the Locations line under the PDF's title.",
+   "Choose \"Download (CSV)\" from the ⋯ menu.", "Read the Locations line at the top of the CSV."],
   ["Step 1: {Location-A} and {Location-C} stay ticked; the chip reads \"Location: 2 locations\".", "Step 2: the PDF downloads.",
    "Step 3: it reads \"Locations: \" followed by the names of {Location-A} and {Location-C}, and not {Location-B}.",
    "Step 4: the CSV downloads.", "Step 5: the same Locations line, with both names."],
@@ -111,15 +111,15 @@ for code in ("ARS", "APS"):
        (f"{P} {{{P}-A}} has open {r['doc']}s on today's date of $1,250.50 that is 1 to 30 days past due and $99.00 that is more than 90 days past due, and nothing in the other buckets.",
         f"For example: {{{P}-A}} is {ex(k, 'Flat Table')[0]}."),
        START(code)],
-      ["Click the ⋯ button and click \"Download (CSV)\".", "Open the CSV in a plain text editor (not a spreadsheet program) and read the heading row.",
+      ["Choose \"Download (CSV)\" from the ⋯ menu.", "Open the CSV in a plain text editor (not a spreadsheet program) and read the heading row.",
        f"Find {{{P}-A}}'s row and read its cells.", "Read the last row.", "Look for any group header or subtotal row.",
-       "Click the ⋯ button, click \"Download (PDF)\" and look at the last bucket heading."],
+       "Choose \"Download (PDF)\" from the ⋯ menu.", "Look at the PDF's last bucket heading."],
       ["Step 1: the CSV downloads.",
        "Step 2: the last bucket column is headed \"91 And Over\", exactly as the screen shows it.",
        f"Step 3: one row for {{{P}-A}}: 1-30 Days reads 1250.50 and 91 And Over reads 99.00 (no $ sign, no thousands comma, two decimals); Current, 31-60 Days and 61-90 Days are blank cells, not 0; the Total reads 1349.50 (1250.50 + 99.00).",
        "Step 4: one Totals row at the bottom, and only one.",
        f"Step 5: there are none: every row except the Totals row is one {r['party']}.",
-       "Step 6: the PDF heading reads \"91 And Over\" on one line."],
+       "Step 6: the PDF downloads.", "Step 7: the PDF heading reads \"91 And Over\" on one line."],
       ["S3-R7", "S3-R8"])
 
 # ---- CSV shape: the four document reports
@@ -131,7 +131,7 @@ for code in ("ARD", "ARC", "APD", "APU"):
        (f"{P} {{{P}-A}} has two overdue {d}s on today's date in different aging buckets: {{{Dc}-A}}, dated 2026-09-01, amount $1,250.50, and {{{Dc}-B}}, amount $75.00.",
         f"For example: {{{P}-A}} is {ex(k, 'Flat Rows')[0]}."),
        START(code, f", with the {P} filter showing {{{P}-A}} ticked")],
-      ["Click the ⋯ button and click \"Download (CSV)\".", "Open the CSV in a plain text editor and read the heading row.",
+      ["Choose \"Download (CSV)\" from the ⋯ menu.", "Open the CSV in a plain text editor and read the heading row.",
        f"Find {{{Dc}-A}}'s row and read its cells.", "Read every other row.", "Read the last row."],
       ["Step 1: the CSV downloads.",
        f"Step 2: the columns include one for the {grp}" + (f" and one for the {r['party']}" if grp == "aging bucket" else "") + ".",
@@ -151,10 +151,10 @@ for code, how in (("ARS", "location"), ("APU", "vendor")):
     else:
         pre = [ADMIN(), TWO_LOC, (f"Vendor {{Vendor-A}} has open bills only at {{Location-B}}.", f"For example: {{Vendor-A}} is {ex(k, 'Elsewhere')[0]}."),
                START(code, ", with only {Location-A} ticked in the Location filter")]
-        s1 = ("Open the Vendor filter and tick {Vendor-A}.", "Step 1: the report shows no rows: {Vendor-A} has nothing open at {Location-A}.")
+        s1 = ("In the Vendor filter, tick {Vendor-A}.", "Step 1: the report shows no rows: {Vendor-A} has nothing open at {Location-A}.")
         q = ["S3-R10", "UFS-7", "S5-E1"]
     C(k, "S3", f"{r['n']}: exporting an empty report downloads nothing and warns", pre,
-      [s1[0], "Click the ⋯ button and click \"Download (PDF)\".", "Look at the browser's downloads.", "Click the ⋯ button and click \"Download (CSV)\".", "Look at the browser's downloads."],
+      [s1[0], "Choose \"Download (PDF)\" from the ⋯ menu.", "Look at the browser's downloads.", "Choose \"Download (CSV)\" from the ⋯ menu.", "Look at the browser's downloads."],
       [s1[1], "Step 2: the warning \"Empty export\", \"Export didn't yield any results\" shows.", "Step 3: nothing was downloaded.",
        "Step 4: the same warning shows.", "Step 5: nothing was downloaded."], q)
 

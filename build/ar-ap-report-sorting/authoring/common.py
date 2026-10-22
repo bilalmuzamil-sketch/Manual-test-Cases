@@ -36,7 +36,7 @@ BUCKETS = ["91 or more days past due", "61-90 days past due", "31-60 days past d
 def ADMIN(loc="A"):
     return (f'You are signed in as a user with the "Admin" role, with {{Location-{loc}}} as your current location.',
             f"For example: {{Location-{loc}}} is {LOC_A if loc == 'A' else LOC_B}.")
-TWO_LOC = ("The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both.",
+TWO_LOC = ("The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order.",
            f"For example: {{Location-A}} is {LOC_A} and {{Location-B}} is {LOC_B}.")
 TWO_LOC_B = ("The organization has open documents in these reports at a second location, {Location-B}, where you are also enrolled.",
              f"For example: {{Location-B}} is {LOC_B}.")

@@ -55,13 +55,15 @@ for code in ("ARD", "APD"):
                  "For example: {Bucket-A} is \"91 or more days past due\" on the QA organization" + (" (13,540 open A/P lines)." if code == "APD" else ".")),
        START(code, ", with every bucket collapsed")],
       ["Expand {Bucket-A} with its own chevron.",
-       "Scroll to the last line shown in {Bucket-A} without scrolling further, and count the lines (or compare them with the bucket's first 100 rows in a CSV export).",
-       "Keep scrolling down.",
-       "Collapse {Bucket-A}, then click the chevron button in the top-left header cell (Expand all).",
-       "Scroll to the end of {Bucket-A} again."],
+       "Count the lines shown in {Bucket-A} before any more load (or compare them with the bucket's first 100 rows in a CSV export).",
+       "Scroll further down.",
+       "Collapse {Bucket-A} with its own chevron.",
+       "Click the chevron button in the top-left header cell (Expand all).",
+       "Count the lines shown in {Bucket-A} before any more load, then scroll further down."],
       ["Step 1: {Bucket-A} opens.", "Step 2: it shows its first 100 lines.",
        "Step 3: more lines load as you scroll, continuing the same order with no line repeated.",
-       "Step 4: every bucket expands; {Bucket-A} again shows its first 100 lines.", "Step 5: more lines load as you scroll."],
+       "Step 4: {Bucket-A} closes.",
+       "Step 5: every bucket expands.", "Step 6: {Bucket-A} again shows its first 100 lines, and more load as you scroll."],
       ["S4-R4", "S1-R8"])
 
 for code in GROUPED:
@@ -72,7 +74,7 @@ for code in GROUPED:
     exl = ("For example: {Bucket-A} is \"31-60 days past due\" and {Bucket-B} is \"1-30 days past due\"." if r["group"] == "aging bucket"
            else f"For example: {{{r['Party']}-A}} is {ex(k, 'Long List A')[0]} and {{{r['Party']}-B}} is {ex(k, 'Long List B')[0]}, each with 25 overdue {r['doc']}s.")
     C(k, "S4", f"{r['n']}: the group row stays pinned under the headings",
-      [ADMIN(), (f"On today's date the report has {tall}.", exl), START(code, f", with {A} and {B} expanded")],
+      [ADMIN(), (f"On today's date the report has {tall}.", exl), START(code, f", with the groups of {A} and {B} expanded")],
       [f"Scroll down slowly into {A}'s rows.",
        f"Keep scrolling until {B}'s row reaches the top.",
        "Keep scrolling into {B}'s rows.".replace("{B}", B),
@@ -118,9 +120,9 @@ for code in GROUPED:
                           f"For example: {{{P}-A}} is {ex(k, 'Collapse Me')[0]}."),
        START(code, ", with every group expanded (Expand all)")],
       ["Change the as-of date to yesterday.", "Click the top-left chevron button to expand every group.",
-       f"Open the {P} filter and tick {{{P}-A}}.", "Click the top-left chevron button to expand every group.",
-       "Open the Past due filter and tick \"31-60 days\".", "Click the top-left chevron button to expand every group.",
-       "Open the Location filter and untick {Location-B}."],
+       f"In the {P} filter, tick {{{P}-A}}.", "Click the top-left chevron button to expand every group.",
+       "In the Past due filter, tick \"31-60 days\".", "Click the top-left chevron button to expand every group.",
+       "In the Location filter, untick {Location-B}."],
       ["Step 1: the report reloads for yesterday with every group collapsed.", "Step 2: every group expands.",
        f"Step 3: only {{{P}-A}}'s rows remain and every group is collapsed.", "Step 4: every group expands.",
        "Step 5: every group collapses.", "Step 6: every group expands.", "Step 7: every group collapses."],

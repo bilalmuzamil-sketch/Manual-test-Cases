@@ -80,10 +80,10 @@ k = nk("S7")
 C(k, "S7", "A/R Collection: Cancel on the switch prompt leaves the report as it was",
   [ADMIN(), TWO_LOC, ("Customer {Customer-A} has overdue invoices at {Location-A} and one, {Invoice-A}, at {Location-B}; more than 20 other customers have overdue invoices.", f"For example: {{Customer-A}} is {ex(k, 'Stay Put')[0]}."),
    START("ARC", ", with \"Past due: 1-30 days\" ticked, the \"Amount\" header clicked once, {Customer-A}'s group expanded and the page scrolled so {Invoice-A} is in the middle of the screen")],
-  ["Copy the page address and note the scroll position.", "Click {Invoice-A}'s number.", "Click \"Cancel\".", "Compare the page address with the copied one.",
-   "Look at the filters, the sort, the expanded groups and the scroll position."],
-  ["Step 1: noted.", "Step 2: the \"Switch location?\" dialog opens.", "Step 3: the dialog closes and you stay on the report.",
-   "Step 4: the address is the same.", "Step 5: the same Past due filter, the Amount sort, {Customer-A}'s group still expanded and the same scroll position."],
+  ["Copy the page address.", "Note which rows are at the top and bottom of the screen.", "Click {Invoice-A}'s number.", "Click \"Cancel\".",
+   "Compare the page address with the copied one.", "Look at the filters, the sort, the expanded groups and the scroll position."],
+  ["Step 1: the address is copied.", "Step 2: noted.", "Step 3: the \"Switch location?\" dialog opens.", "Step 4: the dialog closes and you stay on the report.",
+   "Step 5: the address is the same.", "Step 6: the same Past due filter, the Amount sort, {Customer-A}'s group still expanded and the same scroll position."],
   ["S7-R5", "UFS-3"])
 
 k = nk("S7")
@@ -186,9 +186,10 @@ C(k, "S7", "A/R Summary: customer names link to A/R Collection only with Custome
     f"For example: {{User-B}} is {ex(k, 'Can See Customers')[0]} and {{User-C}} is {ex(k, 'No Customers')[0]}."),
    ("Customer {Customer-A} has open invoices on today's date.", f"For example: {{Customer-A}} is {ex(k, 'Name Link')[0]}."),
    "Starting screen: the sign-in page in a desktop browser window 1440 px wide."],
-  ["Sign in as {User-B}, open Reports > Finance > A/R Summary and click {Customer-A}'s name.", "Sign out, sign in as {User-C} and open A/R Summary.",
-   "Click {Customer-A}'s name."],
-  ["Step 1: A/R Collection opens with only {Customer-A} ticked.", "Step 2: {Customer-A}'s name is plain text.", "Step 3: nothing opens."],
+  ["Sign in as {User-B}.", "Open Reports > Finance > A/R Summary.", "Click {Customer-A}'s name.", "Sign out and sign in as {User-C}.",
+   "Open Reports > Finance > A/R Summary.", "Click {Customer-A}'s name."],
+  ["Step 1: you are signed in.", "Step 2: A/R Summary opens.", "Step 3: A/R Collection opens with only {Customer-A} ticked.", "Step 4: you are signed in as {User-C}.",
+   "Step 5: A/R Summary opens and {Customer-A}'s name is plain text.", "Step 6: nothing opens."],
   ["S7-R1", ("Story 7 Prerequisites", "A customer name on A/R Summary links to A/R Collection for a user with 'Customers → View', as today."), "WC-6"])
 
 k = nk("S7")
@@ -269,7 +270,7 @@ k = nk("S9")
 C(k, "S9", "A/R Collection: a customer with no phone shows no Phone label",
   [ADMIN(), ("Customer {Customer-A} has an overdue invoice and no phone number on its customer card.", f"For example: {{Customer-A}} is {ex(k, 'No Phone')[0]}."),
    START("ARC", ", with only {Customer-A} ticked")],
-  ["Read {Customer-A}'s group row.", "Click the ⋯ button and click \"Download (PDF)\".", "Read {Customer-A}'s line in the PDF."],
+  ["Read {Customer-A}'s group row.", "Choose \"Download (PDF)\" from the ⋯ menu.", "Read {Customer-A}'s line in the PDF."],
   ["Step 1: no \"Phone:\" label at all.", "Step 2: the PDF downloads.", "Step 3: no \"Phone:\" label on the line."],
   ["S9-N1"])
 
@@ -278,7 +279,7 @@ C(k, "S9", "A/R Collection: the PDF and CSV carry the phone and credit term",
   [ADMIN(), ('Your role has the "View and Manage AP/AR Data" switch on.', None),
    ("Customer {Customer-A} has two overdue invoices, a phone number and a credit term.", f"For example: {{Customer-A}} is {ex(k, 'Export Call')[0]} with phone (403) 555-0102 and credit term Net 15."),
    START("ARC", ", with only {Customer-A} ticked")],
-  ["Click the ⋯ button and click \"Download (PDF)\".", "Read {Customer-A}'s line in the PDF.", "Click the ⋯ button and click \"Download (CSV)\".",
+  ["Choose \"Download (PDF)\" from the ⋯ menu.", "Read {Customer-A}'s line in the PDF.", "Choose \"Download (CSV)\" from the ⋯ menu.",
    "Read the CSV heading row.", "Read both of {Customer-A}'s rows."],
   ["Step 1: the PDF downloads.", "Step 2: the same phone and credit term as on screen, on the customer's line.", "Step 3: the CSV downloads.",
    "Step 4: \"Phone\" and \"Credit term\" columns come right after \"Customer\".",

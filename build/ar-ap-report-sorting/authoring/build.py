@@ -65,11 +65,22 @@ for c in L.CASES:
     if "claude.ai/artifact" in top: probs.append(f"{c['key']}: design reference above the References from Design block")
     if "<p></p><p><strong>References from Design</strong></p>" not in h: probs.append(f"{c['key']}: no References from Design block")
     if not f["custom_preconds"].startswith('<p><strong><a href="'): probs.append(f"{c['key']}: setup-file link not first")
+# ---- every column of every report is clicked in a Story 2 case for that report (S2-R1), and some click is a third click (S2-R2)
+import common as CM
+for code, r in CM.R.items():
+    st = [x for c in L.CASES if c["sec"] == "S2" and code in L.reports_of(c) for x in c["steps"]]
+    for col in r["cols"]:
+        lab = CM.namecol(code) if col == "name" else f'"{col}"'
+        if not any(x.startswith("Click the") and lab in x for x in st): probs.append(f"{code}: column {col} is never clicked in a sort case")
+    if not any("a third time" in x for x in st): probs.append(f"{code}: no third click in a sort case")
 markers = Counter(c["marker"] for c in L.CASES)
 print("markers", dict(markers))
 for p in probs: print("PROBLEM", p)
 out = {c["key"]: dict(sec=c["sec"], section_id=SECS.get(c["sec"]), title=c["title"], refs=L.render(c)["refs"],
                       reports=[L.REPORTS[r] for r in L.reports_of(c)], codes=sorted(L.codes_of(c)), fields=L.render(c)) for c in L.CASES}
 json.dump(out, open(f"{L.D}/proposals.json", "w"), indent=1, ensure_ascii=False)
+# Rule 126: the design cases' sources also live in cases/design/
+os.makedirs(f"{L.P}/cases/design", exist_ok=True)
+json.dump({k: v for k, v in out.items() if v["sec"] == "DESIGN"}, open(f"{L.P}/cases/design/DESIGN-CASES.json", "w"), indent=1, ensure_ascii=False)
 print("PROBLEM lines:", len(probs))
 sys.exit(1 if probs else 0)

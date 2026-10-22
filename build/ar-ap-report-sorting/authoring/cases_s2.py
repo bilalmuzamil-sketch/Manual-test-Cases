@@ -24,7 +24,7 @@ for code in ["ARS", "APS"]:
     k = nk(); w = ex(k, "Alder", "Birch", "Cedar")
     C(k, "S2", f"{r['n']}: the name and Location headers sort A to Z, then Z to A",
       [ADMIN(), TWO_LOC,
-       (f"Three {r['parties']} have open {r['doc']}s on today's date: {ph[0]} only at {{Location-B}}, {ph[1]} at both locations and {ph[2]} only at {{Location-A}}; in name order they read {ph[0]}, {ph[1]}, {ph[2]}.",
+       (f"Three {r['parties']} have open {r['doc']}s on today's date: {ph[0]} only at {{Location-B}}, {ph[1]} at both locations and {ph[2]} only at {{Location-A}}; in name order they read {ph[0]}, {ph[1]}, {ph[2]}. Both location names come after the word \"Multiple\" in A to Z order.",
         f"For example: {ph[0]} is {w[0]}, {ph[1]} is {w[1]} and {ph[2]} is {w[2]}."),
        START(code)],
       [f"Click the header of {namecol(code)}.",
@@ -232,7 +232,7 @@ for code in ALL6:
              "Change the as-of date to yesterday.",
              ("Go to the next page." if code in ("ARS", "APS", "ARC", "APU") else "Expand the largest bucket and scroll down until more lines load."),
              f"Open the {r['Party']} filter and tick {{{r['Party']}-A}}.",
-             "Open the Location filter and untick {Location-B}.",
+             "In the Location filter, untick {Location-B}.",
              f"Look at the \"{sortcol}\" header."]
     gx = " (expand a group to see them: a filter change collapses every group)" if grouped else ""
     res = [f"Step 1: the rows sort by {sortcol}, largest first, and the header shows it.",
@@ -250,7 +250,7 @@ C(k, "S2", "A/R Collection: changing the Past due filter keeps the sort",
   [ADMIN(), ("Customer {Customer-A} has overdue invoices on today's date, some 1 to 30 days and some 31 to 60 days past due.",
              f"For example: {{Customer-A}} is {ex(k, 'Past Due Sort')[0]}."),
    START("ARC")],
-  ["Click the \"Open balance\" header once.", "Open the Past due filter and tick \"31-60 days\".", "Expand {Customer-A}'s group.",
+  ["Click the \"Open balance\" header once.", "In the Past due filter, tick \"31-60 days\".", "Expand {Customer-A}'s group.",
    "Look at the \"Open balance\" header."],
   ["Step 1: rows sort by Open balance, largest first.", "Step 2: the report reloads with only 31 to 60 day invoices (and credits) left.",
    "Step 3: the rows in the group are still sorted by Open balance, largest first.", "Step 4: \"Open balance\" is still marked as the sorted column."],
@@ -266,11 +266,11 @@ for pair in (["ARS", "ARD"], ["ARC", "APS"], ["APD", "APU"]):
     steps, res = [], []
     for code in pair:
         r = R[code]; n0 = len(steps)
-        steps += [f"Open Reports > Finance > {r['n']} and click the \"{r['headline']}\" header.",
+        steps += [f"Open Reports > Finance > {r['n']}.", f"Click the \"{r['headline']}\" header.",
                   "Open Reports > Finance > Sales By Customer.", f"Open Reports > Finance > {r['n']} again."]
         op = namecol(code) if r["opened"] == "name" else f"\"{r['opened']}\""
-        res += [f"Step {n0+1}: {r['n']} sorts by {r['headline']}, largest first.", f"Step {n0+2}: Sales By Customer opens.",
-                f"Step {n0+3}: {r['n']} opens in its opening order again, with {op} marked as the sorted column; the {r['headline']} sort is not remembered."]
+        res += [f"Step {n0+1}: {r['n']} opens.", f"Step {n0+2}: the rows sort by {r['headline']}, largest first.", f"Step {n0+3}: Sales By Customer opens.",
+                f"Step {n0+4}: {r['n']} opens in its opening order again, with {op} marked as the sorted column; the {r['headline']} sort is not remembered."]
     C(k, "S2", f"{a['n']} and {b['n']} forget the sort between visits",
       [ADMIN(), (f"Both reports have open documents on today's date.", None), "Starting screen: Reports > Finance in a desktop browser window 1440 px wide."],
       steps, res, ["S2-R8", "S1-R7"], reports=pair)
