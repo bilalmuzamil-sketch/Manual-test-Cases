@@ -1,0 +1,50 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - batch18"
+ },
+ "results": {
+  "C614716": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: customer ZZAUTOTEST N3 Tooltips with an Approved work order led by ZZAUTOTEST N3 Tia at Truck Hill 1; window 1440 px wide; All tab, Tech View, the customer's name in Search, no filter, Assigned to me off. Signed in as Service Advisor No Reports (Admin).",
+    "Step 1: hovering the density button shows the \"Density\" tooltip above the button; it does not cover the table's column header row.",
+    "Step 2: clicking the density button opens the Density menu (Compact, Regular, Comfortable) and no tooltip shows.",
+    "Step 3: Escape closes the menu.",
+    "Step 4: hovering \"Column Selection\" shows its \"Column Selection\" tooltip above the button.",
+    "Step 5: clicking it opens the column menu (On Site, Waiting On Parts, Unit, Asset and so on) and no tooltip shows.",
+    "Step 6: Escape closes the menu.",
+    "Step 7: hovering the \"Tech View\" button in the display switcher shows the \"Tech View\" tooltip above it, the same way as the other two."
+   ],
+   "pictures": [
+    "pictures-prod/C614716-1-prod-1022.png",
+    "pictures-prod/C614716-2-prod-1022.png",
+    "pictures-prod/C614716-3-prod-1022.png",
+    "pictures-prod/C614716-4-prod-1022.png"
+   ]
+  },
+  "C614717": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: S1-1621 for customer ZZAUTOTEST N4 Name Bubbles at Truck Hill 1, Approved, led by ZZAUTOTEST N4 Ana, with five approved lines for ZZAUTOTEST N4 Ben, Cal, Dee, Eve and Fay; its avatars end in \"+2\". Board View's \"Fields to display\" has \"Line technicians\" on. All tab, Tech View, the customer's name in Search, no filter, Assigned to me off. Signed in as Service Advisor No Reports (Admin).",
+    "Step 1: pointing at the first avatar in S1-1621's Assigned Techs cell opens a name bubble \"ZZAUTOTEST N4 Ana\" above it.",
+    "Step 2: pointing at \"+2\" opens a bubble above it listing \"ZZAUTOTEST N4 Eve, ZZAUTOTEST N4 Fay\".",
+    "Step 3: the avatar in ZZAUTOTEST N4 Ana's group header carries the browser's plain name tip \"ZZAUTOTEST N4 Ana\" and no bubble opens.",
+    "Step 4: Board View shows S1-1621's card in Ana's column with its technician avatars and \"+2\".",
+    "Step 5: pointing at the first avatar on the card opens a bubble \"ZZAUTOTEST N4 Ana\" above it.",
+    "Step 6: pointing at \"+2\" on the card opens a bubble above it listing \"ZZAUTOTEST N4 Eve, ZZAUTOTEST N4 Fay\".",
+    "Step 7: the avatar in Ana's column header carries the plain name tip \"ZZAUTOTEST N4 Ana\" and no bubble opens."
+   ],
+   "pictures": [
+    "pictures-prod/C614717-1-prod-1022.png",
+    "pictures-prod/C614717-2-prod-1022.png",
+    "pictures-prod/C614717-3-prod-1022.png",
+    "pictures-prod/C614717-4-prod-1022.png"
+   ]
+  }
+ }
+}

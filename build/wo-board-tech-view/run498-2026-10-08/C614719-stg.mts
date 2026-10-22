@@ -64,6 +64,45 @@ try {
   // ---- steps 6-7: click Search, Tab until something on the board has focus
   await clickSearch(); o.s6 = await focus();
   o.s7 = await tabUntil((f) => f.inBoard || /^board_/.test(f.tid)); o.s7_isWo1Card = o.s7.reached?.tid === `board_card_${WO1?.id}`; await shot('s7-first-tab-board');
+  // ---- steps 8-13 (added to the case 20 Oct 2026; script extended 22 Oct 2026). Set-up: two more technicians, C (not pinned) and D,
+  // and Customer-C (name without "Keyboard") with three Approved work orders led by C. Step 8: window 1024 px wide, Board View kept.
+  const CAL = (await person(a, 'ZZAUTOTEST C614719', 'Cal', { role: TECH, email: `zz.wob.c614719.cal${D}`, clockable: true, workplace: HEAVY })).row;
+  const DAN = (await person(a, 'ZZAUTOTEST C614719', 'Dan', { role: TECH, email: `zz.wob.c614719.dan${D}`, clockable: true, workplace: HEAVY })).row;
+  o.eligible2 = [...(await ensureEligible(a, CAL, 'Cal')), ...(await ensureEligible(a, DAN, 'Dan'))];
+  const CC = 'ZZAUTOTEST C614719 Third Customer';
+  if ((await workOrders(a, CC)).length < 3) { const c = await customer(a, CC, 'C614719-C'); for (let i = (await workOrders(a, CC)).length; i < 3; i++) await workOrder(a, c, 'approved', CAL.staff_id); }
+  const wc = (await workOrders(a, CC)).sort((x: any, y: any) => String(x.number).localeCompare(String(y.number), undefined, { numeric: true }));
+  for (const w of wc) { if (!/^approved$/i.test(String(w.status))) await a.post('/api/work-orders/change-status', { id: w.id, status: 'approved' }); if ((w.techAssignedId ?? w.tech_assigned_id) !== CAL.staff_id) await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: CAL.staff_id }); }
+  const WO4 = wc[0]; o.data2 = { cal: CAL.staff_id, dan: DAN.staff_id, customerC: CC, wos: wc.map((w: any) => w.number), wo4: WO4?.number, pinned: (await prefGet()).pinnedTechnicianIds?.length };
+  const vp = p.viewportSize() ?? { width: 1600, height: 1000 }; o.viewportBefore = vp;
+  await p.setViewportSize({ width: 1024, height: vp.height }); await W(1500); o.s8 = { display: await p.evaluate(`!!document.querySelector('[data-test-id="board_view_scroller"]')`), width: await p.evaluate('innerWidth') }; await shot('s8-narrow-board');
+  const colBox = (staff: string) => p.evaluate(`(() => { const c = document.querySelector('[data-test-id="board_column_${staff}"]') || document.querySelector('[data-test-id^="board_column_"][data-test-id*="${staff}"]'); if (!c) return null; const r = c.getBoundingClientRect(); return { left: Math.round(r.left), right: Math.round(r.right), vw: innerWidth }; })()`);
+  const cardBox = (id: string) => p.evaluate(`(() => { const c = document.querySelector('[data-test-id="board_card_${id}"]'); if (!c) return null; const r = c.getBoundingClientRect(); return { left: Math.round(r.left), right: Math.round(r.right), top: Math.round(r.top), bottom: Math.round(r.bottom), vw: innerWidth, vh: innerHeight, fullyOn: r.left >= 0 && r.right <= innerWidth && r.top >= 0 && r.bottom <= innerHeight }; })()`);
+  const scrollX = () => p.evaluate(`(document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller') || {}).scrollLeft ?? null`);
+  // step 9: Search = Customer-C, then click once in Search
+  await search(p, CC); await W(2500); await clickSearch();
+  o.s9 = { cols: (await boardCols(p)).filter((c) => c.cards > 0 || /Unassigned/i.test(c.name)).map((c) => ({ name: c.name, cards: c.cards })), calColumn: await colBox(CAL.staff_id), wo4Card: WO4 ? await cardBox(WO4.id) : null, scrollLeft: await scrollX(), focus: await focus() };
+  await shot('s9-customer-c-board');
+  // step 10: Tab until the board has focus
+  o.s10 = await tabUntil((f) => f.inBoard || /^board_/.test(f.tid)); await W(800); o.s10_isWo4Card = o.s10.reached?.tid === `board_card_${WO4?.id}`;
+  o.s10_wo4Card = WO4 ? await cardBox(WO4.id) : null; o.s10_scrollLeft = await scrollX(); await shot('s10-first-tab-customer-c');
+  // step 11: Tech View, then a shorter window (about two and a half group headings in the table body)
+  await display(p, 'Tech View'); await W(2000);
+  const groupH = await p.evaluate(`(() => { const g = document.querySelector('[data-test-id^="tech_view_group_"]'); return g ? Math.round(g.getBoundingClientRect().height) : 56; })()`) as number;
+  const bodyTop = await p.evaluate(`(() => { const b = document.querySelector('.q-virtual-scroll__content, tbody'); return b ? Math.round(b.getBoundingClientRect().top) : 300; })()`) as number;
+  const h = Math.max(420, Math.round(bodyTop + groupH * 2.5 + 8)); await p.setViewportSize({ width: 1024, height: h }); await W(2000);
+  const groupsInView = () => p.evaluate(`[...document.querySelectorAll('[data-test-id^="tech_view_group_"]')].filter(e => { const r = e.getBoundingClientRect(); return r.height > 0 && r.bottom > 0 && r.top < innerHeight; }).map(e => ({ tid: e.getAttribute('data-test-id').replace('tech_view_group_', '').slice(0, 12), text: e.innerText.replace(/\\s+/g, ' ').trim().slice(0, 40), top: Math.round(e.getBoundingClientRect().top) }))`);
+  o.s11 = { height: h, groupHeight: groupH, bodyTop, inView: await groupsInView(), calGroupInView: (await groupsInView() as any[]).some((g: any) => CAL.staff_id.startsWith(g.tid)) }; await shot('s11-tech-short');
+  // step 12: click once in Search (still Customer-C)
+  await clickSearch(); o.s12 = { focus: await focus(), search: await searchValue(p) };
+  // step 13: Tab until the table has focus; is WO-4's row fully seen, just below C's heading, not covered by it?
+  o.s13 = await tabUntil((f) => f.inTable || /^tech_view_/.test(f.tid)); await W(1000); o.s13_isWo4Row = o.s13.reached?.tid === `tech_view_row_${WO4?.id}`;
+  o.s13_geometry = await p.evaluate(`(() => { const row = document.querySelector('[data-test-id="tech_view_row_${WO4?.id}"]'); const head = document.querySelector('[data-test-id="tech_view_group_${CAL.staff_id}"]');
+    const box = (e) => { if (!e) return null; const r = e.getBoundingClientRect(); return { top: Math.round(r.top), bottom: Math.round(r.bottom), left: Math.round(r.left), right: Math.round(r.right) }; };
+    const sc = row && row.closest('.q-virtual-scroll, .q-table__middle, .scroll'); const rb = box(row), hb = box(head), sb = box(sc);
+    return { row: rb, heading: hb, scroller: sb, vh: innerHeight, rowFullyInScroller: !!(rb && sb && rb.top >= sb.top && rb.bottom <= sb.bottom && rb.bottom <= innerHeight), headingCoversRow: !!(rb && hb && hb.bottom > rb.top && hb.top < rb.bottom) }; })()`);
+  await shot('s13-first-tab-tech-short');
+  await p.setViewportSize(vp); await W(800);
 } catch (e: any) { o.error = String(e?.message || e).slice(0, 300); }
 finally { o.prefsBack = (await a.put(PREF, { value: ORIGINAL }).catch(() => ({ status: 0 }))).status; }
 fs.writeFileSync(path.join(EV, 'C614719-stg.json'), JSON.stringify(o, null, 1)); console.log(t(), 'C614719', JSON.stringify(o).slice(0, 2500)); await done(browser);

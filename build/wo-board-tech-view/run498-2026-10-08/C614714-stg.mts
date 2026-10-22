@@ -47,7 +47,11 @@ try {
       if (o.s2_afterClick !== 'false') { await tog.focus().catch(() => {}); await p.keyboard.press('Space'); await W(800); o.s2_afterSpace = await togState(tog); } }
     await shot('s2-time-clock-off-before-save');
     await p.evaluate(`(() => { window.__tl = []; if (window.__to) window.__to.disconnect(); const grab = () => { for (const e of document.querySelectorAll('.q-notification')) { const t = e.innerText.replace(/\\s+/g, ' ').trim(); if (t && !window.__tl.includes(t)) window.__tl.push(t); } }; window.__to = new MutationObserver(grab); window.__to.observe(document.body, { childList: true, subtree: true, characterData: true }); })()`).catch(() => {});
-    await dlg.locator('button').filter({ hasText: /^\s*Save & Close\s*$/ }).last().click().catch(() => {}); await W(3500);
+    // 22 Oct 2026 (production): Save & Close left the window open with no message and the record unchanged. Record what the save SENT and
+    // what came back (every non-GET call to /api/ for 6 s), so the second attempt tells a refused save from a click that never fired.
+    const sent: any[] = []; const onResp = async (r: any) => { try { const q = r.request(); if (q.method() !== 'GET' && /\/api\//.test(r.url())) sent.push({ m: q.method(), u: r.url().replace(/^https?:\/\/[^/]+/, '').slice(0, 90), s: r.status(), body: (await r.text().catch(() => '')).slice(0, 300) }); } catch { /* */ } };
+    p.on('response', onResp);
+    await dlg.locator('button').filter({ hasText: /^\s*Save & Close\s*$/ }).last().click().catch(() => {}); await W(6000); p.off('response', onResp); o.s2_saveCalls = sent;
     o.s2_messages = [...new Set([...(await p.evaluate('window.__tl || []').catch(() => []) as string[]), ...(await toasts(p))])];
     o.s2_windowAfterSave = { open: await p.locator('.q-dialog:visible').count(), fieldErrors: await p.evaluate(`[...document.querySelectorAll('.q-dialog .q-field--error')].map(f => f.innerText.replace(/\\s+/g, ' ').trim().slice(0, 80))`).catch(() => []) };
     for (let i = 0; i < 10; i++) { const rr = (await staffRows(a, A.email)).find((x: any) => x.staff_id === A.staff_id); if (rr && !rr.clockable) break; await W(1000); }
