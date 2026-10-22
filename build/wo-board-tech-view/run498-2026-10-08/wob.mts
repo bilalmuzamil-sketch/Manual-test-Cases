@@ -132,7 +132,9 @@ export async function toColumn(p: Page, id: string) {
 export async function openReassign(p: Page, woId: string, where: 'board' | 'tech' = 'board') {
   const host = p.locator(where === 'board' ? `[data-test-id="board_card_${woId}"]` : `[data-test-id="tech_view_row_${woId}"]`);
   await host.hover(); await host.locator('[data-test-id="button_work_order_more_actions"]').click(); await p.waitForTimeout(900);
-  const item = p.locator('.q-menu .q-item').filter({ hasText: 'Reassign lead technician' }).first();
+  // 22 Oct 2026: PRD v66+ S3-R14 — the item reads "Assign lead technician" on a work order with no lead and "Reassign lead technician" on one with
+  // a lead (production v26.43.0 showed "Assign" on an Unassigned card, C96956); accept either.
+  const item = p.locator('.q-menu .q-item').filter({ hasText: /(Re)?[Aa]ssign lead technician/ }).first();
   const disabled = await item.evaluate((e) => e.getAttribute('aria-disabled') === 'true' || e.classList.contains('disabled')).catch(() => null);
   return { item, disabled };
 }
