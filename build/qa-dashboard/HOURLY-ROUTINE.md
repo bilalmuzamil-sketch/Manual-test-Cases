@@ -39,6 +39,12 @@ concentrated in the PKT working day. Avoid `:00`; the fleet is already busy on t
 
 ## The Routine prompt (copy verbatim)
 
+> **Superseded 2026-10-22.** The live Routine (`trig_019zaW6gqeBCAq8XDpqVo29q`, cron
+> `0 4,13 * * 1-5` = 9am & 6pm PKT on weekdays) now runs `discover_epics.py` first and scopes
+> the page to the auto-tracked live epics; its verify step checks DATA.epics == scope-epics.json
+> instead of "exactly three keys". The stored prompt is the source of truth — read it with
+> `get_trigger`. The text below is the earlier three-epic version, kept as history.
+
 ```text
 Refresh the ShopView QA dashboard (three-epic scope) with current Jira data.
 

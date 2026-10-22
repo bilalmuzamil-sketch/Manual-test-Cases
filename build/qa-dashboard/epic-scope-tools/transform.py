@@ -4,7 +4,16 @@ Record shape per REFRESH-RUNBOOK.md step 1."""
 import json, os
 from collections import Counter
 D=os.path.dirname(os.path.abspath(__file__))
-EPICS=["SV-8785","SV-8685","SV-8582"]
+def _load_scope():
+    # Epic scope is DISCOVERED (discover_epics.py -> scope-epics.json): the live, non-closed
+    # epics the QA team currently has open testing work in. Falls back to the original three
+    # only if discovery has not been run in this workdir.
+    import json as _j, os as _o
+    p = _o.path.join(_o.path.dirname(_o.path.abspath(__file__)), "scope-epics.json")
+    if _o.path.exists(p):
+        return [e["key"] for e in _j.load(open(p))]
+    return ["SV-8785","SV-8685","SV-8582"]
+EPICS=_load_scope()
 rows=json.load(open(D+"/raw_issues.json"))
 byk={r["key"]:r for r in rows}
 def f(r): return r["fields"]

@@ -5,7 +5,20 @@ Refreshes the artifact at
 with current Jira data. Keep chat output to ONE line ("Dashboard refreshed · <UTC time>")
 on success; on Jira/MCP failure, skip silently.
 
-## ⚠️ SCOPE CHANGED 2026-08-06 — THREE EPICS ONLY (QA lead's instruction)
+## ⚠️ SCOPE CHANGED 2026-10-22 — AUTO-TRACKED LIVE EPICS (QA lead's choice)
+
+The three epics below (Filters, Schedule, Reporting Suite) were all **closed** by 22 Oct 2026, so
+the fixed list was retired. The scope is now **discovered at every refresh** by
+`epic-scope-tools/discover_epics.py`: an epic is in scope when it is **not closed** (status
+category not Done, summary not `[ARCHIVED]…`) and **at least one QA member is the QA Assignee on
+an open ticket under it** (parent, or grandparent for sub-tasks). It writes `scope-epics.json`,
+which `fetch.py` and `transform.py` read; a closed epic drops off on the next refresh. **Run it
+FIRST.** On 22 Oct 2026 it found 12 epics / 424 tickets (363 direct children + 61 sub-tasks,
+both counts matched live Jira). The page's default date range is now the last 2 months, because
+some live epics (e.g. QuickBooks Integration, SV-1925) go back to 2023. The original three-epic
+section below is kept as history; its method (recursive descent, the three traps) is unchanged.
+
+### History — 2026-08-06: three epics only (QA lead's instruction)
 
 The dashboard now shows **only** these epics, and nothing outside them is counted anywhere
 on the page:
@@ -28,11 +41,13 @@ cp <repo>/build/qa-dashboard/epic-scope-tools/*.py .   # so copy them into the w
 cp <repo>/build/qa-dashboard/finish-dates.json .       # committed; merged, never overwritten
 cp <repo>/build/qa-dashboard/qa-accounts.json .        # QA member -> Jira accountId (for fetch_created)
 
-python3 fetch.py                     # recursive descent over the 3 epic trees -> raw_issues.json
+python3 discover_epics.py            # live epics the QA team works in -> scope-epics.json (RUN FIRST)
+python3 fetch.py                     # recursive descent over the scope-epics trees -> raw_issues.json
 python3 transform.py                 # -> tickets-unique.json + story-epic-map.json
 python3 fetch_details.py <asof>      # changelog + comments (SCOPED — see below) -> details/
 python3 build_activity.py <asof>     # -> activity.json + finish-dates.json
 python3 fetch_created.py <asof>      # PROJECT-WIDE per-member created counts -> created-by-member.json
+python3 fetch_qa_epics.py <asof>     # PROJECT-WIDE live epics per QA member -> qa-epics.json
 python3 <repo>/build/qa-dashboard/gen_data.py . <asof>   # -> dash-data.json
 ```
 

@@ -90,9 +90,17 @@ _RH = ["-H", "Accept: application/json", "-H", "X-Atlassian-Token: no-check",
        "-H", "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36"]
 
 def _rest_login():
+    # The tools are usually COPIED into a workdir, so ../atlassian-login may not exist there:
+    # also look in $DASH_REPO and in any repo checkout under /home/user.
+    import glob
     here = os.path.dirname(os.path.abspath(__file__))
-    ens = os.path.normpath(os.path.join(here, "..", "atlassian-login", "ensure_cookies.py"))
-    sys.path.insert(0, os.path.dirname(ens))
+    cands = [os.path.join(here, "..", "atlassian-login")]
+    if os.environ.get("DASH_REPO"):
+        cands.append(os.path.join(os.environ["DASH_REPO"], "build", "qa-dashboard", "atlassian-login"))
+    cands += glob.glob("/home/user/*/build/qa-dashboard/atlassian-login")
+    d = next((os.path.normpath(c) for c in cands if os.path.exists(os.path.join(c, "ensure_cookies.py"))), None)
+    if not d: raise RuntimeError("atlassian-login/ensure_cookies.py not found; set DASH_REPO")
+    sys.path.insert(0, d)
     import ensure_cookies
     _REST["cookies"] = ensure_cookies.ensure()
 

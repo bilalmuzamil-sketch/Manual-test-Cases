@@ -131,12 +131,12 @@
     <h1>ShopView QA Team Dashboard</h1>
     <span class="asof" id="asof"></span>
   </header>
-  <p class="sub"><b>Scope: three epics only</b> —
-  <a href="https://shopview.atlassian.net/browse/SV-8785" target="_blank" rel="noopener">Filters (SV-8785)</a>,
-  <a href="https://shopview.atlassian.net/browse/SV-8685" target="_blank" rel="noopener">Schedule (SV-8685)</a> and
-  <a href="https://shopview.atlassian.net/browse/SV-8582" target="_blank" rel="noopener">Reporting Suite (SV-8582)</a>.
-  Nothing outside these three epics is counted anywhere on this page. Every story, defect, bug and task
-  under them is included, whether or not a QA member is on it.
+  <p class="sub"><b>Scope: the live epics the QA team is working on</b> — picked automatically at every
+  refresh: an epic is in scope when it is <b>not closed</b> and at least one QA member is the
+  <b>QA Assignee</b> on an open ticket under it. When an epic is closed it drops off on the next refresh.
+  This refresh: <span id="scope-epics"></span>.
+  Outside the project-wide panels (marked as such), nothing outside these epics is counted. Every story,
+  defect, bug and task under them is included, whether or not a QA member is on it.
   Filter by QA member, epic, and time period — every number, chart, and table below
   recomputes for that selection. Pick a member to focus the whole page on one person. Who-did-what comes
   from the <b>QAComplete_&lt;name&gt;</b> labels first, then the <b>QA&nbsp;Assignee</b> field;
@@ -185,8 +185,8 @@
     by the day the ticket was created. <b>By week</b> shows one week at a time — a column per dated
     day, Monday to Sunday, with the week's total on the right. <b>By month</b> compares this month
     with the previous month. <b>This table is project-wide</b> — it counts every ticket the person
-    created anywhere in ShopView, so it is <b>not limited to the three epics and ignores the epic
-    filter</b> (the rest of the page stays three-epic). The member filter still applies. Dates are
+    created anywhere in ShopView, so it is <b>not limited to the epics in scope and ignores the epic
+    filter</b> (the rest of the page stays scoped to those epics). The member filter still applies. Dates are
     Pakistan time.</p>
     <div class="mtabs" id="cw-modetabs">
       <button class="mtab" data-mode="week" aria-pressed="true">By week</button>
@@ -281,15 +281,15 @@
   <div class="eyebrow">🗂️ Epics each QA member is working on <span style="font-weight:400;text-transform:none;letter-spacing:0">· across all of ShopView</span></div>
   <div class="card">
     <p class="note"><b>Project-wide</b> — every epic each QA member currently has testing work in
-    <b>anywhere in ShopView</b>, not just the three epics this page is scoped to. "Working on" = tickets
+    <b>anywhere in ShopView</b>, not just the epics this page is scoped to. Closed epics are left out. "Working on" = tickets
     where the person is the <b>QA Assignee</b> and the ticket is <b>not Done</b> (their live testing
     queue). This panel is <b>not affected by the epic or date filter</b>; the member filter narrows it.</p>
     <div class="mwrap"><table class="matrix" id="qaepics"></table></div>
   </div>
 
-  <div class="eyebrow" id="primary-eyebrow">Primary epic per QA member <span style="font-weight:400;text-transform:none;letter-spacing:0">· within these three epics only</span></div>
+  <div class="eyebrow" id="primary-eyebrow">Primary epic per QA member <span style="font-weight:400;text-transform:none;letter-spacing:0">· within the epics in scope</span></div>
   <div class="card" id="primary-card">
-    <p class="note"><b>Scoped to the three epics on this page</b> (Filters · Schedule · Reporting Suite) —
+    <p class="note"><b>Scoped to the epics on this page</b> (listed at the top) —
     for the full cross-ShopView picture use the project-wide panel just above. Each person's
     <b>main epic</b> here = the epic they touched on the most tickets <b>within the selected date range</b>
     (tickets active in that window). "Focus" = what share of their range work sits in that one epic.
@@ -334,11 +334,11 @@
     <p><b>Recreate these filters in Jira</b> (add to the saved filters from the blueprint):
     per-member in-progress <code>labels = "BilalMuzamil_inprogress"</code> ·
     per-member completed <code>labels in ("QAComplete_Ayesha_Khan") OR ("QA Assignee" = "Ayesha Khan" AND status CHANGED FROM ("TESTING QA","TESTING STAGE") TO ("Ready for Production","Done") AFTER startOfWeek())</code> ·
-    per-epic <code>parent = SV-8785</code> — that returns the epic's stories, bugs and tasks;
+    per-epic <code>parent = &lt;epic key&gt;</code> — that returns the epic's stories, bugs and tasks;
     <b>story defects sit one level deeper</b> (their parent is the story, and <code>parentEpic</code>
     returns nothing useful on this site), so for a full epic tree run
     <code>parent in (&lt;that epic's story keys&gt;)</code> as a second query, which is exactly what
-    this page does · combined <code>parent = SV-8785 AND labels = "QAComplete_Ahtasham_Amjad"</code>.
+    this page does · combined <code>parent = &lt;epic key&gt; AND labels = "QAComplete_Ahtasham_Amjad"</code>.
     In a dashboard, add an <b>Epic</b> quick-filter per epic and use Two-Dimensional gadgets
     (Epic × Status) per member.</p>
     <p><b>Definitions.</b> "QA completed" = ticket reached the Done status category in the period,
@@ -352,6 +352,10 @@
 <script>
 const DATA = "__DATA__";
 const T = DATA.tickets, EPICS = DATA.epics;
+(function(){ const el=document.getElementById("scope-epics"); if(!el) return;
+  const ks=Object.keys(EPICS); el.innerHTML = ks.length ? ks.length+" epic"+(ks.length===1?"":"s")+" — "+ks.map(k=>
+  `<a href="https://shopview.atlassian.net/browse/${k}" target="_blank" rel="noopener">${String(EPICS[k]).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))} (${k})</a>`).join(", ")
+  : "no live epics found"; })();
 const QA = ["Bilal Muzamil","Ayesha Khan","Mudassir Qamar","Viktoria Videnovic","Nebojsa Glavinic","Ahtasham Amjad"];
 // all period boundaries derive from the snapshot date, so refreshes need no code edits
 const ASOF = DATA.asof;
@@ -397,7 +401,7 @@ const QUEUE = (DATA.tables && DATA.tables.openQueue) || [];
     <li><span class="${H.mismatch?"warnink":""}">${H.mismatch} tickets</span> have a
     <code>QAComplete_&lt;name&gt;</code> label whose person is <b>not</b> in the QA Assignee field.
     This page trusts the label; keep both in sync or QA-Assignee-based gadgets will disagree.</li>
-    <li>QAComplete label totals (these epics): ${names.length?names.map(n=>`${n} ${pp[n]}`).join(" · "):"none"}.
+    <li>QAComplete label totals (epics in scope): ${names.length?names.map(n=>`${n} ${pp[n]}`).join(" · "):"none"}.
     ${names.includes("Bilal")?"":"Bilal has <b>0</b> QAComplete labels — his completions are only visible via QA Assignee + status transitions."}</li>`;
 }
 document.getElementById("foot-asof").innerHTML =
@@ -580,7 +584,7 @@ function monthLabel(ym){ return new Date(ym+"-01T12:00:00Z")
 // Counts come from the PROJECT-WIDE sidecar (DATA.createdByMember) when present — this table
 // measures each person's real output across all of ShopView, so it deliberately ignores the epic
 // filter. countOn(person, isoDate) returns that person's created count for the day. If the sidecar
-// is missing (older data), fall back to the three-epic ticket set.
+// is missing (older data), fall back to the in-scope ticket set.
 const CBM = DATA.createdByMember && DATA.createdByMember.byDay;
 function countOn(person, d){
   if (CBM) return (CBM[person] && CBM[person][d]) || 0;
@@ -984,13 +988,13 @@ $("cw-week").onchange=e=>{ state.cwWeek=+e.target.value; renderCreatedWeek(); };
 $("freset").onclick=()=>{ state.q=state.y=state.s=""; state.shown=60; applyDefaultEpic();
   ["fq","fy"].forEach(i=>$(i).value=""); $("fs").value=""; render(); };
 
-// Default view: all epics in scope, over the whole data window (these epics are recent,
-// so the full window is the useful default; pick a single epic to scope everything to it).
+// Default view: all epics in scope over the last 2 months — the same window as the leaderboard's
+// "Until today" column. The scope is auto-tracked live epics, some of them years old, so the whole
+// data window would mix in ancient work; older dates stay reachable via Custom range.
 function applyDefaultEpic(){
   state.e = "";
-  state.from = DATA_MIN;
-  state.to = ASOF;
-  $("fe").value = ""; $("ft").value = "custom";
+  [state.from, state.to] = PRESETS.last62;
+  $("fe").value = ""; $("ft").value = "last62";
   syncDates();
 }
 applyDefaultEpic();
