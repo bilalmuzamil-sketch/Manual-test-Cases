@@ -1,0 +1,92 @@
+{
+ "env": "branch",
+ "dragCard": {
+  "hover": "pointer",
+  "steps": [
+   "CUSTOM[hand-back-fist] 16 16, grabbing",
+   "CUSTOM[hand-back-fist] 16 16, grabbing",
+   "CUSTOM[hand-back-fist] 16 16, grabbing",
+   "CUSTOM[hand-back-fist] 16 16, grabbing",
+   "pointer",
+   "CUSTOM[hand-back-fist] 16 16, grabbing",
+   "CUSTOM[hand-back-fist] 16 16, grabbing",
+   "CUSTOM[hand-back-fist] 16 16, grabbing"
+  ]
+ },
+ "dragColumnHeader": {
+  "hover": "CUSTOM[hand] 16 16, grab",
+  "steps": [
+   "CUSTOM[hand] 16 16, grab",
+   "CUSTOM[hand-back-fist] 16 16, grabbing",
+   "CUSTOM[hand-back-fist] 16 16, grabbing",
+   "CUSTOM[hand-back-fist] 16 16, grabbing",
+   "CUSTOM[hand-back-fist] 16 16, grabbing",
+   "CUSTOM[hand-back-fist] 16 16, grabbing",
+   "CUSTOM[hand-back-fist] 16 16, grabbing",
+   "CUSTOM[hand-back-fist] 16 16, grabbing"
+  ]
+ },
+ "groupTids": [
+  "tech_view_group_unassigned",
+  "tech_view_group_name_unassigned",
+  "tech_view_group_count_unassigned",
+  "tech_view_group_<id>",
+  "tech_view_group_drag_handle_<id>",
+  "tech_view_group_avatar_<id>",
+  "tech_view_group_name_<id>",
+  "tech_view_group_count_<id>",
+  "tech_view_group_empty_<id>",
+  "tech_view_group_inactive_<id>"
+ ],
+ "groupHeaders": {
+  "headers": 33,
+  "points": {
+   "auto @ [object SVGAnimatedString]": 9,
+   "auto @ tech_view_group_name_unassigned": 8,
+   "auto @ tech-view-group-header row no-wrap items": 5,
+   "pointer @ q-btn__content text-center col items-cen": 2,
+   "pointer @ [object SVGAnimatedString]": 19,
+   "auto @ tech-view-group-header__icon": 3,
+   "auto @ tech-view-group-header__divider": 7,
+   "auto @ tech-view-group-header__count": 2,
+   "auto @ tech_view_group_count_unassigned": 1,
+   "CUSTOM[hand] 16 16, grab @ SPAN": 1,
+   "CUSTOM[hand] 16 16, grab @ tech_view_group_name_<id>": 1,
+   "CUSTOM[hand] 16 16, grab @ tech-view-group-header row no-wrap items": 5,
+   "CUSTOM[hand] 16 16, grab @ [object SVGAnimatedString]": 7
+  }
+ },
+ "dragTechRow": {
+  "hover": "CUSTOM[hand] 16 16, grab",
+  "steps": [
+   "CUSTOM[hand] 16 16, grab",
+   "CUSTOM[hand-back-fist] 16 16, grabbing",
+   "CUSTOM[hand-back-fist] 16 16, grabbing",
+   "CUSTOM[hand-back-fist] 16 16, grabbing",
+   "CUSTOM[hand-back-fist] 16 16, grabbing",
+   "CUSTOM[hand-back-fist] 16 16, grabbing",
+   "CUSTOM[hand-back-fist] 16 16, grabbing",
+   "CUSTOM[hand-back-fist] 16 16, grabbing"
+  ]
+ },
+ "dragGroupHeader": {
+  "hover": "auto",
+  "steps": [
+   "auto",
+   "auto",
+   "auto",
+   "auto",
+   "auto",
+   "auto",
+   "auto",
+   "auto"
+  ]
+ },
+ "build": "v26.43.0-003b8fb",
+ "writes": [
+  "POST 200 /api/quick-login :: {\"key\":\"admin\"}",
+  "PATCH 200 /api/users/me/preferences/work-orders-list :: {\"value\":{\"display\":\"tech_view\"}}",
+  "PATCH 200 /api/users/me/preferences/work-orders-list :: {\"value\":{\"collapsedGroups\":[\"unassigned\"]}}",
+  "PATCH 200 /api/users/me/preferences/work-orders-list :: {\"value\":{\"display\":\"board_view\"}}"
+ ]
+}

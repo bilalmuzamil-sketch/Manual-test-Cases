@@ -1,0 +1,36 @@
+{
+ "env": "branch",
+ "prefBefore": [
+  "unassigned"
+ ],
+ "groupIds": [
+  "tech_view_group_7f85bc58-9ff5-4b50-b3f3-d85821069066",
+  "tech_view_group_201e11bd-4001-4959-98c0-6de600e6bf61",
+  "tech_view_group_78ecd235-490b-41d4-b5ca-9a90277edaca"
+ ],
+ "hdrRect": {
+  "x": 0,
+  "y": 232,
+  "w": 1600,
+  "h": 44,
+  "cls": "tech-view-group-header row no-wrap items-center tech-view-gr"
+ },
+ "hover": "CUSTOM[hand] 16 16, grab",
+ "steps": [
+  "CUSTOM[hand] 16 16, grab",
+  "CUSTOM[hand-back-fist] 16 16, grabbing",
+  "CUSTOM[hand-back-fist] 16 16, grabbing",
+  "CUSTOM[hand-back-fist] 16 16, grabbing",
+  "CUSTOM[hand-back-fist] 16 16, grabbing",
+  "CUSTOM[hand-back-fist] 16 16, grabbing"
+ ],
+ "restore": 200,
+ "prefAfter": [
+  "unassigned"
+ ],
+ "writes": [
+  "POST 200 /api/quick-login :: {\"key\":\"admin\"}",
+  "PATCH 200 /api/users/me/preferences/work-orders-list :: {\"value\":{\"display\":\"tech_view\"}}",
+  "PATCH 200 /api/users/me/preferences/work-orders-list :: {\"value\":{\"collapsedGroups\":[\"unassigned\"]}}"
+ ]
+}

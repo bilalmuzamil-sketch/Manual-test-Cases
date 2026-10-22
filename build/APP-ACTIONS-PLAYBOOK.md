@@ -6241,3 +6241,18 @@ This is the same embed teammates use (SV-10996, SV-9958) — Jira stores it as a
 - To show it on screen: `page.mouse.wheel(500,0)` over the list = a sideways swipe; `window.scrollX` reads 420 at 390 px.
 - Header at tablet width: at 1024 px the profile button `profile_menu_button` sits at x 1021–1061 (cut off, still clickable on the 3 px
   sliver); from 1100 px it fits. Filed as SV-11661. A screenshot of something cut by the window edge: pad it with a striped strip.
+
+### §AL.5 Pointer (cursor) checks — Board View / Tech View (SV-11588, 2026-10-22)
+- Read every element whose `cursor` differs from its parent (that is where it is set); key by data-test-id with ids stripped; compare
+  production vs branch both ways. Scripts: `build/sv11588-outlined-hand-cursor-2026-10-22/scripts/` (c588 all pages, q588 header internals).
+- Hover points: `elementFromPoint` on a grid inside each card/header/row, read `getComputedStyle(t).cursor`.
+- Drag: `mouse.down` → 8 `mouse.move` steps → read the cursor under the pointer each step → move back to the start → `mouse.up`
+  (no move request is sent).
+- Custom cursor value = `url("data:image/svg+xml,…") 16 16, grab`: URL-decode the SVG, check size / fill / stroke, render it with
+  Playwright (`omitBackground`) to measure pixels.
+- Screenshots never include the pointer: composite the page's own cursor image at the mouse position (hotspot 16,16) and label the
+  picture "comparison only".
+- Board View hover over a card is `pointer` (not a hand) on both production and the branch; the grab hand lives on column headers,
+  Tech View row grips and Tech View technician headers.
+- Tech View technician headers only appear after collapsing Unassigned (`button_tech_view_group_toggle_unassigned`) — that saves
+  `collapsedGroups` in the user's work-orders preferences: restore it on production.

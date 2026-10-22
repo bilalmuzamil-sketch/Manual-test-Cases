@@ -1,0 +1,33 @@
+{
+ "env": "prod",
+ "prefBefore": [
+  "unassigned"
+ ],
+ "groupIds": [
+  "tech_view_group_d5b3c919-033a-4511-9ead-ff13d77083d3",
+  "tech_view_group_e6465a80-1e38-4f80-a19d-e45be544a7ca",
+  "tech_view_group_8c24a505-d0ba-41b2-9f83-aace9282fe76"
+ ],
+ "hdrRect": {
+  "x": 0,
+  "y": 232,
+  "w": 1600,
+  "h": 44,
+  "cls": "tech-view-group-header row no-wrap items-center tech-view-gr"
+ },
+ "hover": "grab",
+ "steps": [
+  "grab",
+  "grabbing",
+  "grabbing",
+  "grabbing",
+  "grabbing",
+  "grabbing"
+ ],
+ "restore": 200,
+ "prefAfter": [],
+ "writes": [
+  "PATCH 200 /api/users/me/preferences/work-orders-list :: {\"value\":{\"display\":\"tech_view\"}}",
+  "PATCH 200 /api/users/me/preferences/work-orders-list :: {\"value\":{\"collapsedGroups\":[]}}"
+ ]
+}

@@ -1,0 +1,42 @@
+{
+ "header": {
+  "x": 321,
+  "y": 161,
+  "w": 286,
+  "h": 53,
+  "name": "AS Admin ShopView 0 0 work orders",
+  "px": 478.3,
+  "py": 187.5,
+  "cursor": "CUSTOM[hand] 16 16, grab"
+ },
+ "drag": {
+  "x": 29,
+  "y": 222,
+  "w": 262,
+  "h": 160.46875,
+  "num": "S2-10601",
+  "px": 362.4,
+  "py": 358.28125,
+  "cursor": "CUSTOM[hand-back-fist] 16 16, grabbing"
+ },
+ "grip": {
+  "x": 16,
+  "y": 479.5,
+  "w": 16,
+  "h": 16,
+  "wo": "S2-4516",
+  "px": 24,
+  "py": 487.5,
+  "cursor": "CUSTOM[hand] 16 16, grab"
+ },
+ "techDrag": {
+  "px": 44,
+  "py": 577.5,
+  "cursor": "CUSTOM[hand-back-fist] 16 16, grabbing"
+ },
+ "build": "v26.43.0-003b8fb",
+ "writes": [
+  "PATCH 200 /api/users/me/preferences/work-orders-list :: {\"value\":{\"display\":\"board_view\"}}",
+  "PATCH 200 /api/users/me/preferences/work-orders-list :: {\"value\":{\"display\":\"tech_view\"}}"
+ ]
+}

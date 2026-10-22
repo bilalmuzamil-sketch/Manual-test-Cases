@@ -1,0 +1,15 @@
+*One more thing to fix* [~accountid:712020:1b27a800-7b5a-43f3-982a-81e7071a4fdb]
+
+*What's happening:* the new open hand (the pointer while hovering) has almost all-black fingers at real size. At most one column of white pixels is left inside each finger, and the two middle fingers have none. So the top half of the hand looks black, not white. The closed hand is fine.
+
+!SV-11588_3-open-hand-fingers-hd.png|width=560,height=431!
+_Picture: the open hand the page supplies, at real size and with each pixel enlarged 8 times, next to the closed hand._
+
+*Steps to see it:*
+# Open [https://sv11588.qa.shopview.com/workorders] and sign in as Admin.
+# Above the list, on the right, click the middle of the three view icons ({{Tech View}}).
+# Move the mouse over the six dots at the very left of any row and look at the fingers of the hand.
+
+*What it should be:* a white hand with a black outline, like the closed hand. The ticket says: _"a white hand with a 2px black outline, the same shapes (open hand while hovering, closed hand while dragging), about 32px."_
+
+Environment: QA branch sv11588, build v26.43.0-003b8fb, 22 October 2026.

@@ -1,0 +1,92 @@
+{
+ "env": "prod",
+ "dragCard": {
+  "hover": "pointer",
+  "steps": [
+   "pointer",
+   "grabbing",
+   "grabbing",
+   "grabbing",
+   "pointer",
+   "grabbing",
+   "grabbing",
+   "grabbing"
+  ]
+ },
+ "dragColumnHeader": {
+  "hover": "grab",
+  "steps": [
+   "grab",
+   "grabbing",
+   "grabbing",
+   "grabbing",
+   "grabbing",
+   "grabbing",
+   "grabbing",
+   "grabbing"
+  ]
+ },
+ "groupTids": [
+  "tech_view_group_unassigned",
+  "tech_view_group_name_unassigned",
+  "tech_view_group_count_unassigned",
+  "tech_view_group_<id>",
+  "tech_view_group_drag_handle_<id>",
+  "tech_view_group_avatar_<id>",
+  "tech_view_group_name_<id>",
+  "tech_view_group_inactive_<id>",
+  "tech_view_group_count_<id>",
+  "tech_view_group_empty_<id>"
+ ],
+ "groupHeaders": {
+  "headers": 104,
+  "points": {
+   "auto @ [object SVGAnimatedString]": 10,
+   "auto @ tech_view_group_name_unassigned": 8,
+   "auto @ tech-view-group-header row no-wrap items": 5,
+   "pointer @ q-btn__content text-center col items-cen": 2,
+   "pointer @ [object SVGAnimatedString]": 19,
+   "auto @ tech-view-group-header__icon": 3,
+   "auto @ tech-view-group-header__divider": 7,
+   "auto @ tech-view-group-header__count": 2,
+   "grab @ SPAN": 1,
+   "grab @ tech_view_group_name_<id>": 1,
+   "grab @ tech_view_group_inactive_<id>": 1,
+   "grab @ tech_view_group_count_<id>": 1,
+   "grab @ tech-view-group-header row no-wrap items": 3,
+   "grab @ [object SVGAnimatedString]": 7
+  }
+ },
+ "dragTechRow": {
+  "hover": "grab",
+  "steps": [
+   "grab",
+   "grabbing",
+   "grabbing",
+   "grabbing",
+   "grabbing",
+   "grabbing",
+   "grabbing",
+   "grabbing"
+  ]
+ },
+ "dragGroupHeader": {
+  "hover": "auto",
+  "steps": [
+   "auto",
+   "auto",
+   "auto",
+   "auto",
+   "auto",
+   "auto",
+   "auto",
+   "auto"
+  ]
+ },
+ "build": "v26.43.0-ffea43c",
+ "writes": [
+  "PATCH 200 /api/users/me/preferences/work-orders-list :: {\"value\":{\"display\":\"tech_view\"}}",
+  "PATCH 200 /api/users/me/preferences/work-orders-list :: {\"value\":{\"collapsedGroups\":[\"unassigned\"]}}",
+  "PATCH 200 /api/users/me/preferences/work-orders-list :: {\"value\":{\"display\":\"board_view\"}}"
+ ]
+}
