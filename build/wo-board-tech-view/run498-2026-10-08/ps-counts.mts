@@ -332,7 +332,13 @@ await run('C368217', async () => { const ps = await partSale(`ZZAUTOTEST Part Sa
       if (!String(o.backEnsure).includes(LOC1_NAME)) { const np = await p.context().newPage(); await np.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await np.waitForTimeout(6000);
         o.backFreshTab = await switchLocUI(np, LOC1_NAME); await np.close().catch(() => {}); await p.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(6000);
         o.backEnsure = (await p.locator('[data-test-id="profile_menu_button"]').innerText().catch(() => '')).replace(/\s+/g, ' ').trim(); }
-      o.backTopBarAfterReload = o.backEnsure; }
+      o.backTopBarAfterReload = o.backEnsure;
+    // third route (22 Oct 2026, C368156 on production): the Change Location field can be stale and picking the first location then does
+    // nothing (L0400) — go through a THIRD location the menu offers, then back to the first
+    if (!String(o.backEnsure).includes(LOC1_NAME)) { await p.locator('[data-test-id="profile_menu_button"]').click().catch(() => {}); await p.waitForTimeout(1200); await p.locator('[data-test-id="select_location"]').click().catch(() => {}); await p.waitForTimeout(1500);
+      const opts = (await p.locator('.q-menu .q-item').allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').trim()); await p.keyboard.press('Escape').catch(() => {}); await p.keyboard.press('Escape').catch(() => {}); await p.waitForTimeout(600);
+      const third = opts.filter((x) => /^check /.test(x)).map((x) => x.replace(/^check /, '').trim()).find((x) => x !== LOC1_NAME && x !== LOC2_NAME);
+      if (third) { o.detour = third; await switchLocUI(p, third); o.viaThird = await switchLocUI(p, LOC1_NAME); o.backTopBarAfterReload = o.viaThird; } } }
     if (!String(o.backTopBarAfterReload ?? o.backTopBar).includes(LOC1_NAME)) throw new Error(`the screen did not come back to ${LOC1_NAME} (top bar: ${o.backTopBarAfterReload ?? o.backTopBar}); the list would be read at the wrong location`); }
   // the list, filtered by the page's own Search (right of the header)
   await p.goto(APP + '/parts/part-sales', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); o.topBar = (await p.locator('header').innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 160);

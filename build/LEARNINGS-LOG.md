@@ -772,3 +772,9 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 ## L0532 — 2026-10-22 — Production's New Location form needs a Country before State/Province
 - Settings > Locations > New Location on production (`app.shopview.com`, v26.43.0-ffea43c) marks **Country** as required ("Country is a required field") and **State/Province** stays empty until a country is chosen; staging's form had no Country field, so `notech-stg4.mts` (C368130) filled State only and Save & Close did nothing (no message). Pick Country "United States" first, then type the state. The form also shows "Setting up a new location may result in additional billing." — production is a dummy account (Rule 107, 2026-09-22), so this is expected.
 #production #locations #form → L0527, L0531
+
+## L0533 — 2026-10-22 — The stale "Change Location" field on production: go back through a third location
+- C368156 on production (`C368156-pins-loc-stg.mts`): after switching to Trucks Hill 2, the profile menu still read "Change Location: Truck Hill 1" even after a reload, and picking Truck Hill 1 did nothing — the staging trap L0400, reproduced. Staging's detour went through "QB Location", which production does not have. The menu also offers **SANKAN** (the admin test account is enrolled there), so the detour now picks any THIRD location read off the menu (`check <name>` items that are neither `LOC1_NAME` nor `LOC2_NAME`), then Truck Hill 1.
+- The same third-location route is now the last fallback in `backHome()` (`high2-batch.mts`) and the switch back in `ps-counts.mts`.
+- This script writes `C368156-b40.json` (not `<script>.json`), so the step watcher reports "no readings file"; wrap it as `{"C368156": …}` before `judge_pack.py`.
+#production #location #stale-field → L0400, L0531

@@ -57,7 +57,9 @@ try {
     await p.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(8000); o.s5_fieldRetry = await locField();
     await p.locator('[data-test-id="profile_menu_button"]').click().catch(() => {}); await p.waitForTimeout(1200); await p.locator('[data-test-id="select_location"]').click().catch(() => {}); await p.waitForTimeout(1500);
     o.s5_menuRetry = (await p.locator('.q-menu .q-item').allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').trim()).slice(0, 14); await shot('s5-location-menu-retry'); await p.keyboard.press('Escape'); await p.keyboard.press('Escape'); await p.waitForTimeout(800);
-    if (String(o.s5_fieldRetry ?? '').includes(LOC1_NAME)) o.s5_detour = await switchLocUI(p, 'QB Location');
+    // 22 Oct 2026 (production): no 'QB Location' there. Detour through any THIRD location the menu offers (e.g. SANKAN), read off the menu.
+    if (String(o.s5_fieldRetry ?? '').includes(LOC1_NAME)) { const third = (o.s5_menuRetry as string[]).filter((x) => /^check /.test(x)).map((x) => x.replace(/^check /, '').trim()).find((x) => x !== LOC1_NAME && x !== LOC2_NAME) ?? 'QB Location';
+      o.s5_detourTo = third; o.s5_detour = await switchLocUI(p, third); }
     o.s5_switch2 = await switchLocUI(p, LOC1_NAME); await p.waitForTimeout(2000); o.s5_top2 = await top(); }
   await board(); o.s5_top = await top(); o.s5_left = await leftCols(); o.s5_pinnedCols = await pinnedCount(); o.s5_pref = named((await prefGet()).pinnedTechnicianIds ?? []); await shot('s5-heavy-board');
 } catch (e: any) { o.error = String(e?.message || e).slice(0, 300); await shot('error'); }

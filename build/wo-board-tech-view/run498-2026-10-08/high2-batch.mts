@@ -369,6 +369,12 @@ async function backHome() { const r: any = {}; process.env.WOB_LOC_TRIES = '3'; 
   if (!String(r.ensure).includes(LOC1_NAME)) { const np = await p.context().newPage(); await np.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await np.waitForTimeout(6000);
     r.freshTab = await switchLocUI(np, LOC1_NAME); await np.close().catch(() => {}); await p.reload({ waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(6000);
     r.after = (await p.locator('[data-test-id="profile_menu_button"]').innerText().catch(() => '')).replace(/\s+/g, ' ').trim(); }
+    // third route (22 Oct 2026, C368156 on production): the Change Location field can be stale and picking the first location then does
+    // nothing (L0400) — go through a THIRD location the menu offers, then back to the first
+    if (!String(r.after ?? r.ensure).includes(LOC1_NAME)) { await p.locator('[data-test-id="profile_menu_button"]').click().catch(() => {}); await p.waitForTimeout(1200); await p.locator('[data-test-id="select_location"]').click().catch(() => {}); await p.waitForTimeout(1500);
+      const opts = (await p.locator('.q-menu .q-item').allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').trim()); await p.keyboard.press('Escape').catch(() => {}); await p.keyboard.press('Escape').catch(() => {}); await p.waitForTimeout(600);
+      const third = opts.filter((x) => /^check /.test(x)).map((x) => x.replace(/^check /, '').trim()).find((x) => x !== LOC1_NAME && x !== LOC2_NAME);
+      if (third) { r.detour = third; await switchLocUI(p, third); r.viaThird = await switchLocUI(p, LOC1_NAME); r.after = r.viaThird; } }
   return r; }
 await run('C368214', async () => { const o: any = {}; o.startLocation = await backHome();
   const s = await mkSet('ZZAUTOTEST Back Forward', [{ co: 'One Co', lead: ANA }]); const num = s.w['One Co'].number;
