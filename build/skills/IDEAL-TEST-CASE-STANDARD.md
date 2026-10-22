@@ -153,3 +153,8 @@ Every new case that checks how a design looks gets a title starting "Design: ", 
 ## Amendment, 22 Oct 2026 (QA lead, PERMANENT; Rule 135)
 
 One action per step: a step never bundles two UI actions, and each step has exactly one "Step N:" result. No unnecessary steps: leave out any step a manual QA tester does not need to run the case, but never remove or merge a step needed to reach the result or decide pass/fail. Runnability wins; when in doubt, keep the step.
+
+
+## Amendment, 22 Oct 2026 (QA lead, PERMANENT; Rule 136)
+
+Split a case into 2-5 cases when every part checks a different behaviour and can start from its own preconditions; never when a later step checks the effect of an earlier one. The original keeps its C-id as part 1. Shorter but runnable: a step that only reads what the previous action produced is folded into that action's result; state the case does not test goes into the preconditions.

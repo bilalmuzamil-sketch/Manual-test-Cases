@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109–135** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109–136** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -72,8 +72,11 @@ These are stated here **in full** because a session that gets only this far must
   overlap at 1440/1536 px) is checked, not only its words; a VISUAL inventory passes beside the text inventory; design-library
   "always/never" sentences are in scope; no design-vs-spec question stays unsent; a ruling covers only what it names. Why:
   the PO filed 10 design defects on WO Board on 14 Oct that no case of ours would have caught (L-01).
-- **🔴 NEVER SPLIT A TEST CASE WITHOUT ASKING (127, 16 Oct 2026).** A case over the length limits (or one a split would help) stays whole;
-  list it with C-id, link, counts and what a split costs, and ask the QA lead. Split only what he names.
+- **🔴 SPLIT A CASE WHEN EVERY PART STAYS RUNNABLE ON ITS OWN; NEVER WHEN THE STEPS NEED EACH OTHER (136, 22 Oct 2026, PERMANENT;
+  replaces Rule 127's ask-first).** Split into 2-5 cases when each part checks a different behaviour and can start from its own
+  preconditions; never when a later step checks an earlier one's effect (save→reload, before/after, two tabs); the original keeps its
+  C-id as part 1. Keep cases short but runnable: a read/look step folds into the previous action's result; untested state goes into
+  the preconditions.
 - **🔴 A CASE MADE FROM A TICKET IS LINKED AT THE BOTTOM OF THAT TICKET (128, 19 Oct 2026).** Whenever I am given a ticket to create a
   test case for, I add the test case link and the test-run link at the bottom of the ticket's description, after a divider, as a
   lossless HTML edit with a before-copy and a read-back. Nothing else in the ticket changes.

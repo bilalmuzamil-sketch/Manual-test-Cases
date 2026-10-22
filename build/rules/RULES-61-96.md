@@ -3475,3 +3475,33 @@ NOT runnable for the manual QA tester"*
    keep the step.
 4. Every case written or touched is checked for both, by script and by reading (a step with two or more UI actions is a gate failure),
    and Rule 134 applies to every case changed for it.
+
+## 136 · SPLIT A CASE WHEN EVERY PART STAYS RUNNABLE ON ITS OWN; NEVER WHEN THE STEPS NEED EACH OTHER — AND KEEP CASES SHORT WITHOUT LOSING RUNNABILITY (all projects, permanent; replaces the ask-first part of Rule 127)
+
+**Ordered by the QA lead, 22 Oct 2026, PERMANENT (confirmed after the rule was read back to him), verbatim:** *"If there is a case which can
+actually be 2, 3, 4 or 5 cases actually Splitting the test cases does not make the Testing suite useless by making those test cases
+UNrunnable by the manual qa tester then split the tests, however if those tests are ne3cessary for ONE test to stay runnable then NEVER
+split the test case. Make it a rule but before that check thye logic scientifically from your ide too and add something which makes the
+test case shorter but at the same time keeping it RUNNABLE"*
+
+**Why (the logic, checked):** a case that checks several independent behaviours gives one verdict for all of them: when the first check
+fails, the rest usually cannot be run, so failures hide each other. Separate cases give separate verdicts, can be run independently and
+point a failure at one behaviour. But when a later step checks the effect of an earlier one, the steps are one test, and splitting
+produces a case that cannot be run.
+
+1. **Split a case into 2 to 5 cases when ALL of these hold for every part:** (a) the part checks a different behaviour (its own expected
+   results and quotes); (b) it can start from its own preconditions, reachable by setup, without any other case being run first; (c) no
+   result in it depends on an action done in another part's steps; (d) it stays runnable by a manual QA tester (Rule 114) and keeps
+   the full standard (Rule 117, its setup recipe, quotes, From lines, design references, marker).
+2. **Never split when the steps need each other**: a later step checks the effect of an earlier one (save then reload, undo, before
+   and after with a captured value, ordering across actions, two tabs or two users acting on the same record, a change then the log
+   entry it creates). When in doubt, keep the case whole.
+3. **Data**: when an earlier part changes the data a later part needs (for example it invoices the work order), the new case gets its
+   own records in its preconditions. Split cases share one set of seeded records wherever their steps do not change them.
+4. **Identity**: the original case keeps its C-id and link as the first part; the other parts are new cases in the same section and
+   join the run (union only) unless held. Nothing is deleted.
+5. **Shorter but runnable:** (a) a step that only reads or looks at what the previous action produced is folded into that action's
+   "Step N:" result, which says exactly what to see; a reading step that itself needs an action (open a file, scroll, switch tab) stays;
+   (b) state the case does not test goes into the preconditions (starting screen, filters already set, records already in place), not
+   into steps; (c) Rule 135 still applies: one action per step, no unnecessary steps, never at the cost of runnability.
+6. Rule 134 applies to every case changed or created: rewritten top to bottom, with a per-part record.
