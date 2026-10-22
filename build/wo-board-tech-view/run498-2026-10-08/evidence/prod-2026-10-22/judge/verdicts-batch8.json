@@ -1,0 +1,356 @@
+{
+ "C368220": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 and 2: Parts in the top menu, then Returns in the left menu; the Returns tab is the selected one (blue) and Vendor shows no chosen value.",
+   "Step 3: in the Vendor filter \"gfhfghg\" was picked; the button now reads \"Vendor: gfhfghg\".",
+   "Step 4: after closing the filter the list shows 1 return (Manual Return, gfhfghg, part bj030275, $41.44) and the Total $41.44.",
+   "Step 5: after reloading, the button still reads \"Vendor: gfhfghg\", gfhfghg is still ticked in the open filter, and the same single row and total show. No error message appeared."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368220-after-reload.png",
+   "evidence/prod-2026-10-22/C368220-before-reload.png",
+   "evidence/prod-2026-10-22/C368220-end.png"
+  ],
+  "reason_for_reviewer": "Route by clicks (Work Orders page, then Parts top menu, then Returns). Start: Vendor chip 'person Vendor' (no value), 31 rows. Picked option 2 'gfhfghg' -> 2 table rows (1 return + Total). After reload: chip 'Vendor: gfhfghg', menu shows [x] gfhfghg, rows identical, no toasts. Address keeps ?vendor=<id>. 0 differences from staging reading."
+ },
+ "C368222": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Step 1: Parts in the top menu, then Part Sales; Status reads \"Status: Estimate, +1\" (Estimate and Approved ticked).",
+   "Step 2: Completed was ticked as well; the button now reads \"Status: Estimate, +2\".",
+   "Step 3: after closing the filter the list shows 8 part sales (Complete, Approved and Estimate ones, e.g. P1-71, P1-57, P1-47).",
+   "Step 4: after reloading, the button still reads \"Status: Estimate, +2\", Estimate, Approved and Completed are still ticked, and the same 8 part sales show. No error message appeared."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368222-after-reload.png",
+   "evidence/prod-2026-10-22/C368222-before-reload.png"
+  ],
+  "reason_for_reviewer": "Start 4 rows (Estimate+Approved). Ticked Completed -> 8 rows. After reload: menu [x] Estimate, [x] Approved, [x] Completed; chip 'Status: Estimate, +2'; rows identical; no toasts. The chip shows '+2' rather than the word Completed, but the ticked value is shown in the filter itself. Note: the filter was left with Completed ticked (the case's 'restore at the end' was not done by the script)."
+ },
+ "C368224": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Step 1: Parts in the top menu, then Catalog; Manufacturer reads \"All manufacturers\" and the page lists catalog parts.",
+   "Step 2: in Manufacturer the first real value, \"Imran tahir\", was ticked; the button reads \"Manufacturer: Imran tahir\".",
+   "Step 3: after closing the filter the list shows 1 part (Delco Remy Starter 39MT, DR-ST39MT-8402).",
+   "Step 4: after reloading, the button still reads \"Manufacturer: Imran tahir\", it is still ticked, and the same single part shows. No error message appeared."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368224-after-reload.png",
+   "evidence/prod-2026-10-22/C368224-before-reload.png"
+  ],
+  "reason_for_reviewer": "Start 30 rows, chip 'Manufacturer: All manufacturers'. Picked 'Imran tahir' (option after the All row) -> 1 row. After reload: chip and menu still Imran tahir, same row, no toasts. Filter set back to All manufacturers afterwards."
+ },
+ "C368225": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Step 1: Parts in the top menu, then Inventory; Category reads \"All categories\" and the page lists parts.",
+   "Step 2: in Category \"Uncategorized\" was ticked; the button reads \"Category: Uncategorized\".",
+   "Step 3: after closing the filter the list shows only Uncategorized parts (e.g. jkj, Item-6941, Item-2858).",
+   "Step 4: after reloading, the button still reads \"Category: Uncategorized\", it is still ticked, and the same parts show in the same order. No error message appeared."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368225-after-reload.png",
+   "evidence/prod-2026-10-22/C368225-before-reload.png"
+  ],
+  "reason_for_reviewer": "Start: 30 rows of mixed categories. Picked Uncategorized -> first rows all Uncategorized. After reload: chip + menu Uncategorized, first rows identical, no toasts. Filter set back to All categories afterwards."
+ },
+ "C368226": {
+  "verdict": "Blocked",
+  "observed": [
+   "Result: Blocked on production (v26.43.0-ffea43c). The report shows no Location filter for the account used, so step 3 could not be done.",
+   "Steps 1 and 2: Reports in the top menu, then Work In Progress (PERFORMANCE group); the report opens.",
+   "Step 3: the filters offered are only As of, Advisor, Customer and Asset. There is no Location filter to open. The account used can reach only one location (Truck Hill 1), and these reports hide the Location filter for such a person.",
+   "Steps 4 and 5 were not done, because nothing could be chosen."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368226-no-filter.png"
+  ],
+  "reason_for_reviewer": "filterFound 0; labels on the page: 'As of: 10/22/2026', 'Advisor: All advisors', 'Customer: All customers', 'Asset: All assets'. The run used ZZ WOB Runner, which runner.mts states is enrolled only at one location; other report cases (C30446, C30577, C30216) say the Location filter is hidden for a one-location user, so its absence is not a fault here. A second production sign-in (used in C368233) did show 'Location: All locations' on Sales By Customer. Production's second location is 'Trucks Hill 2'. Not judged as Failed.",
+  "failed_steps": "Blocked at steps 3 to 5: the account used can reach only Truck Hill 1, so the report shows no Location filter and a second location could not be ticked.",
+  "bold_steps": [
+   3,
+   4,
+   5
+  ],
+  "todo": "On production give the account used for this run (ZZ WOB Runner, enrolled only at Truck Hill 1) the second location \"Trucks Hill 2\" (your initials > Settings > Staff > ZZ WOB Runner > edit, add the location/department), or sign in as an Admin who already reaches both locations; check the report now shows a Location filter, then run steps 3 to 5 ticking Trucks Hill 2 as well as Truck Hill 1."
+ },
+ "C368227": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 and 2: Reports in the top menu, then Sales By Customer; Customer reads \"All customers\".",
+   "Step 3: \"ZZAUTOTEST DC11 Board Card 88821\" was clicked; it alone is ticked and the button reads \"Customer: ZZAUTOTEST DC11...\".",
+   "Step 4: after closing the filter the report shows that one customer and its Totals ($185.00 labor, $244.59 subtotal).",
+   "Step 5: after reloading, the same customer is still ticked, the button still names it, and the same row and totals show. No error message appeared."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368227-after-reload.png",
+   "evidence/prod-2026-10-22/C368227-before-reload.png"
+  ],
+  "reason_for_reviewer": "Start 10 rows (All customers). Picked option 2 -> 1 row + Totals. After reload: menu [x] ZZAUTOTEST DC11 Board Card 88821, chip truncated 'ZZAUTOTEST DC11...' (the full name does not fit the button), rows and totals identical, no toasts."
+ },
+ "C368228": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 and 2: Reports in the top menu, then Parts Velocity (PARTS group); Vendor reads \"All vendors\".",
+   "Step 3: \"gfhfghg\" was clicked; the button reads \"Vendor: gfhfghg\".",
+   "Step 4: after closing the filter the report shows 1 part (Special Order 3232221, revenue $99.00, margin $88.00).",
+   "Step 5: after reloading, the button still reads \"Vendor: gfhfghg\", it is still ticked, and the same row shows. No error message appeared."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368228-after-reload.png",
+   "evidence/prod-2026-10-22/C368228-before-reload.png"
+  ],
+  "reason_for_reviewer": "Start 30 rows. Picked option 2 'gfhfghg' -> 1 row. After reload chip + menu kept, row identical, no toasts."
+ },
+ "C368229": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 and 2: Reports in the top menu, then Inventory Value (PARTS group); Category reads \"All categories\".",
+   "Step 3: \"Air Conditioning\" was clicked; the button reads \"Category: Air Conditioning\".",
+   "Step 4: after closing the filter the report shows 1 part (10098, Bilal2, Truck Hill 1, Qty 12) and Totals $144.00 margin, $264.00 sell, $120.00 cost.",
+   "Step 5: after reloading, the button still reads \"Category: Air Conditioning\", it is still ticked, and the same row and totals show. No error message appeared."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368229-after-reload.png",
+   "evidence/prod-2026-10-22/C368229-before-reload.png"
+  ],
+  "reason_for_reviewer": "Start 31 rows. Picked option 2 'Air Conditioning' -> 1 row + Totals. After reload chip + menu kept, rows identical, no toasts."
+ },
+ "C368230": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 and 2: Reports in the top menu, then Technician Utilization; all technicians are ticked (Select all, Ahtesham ABCPROD, Service Advisor No Reports (Admin)).",
+   "Step 3: \"Service Advisor No Reports (Admin)\" was unticked; the button reads \"Technician: Ahtesham ABCPROD\".",
+   "Step 4: after closing the filter the report shows only Ahtesham ABCPROD's row and the Summary.",
+   "Step 5: after reloading, the button still reads \"Technician: Ahtesham ABCPROD\", Service Advisor No Reports (Admin) is still unticked, and the same single technician's row shows. No error message appeared.",
+   "Note: Ahtesham ABCPROD's hours moved from 519.76 to 519.77 between the two readings because his clock is running; the rows are the same."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368230-after-reload.png",
+   "evidence/prod-2026-10-22/C368230-before-reload.png"
+  ],
+  "reason_for_reviewer": "Menu before: all ticked. After untick: [ ] Select all, [x] Ahtesham ABCPROD, [ ] Service Advisor No Reports (Admin); same after reload; chip 'Technician: Ahtesham ABCPROD' before and after. sameRows=false only because Total/WO Hours went 519.76 -> 519.77 (running clock, data only). The script's readBack flags are false because it looked for the unticked name as ticked; the menu readings show the untick kept."
+ },
+ "C368231": {
+  "verdict": "Blocked",
+  "observed": [
+   "Result: Blocked on production (v26.43.0-ffea43c). The report shows no Location filter for the account used, so step 3 could not be done.",
+   "Steps 1 and 2: Reports in the top menu, then Sales By Representative (PERFORMANCE group); the report opens and reads \"No record matches these filters\".",
+   "Step 3: the filters offered are only Date, Show Unassigned, Product Type and Invoice Status. There is no Location filter to open. The account used can reach only one location (Truck Hill 1), and these reports hide the Location filter for such a person.",
+   "Steps 4 and 5 were not done, because nothing could be chosen."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368231-no-filter.png"
+  ],
+  "reason_for_reviewer": "filterFound 0; labels: 'Date: This month', 'Show Unassigned', 'Product Type: All products', 'Invoice Status: All statuses'. Same cause as C368226: ZZ WOB Runner is enrolled at one location only (runner.mts), and the Location filter is specified as hidden for a one-location user (C30216). Production's second location is 'Trucks Hill 2'. Not judged as Failed.",
+  "failed_steps": "Blocked at steps 3 to 5: the account used can reach only Truck Hill 1, so the report shows no Location filter and a second location could not be ticked.",
+  "bold_steps": [
+   3,
+   4,
+   5
+  ],
+  "todo": "On production give the account used for this run (ZZ WOB Runner, enrolled only at Truck Hill 1) the second location \"Trucks Hill 2\" (your initials > Settings > Staff > ZZ WOB Runner > edit, add the location/department), or sign in as an Admin who already reaches both locations; check the report now shows a Location filter, then run steps 3 to 5 ticking Trucks Hill 2 as well as Truck Hill 1."
+ },
+ "C368233": {
+  "verdict": "Unsure",
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Both sides of the comparison were production, so \"same as production\" compares production with itself.",
+   "Steps 1 to 3: Reports > Sales By Customer; the Customer filter opens with \"All customers\" ticked.",
+   "Step 4: clicking one customer ticks only that one, the list shows \"1 selected\", and the report narrows to that customer.",
+   "Step 5: clicking it again goes back to \"All customers\" ticked and the full report.",
+   "Step 6: clicking the ticked \"All customers\" box unticks everything (the report still shows every customer); clicking it again ticks \"All customers\" again.",
+   "Step 7: there is no separate Clear selection button.",
+   "Step 8: the filter was closed and reads \"Customer: All customers\".",
+   "Step 9: the second sign-in was also production (app.shopview.com, same build), at Trucks Hill 2. Every step behaved the same there. No error message on either."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368233-production-step4-one.png",
+   "evidence/prod-2026-10-22/C368233-staging-step4-one.png",
+   "evidence/prod-2026-10-22/C368233-staging-step6-all.png",
+   "evidence/prod-2026-10-22/C368233-production-step6-all.png"
+  ],
+  "reason_for_reviewer": "The 'staging' side of the script was this production session (Truck Hill 1, 10 customers) and the 'production' side a second production sign-in (Trucks Hill 2 data, 15 customers, a Location filter shown). Step-by-step compare: step3 1/All vs 1/All, step4 1 option vs 1 option, step5 back to All, step6 first click 0 ticked, second click All, no Clear button on either, chip back to 'Customer: All customers'. All behaviours described in the Expected (including the '1 selected' wording and no Clear button) were seen. What cannot be settled here is the case's pass rule 'this build behaves the same as production', because both sides are the same build.",
+  "failed_steps": "Unsure at step 9: the comparison was production against production (the same build), so it says nothing about a different build. To settle: the QA lead decides whether, on a production run, this case is judged on its own described behaviours (all of which were seen, so it would be Passed).",
+  "bold_steps": [
+   9
+  ]
+ },
+ "C368213": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Set-up: customer \"ZZAUTOTEST WO Parts Counts 62840\" with Approved work order S1-1322 and two part requests; one was ordered and received (Vendor Invoice # ZZAUTOTEST-INV-81812 typed on the receive page) and a return was raised on it.",
+   "Step 1: Work Orders, All tab, Search \"ZZAUTOTEST WO Parts Counts 62840\": S1-1322 shows in the List.",
+   "Step 2: in Column Selection, Parts and Returns were turned on; both columns appear at the right of the List.",
+   "Step 3: S1-1322's row reads Parts 2 and Returns 1, the ones created."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368213-list-parts-returns.png",
+   "evidence/prod-2026-10-22/C368213-receive.png",
+   "evidence/prod-2026-10-22/C368213-list.png"
+  ],
+  "reason_for_reviewer": "Screen row S1-1322: Parts '2', Returns '1' (headers Parts, Returns present). API counts read beside it agree (partRequestsCount 2, partReturnRequestsCount 1). The part requests, the order and the return were set up behind the screen (receive was done on the screen); this is the case's set-up, not its steps. Differences from staging are names/vendor only."
+ },
+ "C368218": {
+  "verdict": "Unsure",
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The run opened Purchase Orders by its web address instead of clicking Parts > Purchase Orders; everything after that matched.",
+   "Step 1: the Purchase Orders page was opened directly by its address, not through Parts in the top menu; it listed 24 rows.",
+   "Steps 2 and 3: in the Search box at the right of the page header \"I1-32\" was typed; the list narrowed to 1 row (I1-32, ZZSOFTHIT Supply, Ordered).",
+   "Steps 4 and 5: after reloading, the Search box still reads \"I1-32\" and the same single row shows. No error message appeared.",
+   "Step 6 (clearing the Search box) was not done by the run."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368218-after-reload.png",
+   "evidence/prod-2026-10-22/C368218-filtered.png",
+   "evidence/prod-2026-10-22/C368218-reload-2.png"
+  ],
+  "reason_for_reviewer": "parts-filter2.mts opens /parts/orders with goto. Filtered: 1 of 24 rows, address ?search=I1-32. Reload attempt 2 and the final reload: box 'I1-32', 1 row, same row, no toasts. Reload attempt 1 shows the full list, but only because the script pressed Escape before it, which emptied the Search box (address had no ?search=); the case does not press Escape. The script also switched the last column (Note) off and back on, which is not part of the case.",
+  "failed_steps": "Unsure at step 1: the page was opened by its web address, not by clicking Parts in the top menu and then Purchase Orders in the left menu. To settle: click Parts > Purchase Orders by hand and confirm the page opens with its list; steps 2 to 5 were all seen as expected.",
+  "bold_steps": [
+   1
+  ]
+ },
+ "C368219": {
+  "verdict": "Unsure",
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The run opened Vendors by its web address instead of clicking Parts > Vendors; everything after that matched.",
+   "Step 1: the Vendors page was opened directly by its address, not through Parts in the top menu; it listed 30 rows.",
+   "Steps 2 and 3: in the Search box at the right of the page header \"Delete Test\" was typed; the list narrowed to 1 row (Delete Test, (972) 545 - 4545, Ajman, Alberta).",
+   "Steps 4 and 5: after reloading, the Search box still reads \"Delete Test\" and the same single row shows. No error message appeared.",
+   "Step 6 (clearing the Search box) was not done by the run."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368219-after-reload.png",
+   "evidence/prod-2026-10-22/C368219-filtered.png",
+   "evidence/prod-2026-10-22/C368219-reload-2.png"
+  ],
+  "reason_for_reviewer": "parts-filter2.mts opens /parts/vendors with goto. Filtered: 1 of 30 rows. Reload attempt 2 and the final reload: box 'Delete Test', same 1 row, no toasts. Reload attempt 1 shows the full list only because the script's Escape emptied the box before reloading (address had no ?search=).",
+  "failed_steps": "Unsure at step 1: the page was opened by its web address, not by clicking Parts in the top menu and then Vendors in the left menu. To settle: click Parts > Vendors by hand and confirm the page opens with its list; steps 2 to 5 were all seen as expected.",
+  "bold_steps": [
+   1
+  ]
+ },
+ "C368223": {
+  "verdict": "Unsure",
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The run opened Vendor Invoices by its web address instead of clicking Parts > Vendor Invoices; everything after that matched.",
+   "Step 1: the Vendor Invoices page was opened directly by its address, not through Parts in the top menu; it listed 30 rows.",
+   "Steps 2 and 3: in the Search box at the right of the page header \"ZZAUTOTEST-INV-81812\" was typed; the list narrowed to 1 row (S1-1322, Northgate ZZMAGENTA Parts, received Today).",
+   "Steps 4 and 5: after reloading, the Search box still reads \"ZZAUTOTEST-INV-81812\" and the same single row shows. No error message appeared.",
+   "Step 6 (clearing the Search box) was not done by the run."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368223-after-reload.png",
+   "evidence/prod-2026-10-22/C368223-filtered.png",
+   "evidence/prod-2026-10-22/C368223-reload-2.png"
+  ],
+  "reason_for_reviewer": "parts-filter2.mts opens /parts/deliveries with goto. Filtered: 1 of 30 rows. Reload attempt 2 and final reload: box 'ZZAUTOTEST-INV-81812', same row, no toasts. Attempt 1 full list only because the script's Escape emptied the box first. Dates show as 'Today' / 'Nov 21, 2026' (no time of day).",
+  "failed_steps": "Unsure at step 1: the page was opened by its web address, not by clicking Parts in the top menu and then Vendor Invoices in the left menu. To settle: click Parts > Vendor Invoices by hand and confirm the page opens with its list; steps 2 to 5 were all seen as expected.",
+  "bold_steps": [
+   1
+  ]
+ },
+ "C368169": {
+  "verdict": "Unsure",
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The run opened the work order by its web address instead of Work Orders > All > Search > click; everything after that matched.",
+   "Steps 1 and 2: not done as written; the run went straight to work order S1-1323 (customer \"ZZAUTOTEST Edit WO Card Lead Mileage 90064\") by its address.",
+   "Step 3: the work order page shows Lead Technician Esther Howard and Mileage 120000.",
+   "Step 4: Ralph Edwards was picked in Lead Technician on the status card; it reads Ralph Edwards and no error message appeared.",
+   "Steps 5 and 6: Mileage was changed to 120500 and the field was left; it shows 120,500 and no error message appeared.",
+   "Step 7: after reloading, Lead Technician reads Ralph Edwards and Mileage reads 120500. Both changes were saved."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368169-after-reload.png",
+   "evidence/prod-2026-10-22/C368169-card.png",
+   "evidence/prod-2026-10-22/C368169-end.png"
+  ],
+  "reason_for_reviewer": "editwo-fix.mts: page(w.id) = goto /workorders/<id>/lines, so the List route (steps 1-2) and the click on the work order (step 3) were not walked. Set-up mileage 120000 was saved behind the screen (set-up). Lead picked on the screen (select_lead_technician), mileage typed into the card box; toasts []. After reload: lead 'Ralph Edwards', mileage '120500'; API agrees (Ralph, 120500). Display note: right after typing the card shows '120,500', after the reload it shows '120500' without the comma (the Expected writes 120,500); the value is the same, so not treated as a fault.",
+  "failed_steps": "Unsure at steps 1 to 3: the work order was opened by its web address, not through Work Orders > All > Search > click. To settle: on production open Work Orders > All, search \"ZZAUTOTEST Edit WO Card Lead Mileage 90064\", confirm S1-1323 shows and opens on a click; steps 4 to 7 were all seen as expected.",
+  "bold_steps": [
+   1,
+   2,
+   3
+  ]
+ },
+ "C368170": {
+  "verdict": "Unsure",
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The run opened the work order by its address and made it Invoiced behind the screen, not with Finance > Create Invoice; the locked card was seen as expected.",
+   "Step 1: not done as written; work order S1-1325 (customer \"ZZAUTOTEST Edit WO Card Refused 90064\") was opened by its address.",
+   "Steps 2 and 3: the invoice was created behind the screen, not by Finance > Create Invoice; after reloading, the status badge reads Invoiced.",
+   "Step 5: Lead technician is plain text (Esther Howard) with no list of technicians to pick from.",
+   "Steps 6 and 7: Mileage and Engine Hours are read-only boxes; nothing could be typed and no message appeared.",
+   "Step 8: after reloading, Lead technician reads Esther Howard, Mileage 123456 and Engine Hours 3420. None of the edits was saved. (This work order was made with Mileage 123,456 instead of the example 120,000.)"
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368170-card.png",
+   "evidence/prod-2026-10-22/C368170-end.png",
+   "evidence/prod-2026-10-22/C368170-invoiced-card.png"
+  ],
+  "reason_for_reviewer": "editwo-fix.mts: finish(w,'invoiced') calls /api/invoices/create (step 2 not on the screen) and page(w.id) opens by address (step 1). On the Invoiced page: select_lead_technician count 0 (leadShown 'Esther Howard'), mileage and engine boxes not editable, no toasts. After reload (end picture): Lead technician Esther Howard, Mileage 123456, Engine Hours 3420; API agrees. leadScreen '' is only because the picker element is absent on an Invoiced work order. The script also changed the Customer PO behind the screen to PO-200; the case excludes the PO from this check.",
+  "failed_steps": "Unsure at steps 1 to 3: the work order was opened by its address and invoiced behind the screen. To settle: on a Complete work order click Finance > Create Invoice, close the payment window, reload and confirm the status reads Invoiced; steps 5 to 8 were all seen as expected.",
+  "bold_steps": [
+   1,
+   2,
+   3
+  ]
+ },
+ "C368171": {
+  "verdict": "Unsure",
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The work order was opened by its address, and the log's time (03:59 PM) is shown in a different time zone from the one the location and browser are set to.",
+   "Steps 1 and 2: not done as written; work order S1-1324 (customer \"ZZAUTOTEST Edit WO Audit 90064\") was opened by its address.",
+   "Step 3: both lines show Esther Howard in their Labor rows.",
+   "Steps 4 to 6: three dots > Audit Log opens the \"Work Order Log\"; it has 1 \"Lead tech changed\" entry (- to Esther Howard, 03:59 PM); the window was closed.",
+   "Step 7: Ralph Edwards was picked in Lead Technician on the status card; it reads Ralph Edwards and the Labor rows follow.",
+   "Steps 8 and 9: the log now has 2 \"Lead tech changed\" entries: exactly one new one, \"Esther Howard to Ralph Edwards\", by ZZ WOB Runner, Oct 22, 2026, 03:59 PM. No separate entries for the two lines."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368171-audit.png",
+   "evidence/prod-2026-10-22/C368171-audit-before.png",
+   "evidence/prod-2026-10-22/C368171-lead-list.png",
+   "evidence/prod-2026-10-22/C368171-end.png"
+  ],
+  "reason_for_reviewer": "countBefore 1, countAfter 2; newest 'Lead tech changed ZZ WOB Runner - Lead tech: Esther Howard -> Ralph Edwards Oct 22, 2026 03:59 PM'. Line histories 0/0 before and after. Ralph Edwards was offered (65 names, SV-11393 limit not hit). Time: the script noted 15:59:45 UTC; the log shows 03:59 PM, which is UTC. With the location, user and browser on Asia/Karachi the tester's noted time would have been about 08:59 PM, so 'the time you noted' cannot be confirmed until the time zone question is answered. Page opened by goto (steps 1-3).",
+  "failed_steps": "Unsure at steps 1 to 3 and 9: the work order was opened by its address, and the new log entry shows 03:59 PM (UTC) while the clock in Asia/Karachi read about 08:59 PM. To settle: once the time zone question is answered, open the work order through Work Orders > All > Search, change the lead, and check the new entry's time against the clock you noted.",
+  "bold_steps": [
+   1,
+   2,
+   3,
+   9
+  ]
+ },
+ "C368197": {
+  "verdict": "Unsure",
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The List has no rows-per-page choice and no page 2 button; it loads more rows as you scroll, so steps 2 and 4 cannot be done as written.",
+   "Set-up: 35 work orders were made for customers \"ZZAUTOTEST List Paging 49731 Co 01\" to \"Co 35\".",
+   "Step 1: Work Orders opened on the All tab (by its address), List chosen, Search \"ZZAUTOTEST List Paging 49731\".",
+   "Step 2: there is no rows-per-page choice at the bottom of the List.",
+   "Step 3: the first load shows 30 work orders.",
+   "Steps 4 and 5: scrolling down loads the next 30-row batch; the List then shows 35. Together they show all 35 work orders exactly once: none twice and none missing (the total reads $8,469.30 = 35 x $241.98)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368197-scrolled.png",
+   "evidence/prod-2026-10-22/C368197-end.png"
+  ],
+  "reason_for_reviewer": "made 35, firstLoad 30, afterScroll 35, requests page=1 and page=2 (30 per page), dup [], missing []. The case itself carries 'AUTOMATION: HOLD - the List has no pages on this build ... waiting for the QA lead'; staging (17 Oct) was passed treating the scroll loads as pages. Work Orders was opened at /workorders?tab=all rather than by clicking the All tab.",
+  "failed_steps": "Unsure at steps 2 and 4: the List has no rows-per-page choice and no page 2; it loads 30 more as you scroll. To settle: the QA lead confirms that the scroll loads stand for pages (as on staging on 17 Oct); then this is Passed, because both loads together showed all 35 work orders exactly once.",
+  "bold_steps": [
+   2,
+   4
+  ]
+ }
+}
