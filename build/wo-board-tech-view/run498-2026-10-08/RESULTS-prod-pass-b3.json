@@ -1,0 +1,211 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - pass-b3"
+ },
+ "results": {
+  "C96909": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 and 2: on the All tab with List chosen, the switcher at the right of the toolbar shows exactly three buttons, and List (the left one) is the highlighted one.",
+    "Steps 3 to 5: pointing at the buttons from left to right shows the tooltips \"List\", \"Tech View\" and \"Board View\", in that order.",
+    "Steps 6 and 7: after clicking Tech View, only Tech View is highlighted.",
+    "Steps 8 and 9: after clicking Board View, only Board View is highlighted.",
+    "Steps 10 and 11: after clicking List, only List is highlighted."
+   ],
+   "pictures": [
+    "pictures-prod/C96909-1-prod-1022.png",
+    "pictures-prod/C96909-2-prod-1022.png",
+    "pictures-prod/C96909-3-prod-1022.png",
+    "pictures-prod/C96909-4-prod-1022.png"
+   ]
+  },
+  "C154885": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 and 2: at full width (1600 px) Board View was chosen and is the highlighted button.",
+    "Steps 3 and 4: at 900 px wide the page shows the List's phone layout (cards with Asset, VIN/Serial # and Unit #, a sort button, Create Work Order, and the Status, Assigned to me and Asset on Site filters) and there is no display switcher.",
+    "Steps 5 and 6: back at 1600 px the switcher (List, Tech View, Board View) is shown again and Board View is still the chosen display, so the narrow window did not change the saved choice.",
+    "Step 7 (optional, tablet held sideways) was not checked. Edge not checked by hand."
+   ],
+   "pictures": [
+    "pictures-prod/C154885-1-prod-1022.png",
+    "pictures-prod/C154885-2-prod-1022.png"
+   ]
+  },
+  "C96921": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 and 2: Work Orders opened in tab A and tab B as the same user; both started in List.",
+    "Step 3: tab A chose Tech View. Step 4: a few seconds later tab B chose Board View.",
+    "Steps 5 to 7: after refreshing, tab A and tab B both open in Board View, and a new tab C also opens in Board View, the last choice made.",
+    "No warning or conflict message appeared in any tab."
+   ],
+   "pictures": [
+    "pictures-prod/C96921-1-prod-1022.png",
+    "pictures-prod/C96921-2-prod-1022.png",
+    "pictures-prod/C96921-3-prod-1022.png"
+   ]
+  },
+  "C96911": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 6: on the All tab, with \"ZZAUTOTEST Fibridge\" in Search and Status: Approved, List shows 3 rows: S1-1019, S1-1020 and S1-1021.",
+    "Steps 7 and 8: clicking Tech View changes the layout straight away, without reloading the page; the same 3 work orders show as Unassigned 1 (S1-1019) + Aaron Baker 1 (S1-1020) + Ayesha Khan 1 (S1-1021) = 3.",
+    "Steps 9 and 10: Board View shows the same 3 cards: Unassigned 1, Aaron Baker 1, Ayesha Khan 1.",
+    "Step 11: back in List the same 3 rows show.",
+    "After every switch the All tab is still selected, the search still reads \"ZZAUTOTEST Fibridge\" and the filter still reads \"Status: Approved\".",
+    "The \"ZZAUTOTEST Fisquare\" work order (S1-1056) appears in none of the displays."
+   ],
+   "pictures": [
+    "pictures-prod/C96911-1-prod-1022.png",
+    "pictures-prod/C96911-2-prod-1022.png",
+    "pictures-prod/C96911-3-prod-1022.png"
+   ]
+  },
+  "C96914": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 3 to 8: searching the unit ZZSR2B shows only S1-1058 in List, in Tech View (under Aaron Baker) and in Board View (in Aaron Baker's column).",
+    "Step 9: with the search cleared and Asset on Site: Yes on, the only one of this test's three work orders shown is S1-1057, in all three displays.",
+    "Steps 10 and 11: after going to Schedule and clicking Work Orders in the top menu, \"Asset on Site: Yes\" is still on in Board View, in Tech View and in List alike, so Tech View and Board View keep the filter exactly as List does."
+   ],
+   "pictures": [
+    "pictures-prod/C96914-1-prod-1022.png",
+    "pictures-prod/C96914-2-prod-1022.png",
+    "pictures-prod/C96914-3-prod-1022.png",
+    "pictures-prod/C96914-4-prod-1022.png"
+   ]
+  },
+  "C96920": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 3: Board View was chosen and a refresh opened Board View.",
+    "Step 4: Tech View, List and Board View were each loaded while online.",
+    "Steps 5 to 8: with the network off, clicking Tech View switched the display to Tech View and clicking List switched it to List; a red \"Network Error\" message showed because the choice could not be saved.",
+    "Steps 9 and 10: after the network came back and the page was refreshed, it opened in Board View, so the offline changes were not saved.",
+    "Steps 11 and 12: Tech View chosen again while online, then a refresh: the page opens in Tech View."
+   ],
+   "pictures": [
+    "pictures-prod/C96920-1-prod-1022.png",
+    "pictures-prod/C96920-2-prod-1022.png",
+    "pictures-prod/C96920-3-prod-1022.png",
+    "pictures-prod/C96920-4-prod-1022.png"
+   ]
+  },
+  "C96915": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 4: on the All tab, List sorted by Created On, newest first: S1-1063, S1-1062, S1-1061 (all led by Ayesha Khan).",
+    "Steps 5 and 6: in Tech View Ayesha Khan's group first read S1-1061, S1-1062, S1-1063; the last one (S1-1063) was dragged to the top, and the group then reads S1-1063, S1-1061, S1-1062.",
+    "Steps 7 and 8: Board View shows the same dragged order in Ayesha Khan's column: S1-1063, S1-1061, S1-1062.",
+    "Steps 9 and 10: back in List the table is still sorted by Created On, newest first (S1-1063, S1-1062, S1-1061), and the sort is still on Created On. The dragged order does not appear in List."
+   ],
+   "pictures": [
+    "pictures-prod/C96915-1-prod-1022.png",
+    "pictures-prod/C96915-2-prod-1022.png",
+    "pictures-prod/C96915-3-prod-1022.png",
+    "pictures-prod/C96915-4-prod-1022.png"
+   ]
+  },
+  "C96924": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 5: with \"ZZAUTOTEST F2 Tech Grouping\" searched, Tech View is split into groups, one per lead technician, with a thin grey line between groups.",
+    "Step 6: Ayesha Khan's header shows her initials \"AK\", her name and the number 3.",
+    "Step 7: 3 rows are listed under her (S1-1104, S1-1105, S1-1106); Bilal Muzamil shows 2 with 2 rows; Unassigned shows 1 with 1 row.",
+    "Steps 8 and 9: with Status: Approved only, Ayesha Khan's number becomes 2 and 2 rows are listed (S1-1104, S1-1105): 3 minus the 1 Estimate."
+   ],
+   "pictures": [
+    "pictures-prod/C96924-1-prod-1022.png",
+    "pictures-prod/C96924-2-prod-1022.png"
+   ]
+  },
+  "C96925": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 5: with \"ZZAUTOTEST F2 Unassigned First\" searched, Tech View's first group is Unassigned and it holds exactly the two work orders with no lead, S1-1110 and S1-1111, before every technician group.",
+    "Steps 6 and 7: after dragging Ayesha Khan's group by its six-dot handle above Unassigned, Unassigned is still first and Ayesha Khan's group lands right after it."
+   ],
+   "pictures": [
+    "pictures-prod/C96925-1-prod-1022.png"
+   ]
+  },
+  "C96932": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 4: in Tech View, clicking the customer name in row S1-1099 opened that work order.",
+    "Steps 5 and 6: clicking an empty part of the same row also opened it.",
+    "Steps 7 and 8: a press with a movement of one or two pixels also opened the work order and did not start a drag.",
+    "Steps 9 and 10: the row's three-dots button opened its menu (Reassign lead technician, Unassign) and the work order did not open.",
+    "Step 11: pressing and moving the pointer well away started a drag: the row faded and a small card for S1-1099 followed the pointer, with a blue drop line (picture). It was let go in place and the lead stayed Ayesha Khan."
+   ],
+   "pictures": [
+    "pictures-prod/C96932-1-prod-1022.png",
+    "pictures-prod/C96932-2-prod-1022.png"
+   ]
+  },
+  "C96933": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 6: with \"ZZAUTOTEST F2 Empty Unassigned Drop\" searched and Assigned to me off, the Unassigned group is still on screen, first, showing \"No work orders\"; Ayesha Khan's group holds S1-1101 and S1-1100.",
+    "Steps 7 and 8: S1-1100 dragged onto Unassigned lands there: Unassigned shows 1 (S1-1100), Ayesha Khan's count drops from 2 to 1, and the message \"Lead technician removed\" appears."
+   ],
+   "pictures": [
+    "pictures-prod/C96933-1-prod-1022.png",
+    "pictures-prod/C96933-2-prod-1022.png"
+   ]
+  },
+  "C368128": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 5: with \"ZZAUTOTEST F2 No Pin Assigned\" searched and Assigned to me off, every technician group header shows a pin control (Unassigned has none).",
+    "Steps 6 and 7: with Assigned to me on, the groups still shown (Admin ShopView, Bilal Muzamil) show no pin control.",
+    "Steps 8 and 9: Board View with Assigned to me on shows no pin control on any column header either.",
+    "Step 10: turning Assigned to me off brings the pin controls back on every technician group."
+   ],
+   "pictures": [
+    "pictures-prod/C368128-1-prod-1022.png"
+   ]
+  },
+  "C368129": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 3: with \"ZZAUTOTEST F2 No Total Row\" searched, List still ends with its total row under Total Price, reading $0.00.",
+    "Steps 4 and 5: Tech View with the Total Price column shown.",
+    "Steps 6 and 7: Tech View has no total row: nothing below Ayesha Khan's group (S1-1102, S1-1103) or after the last group adds up prices."
+   ],
+   "pictures": [
+    "pictures-prod/C368129-1-prod-1022.png",
+    "pictures-prod/C368129-2-prod-1022.png"
+   ]
+  },
+  "C96939": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 4: with \"ZZAUTOTEST F2 Tech Pin Limit\" searched, every technician group header in Tech View has a pin control.",
+    "Steps 5 to 7: Bilal Muzamil, Aaron Baker and Aaron Zed were pinned (3 pins; their controls now read \"Unpin ...\").",
+    "Step 8: the pin controls on Ayesha Khan's and Branko Cicovic's headers are disabled; pointing at Ayesha Khan's shows \"You can pin up to 3 technicians.\" Clicking it pins nobody: still 3 pins."
+   ],
+   "pictures": [
+    "pictures-prod/C96939-1-prod-1022.png"
+   ]
+  }
+ }
+}

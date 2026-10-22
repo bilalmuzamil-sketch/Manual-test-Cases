@@ -7,7 +7,11 @@ import { open, done, APP } from './session.mts';
 import { api } from './data.mts';
 import { EV } from './wob.mts';
 import { HEAVY } from './staff.mts';
-const TZ = process.env.TZ_TARGET || 'Asia/Karachi'; const LOC = process.env.LOC || 'Staging Heavy Duty - 9919';
+import { PROFILE_FILE } from './profile.mts';
+// 22 Oct 2026: the location NAME comes from the environment's profile (production: "Truck Hill 1") — the hard-coded staging name made this
+// step time out on production and leave the zone on Africa/Bangui, which blocked the shift tests (C154888).
+const profName = (() => { try { return JSON.parse(fs.readFileSync(PROFILE_FILE, 'utf8')).heavyName || null; } catch { return null; } })();
+const TZ = process.env.TZ_TARGET || 'Asia/Karachi'; const LOC = process.env.LOC || profName || 'Staging Heavy Duty - 9919';
 const { browser, page: p } = await open('/administration/locations'); const a = api(p); const R: any = { tz: TZ, loc: LOC };
 p.setDefaultTimeout(20000);
 const row = () => p.locator('tbody tr').filter({ hasText: LOC }).first();
