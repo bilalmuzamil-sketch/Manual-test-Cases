@@ -254,7 +254,9 @@ await run('C368167', async () => { const w = await one('ZZAUTOTEST Refused Lead 
     if (o.tab2.button && !o.tab2.disabled) { await ci.click(); await t2.waitForTimeout(5000); o.tab2.how = 'Create Invoice pressed in tab 2';
       const pay = t2.locator('.q-dialog').filter({ hasText: /Payment/i }).last(); o.tab2.paymentWindow = (await pay.innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 120);
       await t2.screenshot({ path: path.join(EV, 'C368167-tab2-invoice.png') }).catch(() => {});
-      if (o.tab2.paymentWindow) { await pay.locator('[data-test-id="button_close_dialog"], button:has(i:text-is("close"))').first().click({ timeout: 5000 }).catch(async () => { await t2.keyboard.press('Escape'); }); await t2.waitForTimeout(1500); }
+      // 22 Oct 2026: the case says "If a New Customer Payment window opens, leave it open" — on production closing it with its X took the
+      // invoice back off (judged 22 Oct). The window is now left open; only a picture is taken.
+      if (o.tab2.paymentWindow) { o.tab2.paymentWindowLeftOpen = true; await t2.screenshot({ path: path.join(EV, 'C368167-tab2-payment-window.png') }).catch(() => {}); }
     } else { o.tab2.how = 'Create Invoice could not be pressed in tab 2 — the same invoice call was made from tab 2 instead (fallback)';
       o.tab2.api = say(await api(t2).post('/api/invoices/create', { work_order_id: w.id, issue_date: new Date().toISOString().slice(0, 10), due_date: new Date(Date.now() + 30 * 86400000).toISOString().slice(0, 10) })); }
   } catch (e: any) { o.tab2.error = String(e?.message || e).slice(0, 200); }
