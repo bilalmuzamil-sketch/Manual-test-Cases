@@ -257,6 +257,8 @@
   hands-off under Rule 38 — that governs cases, this governs runs, and both stand. Method + audit +
   the prepared completeness re-check: `build/testrail-run-sync-2026-07-31/`.
 
+| 14 | **Test mode: API or Conventional** | Before testing any ticket, ask the QA lead which mode, with a plan for each (Standing Rule 113). Conventional = today's method unchanged. API = same checklist, nothing skipped, reading by script, set-up by API, one before/after picture per visible point. | "test this ticket", any new ticket | `build/TEST-MODE-API-OR-CONVENTIONAL.md` |
+
 ## Maintaining this catalog
 When a new reusable process is created (or a durable rule changes), **add/adjust a row here in
 the same turn** and note it in `CLAUDE.md`. Keep filenames

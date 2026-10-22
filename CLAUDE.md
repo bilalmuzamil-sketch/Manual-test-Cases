@@ -107,6 +107,7 @@
 > - **AFTER ANY CONFIRM CLICK, RE-READ THE DIALOG — ShopView often asks twice ("Yes" → orange "Are You Sure?") (Standing Rule 102); never call a control "does nothing" before that.**
 > - **BEFORE CALLING A TICKET OUTSTANDING, RE-OPEN IT LIVE: status + last comment (Standing Rule 103).**
 > - **SCREEN RECORDING ON A QA COMMENT ONLY IF THE QA LEAD SAYS YES — ASK ON EVERY TICKET FIRST; no yes = no recording (Standing Rule 104; method playbook §AK). ONLY AFTER A RECORDING YES, ASK A SECOND QUESTION: VOICE-OVER YES/NO — on yes, a professional female voice explains the bug/fix in plain, professional words, in short lines that do NOT make the film longer (Rule 104, amended 2026-10-16).**
+> - **FOR EVERY NEW TICKET, ASK "API OR CONVENTIONAL?" WITH A PLAN FOR EACH, BEFORE TESTING (Standing Rule 113; `build/TEST-MODE-API-OR-CONVENTIONAL.md`).**
 > - **POINT TO A TEST CASE WITH ITS TEST-RUN LINK (`/tests/view/<test_id>`), NEVER THE CASE NUMBER OR CASE LINK (Standing Rule 111).**
 > - **A RE-CHECKED TICKET THAT NOW FOLLOWS THE PRD IS QA PASSED → green PASSED comment with annotated screenshots + verbatim PRD quote, existing label added, moved to Done; one that still fails is reopened, labelled and the developer tagged (Standing Rule 110).**
 > - **A PO RULING WINS ONLY IF THE PRD MATCHES IT — otherwise notify the PO instead of passing; a developer ruling that matches the PRD wins only after the QA lead approves; settle open questions from the PRD first (Standing Rule 109).**
@@ -5563,6 +5564,20 @@ deliver the 7-tab management report.
     edit note is for correcting a mistake in a comment on the same pass (a wrong figure, a missing step), never for turning an old FAILED
     or PARTIALLY PASSED into today's PASSED. If an old comment was edited by mistake, restore it byte for byte from the saved text and
     verify it. Ties to Rules 72, 90, 97, 100.
+
+113. **FOR EVERY NEW TICKET, ASK "API OR CONVENTIONAL?" BEFORE TESTING — WITH A PLAN FOR EACH (all projects).**
+    USER DIRECTIVE (2026-10-22, verbatim): *"whenever I give you a ticket, you must ask me if that ticket should be tested through API or
+    the conventional way. Conventional way= The testing rule and strategy based on which you are currently testing the tickets. If I
+    select API = That would mean that I want the Time to test to be heavily and significantly reduced while ensuring that to reduce the
+    time to test you DO NOT miss or SKIP anything while testing that ticket."* and *"make sure that you do not change anything into the
+    way you are currently testing the tickets because when I would say "Conventional way" you will start testing thetickets the SAME way
+    you test today, including the questions for technical section and Video you ask me before testing those tickets."*
+    **THE RULE:** read the ticket and its environment, then give the QA lead **both plans for that ticket** and ask which. **Conventional
+    = today's method, unchanged** (recording + technical-section questions included). **API = the same checklist, every cell observed,
+    with the reading done by script, set-up by API, the UI still driven where the ticket is about the UI, production before in one read,
+    one annotated before/after picture per visible point, no recording or technical section unless asked.** Nothing is skipped in either
+    mode. Ask again on every ticket. Method: `build/TEST-MODE-API-OR-CONVENTIONAL.md`. Ties to Rules 50, 63, 64, 72, 84, 85, 86, 89, 91,
+    96 and 104.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
