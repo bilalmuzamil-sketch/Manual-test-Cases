@@ -1,0 +1,315 @@
+{
+ "C368174": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 1: the work order was opened by its address straight onto its Lines tab, so opening S1-1643 and clicking the Lines tab were not done as the step says. Everything else matched: Ralph Edwards was put on both lines through Edit Labor with no error message, and after a reload both lines' Labor rows read Ralph Edwards (2 of 2).",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 and 3 were followed and matched; step 1 was opened by its address.",
+   "Set-up: customer \"ZZAUTOTEST Assign Lines Tech 94832\" at Truck Hill 1, Approved work order S1-1643 with no lead technician (Lead Technician reads Unassigned) and two approved lines; both Labor rows read \"Unassigned\" before the test.",
+   "Step 1 (NOT DONE AS WRITTEN): S1-1643 was opened by its address, already on the Lines tab; the Lines tab was not clicked.",
+   "Step 2: on Line 1 the button left of the line name was clicked > Edit labor > Technician: Ralph Edwards (he is offered in the list) > Save & Close; then the same on Line 2. No error message appeared either time (seen on the picture of the Edit Labor window).",
+   "Step 3: after reloading, Line 1's Labor row reads \"Ralph Edwards\" and Line 2's Labor row reads \"Ralph Edwards\" (2 of 2) (seen on the picture).",
+   "Manual check for step 1: open Work Orders, search \"ZZAUTOTEST Assign Lines Tech 94832\", click S1-1643 and click the Lines tab; the rest already matched."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368174-editlabor-line1.png",
+   "evidence/prod-2026-10-22/C368174-editlabor-line2.png",
+   "evidence/prod-2026-10-22/C368174-after-reload.png"
+  ],
+  "reason_for_reviewer": "high1-fix5.mts C368174 (re-run 21:18-21:19). page(w.id) = goto /workorders/<id>/lines (address, Lines tab not clicked). Each line: line_number_<id> clicked > menu \"Edit labor\" (menu 1) > Technician field (before \"Technician ... Max 5 selections\", empty) > picked Ralph Edwards (offered, 77 names, controls Esther Howard/Dana Ortiz offered) > Save & Close; toasts [] both lines. laborStart both Unassigned; after reload labor on screen both \"Ralph Edwards\", server line technicians both Ralph Edwards; readBack 2/2. Pictures: editlabor-line1 shows the Edit Labor window with Technician Ralph Edwards over S1-1643 (Lead Unassigned, Line 1 Labor Unassigned); after-reload shows both Labor rows Ralph Edwards. C368174-error.png (15:17) is the first attempt and ignored; -end.png is byte-identical to -after-reload.png. Product matched every Expected sentence; Unsure only for the address route at step 1.",
+  "todo": "Do step 1 by hand: Work Orders > search \"ZZAUTOTEST Assign Lines Tech 94832\" > click S1-1643 > click the Lines tab. Steps 2 and 3 already matched on production (Ralph Edwards on both lines, no error message)."
+ },
+ "C368178": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 6: the shift's time of day is not judged on production (time-of-day not judged on production until the time-zone question is settled). The shift opened from Esther Howard's row shows Fri, Oct 23, 2026, 03:45 AM to 05:45 AM, a 2-hour shift for S1-1644 covering both of its lines (the whole work order, no single line named). Also, the \"nothing scheduled 9 AM to noon tomorrow\" start state was cleared on Mon, Oct 26, not on Fri, Oct 23 where the shift was dropped.",
+  "bold_steps": [
+   6
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 to 5 were followed; step 6's time of day is not judged on production; Schedule was opened by its address at step 1.",
+   "Set-up: customer \"ZZAUTOTEST Schedule Entire WO 94832\", Approved work order S1-1644 with two approved lines (Line 1, 2h estimate; \"New York State Inspection\", 5h), led by Esther Howard. The script cleared Esther Howard's row on Mon, Oct 26 (it was already empty) but the drop went onto Fri, Oct 23, which was not checked for other shifts.",
+   "Step 1 (route differs): the Schedule was opened by its address, then Today and the > arrow once: the date reads Fri, Oct 23.",
+   "Step 2: Search work orders \"S1-1644\" shows its card (\"2 lines · 0h / 7h Est.\").",
+   "Step 3: the card was dragged onto Esther Howard's row and dropped under the 9 AM heading.",
+   "Step 4: the window opened on Entire work order, which was kept.",
+   "Step 5: Hours was stepped down from 7h to 2h and \"Create 1 shift\" clicked: the window closed and no error message appeared. Step 5 matched.",
+   "Step 6: after a reload, on Fri, Oct 23, Esther Howard's row shows the block \"ZZAUTOTES… TRK-201 2 Lines\"; opened, it reads S1-1644, Scheduled Fri, Oct 23, 2026, Time 03:45 AM to 05:45 AM, Technician Esther Howard, Work Order Lines 2 (Line 1 and New York State Inspection): the whole work order, no single line named (seen on the picture). The 9:00 to 11:00 time: time-of-day not judged on production until the time-zone question is settled.",
+   "Manual check for step 6: on production, with the time-zone question settled, Schedule > > once (tomorrow), check Esther Howard has nothing 9 AM to noon, drag a two-line work order onto her row under 9 AM, keep Entire work order, 2h, Create 1 shift, reload and open the shift: it should read 9:00 to 11:00 for the whole work order."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368178-block-on-screen.png",
+   "evidence/prod-2026-10-22/C368178-details.png"
+  ],
+  "reason_for_reviewer": "high1-fix5.mts C368178 (re-run 21:20-21:22). Start state: shiftsOnDay178 used the location zone (Asia/Karachi, already Fri Oct 23 02:2x there) so \"next working day\" = Mon, Oct 26 (cleared [], dayEmpty true); the Schedule itself showed Fri, Oct 23 after Today + > once (UTC date), and the drop landed there (dayNote). The drop: no [data-time] slot; released 12 px right of the \"9 AM\" heading (x 837); dialog Entire work order, Hours 7h -> 2h, \"Create 1 shift\", toasts [], dialog closed, save 201 startsAt 2026-10-23T03:45:00Z endsAt 05:45:00Z, 120 min, 2 lines, isConflict false. After reload the block was opened as a calendar event: details \"SCHEDULED Fri, Oct 23, 2026 TIME 03:45 AM - 05:45 AM (picture) TECHNICIAN Esther Howard Work Order Lines 2 2 lines · Est. 7h\". The saved instant 03:45Z is 08:45 in Asia/Karachi and 03:45 in UTC, so neither reading is 9:00; per the standing instruction the clock time is left unjudged on production. Whole-work-order part of the Expected is met. C368179 later (21:29) deleted this shift while clearing Esther's row; it did not affect these readings. C368178-error.png (15:20) is the first attempt and ignored.",
+  "todo": "Leave step 6 open until the production time-zone question is settled, then repeat steps 1 to 6 on a day Esther Howard has nothing between 9 AM and noon and check the shift reads 9:00 to 11:00 for the whole work order. Step 5 (saves with no error message) and the \"whole work order, no single line\" part of step 6 already matched."
+ },
+ "C368190": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1, 2 and 3: at steps 1 and 3 the work order was opened by its address straight onto its Lines tab, not opened and the Lines tab clicked, and at step 2 the Schedule was opened by its address, not from the top menu. Everything seen matched: Line 1's Labor row read Jenny Wilson, her shift was deleted at once with no question, and Line 1's Labor row then read Unassigned.",
+  "bold_steps": [
+   1,
+   2,
+   3
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). What each step should show was seen and matched, but the work order and the Schedule were opened by their addresses.",
+   "Set-up: customer \"ZZAUTOTEST Shift Removed 94832\", Approved work order S1-1646 with no lead technician and two approved lines, Line 1 estimated at 2h. On the Schedule, Fri, Oct 23, the card was dragged onto Jenny Wilson's row under 8 AM with Choose lines > Line 1 only, 2h: one shift on Line 1 only was saved.",
+   "Step 1 (NOT DONE AS WRITTEN): S1-1646 was opened by its address on the Lines tab. Line 1's Labor row reads \"Jenny Wilson\"; Line 2's reads \"Unassigned\" (seen on the picture).",
+   "Step 2 (route differs): the Schedule was opened by its address, Today and > once (Fri, Oct 23); Jenny Wilson's shift on S1-1646 (\"Line 1\") was opened and its delete icon (Delete shift) clicked: it was removed at once with no question; the message \"Shift deleted.\" with Undo appeared (seen on the picture).",
+   "Step 3 (NOT DONE AS WRITTEN): S1-1646 was opened again by its address. Line 1's Labor row reads \"Unassigned\" again, and Line 2's still \"Unassigned\" (seen on the picture).",
+   "Manual check for steps 1 to 3: open S1-1646 from Work Orders (search \"ZZAUTOTEST Shift Removed 94832\"), click the Lines tab, then use Schedule in the top menu; the readings already matched."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368190-step1-lines.png",
+   "evidence/prod-2026-10-22/C368190-details.png",
+   "evidence/prod-2026-10-22/C368190-after-delete.png",
+   "evidence/prod-2026-10-22/C368190-step3-lines.png"
+  ],
+  "reason_for_reviewer": "high1-fix5.mts C368190 (re-run 21:25-21:27). Seed through the Schedule: schedDrop2 on Jenny Wilson's row, 8 AM heading, Choose lines Line 1, 2h, \"Create shift · 1 line · 2h\", save 201 03:15Z-05:15Z, 1 line (isConflict true: double-booked with C368192's shift on her row; not relevant to this case). shiftsBefore 1 (Line 1). step1 = page(w.id) goto /workorders/<id>/lines: labor {line1 Jenny Wilson, line2 Unassigned}. Step 2: goto /schedule, goRange -> Fri, Oct 23; event \"ZZAUTOTEST Shift Removed 94832 TRK-201 Line 1\" opened; button_shift_detail_delete clicked; question 0, dialogs after 0, toast \"Shift deleted. Undo\" on the picture; shiftsAfter 0. step3 = page(w.id) again: labor both Unassigned, server line technicians both Unassigned. -end.png is byte-identical to -step3-lines.png; -error.png (15:21) is the first attempt and ignored. Product matched every Expected sentence; Unsure only for the address routes.",
+  "todo": "Do steps 1 to 3 by the route written: open S1-1646 from Work Orders and click the Lines tab, open Schedule from the top menu. The readings already matched on production (Jenny Wilson, deleted with no question, then Unassigned)."
+ },
+ "C368192": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 1: the work order was opened by its address straight onto its Lines tab, not opened and the Lines tab clicked; and only one picture shows the phone-width card. What was seen matched: Line 1's expanded card shows Assigned Technicians \"Jenny Wilson\" and no \"Needs techs\" badge.",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 and 3 were followed and matched; step 1 was opened by its address and there is one useful picture.",
+   "Set-up (desktop width): customer \"ZZAUTOTEST Sched Phone 94832\", Approved work order S1-1645 with no lead technician and two approved lines. On the Schedule, Fri, Oct 23, the card was dragged onto Jenny Wilson's row with Choose lines > Line 1 only, 1h: one shift on Line 1. At desktop width Line 1's Labor row read Jenny Wilson and Line 2's Unassigned.",
+   "Step 1 (NOT DONE AS WRITTEN): the window was narrowed to 390 px and S1-1645 was opened by its address on the Lines tab.",
+   "Step 2: on Line 1's card (\"1.\" at its top left) the arrow button at its top right was tapped; the card expanded (its button now reads \"Collapse\") (seen on the picture).",
+   "Step 3: below Rate, Margin and Total, Assigned Technicians reads \"Jenny Wilson\". No \"Needs techs\" badge appears (seen on the picture).",
+   "Manual check for step 1: at phone width open S1-1645 from Work Orders and tap the Lines tab, then repeat steps 2 and 3."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368192-phone.png"
+  ],
+  "reason_for_reviewer": "high1-fix5.mts C368192 (re-run 21:23-21:24). Seed: schedDrop2 on Jenny Wilson, 10 AM heading, Choose lines Line 1, 1h, save 201 05:00Z-06:00Z, 1 line. page(w.id) (address, desktop) -> desktopLabor {line1 Jenny Wilson, line2 Unassigned}; viewport 390x844, reload; button_line_expand_<id> not found (expand 0), fallback clicked the first expand_more button (button_line_expand_mobile_<line1> is listed); text \"Assigned Technicians Jenny Wilson Parts (1) ...\"; needsTechs false. C368192-phone.png shows S1-1645 Lines (2), Line 1 card expanded (Collapse), Rate $135 / Margin 100% / Total $185.22, Assigned Technicians Jenny Wilson, no badge. C368192-end.png was taken after the window was widened again and shows an empty Lines table (not useful); -error.png (15:20) is the first attempt. Product matched; Unsure for the address route and one useful picture.",
+  "todo": "At phone width, open S1-1645 from Work Orders and tap the Lines tab, then expand Line 1 and take a picture; the result seen on production already matched (Jenny Wilson, no Needs techs badge)."
+ },
+ "C368173": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1 to 5: the run typed the customer into Search on Work Orders > All, but the page was showing Tech View, not the List, so the work order was never clicked and the run fell back to opening it by its address; steps 2 to 5 were therefore not done on screen as written (no List, no click into the work order, Lines tab not clicked, Labor row not read before Edit Line). Steps 6 to 10 matched: Dana Ortiz removed, Ralph Edwards added, saved with no error message, and after the reload the line's Labor row reads Ralph Edwards.",
+  "bold_steps": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 6 to 10 were followed and matched; steps 1 to 5 were not followed as written.",
+   "Set-up: customer \"ZZAUTOTEST New Line Tech 51476\", Approved work order S1-1652 led by Esther Howard; its second line \"ZZAUTOTEST Oil change zq\" was made to hold only Dana Ortiz (saved and read back: its Labor row read Dana Ortiz). Note: this line is in \"Needs Approval\", not an approved line as the precondition says.",
+   "Step 1: Work Orders > All opened (seen on the picture).",
+   "Step 2 (NOT DONE AS WRITTEN): the customer was typed in Search, but the page showed Tech View (S1-1652's card under Esther Howard), not the List (seen on the picture).",
+   "Steps 3 to 5 (NOT DONE AS WRITTEN): the work order was not clicked; it was opened by its address on the Lines tab and the line's name clicked to open Edit Line, which showed Dana Ortiz under Technicians (read before the change).",
+   "Step 6: the X next to Dana Ortiz removed her (the \"Remove technician?\" question was answered Remove).",
+   "Step 7: Add Technician > \"Ralph Edwards\" was picked; Technicians now shows Ralph Edwards (seen on the picture).",
+   "Step 8: Save & Close saved the line with no error message.",
+   "Steps 9 and 10: after the reload, line 2 \"ZZAUTOTEST Oil change zq\" Labor row reads \"Ralph Edwards\" (seen on the picture).",
+   "Manual check for steps 1 to 5: Work Orders > All, choose List, type \"ZZAUTOTEST New Line Tech 51476\" in Search, check S1-1652 shows, click it, click Lines, read the line's Labor (Dana Ortiz), click its name and check Edit Line shows Dana Ortiz."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368173-s1-4-ui-route.png",
+   "evidence/prod-2026-10-22/C368173-form.png",
+   "evidence/prod-2026-10-22/C368173-lines-after.png"
+  ],
+  "reason_for_reviewer": "high1-fix5.mts C368173 (re-run 21:46-21:49). setup172 made S1-1652 (lead Esther Howard) and line 2 \"ZZAUTOTEST Oil change zq\" (typed, \"No results\", Enter) with roster Esther + Dana; setupOnlyDana removed Esther, read back line2 = Dana Ortiz. uiOpen: goto /workorders?tab=all, tab All, search -> the saved display was Tech View (picture s1-4-ui-route shows the Tech View board with S1-1652 under Esther Howard), so tbody tr had no row, the work order was not opened, the Lines-tab click did nothing, and getByText(\"ZZAUTOTEST Oil change\") timed out (uiRouteError); fallback openLine() = page(w.id) by address + click on the line name. rosterBefore [Dana Ortiz]; removed 1; Add Technician typed \"Ralph Edwards\" -> picked; roster [Ralph Edwards]; toasts []; reload: labor line2 Ralph Edwards, server line technicians Ralph Edwards. Line status in the pictures is \"Needs Approval\" (Authorization Required) although the precondition asks for an approved line. -end.png is byte-identical to -lines-after.png. Script fix: choose the List display before searching (display(p, 'List')).",
+  "todo": "Do steps 1 to 5 by hand: Work Orders > All > List, search \"ZZAUTOTEST New Line Tech 51476\", check S1-1652 shows, click it, click Lines, check the line's Labor row shows Dana Ortiz, click its name and check Edit Line shows Dana Ortiz. Steps 6 to 10 already matched (Ralph Edwards saved and shown after reload)."
+ },
+ "C368188": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1 and 4: at step 1 the customer's page was opened by its address, not by clicking Customers in the top menu and opening the customer; at step 4 the work order was opened by its address. Everything seen matched: the toggle flipped with no error message, the green pin was kept after the reload, and the work order page reads Lead Technician ZZAUTOTEST Ana Alpha.",
+  "bold_steps": [
+   1,
+   4
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 and 3 were followed and matched; steps 1 and 4 were opened by their addresses.",
+   "Set-up: customer \"ZZAUTOTEST Asset Tab Toggle Lead 51476\" with asset TRK-201 and Approved work order S1-1653 led by ZZAUTOTEST Ana Alpha; Asset on Site was off before the test.",
+   "Step 1 (route differs): the customer's page was opened by its address; then its Assets tab, the TRK-201 row and its Work Orders tab were clicked.",
+   "Step 2: in S1-1653's row the Asset on Site toggle (location pin) was clicked; it flipped and no error message appeared.",
+   "Step 3: after reloading, S1-1653's pin is green (on site): the new value was kept; the row still shows Lead Technician ZZAUTOTEST Ana Alpha (seen on the picture).",
+   "Step 4 (NOT DONE AS WRITTEN): S1-1653 was opened by its address; it reads Lead Technician \"ZZAUTOTEST Ana Alpha\" and the on-site pin is green (seen on the picture).",
+   "Manual check for steps 1 and 4: click Customers in the top menu, open \"ZZAUTOTEST Asset Tab Toggle Lead 51476\" > Assets > TRK-201 > Work Orders, then click S1-1653 and check Lead Technician reads ZZAUTOTEST Ana Alpha."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368188-after.png",
+   "evidence/prod-2026-10-22/C368188-wo-page-lead.png"
+  ],
+  "reason_for_reviewer": "high1-fix5.mts C368188 (re-run 21:49-21:50). assetTab2: goto /customers/<id> (address), Assets tab clicked, TRK-201 clicked, Work Orders tab clicked -> /customers/vehicle/<id>/work-orders (5 rows). before vehicleHere false; onSiteToggle clicked the pin in S1-1653's row (pin 1), toasts []; reload; after true (record) and the picture after the reload shows the green pin on S1-1653 with lead ZZAUTOTEST Ana Alpha. Step 4: goto /workorders/<id>/lines (address): leadArea \"Lead Technician ZZAUTOTEST Ana Alpha\", showsBen false. -end.png is byte-identical to -wo-page-lead.png. Product matched every Expected sentence; Unsure only for the two address routes.",
+  "todo": "Do steps 1 and 4 by the route written (Customers in the top menu > the customer > Assets > TRK-201 > Work Orders; then click S1-1653). The results seen on production already matched (toggle flipped with no error, kept after reload, lead still ZZAUTOTEST Ana Alpha)."
+ },
+ "C368189": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1, 2 and 4: tab 1's customer page was opened by its address (step 1), and the work order was opened by its address in tab 2 (step 2) and again in tab 1 (step 4). Everything seen matched: the lead was changed to ZZAUTOTEST Ben Bravo on the work order page in tab 2, the toggle on the older page in tab 1 did not put Ana Alpha back, the work order reads Lead Technician ZZAUTOTEST Ben Bravo and the pin stayed green.",
+  "bold_steps": [
+   1,
+   2,
+   4
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Step 3 was followed; steps 1, 2 and 4 opened pages by their addresses; every reading matched.",
+   "Set-up: customer \"ZZAUTOTEST Asset Tab Old Page 51476\" with asset TRK-201 and Approved work order S1-1657 led by ZZAUTOTEST Ana Alpha; Asset on Site off before the test.",
+   "Step 1 (route differs): in tab 1 the customer's page was opened by its address, then Assets > TRK-201 > Work Orders was clicked and left open.",
+   "Step 2 (route differs): in tab 2 (same browser) S1-1657 was opened by its address and Lead Technician changed on the page to \"ZZAUTOTEST Ben Bravo\" (seen on the picture).",
+   "Step 3: in tab 1, without reloading, S1-1657's Asset on Site pin was clicked; no error message; the old page still showed Ana Alpha in its row (seen on the picture).",
+   "Step 4 (route differs): tab 1 refreshed shows S1-1657 with a green pin and Lead Technician ZZAUTOTEST Ben Bravo; S1-1657 opened by its address reads Lead Technician \"ZZAUTOTEST Ben Bravo\" with the pin green. The older page did not put Ana Alpha back and the Asset on Site change was kept (seen on the pictures).",
+   "Manual check for steps 1, 2 and 4: open the asset's Work Orders tab from Customers in tab 1, open S1-1657 from Work Orders in tab 2 and change the lead there, then click S1-1657 in tab 1 and read Lead Technician."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368189-tab2-lead-changed.png",
+   "evidence/prod-2026-10-22/C368189-after.png",
+   "evidence/prod-2026-10-22/C368189-asset-page-refreshed.png",
+   "evidence/prod-2026-10-22/C368189-wo-page-lead.png"
+  ],
+  "reason_for_reviewer": "high1-fix5.mts C368189 (re-run 21:50-21:51). Tab 1: assetTab2 (goto /customers/<id>, then tabs clicked). Tab 2: newPage, goto /workorders/<id>/lines (address), Lead Technician field picked \"ZZAUTOTEST Ben Bravo\" (clicked true); no API fallback was needed (leadChangeFallbackApi absent). Tab 1 not reloaded: onSiteToggle pin 1, toasts [], vehicleHere after true, record lead Ben. Pictures: tab2-lead-changed (S1-1657 Lead Technician ZZAUTOTEST Ben Bravo), after (old page row green pin, still Ana Alpha shown = stale page), asset-page-refreshed (green pin, ZZAUTOTEST Ben Bravo), wo-page-lead (goto by address: Lead Technician ZZAUTOTEST Ben Bravo, green pin). -end.png is byte-identical to -wo-page-lead.png. Product matched both Expected sentences; Unsure only for the address routes.",
+  "todo": "Do the opening steps by hand: in tab 1 reach the asset's Work Orders tab from Customers, in tab 2 open S1-1657 from Work Orders and change the lead to ZZAUTOTEST Ben Bravo, then in tab 1 click S1-1657. The results seen on production already matched (Ben Bravo kept, pin change kept)."
+ },
+ "C368179": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 6: the shift's time of day is not judged on production (time-of-day not judged on production until the time-zone question is settled). The shift opened from Esther Howard's row shows Fri, Oct 23, 2026, 08:00 AM to 10:00 AM, technician Esther Howard, for S1-1648 covering Line 1 only (\"Single line\", 1 of 2 lines).",
+  "bold_steps": [
+   6
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 to 5 were followed and matched; step 6's time of day is not judged on production; Schedule was opened by its address at step 1.",
+   "Set-up: customer \"ZZAUTOTEST Schedule Choose Lines 2457\", Approved work order S1-1648 with two approved lines, Line 1 (2h estimate) and \"New York State Inspection\" (5h). Esther Howard's two earlier shifts on that day were removed first, so her row was empty.",
+   "Step 1 (route differs): the Schedule was opened by its address, then Today and the > arrow once: the date reads Fri, Oct 23.",
+   "Step 2: Search work orders \"S1-1648\" shows its card (\"2 lines · 0h / 7h Est.\").",
+   "Step 3: the card was dragged onto Esther Howard's row and dropped on the 1 PM line.",
+   "Step 4: in the window, Choose lines was clicked and only Line 1 ticked (seen on the picture).",
+   "Step 5: Hours reads 2h and \"Create shift · 1 line · 2h\" was clicked: the window closed with no error message. Step 5 matched.",
+   "Step 6: after a reload, on Fri, Oct 23, Esther Howard's row shows the block \"ZZAUTOTES… TRK-118 Line 1\"; opened, it reads S1-1648, Scheduled Fri, Oct 23, 2026, Time 08:00 AM to 10:00 AM, Technician Esther Howard, Work Order Lines 1, \"Single line · Est. 2h\", Line 1 only (1 of 2 lines) (seen on the picture). The 13:00 to 15:00 time: time-of-day not judged on production until the time-zone question is settled.",
+   "Manual check for step 6: once the time-zone question is settled, repeat the drop on the 1 PM line with Choose lines > Line 1, 2h, and check the opened shift reads 1:00 PM to 3:00 PM."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368179-b40-step3-1pm-dialog.png",
+   "evidence/prod-2026-10-22/C368179-b40-step6-row.png",
+   "evidence/prod-2026-10-22/C368179-b40-step6-details.png"
+  ],
+  "reason_for_reviewer": "C368179-drop-exact.mts (re-run 21:28-21:31, json evidence/prod-2026-10-22/C368179-b40.json). Schedule reached by goto /schedule then Today + > once (toDay(null)) = Fri, Oct 23 (browser clock 2:29 AM Asia/Karachi = Oct 23 there; the Schedule's \"tomorrow\" is the UTC date). Existing shifts on Esther's row deleted (S-1632, S-1644: 204, leftAfter 0). Positive control on the 9 AM slot (S1-1647, entire WO, 2h) saved 04:00Z-06:00Z = 9:00-11:00 Asia/Karachi. Step 3: drop on FullCalendar slot cell data-date 2026-10-23T13:00:00 + 7.5 min; Choose lines tab, Line 1 ticked (\"Esther's on this\" on both), Hours 2h, \"Create shift · 1 line · 2h\", toasts [], dialog closed; save 201 startsAt 2026-10-23T08:00:00Z endsAt 10:00:00Z = 1:00-3:00 PM Asia/Karachi. Step 6 details picture: Time 08:00 AM - 10:00 AM (drawn in UTC), Single line · Est. 2h, Line 1. Line-1-only part of the Expected is met; the clock time is left unjudged per the standing instruction. C368179-b40-error.png (15:25) is the first attempt and ignored.",
+  "todo": "Leave step 6 open until the production time-zone question is settled, then check the Choose-lines shift dropped on the 1 PM line reads 1:00 PM to 3:00 PM. Step 5 (saves with no error message) and \"Line 1 only (1 of 2 lines)\" already matched."
+ },
+ "C368234": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: none needed; signed in at Truck Hill 1.",
+   "Steps 1 and 2: Reports > PARTS > \"Parts Velocity\" opened.",
+   "Step 3: the Vendor filter opens with \"All vendors\" ticked; the report shows its rows.",
+   "Step 4: clicking \"gfhfghg\" ticks only that vendor, the list reads \"1 selected\", the button reads \"Vendor: gfhfghg\" and the report narrows to gfhfghg's 3 rows (seen on the picture).",
+   "Step 5: clicking it again goes back to \"All vendors\" ticked and the full report.",
+   "Step 6: clicking the ticked \"All vendors\" box unticks everything (the report still shows every row); clicking it again ticks \"All vendors\" again (seen on the picture).",
+   "Step 7: there is no separate Clear selection button.",
+   "Step 8: the filter was closed and reads \"Vendor: All vendors\".",
+   "Step 9: steps 1 to 8 were repeated in a second tab of the same production sign-in: every step behaved the same. No error message on either.",
+   "QA lead decision, 22 Oct 2026, recorded on the sister test C368233 (same steps, Sales By Customer): on production this test compares production with itself and is marked Passed on the behaviours it describes. Applied here because this test has the same steps and the same pass rule; please confirm."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368234-production-step3.png",
+   "evidence/prod-2026-10-22/C368234-production-step4-one.png",
+   "evidence/prod-2026-10-22/C368234-production-step6-all.png",
+   "evidence/prod-2026-10-22/C368234-production-step8.png"
+  ],
+  "reason_for_reviewer": "medium-fix3.mts C368234 (re-run 21:32-21:34). Both sides ran on production: the \"staging\" side was this session and the \"production\" side a second tab of the same session (productionVersion \"same session (run on production)\"), so both read 41 vendor options and identical rows. compare: step3 1/All vs 1/All, step4 1/- vs 1/- (gfhfghg, 30 -> 3 rows), step5 1/All, step6 first click 0 ticked (rows stay 30), second click 1/All, clearButton null both, step8 chip \"Vendor: All vendors\" both; toasts []. Picture step4 shows \"1 selected\" and Vendor: gfhfghg with 3 rows. Verdict follows the QA lead's 22 Oct decision on C368233 (verdicts-decisions-1022.json); if he wants it applied only to C368233, this becomes Unsure at step 9 (production compared with itself)."
+ },
+ "C368235": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: none needed; signed in at Truck Hill 1.",
+   "Steps 1 and 2: Reports > PARTS > \"Inventory Value\" opened.",
+   "Step 3: the Category filter opens with \"All categories\" ticked; the report shows its rows.",
+   "Step 4: clicking \"Air Conditioning\" ticks only that category, the list reads \"1 selected\", the button reads \"Category: Air Conditioning\" and the report narrows to its one part (Bilal2) and Totals (seen on the picture).",
+   "Step 5: clicking it again goes back to \"All categories\" ticked and the full report.",
+   "Step 6: clicking the ticked \"All categories\" box unticks everything (the report still shows every row); clicking it again ticks \"All categories\" again (seen on the picture).",
+   "Step 7: there is no separate Clear selection button.",
+   "Step 8: the filter was closed and reads \"Category: All categories\".",
+   "Step 9: steps 1 to 8 were repeated in a second tab of the same production sign-in: every step behaved the same. No error message on either.",
+   "QA lead decision, 22 Oct 2026, recorded on the sister test C368233 (same steps, Sales By Customer): on production this test compares production with itself and is marked Passed on the behaviours it describes. Applied here because this test has the same steps and the same pass rule; please confirm."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368235-production-step3.png",
+   "evidence/prod-2026-10-22/C368235-production-step4-one.png",
+   "evidence/prod-2026-10-22/C368235-production-step6-all.png",
+   "evidence/prod-2026-10-22/C368235-production-step8.png"
+  ],
+  "reason_for_reviewer": "medium-fix3.mts C368235 (re-run 21:34-21:36). Both sides ran on production (second tab of the same session), 16 category options each. compare: step3 1/All vs 1/All, step4 1/- vs 1/- (Air Conditioning, 31 -> 2 table rows = 1 part + Totals), step5 1/All, step6 first click 0 ticked (rows stay 31), second click 1/All, clearButton null both, step8 chip \"Category: All categories\" both; toasts []. Picture step4 shows \"1 selected\" and Category: Air Conditioning. Verdict follows the QA lead's 22 Oct decision on C368233; if he wants it applied only to C368233, this becomes Unsure at step 9 (production compared with itself)."
+ },
+ "C368245": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 4: after Customer Name was clicked, the rows were read back empty (0 names), so the order at step 4 was not read; and there is only one picture (taken after scrolling at step 5). What was seen matched: the table loaded 30 rows with no error message, and after scrolling 68 rows show in name order with no repeats.",
+  "bold_steps": [
+   4
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1, 2 and 5 were followed and matched; step 4 has no reading and no picture of its own.",
+   "Set-up: none needed; signed in at Truck Hill 1.",
+   "Step 1: Customers was clicked in the top menu.",
+   "Step 2: the table shows 30 rows (first \"aa\", \"Ahsan\", \"Ahtasham Amjad\") with no error message.",
+   "Step 3: the Customer Name column header was clicked (its arrow shows on the picture).",
+   "Step 4 (NOT READ): right after the click the rows were read back empty, so their order was not recorded at this step.",
+   "Step 5: scrolling to the bottom loaded more rows: 68 in all, different customers, all in name order (A to Z, capital letters not counted), with no repeats; the picture shows the scrolled table (Rowcheck …, S2-15430 Holdings, sana Khan, Sankan transport1, … TCP 1906) under Customer Name with its sort arrow.",
+   "Manual check for step 4: Customers > click Customer Name and check the first page of rows is in name order (take a picture), then scroll to the bottom."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368245.png"
+  ],
+  "reason_for_reviewer": "medium-fix3.mts C368245 (re-run 21:37-21:38). nav('Customers'); first read 30 rows, toasts []. Header: thead th filter found 0 (headerKind \"text\"), so getByText('Customer Name').last() was clicked; names() right after returned [] (sorted [], inOrder true only because the list was empty - a vacuous reading). After 4 scrolls: count 68, unique true, ordered true (localeCompare base, either direction). C368245.png and C368245-end.png are byte-identical: one distinct picture, taken after step 5. Unsure for the missing step-4 reading and fewer than two pictures; nothing contradicts the Expected.",
+  "todo": "Do step 4 by hand: Customers > click Customer Name and check the first page is in name order, with a picture. Steps 2 and 5 already matched (30 rows, no error; 68 rows after scrolling, in order, no repeats)."
+ },
+ "C368246": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1 to 3: the Dashboard was opened by its address (the ShopView logo went to Work Orders; production has Dashboard in the top menu but the run did not find it), and no table rows were read: every card shows no data for its date range (\"0 Invoices\", \"0 customers\"), the At Risk Customers table that opens under \"View details\" reads \"No data for selected date range\", the run looked for the table inside each card (it opens below the cards) and never widened the date range, so no header was clicked.",
+  "bold_steps": [
+   1,
+   2,
+   3
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The test could not be judged: no table showed rows and no header was clicked.",
+   "Set-up: none needed; signed in at Truck Hill 1.",
+   "Step 1 (route differs): the ShopView logo opened Work Orders, so the Dashboard was opened by its address. It shows six cards: Revenue, Billing Efficiency, Technician Efficiency, Technician Utilization (This Month), Sales by Customer (Last 12 Months) and At Risk Customers (120 Days), all with no data (seen on the picture). No error message.",
+   "Step 2: each card's \"View details\" was clicked. For At Risk Customers a table opened below the cards with the headings Customer, Last Invoice Date, Lifetime Invoices, Revenue (12 Mo) and the words \"No data for selected date range\" (seen on the picture). The other tables were not read.",
+   "Step 3 (NOT DONE): no rows to order, and no column header was clicked.",
+   "Manual check: Dashboard (top menu) > for each card click View details, choose a wider date range (e.g. a longer period) until rows show, note the rows, click a column header and check the rows reorder. Write down the cards checked."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368246-dashboard.png",
+   "evidence/prod-2026-10-22/C368246-6-At-Risk-Customers.png"
+  ],
+  "reason_for_reviewer": "medium-fix3.mts C368246 (re-run 21:38-21:39). topMenuDashboard 0 (the nav selector did not match although the picture shows \"Dashboard\" in the top menu); logo click went to /workorders; then goto /dashboard. viewDetails 6; for every card opened \"in the card\", table heads [] rows 0 noData false (the table opens in a panel below the card row, outside the element read), so the widen-range branch never ran and sort = \"no table headings found\"; inlineTables At Risk Customers rows 2 (header/empty rows). The At-Risk picture shows the opened panel \"No data for selected date range\". Production Truck Hill 1 shows 0 invoices this month and 0 customers in 12 months on these cards. Script fix: read the panel below the cards, pick the widest date range, then click a heading.",
+  "todo": "Do the test by hand on production: Dashboard > View details on each card, widen the date range until rows show (or check another location), then click a column header and check the rows reorder; write down the cards checked."
+ },
+ "C368167": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1, 2 and 5: at steps 1 and 2 the work order was opened by its address in both tabs, and at step 5 the error message was read but not caught on a picture (the picture taken then is identical to the one after the reload) and the Lead Technician field itself read empty at that moment. What was seen matched: the message \"The lead technician can't be changed once a work order is Invoiced or Paid. Please try to resolve this.\" appeared, the page then shows Lead technician Esther Howard, and after the reload Lead Technician still reads Esther Howard.",
+  "bold_steps": [
+   1,
+   2,
+   5
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 3, 4 and 6 were followed and matched; steps 1 and 2 opened the work order by its address, and step 5's message has no picture.",
+   "Set-up: customer \"ZZAUTOTEST Refused Lead Change 57659\" (credit limit raised), work order S1-1650 led by Esther Howard, taken to Complete (line complete and reviewed, not invoiced).",
+   "Step 1 (route differs): in tab 1 S1-1650 was opened by its address and left open: Complete, Lead Technician Esther Howard (seen on the picture).",
+   "Step 2 (route differs): in tab 2 S1-1650 was opened by its address, the Finance tab clicked and Create Invoice clicked: invoice INV-S1-1650 shows and the \"New Customer Payment\" window opened; it was LEFT OPEN (not paid, not closed) (seen on the picture). The work order is Invoiced.",
+   "Step 3: in tab 1, without reloading, the Lead Technician field (still enabled, reading Esther Howard) was clicked.",
+   "Step 4: Ralph Edwards was picked.",
+   "Step 5 (partly read): the message \"The lead technician can't be changed once a work order is Invoiced or Paid. Please try to resolve this.\" appeared (read on screen, not on a picture); the page then shows Invoiced and Lead technician \"Esther Howard\" (seen on the picture).",
+   "Step 6: after reloading tab 1, Lead Technician still reads \"Esther Howard\"; the change was not saved; the work order is still Invoiced (seen on the picture).",
+   "Manual check for steps 1, 2 and 5: open S1-1650-style work order from Work Orders in both tabs, make the invoice in tab 2 leaving the payment window open, then in tab 1 pick another lead and take a picture of the message and the field."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368167-tab1-start.png",
+   "evidence/prod-2026-10-22/C368167-tab2-payment-window.png",
+   "evidence/prod-2026-10-22/C368167-message.png"
+  ],
+  "reason_for_reviewer": "high1-fix.mts C368167 (re-run 21:42-21:44). page(w.id) by address in tab 1 (Lead Technician Esther Howard, Complete); tab 2 goto /workorders/<id>/lines (address), Finance tab clicked, Create Invoice clicked, \"New Customer Payment\" window read and left open (paymentWindowLeftOpen true); status Invoiced (server) before and after the change. Tab 1 not reloaded: step3 disabled false, field \"Esther Howard\"; pickB picked Ralph Edwards (clicked true); toasts [\"The lead technician can't be changed once a work order is Invoiced or Paid. Please try to resolve this.\"]; fieldNow \"\" (the editable field was gone: the page now shows the Invoiced status card with Lead technician as plain text). C368167-message.png, -after-reload.png and -end.png are byte-identical (all show Invoiced, Lead technician Esther Howard, no message), so the message was not caught on a picture. afterReload Esther Howard, apiLead Esther Howard, badges Invoiced/Complete, Create Invoice not offered. The product matched both Expected sentences as far as observed; Unsure for the address routes and the unpictured message.",
+  "todo": "Repeat by hand on production: open the work order from Work Orders in tab 1 and tab 2, make the invoice in tab 2 (leave the New Customer Payment window open), then in tab 1 pick another lead and take a picture showing the message and the Lead Technician field back on Esther Howard; reload and check it still reads Esther Howard. Step 6 already matched."
+ }
+}
