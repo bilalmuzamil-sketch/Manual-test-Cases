@@ -1,0 +1,46 @@
+TITLE: Board View – Mouse Wheel Over Empty Board Space Scrolls the Whole Page
+STATUS: HELD — not filed. Owning story SV-10046 is Done (read live 22 Oct 2026 18:25 UTC); where it goes (Story Defect under SV-10046, or a Bug under the Fast Follow epic SV-11593) is the QA lead's decision. Ask per ticket (Rule 113).
+Proposed fields: Story Defect · parent SV-10046 (or Bug · parent SV-11593) · Medium · label board-tech-view · relates to SV-10046
+
+h2. Description
+
+*In Board View the page itself must not scroll up or down — only the cards inside a column scroll.* On production, turning the mouse wheel over the empty space below a short column moves the whole page instead, and the toolbar slides off the top of the screen.
+
+For example,
+
+* the board is drawn a little taller than the window (56 px at a 1600 × 1000 window), so the page has room to move
+* the wheel over an empty area under a short column scrolls that extra space, taking the tabs, *Search*, the filters and the view switcher out of sight
+* scrolling inside a column with many cards works correctly — only that column moves
+
+h2. Steps to Reproduce
+
+# Sign in to production and check the top bar shows *Truck Hill 1*; use a browser window about 1600 × 1000.
+# Open *Work Orders*, click the *All* tab, type {{ZZAUTOTEST F2 Column Scroll}} in *Search* and click *Board View*.
+#* *Unassigned* holds many cards; the technician columns next to it are short or empty.
+# Put the mouse over the empty area below a short column (e.g. under *Ayesha Khan*) and turn the wheel down.
+#* The whole page moves up: the *All / Estimates / Work Orders / Completed* tabs, *Search*, the filters and the view switcher go off the top.
+
+*Actual Result:*
+
+* The whole page scrolls down by 56 px and the toolbar is hidden.
+
+*Expected Result:*
+
+* The page does not scroll; only the content inside a column scrolls.
+
+h2. Screenshots
+
+!C96953-board-before-wheel.png|width=1000!
+!C96953-page-scrolled-after-wheel.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.43.0-ffea43c}} on [production|https://app.shopview.com/workorders] · *Location:* Truck Hill 1 · *User:* Admin test account · seen twice on 22 Oct 2026 (17:5x and 23:11 UTC) · same steps passed on staging 19 Oct 2026
+
+h2. Sources
+
+* PRD "Work Orders — Board View & Tech View Display Options", Confluence 845185030, version 73 (read 22 Oct 2026), S3-E1: "Every Board View column, including Unassigned, scrolls vertically on its own when its cards exceed the available viewport, while adjacent columns and pinned headers remain visible. The page itself does not scroll vertically; only the content inside each column does."
+
+h2. Test case
+
+* [C96953|https://shopview.testrail.io/index.php?/cases/view/96953]

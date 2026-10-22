@@ -1,0 +1,36 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - batch28"
+ },
+ "results": {
+  "C96953": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on production (v26.43.0-ffea43c), following the test's steps; seen on two separate runs (17:5x and 23:11 UTC).",
+    "Set-up: \"ZZAUTOTEST F2 Column Scroll\" work orders in Unassigned at Truck Hill 1; window 1600 x 1000.",
+    "Steps 1-4: Work Orders, All tab, the customer in Search, Board View.",
+    "Steps 5-6: scrolling inside Unassigned moved only its cards; the other columns and every header stayed put.",
+    "**Step 7: with the mouse over the empty area below a short column, the wheel moved the WHOLE PAGE down 56 px: the All / Estimates / Work Orders / Completed tabs, Search, the filters and the view switcher went off the top of the screen (picture 2). The page is 1056 px tall in a 1000 px window, so the page itself can scroll.**",
+    "Step 8: Esther Howard's column scrolls on its own.",
+    "Steps 9-10: sideways scrolling reaches every technician: 78 columns for 78 eligible technicians.",
+    "The same steps passed on staging on 19 Oct 2026 in the same window size.",
+    "Ticket held: the story this belongs to is Done, so where the report goes is with the QA lead."
+   ],
+   "pictures": [
+    "pictures-prod/C96953-1-prod-1022.png",
+    "pictures-prod/C96953-2-prod-1022.png"
+   ],
+   "failed_steps": "Failed at step 7: the mouse wheel over the empty space below a short column scrolled the whole page down 56 px; the tabs, Search, filters and view switcher went off the top of the screen.",
+   "bold_steps": [
+    7
+   ],
+   "todo": "Waiting for the QA lead to decide where the report goes (the story is Done). Re-run after a fix.",
+   "ticket": "Report prepared and held - it is with the QA lead (story SV-10046 is Done), no ticket number yet.",
+   "ticket_held": true,
+   "expected_quote": "The page itself does not scroll down: only the content inside a column scrolls."
+  }
+ }
+}

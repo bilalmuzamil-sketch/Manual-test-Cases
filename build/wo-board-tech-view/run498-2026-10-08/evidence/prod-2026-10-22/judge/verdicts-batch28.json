@@ -1,0 +1,29 @@
+{
+ "C96953": {
+  "verdict": "Failed",
+  "failed_steps": "Failed at step 7: the mouse wheel over the empty space below a short column scrolled the whole page down 56 px; the tabs, Search, filters and view switcher went off the top of the screen.",
+  "bold_steps": [
+   7
+  ],
+  "observed": [
+   "Result: Failed on production (v26.43.0-ffea43c), following the test's steps; seen on two separate runs (17:5x and 23:11 UTC).",
+   "Set-up: \"ZZAUTOTEST F2 Column Scroll\" work orders in Unassigned at Truck Hill 1; window 1600 x 1000.",
+   "Steps 1-4: Work Orders, All tab, the customer in Search, Board View.",
+   "Steps 5-6: scrolling inside Unassigned moved only its cards; the other columns and every header stayed put.",
+   "**Step 7: with the mouse over the empty area below a short column, the wheel moved the WHOLE PAGE down 56 px: the All / Estimates / Work Orders / Completed tabs, Search, the filters and the view switcher went off the top of the screen (picture 2). The page is 1056 px tall in a 1000 px window, so the page itself can scroll.**",
+   "Step 8: Esther Howard's column scrolls on its own.",
+   "Steps 9-10: sideways scrolling reaches every technician: 78 columns for 78 eligible technicians.",
+   "The same steps passed on staging on 19 Oct 2026 in the same window size.",
+   "Ticket held: the story this belongs to is Done, so where the report goes is with the QA lead."
+  ],
+  "todo": "Waiting for the QA lead to decide where the report goes (the story is Done). Re-run after a fix.",
+  "ticket_held": true,
+  "ticket": "Report prepared and held with the QA lead (story SV-10046 is Done) - no ticket number yet.",
+  "expected_quote": "The page itself does not scroll down: only the content inside a column scrolls.",
+  "evidence": "s3-batchA.redo3-51.json: sizes innerHeight 1000, docHeight 1056; afterWheelOnEmpty page 56, docScroll 56, headers 217 -> 161; picture C96953-after-wheel-on-empty.png",
+  "pictures": [
+   "evidence/prod-2026-10-22/C96953-columns.png",
+   "evidence/prod-2026-10-22/C96953-after-wheel-on-empty.png"
+  ]
+ }
+}
