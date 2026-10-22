@@ -1,0 +1,135 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - batch19"
+ },
+ "results": {
+  "C96913": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: customer \"ZZAUTOTEST F1 Tabs\" at Truck Hill 1 with three work orders led by Aaron Baker: S1-1625 (Estimate), S1-1626 (Approved) and S1-1627 (Complete). Signed in as Service Advisor No Reports (Admin). Nothing ticked in Status, Assigned to me off.",
+    "Steps 1 and 2: Work Orders opened, the All tab and List clicked, and the customer typed in Search. Clicking a tab empties Search on this page, so the customer was typed again after every tab click.",
+    "Step 3: List, All tab shows S1-1625, S1-1626 and S1-1627.",
+    "Step 4: List, Work Orders tab shows S1-1626 only.",
+    "Step 5: List, Estimates tab shows S1-1625 only.",
+    "Step 6: List, Completed tab shows S1-1627 only.",
+    "Step 7: Tech View clicked in the display switcher.",
+    "Step 8: Tech View, All tab: Aaron Baker's group holds S1-1625, S1-1626 and S1-1627.",
+    "Step 9: Tech View, Work Orders tab: Aaron Baker's group holds S1-1626 only.",
+    "Step 10: Tech View, Estimates tab: Aaron Baker's group holds S1-1625 only (seen on the picture).",
+    "Step 11: Tech View, Completed tab: Aaron Baker's group holds S1-1627 only.",
+    "Step 12: Board View clicked in the display switcher.",
+    "Step 13: Board View, All tab: Aaron Baker's column holds S1-1625 (Estimate), S1-1626 (Approved) and S1-1627 (Complete) (seen on the picture).",
+    "Step 14: Board View, Work Orders tab: Aaron Baker's column holds S1-1626 only.",
+    "Step 15: Board View, Estimates tab: Aaron Baker's column holds S1-1625 only.",
+    "Step 16: Board View, Completed tab: Aaron Baker's column holds S1-1627 only.",
+    "All four tabs (All, Estimates, Work Orders, Completed) are shown in List, Tech View and Board View."
+   ],
+   "pictures": [
+    "pictures-prod/C96913-1-prod-1022.png",
+    "pictures-prod/C96913-2-prod-1022.png",
+    "pictures-prod/C96913-3-prod-1022.png",
+    "pictures-prod/C96913-4-prod-1022.png"
+   ]
+  },
+  "C154884": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: customer \"ZZAUTOTEST F1 Assigned To Me\" at Truck Hill 1 with four Approved work orders: S1-1628 and S1-1629 led by me (Service Advisor No Reports (Admin)) with me as Service Advisor, S1-1630 led by Aaron Baker (the other technician) and S1-1631 with no lead. On S1-1630 and S1-1631 the Service Advisor was set to Ayesha Khan before the steps, as the set-up asks.",
+    "Steps 1 to 3: Work Orders opened, All tab clicked, the customer typed in Search in List: all four work orders show (S1-1628 to S1-1631).",
+    "Steps 4 and 5: with Assigned to me turned on, List shows S1-1628 and S1-1629 only (2 rows).",
+    "Steps 6 and 7: Tech View shows S1-1628 and S1-1629 only, both in the Service Advisor No Reports (Admin) group (seen on the picture).",
+    "Steps 8 and 9: Board View shows the cards S1-1628 and S1-1629 only, both in the Service Advisor No Reports (Admin) column (seen on the picture).",
+    "S1-1630 (Aaron Baker) and S1-1631 (no lead) do not appear in any of the three displays."
+   ],
+   "pictures": [
+    "pictures-prod/C154884-1-prod-1022.png",
+    "pictures-prod/C154884-2-prod-1022.png",
+    "pictures-prod/C154884-3-prod-1022.png"
+   ]
+  },
+  "C96931": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: customer \"ZZAUTOTEST F2 No Work Text\" at Truck Hill 1 with three Approved work orders: S1-1117 led by Ayesha Khan ([Tech-A]), S1-1118 led by Bilal Muzamil ([Tech-B]) and S1-1119 with no lead. Branko Cicovic ([Tech-C]) leads none of them. Signed in as Service Advisor No Reports (Admin).",
+    "Steps 1 to 4: Work Orders opened, All tab clicked, the customer typed in Search, Tech View clicked.",
+    "Step 5: Branko Cicovic has a group (count 0) even though he leads no work orders, and it shows the text \"No work orders\".",
+    "Step 6: Search cleared and S1-1117 typed.",
+    "Step 7: Ayesha Khan's group lists S1-1117; Bilal Muzamil's group, Branko Cicovic's group and Unassigned each show \"No work orders\" (Unassigned and Ayesha Khan are on the picture; the two other groups are further down the page).",
+    "The empty text reads \"No work orders\", not the design's \"No work orders assigned\"."
+   ],
+   "pictures": [
+    "pictures-prod/C96931-1-prod-1022.png",
+    "pictures-prod/C96931-2-prod-1022.png"
+   ]
+  },
+  "C96935": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: customer \"ZZAUTOTEST F2 Sticky Header\" at Truck Hill 1 with 25 Approved work orders led by Ayesha Khan ([Technician-A]) and 3 led by Bilal Muzamil ([Technician-B]). Both were pinned before the steps so that Bilal Muzamil's group comes directly after Ayesha Khan's (without pins, other technicians' empty groups sit between them on production). Signed in as Service Advisor No Reports (Admin).",
+    "Steps 1 to 3: Work Orders opened, All tab clicked, the customer typed in Search, Tech View clicked.",
+    "Step 4: the table was scrolled down in small steps through Ayesha Khan's 25 rows.",
+    "Step 5: at every stop while scrolling through her rows, Ayesha Khan's header (name and count 25) stays on screen just under the column header row (seen on the pictures, for example with rows S1-1134 to S1-1144 under it).",
+    "Step 6: scrolling went on into Bilal Muzamil's group.",
+    "Step 7: Bilal Muzamil's header pushes Ayesha Khan's header up and off (the picture shows hers half out of view at the top, his right below it) and then takes its place just under the column header row with his count 3. Only one group header is held there at a time."
+   ],
+   "pictures": [
+    "pictures-prod/C96935-1-prod-1022.png",
+    "pictures-prod/C96935-2-prod-1022.png",
+    "pictures-prod/C96935-3-prod-1022.png",
+    "pictures-prod/C96935-4-prod-1022.png"
+   ]
+  },
+  "C368163": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: customer \"ZZAUTOTEST F1 Dialog Search\" at Truck Hill 1 with one Approved work order S1-1167 led by Esther Howard ([Technician-A]); Ralph Edwards is [Technician-B] and Dana Ortiz [Technician-C]. Staff member Olive Office has a role named \"Office User\" (production has no built-in Office User role, so a role with that name was made). Signed in as Service Advisor No Reports (Admin).",
+    "Steps 1 and 2: Work Orders opened, All tab and Board View clicked, the customer typed in Search.",
+    "Steps 3 and 4: on S1-1167's card in Esther Howard's column, More actions (...) then Reassign lead technician.",
+    "Step 5: the dialog reads \"S1-1167 \u00b7 ZZAUTOTEST F1 Dialog Search\", marks Esther Howard as \"Current\", starts with \"Unassigned\", then the eligible technicians of Truck Hill 1 (Esther Howard, Ralph Edwards and Dana Ortiz among them), each with avatar and open count, with no grouping. The search box reads \"Search technicians\".",
+    "Step 6: typing \"Ral\" leaves only Unassigned, Maximiliana Fitzgerald-Montgomery and Ralph Edwards: only technicians whose name contains \"ral\". Esther Howard and Dana Ortiz disappear (seen on the picture).",
+    "Step 7: \"ral\" gives the same list. Upper or lower case does not matter.",
+    "Step 8: \"Olive\" lists no technician; the dialog says \"No technicians match \u201cOlive\u201d\" (seen on the picture).",
+    "Step 9: \"zzqx\" shows \"No technicians match \u201czzqx\u201d\".",
+    "Step 10: clearing the box brings back the whole list (78 rows, as at step 5).",
+    "Step 11: after Cancel no message appears and the card stays in Esther Howard's column (seen on the picture).",
+    "Steps 12 and 13: the dialog opened again with an empty search box; Cancel (step 14).",
+    "Steps 15 to 17: in Tech View, S1-1167's row is in Esther Howard's group; its Reassign lead technician dialog narrows \"Ral\" to the same list with Ralph Edwards (seen on the picture), and after Cancel the row stays in Esther Howard's group."
+   ],
+   "pictures": [
+    "pictures-prod/C368163-1-prod-1022.png",
+    "pictures-prod/C368163-2-prod-1022.png",
+    "pictures-prod/C368163-3-prod-1022.png",
+    "pictures-prod/C368163-4-prod-1022.png"
+   ]
+  },
+  "C96979": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: approved work order S1-1175 for \"ZZAUTOTEST F2 Tech Default Columns\" with no lead, at Truck Hill 1. {User-B} is a brand-new Admin user (Nora New) who never saved any Work Orders choice; {User-C} is a brand-new user (Nate Nofinance) whose role (\"ZZAUTOTEST WO View Only\") has See Financial Data off. The test switched into each of their accounts in turn.",
+    "Steps 1 to 3 (Nora New): List shows On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total Price, Created On (List's own columns) and no Assigned Techs column.",
+    "Steps 4 and 5 (Nora New): Tech View shows exactly 13 columns in this order: Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created On, Total Price. On Site, VIN/Serial # and Lead Technician are not shown.",
+    "Steps 6 and 7 (Nora New): in Tech View's Column Selection menu Assigned Techs is on, and On Site, VIN/Serial # and Lead Technician are offered but off (seen on the picture); the menu was closed.",
+    "Steps 8 and 9 (Nate Nofinance): Tech View shows the same columns in the same order without Total Price: 12 columns, ending with Lines, Assigned Techs, Created On (seen on the picture).",
+    "Steps 10 to 13 (my own account): List, Column Selection, Service Advisor turned off, Created On on.",
+    "Step 14: after closing the menu and a reload, List keeps Service Advisor off and Created On on.",
+    "Steps 15 to 17: Tech View clicked, one column (Lines) turned off in its menu, then List clicked.",
+    "Step 18: after a second reload List still has Service Advisor off and Created On on (seen on the picture).",
+    "Pre-release List choice not checked."
+   ],
+   "pictures": [
+    "pictures-prod/C96979-1-prod-1022.png",
+    "pictures-prod/C96979-2-prod-1022.png",
+    "pictures-prod/C96979-3-prod-1022.png"
+   ]
+  }
+ }
+}

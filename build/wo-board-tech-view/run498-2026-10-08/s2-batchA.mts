@@ -10,7 +10,7 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { signIn } from '../../global-search/e2e/fixtures/auth.js';
 import { api, candidates, seedCase, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, groups, toggleGroup, drag, read } from './wob.mts';
+import { EV, t, shot, display, tab, search, groups, toggleGroup, drag, read, ensureLocation } from './wob.mts';
 import { startState, setDisplay, noteDisplay, prefRead } from './fixup-1017.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
@@ -96,6 +96,25 @@ await run('C96928', async () => {
   // 22 Oct 2026 (production): a new sign-in opens at the account's default location (Trucks Hill 2), where these technicians have no
   // groups, and it ENDS the first browser's session (one session per account on production) — the old ending reloaded that dead page and
   // hung. So the new browser is moved to {Location-A} first (the case's own location), and the last steps run in the NEW browser.
+  // 22 Oct 2026 (production, judged Unsure): steps 9-10 as written — close every Work Orders tab (this page goes blank, the new tab was
+  // closed above), open Work Orders again in a fresh tab, then a REAL sign-out (profile menu > Logout) and sign-in on the sign-in form
+  // with the test account in that same browser (s9-batchB C97005 route). The old second-browser route stays for staging.
+  if (process.env.WOB_PROD_LOGIN) {
+    await p.goto('about:blank').catch(() => {}); const p3 = await p.context().newPage(); await p3.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p3.waitForTimeout(5000);
+    R.C96928.reopenedDisplay = await inTech(p3, 'reopened after closing all tabs'); await search(p3, n); R.C96928.reopened = await st(p3); await shot(p3, 'C96928-reopened');
+    const s10: any = {}; await p3.locator('[data-test-id="profile_menu_button"]').click().catch(() => {}); await p3.waitForTimeout(1200);
+    await p3.locator('.q-menu .q-item, .q-menu button').filter({ hasText: /Log ?out|Sign ?out/i }).first().click().catch((e) => { s10.logoutClick = String(e).slice(0, 100); });
+    for (let i = 0; i < 15 && !/\/login/.test(p3.url()); i++) await p3.waitForTimeout(1000); s10.signedOut = /\/login/.test(p3.url()); await shot(p3, 'C96928-signed-out');
+    const cr: Record<string, string> = {}; for (const l of fs.readFileSync(process.env.PROD_ENVF || '/tmp/shopview/prod-login.env', 'utf8').split('\n')) { const m = /^([A-Z_]+)=(.*)$/.exec(l.trim()); if (m) cr[m[1]] = m[2]; }
+    if (!/\/login/.test(p3.url())) { await p3.goto(APP + '/login', { waitUntil: 'domcontentloaded' }); await p3.waitForTimeout(5000); }
+    await p3.locator('input[type=email], input[autocomplete=username]').first().fill(cr.SV_USER); await p3.locator('input[type=password]').first().fill(cr.SV_PASS);
+    await p3.locator('button:has-text("Login"), button:has-text("Sign in"), button[type=submit]').first().click(); for (let i = 0; i < 20 && /\/login/.test(p3.url()); i++) await p3.waitForTimeout(2000);
+    s10.signedIn = !/\/login/.test(p3.url()); const a3 = api(p3);
+    if (s10.signedIn) { await p3.waitForTimeout(4000); s10.location = await ensureLocation(p3, a3, HEAVY).catch((e) => 'failed: ' + String(e).slice(0, 80));
+      await p3.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p3.waitForTimeout(5000); R.C96928.newSignInDisplay = await inTech(p3, 'after sign-out and sign-in', a3); await search(p3, n);
+      R.C96928.newSignIn = await st(p3); await shot(p3, 'C96928-new-signin');
+      await toggleGroup(p3, tB.id); R.C96928.reExpanded = await st(p3); R.C96928.bRowsAfter = (await groups(p3)).find((g) => g.id === tB.id)?.rows; await shot(p3, 'C96928-re-expanded'); }
+    R.C96928.step10 = s10; return; }
   const s2 = await signIn('/customers'); const a2 = api(s2.page);
   R.C96928.newSignInLocation = (await a2.post('/api/iam/change-location', { workplace_id: HEAVY, ...(process.env.WOB_LOC_TZ ? { workplace_timezone: process.env.WOB_LOC_TZ } : {}) })).status;
   await s2.page.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await s2.page.waitForTimeout(5000); R.C96928.newSignInDisplay = await inTech(s2.page, 'new sign-in', a2); await search(s2.page, n);
@@ -297,11 +316,19 @@ await run('C96937', async () => {
   await seedCase(a, n, 'ZZF2AG', [{ lead: me.id }, { lead: RE.id }, { lead: null }]);
   const fix: string[] = [];
   for (const w of await workOrders(a, n)) {
-    const lead = `${w.techAssignedFirstName ?? ''} ${w.techAssignedLastName ?? ''}`.trim();
+    // 22 Oct 2026 (production): the signed-in admin's lead name ("Service Advisor No Reports") is not ME_NAME (which ends "(Admin)"),
+    // so the admin's own work order was re-led to Ralph and the admin's group never showed. Compare by id; ME_NAME stays as a fallback.
+    const leadId = w.techAssignedId ?? w.tech_assigned_id ?? null; const isMe = leadId === me.id || `${w.techAssignedFirstName ?? ''} ${w.techAssignedLastName ?? ''}`.trim() === ME_NAME;
+    const lead = isMe ? ME_NAME : `${w.techAssignedFirstName ?? ''} ${w.techAssignedLastName ?? ''}`.trim();
     if (lead && lead !== ME_NAME && lead !== RE.name) fix.push(`${w.number} lead -> ${RE.name}: ` + (await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: RE.id })).status);
     if (lead && lead !== ME_NAME) fix.push(`${w.number} advisor -> ${RE.name}: ` + (await a.post('/api/work-orders/change-service-advisor', { work_order_id: w.id, service_advisor_id: RE.id })).status);
     if (!lead && `${w.serviceAdvisorFirstName} ${w.serviceAdvisorLastName}` !== ME_NAME) fix.push(`${w.number} advisor -> you: ` + (await a.post('/api/work-orders/change-service-advisor', { work_order_id: w.id, service_advisor_id: me.id })).status);
   }
+  { const ws = await workOrders(a, n); const lid = (w: any) => w.techAssignedId ?? w.tech_assigned_id ?? null;
+    // the case's WO-1 must be led by the signed-in admin: if a clean-up left none, re-lead one of two Ralph work orders, or make a fresh one
+    if (!ws.some((w: any) => lid(w) === me.id)) { const ralph = ws.filter((w: any) => lid(w) === RE.id);
+      if (ralph.length >= 2) fix.push(`${ralph[0].number} lead -> you: ` + (await a.post('/api/work-orders/change-lead-technician', { work_order_id: ralph[0].id, tech_assigned_id: me.id })).status + ' ' + (await a.post('/api/work-orders/change-service-advisor', { work_order_id: ralph[0].id, service_advisor_id: me.id })).status);
+      else { await seedCase(a, n, 'ZZF2AG', [{ lead: me.id }]); fix.push('extra work order led by you made'); } } }
   const setup = (await workOrders(a, n)).map((w: any) => `${w.number} lead=${`${w.techAssignedFirstName ?? ''} ${w.techAssignedLastName ?? ''}`.trim() || '-'} advisor=${w.serviceAdvisorFirstName} ${w.serviceAdvisorLastName}`);
   // pin ONLY Jenny Wilson (her group can be far down among ~119 technicians, so the pin is set on the saved choice, then read back on screen)
   { const PREF = '/api/users/me/preferences/work-orders-list'; const pv = await prefs(); await a.put(PREF, { value: { ...pv, pinnedTechnicianIds: [jw.id] } }); }
