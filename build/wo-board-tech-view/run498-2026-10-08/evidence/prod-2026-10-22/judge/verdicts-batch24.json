@@ -1,0 +1,206 @@
+{
+ "C368218": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 1: Parts in the top menu was clicked, but \"Purchase Orders\" in the left menu was not clicked; the Purchase Orders page was opened by its address instead. Everything else matched: typing \"I1-32\" in the page's Search box narrowed the list to 1 row, after a reload the Search box still read \"I1-32\" with the same row, and no error message appeared.",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 to 6 were followed and matched; at step 1 the page was opened by its address, not from the left menu.",
+   "Set-up: none needed; signed in as Service Advisor No Reports (Admin) at Truck Hill 1, using the rows the page already lists.",
+   "Step 1 (NOT DONE AS WRITTEN): Parts in the top menu was clicked, but clicking \"Purchase Orders\" in the left menu did not happen, so the Purchase Orders page was opened by its address. It showed 24 rows (seen on the picture).",
+   "Step 2: the Search box at the right of the page header (on the same line as the title \"Purchase Orders\") was clicked.",
+   "Step 3: the purchase order number \"I1-32\" (the first row's) was typed; the list narrowed from 24 rows to 1 row: \"I1-32 \u00b7 ZZSOFTHIT Supply \u00b7 Ordered \u00b7 Oct 1, 2026 \u00b7 Service Advisor No Reports (Admin)\" (seen on the picture).",
+   "Step 4: the page was reloaded.",
+   "Step 5: after the reload the Search box still reads \"I1-32\" and the same single row shows; no error message appeared (seen on the picture).",
+   "Step 6: the Search box was cleared and the list went back to 24 rows.",
+   "Manual check for step 1: click Parts in the top menu, then \"Purchase Orders\" in the left menu; the rest already matched."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368218-step1.png",
+   "evidence/prod-2026-10-22/C368218-filtered.png",
+   "evidence/prod-2026-10-22/C368218-after-reload.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. parts-filter2.mts C368218 (re-run 21:53-21:54). Parts top-menu click worked (landed on /parts/inventory), but the left-menu locator ('a, .q-item, [role=link], [role=menuitem]' filtered /^\\s*Purchase Orders\\s*$/) timed out after 30 s (leftClick), so fallbackGoto = goto /parts/orders. rowsBefore 24; value I1-32 (first row, column 2); rowsFiltered 1, narrowed true, url ?search=I1-32; afterReload boxVisible true, search \"I1-32\", same 1 row, sameRows true, toasts []; step6 cleared -> 24 rows. Pictures: step1 (24-row list, Search closed), filtered and after-reload are BYTE-IDENTICAL files (same md5) showing the Search box \"I1-32\" and the single row; since the screen is identical before and after the reload this is plausible, but only two distinct pictures exist. reload-1/reload-2 (15:56) are the first attempt and ignored. Product matched every Expected sentence; Unsure only for the left-menu route at step 1 (the left menu item is visible on the step1 picture, so this is the script's locator, not the product).",
+  "todo": "Do step 1 by hand: click Parts in the top menu, then \"Purchase Orders\" in the left menu, and check the Purchase Orders page opens. Steps 2 to 6 already matched on production."
+ },
+ "C368219": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 1: Parts in the top menu was clicked, but \"Vendors\" in the left menu was not clicked; the Vendors page was opened by its address instead. Everything else matched: typing \"Delete Test\" in the page's Search box narrowed the list to 1 row, after a reload the Search box still read \"Delete Test\" with the same row, and no error message appeared.",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 to 6 were followed and matched; at step 1 the page was opened by its address, not from the left menu.",
+   "Set-up: none needed; signed in as Service Advisor No Reports (Admin) at Truck Hill 1, using the rows the page already lists.",
+   "Step 1 (NOT DONE AS WRITTEN): Parts in the top menu was clicked, but clicking \"Vendors\" in the left menu did not happen, so the Vendors page was opened by its address. It showed 30 rows (seen on the picture).",
+   "Step 2: the Search box at the right of the page header (on the same line as the title \"Vendors\") was clicked.",
+   "Step 3: the vendor name \"Delete Test\" (the first row's) was typed; the list narrowed from 30 rows to 1 row: \"Delete Test \u00b7 (972) 545 - 4545 \u00b7 ABC \u00b7 DEF \u00b7 Ajman \u00b7 Alberta \u00b7 0000\" (seen on the picture).",
+   "Step 4: the page was reloaded.",
+   "Step 5: after the reload the Search box still reads \"Delete Test\" and the same single row shows; no error message appeared (seen on the picture).",
+   "Step 6: the Search box was cleared and the list went back to 30 rows.",
+   "Manual check for step 1: click Parts in the top menu, then \"Vendors\" in the left menu; the rest already matched."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368219-step1.png",
+   "evidence/prod-2026-10-22/C368219-filtered.png",
+   "evidence/prod-2026-10-22/C368219-after-reload.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. parts-filter2.mts C368219 (re-run 21:55-21:56). Parts top-menu click worked (/parts/inventory); left-menu click on /^\\s*Vendors\\s*$/ timed out (leftClick), fallbackGoto = goto /parts/vendors. rowsBefore 30; value \"Delete Test\" (first row, column 0); rowsFiltered 1, narrowed true, url ?search=Delete+Test; afterReload search \"Delete Test\", same row, sameRows true, toasts []; step6 cleared -> 30 rows. filtered.png and after-reload.png are byte-identical (same md5); step1.png shows the full list with Search closed. reload-1/-2 (15:56) are the first attempt, ignored. Product matched every Expected sentence; Unsure only for the left-menu route at step 1.",
+  "todo": "Do step 1 by hand: click Parts in the top menu, then \"Vendors\" in the left menu, and check the Vendors page opens. Steps 2 to 6 already matched on production."
+ },
+ "C368223": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 1: Parts in the top menu was clicked, but \"Vendor Invoices\" in the left menu was not clicked; the Vendor Invoices page was opened by its address instead. Everything else matched: typing \"ZZINV-PS-75751\" in the page's Search box narrowed the list to 1 row, after a reload the Search box still read \"ZZINV-PS-75751\" with the same row, and no error message appeared.",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 to 6 were followed and matched; at step 1 the page was opened by its address, not from the left menu.",
+   "Set-up: none needed; signed in as Service Advisor No Reports (Admin) at Truck Hill 1, using the rows the page already lists.",
+   "Step 1 (NOT DONE AS WRITTEN): Parts in the top menu was clicked, but clicking \"Vendor Invoices\" in the left menu did not happen, so the Vendor Invoices page was opened by its address. It showed 30 rows (seen on the picture).",
+   "Step 2: the Search box at the right of the page header (on the same line as the title \"Vendor Invoices\") was clicked.",
+   "Step 3: the invoice number \"ZZINV-PS-75751\" (the first row's) was typed; the list narrowed from 30 rows to 1 row: \"P1-81 \u00b7 ZZINV-PS-75751 \u00b7 P1-81 \u00b7 Delete Test \u00b7 Today \u00b7 $105.00\" (seen on the picture).",
+   "Step 4: the page was reloaded.",
+   "Step 5: after the reload the Search box still reads \"ZZINV-PS-75751\" and the same single row shows; no error message appeared (seen on the picture).",
+   "Step 6: the Search box was cleared and the list went back to 30 rows.",
+   "Manual check for step 1: click Parts in the top menu, then \"Vendor Invoices\" in the left menu; the rest already matched."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368223-step1.png",
+   "evidence/prod-2026-10-22/C368223-filtered.png",
+   "evidence/prod-2026-10-22/C368223-after-reload.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. parts-filter2.mts C368223 (re-run 21:56-21:57). Parts top-menu click worked (/parts/inventory); left-menu click on /^\\s*Vendor Invoices\\s*$/ timed out (leftClick), fallbackGoto = goto /parts/deliveries. rowsBefore 30; value ZZINV-PS-75751 (first row, column 1); rowsFiltered 1, narrowed true, url ?search=ZZINV-PS-75751; afterReload search \"ZZINV-PS-75751\", same row, sameRows true, toasts []; step6 cleared -> 30 rows. filtered.png and after-reload.png are byte-identical (same md5); step1.png shows the full list with Search closed. reload-1/-2 (15:57) are the first attempt, ignored. Product matched every Expected sentence; Unsure only for the left-menu route at step 1.",
+  "todo": "Do step 1 by hand: click Parts in the top menu, then \"Vendor Invoices\" in the left menu, and check the Vendor Invoices page opens. Steps 2 to 6 already matched on production."
+ },
+ "C368169": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1, 2 and 3: after typing the customer's name in Search, the work order S1-1661 was not found as a row in the List, so it was opened by its address; there is no picture of the List, and no picture of the card before the change. Steps 4 to 7 matched: the lead was changed to Ralph Edwards and the mileage to 120500 with no error message, and after a reload the card reads Ralph Edwards and 120,500.",
+  "bold_steps": [
+   1,
+   2,
+   3
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 4 to 7 were followed and matched; steps 1 to 3 were not done as written (the work order was opened by its address).",
+   "Set-up: customer \"ZZAUTOTEST Edit WO Card Lead Mileage 83022\" with Approved work order S1-1661 led by Esther Howard (Technician A); Mileage set to 120000 before step 1. Ralph Edwards stands in as Technician B.",
+   "Step 1 (NOT SEEN): Work Orders > All was opened, but there is no picture of it.",
+   "Step 2 (NOT DONE AS WRITTEN): the customer's name was typed in Search, but S1-1661 was not found as a row in the List (no picture), so step 2's \"shows in the List\" was not seen.",
+   "Step 3 (NOT DONE AS WRITTEN): S1-1661 was opened by its address, not by clicking it. The card read Lead Technician \"Esther Howard\" and Mileage 120000 (a reading only, no picture of this moment).",
+   "Step 4: Lead Technician was clicked, \"Ralph\" typed and Ralph Edwards picked; no error message appeared.",
+   "Steps 5 and 6: Mileage was changed to 120500 and the field left; no error message appeared.",
+   "Step 7: after a reload the card reads Lead Technician \"Ralph Edwards\" and Mileage \"120,500\" (seen on the picture); both changes were saved.",
+   "Manual check for steps 1 to 3: Work Orders > All, type \"ZZAUTOTEST Edit WO Card Lead Mileage 83022\" in Search, check S1-1661 shows in the List and click it; the card should read Esther Howard and 120,000 before you change anything."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368169-card.png",
+   "evidence/prod-2026-10-22/C368169-after-reload.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. editwo-fix.mts C368169 (re-run ~21:59-22:01). Set-up behind the screen before step 1: change-mileage 120000 (201), lead Esther Howard. uiOpen: goto /workorders?tab=all, tab All, display List, search(customer name 'ZZAUTOTEST Edit WO Card Lead Mileage 83022') -> rowShown 0 (no tbody tr containing S1-1661), opened false, fallbackGoto = goto the work order address. Why the row was not found is unexplained (wrong display mode, list not loaded, or a product search problem) and there is NO picture of the List, so step 2 can be neither passed nor failed. before: lead Esther Howard, mileage '120000' (no picture). pickLazy: field 1, input 1, typed 'Ralph', option found at once, picked true (on screen). Mileage editable, typed 120500, toasts []. afterReload lead 'Ralph Edwards', mileage '120,500'; server lead Ralph, mileage 120500. All three pictures (card, after-reload, end) are BYTE-IDENTICAL (same md5), so there is only ONE distinct picture: it shows S1-1661 Approved, Lead Technician Ralph Edwards, Mileage 120,500 - the end state only. Steps 4-7 match the Expected; steps 1-3 need a hand check.",
+  "todo": "Do steps 1 to 3 by hand: Work Orders > All tab, type \"ZZAUTOTEST Edit WO Card Lead Mileage 83022\" in Search, check S1-1661 shows in the List, click it and check the card reads Esther Howard and 120,000. (Steps 4 to 7 already matched on production, but on this work order the lead is now Ralph Edwards and mileage 120,500, so set them back first or use a fresh work order.)"
+ },
+ "C368170": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 2 and 3: the work order was never Invoiced. After the Finance tab was opened it still showed the Create Invoice button and, after the reload, the status still read Complete. Steps 5 to 8 were therefore tried on a Complete work order (where changes are allowed), and the run stopped at step 7 with a \"Mileage value smaller than the previous\" question still open, so nothing about an Invoiced work order was seen.",
+  "bold_steps": [
+   2,
+   3,
+   5,
+   6,
+   7,
+   8
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The work order never reached Invoiced, so the steps that matter (5 to 8) were not tested on an Invoiced work order.",
+   "Set-up: customer \"ZZAUTOTEST Edit WO Card Refused 83022\", work order S1-1663, status Complete, led by Esther Howard, Engine Hours 3,420, Customer PO \"PO-100\". Mileage reads 123,456, not the 120,000 the set-up asks for.",
+   "Step 1: S1-1663 opens with status Complete (seen on the picture); it was reached by its address after the List search did not show it as a row.",
+   "Step 2 (NOT DONE): the Finance tab opened and shows the invoice preview \"INV-S1-1663\", but the Create Invoice button is still there and no New Customer Payment window shows (seen on the picture). The work order was not invoiced.",
+   "Step 3 (NOT MET BY THE RUN): after the reload the status still reads Complete, not Invoiced (seen on the picture).",
+   "Steps 5 to 7: tried on the Complete work order: the Lead Technician list opened and Ralph Edwards was picked; Mileage 120500 was typed and a \"Confirmation: You have entered Mileage value smaller than the previous. Are you sure you want to continue?\" window opened and was left open; Engine Hours could not be reached behind that window and the run stopped (seen on the picture).",
+   "Step 8: not reached.",
+   "Manual check: on a Complete work order click Finance > Create Invoice, close the New Customer Payment window with X, reload and check the status reads Invoiced; then do steps 5 to 8."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368170-s2-after-create-invoice.png",
+   "evidence/prod-2026-10-22/C368170-s3-after-reload.png",
+   "evidence/prod-2026-10-22/C368170-invoiced-card.png",
+   "evidence/prod-2026-10-22/C368170-error.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. editwo-fix.mts C368170 (re-run 22:03-22:05). The run ended with an error (Engine Hours click timed out 30 s: the Confirmation dialog for a smaller mileage covered the card), so the result object was never written: there are NO readings for this case, only pictures. Set-up: change-mileage 120000 and change-engine-hours 3420 behind the screen, PO-100, finish -> Complete; the mileage call evidently did not take (card reads 123,456; the mileage-lower question shows the product refuses a lower value without confirmation). uiInvoice: uiOpen (row not found, address fallback as for C368169/171), Finance tab clicked, Create Invoice clicked (button locator /^\\s*Create Invoice\\s*$/) - s2 picture shows Finance tab, invoice preview INV-S1-1663, Create Invoice button still present, status Complete, no payment window; s3 after reload: still Complete. invoiced-card (Lines tab) still Complete with Create Invoice offered, so the script went on to edit a Complete work order: leadFieldIsPicker true -> Ralph Edwards picked (error.png shows Lead Technician Ralph Edwards, line Labor still Esther Howard), mileage 120500 typed -> Confirmation dialog (smaller than previous, 123,456) left open; engine hours click blocked. Not a product failure: the start state Invoiced was never reached. Side effect: S1-1663 lead may now be Ralph Edwards. C368170-card.png/-end.png (16:00-16:01) are the first attempt, ignored.",
+  "todo": "Run by hand on production: take a Complete work order led by Esther Howard (mileage 120,000, engine hours 3,420), Finance tab > Create Invoice, close the New Customer Payment window with X, reload and check it reads Invoiced. Then try to change Lead Technician, Mileage and Engine Hours on the card and reload: all three should be unchanged. The script must be fixed so the Create Invoice click really invoices and so it stops if the status is not Invoiced."
+ },
+ "C368171": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1 to 3 and step 9. Steps 1 to 3: after typing the customer's name in Search, S1-1662 was not found as a row in the List, so it was opened by its address (no picture of the List). Step 9: the new entry's time is not judged on production until the time-zone question is settled (the log shows 10:01 PM, which is the UTC clock, while the location is Asia/Karachi). Everything else matched: one new \"Lead tech changed\" entry, Esther Howard to Ralph Edwards, by the signed-in user, and no entries for the two lines.",
+  "bold_steps": [
+   1,
+   2,
+   3,
+   9
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 4 to 8 were followed and matched; steps 1 to 3 were not done as written, and step 9's time is not judged on production.",
+   "Set-up: customer \"ZZAUTOTEST Edit WO Audit 83022\", Approved work order S1-1662 led by Esther Howard (Technician A) with two approved lines (Line 1 and New York State Inspection) that follow the lead. Ralph Edwards stands in as Technician B. The run acted as \"ZZ WOB Runner\".",
+   "Step 1 (NOT SEEN): Work Orders > All was opened, but there is no picture of it.",
+   "Step 2 (NOT DONE AS WRITTEN): the customer's name was typed in Search, but S1-1662 was not found as a row in the List (no picture).",
+   "Step 3 (NOT DONE AS WRITTEN): S1-1662 was opened by its address. Both lines' Labor rows read \"Esther Howard\" (seen on the picture for Line 1; both read so).",
+   "Steps 4 to 6: the three dots > Audit Log opened the \"Work Order Log\" window; it had 1 \"Lead tech changed\" entry (\"Lead tech: - \u2192 Esther Howard\"); the time was noted (22:01 UTC); the window was closed (seen on the picture).",
+   "Step 7: Lead Technician was clicked and Ralph Edwards picked (he is offered in the list); the card reads \"Ralph Edwards\" at once and both lines' Labor rows now read Ralph Edwards (seen on the picture).",
+   "Step 8: the three dots > Audit Log opened the \"Work Order Log\" window again.",
+   "Step 9: there are now 2 \"Lead tech changed\" entries: exactly one new one, \"Lead tech: Esther Howard \u2192 Ralph Edwards\", user \"ZZ WOB Runner\", Oct 22, 2026, 10:01 PM; no separate entries for Line 1 or New York State Inspection (seen on the picture). The time shown: time-of-day not judged on production until the time-zone question is settled.",
+   "Manual check: Work Orders > All, search \"ZZAUTOTEST Edit WO Audit 83022\", check the work order shows in the List and click it; then repeat steps 4 to 9 on a fresh work order once the time-zone question is settled, and check the new entry's time matches the time you noted."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368171-audit-before.png",
+   "evidence/prod-2026-10-22/C368171-lead-list.png",
+   "evidence/prod-2026-10-22/C368171-audit.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. editwo-fix.mts C368171 (re-run ~22:01-22:02). uiOpen: search by customer name -> rowShown 0, fallbackGoto (address); no List picture, cause unexplained (same as C368169/C368170). laborStart both lines Esther Howard. auditText: nav-bar three dots > Audit Log -> countBefore 1 (picture: 'Lead tech: - \u2192 Esther Howard', 10:01 PM). time noted 22:01:51 UTC. pickTech on the card's Lead Technician: list 78 names, Ralph Edwards offered, controls Esther Howard/Dana Ortiz offered, readingValid true, picked Ralph Edwards (clicked). countAfter 2; newest 'Lead tech changed ZZ WOB Runner - Lead tech: Esther Howard \u2192 Ralph Edwards Oct 22, 2026 10:01 PM'; line history counts 0/0 before and after (also no Line rows in the log picture). The log's 10:01 PM equals 22:01 UTC; in Asia/Karachi it would be 03:01 AM Oct 23, so the time is drawn in UTC like the Schedule - time-of-day rule applies. 'ZZ WOB Runner' is the signed-in runner account (accepted as 'your user'). Content of the entry, its count and the absence of line entries all match the Expected.",
+  "todo": "Do steps 1 to 3 by hand: Work Orders > All tab, type \"ZZAUTOTEST Edit WO Audit 83022\" in Search, check the work order shows in the List and click it. The time shown on the new log entry is left until the time-zone question is settled; everything else in steps 4 to 9 already matched on production."
+ },
+ "C368226": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 3: on production the Location filter already had both locations ticked (\"Location: All locations\"), and the start state the test needs (only the first location ticked) was not set. Clicking \"Trucks Hill 2\" therefore UNTICKED it, leaving Truck Hill 1 only, instead of ticking the second location as well. That choice (Truck Hill 1) was kept after the reload with the same rows and totals and no error message, but the step as written was not done.",
+  "bold_steps": [
+   3
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1, 2, 4 and 5 were followed; step 3 did the opposite of what it says because the start state was not set.",
+   "Set-up (NOT SET): the Location filter should start with only the first location (Truck Hill 1) ticked; on production it started as \"Location: All locations\" with Truck Hill 1 and Trucks Hill 2 both ticked, and it was not set back.",
+   "Steps 1 and 2: Reports in the top menu was clicked, then \"Work In Progress\" in the PERFORMANCE group.",
+   "Step 3 (NOT DONE AS WRITTEN): the Location filter was opened and \"Trucks Hill 2\" clicked; because it was already ticked this unticked it, so only Truck Hill 1 stayed ticked and the filter reads \"Location: Truck Hill 1\" (seen on the picture).",
+   "Step 4: the filter was closed. The report shows 31 rows and the totals $160,730.09 + $4,956.69 = $165,686.78 (they changed from $470,532.26 / $480,016.95 with both locations) (seen on the picture).",
+   "Step 5: after the reload the filter still reads \"Location: Truck Hill 1\" with only Truck Hill 1 ticked, with the same rows (S1-2, S1-3, S1-11, \u2026) and the same totals $160,730.09, $4,956.69, $165,686.78; no error message appeared (seen on the picture).",
+   "Manual check for step 3: on Reports > Work In Progress, set Location to Truck Hill 1 only, then open Location and tick Trucks Hill 2 as well (both ticked), close it, note the rows and totals, reload, and check the filter still shows both locations with the same rows and totals."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368226-before-reload.png",
+   "evidence/prod-2026-10-22/C368226-after-reload.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. medium-fix3.mts C368226 (re-run 22:08-22:09). nav('Reports','Work In Progress') by the menus (OK). keepAfterReload(label Location, pick LOC2_NAME 'Trucks Hill 2'), opts.restore NOT passed: menuBefore '[x] Select all, [x] Truck Hill 1, [x] Trucks Hill 2', chipStart 'Location: All locations' (production default is all locations, not the case's 'first location only'); no set-up reset. Clicking 'Trucks Hill 2' unticked it: menuAfterPick '[ ] Select all, [x] Truck Hill 1, [ ] Trucks Hill 2', chip 'Location: Truck Hill 1'; readBack tickedAfterPick false. Totals changed (rowsChangedByPick true) $470,532.26 -> $160,730.09. After reload: chipAfter 'Location: Truck Hill 1', menuAfterReload same, url ?locationIds=<Truck Hill 1>, tableAfter identical, sameRows true, toasts []. So the filter IS kept after a reload, but the choice was 'Truck Hill 1 only', not 'both locations' as step 3 says. end.png byte-identical to after-reload.png: the filter was left on Truck Hill 1 (not restored). no-filter.png (15:39) is an earlier attempt, ignored. Fix: when both are ticked at the start, set the case's start state first (first location only), then tick the second.",
+  "todo": "Do it by hand: Reports > Work In Progress; first set Location to Truck Hill 1 only, then tick Trucks Hill 2 as well, close the filter, note what the report shows, reload and check the filter still shows both locations with the same rows and totals. Afterwards set Location back to All locations (the run left it on Truck Hill 1)."
+ },
+ "C368231": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 3: on production the Location filter already had both locations ticked (\"Location: All locations\"), and the start state the test needs (only the first location ticked) was not set. Clicking \"Trucks Hill 2\" therefore UNTICKED it, leaving Truck Hill 1 only, instead of ticking the second location as well. That choice (Truck Hill 1) was kept after the reload with the same result and no error message, but the step as written was not done.",
+  "bold_steps": [
+   3
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1, 2, 4 and 5 were followed; step 3 did the opposite of what it says because the start state was not set.",
+   "Set-up (NOT SET): the Location filter should start with only the first location (Truck Hill 1) ticked; on production it started as \"Location: All locations\" with Truck Hill 1 and Trucks Hill 2 both ticked, and it was not set back.",
+   "Steps 1 and 2: Reports in the top menu was clicked, then \"Sales By Representative\" in the PERFORMANCE group.",
+   "Step 3 (NOT DONE AS WRITTEN): the Location filter was opened and \"Trucks Hill 2\" clicked; because it was already ticked this unticked it, so only Truck Hill 1 stayed ticked and the filter reads \"Location: Truck Hill 1\" (seen on the picture).",
+   "Step 4: the filter was closed. The report shows \"No record matches these filters\" (it also showed that with both locations ticked, so the choice did not change what the report shows) (seen on the picture).",
+   "Step 5: after the reload the filter still reads \"Location: Truck Hill 1\" with only Truck Hill 1 ticked, still showing \"No record matches these filters\"; no error message appeared (seen on the picture).",
+   "Manual check for step 3: on Reports > Sales By Representative, set Location to Truck Hill 1 only, then open Location and tick Trucks Hill 2 as well (both ticked), close it, note the result, reload, and check the filter still shows both locations with the same result."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368231-before-reload.png",
+   "evidence/prod-2026-10-22/C368231-after-reload.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. medium-fix3.mts C368231 (re-run 22:09). Same as C368226: nav by menus OK; menuBefore all three ticked, chipStart 'Location: All locations'; set-up not reset; clicking 'Trucks Hill 2' unticked it -> 'Location: Truck Hill 1'; after reload chip and menu unchanged (Truck Hill 1 only), url ?locationIds=<Truck Hill 1>, toasts []. The report is empty ('No record matches these filters', Date: This month) both before and after the pick (rowsChangedByPick false), so there is no positive control that the location choice changes the rows; on a hand check pick a date range with data. end.png byte-identical to after-reload.png: filter left on Truck Hill 1. no-filter.png (15:47) is an earlier attempt, ignored.",
+  "todo": "Do it by hand: Reports > Sales By Representative; first set Location to Truck Hill 1 only, then tick Trucks Hill 2 as well, close the filter, note what the report shows, reload and check the filter still shows both locations with the same result. Afterwards set Location back to All locations (the run left it on Truck Hill 1)."
+ }
+}
