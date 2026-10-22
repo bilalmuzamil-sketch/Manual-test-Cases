@@ -49,7 +49,7 @@ R.meta.homeLocation = await switchLoc(LOC1_NAME);
 const D = '@staging.shopview.local';
 const deps: any[] = (() => [])(); { const r = (await a.get('/api/departments')).body?.data; deps.push(...(Array.isArray(r) ? r : r?.collection ?? [])); }
 // EXACTLY "Service": the Schedule lists Service but not "Service/Parts"; a technician outside its departments has no row and their shifts read "Unassigned" (14 Oct)
-const service = deps.find((d) => (d.name ?? d.label) === 'Service') ?? deps.find((d) => /service/i.test(d.name ?? d.label ?? ''));
+const service = deps.find((d) => (d.name ?? d.label) === 'Service') ?? deps.find((d) => /service/i.test(d.name ?? d.label ?? '')) ?? deps[0];   // 22 Oct 2026: production has no Service department (first department, as in moved-stg4)
 const roleRows = await staffRows(a);
 const roles: Record<string, string> = {}; for (const s of roleRows) if (s.role_label && s.role_id) roles[s.role_label] = s.role_id;
 const techRole = roles['Technician'] ?? Object.entries(roles).find(([l]) => /tech/i.test(l) && !/office|time clock/i.test(l))?.[1];
