@@ -31,6 +31,7 @@ How the stores divide (each fact lives in ONE place; this map and `recall.py` fi
 | sign in to a QA branch | `node build/testing-tools/qa-branch-boot.mjs <branch> <route> admin`; playbook §A; WO Board harness `run498-2026-10-08/session.mts` (one sign-in reused) |
 | sign in to staging | `build/wo-board-tech-view/run498-2026-10-08/STAGING-READY.md` (THREE cookies: SV_SSO_SESSION, PHPSESSID, CF_CLEARANCE in `/tmp/shopview/app.env`); `build/BLOCKED-shopview-app-session.md`; L0064 |
 | sign in to production | playbook §K; `build/ENVIRONMENT-CREDENTIALS.md`; `build/testing-tools/prod-boot.mjs`, `prod-login-boot.mjs` |
+| run the WO Board suite (run 498) on production | L0505–L0507, L0510; `run498-2026-10-08/prod-env.sh`, `run-full-prod-1022.sh`, `redo-one-1022.sh`, `pause-at-step-1022.sh`; profile `meName` / `heavyName` |
 | reach TestRail / Jira / Confluence | `build/skills/14-ACCESS-RESILIENCE.md`; `build/ATLASSIAN-JIRA-ACCESS-METHOD.md`; `/tmp/testrail/creds.json` keys are `email`, `password`, `host`; `build/testing-tools/tr_client.py` |
 | sign a brand-new staging user in for real (a user who never chose anything) | `build/LEARNINGS-LOG.md` L0454 — yopmail inbox + gate cookie; `run498-2026-10-08/c96912-accept.mts` |
 | the browser cannot connect (ERR_PROXY_CONNECTION_FAILED) | `bash build/testing-tools/ensure_bridge.sh` before EVERY normal-browser script, the TestRail page scan included |
