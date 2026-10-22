@@ -1,3 +1,13 @@
+## CURRENT STATE — 22 Oct 2026 (morning)
+
+- PRD 845185030 at **v73** (21 Oct; diff `prd-v73-2026-10-22/PRD-DIFF-v71-to-v73.diff`): S1-R15c 50-value limit "as built" ("50 selected (max 50 across all filters)", unticked names greyed), "Deleted technician" listed last (SV-11594, fast follow), Board View density icon removed from S1-R9a. TICKET-SWEEP prd_version_handled still 64 (QA lead's choice of full pass/named set pending since v65).
+- Waiting on the QA lead (asked 22 Oct): (1) update C698883 (+ new case for the state at 50), C581915 and 9 design cases' S1-R9a quotes to v73; (3) move C96964, C590121, C97020 (SV-11545) and C96967, C368147 (SV-11546) to Fast-follow (Chris's plan, Slack 20 Oct).
+- Run again (tickets Done 21 Oct): C581915, C698883 (SV-11575), C698884 (SV-11580), C707076 (SV-11576), C707077 (SV-11577), C682422 (SV-11570).
+- Run 498: 285 tests. Fast-follow folder 87347 holds the SV-11522/11524 cases, C96954, C96955, C590114, C590117, C665914, C682436, C707078.
+- QA lead decisions 21 Oct: "Fields to display" cases left to fail, updated after SV-11580 ships (it is Done now); Vlad never reminded.
+- Open PO question: 35 on sheet 1gBGmNB4… row 42 (density both-views sentences; v72 fixed the icon list).
+- Daily sweep routine trig_01KGYhRrGdEXnCrqjfrhYPKL still active.
+
 # WO Board and Tech View — PROJECT-STATE
 
 **Created:** 2026-09-23 · **PO / spec owner:** Sasha Grosman · **Status:** ACTIVE — source-verified authoring complete, not yet build-verified.

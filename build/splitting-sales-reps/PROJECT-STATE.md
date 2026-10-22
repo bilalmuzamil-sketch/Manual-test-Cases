@@ -30,6 +30,12 @@ Intake: INTAKE-2026-10-19.md. Worker brief: WORKER-BRIEF.md.
 - Open with the QA lead: the 41 existing cases that will break (baseline/V1-BASELINE-AND-INVARIANTS.md section e); the design
   helper scanned 2.47 MB of canvas viewer code by script instead of line by line (Rule 119 needs his OK).
 
+## 22 Oct 2026 — Chris answered 39 and 40; PRD v11
+
+- PRD 919928833 **v11** (21 Oct; diff `prd-v11-2026-10-22/PRD-DIFF-v10-to-v11.diff`): new S5-R15b (Part Sales row: dash in Labor Delta, Labor Invoiced, Labor Margin; blank in CSV; added to Release day), S1-R6a context note (no Lead Technician message exists today; test no blank strip, every gap 16px).
+- Waiting on the QA lead (asked 22 Oct): release C690660 (DR-03), delete C690665 (DR-08), suite to v11 (C665968, C666031, C666032, C666017 change; the rest the version line).
+- QA lead 21 Oct: the 41 report-suite cases this feature breaks wait until the feature is live. 2.47 MB design viewer code: skip still to be confirmed.
+
 ## 20 Oct 2026 (afternoon) — suite brought to PRD v10 and Chris Ward's answers
 
 - QA lead, 20 Oct 2026: "2. Yes" (update all cases to v10) and "3. Yes" (cases for the 6 v10 rules with none).
