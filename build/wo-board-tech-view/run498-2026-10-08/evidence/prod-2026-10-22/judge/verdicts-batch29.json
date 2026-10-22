@@ -1,0 +1,210 @@
+{
+ "C96941": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 1: Work Orders was opened by its address instead of from the top menu, and only one picture was taken (at the far right end); the starting position has a reading but no picture. Every reading matched: Unassigned is the first column and stays at the left edge all the way to the right end.",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 to 7 were followed and matched; step 1 opened Work Orders by its address, and there is only one picture.",
+   "Set-up: customer ZZAUTOTEST F2 Sticky Unassigned at Truck Hill 1 with two work orders with no lead and one led by Esther Howard; about 78 technician columns, so the board is far wider than the window.",
+   "Step 1 (NOT DONE AS WRITTEN): Work Orders was opened by its address, not from the top menu.",
+   "Steps 2 to 4: the All tab was clicked, ZZAUTOTEST F2 Sticky Unassigned typed in Search and Board View clicked.",
+   "Step 5: the first column is Unassigned, sitting 8 pixels from the left edge (reading only, no picture of the start).",
+   "Steps 6 and 7: the board was moved right by 1,200 pixels, 3,000 pixels and then to its right end (about 22,400 pixels). Each time Unassigned was still the first column at the same spot at the left edge. The picture at the right end shows Unassigned with its two cards (S1-1411, S1-1410) at the left edge and the technician columns cut off behind it.",
+   "Step 8: scrolling back has no expected result of its own and was not done."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96941-scrolled.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. s3-batchA.mts C96941, re-run 23:09-23:10 UTC (redo3 #51). bv() = goto /workorders?tab=all, then All, Board View and search on screen. Scroll by setting board_view_scroller.scrollLeft to 1200, 3000 and 999999 (clamped at 22432 = right end). unassignedLeft 8 and firstColumn 'unassigned' at 0/1200/3000/22432. Only one picture: C96941-end.png is a byte-identical copy of C96941-scrolled.png (both 227,656 bytes, 23:09), so the two-picture bar is not met and the start has no picture. Step 8 (scroll back) not performed; it carries no Expected.",
+  "todo": "Click Work Orders in the top menu, then do steps 2-8 by hand: confirm Unassigned is the first column, drag the scroll bar to the far right and check Unassigned stays at the left edge, and take a picture at the start and at the right end. Every reading already matched, so it should pass."
+ },
+ "C96942": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 1: Work Orders was opened by its address instead of from the top menu, and only one picture was taken (at the last card). Every reading matched: Esther Howard's header and the other headers stayed at the top all the way to her last card.",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 to 6 were followed and matched; step 1 opened Work Orders by its address, and there is only one picture.",
+   "Set-up: customer ZZAUTOTEST F2 Sticky Column Header at Truck Hill 1 with 20 Approved work orders led by Esther Howard.",
+   "Step 1 (NOT DONE AS WRITTEN): Work Orders was opened by its address, not from the top menu.",
+   "Steps 2 to 4: the All tab was clicked, ZZAUTOTEST F2 Sticky Column Header typed in Search and Board View clicked.",
+   "Step 5: Esther Howard's column was scrolled down 600 pixels, 2,000 pixels and then to its last card (S1-1432).",
+   "Step 6: at every point her header read 'Esther Howard' with the count 20 and stayed at the same height at the top of her column, and the other four headers in view stayed at that same height. The picture at the last card shows the headers Unassigned, Dana Ortiz, Esther Howard 20, Floyd Miles and Jenny Wilson still at the top."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96942-scrolled.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. s3-batchA.mts C96942, re-run 23:10 UTC (redo3 #51). bv() = goto /workorders?tab=all, then All, Board View and search on screen; toColumn brings her column into view. Column body scrollTop set to 600, 2000, 999999 (clamped at 4488 = last card). headerTop 181 and text 'EH Esther Howard 20 20 work orders' at 0/600/2000/4488; otherHeaderTops [181,181,181,181] each time. Only one picture: C96942-end.png is a byte-identical copy of C96942-scrolled.png (271,457 bytes). The picture shows the page itself moved up ~45 px (toolbar half under the top bar), the separate C96953 matter, not judged here.",
+  "todo": "Click Work Orders in the top menu, then do steps 2-6 by hand: scroll down Esther Howard's column to her last card and check her header (name and 20) and the other headers stay at the top; take a picture at the start and at the last card. Every reading already matched, so it should pass."
+ },
+ "C96975": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 16, 17, 19 and 21-23: there was no log out and log back in (a fresh page load was read instead); the 'second browser' carried over the existing sign-in instead of signing in; and the switch to the second location failed, so nothing was read there. Steps 1-15 matched.",
+  "bold_steps": [
+   16,
+   17,
+   19,
+   21,
+   22,
+   23
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1 to 15, 18 (on a fresh page load) and 20 were followed and matched; steps 16-17 (log out, log in), 19 (sign in in the second browser) and 21-23 (second location) were not done as written.",
+   "Set-up: signed in as ZZ WOB Runner at Truck Hill 1; customer ZZAUTOTEST F2 Tech Own Columns with work order S1-1563 led by Esther Howard. List's Service Advisor and Progress were turned on, and Tech View's Service Advisor, Progress and Assigned Techs were turned on, before step 1.",
+   "Steps 1 to 4: Work Orders was opened by its address and the All tab and List clicked; List's Column Selection showed Asset, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total price and Created on.",
+   "Steps 5 to 9: in Tech View's Column Selection, Service Advisor and Assigned Techs were switched off on screen; Tech View then showed no Service Advisor and no Assigned Techs column.",
+   "Steps 10 and 11: List still shows Service Advisor and has no Assigned Techs column (picture).",
+   "Steps 12 to 15: Progress was switched off in List's Column Selection; Tech View still shows Progress (picture).",
+   "Steps 16 and 17 (NOT DONE): the user was not logged out and back in; the page was loaded fresh instead.",
+   "Step 18 (on the fresh page load): Tech View shows Progress and neither Service Advisor nor Assigned Techs; List shows Service Advisor and no Progress.",
+   "Step 19 (NOT DONE AS WRITTEN): the second browser was not signed in; it was opened carrying the first browser's sign-in.",
+   "Step 20: in that second browser, at Truck Hill 1, Tech View shows Progress and neither Service Advisor nor Assigned Techs, and List shows Service Advisor and no Progress (picture).",
+   "Steps 21 to 23 (NOT DONE): changing to Trucks Hill 2 failed (the location menu could not be opened), so nothing was read at the second location."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96975-s9-tech.png",
+   "evidence/prod-2026-10-22/C96975-s11-list.png",
+   "evidence/prod-2026-10-22/C96975-s15-tech.png",
+   "evidence/prod-2026-10-22/C96975-s20-second-tech.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. s5-batchA3.mts C96975, re-run 23:13-23:16 UTC (redo3 #52), runner ZZ WOB Runner (perms 45). go() = goto /workorders?tab=all + All + display switcher; column switches clicked on screen (toggle_tech_view_column_*, toggle_column_*). Readings: step11 serviceAdvisorShown true, assignedTechsShown false; step15 progressShown true; step18reload (page reload, steps16to18 'not done') tech heads without Service Advisor/Assigned Techs, with Progress; list with Service Advisor, without Progress; secondBrowser = new context with cookies + localStorage 'user','fe_permissions_wrapper' copied (no sign-in), same columns. loc2 block: enrolment 400 'already enrolled', then error 'locator.click: Timeout ... header getByText(/^[A-Z]{2}$/)' (the initials button is an avatar with no letters on production), so no second-location reading.",
+  "todo": "By hand on production: after step 15, use your initials > Logout, sign in again, open Work Orders > Tech View and List and read the columns (steps 16-18); sign in as the same user in a second browser and read both views (19-20); then initials > Change Location > Trucks Hill 2 and read both views (21-23). Steps 1-15 already matched."
+ },
+ "C96976": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1-9: this case was not run in the re-run. The re-run script has no part for it; only the shared second-location part ran, and that failed before reaching Trucks Hill 2. There is no reading and no picture.",
+  "bold_steps": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The test's steps were not followed: the re-run did not run this test at all.",
+   "Set-up: none made for this test (no customer ZZAUTOTEST F2 Board Fields Saved work order was read).",
+   "Steps 1 to 6: not done; no reading or picture of Column Selection in Board View or of the work order's card.",
+   "Steps 7 and 8: not done (no log out and log in, no second browser).",
+   "Step 9: not done; the shared change to Trucks Hill 2 failed because the location menu could not be opened."
+  ],
+  "pictures": [],
+  "reason_for_reviewer": "ROUTE-ONLY: no. s5-batchA3.mts (re-run 23:12-23:16 UTC, redo3 #52) contains only C96975 and the loc2 block; C96976 is only listed in DEFER, so the log line 'C96976 {secondLocation: ...}' carries just the loc2 result, which ended in 'locator.click: Timeout ... header getByText(/^[A-Z]{2}$/)'. No C96976 readings in s5-batchA3.redo3-52.json and no C96976 picture in evidence/prod-2026-10-22/. The C96976 block lives in s5-batchA.mts / s5-batchA2.mts, which were not re-run.",
+  "todo": "Run it by hand on production: Work Orders > Tech View (note where Column Selection sits); All tab > Board View > search ZZAUTOTEST F2 Board Fields Saved (create the customer, its asset with a VIN and an Approved work order led by Esther Howard first); Column Selection: Customer off, VIN/serial on; read the card; log out and back in, a second browser, then Trucks Hill 2, checking the choice each time. Write 'usage recording not checked by hand'."
+ },
+ "C96983": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1-11: this case was not run in the re-run. The re-run script has no part for it; there is no reading and no picture.",
+  "bold_steps": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The test's steps were not followed: the re-run did not run this test at all.",
+   "Set-up: the saved-choices load failure was not put in place on production.",
+   "Steps 1 to 5: not done (no normal save of Created date read).",
+   "Steps 6 to 8: not done (no reading of Board View's default fields or Tech View's starting columns during a load failure).",
+   "Steps 9 to 11: not done (no save after the failure)."
+  ],
+  "pictures": [],
+  "reason_for_reviewer": "ROUTE-ONLY: no. s5-batchA3.mts (re-run 23:12-23:16 UTC, redo3 #52) has no C96983 block; the C96983 block exists only in s5-batchA.mts / s5-batchA2.mts, which were not re-run. No C96983 readings in s5-batchA3.redo3-52.json, no C96983 line in logs-redo/s5-batchA3-231212.log and no C96983 picture. Not Blocked: nothing shows the set-up is impossible on production; it simply was not attempted. Note the steps still say 'Fields to display' (now 'Column Selection' on screen).",
+  "todo": "Re-run the C96983 block (s5-batchA2.mts) on production, or do it by hand with a developer: normal save of Created date and reload (steps 1-5); with the saved-choices load failing, read Board View's fields and Tech View's columns left to right (6-8); turn Created date on, remove the failure, reload and check it is still on (9-11)."
+ },
+ "C96972": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 2: the Create Invoice click in the second tab did not go through, so the work order was invoiced behind the screen instead of through Finance tab > Create Invoice in a second browser. Steps 1, 3, 4 and 5 matched the expected results.",
+  "bold_steps": [
+   2
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1, 3, 4 and 5 were followed and matched; step 2 (invoice it in browser 2 with Create Invoice) was not done on screen.",
+   "Set-up: customer ZZAUTOTEST F1 Invoiced Elsewhere 41441 at Truck Hill 1 with work order S1-1682 led by Esther Howard, its line completed and the work order Complete.",
+   "Step 1: Work Orders was opened by its address, then All, Board View and the search for the customer; the card read Complete.",
+   "Step 2 (NOT DONE ON SCREEN): a second tab of the same user opened S1-1682 and its Finance tab (picture: Create Invoice button shown, status still Complete), but clicking Create Invoice timed out; the work order was then invoiced behind the screen. Its status is now Invoiced. The first browser, not reloaded, still showed Complete.",
+   "Step 3: in the first browser, without reloading, S1-1682 was dragged from Esther Howard's column into Ralph Edwards' column.",
+   "Step 4: the drop was refused: the card is back in Esther Howard's column, and a red alert reads 'Failed to update lead technician, please try again.' with the explanation 'The lead technician can't be changed once a work order is Invoiced or Paid.' (picture). The alert was then closed.",
+   "Step 5: after reloading, S1-1682 is in Esther Howard's column and she is still the lead."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96972-tab2-invoiced.png",
+   "evidence/prod-2026-10-22/C96972-alert.png",
+   "evidence/prod-2026-10-22/C96972-end.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. s4-batchG.mts C96972, re-run 23:17-23:19 UTC (redo3 #53). Set-up behind the screen (the three 400 'Complete work order cannot change its status again' log lines are harmless extra set-up status calls). Browser 2 = a new tab of the same session at /workorders/<id>/lines, Finance tab clicked, then button filter /^\\s*Create Invoice\\s*$/ click -> 'TimeoutError: locator.click: Timeout 30000ms exceeded'; paymentWindow ''; invoiced 'screen: complete'; fallback POST invoices/create 201; statusNow invoiced; cardStatusStill 'Complete'. Picture C96972-tab2-invoiced.png shows the Finance tab with the Create Invoice button visible and status Complete (so the button was there; the click locator missed it). Drag on screen Esther -> Ralph; message ['Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid.']; column 'Esther Howard'; afterReload S1-1682 'invoiced lead=Esther Howard', column 'Esther Howard'. Browser 2 is the same user, not a second user.",
+  "todo": "By hand on production: with the board open in browser 1 showing the Complete card, in a second browser (or as a second user) open the work order > Finance tab > Create Invoice (leave the New Customer Payment window open; closing it with X takes the invoice back off), then do steps 3-5. Steps 3-5 already matched once it was invoiced, so it should pass."
+ },
+ "C96989": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1, 4, 5, 6 and 10: Board View was never read before or after choosing Comfortable (no work order of the test's customer, no reading or picture of the card or the toolbar), the user was not logged out and back in, and the second browser carried the existing sign-in instead of signing in. Comfortable did stay in use in a new window and at Trucks Hill 2.",
+  "bold_steps": [
+   1,
+   4,
+   5,
+   6,
+   10
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2, 3, 8, 9 and 11 were followed and matched; steps 1 and 4 have no reading or picture, and steps 5, 6 and 10 were not done as written.",
+   "Set-up: Tech View started at a density other than Comfortable; no customer ZZAUTOTEST F1 Density Shared work order was made or searched for on production.",
+   "Step 1 (NOT READ): Board View's toolbar and the work order's card were not read or pictured.",
+   "Step 2: Tech View shows with a density button in its toolbar.",
+   "Step 3: Comfortable was chosen and is ticked in the density menu (picture); it was saved.",
+   "Step 4 (NOT READ): Board View was clicked, but there is no reading or picture of its toolbar or of the card's spacing.",
+   "Steps 5 and 6 (NOT DONE): there was no log out and sign in; a new window carrying the existing sign-in was opened instead.",
+   "Step 7 (in that new window): Tech View opens with Comfortable ticked (picture).",
+   "Step 8: the location was changed on screen; the top bar shows Trucks Hill 2.",
+   "Step 9: at Trucks Hill 2, Tech View opens with Comfortable ticked (picture).",
+   "Steps 10 and 11: the new window above stands in for the second browser; Tech View there is at Comfortable, but the sign-in was not done."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96989-tech-density-menu-open.png",
+   "evidence/prod-2026-10-22/C96989-new-window-tech-density-menu-open.png",
+   "evidence/prod-2026-10-22/C96989-lethbridge-tech-density-menu-open.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. s6b-batch.mts C96989, re-run 23:21-23:23 UTC (redo3 #54). go('Tech View') = goto /workorders?tab=all + All + display switcher, no search (no Customer-A / WO-1 seeded). setDensity on screen; techAfterSet ['Comfortable'], saved 'comfortable'. o.board absent from the output and no C96989-board-* picture: density() on Board View found no density button, and nothing else was read there, so steps 1 and 4 (no density button, card spacing unchanged) have no evidence even though production Board View has no density control (seen in other cases). second() = new context with cookies + user record (no sign-in): newWindowTech ['Comfortable']; signOutNote says no real sign-out. Location switched via switchLocUI on screen: at 'Trucks Hill 2', loc2Tech ['Comfortable']; back to Truck Hill 1 (200). Known problem SV-11580 outcome cannot be chosen until steps 1 and 4 are read.",
+  "todo": "By hand on production: search a test customer with one Approved work order and no lead in Board View; note there is no density button and the card's spacing (step 1); Tech View > Comfortable; back to Board View and check there is still no density button and the card spacing is unchanged (step 4); log out and sign in again (5-7); sign in in a second browser (10-11). If Board View has no density button and its card is unchanged, it is outcome (3): mark Passed and tell the QA lead SV-11580 has shipped."
+ },
+ "C96992": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 2 and 3: Board View was not opened before Tech View, so the card's spacing at step 3 was never measured and step 7's 'same spacing as at step 3' cannot be compared. Every other step matched, and at step 7 Board View has no density button.",
+  "bold_steps": [
+   2,
+   3
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1 and 4 to 9 were followed and matched; steps 2 and 3 were not done before the density change.",
+   "Set-up: customer ZZAUTOTEST F6 Density Rows at Truck Hill 1 with three Approved work orders (S1-1570, S1-1571, S1-1572) led by Esther Howard; Tech View set to Regular; the Customers page was opened in the same tab (rows 48 pixels) before starting.",
+   "Step 1: the row in List is 48 pixels tall (picture).",
+   "Steps 2 and 3 (NOT DONE): Board View was not opened before going to Tech View, so neither the card's column nor its spacing nor the toolbar was read at this point.",
+   "Step 4: Tech View shows with a density button in its toolbar; rows are 48 pixels at Regular.",
+   "Step 5: Comfortable makes the rows roomier: 64 pixels (picture).",
+   "Step 6: Compact makes the rows tighter: 36 pixels, shorter than Comfortable (64) and Regular (48) (picture).",
+   "Step 7: Board View shows the three cards in Esther Howard's column, each 163 pixels tall with 8 pixels between them, and the toolbar has no density button (picture); there is no step-3 measurement to compare with.",
+   "Step 8: the row in List is still 48 pixels.",
+   "Step 9: the Customers page was opened again: its rows are still 48 pixels."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96992-list-before.png",
+   "evidence/prod-2026-10-22/C96992-tech-comfortable.png",
+   "evidence/prod-2026-10-22/C96992-tech-compact.png",
+   "evidence/prod-2026-10-22/C96992-board-compact.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. s6b-batch.mts C96992, re-run 23:20-23:21 UTC (redo3 #54). Order in the script: Tech View Regular -> Customers (goto, 48) -> List (go, 48) -> Tech View 48/64/36 (setDensity on screen) -> Board View (cardsIn Esther: 3 cards, heights [163,163,163], gaps [8,8], densityButtons 0) -> List 48 -> Customers (goto again, 48). Board View is read only once, after Compact, so step 3's spacing and toolbar were never read and step 7's comparison has no baseline (163 px equals staging's Regular card height, which suggests unchanged, but that is inference). The Customers 'tab' is the same tab opened by its address, not a second tab reloaded. Known problem SV-11580: Board View has no density button on production, so outcome (3) looks likely once step 3 is read.",
+  "todo": "By hand on production: List row height (step 1); Board View: the work order's card is in Esther Howard's column, there is no density button, note the card's height (2-3); then Tech View Comfortable, Compact (4-6); back to Board View and check the card is the same height as at step 3 (7); List and the Customers tab reloaded (8-9). If all match, it is outcome (3): mark Passed and tell the QA lead SV-11580 has shipped."
+ }
+}
