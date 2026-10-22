@@ -84,3 +84,10 @@ Extra cells:
   before-baseline must be re-captured with THIS login and location (same user, same location) the moment the badges appear, or
   before taking the "after", using prep/ only as the earlier reference.
 - Waiting on Minja's deploy (ETA ~08:00 UTC); 08:05 routine + 08:30 one-shot will test as soon as the build moves.
+
+## 22 Oct 08:20 UTC — FAILED comment 79263 posted (QA lead: "leave the annotated screenshot in the latest comment … change its status to rejected from testing")
+- Staging v26.40.20-7405769 re-read before posting (unchanged); live at 1440 px: 0 "New" elements, Dashboard 760.1+105.6, switcher
+  1266+136 (this login/location). Exhibit ev/SV-11636_no-new-badges-on-staging.png (annotated, stacked with the ticket's own picture).
+  Pre-post gate run (build, ticket state, PRD v73, text scan); read back: 1 attachment 1440x841, 5 numbered steps, 3 table rows.
+- Status change to REJECTED FROM TESTING NOT done: from TESTING STAGE Jira offers only Board Backlog, Blocked, OBSOLETE, Done,
+  Ready for production (no Rejected-from-testing transition for this account). Asked the QA lead.

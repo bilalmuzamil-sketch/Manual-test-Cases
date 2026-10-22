@@ -1,0 +1,27 @@
+{panel:bgColor=#ffebe6}
+*OVERALL QA STATUS: FAILED*
+{panel}
+The "New" pills are not on staging. Neither the Dashboard link nor the List / Tech View / Board View buttons shows one.
+
+!SV-11636_no-new-badges-on-staging.png|width=1440,height=841!
+_Picture 1: top, staging as it is now (1 = Dashboard link, 2 = the three view buttons, no pill on either). Bottom, the picture attached to this ticket, with the pills where they should be._
+
+h3. Steps to reproduce
+
+# Open staging: [https://app.staging.shopview.com/workorders] and sign in as Admin.
+# At the top right, make sure the location reads {{Staging Heavy Duty - 9919}}.
+# Make the browser window at least 1440 pixels wide.
+# In the top menu, look at {{Dashboard}} (to the right of {{Reports}}). There is no {{New}} pill on its top-left corner.
+# Under the top menu, on the right, look at the three view buttons (list, person and board icons). There is no {{New}} pill above them.
+
+h3. Current and expected behaviour
+
+||Where||Current||Expected (from the ticket)||
+|{{Dashboard}} in the top menu|No pill|"Dashboard shows "New" on its top-left corner; nav items are in the same place as on production."|
+|List / Tech View / Board View buttons|No pill|"The view switcher shows one "New" pill centered above it; all three buttons are fully visible and clickable."|
+
+I counted every element on the page that reads "New": 0.
+
+*Environment:* staging, build v26.40.20-7405769 (the same build as yesterday, last updated 21 October 19:49 UTC), Admin at Staging Heavy Duty - 9919, 1440 px wide, checked on 22 October 2026 at 08:14 UTC.
+
+The rest of the checks in this ticket (phone menu, tablet width, the expiry on 31 October, users without Reports access) can't be run until the pills are on staging.
