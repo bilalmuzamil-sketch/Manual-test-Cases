@@ -1,0 +1,204 @@
+{
+ "C581915": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 2, 3, 5, 9 and 10: the three new technicians and the deactivated technician the set-up asks for were never made on production (the staging people Ana Carter, Ana Brooks, Ben Adams and Aimee Francis do not exist there), so the order of the list, the Inactive label, ticking two technicians and the inactive person in Board View were never checked; at step 10 a name was typed into Search technician before Escape, which is not a step.",
+  "bold_steps": [
+   2,
+   3,
+   5,
+   9,
+   10
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1, 4, 6, 7, 8 and 11 were followed and matched; steps 2, 3, 5, 9 and 10 could not be judged because the set-up was not made on production.",
+   "Set-up: signed in as Service Advisor No Reports (Admin) at Truck Hill 1, window 1440 px wide, Work Orders > All tab, Tech View, no filters. NOT made: three new active technicians added in order (Technician A, B, C) and a deactivated technician who still leads a work order here. The list on production has 76 active people and no one marked Inactive.",
+   "Step 1: the filter bar reads Status, Assigned to me, Technician, Asset on Site. Technician sits right after Assigned to me; there is no Department, Customer or Service Advisor filter (seen on the picture).",
+   "Step 2 (NOT JUDGED): the list opens with Unassigned first, then the active people by first name (Aaron Baker, Aaron Zed, Admin ShopView, ...). The case's Technician A, B and C are not on production, so their order was not checked, and no deactivated technician is in the list, so 'deactivated come after every active one, with Inactive' was not checked.",
+   "Step 3 (NOT JUDGED): the staging name Aimee Francis was typed in Search technician; nobody was found, because she does not exist on production. No production person was used instead.",
+   "Step 4: clearing the box shows the whole list again, starting with Unassigned.",
+   "Step 5 (NOT JUDGED): the staging names could not be found, so nothing was ticked (the picture shows no box ticked) and Tech View still showed every group.",
+   "Step 6: Clear selection leaves nothing ticked (nothing had been ticked).",
+   "Step 7: Escape closes the list; Tech View shows every technician group again (78 groups walked to the bottom).",
+   "Step 8: Board View shows the same 78 columns as Tech View had groups; none missing either way.",
+   "Step 9 (PART JUDGED): in Board View the Technician filter sits right after Assigned to me with the same options in the same order as in step 2; the inactive technician the step names was not there to check.",
+   "Step 10 (NOT DONE AS WRITTEN): before pressing Escape a name was typed into Search technician and cleared again (not a step); after Escape the list was read as still open. No picture of this moment.",
+   "Step 11: List shows Status, Assigned to me and Asset on Site, and no Technician filter (seen on the picture).",
+   "Known problem SV-11575 (outcomes 1 to 3) could not be applied: there was no deactivated technician on production to look for at steps 2, 3 and 9."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C581915-1021-s1-filter-bar.png",
+   "evidence/prod-2026-10-22/C581915-1021-s2-list-top.png",
+   "evidence/prod-2026-10-22/C581915-1021-s5-two-ticked.png",
+   "evidence/prod-2026-10-22/C581915-1021-s11-list.png"
+  ],
+  "reason_for_reviewer": "c581915-1021.mts (run 20:40-20:43). Script hard-codes the staging people A='ZZAUTOTEST NT1 Ana Carter', B='… Ana Brooks', C='… Ben Adams', D='Aimee Francis'; none exists on production: s2 posA/posB/posC/posD = -1, inactive 0 of 77 options; s3 = []; s5 ticked [] and groups ['Unassigned'] (picture s5-two-ticked shows no box ticked); s9.D = []. Step 10: script fills Search technician with D and clears it before Escape (c581915-esc-1021.mts was written on staging for exactly this) and reads listOpen 1 - not judged, no picture. Passing readings: s1 chip order; s4 visible 78 first Unassigned; s7 listOpen 0 and 78 groups; s8 78 columns, 0 differences; s9 same options/order; s11 no Technician chip. Side note from tech-filter-check-1020 (20:44): Tech View has 79 groups / Board View 79 columns including one named 'Deleted technician' that is NOT in the Technician filter's 77 options - this may be the shape of SV-11575 (someone with a column missing from the list) but it is not a step of this case and that person is deleted, not deactivated; worth checking by hand. Expected kept as written; no ticket raised.",
+  "todo": "On production at Truck Hill 1: add three new technicians in the order A, B, C (names chosen so B sorts before A by first name, then C), give one work order to a fourth technician and deactivate that person; then by hand do steps 2, 3, 5 and 9 with those people, and at step 10 press Escape straight after opening the list (without typing anything) and check it closes."
+ },
+ "C581916": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1 to 4: this test was not run on production. Its five work orders (one customer, WO1 to WO5 with leads A, B, C, none and C with A on a line) and the pinned column of C were never made there, and no step was carried out.",
+  "bold_steps": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The test's steps were not carried out.",
+   "Set-up: NOT made on production: no customer with the five Approved work orders WO1 to WO5 and no pinned column for technician C. The re-run did not include this test, so nothing was read for it.",
+   "Step 1 (NOT DONE): Tech View was not searched for the test's customer.",
+   "Step 2 (NOT DONE): Unassigned and technician A were not chosen in the Technician filter.",
+   "Step 3 (NOT DONE): Board View was not checked with that choice.",
+   "Step 4 (NOT DONE): clearing the Technician choice was not checked.",
+   "What was seen in the same re-run: the Technician filter is on production in Tech View, right after Assigned to me (picture, taken for another test)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C581915-1021-s1-filter-bar.png"
+  ],
+  "reason_for_reviewer": "Pack readings = null; tech-filter-check-1020.mts (run 20:44-20:49) contains only C581915 option/group/column reading, C590127 step 5 and a C581917 step-5 reading - no C581916 block, and no C581916 picture exists in evidence/prod-2026-10-22. The only picture given is from C581915's re-run and shows that the Technician filter exists on production (the execution dependency), nothing more. Not Blocked: the set-up is ordinary data we can make on production.",
+  "todo": "On production at Truck Hill 1 make one new customer with five Approved work orders (WO1 led by A, WO2 by B, WO3 by C, WO4 with no lead, WO5 led by C with A only on a line), pin C's Board View column, then run steps 1 to 4 by hand."
+ },
+ "C581917": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1 to 5: the test's customers and work orders were never made on production; the re-run searched for the staging customer \"ZZAUTOTEST NT3 Technician Filter Mix 82068\" and the staging technician Esther Howard's work orders, found none, and steps 1 to 4 were not read at all.",
+  "bold_steps": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The test's steps were not followed: only an attempt at step 5 was made, with staging records.",
+   "Set-up: NOT made on production: no customer A with WO1 (lead A) and WO2 (lead B), no customer B with WO3 (lead A). The re-run used the staging customer \"ZZAUTOTEST NT3 Technician Filter Mix 82068\", which has no work orders on production.",
+   "Steps 1 to 4 (NOT DONE): nothing was read for the customer search with technician A, Assigned to me on and off, or Status = Paid.",
+   "Step 5 (NOT JUDGED): after Clear all filters the search still held the staging customer's name, but no group held any of its work orders; WO-1 and WO-2 were 'not found' because they do not exist on production. No picture was taken.",
+   "What was seen in the same re-run: the Technician filter is on production in Tech View, right after Assigned to me (picture, taken for another test)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C581915-1021-s1-filter-bar.png"
+  ],
+  "reason_for_reviewer": "tech-filter-check-1020.mts C581917 block (run 20:44-20:49): searches 'ZZAUTOTEST NT3 Technician Filter Mix 82068', ticks Esther Howard, Status Paid, Clear all filters, then looks for staging work orders S2-37639/S2-37640 - readings beforeClear 0, groupsWithRows [], WO-1/WO-2 'not found'. No screenshot is taken when not found, so no C581917 picture exists; the one given is C581915's filter-bar picture (dependency only). The block never did steps 1-4. Not Blocked: the set-up is ordinary data we can make on production.",
+  "todo": "On production at Truck Hill 1 make customer A with WO1 led by A and WO2 led by B, and customer B with WO3 led by A (none assigned to the signed-in person, customer A with no Paid work orders); then run steps 1 to 5 by hand."
+ },
+ "C581918": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1 to 4: this test was not run on production. Its customer with three Approved work orders (WO1 led by A with Asset on Site = No, WO2 led by B, WO3 with no lead) was never made there, and no step was carried out.",
+  "bold_steps": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The test's steps were not carried out.",
+   "Set-up: NOT made on production: no customer with exactly three Approved work orders (WO1 led by A, Asset on Site = No; WO2 led by B; WO3 with no lead). The re-run did not include this test, so nothing was read for it.",
+   "Step 1 (NOT DONE): Tech View with the customer and technician A was not checked.",
+   "Step 2 (NOT DONE): List with that choice was not checked for this customer (List has no Technician filter on production, seen in another test's picture, but the three work orders were not looked at).",
+   "Step 3 (NOT DONE): coming back to Tech View was not checked.",
+   "Step 4 (NOT DONE): Asset on Site = No and a reload were not checked, so it is not recorded which behaviour happens."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C581915-1021-s1-filter-bar.png",
+   "evidence/prod-2026-10-22/C581915-1021-s11-list.png"
+  ],
+  "reason_for_reviewer": "Pack readings = null; tech-filter-check-1020.mts has no C581918 block and no C581918 picture exists in evidence/prod-2026-10-22. The two pictures given are from C581915's re-run (Technician filter in Tech View; List without it) and only show the filter exists - they do not judge any step of this case. Not Blocked: the set-up is ordinary data we can make on production.",
+  "todo": "On production at Truck Hill 1 make one new customer with three Approved work orders (WO1 led by A with Asset on Site = No, WO2 led by B, WO3 with no lead), then run steps 1 to 4 by hand and write down whether Asset on Site and Technician both survive the reload."
+ },
+ "C368154": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: a brand-new user \"ZZAUTOTEST Fresh …\" (initials ZZ) was added at Truck Hill 1 with the Admin role just before step 1 and had never opened Work Orders. Other users already had non-default choices (the main test user had Board View chosen and a pinned column).",
+   "Step 1: signed in as the new user and opened Work Orders.",
+   "Step 2: List is the active display option (seen on the picture).",
+   "Step 3: Board View clicked in the display switcher.",
+   "Step 4: Tech View clicked; the density control (just right of Asset on Site) opened with Compact, Regular and Comfortable, and Regular has the tick (seen on the picture). The menu was closed and Board View clicked again.",
+   "Step 5: Fields to display has Lead technician, Customer, Asset, Progress and Total price on, and VIN/serial, Service advisor, Clocked in, Line count, Line technicians, Estimated hours and On-site off. Work order number, unit number and status always show on the cards (seen on the picture). These are the standard Board View defaults; other users' choices did not change them."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368154-fresh-start.png",
+   "evidence/prod-2026-10-22/C368154-density.png",
+   "evidence/prod-2026-10-22/C368154-fields.png"
+  ],
+  "reason_for_reviewer": "s11-batch.mts C368154 (run 20:49-20:50; the 21:03 run ended after its start-state lines and wrote nothing new). mkUser 'ZZAUTOTEST Fresh <stamp>' with ADMIN_ROLE, asUser = signed in as that person (accepted). savedBefore {} (no saved choices); step2active 'List'. Step 4 follows today's rewritten wording: Board View, then Tech View, button_density opened, option_density_regular aria-checked true / active, compact and comfortable false; picture shows the tick on Regular in Tech View. Step 5 Board View field toggles: technician, company_name, vehicle, progress, total_price on; vin, service_advisor, clocked_in_technicians, lines_count, line_technicians, time_estimate, vehicle_here, start_date off - matches S5-R13 (number/unit/status are fixed card parts, visible on the fields picture). Work Orders opened by address for a new user's first visit; the step says 'open Work Orders', not click. 0 differences from staging."
+ },
+ "C682439": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: signed in as Service Advisor No Reports (Admin) at Truck Hill 1, window 1440 px wide, the app switched to the dark theme from the profile menu, Work Orders > All tab, Board View. The Unassigned column (338 work orders) and Ayesha Khan's column (67) hold more cards than fit, so they scroll. Known problem SV-11430 (Done): outcome (3) applies.",
+   "Step 1: at the right edge of Unassigned, Ayesha Khan, Aaron Baker and Aaron Zed, each scrollbar is thin (10 px) and dark grey on the dark board; no bright white track shows on any column (seen on the picture).",
+   "Step 2: the Unassigned column was scrolled down with the mouse wheel (it now starts at S1-825); its scrollbar stays thin and dark (seen on the picture).",
+   "Step 3: after reloading the page the scrollbars are still thin and dark grey, with no white track (seen on the picture).",
+   "The app was switched back to the light theme afterwards."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C682439-s1-dark-board.png",
+   "evidence/prod-2026-10-22/C682439-s2-dark-scrolled.png",
+   "evidence/prod-2026-10-22/C682439-s3-dark-reloaded.png"
+  ],
+  "reason_for_reviewer": "c682439-440.mts, C682439 block only (run 20:53-20:57). Dark theme chosen through profile_menu_button (body rgb(20,24,36)). s1/s2/s3: four columns, scrollbarPx 10, scrollable true; strip luminance mean 41-59 / max 84 against board mean 32 / max 64 - no white (a white track would read ~240+). Step 2 used a real mouse wheel over Unassigned (scrollTop 0 -> 1600); s3 after reload scrollTop 0. Pictures agree: thin dark-grey thumbs, no white tracks. Outcome (3) of the SV-11430 note: Passed. Only C682439's steps judged (C682440 readings in the same file ignored). 0 differences from staging."
+ },
+ "C96970": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 13: the work order page of the second work order was opened by its address in a new tab, not by clicking the work order as the step says (the page did show Lead technician Aaa ZZAUTOTEST Mia Holder). Step 9 was read only from the picture taken during step 10, not from its own reading.",
+  "bold_steps": [
+   13
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1 to 12 were followed and matched; step 13 was not done by clicking.",
+   "Set-up: customer \"ZZAUTOTEST C96970 Refused Drops\" at Truck Hill 1 with three Approved work orders: S1-1289 led by Aaa ZZAUTOTEST Ina Inactive ({Technician-A}), S1-1290 led by Aaa ZZAUTOTEST Mia Holder ({Technician-B}) and S1-1291 led by Aaa ZZAUTOTEST Mona Moved ({Technician-C}). After the leads were given, Ina Inactive was deactivated. Mona Moved was pinned, then her Location was changed to Trucks Hill 2 and she was taken off Truck Hill 1; she is still active. No filters, Assigned to me off.",
+   "Steps 1 and 2: Work Orders opened, All tab, Board View, and the customer typed in Search.",
+   "Step 3: Ina Inactive's column is shown with S1-1289 and marked Inactive. Mona Moved is not among the pinned columns; her column appears further along, after Mia Holder's, holding S1-1291, with no Inactive marker (seen on the picture).",
+   "Steps 4 and 5: S1-1290 was dragged from Mia Holder's column onto Ina Inactive's column: the drop was not accepted and S1-1290 is still in Mia Holder's column.",
+   "Steps 6 and 7: S1-1290 was dragged onto Mona Moved's column: the message \"This technician can't be assigned work orders.\" showed over her column and S1-1290 stays in Mia Holder's column (seen on the picture).",
+   "Step 8: Tech View clicked in the display switcher.",
+   "Step 9: Ina Inactive's group is still shown with S1-1289 and marked Inactive (seen on the picture taken while doing step 10; the reading of the group headers at step 9 itself came back empty because those groups are far down the page).",
+   "Step 10: S1-1290's row was dragged from Mia Holder's group onto Ina Inactive's group: \"This technician can't be assigned work orders.\" showed and the drop was not accepted (seen on the picture).",
+   "Step 11: S1-1290's row was dragged onto Mona Moved's group (the group holding S1-1291): the same message showed and the drop was not accepted (seen on the picture).",
+   "Step 12: S1-1290 is still in Mia Holder's group.",
+   "Step 13 (NOT DONE AS WRITTEN): the work order page of S1-1290 was opened by its address in a new tab instead of clicking S1-1290; it shows Lead technician Aaa ZZAUTOTEST Mia Holder (seen on the picture).",
+   "Manual check for step 13: in Tech View click S1-1290 to open it and check its Lead Technician is still Aaa ZZAUTOTEST Mia Holder."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96970-stg4-step3-techC.png",
+   "evidence/prod-2026-10-22/C96970-stg4-step7-holding.png",
+   "evidence/prod-2026-10-22/C96970-stg4-step10-holding.png",
+   "evidence/prod-2026-10-22/wo-page-lead-6fcedca6.png"
+  ],
+  "reason_for_reviewer": "moved-stg4.mts C96970 (run 21:01-21:03). Set-up behind the screen before step 1 (accepted): A deactivated (aActive false), C pinned then Location field set to Trucks Hill 2 on the staff screen and enrolment at Truck Hill 1 removed (eligibleAfterUnenrol false), C still active. step3Headers: A 'Inactive', cards [S1-1289]; C no Inactive word, cards [S1-1291], 'no pin control' (no pin icon on her header - not part of this case's Expected), after Mia Holder on screen. Board drags with real mouse, both ends on screen: whileHolding 'This technician can't be assigned work orders.' (board-drag-denied) on both; step5/step7 = Mia Holder; leads unchanged. Display switches clicked on screen (setDisplay log: before Board View -> Tech View). Step 9 readings: groups/headers 'not drawn' (Ina/Mona groups are below ~70 empty groups); judged from step10-holding picture (Ina group with Inactive pill and S1-1289). Tech View drags: onScreen reports 'off screen @-159' because the table was scrolled sideways (row/group left edge off screen), but the holding pictures show both rows and the denied message; rowGroup stays Mia Holder; leads unchanged. Step 13: woPageLead() opens /workorders/<id>/lines in a new page by address -> lead_technician_readonly = Mia Holder (picture wo-page-lead-6fcedca6.png). Only step 13's route breaks the strict rule. 0 differences from staging.",
+  "todo": "Do step 13 by hand: in Tech View click S1-1290 to open it and check its Lead Technician is still Aaa ZZAUTOTEST Mia Holder; everything else in this test already matched."
+ },
+ "C368131": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1 and 3: the Staff screen was opened by its address instead of through your initials > Settings > Staff, and at step 3 Theresa Pinned's place at Truck Hill 1 was removed behind the screen instead of with the Department(s) button and the bin icon. Every later step matched.",
+  "bold_steps": [
+   1,
+   3
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 and 4 to 15 were followed and matched; steps 1 and 3 were not done the way the test says.",
+   "Set-up: customer \"ZZAUTOTEST C368131 Pinned Gone\" at Truck Hill 1 with two Approved work orders and no shifts: S1-1287 led by Aaa ZZAUTOTEST Tara Lead ({Technician-A}) and S1-1288 led by Aaa ZZAUTOTEST Theresa Pinned ({Technician-C}). Aaa ZZAUTOTEST Jenny Pinned ({Technician-B}) leads nothing. Both I and the view-only user (ZO) have Jenny Pinned and Theresa Pinned pinned; checked on screen before step 1. No filters.",
+   "Step 1 (NOT DONE AS WRITTEN): the Staff screen was opened by its address, not through your initials > Settings > Staff.",
+   "Step 2: on the Staff screen Jenny Pinned was edited and \"Deactivate Account\" used; she is now inactive.",
+   "Step 3 (PART NOT DONE AS WRITTEN): Theresa Pinned's Location was changed to Trucks Hill 2 on her edit screen and saved; her place at Truck Hill 1 was then removed behind the screen, not with the Department(s) button and the bin icon. After that she is no longer offered as a technician at Truck Hill 1.",
+   "Steps 4 to 6: Work Orders, All tab, customer typed in Search, Board View.",
+   "Step 7: Jenny Pinned's column is still pinned right after Unassigned, marked Inactive, empty and reading \"No work orders\" (not \"Drag a work order here to assign it\"). Theresa Pinned is not among the pinned columns (seen on the picture).",
+   "Step 8: Theresa Pinned's column appears further along as a normal column holding S1-1288, with no pin icon and no Inactive marker (seen on the picture).",
+   "Step 9: S1-1287 was dragged onto Jenny Pinned's column: \"This technician can't be assigned work orders.\" showed and the card could not be dropped; S1-1287 stays in Tara Lead's column.",
+   "Steps 10 and 11: S1-1287 was dragged onto Theresa Pinned's column: the drop was refused with \"This technician can't be assigned work orders.\" and S1-1287 stays in Tara Lead's column (seen on the picture).",
+   "Steps 12 and 13: S1-1288 was dragged from Theresa Pinned's column onto Unassigned: it moved to Unassigned (message \"Lead technician removed\") and Theresa Pinned no longer has a column at all.",
+   "Steps 14 and 15: in the view-only user's own window, Work Orders > All > Board View: Jenny Pinned's pinned column reads \"No work orders\" and is marked Inactive, and there is no Theresa Pinned column (seen on the picture).",
+   "Manual check for steps 1 and 3: go to your initials > Settings > Staff, and for Theresa Pinned use the Department(s) button on her row, click the bin icon next to Truck Hill 1 and close the window; then repeat steps 7 and 8 and check they still read as above."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368131-stg4-step7-pinned.png",
+   "evidence/prod-2026-10-22/C368131-stg4-step8-techC.png",
+   "evidence/prod-2026-10-22/C368131-stg4-step11-holding.png",
+   "evidence/prod-2026-10-22/C368131-stg4-step15-viewonly.png"
+  ],
+  "reason_for_reviewer": "moved-stg4.mts C368131 (run 20:58-21:01). pinsSet screen: Jenny/Theresa pinned true before step 1. Step 1: uiDeactivate/setStaffLocation goto APP+'/administration/staff' (address). Step 2 on screen: rowsFound 1, button 'Deactivate Account', done true, activeNow false. Step 3: moveOff() - Location field on the staff edit screen (Trucks Hill 2, saved) on screen, then POST /api/staff/enrollment/remove for Truck Hill 1 (behind the screen; the step says Department(s) button > bin icon); eligibleAfterUnenrol false. Step 7: Jenny header 'Inactive', pinned true, empty 'No work orders'; Theresa not in the first columns. Step 8: Theresa column cards [S1-1288], 'no pin control', no Inactive. Step 9: both ends reached (target revealed while holding), denied text shown, lead unchanged (Tara Lead). Step 10/11: denied 'This technician can't be assigned work orders.', lead unchanged. Step 12/13: toast 'Lead technician removed', S1-1288 lead none, unassignedHoldsWo2 true, techCColumn 'no column' over 81 columns. Step 15 (viewAs view-only user, accepted): Jenny pinned true, 'No work orders', Theresa no column. The outcome would match the Expected; only the route of steps 1 and 3 breaks the strict rule. 0 differences from staging.",
+  "todo": "Do steps 1 and 3 by hand the way the test says (initials > Settings > Staff; for Theresa Pinned the Department(s) button, bin icon next to Truck Hill 1, close), then look again at steps 7 and 8; the rest already matched."
+ }
+}
