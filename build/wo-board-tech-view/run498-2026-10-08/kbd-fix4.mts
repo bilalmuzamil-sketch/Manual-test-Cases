@@ -252,11 +252,11 @@ async function kTabIn(pg: Page, area: 'board' | 'table', N: (r: string) => strin
 const same = (f: any, g: any) => f.raw === g.raw && f.card === g.card && f.row === g.row && f.group === g.group;
 /** "Use the arrow keys to move the focus ring to ...": from where focus is NOW, arrows only; each key recorded. Board: down/up the column,
  *  then right (and back left) column by column. Table: down, then up. Stops when focus would leave the view. */
-async function kArrowsTo(pg: Page, ok: (f: any) => boolean, mode: 'board' | 'table', N: (r: string) => string = clean) {
+async function kArrowsTo(pg: Page, ok: (f: any) => boolean, mode: 'board' | 'table', N: (r: string) => string = clean, tableOrder: string[] = ['ArrowDown', 'ArrowUp']) {
   const keys: string[] = []; let f = await kz(pg, N); if (ok(f)) return { reached: true, keys, focus: f };
   const press = async (k: string) => { const g = await kp(pg, k, N); keys.push(`${k} -> ${kshort(g)}`); return g; };
   const scan = async (dirs: string[], n = 30) => { for (const k of dirs) for (let i = 0; i < n; i++) { const g = await press(k); if (ok(g)) { f = g; return true; } if (same(g, f) || g.where !== mode) break; f = g; } return false; };
-  if (mode === 'table') { const r = await scan(['ArrowDown', 'ArrowUp']); return { reached: r, keys, focus: f }; }
+  if (mode === 'table') { const r = await scan(tableOrder); return { reached: r, keys, focus: f }; }
   if (await scan(['ArrowDown', 'ArrowUp'], 12)) return { reached: true, keys, focus: f };
   for (const dir of ['ArrowRight', 'ArrowLeft']) for (let c = 0; c < 16; c++) { const g = await press(dir); if (ok(g)) return { reached: true, keys, focus: g }; if (same(g, f) || g.where !== 'board') break; f = g; if (await scan(['ArrowDown', 'ArrowUp'], 12)) return { reached: true, keys, focus: f }; }
   return { reached: false, keys, focus: f }; }
@@ -369,12 +369,15 @@ await run('C368151', async () => {
   // step 5: Tech View (mouse), set-up by mouse: Assigned Techs on and A's group expanded; then keyboard to A's group header, Tab to its arrow, Enter
   await display(p, 'Tech View'); await p.waitForTimeout(2500);
   await p.locator('[data-test-id="button_tech_view_column_selection"]').click().catch(() => {}); await p.waitForTimeout(1200);
-  { const at = p.locator('.q-menu [role=checkbox], .q-menu .q-item').filter({ hasText: /Assigned Techs/i }).first(); o.assignedTechsWasOn = await at.getAttribute('aria-checked').catch(() => null); if (o.assignedTechsWasOn === 'false') { await at.click(); await p.waitForTimeout(1500); } }
+  { // 22 Oct 2026 (production): the menu item was not found by its text; use the switch's own id (the toggle_tech_view_column_* convention)
+    const at = p.locator('[data-test-id="toggle_tech_view_column_assigned_techs"]').first(); const sw = at.locator('[role=switch], [role=checkbox], [aria-checked]').first();
+    o.assignedTechsWasOn = (await sw.getAttribute('aria-checked').catch(() => null)) ?? (await at.getAttribute('aria-checked').catch(() => null)); o.assignedTechsToggle = await at.count();
+    if (o.assignedTechsToggle && o.assignedTechsWasOn !== 'true') { await at.click(); await p.waitForTimeout(1500); o.assignedTechsNow = (await sw.getAttribute('aria-checked').catch(() => null)) ?? (await at.getAttribute('aria-checked').catch(() => null)); } }
   await p.keyboard.press('Escape'); await p.waitForTimeout(800);
   o.rowGroup = await findRow(p, id, ANA.staff_id); // L0402: A's group may sit lower down
   const collapsed = () => p.evaluate(`(document.querySelector('[data-test-id="tech_view_group_${ANA.staff_id}"]') || { getAttribute: () => 'no group' }).getAttribute('data-collapsed')`) as Promise<string | null>;
   const rowsIn = () => p.evaluate(`[...document.querySelectorAll('[data-test-id^="tech_view_row_"]')].filter(e => e.getAttribute('data-group-key') === ${JSON.stringify(ANA.staff_id)} && e.getBoundingClientRect().height > 0).length`) as Promise<number>;
-  await clickSearch(p); o.s5 = { tab: await kTabIn(p, 'table', N) }; o.s5.toHeader = await kArrowsTo(p, (f) => f.group === 'tech_view_group_Ana' && !f.row, 'table', N);
+  await clickSearch(p); o.s5 = { tab: await kTabIn(p, 'table', N) }; o.s5.toHeader = await kArrowsTo(p, (f) => f.group === 'tech_view_group_Ana' && !f.row, 'table', N, ['ArrowUp', 'ArrowDown']);   // 22 Oct 2026: the header is above the row - Up first, as the step says
   const tg = await keyUntil(p, (f) => f.raw === `button_tech_view_group_toggle_${ANA.staff_id}`, 6, 'Tab', N); o.s5.tabToArrow = { found: tg.found, stops: tg.seen };
   if (tg.found) { o.s5.before = { collapsed: await collapsed(), rows: await rowsIn() }; await p.keyboard.press('Enter'); await p.waitForTimeout(1600); o.s5.after = { collapsed: await collapsed(), rows: await rowsIn(), focus: kshort(await kz(p, N)) }; }
   await shot(p, 'C368151-s5-after-enter-collapse');
