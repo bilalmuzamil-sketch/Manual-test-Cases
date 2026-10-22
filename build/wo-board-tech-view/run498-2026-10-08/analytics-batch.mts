@@ -237,7 +237,7 @@ await run('C97029', async () => { const o: any = {};
   // restored settings: the runner has saved display (Board View), fields and density from earlier runs
   // 15 Oct 2026 (staging third pass): the dispatcher had NO saved density, so the density event could only read "default". A density
   // (Comfortable) is saved together with the display before the page opens, and what was saved is read back first.
-  { const pg = await p.context().newPage(); const ev = tap(pg); const pv0 = await prefFor(); await a.put(PREF, { value: { ...pv0, display: 'board_view', density: pv0.density && pv0.density !== 'regular' ? pv0.density : 'comfortable' } }).catch(() => {});
+  { const pg = await p.context().newPage(); const ev = tap(pg); const pv0 = await prefFor(); await a.put(PREF, { value: { ...pv0, display: 'tech_view', density: pv0.density && pv0.density !== 'regular' ? pv0.density : 'comfortable' } }).catch(() => {}); /* 22 Oct 2026: the saved display is Tech View — Board View has no density in this release (PRD v73 S3-R11), and the case does not name the display */
     { const pv = await prefFor(); o.savedBeforeStep2 = { display: pv.display ?? null, density: pv.density ?? null, boardFields: pv.boardFields ? Object.keys(pv.boardFields).length : null }; }
     await openWO(pg); await settle(pg);
     o.step2 = { views: evs(ev, 'work_orders_display_view').map(brief), fields: evs(ev, 'work_orders_field_load').map(brief).slice(0, 20), density: evs(ev, 'work_orders_density_load').map(brief), note: ev.length ? null : 'NO analytics requests on the runner page (GA blocked in this context?)' };

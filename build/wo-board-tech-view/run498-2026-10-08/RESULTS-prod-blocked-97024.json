@@ -1,0 +1,27 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - blocked-97024"
+ },
+ "results": {
+  "C97024": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on production (v26.43.0-ffea43c). The test expects a density record for Board View, and this release has no density in Board View.",
+    "Set-up: as the test user, in Board View > Fields to display, VIN/serial was turned on and the user went back to List; then a fresh session was started.",
+    "Steps 1 and 2: opening Work Orders and clicking Board View recorded 13 field records, one per optional Board View field (lead technician, customer, asset, VIN/serial, progress, service advisor, clocked in, line count, line technicians, estimated hours, total price, on-site, created date). VIN/serial reads on with source saved; the other 12 read source default.",
+    "Step 2 (density): no density record was recorded for Board View. The current product document says: \"Board View shows no Density control in this release (SV-11580).\" (PRD v73, S3-R11, read 22 Oct 2026). The product follows that document; the test's expected result predates it.",
+    "Steps 3 and 4: clicking Tech View recorded 17 field records (Tech View's columns, including Assigned Techs) and 1 density record (Regular, default).",
+    "Steps 5 to 8: Board View, List and Board View again recorded no new field records and no new density records. Field records for the session: 13 + 17 = 30."
+   ],
+   "pictures": [],
+   "failed_steps": "Blocked at step 2: the test expects one density record for Board View, and this release has no density in Board View (PRD v73, S3-R11), so none is recorded. Everything else in the test is met.",
+   "bold_steps": [
+    2
+   ],
+   "todo": "QA lead decision per test (Rule 114(c)), as already made for C97025, C97027 and C97035 on 22 Oct: say whether the Board View density record in step 2 is still expected now that Board View has no density; then re-judge (every other reading already matches)."
+  }
+ }
+}
