@@ -1,0 +1,1383 @@
+{
+ "runner": "88b0aaad",
+ "techs": {
+  "ana": true,
+  "ben": true,
+  "cal": true,
+  "dan": true
+ },
+ "C97021": {
+  "names": "Work-order-1 Alpha Co, Work-order-2 Bravo Co, Work-order-3 Charlie Co, Work-order-4 Golf Co; Technician-A Ana, Technician-B Ben",
+  "prefs": 200,
+  "start": {
+   "tab": "All",
+   "search": "ZZAUTOTEST F3 Keyboard Reach 9792",
+   "assignedToMe": "false",
+   "width": 1600,
+   "columns": [
+    "unassigned(1) [Golf Co]",
+    "Ana(2) [Alpha Co, Bravo Co]",
+    "Ben(1) [Charlie Co]",
+    "<id>(0) []"
+   ]
+  },
+  "s1": {
+   "focus": {
+    "raw": "page_search_input",
+    "own": "page_search_input",
+    "tag": "INPUT",
+    "label": null,
+    "title": null,
+    "cls": "q-field__native q-placeholder",
+    "text": "ZZAUTOTEST F3 Keyboard Reach 9792",
+    "ring": true,
+    "where": "page",
+    "card": null,
+    "column": null,
+    "header": null,
+    "row": null,
+    "group": null
+   },
+   "inSearch": true,
+   "searchHolds": "ZZAUTOTEST F3 Keyboard Reach 9792",
+   "ringsInViews": 0
+  },
+  "s2": {
+   "landed": {
+    "key": "Tab",
+    "raw": "board_card_Golf Co",
+    "own": "board_card_3f90533b-0759-4483-a31b-6073c4e507ac",
+    "tag": "DIV",
+    "label": null,
+    "title": null,
+    "cls": "q-card board-card cursor-pointer wo-density--regular q-card--flat",
+    "text": "S1-1607 Approved ZZF9 Line count 1 line Progress 0",
+    "ring": true,
+    "where": "board",
+    "card": "board_card_Golf Co",
+    "column": "unassigned",
+    "header": null,
+    "row": null,
+    "group": null
+   },
+   "presses": 11,
+   "stops": [
+    "page_search_clear (ring) [page]",
+    "filter_chip_status (ring) [page]",
+    "filter_chip_assigned_to_me (ring) [page]",
+    "filter_chip_lead_technician (ring) [page]",
+    "filter_chip_vehicleHere (ring) [page]",
+    "button_board_fields_selection (ring) [page]",
+    "display_option_list (ring) [page]",
+    "display_option_tech_view (ring) [page]",
+    "display_option_board_view (ring) [page]",
+    "button_new_work_order (ring) [page]",
+    "board_card_Golf Co (ring) [board]"
+   ],
+   "headerOnTheWay": false,
+   "isWorkOrder4Card": true
+  },
+  "s3": {
+   "key": "ArrowRight",
+   "raw": "board_card_Alpha Co",
+   "own": "board_card_0ce775fe-595f-4e37-af5a-d7d208ecb23d",
+   "tag": "DIV",
+   "label": null,
+   "title": null,
+   "cls": "q-card board-card cursor-pointer wo-density--regular q-card--flat",
+   "text": "S1-1604 Approved ZZF9 Line count 1 line Progress 0",
+   "ring": true,
+   "where": "board",
+   "card": "board_card_Alpha Co",
+   "column": "Ana",
+   "header": null,
+   "row": null,
+   "group": null,
+   "inTechnicianAColumn": true
+  },
+  "s4": {
+   "key": "ArrowDown",
+   "raw": "board_card_Bravo Co",
+   "own": "board_card_4b8ca7b3-6ae7-40d5-a68b-abb00d86ec76",
+   "tag": "DIV",
+   "label": null,
+   "title": null,
+   "cls": "q-card board-card cursor-pointer wo-density--regular q-card--flat",
+   "text": "S1-1605 Approved ZZF9 Line count 1 line Progress 0",
+   "ring": true,
+   "where": "board",
+   "card": "board_card_Bravo Co",
+   "column": "Ana",
+   "header": null,
+   "row": null,
+   "group": null,
+   "cardOfTechnicianA": true
+  },
+  "s5": {
+   "key": "Tab",
+   "raw": "button_work_order_more_actions",
+   "own": "button_work_order_more_actions",
+   "tag": "BUTTON",
+   "label": "More actions for S1-1605",
+   "title": null,
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--round text- q-btn-",
+   "text": "",
+   "ring": true,
+   "where": "board",
+   "card": "board_card_Bravo Co",
+   "column": "Ana",
+   "header": null,
+   "row": null,
+   "group": null,
+   "ownMoreActions": true
+  },
+  "s6": {
+   "key": "Tab",
+   "raw": "body",
+   "where": "page",
+   "text": "",
+   "ring": false,
+   "card": null,
+   "column": null,
+   "header": null,
+   "row": null,
+   "group": null,
+   "leftBoard": true,
+   "positiveControl": "step 2 shows Tab landing ON the board in this run"
+  },
+  "s7": {
+   "groupsInOrder": [
+    {
+     "group": "unassigned",
+     "name": "Unassigned",
+     "count": 1,
+     "collapsed": false,
+     "rows": [
+      "Golf Co"
+     ]
+    },
+    {
+     "group": "Ana",
+     "name": "ZZAUTOTEST Ana Alpha",
+     "count": 2,
+     "collapsed": false,
+     "rows": [
+      "Alpha Co",
+      "Bravo Co"
+     ]
+    },
+    {
+     "group": "Ben",
+     "name": "ZZAUTOTEST Ben Bravo",
+     "count": 1,
+     "collapsed": false,
+     "rows": [
+      "Charlie Co"
+     ]
+    },
+    {
+     "group": "<id>",
+     "name": "Aaron Baker",
+     "count": 0,
+     "collapsed": false,
+     "rows": []
+    }
+   ]
+  },
+  "s8": {
+   "focus": {
+    "raw": "page_search_input",
+    "own": "page_search_input",
+    "tag": "INPUT",
+    "label": null,
+    "title": null,
+    "cls": "q-field__native q-placeholder",
+    "text": "ZZAUTOTEST F3 Keyboard Reach 9792",
+    "ring": true,
+    "where": "page",
+    "card": null,
+    "column": null,
+    "header": null,
+    "row": null,
+    "group": null
+   },
+   "inSearch": true,
+   "searchHolds": "ZZAUTOTEST F3 Keyboard Reach 9792",
+   "ringsInViews": 0
+  },
+  "s9": {
+   "landed": {
+    "key": "Tab",
+    "raw": "tech_view_row_Golf Co",
+    "own": "tech_view_row_3f90533b-0759-4483-a31b-6073c4e507ac",
+    "tag": "TR",
+    "label": null,
+    "title": null,
+    "cls": "cursor-pointer",
+    "text": "Approved — S1-1607 ZZAUTOTEST F3 Keyboard Reach 9.",
+    "ring": true,
+    "where": "table",
+    "card": null,
+    "column": null,
+    "header": null,
+    "row": "tech_view_row_Golf Co",
+    "group": null
+   },
+   "presses": 12,
+   "stops": [
+    "page_search_clear (ring) [page]",
+    "filter_chip_status (ring) [page]",
+    "filter_chip_assigned_to_me (ring) [page]",
+    "filter_chip_lead_technician (ring) [page]",
+    "filter_chip_vehicleHere (ring) [page]",
+    "button_density (ring) [page]",
+    "button_tech_view_column_selection (ring) [page]",
+    "display_option_list (ring) [page]",
+    "display_option_tech_view (ring) [page]",
+    "display_option_board_view (ring) [page]",
+    "button_new_work_order (ring) [page]",
+    "tech_view_row_Golf Co (ring) [table]"
+   ],
+   "headerOnTheWay": false,
+   "isWorkOrder4Row": true
+  },
+  "s10": {
+   "key": "ArrowDown",
+   "raw": "tech_view_group_Ana",
+   "own": "tech_view_group_a91c7eb7-22d6-4f3c-a64d-8ccd460ebc06",
+   "tag": "TR",
+   "label": null,
+   "title": null,
+   "cls": "",
+   "text": "ZA ZZAUTOTEST Ana Alpha 2 2 work orders",
+   "ring": true,
+   "where": "table",
+   "card": null,
+   "column": null,
+   "header": null,
+   "row": null,
+   "group": "tech_view_group_Ana",
+   "isTechnicianAHeader": true
+  }
+ },
+ "C368150": {
+  "prefs": 200,
+  "start": {
+   "tab": "All",
+   "search": "ZZAUTOTEST F3 Keyboard Enter Opens 9792",
+   "assignedToMe": "false",
+   "width": 1600
+  },
+  "s1": {
+   "focus": {
+    "raw": "page_search_input",
+    "own": "page_search_input",
+    "tag": "INPUT",
+    "label": null,
+    "title": null,
+    "cls": "q-field__native q-placeholder",
+    "text": "ZZAUTOTEST F3 Keyboard Enter Opens 9792",
+    "ring": true,
+    "where": "page",
+    "card": null,
+    "column": null,
+    "header": null,
+    "row": null,
+    "group": null
+   },
+   "inSearch": true,
+   "searchHolds": "ZZAUTOTEST F3 Keyboard Enter Opens 9792",
+   "ringsInViews": 0
+  },
+  "s2": {
+   "landed": {
+    "key": "Tab",
+    "raw": "board_card_Golf Co",
+    "own": "board_card_3bc20ca0-3c68-4863-94b6-49e99474997f",
+    "tag": "DIV",
+    "label": null,
+    "title": null,
+    "cls": "q-card board-card cursor-pointer wo-density--regular q-card--flat",
+    "text": "S1-1611 Approved ZZF9 Line count 1 line Progress 0",
+    "ring": true,
+    "where": "board",
+    "card": "board_card_Golf Co",
+    "column": "unassigned",
+    "header": null,
+    "row": null,
+    "group": null
+   },
+   "presses": 11,
+   "stops": [
+    "page_search_clear (ring) [page]",
+    "filter_chip_status (ring) [page]",
+    "filter_chip_assigned_to_me (ring) [page]",
+    "filter_chip_lead_technician (ring) [page]",
+    "filter_chip_vehicleHere (ring) [page]",
+    "button_board_fields_selection (ring) [page]",
+    "display_option_list (ring) [page]",
+    "display_option_tech_view (ring) [page]",
+    "display_option_board_view (ring) [page]",
+    "button_new_work_order (ring) [page]",
+    "board_card_Golf Co (ring) [board]"
+   ],
+   "headerOnTheWay": false
+  },
+  "s3": {
+   "reached": true,
+   "keys": [
+    "ArrowDown -> board_card_Golf Co (ring) [board]",
+    "ArrowUp -> board_column_header_unassigned (ring) [board]",
+    "ArrowUp -> board_column_header_unassigned (ring) [board]",
+    "ArrowRight -> board_column_header_Ana (ring) [board]",
+    "ArrowDown -> board_card_Alpha Co (ring) [board]"
+   ],
+   "focus": {
+    "key": "ArrowDown",
+    "raw": "board_card_Alpha Co",
+    "own": "board_card_e1dab700-e292-4113-ab84-dd427f6fc682",
+    "tag": "DIV",
+    "label": null,
+    "title": null,
+    "cls": "q-card board-card cursor-pointer wo-density--regular q-card--flat",
+    "text": "S1-1608 Approved ZZF9 Line count 1 line Progress 0",
+    "ring": true,
+    "where": "board",
+    "card": "board_card_Alpha Co",
+    "column": "Ana",
+    "header": null,
+    "row": null,
+    "group": null
+   }
+  },
+  "s4": {
+   "before": {
+    "column": "Technician-A",
+    "indexInA": 0,
+    "technicianAColumn": [
+     "Alpha Co",
+     "Bravo Co"
+    ]
+   },
+   "keys": {
+    "Space": {
+     "focus": "board_card_Alpha Co (ring) [board]",
+     "page": "board",
+     "column": "Technician-A",
+     "indexInA": 0,
+     "technicianAColumn": [
+      "Alpha Co",
+      "Bravo Co"
+     ],
+     "updatedMessage": []
+    },
+    "Shift+ArrowUp": {
+     "focus": "board_column_header_Ana (ring) [board]",
+     "page": "board",
+     "column": "Technician-A",
+     "indexInA": 0,
+     "technicianAColumn": [
+      "Alpha Co",
+      "Bravo Co"
+     ],
+     "updatedMessage": []
+    },
+    "Shift+ArrowDown": {
+     "focus": "board_card_Alpha Co (ring) [board]",
+     "page": "board",
+     "column": "Technician-A",
+     "indexInA": 0,
+     "technicianAColumn": [
+      "Alpha Co",
+      "Bravo Co"
+     ],
+     "updatedMessage": []
+    },
+    "Shift+ArrowLeft": {
+     "focus": "board_card_Golf Co (ring) [board]",
+     "page": "board",
+     "column": "Technician-A",
+     "indexInA": 0,
+     "technicianAColumn": [
+      "Alpha Co",
+      "Bravo Co"
+     ],
+     "updatedMessage": []
+    },
+    "Shift+ArrowRight": {
+     "focus": "board_card_Alpha Co (ring) [board]",
+     "page": "board",
+     "column": "Technician-A",
+     "indexInA": 0,
+     "technicianAColumn": [
+      "Alpha Co",
+      "Bravo Co"
+     ],
+     "updatedMessage": []
+    }
+   },
+   "after": {
+    "column": "Technician-A",
+    "indexInA": 0,
+    "technicianAColumn": [
+     "Alpha Co",
+     "Bravo Co"
+    ],
+    "lead": "ZZAUTOTEST Ana Alpha",
+    "messagesNow": []
+   }
+  },
+  "s5": {
+   "focusBeforeEnter": "board_card_Alpha Co (ring) [board]",
+   "url": "/workorders/<id>/lines",
+   "openedWorkOrder1": true
+  },
+  "s6": {
+   "url": "/workorders?search=ZZAUTOTEST+F3+Keyboard+Enter+Opens+9792",
+   "display": "Board View",
+   "cardOnBoard": 1,
+   "boardCounts": {
+    "unassigned": 1,
+    "Ana": 2,
+    "Ben": 1
+   }
+  },
+  "s7": {
+   "groupCounts": {
+    "unassigned": 1,
+    "Ana": 2,
+    "Ben": 1
+   },
+   "sameAsBoard": true
+  },
+  "s8": {
+   "focus": {
+    "raw": "page_search_input",
+    "own": "page_search_input",
+    "tag": "INPUT",
+    "label": null,
+    "title": null,
+    "cls": "q-field__native q-placeholder",
+    "text": "ZZAUTOTEST F3 Keyboard Enter Opens 9792",
+    "ring": true,
+    "where": "page",
+    "card": null,
+    "column": null,
+    "header": null,
+    "row": null,
+    "group": null
+   },
+   "inSearch": true,
+   "searchHolds": "ZZAUTOTEST F3 Keyboard Enter Opens 9792",
+   "ringsInViews": 0
+  },
+  "s9": {
+   "landed": {
+    "key": "Tab",
+    "raw": "tech_view_row_Golf Co",
+    "own": "tech_view_row_3bc20ca0-3c68-4863-94b6-49e99474997f",
+    "tag": "TR",
+    "label": null,
+    "title": null,
+    "cls": "cursor-pointer",
+    "text": "Approved — S1-1611 ZZAUTOTEST F3 Keyboard Enter O.",
+    "ring": true,
+    "where": "table",
+    "card": null,
+    "column": null,
+    "header": null,
+    "row": "tech_view_row_Golf Co",
+    "group": null
+   },
+   "presses": 12,
+   "stops": [
+    "page_search_clear (ring) [page]",
+    "filter_chip_status (ring) [page]",
+    "filter_chip_assigned_to_me (ring) [page]",
+    "filter_chip_lead_technician (ring) [page]",
+    "filter_chip_vehicleHere (ring) [page]",
+    "button_density (ring) [page]",
+    "button_tech_view_column_selection (ring) [page]",
+    "display_option_list (ring) [page]",
+    "display_option_tech_view (ring) [page]",
+    "display_option_board_view (ring) [page]",
+    "button_new_work_order (ring) [page]",
+    "tech_view_row_Golf Co (ring) [table]"
+   ],
+   "headerOnTheWay": false,
+   "onARow": true
+  },
+  "s10": {
+   "reached": true,
+   "keys": [
+    "ArrowDown -> tech_view_group_Ana (ring) [table]",
+    "ArrowDown -> tech_view_row_Alpha Co (ring) [table]"
+   ],
+   "focus": {
+    "key": "ArrowDown",
+    "raw": "tech_view_row_Alpha Co",
+    "own": "tech_view_row_e1dab700-e292-4113-ab84-dd427f6fc682",
+    "tag": "TR",
+    "label": null,
+    "title": null,
+    "cls": "cursor-pointer",
+    "text": "Approved — S1-1608 ZZAUTOTEST F3 Keyboard Enter O.",
+    "ring": true,
+    "where": "table",
+    "card": null,
+    "column": null,
+    "header": null,
+    "row": "tech_view_row_Alpha Co",
+    "group": null
+   }
+  },
+  "s11": {
+   "focusBeforeEnter": "tech_view_row_Alpha Co (ring) [table]",
+   "url": "/workorders/<id>/lines",
+   "openedWorkOrder1": true
+  },
+  "s12": {
+   "url": "/workorders?search=ZZAUTOTEST+F3+Keyboard+Enter+Opens+9792",
+   "display": "Tech View"
+  },
+  "s13": {
+   "group": "a91c7eb7-22d6-4f3c-a64d-8ccd460ebc06",
+   "at": [
+    420,
+    404
+   ],
+   "url": "/workorders/<id>/lines",
+   "openedWorkOrder1": true
+  }
+ },
+ "C368151": {
+  "prefs": 200,
+  "lineTechnician": "200",
+  "pinnedAtStart": false,
+  "start": {
+   "tab": "All",
+   "search": "ZZAUTOTEST F3 Keyboard Controls One 9792",
+   "assignedToMe": "false",
+   "width": 1600
+  },
+  "s1": {
+   "tab": {
+    "landed": {
+     "key": "Tab",
+     "raw": "board_card_Alpha Co",
+     "own": "board_card_19fbcbe5-74ce-4ed1-86cf-cd88d43aa9cd",
+     "tag": "DIV",
+     "label": null,
+     "title": null,
+     "cls": "q-card board-card cursor-pointer wo-density--regular q-card--flat",
+     "text": "S1-1612 Approved ZZF9 Line count 1 line Progress 0",
+     "ring": true,
+     "where": "board",
+     "card": "board_card_Alpha Co",
+     "column": "Ana",
+     "header": null,
+     "row": null,
+     "group": null
+    },
+    "presses": 11,
+    "stops": [
+     "page_search_clear (ring) [page]",
+     "filter_chip_status (ring) [page]",
+     "filter_chip_assigned_to_me (ring) [page]",
+     "filter_chip_lead_technician (ring) [page]",
+     "filter_chip_vehicleHere (ring) [page]",
+     "button_board_fields_selection (ring) [page]",
+     "display_option_list (ring) [page]",
+     "display_option_tech_view (ring) [page]",
+     "display_option_board_view (ring) [page]",
+     "button_new_work_order (ring) [page]",
+     "board_card_Alpha Co (ring) [board]"
+    ],
+    "headerOnTheWay": false
+   },
+   "arrows": {
+    "reached": true,
+    "keys": [],
+    "focus": {
+     "raw": "board_card_Alpha Co",
+     "own": "board_card_19fbcbe5-74ce-4ed1-86cf-cd88d43aa9cd",
+     "tag": "DIV",
+     "label": null,
+     "title": null,
+     "cls": "q-card board-card cursor-pointer wo-density--regular q-card--flat",
+     "text": "S1-1612 Approved ZZF9 Line count 1 line Progress 0",
+     "ring": true,
+     "where": "board",
+     "card": "board_card_Alpha Co",
+     "column": "Ana",
+     "header": null,
+     "row": null,
+     "group": null
+    }
+   },
+   "focus": {
+    "raw": "board_card_Alpha Co",
+    "own": "board_card_19fbcbe5-74ce-4ed1-86cf-cd88d43aa9cd",
+    "tag": "DIV",
+    "label": null,
+    "title": null,
+    "cls": "q-card board-card cursor-pointer wo-density--regular q-card--flat",
+    "text": "S1-1612 Approved ZZF9 Line count 1 line Progress 0",
+    "ring": true,
+    "where": "board",
+    "card": "board_card_Alpha Co",
+    "column": "Ana",
+    "header": null,
+    "row": null,
+    "group": null
+   },
+   "moreActionsWithoutHover": true
+  },
+  "s2": {
+   "tab": {
+    "key": "Tab",
+    "raw": "button_work_order_more_actions",
+    "own": "button_work_order_more_actions",
+    "tag": "BUTTON",
+    "label": "More actions for S1-1612",
+    "title": null,
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--round text- q-btn-",
+    "text": "",
+    "ring": true,
+    "where": "board",
+    "card": "board_card_Alpha Co",
+    "column": "Ana",
+    "header": null,
+    "row": null,
+    "group": null
+   },
+   "enter": {
+    "menusOpen": 1,
+    "items": [
+     "Reassign lead technician",
+     "Unassign"
+    ]
+   },
+   "escape1": {
+    "key": "Escape",
+    "raw": "button_work_order_more_actions",
+    "own": "button_work_order_more_actions",
+    "tag": "BUTTON",
+    "label": "More actions for S1-1612",
+    "title": null,
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--round text- q-btn-",
+    "text": "",
+    "ring": true,
+    "where": "board",
+    "card": "board_card_Alpha Co",
+    "column": "Ana",
+    "header": null,
+    "row": null,
+    "group": null,
+    "menusOpen": 1
+   },
+   "space": {
+    "menusOpen": 1,
+    "items": [
+     "Reassign lead technician",
+     "Unassign"
+    ]
+   },
+   "escape2": {
+    "key": "Escape",
+    "raw": "button_work_order_more_actions",
+    "own": "button_work_order_more_actions",
+    "tag": "BUTTON",
+    "label": "More actions for S1-1612",
+    "title": null,
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--round text- q-btn-",
+    "text": "",
+    "ring": true,
+    "where": "board",
+    "card": "board_card_Alpha Co",
+    "column": "Ana",
+    "header": null,
+    "row": null,
+    "group": null,
+    "menusOpen": 1
+   }
+  },
+  "s3": {
+   "back": "board_card_Alpha Co (ring) [board]",
+   "toHeader": {
+    "reached": true,
+    "keys": [
+     "ArrowDown -> board_card_Alpha Co (ring) [board]",
+     "ArrowUp -> board_column_header_Ana (ring) [board]"
+    ],
+    "focus": {
+     "key": "ArrowUp",
+     "raw": "board_column_header_Ana",
+     "own": "board_column_header_a91c7eb7-22d6-4f3c-a64d-8ccd460ebc06",
+     "tag": "DIV",
+     "label": "ZZAUTOTEST Ana Alpha, 1 work order",
+     "title": null,
+     "cls": "board-column-header row no-wrap items-center board-column-header--draggable boar",
+     "text": "ZA ZZAUTOTEST Ana Alpha 1 1 work order",
+     "ring": true,
+     "where": "board",
+     "card": null,
+     "column": "Ana",
+     "header": "board_column_header_Ana",
+     "row": null,
+     "group": null
+    }
+   },
+   "tabToPin": {
+    "found": true,
+    "stops": [
+     "button_board_pin_<id>(Pin ZZAUTOTEST Ana Alpha)"
+    ]
+   },
+   "afterEnter": {
+    "pinnedSaved": true,
+    "pinPressed": "true",
+    "focus": "button_board_pin_<id> (ring) [board]"
+   }
+  },
+  "s4": {
+   "focusBefore": "button_board_pin_<id> (ring) [board]",
+   "pinnedSaved": false,
+   "pinPressed": "false",
+   "focusAfter": "button_board_pin_<id> (ring) [board]"
+  },
+  "assignedTechsWasOn": null,
+  "rowGroup": "a91c7eb7-22d6-4f3c-a64d-8ccd460ebc06",
+  "s5": {
+   "tab": {
+    "landed": {
+     "key": "Tab",
+     "raw": "tech_view_row_Alpha Co",
+     "own": "tech_view_row_19fbcbe5-74ce-4ed1-86cf-cd88d43aa9cd",
+     "tag": "TR",
+     "label": null,
+     "title": null,
+     "cls": "cursor-pointer",
+     "text": "Approved — S1-1612 ZZAUTOTEST F3 Keyboard Control.",
+     "ring": true,
+     "where": "table",
+     "card": null,
+     "column": null,
+     "header": null,
+     "row": "tech_view_row_Alpha Co",
+     "group": null
+    },
+    "presses": 12,
+    "stops": [
+     "page_search_clear (ring) [page]",
+     "filter_chip_status (ring) [page]",
+     "filter_chip_assigned_to_me (ring) [page]",
+     "filter_chip_lead_technician (ring) [page]",
+     "filter_chip_vehicleHere (ring) [page]",
+     "button_density (ring) [page]",
+     "button_tech_view_column_selection (ring) [page]",
+     "display_option_list (ring) [page]",
+     "display_option_tech_view (ring) [page]",
+     "display_option_board_view (ring) [page]",
+     "button_new_work_order (ring) [page]",
+     "tech_view_row_Alpha Co (ring) [table]"
+    ],
+    "headerOnTheWay": false
+   },
+   "toHeader": {
+    "reached": false,
+    "keys": [
+     "ArrowDown -> tech_view_group_Cal (ring) [table]",
+     "ArrowDown -> tech_view_group_Dan (ring) [table]",
+     "ArrowDown -> tech_view_group_<id> (ring) [table]",
+     "ArrowDown -> tech_view_group_<id> (ring) [table]",
+     "ArrowUp -> tech_view_group_<id> (ring) [table]"
+    ],
+    "focus": {
+     "key": "ArrowDown",
+     "raw": "tech_view_group_<id>",
+     "own": "tech_view_group_06423879-08b8-4fe3-9909-2aa138fd9580",
+     "tag": "TR",
+     "label": null,
+     "title": null,
+     "cls": "",
+     "text": "ZD ZZAUTOTEST DC01 Ana Icons 0 0 work orders",
+     "ring": true,
+     "where": "table",
+     "card": null,
+     "column": null,
+     "header": null,
+     "row": null,
+     "group": "tech_view_group_<id>"
+    }
+   },
+   "tabToArrow": {
+    "found": false,
+    "stops": [
+     "button_tech_view_group_toggle_<id>(Collapse ZZAUTOTEST DC01 Ana Icons)",
+     "button_tech_view_pin_<id>(Pin ZZAUTOTEST DC01 Ana Icons)",
+     "body",
+     "skip-to-content*",
+     "module_selector_trigger(Current module: ShopHub. Switch module)*",
+     "button_desktop_nav_link(Work Orders)"
+    ]
+   }
+  },
+  "s6": {
+   "focusBefore": "button_desktop_nav_link (ring) [page]",
+   "collapsed": "no group",
+   "rows": 0,
+   "focusAfter": "button_desktop_nav_link (ring) [page]"
+  },
+  "s7": {
+   "back": "module_selector_trigger (ring) [page]",
+   "toRow": {
+    "reached": false,
+    "keys": [
+     "ArrowDown -> module_selector_trigger (ring) [page]",
+     "ArrowUp -> module_selector_trigger (ring) [page]"
+    ],
+    "focus": {
+     "raw": "module_selector_trigger",
+     "own": "module_selector_trigger",
+     "tag": "BUTTON",
+     "label": "Current module: ShopHub. Switch module",
+     "title": null,
+     "cls": "module-selector module-selector--trigger",
+     "text": "ShopHub expand_more",
+     "ring": true,
+     "where": "page",
+     "card": null,
+     "column": null,
+     "header": null,
+     "row": null,
+     "group": null
+    }
+   },
+   "assignedTechsColumnIndex": -1,
+   "tabToAvatar": {
+    "found": false,
+    "stops": [
+     "button_desktop_nav_link(Work Orders)",
+     "button_desktop_nav_link(Schedule)",
+     "button_desktop_nav_link(Customers)",
+     "button_desktop_nav_link(Parts)",
+     "button_desktop_nav_link(Reports)",
+     "button_desktop_nav_link(Dashboard New)",
+     "global_search_trigger(Search)*",
+     "button_notifications(Notifications)",
+     "profile_menu_button(Profile)",
+     "tab_all",
+     "page_search_input",
+     "filter_chip_status",
+     "filter_chip_assigned_to_me",
+     "filter_chip_lead_technician",
+     "filter_chip_vehicleHere",
+     "button_density(Density)",
+     "button_tech_view_column_selection(Column Selection)",
+     "display_option_list(List)",
+     "display_option_tech_view(Tech View)*",
+     "display_option_board_view(Board View)",
+     "button_new_work_order(Create Work Order)",
+     "tech_view_row_<id>*",
+     "button_work_order_more_actions(More actions for S1-915)",
+     "body",
+     "skip-to-content*",
+     "module_selector_trigger(Current module: ShopHub. Switch module)*",
+     "button_desktop_nav_link(Work Orders)",
+     "button_desktop_nav_link(Schedule)",
+     "button_desktop_nav_link(Customers)",
+     "button_desktop_nav_link(Parts)"
+    ]
+   },
+   "focus": {
+    "raw": "button_desktop_nav_link",
+    "own": "button_desktop_nav_link",
+    "tag": "A",
+    "label": "Parts",
+    "title": null,
+    "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-tex",
+    "text": "Parts",
+    "ring": true,
+    "where": "page",
+    "card": null,
+    "column": null,
+    "header": null,
+    "row": null,
+    "group": null
+   },
+   "nameShown": {
+    "tooltips": [],
+    "label": "Parts",
+    "title": null,
+    "text": "Parts",
+    "expected": "ZZAUTOTEST Ana Alpha"
+   }
+  },
+  "s8": {
+   "reach": {
+    "by": "Shift+Tab",
+    "found": true,
+    "stops": [
+     "module_selector_trigger(Current module: ShopHub. Switch module)*",
+     "skip-to-content*",
+     "body",
+     "button_work_order_more_actions(More actions for S1-915)",
+     "tech_view_row_<id>*",
+     "button_new_work_order(Create Work Order)",
+     "display_option_board_view(Board View)",
+     "display_option_tech_view(Tech View)*",
+     "display_option_list(List)",
+     "button_tech_view_column_selection(Column Selection)"
+    ]
+   },
+   "menuOpenAfterEnter": 1,
+   "afterTab": {
+    "key": "Tab",
+    "raw": "toggle_tech_view_column_vehicle_here",
+    "own": "toggle_tech_view_column_vehicle_here",
+    "tag": "DIV",
+    "label": "On Site",
+    "title": null,
+    "cls": "q-toggle cursor-pointer no-outline row inline no-wrap items-center",
+    "text": "",
+    "ring": true,
+    "where": "menu",
+    "card": null,
+    "column": null,
+    "header": null,
+    "row": null,
+    "group": null,
+    "insideMenu": true
+   },
+   "afterEscape": {
+    "menusOpen": 0,
+    "focus": "button_tech_view_column_selection (ring) [page]",
+    "backOnColumnSelection": true
+   }
+  },
+  "s9pre": {
+   "neutral": {
+    "x": 1590,
+    "y": 990
+   },
+   "activeAfterClear": "body"
+  },
+  "s9": {
+   "reach": {
+    "by": "Tab from the page body",
+    "found": true,
+    "stops": [
+     "tech_view_row_<id>*",
+     "button_work_order_more_actions(More actions for S1-915)",
+     "body",
+     "skip-to-content*",
+     "module_selector_trigger(Current module: ShopHub. Switch module)*",
+     "button_desktop_nav_link(Work Orders)",
+     "button_desktop_nav_link(Schedule)",
+     "button_desktop_nav_link(Customers)",
+     "button_desktop_nav_link(Parts)",
+     "button_desktop_nav_link(Reports)",
+     "button_desktop_nav_link(Dashboard New)",
+     "global_search_trigger(Search)*",
+     "button_notifications(Notifications)",
+     "profile_menu_button(Profile)",
+     "tab_all",
+     "page_search_toggle(Search)",
+     "filter_chip_status"
+    ]
+   },
+   "chipAtStart": "Status keyboard_arrow_down",
+   "optionsOpen": 1,
+   "keys": [
+    {
+     "key": "Enter (open)",
+     "active": "DIV Estimate Approved In progress ",
+     "inMenu": true,
+     "highlighted": null,
+     "ticked": []
+    },
+    {
+     "key": "ArrowDown",
+     "active": "DIV Estimate Approved In progress ",
+     "inMenu": true,
+     "highlighted": null,
+     "ticked": []
+    },
+    {
+     "key": "ArrowDown",
+     "active": "DIV Estimate Approved In progress ",
+     "inMenu": true,
+     "highlighted": null,
+     "ticked": []
+    },
+    {
+     "key": "ArrowDown",
+     "active": "DIV Estimate Approved In progress ",
+     "inMenu": true,
+     "highlighted": null,
+     "ticked": []
+    },
+    {
+     "key": "ArrowDown",
+     "active": "DIV Estimate Approved In progress ",
+     "inMenu": true,
+     "highlighted": null,
+     "ticked": []
+    },
+    {
+     "key": "ArrowDown",
+     "active": "DIV Estimate Approved In progress ",
+     "inMenu": true,
+     "highlighted": null,
+     "ticked": []
+    },
+    {
+     "key": "ArrowDown",
+     "active": "DIV Estimate Approved In progress ",
+     "inMenu": true,
+     "highlighted": null,
+     "ticked": []
+    },
+    {
+     "key": "ArrowDown",
+     "active": "DIV Estimate Approved In progress ",
+     "inMenu": true,
+     "highlighted": null,
+     "ticked": []
+    },
+    {
+     "key": "ArrowDown",
+     "active": "DIV Estimate Approved In progress ",
+     "inMenu": true,
+     "highlighted": null,
+     "ticked": []
+    },
+    {
+     "key": "ArrowDown",
+     "active": "DIV Estimate Approved In progress ",
+     "inMenu": true,
+     "highlighted": null,
+     "ticked": []
+    },
+    {
+     "key": "ArrowDown",
+     "active": "DIV Estimate Approved In progress ",
+     "inMenu": true,
+     "highlighted": null,
+     "ticked": []
+    },
+    {
+     "key": "ArrowDown",
+     "active": "DIV Estimate Approved In progress ",
+     "inMenu": true,
+     "highlighted": null,
+     "ticked": []
+    },
+    {
+     "key": "ArrowDown",
+     "active": "DIV Estimate Approved In progress ",
+     "inMenu": true,
+     "highlighted": null,
+     "ticked": []
+    },
+    {
+     "key": "Tab",
+     "active": "filter_option_status_estimate Estimate",
+     "inMenu": true,
+     "highlighted": "Estimate",
+     "ticked": []
+    },
+    {
+     "key": "Tab",
+     "active": "filter_option_status_approved Approved",
+     "inMenu": true,
+     "highlighted": "Approved",
+     "ticked": []
+    }
+   ],
+   "toApproved": {
+    "found": true,
+    "by": "Tab"
+   },
+   "afterEnter": {
+    "chip": "Status: Approved keyboard_arrow_down cancel",
+    "active": "filter_option_status_approved Approved",
+    "inMenu": true,
+    "highlighted": "Approved",
+    "ticked": [
+     "Approved"
+    ]
+   },
+   "chipAfterEnter": "Status: Approved keyboard_arrow_down cancel",
+   "closed": {
+    "menusOpen": 0,
+    "focus": "filter_chip_status (ring) [page]",
+    "chip": "Status: Approved keyboard_arrow_down cancel"
+   },
+   "toX": {
+    "by": "Tab",
+    "found": true,
+    "stops": [
+     "filter_chip_clear_status(Clear Status filter)*"
+    ]
+   },
+   "xFocus": {
+    "raw": "filter_chip_clear_status",
+    "own": "filter_chip_clear_status",
+    "tag": "I",
+    "label": "Clear Status filter",
+    "title": null,
+    "cls": "q-icon notranslate material-icons-outlined filter-chip__clear",
+    "text": "cancel",
+    "ring": true,
+    "where": "page",
+    "card": null,
+    "column": null,
+    "header": null,
+    "row": null,
+    "group": null
+   },
+   "chipAfterX": "Status keyboard_arrow_down"
+  },
+  "s10": {
+   "reach": {
+    "by": "Shift+Tab",
+    "found": true,
+    "stops": [
+     "button_desktop_nav_link(Work Orders)",
+     "module_selector_trigger(Current module: ShopHub. Switch module)*",
+     "skip-to-content*",
+     "body",
+     "button_work_order_more_actions(More actions for S1-915)",
+     "tech_view_row_<id>*",
+     "button_new_work_order(Create Work Order)",
+     "display_option_board_view(Board View)"
+    ]
+   },
+   "active": "Board View"
+  }
+ },
+ "C368152": {
+  "prefs": 200,
+  "start": {
+   "tab": "All",
+   "search": "ZZAUTOTEST F3 Keyboard Reassign 9792",
+   "assignedToMe": "false",
+   "width": 1600,
+   "wo1Column": "Technician-A",
+   "wo2Column": "Technician-B"
+  },
+  "s1": {
+   "focus": {
+    "raw": "page_search_input",
+    "own": "page_search_input",
+    "tag": "INPUT",
+    "label": null,
+    "title": null,
+    "cls": "q-field__native q-placeholder",
+    "text": "ZZAUTOTEST F3 Keyboard Reassign 9792",
+    "ring": true,
+    "where": "page",
+    "card": null,
+    "column": null,
+    "header": null,
+    "row": null,
+    "group": null
+   },
+   "inSearch": true,
+   "searchHolds": "ZZAUTOTEST F3 Keyboard Reassign 9792",
+   "ringsInViews": 0
+  },
+  "s2": {
+   "landed": {
+    "key": "Tab",
+    "raw": "board_card_Golf Co",
+    "own": "board_card_a85e2245-1b91-4307-9f4e-81b32cc95659",
+    "tag": "DIV",
+    "label": null,
+    "title": null,
+    "cls": "q-card board-card cursor-pointer wo-density--regular q-card--flat",
+    "text": "S1-1615 Approved ZZF9 Line count 1 line Progress 0",
+    "ring": true,
+    "where": "board",
+    "card": "board_card_Golf Co",
+    "column": "unassigned",
+    "header": null,
+    "row": null,
+    "group": null
+   },
+   "presses": 11,
+   "stops": [
+    "page_search_clear (ring) [page]",
+    "filter_chip_status (ring) [page]",
+    "filter_chip_assigned_to_me (ring) [page]",
+    "filter_chip_lead_technician (ring) [page]",
+    "filter_chip_vehicleHere (ring) [page]",
+    "button_board_fields_selection (ring) [page]",
+    "display_option_list (ring) [page]",
+    "display_option_tech_view (ring) [page]",
+    "display_option_board_view (ring) [page]",
+    "button_new_work_order (ring) [page]",
+    "board_card_Golf Co (ring) [board]"
+   ],
+   "headerOnTheWay": false
+  },
+  "s3": {
+   "reached": true,
+   "keys": [
+    "ArrowDown -> board_card_Golf Co (ring) [board]",
+    "ArrowUp -> board_column_header_unassigned (ring) [board]",
+    "ArrowUp -> board_column_header_unassigned (ring) [board]",
+    "ArrowRight -> board_column_header_Ana (ring) [board]",
+    "ArrowDown -> board_card_Alpha Co (ring) [board]"
+   ],
+   "focus": {
+    "key": "ArrowDown",
+    "raw": "board_card_Alpha Co",
+    "own": "board_card_0e310a2a-ddd4-4517-9929-f5a0c2f81a8f",
+    "tag": "DIV",
+    "label": null,
+    "title": null,
+    "cls": "q-card board-card cursor-pointer wo-density--regular q-card--flat",
+    "text": "S1-1613 Approved ZZF9 Line count 1 line Progress 0",
+    "ring": true,
+    "where": "board",
+    "card": "board_card_Alpha Co",
+    "column": "Ana",
+    "header": null,
+    "row": null,
+    "group": null
+   }
+  },
+  "s4": {
+   "key": "Tab",
+   "raw": "button_work_order_more_actions",
+   "own": "button_work_order_more_actions",
+   "tag": "BUTTON",
+   "label": "More actions for S1-1613",
+   "title": null,
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--round text- q-btn-",
+   "text": "",
+   "ring": true,
+   "where": "board",
+   "card": "board_card_Alpha Co",
+   "column": "Ana",
+   "header": null,
+   "row": null,
+   "group": null,
+   "onOwnMoreActions": true,
+   "moreShows": true
+  },
+  "s5": {
+   "menusOpen": 1,
+   "items": [
+    "Reassign lead technician",
+    "Unassign"
+   ]
+  },
+  "s6": {
+   "found": true,
+   "stops": [
+    "menu_item_unassign_lead_technician",
+    "menu_item_reassign_lead_technician"
+   ],
+   "itemFocused": "Reassign lead technician",
+   "dialog": 1,
+   "title": "Reassign lead technician S1-1613 · ZZAUTOTEST F3 Keyboard Reassign 9792 Alpha Co"
+  },
+  "s7": {
+   "typed": "ZZAUTOTEST Be",
+   "boxHolds": "ZZAUTOTEST Be",
+   "rows": [
+    "Unassigned",
+    "ZB ZZAUTOTEST Ben Bravo 26 open"
+   ],
+   "rowIds": [
+    "option_lead_technician_unassigned",
+    "Technician-B (Ben Bravo, this run)"
+   ]
+  },
+  "s8": {
+   "route": "Tab to the list (option_lead_technician_unassigned), then arrow keys",
+   "reachedPerson": true,
+   "stops": [
+    "option_lead_technician_<id>"
+   ],
+   "confirm": "Confirm reached by Tab, Enter pressed",
+   "shifts": null,
+   "messages": [
+    "Lead technician updated"
+   ],
+   "dialogsLeft": 0,
+   "wo1Column": "Technician-B",
+   "lead": "ZZAUTOTEST Ben Bravo"
+  },
+  "s9": {
+   "focusBefore": "board_column_header_Ana (ring) [board]",
+   "reached": true,
+   "keys": [
+    "ArrowDown -> board_column_header_Ana (ring) [board]",
+    "ArrowUp -> board_column_header_Ana (ring) [board]",
+    "ArrowRight -> board_column_header_Ben (ring) [board]",
+    "ArrowDown -> board_card_Bravo Co (ring) [board]"
+   ],
+   "focus": {
+    "key": "ArrowDown",
+    "raw": "board_card_Bravo Co",
+    "own": "board_card_43e00e61-2352-4f93-adbe-e9dae4975183",
+    "tag": "DIV",
+    "label": null,
+    "title": null,
+    "cls": "q-card board-card cursor-pointer wo-density--regular q-card--flat",
+    "text": "S1-1614 Approved ZZF9 Line count 1 line Progress 0",
+    "ring": true,
+    "where": "board",
+    "card": "board_card_Bravo Co",
+    "column": "Ben",
+    "header": null,
+    "row": null,
+    "group": null
+   }
+  },
+  "s10": {
+   "key": "Tab",
+   "raw": "button_work_order_more_actions",
+   "own": "button_work_order_more_actions",
+   "tag": "BUTTON",
+   "label": "More actions for S1-1614",
+   "title": null,
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--round text- q-btn-",
+   "text": "",
+   "ring": true,
+   "where": "board",
+   "card": "board_card_Bravo Co",
+   "column": "Ben",
+   "header": null,
+   "row": null,
+   "group": null,
+   "onOwnMoreActions": true
+  },
+  "s11": {
+   "menusOpen": 1,
+   "items": [
+    "Reassign lead technician",
+    "Unassign"
+   ]
+  },
+  "s12": {
+   "found": true,
+   "stops": [
+    "menu_item_unassign_lead_technician"
+   ],
+   "itemFocused": "Unassign",
+   "shifts": null,
+   "messages": [
+    "Lead technician removed"
+   ],
+   "wo2Column": "unassigned",
+   "lead": "none"
+  }
+ },
+ "restored": true
+}
