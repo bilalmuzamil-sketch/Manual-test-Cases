@@ -3243,3 +3243,8 @@ Done: 42 updates + C598326 new, run 498 = 272 (record `wo-board-tech-view/answer
 - Splitting Sales Representatives, the 41 existing cases in the report suites that the feature breaks: "Not for now - we would wait until this feature goes live because we might have more PRD changes by then". Act only when the feature is live.
 - Vlad (Automated cases changed, Rule 65): "Ignore this and do not remind me". Not listed in any report again.
 - WO Board: C707076 (SV-11576) and C707077 (SV-11577) in run 498; C707078 (SV-11588) in Fast-follow; footers on all three tickets. C590114, C590117, C665914, C682436 moved to Fast-follow and out of run 498 (run now 285 tests).
+
+### 22 Oct 2026 (QA lead)
+- WO Board and Tech View: "Forget the wo board and tech view now and dont remind about it again we are releasing it today." Nothing about it is reminded again; daily sweep routine trig_01KGYhRrGdEXnCrqjfrhYPKL disabled; question 35 dropped from the reminder list; the v73 updates and the SV-11545/11546 moves are not done.
+- New milestone 5 "Next Release - More Test Runs To Be Added (Oct 2026)". Run 547 "Splitting Sales Representatives - Execution" (132 tests; C690660 and C690665 held out) in it. The A/R and A/P run joins it once its cases exist.
+- A/R and A/P suite: "What must not change" cases approved. After that suite: read the Splitting Sales Representatives 2.47 MB design viewer code in full (QA lead: "No you can read it now but before that work on the new testing suite").

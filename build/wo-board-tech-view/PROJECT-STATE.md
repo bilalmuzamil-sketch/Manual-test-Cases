@@ -1,3 +1,5 @@
+> **22 Oct 2026, QA lead: "Forget the wo board and tech view now and dont remind about it again we are releasing it today."** Released 22 Oct 2026. No reminders; the daily sweep routine is disabled. The pending v73 updates and Fast-follow moves below were not made.
+
 ## CURRENT STATE — 22 Oct 2026 (morning)
 
 - PRD 845185030 at **v73** (21 Oct; diff `prd-v73-2026-10-22/PRD-DIFF-v71-to-v73.diff`): S1-R15c 50-value limit "as built" ("50 selected (max 50 across all filters)", unticked names greyed), "Deleted technician" listed last (SV-11594, fast follow), Board View density icon removed from S1-R9a. TICKET-SWEEP prd_version_handled still 64 (QA lead's choice of full pass/named set pending since v65).
