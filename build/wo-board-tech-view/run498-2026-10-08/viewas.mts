@@ -29,6 +29,9 @@ export async function viewAs(browser: Browser, main: Page, a: Api, userId: strin
     try { localStorage.setItem('user', JSON.stringify({ data: u })); if (f) localStorage.setItem('fe_permissions_wrapper', JSON.stringify(f)); if (u?.token) localStorage.setItem('token', u.token); } catch { /* */ }
   }, [user, fe] as any);
   const page = await ctx.newPage();
+  // 22 Oct 2026 (production): a fresh page sits on about:blank, and production's API refuses a credentialed fetch from it ("Failed to fetch",
+  // design-stg5 C590113) where staging answered. On production only, open the app first so every later fetch comes from the app's origin.
+  if (process.env.WOB_PROD_LOGIN) { const app = String(process.env.GS_APP || '').replace(/\/$/, ''); if (app) { await page.goto(app + '/workorders', { waitUntil: 'domcontentloaded', timeout: 45_000 }).catch(() => {}); await page.waitForTimeout(3000); } }
   const close = async () => { await ctx.close().catch(() => {}); if (backTo) return backTo(); const e = await a.post('/api/exit-switch-user', {}); if (e.status >= 300) await a.post('/api/switch-user', { user_id: adminStaffId }); };
   return { page, close, userKeys: user ? Object.keys(user) : null, perms: Array.isArray(fe) ? fe.length : (fe?.fe_permissions ?? []).length };
 }
