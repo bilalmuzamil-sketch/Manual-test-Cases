@@ -409,3 +409,8 @@
 - Judging note for the report: an analogy to one of the QA lead's decisions (C368233 "production compared with itself") is NOT his decision for sister cases C368234/C368235 — those are held and asked.
 #run498 #production #route #display → L0541
 - **L0539 settled (22 Oct 22:20 UTC):** both directions read back on production — account renamed → staff record follows; staff record renamed → account follows (`seed-carol-prod-1022.json` `namesTied: yes`). Production keeps ONE name for a staff record and its sign-in account. C707077 (needs the two to differ) posted **Blocked** on production with that proof (environment limit, Rule 107 test passed: no permission or data would change it).
+
+## L0544 — 2026-10-22 — Production filter defaults and left-menu links: two more traps
+- **Report Location filter starts with ALL locations ticked on production** (Work In Progress, Sales By Representative), while the cases (written on staging) say "the first location is the only one ticked by default". A "tick the second as well" step then UNticks it. `medium-fix3.mts keepAfterReload` now unticks the case's pick first (start state read back, picture `<C-id>-start-first-only.png`) and step 3 ticks it.
+- **Left-menu links on Parts pages**: `p.locator('a, .q-item, …').filter({hasText}).first()` picked a hidden copy and timed out, so the script fell back to the address (judged route-only Unsure, C368218/C368219/C368223). Use `:visible` on every candidate (`a:visible, .q-item:visible, …`).
+#run498 #production #filters #route → L0541, L0543
