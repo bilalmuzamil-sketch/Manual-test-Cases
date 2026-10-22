@@ -75,3 +75,8 @@ Intake: INTAKE-2026-10-19.md. Worker brief: WORKER-BRIEF.md.
   135 → 144, none lost. Question 41 added to sheet 17Ry1Bt rows 48-49 (light orange, colour guide F3). Divergences plan-vs-PRD: 6, all
   already ruled (answers 5, 7, 14, 16, 25, 39). Other suites' cases the plan names (C30255, C154617, C30161, C38923, C30287, C43575):
   reported, not edited.
+- 22 Oct 2026 one action per step (Rule 135): 93 library cases + C690660/C690661/C690664 rewritten (steps 465 → 681), all read back OK;
+  run 547 unchanged (144). Show Unassigned / Sales Type / Close-selector steps dropped where no result depends on them. Over-10-step
+  cases kept whole and asked (Rule 127): C665959 (11), C665970 (12), C665981 (13). Build prints ASK for these instead of PROBLEM.
+  Open for build verification: whether a staff member's Sales Representative switch saves on its own (S1-07, S1-09, S4-20, S4-23 save;
+  S6-01, S6-02 do not).

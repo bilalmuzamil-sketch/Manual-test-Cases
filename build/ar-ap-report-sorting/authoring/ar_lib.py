@@ -353,6 +353,7 @@ def check(c):
         elif ws(t) not in PRDW and ws(t) not in PRD_RAWW: p.append(f"{k}: quote {l} not verbatim in PRD v5")
     if not c["q"]: p.append(f"{k}: no source quote (Rule 64)")
     if len(c["pre"]) > 8: p.append(f"{k}: {len(c['pre'])} preconditions")
-    if len(c["steps"]) > 10: p.append(f"{k}: {len(c['steps'])} steps (over 10: ask before splitting, Rule 127)")
+    # Over 10 steps is over the Rule 117 ninth-amendment TARGET ("Limits are targets"), not an error: the case stays whole and is listed
+    # for the QA lead by build.py as an OVER-TARGET line (Rule 127: never split a case without asking). Changed 22 Oct 2026, one-action-steps pass.
     if not c["marker"].startswith("AUTOMATION: "): p.append(f"{k}: marker")
     return p

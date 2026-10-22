@@ -60,11 +60,12 @@ for code in ("ARD", "APD"):
        "Scroll further down.",
        "Collapse {Bucket-A} with its own chevron.",
        "Click the chevron button in the top-left header cell (Expand all).",
-       "Count the lines shown in {Bucket-A} before any more load, then scroll further down."],
+       "Count the lines shown in {Bucket-A} before any more load.",
+       "Scroll further down."],
       ["Step 1: {Bucket-A} opens.", "Step 2: it shows its first 100 lines.",
        "Step 3: more lines load as you scroll, continuing the same order with no line repeated.",
        "Step 4: {Bucket-A} closes.",
-       "Step 5: every bucket expands.", "Step 6: {Bucket-A} again shows its first 100 lines, and more load as you scroll."],
+       "Step 5: every bucket expands.", "Step 6: {Bucket-A} again shows its first 100 lines.", "Step 7: more lines load as you scroll."],
       ["S4-R4", "S1-R8"])
 
 for code in GROUPED:
@@ -85,7 +86,8 @@ for code in GROUPED:
        f"Keep scrolling until {B}'s row reaches the top.",
        f"Keep scrolling into {B}'s rows.",
        f"Scroll back up slowly until you are inside {A}'s rows again.",
-       f"Scroll down fast through {A}'s and {B}'s rows, then fast back up.",
+       f"Scroll down fast through {A}'s and {B}'s rows.",
+       f"Scroll fast back up through {B}'s and {A}'s rows.",
        "Make the browser window 1200 px wide.",
        "Scroll the table sideways to the right."],
       [f"Step 1: {A}'s row stays pinned just under the column headings while its rows scroll beneath it.",
@@ -94,8 +96,9 @@ for code in GROUPED:
        f"Step 4: {B}'s row stays pinned.",
        f"Step 5: the change reverses: {A}'s row comes back down into the pinned place.",
        "Step 6: at speed too, each pinned row is pushed up and replaced cleanly: it never covers the column headings or the Totals row at the bottom, and two group rows never overlap.",
-       "Step 7: the table now scrolls sideways (narrower than 1440 px).",
-       f"Step 8: each group row's label ({A}'s label) stays visible at the left while the columns move."],
+       "Step 7: the same going back up: each pinned row is replaced cleanly, never covers the column headings or the Totals row, and two group rows never overlap.",
+       "Step 8: the table now scrolls sideways (narrower than 1440 px).",
+       f"Step 9: each group row's label ({A}'s label) stays visible at the left while the columns move."],
       ["S4-R6", "S4-R7", "S8-R3"] + TP.q("D21", "CHK3") + (["S9-R1", "S9-R2"] if code == "ARC" else []))
 
 for code in ("ARC", "APU"):
@@ -115,9 +118,11 @@ for pair in (["ARD", "ARC"], ["APD", "APU"]):
         n0 = len(steps); nm = R[code]["n"]; g = gname(code)
         steps += [f"Open Reports > Finance > {nm} and note which groups are expanded.",
                   f"Click the chevron on the first {g} row to change it.",
-                  "Open Reports > Finance > Sales By Customer, then open " + nm + " again."]
+                  "Open Reports > Finance > Sales By Customer.",
+                  f"Open Reports > Finance > {nm} again."]
         res += [f"Step {n0+1}: {nm} opens; note its opening state.", f"Step {n0+2}: that {g} changes (expands or collapses).",
-                f"Step {n0+3}: {nm} opens in the same state as in step {n0+1}, not the state you left: the change is not remembered."]
+                f"Step {n0+3}: Sales By Customer opens.",
+                f"Step {n0+4}: {nm} opens in the same state as in step {n0+1}, not the state you left: the change is not remembered."]
     C(k, "S4", f"{a['n']} and {b['n']} do not remember expanded groups",
       [ADMIN(), ("Both reports have open documents on today's date in several groups.", None), "Starting screen: Reports > Finance in a desktop browser window 1440 px wide."],
       steps, res, ["S4-R9"], reports=pair)

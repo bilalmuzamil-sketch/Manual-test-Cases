@@ -14,3 +14,17 @@ def START(where="{Work-order-1} is open in a desktop browser at least 1024 px wi
     return f"Starting screen: {where}."
 WO_START = START()
 DESK = "a desktop browser at least 1024 px wide"
+
+# 22 Oct 2026, one-action-steps pass (QA lead: "Yes, fix all 113 cases"): a step and its result are written as one pair, so every
+# step has exactly one "Step N:" result and the numbering can never drift when a bundled step is split.
+def SR(*pairs):
+    """pairs: (step, result without the "Step N: " prefix). Returns (steps, results)."""
+    return [s for s, _ in pairs], [f"Step {i}: {r}" for i, (_, r) in enumerate(pairs, 1)]
+# The Sales By Representative report, one action per step (was one bundled step: open, date range, Show Unassigned, Sales Type column).
+OPEN_SBR = ("Open Reports > Sales By Representative.", "the Sales By Representative report opens.")
+OPEN_SBC = ("Open Reports > Sales By Customer.", "the Sales By Customer report opens.")
+TODAY = ("Set the date range to today.", "the report shows today's date range.")
+UNASSIGNED_ON = ("Turn Show Unassigned on.", "Show Unassigned is on.")
+def SALES_TYPE_ON(result): return ("Turn the Sales Type column on in the column selector.", result)
+MENU = ("Open the work order's menu.", "the work order's menu opens.")
+CLOSE_LOG = ("Close the log.", "the log closes.")

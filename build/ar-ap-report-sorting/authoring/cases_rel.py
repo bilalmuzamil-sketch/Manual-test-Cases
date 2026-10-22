@@ -49,10 +49,10 @@ C(k, "REL", "Reports page access alone opens and exports all six reports with am
     f"For example: {{User-B}} is {ex(k, 'Reports Only')[0]} with the custom role {ex(k, 'Reports Only Role')[0]}."),
    ("Each of the six reports has open documents on today's date.", None), "Starting screen: the ShopView home page in a desktop browser window 1440 px wide."],
   ["Open Reports > Finance and read the list.", "Open A/R Summary and read the amounts.", "Download its PDF from the ⋯ menu.",
-   "Open A/P Detail and expand a bucket.", "Download its CSV from the ⋯ menu.",
+   "Open A/P Detail.", "Expand a bucket.", "Download its CSV from the ⋯ menu.",
    "Open A/R Detail, A/R Collection, A/P Summary and A/P Unpaid Invoices in turn."],
   ["Step 1: all six reports are offered.", "Step 2: the amounts show: \"See Financial Data\" off does not hide them.", "Step 3: the PDF downloads.",
-   "Step 4: the amounts show.", "Step 5: the CSV downloads.", "Step 6: each opens with its amounts; no setting had to be changed after the release."],
+   "Step 4: A/P Detail opens.", "Step 5: the amounts show.", "Step 6: the CSV downloads.", "Step 7: each opens with its amounts; no setting had to be changed after the release."],
   ["KD-PERM", "GOAL-ACCESS", "S1-N1"],
   reports=["ARS", "ARD", "ARC", "APS", "APD", "APU"])
 
@@ -61,12 +61,13 @@ C(k, "REL", "Inventory Value, Sales By Customer and Work In Progress work as bef
   [ADMIN(), TWO_LOC, ("Before the release was installed, you saved each of the three reports' PDF and CSV for {Date-A} with one location ticked, and copied a link to each with that filter.",
                       "For example: {Date-A} is the day before the release."),
    "Starting screen: the release is installed; Reports > Finance is open in a desktop browser window 1440 px wide."],
-  ["Open the Inventory Value link saved before the release.", "Download its PDF and CSV and compare them with the saved files.",
-   "Open the Sales By Customer link saved before the release.", "Download its PDF and CSV and compare them with the saved files.",
-   "Open the Work In Progress link saved before the release.", "Download its PDF and CSV and compare them with the saved files."],
-  ["Step 1: Inventory Value opens with the same filter ticked as before.", "Step 2: the same rows, amounts and layout as the saved files.",
-   "Step 3: Sales By Customer opens with the same filter ticked.", "Step 4: the same as the saved files.",
-   "Step 5: Work In Progress opens with the same filter ticked.", "Step 6: the same as the saved files."],
+  ["Open the Inventory Value link saved before the release.", "Download its PDF and compare it with the saved PDF.", "Download its CSV and compare it with the saved CSV.",
+   "Open the Sales By Customer link saved before the release.", "Download its PDF and compare it with the saved PDF.", "Download its CSV and compare it with the saved CSV.",
+   "Open the Work In Progress link saved before the release.", "Download its PDF and compare it with the saved PDF.", "Download its CSV and compare it with the saved CSV."],
+  ["Step 1: Inventory Value opens with the same filter ticked as before.", "Step 2: the same rows, amounts and layout as the saved PDF.",
+   "Step 3: the same rows, amounts and layout as the saved CSV.",
+   "Step 4: Sales By Customer opens with the same filter ticked.", "Step 5: the same as the saved PDF.", "Step 6: the same as the saved CSV.",
+   "Step 7: Work In Progress opens with the same filter ticked.", "Step 8: the same as the saved PDF.", "Step 9: the same as the saved CSV."],
   ["KD-REUSE", J597], stories=[5, 3], marker=PRE_REL,
   note="Why: the reports reuse the native chips, totals row and export of these three reports, so a change made for the aging reports could reach them (Rule 96, shared component).")
 
@@ -85,9 +86,9 @@ k = nk()
 C(k, "REL", "A work order link from another location still asks to switch",
   [ADMIN(), TWO_LOC, ("Work order {Work-order-1} was made at {Location-B}, and you have a link to it copied from the address bar.", "For example: {Work-order-1} is S2-41001."),
    "Starting screen: the release is installed; Work Orders is open at {Location-A} in a desktop browser window 1440 px wide."],
-  ["Paste the link to {Work-order-1} into the address bar and press Enter.", "Click \"Cancel\".", "Read the page and any message."],
-  ["Step 1: the existing switch-location prompt asks to switch to {Location-B}, as before the release.",
-   "Step 2: the prompt closes.", "Step 3: you are on Work Orders, with its message, as before the release."],
+  ["Paste the link to {Work-order-1} into the address bar.", "Press Enter.", "Click \"Cancel\".", "Read the page and any message."],
+  ["Step 1: the link shows in the address bar.", "Step 2: the existing switch-location prompt asks to switch to {Location-B}, as before the release.",
+   "Step 3: the prompt closes.", "Step 4: you are on Work Orders, with its message, as before the release."],
   ["KD-REUSE", J597b], stories=[7])
 
 k = nk()
@@ -104,10 +105,11 @@ C(k, "REL", "A credit dated on the as-of date stays in the same bucket as before
 k = nk()
 C(k, "REL", "The research ideas left out of this release do not appear",
   [ADMIN(), ("The three A/R reports have open documents on today's date.", None), "Starting screen: Reports > Finance in a desktop browser window 1440 px wide."],
-  ["Open A/R Summary and read its filter row, its columns and the ⋯ menu.", "Open A/R Collection and expand a customer group.", "Open A/R Detail and read its filter row."],
+  ["Open A/R Summary and read its filter row, its columns and the ⋯ menu.", "Open A/R Collection.", "Expand a customer group.", "Open A/R Detail and read its filter row."],
   ["Step 1: no aging-period setting (the buckets are 30 days), no salesperson or Parts vs Service filter, no Last payment date or Credit limit column, no Send statement action.",
-   "Step 2: no collection notes or follow-up log, and no Send statement action.",
-   "Step 3: no aging-period setting and no salesperson or Parts vs Service filter."],
+   "Step 2: A/R Collection opens.",
+   "Step 3: no collection notes or follow-up log, and no Send statement action.",
+   "Step 4: no aging-period setting and no salesperson or Parts vs Service filter."],
   ["OOS-4"], stories=[5], reports=["ARS", "ARC", "ARD"])
 
 k = nk()
@@ -136,9 +138,9 @@ k = nk()
 steps, res = [], []
 for nm in ("Sales By Customer", "Inventory Value", "Work In Progress"):
     n0 = len(steps)
-    steps += [f"Open {nm} and untick {{Location-B}} in its Location filter.", f"Open A/R Summary, then open {nm} again from the Reports menu.", f"Read {nm}'s Location chip."]
-    res += [f"Step {n0+1}: {nm} narrows to {{Location-A}}.", f"Step {n0+2}: {nm} opens again.",
-            f"Step {n0+3}: the Location filter is kept, or forgotten, exactly as you noted for {nm} before the release."]
+    steps += [f"Open {nm}.", "In its Location filter, untick {Location-B}.", "Open A/R Summary.", f"Open {nm} again from the Reports menu.", f"Read {nm}'s Location chip."]
+    res += [f"Step {n0+1}: {nm} opens.", f"Step {n0+2}: {nm} narrows to {{Location-A}}.", f"Step {n0+3}: A/R Summary opens.", f"Step {n0+4}: {nm} opens again.",
+            f"Step {n0+5}: the Location filter is kept, or forgotten, exactly as you noted for {nm} before the release."]
 C(k, "REL", "Other reports keep or forget their filters between visits as before",
   [ADMIN(), TWO_LOC, ("Before the release was installed, you did the steps below on Sales By Customer, Inventory Value and Work In Progress and noted for each whether the unticked location was still unticked when you came back.", None),
    "Starting screen: the release is installed; Reports is open in a desktop browser window 1440 px wide."],

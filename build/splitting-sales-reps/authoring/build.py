@@ -44,6 +44,11 @@ for c in ssr_lib.CASES:
     if q.count("<p>From: ") != q.count("<ul>"): probs.append(f"{c['key']}: a quote group without its own From line")
     if "Epic SV-10890" not in q or ssr_lib.NOBUILD not in q: probs.append(f"{c['key']}: tickets or build line missing")
     if not re.search(r"version \d+|dated ", q): probs.append(f"{c['key']}: document version missing")
+# RULE 127 (22 Oct 2026, one-action-steps pass): a case over 10 steps is written WHOLE and listed for the QA lead to decide on a split;
+# it is an ask, not a defect, so it is printed as ASK and does not fail the build. Every other finding still fails it.
+asks = [p for p in probs if "ask before splitting, Rule 127" in p]
+probs = [p for p in probs if p not in asks]
+for p in asks: print("ASK (Rule 127, case kept whole)", p)
 for p in probs: print("PROBLEM", p)
 out = {c["key"]: dict(sec=c["sec"], fields=ssr_lib.render(c)) for c in ssr_lib.CASES}
 json.dump(out, open(f"{ssr_lib.D}/proposals.json", "w"), indent=1, ensure_ascii=False)

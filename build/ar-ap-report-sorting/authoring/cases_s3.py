@@ -13,12 +13,16 @@ for fam, codes in (("A/R", AR3), ("A/P", AP3)):
     k = nk(); steps, res = [], []
     for code in codes:
         n0 = len(steps); nm = R[code]["n"]
-        steps += [f"Open Reports > Finance > {nm} and hover over the ⋯ button at the right of the title row.",
+        steps += [f"Open Reports > Finance > {nm}.",
+                  "Hover over the ⋯ button at the right of the title row.",
                   "Click the ⋯ button and read the menu.",
-                  "Close the menu and look along the title row and the filter row for a Print button."]
-        res += [f"Step {n0+1}: {nm} shows a ⋯ button at the right of its title row, labelled \"Export report\".",
-                f"Step {n0+2}: the menu offers \"Download (PDF)\" and \"Download (CSV)\".",
-                f"Step {n0+3}: there is no Print button" + (" (A/R's former Print button is gone)." if fam == "A/R" else ", and no separate print button: printing is through \"Download (PDF)\".")]
+                  "Close the menu.",
+                  "Look along the title row and the filter row for a Print button."]
+        res += [f"Step {n0+1}: {nm} opens.",
+                f"Step {n0+2}: {nm} shows a ⋯ button at the right of its title row, labelled \"Export report\".",
+                f"Step {n0+3}: the menu offers \"Download (PDF)\" and \"Download (CSV)\".",
+                f"Step {n0+4}: the menu closes.",
+                f"Step {n0+5}: there is no Print button" + (" (A/R's former Print button is gone)." if fam == "A/R" else ", and no separate print button: printing is through \"Download (PDF)\".")]
     C(k, "S3", f"Each {fam} report has the Export menu with PDF and CSV",
       [ADMIN(), (f"Each of the three {fam} reports has open documents on today's date.", None),
        "Starting screen: Reports > Finance in a desktop browser window 1440 px wide."],
@@ -153,17 +157,20 @@ for code, how in (("ARS", "location"), ("APU", "vendor")):
     r = R[code]; k = nk(); P = r["Party"]
     if how == "location":
         pre = [ADMIN(), TWO_LOC, START(code)]
-        s1 = ("Open the Location filter and click \"Clear selection\".", "Step 1: no location is ticked; the native empty state shows with \"Clear all filters\", no totals and no Location column.")
+        s1 = ("Open the Location filter.", "Step 1: the Location menu opens.",
+              "Click \"Clear selection\".", "Step 2: no location is ticked; the native empty state shows with \"Clear all filters\", no totals and no Location column.")
         q = ["S3-R10", "S5-R6a", "UFS-7"]
     else:
         pre = [ADMIN(), TWO_LOC, (f"Vendor {{Vendor-A}} has open bills only at {{Location-B}}.", f"For example: {{Vendor-A}} is {ex(k, 'Elsewhere')[0]}."),
                START(code, ", with only {Location-A} ticked in the Location filter")]
-        s1 = ("In the Vendor filter, tick {Vendor-A}.", "Step 1: the report shows no rows: {Vendor-A} has nothing open at {Location-A}.")
+        s1 = (None, None, "In the Vendor filter, tick {Vendor-A}.", "Step 1: the report shows no rows: {Vendor-A} has nothing open at {Location-A}.")
         q = ["S3-R10", "UFS-7", "S5-E1"]
+    lead_s = [x for x in (s1[0], s1[2]) if x]; n = len(lead_s)
+    lead_r = [x for x in (s1[1], s1[3]) if x]
     C(k, "S3", f"{r['n']}: exporting an empty report downloads nothing and warns", pre,
-      [s1[0], "Choose \"Download (PDF)\" from the ⋯ menu.", "Look at the browser's downloads.", "Choose \"Download (CSV)\" from the ⋯ menu.", "Look at the browser's downloads."],
-      [s1[1], "Step 2: the warning \"Empty export\", \"Export didn't yield any results\" shows.", "Step 3: nothing was downloaded.",
-       "Step 4: the same warning shows.", "Step 5: nothing was downloaded."], q)
+      lead_s + ["Choose \"Download (PDF)\" from the ⋯ menu.", "Look at the browser's downloads.", "Choose \"Download (CSV)\" from the ⋯ menu.", "Look at the browser's downloads."],
+      lead_r + [f"Step {n+1}: the warning \"Empty export\", \"Export didn't yield any results\" shows.", f"Step {n+2}: nothing was downloaded.",
+       f"Step {n+3}: the same warning shows.", f"Step {n+4}: nothing was downloaded."], q)
 
 # ---- an export that fails for any other reason (lost connection)
 for code, kind in (("ARD", "CSV"), ("APS", "PDF")):

@@ -43,16 +43,18 @@ for code in ("ARD", "APD"):
       [ADMIN(), ("One aging bucket, {Bucket-A}, has between 101 and 400 open lines on today's date.", "For example: {Bucket-A} is \"91 or more days past due\"."),
        START(code, ", with every bucket collapsed")],
       ["Choose \"Download (CSV)\" from the ⋯ menu.", "Count the CSV rows whose bucket is {Bucket-A}.",
-       "Expand {Bucket-A} and scroll to its end, letting every batch load, writing down each document number.",
+       "Expand {Bucket-A}.",
+       "Scroll to the end of {Bucket-A}, letting every batch load, writing down each document number.",
        "Click the \"Amount\" header.", "Look at {Bucket-A} and count its lines before any more load.",
        "Scroll to the end of {Bucket-A} again, letting every batch load, writing down each number.",
        "Compare the two lists with the CSV."],
       ["Step 1: the CSV downloads.", "Step 2: note the count (for example 250).",
-       "Step 3: the first 100 lines show, then more load as you scroll; every document appears exactly once.",
-       "Step 4: the rows sort by Amount, largest first, inside each bucket.",
-       "Step 5: {Bucket-A} is still expanded and starts again from its first 100 lines, now in Amount order (largest first).",
-       "Step 6: more lines load as you scroll; in this sort too, every document appears exactly once.",
-       "Step 7: both lists hold exactly the CSV's documents for {Bucket-A}: none repeated, none missing."],
+       "Step 3: {Bucket-A} opens and its first 100 lines show.",
+       "Step 4: more lines load as you scroll; every document appears exactly once.",
+       "Step 5: the rows sort by Amount, largest first, inside each bucket.",
+       "Step 6: {Bucket-A} is still expanded and starts again from its first 100 lines, now in Amount order (largest first).",
+       "Step 7: more lines load as you scroll; in this sort too, every document appears exactly once.",
+       "Step 8: both lists hold exactly the CSV's documents for {Bucket-A}: none repeated, none missing."],
       ["S1-R8", "S4-R4", "S4-R8"] + TP.q("P4-sort"))
 
 # ---------------- the Totals row under every filter, on screen, in the PDF and the CSV ----------------
@@ -72,14 +74,15 @@ for code in ("ARS", "APS"):
       [f"In the {P} filter, tick {{{P}-A}} and {{{P}-B}}.", "Read both rows and the Totals row.",
        "In the Location filter, untick {Location-B}.", "Read both rows and the Totals row.",
        "In the Location menu, click \"Select all\".", "In the Past due filter, tick \"91+ days\".", "Read the rows and the Totals row.",
-       "Download the PDF and the CSV from the ⋯ menu and read their Totals rows."],
+       "Download the PDF from the ⋯ menu and read its Totals row.", "Download the CSV from the ⋯ menu and read its Totals row."],
       [f"Step 1: two rows remain; {{{P}-C}} is gone.",
        f"Step 2: {{{P}-A}} appears once, with Location \"Multiple\" and a Total of $1,250.00 (1,000.00 + 400.00 − 150.00); {{{P}-B}}'s Total is $950.00 (700.00 + 250.00); the Totals row's Total is $2,200.00 (1,250.00 + 950.00).",
        "Step 3: the report narrows to {Location-A}.",
        f"Step 4: {{{P}-A}}'s Total is $850.00 (1,000.00 − 150.00, its {{Location-A}} documents only); {{{P}-B}}'s is $700.00; the Totals row's Total is $1,550.00.",
        "Step 5: every location is ticked again.", "Step 6: the chip reads \"Past due: 91+ days\".",
        f"Step 7: only {{{P}-B}} is listed ({{{P}-A}} has nothing more than 90 days past due), at its full balance: 31-60 Days $700.00, 91 And Over $250.00, Total $950.00; the Totals row's Total is $950.00.",
-       "Step 8: both Totals rows read $950.00 for the Total, the same as the screen."],
+       "Step 8: the PDF's Totals row reads $950.00 for the Total, the same as the screen.",
+       "Step 9: the CSV's Totals row reads $950.00 for the Total, the same as the screen."],
       ["S5-R18", "S5-R8", "S5-R17", "S6-R4", "KD-ROW"])
 
 for code in ("ARD", "ARC", "APD", "APU"):
@@ -89,14 +92,15 @@ for code in ("ARD", "ARC", "APD", "APU"):
       [f"In the {P} filter, tick {{{P}-A}} and {{{P}-B}}.", f"Read the Totals row's {r['headline']}.",
        "In the Past due filter, tick \"31-60 days\".", "Expand every group and read the rows and the Totals row.",
        "In the Location filter, untick {Location-B}.", "Expand every group and read the rows and the Totals row.",
-       "Download the PDF and the CSV from the ⋯ menu and read their Totals rows."],
+       "Download the PDF from the ⋯ menu and read its Totals row.", "Download the CSV from the ⋯ menu and read its Totals row."],
       [f"Step 1: only the two {r['parties']}' documents remain; {{{P}-C}}'s $900.00 is gone.",
        f"Step 2: $2,200.00 (1,000.00 + 400.00 − 150.00 + 700.00 + 250.00): the Totals row follows the {r['party']} filter.",
        "Step 3: the chip reads \"Past due: 31-60 days\".",
        f"Step 4: the rows are the $400.00 and $700.00 documents (45 days past due) and the $150.00 {cr}, which is always kept; the Totals row reads $950.00 (400.00 + 700.00 − 150.00).",
        "Step 5: the report narrows to {Location-A}.",
        f"Step 6: the rows are the $700.00 document and the $150.00 {cr}; the Totals row reads $550.00 (700.00 − 150.00).",
-       "Step 7: both Totals rows read $550.00, the same as the screen."],
+       "Step 7: the PDF's Totals row reads $550.00, the same as the screen.",
+       "Step 8: the CSV's Totals row reads $550.00, the same as the screen."],
       ["S5-R18", "S5-R16", "S5-R7"] + (["WC-4"] if code in ("ARC", "APU") else []))
 
 # ---------------- A/R Summary Totals and overpaid invoices ----------------
@@ -117,10 +121,11 @@ for fam, s, d in (("A/R", "ARS", "ARD"), ("A/P", "APS", "APD")):
     k = nk()
     C(k, "DATA", f"{fam} Summary and {fam} Detail show the same Totals for the same filters",
       [ADMIN(), TWO_LOC, (f"The organization has open {docs(s)} on today's date at both locations.", None), "Starting screen: Reports > Finance in a desktop browser window 1440 px wide."],
-      [f"Open {R[s]['n']} and untick {{Location-B}} in the Location menu.", "Read the Totals row's Total.",
-       f"Open {R[d]['n']} and untick {{Location-B}} in the Location menu.", f"Read the Totals row's {R[d]['headline']}.", "Compare the two."],
-      ["Step 1: the report narrows to {Location-A}.", "Step 2: note the amount.", "Step 3: the report narrows to {Location-A}.", "Step 4: note the amount.",
-       "Step 5: the two amounts are equal, to the cent."],
+      [f"Open {R[s]['n']}.", "In the Location menu, untick {Location-B}.", "Read the Totals row's Total.",
+       f"Open {R[d]['n']}.", "In the Location menu, untick {Location-B}.", f"Read the Totals row's {R[d]['headline']}.", "Compare the two."],
+      [f"Step 1: {R[s]['n']} opens.", "Step 2: the report narrows to {Location-A}.", "Step 3: note the amount.",
+       f"Step 4: {R[d]['n']} opens.", "Step 5: the report narrows to {Location-A}.", "Step 6: note the amount.",
+       "Step 7: the two amounts are equal, to the cent."],
       ["S5-R18", "WC-10"], reports=[s, d],
       marker=f"AUTOMATION: HOLD - waiting on the PO (question {QN['parity']}: should Summary and Detail Totals agree)")
 
@@ -131,15 +136,20 @@ for code in ("ARD", "APU"):
       [ADMIN(), (f"{P} {{{P}-A}} has eight open {d}s on today's date: one not yet due, and one each 1, 30, 31, 60, 61, 90 and 91 days past its due date.",
                  f"For example: {{{P}-A}} is {ex(k, 'Boundaries')[0]}; the {d}s are $10.00, $1.00, $30.00, $31.00, $60.00, $61.00, $90.00 and $91.00 in that order."),
        START(code, f", with only {{{P}-A}} ticked in the {P} filter and every group expanded")],
-      ["In the Past due filter, tick \"1-30 days\" only.", "In the Past due filter, untick \"1-30 days\" and tick \"31-60 days\".",
-       "In the Past due filter, untick \"31-60 days\" and tick \"61-90 days\".", "In the Past due filter, untick \"61-90 days\" and tick \"91+ days\".",
+      ["In the Past due filter, tick \"1-30 days\" only.",
+       "In the Past due filter, untick \"1-30 days\".", "Tick \"31-60 days\".",
+       "Untick \"31-60 days\".", "Tick \"61-90 days\".",
+       "Untick \"61-90 days\".", "Tick \"91+ days\".",
        "In the Past due filter, tick all four ranges.", "In the Past due filter, untick all four."],
       [f"Step 1: the Totals row reads $31.00: only the {d}s 1 and 30 days past due remain (expand the groups to see them).",
-       f"Step 2: $91.00: only the 31 and 60 day {d}s.",
-       f"Step 3: $151.00: only the 61 and 90 day {d}s.",
-       f"Step 4: $91.00: only the 91 day {d}.",
-       f"Step 5: the chip reads \"Past due: 4 ranges\" and the {d} that is not yet due is gone (Totals $364.00).",
-       f"Step 6: \"Past due: Any\" and all eight {d}s show (Totals $374.00)."],
+       "Step 2: \"1-30 days\" is unticked.",
+       f"Step 3: $91.00: only the 31 and 60 day {d}s.",
+       "Step 4: \"31-60 days\" is unticked.",
+       f"Step 5: $151.00: only the 61 and 90 day {d}s.",
+       "Step 6: \"61-90 days\" is unticked.",
+       f"Step 7: $91.00: only the 91 day {d}.",
+       f"Step 8: the chip reads \"Past due: 4 ranges\" and the {d} that is not yet due is gone (Totals $364.00).",
+       f"Step 9: \"Past due: Any\" and all eight {d}s show (Totals $374.00)."],
       ["S5-R15", "S5-R16", "S5-R18"])
 
 # ---------------- export limits ----------------
@@ -204,13 +214,14 @@ C(k, "DATA", "A/R Summary: a payment shows as soon as the report is reloaded",
   [ADMIN(), ("Customer {Customer-A} has one open invoice, {Invoice-A}, of $500.00 on today's date, and nothing else open.", f"For example: {{Customer-A}} is {ex(k, 'Fresh Payment')[0]}."),
    ("{Invoice-A}'s page is open in a second browser tab, ready to record a payment.", None),
    START("ARS", ", with the Customer filter showing only {Customer-A} ticked")],
-  ["Read {Customer-A}'s Total and the Totals row.", "In the second tab, record a payment of $200.00 on {Invoice-A}.",
-   "Back on A/R Summary, reload the page.", "Read {Customer-A}'s Total and the Totals row."],
-  ["Step 1: both read $500.00.", "Step 2: the payment is saved and the invoice's balance is $300.00.",
-   "Step 3: the report reloads, still with only {Customer-A} ticked.",
-   "Step 4: both read $300.00 (500.00 − 200.00): the payment shows straight away."],
+  ["Read {Customer-A}'s Total and the Totals row.", "Switch to the second tab.", "Record a payment of $200.00 on {Invoice-A}.",
+   "Switch back to the A/R Summary tab.", "Reload the page.", "Read {Customer-A}'s Total and the Totals row."],
+  ["Step 1: both read $500.00.", "Step 2: {Invoice-A}'s page shows.", "Step 3: the payment is saved and the invoice's balance is $300.00.",
+   "Step 4: A/R Summary shows, not yet reloaded.",
+   "Step 5: the report reloads, still with only {Customer-A} ticked.",
+   "Step 6: both read $300.00 (500.00 − 200.00): the payment shows straight away."],
   ["S8-R1 ARS", "S5-R18"] + TP.q("LAG", "D1"),
   note=("On a test site the reports read the same data the payment is written to (tech plan: \"Staging/QA reader = writer\"), so the reload shows it at once. "
         f"In production they read a copy that can be about a second behind; question {QN['parity']} (part 2) asks Chris Ward whether a delay is acceptable. "
-        "If this case is run on production, wait a few seconds before step 3."))
+        "If this case is run on production, wait a few seconds before step 5."))
 

@@ -10,7 +10,7 @@ sys.path.insert(0, D); import design_data as DD
 PROP = json.load(open(f"{D}/proposals.json")); MAP = f"{P}/testrail-id-map.csv"
 ids = {r["key"]: int(r["case_id"]) for r in csv.DictReader(open(MAP))}
 HOLD = "AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO"
-TAG = "techplan-2026-10-22"  # was design-2026-10-22 for the design pass
+TAG = "onestep-2026-10-22"  # was design-2026-10-22 for the design pass
 RELEASED = ["S1-07"]  # released from hold by the tech plan pass (plan D4)
 PICRE = re.compile(r"ar-ap-p\d-[a-z0-9-]+\.png")
 def pics(f): return sorted(set(PICRE.findall(f["custom_preconds"] + f["custom_expected"])))

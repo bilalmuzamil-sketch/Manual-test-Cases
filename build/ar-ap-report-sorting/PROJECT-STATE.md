@@ -73,3 +73,7 @@
   pictures uploaded. Run 549: 279 → 291 (11 new + C715279), none lost. Question 16 added to sheet rows 22-23 (light orange, F3).
   For the QA lead: the plan says the developers will add 7 cases and edit C27260-C27264, C26553-C26560, C29451 (not ours; C26553-C26560
   describe the reports as gated by the A/R and A/P permissions, which the plan says is wrong). Not touched.
+- 22 Oct 2026 one action per step (QA lead "Yes, fix all 113 cases"; Rule 135): 92 cases rewritten (steps 550 → 698; 6 filler
+  "Look across the page again." steps removed from D-03/06/09/12/15/18), all read back OK (applied/onestep-2026-10-22-log.jsonl); run 549
+  unchanged (291). Over-10-step cases kept whole and asked (Rule 127): S3-01, S3-02, S5-10, S5-11, S5-20, REL-12. The build's over-10
+  check now prints OVER-TARGET instead of PROBLEM (Rule 127: ask, not fail).

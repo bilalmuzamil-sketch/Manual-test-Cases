@@ -90,6 +90,8 @@ print("tech plan statements", len(TP.S), dict(Counter(st["verdict"] for st in TP
       "| cases quoting the tech plan", sum(1 for c in L.CASES if any(isinstance(x, tuple) and x[0].startswith("Tech plan") for x in c["q"])))
 markers = Counter(c["marker"] for c in L.CASES)
 print("markers", dict(markers))
+over = [(c["key"], len(c["steps"])) for c in L.CASES if len(c["steps"]) > 10]
+for k_, n_ in over: print(f"OVER-TARGET {k_}: {n_} steps (Rule 117 target about 10; kept whole, ask the QA lead before any split, Rule 127)")
 for p in probs: print("PROBLEM", p)
 out = {c["key"]: dict(sec=c["sec"], section_id=SECS.get(c["sec"]), title=c["title"], refs=L.render(c)["refs"],
                       reports=[L.REPORTS[r] for r in L.reports_of(c)], codes=sorted(L.codes_of(c)), fields=L.render(c)) for c in L.CASES}

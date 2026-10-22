@@ -229,19 +229,25 @@ for code in ALL6:
             else f"The report has open documents at both locations on today's and yesterday's date, with more than 100 lines in at least one bucket.", None),
            (f"{r['Party']} {{{r['Party']}-A}} has open documents at both locations.", f"For example: {{{r['Party']}-A}} is {ex(k, 'Kept Sort')[0]}."),
            START(code)]
-    steps = [f"Click the \"{sortcol}\" header once.",
-             "Change the as-of date to yesterday.",
-             ("Go to the next page (or scroll until the next ones load)." if code in ("ARS", "APS", "ARC", "APU") else "Expand the largest bucket and scroll down until more lines load."),
-             f"Open the {r['Party']} filter and tick {{{r['Party']}-A}}.",
-             "In the Location filter, untick {Location-B}.",
-             f"Look at the \"{sortcol}\" header."]
+    paged = code in ("ARS", "APS", "ARC", "APU")
+    # one action per step (22 Oct 2026): "Expand the largest bucket and scroll down" and "Open the filter and tick" are two steps each
+    steps = ([f"Click the \"{sortcol}\" header once.",
+              "Change the as-of date to yesterday."]
+             + (["Go to the next page (or scroll until the next ones load)."] if paged else ["Expand the largest bucket.", "Scroll down inside it until more lines load."])
+             + [f"Open the {r['Party']} filter.",
+                f"Tick {{{r['Party']}-A}}.",
+                "In the Location filter, untick {Location-B}.",
+                f"Look at the \"{sortcol}\" header."])
     gx = " (expand a group to see them: a filter change collapses every group)" if grouped else ""
-    res = [f"Step 1: the rows sort by {sortcol}, largest first, and the header shows it.",
-           f"Step 2: the report reloads for yesterday and is still sorted by {sortcol}, largest first.",
-           f"Step 3: the new rows are still sorted by {sortcol}, largest first.",
-           f"Step 4: only {{{r['Party']}-A}}'s rows remain{gx}, still sorted by {sortcol}, largest first.",
-           f"Step 5: only {{Location-A}} rows remain{gx}, still sorted by {sortcol}, largest first.",
-           f"Step 6: \"{sortcol}\" is still marked as the sorted column."]
+    res = ([f"the rows sort by {sortcol}, largest first, and the header shows it.",
+            f"the report reloads for yesterday and is still sorted by {sortcol}, largest first."]
+           + ([] if paged else ["the bucket opens and shows its rows."])
+           + [f"the new rows are still sorted by {sortcol}, largest first.",
+              f"the {r['Party']} menu opens.",
+              f"only {{{r['Party']}-A}}'s rows remain{gx}, still sorted by {sortcol}, largest first.",
+              f"only {{Location-A}} rows remain{gx}, still sorted by {sortcol}, largest first.",
+              f"\"{sortcol}\" is still marked as the sorted column."])
+    res = [f"Step {i}: {x}" for i, x in enumerate(res, 1)]
     C(k, "S2", f"{r['n']}: the sort stays while changing date, page and filters", pre, steps, res,
       ["S2-R7", "S2-R2"] + (TP.q("P3-walk") if code in ("ARC", "APU") else []),
       note=(f"How the next 30 {r['parties']} are reached (page buttons or scrolling) is question {QN['paging']}; the step works either way." if code in ("ARS", "APS", "ARC", "APU") else ""))
