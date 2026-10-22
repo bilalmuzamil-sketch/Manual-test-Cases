@@ -444,3 +444,69 @@
 - L0418 — 2026-10-17 — Reading a run's history: what a full re-run's posts did to earlier verdicts (run 498)
 - L0419 — 2026-10-17 — A background wait-loop is cut at 30 minutes unless it is given a timeout
 - L0420 — 2026-10-17 — Run 498 steps 61-68: one test's leftover state blocks the next four, and three reading traps
+
+## build/kb/LEARNINGS-LOG/007-L0421-L0484.md
+- L0421 — 2026-10-17 — Reconciling against a moved PRD: diff the two versions by requirement id, not the old extract
+- L0422 — 2026-10-17 — A fix-up queue reads its list ONCE at start: lines added later need their own round
+- L0423 — 2026-10-17 — The auto-commit loop dies with the run it watches: start one for each follow-on round
+- L0424 — 2026-10-17 — Ruling: a waiting test whose ticket reads "Testing Stage" is re-tested at once
+- L0425 — 2026-10-17 — A sign-out step replaced by "a new browser" is not observed: never Passed, run it for real LAST
+- L0426 — 2026-10-17 — Staging: a test customer marked "Over Limit" cannot be invoiced — seed one that can
+- L0427 — 2026-10-17 — "Is a step stuck?" — read the newest evidence file's time, not the step's log
+- L0428 — 2026-10-17 — Rule 115's "two attempts" is about keeping flaky SPECS, never about leaving a test unjudged
+- L0429 — 2026-10-17 — A waiter that greps `ps` for a script NAME is fooled by any shell whose text holds that name
+- L0430 — 2026-10-17 — Staging Board View has ~280 technician columns: never "walk" to a far column — narrow the board first
+- L0431 — 2026-10-17 — A status pill's RED number = lines in "Needs Approval"; read the app's own public code when no recipe exists
+- L0432 — 2026-10-17 — A script that "fixes" a step behind the screen can hide the very finding the case exists for
+- L0433 — 2026-10-17 — Staff window "stays open after Save & Close": first suspect the hidden window in front, not the product
+- L0434 — 2026-10-17 — A "container was restarted" notice can mean only the SESSION WORKER restarted: check `ps` before restarting anything
+- L0435 — 2026-10-17 — Staging traps from round 3: a no-line work order opens "New Line" over its page; the Schedule search narrows only the left list
+- L0436 — 2026-10-17 — Moving the sign-out batch behind a new round: stop the PARENT waiter only; its running child survives
+- L0437 — 2026-10-17 — Two helpers adding learnings at once collide on the NUMBER: read the last number right before writing
+- L0438 — 2026-10-17 — After three blind script fixes fail, stop queuing and debug LIVE — hold the sign-out batch to keep the session for it
+- L0439 — 2026-10-17 — Staging: closing "New Customer Payment" with X after Create Invoice UNDOES the invoice
+- L0440 — 2026-10-17 — Staging live probes: the selectors that worked for six stubborn run 498 cases
+- L0441 — 2026-10-17 — On staging a REAL app log-out + quick-login sign-in did NOT end the shared Google sign-in
+- L0442 — 2026-10-17 — A per-user check needs a user nobody else uses; a fresh user cannot be signed in for real on staging
+- L0443 — 2026-10-17 — A held (no-ticket) Failed result must carry NO browse/ link: push_results_to_run.py treats any link as the defect
+- L0444 — 2026-10-17 — Staging: the "ZZBREAK…" customer sorts first because its name starts with two spaces — it is another tester's edge-case record, leave it
+- L0445 — 2026-10-19 — Rule 131 in practice: an "Obsolete" ticket can mean three different things — read WHY before judging
+- L0446 — 2026-10-19 — Ruling: every test case named to the QA lead carries its test-in-run link
+- L0447 — 2026-10-19 — Updating a case to a new PRD (Rule 131 + 114(c)): safe_case_edit.py, then BOTH render checks; check_case_render flags pre-existing <strong>
+- L0448 — 2026-10-19 — QA lead ruling: a bug that is the same on production is kept as RETEST in the feature run, not Failed
+- L0449 — 2026-10-19 — Re-checking a held keyboard ticket: use kbd-r4.mts (it has a positive control), not kbd-fix4.mts; read the build with the existing build-ma
+- L0450 — 2026-10-19 — Design-based tickets for WO Board: where the design facts live, the off-screen trap, and two Jira formatting traps
+- L0451 — 2026-10-19 — Work Orders List: the Status filter exists on the All tab ONLY — on staging AND production
+- L0452 — 2026-10-19 — QA lead ruling: a test waiting on a feature that is not built yet goes to RETEST, with the ticket link
+- L0453 — 2026-10-19 — Three run 498 routes found while unblocking: staff enrolments screen, production undoes an invoice on X too, the Split route
+- L0454 — 2026-10-19 — A brand-new staging user CAN sign in for real: public yopmail inbox + the staging gate cookie (supersedes L0442's "cannot")
+- L0455 — 2026-10-19 — QA lead ruling: a test that only passes by a route its own step does not describe is PASSED and the step is reworded (his "A", three cases)
+- L0456 — 2026-10-19 — QA lead ruling: "always unblock yourself, never get stuck like this"
+- L0457 — 2026-10-19 — QA lead ruling: a deleted lead's work order shows "Unassigned" in List — that is the expected behaviour
+- L0458 — 2026-10-19 — Tech View scroll readings: read the SCREEN, not the first thead, and never let Playwright scroll a row in before clicking
+- L0459 — 2026-10-19 — QA lead: "if editing those test cases does not go against the specs/PRD then go ahead and edit them … easiest for the Manual QA tester"
+- L0460 — 2026-10-19 — Today's own mistakes, and the guard now in place for each
+- L0461 — 2026-10-19 — Retesting cases updated in the last N hours: find them live; queue with ABSOLUTE paths; pkill -f again; a mid-run session_expired
+- L0462 — 2026-10-19 — Staging v26.40.19-c850386: Create Invoice no longer opens the "New Customer Payment" window
+- L0463 — 2026-10-19 — Another session shares the staging Admin's saved Work Orders view; old batch scripts are not proof
+- L0464 — 2026-10-19 — Headless Chromium hides EVERY scrollbar: launch without --hide-scrollbars to measure one
+- L0465 — 2026-10-19 — Board sideways sweep with the mouse wheel stalls halfway; a failed staging sign-in at 16:08 recovered at 16:12
+- L0466 — 2026-10-19 — A reload keeps the All tab (staging c850386 and production d2441a9); C96936's tab change came from the shared Admin
+- L0467 — 2026-10-19 — QA lead rulings: "no need" to tell Vlad about changed Automated cases (this time); the PO question sheet for Chris is the other session's G
+- L0468 — 2026-10-19 — "Design-" cases in run 498: which are held, how the count bubbles are built, and a copy-paste trap
+- L0469 — 2026-10-19 — Chris answered the design-differences sheet (all 19 rows); what it means for the Design- cases, and two staging traps
+- L0470 — 2026-10-19 — Retest of six run 498 tests: SV-11416 fix is on staging, Branko's two UX tickets cover the lead-change message, and a running queue can be 
+- L0471 — 2026-10-19 — Keyboard and menu-look re-tests on c850386: what the scripts' fields really mean, and the locked note's wording
+- L0472 — 2026-10-19 — Two script traps in the lock/permission re-test, and where the locked wording lives
+- L0473 — 2026-10-19 — Run 498 six-case retest outcome (c850386) and two product facts
+- L0474 — 2026-10-20 — Finding which open runs hold a case: skip the Nightly runs first
+- L0475 — 2026-10-20 — Editing (not adding) a TestRail result comment: UI only, and only within an edit window
+- L0476 — 2026-10-20 — Rule 132 recorded and enforced: bold failing steps on every non-Passed result
+- L0477 — 2026-10-20 — Staging sign-in expired overnight; the 22-test batch is queued and waits only on fresh cookies
+- L0478 — 2026-10-20 — Fresh staging cookies: where they go, how to check them, and the "AA" technician names
+- L0479 — 2026-10-20 — C682436's "empty" location must have no technician: the first-run title tells you which state you are in
+- L0480 — 2026-10-20 — First-Tab (C682421) re-judged Failed; another session posts on run 498 too; a script must come back to Heavy Duty itself
+- L0481 — 2026-10-20 — Release copies run on their originals' scripts, but those scripts do not read everything the copy asks
+- L0482 — 2026-10-20 — Any release copy that picks a lead on the WORK ORDER PAGE needs top-sorting technician names
+- L0483 — 2026-10-20 — A release copy's lead change is a DRAG or More actions > Unassign; the originals' scripts often used the lead dialog
+- L0484 — 2026-10-20 — CORRECTS L0479: today's build has no "Nothing here yet" and no "Add Technician" at all; plus three setup traps
