@@ -140,7 +140,9 @@ async function caseSteps(id: string, label: string, pg: Page, side: string) {
   o.toasts = await pg.evaluate(`[...document.querySelectorAll('.q-notification')].map(e => e.innerText.replace(/\\s+/g, ' ').trim())`).catch(() => []);
   return o; }
 let PROD: any = null;
-async function prodPage() { if (PROD) return PROD; const { bootProdLogin } = await import('../../testing-tools/prod-login-boot.mjs') as any; PROD = await bootProdLogin('/reports', { viewport: { width: 1600, height: 1000 } }); PROD.page.setDefaultTimeout(20_000); console.log(t(), 'PRODUCTION signed in', JSON.stringify({ version: PROD.version ?? null })); return PROD; }
+// 22 Oct 2026: when this run IS on production, the "production side" is a second tab of the same session — a second production
+// sign-in ends the run's own session (L0511), which is what stopped C368234 onwards on 22 Oct.
+async function prodPage() { if (PROD) return PROD; if (process.env.WOB_PROD_LOGIN) { const pg = await p.context().newPage(); pg.setDefaultTimeout(20_000); PROD = { page: pg, APP, browser: { close: async () => { await pg.close().catch(() => {}); } }, version: 'same session (run on production)' }; console.log(t(), 'PRODUCTION side = second tab of this session'); return PROD; } const { bootProdLogin } = await import('../../testing-tools/prod-login-boot.mjs') as any; PROD = await bootProdLogin('/reports', { viewport: { width: 1600, height: 1000 } }); PROD.page.setDefaultTimeout(20_000); console.log(t(), 'PRODUCTION signed in', JSON.stringify({ version: PROD.version ?? null })); return PROD; }
 const slugOf: Record<string, string> = { 'Sales By Customer': 'sales-by-customer', 'Parts Velocity': 'parts-velocity', 'Inventory Value': 'inventory-value' };
 for (const [id, rep, label] of reportsTick) await run(id, async () => {
   if (['C368233', 'C368234', 'C368235'].includes(id)) {

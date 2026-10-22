@@ -1,0 +1,89 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - pass-b7"
+ },
+ "results": {
+  "C581894": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Set-up: work order S1-1299 for \"ZZAUTOTEST S5R11a Card Hours 10221502\" has three approved lines of 1.00, 5.00 and 1.00 hours and a declined line of 1.00 hours (production's ready-made lines differ from the test's example values).",
+    "Steps 1 to 3: on the All tab with List chosen, the customer was searched and the work order opened by clicking its row.",
+    "Step 4: the work order page reads \"Total Hours: 7.0 hrs\", which is 1.00 + 5.00 + 1.00 with the declined line's hours left out (8.0 would have counted it).",
+    "Steps 5 to 9: back on Work Orders, Board View chosen, the customer searched, and Estimated hours turned on in Fields to display.",
+    "Step 10: the card reads \"Est. 7.0 hrs\", the same as Total Hours."
+   ],
+   "pictures": [
+    "pictures-prod/C581894-1-prod-1022.png",
+    "pictures-prod/C581894-2-prod-1022.png"
+   ]
+  },
+  "C581895": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 and 2: Settings > Staff shows \"Esther Howard\" (Technician-A) and \"Ralph Edwards\" (Technician-B).",
+    "Set-up: work order S1-1300 is led by Esther Howard and its second line's technician is Ralph Edwards.",
+    "Step 5: in List, the Lead Technician of S1-1300 reads \"Esther Howard\".",
+    "Steps 7 and 8: in Board View the card's lead technician reads \"Esther Howard\" and the card sits in the column headed \"Esther Howard\".",
+    "Step 9: pointing at the card's line technician pictures shows \"Esther Howard\" and \"Ralph Edwards\".",
+    "Step 11: in Tech View the work order sits in the group headed \"Esther Howard\".",
+    "Step 12: pointing at the Assigned Techs pictures shows \"Esther Howard\" and \"Ralph Edwards\". No other name for either technician appears anywhere."
+   ],
+   "pictures": [
+    "pictures-prod/C581895-1-prod-1022.png",
+    "pictures-prod/C581895-2-prod-1022.png",
+    "pictures-prod/C581895-3-prod-1022.png",
+    "pictures-prod/C581895-4-prod-1022.png"
+   ]
+  },
+  "C368172": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Set-up: work order S1-1304 is Approved, led by Esther Howard, with one line.",
+    "Steps 1 to 3: on the Lines tab New Line was opened, \"ZZAUTOTEST Oil change zq\" was typed until the list read \"No results\", then Enter; Estimated Time 1.",
+    "Step 4: Add Technician > Dana Ortiz; the Technicians box then shows Esther Howard (filled in already when the window opened) and Dana Ortiz.",
+    "Step 5: Save & Close saved the line with no error message.",
+    "Step 6: after a reload the new line's Labor row shows \"Dana Ortiz\" (with Esther Howard above it)."
+   ],
+   "pictures": [
+    "pictures-prod/C368172-1-prod-1022.png",
+    "pictures-prod/C368172-2-prod-1022.png"
+   ]
+  },
+  "C368177": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Set-up: work order S1-1306 has no lead; signed in as Esther Howard in a second browser, Start then Clock Out on line 1 (\"Timesheet clocked out\").",
+    "Steps 1 and 2: work order menu > Timesheets > Esther Howard's row (Line \"1 - Line 1\") > pencil; the Edit Timesheet window opens.",
+    "Step 3: Line set to \"2 New York State Inspection\".",
+    "Step 4: Save saved the move with no error message.",
+    "Step 5: after a reload, line 2's Labor row reads \"Esther Howard\" with 0.02 hours logged; line 1 now reads \"Unassigned\"."
+   ],
+   "pictures": [
+    "pictures-prod/C368177-1-prod-1022.png",
+    "pictures-prod/C368177-2-prod-1022.png",
+    "pictures-prod/C368177-3-prod-1022.png",
+    "pictures-prod/C368177-4-prod-1022.png"
+   ]
+  },
+  "C368202": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 and 2: Work Orders on the All tab, Create Work Order clicked.",
+    "Step 3: customer \"ZZAUTOTEST New WO Listed 92947\" and its asset picked, saved; the new work order is S1-1318 and the New Line window was closed.",
+    "Step 4: back to Work Orders from the top menu, without reloading.",
+    "Step 5: All tab, List, Search \"New WO Listed 92947\": S1-1318 is listed straight away, without a manual reload."
+   ],
+   "pictures": [
+    "pictures-prod/C368202-1-prod-1022.png"
+   ]
+  }
+ }
+}
