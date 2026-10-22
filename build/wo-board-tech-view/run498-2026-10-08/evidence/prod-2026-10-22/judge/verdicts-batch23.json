@@ -1,0 +1,18 @@
+{
+ "C707077": {
+  "verdict": "Blocked",
+  "failed_steps": "Blocked at step 1: on production a technician's staff name and sign-in name cannot be made different, so the test's set-up (staff name \"Carol Neal\", sign-in name \"David Sparks\") cannot exist there.",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Blocked on production (v26.43.0-ffea43c) \u2014 the set-up the test needs cannot be made on production.",
+   "Set-up tried both ways: the technician's own sign-in name was changed to \"David Sparks\" \u2014 her staff record then also read \"David Sparks\". Her staff record was changed back to \"Carol Neal\" \u2014 her sign-in name then also read \"Carol Neal\".",
+   "So on production the staff record and the sign-in account carry one shared name; on staging they can differ (that is how this test passed there).",
+   "Seen on the screen with the shared name: the work order's lead and the Lines tab both read \"Carol Neal\".",
+   "No picture is attached: the finding is the two names read back after each change, not a screen."
+  ],
+  "todo": "Nothing to fix in the product. If this test must also cover production, the QA lead decides whether it stays staging-only.",
+  "pictures": []
+ }
+}
