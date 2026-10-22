@@ -77,3 +77,6 @@
   "Look across the page again." steps removed from D-03/06/09/12/15/18), all read back OK (applied/onestep-2026-10-22-log.jsonl); run 549
   unchanged (291). Over-10-step cases kept whole and asked (Rule 127): S3-01, S3-02, S5-10, S5-11, S5-20, REL-12. The build's over-10
   check now prints OVER-TARGET instead of PROBLEM (Rule 127: ask, not fail).
+- 22 Oct 2026 Rule 136 pass applied (rule136-2026-10-22/): 42 cases split into 96 (54 new C715585-C715638 range, see map), 146 shortened,
+  steps 1,734 → 1,438; 20 cases fixed that quoted PRD Change Log rows instead of the requirement (parser fix; all 771 requirement quotes
+  now match their requirement line). 204 updated + 54 added, all read back OK; 98 pictures uploaded. Run 549: 291 → 345, none lost.

@@ -80,3 +80,7 @@ Intake: INTAKE-2026-10-19.md. Worker brief: WORKER-BRIEF.md.
   cases kept whole and asked (Rule 127): C665959 (11), C665970 (12), C665981 (13). Build prints ASK for these instead of PROBLEM.
   Open for build verification: whether a staff member's Sales Representative switch saves on its own (S1-07, S1-09, S4-20, S4-23 save;
   S6-01, S6-02 do not).
+- 22 Oct 2026 Rule 136 pass applied (rule136-2026-10-22/): 30 cases split into 64 (34 new C715639-C715672), 49 shortened, steps 681 →
+  542; invoice-row cases now expand the rep's row first (SBR spec v28 Story 6); S4-18/S4-19 now quote the S4-R21 requirement, not a
+  change-log cell. 79 + 3 updated, 34 added, all read back OK (C665967's read-back recovered after a rate-limit stop: live equals the new
+  version); 15 pictures uploaded. Run 547: 144 → 178, none lost.

@@ -8,23 +8,23 @@ S1-06,665920,S1,A user who can only view work orders sees the field as plain tex
 S1-07,665921,S1,A rep whose switch is turned off stays and reads (Inactive),https://shopview.testrail.io/index.php?/cases/view/665921
 S1-08,665922,S1,A deactivated staff member stays in the field and reads (Inactive),https://shopview.testrail.io/index.php?/cases/view/665922
 S1-09,665923,S1,Picking a rep turned off in another tab is refused with a message,https://shopview.testrail.io/index.php?/cases/view/665923
-S1-10,665924,S1,Developer check: a failed save or a change made mid-save,https://shopview.testrail.io/index.php?/cases/view/665924
+S1-10,665924,S1,Developer check: a failed save puts the field back and shows an error,https://shopview.testrail.io/index.php?/cases/view/665924
 S2-01,665925,S2,The + adds Labor and Parts fields holding the same person,https://shopview.testrail.io/index.php?/cases/view/665925
 S2-02,665926,S2,Adding the Parts field to an Unassigned work order gives two Unassigned,https://shopview.testrail.io/index.php?/cases/view/665926
 S2-03,665927,S2,"The + menu closes with Escape or a click outside, with no change",https://shopview.testrail.io/index.php?/cases/view/665927
 S2-04,665928,S2,Changing the Parts representative never changes the Labor one,https://shopview.testrail.io/index.php?/cases/view/665928
 S2-05,665929,S2,The remove x keeps the Labor person in the one field,https://shopview.testrail.io/index.php?/cases/view/665929
 S2-06,665930,S2,Removing Parts when Labor is Unassigned leaves nobody,https://shopview.testrail.io/index.php?/cases/view/665930
-S2-07,665931,S2,An inactive person is copied to Parts and keeps the Labor side,https://shopview.testrail.io/index.php?/cases/view/665931
+S2-07,665931,S2,An inactive person is copied to Parts when the Parts field is added,https://shopview.testrail.io/index.php?/cases/view/665931
 S2-08,665932,S2,An invoiced split work order shows both names as plain text,https://shopview.testrail.io/index.php?/cases/view/665932
 S2-09,665933,S2,A change sent to a work order invoiced in another tab is refused,https://shopview.testrail.io/index.php?/cases/view/665933
 S2-10,665934,S2,Reversing the invoice unlocks the field and the next invoice re-captures,https://shopview.testrail.io/index.php?/cases/view/665934
 S2-11,665935,S2,A part sale's single Sales Representative field still saves and logs,https://shopview.testrail.io/index.php?/cases/view/665935
 S2-12,665936,S2,A work order split off another keeps its representatives,https://shopview.testrail.io/index.php?/cases/view/665936
 S3-01,665937,S3,On a phone the representatives show after the card is expanded,https://shopview.testrail.io/index.php?/cases/view/665937
-S3-02,665938,S3,"On a phone the field, its arrow and the + work without hover",https://shopview.testrail.io/index.php?/cases/view/665938
+S3-02,665938,S3,On a phone the field shows its arrow and opens its list without hover,https://shopview.testrail.io/index.php?/cases/view/665938
 S3-03,665939,S3,On a phone the customer window's representative fields work as on desktop,https://shopview.testrail.io/index.php?/cases/view/665939
-S4-01,665940,S4,Edit Customer has an optional Sales Representative field,https://shopview.testrail.io/index.php?/cases/view/665940
+S4-01,665940,S4,Edit Customer has a Sales Representative field that lists Unassigned first,https://shopview.testrail.io/index.php?/cases/view/665940
 S4-02,665941,S4,New Customer has the Sales Representative field too,https://shopview.testrail.io/index.php?/cases/view/665941
 S4-03,665942,S4,Adding Service Parts renames the first field and copies the person,https://shopview.testrail.io/index.php?/cases/view/665942
 S4-04,665943,S4,Adding Part Sales starts with what new part sales would get,https://shopview.testrail.io/index.php?/cases/view/665943
@@ -37,13 +37,13 @@ S4-10,665949,S4,A new work order for a split customer starts with Labor and Part
 S4-11,665950,S4,"A new part sale starts with Part Sales, Service Parts or the one rep",https://shopview.testrail.io/index.php?/cases/view/665950
 S4-12,665951,S4,Part Sales set to Unassigned gives new part sales Unassigned,https://shopview.testrail.io/index.php?/cases/view/665951
 S4-13,665952,S4,Counter Sale starts with no representative,https://shopview.testrail.io/index.php?/cases/view/665952
-S4-14,665953,S4,Changing a work order's rep or customer never touches the customers,https://shopview.testrail.io/index.php?/cases/view/665953
-S4-15,665954,S4,A rep with the switch off is not copied but still credited at invoicing,https://shopview.testrail.io/index.php?/cases/view/665954
+S4-14,665953,S4,Changing a work order's representative never changes its customer,https://shopview.testrail.io/index.php?/cases/view/665953
+S4-15,665954,S4,A rep with the switch off is not copied to a new work order,https://shopview.testrail.io/index.php?/cases/view/665954
 S4-16,665955,S4,A work order invoiced with nobody takes the customer's reps per side,https://shopview.testrail.io/index.php?/cases/view/665955
 S4-17,665956,S4,An empty side is not filled from the customer at invoicing,https://shopview.testrail.io/index.php?/cases/view/665956
 S4-18,665957,S4,Deactivating a rep clears their customer fields and removes Part Sales,https://shopview.testrail.io/index.php?/cases/view/665957
 S4-19,665958,S4,The Deactivate window counts a customer once when a rep holds two fields,https://shopview.testrail.io/index.php?/cases/view/665958
-S4-20,665959,S4,"Renaming a rep updates every customer, and a switched-off rep stays",https://shopview.testrail.io/index.php?/cases/view/665959
+S4-20,665959,S4,Renaming a rep updates their name on every customer,https://shopview.testrail.io/index.php?/cases/view/665959
 S4-21,665960,S4,The assignments export lists one row per customer per person with Side,https://shopview.testrail.io/index.php?/cases/view/665960
 S4-22,665961,S4,Re-importing a customer keeps all its representatives,https://shopview.testrail.io/index.php?/cases/view/665961
 S5-01,665962,S5,A split invoice gives the Labor rep a Labor row and the Parts rep a Parts row,https://shopview.testrail.io/index.php?/cases/view/665962
@@ -56,7 +56,7 @@ S5-07,665968,S5,A part sale is one Part Sales row holding the whole sale,https:/
 S5-08,665969,S5,"One person on both sides shows one Labor, Parts row",https://shopview.testrail.io/index.php?/cases/view/665969
 S5-09,665970,DATA,Report totals are the same split or not when Show Unassigned is on,https://shopview.testrail.io/index.php?/cases/view/665970
 S5-10,665971,DATA,Margin % on an invoice row uses only that row's side,https://shopview.testrail.io/index.php?/cases/view/665971
-S5-11,665972,S5,"The Sales Type column is off by default, first in the list and remembered",https://shopview.testrail.io/index.php?/cases/view/665972
+S5-11,665972,S5,The Sales Type column is off by default and first in the column list,https://shopview.testrail.io/index.php?/cases/view/665972
 S5-12,665973,S5,Expanded CSV and PDF always carry the Sales Type column,https://shopview.testrail.io/index.php?/cases/view/665973
 S5-13,665974,DATA,A zero-dollar side or invoice still counts for its representative,https://shopview.testrail.io/index.php?/cases/view/665974
 S5-14,665975,S5,A renamed rep stays one row under the current name in the report,https://shopview.testrail.io/index.php?/cases/view/665975
@@ -65,7 +65,7 @@ S6-02,665977,S6,"Printed work order names both people, Parts first",https://shop
 S6-03,665978,S6,Printed work order shows Unassigned for an empty side,https://shopview.testrail.io/index.php?/cases/view/665978
 S6-04,665979,S6,Printed work order leaves the row off when nobody is on it,https://shopview.testrail.io/index.php?/cases/view/665979
 S6-05,665980,S6,A side whose staff member no longer exists prints as Unassigned,https://shopview.testrail.io/index.php?/cases/view/665980
-S7-01,665981,S7,Each representative change writes one log entry with before and after,https://shopview.testrail.io/index.php?/cases/view/665981
+S7-01,665981,S7,Changing the one field writes a log entry with before and after,https://shopview.testrail.io/index.php?/cases/view/665981
 S7-02,665982,S7,A split work order's log entry shows Unassigned for an empty side,https://shopview.testrail.io/index.php?/cases/view/665982
 S7-03,665983,S7,Picking the person already in the field writes no log entry,https://shopview.testrail.io/index.php?/cases/view/665983
 S8-01,665984,S8,"Sales By Representative has a Sales Type filter, all selected",https://shopview.testrail.io/index.php?/cases/view/665984
@@ -83,15 +83,15 @@ S2-13,665995,S2,Moving lines into an existing work order does not change its rep
 S8-06,665996,S8,A rep with no invoice of the chosen Sales Type leaves the report,https://shopview.testrail.io/index.php?/cases/view/665996
 S8-07,665997,S8,Going back from an invoice keeps the Sales Type selection,https://shopview.testrail.io/index.php?/cases/view/665997
 S8-08,665998,S8,Sales By Customer's Sales Type menu has Select all and Clear selection,https://shopview.testrail.io/index.php?/cases/view/665998
-S8-09,665999,S8,Changing Sales Type on Sales By Customer collapses rows and survives Back,https://shopview.testrail.io/index.php?/cases/view/665999
-S8-10,666000,S8,The Customer filter sits after Sales Type and searches within it,https://shopview.testrail.io/index.php?/cases/view/666000
-S8-11,666001,S8,Both reports' Sales Type filters work on a touch screen,https://shopview.testrail.io/index.php?/cases/view/666001
+S8-09,665999,S8,Changing Sales Type on Sales By Customer collapses expanded rows,https://shopview.testrail.io/index.php?/cases/view/665999
+S8-10,666000,S8,The Customer filter searches only within the chosen Sales Type,https://shopview.testrail.io/index.php?/cases/view/666000
+S8-11,666001,S8,Sales By Representative's Sales Type filter works on a touch screen,https://shopview.testrail.io/index.php?/cases/view/666001
 REL-15,666002,REL,Reversed invoices stay out of Sales By Customer with both types selected,https://shopview.testrail.io/index.php?/cases/view/666002
 REL-01,666003,REL,On release day an existing customer keeps its one representative,https://shopview.testrail.io/index.php?/cases/view/666003
 REL-02,666004,REL,On release day an open work order keeps its one representative,https://shopview.testrail.io/index.php?/cases/view/666004
 REL-03,666005,REL,Sales By Representative for a past date shows the same totals,https://shopview.testrail.io/index.php?/cases/view/666005
 REL-04,666006,REL,Invoices from before 29 Jul 2026 stay Unassigned on both sides,https://shopview.testrail.io/index.php?/cases/view/666006
-REL-05,666007,REL,Saved report columns reset once and an old Product Type link shows all types,https://shopview.testrail.io/index.php?/cases/view/666007
+REL-05,666007,REL,Saved report columns and sort reset once on release day,https://shopview.testrail.io/index.php?/cases/view/666007
 REL-06,666008,REL,A Sales By Customer filter from before the release keeps its options,https://shopview.testrail.io/index.php?/cases/view/666008
 REL-07,666009,REL,Imported work orders still have no sales representative,https://shopview.testrail.io/index.php?/cases/view/666009
 REL-08,666010,REL,Customer invoice and estimate documents still show no representative,https://shopview.testrail.io/index.php?/cases/view/666010
@@ -110,15 +110,15 @@ D-06,666022,DESIGN,"Two reps, the remove x and removing Parts look as designed",
 D-07,666023,DESIGN,Clearing the field with Unassigned looks as designed,https://shopview.testrail.io/index.php?/cases/view/666023
 D-08,666024,DESIGN,The invoiced work order card shows the reps as plain text,https://shopview.testrail.io/index.php?/cases/view/666024
 D-09,666025,DESIGN,Work order log entries read as designed,https://shopview.testrail.io/index.php?/cases/view/666025
-D-10,666026,DESIGN,"Edit Customer: one field, its list and the + look as designed",https://shopview.testrail.io/index.php?/cases/view/666026
-D-11,666027,DESIGN,Edit Customer with Service Parts and Part Sales looks as designed,https://shopview.testrail.io/index.php?/cases/view/666027
+D-10,666026,DESIGN,Design: Edit Customer's Sales Representative field and list look as designed,https://shopview.testrail.io/index.php?/cases/view/666026
+D-11,666027,DESIGN,Design: adding Service Parts and Part Sales in Edit Customer looks as designed,https://shopview.testrail.io/index.php?/cases/view/666027
 D-12,666028,DESIGN,The customer page reads every representative row as designed,https://shopview.testrail.io/index.php?/cases/view/666028
 D-13,666029,DESIGN,New Customer's representative field looks as designed,https://shopview.testrail.io/index.php?/cases/view/666029
 D-14,666030,DESIGN,A part sale's representative field is unchanged from Part Sales Update v1,https://shopview.testrail.io/index.php?/cases/view/666030
-D-15,666031,DESIGN,"Sales By Representative screen, filter and column look as designed",https://shopview.testrail.io/index.php?/cases/view/666031
+D-15,666031,DESIGN,Design: Sales By Representative rows and dashes look as designed,https://shopview.testrail.io/index.php?/cases/view/666031
 D-16,666032,DESIGN,Sales By Representative Expanded CSV and PDF look as designed,https://shopview.testrail.io/index.php?/cases/view/666032
 D-17,666033,DESIGN,Sales By Customer Sales Type filter looks as designed,https://shopview.testrail.io/index.php?/cases/view/666033
-D-18,666034,DESIGN,On a phone the representative fields look as designed,https://shopview.testrail.io/index.php?/cases/view/666034
+D-18,666034,DESIGN,Design: on a phone the Sales Representative field looks as designed,https://shopview.testrail.io/index.php?/cases/view/666034
 DR-01,690658,DESIGN,"Design: invoiced card keeps ""Lead technician"" and ""Service advisor"" labels",https://shopview.testrail.io/index.php?/cases/view/690658
 DR-02,690659,DESIGN,"Design: a part sale's field label still reads ""Sales representative""",https://shopview.testrail.io/index.php?/cases/view/690659
 DR-03,690660,DESIGN,Design: a part sale row shows a dash in the labor columns,https://shopview.testrail.io/index.php?/cases/view/690660
@@ -130,7 +130,7 @@ S2-14,690667,S2,Two windows: the later pick on the one field wins and Parts goes
 S4-25,690668,S4,A part-sales-only user adding a customer from a part sale sees the reps,https://shopview.testrail.io/index.php?/cases/view/690668
 S4-26,690669,S4,Reactivating a rep does not put them back on their customers,https://shopview.testrail.io/index.php?/cases/view/690669
 S7-05,690670,S7,A log entry reads Unassigned for a rep who no longer exists,https://shopview.testrail.io/index.php?/cases/view/690670
-S8-12,690671,S8,Exports with no rows still download a file with only the headings,https://shopview.testrail.io/index.php?/cases/view/690671
+S8-12,690671,S8,Sales By Representative exports with no rows still have the headings,https://shopview.testrail.io/index.php?/cases/view/690671
 S3-04,690672,S3,On a wide touch tablet the card opens expanded with its buttons showing,https://shopview.testrail.io/index.php?/cases/view/690672
 S5-18,715271,S5,A part sale's labor cells show a dash in the PDF and are blank in the CSV,https://shopview.testrail.io/index.php?/cases/view/715271
 REL-16,715272,REL,Part sale rows show a dash in the labor columns and the totals do not change,https://shopview.testrail.io/index.php?/cases/view/715272
@@ -141,5 +141,39 @@ S4-28,715567,S4,A customers-only user sees the representatives in Edit Customer,
 S5-19,715568,S5,A rep whose staff record is gone shows the name kept on the invoice,https://shopview.testrail.io/index.php?/cases/view/715568
 S5-20,715569,DATA,A discount bigger than the invoice is shared by size and both rows end at $0.00,https://shopview.testrail.io/index.php?/cases/view/715569
 REL-17,715570,REL,Filter labels on other reports read as before,https://shopview.testrail.io/index.php?/cases/view/715570
-REL-18,715571,REL,A unit's invoice list and the invoice preview still open after a split,https://shopview.testrail.io/index.php?/cases/view/715571
-REL-19,715572,REL,Log entries and history saved before the release read one representative,https://shopview.testrail.io/index.php?/cases/view/715572
+REL-18,715571,REL,The invoice preview still opens for a split work order,https://shopview.testrail.io/index.php?/cases/view/715571
+REL-19,715572,REL,A log entry saved before the release reads one representative,https://shopview.testrail.io/index.php?/cases/view/715572
+S1-10b,715639,S1,Developer check: a change made while the field is saving is ignored,https://shopview.testrail.io/index.php?/cases/view/715639
+S2-07b,715640,S2,An inactive Labor person does not stop a change to the Parts field,https://shopview.testrail.io/index.php?/cases/view/715640
+S2-07c,715641,S2,Removing Parts keeps the inactive Labor person in the one field,https://shopview.testrail.io/index.php?/cases/view/715641
+S3-02b,715642,S3,On a phone the + and the remove x work without hover,https://shopview.testrail.io/index.php?/cases/view/715642
+S4-01b,715643,S4,A customer can be saved with nobody as its sales representative,https://shopview.testrail.io/index.php?/cases/view/715643
+S4-04b,715644,S4,Changing Service Parts never changes an added Part Sales field,https://shopview.testrail.io/index.php?/cases/view/715644
+S4-12b,715645,S4,A part sale invoiced with Unassigned is credited to Unassigned,https://shopview.testrail.io/index.php?/cases/view/715645
+S4-14b,715646,S4,Changing a work order's customer never changes its representatives,https://shopview.testrail.io/index.php?/cases/view/715646
+S4-14c,715647,S4,Changing a customer's representative never changes its work orders,https://shopview.testrail.io/index.php?/cases/view/715647
+S4-15b,715648,S4,A switched-off customer rep is still credited when invoicing with nobody,https://shopview.testrail.io/index.php?/cases/view/715648
+S4-19b,715649,S4,Turning off the switch still shows today's warning with no customer count,https://shopview.testrail.io/index.php?/cases/view/715649
+S4-20b,715650,S4,A customer still holding a switched-off rep keeps them and saves,https://shopview.testrail.io/index.php?/cases/view/715650
+S5-01b,715651,S5,"The Sales Type column shows after Status, with no value on summary rows",https://shopview.testrail.io/index.php?/cases/view/715651
+S5-08b,715652,S5,Narrowing Sales Type to Labor or Parts shows only that side,https://shopview.testrail.io/index.php?/cases/view/715652
+S5-11b,715653,S5,A Sales Type column you turn on stays on when you sign in again,https://shopview.testrail.io/index.php?/cases/view/715653
+S6-01b,715654,S6,A split work order with one person on both sides prints one name,https://shopview.testrail.io/index.php?/cases/view/715654
+S7-01b,715655,S7,Adding the Parts field and changing it each write one log entry,https://shopview.testrail.io/index.php?/cases/view/715655
+S7-01c,715656,S7,Removing the Parts field writes a log entry,https://shopview.testrail.io/index.php?/cases/view/715656
+S8-02b,715657,S8,"With no Sales Type ticked, Sales By Representative export makes no file",https://shopview.testrail.io/index.php?/cases/view/715657
+S8-04b,715658,S8,"With no Sales Type ticked, Sales By Customer export makes no file",https://shopview.testrail.io/index.php?/cases/view/715658
+S8-12b,715659,S8,Sales By Customer exports with no rows still have the headings,https://shopview.testrail.io/index.php?/cases/view/715659
+S8-06b,715660,S8,The Sales Type column header does not sort the report,https://shopview.testrail.io/index.php?/cases/view/715660
+S8-09b,715661,S8,Sales By Customer keeps its Sales Type choice when you go back,https://shopview.testrail.io/index.php?/cases/view/715661
+S8-10b,715662,S8,The Customer filter sits between Sales Type and Location,https://shopview.testrail.io/index.php?/cases/view/715662
+S8-11b,715663,S8,Sales By Customer's Sales Type filter works on a touch screen,https://shopview.testrail.io/index.php?/cases/view/715663
+REL-05b,715664,REL,An old Product Type link opens Sales By Representative with all types,https://shopview.testrail.io/index.php?/cases/view/715664
+REL-18b,715665,REL,A unit's invoice list still opens after a split work order is invoiced,https://shopview.testrail.io/index.php?/cases/view/715665
+REL-19b,715666,REL,A history version saved before the release shows one representative,https://shopview.testrail.io/index.php?/cases/view/715666
+D-05b,715667,DESIGN,Design: at 200% zoom the Labor and Parts labels show in full,https://shopview.testrail.io/index.php?/cases/view/715667
+D-10b,715668,DESIGN,Design: Edit Customer's + tooltip and menu look as designed,https://shopview.testrail.io/index.php?/cases/view/715668
+D-11b,715669,DESIGN,Design: removing Service Parts in Edit Customer looks as designed,https://shopview.testrail.io/index.php?/cases/view/715669
+D-15b,715670,DESIGN,Design: the Sales Type filter on Sales By Representative looks as designed,https://shopview.testrail.io/index.php?/cases/view/715670
+D-15c,715671,DESIGN,Design: the Sales Type column on Sales By Representative looks as designed,https://shopview.testrail.io/index.php?/cases/view/715671
+D-18b,715672,DESIGN,Design: on a phone the + and the Labor and Parts fields look as designed,https://shopview.testrail.io/index.php?/cases/view/715672
