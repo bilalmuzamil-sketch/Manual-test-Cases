@@ -103,7 +103,7 @@ await run('C96974', async () => {
   const wpl = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/workplaces')).body?.data);
   const LETH = (await import('./staff.mts')).LETH, HEAVY = (await import('./staff.mts')).HEAVY;
   const leth = wpl.find((w: any) => w.id === LETH), heavy = wpl.find((w: any) => w.id === HEAVY);
-  const deps = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = deps.find((d: any) => (d.name ?? d.label) === 'Service');
+  const deps = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = (deps.find((d: any) => (d.name ?? d.label) === 'Service') ?? deps[0]);
   fix.push('enrol Nina at Lethbridge ' + say(await a.post('/api/staff/enrollment/create', { staffId: NN.staff_id, workplaceId: LETH, departmentId: svc?.id })));
   let loc2: any = null;
   try {

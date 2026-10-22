@@ -49,7 +49,7 @@ const rl = (await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]
 const TECH_ROLE = roles.find((r) => /^Technician$/i.test(r.label ?? r.name ?? ''))?.id;
 if (!TECH_ROLE) throw new Error('no Technician role in this organisation');
 const depsR = (await a.get('/api/departments')).body?.data; const deps: any[] = Array.isArray(depsR) ? depsR : depsR?.collection ?? [];
-const SERVICE = deps.find((d) => (d.name ?? d.label) === 'Service')?.id;
+const SERVICE = (deps.find((d) => (d.name ?? d.label) === 'Service') ?? deps[0])?.id /* 22 Oct 2026: production has no 'Service' department — the first one, as person() does */;
 const me = (await candidates(a)).find((x) => x.name === ME_NAME)!;
 const wps = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/workplaces')).body?.data);
 const LETH_NAME = wps.find((w: any) => w.id === LETH)?.name ?? 'Staging Lethbridge - 4310';

@@ -161,7 +161,7 @@ await run('C96989', async () => {
   o.signOutNote = 'step 3 done as a new browser window, not a real sign-out: signing out ends the shared staging session (L0342)';
   // step 5: the second location — enrol the runner at Lethbridge (app enrolment route), switch ON SCREEN (profile menu > select_location)
   const meRow = (await staffRows(a, RUNNER_EMAIL)).find((x) => x.email === RUNNER_EMAIL);
-  const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = dd.find((d: any) => (d.name ?? d.label) === 'Service');
+  const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = (dd.find((d: any) => (d.name ?? d.label) === 'Service') ?? dd[0]);
   if (meRow) o.enrolLeth = say(await a.post('/api/staff/enrollment/create', { staffId: meRow.staff_id, workplaceId: LETH, departmentId: svc?.id }));
   await go('Tech View'); o.switched = await switchLocUI(p, LOC2_NAME); o.at = await where(p);
   if (/lethbridge/i.test(String(o.at))) { await go('Tech View'); o.atAfterOpen = await where(p); o.loc2Tech = (await density(p, 'C96989-lethbridge-tech-density-menu-open')).selected; await display(p, 'Board View'); await p.waitForTimeout(1500); o.loc2Board = (await density(p, 'C96989-lethbridge-board-density-menu-open')).selected; }

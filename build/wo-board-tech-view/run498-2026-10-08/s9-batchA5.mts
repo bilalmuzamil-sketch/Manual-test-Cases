@@ -44,7 +44,7 @@ R.techs = { ana: !!ANA?.staff_id, ben: !!BEN?.staff_id, cal: !!CAL?.staff_id, da
 // 15 Oct 2026 (staging second pass, C97007): "Ben Bravo" was not offered in the work order page's Lead Technician list. Each of the
 // four test technicians is made eligible here, every run: active, enrolled at Heavy Duty in Service (app enrolment route), Time
 // Clock on, Location Heavy Duty — then who is offered as a lead is read back (R.techEligible).
-{ const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = dd.find((d: any) => (d.name ?? d.label) === 'Service');
+{ const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = (dd.find((d: any) => (d.name ?? d.label) === 'Service') ?? dd[0]);
   const fixes: string[] = [];
   for (const [nm, tr] of [['Ana', ANA], ['Ben', BEN], ['Cal', CAL], ['Dan', DAN]] as [string, any][]) { if (!tr) continue;
     if (!tr.is_active) fixes.push(`${nm} reactivate ${(await a.post('/api/iam/change-status', { id: tr.id })).status}`);

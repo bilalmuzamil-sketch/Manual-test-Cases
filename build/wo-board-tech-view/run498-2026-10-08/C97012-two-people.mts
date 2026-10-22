@@ -48,7 +48,7 @@ try {
   techRoleBefore = techRow.role_id; o.techRoleBefore = techRow.role_label; o.techToRoleD = await techChange(roleId);
   o.techNow = (await staffRows(a, 'tech@shopview.com')).map((x) => `${x.first_name} ${x.last_name} ${x.role_label}`);
   // technicians and work orders (as staledrop-stg4)
-  const TECH = (await rolesList()).find((r) => /^Technician$/i.test(r.label ?? r.name ?? ''))?.id; const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = dd.find((d: any) => (d.name ?? d.label) === 'Service');
+  const TECH = (await rolesList()).find((r) => /^Technician$/i.test(r.label ?? r.name ?? ''))?.id; const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = (dd.find((d: any) => (d.name ?? d.label) === 'Service') ?? dd[0]);
   const tech = async (f: string, l: string, tag: string) => { const r = (await person(a, `ZZAUTOTEST ${f}`, l, { role: TECH, email: `zz.wob.${tag}${D}`, clockable: true })).row; if (r && !r.is_active) await a.post('/api/iam/change-status', { id: r.id }); if (r) await a.post('/api/staff/enrollment/create', { staffId: r.staff_id, workplaceId: HEAVY, departmentId: svc?.id }); return r; };
   const ANA = await tech('Ana', 'Alpha', 'ana.alpha'), BEN = await tech('Ben', 'Bravo', 'ben.bravo');
   const q = `ZZAUTOTEST F3 Stale Drop ${Date.now() % 100000}`; const w: Record<string, string> = {}; const log: string[] = [];

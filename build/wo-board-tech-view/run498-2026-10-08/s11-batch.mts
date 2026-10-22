@@ -422,6 +422,16 @@ await run('C368157', async () => {
   R.C368157 = o;
 });
 
+
+/** 22 Oct 2026: open a work order's own page and read what the case reads there — the Lead Technician field and the Asset on site /
+ *  On Site control (its text, pressed state and class) — with a picture. Used by C368158 step 6 and C368159 step 7. */
+async function woPage(pg: any, id: string, pic: string) {
+  await pg.goto(`${APP}/workorders/${id}/lines`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(7000);
+  const r = await pg.evaluate(`(() => { const f = document.querySelector('[data-test-id="select_lead_technician"]') || [...document.querySelectorAll('.q-field')].find(x => /Lead Tech/i.test((x.querySelector('.q-field__label') || {}).textContent || ''));
+    const site = [...document.querySelectorAll('[data-test-id*="vehicle_here"], [aria-label*="site" i], [title*="site" i]')].filter(e => e.getBoundingClientRect().width > 0).map(e => ({ tid: e.getAttribute('data-test-id'), aria: e.getAttribute('aria-label'), pressed: e.getAttribute('aria-pressed') ?? e.getAttribute('aria-checked'), cls: (e.className || '').toString().slice(0, 120), text: (e.innerText || '').replace(/\\s+/g, ' ').trim().slice(0, 60) }));
+    return { url: location.pathname.replace(/[0-9a-f-]{36}/, '<id>'), lead: f ? f.innerText.replace(/\\s+/g, ' ').trim().slice(0, 120) : null, site }; })()`);
+  await pg.screenshot({ path: path.join(EV, pic) }).catch(() => {}); return r;
+}
 await run('C368158', async () => {
   await pins([ANA.staff_id]);
   const s = await mkSet('ZZAUTOTEST F3 Invoiced On Site', [{ co: 'Inv Co', lead: ANA, status: 'invoiced' }]); const o: any = {};
@@ -430,6 +440,7 @@ await run('C368158', async () => {
   await goP(p, 'List', s.q); const tr = p.locator('tbody tr').filter({ hasText: s.w['Inv Co'].number });
   await tr.locator('[data-test-id="button_vehicle_here_toggle"]').first().click(); await p.waitForTimeout(2500); o.msg = await toasts(p);
   await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); o.after = await here(); o.lead = await leadOf(s, 'Inv Co');
+  o.step6 = await woPage(p, s.w['Inv Co'].id, 'C368158-s6-wo-page'); // 22 Oct 2026: step 6 opens the work order
   R.C368158 = o;
 });
 
@@ -470,6 +481,7 @@ await run('C368159', async () => {
   const tr = p.locator('tbody tr').filter({ hasText: s.w['Site Co'].number }); await tr.locator('[data-test-id="button_vehicle_here_toggle"]').first().click(); await p.waitForTimeout(2500);
   await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000);
   o.after = { here: await here(), lead: await leadOf(s, 'Site Co') };
+  o.step7 = await woPage(p, s.w['Site Co'].id, 'C368159-s7-browser1-wo-page'); // 22 Oct 2026: step 7 — browser 1 opens the work order
   R.C368159 = o;
 });
 

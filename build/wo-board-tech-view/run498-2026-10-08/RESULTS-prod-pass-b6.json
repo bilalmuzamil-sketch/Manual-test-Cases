@@ -1,0 +1,101 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - pass-b6"
+ },
+ "results": {
+  "C97031": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Step 4: at the start Board View counts read Unassigned 2, Ana 3, Ben 2, Cal 0 (7 in all).",
+    "Step 5: after dragging Alpha Co from Ana to Cal, with no reload, the counts read Ana 2 and Cal 1. Unassigned (2) and Ben (2) did not change, so the total is still 7.",
+    "Step 6: after moving Bravo Co to Unassigned with \"Reassign lead technician\", the counts read Ana 1 and Unassigned 3. Ben 2 and Cal 1 did not change, so the total is still 7.",
+    "Step 7: dragging Golf Co above Hotel Co inside Unassigned changed no count (Unassigned shows Bravo Co, Golf Co, Hotel Co).",
+    "Step 8: dragging Echo Co (Invoiced) to Cal was not accepted. Echo Co still belongs to Ben and no count changed.",
+    "Steps 9 and 10: Tech View shows Unassigned 3, Ana 1, Ben 2, Cal 1 (7 in all), both before and after a refresh."
+   ],
+   "pictures": [
+    "pictures-prod/C97031-1-prod-1022.png"
+   ]
+  },
+  "C154649": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 and 2: at full width Board View was chosen.",
+    "Steps 3 and 4: at 900 px wide the page shows the phone list of work order cards (tabs, Search, sort button, Create Work Order, and the Status, Assigned to me and Asset on Site filters). There is no display switcher, no density button and no column picker.",
+    "Step 5: after a refresh at that width there is still no switcher, density button, column picker or board. The saved choice is still Board View.",
+    "Step 6: back at full width the page opens in Board View again. List, Tech View and Board View are all offered in the switcher."
+   ],
+   "pictures": [
+    "pictures-prod/C154649-1-prod-1022.png",
+    "pictures-prod/C154649-2-prod-1022.png"
+   ]
+  },
+  "C707076": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c). The year now shows, so the fix for SV-11576 has shipped (outcome 3 of the known problem). Please tell the QA lead.",
+    "Step 1: List's Asset column for S1-1295 reads \"2022 Freightliner M2\": year, then make, then model.",
+    "Step 2: Tech View shows, with S1-1295 in the Unassigned group.",
+    "Step 3: Tech View's Asset column reads the same, \"2022 Freightliner M2\"."
+   ],
+   "pictures": [
+    "pictures-prod/C707076-1-prod-1022.png",
+    "pictures-prod/C707076-2-prod-1022.png"
+   ]
+  },
+  "C698883": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c). The 50-value message never showed, so the fix for SV-11575 has shipped (outcome 3 of the known problem). Please tell the QA lead.",
+    "Steps 1 and 2: in Tech View the Technician list opens with \"Unassigned\" first and nothing ticked. The message \"This change would exceed the 50-value limit across all filters\" does not show.",
+    "Step 3: \"Unassigned\" is ticked and the message does not show.",
+    "Step 4: Escape closes the list.",
+    "Step 5: Board View shows.",
+    "Step 6: Board View's Technician list opens with \"Unassigned\" still ticked, and no message.",
+    "Step 7: after unticking \"Unassigned\" nothing is ticked, and still no message.",
+    "Extra check: with 50 technicians ticked the list reads \"50 selected (max 50 across all filters)\", so the limit itself still works."
+   ],
+   "pictures": [
+    "pictures-prod/C698883-1-prod-1022.png",
+    "pictures-prod/C698883-2-prod-1022.png",
+    "pictures-prod/C698883-3-prod-1022.png",
+    "pictures-prod/C698883-4-prod-1022.png"
+   ]
+  },
+  "C698884": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c). Board View has no density button and the picker is called \"Column Selection\", so the change for SV-11580 has shipped (outcome 3 of the known problem). Please tell the QA lead.",
+    "Step 1: Board View's toolbar has no density button. \"Column Selection\" sits between the two dividers with even space on either side, and there is no empty gap or double divider.",
+    "Step 2: \"Column Selection\" opens the card fields picker (Lead technician, Customer, Asset, VIN/serial, Progress, Service advisor, Clocked in, Line count, Line technicians, Estimated hours, Total price, On-site, Created date).",
+    "Step 3: Escape closes the picker, and the cards keep the same spacing as before.",
+    "Step 4: Tech View shows, and its toolbar still has the density button.",
+    "Step 5: its menu offers \"Compact\", \"Regular\" and \"Comfortable\"."
+   ],
+   "pictures": [
+    "pictures-prod/C698884-1-prod-1022.png",
+    "pictures-prod/C698884-2-prod-1022.png",
+    "pictures-prod/C698884-3-prod-1022.png",
+    "pictures-prod/C698884-4-prod-1022.png"
+   ]
+  },
+  "C97000": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Step 1: S1-1257 (\"ZZAUTOTEST F3 No Story Marker\") opens on its Lines tab with two lines. Line 1 has the story \"Brought unit in. Completed inspection.\" and line 2 shows only \"Add tech story for this line\".",
+    "Step 2: neither line shows any check mark, icon, badge or colour about the tech story.",
+    "Step 3: the same work order opened by the technician Esther Howard, in the technician's work order mode, also shows no story marker on either line."
+   ],
+   "pictures": [
+    "pictures-prod/C97000-1-prod-1022.png",
+    "pictures-prod/C97000-2-prod-1022.png"
+   ]
+  }
+ }
+}

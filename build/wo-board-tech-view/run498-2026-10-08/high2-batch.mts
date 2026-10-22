@@ -342,7 +342,7 @@ await run('C368212', async () => { const o: any = {}; o.toLeth = say(await a.pos
     // 15 Oct 2026 (staging second pass): the screen never switched to Lethbridge — the test admin was not enrolled there, so the
     // location menu did not offer it. Enrol the runner at Lethbridge (Service), switch ON SCREEN (switchLocUI), read the top bar back
     // before continuing (again after Work Orders opens, switching once more without a reload if it went back), then switch back.
-    { const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = dd.find((d: any) => (d.name ?? d.label) === 'Service');
+    { const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = (dd.find((d: any) => (d.name ?? d.label) === 'Service') ?? dd[0]);
       o.enrolRunner = say(await a.post('/api/staff/enrollment/create', { staffId: RUN.staffId, workplaceId: LETH, departmentId: svc?.id })); }
     const topBar = async () => p.locator('[data-test-id="profile_menu_button"]').innerText().then((x) => x.replace(/\s+/g, ' ').trim()).catch(() => '');
     o.switched = await switchLocUI(p, LOC2_NAME); await goList(p, 'Loc2'); o.lethTopBar = await topBar();

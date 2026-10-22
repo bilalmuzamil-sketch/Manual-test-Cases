@@ -16,7 +16,7 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups } from './wob.mts';
+import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, ensureLocation } from './wob.mts';
 import { staffRows, person, roleIds, HEAVY } from './staff.mts';
 import { viewAs } from './viewas.mts';
 import { candidates } from './data.mts';
@@ -195,6 +195,23 @@ await run('C97005', async () => {
   // fresh test user can do a real sign-in either. The closest unattended equivalent is done and labelled as such: a NEW browser
   // window carrying only the sign-in (cookies + the signed-in user's record, no other page storage), which loads Work Orders
   // from nothing as a fresh sign-in does; Ana's group is read there in Tech View with the same search.
+  // 22 Oct 2026: on PRODUCTION a real sign-out and sign-in IS possible unattended (password sign-in of the test account): profile menu >
+  // Logout, then the sign-in form in the same browser — the case's step 8 as written. Staging keeps the labelled stand-in below.
+  if (process.env.WOB_PROD_LOGIN) {
+    const st8: any = { how: 'real sign-out (profile menu > Logout) and sign-in (sign-in form, test account) in the first browser' };
+    await p.locator('[data-test-id="profile_menu_button"]').click().catch(() => {}); await p.waitForTimeout(1200);
+    await p.locator('.q-menu .q-item, .q-menu button').filter({ hasText: /Log ?out|Sign ?out/i }).first().click().catch((e) => { st8.logoutClick = String(e).slice(0, 100); });
+    for (let i = 0; i < 15 && !/\/login/.test(p.url()); i++) await p.waitForTimeout(1000);
+    st8.signedOut = /\/login/.test(p.url()); await shot(p, 'C97005-step8-signed-out');
+    const cr: Record<string, string> = {}; for (const l of fs.readFileSync(process.env.PROD_ENVF || '/tmp/shopview/prod-login.env', 'utf8').split('\n')) { const m = /^([A-Z_]+)=(.*)$/.exec(l.trim()); if (m) cr[m[1]] = m[2]; }
+    if (!/\/login/.test(p.url())) { await p.goto(APP + '/login', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); }
+    await p.locator('input[type=email], input[autocomplete=username]').first().fill(cr.SV_USER); await p.locator('input[type=password]').first().fill(cr.SV_PASS);
+    await p.locator('button:has-text("Login"), button:has-text("Sign in"), button[type=submit]').first().click();
+    for (let i = 0; i < 20 && /\/login/.test(p.url()); i++) await p.waitForTimeout(2000);
+    st8.signedIn = !/\/login/.test(p.url());
+    if (st8.signedIn) { await p.waitForTimeout(4000); await ensureLocation(p, a, HEAVY).catch(() => {}); await goP(p, 'Tech View', s.q); st8.tech = await groupRows(p, ANA.staff_id, s); await shot(p, 'C97005-step8-after-signin'); }
+    o.step8 = st8;
+  } else
   { const LS = await p.evaluate(`Object.fromEntries(Object.keys(localStorage).filter(k => /^(user|fe_permissions_wrapper|token)$/.test(k)).map(k => [k, localStorage.getItem(k)]))`) as Record<string, string>;
     const st = await p.context().storageState(); const ctx = await browser.newContext({ storageState: { cookies: st.cookies, origins: [] }, viewport: { width: 1600, height: 1000 }, ignoreHTTPSErrors: true });
     await ctx.route((u) => /maps\.googleapis|intercom|sentry\.io|mercure\.qa|googletagmanager|google-analytics|hotjar|fullstory/i.test(u.toString()), (r) => r.abort()).catch(() => {});

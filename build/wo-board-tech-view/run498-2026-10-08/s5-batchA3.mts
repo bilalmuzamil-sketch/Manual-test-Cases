@@ -127,7 +127,7 @@ await run('loc2', async () => {
   R.loc2.ids = ids.length;
   // 15 Oct 2026: staff/change with departments does NOT add a location (playbook) — enrol the runner at Lethbridge (Service) with
   // the app's own enrolment route first; the old call is kept after it.
-  { const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = dd.find((d: any) => (d.name ?? d.label) === 'Service');
+  { const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = (dd.find((d: any) => (d.name ?? d.label) === 'Service') ?? dd[0]);
     if (meRow) R.loc2.enrolLeth = say(await a.post('/api/staff/enrollment/create', { staffId: meRow.staff_id, workplaceId: LETH, departmentId: svc?.id })); }
   if (lethDeps.length && meRow) R.loc2.enrol = say(await a.post(`/api/staff/${meRow.staff_id}/change`, { first_name: meRow.first_name, last_name: meRow.last_name, email: meRow.email, role_id: meRow.role_id, workplace_id: meRow.workplace_id ?? HEAVY, job_title: meRow.job_title, salary_type: meRow.salary_type, salary: meRow.salary, billable: !!meRow.billable, clockable: false, departments: ids }));
   R.loc2.runnerDepsAfter = (await staffRows(a, RUNNER_EMAIL)).find((x) => x.email === RUNNER_EMAIL)?.departments;
