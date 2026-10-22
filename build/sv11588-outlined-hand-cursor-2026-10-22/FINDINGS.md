@@ -38,3 +38,8 @@ theme back to light. Nothing else changed on production.
 ## Learning check (Rule 95 B)
 - Pointer CSS check recipe → playbook §AL.5. A cursor test can't be screenshotted — draw the page's own cursor image at the mouse
   spot and label it comparison only.
+
+## Update 22 Oct 2026 — Windows check done by the QA lead
+The QA lead checked Chrome on Windows with the steps given in chat and answered "YES" (white hand with black outline
+shows on hover and on drag). The one open limit of this pass is closed. Ticket already Ready for Production (moved by the
+QA lead at 12:04 CDT). Jira comment 79306 and TestRail result 535192 still say Windows was not checked here; not edited.
