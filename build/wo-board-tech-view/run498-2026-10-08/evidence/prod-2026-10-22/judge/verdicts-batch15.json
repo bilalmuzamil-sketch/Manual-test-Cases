@@ -1,0 +1,161 @@
+{
+ "C97030": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: seven work orders for \"ZZAUTOTEST F3 Header Counts 22 ...\" at Truck Hill 1: Alpha Co and Bravo Co Approved and Charlie Co Estimate led by ZZAUTOTEST Ana Alpha; Delta Co In Progress and Echo Co Invoiced led by ZZAUTOTEST Ben Bravo; Golf Co Approved and Hotel Co Estimate with no lead; none for ZZAUTOTEST Cal Charlie. The Status filter started with nothing ticked.",
+   "Steps 1 to 3: Work Orders, All tab, \"ZZAUTOTEST F3 Header Counts\" typed in Search, List picked.",
+   "Step 4: List shows 7 rows.",
+   "Steps 5 and 6: Tech View headers read Unassigned 2, Ana 3, Ben 2, Cal 0, and each matches the rows under it (total 7).",
+   "Steps 7 and 8: Board View columns read Unassigned 2, Ana 3, Ben 2, Cal 0, and each matches the cards in it (total 7).",
+   "Step 9: Status with only Approved ticked: List shows 3 rows (S1-1573, S1-1574, S1-1578, all Approved); Board View and Tech View both read Unassigned 1, Ana 2, Ben 0, Cal 0, each matching what is listed under it.",
+   "Step 10: Status cleared, Estimates tab: Board View and Tech View both read Unassigned 1 (S1-1579, Hotel Co) and Ana 1 (S1-1575, Charlie Co), Ben 0, Cal 0, each matching what is listed under it."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C97030-status-menu.png",
+   "evidence/prod-2026-10-22/C97030-approved-only.png",
+   "evidence/prod-2026-10-22/C97030-end.png"
+  ],
+  "reason_for_reviewer": "s11-fix3.mts C97030: Ana/Ben/Cal pinned first (set-up, puts their columns in view). Work orders seeded behind the screen (set-up). goP opens /workorders by address then All tab, Search, List on screen; display switcher clicks on screen; Status chip opened and Approved ticked on screen (tickedBefore [], tickedAfter [Approved]); Clear selection + Estimates tab + Search on screen. Counts are shown/listed pairs: step6/step8 U 2/2 A 3/3 B 2/2 C 0/0; step9 board and tech U 1/1 A 2/2 B 0/0 C 0/0, list 3 Approved rows; step10 board and tech U 1/1 A 1/1 B 0/0 C 0/0. Pictures agree (approved-only = Tech View with Status: Approved; end = Estimates Tech View). 0 differences from staging."
+ },
+ "C97032": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 7: Ben's Estimate work order was approved behind the screen (a line was added to it and it became Approved) instead of opening it and approving it on its page. The dialog then showed 5 open, which matches the expected result.",
+  "bold_steps": [
+   7
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1 to 6 were followed and matched; the approval in step 7 was not done on the work order's page.",
+   "Set-up: technician \"ZZAUTOTEST F3 Count Ben Bravo\" (Ben) leads one work order in each status at Truck Hill 1 for \"ZZAUTOTEST F3 Open Count 22 ...\": Approved Co Approved, Progress Co In Progress, Review Co Ready for Review, Complete Co Complete, Estimate Co Estimate, Invoiced Co Invoiced, Paid Co Paid, Declined Co Declined; Line Only Co Approved led by Ana with Ben only on one line; Spare Co (S1-1589) Approved led by Ana; and S2-1590 Approved led by Ben at Trucks Hill 2.",
+   "Steps 1 to 3: Work Orders, All tab, \"ZZAUTOTEST F3 Open Count\" searched, Board View.",
+   "Steps 4 and 5: on the Spare Co card, more-actions > Reassign lead technician: the dialog shows \"ZZAUTOTEST F3 Count Ben Bravo\" with \"4 open\"; dialog cancelled.",
+   "Step 6: Status with only Estimate ticked; the only card left is S1-1584 (Estimate Co); its Reassign lead technician dialog shows Ben \"Current · 4 open\" (still 4).",
+   "Step 7 (NOT DONE ON SCREEN): Ben's Estimate work order was made Approved behind the screen; the board was opened again and the Spare Co dialog shows Ben with \"5 open\"."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C97032-step5-dialog-open-close.png",
+   "evidence/prod-2026-10-22/C97032-step6-dialog-open.png",
+   "evidence/prod-2026-10-22/C97032-step7-dialog-open-close.png"
+  ],
+  "reason_for_reviewer": "s11-fix3.mts C97032: step7 'approve' = mkLine() through the API ('line added; status Approved'), the work order page is never opened; the case says open Ben's Estimate work order, approve it, come back. Same treatment as C368170 / C96972 (status change behind the screen = Unsure). step5 '4 open', step6 '4 open' from Estimate Co (visibleAfterFilter one card), step7 '5 open'. The 'clear the filter' at the end of step 6 is commented out in the script; step 7 re-opened the board by address, and the picture shows the Spare Co card's dialog, so the filter was gone. Manual check: open Ben's Estimate work order (Estimate Co), approve it on its page, return to Board View, open Reassign lead technician from any card and confirm Ben shows 5 open."
+ },
+ "C368157": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 3 and 4: Cal was pinned and unpinned by changing the saved board setting behind the screen, not by clicking the pin icon in his column header. The column order that followed matches the expected result.",
+  "bold_steps": [
+   3,
+   4
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The pin and unpin were not done with the pin icon; the order the board showed afterwards matches the expected result.",
+   "Set-up: no technician pinned; \"ZZAUTOTEST Cal Charlie\" (Cal) sat at place 30 of 67 columns in Board View at Truck Hill 1, between the same two technicians throughout.",
+   "Steps 1 and 2: Work Orders, All tab, Board View.",
+   "Step 3 (NOT DONE WITH THE PIN ICON): with Cal pinned, his column is the first after Unassigned.",
+   "Step 4 (NOT DONE WITH THE PIN ICON): with Cal unpinned, he is back at place 30, between the same two technicians as before, and the whole column order is the same as before pinning.",
+   "Step 5: in Tech View Cal's group sits between the same two technicians as in Board View, and the groups follow the Board View order."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368157-tech.png"
+  ],
+  "reason_for_reviewer": "s11-fix3.mts C368157: pins([CAL]) and pins([]) are PUTs of pinnedTechnicianIds to the preference, followed by goP reload; the pin icon is never clicked. calIndexBefore 30, pinned calIndex 1 (first3 Unassigned, Cal), unpinned calIndex 30 sameAsBefore true; neighbours board before/after/tech identical (48e57869, 0db16f53). Tech 66 groups vs 67 columns: firstDiff -1, i.e. Tech View's order equals Board View's for every group it has (one fewer at the end). Neither picture shows Cal's own row (both show other technicians), so the order comes from the readings only. Manual check: in Board View click the pin icon in Cal's header, confirm he moves right after Unassigned, click it again and confirm he returns between the same two technicians, then confirm Tech View shows the same order."
+ },
+ "C96982": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: customer \"ZZAUTOTEST F2 Required Only UI 83413\" with an asset 2022 Freightliner M2 unit TRK-118 and an asset 1999 Ford Explorer with no unit (both made on the New Asset screen); two Approved work orders led by Esther Howard: S1-1591 on TRK-118 and S1-1592 on the 1999 Ford Explorer.",
+   "Steps 1 and 2: Work Orders, All tab, Board View, \"ZZAUTOTEST F2 Required Only\" searched.",
+   "Step 3: Column Selection (production's name for Fields to display) opened and every switched-on field turned off.",
+   "Step 4: S1-1591 shows only \"S1-1591\", \"Approved\" and \"TRK-118\"; S1-1592 shows only \"S1-1592\", \"Approved\" and \"1999 Ford Explorer\" in the unit's place."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/ui-C96982-cards.png"
+  ],
+  "reason_for_reviewer": "ui-fallback.mts C96982: customer and work orders made behind the screen, the two assets through the New Asset screen (set-up). Page opened by address, then All tab, Board View, Search on screen; Column Selection opened and each 'on' toggle clicked off. cards wo1 'S1-1591 Approved TRK-118', wo2 'S1-1592 Approved 1999 Ford Explorer'. Esther Howard pinned so her column shows first (set-up only). The case's S1-702 / S1-472 are example numbers. Picture ui-C96982-cards.png shows both cards with nothing else on them. 0 differences from staging."
+ },
+ "C96984": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: customer \"ZZAUTOTEST F2 Unit Fallback UI 55464\" with assets 2022 Freightliner M2 unit TRK-118 and 1999 Ford Explorer with no unit (made on the New Asset screen); three Approved work orders led by Esther Howard: S1-1593 (TRK-118), S1-1594 (1999 Ford Explorer) and S1-1595 (another asset, no lines). (c) not built - an asset needs a Make.",
+   "Steps 1 and 2: Work Orders, All tab, Board View, \"ZZAUTOTEST F2 Unit Fallback\" searched.",
+   "Step 3: Column Selection opened; Asset, Line count, Total price and Progress are on (the other fields were switched off, which does not touch what this test reads).",
+   "Step 4 (a): S1-1593 shows \"TRK-118\" and its asset \"2022 Freightliner M2\".",
+   "Step 4 (b): S1-1594 shows \"1999 Ford Explorer\" where the unit would be.",
+   "Step 4 (c): not built - an asset needs a Make.",
+   "Step 4 (d): the work orders with no lines show their zeros as values: \"0 lines\", \"0%\" and \"$0.00\"."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/ui-C96984-cards.png"
+  ],
+  "reason_for_reviewer": "ui-fallback.mts C96984: the script set the fields to exactly vehicle, lines_count, total_price, progress and switched every other field off, where the case says turn the three on and keep the defaults on. The extra 'off' fields (lead, customer etc.) do not affect unit/asset or the zero values, and Asset stayed on, so the expected lines are all observed: wo1 'S1-1593 Approved TRK-118 · Asset 2022 Freightliner M2 Line count 0 lines Progress 0% Total price $0.00', wo2 'S1-1594 Approved 1999 Ford Explorer ... 0 lines 0% $0.00', wo3 'S1-1595 Approved ZZTMP ... 0 lines 0% $0.00' (the [WO-d]-like work order). Page opened by address, then All, Board View, Search and the toggles on screen. 0 differences from staging. If the reviewer reads 'keep the defaults on' as load-bearing, a 1-minute manual check settles it: same board with defaults on plus the three fields."
+ },
+ "C368215": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1, 2 and 3: the part sale page was opened by its web address instead of Parts > Part Sales and clicking its row, and the Sales Representative dropdown was not opened to confirm a person can be picked. Everything read on the status card matches the expected result.",
+  "bold_steps": [
+   1,
+   2,
+   3
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The part sale was not opened from the Part Sales list, and the Sales Representative dropdown was not opened.",
+   "Set-up: part sale P1-80 for \"ZZAUTOTEST Part Sale Card 75751\" at Truck Hill 1, one part added on its Parts tab (a stock part, not \"Brake Pads\").",
+   "Steps 1 and 2 (NOT DONE FROM THE LIST): the part sale page was opened directly, not by Parts > Part Sales and clicking the P1-80 row.",
+   "Step 3: the status card shows \"P1-80\", \"Estimate\", \"Started: Today\" and \"Sales Representative\" with \"Unassigned\" and a dropdown arrow; it shows no Lead technician, Service advisor or progress bar; no empty box and no error message. The dropdown itself was not opened."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368215-part-sale.png"
+  ],
+  "reason_for_reviewer": "ps-counts.mts C368215: part sale created by POST /api/part-sales (set-up), part added through the Add Part screen; then p.goto(/parts/part-sale/<id>/part-requests) - the Part Sales list and the row click (steps 1-2) never happened. Same treatment as C368218 (page by address instead of Parts > Purchase Orders = Unsure). card 'P1-80 | Estimate | Started: Today | Sales Representative | Unassigned | arrow_drop_down', errors []. The arrow suggests a dropdown, but it was not opened, so 'a dropdown you can open to pick a person' is not observed. Manual check: Parts > Part Sales, click P1-80, confirm the card as read and open Sales Representative to see a list of people."
+ },
+ "C368241": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: the signed-in user's own photo was set to a plain red square on Edit Profile (the user is \"ZZ WOB Runner\" at Truck Hill 1).",
+   "Step 1: the avatar at the top right shows the red photo.",
+   "Step 2: initials > Edit Profile, the photo clicked and the blue square picked.",
+   "Step 3: the Edit Profile page reloaded.",
+   "Step 4: the avatar at the top right and the photo on the page both show the blue photo, not the red one."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368241-avatar-before.png",
+   "evidence/prod-2026-10-22/C368241-avatar-after.png",
+   "evidence/prod-2026-10-22/C368241-page.png"
+  ],
+  "reason_for_reviewer": "ps-counts.mts C368241: openEditProfile clicks profile_menu_button then 'Edit Profile'; red upload + reload (set-up); before = red header avatar (picture); blue upload on the same screen (one upload-avatar POST); reload; after = blue header avatar (picture), page picture shows the blue photo and blue avatar. The avatar address has no change between before and after (the page adds a time stamp), but the picture after the reload is blue. 0 differences from staging."
+ },
+ "C368243": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: technician \"ZZAUTOTEST Photo Tech ...\" made at Truck Hill 1 with Time Clock on; her own Edit Profile screen was used to give her the red photo. She has a row on the Schedule.",
+   "Step 1: Schedule: her row's avatar shows the red photo.",
+   "Step 2: on her own Edit Profile screen (her account, a separate browser window) the blue photo was uploaded.",
+   "Step 3: back on the Schedule in the first browser, the page was reloaded.",
+   "Step 4: her row's avatar shows the blue photo, not the red one."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368243-before.png",
+   "evidence/prod-2026-10-22/C368243-after.png"
+  ],
+  "reason_for_reviewer": "ps-counts.mts C368243: the technician's uploads were done on her own Edit Profile screen in a separate browser window opened by switching into her account (viewAs), not by her typing her password; the photo stored is hers either way and the admin's Schedule tab never did the upload, so the 'second browser' part holds. Schedule opened by address (same as Work Orders by address in C96977). Service enrolment answered 'no Service department' on production, but her row was drawn (laneBefore/laneAfter true). before avatar red, after reload blue (element pictures C368243-avatar-before/-after and the full pages). If the reviewer wants the technician to sign in herself, that is the one manual check."
+ },
+ "C368244": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: technician \"ZZAUTOTEST Photo Tech ...\" leads S1-1596 (\"ZZAUTOTEST Photo Board\", Approved) at Truck Hill 1, and has the red photo from her own Edit Profile screen. Her column was pinned so it shows next to Unassigned.",
+   "Step 1: Work Orders, Board View, her column header shows the red photo.",
+   "Step 2: on her own Edit Profile screen (her account, a separate browser window) the blue photo was uploaded.",
+   "Step 3: Board View opened again in the first browser and the page reloaded.",
+   "Step 4: her column header shows the blue photo, not the red one."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368244-before.png",
+   "evidence/prod-2026-10-22/C368244-after.png"
+  ],
+  "reason_for_reviewer": "ps-counts.mts C368244: same upload route as C368243 (her own Edit Profile screen via a switched-into window). Her column pinned (set-up shortcut for 'scroll right to her column'). before red, after reload blue (header pictures and element pictures). Board opened by address then All tab / Board View / Search on screen."
+ }
+}
