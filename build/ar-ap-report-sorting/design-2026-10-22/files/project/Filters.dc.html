@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Filters and call list</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/shopviewdesignsystem_fac6ef/colors_and_type.css">
+<link rel="stylesheet" href="ds/shopviewdesignsystem_fac6ef/components.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 7860px; box-sizing: border-box; padding: 48px; display: flex; flex-direction: column; gap: 24px; background: var(--sv-surface-canvas); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+  <div style="display: flex; flex-direction: column; gap: 4px;">
+    <h2 class="sv-h2" style="margin: 0;">7. Filters and call list</h2>
+    <p style="margin: 0; font-size: 14px; color: var(--sv-text-secondary);">Left: production today. Right: this build (round 13, 2026-10-19). PRD Story 5 (filters and totals), Story 9 (call list), Story 7 (vendor credit links), Story 3 (export lines). All at 1440 pixels wide.</p>
+  </div>
+  <div style="display: flex; gap: 48px; align-items: flex-start;">
+    <figure style="margin: 0; width: 820px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--neutral">Production (before)</span><span style="font-size: 16px; font-weight: 600;">A/R Summary: date only</span></div>
+      <img src="/_blob/6e4079bae88b00f4712ecc994635a4aa" alt="Production A/R Aging Summary with only a date control" style="width: 820px; height: 513px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">The Summaries and Detail reports have no customer, vendor or past due filter today.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 820px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--neutral">Production (before)</span><span style="font-size: 16px; font-weight: 600;">A/R Collection: date and customer only</span></div>
+      <img src="/_blob/99736a960ab6402cfa5648bd7be1c7b8" alt="Production A/R Aging Collection with date and customer controls" style="width: 820px; height: 513px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">Collection and Unpaid Invoices have a customer or vendor picker, and their Totals row ignores it. No phone or credit term on the customer rows.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 820px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">Four chips on every report</span></div>
+      <img src="/_blob/f6fd76893ad1106bbd9c8fad668897e0" alt="A/R Aging Summary filter row: As of, Customer All customers and Past due Any in grey, Location" style="width: 820px; height: 513px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">As of, Customer (Vendor on A/P), Past due, Location. &quot;Customer: All customers&quot; and &quot;Past due: Any&quot; rest grey, Past due with the design system’s hourglass icon. S5-R1, S5-R13, S5-R15.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 820px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">New in this build</span><span style="font-size: 16px; font-weight: 600;">Past due menu</span></div>
+      <img src="/_blob/2cbc468d2963453e3abbe2ba42c15138" alt="Past due checkbox menu open with Any ticked, the helper line and 1-30, 31-60, 61-90 and 91+ days" style="width: 820px; height: 513px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">The native checkbox menu: &quot;Any&quot; ticked, &quot;All ranges are included. Pick one or more to narrow.&quot;, then 1-30 days, 31-60 days, 61-90 days, 91+ days. S5-R15, S5-N3.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 820px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">New in this build</span><span style="font-size: 16px; font-weight: 600;">Past due ticked</span></div>
+      <img src="/_blob/4e40e4c1c64bb8f2f16d699555908c42" alt="A/R Aging Summary with Past due: 2 ranges (31-60 and 91+ days), narrowed rows and Totals" style="width: 820px; height: 513px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">31-60 days and 91+ days ticked: the chip reads &quot;Past due: 2 ranges&quot; in blue. The Summary lists only customers with an amount in those ranges, at full balances; the Totals row adds up exactly these rows. S5-R15, S5-R16, S5-R17, S5-R18, S5-R19.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 820px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">New in this build</span><span style="font-size: 16px; font-weight: 600;">The native Vendor menu</span></div>
+      <img src="/_blob/749cad0a5c7bad446f41e140a7b4f86a" alt="A/P Aging Summary with the Vendor menu open: Search vendor, All vendors and the helper line" style="width: 820px; height: 513px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">Vendor chip with the truck icon, as on Inventory Value. Its menu: a search box, &quot;All vendors&quot; ticked, &quot;All vendors are included. Pick one or more to narrow.&quot;, then the vendors. S5-R13, S5-R14.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 820px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">New in this build</span><span style="font-size: 16px; font-weight: 600;">Two customers ticked</span></div>
+      <img src="/_blob/8535dfa4709a96269b098d3c671557f9" alt="A/R Aging Summary with Customer: 2 customers and the Customer menu open, 10 Trucking and 4 Star Truck Repair ticked" style="width: 820px; height: 513px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">Customer menu with 10 Trucking and 4 Star Truck Repair ticked (&quot;2 selected&quot;, shown as tags in the search box): the chip reads &quot;Customer: 2 customers&quot;, and rows and Totals narrow to them (4 Star Truck Repair has nothing open). S5-R13, S5-R14, S5-R19.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 820px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">New in this build</span><span style="font-size: 16px; font-weight: 600;">Call list on A/R Collection</span></div>
+      <img src="/_blob/54a9dfe95b8c0dbfeed0912d566271b0" alt="A/R Aging Collection for one customer with Phone and Credit term on the group row" style="width: 820px; height: 513px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">Customer picked: the group row shows &quot;Phone:&quot; and, for users with View and Manage AP/AR Data, &quot;Credit term:&quot;. The Totals row follows the customer filter. S9-R1, S9-R2, S5-R18. Exports carry the same lines and columns: S9-R3, S3-R5, S3-R8a.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 820px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">New in this build</span><span style="font-size: 16px; font-weight: 600;">Vendor credits link</span></div>
+      <img src="/_blob/8fa208aa4abb85d10b2f67b3958a28ba" alt="A/P Unpaid Invoices with vendor credit C-1224 shown as a link" style="width: 820px; height: 513px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">A vendor credit’s number (C-1224) links to the vendor return it came from, under the bill rules; A/R credit memos and deposits stay plain text. S7-R9, S7-R10.</figcaption>
+    </figure>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":7860,"height":980}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

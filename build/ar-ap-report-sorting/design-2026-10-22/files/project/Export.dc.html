@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Export</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/shopviewdesignsystem_fac6ef/colors_and_type.css">
+<link rel="stylesheet" href="ds/shopviewdesignsystem_fac6ef/components.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 5088px; box-sizing: border-box; padding: 48px; display: flex; flex-direction: column; gap: 24px; background: var(--sv-surface-canvas); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+  <div style="display: flex; flex-direction: column; gap: 4px;">
+    <h2 class="sv-h2" style="margin: 0;">2. Export</h2>
+    <p style="margin: 0; font-size: 14px; color: var(--sv-text-secondary);">Left: production today. Right: this build (round 13, 2026-10-19). PRD Story 3.</p>
+  </div>
+  <div style="display: flex; gap: 48px; align-items: flex-start;">
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--neutral">Production (before)</span><span style="font-size: 16px; font-weight: 600;">A/R: a print icon only</span></div>
+      <img src="/_blob/6f8ca9ff78bccb7b18d367cfdb1fa3d6" alt="Production A/R Aging Summary toolbar with a print icon" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">A/R prints a PDF in database order, not the screen's. No CSV.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--neutral">Production (before)</span><span style="font-size: 16px; font-weight: 600;">A/P: no export at all</span></div>
+      <img src="/_blob/beffc660001ecc0176a971155e91ab7c" alt="Production A/P Aging Summary with no export" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">The A/P reports have no print, PDF or CSV.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">Export menu: PDF and CSV</span></div>
+      <img src="/_blob/d9cc690d5a7176e1abe4e20292bb6086" alt="A/R Aging Summary Export menu open" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">The native ⋯ Export menu on all six reports. Files hold exactly the rows on screen, in screen order, with the as-of date and locations, then Past due and the customer or vendor when chosen. S3-R1 to S3-R8, S3-R8a.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">A/P gets the same menu</span></div>
+      <img src="/_blob/0151c70944995b986fbe7d6955ab2e7d" alt="A/P Aging Summary with the Export menu button" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">A/P Summary, Detail and Unpaid Invoices now export PDF and CSV. S3-R1.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">PDF over 2,000 rows is refused</span></div>
+      <img src="/_blob/c62e842f4af1997bf8aab6484b9ce09b" alt="One message refusing a PDF over 2,000 rows" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again." Exactly one message. CSV limit 50,000 rows. S3-N1, S3-N2, S3-N3.</figcaption>
+    </figure>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":5088,"height":980}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

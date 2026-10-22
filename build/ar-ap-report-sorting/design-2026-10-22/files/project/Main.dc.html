@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Opening order and header sorting</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/shopviewdesignsystem_fac6ef/colors_and_type.css">
+<link rel="stylesheet" href="ds/shopviewdesignsystem_fac6ef/components.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 5088px; box-sizing: border-box; padding: 48px; display: flex; flex-direction: column; gap: 24px; background: var(--sv-surface-canvas); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+  <div style="display: flex; flex-direction: column; gap: 4px;">
+    <h2 class="sv-h2" style="margin: 0;">1. Opening order and header sorting</h2>
+    <p style="margin: 0; font-size: 14px; color: var(--sv-text-secondary);">Left: production today. Right: this build (round 13, 2026-10-19). PRD Story 1 and Story 2.</p>
+  </div>
+  <div style="display: flex; gap: 48px; align-items: flex-start;">
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--neutral">Production (before)</span><span style="font-size: 16px; font-weight: 600;">A/R Aging Summary as it opens today</span></div>
+      <img src="/_blob/6e4079bae88b00f4712ecc994635a4aa" alt="Production A/R Aging Summary, customers in no set order" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">Customers come back in no set order, and no column header can be clicked to sort.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--neutral">Production (before)</span><span style="font-size: 16px; font-weight: 600;">A/P Aging Detail as it opens today</span></div>
+      <img src="/_blob/3acf0df8fcfa2948021f62095f926d6c" alt="Production A/P Aging Detail" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">Inside a bucket, rows open most overdue first. No sortable headers.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">A/R Aging Summary opens A to Z</span></div>
+      <img src="/_blob/679a5315b863910f9a0d03364ff7a5c5" alt="A/R Aging Summary in customer name order" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">Customer name order the way QuickBooks sorts ("10 Trucking" before "2 Trucking"), marked on the Customer header. S1-R1, S1-R2, S1-R4, S1-R7, S1-R8.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">Click the Total header</span></div>
+      <img src="/_blob/a04f6b706bbb31950fca23e4aab33a3b" alt="A/R Aging Summary sorted by Total, largest first" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">First click gives the useful order: money largest first. Second click reverses, third repeats the first. S2-R1, S2-R2, S2-R3, S2-R7.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">A/P Aging Detail opens by vendor name</span></div>
+      <img src="/_blob/e3b542552c193320f79a6f8514a1da17" alt="A/P Aging Detail, vendor name order inside fixed buckets" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">Buckets stay in fixed order; rows inside each bucket go by vendor name (was most overdue first). S1-R5, S2-R4, S2-R5.</figcaption>
+    </figure>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":5088,"height":980}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

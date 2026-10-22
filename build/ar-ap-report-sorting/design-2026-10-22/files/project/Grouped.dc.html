@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Collapse all and pinned group rows</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/shopviewdesignsystem_fac6ef/colors_and_type.css">
+<link rel="stylesheet" href="ds/shopviewdesignsystem_fac6ef/components.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 5088px; box-sizing: border-box; padding: 48px; display: flex; flex-direction: column; gap: 24px; background: var(--sv-surface-canvas); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+  <div style="display: flex; flex-direction: column; gap: 4px;">
+    <h2 class="sv-h2" style="margin: 0;">3. Collapse all, Expand all and pinned group rows</h2>
+    <p style="margin: 0; font-size: 14px; color: var(--sv-text-secondary);">Left: production today. Right: this build (round 13, 2026-10-19). PRD Story 4. Applies to A/R Detail, A/R Collection, A/P Detail and A/P Unpaid Invoices.</p>
+  </div>
+  <div style="display: flex; gap: 48px; align-items: flex-start;">
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--neutral">Production (before)</span><span style="font-size: 16px; font-weight: 600;">A/R Collection, groups opened one by one</span></div>
+      <img src="/_blob/99736a960ab6402cfa5648bd7be1c7b8" alt="Production A/R Aging Collection with two customers expanded" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">Each customer opens with its own arrow; there is no way to open or close them all.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--neutral">Production (before)</span><span style="font-size: 16px; font-weight: 600;">Scrolling loses the customer name</span></div>
+      <img src="/_blob/732fca85ededdfeb71f3a02a7b83e1e2" alt="Production A/R Aging Collection scrolled, customer name out of view" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">Scrolled into a long group, nothing on screen says whose rows these are.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">Expand all from the header</span></div>
+      <img src="/_blob/e9a44087208a2aab63c7ab1eee8075af" alt="A/R Aging Collection after Expand all" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">One chevron in the top-left header cell: "Collapse all" while any group is open, "Expand all" when none is. Group toggles use the same chevron. S4-R1 to S4-R5, S4-R8.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">The customer row stays pinned</span></div>
+      <img src="/_blob/b70058e0aab7e76fb8231374b575f004" alt="A/R Aging Collection scrolled, customer row pinned under the headings" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">While scrolling a group, its row stays under the column headings; the next group's row pushes it up and off. S4-R6.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">Same on A/P Unpaid Invoices</span></div>
+      <img src="/_blob/cd382497faa5379a44d5f3209d48ba40" alt="A/P Unpaid Invoices scrolled, vendor row pinned" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">Vendor rows pin the same way; re-sorting never collapses an open group. S4-R6, S2-R9.</figcaption>
+    </figure>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":5088,"height":980}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

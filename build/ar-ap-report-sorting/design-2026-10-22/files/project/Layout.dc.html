@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Descriptions and pinned column</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/shopviewdesignsystem_fac6ef/colors_and_type.css">
+<link rel="stylesheet" href="ds/shopviewdesignsystem_fac6ef/components.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 7860px; box-sizing: border-box; padding: 48px; display: flex; flex-direction: column; gap: 24px; background: var(--sv-surface-canvas); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+  <div style="display: flex; flex-direction: column; gap: 4px;">
+    <h2 class="sv-h2" style="margin: 0;">6. Report descriptions and the pinned headline column</h2>
+    <p style="margin: 0; font-size: 14px; color: var(--sv-text-secondary);">Left: production today, light and dark. Right: this build (round 13, 2026-10-19). PRD Story 8. All at 1440 pixels wide.</p>
+  </div>
+  <div style="display: flex; gap: 48px; align-items: flex-start;">
+    <figure style="margin: 0; width: 820px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--neutral">Production (before)</span><span style="font-size: 16px; font-weight: 600;">A/P Detail scrolled sideways, light</span></div>
+      <img src="/_blob/393f80742eaa3a523cb604d4701ce126" alt="Production A/P Aging Detail scrolled right in light mode" style="width: 820px; height: 513px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">No description anywhere; no column stays in place.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 820px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--neutral">Production (before)</span><span style="font-size: 16px; font-weight: 600;">Same, dark</span></div>
+      <img src="/_blob/9724612328cc59e23db160d0613632d1" alt="Production A/P Aging Detail scrolled right in dark mode" style="width: 820px; height: 513px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">Production in dark mode, for comparison.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 820px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">Info icon beside the title, light</span></div>
+      <img src="/_blob/2ae1e64940926ce9fe29cf5e9ca98cfe" alt="A/R Aging Collection title with the info icon closed" style="width: 820px; height: 513px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">The native report info icon sits right of the title; title, icon and ⋯ stay on one line, filter row below. S8-R1, S8-R2.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 820px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">Info icon open, light</span></div>
+      <img src="/_blob/60c1832e0aaabe4c970bc30217f33794" alt="A/R Aging Collection with the description tooltip open" style="width: 820px; height: 513px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">Hover, keyboard focus or a tap shows the description; moving away or Escape closes it. The longest one: &quot;Overdue invoices, unused credit memos and deposits for each customer to help you follow up on payments. Excludes invoices that aren’t due yet.&quot; S8-R1.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 820px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">Info icon beside the title, dark</span></div>
+      <img src="/_blob/ad2199b35ebbebb8279dc5ea54cffc68" alt="A/R Aging Collection title with the info icon closed in dark mode" style="width: 820px; height: 513px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">Same in dark mode. S8-R1.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 820px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">Info icon open, dark</span></div>
+      <img src="/_blob/1fe4d7a14658eb5854edfc6ae2094aee" alt="A/R Aging Collection description tooltip open in dark mode" style="width: 820px; height: 513px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">Tooltip in dark mode. Descriptions appear on screen only, not in the PDF or CSV. S8-R1, S8-N1.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 820px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">Open Balance pinned, light</span></div>
+      <img src="/_blob/f680e580daca2f02b3ec44636a565cd1" alt="A/P Aging Detail scrolled right with Open Balance pinned" style="width: 820px; height: 513px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">The headline column (Open Balance; Total on the Summaries) is bold and pinned right; the group label stays at the left. S8-R3, S8-R4, S4-R7.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 820px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">Same, dark</span></div>
+      <img src="/_blob/116db310201455260f4c394cf3d97970" alt="A/P Aging Detail scrolled right in dark mode with Open Balance pinned" style="width: 820px; height: 513px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">Pinned cells and links use the native colors in dark mode. S8-R3, S7-R7.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 820px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">A/P Unpaid Invoices at 1440: every column visible</span></div>
+      <img src="/_blob/ad3fe45aa436605e35fa18576f637f46" alt="A/P Unpaid Invoices at 1440 pixels with every column visible and Open Balance pinned" style="width: 820px; height: 513px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">At 1440 pixels every column fits without sideways scrolling: Date, Location, Transaction Type, No., Vendor Name, Due Date, Past Due, Amount and the pinned, bold Open Balance. Group labels span to the total; text columns wrap. S8-R3.</figcaption>
+    </figure>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":7860,"height":980}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

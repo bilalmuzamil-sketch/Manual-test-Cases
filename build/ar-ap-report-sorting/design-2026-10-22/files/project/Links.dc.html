@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Document links and Switch location</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/shopviewdesignsystem_fac6ef/colors_and_type.css">
+<link rel="stylesheet" href="ds/shopviewdesignsystem_fac6ef/components.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 5088px; box-sizing: border-box; padding: 48px; display: flex; flex-direction: column; gap: 24px; background: var(--sv-surface-canvas); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+  <div style="display: flex; flex-direction: column; gap: 4px;">
+    <h2 class="sv-h2" style="margin: 0;">5. Document links and Switch location (SV-5706)</h2>
+    <p style="margin: 0; font-size: 14px; color: var(--sv-text-secondary);">Left: production today. Right: this build (round 13, 2026-10-19). PRD Story 7. The top-right location switcher is not changed.</p>
+  </div>
+  <div style="display: flex; gap: 48px; align-items: flex-start;">
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--neutral">Production (before)</span><span style="font-size: 16px; font-weight: 600;">Every invoice number is a link</span></div>
+      <img src="/_blob/215b27cfb7f082f59c1b41502dce057e" alt="Production A/R Aging Detail with links on invoices from another location" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">Signed in to Heavy Duty, the Lethbridge invoices (S3-) are links too.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--neutral">Production (before)</span><span style="font-size: 16px; font-weight: 600;">Clicking one dead-ends</span></div>
+      <img src="/_blob/94bacc1c6d8cd87cdb7f4db29330d2f9" alt="Production Work Orders list with WorkOrder not found and status code 400 errors" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">"WorkOrder not found." and "Request failed with status code 400", then the user lands on the Work Orders list.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">Links only where they can open</span></div>
+      <img src="/_blob/cdefada155ba18ecdf4b550c2e4cc34f" alt="A/R Aging Detail, links in the native report link style" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">A number links only with the right permission and a location the user works at; otherwise plain text. Native link style. S7-R1, S7-R2, S7-R6, S7-R7, S7-N1, S7-N2.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">Another location asks first</span></div>
+      <img src="/_blob/fb3fc52aea72af56a190a9f14071a6ed" alt="Switch location prompt shown on the report" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">"Switch location? This work order is in Staging Lethbridge - 4310. Switch your active location to view it?" on the report. Switch Location opens it there. S7-R3, S7-R4.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">Cancel stays on the report</span></div>
+      <img src="/_blob/96a5b92dec383627ffa7ed31072dc53a" alt="A/R Aging Detail after Cancel, unchanged" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">Same filters, open groups and scroll position. S7-R5, S7-E1.</figcaption>
+    </figure>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":5088,"height":980}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

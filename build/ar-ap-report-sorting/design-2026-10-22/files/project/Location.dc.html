@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Location filter and Location column</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/shopviewdesignsystem_fac6ef/colors_and_type.css">
+<link rel="stylesheet" href="ds/shopviewdesignsystem_fac6ef/components.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 7104px; box-sizing: border-box; padding: 48px; display: flex; flex-direction: column; gap: 24px; background: var(--sv-surface-canvas); font-family: var(--sv-font-ui); color: var(--sv-text-primary);">
+  <div style="display: flex; flex-direction: column; gap: 4px;">
+    <h2 class="sv-h2" style="margin: 0;">4. Location filter and Location column</h2>
+    <p style="margin: 0; font-size: 14px; color: var(--sv-text-secondary);">Left: production today. Right: this build (round 13, 2026-10-19). PRD Story 5 and Story 6. The filter only narrows; nobody's access changes.</p>
+  </div>
+  <div style="display: flex; gap: 48px; align-items: flex-start;">
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--neutral">Production (before)</span><span style="font-size: 16px; font-weight: 600;">Every location, no way to narrow</span></div>
+      <img src="/_blob/5ff17d7a3fac58f730fff41a05659077" alt="Production A/R Aging Detail with a Location Full Name column and no location filter" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">The reports show the whole organization. The column is "Location Full Name" here and "Location Name" on A/P; the Summaries have none.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">Opens on All locations</span></div>
+      <img src="/_blob/db471ddada75f37c8265282b3ae3e3f0" alt="A/R Aging Detail with the Location chip reading All locations and a Location column" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">Native filter row: As of, Customer, Past due, then Location, which opens on &quot;Location: All locations&quot;. Untouched, the report matches today. Column labelled "Location", after Date. S5-R1, S5-R2, S5-R5, S6-R1 to S6-R3.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">The native Location menu</span></div>
+      <img src="/_blob/b3179c211540c66402a703f82a481f84" alt="Location menu open with Select all, 2 selected, both locations ticked and Clear selection" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">&quot;Select all&quot; with &quot;2 selected&quot;, every location in this report's own data named as in the top-right switcher, then &quot;Clear selection&quot;. S5-R2, S5-R3, S5-R4, S5-R5, S5-R6.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">One location ticked</span></div>
+      <img src="/_blob/ac3ddc335e2d8796b5675663418899d2" alt="A/R Aging Detail with only Staging Lethbridge ticked in the Location menu, Location column hidden" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">One location ticked (&quot;1 selected&quot;): the chip names it, rows, totals and exports narrow to it, and the Location column hides. S5-R6, S5-R7, S5-R10, S6-N1.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">Cleared: No locations</span></div>
+      <img src="/_blob/105bf47813e9c350989185cf27f90950" alt="A/R Aging Detail with Location: No locations and the No record matches these filters empty state" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">&quot;Clear selection&quot; leaves no location chosen: the chip reads &quot;Location: No locations&quot; and stays visible, and the table shows the native empty state &quot;No record matches these filters&quot; with &quot;Clear all filters&quot;. S5-R6a, S5-R9.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">Summaries show "Multiple"</span></div>
+      <img src="/_blob/e15cddb093bbdcadbc7736034b730d06" alt="A/R Aging Summary sorted by Location, Multiple at the top" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">A customer with open documents at two locations reads "Multiple"; sorted by Location here. S6-R4, S6-R5, S5-R8.</figcaption>
+    </figure>
+    <figure style="margin: 0; width: 960px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;"><span class="sv-badge sv-badge--info">This build (after)</span><span style="font-size: 16px; font-weight: 600;">Drill-down keeps the as-of date</span></div>
+      <img src="/_blob/f8abb021e733450a62c390de77a38759" alt="A/R Aging Collection opened from A/R Aging Summary for 10 Trucking with As of 09/30/2026" style="width: 960px; height: 600px; display: block; border: 1px solid var(--sv-border-default); border-radius: 8px;">
+      <figcaption style="font-size: 13px; line-height: 18px; color: var(--sv-text-secondary);">On A/R Summary with As of 09/30/2026, clicking 10 Trucking opens A/R Collection for that customer with the same as-of date (and the same Past due and locations when set). S5-R11.</figcaption>
+    </figure>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":7104,"height":980}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

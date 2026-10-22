@@ -1,0 +1,245 @@
+@import url("tokens.css"); /* colours, spacing, radii, shadows and the Inter faces: generated from tokens.json */
+/* Shopview Design System — tokens + base element styles.
+   Derived from the ShopView Design System Figma (FOUNDATIONS pages).
+*/
+
+/* Inter — brand font, 18pt optical size (optimized for UI text).
+   Served locally from /fonts/. Covers 100–900 weights + italics. */
+
+/* Inter Display — 28pt optical size for headlines/hero use (H1/H2). Full weight coverage. */
+
+:root {
+  /* ── Basic ───────────────────────────────────────────────────── */
+
+  /* ── Brand ───────────────────────────────────────────────────── */
+
+  /* ── Primary (Blue) scale — Figma Color/Brand/Primary ────────── */
+
+  /* ── Neutrals (Grey 25–900) — Figma Color/Grey ───────────────── */
+
+  /* ── Feedback / Success — Figma Color/Feedback/Success ───────── */
+
+  /* ── Feedback / Error — Figma Color/Feedback/Error ───────────── */
+
+  /* ── Feedback / Warning — Figma Color/Feedback/Warning ───────── */
+
+  /* ── Convenience aliases (semantic shorthand) ────────────────── */
+
+  /* ── Additional / Teal — Figma Color/Additional Teal ─────────── */
+
+  /* ── Additional / Cyan — Figma Color/Additional Cyan ─────────── */
+
+  /* ── Additional / Violet — Figma Color/Additional Violet ─────── */
+
+  /* ── Additional / Purple — Figma Color/Additional Purple ─────── */
+
+  /* ── Additional / Pink — Figma Color/Additional Pink ─────────── */
+
+  /* ── Surfaces ────────────────────────────────────────────────── */
+
+  /* ── Foreground semantics ────────────────────────────────────── */
+
+  /* ── Borders ─────────────────────────────────────────────────── */
+
+  /* ── Radii ───────────────────────────────────────────────────── */
+
+  /* ── Spacing (4px base; scale follows Figma) ─────────────────── */
+
+  /* ── App header geometry ─────────────────────────────────────────
+     The header bar and its inline controls (nav pills, search field,
+     time clock) read these so header implementations can't drift.
+     Colors come from the semantic layer (--sv-surface, --sv-border-default,
+     --sv-surface-nav-selected, --sv-surface-sunken). */
+  --sv-header-height:         64px;
+  --sv-header-padding:        12px 20px 12px 28px;
+  --sv-header-gap:           16px;
+  --sv-header-logo-size:     32px;
+  --sv-header-control-height: 34px;
+  --sv-header-control-radius: var(--sv-radius-md);
+  /* Header V2 — compact 48h bar, icon nav (selected item shows label), shop switcher left of nav. */
+  --sv-header-v2-height:         48px;
+  --sv-header-v2-padding:        0 16px 0 14px;
+  --sv-header-v2-gap:            12px;
+  --sv-header-v2-logo-size:      24px;
+  --sv-header-v2-control-height: 32px;
+  --sv-header-v2-avatar-size:    28px;
+
+  /* ── Elevation ───────────────────────────────────────────────── */
+
+  /* ── Type ────────────────────────────────────────────────────── */
+  --sv-font-ui:      'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --sv-font-display: 'Inter Display', 'Inter', system-ui, sans-serif;
+  --sv-font-mono:    ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Type scale (px / line-height / weight) — matches Figma */
+  --sv-h1-size: 30px;  --sv-h1-lh: 38px;  --sv-h1-weight: 600;
+  --sv-h2-size: 24px;  --sv-h2-lh: 32px;  --sv-h2-weight: 600;
+  --sv-h3-size: 20px;  --sv-h3-lh: 28px;  --sv-h3-weight: 500;
+  --sv-h4-size: 16px;  --sv-h4-lh: 24px;  --sv-h4-weight: 600;
+  --sv-body-size: 14px;  --sv-body-lh: 20px;  --sv-body-weight: 400;  --sv-body-medium-weight: 500;  --sv-body-semibold-weight: 600;
+  --sv-body2-size: 12px; --sv-body2-lh: 16px; --sv-body2-weight: 500; --sv-body2-tracking: 0.01em;
+  --sv-caption-size: 10px; --sv-caption-lh: 14px; --sv-caption-weight: 600; --sv-caption-tracking: 0.015em;
+
+  /* Type scale — additions.
+     The Figma scale above has no 11px or 13px step and no bold weight, but the
+     component specs use all three. These are named for the job they do rather
+     than by number, so the numbered scale stays exactly as Figma defines it.
+       dense  13px — data-dense text: table body, toast timestamps
+       micro  11px — badges, kbd chips, menu badges, uppercase eyebrows
+       bold   700  — alert / toast / tooltip titles
+     Unthemed, like the rest of the type scale. */
+  --sv-dense-size: 13px; --sv-dense-lh: 18px;
+  --sv-micro-size: 11px; --sv-micro-lh: 14px;
+  --sv-body-bold-weight: 700;
+  --sv-tracking-wide: 0.02em;   /* table column headers */
+  --sv-tracking-wider: 0.04em;  /* uppercase section labels */
+}
+
+/* ── Base element styles ───────────────────────────────────────── */
+html, body {
+  font-family: var(--sv-font-ui);
+  font-size: var(--sv-body-size);
+  line-height: var(--sv-body-lh);
+  color: var(--sv-fg-primary);
+  background: var(--sv-bg-surface);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, .sv-h1 { font-family: var(--sv-font-ui); font-size: var(--sv-h1-size); line-height: var(--sv-h1-lh); font-weight: var(--sv-h1-weight); color: var(--sv-grey-600); margin: 0; letter-spacing: -0.01em; }
+h2, .sv-h2 { font-family: var(--sv-font-ui); font-size: var(--sv-h2-size); line-height: var(--sv-h2-lh); font-weight: var(--sv-h2-weight); color: var(--sv-grey-700); margin: 0; }
+h3, .sv-h3 { font-family: var(--sv-font-ui); font-size: var(--sv-h3-size); line-height: var(--sv-h3-lh); font-weight: var(--sv-h3-weight); color: var(--sv-grey-700); margin: 0; }
+h4, .sv-h4 { font-family: var(--sv-font-ui); font-size: var(--sv-h4-size); line-height: var(--sv-h4-lh); font-weight: var(--sv-h4-weight); color: var(--sv-grey-700); margin: 0; }
+
+p, .sv-body { font-size: var(--sv-body-size); line-height: var(--sv-body-lh); color: var(--sv-fg-primary); margin: 0; }
+.sv-body-strong { font-weight: 600; }
+.sv-body2 { font-size: var(--sv-body2-size); line-height: var(--sv-body2-lh); font-weight: var(--sv-body2-weight); letter-spacing: var(--sv-body2-tracking); color: var(--sv-fg-secondary); }
+.sv-caption { font-size: var(--sv-caption-size); line-height: var(--sv-caption-lh); font-weight: var(--sv-caption-weight); letter-spacing: var(--sv-caption-tracking); text-transform: none; color: var(--sv-fg-secondary); }
+
+code, pre, .sv-mono { font-family: var(--sv-font-mono); font-size: 13px; }
+
+a { color: var(--sv-fg-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+hr { border: 0; border-top: 1px solid var(--sv-border); margin: var(--sv-space-4) 0; }
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* ════════════════════════════════════════════════════════════════════════
+   TIER 1 (added) — DARK NEUTRAL PRIMITIVES
+   Theme-agnostic raw palette for dark surfaces/text. Never consumed by
+   components directly — only referenced by the Tier-2 semantic tokens below.
+   Dark greys, never pure black; off-whites, never pure white.
+   ════════════════════════════════════════════════════════════════════════ */
+:root {
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   TIER 2 — SEMANTIC TOKENS  (purpose-named; the ONLY layer components read)
+   Each token below carries a LIGHT value here in :root, and a DARK value in
+   the theme blocks that follow. Switching theme swaps these resolutions with
+   zero component edits. Never reference primitives or hex from a component.
+   ════════════════════════════════════════════════════════════════════════ */
+:root,
+[data-theme="light"] {
+  /* ── Surfaces (elevation by tone) ─────────────────────────────── */
+
+  /* ── Text hierarchy ───────────────────────────────────────────── */
+
+  /* ── Borders ──────────────────────────────────────────────────── */
+
+  /* ── Accent (interactive blue) ────────────────────────────────── */
+
+  /* ── State: success / warning / danger / info ─────────────────── */
+
+  /* ── Elevation scale (paired: bg + shadow + border per level) ───
+     Light = shadow does the work, surface tone constant, border hairline.
+     Dark  = progressively LIGHTER surface + hairline border, shadow near-nil. */
+  --sv-elev-0-shadow: none;
+  --sv-elev-1-shadow: var(--sv-shadow-sm);
+  --sv-elev-2-shadow: var(--sv-shadow-md);
+  --sv-elev-3-shadow: var(--sv-shadow-lg);
+
+  /* ── Categorical / data palette — LIGHT triplets (fill / text / accent) ──
+     Used for user-selectable category colors (schedule blocks, tags, charts). */
+
+  /* ── Overlay scrim + focus ────────────────────────────────────── */
+  /* --sv-focus-ring defined in base :root (blue @24%) */
+}
+
+/* Back-compat: the pre-existing --sv-fg-* / --sv-bg-* aliases now resolve
+   through the semantic layer so anything already using them flips themes too. */
+:root,
+[data-theme="light"] {
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   DARK THEME  — resolved values for the semantic layer.
+   Applied when: [data-theme="dark"] explicitly, OR when the user's OS prefers
+   dark AND theme is unset / set to "system".
+   ════════════════════════════════════════════════════════════════════════ */
+:root[data-theme="dark"],
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Surfaces — elevation by progressively lighter tone (not shadow) */
+
+  /* Text — off-white primary, stepped down for secondary/muted */
+
+  /* Borders — hairlines carry elevation on dark */
+
+  /* Accent — desaturated & lightness-adjusted so it sits calmly on dark.
+     Solid fill uses a lighter blue with dark label (AA); accent-text is a
+     light blue that clears 4.5:1 on dark surfaces. */
+
+  /* State — desaturated, lighter tones; fills are deep tints, text is light.
+     Warning leans ORANGE, category amber leans GOLD, so they stay distinct. */
+
+  /* Elevation — lighter surface + hairline; shadow reduced to near-nil */
+  --sv-elev-0-shadow: none;
+  --sv-elev-1-shadow: 0 1px 2px rgba(0,0,0,0.40);
+  --sv-elev-2-shadow: 0 6px 16px rgba(0,0,0,0.50);
+  --sv-elev-3-shadow: 0 16px 40px rgba(0,0,0,0.60);
+
+  /* Categorical / data — DARK triplets (deep tint fill / light text / mid accent).
+     Re-tuned, not literal light hues — each stays recognizable & mutually distinct;
+     grey stays reading as neutral. */
+
+  /* Overlay scrim darker; focus ring uses the lighter accent */
+}
+
+/* System preference: honor OS dark when theme is unset or explicitly "system" */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not([data-theme="dark"]),
+  [data-theme="system"] {
+    color-scheme: dark;
+    --sv-surface-canvas:   var(--sv-dgrey-900); --sv-surface: var(--sv-dgrey-850); --sv-surface-raised: var(--sv-dgrey-800); --sv-surface-overlay: var(--sv-dgrey-750); --sv-surface-sunken: var(--sv-dgrey-950); --sv-surface-hover: var(--sv-dgrey-650); --sv-surface-selected: #1C2A44; --sv-surface-nav-selected: var(--sv-dgrey-750); --sv-surface-inverse: var(--sv-dgrey-750); --sv-text-on-inverse: var(--sv-dgrey-100);
+    --sv-text-primary: var(--sv-dgrey-100); --sv-text-secondary: var(--sv-dgrey-300); --sv-text-muted: var(--sv-dgrey-400); --sv-text-disabled: var(--sv-dgrey-500); --sv-text-inverse: var(--sv-dgrey-900); --sv-text-on-accent: #0A1B33;
+    --sv-border-subtle: var(--sv-dgrey-700); --sv-border-default: var(--sv-dgrey-700); --sv-border-strong: var(--sv-dgrey-600); --sv-border-focus: #6BA6FF;
+    --sv-accent: #4B96FF; --sv-accent-hover: #6BA6FF; --sv-accent-active: #82BAFF; --sv-accent-text: #8FBEFF; --sv-accent-subtle: #1C2A44; --sv-accent-subtle-text: #B9D4FF; --sv-accent-on-solid: #0A1B33;
+    --sv-success: #3CCB7F; --sv-success-fill: #112A1D; --sv-success-text: #6FE0A0; --sv-success-border: #1F5B3C;
+    --sv-warning: #FB9A3E; --sv-warning-fill: #33240F; --sv-warning-text: #F7C088; --sv-warning-border: #6B4A18;
+    --sv-danger: #F97066; --sv-danger-fill: #3A1715; --sv-danger-text: #FDA29B; --sv-danger-border: #7A2E28; --sv-danger-hover: #FDA29B;
+    --sv-error: #F97066; --sv-error-fill: #3A1715; --sv-error-text: #FDA29B; --sv-error-border: #7A2E28;
+    --sv-info: #5E9DFF; --sv-info-fill: #16233C; --sv-info-text: #9BC2FF; --sv-info-border: #2A4576;
+    --sv-elev-1-bg: var(--sv-surface-raised); --sv-elev-1-shadow: 0 1px 2px rgba(0,0,0,0.40); --sv-elev-1-border: var(--sv-border-default);
+    --sv-elev-2-bg: var(--sv-surface-overlay); --sv-elev-2-shadow: 0 6px 16px rgba(0,0,0,0.50); --sv-elev-2-border: var(--sv-border-strong);
+    --sv-elev-3-bg: var(--sv-dgrey-750); --sv-elev-3-shadow: 0 16px 40px rgba(0,0,0,0.60); --sv-elev-3-border: var(--sv-border-strong);
+    --sv-cat-blue-fill: #1E2A44; --sv-cat-blue-text: #A9CCFF; --sv-cat-blue-accent: #5E9DFF;
+    --sv-cat-teal-fill: #123430; --sv-cat-teal-text: #79E3CF; --sv-cat-teal-accent: #34C7AD;
+    --sv-cat-violet-fill: #281C46; --sv-cat-violet-text: #C4B3FB; --sv-cat-violet-accent: #9B7DF5;
+    --sv-cat-pink-fill: #3A1A30; --sv-cat-pink-text: #F3A6D6; --sv-cat-pink-accent: #E86FBF;
+    --sv-cat-cyan-fill: #0F3242; --sv-cat-cyan-text: #7CDBF2; --sv-cat-cyan-accent: #38C4E0;
+    --sv-cat-amber-fill: #33290F; --sv-cat-amber-text: #F0D48A; --sv-cat-amber-accent: #E5C158;
+    --sv-cat-grey-fill: #262A31; --sv-cat-grey-text: #C2C8D2; --sv-cat-grey-accent: #9AA4B2;
+    --sv-scrim: rgba(0,0,0,0.66); --sv-focus-ring: 0 0 0 4px rgba(107,166,255,0.40);
+  }
+}
+
+/* Base elements now resolve through the semantic layer (theme-aware). */
+html, body { background: var(--sv-surface); color: var(--sv-text-primary); }
+h1, .sv-h1, h2, .sv-h2, h3, .sv-h3, h4, .sv-h4 { color: var(--sv-text-primary); }
+p, .sv-body { color: var(--sv-text-primary); }
+.sv-body2, .sv-caption { color: var(--sv-text-secondary); }
+a { color: var(--sv-accent-text); }
+hr { border-top-color: var(--sv-border-default); }
