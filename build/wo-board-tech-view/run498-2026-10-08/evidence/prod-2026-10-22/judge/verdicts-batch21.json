@@ -1,0 +1,144 @@
+{
+ "C368158": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 5 and 6: after the refresh the On Site value was read from the saved work order, not off the List, and no picture of the List was taken at steps 2 to 5; at step 6 the work order page was opened by its address instead of opening S1-1636 from the List. Only one picture exists for this test (the work order page), which shows Lead technician ZZAUTOTEST Ana Alpha and the on-site pin turned on.",
+  "bold_steps": [
+   5,
+   6
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1 to 4 were followed; step 5 was read behind the screen and step 6 was opened by its address, and only one picture was taken.",
+   "Set-up: customer \"ZZAUTOTEST F3 Invoiced On Site 67153 Inv Co\" at Truck Hill 1 with one work order, S1-1636, led by ZZAUTOTEST Ana Alpha and taken to Invoiced. On Site was off before the test.",
+   "Steps 1 to 3: Work Orders, All tab, the customer typed in Search, List clicked. No picture of the List.",
+   "Step 4: in S1-1636's row the On Site toggle was clicked; no message of any kind appeared (no error).",
+   "Step 5 (NOT READ ON SCREEN): the page was refreshed; the saved work order then reads on site, but the On Site toggle in the List was not read and not pictured.",
+   "Step 6 (NOT DONE AS WRITTEN): the work order page was opened by its address, not from the List. It shows Invoiced, Lead technician ZZAUTOTEST Ana Alpha, and the on-site pin turned on (green) (seen on the picture).",
+   "Manual check for steps 5 and 6: in Work Orders > All > List, search \"ZZAUTOTEST F3 Invoiced On Site 67153\", click S1-1636's On Site toggle, refresh and check the toggle kept its new value, then click S1-1636 and check Lead technician still reads ZZAUTOTEST Ana Alpha and the on-site pin shows the new value."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368158-end.png"
+  ],
+  "reason_for_reviewer": "s11-batch.mts C368158 (run 21:03-21:07, log logs-redo/s11-batch-210337.log). Readings: status 'invoiced'; is_vehicle_here before '0', after reload '1' (read from the work order record, not the List cell); toasts [] after the List toggle click (real click on button_vehicle_here_toggle in the List row); lead (record) 'ZZAUTOTEST Ana Alpha'. step6 = woPage(): page.goto /workorders/<id>/lines by address; lead selector returned null (the Invoiced status card shows the lead as read-only text, so the field selector missed it), on-site button class text-positive. The step-6 picture 'C368158-s6-wo-page' was saved with no file extension and does not exist (Playwright refused it), so the only re-run picture is C368158-end.png (work order page: Invoiced, Lead technician ZZAUTOTEST Ana Alpha, green pin). No picture of the List at steps 2-5. Product matched everywhere it was observed; the verdict is Unsure only because step 5 was not read on screen, step 6 was opened by address and fewer than two pictures exist. Script fix needed: give woPage pictures a .png name, read the List's On Site cell after the reload, open the work order by clicking its number.",
+  "todo": "Do steps 5 and 6 by hand: after refreshing, check S1-1636's On Site toggle in the List kept its new value, then click S1-1636 and check Lead technician still reads ZZAUTOTEST Ana Alpha and the on-site pin shows the new value. Steps 1 to 4 already matched."
+ },
+ "C368159": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 3 and 4: \"browser 2\" was a second tab of the same signed-in person, not the second user the test needs, so the lead change was not made by another user; the work order page there was also opened by its address. Everything that was observed matched: Lead Technician read ZZAUTOTEST Ben Bravo after the stale page saved On Site, and On Site stayed on.",
+  "bold_steps": [
+   3,
+   4
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1, 2 and 5 to 7 were followed and matched; steps 3 and 4 were done by the same person in a second tab instead of a second user in a second browser.",
+   "Set-up: customer \"ZZAUTOTEST F3 Stale On Site 67153 Site Co\" at Truck Hill 1 with one Approved work order, S1-1637, led by ZZAUTOTEST Ana Alpha ({Technician-A}); ZZAUTOTEST Ben Bravo ({Technician-B}) is active and offered as a lead. NOT set: a second user ({User-B}) signed in in a second browser.",
+   "Steps 1 and 2: browser 1 opened Work Orders > All, typed the customer in Search and clicked List; S1-1637 was there, led by Ana Alpha (no picture of the List).",
+   "Step 3 (NOT DONE AS WRITTEN): a second tab of the same signed-in person opened S1-1637 by its address.",
+   "Step 4 (NOT DONE AS WRITTEN, by the same person): Lead Technician on the work order page was changed by typing \"Ben Bravo\" and picking ZZAUTOTEST Ben Bravo; it saved at once and reads ZZAUTOTEST Ben Bravo, with the on-site pin still off (seen on the picture).",
+   "Step 5: in browser 1, without refreshing, S1-1637's On Site toggle in the List was clicked.",
+   "Step 6: after refreshing browser 1 the work order is on site (read from the saved work order, not pictured).",
+   "Step 7: browser 1 opened S1-1637 (by its address): Lead Technician reads ZZAUTOTEST Ben Bravo and the on-site pin is on (green); Ana Alpha was not put back (seen on the picture).",
+   "Manual check for steps 3 and 4: sign in as a second user (for example a staff member with Work Orders View and Create & Edit) in another browser, open S1-1637 (or a fresh work order led by Ana Alpha) and change Lead Technician to Ben Bravo; then in browser 1, without refreshing, click its On Site toggle, refresh, and open the work order: Lead Technician must still read Ben Bravo."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368159-browser2-lead.png",
+   "evidence/prod-2026-10-22/C368159-end.png"
+  ],
+  "reason_for_reviewer": "s11-batch.mts C368159 (run 21:03-21:07). 'Browser 2' = p.context().newPage(): the SAME signed-in account (ZZ WOB Runner), not the {User-B} the preconditions name, and it opens /workorders/<id>/lines by address. Readings: before here '0', lead Ana Alpha; pageTyped picked 'Ben Bravo' by typing in the page field; leadAfterB2 'ZZAUTOTEST Ben Bravo', leadIsThisBen true; stale List toggle clicked in browser 1 (no reload in between); after reload here '1', lead Ben Bravo; step7 woPage by address: lead 'ZZAUTOTEST Ben Bravo', on-site button text-positive. The 's7' picture was saved without a .png extension and does not exist; C368159-end.png (taken right after) shows S1-1637 with Lead Technician Ben Bravo and a green pin; C368159-browser2-lead.png (identical to -lead-typed) shows Ben Bravo with a grey pin. No picture of the List at steps 2, 5, 6. The behaviour under test (the stale page must not resend the old lead) matched; the earlier judge (batch 6) noted the same-account browser 2 but judged only step 7. Strictly, the second-user start state was never set, so Unsure; a reviewer who accepts a second tab as browser 2 could pass it.",
+  "todo": "Do steps 3 and 4 as a second user in a second browser (change S1-1637's or a fresh work order's Lead Technician from Ana Alpha to Ben Bravo), then in the first browser, without refreshing, click its On Site toggle, refresh, open the work order and check Lead Technician still reads Ben Bravo and On Site kept the change."
+ },
+ "C97005": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 8 and 9: the real sign-out and sign-in worked, but after signing back in Ana's group was not on screen (it sits far down the list for the person who signed in), so the order Charlie Co, Alpha Co, Bravo Co was never read; at step 9 Ben's group could not be dragged above Ana's for the same reason, so nothing was moved and the second dispatcher's unchanged order proves nothing.",
+  "bold_steps": [
+   8,
+   9
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1 to 7 were followed and matched; steps 8 and 9 were started but not completed.",
+   "Set-up: three customers \"ZZAUTOTEST F3 Shared Order … Alpha Co / Bravo Co / Charlie Co\" at Truck Hill 1, each with one Approved work order led by ZZAUTOTEST Ana Alpha (S1-1638, S1-1639, S1-1640). Ana and Ben Bravo are active technicians. A second dispatcher (ZZ WOB Dispatcher, Admin role) was made. The first dispatcher was ZZ WOB Runner.",
+   "Steps 1 to 3: Work Orders > All, \"ZZAUTOTEST F3 Shared Order\" typed in Search, Tech View: Ana's group read Alpha Co, Bravo Co, Charlie Co.",
+   "Step 4: Charlie Co's row was dragged above Alpha Co's: Ana's group reads Charlie Co, Alpha Co, Bravo Co.",
+   "Steps 5 and 6: Board View: Ana's column reads Charlie Co, Alpha Co, Bravo Co.",
+   "Step 7: as the second dispatcher, Tech View and Board View both read Charlie Co, Alpha Co, Bravo Co in Ana's group and column, with Ana before Ben (the second dispatcher's Tech View is also on the step 9 picture: S1-1640, S1-1638, S1-1639 under Ana).",
+   "Step 8 (NOT COMPLETED): the first browser signed out through the profile menu (the sign-in page showed) and signed back in on the sign-in form, as Service Advisor No Reports (Admin); Tech View with the same search opened, but Ana's group was not on screen and its order was not read (seen on the pictures).",
+   "Step 9 (NOT DONE): Ben's group handle could not be reached, so Ben's group was not dragged above Ana's. The second dispatcher still shows Ana before Ben after refreshing, but nothing had been moved.",
+   "Manual check for steps 8 and 9: in the first browser, after signing back in, open Work Orders > All > Tech View, search \"ZZAUTOTEST F3 Shared Order\", scroll to ZZAUTOTEST Ana Alpha's group and check it reads Charlie Co, Alpha Co, Bravo Co; then drag Ben Bravo's group by its six-dot handle above Ana's, and in the second dispatcher's browser refresh and check Ana is still before Ben."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C97005-step8-signed-out.png",
+   "evidence/prod-2026-10-22/C97005-step8-after-signin.png",
+   "evidence/prod-2026-10-22/C97005-step9-second.png"
+  ],
+  "reason_for_reviewer": "s9-batchB.mts C97005 with WOB_PROD_LOGIN (run 21:08-21:12, log logs-redo/s9-batchB-210736.log). Steps 1-6 as ZZ WOB Runner (asRunner); step7 via viewAs into the new Admin user d2 (accepted as that person). Readings: step3 [Alpha,Bravo,Charlie]; step4/step6/step7tech/step7board [Charlie,Alpha,Bravo]; step7techOrderBefore [Ana,Ben]. Step 8: real logout (signedOut true, picture = sign-in form) and password sign-in (signedIn true) as Service Advisor No Reports (Admin) (avatar 'S('), so the first browser is now a different person from the one who reordered (allowed; the work order order is per location). st8.tech = [] and step8board = []: groupRows/colCards read only rendered rows, and Ana's group is not rendered (picture: Unassigned, Ayesha Khan, Aaron Baker, Aaron Zed, Admin ShopView, … all 0; Ana is not pinned for this user). step9firstBefore [] and step9drag 'locator.boundingBox: Timeout 30000ms' on tech_view_group_drag_handle_<Ben> (not rendered); step9firstAfter []; C97005-step9-first.png and -end.png are byte-identical to -step8-after-signin.png. step9second [Ana,Ben] is meaningless without the move. Picture step9-second (d2, avatar Z3) shows Ana's group S1-1640, S1-1638, S1-1639 = Charlie, Alpha, Bravo by creation order (mkSet creates Alpha, Bravo, Charlie in turn); names truncated on screen. Not a product fault. Script fix: after sign-in, pin Ana and Ben for the signed-in user (or scroll to them) before reading and dragging.",
+  "todo": "Do steps 8 and 9 by hand: after signing back in, scroll to Ana Alpha's group in Tech View with the same search and check it reads Charlie Co, Alpha Co, Bravo Co; then drag Ben Bravo's group above Ana's and check the second dispatcher still sees Ana before Ben after refreshing. Steps 1 to 7 already matched."
+ },
+ "C581896": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 6 and 16: there is no imported work order at Truck Hill 1 on production and none was made, so \"{Work-order-1} is listed\" could not be checked (the List reads \"No work orders match these filters\"). Everything else matched: the link opened in List with Status: Imported, Board View and Tech View were greyed out with \"Not available while Imported is selected.\", and the saved display stayed Board View.",
+  "bold_steps": [
+   6,
+   16
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Every step was followed; steps 7, 8 and 11 matched, and steps 6 and 16 matched except that no imported work order exists on production to be listed.",
+   "Set-up: signed in as Service Advisor No Reports (Admin) at Truck Hill 1, saved display List, no filters. NOT made: an imported work order ({Work-order-1}) at Truck Hill 1; production has none.",
+   "Steps 1 to 4: Work Orders > All in the first tab, a second tab opened on Work Orders, back to the first tab, Board View clicked: the first tab shows Board View.",
+   "Steps 5 and 6: a third tab opened the address with Status Imported: the page opened in List, not Board View, with \"Status: Imported\" ticked; it reads \"No work orders match these filters\", so no imported work order is listed (seen on the picture).",
+   "Steps 7 and 8: Board View and Tech View are greyed out, and hovering each shows \"Not available while Imported is selected.\" (seen on the picture).",
+   "Steps 9 to 11: third tab closed; a new tab on Work Orders opened in Board View, so the saved display had not been changed by the link (seen on the picture).",
+   "Steps 12 to 14: that tab closed; the second tab still shows List; Status clicked and \"Imported\" ticked.",
+   "Steps 15 and 16: a new tab on Work Orders opened in List with \"Status: Imported\" still ticked and Board View and Tech View greyed out; again no imported work order is listed (\"No work orders match these filters\") (seen on the picture).",
+   "Manual check for steps 6 and 16: on a location that has an imported work order (one that came from an invoice import), repeat steps 5 and 6 and 14 to 16 and check that work order is listed."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C581896-step6-imported-link.png",
+   "evidence/prod-2026-10-22/C581896-step11-saved-display.png",
+   "evidence/prod-2026-10-22/C581896-step16-new-tab.png"
+  ],
+  "reason_for_reviewer": "stg-new5.mts C581896 (run 21:13-21:14, log logs-redo/stg-new5-211224.log). Start state: saved display set to List on screen (cleanPage). Tabs opened by address as the steps say (steps 2, 5, 10, 15 are 'open {Site-A}/… in it'). Readings: step4 'Board View'; step6 display 'List', chip 'Status: Imported', rows []; step7/step8 disabled true, tooltip 'Not available while Imported is selected.'; step11 'Board View'; step13 'List'; step16 List, chip Imported, rows [], boardGreyed/techGreyed true. Pictures show 'No work orders match these filters' under Status: Imported at steps 6 and 16, so the empty rows are real, not a reading miss. Earlier batch 6 judged this Blocked; it is Unsure here because the test ran in full and only the imported work order (a record not made on production) is missing. Nothing contradicts the Expected.",
+  "todo": "Make or find an imported work order at Truck Hill 1 on production (from an invoice import), then repeat steps 5 and 6 and 14 to 16 and check it is listed while Imported is ticked. Everything else in this test already matched."
+ },
+ "C368166": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 1: the work order was opened by its address, not by opening Work Orders, searching for S1-1641 and opening it. Steps 2 to 5 matched: Lead Technician changed from Esther Howard to Ralph Edwards with no error, and still reads Ralph Edwards after the reload; the picture after the reload is identical to the one before it.",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 to 5 were followed and matched; step 1 was not done the way the test says.",
+   "Set-up: customer \"ZZAUTOTEST Lead Change Page 23666\" at Truck Hill 1 with one Approved work order, S1-1641, with one approved line, led by Esther Howard ([Tech-A]). Ralph Edwards ([Tech-B]) is offered in the Lead Technician list.",
+   "Step 1 (NOT DONE AS WRITTEN): S1-1641 was opened by its address, not from Work Orders by searching for it.",
+   "Steps 2 and 3: Lead Technician on the status card was clicked and Ralph Edwards picked.",
+   "Step 4: Lead Technician reads \"Ralph Edwards\" and no message of any kind appeared (seen on the picture).",
+   "Step 5: after reloading the page Lead Technician still reads \"Ralph Edwards\", and the saved work order agrees (seen on the picture).",
+   "Manual check for step 1: open Work Orders, type S1-1641 in Search, click it, then repeat steps 2 to 5 with a different technician."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368166-after.png",
+   "evidence/prod-2026-10-22/C368166-after-reload.png"
+  ],
+  "reason_for_reviewer": "high1-fix.mts C368166 (run 21:15-21:16, log logs-redo/high1-fix-211433.log). page(w.id) = goto /workorders/<id>/lines (by address). pickB clicks the status-card Lead Technician select and picks 'Ralph Edwards' (list of 78, Ralph offered, control names present). Readings: before 'Esther Howard'; after 'Ralph Edwards'; toasts []; afterReload 'Ralph Edwards'; apiLead 'Ralph Edwards'; readBack screen and server true. C368166-after.png, -after-reload.png and -end.png are byte-identical (same md5), including a 'View customer info' tooltip, so the reload is evidenced by the reading, not by a distinct picture. The first-attempt C368166-error.png (15:10) is ignored. Product matched everything observed; Unsure only for the step-1 route and the single distinct picture.",
+  "todo": "Do step 1 by hand: open Work Orders, search S1-1641 and click it, then change Lead Technician to another technician and check it shows at once with no error and stays after a reload. Steps 2 to 5 already matched on production."
+ },
+ "C368168": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 1: the work order was opened by its address straight onto the Lines tab, so neither opening S1-1642 nor clicking the Lines tab was done as written, and only one picture was taken (after the change). What was seen matched: after the lead changed from Esther Howard to Ralph Edwards and a reload, Line 1's Labor reads Ralph Edwards, Line 2's still reads Dana Ortiz, and no clear-shifts question appeared.",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 to 4 were followed and matched; step 1 was opened by address and only one picture exists.",
+   "Set-up: customer \"ZZAUTOTEST Lead Moves Lines 23666\" at Truck Hill 1 with one Approved work order, S1-1642, led by Esther Howard ([Tech-A]), with two approved lines. Line 2's technician was changed on screen from Esther Howard to Dana Ortiz ([Tech-C]); before the test Line 1's Labor read Esther Howard and Line 2's read Dana Ortiz.",
+   "Step 1 (NOT DONE AS WRITTEN): S1-1642 was opened by its address, already on the Lines tab; the Lines tab was not clicked.",
+   "Step 2: on the status card Lead Technician was changed from Esther Howard to Ralph Edwards ([Tech-B]); no clear-shifts question appeared and no message showed.",
+   "Step 3: the page was reloaded and the Lines tab clicked.",
+   "Step 4: Line 1's Labor reads \"Ralph Edwards\" and Line 2's Labor still reads \"Dana Ortiz\": 1 of 2 lines moved; Lead Technician reads Ralph Edwards (seen on the picture).",
+   "Manual check for step 1: open Work Orders, search S1-1642 (or a fresh work order set up the same way), open it, click the Lines tab, then repeat steps 2 to 4 and take a picture before and after."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368168-lines.png"
+  ],
+  "reason_for_reviewer": "high1-fix.mts C368168 (run 21:16-21:17, log logs-redo/high1-fix-211433.log). Set-up on screen: line 2 opened, roster Esther removed (removed 1), Dana Ortiz added, roster ['Dana Ortiz']; lineTechs before [Esther Howard, Dana Ortiz]; laborBefore on screen {line1 Esther Howard, line2 Dana Ortiz}. page(w.id) = goto /workorders/<id>/lines (by address, Lines tab not clicked). pickB picked 'Ralph Edwards' on the status card; shiftQuestion 0; toasts []; reload, Lines tab clicked; after [Ralph Edwards, Dana Ortiz]; labor on screen {line1 Ralph Edwards, line2 Dana Ortiz}; apiLead Ralph Edwards. C368168-lines.png and -end.png are byte-identical, so there is one distinct re-run picture; C368168-error.png (15:12) is the first attempt and ignored. Picture confirms Line 1 Labor Ralph Edwards, Line 2 (New York State Inspection) Labor Dana Ortiz, Lead Technician Ralph Edwards. Product matched every Expected sentence; Unsure only for the address route at step 1 and fewer than two pictures (no picture of the start state or of the moment after the change).",
+  "todo": "Do step 1 by hand (open S1-1642 from Work Orders and click the Lines tab), then repeat steps 2 to 4 with a picture before and after; the result seen on production already matched (Line 1 moved to the new lead, Line 2 stayed with Dana Ortiz, no clear-shifts question)."
+ }
+}
