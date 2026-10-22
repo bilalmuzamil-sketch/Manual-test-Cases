@@ -62,6 +62,8 @@ grep -v '^#' full-order-prod-1022.txt | while IFS='|' read -r block s only extra
     env ONLY="$only" ${extra:+"$extra"} timeout 3600 ./wob-run.sh "$s" > "$log" 2>&1; rc=$?
   fi
   say "step $n end $s exit $rc"
+  # 22 Oct 2026: a script can run in two steps (a test split out to run alone) — keep each step's readings
+  b=${s%.mts}; [ -n "$WOB_EV" ] && [ -f "$WOB_EV/$b.json" ] && cp "$WOB_EV/$b.json" "$WOB_EV/$b.step$n.json"
   confirm_expired "$log" && { say "STOP: staging sign-in expired"; break; }
 done
 say "queue finished"

@@ -3,7 +3,7 @@
  * (eligible technicians at Staging Heavy Duty - 9919; names in the cases are examples). Each case seeds its
  * own customer first. Pins and collapsed groups are per user and are put back at the end.
  */
-import { ME_NAME } from './profile.mts';
+import { ME_NAME, HEAVY } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -90,13 +90,19 @@ await run('C96928', async () => {
   // again before reading the groups, as the case's step 10 does ("open Work Orders in Tech View").
   let savedCollapsed: any = null; for (let i = 0; i < 10; i++) { savedCollapsed = (await prefRead(a)).collapsedGroups; if ((savedCollapsed ?? []).includes(tB.id)) break; await p.waitForTimeout(1000); }
   R.C96928.savedCollapsedAfterCollapse = (savedCollapsed ?? []).map((x: string) => String(x).slice(0, 8));
-  const inTech = async (pg: Page, tag: string) => { const seen = await noteDisplay(pg, a, `C96928 ${tag}`); let re = null; if (seen.screen !== 'Tech View') re = await setDisplay(pg, a, 'Tech View', `C96928 ${tag} re-chosen`); return { openedIn: seen, reselected: re ? re.ok : null }; };
+  const inTech = async (pg: Page, tag: string, ax = a) => { const seen = await noteDisplay(pg, ax, `C96928 ${tag}`); let re = null; if (seen.screen !== 'Tech View') re = await setDisplay(pg, ax, 'Tech View', `C96928 ${tag} re-chosen`); return { openedIn: seen, reselected: re ? re.ok : null }; };
   await p.waitForTimeout(1500); await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); R.C96928.refreshDisplay = await inTech(p, 'after refresh'); await search(p, n); R.C96928.afterRefresh = await st(p);
   const p2 = await p.context().newPage(); await p2.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p2.waitForTimeout(5000); R.C96928.newTabDisplay = await inTech(p2, 'new tab'); await search(p2, n); R.C96928.newTab = await st(p2); await p2.close();
-  const s2 = await signIn('/customers'); await s2.page.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await s2.page.waitForTimeout(5000); R.C96928.newSignInDisplay = await inTech(s2.page, 'new sign-in'); await search(s2.page, n);
-  R.C96928.newSignIn = await st(s2.page); await shot(s2.page, 'C96928-new-signin'); await Promise.race([s2.browser.close().catch(() => {}), new Promise((r) => setTimeout(r, 5000))]);
-  await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); R.C96928.lastDisplay = await inTech(p, 'before re-expanding'); await search(p, n);
-  await toggleGroup(p, tB.id); R.C96928.reExpanded = await st(p); R.C96928.bRowsAfter = (await groups(p)).find((g) => g.id === tB.id)?.rows;
+  // 22 Oct 2026 (production): a new sign-in opens at the account's default location (Trucks Hill 2), where these technicians have no
+  // groups, and it ENDS the first browser's session (one session per account on production) — the old ending reloaded that dead page and
+  // hung. So the new browser is moved to {Location-A} first (the case's own location), and the last steps run in the NEW browser.
+  const s2 = await signIn('/customers'); const a2 = api(s2.page);
+  R.C96928.newSignInLocation = (await a2.post('/api/iam/change-location', { workplace_id: HEAVY, ...(process.env.WOB_LOC_TZ ? { workplace_timezone: process.env.WOB_LOC_TZ } : {}) })).status;
+  await s2.page.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await s2.page.waitForTimeout(5000); R.C96928.newSignInDisplay = await inTech(s2.page, 'new sign-in', a2); await search(s2.page, n);
+  R.C96928.newSignIn = await st(s2.page); await shot(s2.page, 'C96928-new-signin');
+  const pl = s2.page; await pl.reload({ waitUntil: 'domcontentloaded' }); await pl.waitForTimeout(5000); R.C96928.lastDisplay = await inTech(pl, 'before re-expanding', a2); await search(pl, n);
+  await toggleGroup(pl, tB.id); R.C96928.reExpanded = await st(pl); R.C96928.bRowsAfter = (await groups(pl)).find((g) => g.id === tB.id)?.rows; await shot(pl, 'C96928-re-expanded');
+  await Promise.race([s2.browser.close().catch(() => {}), new Promise((r) => setTimeout(r, 5000))]);
 });
 
 await run('C96931', async () => {

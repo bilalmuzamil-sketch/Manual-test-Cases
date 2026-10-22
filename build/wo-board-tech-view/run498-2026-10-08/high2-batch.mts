@@ -5,7 +5,7 @@
  * no financial data (C368206), view-only (C368207, C368208), phone width (C368209, C368210, C368211), another location
  * (C368212), Back / Forward (C368214). Runs as our own test admin (runner.mts); other people by viewAs.
  */
-import { ME_NAME } from './profile.mts';
+import { ME_NAME, LETH } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -175,7 +175,7 @@ const prefFor = async () => (await a.get(PREF)).body?.data?.value ?? {};
 
 
 
-const LETH = 'f8a8b802-7780-4b16-bf10-343caeb616b2';
+// 22 Oct 2026: LETH comes from the environment profile (was a hard-coded QA-branch id)
 const rowsList = (pg: Page = p) => pg.evaluate(`[...document.querySelectorAll('tbody tr')].map(r => (r.innerText.match(/S\\d+-\\d+/) || [''])[0]).filter(Boolean)`) as Promise<string[]>;
 const statusesList = (pg: Page = p) => pg.evaluate(`[...document.querySelectorAll('tbody tr')].filter(r => /S\\d+-\\d+/.test(r.innerText)).map(r => r.querySelector('td:nth-child(2)')?.innerText.replace(/\\s+/g, ' ').trim())`) as Promise<string[]>;
 const listHeads = (pg: Page = p) => pg.evaluate(`[...document.querySelectorAll('thead th')].filter(e => e.getBoundingClientRect().width > 0).map(e => e.innerText.replace('arrow_drop_up','').trim()).filter(Boolean)`) as Promise<string[]>;

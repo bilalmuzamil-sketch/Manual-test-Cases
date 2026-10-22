@@ -212,7 +212,8 @@ await run('C96948', async () => {
   await bv(n); await unpinAll(); await pin(RE.staff_id); await pin(JW.staff_id);
   R.C96948 = { saved: ((await prefs()).pinnedTechnicianIds ?? []).map(nameOf) };
   await display(p, 'Tech View'); R.C96948.tech = (await groups(p)).slice(0, 4).map((g) => `${g.name}${g.pin?.pressed === 'true' ? ' (pinned)' : ''}`); await display(p, 'Board View');
-  const s2 = await signIn('/customers'); await s2.page.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await s2.page.waitForTimeout(4000); await display(s2.page, 'Board View'); await search(s2.page, n);
+  // 22 Oct 2026 (production): a new sign-in opens at the account's default location — move it to {Location-A} first
+  const s2 = await signIn('/customers'); R.C96948.newSignInLocation = (await api(s2.page).post('/api/iam/change-location', { workplace_id: HEAVY, ...(process.env.WOB_LOC_TZ ? { workplace_timezone: process.env.WOB_LOC_TZ } : {}) })).status; await s2.page.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await s2.page.waitForTimeout(4000); await display(s2.page, 'Board View'); await search(s2.page, n);
   R.C96948.newSignIn = (await boardCols(s2.page)).slice(0, 4).map((c) => `${c.name}${c.pinned === 'true' ? ' (pinned)' : ''}`); await shot(s2.page, 'C96948-new-signin');
   await Promise.race([s2.browser.close().catch(() => {}), new Promise((r) => setTimeout(r, 5000))]);
   const ub = (await staffRows(a, UB)).find((x) => x.email === UB);

@@ -48,10 +48,12 @@ C-read|c368149-two.mts|C97010|WOB_LIVE=1|ensure|
 C-read|high1-batch.mts|C368176,C368180,C368181,C368182,C368183,C368184,C368185,C368186,C368187|-|ensure|
 C-read|sort-fix5.mts|C368196|-|ensure|
 C-read|clocks-stg4.mts|-|-|setup|sort-fix5/high1-batch leave clocks running (L0342)
-D-location|s1-batch4a.mts|C96910,C96912,C96919,C96923|-|ensure|
+D-location|s1-batch4a.mts|C96910,C96919,C96923|-|ensure|
+D-location|s1-batch4a.mts|C96912|-|ensure|22 Oct: alone — its second sign-in ends the first browser's session on production
 D-location|s2-batchB.mts|C96936,C368126|-|ensure|
 D-location|s2-batchC.mts|C96926,C96927,C96929,C96930,C96934,C96938,C368125,C368127,C368161|-|ensure|
-D-location|s3-batchA.mts|C96940,C96941,C96942,C96944,C96945,C96946,C96947,C96948,C96949,C96951,C96952,C96953,C96954,C96955|-|ensure|C96945 script follows the case as rewritten 16 Oct (moved from block E)
+D-location|s3-batchA.mts|C96940,C96941,C96942,C96944,C96945,C96946,C96947,C96949,C96951,C96952,C96953,C96954,C96955|-|ensure|C96945 script follows the case as rewritten 16 Oct (moved from block E)
+D-location|s3-batchA.mts|C96948|-|ensure|22 Oct: alone — its second sign-in ends the first browser's session on production
 D-location|s3-batchB.mts|C96943,C154886,C368132|-|ensure|
 D-location|s4-batchD.mts|C96968,C96971,C96974,C368137,C368138,C368139|-|ensure|
 D-location|s4-batchE.mts|C96960,C96961,C368140|-|ensure|

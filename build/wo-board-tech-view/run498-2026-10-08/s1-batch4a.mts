@@ -4,7 +4,7 @@
  * C96923 changing location. [User-B] is a fresh ZZAUTOTEST staff member, reached by switching user inside
  * the admin session (staging's quick sign-in has only the admin account); always switched back.
  */
-import { ME_NAME } from './profile.mts';
+import { ME_NAME, HEAVY } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -20,7 +20,7 @@ let { browser, page: p } = await open('/workorders?tab=all');
 p.setDefaultTimeout(30_000);
 let a = api(p);
 const R: Record<string, any> = {};
-const HEAVY = 'b3c8c820-f815-4cf1-8938-10956c5ee71a';
+// 22 Oct 2026: HEAVY comes from the environment profile (was a hard-coded QA-branch id)
 const techs = await candidates(a);
 const tA = techs.find((x) => x.name === 'Ayesha Khan')!;
 const adminStaff = techs.find((x) => x.name === ME_NAME)!.id;

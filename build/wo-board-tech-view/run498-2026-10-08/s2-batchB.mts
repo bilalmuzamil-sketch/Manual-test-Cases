@@ -3,7 +3,7 @@
  * C368125 collapsed group during search, C96937 with the advisor set as the case says, C368162 Collapse all
  * looked for in the Tech View code) and C96936, C368126, C368127, C96929, C368130.
  */
-import { ME_NAME } from './profile.mts';
+import { ME_NAME, HEAVY } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -26,7 +26,7 @@ const by = (n: string) => techs.find((x) => x.name === n)!;
 const tA = by('Ayesha Khan'), tB = by('Bilal Muzamil'), me = by(ME_NAME);
 const free = techs.filter((x) => x.open === 0 && x.name !== ME_NAME);
 console.log(t(), 'technicians with no open work', free.slice(0, 6).map((x) => x.name).join(', '));
-const HEAVY = 'b3c8c820-f815-4cf1-8938-10956c5ee71a';
+// 22 Oct 2026: HEAVY comes from the environment profile (was a hard-coded QA-branch id)
 const tv = async (name: string) => { await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); await tab(p, 'All'); await display(p, 'Tech View'); if (name) await search(p, name); };
 async function run(id: string, f: () => Promise<void>) {
   if (!want(id)) return;
