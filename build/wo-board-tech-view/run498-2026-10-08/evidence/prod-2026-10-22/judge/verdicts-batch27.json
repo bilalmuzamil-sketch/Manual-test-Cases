@@ -1,0 +1,167 @@
+{
+ "C96948": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 6: the first browser was never signed out and signed back in; the run went straight to the second browser (step 7). Steps 1 to 5, 7 and 8 matched.",
+  "bold_steps": [
+   6
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1 to 5, 7 and 8 were followed and matched; step 6 (sign out and sign in again in the same browser) was not done, and Work Orders was opened by its address rather than from the top menu.",
+   "Set-up: customer ZZAUTOTEST F2 Pins Follow User with three Approved work orders at Truck Hill 1, one led each by Ralph Edwards, Jenny Wilson and Esther Howard; any earlier pins were taken off first. User-B (ZZAUTOTEST WOB User B, Admin) was used as the second person.",
+   "Steps 1 and 2: Work Orders was opened by its address, the All tab clicked, ZZAUTOTEST F2 Pins Follow User searched and Board View clicked.",
+   "Step 3: Ralph Edwards and Jenny Wilson were pinned with the pin button on their column headers; the saved pins then read Ralph Edwards and Jenny Wilson (plus the admin's own earlier pin).",
+   "Steps 4 and 5: Tech View was clicked; the groups from the top read Unassigned, Ralph Edwards (pinned), Jenny Wilson (pinned), Ayesha Khan, so both show pinned right after Unassigned without pinning them again. There is no picture of Tech View.",
+   "Step 6 (NOT DONE): the first browser was not signed out and signed in again.",
+   "Step 7: a second browser signed in as the same user (its location was moved to Truck Hill 1 behind the screen), opened Work Orders, Board View and the search: the columns read Unassigned, Ralph Edwards (pinned), Jenny Wilson (pinned), Ayesha Khan. The picture shows both pin buttons pressed with S1-1517 and S1-1518 under them.",
+   "Step 8: the run switched into User-B's account (accepted as signing in as User-B) and opened Board View: no pins; the columns read Unassigned, Aaron Baker, Aaron Zed, Admin ShopView, with no pin pressed (picture)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96948-new-signin.png",
+   "evidence/prod-2026-10-22/C96948-end.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. s3-batchA.mts C96948, re-run 22:53-22:56 UTC (redo3 #46). bv(n) = goto /workorders?tab=all + All + Board View + search. pin() clicks button_board_pin_<id> on screen. tech = groups() in Tech View: Unassigned, Ralph Edwards (pinned), Jenny Wilson (pinned), Ayesha Khan (reading only, no Tech View picture). There is no sign-out/sign-in of the first browser anywhere in the block: step 6 is not done. The 'second browser' is signIn('/customers') (new browser, same account), then POST change-location to Truck Hill 1 behind the screen (status 200), goto /workorders, Board View, search: newSignIn = Ralph (pinned), Jenny (pinned) - picture C96948-new-signin.png 22:55. User-B read BEFORE the second sign-in via switch-user (a second sign-in of the same account ends the first session): pinned [], first four columns unpinned - C96948-end.png (ZB avatar) 22:55. C96948-error.png (17:21) is from the first attempt and is ignored.",
+  "todo": "By hand: as the admin, with Ralph Edwards and Jenny Wilson pinned, use your initials > Logout, sign in again, open Work Orders > All > Board View, search ZZAUTOTEST F2 Pins Follow User and check both are still pinned right after Unassigned. Steps 1-5, 7 and 8 already matched on production."
+ },
+ "C96944": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 1: Work Orders was opened by its address instead of being opened from the top menu. Everything else matched: on all three cards the status badge sits top-right, level with the number, in the same spot, and it stays there while each card is hovered (the more-actions button appears beside it as an overlay).",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 to 6 were followed and matched; step 1 opened Work Orders by its address.",
+   "Set-up: three work orders led by Esther Howard at Truck Hill 1: S1-1433 Approved for ZZAUTOTEST F2 Badge Spot Commercial Transport Services (long name), S1-1434 an Estimate for ZZAUTOTEST F2 Badge Spot, and S1-1435 Approved for ZZAUTOTEST F2 Badge Spot on the asset with no unit (the card shows no unit line).",
+   "Step 1 (NOT DONE AS WRITTEN): Work Orders was opened by its address, not from the top menu.",
+   "Steps 2 to 4: the All tab was clicked, ZZAUTOTEST F2 Badge Spot typed in Search and Board View clicked.",
+   "Step 5: on all three cards the status badge (Approved, Estimate, Approved) is at the top-right of the card, level with the work order number, the same distance from the card's right and top edges on every card, whatever the name length or missing unit.",
+   "Step 6: each card was hovered in turn: the more-actions button (three dots) appears next to the badge as an overlay and the badge stays in exactly the same spot on all three cards."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96944-s5-cards.png",
+   "evidence/prod-2026-10-22/C96944-s6-hover-2.png",
+   "evidence/prod-2026-10-22/C96944-s6-hover-3.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. s3-batchA.mts C96944, re-run 22:56-22:59 UTC (redo3 #47), case rewritten today (no density step). bv() = goto /workorders?tab=all, then All, Board View and search clicked/typed on screen. spot(): badge right inset 13 px, top inset 13 px, level with the number (within 6 px) on S1-1433/1434/1435 at the start and with each of the three cards hovered (3 x 3 readings, all identical). Pictures 22:57: s5-cards (no hover), hover-2 and hover-3 show the '...' button appearing left of the badge without moving it. C96944-error.png (17:07) is from the first attempt and is ignored.",
+  "todo": "Click Work Orders in the top menu (instead of opening it by its address) and repeat steps 2-6; on production every other step already matched, so it should pass."
+ },
+ "C96968": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 6: the Close clicked was the Close on a second message (\"Part of the page failed to load. Your connection may have dropped. Reload to try again.\"), not the Close on the \"Failed to update lead technician, please try again.\" alert, so whether that alert closes when its own Close is clicked was not checked (in Board View and in Tech View). Everything else matched.",
+  "bold_steps": [
+   6
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 to 5 and 7 were followed and matched in both views; at step 6 the wrong message's Close was clicked, and Work Orders was opened by its address at step 1.",
+   "Set-up: customer ZZAUTOTEST F1 Reassign Offline with one Approved work order, S1-1537, led by Esther Howard at Truck Hill 1; Ralph Edwards is the second technician.",
+   "Step 1 (route differs): Work Orders was opened by its address; the All tab and Board View were clicked.",
+   "Step 2: ZZAUTOTEST F1 Reassign Offline was typed in Search.",
+   "Step 3: the browser was really taken offline while the board stayed open.",
+   "Step 4: the card was dragged from Esther Howard's column into Ralph Edwards' column.",
+   "Step 5: the card is back in Esther Howard's column and two red messages show: \"Failed to update lead technician, please try again.\" (with a Close button) and, above it, \"Part of the page failed to load. Your connection may have dropped. Reload to try again.\" (with Reload and Close). The expected alert's words are exact; the second message is shown as well, not instead of it.",
+   "Step 6 (NOT DONE AS WRITTEN): after 10 seconds both messages were still on screen. The Close that was clicked belonged to the \"Part of the page failed to load\" message, which went away; the \"Failed to update lead technician, please try again.\" alert stayed, and its own Close was never clicked.",
+   "Step 7: the browser went back online and the page was reloaded: the lead is still Esther Howard.",
+   "Step 8 (Tech View): the same happened: the row went back to Esther Howard's group, the same two messages showed and were still there after 10 seconds, the other message's Close was clicked, and after the reload S1-1537 is still in Esther Howard's group (picture)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96968-board-alert.png",
+   "evidence/prod-2026-10-22/C96968-tech-alert.png",
+   "evidence/prod-2026-10-22/C96968-end.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. s4-batchD.mts C96968, re-run 22:59-23:01 UTC (redo3 #48). Production route: context().setOffline(true) (refused []); drag on screen; shiftPrompt 'Keep shifts' if any. message/after10s = ['Part of the page failed to load. Your connection may have dropped. Reload to try again. Reload', 'Failed to update lead technician, please try again.'] in both views; cardBack true in both. The close click is '.q-notification button' filtered /close/i .first() - the first notification is the connection message, so afterX = ['Failed to update lead technician, please try again.'] only: the expected alert's Close was not clicked (step 6). leadAfterReload 'Esther Howard' read from the records; C96968-end.png (23:01, Tech View after the reload) shows S1-1537 under Esther Howard on screen. The extra connection message is shown in addition to (not instead of) the expected alert, so the case's 'different offline message instead' clause does not trigger; its words are recorded above.",
+  "todo": "By hand, in Board View and Tech View: switch the network off, drag S1-1537 (ZZAUTOTEST F1 Reassign Offline) from Esther Howard to Ralph Edwards, wait 10 seconds and click the Close on the \"Failed to update lead technician, please try again.\" alert itself; check it closes. Everything else already matched."
+ },
+ "C368137": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 1: Work Orders was opened by its address instead of being opened from the top menu. Everything else matched in Board View and Tech View: the alert reads \"Couldn't save the new order. Please try again.\", the cards are back in the written-down order S1-1538, S1-1539, S1-1540, still so after the reload, and no lead change message appeared.",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 to 8 were followed and matched; step 1 opened Work Orders by its address.",
+   "Set-up: customer ZZAUTOTEST F1 Reorder Offline with three Approved work orders led by Esther Howard at Truck Hill 1: S1-1538, S1-1539, S1-1540.",
+   "Step 1 (NOT DONE AS WRITTEN): Work Orders was opened by its address; the All tab and Board View were clicked.",
+   "Steps 2 and 3: ZZAUTOTEST F1 Reorder Offline was typed in Search; Esther Howard's column read S1-1538, S1-1539, S1-1540.",
+   "Step 4: the browser was really taken offline.",
+   "Step 5: the last card (S1-1540) was dragged to the top of Esther Howard's column.",
+   "Step 6: the alert reads \"Couldn't save the new order. Please try again.\" (a second message, \"Part of the page failed to load. Your connection may have dropped. Reload to try again.\", also shows). The cards are again S1-1538, S1-1539, S1-1540. No lead change message appeared.",
+   "Step 7: back online and reloaded: still S1-1538, S1-1539, S1-1540.",
+   "Step 8 (Tech View): the same: the same alert, the rows back in the order S1-1538, S1-1539, S1-1540, and the same after the reload; no lead change message."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368137-board.png",
+   "evidence/prod-2026-10-22/C368137-tech.png",
+   "evidence/prod-2026-10-22/C368137-end.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. s4-batchD.mts C368137, re-run 23:01-23:02 UTC (redo3 #48). bvOn = goto /workorders?tab=all + All + display clicked + search. setOffline(true) (refused []); drag last card onto the first card (board) / last row onto the first row (tech). message = connection message + 'Couldn't save the new order. Please try again.' in both views; before = after = afterReload = [S1-1538, S1-1539, S1-1540] read from the screen in both views; no 'Lead technician ...' message among the readings. Pictures 23:01-23:02 show the alert and the order in each view and Tech View after the reload.",
+  "todo": "Click Work Orders in the top menu (instead of opening it by its address) and repeat the test; on production every other step already matched, so it should pass."
+ },
+ "C154890": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 6 and 7: the alert was not closed, and step 7 was not done on screen: the page was not reloaded, the work order was not opened to read Lead Technician and the Schedule was not opened; the lead and the shift were read behind the screen only. The shift's 8:00-12:00 time is also time-of-day not judged on production until the time-zone question is settled. What was seen matched: the alert reads \"Failed to update lead technician, please try again.\" and the card is back in Esther Howard's column.",
+  "bold_steps": [
+   6,
+   7
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 to 5 were followed and matched and the alert and card at step 6 matched; the alert was not closed and step 7 was not done on screen. Work Orders was opened by its address at step 1. Clearing-only failure not checked by hand.",
+   "Set-up: customer ZZAUTOTEST F1 Clear Fails with S1-1174 led by Esther Howard at Truck Hill 1, and a whole-work-order shift for her on it tomorrow, 8:00-12:00; Ralph Edwards is the second technician.",
+   "Step 1 (route differs): Work Orders was opened by its address; the All tab and Board View were clicked.",
+   "Steps 2 and 3: ZZAUTOTEST F1 Clear Fails was typed in Search and the card was dragged from Esther Howard's column into Ralph Edwards' column; the question about clearing her scheduled shifts opened.",
+   "Steps 4 and 5: the browser was really taken offline and Clear Shifts was clicked.",
+   "Step 6: the card is back in Esther Howard's column and the alert reads \"Failed to update lead technician, please try again.\" with a Close button (picture). The alert was NOT closed.",
+   "Step 7 (NOT DONE ON SCREEN): the browser went back online, but the page was not reloaded, the work order was not opened and the Schedule was not opened. Behind the screen the records say the lead is still Esther Howard and her whole-work-order shift (2026-10-24, 08:00-12:00) is still there. The shift's time and day are time-of-day not judged on production until the time-zone question is settled."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C154890-after-failed-save.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. s4-batchC.mts C154890, re-run 23:02-23:04 UTC (redo3 #49). startState: saved display tech_view, collapsed [unassigned] cleared (200). bv = goto + All + setDisplay Board View + search. prompt true; networkOff 'browser offline' (refusedCalls []); shiftPrompt 'Clear shifts'. message ['Failed to update lead technician, please try again.'], cardBack true (screen). Then setOffline(false) and after = {lead: 'Esther Howard' from the work order list records, shifts ['Esther 2026-10-24 08:00-12:00 whole'] from the schedule records} - no reload, no work order page, no Schedule page, no alert close. Only one distinct picture: C154890-end.png (23:03) is byte-identical in size to C154890-after-failed-save.png and shows the same screen. The 2026-10-24 date at 23:04 UTC = 04:04 on 23 Oct in Asia/Karachi, so 'tomorrow' is consistent, but the Schedule draws times in UTC on production (unsettled), so the 8:00-12:00 check is held. The earlier 'Passed on production' note in the pack came from the refused-save stand-in and is superseded by this re-run.",
+  "todo": "By hand on production: with the network off, drag S1-1174 (ZZAUTOTEST F1 Clear Fails) from Esther Howard to Ralph Edwards, click Clear Shifts, check the card returns and the alert reads \"Failed to update lead technician, please try again.\", close it; turn the network on, reload, open S1-1174 and read Lead Technician (Esther Howard), then open the Schedule for tomorrow and check her 8:00-12:00 shift is still there (time-of-day only once the time-zone question is settled). Write 'clearing-only failure not checked by hand'."
+ },
+ "C96960": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 6: whether Line 6's clock is still running was read behind the screen in Esther Howard's account, not on the Lines tab; the screen only shows the Canned line row tinted green with no clock wording. Work Orders was also opened by its address at step 1. Every Labor technician on the Lines tab matched: Lines 1 and 2 moved to Ralph Edwards, Line 3 Dana Ortiz, Lines 4, 5 and 6 Esther Howard.",
+  "bold_steps": [
+   6
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 to 5 and the Labor readings of step 6 were followed and matched; whether Line 6's clock is running was not read on the screen, and Work Orders was opened by its address at step 1.",
+   "Set-up: a fresh customer \"ZZAUTOTEST F1 Drag Moves Open Lines 95375\" (a number added so only this run's work order shows) with S1-1680, Approved, led by Esther Howard, six lines: no technician; following the lead; Dana Ortiz; Complete; with logged labor; and with Esther Howard's clock running (clocked in from her own account).",
+   "Step 1 (route differs): Work Orders was opened by its address; the All tab and Board View were clicked.",
+   "Step 2: the customer's name was typed in Search (with its number).",
+   "Steps 3 and 4: the card was dragged from Esther Howard's column into Ralph Edwards' column (Keep Shifts if asked); \"Lead technician updated\" appeared.",
+   "Step 5: the card was clicked, the work order opened (Lead Technician reads Ralph Edwards) and the Lines tab was clicked.",
+   "Step 6: Labor technicians on the Lines tab: the line that had no technician reads Ralph Edwards; the line that followed the lead reads Ralph Edwards; the Dana Ortiz line still reads Dana Ortiz; the Complete line, the line with logged labor and the clocked line still read Esther Howard. So exactly 2 of the 6 lines moved.",
+   "Step 6 (NOT READ ON SCREEN): the clocked line (Canned line) is tinted green on the Lines tab, but no clock wording shows; that her clock is still running was read in Esther Howard's account behind the screen (running on S-1680, Canned line)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96960-s6-lines-tab.png",
+   "evidence/prod-2026-10-22/C96960-end.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. s4-batchE.mts C96960, re-run 23:04-23:06 UTC (redo3 #50). sixLines() made S1-1680 behind the screen (set-up): L4 completed, L5 clock in/out (65 s), L6 clock-in as Esther via switch-user (running). bv = goto + All + Board View + search; drag on screen; message 'Lead technician updated'. linesOnScreen: card clicked (opened true, no fallback), Lines tab clicked; labor on screen [Ralph, Esther, Esther, Esther, Dana, Ralph] in line order L2, L4, L5, L6, L3, L1 (titles Line 1 / NYS Inspection (Complete) / WHat are you doing (2%) / Canned line / Interior work / NYS Inspection) = records after {L1 Ralph, L2 Ralph, L3 Dana, L4/L5/L6 Esther}. clockText regex caught the header 'In Progress Started: Today Total Hours: 14.0 hrs', not a line clock. clockStillRunning = Esther's my-current-task (behind the screen, S-1680 Canned line, started 23:06:07). The picture (23:06) shows lines 1-4 only, the Canned line row green, and a 'Part of the page failed to load' message at the bottom right of the work order page (beyond the steps, noted). Customer name carries a number suffix vs the case's 'ZZAUTOTEST F1 Drag Moves Open Lines' (fresh work order per run, DR-44) - accepted as data naming.",
+  "todo": "By hand: open S1-1680 (or a fresh six-line work order dragged from Esther Howard to Ralph Edwards) > Lines tab, and check on screen that Esther Howard's clock on the clocked line is still running (e.g. signed in as Esther Howard in a second browser, her clock shows running on that line). The Labor technicians already matched."
+ },
+ "C96961": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 7: whether Line 6's clock is still running was read behind the screen in Esther Howard's account, not on the Lines tab; the screen only shows the Canned line row tinted green with no clock wording. Work Orders was also opened by its address at step 1. Everything else matched: \"Lead technician removed\", the card in Unassigned, Lead Technician reads Unassigned, the line that followed the lead now Unassigned, Line 1 Unassigned, Dana Ortiz kept, and the Complete, logged and clocked lines still Esther Howard.",
+  "bold_steps": [
+   7
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 to 6 and the Labor readings of step 7 were followed and matched; whether Line 6's clock is running was not read on the screen, and Work Orders was opened by its address at step 1.",
+   "Set-up: a fresh customer \"ZZAUTOTEST F1 Remove Lead Lines 6216\" with S1-1681, Approved, led by Esther Howard, six lines: no technician; following the lead; Dana Ortiz; Complete; with logged labor; and with Esther Howard's clock running (clocked in from her own account).",
+   "Step 1 (route differs): Work Orders was opened by its address; the All tab and Board View were clicked.",
+   "Step 2: the customer's name was typed in Search (with its number).",
+   "Step 3: the card in Esther Howard's column was hovered, More actions clicked and Reassign lead technician chosen.",
+   "Steps 4 and 5: Unassigned was picked and confirmed while Esther Howard was clocked in (Keep Shifts if asked): \"Lead technician removed\"; the card is in the Unassigned column.",
+   "Step 6: the work order was opened by clicking its card; Lead Technician reads Unassigned; the Lines tab was clicked.",
+   "Step 7: Labor technicians: the line that followed the lead now reads Unassigned; Line 1 (no technician) still reads Unassigned; Dana Ortiz's line still reads Dana Ortiz; the Complete line and the line with logged labor still read Esther Howard; the clocked line still reads Esther Howard.",
+   "Step 7 (NOT READ ON SCREEN): the clocked line (Canned line) is tinted green on the Lines tab, but no clock wording shows; that her clock is still running was read in Esther Howard's account behind the screen (running on S-1681, Canned line)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96961-s7-lines-tab.png",
+   "evidence/prod-2026-10-22/C96961-end.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. s4-batchE.mts C96961, re-run 23:06-23:08 UTC (redo3 #50). sixLines() set-up as C96960 (S1-1681). openReassign: hover card, button_work_order_more_actions, menu item; option_lead_technician_unassigned + confirm on screen. message 'Lead technician removed'; inUnassigned true (screen); lead 'none' (records) and the picture shows Lead Technician 'Unassigned'. linesOnScreen: card clicked (opened true), Lines tab; labor on screen [Unassigned, Esther, Esther, Esther, Dana, Unassigned] = L2, L4, L5, L6, L3, L1, matching records after. clockText caught the header, not a line clock; clockStillRunning = Esther's my-current-task behind the screen (S-1681 Canned line, started 23:07:58). C96961-end.png (23:08) is the full board after leaving the work order (Unassigned 351), the card itself not in view.",
+  "todo": "By hand: on S1-1681 (or a fresh six-line work order whose lead was removed while Esther Howard was clocked in) > Lines tab, check on screen that Esther Howard's clock on the clocked line is still running (e.g. signed in as Esther Howard in a second browser). Everything else already matched."
+ }
+}
