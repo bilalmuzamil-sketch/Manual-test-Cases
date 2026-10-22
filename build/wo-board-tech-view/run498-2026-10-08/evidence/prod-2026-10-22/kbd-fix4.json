@@ -1,0 +1,263 @@
+{
+ "runner": "88b0aaad",
+ "techs": {
+  "ana": true,
+  "ben": true,
+  "cal": true,
+  "dan": true
+ },
+ "C97021": {
+  "names": "Work-order-1 Alpha Co, Work-order-2 Bravo Co, Work-order-3 Charlie Co, Work-order-4 Golf Co; Technician-A Ana, Technician-B Ben",
+  "prefs": 200,
+  "start": {
+   "tab": "All",
+   "search": "ZZAUTOTEST F3 Keyboard Reach 9792",
+   "assignedToMe": "false",
+   "width": 1600,
+   "columns": [
+    "unassigned(1) [Golf Co]",
+    "Ana(2) [Alpha Co, Bravo Co]",
+    "Ben(1) [Charlie Co]",
+    "<id>(0) []"
+   ]
+  },
+  "s1": {
+   "focus": {
+    "raw": "page_search_input",
+    "own": "page_search_input",
+    "tag": "INPUT",
+    "label": null,
+    "title": null,
+    "cls": "q-field__native q-placeholder",
+    "text": "ZZAUTOTEST F3 Keyboard Reach 9792",
+    "ring": true,
+    "where": "page",
+    "card": null,
+    "column": null,
+    "header": null,
+    "row": null,
+    "group": null
+   },
+   "inSearch": true,
+   "searchHolds": "ZZAUTOTEST F3 Keyboard Reach 9792",
+   "ringsInViews": 0
+  },
+  "s2": {
+   "landed": {
+    "key": "Tab",
+    "raw": "board_card_Golf Co",
+    "own": "board_card_3f90533b-0759-4483-a31b-6073c4e507ac",
+    "tag": "DIV",
+    "label": null,
+    "title": null,
+    "cls": "q-card board-card cursor-pointer wo-density--regular q-card--flat",
+    "text": "S1-1607 Approved ZZF9 Line count 1 line Progress 0",
+    "ring": true,
+    "where": "board",
+    "card": "board_card_Golf Co",
+    "column": "unassigned",
+    "header": null,
+    "row": null,
+    "group": null
+   },
+   "presses": 11,
+   "stops": [
+    "page_search_clear (ring) [page]",
+    "filter_chip_status (ring) [page]",
+    "filter_chip_assigned_to_me (ring) [page]",
+    "filter_chip_lead_technician (ring) [page]",
+    "filter_chip_vehicleHere (ring) [page]",
+    "button_board_fields_selection (ring) [page]",
+    "display_option_list (ring) [page]",
+    "display_option_tech_view (ring) [page]",
+    "display_option_board_view (ring) [page]",
+    "button_new_work_order (ring) [page]",
+    "board_card_Golf Co (ring) [board]"
+   ],
+   "headerOnTheWay": false,
+   "isWorkOrder4Card": true
+  },
+  "s3": {
+   "key": "ArrowRight",
+   "raw": "board_card_Alpha Co",
+   "own": "board_card_0ce775fe-595f-4e37-af5a-d7d208ecb23d",
+   "tag": "DIV",
+   "label": null,
+   "title": null,
+   "cls": "q-card board-card cursor-pointer wo-density--regular q-card--flat",
+   "text": "S1-1604 Approved ZZF9 Line count 1 line Progress 0",
+   "ring": true,
+   "where": "board",
+   "card": "board_card_Alpha Co",
+   "column": "Ana",
+   "header": null,
+   "row": null,
+   "group": null,
+   "inTechnicianAColumn": true
+  },
+  "s4": {
+   "key": "ArrowDown",
+   "raw": "board_card_Bravo Co",
+   "own": "board_card_4b8ca7b3-6ae7-40d5-a68b-abb00d86ec76",
+   "tag": "DIV",
+   "label": null,
+   "title": null,
+   "cls": "q-card board-card cursor-pointer wo-density--regular q-card--flat",
+   "text": "S1-1605 Approved ZZF9 Line count 1 line Progress 0",
+   "ring": true,
+   "where": "board",
+   "card": "board_card_Bravo Co",
+   "column": "Ana",
+   "header": null,
+   "row": null,
+   "group": null,
+   "cardOfTechnicianA": true
+  },
+  "s5": {
+   "key": "Tab",
+   "raw": "button_work_order_more_actions",
+   "own": "button_work_order_more_actions",
+   "tag": "BUTTON",
+   "label": "More actions for S1-1605",
+   "title": null,
+   "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--round text- q-btn-",
+   "text": "",
+   "ring": true,
+   "where": "board",
+   "card": "board_card_Bravo Co",
+   "column": "Ana",
+   "header": null,
+   "row": null,
+   "group": null,
+   "ownMoreActions": true
+  },
+  "s6": {
+   "key": "Tab",
+   "raw": "body",
+   "where": "page",
+   "text": "",
+   "ring": false,
+   "card": null,
+   "column": null,
+   "header": null,
+   "row": null,
+   "group": null,
+   "leftBoard": true,
+   "positiveControl": "step 2 shows Tab landing ON the board in this run"
+  },
+  "s7": {
+   "groupsInOrder": [
+    {
+     "group": "unassigned",
+     "name": "Unassigned",
+     "count": 1,
+     "collapsed": false,
+     "rows": [
+      "Golf Co"
+     ]
+    },
+    {
+     "group": "Ana",
+     "name": "ZZAUTOTEST Ana Alpha",
+     "count": 2,
+     "collapsed": false,
+     "rows": [
+      "Alpha Co",
+      "Bravo Co"
+     ]
+    },
+    {
+     "group": "Ben",
+     "name": "ZZAUTOTEST Ben Bravo",
+     "count": 1,
+     "collapsed": false,
+     "rows": [
+      "Charlie Co"
+     ]
+    },
+    {
+     "group": "<id>",
+     "name": "Aaron Baker",
+     "count": 0,
+     "collapsed": false,
+     "rows": []
+    }
+   ]
+  },
+  "s8": {
+   "focus": {
+    "raw": "page_search_input",
+    "own": "page_search_input",
+    "tag": "INPUT",
+    "label": null,
+    "title": null,
+    "cls": "q-field__native q-placeholder",
+    "text": "ZZAUTOTEST F3 Keyboard Reach 9792",
+    "ring": true,
+    "where": "page",
+    "card": null,
+    "column": null,
+    "header": null,
+    "row": null,
+    "group": null
+   },
+   "inSearch": true,
+   "searchHolds": "ZZAUTOTEST F3 Keyboard Reach 9792",
+   "ringsInViews": 0
+  },
+  "s9": {
+   "landed": {
+    "key": "Tab",
+    "raw": "tech_view_row_Golf Co",
+    "own": "tech_view_row_3f90533b-0759-4483-a31b-6073c4e507ac",
+    "tag": "TR",
+    "label": null,
+    "title": null,
+    "cls": "cursor-pointer",
+    "text": "Approved — S1-1607 ZZAUTOTEST F3 Keyboard Reach 9.",
+    "ring": true,
+    "where": "table",
+    "card": null,
+    "column": null,
+    "header": null,
+    "row": "tech_view_row_Golf Co",
+    "group": null
+   },
+   "presses": 12,
+   "stops": [
+    "page_search_clear (ring) [page]",
+    "filter_chip_status (ring) [page]",
+    "filter_chip_assigned_to_me (ring) [page]",
+    "filter_chip_lead_technician (ring) [page]",
+    "filter_chip_vehicleHere (ring) [page]",
+    "button_density (ring) [page]",
+    "button_tech_view_column_selection (ring) [page]",
+    "display_option_list (ring) [page]",
+    "display_option_tech_view (ring) [page]",
+    "display_option_board_view (ring) [page]",
+    "button_new_work_order (ring) [page]",
+    "tech_view_row_Golf Co (ring) [table]"
+   ],
+   "headerOnTheWay": false,
+   "isWorkOrder4Row": true
+  },
+  "s10": {
+   "key": "ArrowDown",
+   "raw": "tech_view_group_Ana",
+   "own": "tech_view_group_a91c7eb7-22d6-4f3c-a64d-8ccd460ebc06",
+   "tag": "TR",
+   "label": null,
+   "title": null,
+   "cls": "",
+   "text": "ZA ZZAUTOTEST Ana Alpha 2 2 work orders",
+   "ring": true,
+   "where": "table",
+   "card": null,
+   "column": null,
+   "header": null,
+   "row": null,
+   "group": "tech_view_group_Ana",
+   "isTechnicianAHeader": true
+  }
+ }
+}
