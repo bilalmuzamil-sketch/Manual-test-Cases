@@ -1,0 +1,200 @@
+{
+ "C96910": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1 to 3: the run never signed out and signed in as the new user, and did not open Work Orders from the top menu; it opened the new user's screen in a separate window carrying that user's sign-in and went to Work Orders by its web address.",
+  "bold_steps": [
+   1,
+   2,
+   3
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). What the new user saw matches the expected result, but the sign-out, the sign-in and the top-menu click were not done the way the test asks.",
+   "Set-up: a brand-new Service Advisor at Truck Hill 1 was made for this test; before opening Work Orders this user had no saved display at all.",
+   "Steps 1 to 3: NOT DONE AS WRITTEN. Instead of signing out and signing in as the new user, the run opened a separate window already signed in as that user and went straight to the Work Orders page.",
+   "Step 4: the page opened in List: the ordinary work order table (33 rows), with no technician groups and no columns of cards; in the display switcher List is the highlighted one.",
+   "Steps 5 and 6: after refreshing the page it is still in List, and the user still has no saved display."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96910-userB-first.png",
+   "evidence/prod-2026-10-22/C96910-userB-refresh.png"
+  ],
+  "reason_for_reviewer": "s1-batch4a.mts C96910: freshUser() creates the staff member through the API, viewAs() switches the server session to that user (switch-user) and opens a new browser context carrying the admin's cookies plus that user's own stored user/permissions; go() then opens /workorders?tab=all by address. No sign-out, no sign-in page, no top-menu click. Readings: prefBeforeOpening display null (keys null), first 'List', layout techGroups 0 / boardColumns 0 / tableRows 33, afterRefresh 'List', prefAfter null. Pictures: List highlighted, avatar ZC. Same treatment as C97005 (batch 6, sign-out/sign-in replaced by a new window = Unsure). One manual check settles it: on production make a new Service Advisor, sign out, sign in as that person through the sign-in page, click Work Orders in the top menu, confirm List is shown and highlighted, refresh, confirm still List."
+ },
+ "C96919": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 and 2: Work Orders was opened on the All tab and Board View was clicked in the display switcher.",
+   "Steps 3 and 4: after refreshing the page it opened in Board View, so the choice was saved (the control check).",
+   "Not checked by hand: when the saved display was made unreadable by the test tool, the page opened in List, with the general message \"Ooooops! An error occurred\"; once it could be read again the page opened in Board View again."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96919-unreadable.png",
+   "evidence/prod-2026-10-22/C96919-end.png"
+  ],
+  "reason_for_reviewer": "control 'Board View' after reload; with GET of the saved preference forced to 500: whenUnreadable 'List', url /workorders, messages ['Ooooops! An error occurred']; afterRestore 'Board View'. The case passes or fails on the control check; the unreadable part is recorded as 'not checked by hand' as the case asks. The case's own customer 'ZZAUTOTEST F1 Unreadable Display' was not seeded, but the precondition only needs work orders to show (they do). Work Orders opened by address; the step names no menu route and has no expected result of its own. 0 differences from staging."
+ },
+ "C96923": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 4 (baseline): at Truck Hill 1 in List with Assigned to me on, changing location through your initials > Change Location to Trucks Hill 2 opened Work Orders on the All tab in List, with Assigned to me still on (also after a refresh).",
+   "Step 5: back at Truck Hill 1, Assigned to me was turned off.",
+   "Steps 6 to 9: Board View chosen and Assigned to me turned on; after changing to Trucks Hill 2 the page is Work Orders on the All tab (same as the baseline), Board View is still selected and Assigned to me is still on.",
+   "Step 10: Tech View chosen at Trucks Hill 2; Assigned to me was still on.",
+   "Steps 11 and 12: after changing back to Truck Hill 1 the page is Work Orders on the All tab, Tech View is still selected and Assigned to me is still on."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96923-board-after-change.png",
+   "evidence/prod-2026-10-22/C96923-tech-after-change.png",
+   "evidence/prod-2026-10-22/C96923-list-after-change.png"
+  ],
+  "reason_for_reviewer": "Location changed on screen each time (profile menu > select_location > location). The script's location reader looks for a ' - 1234' suffix that production's names lack, so it read null and repeated the pick up to three times (with one reload before the third); the pictures' top bar confirms Trucks Hill 2 after the List and Board changes and Truck Hill 1 after the Tech change. listBefore/listAfter/listAfterRefresh: /workorders?assigned_to_me=1, All, List, true. backAtLoc1: All, List, false. boardBefore/boardAfter: /workorders?assigned_to_me=1, All, Board View, true (saved display board_view, filter assigned_to_me 1). techBefore (at Trucks Hill 2) and techAfter: All, Tech View, true (saved tech_view). The last action before every reading was a location pick, so each reading is a landing after a location change. 0 differences from staging."
+ },
+ "C96912": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 3, 4 and 7: the run never signed out and back in within the same browser, and the second user was not signed in; their screen was opened in a separate window carrying their sign-in.",
+  "bold_steps": [
+   3,
+   4,
+   7
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Everything that was seen matches the expected result, but two of the sign-ins were not done the way the test asks.",
+   "Steps 1 and 2: Work Orders opened in List and Board View was clicked; the choice was saved as Board View.",
+   "Steps 3 and 4: NOT DONE AS WRITTEN. The first browser was never signed out and signed back in; instead a fresh sign-in was made in a second browser (see step 5).",
+   "Step 5: in the second browser the same user signed in through the sign-in page and Work Orders opened in Board View. That sign-in ended the first browser's session (it went to the sign-in page), as expected for a second sign-in of the same account on production.",
+   "Step 6: in the second browser, your initials > Change Location > Trucks Hill 2: Work Orders opened in Board View.",
+   "Step 7: NOT DONE AS WRITTEN. A brand-new Service Advisor who had never chosen a display was opened in a separate window carrying that user's sign-in (not signed in through the sign-in page); Work Orders opened in List."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96912-new-signin.png",
+   "evidence/prod-2026-10-22/C96912-loc2.png",
+   "evidence/prod-2026-10-22/C96912-userB.png"
+  ],
+  "reason_for_reviewer": "s1-batch4a.mts C96912: prefAtStart list, chosen 'Board View', prefAfterChoice board_view; s2 = signIn() (production signs in by password: a real sign-in) -> prefSeenBy2 board_view, newSignIn 'Board View'; changeLocationUI to Trucks Hill 2 (top bar in C96912-loc2.png reads Trucks Hill 2, profile menu still open) -> loc2.display 'Board View'; firstBrowser url /login (session ended). User-B: asNewUser -> viewAs (switch-user + new context), prefBeforeOpening null, display 'List', Work Orders opened by address. Expected 1 ('After signing in again') is covered only by the second-browser sign-in, not by a sign-out/sign-in in the same browser; expected 4 by an impersonated window. Same treatment as C97005 (batch 6). Side note for the reviewer, not part of this case: in C96912-new-signin.png the top bar reads 'Truck Hill 1' while the board shows S2-numbered work orders (the numbering seen at Trucks Hill 2). One manual check settles it: in one browser click Board View, click your initials > Logout, sign in again, click Work Orders and confirm Board View; then Logout and sign in as a user who never chose a display, click Work Orders and confirm List."
+ },
+ "C96930": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Set-up: the seven staff were checked in their staff records: Esther Howard and Billy Nobill (Billable off) are active Technicians at Truck Hill 1 with Time Clock on; Ina Active is deactivated; Nick Noclock has Time Clock off; Olive Office is an Office User; Tim Clockuser is a Time Clock User; Ella Elsewhere is only at Trucks Hill 2.",
+   "Steps 1 to 4: on the All tab in Tech View, every group header was read (64 groups): Esther Howard and Billy Nobill each have a group (count 0, \"No work orders\"); Ina Active, Nick Noclock, Olive Office, Tim Clockuser and Ella Elsewhere have none.",
+   "Steps 5 and 6: in Board View every column header was read: Esther Howard and Billy Nobill each have a column (count 0, \"Drag a work order here to assign it\"); the other five have no column.",
+   "Where each missing person would sit in name order, the neighbouring groups and columns are shown with no group or column for them (for example Floyd Miles is followed directly by Jenny Wilson where Ina Active would be)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96930-tech-Esther-Howard.png",
+   "evidence/prod-2026-10-22/C96930-board-Billy-Nobill.png",
+   "evidence/prod-2026-10-22/C96930-tech-Ina-Active.png",
+   "evidence/prod-2026-10-22/C96930-board-Ina-Active.png"
+  ],
+  "reason_for_reviewer": "s2-batchC.mts C96930: Ina deactivated through Settings > Staff > edit > Deactivate Account (POST change-status). tech: Esther/Billy true, the five false (64 groups walked by scrolling); board: same (64 columns). staffProof matches the case's set-up exactly. The script typed the search 'ZZAUTOTEST F2 No Work Text' (not in the case's steps) to keep the table short; this cannot hide an eligible person, because Esther and Billy, who also have no matching work, still have groups and columns under it (positive control). Work Orders opened by address, then All tab and Tech View clicked. Not part of the expected result: Ina Active (deactivated) is still offered in the script's technician list ('offeredAsLead' true) though she gets no group. 0 differences from staging."
+ },
+ "C368127": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c). Loading in batches not seen by hand.",
+   "Steps 1 to 3: a brand-new Admin user (who had never collapsed anything) opened Work Orders, All tab, Tech View: Unassigned opens expanded and its header shows 289, the same number of work orders with no lead technician that List holds on the All tab (289 of 609).",
+   "Steps 4 and 5: while scrolling deep into Unassigned, its header (Unassigned, 289) stays on screen just under the column header row as the rows scroll past.",
+   "Step 6: rows kept appearing while scrolling, but no loading pause was visible on the pictures: loading in batches not seen by hand.",
+   "Step 7: clicking the arrow on the held Unassigned header while deep inside the group collapsed Unassigned straight away, without scrolling up first; the table then shows the collapsed Unassigned header followed by Aaron Baker's group."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368127-before-arrow.png",
+   "evidence/prod-2026-10-22/C368127-after-arrow-in-place.png",
+   "evidence/prod-2026-10-22/C368127-opened.png",
+   "evidence/prod-2026-10-22/C368127-loading.png"
+  ],
+  "reason_for_reviewer": "s2-batchC.mts C368127: new Admin via viewAs (preference null at start); opened by address, All and Tech View clicked. opensCollapsed false, count 289; listAllTab (List's own data, all pages) 609 rows, 289 without lead, matchesHeader true. Step 5: beforeClick sticky header 'Unassigned 289' at y 197 under the column headings at scrollTop 1500 (picture). Step 6: the script's spinner reader matched the page's top loading bar at all 40 stops, but listRequests is empty (its watcher did not see the Tech View endpoint) and no bar is visible in C368127-loading.png, so batch loading is recorded as not seen by hand, which the case allows. Step 7: the arrow (aria 'Collapse Unassigned') on the held header was clicked at scrollTop 1500; afterClickInPlace saved collapsed ['unassigned'], data-collapsed true, the view then sat at the top (scrollTop 0) by itself. Scrolling was done by moving the table's scroll position. 0 differences from staging."
+ },
+ "C96927": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 5: with \"ZZAUTOTEST F2 Tech Columns\" searched on the All tab in List, the Column Selection menu offers Waiting On Parts, Asset, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total price, Created on, Invoiced Date, Days open, Parts and Returns; it does not offer Assigned Techs.",
+   "Steps 6 and 7: Tech View has its own Column Selection button and menu. It offers every column List's menu offers, plus On Site, Unit and Assigned Techs; Assigned Techs is on, and On Site, VIN/Serial # and Lead Technician are off.",
+   "Steps 8 to 11: after turning on On Site, VIN/Serial # and Lead Technician, each shows as a column in the Tech View table.",
+   "Steps 12 to 14: after turning Assigned Techs off, the Assigned Techs column no longer shows.",
+   "Steps 15 and 16: after turning it back on, the Assigned Techs column shows again.",
+   "Step 17: Status, Number and Customer are not in the menu at all, so they cannot be turned off, and all three stay in the table.",
+   "Steps 18 to 20: after turning Unit off, the Unit column no longer shows while Status, Number and Customer still show; Unit was then turned back on."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96927-s7-tech-menu.png",
+   "evidence/prod-2026-10-22/C96927-s4-list-menu.png",
+   "evidence/prod-2026-10-22/C96927-s19-headers.png",
+   "evidence/prod-2026-10-22/C96927-s14-headers.png"
+  ],
+  "reason_for_reviewer": "s2-batchC.mts C96927: the saved Tech View columns were taken off through the saved setting first (precondition 'as they start for a new user') and put back at the end. All menu actions were clicks on the switches. listOffersAssignedTechs false; inListNotInTech []; inTechNotInList On Site, Unit, Assigned Techs; s11 headers include On Site, VIN/Serial #, Lead Technician; s14 without Assigned Techs; s16 with it; s17 Status/Number/Customer 'not in the menu'; s19 without Unit, with Status/Number/Customer; s20 Unit back. Work Orders opened by address, then All and List clicked. 0 differences from staging."
+ },
+ "C368161": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 10 and 13: in Board View the run never brought Theresa Webb's column on screen, so her column header avatar and the work order card's avatar group were not read.",
+  "bold_steps": [
+   10,
+   13
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The Tech View half meets the expected result; the Board View half was not seen.",
+   "Set-up: work order S1-1396 for \"ZZAUTOTEST F2 Initials Avatar\" is led by Theresa Webb (no photo), and its line is given to Jenny Wilson.",
+   "Steps 1 to 5: on the All tab with the search, in Tech View, Theresa Webb's group header shows a round avatar with \"TW\" next to her name and the count 1; no photo, no empty circle.",
+   "Steps 6 to 8: with Assigned Techs on, the S1-1396 row's Assigned Techs shows \"TW\" first and then \"JW\", each in its own round avatar; no broken image.",
+   "Steps 9 and 10: Board View opened, but the screen stayed on the first columns (Unassigned and several ZZAUTOTEST columns); Theresa Webb's column was not reached. NOT SEEN.",
+   "Steps 11 to 13: the board's field menu (its button reads \"Column Selection\" on production) already had Line technicians on; the S1-1396 card was not on screen, so its avatar group was NOT SEEN."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368161-tech.png",
+   "evidence/prod-2026-10-22/C368161-board.png",
+   "evidence/prod-2026-10-22/C368161-end.png"
+  ],
+  "reason_for_reviewer": "s2-batchC.mts C368161: header {avatar 'TW', hasImg false, text 'TW Theresa Webb 1 1 work order'}; rowAvatars ['SA','TW','JW'] where 'SA' is the Service Advisor column's avatar in the same row, the Assigned Techs group is TW, JW (picture), brokenImg 0. Board: boardHeader null, cardAvatars null, lineTechOn null (the script looks for a button labelled 'Fields to display'; production's board field menu button is labelled 'Column Selection', and its menu shows Line technicians=true). The line was given to Jenny Wilson by the same save the line editor makes (the editor's Add technician field was not found: editorOpen 0); that is set-up only. One manual check settles it: Work Orders > All > search 'ZZAUTOTEST F2 Initials Avatar' > Board View, scroll right to Theresa Webb's column and read its header avatar (expect 'TW'), turn Line technicians on in the board's field menu and read the S1-1396 card's avatars (expect 'TW' then 'JW', no empty circle or broken image)."
+ },
+ "C96938": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 4: on the All tab with \"ZZAUTOTEST F2 Name Tooltip\" searched, in Tech View.",
+   "Step 5: with the pointer held on Ayesha Khan's group header avatar, the hover label is \"Ayesha Khan\".",
+   "Step 6: with the pointer held on the name in the long-named group header, the hover label is \"Maximiliana Fitzgerald-Montgomery\". At this window width the name was shown in full, not shortened.",
+   "Step 7: with the pointer held on her avatar, the hover label is \"Maximiliana Fitzgerald-Montgomery\".",
+   "The hover label is the browser's own, which automated pictures do not draw, so the pictures show where the pointer was, not the label itself."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96938-hover-long-avatar.png",
+   "evidence/prod-2026-10-22/C96938-hover-long-name.png",
+   "evidence/prod-2026-10-22/C96938-hover-avatar-A.png"
+  ],
+  "reason_for_reviewer": "s2-batchC.mts C96938: pointer moved onto each element's centre and held; no drawn tooltip (tooltip ''), title under the pointer: avatar A div title='Ayesha Khan'; long name span title='Maximiliana Fitzgerald-Montgomery'; long avatar div title='Maximiliana Fitzgerald-Montgomery'; nameLongShown truncated false. [Tech-A] is Ayesha Khan (the case gives Esther Howard as an example only). Same evidence type the staging pass accepted. Work Orders opened by address, All and Tech View clicked, search typed. 0 differences from staging."
+ },
+ "C96934": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Step 1: Ralph Edwards was deactivated in Settings > Staff > his edit icon > Deactivate Account; his staff record then read inactive.",
+   "Steps 2 to 4: Work Orders, All tab, search \"ZZAUTOTEST F2 Inactive Lead\", Tech View.",
+   "Step 5: Ralph Edwards' group is still shown with both his work orders, S1-1399 and S1-1400, count 2.",
+   "His group header shows a grey \"Inactive\" label right after his name.",
+   "Afterwards Ralph Edwards was set active again (read back: active)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96934-inactive.png",
+   "evidence/prod-2026-10-22/C96934-end.png"
+  ],
+  "reason_for_reviewer": "s2-batchC.mts C96934: setActive opened Settings > Staff, searched the email, clicked the row's edit icon and the 'Deactivate Account' button (no confirm dialog appeared on production; the change-status call was sent); activeNow false. group: count 2, rows S1-1399, S1-1400 (the case's S1-691/S1-578 are example numbers); header 'RE Ralph Edwards Inactive 2 2 work orders'; inactiveMarker ['Inactive']. Re-activation was done through the API (201, read back true); it is a clean-up line, not a check. Step 2 says 'Click Work Orders in the top menu': the run opened Work Orders by address; the step has no expected result of its own (same treatment as C368202 / C581894). 0 differences from staging."
+ },
+ "C368125": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 4: on the All tab in Tech View, Esther Howard's group (38 work orders) was collapsed with the arrow on her header.",
+   "Steps 5 and 6: after typing \"Collapse Kept\" in Search, Esther Howard's group stays collapsed (it did not open by itself) and its header count shows 1; none of her rows show.",
+   "Step 7: expanding her group shows the 1 matching row, S1-1401 (\"ZZAUTOTEST F2 Collapse Kept\"); her other test work order, S1-1402 (\"ZZAUTOTEST F2 Collapse Other\"), does not show."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368125-during-search.png",
+   "evidence/prod-2026-10-22/C368125-expanded.png"
+  ],
+  "reason_for_reviewer": "s2-batchC.mts C368125: both work orders led by Esther Howard (leadFixes [] = already so); collapsedBefore true, countBefore 38; during {count 1, collapsed true, rows []}; expanded {count 1, collapsed false, rows [S1-1401]}; kept S1-1401, other S1-1402 (the case's S1-702 is an example number). Not pinned. Work Orders opened by address, All and Tech View clicked, collapse and expand by the header arrow. The design's 'open every group with a match' did not happen. 0 differences from staging."
+ }
+}
