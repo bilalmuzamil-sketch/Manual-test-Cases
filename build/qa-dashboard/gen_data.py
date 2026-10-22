@@ -138,6 +138,13 @@ try:
 except Exception:
     created_by_member = None
 
+# "Epics each QA member is working on" — PROJECT-WIDE (all of ShopView, not the three-epic set),
+# because which epics a person works on is a cross-epic question. Built by fetch_qa_epics.py.
+try:
+    qa_epics = json.load(open(f'{W}/qa-epics.json'))
+except Exception:
+    qa_epics = None
+
 # Two follow-up tables (all "not finished by QA" = 'fin' false — see FINISHED_STATUSES):
 #  needsResponse — the normal Assignee is a QA member (a query is likely waiting on QA),
 #                  PLUS any QA-raised Task still open (so we see it + who it's assigned to).
@@ -165,6 +172,7 @@ data = {'asof': ASOF, 'tz': 'PKT (UTC+5)', 'tickets': out, 'epics': epics,
         'epicStart': epic_start, 'dataMinDate': data_min,
         'inprogress': inprogress, 'activity': activity,
         'createdByMember': created_by_member,
+        'qaEpics': qa_epics,
         'hygiene': {'inprog': inprog, 'bare': bare, 'lower': lower, 'mismatch': mismatch,
                     'per_person': dict(per_person.most_common())}}
 json.dump(data, open(f'{W}/dash-data.json', 'w'), separators=(',', ':'))

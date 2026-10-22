@@ -278,12 +278,22 @@
     </div>
   </div>
 
-  <div class="eyebrow" id="primary-eyebrow">Primary epic per QA member — what each person mainly works on</div>
+  <div class="eyebrow">🗂️ Epics each QA member is working on <span style="font-weight:400;text-transform:none;letter-spacing:0">· across all of ShopView</span></div>
+  <div class="card">
+    <p class="note"><b>Project-wide</b> — every epic each QA member currently has testing work in
+    <b>anywhere in ShopView</b>, not just the three epics this page is scoped to. "Working on" = tickets
+    where the person is the <b>QA Assignee</b> and the ticket is <b>not Done</b> (their live testing
+    queue). This panel is <b>not affected by the epic or date filter</b>; the member filter narrows it.</p>
+    <div class="mwrap"><table class="matrix" id="qaepics"></table></div>
+  </div>
+
+  <div class="eyebrow" id="primary-eyebrow">Primary epic per QA member <span style="font-weight:400;text-transform:none;letter-spacing:0">· within these three epics only</span></div>
   <div class="card" id="primary-card">
-    <p class="note">Each person's <b>main epic</b> = the epic they touched on the most tickets
-    <b>within the selected date range</b> (tickets active in that window). "Focus" = what share of their
-    range work sits in that one epic. Change the calendar and this re-ranks with everything else.
-    <b>Only shown in the "All epics" view</b> — it's a cross-epic comparison, so picking a single epic hides it.</p>
+    <p class="note"><b>Scoped to the three epics on this page</b> (Filters · Schedule · Reporting Suite) —
+    for the full cross-ShopView picture use the project-wide panel just above. Each person's
+    <b>main epic</b> here = the epic they touched on the most tickets <b>within the selected date range</b>
+    (tickets active in that window). "Focus" = what share of their range work sits in that one epic.
+    <b>Only shown in the "All epics" view.</b></p>
     <div class="mwrap"><table class="matrix" id="primary"></table></div>
   </div>
 
@@ -522,7 +532,38 @@ function render(){
   rejected.forEach(t=>{ (t.people.length?t.people:["(unattributed)"]).forEach(p=>pushQ("⚠ rejected: "+p,t)); });
   bars($("cqueue"), queueMix, "b");
 
-  renderProgress(); renderStoryProgress(); renderInprog(); renderNeeds(); renderQueue(); renderActivity(); renderCreatedWeek(); renderPrimary(); renderMatrix(); renderTable();
+  renderProgress(); renderStoryProgress(); renderInprog(); renderNeeds(); renderQueue(); renderActivity(); renderCreatedWeek(); renderQaEpics(); renderPrimary(); renderMatrix(); renderTable();
+}
+
+// "Epics each QA member is working on" — PROJECT-WIDE (DATA.qaEpics, from fetch_qa_epics.py).
+// Ignores the epic/date filter by design (it is the cross-ShopView view); the member filter narrows it.
+function renderQaEpics(){
+  const QE = DATA.qaEpics && DATA.qaEpics.by;
+  const el = $("qaepics");
+  if (!QE){ el.innerHTML = `<tr><td class="ep" style="color:var(--muted)">Project-wide epic data not in this snapshot.</td></tr>`; return; }
+  const rows = (state.q ? QA.filter(p=>p===state.q) : QA).filter(p=>QE[p]);
+  let maxEpics = 1; rows.forEach(p=>{ maxEpics = Math.max(maxEpics, (QE[p].epics||[]).length); });
+  let h = `<tr><th style="text-align:left">QA member</th><th>Open</th><th>Epics</th>`
+    + `<th style="text-align:left">Epics they are working on (ticket counts) — across all of ShopView</th></tr>`;
+  rows.sort((a,b)=> (QE[b].open||0)-(QE[a].open||0));
+  rows.forEach(p=>{
+    const d = QE[p], eps = d.epics||[];
+    const chips = eps.map(e=>{
+      const nm = e.key==="NONE" ? "No epic" : esc(epShortOf(e.key, e.name));
+      const key = e.key==="NONE" ? "" : ` title="${esc(e.key)}"`;
+      return `<span class="chip test"${key}>${nm} · ${e.count}</span>`;
+    }).join(" ");
+    h += `<tr><td class="ep">${esc(p)}</td><td class="tot">${d.open||0}</td>`
+      + `<td>${eps.filter(e=>e.key!=="NONE").length}</td>`
+      + `<td class="ep" style="white-space:normal;max-width:680px">${chips || '<span class="chip">— none open —</span>'}</td></tr>`;
+  });
+  if (!rows.length) h += `<tr><td class="ep" colspan="4" style="color:var(--muted)">No open QA-assigned work found.</td></tr>`;
+  el.innerHTML = h;
+}
+// epic short name: prefer this page's EPICS map, else the name carried in the sidecar, strip [ARCHIVED]
+function epShortOf(key, name){
+  const n = (EPICS[key] || name || key || "").replace(/^\[ARCHIVED\]\s*/,"");
+  return n.length>40 ? n.slice(0,38)+"…" : n;
 }
 
 // "Tickets created by each QA member" — created-count per QA reporter, honoring the member+epic
