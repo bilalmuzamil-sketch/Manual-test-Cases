@@ -23,10 +23,18 @@ const W = (ms: number) => p.waitForTimeout(ms); const RUNNO = String(Date.now() 
 const D = '@staging.shopview.local'; const ES = (await staffRows(a, `zz.wob.esther.howard${D}`)).find((x) => x.email === `zz.wob.esther.howard${D}`);
 if (!ES) { console.log('NO ESTHER'); await done(browser, 1); }
 const canned: any[] = []; { const c = (await a.get('/api/work-orders/canned-lines')).body?.data; canned.push(...(Array.isArray(c) ? c : c?.collection ?? [])); }
-const lineName = (i: number) => String(canned[i % canned.length].canned_line_name ?? canned[i % canned.length].name ?? '').trim();
+// 22 Oct 2026: a canned line's NAME is not always the title the work order page shows (production: canned "ZX" makes the line titled
+// "New York State Inspection"); after one() makes its lines their titles are read off the page in a side tab of the same session,
+// and lineName(i) answers the title of the line made from canned index i (canned name as fallback). L0519.
+const LT: Record<number, string> = {};
+const readTitles = async (id: string, idx: number[]) => { for (const k of Object.keys(LT)) delete LT[+k]; const pg2 = await p.context().newPage();
+  try { await pg2.goto(`${APP}/workorders/${id}/lines`, { waitUntil: 'domcontentloaded' }); await pg2.waitForTimeout(6000);
+    const tt = await pg2.evaluate(`[...document.querySelectorAll('[data-test-id="line_title"]')].map(e => (e.innerText || '').split('\\n')[0].trim())`) as string[];
+    tt.forEach((x, k) => { if (x && idx[k] !== undefined) LT[idx[k]] = x; }); } catch { /* fallback: canned names */ } finally { await pg2.close().catch(() => {}); } };
+const lineName = (i: number) => LT[i] ?? String(canned[i % canned.length].canned_line_name ?? canned[i % canned.length].name ?? '').trim();
 const say = (r: any) => `${r.status}${r.status >= 300 ? ' ' + JSON.stringify(r.body?.message ?? r.body?.errors ?? r.body).slice(0, 140) : ''}`;
 const one = async (name: string) => { const c = await customer(a, `${name} ${RUNNO}`, 'TRK-118'); const id = await workOrder(a, c, 'estimate', null); const ls: string[] = [];
-  for (const i of [1, 2]) ls.push((await a.post(`/api/work-orders/${id}/lines/create-from-canned-line`, { canned_line_id: canned[i].id, status: 'authorized' })).body?.data?.line_id);
+  for (const i of [1, 2]) ls.push((await a.post(`/api/work-orders/${id}/lines/create-from-canned-line`, { canned_line_id: canned[i].id, status: 'authorized' })).body?.data?.line_id); await readTitles(id, [1, 2]);
   await a.post('/api/work-orders/change-status', { id, status: 'approved' }); await a.post('/api/work-orders/change-lead-technician', { work_order_id: id, tech_assigned_id: ES.staff_id });
   return { id, ls, number: (await workOrders(a, `${name} ${RUNNO}`)).find((w: any) => w.id === id)?.number, q: `${name} ${RUNNO}` }; };
 const dlg = () => p.locator('.q-dialog:visible').last();
