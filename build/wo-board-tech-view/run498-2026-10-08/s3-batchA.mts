@@ -12,7 +12,7 @@ import { signIn } from '../../global-search/e2e/fixtures/auth.js';
 import { api, candidates, seedCase, workOrders, customer, workOrder, vehicle } from './data.mts';
 import { EV, t, shot, display, tab, search, groups, toggleGroup, drag, boardCols, allBoardCols, toColumn } from './wob.mts';
 import { startState } from './fixup-1017.mts';
-import { staffRows, person, HEAVY, LETH } from './staff.mts';
+import { staffRows, person, HEAVY, LETH, roleIds } from './staff.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
@@ -212,12 +212,15 @@ await run('C96948', async () => {
   await bv(n); await unpinAll(); await pin(RE.staff_id); await pin(JW.staff_id);
   R.C96948 = { saved: ((await prefs()).pinnedTechnicianIds ?? []).map(nameOf) };
   await display(p, 'Tech View'); R.C96948.tech = (await groups(p)).slice(0, 4).map((g) => `${g.name}${g.pin?.pressed === 'true' ? ' (pinned)' : ''}`); await display(p, 'Board View');
+  // 22 Oct 2026 (production): User-B is read BEFORE the second sign-in — that sign-in ends this browser's session (L0511), so the
+  // switch to User-B through it failed; and User-B is made when missing (production had none).
+  let ub = (await staffRows(a, UB)).find((x) => x.email === UB);
+  if (!ub) { const rr = await person(a, 'ZZAUTOTEST', 'WOB User B', { role: (await roleIds(a))['Admin'], email: UB }); ub = rr.row ?? (await staffRows(a, UB)).find((x) => x.email === UB); }
+  R.C96948.userB = await as(ub.id, async () => { await bv(n); return { pinned: ((await prefs()).pinnedTechnicianIds ?? []).map(nameOf), first: (await boardCols(p)).slice(0, 4).map((c) => `${c.name}${c.pinned === 'true' ? ' (pinned)' : ''}`) }; });
   // 22 Oct 2026 (production): a new sign-in opens at the account's default location — move it to {Location-A} first
   const s2 = await signIn('/customers'); R.C96948.newSignInLocation = (await api(s2.page).post('/api/iam/change-location', { workplace_id: HEAVY, ...(process.env.WOB_LOC_TZ ? { workplace_timezone: process.env.WOB_LOC_TZ } : {}) })).status; await s2.page.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await s2.page.waitForTimeout(4000); await display(s2.page, 'Board View'); await search(s2.page, n);
   R.C96948.newSignIn = (await boardCols(s2.page)).slice(0, 4).map((c) => `${c.name}${c.pinned === 'true' ? ' (pinned)' : ''}`); await shot(s2.page, 'C96948-new-signin');
   await Promise.race([s2.browser.close().catch(() => {}), new Promise((r) => setTimeout(r, 5000))]);
-  const ub = (await staffRows(a, UB)).find((x) => x.email === UB);
-  R.C96948.userB = await as(ub.id, async () => { await bv(n); return { pinned: ((await prefs()).pinnedTechnicianIds ?? []).map(nameOf), first: (await boardCols(p)).slice(0, 4).map((c) => `${c.name}${c.pinned === 'true' ? ' (pinned)' : ''}`) }; });
 });
 
 await run('C96949', async () => {
