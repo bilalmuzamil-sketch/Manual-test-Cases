@@ -61,3 +61,17 @@ Intake: INTAKE-2026-10-19.md. Worker brief: WORKER-BRIEF.md.
 - Design re-check both ways (`design-recheck-2026-10-20/`): all 68 board pictures viewed again; PRD v10 → design 78 elements (51 shown, 9 different, 18 not drawn) plus a by-hand table of 27 menus, lists, tooltips and messages; design → cases 1,370 text rows and 70 visual rows; divergence register 59 rows.
 - **8 missing design cases created in section 84277, pictures attached, read back:** C690658–C690665 (3 of them, C690660, C690662, C690665, held: AUTOMATION: HOLD waiting on the PO, questions Q-A, Q-B, Q-C not yet sent).
 - **C666030 is now wrong:** it expects "Sales Representative" on the part sale; v10 S2-N2 and answer 7 keep "Sales representative". Correcting it waits for the QA lead (with the v10 update).
+
+## 22 Oct 2026 (later) — tech plan pass, Rule 134 (DRAFT, not applied to TestRail)
+- Tech plan re-uploaded 22 Oct (byte-identical to 19 Oct), read in full again: `tech-plan-pass-2026-10-22/` (READING-RECORD, NOTES,
+  TECH-PLAN-STATEMENTS: 72 statements, PASS-REPORT: every case part by part).
+- Verdicts: 122 CONFIRMED, 13 CHANGE (6 in content: S2-07, S2-11, S4-20, S4-21, S5-01, S6-01; 7 tech plan From line only), 0 RETIRE,
+  9 NEW drafted (S2-15, S2-16, S4-27, S4-28, S5-19, S5-20, REL-17, REL-18, REL-19). Library 138 cases; build.py 0 PROBLEM.
+- 6 plan-vs-PRD divergences, all already ruled (answers 5, 7, 14, 16, 25, 39); question 41 drafted (NEW-QUESTIONS.md), not in the sheet.
+- Waiting on the QA lead: go-ahead for the TestRail writes (13 updates, 9 adds, run 547 union) and for sending question 41.
+- 22 Oct 2026 tech-plan pass applied (Rule 134; tech-plan-pass-2026-10-22/PASS-REPORT.md): the tech plan uploaded 22 Oct is byte-identical
+  to 19 Oct; re-read in full. 122 confirmed, 13 updated (6 content: C665931, C665935, C665959, C665960, C665962, C665976 — C665976's
+  steps also split to one action each; 7 "From:" line only), 0 retired, 9 new C715564-C715572. All read back OK (apply4-log). Run 547:
+  135 → 144, none lost. Question 41 added to sheet 17Ry1Bt rows 48-49 (light orange, colour guide F3). Divergences plan-vs-PRD: 6, all
+  already ruled (answers 5, 7, 14, 16, 25, 39). Other suites' cases the plan names (C30255, C154617, C30161, C38923, C30287, C43575):
+  reported, not edited.

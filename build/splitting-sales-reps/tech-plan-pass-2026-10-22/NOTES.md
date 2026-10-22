@@ -307,3 +307,17 @@ Baseline: `python3 authoring/build.py` before any edit → 129 cases, 143 PRD co
 
 ## Reading coverage
 Lines 1-2641 of 2,641 read (chunks 1-200, 201-400, 401-800, 801-1200, 1201-1600, 1601-2000, 2001-2400, 2401-2641): 100%.
+
+## Case check (after the full read) — 22 Oct 2026
+Every case read in full from the authoring files (129) and the six DR bodies; verdict per case in PASS-REPORT.md §7.
+- CHANGE in content: S2-07 (inactive copied onto Parts), S2-11 (part sale pick saved + logged), S4-20 (rename on two customers + save
+  with a switched-off rep), S4-21 (row order), S5-01 (summary / Totals rows under Sales Type), S6-01 (split, one person, one printed name).
+- CHANGE in the tech plan From line only (re-read in full 22 Oct 2026): S2-13, S4-23, S4-24, S5-15, S5-16, S5-17, S7-04.
+- Checked and CONFIRMED where the plan suggested a gap: S5-05 already has the half-cent invoice; S5-06 has all three S5-R8 variants; S5-07
+  has the $0.00 charge; S5-15 has "blank on rep and total rows"; D-05 has 200% zoom; S4-23 says the customer keeps no representative.
+- NEW: S2-15, S2-16, S4-27, S4-28, S5-19, S5-20, REL-17, REL-18, REL-19. RETIRE: none.
+- Question 41 drafted (Part Sales field added while Service Parts holds a switched-off person). Q on the 10k cap dropped (SBR spec S14-E2
+  counts data rows).
+- Gates: build.py 138 cases, 143/143 PRD codes, 68/68 boards, 0 PROBLEM; render_setup.py 1,770 lines.
+- Note: a parent "notes checkpoint" commit (325d60a21, 16:17) captured work in progress; the pre-pass state is commit 118c2e154 and
+  `before/`. This worker made no commit.

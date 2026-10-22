@@ -15,11 +15,11 @@ S2-03,665927,S2,"The + menu closes with Escape or a click outside, with no chang
 S2-04,665928,S2,Changing the Parts representative never changes the Labor one,https://shopview.testrail.io/index.php?/cases/view/665928
 S2-05,665929,S2,The remove x keeps the Labor person in the one field,https://shopview.testrail.io/index.php?/cases/view/665929
 S2-06,665930,S2,Removing Parts when Labor is Unassigned leaves nobody,https://shopview.testrail.io/index.php?/cases/view/665930
-S2-07,665931,S2,An inactive person keeps their side and the other side can change,https://shopview.testrail.io/index.php?/cases/view/665931
+S2-07,665931,S2,An inactive person is copied to Parts and keeps the Labor side,https://shopview.testrail.io/index.php?/cases/view/665931
 S2-08,665932,S2,An invoiced split work order shows both names as plain text,https://shopview.testrail.io/index.php?/cases/view/665932
 S2-09,665933,S2,A change sent to a work order invoiced in another tab is refused,https://shopview.testrail.io/index.php?/cases/view/665933
 S2-10,665934,S2,Reversing the invoice unlocks the field and the next invoice re-captures,https://shopview.testrail.io/index.php?/cases/view/665934
-S2-11,665935,S2,A part sale's card keeps one Sales Representative field and no +,https://shopview.testrail.io/index.php?/cases/view/665935
+S2-11,665935,S2,A part sale's single Sales Representative field still saves and logs,https://shopview.testrail.io/index.php?/cases/view/665935
 S2-12,665936,S2,A work order split off another keeps its representatives,https://shopview.testrail.io/index.php?/cases/view/665936
 S3-01,665937,S3,On a phone the representatives show after the card is expanded,https://shopview.testrail.io/index.php?/cases/view/665937
 S3-02,665938,S3,"On a phone the field, its arrow and the + work without hover",https://shopview.testrail.io/index.php?/cases/view/665938
@@ -43,7 +43,7 @@ S4-16,665955,S4,A work order invoiced with nobody takes the customer's reps per 
 S4-17,665956,S4,An empty side is not filled from the customer at invoicing,https://shopview.testrail.io/index.php?/cases/view/665956
 S4-18,665957,S4,Deactivating a rep clears their customer fields and removes Part Sales,https://shopview.testrail.io/index.php?/cases/view/665957
 S4-19,665958,S4,The Deactivate window counts a customer once when a rep holds two fields,https://shopview.testrail.io/index.php?/cases/view/665958
-S4-20,665959,S4,Renaming a rep updates customer fields and a switched-off rep stays,https://shopview.testrail.io/index.php?/cases/view/665959
+S4-20,665959,S4,"Renaming a rep updates every customer, and a switched-off rep stays",https://shopview.testrail.io/index.php?/cases/view/665959
 S4-21,665960,S4,The assignments export lists one row per customer per person with Side,https://shopview.testrail.io/index.php?/cases/view/665960
 S4-22,665961,S4,Re-importing a customer keeps all its representatives,https://shopview.testrail.io/index.php?/cases/view/665961
 S5-01,665962,S5,A split invoice gives the Labor rep a Labor row and the Parts rep a Parts row,https://shopview.testrail.io/index.php?/cases/view/665962
@@ -134,3 +134,12 @@ S8-12,690671,S8,Exports with no rows still download a file with only the heading
 S3-04,690672,S3,On a wide touch tablet the card opens expanded with its buttons showing,https://shopview.testrail.io/index.php?/cases/view/690672
 S5-18,715271,S5,A part sale's labor cells show a dash in the PDF and are blank in the CSV,https://shopview.testrail.io/index.php?/cases/view/715271
 REL-16,715272,REL,Part sale rows show a dash in the labor columns and the totals do not change,https://shopview.testrail.io/index.php?/cases/view/715272
+S2-15,715564,S2,A work order opened from its history shows its reps as plain text,https://shopview.testrail.io/index.php?/cases/view/715564
+S2-16,715565,S2,Reopening a paid work order keeps its representatives,https://shopview.testrail.io/index.php?/cases/view/715565
+S4-27,715566,S4,A part sale split off another keeps its representative,https://shopview.testrail.io/index.php?/cases/view/715566
+S4-28,715567,S4,A customers-only user sees the representatives in Edit Customer,https://shopview.testrail.io/index.php?/cases/view/715567
+S5-19,715568,S5,A rep whose staff record is gone shows the name kept on the invoice,https://shopview.testrail.io/index.php?/cases/view/715568
+S5-20,715569,DATA,A discount bigger than the invoice is shared by size and both rows end at $0.00,https://shopview.testrail.io/index.php?/cases/view/715569
+REL-17,715570,REL,Filter labels on other reports read as before,https://shopview.testrail.io/index.php?/cases/view/715570
+REL-18,715571,REL,A unit's invoice list and the invoice preview still open after a split,https://shopview.testrail.io/index.php?/cases/view/715571
+REL-19,715572,REL,Log entries and history saved before the release read one representative,https://shopview.testrail.io/index.php?/cases/view/715572

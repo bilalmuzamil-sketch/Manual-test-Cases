@@ -25,7 +25,7 @@ for c, f, prev in upd:
     cid = ids[c["key"]]; live = api(f"get_case/{cid}")
     if live["updated_on"] != prev["updated_on"]: L({"op": "refused_edit_lock", "case": f"C{cid}"}); bad += 1; continue
     if live["section_id"] != SEC[c["sec"]]: L({"op": "refused_section_mismatch", "case": f"C{cid}"}); bad += 1; continue
-    json.dump(live, open(f"{P}/applied/C{cid}-before-v11.json", "w"), indent=1, ensure_ascii=False)
+    json.dump(live, open(f"{P}/applied/C{cid}-before-techplan.json", "w"), indent=1, ensure_ascii=False)
     api(f"update_case/{cid}", f); st = LAST["status"]; a = api(f"get_case/{cid}")
     diff = [x for x, v in f.items() if a.get(x) != v]; bad += bool(diff)
     json.dump(a, open(f"{P}/applied/C{cid}-after.json", "w"), indent=1, ensure_ascii=False)
