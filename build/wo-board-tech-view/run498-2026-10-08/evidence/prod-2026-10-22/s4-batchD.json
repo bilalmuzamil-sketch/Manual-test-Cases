@@ -1,254 +1,38 @@
 {
  "clearedSwitch": 200,
  "nina": [],
- "C96974": {
-  "made": {
-   "estimate": "ok",
-   "approved": "ok",
-   "in_progress": "201 ",
-   "ready_for_review": "201 ",
-   "complete": "201 ",
-   "invoiced": "400 {\"errors\":[{\"error\":\"Work order status cannot be changed manually to invoiced.\"}]}",
-   "paid": "201 ",
-   "declined": "201 ",
-   "lineOnly": 200
-  },
-  "fix": [
-   "line 201",
-   "mileage 201",
-   "remove part request 200",
-   "story 201",
-   "line complete 200",
-   "wo in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
-   "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
-   "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
-   "invoice 201",
-   "status now Invoiced",
-   "line-only (new): line 201 technicians 200",
-   "enrol Nina at Lethbridge 201"
-  ],
-  "ninaLeads": [
-   "S1-1532 paid",
-   "S1-1533 declined",
-   "S1-1531 approved",
-   "S1-1530 complete",
-   "S1-1529 ready_for_review",
-   "S1-1528 in_progress",
-   "S1-1527 invoiced",
-   "S1-1526 estimate"
-  ],
-  "ninaLeadsByStatus": {
-   "paid": 1,
-   "declined": 1,
-   "approved": 1,
-   "complete": 1,
-   "ready_for_review": 1,
-   "in_progress": 1,
-   "invoiced": 1,
-   "estimate": 1
-  },
-  "lineOnly": {
-   "wo": "S1-1535 approved lead=Esther Howard",
-   "lineTechnicians": [
-    "[\"line_id\",\"description\",\"time_estimate\",\"tech_time\",\"is_diagnosis\",\"is_warranty"
-   ],
-   "readBack": {
-    "lines": [
-     "[\"line_id\",\"description\",\"time_estimate\",\"tech_time\",\"is_diagnosis\",\"is_warranty"
-    ],
-    "lineTechnicians": [
-     "Nina Newtech"
-    ],
-    "lead": "Esther Howard",
-    "number": "S1-1535"
-   }
-  },
-  "secondLocation": {
-   "at": "Trucks Hill 2",
-   "wo": "S2-1536 approved lead=Nina Newtech",
-   "ninaOfferedThere": true
-  },
-  "count_Work Orders": "4 open",
-  "count_All": "4 open"
- },
  "C96968": {
   "board": {
-   "refused": [
-    "POST /api/work-orders/30220c3a-ae36-4850-adc0-3725fd221a0e/board-move"
-   ],
+   "refused": [],
    "message": [
+    "Part of the page failed to load. Your connection may have dropped. Reload to try again. Reload",
     "Failed to update lead technician, please try again."
    ],
    "cardBack": true,
    "after10s": [
+    "Part of the page failed to load. Your connection may have dropped. Reload to try again. Reload",
     "Failed to update lead technician, please try again."
    ],
-   "afterX": [],
+   "afterX": [
+    "Failed to update lead technician, please try again."
+   ],
    "leadAfterReload": "Esther Howard"
   },
   "tech": {
-   "refused": [
-    "POST /api/work-orders/30220c3a-ae36-4850-adc0-3725fd221a0e/board-move"
-   ],
+   "refused": [],
    "message": [
+    "Part of the page failed to load. Your connection may have dropped. Reload to try again. Reload",
     "Failed to update lead technician, please try again."
    ],
    "cardBack": true,
    "after10s": [
+    "Part of the page failed to load. Your connection may have dropped. Reload to try again. Reload",
     "Failed to update lead technician, please try again."
    ],
-   "afterX": [],
+   "afterX": [
+    "Failed to update lead technician, please try again."
+   ],
    "leadAfterReload": "Esther Howard"
   }
- },
- "C368137": {
-  "board": {
-   "before": [
-    "S1-1538",
-    "S1-1539",
-    "S1-1540"
-   ],
-   "refused": [
-    "POST /api/work-orders/71cf44dd-21a0-46aa-8f5d-4c8546539291/board-move"
-   ],
-   "message": [
-    "Couldn't save the new order. Please try again."
-   ],
-   "after": [
-    "S1-1538",
-    "S1-1539",
-    "S1-1540"
-   ],
-   "afterReload": [
-    "S1-1538",
-    "S1-1539",
-    "S1-1540"
-   ]
-  },
-  "tech": {
-   "before": [
-    "S1-1538",
-    "S1-1539",
-    "S1-1540"
-   ],
-   "refused": [
-    "POST /api/work-orders/71cf44dd-21a0-46aa-8f5d-4c8546539291/board-move"
-   ],
-   "message": [
-    "Couldn't save the new order. Please try again."
-   ],
-   "after": [
-    "S1-1538",
-    "S1-1539",
-    "S1-1540"
-   ],
-   "afterReload": [
-    "S1-1538",
-    "S1-1539",
-    "S1-1540"
-   ]
-  }
- },
- "C96971": {
-  "afterBrowser1": "Ralph Edwards",
-  "browser2Message": [
-   "Lead technician updated"
-  ],
-  "afterBrowser2": "Dana Ortiz",
-  "reload": {
-   "browser1": "Dana Ortiz",
-   "browser2": "Dana Ortiz"
-  }
- },
- "C368138": {
-  "moved": "S1-1543",
-  "browser2Lead": "Ralph Edwards",
-  "browser1": {
-   "dropped": "S1-1544",
-   "message": [
-    "Couldn't save the new order. Please try again. The card you dropped this next to has moved. Refresh the board and try again."
-   ],
-   "esther": [
-    "S1-1542",
-    "S1-1544"
-   ]
-  },
-  "afterReload": {
-   "esther": [
-    "S1-1542",
-    "S1-1544"
-   ],
-   "ralph": [
-    "S1-1543"
-   ]
-  }
- },
- "C368139": {
-  "tries": [
-   {
-    "b1": [
-     "Lead technician updated"
-    ],
-    "b2": [
-     "Lead technician updated"
-    ],
-    "leads": {
-     "S1-1546": "Ralph Edwards",
-     "S1-1545": "Ralph Edwards"
-    }
-   },
-   {
-    "b1": [
-     "Lead technician updated"
-    ],
-    "b2": [
-     "Lead technician updated"
-    ],
-    "leads": {
-     "S1-1546": "Ralph Edwards",
-     "S1-1545": "Ralph Edwards"
-    }
-   },
-   {
-    "b1": [
-     "Lead technician updated"
-    ],
-    "b2": [
-     "Lead technician updated"
-    ],
-    "leads": {
-     "S1-1546": "Ralph Edwards",
-     "S1-1545": "Ralph Edwards"
-    }
-   },
-   {
-    "b1": [
-     "Lead technician updated"
-    ],
-    "b2": [
-     "Lead technician updated"
-    ],
-    "leads": {
-     "S1-1546": "Ralph Edwards",
-     "S1-1545": "Ralph Edwards"
-    }
-   },
-   {
-    "b1": [
-     "Lead technician updated"
-    ],
-    "b2": [
-     "Lead technician updated"
-    ],
-    "leads": {
-     "S1-1546": "Ralph Edwards",
-     "S1-1545": "Ralph Edwards"
-    }
-   }
-  ],
-  "afterReload": [
-   "S1-1545@Ralph Edwards",
-   "S1-1546@Ralph Edwards"
-  ]
  }
 }
