@@ -660,3 +660,7 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - Six run 498 scripts carried the sv10043 QA-branch location ids as literals (`b3c8c820…`, `f8a8b802…`) — on any other environment they point nowhere. They now take HEAVY / LETH from `profile.mts`. Before a run on a new environment: `grep -n "b3c8c820\|f8a8b802\|d55bc308" <scripts>` must be empty.
 - A hung step blocks the whole queue silently: when a re-run's log stops growing for >10 min, read its last line, kill it by PID and re-queue it fixed (the queue's next step starts on its own).
 #run498 #production #signin #session → L0505, L0510
+
+## L0512 — 2026-10-22 — Check a test is still IN the run before re-running it
+- The production redo queue re-ran C96956 and C96973 (about 3 minutes of production time and one sign-in) although both had already been moved to the fast-follow folder and taken out of run 498; `judge_pack.py` then skipped them ("not in run 498"). Before queuing any re-run, list the run's tests (`get_tests/498`, paged) and drop the C-ids that are not there — fast-follow moves happen mid-day.
+#run498 #fast-follow #redo → L0494, L0511
