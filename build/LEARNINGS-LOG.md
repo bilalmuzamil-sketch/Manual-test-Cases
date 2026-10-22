@@ -768,3 +768,7 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - Where to look first when a list-row click times out: the test's `startState.location` in the script JSON (every test records it). If it is the second location, the culprit is the previous test's switch back, not the product.
 - Fix pattern (local, not in shared `wob.mts`, Rule 129): a `backHome()` per script = `ensureLocation` with `WOB_LOC_TRIES=3`, then the profile-menu switch in a fresh tab of the same session, then reload; called at the end of any test that leaves the first location AND at the start of the test after it. Applied in `high2-batch.mts` (C368212/C368214) and `ps-counts.mts` (C368217).
 #run498 #production #location → L0530, L0527
+
+## L0532 — 2026-10-22 — Production's New Location form needs a Country before State/Province
+- Settings > Locations > New Location on production (`app.shopview.com`, v26.43.0-ffea43c) marks **Country** as required ("Country is a required field") and **State/Province** stays empty until a country is chosen; staging's form had no Country field, so `notech-stg4.mts` (C368130) filled State only and Save & Close did nothing (no message). Pick Country "United States" first, then type the state. The form also shows "Setting up a new location may result in additional billing." — production is a dummy account (Rule 107, 2026-09-22), so this is expected.
+#production #locations #form → L0527, L0531

@@ -53,6 +53,9 @@ if (want('C368130')) {
       await d.locator('.q-field').filter({ hasText: /Name \*/ }).first().locator('input').fill(LOC);
       const fill = async (lab: string, v: string) => { const i = d.getByLabel(lab, { exact: true }).first(); await i.click(); await i.fill(v); await p.keyboard.press('Escape').catch(() => {}); await p.waitForTimeout(300); };
       await fill('Address 1', '2 ZZAUTOTEST Way'); await fill('City', 'Las Vegas'); { const z = d.getByLabel(/ZIP/i).first(); await z.click(); await z.fill('89135'); } { const ph = d.getByLabel(/Telephone/i).first(); await ph.click(); await p.keyboard.type('7025550198', { delay: 30 }); }
+      // 22 Oct 2026 (production): the form also requires Country, and State/Province offers nothing until a country is chosen
+      { const co = d.locator('.q-field').filter({ hasText: /^\s*Country/ }).first(); if (await co.count()) { await co.click(); await p.waitForTimeout(800); await p.keyboard.type('United States', { delay: 40 }); await p.waitForTimeout(1500);
+        await p.locator('.q-menu .q-item').filter({ hasText: /^\s*United States( of America)?\s*$/ }).first().click().catch(async () => { await p.locator('.q-menu .q-item').filter({ hasText: 'United States' }).first().click().catch(() => {}); }); await p.waitForTimeout(1200); o.country = (await co.innerText().catch(() => '')).replace(/\s+/g, ' ').trim(); } }
       const st = d.getByLabel('State/Province').first(); await st.click(); await p.waitForTimeout(800); await p.keyboard.type('Nevada', { delay: 40 }); await p.waitForTimeout(1200);
       await p.locator('.q-menu .q-item').filter({ hasText: 'Nevada' }).first().click().catch(() => {}); await p.waitForTimeout(800);
       const tz = d.locator('.q-field').filter({ hasText: /Timezone/ }).first(); await tz.click(); await p.waitForTimeout(800); await p.keyboard.type('Karachi', { delay: 50 }); await p.waitForTimeout(1500);
