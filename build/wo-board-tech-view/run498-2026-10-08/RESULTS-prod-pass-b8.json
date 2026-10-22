@@ -1,0 +1,139 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - pass-b8"
+ },
+ "results": {
+  "C368220": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 and 2: Parts in the top menu, then Returns in the left menu; the Returns tab is the selected one (blue) and Vendor shows no chosen value.",
+    "Step 3: in the Vendor filter \"gfhfghg\" was picked; the button now reads \"Vendor: gfhfghg\".",
+    "Step 4: after closing the filter the list shows 1 return (Manual Return, gfhfghg, part bj030275, $41.44) and the Total $41.44.",
+    "Step 5: after reloading, the button still reads \"Vendor: gfhfghg\", gfhfghg is still ticked in the open filter, and the same single row and total show. No error message appeared."
+   ],
+   "pictures": [
+    "pictures-prod/C368220-1-prod-1022.png",
+    "pictures-prod/C368220-2-prod-1022.png",
+    "pictures-prod/C368220-3-prod-1022.png"
+   ]
+  },
+  "C368222": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Step 1: Parts in the top menu, then Part Sales; Status reads \"Status: Estimate, +1\" (Estimate and Approved ticked).",
+    "Step 2: Completed was ticked as well; the button now reads \"Status: Estimate, +2\".",
+    "Step 3: after closing the filter the list shows 8 part sales (Complete, Approved and Estimate ones, e.g. P1-71, P1-57, P1-47).",
+    "Step 4: after reloading, the button still reads \"Status: Estimate, +2\", Estimate, Approved and Completed are still ticked, and the same 8 part sales show. No error message appeared."
+   ],
+   "pictures": [
+    "pictures-prod/C368222-1-prod-1022.png",
+    "pictures-prod/C368222-2-prod-1022.png"
+   ]
+  },
+  "C368224": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Step 1: Parts in the top menu, then Catalog; Manufacturer reads \"All manufacturers\" and the page lists catalog parts.",
+    "Step 2: in Manufacturer the first real value, \"Imran tahir\", was ticked; the button reads \"Manufacturer: Imran tahir\".",
+    "Step 3: after closing the filter the list shows 1 part (Delco Remy Starter 39MT, DR-ST39MT-8402).",
+    "Step 4: after reloading, the button still reads \"Manufacturer: Imran tahir\", it is still ticked, and the same single part shows. No error message appeared."
+   ],
+   "pictures": [
+    "pictures-prod/C368224-1-prod-1022.png",
+    "pictures-prod/C368224-2-prod-1022.png"
+   ]
+  },
+  "C368225": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Step 1: Parts in the top menu, then Inventory; Category reads \"All categories\" and the page lists parts.",
+    "Step 2: in Category \"Uncategorized\" was ticked; the button reads \"Category: Uncategorized\".",
+    "Step 3: after closing the filter the list shows only Uncategorized parts (e.g. jkj, Item-6941, Item-2858).",
+    "Step 4: after reloading, the button still reads \"Category: Uncategorized\", it is still ticked, and the same parts show in the same order. No error message appeared."
+   ],
+   "pictures": [
+    "pictures-prod/C368225-1-prod-1022.png",
+    "pictures-prod/C368225-2-prod-1022.png"
+   ]
+  },
+  "C368227": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 and 2: Reports in the top menu, then Sales By Customer; Customer reads \"All customers\".",
+    "Step 3: \"ZZAUTOTEST DC11 Board Card 88821\" was clicked; it alone is ticked and the button reads \"Customer: ZZAUTOTEST DC11...\".",
+    "Step 4: after closing the filter the report shows that one customer and its Totals ($185.00 labor, $244.59 subtotal).",
+    "Step 5: after reloading, the same customer is still ticked, the button still names it, and the same row and totals show. No error message appeared."
+   ],
+   "pictures": [
+    "pictures-prod/C368227-1-prod-1022.png",
+    "pictures-prod/C368227-2-prod-1022.png"
+   ]
+  },
+  "C368228": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 and 2: Reports in the top menu, then Parts Velocity (PARTS group); Vendor reads \"All vendors\".",
+    "Step 3: \"gfhfghg\" was clicked; the button reads \"Vendor: gfhfghg\".",
+    "Step 4: after closing the filter the report shows 1 part (Special Order 3232221, revenue $99.00, margin $88.00).",
+    "Step 5: after reloading, the button still reads \"Vendor: gfhfghg\", it is still ticked, and the same row shows. No error message appeared."
+   ],
+   "pictures": [
+    "pictures-prod/C368228-1-prod-1022.png",
+    "pictures-prod/C368228-2-prod-1022.png"
+   ]
+  },
+  "C368229": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 and 2: Reports in the top menu, then Inventory Value (PARTS group); Category reads \"All categories\".",
+    "Step 3: \"Air Conditioning\" was clicked; the button reads \"Category: Air Conditioning\".",
+    "Step 4: after closing the filter the report shows 1 part (10098, Bilal2, Truck Hill 1, Qty 12) and Totals $144.00 margin, $264.00 sell, $120.00 cost.",
+    "Step 5: after reloading, the button still reads \"Category: Air Conditioning\", it is still ticked, and the same row and totals show. No error message appeared."
+   ],
+   "pictures": [
+    "pictures-prod/C368229-1-prod-1022.png",
+    "pictures-prod/C368229-2-prod-1022.png"
+   ]
+  },
+  "C368230": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 and 2: Reports in the top menu, then Technician Utilization; all technicians are ticked (Select all, Ahtesham ABCPROD, Service Advisor No Reports (Admin)).",
+    "Step 3: \"Service Advisor No Reports (Admin)\" was unticked; the button reads \"Technician: Ahtesham ABCPROD\".",
+    "Step 4: after closing the filter the report shows only Ahtesham ABCPROD's row and the Summary.",
+    "Step 5: after reloading, the button still reads \"Technician: Ahtesham ABCPROD\", Service Advisor No Reports (Admin) is still unticked, and the same single technician's row shows. No error message appeared.",
+    "Note: Ahtesham ABCPROD's hours moved from 519.76 to 519.77 between the two readings because his clock is running; the rows are the same."
+   ],
+   "pictures": [
+    "pictures-prod/C368230-1-prod-1022.png",
+    "pictures-prod/C368230-2-prod-1022.png"
+   ]
+  },
+  "C368213": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Set-up: customer \"ZZAUTOTEST WO Parts Counts 62840\" with Approved work order S1-1322 and two part requests; one was ordered and received (Vendor Invoice # ZZAUTOTEST-INV-81812 typed on the receive page) and a return was raised on it.",
+    "Step 1: Work Orders, All tab, Search \"ZZAUTOTEST WO Parts Counts 62840\": S1-1322 shows in the List.",
+    "Step 2: in Column Selection, Parts and Returns were turned on; both columns appear at the right of the List.",
+    "Step 3: S1-1322's row reads Parts 2 and Returns 1, the ones created."
+   ],
+   "pictures": [
+    "pictures-prod/C368213-1-prod-1022.png",
+    "pictures-prod/C368213-2-prod-1022.png",
+    "pictures-prod/C368213-3-prod-1022.png"
+   ]
+  }
+ }
+}

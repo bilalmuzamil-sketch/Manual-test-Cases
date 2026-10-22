@@ -1,0 +1,56 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - blocked-density"
+ },
+ "results": {
+  "C97025": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on production (v26.43.0-ffea43c): step 4 cannot be done as written.",
+    "Steps 1 to 3 (Board View, Fields to display) were reached; at step 4 Board View has no Density control to open.",
+    "The current product document says: \"Board View shows no Density control in this release (SV-11580).\" (PRD v73, S3-R11, read 22 Oct 2026). The product follows it; the test step is out of date.",
+    "What needs to be done: the QA lead decides whether the density part of this test moves to Tech View (where density exists); the test is then run again."
+   ],
+   "pictures": [],
+   "failed_steps": "Blocked at step 4: the test changes the density while in Board View, and this release has no density control in Board View.",
+   "bold_steps": [
+    4
+   ],
+   "todo": "QA lead decision per test (Rule 114(c)): move the density step to Tech View, and say whether the expected counts change; then re-run."
+  },
+  "C97027": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on production (v26.43.0-ffea43c): step 2 cannot be done as written.",
+    "Step 1 was reached; at step 2 the field change is possible but Board View has no density control, so \"then change the density\" cannot be done there.",
+    "The current product document says: \"Board View shows no Density control in this release (SV-11580).\" (PRD v73, S3-R11, read 22 Oct 2026). The product follows it; the test step is out of date.",
+    "What needs to be done: the QA lead decides whether the density part of this test moves to Tech View (where density exists); the test is then run again."
+   ],
+   "pictures": [],
+   "failed_steps": "Blocked at step 2: the test changes the density while in Board View, and this release has no density control in Board View.",
+   "bold_steps": [
+    2
+   ],
+   "todo": "QA lead decision per test (Rule 114(c)): move the density step to Tech View, and say whether the expected counts change; then re-run."
+  },
+  "C97035": {
+   "verdict": "Blocked",
+   "observed": [
+    "Result: Blocked on production (v26.43.0-ffea43c): step 6 cannot be done as written.",
+    "Steps 1 to 5 were reached; at step 6 (\"Pick Compact density\") Board View, where the test is at that point, has no density control.",
+    "The current product document says: \"Board View shows no Density control in this release (SV-11580).\" (PRD v73, S3-R11, read 22 Oct 2026). The product follows it; the test step is out of date.",
+    "What needs to be done: the QA lead decides whether the density part of this test moves to Tech View (where density exists); the test is then run again.",
+    "Note for the QA lead: the expected count \"work_orders_density_load = 2 (once for each of the two displays)\" may also need your decision, because only Tech View has a density now."
+   ],
+   "pictures": [],
+   "failed_steps": "Blocked at step 6: the test changes the density while in Board View, and this release has no density control in Board View.",
+   "bold_steps": [
+    6
+   ],
+   "todo": "QA lead decision per test (Rule 114(c)): move the density step to Tech View, and say whether the expected counts change; then re-run."
+  }
+ }
+}
