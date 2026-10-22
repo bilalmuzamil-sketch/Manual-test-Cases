@@ -1,0 +1,308 @@
+from ssr_lib import C, prd_line, AQ
+from common import *
+
+# ---------------- Story 1: one Sales Representative field ----------------
+C("S1-01", "S1", "Sales Representative sits under Service Advisor and reads Unassigned",
+  [ADMIN, CUST, WO(), WO_START],
+  ["Look at the work order card without hovering over it.",
+   "Find the Sales Representative field."],
+  ["Step 1: the card shows Lead Technician, then Service Advisor, then a field labelled \"Sales Representative\" directly under Service Advisor.",
+   "Step 2: the label \"Sales Representative\" is on the first line and \"Unassigned\" on the second. At rest there is no box around it, no dropdown arrow and no button beside it."],
+  ["S1-R1", "S1-R2", "S1-R3", "S1-R7"])
+
+C("S1-02", "S1", "Sales Representative list starts with Unassigned, then reps by first name",
+  [ADMIN,
+   ('Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. {Sales-rep-A} and {Sales-rep-B} share a first name; {Sales-rep-C} has a later first name.',
+    "For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ann Brook and {Sales-rep-C} is ZZAUTOTEST Ben Able (first name \"ZZAUTOTEST Ann\" or \"ZZAUTOTEST Ben\")."),
+   ('Staff member {Staff-member-D} is active at {Location-A} with the "Sales Representative" switch off.', "For example: {Staff-member-D} is ZZAUTOTEST Dan Noswitch."),
+   CUST, WO(), WO_START],
+  ["Click the Sales Representative field.",
+   "Read the options in the dropdown from top to bottom.",
+   "Look for a search box in the dropdown.",
+   "Look for {Staff-member-D} in the list."],
+  ["Step 1: a dropdown opens under the field.",
+   "Step 2: the first option is \"Unassigned\" and it is checked. The sales representatives follow, sorted by first name, then last name, A to Z, so {Sales-rep-A} comes before {Sales-rep-B}, and {Sales-rep-B} before {Sales-rep-C}.",
+   "Step 3: there is no search box.",
+   "Step 4: {Staff-member-D} is not listed."],
+  ["S1-R8", "S1-R9", "S1-R12", "S1-N2"])
+
+C("S1-03", "S1", "Picking a sales representative saves at once and closes the list",
+  [ADMIN, REPS2, CUST, WO(), WO_START],
+  ["Click the Sales Representative field.",
+   "Click {Sales-rep-A} in the dropdown.",
+   "Look for a Save button near the field.",
+   "Reload the page.",
+   "Click the Sales Representative field again."],
+  ["Step 1: the dropdown opens.",
+   "Step 2: the dropdown closes and the field reads {Sales-rep-A}.",
+   "Step 3: there is no Save button; the change is already saved.",
+   "Step 4: after the reload the field still reads {Sales-rep-A}.",
+   "Step 5: {Sales-rep-A} is the checked option."],
+  ["S1-R13", "S1-R14", "S1-R15", "S1-R9"])
+
+C("S1-04", "S1", "Picking Unassigned clears the Sales Representative field",
+  [ADMIN, REPS2, CUST, WO('its one "Sales Representative" field reads {Sales-rep-A}'), WO_START],
+  *SR(("Hover over the Sales Representative field and look inside it for an x.", "there is no x inside the field."),
+      ("Click the field.", "the dropdown opens."),
+      ("Click \"Unassigned\".", "the dropdown closes and the field reads \"Unassigned\"."),
+      ("Reload the page.", "after the reload the field still reads \"Unassigned\"."),
+      ("Click the field.", "\"Unassigned\" is the checked option.")),
+  ["S1-R10", "S1-R7", "S1-R9", "S1-R14"])
+
+C("S1-05", "S1", "Escape or a click outside closes the list without a change",
+  [ADMIN, REPS2, CUST, WO('its one "Sales Representative" field reads {Sales-rep-A}'), WO_START],
+  ["Click the Sales Representative field.",
+   "Press Escape.",
+   "Click the field again.",
+   "Click on an empty part of the page outside the dropdown."],
+  ["Step 1: the dropdown opens.",
+   "Step 2: the dropdown closes and the field still reads {Sales-rep-A}.",
+   "Step 3: the dropdown opens again.",
+   "Step 4: the dropdown closes and the field still reads {Sales-rep-A}."],
+  ["S1-R15"])
+
+C("S1-06", "S1", "A user who can only view work orders sees the field as plain text",
+  [('You are signed in as {User-B}, whose role has "Work Orders — View" but not "Work Orders — Create & Edit", at {Location-A}.',
+    "For example: {User-B} is ZZAUTOTEST SSR Viewer with the custom role ZZAUTOTEST SSR View Only; {Location-A} is Staging Heavy Duty - 9919."),
+   REPS2, CUST, WO('its one "Sales Representative" field reads {Sales-rep-A}'), WO_START],
+  ["Hover over the Sales Representative field.",
+   "Click the field."],
+  ["Step 1: the field shows as plain text, \"Sales Representative\" with {Sales-rep-A} under it, with no box, no arrow, no + and no remove x.",
+   "Step 2: nothing opens; the field cannot be changed."],
+  ["S1-N1"])
+
+C("S1-07", "S1", "A rep whose switch is turned off stays and reads (Inactive)",
+  [ADMIN, REPS2, CUST, WO('its one "Sales Representative" field reads {Sales-rep-B}'),
+   START("Settings > Staff is open in a desktop browser at least 1024 px wide")],
+  *SR(("Open {Sales-rep-B}'s staff record.", "the staff record opens with the \"Sales Representative\" switch on."),
+      ("Turn the \"Sales Representative\" switch off.", "the switch shows off."),
+      ("Save the staff record.", "the staff record saves."),
+      ("Open {Work-order-1}.", " the Sales Representative field reads \"{Sales-rep-B} (Inactive)\"."),
+      ("Click the Sales Representative field.", "{Sales-rep-B} is not in the dropdown, and no option is checked."),
+      ("Click on an empty part of the page to close the dropdown.", "the field still reads \"{Sales-rep-B} (Inactive)\"; nothing changed.")),
+  ["S1-E2"])
+
+C("S1-08", "S1", "A deactivated staff member stays in the field and reads (Inactive)",
+  [ADMIN, REPS2, CUST, WO('its one "Sales Representative" field reads {Sales-rep-B}'),
+   START("Settings > Staff is open in a desktop browser at least 1024 px wide")],
+  *SR(("Start deactivating {Sales-rep-B}'s staff account.", "the Deactivate window opens."),
+      ("Confirm the deactivation.", "{Sales-rep-B} is deactivated."),
+      ("Open {Work-order-1}.", "the Sales Representative field reads \"{Sales-rep-B} (Inactive)\"."),
+      ("Click the Sales Representative field.", "{Sales-rep-B} is not in the dropdown, and no option is checked."),
+      ("Click {Sales-rep-A}.", "the field reads {Sales-rep-A}; the inactive name is gone from the field.")),
+  ["S1-E2"])
+
+C("S1-09", "S1", "Picking a rep turned off in another tab is refused with a message",
+  [ADMIN, REPS2, CUST, WO(), WO_START + " Settings > Staff is open in a second tab of the same browser"],
+  *SR(("In the first tab, click the Sales Representative field so the dropdown lists {Sales-rep-B}.", "the dropdown is open and lists {Sales-rep-B}."),
+      ("In the second tab, open {Sales-rep-B}'s staff record.", "the staff record opens with the \"Sales Representative\" switch on."),
+      ("Turn the \"Sales Representative\" switch off.", "the switch shows off."),
+      ("Save the staff record.", "the staff record saves."),
+      ("Back in the first tab, without reloading, click {Sales-rep-B} in the open dropdown.", "the change is refused with the message \"The selected staff member is not a sales representative.\" and the field returns to \"Unassigned\".")),
+  ["S1-N2", "S1-N3", ("User Feedback Summary, a non-representative sent by another route", "Error message; the field returns to the saved value")],
+  note="A stale open dropdown is the way a manual tester can send a person who is no longer a sales representative. If the build re-checks the list when the dropdown is clicked and never offers the person, mark the case Blocked and say so.")
+
+C("S1-10", "S1", "Developer check: a failed save or a change made mid-save",
+  [ADMIN, REPS2, CUST, WO(), WO_START],
+  *SR(("Make the next save of a Sales Representative change fail (for example by going offline in the browser).", "the browser is offline; the field still reads \"Unassigned\"."),
+      ("Pick {Sales-rep-A} in the Sales Representative field.", "the field returns to the last saved value and an error message shows."),
+      ("Bring the connection back.", "the browser is online again."),
+      ("Pick {Sales-rep-B} in the Sales Representative field.", "the field reads {Sales-rep-B} while it saves."),
+      ("Before that save finishes, pick {Sales-rep-A}.", "the change made while the first was saving is ignored."),
+      ("Before that save finishes, click the + button.", "the + cannot be clicked until the save finishes; then the field shows what was saved ({Sales-rep-B}).")),
+  ["S1-N3", "S1-E1"],
+  marker="AUTOMATION: HOLD - needs a forced save failure and a timed second click; check with developer tools or automation, not by hand")
+
+GONE = "AUTOMATION: HOLD - only a data repair makes a staff record stop existing or belong to another organization; developers check this, manual QA cannot set it up"
+C("S1-11", "S1", "A rep who no longer exists or is in another organization reads Unassigned",
+  [ADMIN, REPS2, CUST,
+   ('Work order {Work-order-1} for {Customer-A} is open and not invoiced; "Sales Representative - Labor" reads {Sales-rep-A} and "Sales Representative - Parts" holds {Staff-member-C}, whose staff record no longer exists.',
+    "For example: {Work-order-1} is S2-40001 and {Staff-member-C} is ZZAUTOTEST Gone Rep."),
+   ('Work order {Work-order-2} for {Customer-A} is open and not invoiced; its one "Sales Representative" field holds {Staff-member-D}, a staff member of another organization.',
+    "For example: {Work-order-2} is S2-40002 and {Staff-member-D} is ZZAUTOTEST Other Org Rep."),
+   WO_START],
+  ["Look at {Work-order-1}'s Sales Representative fields without clicking them.",
+   "Open {Work-order-2} and look at its Sales Representative field."],
+  ["Step 1: \"Sales Representative - Parts\" reads \"Unassigned\", never a bare \"(Inactive)\"; \"Sales Representative - Labor\" still reads {Sales-rep-A}.",
+   "Step 2: the Sales Representative field reads \"Unassigned\", never a bare \"(Inactive)\"."],
+  ["S1-E3", ("Story 6 context note (S6-N1, S1-E3, S7-R6)", prd_line("* Context note (S6-N1, S1-E3, S7-R6)")), AQ(5), AQ(30)],
+  marker=GONE,
+  note="A manual tester cannot set up this case: a staff record stops existing, or sits in another organization, only through a data repair. The developers check it.")
+
+# ---------------- Story 2: Labor and Parts ----------------
+C("S2-01", "S2", "The + adds Labor and Parts fields holding the same person",
+  [ADMIN, REPS2, CUST, WO('its one "Sales Representative" field reads {Sales-rep-A}'), WO_START],
+  *SR(("Hover over the Sales Representative field.", "a + button shows to the right of the field."),
+      ("Hover over the + button.", "the tooltip \"Add representative\" shows."),
+      ("Click the + button.", "a menu opens below the + with one option, \"Sales Representative - Parts\"; the tooltip is not shown while the menu is open."),
+      ("Click \"Sales Representative - Parts\" in the menu.", "the menu closes and the one field becomes two, in this order: \"Sales Representative - Labor\" and \"Sales Representative - Parts\". Both read {Sales-rep-A}."),
+      ("Look at both fields without clicking anything.", "neither dropdown has opened on its own. Both labels show in full. \"Sales Representative - Parts\" has a remove x to its right; \"Sales Representative - Labor\" has no button, and the + is gone."),
+      ("Reload the page.", "after the reload both fields still show and both read {Sales-rep-A}.")),
+  ["S2-R1", "S2-R3", "S2-R4", "S2-R5", "S2-R6", "S2-R7", "S2-R8", "S2-R10", "S2-R14", "S2-R15"])
+
+C("S2-02", "S2", "Adding the Parts field to an Unassigned work order gives two Unassigned",
+  [ADMIN, CUST, WO(), WO_START],
+  *SR(("Hover over the Sales Representative field.", "the + button shows beside the field."),
+      ("Click the + button.", "the menu opens with \"Sales Representative - Parts\"."),
+      ("Click \"Sales Representative - Parts\".", "\"Sales Representative - Labor\" and \"Sales Representative - Parts\" both read \"Unassigned\".")),
+  ["S2-R5", "S2-R6"])
+
+C("S2-03", "S2", "The + menu closes with Escape or a click outside, with no change",
+  [ADMIN, REPS2, CUST, WO('its one "Sales Representative" field reads {Sales-rep-A}'), WO_START],
+  *SR(("Hover over the Sales Representative field.", "the + button shows beside the field."),
+      ("Click the + button.", "the menu opens below the + ."),
+      ("Press Escape.", "the menu closes; the card still shows one \"Sales Representative\" field reading {Sales-rep-A}."),
+      ("Click the + button again.", "the menu opens again."),
+      ("Click on an empty part of the page outside the menu.", "the menu closes; still one field reading {Sales-rep-A}.")),
+  ["S2-R4"])
+
+C("S2-04", "S2", "Changing the Parts representative never changes the Labor one",
+  [ADMIN, REPS2, CUST, WO('its card shows "Sales Representative - Labor" and "Sales Representative - Parts", both reading {Sales-rep-A}'), WO_START],
+  *SR(("Click \"Sales Representative - Parts\".", "the dropdown opens."),
+      ("Click {Sales-rep-B} in the dropdown.", "Parts reads {Sales-rep-B}; Labor still reads {Sales-rep-A}."),
+      ("Click \"Sales Representative - Labor\".", "the dropdown opens."),
+      ("Click \"Unassigned\" in the dropdown.", "Labor reads \"Unassigned\"; Parts still reads {Sales-rep-B}. Labor is not handed to {Sales-rep-B}."),
+      ("Reload the page.", "Labor reads \"Unassigned\" and Parts reads {Sales-rep-B}."),
+      ("Click \"Sales Representative - Labor\".", "the dropdown opens."),
+      ("Click {Sales-rep-B} in the dropdown.", "both fields read {Sales-rep-B}."),
+      ("Reload the page.", "both fields still show after the reload and both read {Sales-rep-B}.")),
+  ["S2-R11", "S2-R12", "S2-N1", "S2-R15"])
+
+C("S2-05", "S2", "The remove x keeps the Labor person in the one field",
+  [ADMIN, REPS2, CUST, WO('its card shows "Sales Representative - Labor" reading {Sales-rep-A} and "Sales Representative - Parts" reading {Sales-rep-B}'), WO_START],
+  ["Hover over the remove x beside \"Sales Representative - Parts\".",
+   "Click the remove x.",
+   "Reload the page."],
+  ["Step 1: the tooltip reads \"Remove Sales Representative - Parts\".",
+   "Step 2: the two fields become one \"Sales Representative\" field reading {Sales-rep-A}, with the + beside it again.",
+   "Step 3: after the reload there is still one field reading {Sales-rep-A}."],
+  ["S2-R9", "S2-R16"])
+
+C("S2-06", "S2", "Removing Parts when Labor is Unassigned leaves nobody",
+  [ADMIN, REPS2, CUST, WO('its card shows "Sales Representative - Labor" reading "Unassigned" and "Sales Representative - Parts" reading {Sales-rep-B}'), WO_START],
+  ["Click the remove x beside \"Sales Representative - Parts\"."],
+  ["Step 1: one \"Sales Representative\" field shows, reading \"Unassigned\"; {Sales-rep-B} is no longer on the work order."],
+  ["S2-R16", "S2-E3"])
+
+# 22 Oct 2026, tech plan pass (Rule 134): rewritten top to bottom so the inactive person is also COPIED onto Parts when the field is
+# added (tech plan §5 0.1 and §7 "Edge cases to watch"; PRD S2-R6 with S2-E1). Was: Labor already inactive, Parts changed, Parts removed.
+C("S2-07", "S2", "An inactive person is copied to Parts and keeps the Labor side",
+  [ADMIN, REPS2,
+   ('Staff member {Sales-rep-C} had the "Sales Representative" switch on, was picked on {Work-order-1}, and has since had the switch turned off (the account is still active).', "For example: {Sales-rep-C} is ZZAUTOTEST Cara Able."),
+   CUST, WO('its one "Sales Representative" field reads "{Sales-rep-C} (Inactive)"'), WO_START],
+  *SR(("Hover over the Sales Representative field.", "the + button shows beside the field."),
+      ("Click the + button.", "a menu opens."),
+      ("Click \"Sales Representative - Parts\".", "the change is saved, not refused: \"Sales Representative - Labor\" and \"Sales Representative - Parts\" both read \"{Sales-rep-C} (Inactive)\", and no error message shows."),
+      ("Reload the page.", "both fields still show and both still read \"{Sales-rep-C} (Inactive)\"."),
+      ("Click \"Sales Representative - Parts\".", "the dropdown opens."),
+      ("Click {Sales-rep-A} in the dropdown.", "the change is saved: Parts reads {Sales-rep-A}; Labor still reads \"{Sales-rep-C} (Inactive)\"."),
+      ("Click the remove x beside \"Sales Representative - Parts\".", "one \"Sales Representative\" field shows, reading \"{Sales-rep-C} (Inactive)\".")),
+  ["S2-R6", "S2-E1", "S2-E2", "S1-E2",
+   ("Tech plan, change-sales-rep rule (section 5, 0.1)", "An id the WO already holds is accepted as-is, so an inactive holder can stay, move between sides, or be copied onto Parts when the field is added (S1-E2, S2-E1, S2-R6, S2-E2)."),
+   ("Tech plan, edge cases to watch (section 7)", "an inactive holder copied onto Parts (S2-E1/R6)")])
+
+C("S2-08", "S2", "An invoiced split work order shows both names as plain text",
+  [ADMIN, REPS2, CUST, WO('its card shows "Sales Representative - Labor" reading {Sales-rep-A} and "Sales Representative - Parts" reading {Sales-rep-B}; it has just been invoiced'), WO_START],
+  ["Without hovering, read the labels of Lead Technician, Service Advisor and both Sales Representative fields.",
+   "Hover over the Sales Representative rows.",
+   "Click \"Sales Representative - Parts\"."],
+  ["Step 1: Lead Technician and Service Advisor keep the labels an invoiced work order shows today (\"Lead technician\" and \"Service advisor\"); only the two representative fields read \"Sales Representative - Labor\" and \"Sales Representative - Parts\", each with its name under it.",
+   "Step 2: \"Sales Representative - Labor\" {Sales-rep-A} and \"Sales Representative - Parts\" {Sales-rep-B} show as plain text, with no box, no arrow, no + and no remove x.",
+   "Step 3: nothing opens; the representatives cannot be changed."],
+  ["S2-R17", AQ(8), "S1-N1", "S2-E4"])
+
+C("S2-09", "S2", "A change sent to a work order invoiced in another tab is refused",
+  [ADMIN, REPS2, CUST, WO('its one "Sales Representative" field reads {Sales-rep-A}; it is ready to invoice'),
+   WO_START + " {Work-order-1} is also open in a second tab of the same browser"],
+  ["In the first tab, click the Sales Representative field so the dropdown is open.",
+   "In the second tab, invoice {Work-order-1}.",
+   "Back in the first tab, without reloading, click {Sales-rep-B}."],
+  ["Step 1: the dropdown is open.",
+   "Step 2: the invoice is created.",
+   "Step 3: the change is refused with the message \"The sales representative cannot be changed on an invoiced or paid work order.\" and the field returns to {Sales-rep-A}."],
+  ["S2-E4", "S1-N1", ("User Feedback Summary, a change sent to an invoiced or paid work order", "Error message; the field returns to the saved value")])
+
+C("S2-10", "S2", "Reversing the invoice unlocks the field and the next invoice re-captures",
+  [ADMIN, REPS2, CUST, WO('its one "Sales Representative" field reads {Sales-rep-A}; it has been invoiced (not paid)'), WO_START],
+  *SR(("Reverse the invoice of {Work-order-1}.", "the invoice is reversed and the Sales Representative field can be changed again."),
+      ("Click the Sales Representative field.", "the dropdown opens."),
+      ("Click {Sales-rep-B} in the dropdown.", "the field reads {Sales-rep-B}."),
+      ("Invoice {Work-order-1} again.", "the new invoice is created and the field is plain text again, reading {Sales-rep-B}."),
+      OPEN_SBR,
+      ("Set the date range to today.", "the new invoice of {Work-order-1} is credited to {Sales-rep-B}, not {Sales-rep-A}.")),
+  ["S2-E4", "S5-R1"])
+
+# 22 Oct 2026, tech plan pass (Rule 134): rewritten top to bottom. The tech plan moves the part sale's field onto the new work order
+# field (D18) and lists the part-sale rep change and its log as regressions to verify (Phase 4, R-12), so the case now proves the pick
+# is saved and logged as before (PRD S2-N2 "its look and behavior do not change").
+C("S2-11", "S2", "A part sale's single Sales Representative field still saves and logs",
+  [ADMIN, REPS2, CUST, ("Part sale {Part-sale-1} for {Customer-A} is open and not invoiced; its Sales Representative field reads \"Unassigned\".", "For example: {Part-sale-1} is P-30001."),
+   START("{Part-sale-1} is open in a desktop browser at least 1024 px wide")],
+  *SR(("Hover over the part sale's Sales Representative field.", "there is one representative field, labelled \"Sales representative\" with a small \"r\", and no + button beside it."),
+      ("Click the field.", "the dropdown opens."),
+      ("Click {Sales-rep-A} in the dropdown.", "the field reads {Sales-rep-A}; its label still reads \"Sales representative\"; still no + and no remove x."),
+      ("Reload the page.", "the field still reads {Sales-rep-A}; the pick was saved."),
+      ("Open the part sale's menu.", "the part sale's menu opens."),
+      ("Open the log from the menu and read the newest entry.", "the log has an entry for the representative change to {Sales-rep-A}, as Part Sales Update v1 records it.")),
+  ["S2-N2", AQ(7), "S4-R32",
+   ("Story 7 context note", prd_line("* Context note: Part Sales Update v1 adds the log entry for a single representative")),
+   ("Tech plan, regressions to verify (R-12)", "Regressions to verify: the part-sale rep change, lock message and log are unchanged"),
+   ("Tech plan, Phase 4 smoke check", "confirm a part sale's rep change, lock message and log entry are unchanged.")],
+  stories=[2, 4, 7],
+  note="The part sale's Sales Representative field and its log entry come from Part Sales Update v1 (SV-10266). If that is not on the build being tested, mark this case Blocked and say so.")
+
+C("S2-12", "S2", "A work order split off another keeps its representatives",
+  [ADMIN, REPS3,
+   ("Customer {Customer-A} has {Sales-rep-C} as its one sales representative.", "For example: {Customer-A} is ZZAUTOTEST SSR Fleet."),
+   WO('its card shows "Sales Representative - Labor" reading {Sales-rep-A} and "Sales Representative - Parts" reading {Sales-rep-B}; it has two approved lines'),
+   WO_START],
+  ["Split {Work-order-1} with Split Work Order, moving one line to the new work order.",
+   "Open the new work order."],
+  ["Step 1: a new work order is created.",
+   "Step 2: it shows \"Sales Representative - Labor\" reading {Sales-rep-A} and \"Sales Representative - Parts\" reading {Sales-rep-B}, not the customer's {Sales-rep-C}."],
+  ["S2-E5", "S4-R29"])
+
+C("S2-14", "S2", "Two windows: the later pick on the one field wins and Parts goes",
+  [ADMIN, REPS2, CUST, WO('its one "Sales Representative" field reads {Sales-rep-A}'),
+   START("{Work-order-1} is open in two windows of a desktop browser at least 1024 px wide, side by side, and both windows show the one \"Sales Representative\" field")],
+  *SR(("In the first window, hover over the Sales Representative field.", "the + button shows beside the field."),
+      ("In the first window, click the + button.", "a menu opens."),
+      ("In the first window, click \"Sales Representative - Parts\".", "the first window shows \"Sales Representative - Labor\" and \"Sales Representative - Parts\", both reading {Sales-rep-A}."),
+      ("In the second window, without reloading, click the Sales Representative field.", "the second window's dropdown opens."),
+      ("In the second window, click {Sales-rep-B} in the dropdown.", "the second window's dropdown closes and its one field reads {Sales-rep-B}."),
+      ("Wait until the second window's change has saved. Do not reload either window.", "once its save finishes, the second window shows what was saved: one \"Sales Representative\" field reading {Sales-rep-B}."),
+      ("Reload the first window.", "the first window now shows one \"Sales Representative\" field reading {Sales-rep-B}; the Parts field is gone."),
+      ("Reload the second window.", "the second window still shows one \"Sales Representative\" field reading {Sales-rep-B}.")),
+  ["S2-E6", AQ(6)])
+
+
+# ---------------- 22 Oct 2026, tech plan pass (Rule 134): new cases ----------------
+C("S2-15", "S2", "A work order opened from its history shows its reps as plain text",
+  [ADMIN, REPS3,
+   ("Customer {Customer-A} has {Sales-rep-C} as its one sales representative.", "For example: {Customer-A} is ZZAUTOTEST SSR Fleet."),
+   WO('its card shows "Sales Representative - Labor" reading {Sales-rep-A} and "Sales Representative - Parts" reading {Sales-rep-B}, and its history holds a version saved after both were set (for example after a line was added)'),
+   WO_START],
+  *SR(("Open {Work-order-1}'s history.", "the history opens."),
+      ("Open the version saved after both representatives were set.", "that version of the work order opens."),
+      ("Without hovering, read the representative fields.", "\"Sales Representative - Labor\" {Sales-rep-A} and \"Sales Representative - Parts\" {Sales-rep-B} show as plain text with their labels; the customer's {Sales-rep-C} is not shown."),
+      ("Hover over the representative rows.", "no box, no arrow, no + and no remove x."),
+      ("Click \"Sales Representative - Parts\".", "nothing opens and nothing can be changed."),
+      ("Measure the gaps between Lead Technician, Service Advisor and both representative fields.", "every gap is 16 px."),
+      ("Open the work order's menu and look for Print Work Order.", "Print Work Order is not offered.")),
+  ["S2-R17", "S1-N1", "S1-R6", ("Story 6 prerequisites", prd_line("The work order is printed from its menu, with Print Work Order.")),
+   ("Tech plan, history snapshot (section 4.2)", "Nothing on the read-only historical card reads the customer's reps (the WO card reads `workOrder.sales_rep_*`)."),
+   ("Tech plan, S1-R6 gap measurement (Phase 5)", "measure the vertical gap between Lead Technician → Service Advisor → each Sales Representative field in all of: the editable card, the read-only card (invoiced), the history card, the split card (Labor + Parts)")],
+  stories=[1, 2])
+
+C("S2-16", "S2", "Reopening a paid work order keeps its representatives",
+  [ADMIN, REPS3,
+   ("Customer {Customer-A} has {Sales-rep-C} as its one sales representative.", "For example: {Customer-A} is ZZAUTOTEST SSR Fleet."),
+   ('Work order {Work-order-1} for {Customer-A} shows "Sales Representative - Labor" {Sales-rep-A} and "Sales Representative - Parts" {Sales-rep-B}; it has been invoiced and paid in full.', "For example: {Work-order-1} is S2-40001."),
+   WO_START],
+  ["Reopen {Work-order-1}.",
+   "Open the work order that reopening made and read its representative fields."],
+  ["Step 1: a work order is made from {Work-order-1} and can be edited.",
+   "Step 2: it shows \"Sales Representative - Labor\" reading {Sales-rep-A} and \"Sales Representative - Parts\" reading {Sales-rep-B}, not the customer's {Sales-rep-C}."],
+  ["S4-R29",
+   ("Tech plan, Phase 6 browser walk", "Split Work Order and reopen a paid work order → reps copied")],
+  stories=[2, 4])

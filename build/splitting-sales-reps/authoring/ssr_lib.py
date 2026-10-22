@@ -33,7 +33,9 @@ TP_NAME = "Tech plan \"Splitting Sales Representatives — Technical Implementat
 CODE = {}
 for line in PRD_TXT.split("\n"):
     m = re.match(r"^-?\s*(S\d+-[RNE]\d+[a-z]?):\s*(.*)$", line)
-    if m: CODE[m.group(1)] = m.group(2).strip()
+    # 22 Oct 2026, Rule 136 pass: the first line is the requirement itself; a later cell of the PRD's change-log table can start with
+    # the same code (PRD v11: "S4-R21: the Deactivate window line reads ... v10.") and must not replace it.
+    if m and m.group(1) not in CODE: CODE[m.group(1)] = m.group(2).strip()
 def prd_line(start):
     for line in PRD_TXT.split("\n"):
         t = re.sub(r"^-\s*", "", line).strip()
@@ -180,5 +182,5 @@ def check(c, extra_sources=None):
         src = DESW if l.startswith("Design — board") else TPW if l.startswith("Tech plan") else SBRW if l.startswith("Sales By Representative spec") else SBCW if l.startswith("Sales By Customer spec") else (PRDW if not (extra_sources and l in extra_sources) else ws(extra_sources[l]))
         if ws(t) not in src: p.append(f"{k}: quote {l} not verbatim")
     if len(c["pre"]) > 7: p.append(f"{k}: {len(c['pre'])} preconditions")
-    if len(c["steps"]) > 10: p.append(f"{k}: {len(c['steps'])} steps (over 10: ask before splitting, Rule 127)")
+    if len(c["steps"]) > 10: p.append(f"{k}: {len(c['steps'])} steps (over 10: split it, or record in SPLITS.json why it stays whole, Rule 136)")
     return p

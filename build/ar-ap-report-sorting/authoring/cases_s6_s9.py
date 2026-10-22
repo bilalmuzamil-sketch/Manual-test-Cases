@@ -40,10 +40,9 @@ for code in ("ARS", "APS"):
        (f"{P} {{{P}-A}} has open {r['doc']}s only at {{Location-A}}; {P} {{{P}-B}} has open {r['doc']}s at {{Location-A}} and {{Location-B}}.",
         f"For example: {{{P}-A}} is {ex(k, 'One Place')[0]} and {{{P}-B}} is {ex(k, 'Two Places')[0]}."),
        START(code)],
-      [f"Read the Location cell of {{{P}-A}} and {{{P}-B}}.", "Untick {Location-B} in the Location menu (leaving {Location-A} and {Location-C}).",
-       f"Read the Location cell of {{{P}-B}} again."],
-      [f"Step 1: {{{P}-A}} shows {{Location-A}}'s name; {{{P}-B}} shows \"Multiple\".", "Step 2: the Location column stays (two locations ticked).",
-       f"Step 3: {{{P}-B}} now shows {{Location-A}}'s name: only its documents at the chosen locations count, and they are all at {{Location-A}}."],
+      [f"Read the Location cell of {{{P}-A}} and {{{P}-B}}.", "Untick {Location-B} in the Location menu (leaving {Location-A} and {Location-C})."],
+      [f"Step 1: {{{P}-A}} shows {{Location-A}}'s name; {{{P}-B}} shows \"Multiple\".",
+       f"Step 2: the Location column stays (two locations ticked), and {{{P}-B}}'s Location cell now shows {{Location-A}}'s name: only its documents at the chosen locations count, and they are all at {{Location-A}}."],
       ["S6-R4", "S6-R2"])
 
 # ======================= Story 7: document links =======================
@@ -74,10 +73,9 @@ for code, kind, word in (("ARD", "work order", "This work order is in"), ("ARC",
     C(k, "S7", f"{r['n']}: a {kind} invoice at another location asks to switch",
       [ADMIN(), TWO_LOC, (f"Customer {{Customer-A}} has an open {kind} invoice {{Invoice-A}} made at {{Location-B}}.", f"For example: {{Customer-A}} is {ex(k, 'Other Place')[0]}."),
        START(code, ", with {Customer-A} ticked and its rows showing")],
-      ["Click {Invoice-A}'s number.", "Read the dialog: title, message and buttons.", "Click \"Switch location\".", "Look at the location switcher in the top right."],
-      ["Step 1: a dialog opens on the report, before leaving it.",
-       f"Step 2: title \"Switch location?\", message \"{word} \" followed by {{Location-B}}'s name and \"Switch your active location to view it?\", buttons \"Switch location\" and \"Cancel\".",
-       f"Step 3: the {kind}'s finance page opens.", "Step 4: your active location is now {Location-B}."],
+      ["Click {Invoice-A}'s number.", "Click \"Switch location\"."],
+      [f"Step 1: a dialog opens on the report, before leaving it: title \"Switch location?\", message \"{word} \" followed by {{Location-B}}'s name and \"Switch your active location to view it?\", buttons \"Switch location\" and \"Cancel\".",
+       f"Step 2: the {kind}'s finance page opens, and the location switcher in the top right shows that your active location is now {{Location-B}}."],
       ["S7-R3", "S7-R4", "UFS-3" if kind == "work order" else "UFS-4"])
 
 k = nk("S7")
@@ -85,10 +83,10 @@ C(k, "S7", "A/R Collection: Cancel on the switch prompt leaves the report as it 
   [ADMIN(), TWO_LOC, ("Customer {Customer-A} has overdue invoices at {Location-A} and one, {Invoice-A}, at {Location-B}; more than 20 other customers have overdue invoices.", f"For example: {{Customer-A}} is {ex(k, 'Stay Put')[0]}."),
    START("ARC", ", with \"Past due: 1-30 days\" ticked, the \"Amount\" header clicked once, {Customer-A}'s group expanded and the page scrolled so {Invoice-A} is in the middle of the screen")],
   ["Copy the page address.", "Note which rows are at the top and bottom of the screen.", "Click {Invoice-A}'s number.", "Click \"Cancel\".",
-   "Compare the page address with the copied one.", "Look at the filters, the sort, the expanded groups and the scroll position."],
+   "Compare the page address with the copied one."],
   ["Step 1: the address is copied.", "Step 2: noted.", "Step 3: the \"Switch location?\" dialog opens.",
-   "Step 4: the dialog closes, no message pops up, and you stay on the report.",
-   "Step 5: the address is the same.", "Step 6: the same Past due filter, the Amount sort, {Customer-A}'s group still expanded and the same scroll position."],
+   "Step 4: the dialog closes, no message pops up, and you stay on the report exactly where you were: the same Past due filter, the Amount sort, {Customer-A}'s group still expanded and the same rows at the top and bottom of the screen (the same scroll position).",
+   "Step 5: the address is the same."],
   ["S7-R5", "UFS-3"] + TP.q("STAY"))
 
 k = nk("S7")
@@ -185,18 +183,26 @@ C(k, "S7", "Without Vendor Order Management, bills and vendor credits are plain 
   ["Step 1: both are plain text.", "Step 2: nothing opens."],
   ["S7-N2", "S7-R9", ("Story 7 Prerequisites", "A bill opens for a user with 'Vendor Order Management → View' or 'Vendor Order Management → Create & Edit'.")])
 
+# Rule 136 (22 Oct 2026): one case per user. The user with "Customers → View" keeps the C-id; the user without it is "b". Each case
+# starts signed in as its own user, so the sign-in and sign-out steps are gone.
 k = nk("S7")
-C(k, "S7", "A/R Summary: customer names link to A/R Collection only with Customers View",
-  [('Two users exist: {User-B}, whose custom role has "Reports → Page Access" and "Customers → View", and {User-C}, whose custom role has "Reports → Page Access" but not "Customers → View".',
-    f"For example: {{User-B}} is {ex(k, 'Can See Customers')[0]} and {{User-C}} is {ex(k, 'No Customers')[0]}."),
+CUSTVIEW = ("Story 7 Prerequisites", "A customer name on A/R Summary links to A/R Collection for a user with 'Customers → View', as today.")
+C(k, "S7", "A/R Summary: with Customers View, customer names link to A/R Collection",
+  [('You are signed in as {User-B}, whose custom role has "Reports → Page Access" and "Customers → View".',
+    f"For example: {{User-B}} is {ex(k, 'Can See Customers')[0]}."),
    ("Customer {Customer-A} has open invoices on today's date.", f"For example: {{Customer-A}} is {ex(k, 'Name Link')[0]}."),
-   "Starting screen: the sign-in page in a desktop browser window 1440 px wide."],
-  ["Sign in as {User-B}.", "Open Reports > Finance > A/R Summary.", "Click {Customer-A}'s name.", "Sign out.", "Sign in as {User-C}.",
-   "Open Reports > Finance > A/R Summary.", "Click {Customer-A}'s name."],
-  ["Step 1: you are signed in.", "Step 2: A/R Summary opens.", "Step 3: A/R Collection opens with only {Customer-A} ticked.", "Step 4: you are signed out.",
-   "Step 5: you are signed in as {User-C}.",
-   "Step 6: A/R Summary opens and {Customer-A}'s name is plain text.", "Step 7: nothing opens."],
-  ["S7-R1", ("Story 7 Prerequisites", "A customer name on A/R Summary links to A/R Collection for a user with 'Customers → View', as today."), "WC-6"])
+   START("ARS")],
+  ["Look at {Customer-A}'s name.", "Click it."],
+  ["Step 1: it is a link.", "Step 2: A/R Collection opens with only {Customer-A} ticked."],
+  ["S7-R1", CUSTVIEW, "WC-6"])
+C(k + "b", "S7", "A/R Summary: without Customers View, customer names are plain text",
+  [('You are signed in as {User-C}, whose custom role has "Reports → Page Access" but not "Customers → View".',
+    f"For example: {{User-C}} is {ex(k, 'No Customers')[0]}."),
+   ("Customer {Customer-A} has open invoices on today's date.", f"For example: {{Customer-A}} is {ex(k, 'Name Link')[0]}."),
+   START("ARS")],
+  ["Look at {Customer-A}'s name.", "Click it."],
+  ["Step 1: it is plain text, not a link.", "Step 2: nothing opens."],
+  ["S7-R1", CUSTVIEW, "WC-6"])
 
 k = nk("S7")
 C(k, "S7", "A/P Summary: vendor names link for everyone who can open the report",
@@ -217,42 +223,36 @@ for code in ALL6:
        "Step 2: the tooltip closes.", "Step 3: the same tooltip shows.", "Step 4: the tooltip closes."],
       ["S8-R1", f"S8-R1 {code}"])
 
+# Rule 136 (22 Oct 2026): one case per report; A/R Summary keeps the C-id, A/P Unpaid Invoices is "b". Opening the report is the
+# starting screen.
 k = nk("S8")
-C(k, "S8", "Report descriptions are on screen only, not in the PDF or CSV",
-  [ADMIN(), ("A/R Summary and A/P Unpaid Invoices have open documents on today's date.", None), "Starting screen: Reports > Finance in a desktop browser window 1440 px wide."],
-  ["Open A/R Summary.", "Choose \"Download (PDF)\" from the ⋯ menu.", "Choose \"Download (CSV)\" from the ⋯ menu.", "Search both files for the words \"unpaid balance\".",
-   "Open A/P Unpaid Invoices.", "Choose \"Download (PDF)\" from the ⋯ menu.", "Choose \"Download (CSV)\" from the ⋯ menu.", "Search both files for the words \"grouped by vendor\"."],
-  ["Step 1: A/R Summary opens.", "Step 2: the PDF downloads.", "Step 3: the CSV downloads.", "Step 4: the words are not found: the description is not in the PDF or CSV.",
-   "Step 5: A/P Unpaid Invoices opens.", "Step 6: the PDF downloads.", "Step 7: the CSV downloads.", "Step 8: not found."],
-  ["S8-N1", "S8-R1"], reports=["ARS", "APU"])
+for code, key, words in (("ARS", k, "unpaid balance"), ("APU", k + "b", "grouped by vendor")):
+    C(key, "S8", f"{R[code]['n']}: the description is not in the PDF or CSV",
+      [ADMIN(), ("The report has open documents on today's date.", None), START(code)],
+      ["Choose \"Download (PDF)\" from the ⋯ menu.", "Choose \"Download (CSV)\" from the ⋯ menu.", f"Search both files for the words \"{words}\"."],
+      ["Step 1: the PDF downloads.", "Step 2: the CSV downloads.", "Step 3: the words are not found: the description is not in the PDF or CSV."],
+      ["S8-N1", "S8-R1"], reports=[code])
 
 for code in ("ARD", "APD"):
     r = R[code]; k = nk("S8"); P = r["Party"]
     C(k, "S8", f"{r['n']}: Clear all filters keeps the date and resets the rest",
       [ADMIN(), TWO_LOC, (f"{P} {{{P}-A}} has open {r['doc']}s only at {{Location-B}}, none 61 to 90 days past due, on yesterday's date.", f"For example: {{{P}-A}} is {ex(k, 'Nothing Here')[0]}."),
-       START(code)],
-      ["Change the as-of date to yesterday.", f"In the {P} filter, tick {{{P}-A}}.", "In the Past due filter, tick \"61-90 days\".",
-       "In the Location filter, untick {Location-B}.",
-       "Read the table area.", "Click \"Clear all filters\".", "Read the chips."],
-      ["Step 1: the report shows yesterday.",
-       f"Step 2: {{{P}-A}} is ticked.",
-       "Step 3: \"61-90 days\" is ticked.",
-       "Step 4: {Location-B} is unticked; the filters are set.",
-       "Step 5: \"No record matches these filters\", \"Try changing filters to widen your results.\" and a \"Clear all filters\" button.",
-       "Step 6: rows show again.",
-       f"Step 7: the as-of date is still yesterday; \"{P}: All {r['parties']}\", \"Past due: Any\" and \"Location: All locations\" (every location ticked)."],
+       START(code, f", with the as-of date set to yesterday, only {{{P}-A}} ticked in the {P} filter, \"61-90 days\" ticked in the Past due filter and only {{Location-A}} ticked in the Location filter")],
+      ["Read the table area.", "Click \"Clear all filters\"."],
+      ["Step 1: \"No record matches these filters\", \"Try changing filters to widen your results.\" and a \"Clear all filters\" button.",
+       f"Step 2: rows show again; the as-of date is still yesterday; the chips read \"{P}: All {r['parties']}\", \"Past due: Any\" and \"Location: All locations\" (every location ticked)."],
       ["S8-R5", "UFS-9"])
 
 for code in ("ARC", "APS"):
     r = R[code]; k = nk("S8")
     C(k, "S8", f"{r['n']}: a report that fails to load says so in place of the rows",
       [ADMIN(), ("You can switch this computer's network connection off and on (for example Wi-Fi).", None), START(code)],
-      ["Switch the computer's network connection off.", "Change the as-of date to yesterday.", "Read the table area and any message.", "Switch the network back on.",
+      ["Switch the computer's network connection off.", "Change the as-of date to yesterday.", "Switch the network back on.",
        "Change the as-of date back to today."],
-      ["Step 1: the computer is offline.", "Step 2: the report tries to load.",
-       "Step 3: in place of the rows: \"Something went wrong loading this report. Please try again.\", with the standard error message as well.",
-       "Step 4: the computer is online again.",
-       "Step 5: the report loads normally again."],
+      ["Step 1: the computer is offline.",
+       "Step 2: the report tries to load and fails: in place of the rows it shows \"Something went wrong loading this report. Please try again.\", with the standard error message as well.",
+       "Step 3: the computer is online again.",
+       "Step 4: the report loads normally again."],
       ["S8-R6", "UFS-10"],
       note="A server error cannot be caused by hand; a lost connection is the failure a tester can cause.")
 
@@ -270,12 +270,11 @@ C(k, "S9", "A/R Collection: each customer row shows phone and credit term",
    ("Customer {Customer-A} has an overdue invoice, a phone number and a credit term on its customer card; customer {Customer-B} has an overdue invoice and no credit term.",
     f"For example: {{Customer-A}} is {ex(k, 'Call Me')[0]} with phone (403) 555-0101 and credit term Net 30; {{Customer-B}} is {ex(k, 'No Terms')[0]}."),
    START("ARC")],
-  ["Read {Customer-A}'s group row.", "Open {Customer-A}'s customer card in another tab and compare the phone and credit term.", "Read {Customer-B}'s group row.",
-   "Look for an email address or a contact name on either row."],
+  ["Read {Customer-A}'s group row.", "Open {Customer-A}'s customer card in another tab and compare the phone and credit term.",
+   "Switch back to the report's tab and read {Customer-B}'s group row, and look for an email address or a contact name on either row."],
   ["Step 1: after the name: \"Phone: \" and the phone number, then \"Credit term: \" and the credit term.",
    "Step 2: both read exactly as the customer card shows them.",
-   "Step 3: \"Credit term: COD\" (none is set).",
-   "Step 4: neither row shows an email address or a primary contact."],
+   "Step 3: {Customer-B}'s row reads \"Credit term: COD\" (none is set); neither row shows an email address or a primary contact."],
   ["S9-R1", "S9-R2", "OOS-5"])
 
 k = nk("S9")
@@ -291,11 +290,10 @@ C(k, "S9", "A/R Collection: the PDF and CSV carry the phone and credit term",
   [ADMIN(), ('Your role has the "View and Manage AP/AR Data" switch on.', None),
    ("Customer {Customer-A} has two overdue invoices, a phone number and a credit term.", f"For example: {{Customer-A}} is {ex(k, 'Export Call')[0]} with phone (403) 555-0102 and credit term Net 15."),
    START("ARC", ", with only {Customer-A} ticked")],
-  ["Choose \"Download (PDF)\" from the ⋯ menu.", "Read {Customer-A}'s line in the PDF.", "Choose \"Download (CSV)\" from the ⋯ menu.",
-   "Read the CSV heading row.", "Read both of {Customer-A}'s rows."],
+  ["Choose \"Download (PDF)\" from the ⋯ menu.", "Open the PDF and read {Customer-A}'s line.", "Choose \"Download (CSV)\" from the ⋯ menu.",
+   "Open the CSV."],
   ["Step 1: the PDF downloads.", "Step 2: the same phone and credit term as on screen, on the customer's line.", "Step 3: the CSV downloads.",
-   "Step 4: \"Phone\" and \"Credit term\" columns come right after \"Customer\".",
-   "Step 5: every row carries {Customer-A}'s phone and credit term."],
+   "Step 4: in the heading row \"Phone\" and \"Credit term\" columns come right after \"Customer\", and both of {Customer-A}'s rows carry {Customer-A}'s phone and credit term."],
   ["S9-R3", "S3-R8a"])
 
 k = nk("S9")
@@ -303,9 +301,10 @@ C(k, "S9", "A/R Collection: without AP/AR Data access there is no credit term",
   [('You are signed in as {User-B}, whose custom role has "Reports → Page Access" and the "View and Manage AP/AR Data" switch off.', f"For example: {{User-B}} is {ex(k, 'No Terms User')[0]}."),
    ("Customer {Customer-A} has an overdue invoice, a phone number and a credit term.", f"For example: {{Customer-A}} is {ex(k, 'Hidden Term')[0]} with credit term Net 30."),
    START("ARC", ", with only {Customer-A} ticked")],
-  ["Read {Customer-A}'s group row.", "Download the PDF from the ⋯ menu and read {Customer-A}'s line.", "Download the CSV and read its heading row."],
-  ["Step 1: the phone shows; no credit term and no \"Credit term:\" label.", "Step 2: the phone shows; no credit term.",
-   "Step 3: a \"Phone\" column after \"Customer\", and no \"Credit term\" column."],
+  ["Read {Customer-A}'s group row.", "Choose \"Download (PDF)\" from the ⋯ menu.", "Open the PDF and read {Customer-A}'s line.",
+   "Choose \"Download (CSV)\" from the ⋯ menu.", "Open the CSV and read its heading row."],
+  ["Step 1: the phone shows; no credit term and no \"Credit term:\" label.", "Step 2: the PDF downloads.", "Step 3: the phone shows; no credit term.",
+   "Step 4: the CSV downloads.", "Step 5: a \"Phone\" column after \"Customer\", and no \"Credit term\" column."],
   ["S9-N2", "S3-R8a", "KD-PERM"])
 
 k = nk("S8")

@@ -60,7 +60,10 @@ DESIGN_HOLD = "AUTOMATION: HOLD - the design differs from the PRD, waiting on th
 CODE = {}
 for line in PRD_TXT.split("\n"):
     m = re.match(r"^-?\s*(S\d+-[RNE]\d+[a-z]?):\s*(.*)$", line)
-    if m: CODE[m.group(1)] = m.group(2).strip()
+    # 22 Oct 2026 (Rule 136 pass): the requirement line itself, the first one with the code. Before this fix the last line won, so
+    # S1-R8, S5-R3, S5-R7 and S5-R19 quoted the PRD's Change Log rows ("S5-R3: the Location list is not narrowed by the Past due filter
+    # either.") instead of the requirements.
+    if m and m.group(1) not in CODE: CODE[m.group(1)] = m.group(2).strip()
 
 def prd_line(start):
     for line in PRD_TXT.split("\n"):

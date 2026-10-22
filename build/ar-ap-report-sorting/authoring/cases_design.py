@@ -36,37 +36,48 @@ def long_pre(code, k):
 for code in ALL6:
     r = R[code]; P = r["Party"]; summ = code in ("ARS", "APS")
     link = (f"the {r['party']} names" if summ else "the document numbers that are links")
+    # Rule 136 (22 Oct 2026): the 10-step look case became three: the layout keeps the C-id; the pinned headline column and the Totals
+    # row ("b") and the link style ("c") are their own cases. All three read the same screen and records and change nothing.
     k = nk()
+    LOOKPRE = [ADMIN(), TWO_LOC, long_pre(code, k),
+               START(code, " in light theme at 100% zoom" + ("" if summ else ", with every group expanded (Expand all)"))]
+    CASE_NOTE = (f"The PRD writes \"Open balance\", \"Due date\" and \"Transaction type\" for this report (S2-R1) but \"Open Balance\" in its Terminology; "
+                 f"which letter case is right is question {QN['open-balance-case']}." if r["fam"] == "A/R" and not summ else "")
     C(k, "DESIGN", f"Design: {r['n']} at 1440 px in light theme looks as described",
-      [ADMIN(), TWO_LOC, long_pre(code, k),
-       START(code, " in light theme at 100% zoom" + ("" if summ else ", with every group expanded (Expand all)")), SBC2],
+      LOOKPRE + [SBC2],
       ["Look at the title row.",
        "Look at where the filter row sits, and compare with Sales By Customer.",
        "Read the column headings left to right, letter for letter, capitals included.",
        "Look for a sideways scroll bar under the table.",
-       f"Look at the \"{r['headline']}\" column on the header, the rows and the Totals row, and compare with Sales By Customer.",
-       "Compare the Totals row with Sales By Customer's Totals row.",
        (f"Look at {{{P}-A}}'s name cell and at the money cells." if summ else f"Look at {{{P}-A}}'s rows: the name and Transaction type cells, and the money, date and number cells."),
-       f"Look at {link}.",
-       "Press Tab until a link has keyboard focus.",
        "Look across the whole page for any text that overlaps, is cut off or is clipped."],
       ["Step 1: the title, its info icon directly right of it, and the ⋯ Export button at the right end, all on one line.",
        "Step 2: the filter row sits below the title row, in the same place as on Sales By Customer.",
        f"Step 3: {headings(code)} (\"Location\" shown because two locations are in view; it sits right after "
        + ("the name" if summ else "\"Date\"") + "). No heading wraps.",
        "Step 4: there is none: every column is visible at 1440 px without scrolling sideways.",
-       f"Step 5: \"{r['headline']}\" is pinned to the right edge and bold on the header, every row" + ("" if summ else ", every expanded row") + " and the Totals row, as on Sales By Customer.",
-       "Step 6: the same native totals row style.",
-       "Step 7: " + ("the long name wraps" if summ else "the long name and a long Transaction type wrap") + " onto a second line; money, date and number cells stay on one line"
+       "Step 5: " + ("the long name wraps" if summ else "the long name and a long Transaction type wrap") + " onto a second line; money, date and number cells stay on one line"
        + (", and Location wraps only on this report (nine columns)." if code == "APD" else ", and Location does not wrap."),
-       "Step 8: they use the native report link style: the same blue as Work In Progress, semi-bold, no underline.",
-       "Step 9: the focused link is underlined; links are underlined only on keyboard focus.",
-       "Step 10: nothing overlaps, is cut off or clipped."],
-      ["S8-R2", "S8-R3", "S8-R4", "S7-R7", f"S2-R1 {code}", "S6-R3", "KD-REUSE"],
-      note=("The first column keeps today's heading: only the Location column is renamed in this release." if summ else
-            (f"The PRD writes \"Open balance\", \"Due date\" and \"Transaction type\" for this report (S2-R1) but \"Open Balance\" in its Terminology; "
-             f"which letter case is right is question {QN['open-balance-case']}." if r["fam"] == "A/R" else "")),
+       "Step 6: nothing overlaps, is cut off or clipped."],
+      ["S8-R2", "S8-R3", f"S2-R1 {code}", "S6-R3", "KD-REUSE"],
+      note=("The first column keeps today's heading: only the Location column is renamed in this release." if summ else CASE_NOTE),
       design=DREF("page 6 (Descriptions and pinned column) and page 1 (Opening order and header sorting)"))
+    hl = f"Design: {r['n']} {r['headline']} column and Totals row look native"
+    C(k + "b", "DESIGN", hl if len(hl) <= 80 else f"Design: {r['n']} {r['headline']} column and Totals row style",
+      LOOKPRE + [SBC2],
+      [f"Look at the \"{r['headline']}\" column on the header, the rows and the Totals row, and compare with Sales By Customer.",
+       "Compare the Totals row with Sales By Customer's Totals row."],
+      [f"Step 1: \"{r['headline']}\" is pinned to the right edge and bold on the header, every row" + ("" if summ else ", every expanded row") + " and the Totals row, as on Sales By Customer.",
+       "Step 2: the same native totals row style."],
+      ["S8-R3", "S8-R4", "KD-REUSE"], note=CASE_NOTE,
+      design=DREF("page 6 (Descriptions and pinned column)"))
+    C(k + "c", "DESIGN", f"Design: {r['n']} links use the native report link style",
+      LOOKPRE,
+      [f"Look at {link}.", "Press Tab until a link has keyboard focus."],
+      ["Step 1: they use the native report link style: the same blue as Work In Progress, semi-bold, no underline.",
+       "Step 2: the focused link is underlined; links are underlined only on keyboard focus."],
+      ["S7-R7"],
+      design=DREF("page 5 (Document links and Switch location)"))
 
     k = nk()
     C(k, "DESIGN", f"Design: {r['n']} in dark theme looks as described",
@@ -99,26 +110,31 @@ for code in ALL6:
       design=DREF("page 6 (Descriptions and pinned column)"))
 
 # ---------------- per report: loading, empty and error states ----------------
+# Rule 136 (22 Oct 2026): the load error (S8-R6) is its own case ("b"); the loading bar and the empty state (S8-R5) keep the C-id.
 for code in ALL6:
     r = R[code]; k = nk(); P = r["Party"]
-    C(k, "DESIGN", f"Design: {r['n']} loading, empty and error states look as described",
+    C(k, "DESIGN", f"Design: {r['n']} loading and empty states look as described",
       [ADMIN(), TWO_LOC, (f"{P} {{{P}-A}} has open {r['doc']}s only at {{Location-B}}.", f"For example: {{{P}-A}} is {ex(k, 'States')[0]}."),
-       ("You can switch this computer's network connection off and on (for example Wi-Fi).", None), START(code), SBC2],
+       START(code), SBC2],
       ["Change the as-of date to yesterday and watch the table straight away.",
        "Change the as-of date back to today.", "In the Location menu, untick {Location-B}.", f"In the {P} filter, tick {{{P}-A}}.",
        "Read the empty state, letter for letter, and compare it with Sales By Customer's empty state.",
-       "Click \"Clear all filters\".", "Switch the network connection off.", "Change the as-of date to yesterday.",
-       "Read the table area and the message.", "Switch the network back on."],
+       "Click \"Clear all filters\"."],
       ["Step 1: the native table progress bar shows while the report loads.",
        "Step 2: the report shows today again.", "Step 3: the report narrows to {Location-A}.",
        f"Step 4: the report has no rows: {{{P}-A}} has nothing open at {{Location-A}}.",
        "Step 5: \"No record matches these filters\" and \"Try changing filters to widen your results.\", with a \"Clear all filters\" button, in the native empty-state look of Sales By Customer; no Totals row.",
-       "Step 6: the filters return to their defaults and rows show.",
-       "Step 7: the computer is offline.",
-       "Step 8: the report fails to load.",
-       "Step 9: \"Something went wrong loading this report. Please try again.\" in place of the rows, and the standard error message as well.",
-       "Step 10: the connection is back."],
-      ["S8-R5", "S8-R6", "UFS-9", "UFS-10"],
+       "Step 6: the filters return to their defaults and rows show."],
+      ["S8-R5", "UFS-9"],
+      design=DREF("page 6 (Descriptions and pinned column)"))
+    C(k + "b", "DESIGN", f"Design: {r['n']} load error looks as described",
+      [ADMIN(), ("The report has open documents on today's date.", None),
+       ("You can switch this computer's network connection off and on (for example Wi-Fi).", None), START(code)],
+      ["Switch the network connection off.", "Change the as-of date to yesterday.", "Switch the network back on."],
+      ["Step 1: the computer is offline.",
+       "Step 2: the report fails to load: \"Something went wrong loading this report. Please try again.\" shows in place of the rows, and the standard error message as well.",
+       "Step 3: the connection is back."],
+      ["S8-R6", "UFS-10"],
       design=DREF("page 6 (Descriptions and pinned column)"))
 
 # ---------------- grouped reports: chevrons, tooltip, pinned group row ----------------
@@ -180,12 +196,12 @@ for fam, code in (("A/R", "ARS"), ("A/P", "APD")):
     k = nk()
     C(k, "DESIGN", f"Design: {fam} Past due chip and menu look as described",
       [ADMIN(), START(code, " in light theme at 100% zoom")],
-      ["Look at the Past due chip.", "Click it and read the menu, row by row, letter for letter.", "Compare the menu with the Location menu next to it.",
-       "Tick \"91+ days\" and look at the chip."],
+      ["Look at the Past due chip.", "Click it and read the menu, row by row, letter for letter.", "Tick \"91+ days\".",
+       "Click the Location chip next to it and compare its menu with the Past due menu."],
       ["Step 1: \"Past due: Any\" with an hourglass icon, in the resting (grey) style.",
        "Step 2: in this order: \"Any\", the line \"All ranges are included. Pick one or more to narrow.\", \"1-30 days\", \"31-60 days\", \"61-90 days\", \"91+ days\".",
-       "Step 3: the same native checkbox dropdown as Customer and Location: same tick boxes, spacing and position.",
-       "Step 4: \"Past due: 91+ days\", no longer in the resting style."],
+       "Step 3: the chip reads \"Past due: 91+ days\", no longer in the resting style.",
+       "Step 4: the Location menu opens; the Past due menu is the same native checkbox dropdown as Customer and Location: same tick boxes, spacing and position."],
       ["S5-R15", "KD-REUSE"], design=DREF("page 7 (Filters and call list)"))
 
 for fam, code in (("A/R", "ARC"), ("A/P", "APS")):
@@ -212,11 +228,10 @@ k = nk()
 C(k, "DESIGN", "Design: the export error messages look like the other reports' errors",
   [ADMIN(), ("The organization has more than 2,000 open A/P lines.", "For example: the QA organization (13,540)."),
    ("You can switch this computer's network connection off and on (for example Wi-Fi).", None), START("APD", " in light theme at 100% zoom")],
-  ["Download the PDF from the ⋯ menu and read the message, letter for letter.", "Look at its style and position.",
+  ["Choose \"Download (PDF)\" from the ⋯ menu and read the message, letter for letter.",
    "Switch the network connection off.", "Choose \"Download (CSV)\" from the ⋯ menu and read the message, letter for letter.", "Switch the network back on."],
-  ["Step 1: \"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\"",
-   "Step 2: an error toast, as on the other reports, and only one.",
-   "Step 3: the computer is offline.", "Step 4: \"We couldn't export this report. Please try again.\", an error toast, only one.", "Step 5: the connection is back."],
+  ["Step 1: \"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\", in an error toast styled and placed as on the other reports, and only one.",
+   "Step 2: the computer is offline.", "Step 3: \"We couldn't export this report. Please try again.\", an error toast, only one.", "Step 4: the connection is back."],
   ["UFS-1", "UFS-8", "S3-N1", "EH"], design=DREF("page 2 (Export)"))
 
 for kind, code, word in (("work order", "ARD", "This work order is in"), ("part sale", "ARC", "This part sale is in")):
@@ -224,12 +239,11 @@ for kind, code, word in (("work order", "ARD", "This work order is in"), ("part 
     C(k, "DESIGN", f"Design: the switch-location dialog for a {kind} looks as described",
       [ADMIN(), TWO_LOC, (f"Customer {{Customer-A}} has an open {kind} invoice {{Invoice-A}} made at {{Location-B}}.", f"For example: {{Customer-A}} is {ex(k, 'Dialog')[0]}."),
        START(code, " in light theme at 100% zoom, with {Customer-A} ticked and its rows showing")],
-      ["Click {Invoice-A}'s number.", "Read the dialog's title, message and buttons, letter for letter, in order.",
+      ["Click {Invoice-A}'s number.",
        "Compare the dialog with the one a work order link from another location shows today.", "Click \"Cancel\".", "Switch ShopView to dark theme.", "Click {Invoice-A}'s number again."],
-      ["Step 1: a dialog opens over the report.",
-       f"Step 2: title \"Switch location?\", message \"{word} \" then {{Location-B}}'s name and \"Switch your active location to view it?\", then the buttons \"Switch location\" and \"Cancel\".",
-       "Step 3: it is the existing location-switch prompt: same look, buttons and position.", "Step 4: the dialog closes.", "Step 5: the page switches to dark theme.",
-       "Step 6: the dialog opens again and is readable in dark theme."],
+      [f"Step 1: a dialog opens over the report; read letter for letter, in order: title \"Switch location?\", message \"{word} \" then {{Location-B}}'s name and \"Switch your active location to view it?\", then the buttons \"Switch location\" and \"Cancel\".",
+       "Step 2: it is the existing location-switch prompt: same look, buttons and position.", "Step 3: the dialog closes.", "Step 4: the page switches to dark theme.",
+       "Step 5: the dialog opens again and is readable in dark theme."],
       ["S7-R3", "UFS-3" if kind == "work order" else "UFS-4", "KD-REUSE"], design=DREF("page 5 (Document links and Switch location)"))
 
 for fam, code in (("A/R", "ARD"), ("A/P", "APS")):
@@ -248,11 +262,10 @@ C(k, "DESIGN", "Design: A/R Collection call list on the customer row looks as de
   [ADMIN(), ("Customer {Customer-A} has an overdue invoice, a phone number and a credit term; customer {Customer-B} has an overdue invoice and no phone.",
              f"For example: {{Customer-A}} is {ex(k, 'Phone Row')[0]} with phone (403) 555-0103 and credit term Net 30; {{Customer-B}} is {ex(k, 'No Phone Row')[0]}."),
    START("ARC", " in light theme at 100% zoom")],
-  ["Read {Customer-A}'s group row, letter for letter.", "Read {Customer-B}'s group row.", "Look for overlap or clipping on both rows.", "Switch ShopView to dark theme."],
+  ["Read {Customer-A}'s group row, letter for letter.", "Read {Customer-B}'s group row, and look for overlap or clipping on both rows.", "Switch ShopView to dark theme."],
   ["Step 1: the name, then \"Phone: \" and the number, then \"Credit term: \" and the term, on the group row after the name.",
-   "Step 2: the name and \"Credit term: COD\" (if none set); no \"Phone:\" label.",
-   "Step 3: nothing overlaps or is clipped.",
-   "Step 4: the page switches to dark theme; on both rows nothing overlaps or is clipped."],
+   "Step 2: the name and \"Credit term: COD\" (if none set); no \"Phone:\" label; on both rows nothing overlaps or is clipped.",
+   "Step 3: the page switches to dark theme; on both rows nothing overlaps or is clipped."],
   ["S9-R1", "S9-R2", "S9-N1"], design=DREF("page 7 (Filters and call list)"))
 
 # ---------------- the PDF ----------------
@@ -260,9 +273,8 @@ for code in ("ARS", "APS"):
     r = R[code]; k = nk()
     C(k, "DESIGN", f"Design: {r['n']} PDF heading 91 And Over stays on one line",
       [ADMIN(), (f"The report has {r['parties']} with amounts in every bucket on today's date.", None), START(code)],
-      ["Choose \"Download (PDF)\" from the ⋯ menu.", "Open the PDF at 100% zoom.", "Read the bucket headings, letter for letter.", "Look at the last bucket heading."],
-      ["Step 1: the PDF downloads.", "Step 2: the PDF opens.", "Step 3: \"Current\", \"1-30 Days\", \"31-60 Days\", \"61-90 Days\", \"91 And Over\", as on screen.",
-       "Step 4: \"91 And Over\" is on one line, not wrapped."],
+      ["Choose \"Download (PDF)\" from the ⋯ menu.", "Open the PDF at 100% zoom and read the bucket headings, letter for letter."],
+      ["Step 1: the PDF downloads.", "Step 2: the PDF opens; the bucket headings read \"Current\", \"1-30 Days\", \"31-60 Days\", \"61-90 Days\", \"91 And Over\", as on screen, and the last one, \"91 And Over\", is on one line, not wrapped."],
       ["S3-R7"], design=DREF("page 2 (Export)"))
 
 k = nk()
@@ -270,9 +282,9 @@ C(k, "DESIGN", "Design: A/R Collection PDF prints the call list on each customer
   [ADMIN(), ('Your role has the "View and Manage AP/AR Data" switch on.', None),
    ("Customer {Customer-A} has an overdue invoice, a phone number and a credit term.", f"For example: {{Customer-A}} is {ex(k, 'PDF Phone')[0]}."),
    START("ARC", ", with only {Customer-A} ticked")],
-  ["Choose \"Download (PDF)\" from the ⋯ menu.", "Open the PDF at 100% zoom.", "Read the lines under the title.", "Read {Customer-A}'s line."],
-  ["Step 1: the PDF downloads.", "Step 2: the PDF opens.", "Step 3: \"As of \" and the date, then \"Locations: All locations\", then \"Customer: \" and the name.",
-   "Step 4: the name, \"Phone: \" and the number, \"Credit term: \" and the term, on the customer's line; nothing overlaps."],
+  ["Choose \"Download (PDF)\" from the ⋯ menu.", "Open the PDF at 100% zoom."],
+  ["Step 1: the PDF downloads.",
+   "Step 2: the PDF opens; the lines under the title read \"As of \" and the date, then \"Locations: All locations\", then \"Customer: \" and the name; {Customer-A}'s line reads the name, \"Phone: \" and the number, \"Credit term: \" and the term; nothing overlaps."],
   ["S9-R3", "S3-R4", "S3-R5"], design=DREF("page 2 (Export) and page 7 (Filters and call list)"))
 
 # ---------------- narrower windows ----------------
@@ -280,10 +292,9 @@ for fam, code in (("A/R", "ARD"), ("A/P", "APD")):
     k = nk()
     C(k, "DESIGN", f"Design: {fam} Detail narrower than 1440 px scrolls under the pinned column",
       [ADMIN(), TWO_LOC, START(code, ", with every bucket expanded", width="1280 px")],
-      ["Look at the right edge of the table.", "Scroll the table sideways to the right.", "Look at the bucket labels and the title row."],
+      ["Look at the right edge of the table.", "Scroll the table sideways to the right."],
       [f"Step 1: \"{R[code]['headline']}\" is pinned to the right edge and the table has a sideways scroll.",
-       f"Step 2: the other columns slide under the pinned \"{R[code]['headline']}\" column; nothing overlaps.",
-       "Step 3: the bucket labels stay visible at the left; the title row stays on one line."],
+       f"Step 2: the other columns slide under the pinned \"{R[code]['headline']}\" column; nothing overlaps; the bucket labels stay visible at the left; the title row stays on one line."],
       ["S8-R3", "S4-R7"], design=DREF("page 6 (Descriptions and pinned column)"))
 
 k = nk()
@@ -328,10 +339,8 @@ P(k, "Design: A/R Summary opening screen matches the design picture",
 k = nk()  # D-51
 P(k, "Design: A/R Summary sorted by Total matches the design picture",
   [ADMIN(), TWO_LOC, DATA_SUM, START("ARS", " in light theme at 100% zoom"), PICS("I04")],
-  ["Click the \"Total\" header.", "Compare the column headings with the picture.", "Compare the order of the rows and the Totals row with the picture.",
-   "Click the \"Total\" header again."],
-  ["the rows re-sort, largest Total first, as in the picture.", "\"Total\" now carries a small down arrow and \"Customer\" none; no other heading changes.",
-   "the largest Total is at the top; the Totals row reads the same as before the click: sorting moves rows, not the totals.",
+  ["Click the \"Total\" header.", "Click the \"Total\" header again."],
+  ["the rows re-sort, largest Total first, as in the picture: \"Total\" now carries a small down arrow and \"Customer\" none; no other heading changes; the largest Total is at the top; the Totals row reads the same as before the click: sorting moves rows, not the totals.",
    "the order reverses, smallest Total first, and \"Total\" is still the marked column."],
   ["S2-R2", "S2-R3", "S1-R7", "S5-R18"], ["I04"], reports=["ARS"])
 
@@ -349,9 +358,8 @@ P(k, "Design: A/P Detail with every bucket closed matches the design picture",
 k = nk()  # D-53
 P(k, "Design: the Export menu matches the design picture",
   [ADMIN(), START("ARS", " in light theme at 100% zoom"), PICS("I09")],
-  ["Click the ⋯ button at the right of the title row.", "Compare the button and the open menu with the picture.", "Read the menu rows, letter for letter."],
-  ["the menu opens.", "while the menu is open the ⋯ button shows a light-grey square; the white menu with a shadow opens under it, its right edge lined up with the button, over the right end of the column headings.",
-   "\"Download (PDF)\" then \"Download (CSV)\", and nothing else."],
+  ["Click the ⋯ button at the right of the title row."],
+  ["the menu opens, as in the picture: while the menu is open the ⋯ button shows a light-grey square; the white menu with a shadow opens under it, its right edge lined up with the button, over the right end of the column headings; its rows read, letter for letter, \"Download (PDF)\" then \"Download (CSV)\", and nothing else."],
   ["S3-R1", "KD-REUSE"], ["I09"], reports=["ARS"])
 
 k = nk()  # D-54
@@ -369,10 +377,9 @@ k = nk()  # D-55
 P(k, "Design: the PDF-too-large message matches the design picture",
   [ADMIN(), ("The organization has more than 2,000 open A/P lines on today's date.", "For example: the QA organization (13,540 open A/P lines)."),
    START("APD", " in light theme at 100% zoom, with every bucket collapsed"), PICS("I11")],
-  ["Choose \"Download (PDF)\" from the ⋯ menu.", "Compare the message with the picture.", "Read the message, letter for letter.", "Click \"Close\" on the message."],
-  ["one message appears at the bottom right of the window and nothing downloads.",
-   "a solid red box with a white warning triangle at the left, white text, and a white \"Close\" at the right, with no title line, as in the picture; the report behind it does not change.",
-   "\"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\"", "the message closes."],
+  ["Choose \"Download (PDF)\" from the ⋯ menu.", "Click \"Close\" on the message."],
+  ["one message appears at the bottom right of the window and nothing downloads: as in the picture, a solid red box with a white warning triangle at the left, white text, and a white \"Close\" at the right, with no title line; the report behind it does not change; the message reads, letter for letter, \"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\"",
+   "the message closes."],
   ["S3-N1", "S3-N3", "UFS-1"], ["I11"], reports=["APD"])
 
 k = nk()  # D-56
@@ -380,14 +387,9 @@ P(k, "Design: A/R Collection after Expand all matches the design picture",
   [ADMIN(), ('Your role has the "View and Manage AP/AR Data" switch on.', None),
    ("Customer {Customer-A}, first in name order, has an overdue invoice, an unused credit memo, a phone number and a credit term.", f"For example: {{Customer-A}} is {ex(k, '10 Trucking')[0]}."),
    START("ARC", " in light theme at 100% zoom, with every group collapsed"), PICS("I14")],
-  ["Click the chevron button in the table's top-left header cell.", "Compare the header row with the picture.", "Compare {Customer-A}'s group row with the picture.",
-   "Compare {Customer-A}'s document rows with the picture.", "Compare the subtotal row under the group with the picture.",
+  ["Click the chevron button in the table's top-left header cell.",
    "Scroll down a little and look at the Totals row.", W1536[0]],
-  ["every customer group opens and the header chevron points down.",
-   "the chevron, then the columns in the picture's order: Date (with a small up arrow), Location, Transaction type, ID, Due date, Past due, Amount, Open balance (their capital letters are checked in D-07 and D-81).",
-   "a blue chevron pointing down, the name in bold with its count in brackets, then in grey \"Phone: \" and the number and \"Credit term: \" and the term, on one line.",
-   "each row shows the date, location, transaction type, number (a blue link for the invoice, plain text for the credit memo), due date, days past due, amount, and the open balance in bold.",
-   "\"Total for \" and the customer's name, with the Amount and Open balance sums in bold.",
+  ["every customer group opens and the header chevron points down; compared with the picture: the header row shows the chevron, then the columns in the picture's order: Date (with a small up arrow), Location, Transaction type, ID, Due date, Past due, Amount, Open balance (their capital letters are checked in other design cases); {Customer-A}'s group row shows a blue chevron pointing down, the name in bold with its count in brackets, then in grey \"Phone: \" and the number and \"Credit term: \" and the term, on one line; each of its document rows shows the date, location, transaction type, number (a blue link for the invoice, plain text for the credit memo), due date, days past due, amount, and the open balance in bold; the subtotal row under the group reads \"Total for \" and the customer's name, with the Amount and Open balance sums in bold.",
    "the bold Totals row stays at the bottom of the table while the rows scroll under it.", W1536[1]],
   ["S4-R1", "S4-R5", "S9-R1", "S9-R2", "S8-R3", "S1-R7", "S7-R10", "S2-R1 ARC"], ["I14"], reports=["ARC"])
 
@@ -396,10 +398,9 @@ P(k, "Design: the pinned customer row matches the design picture",
   [ADMIN(), ("Customers {Customer-A} and {Customer-B} are next to each other in name order, and each has more overdue invoices than fit on the screen.",
              f"For example: {{Customer-A}} is {ex(k, 'Apollo Beach')[0]} and {{Customer-B}} is {ex(k, 'Bancescu')[0]}, 25 overdue invoices each."),
    START("ARC", " in light theme at 100% zoom, with every group expanded"), PICS("I15")],
-  ["Scroll down slowly into {Customer-A}'s rows.", "Compare the top of the table with the picture.",
+  ["Scroll down slowly into {Customer-A}'s rows.",
    "Keep scrolling until {Customer-B}'s group row reaches the top.", W1536[0]],
-  ["{Customer-A}'s group row stays just under the column headings while its rows slide beneath it.",
-   "as in the picture: the pinned row shows the blue chevron, the bold name and count and the grey Phone and Credit term, over the rows sliding beneath it.",
+  ["{Customer-A}'s group row stays just under the column headings while its rows slide beneath it; as in the picture, the pinned row shows the blue chevron, the bold name and count and the grey Phone and Credit term, over the rows sliding beneath it.",
    "{Customer-B}'s row pushes {Customer-A}'s up and off and takes its place; only one group row is pinned at a time.", W1536[1]],
   ["S4-R6", "S9-R1"], ["I15"], reports=["ARC"])
 
@@ -408,11 +409,10 @@ P(k, "Design: A/P Unpaid Invoices pinned vendor row matches the design pictures"
   [ADMIN(), ("Vendor {Vendor-A} has more unpaid bills than fit on the screen at your location, a long name, and an unused vendor credit {Vendor-credit-A} from a vendor return made at your location.",
              f"For example: {{Vendor-A}} is {ex(k, 'Akal')[0]} Mobile Truck Repair."),
    START("APU", " in light theme at 100% zoom, with every group expanded"), PICS("I16", "I43")],
-  ["Compare the title row with the pictures.", "Scroll down into {Vendor-A}'s rows.", "Compare {Vendor-A}'s rows with the pictures.",
+  ["Compare the title row with the pictures.", "Scroll down into {Vendor-A}'s rows.",
    "Hover over {Vendor-credit-A}'s number.", W1536[0]],
   ["the title reads \"A/P Unpaid Invoices Report\" with the info icon; the chips are those of the other A/P reports.",
-   "{Vendor-A}'s group row stays pinned under the column headings.",
-   "the vendor name wraps onto a second line; {Vendor-credit-A}'s Due Date and Past Due cells hold no date and no number (a dash, \"—\"); bill numbers and {Vendor-credit-A}'s number are blue links; Open Balance is bold.",
+   "{Vendor-A}'s group row stays pinned under the column headings; compared with the pictures, the vendor name wraps onto a second line; {Vendor-credit-A}'s Due Date and Past Due cells hold no date and no number (a dash, \"—\"); bill numbers and {Vendor-credit-A}'s number are blue links; Open Balance is bold.",
    "the row turns light grey and the number is a link, as in the second picture.", W1536[1]],
   ["S4-R6", "S2-R6", "S7-R9", "S7-R6", "S8-R3"], ["I16", "I43"], reports=["APU"])
 
@@ -423,37 +423,32 @@ P(k, "Design: A/R Collection with groups closed matches the pictures in both the
    START("ARC", " in light theme at 100% zoom, with every group collapsed"), PICS("I19", "I21")],
   ["Compare the title row and the filter row with the light picture.", "Look at the chevron in the table's top-left header cell.",
    "Compare the customer group rows with the light picture.", "Compare the Totals row with the light picture.", "Switch ShopView to dark theme.",
-   "Compare the page with the dark picture.", W1536[0]],
+   W1536[0]],
   ["the title \"A/R Aging Collection\", the info icon directly right of it and the \"⋯\" at the right end, all on one line; the filter row below.",
    "it points right: every group is closed.",
    "each group row: a blue chevron pointing right, the bold name with its count, grey \"Phone: \" and the number and \"Credit term: \" and the term, \"Total\" under Past due and the two bold sums.",
-   "\"Totals\" with the two bold sums at the bottom.", "the page switches to dark theme.",
-   "as in the dark picture: dark page and white text; the \"As of\" and \"Location\" chips are dark-blue pills with white text; \"Customer\" and \"Past due\" are white text with no fill; Phone and Credit term grey; everything readable.",
+   "\"Totals\" with the two bold sums at the bottom.",
+   "the page switches to dark theme, as in the dark picture: dark page and white text; the \"As of\" and \"Location\" chips are dark-blue pills with white text; \"Customer\" and \"Past due\" are white text with no fill; Phone and Credit term grey; everything readable.",
    W1536[1]],
   ["S8-R1", "S8-R2", "S9-R1", "S9-R2", "S4-R1", "S4-R5", "S7-R7"], ["I19", "I21"], reports=["ARC"])
 
 k = nk()  # D-60
 P(k, "Design: the description tooltip matches the pictures in both themes",
   [ADMIN(), START("ARC", " in light theme at 100% zoom"), PICS("I20", "I22")],
-  ["Hover over the info icon right of the title.", "Compare the icon and the tooltip with the light picture.", "Read the tooltip, letter for letter.",
-   "Move the pointer away.", "Switch ShopView to dark theme.", "Hover over the info icon again.", "Compare the tooltip with the dark picture."],
-  ["a tooltip opens.",
-   "the icon turns blue; the tooltip is a dark-grey box with white text on four lines, opening below the icon and starting near it, over the left of the filter row, as in the picture.",
-   "\"Overdue invoices, unused credit memos and deposits for each customer to help you follow up on payments. Excludes invoices that aren’t due yet.\"",
-   "the tooltip closes.", "the page switches to dark theme.", "the tooltip opens in dark theme.", "a mid-grey box with white text, in the same place and with the same words; readable."],
+  ["Hover over the info icon right of the title.",
+   "Move the pointer away.", "Switch ShopView to dark theme.", "Hover over the info icon again."],
+  ["a tooltip opens; as in the light picture, the icon turns blue and the tooltip is a dark-grey box with white text on four lines, opening below the icon and starting near it, over the left of the filter row; it reads, letter for letter, \"Overdue invoices, unused credit memos and deposits for each customer to help you follow up on payments. Excludes invoices that aren’t due yet.\"",
+   "the tooltip closes.", "the page switches to dark theme.",
+   "the tooltip opens in dark theme, as in the dark picture: a mid-grey box with white text, in the same place and with the same words; readable."],
   ["S8-R1", "S8-R1 ARC"], ["I20", "I22"], reports=["ARC"])
 
 k = nk()  # D-61
 P(k, "Design: A/P Detail with a bucket open matches the pictures in both themes",
   [ADMIN(), TWO_LOC, ("The \"91 or more days past due\" bucket has more lines than fit on the screen on today's date.", "For example: the QA organization (11,334 lines in that bucket)."),
    START("APD", " in light theme at 100% zoom, with \"91 or more days past due\" expanded"), PICS("I23", "I24")],
-  ["Scroll down a little inside the bucket.", "Compare the header row and the pinned bucket row with the light picture.", "Compare the cells of the rows with the light picture.",
-   "Look at the Totals row.", "Switch ShopView to dark theme.", "Compare the page with the dark picture.", W1536[0]],
-  ["the bucket row \"91 or more days past due\" stays pinned under the column headings.",
-   "all nine columns show at 1440 px: the chevron, \"Date\", \"Location\", \"Transaction Type\", \"No.\", \"Vendor Name\" with a small up arrow, \"Due Date\", \"Past Due\", \"Amount\", \"Open Balance\", each heading on one line.",
-   "Location wraps onto two lines (for example \"Staging Heavy\" / \"Duty - 9919\"); dates, numbers and money stay on one line; document numbers are blue links; Open Balance is bold on every row.",
-   "the bold Totals row sits at the bottom while the rows scroll under it.", "the page switches to dark theme.",
-   "as in the dark picture: the links are blue and readable on the dark page; Open Balance and the Totals row bold and white.", W1536[1]],
+  ["Scroll down a little inside the bucket.", "Switch ShopView to dark theme.", W1536[0]],
+  ["the bucket row \"91 or more days past due\" stays pinned under the column headings, and the bold Totals row sits at the bottom while the rows scroll under it. Compared with the light picture: all nine columns show at 1440 px: the chevron, \"Date\", \"Location\", \"Transaction Type\", \"No.\", \"Vendor Name\" with a small up arrow, \"Due Date\", \"Past Due\", \"Amount\", \"Open Balance\", each heading on one line; Location wraps onto two lines (for example \"Staging Heavy\" / \"Duty - 9919\"); dates, numbers and money stay on one line; document numbers are blue links; Open Balance is bold on every row.",
+   "the page switches to dark theme, as in the dark picture: the links are blue and readable on the dark page; Open Balance and the Totals row bold and white.", W1536[1]],
   ["S8-R3", "S8-R4", "S4-R6", "S7-R7", "S2-R1 APD"], ["I23", "I24"], reports=["APD"])
 
 k = nk()  # D-62
@@ -475,10 +470,10 @@ P(k, "Design: A/R Detail links and plain numbers match the design picture",
    ("Customer {Customer-A} has an open invoice made at {Location-B}, customer {Customer-B} an unused credit memo at {Location-A}, and customer {Customer-C} an open invoice at {Location-A}, all more than 90 days past due.",
     f"For example: {{Customer-A}} is {ex(k, 'Oakland City')[0]}, {{Customer-B}} is {ex(k, 'Sledge')[0]} and {{Customer-C}} is {ex(k, 'Wellington')[0]}."),
    START("ARD", " in light theme at 100% zoom, with the \"91 or more days past due\" bucket expanded"), PICS("I28")],
-  ["Compare the header row with the picture.", "Look at {Customer-A}'s invoice number.", "Look at {Customer-B}'s credit memo number.",
-   "Look at {Customer-C}'s invoice number.", "Compare the subtotal row at the end of the bucket with the picture.", W1536[0]],
-  ["the chevron, then the columns in the picture's order: Date, Location, Transaction type, ID, Customer full name (with a small up arrow), Due date, Amount, Open balance; this report has no Past due column (capital letters: D-04 and D-81).",
-   "a blue link: another location you work at.", "plain dark text, not blue.", "a blue link.",
+  ["Compare the header row with the picture.", "Look at {Customer-A}'s invoice number, {Customer-B}'s credit memo number and {Customer-C}'s invoice number.",
+   "Compare the subtotal row at the end of the bucket with the picture.", W1536[0]],
+  ["the chevron, then the columns in the picture's order: Date, Location, Transaction type, ID, Customer full name (with a small up arrow), Due date, Amount, Open balance; this report has no Past due column (their capital letters are checked in other design cases).",
+   "{Customer-A}'s is a blue link (another location you work at); {Customer-B}'s is plain dark text, not blue; {Customer-C}'s is a blue link.",
    "\"Total for 91 or more days past due\" with the Amount and Open balance sums in bold.", W1536[1]],
   ["S7-R1", "S7-R3", "S7-R10", "S2-R1 ARD", "S1-R5"], ["I28"], reports=["ARD"])
 
@@ -486,12 +481,9 @@ k = nk()  # D-64
 P(k, "Design: the switch-location dialog frame matches the design pictures",
   [ADMIN(), TWO_LOC, ("Customer {Customer-A} has an open work order invoice {Invoice-A} made at {Location-B}.", f"For example: {{Customer-A}} is {ex(k, 'Dialog Frame')[0]}."),
    START("ARD", " in light theme at 100% zoom, with {Customer-A} ticked and every bucket expanded"), PICS("I29", "I30")],
-  ["Click {Invoice-A}'s number.", "Compare the dialog's place, frame and background with the first picture.", "Read the title and the message, letter for letter.",
-   "Read the buttons, letter for letter, left to right.", "Click \"Cancel\".", "Compare the report with the second picture."],
-  ["the dialog opens over the report.", "a white dialog in the middle of the window, with the report dimmed behind it, as in the picture.",
-   "the bold title \"Switch location?\", then \"This work order is in \", {Location-B}'s name and \"Switch your active location to view it?\".",
-   "the buttons \"Switch location\" and \"Cancel\", as the PRD words them (the picture differs: see References from Design).",
-   "the dialog closes.", "the report is exactly as before the click, as in the second picture: the same filters, open bucket, sort and scroll position."],
+  ["Click {Invoice-A}'s number.", "Click \"Cancel\"."],
+  ["the dialog opens over the report: as in the first picture, a white dialog in the middle of the window, with the report dimmed behind it; read letter for letter: the bold title \"Switch location?\", then \"This work order is in \", {Location-B}'s name and \"Switch your active location to view it?\"; then, left to right, the buttons \"Switch location\" and \"Cancel\", as the PRD words them (the picture differs: see References from Design).",
+   "the dialog closes, and the report is exactly as before the click, as in the second picture: the same filters, open bucket, sort and scroll position."],
   ["S7-R3", "S7-R5", "UFS-3"], ["I29", "I30"], reports=["ARD"])
 
 k = nk()  # D-65
@@ -506,81 +498,66 @@ P(k, "Design: A/R Detail opens on All locations as in the design picture",
 k = nk()  # D-66
 P(k, "Design: the Location menu with two locations matches the design picture",
   [ADMIN(), TWO_LOC, START("ARD", " in light theme at 100% zoom"), PICS("I33")],
-  ["Click the Location chip.", "Compare the chip with the picture.", "Read the menu rows, top to bottom.", "Compare the tick boxes with the picture.", W1536[0]],
-  ["the menu opens under the chip.", "while the menu is open the chip shows a circled \"×\" in place of its down arrow.",
-   "\"Select all\" with \"2 selected\" at its right, {Location-A}, {Location-B}, a dividing line, then \"Clear selection\"; no search box.",
-   "the ticked boxes have a light-blue fill with a blue tick, as in the picture.", W1536[1]],
+  ["Click the Location chip.", W1536[0]],
+  ["the menu opens under the chip; as in the picture, while the menu is open the chip shows a circled \"×\" in place of its down arrow; the menu rows read, top to bottom, \"Select all\" with \"2 selected\" at its right, {Location-A}, {Location-B}, a dividing line, then \"Clear selection\"; no search box; the ticked boxes have a light-blue fill with a blue tick.", W1536[1]],
   ["S5-R2", "S5-R5", "S5-R4"], ["I33"], reports=["ARD"])
 
 k = nk()  # D-67
 P(k, "Design: one location ticked hides the Location column as pictured",
   [ADMIN(), TWO_LOC, START("ARD", " in light theme at 100% zoom, with every bucket collapsed"), PICS("I34")],
-  ["Click the Location chip.", "Untick {Location-A}.", "Compare the open menu with the picture.", "Compare the chip with the picture.",
-   "Close the menu.", "Compare the header row with the picture."],
-  ["the menu opens.", "the count reads \"1 selected\" and \"Select all\" is no longer ticked.",
-   "while the menu stays open the rows do not move: {Location-A}, now unticked, stays where it was.",
-   "the chip reads \"Location: \" and {Location-B}'s name, shortened with \"...\" when long (\"Location: Staging Lethbri...\" in the picture), still in a blue pill.",
-   "the menu closes.",
-   "the Location column is gone: the chevron, then Date, Transaction type, ID, Customer full name, Due date, Amount, Open balance."],
+  ["Click the Location chip.", "Untick {Location-A}.", "Close the menu."],
+  ["the menu opens.",
+   "the count reads \"1 selected\" and \"Select all\" is no longer ticked; as in the picture, while the menu stays open the rows do not move: {Location-A}, now unticked, stays where it was; the chip reads \"Location: \" and {Location-B}'s name, shortened with \"...\" when long (\"Location: Staging Lethbri...\" in the picture), still in a blue pill.",
+   "the menu closes, and as in the picture the Location column is gone: the header row reads the chevron, then Date, Transaction type, ID, Customer full name, Due date, Amount, Open balance."],
   ["S5-R6", "S6-R2", "S6-N1", "S5-R2"], ["I34"], reports=["ARD"])
 
 k = nk()  # D-68
 P(k, "Design: No locations shows the empty state as in the design picture",
   [ADMIN(), TWO_LOC, START("ARD", " in light theme at 100% zoom"), PICS("I35")],
-  ["In the Location menu, click \"Clear selection\".", "Close the menu.", "Compare the chip with the picture.", "Compare the table area with the picture.",
-   "Read the empty state, letter for letter.", W1536[0]],
-  ["no location is ticked.", "the menu closes.", "\"Location: No locations\" with the pin icon and no blue fill, still in the filter row.",
-   "the column headings without a Location column, then the empty state in the middle under a grey circle with a magnifier; no rows and no Totals row (the picture also draws a Totals row of $0.00: see References from Design).",
-   "\"No record matches these filters\", \"Try changing filters to widen your results.\" and an outlined \"Clear all filters\" button.", W1536[1]],
+  ["In the Location menu, click \"Clear selection\".", "Close the menu.", W1536[0]],
+  ["no location is ticked.",
+   "the menu closes. As in the picture: the chip reads \"Location: No locations\" with the pin icon and no blue fill, still in the filter row; the table area shows the column headings without a Location column, then the empty state in the middle under a grey circle with a magnifier; no rows and no Totals row (the picture also draws a Totals row of $0.00: see References from Design); the empty state reads, letter for letter, \"No record matches these filters\", \"Try changing filters to widen your results.\" and an outlined \"Clear all filters\" button.", W1536[1]],
   ["S5-R6a", "S5-R6", "S5-R9", "S8-R5"], ["I35"], reports=["ARD"])
 
 k = nk()  # D-69
 P(k, "Design: A/R Summary sorted by Location matches the design picture",
   [ADMIN(), TWO_LOC, ("Customer {Customer-A} has open invoices at both locations on today's date.", f"For example: {{Customer-A}} is {ex(k, 'Monroe')[0]}."),
    START("ARS", " in light theme at 100% zoom"), PICS("I36")],
-  ["Click the \"Location\" header.", "Compare the column headings with the picture.", "Compare the first rows with the picture.", W1536[0]],
-  ["the rows sort by Location, A to Z.", "\"Location\" carries the small up arrow and \"Customer\" none.",
-   "the rows reading \"Multiple\" come first, {Customer-A} among them, then each location's rows.", W1536[1]],
+  ["Click the \"Location\" header.", W1536[0]],
+  ["the rows sort by Location, A to Z, as in the picture: \"Location\" carries the small up arrow and \"Customer\" none; the rows reading \"Multiple\" come first, {Customer-A} among them, then each location's rows.", W1536[1]],
   ["S6-R4", "S6-R5", "S2-R2"], ["I36"], reports=["ARS"])
 
 k = nk()  # D-70
 P(k, "Design: clicking a customer on A/R Summary matches the drill-down picture",
   [ADMIN(), ('Your role has the "Customers → View" permission and the "View and Manage AP/AR Data" switch on.', None),
    ("Customer {Customer-A} had open invoices on {Date-A}.", f"For example: {{Customer-A}} is {ex(k, 'Drill Picture')[0]}; {{Date-A}} is the last day of last month."),
-   START("ARS", " in light theme at 100% zoom"), PICS("I37")],
-  ["Change the as-of date to {Date-A}.", "Click {Customer-A}'s name.", "Compare the filter row with the picture.", "Compare the group row and the Totals row with the picture."],
-  ["the date chip reads \"As of: \" and {Date-A}.", "A/R Collection opens (title \"A/R Aging Collection\").",
-   "\"As of: \" and {Date-A} in a blue pill; \"Customer: \" and {Customer-A}'s name in a blue pill (one customer ticked); \"Past due: Any\" resting; \"Location: All locations\".",
-   "one closed group row for {Customer-A} with its count, Phone and Credit term, \"Total\" and the sums; the Totals row equals that group's sums."],
+   START("ARS", " in light theme at 100% zoom, with the as-of date set to {Date-A}"), PICS("I37")],
+  ["Click {Customer-A}'s name."],
+  ["A/R Collection opens (title \"A/R Aging Collection\"). As in the picture: the filter row reads \"As of: \" and {Date-A} in a blue pill; \"Customer: \" and {Customer-A}'s name in a blue pill (one customer ticked); \"Past due: Any\" resting; \"Location: All locations\"; one closed group row for {Customer-A} with its count, Phone and Credit term, \"Total\" and the sums; the Totals row equals that group's sums."],
   ["S5-R11", "S5-R13", "S5-R18", "KD-DRILL"], ["I37"], reports=["ARS", "ARC"])
 
 k = nk()  # D-71
 P(k, "Design: the Past due menu matches the design picture",
   [ADMIN(), START("ARS", " in light theme at 100% zoom"), PICS("I38")],
-  ["Click the Past due chip.", "Compare the chip and the menu with the picture.", "Read the menu rows, top to bottom.", "Look at the boxes of the four range rows.", W1536[0]],
-  ["the menu opens.", "while the menu is open the chip has a light-grey background; the white menu opens under it.",
-   "\"Any\" (ticked), a dividing line, the grey line \"All ranges are included. Pick one or more to narrow.\", then \"1-30 days\", \"31-60 days\", \"61-90 days\", \"91+ days\".",
-   "each range box shows a grey dash (neither empty nor ticked) while \"Any\" is ticked.", W1536[1]],
+  ["Click the Past due chip.", W1536[0]],
+  ["the menu opens, as in the picture: while the menu is open the chip has a light-grey background; the white menu opens under it; its rows read, top to bottom, \"Any\" (ticked), a dividing line, the grey line \"All ranges are included. Pick one or more to narrow.\", then \"1-30 days\", \"31-60 days\", \"61-90 days\", \"91+ days\"; each range box shows a grey dash (neither empty nor ticked) while \"Any\" is ticked.", W1536[1]],
   ["S5-R15", "KD-REUSE"], ["I38"], reports=["ARS"])
 
 k = nk()  # D-72
 P(k, "Design: Past due with two ranges ticked matches the design picture",
   [ADMIN(), TWO_LOC, ("Customers have open invoices in every Past due range on today's date.", None), START("ARS", " in light theme at 100% zoom"), PICS("I39")],
-  ["In the Past due filter, tick \"31-60 days\" and \"91+ days\".", "Close the menu.", "Compare the chip with the picture.", "Compare the rows with the picture.",
-   "Compare the Totals row with the rows above it."],
-  ["both ranges are ticked.", "the menu closes.", "\"Past due: 2 ranges\" in a blue pill with the hourglass icon.",
-   "only customers with an amount 31 to 60 or more than 90 days past due are listed, each with its full balance in every column.",
-   "the Totals row adds up exactly the rows listed."],
+  ["In the Past due filter, tick \"31-60 days\" and \"91+ days\".", "Close the menu."],
+  ["both ranges are ticked.",
+   "the menu closes. As in the picture: the chip reads \"Past due: 2 ranges\" in a blue pill with the hourglass icon; only customers with an amount 31 to 60 or more than 90 days past due are listed, each with its full balance in every column; the Totals row adds up exactly the rows listed."],
   ["S5-R15", "S5-R17", "S5-R18"], ["I39"], reports=["ARS"])
 
 k = nk()  # D-73
 P(k, "Design: the Vendor menu matches the design picture",
   [ADMIN(), VEND8, START("APS", " in light theme at 100% zoom"), "Reports > Inventory > Inventory Value is open in a second tab of the same window, for comparison.", PICS("I40")],
-  ["Click the Vendor chip.", "Compare the chip and the menu with the picture.", "Read the menu rows, top to bottom.", "Look at the boxes of the vendor rows.",
+  ["Click the Vendor chip.",
    "Compare the order of the vendors with Inventory Value's Vendor menu."],
-  ["the menu opens.", "while the menu is open the chip (\"Vendor: All vendors\", truck icon) has a light-grey background; the menu opens under it.",
-   "a search box with a magnifier and the placeholder \"Search vendors\", \"All vendors\" (ticked), a dividing line, the grey line \"All vendors are included. Pick one or more to narrow.\", then the vendors (the picture's placeholder differs: see References from Design).",
-   "each vendor box shows a grey dash while \"All vendors\" is ticked.", "the same order as Inventory Value's Vendor menu."],
+  ["the menu opens, as in the picture: while the menu is open the chip (\"Vendor: All vendors\", truck icon) has a light-grey background; the menu opens under it; its rows read, top to bottom, a search box with a magnifier and the placeholder \"Search vendors\", \"All vendors\" (ticked), a dividing line, the grey line \"All vendors are included. Pick one or more to narrow.\", then the vendors (the picture's placeholder differs: see References from Design); each vendor box shows a grey dash while \"All vendors\" is ticked.",
+   "the same order as Inventory Value's Vendor menu."],
   ["S5-R13", "KD-REUSE"] + TP.q("D18"), ["I40"], reports=["APS"])
 
 k = nk()  # D-74
@@ -588,13 +565,10 @@ P(k, "Design: two customers ticked look as in the design picture",
   [ADMIN(), ("Customer {Customer-A} has open invoices on today's date; customer {Customer-B} has nothing open.",
              f"For example: {{Customer-A}} is {ex(k, '10 Trucking')[0]} and {{Customer-B}} is {ex(k, '4 Star Truck Repair')[0]}."),
    START("ARS", " in light theme at 100% zoom"), PICS("I41")],
-  ["Click the Customer chip.", "Tick {Customer-A} and {Customer-B}.", "Compare the search box with the picture.", "Compare the \"All customers\" row and the list with the picture.",
-   "Compare the chip with the picture.", "Close the menu.", "Compare the rows and the Totals row with the picture."],
-  ["the menu opens.", "both are ticked.", "both names show as blue tags, each with an \"×\", inside the search box, and a circled \"×\" sits at the box's top right.",
-   "\"All customers\" is unticked with \"2 selected\" at its right; the helper line is gone; the ticked customers keep their place in the A to Z list.",
-   "\"Customer: 2 customers\" in a blue pill.",
-   "the menu closes.",
-   "one row, {Customer-A} ({Customer-B} has nothing open, so it is not listed); the Totals row equals {Customer-A}'s row, an empty bucket reading $0.00 in the Totals row, as in the picture."],
+  ["Click the Customer chip.", "Tick {Customer-A} and {Customer-B}.", "Close the menu."],
+  ["the menu opens.",
+   "both are ticked. As in the picture: both names show as blue tags, each with an \"×\", inside the search box, and a circled \"×\" sits at the box's top right; \"All customers\" is unticked with \"2 selected\" at its right; the helper line is gone; the ticked customers keep their place in the A to Z list; the chip reads \"Customer: 2 customers\" in a blue pill.",
+   "the menu closes. As in the picture: one row, {Customer-A} ({Customer-B} has nothing open, so it is not listed); the Totals row equals {Customer-A}'s row, an empty bucket reading $0.00 in the Totals row."],
   ["S5-R13", "S5-R18", "S1-E1"], ["I41"], reports=["ARS"])
 
 k = nk()  # D-75
@@ -602,10 +576,8 @@ P(k, "Design: the call list for one customer matches the design picture",
   [ADMIN(), ('Your role has the "View and Manage AP/AR Data" switch on.', None),
    ("Customer {Customer-A} has a long name, an overdue invoice, a phone number and a credit term.", f"For example: {{Customer-A}} is {ex(k, 'Andrews Truck and Trailer Repair LLC')[0]}."),
    START("ARC", " in light theme at 100% zoom"), PICS("I42")],
-  ["In the Customer filter, tick {Customer-A}.", "Compare the chip with the picture.", "Compare the group row with the picture.", "Compare the Totals row with the group row."],
-  ["only {Customer-A}'s group is listed.", "\"Customer: \" and {Customer-A}'s name, shortened with \"...\", in a blue pill.",
-   "a closed group row: a chevron pointing right, the bold name and count, grey \"Phone: \" and the number, grey \"Credit term: \" and the term, \"Total\" and the sums.",
-   "the Totals row equals the group's sums."],
+  ["In the Customer filter, tick {Customer-A}."],
+  ["only {Customer-A}'s group is listed. As in the picture: the chip reads \"Customer: \" and {Customer-A}'s name, shortened with \"...\", in a blue pill; a closed group row: a chevron pointing right, the bold name and count, grey \"Phone: \" and the number, grey \"Credit term: \" and the term, \"Total\" and the sums; the Totals row equals the group's sums."],
   ["S9-R1", "S9-R2", "S5-R13", "S5-R18"], ["I42"], reports=["ARC"])
 
 # ---------------- held design-version cases (Rule 130 item 5): not run until Chris Ward rules ----------------
@@ -618,23 +590,23 @@ k = nk()  # D-76
 P(k, "Design: the switch-location dialog as the design draws it",
   [ADMIN(), TWO_LOC, ("Customer {Customer-A} has an open work order invoice {Invoice-A} made at {Location-B}.", f"For example: {{Customer-A}} is {ex(k, 'Design Dialog')[0]}."),
    START("ARD", ", with {Customer-A} ticked and every bucket expanded"), PICS("I29")],
-  ["Click {Invoice-A}'s number.", "Read the buttons, letter for letter, left to right.", "Look at the dialog's top right corner.", "Click the \"×\"."],
-  ["the \"Switch location?\" dialog opens over the report.", "\"Cancel\" (grey) on the left, then \"Switch Location\" (blue, capital L) on the right, as in the picture.",
-   "a close \"×\".", "the dialog closes and you stay on the report, as with \"Cancel\" (option (a) of the question)."],
+  ["Click {Invoice-A}'s number.", "Click the \"×\" at the dialog's top right corner."],
+  ["the \"Switch location?\" dialog opens over the report; as in the picture, its buttons read, letter for letter, left to right, \"Cancel\" (grey) on the left, then \"Switch Location\" (blue, capital L) on the right, and a close \"×\" sits at its top right corner.",
+   "the dialog closes and you stay on the report, as with \"Cancel\" (option (a) of the question)."],
   ["S7-R3", "UFS-3"], ["I29"], reports=["ARD"], marker=DESIGN_HOLD, note=HOLDNOTE(11))
 
 k = nk()  # D-77
 P(k, "Design: the Vendor menu's search box reads Search vendor",
   [ADMIN(), VEND8, START("APD", " in light theme at 100% zoom"), PICS("I40")],
-  ["Click the Vendor chip.", "Read the placeholder in the search box, letter for letter."],
-  ["the menu opens with a search box at the top.", "\"Search vendor\" (singular), as in the picture."],
+  ["Click the Vendor chip."],
+  ["the menu opens with a search box at the top, whose placeholder reads, letter for letter, \"Search vendor\" (singular), as in the picture."],
   ["S5-R13"] + TP.q("D18"), ["I40"], reports=["APD"], marker=DESIGN_HOLD, note=HOLDNOTE(12))
 
 k = nk()  # D-78
 P(k, "Design: with No locations a Totals row of $0.00 shows",
   [ADMIN(), TWO_LOC, START("ARD", " in light theme at 100% zoom"), PICS("I35")],
-  ["In the Location menu, click \"Clear selection\".", "Close the menu.", "Read the area under the column headings."],
-  ["\"Location: No locations\".", "the menu closes.", "a \"Totals\" row reading $0.00 and $0.00 directly under the headings, then the empty state, as in the picture."],
+  ["In the Location menu, click \"Clear selection\".", "Close the menu."],
+  ["\"Location: No locations\".", "the menu closes, and under the column headings a \"Totals\" row reads $0.00 and $0.00, then the empty state, as in the picture."],
   ["S5-R6a"], ["I35"], reports=["ARD"], marker=DESIGN_HOLD, note=HOLDNOTE(13))
 
 k = nk()  # D-79
@@ -642,9 +614,9 @@ P(k, "Design: same-day invoices on A/R Collection keep the time order",
   [ADMIN(), ("Customer {Customer-A} has three overdue invoices dated the same day: {Invoice-A}, {Invoice-B} and {Invoice-C}, numbered in that order, where {Invoice-C} was invoiced first that day, then {Invoice-A}, then {Invoice-B}.",
              f"For example: {{Customer-A}} is {ex(k, 'Same Day')[0]}; {{Invoice-A}} is S3-14690, {{Invoice-B}} S3-14691 and {{Invoice-C}} S3-15660 (the app assigns the real numbers)."),
    START("ARC", ", with {Customer-A}'s group expanded"), PICS("I15")],
-  ["Read the order of {Invoice-A}, {Invoice-B} and {Invoice-C}.", "Download the CSV from the ⋯ menu and read the same three rows."],
+  ["Read the order of {Invoice-A}, {Invoice-B} and {Invoice-C}.", "Choose \"Download (CSV)\" from the ⋯ menu.", "Open the CSV and read the same three rows."],
   ["{Invoice-C} first, then {Invoice-A}, then {Invoice-B}: same-day invoices follow the time they were invoiced, not their numbers (option (b) of the question; the picture lists same-day invoices out of number order).",
-   "the same order as on screen."],
+   "the CSV downloads.", "the same order as on screen."],
   ["S1-R6", "S1-R4"], ["I15"], reports=["ARC"], marker=DESIGN_HOLD, note=HOLDNOTE(14))
 
 k = nk()  # D-80
@@ -703,6 +675,14 @@ WHY = {
  "D-49": "The design draws no phone or tablet layout (all 7 boards checked); the case follows the PRD's Out of Scope line.",
 }
 EXTRA_DIFFS = {k_: ["DD-03"] for k_ in ("D-19", "D-20", "D-21", "D-22", "D-23", "D-24")}
+# Rule 136 (22 Oct 2026): D-01, D-04, D-07, D-10, D-13 and D-16 were split; parts "b" and "c" compare with the same pictures.
+for k_ in ("D-01", "D-04", "D-07", "D-10", "D-13", "D-16"):
+    FIGS_FOR[k_ + "b"] = FIGS_FOR[k_]; FIGS_FOR[k_ + "c"] = FIGS_FOR[k_]
+# Rule 136 (22 Oct 2026): D-19 to D-24 were split; the empty state keeps its picture, the load error ("b") has none to compare with.
+for k_ in ("D-19", "D-20", "D-21", "D-22", "D-23", "D-24"):
+    WHY[k_] = "The design pictures one empty state (No locations on A/R Detail); the loading bar is not drawn."
+    FIGS_FOR[k_ + "b"] = []
+    WHY[k_ + "b"] = "The design draws no load error (all 7 boards checked); the case follows the PRD."
 for c in CASES:
     if c["key"] in FIGS_FOR:
         c["design"] = dict(figs=FIGS_FOR[c["key"]], why=WHY.get(c["key"]), diffs=EXTRA_DIFFS.get(c["key"], []))

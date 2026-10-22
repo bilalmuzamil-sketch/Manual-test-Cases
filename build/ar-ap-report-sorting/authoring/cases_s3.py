@@ -9,24 +9,21 @@ def nk():
     ORDER["n"] += 1; return f"S3-{ORDER['n']:02d}"
 
 # ---- the Export menu on each report, no Print button
+# Rule 136 (22 Oct 2026): each family case (15 steps) became one case per report; the Summary keeps the family case's C-id, Detail is
+# "b" and Collection / Unpaid Invoices "c". Opening the report is the starting screen; "Close the menu" was not needed.
 for fam, codes in (("A/R", AR3), ("A/P", AP3)):
-    k = nk(); steps, res = [], []
-    for code in codes:
-        n0 = len(steps); nm = R[code]["n"]
-        steps += [f"Open Reports > Finance > {nm}.",
-                  "Hover over the ⋯ button at the right of the title row.",
-                  "Click the ⋯ button and read the menu.",
-                  "Close the menu.",
-                  "Look along the title row and the filter row for a Print button."]
-        res += [f"Step {n0+1}: {nm} opens.",
-                f"Step {n0+2}: {nm} shows a ⋯ button at the right of its title row, labelled \"Export report\".",
-                f"Step {n0+3}: the menu offers \"Download (PDF)\" and \"Download (CSV)\".",
-                f"Step {n0+4}: the menu closes.",
-                f"Step {n0+5}: there is no Print button" + (" (A/R's former Print button is gone)." if fam == "A/R" else ", and no separate print button: printing is through \"Download (PDF)\".")]
-    C(k, "S3", f"Each {fam} report has the Export menu with PDF and CSV",
-      [ADMIN(), (f"Each of the three {fam} reports has open documents on today's date.", None),
-       "Starting screen: Reports > Finance in a desktop browser window 1440 px wide."],
-      steps, res, ["S3-R1"] + (["WC-3"] if fam == "A/R" else ["OOS-7"]), reports=codes)
+    k = nk()
+    for code, key in zip(codes, (k, k + "b", k + "c")):
+        nm = R[code]["n"]
+        C(key, "S3", f"{nm} has the Export menu with PDF and CSV",
+          [ADMIN(), ("The report has open documents on today's date.", None), START(code)],
+          ["Look along the title row and the filter row for a Print button.",
+           "Hover over the ⋯ button at the right of the title row.",
+           "Click the ⋯ button."],
+          ["Step 1: there is no Print button" + (" (A/R's former Print button is gone)." if fam == "A/R" else ", and no separate print button: printing is through \"Download (PDF)\"."),
+           f"Step 2: {nm} shows a ⋯ button at the right of its title row, labelled \"Export report\".",
+           "Step 3: the menu opens and offers \"Download (PDF)\" and \"Download (CSV)\"."],
+          ["S3-R1"] + (["WC-3"] if fam == "A/R" else ["OOS-7"]), reports=[code])
 
 # ---- PDF and CSV follow the screen: rows, order, a sort changed after an earlier export, the Location column, the Success message
 for code in ALL6:
@@ -62,25 +59,21 @@ for code in ALL6:
     pre = [ADMIN(), TWO_LOC,
            (f"{P}s {{{P}-A}} and {{{P}-B}} each have {r['doc']}s at {{Location-A}} that were 31 to 60 and more than 90 days past due on Oct 15, 2026.",
             f"For example: {{{P}-A}} is {ex(k, 'First Ticked')[0]} and {{{P}-B}} is {ex(k, 'Second Ticked')[0]}."),
-           START(code)]
-    steps = ["Set the as-of date to 10/15/2026.",
-             "In the Location filter, untick {Location-B}.",
-             "In the Past due filter, tick \"91+ days\", then \"31-60 days\".",
+           START(code, ", with the as-of date set to 10/15/2026 and only {Location-A} ticked in the Location filter (the Location column is hidden)")]
+    steps = ["In the Past due filter, tick \"91+ days\", then \"31-60 days\".",
              f"In the {P} filter, tick {{{P}-B}}, then {{{P}-A}}.",
              "Choose \"Download (PDF)\" from the ⋯ menu.",
-             "Read the lines under the PDF's title.",
+             "Open the PDF and read the lines under its title.",
              "Choose \"Download (CSV)\" from the ⋯ menu.",
-             "Read the lines at the top of the CSV."]
-    res = ["Step 1: the date chip reads \"As of: 10/15/2026\".",
-           "Step 2: only {Location-A} is ticked and the Location column disappears from the screen.",
-           "Step 3: both ranges are ticked.",
-           f"Step 4: both {r['parties']} are ticked; the chip reads \"{P}: 2 {r['parties']}\".",
-           "Step 5: the PDF downloads.",
-           f"Step 6: the lines read \"As of Oct 15, 2026\", then \"Locations: \" and {{Location-A}}'s name, then \"Past due: 31-60 days, 91+ days\" (menu order, not the order ticked), then \"{Ps}: \" and {{{P}-B}}, {{{P}-A}} (the order ticked). The PDF has no Location column.",
-           "Step 7: the CSV downloads.",
-           f"Step 8: the CSV reads \"As of: Oct 15, 2026\", then the same Locations, Past due and {Ps} lines, and has no Location column."]
+             "Open the CSV and read the lines at the top."]
+    res = ["Step 1: both ranges are ticked.",
+           f"Step 2: both {r['parties']} are ticked; the chip reads \"{P}: 2 {r['parties']}\".",
+           "Step 3: the PDF downloads.",
+           f"Step 4: the lines read \"As of Oct 15, 2026\", then \"Locations: \" and {{Location-A}}'s name, then \"Past due: 31-60 days, 91+ days\" (menu order, not the order ticked), then \"{Ps}: \" and {{{P}-B}}, {{{P}-A}} (the order ticked). The PDF has no Location column.",
+           "Step 5: the CSV downloads.",
+           f"Step 6: the CSV reads \"As of: Oct 15, 2026\", then the same Locations, Past due and {Ps} lines, and has no Location column."]
     C(k, "S3", f"{r['n']}: each export states the as-of date and the filters", pre, steps, res,
-      ["S3-R4", "S3-R5", "S3-R6", "S6-N1", "S5-R13", "S5-R1"])
+      ["S3-R4", "S3-R5", "S3-R6", "S6-N1", "S5-R13"])
 
 for code in ("ARS", "APD"):
     r = R[code]; k = nk(); P = r["Party"]
@@ -99,16 +92,15 @@ k = nk()
 C(k, "S3", "A/R Detail: exports list the ticked locations in the order you ticked them",
   [ADMIN(), ("The organization has open A/R documents at three locations, {Location-A}, {Location-B} and {Location-C}, and you are enrolled at all three; in A to Z order {Location-A}'s name comes before {Location-C}'s.",
              f"For example: {{Location-A}} is {LOC_A}, {{Location-B}} is {LOC_B} and {{Location-C}} is another staging location whose name starts with a later letter."),
-   START("ARD")],
-  ["In the Location menu, click \"Clear selection\".", "Tick {Location-C}.", "Tick {Location-A}.",
-   "Choose \"Download (PDF)\" from the ⋯ menu.", "Read the Locations line under the PDF's title.",
-   "Choose \"Download (CSV)\" from the ⋯ menu.", "Read the Locations line at the top of the CSV."],
-  ["Step 1: no location is ticked; the chip reads \"Location: No locations\".",
-   "Step 2: {Location-C} is ticked; the chip reads \"Location: \" and {Location-C}'s name.",
-   "Step 3: {Location-A} is ticked as well; the chip reads \"Location: 2 locations\".",
-   "Step 4: the PDF downloads.",
-   "Step 5: it reads \"Locations: \" followed by {Location-C}'s name, then {Location-A}'s name: the order you ticked them, not the menu's A to Z order; {Location-B} is not named.",
-   "Step 6: the CSV downloads.", "Step 7: the same Locations line, with the two names in the same order."],
+   START("ARD", ", with no location ticked in the Location filter (\"Clear selection\" clicked)")],
+  ["In the Location menu, tick {Location-C}.", "Tick {Location-A}.",
+   "Choose \"Download (PDF)\" from the ⋯ menu.", "Open the PDF and read the Locations line under its title.",
+   "Choose \"Download (CSV)\" from the ⋯ menu.", "Open the CSV and read the Locations line at the top."],
+  ["Step 1: {Location-C} is ticked; the chip reads \"Location: \" and {Location-C}'s name.",
+   "Step 2: {Location-A} is ticked as well; the chip reads \"Location: 2 locations\".",
+   "Step 3: the PDF downloads.",
+   "Step 4: it reads \"Locations: \" followed by {Location-C}'s name, then {Location-A}'s name: the order you ticked them, not the menu's A to Z order; {Location-B} is not named.",
+   "Step 5: the CSV downloads.", "Step 6: the same Locations line, with the two names in the same order."],
   ["S3-R5", "S5-R6"] + TP.q("D30-tick"),
   note=(f"The PRD does not say in what order several locations are listed (question {QN['export-lines']}, part 1, on Chris Ward's sheet). The tech plan "
         "(21 Oct 2026) says selections keep the order they were ticked, and nothing in the PRD contradicts it, so this case follows the tech plan (QA lead's "
@@ -122,15 +114,11 @@ for code in ("ARS", "APS"):
        (f"{P} {{{P}-A}} has open {r['doc']}s on today's date of $1,250.50 that is 1 to 30 days past due and $99.00 that is more than 90 days past due, and nothing in the other buckets.",
         f"For example: {{{P}-A}} is {ex(k, 'Flat Table')[0]}."),
        START(code)],
-      ["Choose \"Download (CSV)\" from the ⋯ menu.", "Open the CSV in a plain text editor (not a spreadsheet program) and read the heading row.",
-       f"Find {{{P}-A}}'s row and read its cells.", "Read the last row.", "Look for any group header or subtotal row.",
-       "Choose \"Download (PDF)\" from the ⋯ menu.", "Look at the PDF's last bucket heading."],
+      ["Choose \"Download (CSV)\" from the ⋯ menu.", "Open the CSV in a plain text editor (not a spreadsheet program).",
+       "Choose \"Download (PDF)\" from the ⋯ menu.", "Open the PDF and look at its last bucket heading."],
       ["Step 1: the CSV downloads.",
-       "Step 2: the last bucket column is headed \"91 And Over\", exactly as the screen shows it.",
-       f"Step 3: one row for {{{P}-A}}: 1-30 Days reads 1250.50 and 91 And Over reads 99.00 (no $ sign, no thousands comma, two decimals); Current, 31-60 Days and 61-90 Days are blank cells, not 0; the Total reads 1349.50 (1250.50 + 99.00).",
-       "Step 4: one Totals row at the bottom, and only one.",
-       f"Step 5: there are none: every row except the Totals row is one {r['party']}.",
-       "Step 6: the PDF downloads.", "Step 7: the PDF heading reads \"91 And Over\" on one line."],
+       f"Step 2: the heading row's last bucket column is headed \"91 And Over\", exactly as the screen shows it; one row for {{{P}-A}}: 1-30 Days reads 1250.50 and 91 And Over reads 99.00 (no $ sign, no thousands comma, two decimals); Current, 31-60 Days and 61-90 Days are blank cells, not 0; the Total reads 1349.50 (1250.50 + 99.00); one Totals row at the bottom, and only one; there is no group header or subtotal row: every row except the Totals row is one {r['party']}.",
+       "Step 3: the PDF downloads.", "Step 4: the PDF heading reads \"91 And Over\" on one line."],
       ["S3-R7", "S3-R8"])
 
 # ---- CSV shape: the four document reports
@@ -142,13 +130,9 @@ for code in ("ARD", "ARC", "APD", "APU"):
        (f"{P} {{{P}-A}} has two overdue {d}s on today's date in different aging buckets: {{{Dc}-A}}, dated 2026-09-01, amount $1,250.50, and {{{Dc}-B}}, amount $75.00.",
         f"For example: {{{P}-A}} is {ex(k, 'Flat Rows')[0]}."),
        START(code, f", with the {P} filter showing {{{P}-A}} ticked")],
-      ["Choose \"Download (CSV)\" from the ⋯ menu.", "Open the CSV in a plain text editor and read the heading row.",
-       f"Find {{{Dc}-A}}'s row and read its cells.", "Read every other row.", "Read the last row."],
+      ["Choose \"Download (CSV)\" from the ⋯ menu.", "Open the CSV in a plain text editor."],
       ["Step 1: the CSV downloads.",
-       f"Step 2: the columns include one for the {grp}" + (f" and one for the {r['party']}" if grp == "aging bucket" else "") + ".",
-       f"Step 3: one row for {{{Dc}-A}}: its {grp} is in its own column" + (f", {{{P}-A}} in the {r['party']} column" if grp == "aging bucket" else "") + ", the Date reads 2026-09-01 and the Amount reads 1250.50 (no $ sign, no thousands comma, two decimals).",
-       f"Step 4: there is one row for {{{Dc}-B}} and no group header or subtotal row.",
-       "Step 5: one Totals row at the bottom; its Amount is 1325.50 (1250.50 + 75.00)."],
+       f"Step 2: the heading row has a column for the {grp}" + (f" and one for the {r['party']}" if grp == "aging bucket" else "") + f"; one row for {{{Dc}-A}}: its {grp} is in its own column" + (f", {{{P}-A}} in the {r['party']} column" if grp == "aging bucket" else "") + f", the Date reads 2026-09-01 and the Amount reads 1250.50 (no $ sign, no thousands comma, two decimals); one row for {{{Dc}-B}} and no group header or subtotal row; one Totals row at the bottom, whose Amount is 1325.50 (1250.50 + 75.00)."],
       ["S3-R8"],
       note=f"The CSV headings for the bucket and the {r['party']} columns are not stated in the PRD (question {QN['csv-headings']}); the case checks that the columns exist.")
 
@@ -168,9 +152,9 @@ for code, how in (("ARS", "location"), ("APU", "vendor")):
     lead_s = [x for x in (s1[0], s1[2]) if x]; n = len(lead_s)
     lead_r = [x for x in (s1[1], s1[3]) if x]
     C(k, "S3", f"{r['n']}: exporting an empty report downloads nothing and warns", pre,
-      lead_s + ["Choose \"Download (PDF)\" from the ⋯ menu.", "Look at the browser's downloads.", "Choose \"Download (CSV)\" from the ⋯ menu.", "Look at the browser's downloads."],
-      lead_r + [f"Step {n+1}: the warning \"Empty export\", \"Export didn't yield any results\" shows.", f"Step {n+2}: nothing was downloaded.",
-       f"Step {n+3}: the same warning shows.", f"Step {n+4}: nothing was downloaded."], q)
+      lead_s + ["Choose \"Download (PDF)\" from the ⋯ menu.", "Choose \"Download (CSV)\" from the ⋯ menu."],
+      lead_r + [f"Step {n+1}: the warning \"Empty export\", \"Export didn't yield any results\" shows and nothing is downloaded (no new file in the browser's downloads).",
+       f"Step {n+2}: the same warning shows and nothing is downloaded."], q)
 
 # ---- an export that fails for any other reason (lost connection)
 for code, kind in (("ARD", "CSV"), ("APS", "PDF")):
@@ -178,12 +162,11 @@ for code, kind in (("ARD", "CSV"), ("APS", "PDF")):
     C(k, "S3", f"{r['n']}: a {kind} export that fails shows one error and downloads nothing",
       [ADMIN(), (f"The report has open documents on today's date.", None),
        ("You can switch this computer's network connection off and on (for example Wi-Fi).", None), START(code)],
-      ["Switch the computer's network connection off.", "Click the ⋯ button.", f"Click \"Download ({kind})\".", "Count the messages that show and look at the browser's downloads.",
+      ["Switch the computer's network connection off.", "Click the ⋯ button.", f"Click \"Download ({kind})\".",
        "Switch the network connection back on."],
       ["Step 1: the computer is offline; the report stays on screen.", "Step 2: the menu opens.",
-       "Step 3: the error message \"We couldn't export this report. Please try again.\" shows.",
-       "Step 4: exactly one message shows, no second generic error, and nothing was downloaded.",
-       "Step 5: the connection is back; a new export works again."],
+       "Step 3: the error message \"We couldn't export this report. Please try again.\" shows: exactly one message, no second generic error, and nothing is downloaded (no new file in the browser's downloads).",
+       "Step 4: the connection is back; a new export works again."],
       ["EH", "UFS-8"],
       note="The server-error half of the same sentence cannot be caused by hand; the developers' automated tests cover it. This case covers the lost connection.")
 
@@ -209,12 +192,10 @@ C(k, "S3", "A/R Summary: a name starting with = opens in the CSV as plain text",
              f"For example: {{Customer-A}} is =2+3 {ex(k, 'Formula')[0]}."),
    ("A spreadsheet program is installed on the computer.", "For example: Microsoft Excel, Google Sheets or LibreOffice Calc."),
    START("ARS", ", with the Customer filter showing only {Customer-A} ticked")],
-  ["Read {Customer-A}'s name on screen.", "Choose \"Download (CSV)\" from the ⋯ menu.", "Open the CSV in the spreadsheet program.",
-   "Read {Customer-A}'s name cell."],
+  ["Read {Customer-A}'s name on screen.", "Choose \"Download (CSV)\" from the ⋯ menu.", "Open the CSV in the spreadsheet program."],
   ["Step 1: the name shows as it was typed, starting with \"=\".",
    "Step 2: the CSV downloads with the \"Success\" message.",
-   "Step 3: the spreadsheet opens the file.",
-   "Step 4: the cell shows the name's own characters as text (a mark may be added in front of them so the spreadsheet keeps them as text); it does not show a calculated number (such as 5) or an error (such as #NAME?)."],
+   "Step 3: the spreadsheet opens the file, and {Customer-A}'s name cell shows the name's own characters as text (a mark may be added in front of them so the spreadsheet keeps them as text); it does not show a calculated number (such as 5) or an error (such as #NAME?)."],
   ["S3-R3"] + TP.q("CSVINJ"),
   note="Why: a name that a spreadsheet would run as a formula is a known risk in exported files; the tech plan says the CSV guards against it.")
 

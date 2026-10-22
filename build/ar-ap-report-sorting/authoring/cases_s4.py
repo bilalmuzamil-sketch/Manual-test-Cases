@@ -22,17 +22,13 @@ for code in GROUPED:
       [f"Click the chevron on one {g} row.",
        "Hover over the chevron button in the table's top-left header cell.",
        "Click that chevron button.",
-       "Look at the column header under the button and at the sort mark.",
        "Hover over the chevron button again.",
-       "Click it.",
-       f"Look at each {g} row's own chevron."],
+       "Click it."],
       [f"Step 1: that {g} expands and its own chevron turns from pointing right to pointing down.",
        "Step 2: the button's chevron points down (a group is expanded) and a tooltip above the button reads \"Collapse all\".",
-       "Step 3: every group collapses.",
-       "Step 4: the column under the button was not sorted: the sort mark is still on the column the report opened on.",
-       "Step 5: the chevron now points right and the tooltip reads \"Expand all\".",
-       "Step 6: every group expands, and the column under the button is still not sorted.",
-       f"Step 7: every {g} row's chevron points down (open)."],
+       "Step 3: every group collapses, and the column under the button was not sorted: the sort mark is still on the column the report opened on.",
+       "Step 4: the chevron now points right and the tooltip reads \"Expand all\".",
+       f"Step 5: every group expands, the column under the button is still not sorted, and every {g} row's own chevron points down (open)."],
       ["S4-R1", "S4-R3", "S4-R5", "UFS-5"],
       note="This release does not change how the groups open, so they open as today; the starting screen asks for every group collapsed, collapsing any that are open.")
 
@@ -41,11 +37,9 @@ for code in ("ARC", "APU"):
     C(k, "S4", f"{r['n']}: after Expand all, groups loaded later arrive expanded",
       [ADMIN(), (f"More than 30 {r['parties']} have overdue {r['doc']}s on today's date.", None), START(code)],
       ["Click the chevron button in the table's top-left header cell until its tooltip reads \"Collapse all\" (every group expanded).",
-       f"Scroll down (or go to the next page) until more {r['party']} groups arrive.",
-       "Look at the groups that just arrived."],
+       f"Scroll down (or go to the next page) until more {r['party']} groups arrive."],
       ["Step 1: every group on screen is expanded.",
-       f"Step 2: the next {r['parties']} load.",
-       "Step 3: they arrive expanded, showing their rows, without another click."],
+       f"Step 2: the next {r['parties']} load, and they arrive expanded, showing their rows, without another click."],
       ["S4-R2", "S4-R1"],
       note=f"How the next 30 {r['parties']} are reached (page buttons or scrolling) is question {QN['paging']}.")
 
@@ -80,52 +74,56 @@ for code in GROUPED:
              "vendor": f"{A}'s name and count"}[r["group"]]
     pre = [ADMIN()] + ([('Your role has the "View and Manage AP/AR Data" switch on.', None)] if code == "ARC" else []) + [
            (f"On today's date the report has {tall}.", exl), START(code, f", with the groups of {A} and {B} expanded")]
+    # Rule 136 (22 Oct 2026): the label that stays at the left when the table scrolls sideways (S4-R7) is its own case ("b"); it reads
+    # the same records and changes none.
     C(k, "S4", f"{r['n']}: the group row stays pinned under the headings", pre,
       [f"Scroll down slowly into {A}'s rows.",
-       "Look at the pinned row.",
        f"Keep scrolling until {B}'s row reaches the top.",
        f"Keep scrolling into {B}'s rows.",
        f"Scroll back up slowly until you are inside {A}'s rows again.",
        f"Scroll down fast through {A}'s and {B}'s rows.",
-       f"Scroll fast back up through {B}'s and {A}'s rows.",
-       "Make the browser window 1200 px wide.",
+       f"Scroll fast back up through {B}'s and {A}'s rows."],
+      [f"Step 1: {A}'s row stays pinned just under the column headings while its rows scroll beneath it; it shows the {g}'s chevron (pointing down) and its label: {label}; it shows no amounts (the {g}'s sums stay in its own subtotal row).",
+       f"Step 2: {B}'s row pushes {A}'s row up and off and takes its place; only one group row is pinned at a time.",
+       f"Step 3: {B}'s row stays pinned.",
+       f"Step 4: the change reverses: {A}'s row comes back down into the pinned place.",
+       "Step 5: at speed too, each pinned row is pushed up and replaced cleanly: it never covers the column headings or the Totals row at the bottom, and two group rows never overlap.",
+       "Step 6: the same going back up: each pinned row is replaced cleanly, never covers the column headings or the Totals row, and two group rows never overlap."],
+      ["S4-R6"] + TP.q("D21", "CHK3") + (["S9-R1", "S9-R2"] if code == "ARC" else []))
+    C(k + "b", "S4", f"{r['n']}: group labels stay at the left when scrolling sideways",
+      [ADMIN(), (f"On today's date the report has {tall}.", exl), START(code, f", with the groups of {A} and {B} expanded")],
+      ["Make the browser window 1200 px wide.",
        "Scroll the table sideways to the right."],
-      [f"Step 1: {A}'s row stays pinned just under the column headings while its rows scroll beneath it.",
-       f"Step 2: it shows the {g}'s chevron (pointing down) and its label: {label}; it shows no amounts (the {g}'s sums stay in its own subtotal row).",
-       f"Step 3: {B}'s row pushes {A}'s row up and off and takes its place; only one group row is pinned at a time.",
-       f"Step 4: {B}'s row stays pinned.",
-       f"Step 5: the change reverses: {A}'s row comes back down into the pinned place.",
-       "Step 6: at speed too, each pinned row is pushed up and replaced cleanly: it never covers the column headings or the Totals row at the bottom, and two group rows never overlap.",
-       "Step 7: the same going back up: each pinned row is replaced cleanly, never covers the column headings or the Totals row, and two group rows never overlap.",
-       "Step 8: the table now scrolls sideways (narrower than 1440 px).",
-       f"Step 9: each group row's label ({A}'s label) stays visible at the left while the columns move."],
-      ["S4-R6", "S4-R7", "S8-R3"] + TP.q("D21", "CHK3") + (["S9-R1", "S9-R2"] if code == "ARC" else []))
+      ["Step 1: the table now scrolls sideways (narrower than 1440 px).",
+       f"Step 2: each group row's label ({A}'s label) stays visible at the left while the columns move."],
+      ["S4-R7", "S8-R3"])
 
 for code in ("ARC", "APU"):
     r = R[code]; k = nk(); P = r["Party"]
     C(k, "S4", f"{r['n']}: paging keeps each group expanded or collapsed",
       [ADMIN(), (f"More than 30 {r['parties']} have overdue {r['doc']}s on today's date; {{{P}-A}} is on the first page.", f"For example: {{{P}-A}} is {ex(k, 'First Page')[0]}."),
        START(code, f", with only {{{P}-A}}'s group expanded")],
-      ["Go to the next page (or scroll until the next 30 load).", "Go back to the first page (or scroll back up).", f"Look at {{{P}-A}}'s group and the groups around it."],
-      ["Step 1: the next groups show.", "Step 2: the first page shows again.",
-       f"Step 3: {{{P}-A}}'s group is still expanded and the others are still collapsed."],
+      ["Go to the next page (or scroll until the next 30 load).", "Go back to the first page (or scroll back up)."],
+      ["Step 1: the next groups show.",
+       f"Step 2: the first page shows again: {{{P}-A}}'s group is still expanded and the others are still collapsed."],
       ["S4-R8"],
       note=f"How the next 30 are reached is question {QN['paging']}.")
 
+# Rule 136 (22 Oct 2026): each pair case became one case per report; the first report keeps the pair's C-id, the second is "b".
 for pair in (["ARD", "ARC"], ["APD", "APU"]):
-    k = nk(); a, b = R[pair[0]], R[pair[1]]; steps, res = [], []
-    for code in pair:
-        n0 = len(steps); nm = R[code]["n"]; g = gname(code)
-        steps += [f"Open Reports > Finance > {nm} and note which groups are expanded.",
-                  f"Click the chevron on the first {g} row to change it.",
-                  "Open Reports > Finance > Sales By Customer.",
-                  f"Open Reports > Finance > {nm} again."]
-        res += [f"Step {n0+1}: {nm} opens; note its opening state.", f"Step {n0+2}: that {g} changes (expands or collapses).",
-                f"Step {n0+3}: Sales By Customer opens.",
-                f"Step {n0+4}: {nm} opens in the same state as in step {n0+1}, not the state you left: the change is not remembered."]
-    C(k, "S4", f"{a['n']} and {b['n']} do not remember expanded groups",
-      [ADMIN(), ("Both reports have open documents on today's date in several groups.", None), "Starting screen: Reports > Finance in a desktop browser window 1440 px wide."],
-      steps, res, ["S4-R9"], reports=pair)
+    k = nk()
+    for code, key in zip(pair, (k, k + "b")):
+        nm = R[code]["n"]; g = gname(code)
+        C(key, "S4", f"{nm} does not remember expanded groups",
+          [ADMIN(), (f"The report has open documents on today's date in several {g}s.", None), START(code)],
+          ["Note which groups are expanded.",
+           f"Click the chevron on the first {g} row to change it.",
+           "Open Reports > Finance > Sales By Customer.",
+           f"Open Reports > Finance > {nm} again."],
+          ["Step 1: note the report's opening state.", f"Step 2: that {g} changes (expands or collapses).",
+           "Step 3: Sales By Customer opens.",
+           f"Step 4: {nm} opens in the same state as in step 1, not the state you left: the change is not remembered."],
+          ["S4-R9"], reports=[code])
 
 for code in GROUPED:
     r = R[code]; k = nk(); P = r["Party"]
@@ -142,11 +140,11 @@ for code in GROUPED:
        "Step 5: every group collapses.", "Step 6: every group expands.", "Step 7: every group collapses."],
       ["S4-N1"])
 
+# Rule 136 (22 Oct 2026): one case per Summary; A/R Summary keeps the C-id, A/P Summary is "b".
 k = nk()
-C(k, "S4", "A/R Summary and A/P Summary have no Collapse all button",
-  [ADMIN(), ("Both reports have open documents on today's date.", None), "Starting screen: Reports > Finance in a desktop browser window 1440 px wide."],
-  ["Open A/R Summary and look at the table's top-left header cell.", "Hover over that cell.",
-   "Open A/P Summary and look at the table's top-left header cell.", "Hover over that cell."],
-  ["Step 1: there is no chevron button: the report has no groups.", "Step 2: no \"Collapse all\" or \"Expand all\" tooltip shows.",
-   "Step 3: there is no chevron button.", "Step 4: no tooltip shows."],
-  ["S4-N2"], reports=["ARS", "APS"])
+for code, key in (("ARS", k), ("APS", k + "b")):
+    C(key, "S4", f"{R[code]['n']} has no Collapse all button",
+      [ADMIN(), ("The report has open documents on today's date.", None), START(code)],
+      ["Look at the table's top-left header cell.", "Hover over that cell."],
+      ["Step 1: there is no chevron button: the report has no groups.", "Step 2: no \"Collapse all\" or \"Expand all\" tooltip shows."],
+      ["S4-N2"], reports=[code])

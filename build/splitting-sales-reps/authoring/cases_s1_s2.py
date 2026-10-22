@@ -4,10 +4,8 @@ from common import *
 # ---------------- Story 1: one Sales Representative field ----------------
 C("S1-01", "S1", "Sales Representative sits under Service Advisor and reads Unassigned",
   [ADMIN, CUST, WO(), WO_START],
-  ["Look at the work order card without hovering over it.",
-   "Find the Sales Representative field."],
-  ["Step 1: the card shows Lead Technician, then Service Advisor, then a field labelled \"Sales Representative\" directly under Service Advisor.",
-   "Step 2: the label \"Sales Representative\" is on the first line and \"Unassigned\" on the second. At rest there is no box around it, no dropdown arrow and no button beside it."],
+  ["Look at the work order card without hovering over it."],
+  ["Step 1: the card shows Lead Technician, then Service Advisor, then a field labelled \"Sales Representative\" directly under Service Advisor. The label \"Sales Representative\" is on the first line and \"Unassigned\" on the second. At rest there is no box around it, no dropdown arrow and no button beside it."],
   ["S1-R1", "S1-R2", "S1-R3", "S1-R7"])
 
 C("S1-02", "S1", "Sales Representative list starts with Unassigned, then reps by first name",
@@ -16,28 +14,20 @@ C("S1-02", "S1", "Sales Representative list starts with Unassigned, then reps by
     "For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ann Brook and {Sales-rep-C} is ZZAUTOTEST Ben Able (first name \"ZZAUTOTEST Ann\" or \"ZZAUTOTEST Ben\")."),
    ('Staff member {Staff-member-D} is active at {Location-A} with the "Sales Representative" switch off.', "For example: {Staff-member-D} is ZZAUTOTEST Dan Noswitch."),
    CUST, WO(), WO_START],
-  ["Click the Sales Representative field.",
-   "Read the options in the dropdown from top to bottom.",
-   "Look for a search box in the dropdown.",
-   "Look for {Staff-member-D} in the list."],
-  ["Step 1: a dropdown opens under the field.",
-   "Step 2: the first option is \"Unassigned\" and it is checked. The sales representatives follow, sorted by first name, then last name, A to Z, so {Sales-rep-A} comes before {Sales-rep-B}, and {Sales-rep-B} before {Sales-rep-C}.",
-   "Step 3: there is no search box.",
-   "Step 4: {Staff-member-D} is not listed."],
+  ["Click the Sales Representative field."],
+  ["Step 1: a dropdown opens under the field. Reading it from top to bottom: the first option is \"Unassigned\" and it is checked. The sales representatives follow, sorted by first name, then last name, A to Z, so {Sales-rep-A} comes before {Sales-rep-B}, and {Sales-rep-B} before {Sales-rep-C}. There is no search box, and {Staff-member-D} is not listed."],
   ["S1-R8", "S1-R9", "S1-R12", "S1-N2"])
 
 C("S1-03", "S1", "Picking a sales representative saves at once and closes the list",
   [ADMIN, REPS2, CUST, WO(), WO_START],
   ["Click the Sales Representative field.",
    "Click {Sales-rep-A} in the dropdown.",
-   "Look for a Save button near the field.",
    "Reload the page.",
    "Click the Sales Representative field again."],
   ["Step 1: the dropdown opens.",
-   "Step 2: the dropdown closes and the field reads {Sales-rep-A}.",
-   "Step 3: there is no Save button; the change is already saved.",
-   "Step 4: after the reload the field still reads {Sales-rep-A}.",
-   "Step 5: {Sales-rep-A} is the checked option."],
+   "Step 2: the dropdown closes and the field reads {Sales-rep-A}. There is no Save button near the field; the change is already saved.",
+   "Step 3: after the reload the field still reads {Sales-rep-A}.",
+   "Step 4: {Sales-rep-A} is the checked option."],
   ["S1-R13", "S1-R14", "S1-R15", "S1-R9"])
 
 C("S1-04", "S1", "Picking Unassigned clears the Sales Representative field",
@@ -71,47 +61,55 @@ C("S1-06", "S1", "A user who can only view work orders sees the field as plain t
    "Step 2: nothing opens; the field cannot be changed."],
   ["S1-N1"])
 
+# 22 Oct 2026, Rule 136 pass: turning the switch off (S1-07) and deactivating the account (S1-08) are the setup, not what is checked,
+# so they moved into the preconditions; the steps start on the work order. What is checked is unchanged.
 C("S1-07", "S1", "A rep whose switch is turned off stays and reads (Inactive)",
-  [ADMIN, REPS2, CUST, WO('its one "Sales Representative" field reads {Sales-rep-B}'),
-   START("Settings > Staff is open in a desktop browser at least 1024 px wide")],
-  *SR(("Open {Sales-rep-B}'s staff record.", "the staff record opens with the \"Sales Representative\" switch on."),
-      ("Turn the \"Sales Representative\" switch off.", "the switch shows off."),
-      ("Save the staff record.", "the staff record saves."),
-      ("Open {Work-order-1}.", " the Sales Representative field reads \"{Sales-rep-B} (Inactive)\"."),
+  [ADMIN,
+   ('Staff members {Sales-rep-A} and {Sales-rep-B} are active at {Location-A}. {Sales-rep-A}\'s "Sales Representative" switch is on; {Sales-rep-B}\'s was on and has since been turned off (the staff account is still active).',
+    "For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able."),
+   CUST, WO('its one "Sales Representative" field holds {Sales-rep-B}, picked while their switch was on'),
+   START("the Work Orders page is open in a desktop browser at least 1024 px wide")],
+  *SR(("Open {Work-order-1}.", "the Sales Representative field reads \"{Sales-rep-B} (Inactive)\"."),
       ("Click the Sales Representative field.", "{Sales-rep-B} is not in the dropdown, and no option is checked."),
       ("Click on an empty part of the page to close the dropdown.", "the field still reads \"{Sales-rep-B} (Inactive)\"; nothing changed.")),
   ["S1-E2"])
 
 C("S1-08", "S1", "A deactivated staff member stays in the field and reads (Inactive)",
-  [ADMIN, REPS2, CUST, WO('its one "Sales Representative" field reads {Sales-rep-B}'),
-   START("Settings > Staff is open in a desktop browser at least 1024 px wide")],
-  *SR(("Start deactivating {Sales-rep-B}'s staff account.", "the Deactivate window opens."),
-      ("Confirm the deactivation.", "{Sales-rep-B} is deactivated."),
-      ("Open {Work-order-1}.", "the Sales Representative field reads \"{Sales-rep-B} (Inactive)\"."),
+  [ADMIN,
+   ('Staff member {Sales-rep-A} is active at {Location-A} with the "Sales Representative" switch on. Staff member {Sales-rep-B} had the switch on, and their staff account has since been deactivated.',
+    "For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able."),
+   CUST, WO('its one "Sales Representative" field holds {Sales-rep-B}, picked before their account was deactivated'),
+   START("the Work Orders page is open in a desktop browser at least 1024 px wide")],
+  *SR(("Open {Work-order-1}.", "the Sales Representative field reads \"{Sales-rep-B} (Inactive)\"."),
       ("Click the Sales Representative field.", "{Sales-rep-B} is not in the dropdown, and no option is checked."),
       ("Click {Sales-rep-A}.", "the field reads {Sales-rep-A}; the inactive name is gone from the field.")),
   ["S1-E2"])
 
 C("S1-09", "S1", "Picking a rep turned off in another tab is refused with a message",
-  [ADMIN, REPS2, CUST, WO(), WO_START + " Settings > Staff is open in a second tab of the same browser"],
+  [ADMIN, REPS2, CUST, WO(), WO_START + " {Sales-rep-B}'s staff record is open in a second tab of the same browser, with the \"Sales Representative\" switch on."],
   *SR(("In the first tab, click the Sales Representative field so the dropdown lists {Sales-rep-B}.", "the dropdown is open and lists {Sales-rep-B}."),
-      ("In the second tab, open {Sales-rep-B}'s staff record.", "the staff record opens with the \"Sales Representative\" switch on."),
-      ("Turn the \"Sales Representative\" switch off.", "the switch shows off."),
-      ("Save the staff record.", "the staff record saves."),
+      ("In the second tab, turn the \"Sales Representative\" switch off.", "the switch shows off."),
+      ("In the second tab, save the staff record.", "the staff record saves."),
       ("Back in the first tab, without reloading, click {Sales-rep-B} in the open dropdown.", "the change is refused with the message \"The selected staff member is not a sales representative.\" and the field returns to \"Unassigned\".")),
   ["S1-N2", "S1-N3", ("User Feedback Summary, a non-representative sent by another route", "Error message; the field returns to the saved value")],
   note="A stale open dropdown is the way a manual tester can send a person who is no longer a sales representative. If the build re-checks the list when the dropdown is clicked and never offers the person, mark the case Blocked and say so.")
 
-C("S1-10", "S1", "Developer check: a failed save or a change made mid-save",
+# 22 Oct 2026, Rule 136 split: the failed save (S1-N3) and the change made while saving (S1-E1) are two behaviours with their own
+# requirement; each part starts from its own work order, so S1-10b no longer needs the connection brought back first.
+C("S1-10", "S1", "Developer check: a failed save puts the field back and shows an error",
   [ADMIN, REPS2, CUST, WO(), WO_START],
   *SR(("Make the next save of a Sales Representative change fail (for example by going offline in the browser).", "the browser is offline; the field still reads \"Unassigned\"."),
-      ("Pick {Sales-rep-A} in the Sales Representative field.", "the field returns to the last saved value and an error message shows."),
-      ("Bring the connection back.", "the browser is online again."),
-      ("Pick {Sales-rep-B} in the Sales Representative field.", "the field reads {Sales-rep-B} while it saves."),
+      ("Pick {Sales-rep-A} in the Sales Representative field.", "the field returns to the last saved value (\"Unassigned\") and an error message shows.")),
+  ["S1-N3"],
+  marker="AUTOMATION: HOLD - needs a forced save failure; check with developer tools or automation, not by hand")
+
+C("S1-10b", "S1", "Developer check: a change made while the field is saving is ignored",
+  [ADMIN, REPS2, CUST, WO(), WO_START],
+  *SR(("Pick {Sales-rep-B} in the Sales Representative field.", "the field reads {Sales-rep-B} while it saves."),
       ("Before that save finishes, pick {Sales-rep-A}.", "the change made while the first was saving is ignored."),
       ("Before that save finishes, click the + button.", "the + cannot be clicked until the save finishes; then the field shows what was saved ({Sales-rep-B}).")),
-  ["S1-N3", "S1-E1"],
-  marker="AUTOMATION: HOLD - needs a forced save failure and a timed second click; check with developer tools or automation, not by hand")
+  ["S1-E1"],
+  marker="AUTOMATION: HOLD - needs a second click timed before a save finishes; check with developer tools or automation, not by hand")
 
 GONE = "AUTOMATION: HOLD - only a data repair makes a staff record stop existing or belong to another organization; developers check this, manual QA cannot set it up"
 C("S1-11", "S1", "A rep who no longer exists or is in another organization reads Unassigned",
@@ -135,8 +133,7 @@ C("S2-01", "S2", "The + adds Labor and Parts fields holding the same person",
   *SR(("Hover over the Sales Representative field.", "a + button shows to the right of the field."),
       ("Hover over the + button.", "the tooltip \"Add representative\" shows."),
       ("Click the + button.", "a menu opens below the + with one option, \"Sales Representative - Parts\"; the tooltip is not shown while the menu is open."),
-      ("Click \"Sales Representative - Parts\" in the menu.", "the menu closes and the one field becomes two, in this order: \"Sales Representative - Labor\" and \"Sales Representative - Parts\". Both read {Sales-rep-A}."),
-      ("Look at both fields without clicking anything.", "neither dropdown has opened on its own. Both labels show in full. \"Sales Representative - Parts\" has a remove x to its right; \"Sales Representative - Labor\" has no button, and the + is gone."),
+      ("Click \"Sales Representative - Parts\" in the menu.", "the menu closes and the one field becomes two, in this order: \"Sales Representative - Labor\" and \"Sales Representative - Parts\". Both read {Sales-rep-A}. Neither dropdown has opened on its own. Both labels show in full. \"Sales Representative - Parts\" has a remove x to its right; \"Sales Representative - Labor\" has no button, and the + is gone."),
       ("Reload the page.", "after the reload both fields still show and both read {Sales-rep-A}.")),
   ["S2-R1", "S2-R3", "S2-R4", "S2-R5", "S2-R6", "S2-R7", "S2-R8", "S2-R10", "S2-R14", "S2-R15"])
 
@@ -186,20 +183,32 @@ C("S2-06", "S2", "Removing Parts when Labor is Unassigned leaves nobody",
 
 # 22 Oct 2026, tech plan pass (Rule 134): rewritten top to bottom so the inactive person is also COPIED onto Parts when the field is
 # added (tech plan §5 0.1 and §7 "Edge cases to watch"; PRD S2-R6 with S2-E1). Was: Labor already inactive, Parts changed, Parts removed.
-C("S2-07", "S2", "An inactive person is copied to Parts and keeps the Labor side",
-  [ADMIN, REPS2,
-   ('Staff member {Sales-rep-C} had the "Sales Representative" switch on, was picked on {Work-order-1}, and has since had the switch turned off (the account is still active).', "For example: {Sales-rep-C} is ZZAUTOTEST Cara Able."),
-   CUST, WO('its one "Sales Representative" field reads "{Sales-rep-C} (Inactive)"'), WO_START],
+# 22 Oct 2026, Rule 136 split into three: copying the inactive person onto Parts (S2-R6), changing the other side (S2-E1) and removing
+# Parts (S2-E2) are separate behaviours; S2-07b and S2-07c start from their own work order already split, so no part needs another first.
+INACTIVE_C = ('Staff member {Sales-rep-C} had the "Sales Representative" switch on, was picked on {Work-order-1}, and has since had the switch turned off (the account is still active).', "For example: {Sales-rep-C} is ZZAUTOTEST Cara Able.")
+TP_01 = ("Tech plan, change-sales-rep rule (section 5, 0.1)", "An id the WO already holds is accepted as-is, so an inactive holder can stay, move between sides, or be copied onto Parts when the field is added (S1-E2, S2-E1, S2-R6, S2-E2).")
+C("S2-07", "S2", "An inactive person is copied to Parts when the Parts field is added",
+  [ADMIN, REPS2, INACTIVE_C, CUST, WO('its one "Sales Representative" field reads "{Sales-rep-C} (Inactive)"'), WO_START],
   *SR(("Hover over the Sales Representative field.", "the + button shows beside the field."),
       ("Click the + button.", "a menu opens."),
       ("Click \"Sales Representative - Parts\".", "the change is saved, not refused: \"Sales Representative - Labor\" and \"Sales Representative - Parts\" both read \"{Sales-rep-C} (Inactive)\", and no error message shows."),
-      ("Reload the page.", "both fields still show and both still read \"{Sales-rep-C} (Inactive)\"."),
-      ("Click \"Sales Representative - Parts\".", "the dropdown opens."),
-      ("Click {Sales-rep-A} in the dropdown.", "the change is saved: Parts reads {Sales-rep-A}; Labor still reads \"{Sales-rep-C} (Inactive)\"."),
-      ("Click the remove x beside \"Sales Representative - Parts\".", "one \"Sales Representative\" field shows, reading \"{Sales-rep-C} (Inactive)\".")),
-  ["S2-R6", "S2-E1", "S2-E2", "S1-E2",
-   ("Tech plan, change-sales-rep rule (section 5, 0.1)", "An id the WO already holds is accepted as-is, so an inactive holder can stay, move between sides, or be copied onto Parts when the field is added (S1-E2, S2-E1, S2-R6, S2-E2)."),
+      ("Reload the page.", "both fields still show and both still read \"{Sales-rep-C} (Inactive)\".")),
+  ["S2-R6", "S1-E2", TP_01,
    ("Tech plan, edge cases to watch (section 7)", "an inactive holder copied onto Parts (S2-E1/R6)")])
+
+C("S2-07b", "S2", "An inactive Labor person does not stop a change to the Parts field",
+  [ADMIN, REPS2, INACTIVE_C, CUST,
+   WO('its card shows "Sales Representative - Labor" and "Sales Representative - Parts", both reading "{Sales-rep-C} (Inactive)"'), WO_START],
+  *SR(("Click \"Sales Representative - Parts\".", "the dropdown opens."),
+      ("Click {Sales-rep-A} in the dropdown.", "the change is saved, not refused: Parts reads {Sales-rep-A}; Labor still reads \"{Sales-rep-C} (Inactive)\", and no error message shows.")),
+  ["S2-E1", "S1-E2", TP_01])
+
+C("S2-07c", "S2", "Removing Parts keeps the inactive Labor person in the one field",
+  [ADMIN, REPS2, INACTIVE_C, CUST,
+   WO('its card shows "Sales Representative - Labor" reading "{Sales-rep-C} (Inactive)" and "Sales Representative - Parts" reading {Sales-rep-A}'), WO_START],
+  ["Click the remove x beside \"Sales Representative - Parts\"."],
+  ["Step 1: one \"Sales Representative\" field shows, reading \"{Sales-rep-C} (Inactive)\"."],
+  ["S2-E2", "S1-E2", TP_01])
 
 C("S2-08", "S2", "An invoiced split work order shows both names as plain text",
   [ADMIN, REPS2, CUST, WO('its card shows "Sales Representative - Labor" reading {Sales-rep-A} and "Sales Representative - Parts" reading {Sales-rep-B}; it has just been invoiced'), WO_START],
@@ -283,11 +292,9 @@ C("S2-15", "S2", "A work order opened from its history shows its reps as plain t
    WO('its card shows "Sales Representative - Labor" reading {Sales-rep-A} and "Sales Representative - Parts" reading {Sales-rep-B}, and its history holds a version saved after both were set (for example after a line was added)'),
    WO_START],
   *SR(("Open {Work-order-1}'s history.", "the history opens."),
-      ("Open the version saved after both representatives were set.", "that version of the work order opens."),
-      ("Without hovering, read the representative fields.", "\"Sales Representative - Labor\" {Sales-rep-A} and \"Sales Representative - Parts\" {Sales-rep-B} show as plain text with their labels; the customer's {Sales-rep-C} is not shown."),
+      ("Open the version saved after both representatives were set.", "that version of the work order opens. Without hovering, \"Sales Representative - Labor\" {Sales-rep-A} and \"Sales Representative - Parts\" {Sales-rep-B} show as plain text with their labels; the customer's {Sales-rep-C} is not shown. Measured on the screen, every gap between Lead Technician, Service Advisor and both representative fields is 16 px."),
       ("Hover over the representative rows.", "no box, no arrow, no + and no remove x."),
       ("Click \"Sales Representative - Parts\".", "nothing opens and nothing can be changed."),
-      ("Measure the gaps between Lead Technician, Service Advisor and both representative fields.", "every gap is 16 px."),
       ("Open the work order's menu and look for Print Work Order.", "Print Work Order is not offered.")),
   ["S2-R17", "S1-N1", "S1-R6", ("Story 6 prerequisites", prd_line("The work order is printed from its menu, with Print Work Order.")),
    ("Tech plan, history snapshot (section 4.2)", "Nothing on the read-only historical card reads the customer's reps (the WO card reads `workOrder.sales_rep_*`)."),

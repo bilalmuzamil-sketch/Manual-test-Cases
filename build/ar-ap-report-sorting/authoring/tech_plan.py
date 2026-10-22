@@ -90,7 +90,7 @@ st("TP-11", "§1 Clarifications, Q2 (line 89); §3 D13 (line 142)", "A vendor ac
 st("TP-12", "§1 Clarifications, Q3 (line 90)", "Removed from S5-R19 (never shipped). S5-N3 stands.",
    "CONFIRM", ["S5-22"], "No case uses the old single-threshold link.")
 st("TP-13", "§1 Clarifications, Q4 and Q5 (lines 91-92)", "Not narrowed; changes only with the as-of date.",
-   "CONFIRM", ["S5-10", "S5-11", "S4-07", "S4-08"], "Same as PRD v5 S5-R3 and S1-R8/S4-R4.")
+   "CONFIRM", ["S5-10b", "S5-10c", "S5-11b", "S5-11c", "S4-07", "S4-08"], "Same as PRD v5 S5-R3 and S1-R8/S4-R4.")
 st("TP-14", "§1 Clarifications, Q9a (line 96)", "Every top-10 shop's unfiltered A/P Detail exceeds the 2,000-row PDF cap; CSV cap has 2× headroom.",
    "CONFIRM", ["DATA-18"], "The QA organization (13,540 open A/P lines) is over the PDF limit and under the CSV limit.")
 st("TP-15", "§1 Clarifications, Q9c (line 98)", "267,705 open; 0 differ; 17 without a delivery → D13.",
@@ -104,7 +104,7 @@ st("TP-18", "§2 Architecture, line 124", "Each report is one SQL \"open documen
 st("TP-19", "§3 D2, line 131; §9 Security", "Reports stay organization-wide by PRD decision — no WorkplaceDecorator, no enrollment check.",
    "CONFIRM", ["S5-10", "S5-11", "S7-11"], "Same as PRD S5-R3, S5-R12 and Key Decisions.")
 st("TP-20", "§3 D3, line 132", "Export caps count-first; ExportRowCapGuard and ReportPaginator::fetchAllWithinCap gain an optional int $maxRows (default stays 10,000)",
-   "CONFIRM", ["DATA-18", "REL-05"], "The six reports get 2,000 / 50,000; the other reports keep their own limit (REL-05: exports as before).")
+   "CONFIRM", ["DATA-18", "REL-05", "REL-05b", "REL-05c"], "The six reports get 2,000 / 50,000; the other reports keep their own limit (REL-05, REL-05b, REL-05c: exports as before).")
 st("TP-21", "§3 D4, line 133", "Name order name COLLATE utf8mb4_0900_ai_ci, then LOWER(name) COLLATE utf8mb4_bin, then the entity id",
    "CHANGE", ["S1-07"] + ALL_S1, "S1-01 to S1-06 confirmed. S1-07 (held on question 1) is released: PRD S1-R4 does not say how an accent counts when two names tie, the plan does (the lower-cased names compared as stored, so \"emile\" before \"émile\"), and nothing contradicts it (QA lead's ruling, 12 Aug 2026). Question 1 stays open; Chris Ward's answer wins if different.")
 st("TP-22", "§9 Performance, line 539", "Name order is UCA order (utf8mb4_0900_ai_ci): every PRD example holds, but punctuation sorts below digits and punctuation marks order among themselves differently from ASCII (e.g. - before #).",
@@ -112,13 +112,13 @@ st("TP-22", "§9 Performance, line 539", "Name order is UCA order (utf8mb4_0900_
 st("TP-23", "§3 D6, line 135", "replaces the FE's startsWith('P') guess with the stored bare-number product rule.",
    "CONFIRM", ["S7-01", "S7-02", "S7-03", "S7-04", "S7-12", "S7-13", "S7-14"], "A work order invoice opens the work order and a part sale invoice the part sale (both kinds covered).")
 st("TP-24", "§3 D7, line 136", "Totals via ReportPaginator::totals() over the same filtered builder; identical on every page; FE reads page-1 meta",
-   "CONFIRM", ["DATA-01", "DATA-02", "DATA-03", "DATA-04"], "Step 10: the Totals row reads the same on every page.")
+   "CONFIRM", ["DATA-01b", "DATA-02b", "DATA-03b", "DATA-04b"], "The Totals row reads the same on every page (since 22 Oct 2026 its own case per report, split from DATA-01 to DATA-04).")
 st("TP-25", "§3 D8, line 137; §9 Security", "Credit term: server-side gate (D8); omitted from JSON, CSV and PDF for users without the switch.",
    "CONFIRM", ["S9-04", "S9-03", "REL-04"], "Same as PRD S9-N2 and S3-R8a.")
 st("TP-26", "§3 D9, line 138", "As-of label via the existing AsOfAnchorResolver (api/src/Reporting/Shared/Application/AsOf/), wrapped by a thin AgingAsOfResolver that supplies the workplace timezone and produces both formats: PDF \"As of Oct 15, 2026\", CSV \"As of: Oct 15, 2026\" (M j, Y)",
    "CHANGE", ["REL-03", "S3-09", "S3-10", "S3-11", "S3-12", "S3-13", "S3-14"], "S3-09 to S3-14 confirmed (the PRD's own formats). REL-03 changes: the evening condition is set by the location's time zone, not the tester's, and the day is written without a leading zero (\"M j, Y\").")
 st("TP-27", "§3 D11, line 140", "delete orphan shell/LocationFilter.vue, shell/CustomerTypeaheadFilter.vue, PrintARReportButton.vue, asOfDateToDisplay; per-format export cap",
-   "CONFIRM", ["S3-01"], "A/R's Print button is gone (PRD What changes). The plan's follow-ups (12 bookkeeping CSV exports, other reports' export code) are not changed by this release: nothing to test beyond REL-05.")
+   "CONFIRM", ["S3-01", "S3-01b", "S3-01c"], "A/R's Print button is gone (PRD What changes). The plan's follow-ups (12 bookkeeping CSV exports, other reports' export code) are not changed by this release: nothing to test beyond REL-05.")
 st("TP-28", "§3 D16, line 145", "Past due tokens 1-30, 31-60, 61-90, 91-plus on the wire and in the URL",
    "CHANGE", ["S5-22"], "S5-22 has the tester edit the Past due value in the page address; it now names where it is (after \"pastDue=\") and what it reads (31-60).")
 st("TP-29", "§3 D17, line 146", "Location-column visibility: FE computes on screen from (option-list size, ticked set) with the same rule the export controller applies server-side",
@@ -126,7 +126,7 @@ st("TP-29", "§3 D17, line 146", "Location-column visibility: FE computes on scr
 st("TP-30", "§3 D18, line 147", "Customer chip multi-search (as Sales By Customer, S5-R13); Vendor chip multi with the organization's vendor list, searchable over 8 (as Inventory Value, S5-R13)",
    "CHANGE", ["S5-29", "D-32", "D-73", "D-77", "S5-28", "D-31"], "The Vendor menu shows its search box only above 8 vendors (as Inventory Value). PRD S5-R13 says \"The menu has a search box\" but also \"exactly as Inventory Value's Vendor filter\", so our own sources settle it: no question. The four vendor-menu cases now require more than 8 vendors. Reported to the QA lead as a seeming contradiction (Rule 30).")
 st("TP-31", "§3 D19, line 148", "A/P Summary vendor = everyone with report access.",
-   "CONFIRM", ["S7-12", "S7-13", "S7-14", "S7-15", "S7-16", "S7-17", "S7-18", "S7-19"], "The plan's permission matrix is the PRD's Story 7 prerequisites, permission for permission.")
+   "CONFIRM", ["S7-12", "S7-13", "S7-14", "S7-15", "S7-16", "S7-17", "S7-18", "S7-18b", "S7-19"], "The plan's permission matrix is the PRD's Story 7 prerequisites, permission for permission.")
 st("TP-32", "§3 D20, line 149", "The native date chip already caps at today (maxDate); label and data always agree.",
    "ADD", ["S5-37"], "PRD silent; the plan sources it. A date after today cannot be picked.")
 st("TP-33", "§3 D21, line 150; §7 Manual testing checklist 3, line 437", "3. Fling-scroll a long expanded group: pinned row pushes up without overlapping header or totals.",
@@ -152,7 +152,7 @@ st("TP-42", "§3 D31, line 155; §5 line 199", "Customer search (ar-aging/custom
 st("TP-43", "§3 D32, line 156", "Phone shown only when non-blank: NULLIF(TRIM(c.telephone), ''), raw otherwise (the customer card shows the raw value)",
    "CONFIRM", ["S9-01", "S9-02", "D-43"], "Same as PRD S9-R1 and S9-N1. A phone made only of spaces is not added as a case: whether the customer card accepts one is unknown, and S9-02 covers a customer with no phone.")
 st("TP-44", "§5 API, line 186; §9 Security, line 564", "Every endpoint #[IsGranted(ROLE_REPORT_VIEW)] (S1-N1, PRD Permissions). No new permission.",
-   "CONFIRM", ["S1-14", "REL-04"], "Same as PRD S1-N1 and Key Decisions, Permissions.")
+   "CONFIRM", ["S1-14", "REL-04", "REL-04b"], "Same as PRD S1-N1 and Key Decisions, Permissions.")
 st("TP-45", "§5 API, line 190", "export 400 ReportExportTooLargeError with the exact S3-N1 / S3-N2 text",
    "CONFIRM", ["DATA-18", "DATA-19", "DATA-20", "DATA-21", "D-55"], "The messages are the PRD's, word for word.")
 st("TP-46", "§5 API, lines 194-200", "ar-aging/customers/resolve, ap-aging/vendors/resolve (customers= / vendors=) | collection[{id, name}] in request (tick) order",
@@ -176,9 +176,9 @@ st("TP-54", "§6 Phase 1, unit tests, line 272", "FE: 5 rapid ticks → 1 fetch;
 st("TP-55", "§6 Phase 1, unit tests, line 272", "invalid location ignored / all-invalid → All; pastDue=5 → Any;",
    "CHANGE", ["S5-21", "S5-22"], "S5-21 adds the all-invalid link (opens on All locations); S5-22 confirmed in substance (5 reads Any).")
 st("TP-56", "§6 Phase 1, verification, line 280; §7 regression re-runs, line 462", "Regression re-runs (Keep, no edits expected) when Phase 1 lands, because it changes the shared filter kit, URL sync, useReportTableQuery and the location resolver:",
-   "ADD", ["REL-05", "REL-07", "REL-12", "REL-13"], "Must not change (Rule 96, shared component): REL-05 and REL-07 confirmed; new REL-12 (other reports keep or forget their filters as before) and REL-13 (Sales By Customer's filter menus behave as before).")
+   "ADD", ["REL-05", "REL-05b", "REL-05c", "REL-07", "REL-12", "REL-12b", "REL-12c", "REL-13"], "Must not change (Rule 96, shared component): REL-05 and REL-07 confirmed; new REL-12 (other reports keep or forget their filters as before) and REL-13 (Sales By Customer's filter menus behave as before). Since 22 Oct 2026 REL-05 and REL-12 are one case per report (\"b\", \"c\").")
 st("TP-57", "§6 Phase 2, frontend, line 303", "remove the whole-row click (onRowClick on every cell, cursor-pointer, text-blue) — only the customer name is a .report-link, and only with canView('customers').",
-   "CONFIRM", ["S7-18", "S5-26"], "Same as PRD What changes and Story 7 prerequisites.")
+   "CONFIRM", ["S7-18", "S7-18b", "S5-26"], "Same as PRD What changes and Story 7 prerequisites.")
 st("TP-58", "§6 Phase 3, frontend, line 360", "whole-row click removed (onRowClick, canNavigate, cursor-pointer, text-blue)",
    "CHANGE", ["S7-02", "S7-01"], "S7-02 (A/R Collection) adds the hover check: no hand pointer and no blue text on the row, only the number is a link. S7-01 (A/R Detail) confirmed: for the Detail reports the plan names only \"whole-row click removed\", which S7-01 already checks.")
 st("TP-59", "§6 Phase 2, frontend, line 303; §6 intro, line 212", "Until Phase 3 the link keeps today's target query (asOfDate, customerId, customerName), because the legacy Collection page reads only those;",
@@ -186,7 +186,7 @@ st("TP-59", "§6 Phase 2, frontend, line 303; §6 intro, line 212", "Until Phase
 st("TP-60", "§6 Phase 3, frontend, line 362", "switch the name link to the full drill-down scope (S5-R11): asOfDate, customerIds/vendorIds = [id], pastDue, locationIds (only when not All)",
    "CONFIRM", ["S5-26", "S5-27", "D-70"], "Same as PRD S5-R11.")
 st("TP-61", "§6 Phase 2 and 3 verification, lines 343 and 370", "no default role separates the two — every default role with report access also has the AP/AR switch",
-   "CONFIRM", ["S9-04", "S7-18", "S1-14"], "The cases already use custom roles for every permission split.")
+   "CONFIRM", ["S9-04", "S7-18", "S7-18b", "S1-14"], "The cases already use custom roles for every permission split.")
 st("TP-62", "§6 Phase 3, backend, line 354", "opening row order inside a group [doc_date ASC, docNumKey, rawNum, doc_kind, doc_id] (S1-R6: oldest first, ties by number-aware document number)",
    "CONFIRM", ["S1-10", "S1-11", "D-79"], "Same as PRD S1-R6. It also agrees with the PRD (number order) against the design picture (question 14, held case D-79): reported to the QA lead.")
 st("TP-63", "§6 Phase 3, frontend, line 360", "switch dialog (lazy BaseDialog, exact copy)",
@@ -204,7 +204,7 @@ st("TP-68", "§6 Phase 4, frontend, line 387", "sort resets expanded buckets to 
 st("TP-69", "§6 Phase 4, verification, line 395", "first paint fast, 100 then more on scroll, header sorts within buckets, PDF over 2,000 rows refused with exactly one toast, CSV succeeds; every column visible at 1440 px",
    "CONFIRM", ["S4-08", "S2-27", "DATA-18", "D-13"], "\"first paint fast\" has no number a tester can check; the rest is covered.")
 st("TP-70", "§6 Phase 5, line 410", "tests/Functional/IAM/PricingPdfGuardTest.php (retarget the A/R PDF case to the new export)",
-   "CONFIRM", ["REL-04"], "The plan does not say what this guard does to a user; REL-04 checks the PRD's rule (Reports page access alone exports with amounts).")
+   "CONFIRM", ["REL-04b"], "The plan does not say what this guard does to a user; REL-04b checks the PRD's rule (Reports page access alone exports the reports).")
 st("TP-71", "§7 Manual testing checklist 1, line 435", "At 1440 px every column of all six reports fits; headings never wrap; Location wraps only on A/P Detail (S8-R3).",
    "CONFIRM", ["D-01", "D-04", "D-07", "D-10", "D-13", "D-16"], "Same as PRD S8-R3.")
 st("TP-72", "§7 Manual testing checklist 2, line 436", "Light and dark theme: link color, pinned column, totals row, pinned group overlay.",

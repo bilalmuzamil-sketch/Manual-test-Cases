@@ -44,11 +44,18 @@ for c in ssr_lib.CASES:
     if q.count("<p>From: ") != q.count("<ul>"): probs.append(f"{c['key']}: a quote group without its own From line")
     if "Epic SV-10890" not in q or ssr_lib.NOBUILD not in q: probs.append(f"{c['key']}: tickets or build line missing")
     if not re.search(r"version \d+|dated ", q): probs.append(f"{c['key']}: document version missing")
-# RULE 127 (22 Oct 2026, one-action-steps pass): a case over 10 steps is written WHOLE and listed for the QA lead to decide on a split;
-# it is an ask, not a defect, so it is printed as ASK and does not fail the build. Every other finding still fails it.
-asks = [p for p in probs if "ask before splitting, Rule 127" in p]
-probs = [p for p in probs if p not in asks]
-for p in asks: print("ASK (Rule 127, case kept whole)", p)
+# RULE 136 (22 Oct 2026, PERMANENT; replaces the ask-first part of Rule 127): a case over 10 steps is split where every part stays
+# runnable on its own, and otherwise kept whole with its reason recorded as a NOT-SPLIT entry in rule136-2026-10-22/SPLITS.json. A long
+# case with its reason is printed as LONG and passes; a long case without one fails the build.
+_sp = f"{ssr_lib.P}/rule136-2026-10-22/SPLITS.json"
+_splits = json.load(open(_sp)) if os.path.exists(_sp) else {}
+longs = [p for p in probs if "Rule 136)" in p]
+probs = [p for p in probs if p not in longs]
+for p in longs:
+    k = p.split(":")[0]
+    e = _splits.get(k, {})
+    if e.get("verdict") == "NOT-SPLIT" and e.get("why"): print("LONG (Rule 136, kept whole, reason in SPLITS.json)", p.split(" (")[0])
+    else: probs.append(p + " — no NOT-SPLIT reason in SPLITS.json")
 for p in probs: print("PROBLEM", p)
 out = {c["key"]: dict(sec=c["sec"], fields=ssr_lib.render(c)) for c in ssr_lib.CASES}
 json.dump(out, open(f"{ssr_lib.D}/proposals.json", "w"), indent=1, ensure_ascii=False)

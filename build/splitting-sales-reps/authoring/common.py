@@ -28,3 +28,14 @@ UNASSIGNED_ON = ("Turn Show Unassigned on.", "Show Unassigned is on.")
 def SALES_TYPE_ON(result): return ("Turn the Sales Type column on in the column selector.", result)
 MENU = ("Open the work order's menu.", "the work order's menu opens.")
 CLOSE_LOG = ("Close the log.", "the log closes.")
+
+# 22 Oct 2026, Rule 136 pass ("shorter but runnable"): the invoice rows of Sales By Representative show only once a representative's
+# row is expanded (SBR spec v28, Story 6: "the user can expand a rep's row with a chevron to reveal every invoice"), so a case that reads
+# an invoice row expands that representative first. State a case does not test (the report open for today, Show Unassigned on, the
+# Sales Type column on) is part of the starting screen, not a step.
+def SBR_TODAY(extra=""):
+    return START("Reports > Sales By Representative is open for today in a desktop browser at least 1024 px wide" + extra)
+def EXPAND(who, result): return (f"Expand {who}.", result)
+EXPAND_UNASSIGNED = lambda result: ('Expand "Unassigned".', result)
+EXPAND_ALL = lambda result: ("Click the chevron in the Date column header to expand every row.", result)
+CEDIT = START("{Customer-A}'s Edit Customer window is open in a desktop browser at least 1024 px wide")

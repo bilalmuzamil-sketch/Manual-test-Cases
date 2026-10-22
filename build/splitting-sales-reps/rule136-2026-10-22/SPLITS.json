@@ -1,0 +1,612 @@
+{
+ "S1-10": {
+  "case_id": "C665924",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/665924",
+  "verdict": "SPLIT",
+  "parts": [
+   "S1-10",
+   "S1-10b"
+  ],
+  "part_titles": {
+   "S1-10": "Developer check: a failed save puts the field back and shows an error",
+   "S1-10b": "Developer check: a change made while the field is saving is ignored"
+  },
+  "steps_before": 6,
+  "steps_after": {
+   "S1-10": 2,
+   "S1-10b": 3
+  },
+  "why": "A failed save putting the field back (S1-N3) and a change made while the field is saving being ignored (S1-E1) are two behaviours, each with its own requirement and its own developer check; each part starts from its own unsaved work order, so S1-10b no longer needs the connection brought back first. Nothing in one part depends on the other's steps."
+ },
+ "S2-07": {
+  "case_id": "C665931",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/665931",
+  "verdict": "SPLIT",
+  "parts": [
+   "S2-07",
+   "S2-07b",
+   "S2-07c"
+  ],
+  "part_titles": {
+   "S2-07": "An inactive person is copied to Parts when the Parts field is added",
+   "S2-07b": "An inactive Labor person does not stop a change to the Parts field",
+   "S2-07c": "Removing Parts keeps the inactive Labor person in the one field"
+  },
+  "steps_before": 7,
+  "steps_after": {
+   "S2-07": 4,
+   "S2-07b": 2,
+   "S2-07c": 1
+  },
+  "why": "Copying an inactive person onto Parts when the field is added (S2-R6), changing the other side while Labor holds an inactive person (S2-E1) and removing Parts while Labor holds one (S2-E2) are three requirements. S2-07b and S2-07c start from their own work orders already split in the state they need, so no part runs after another; each keeps its own change and the check of it together."
+ },
+ "S3-02": {
+  "case_id": "C665938",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/665938",
+  "verdict": "SPLIT",
+  "parts": [
+   "S3-02",
+   "S3-02b"
+  ],
+  "part_titles": {
+   "S3-02": "On a phone the field shows its arrow and opens its list without hover",
+   "S3-02b": "On a phone the + and the remove x work without hover"
+  },
+  "steps_before": 6,
+  "steps_after": {
+   "S3-02": 3,
+   "S3-02b": 4
+  },
+  "why": "The field and its list on a phone (S3-R1, S3-R3) and the + and remove x on a phone (S3-R2) are separate controls with separate requirements; each part expands the card itself and starts from its own work order."
+ },
+ "S4-01": {
+  "case_id": "C665940",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/665940",
+  "verdict": "SPLIT",
+  "parts": [
+   "S4-01",
+   "S4-01b"
+  ],
+  "part_titles": {
+   "S4-01": "Edit Customer has a Sales Representative field that lists Unassigned first",
+   "S4-01b": "A customer can be saved with nobody as its sales representative"
+  },
+  "steps_before": 4,
+  "steps_after": {
+   "S4-01": 2,
+   "S4-01b": 1
+  },
+  "why": "The field and its list (S4-R1, S4-R3, S4-R4) and saving a customer with nobody in the field (S4-R2) are separate behaviours; S4-01b starts in the Edit Customer window of its own customer, which it saves unchanged."
+ },
+ "S4-04": {
+  "case_id": "C665943",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/665943",
+  "verdict": "SPLIT",
+  "parts": [
+   "S4-04",
+   "S4-04b"
+  ],
+  "part_titles": {
+   "S4-04": "Adding Part Sales starts with what new part sales would get",
+   "S4-04b": "Changing Service Parts never changes an added Part Sales field"
+  },
+  "steps_before": 6,
+  "steps_after": {
+   "S4-04": 3,
+   "S4-04b": 2
+  },
+  "why": "Adding the Part Sales field and what it starts with (S4-R8, S4-R10) and Part Sales keeping its choice when Service Parts changes (S4-R14, S4-E2) are separate behaviours; S4-04b starts from its own customer that already has the Part Sales field."
+ },
+ "S4-12": {
+  "case_id": "C665951",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/665951",
+  "verdict": "SPLIT",
+  "parts": [
+   "S4-12",
+   "S4-12b"
+  ],
+  "part_titles": {
+   "S4-12": "Part Sales set to Unassigned gives new part sales Unassigned",
+   "S4-12b": "A part sale invoiced with Unassigned is credited to Unassigned"
+  },
+  "steps_before": 7,
+  "steps_after": {
+   "S4-12": 1,
+   "S4-12b": 1
+  },
+  "why": "A new part sale starting Unassigned (S4-R26, S4-R14) and a part sale invoiced with Unassigned being credited to Unassigned (S4-R18) are separate behaviours; S4-12b's part sale is invoiced during setup and the case starts on the report."
+ },
+ "S4-14": {
+  "case_id": "C665953",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/665953",
+  "verdict": "SPLIT",
+  "parts": [
+   "S4-14",
+   "S4-14b",
+   "S4-14c"
+  ],
+  "part_titles": {
+   "S4-14": "Changing a work order's representative never changes its customer",
+   "S4-14b": "Changing a work order's customer never changes its representatives",
+   "S4-14c": "Changing a customer's representative never changes its work orders"
+  },
+  "steps_before": 8,
+  "steps_after": {
+   "S4-14": 2,
+   "S4-14b": 1,
+   "S4-14c": 3
+  },
+  "why": "Three requirements, each with its own action: a work order's representative change never reaches its customer (S4-R32), a work order's customer change never changes its representatives (S4-R28), and a customer's change never reaches its existing work orders (S4-R30). Each part has its own work order and customers; the old case chained them on one work order, but no check needed the earlier change."
+ },
+ "S4-15": {
+  "case_id": "C665954",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/665954",
+  "verdict": "SPLIT",
+  "parts": [
+   "S4-15",
+   "S4-15b"
+  ],
+  "part_titles": {
+   "S4-15": "A rep with the switch off is not copied to a new work order",
+   "S4-15b": "A switched-off customer rep is still credited when invoicing with nobody"
+  },
+  "steps_before": 7,
+  "steps_after": {
+   "S4-15": 2,
+   "S4-15b": 1
+  },
+  "why": "Not copying a switched-off representative to a new work order (S4-R27, S4-N2) and still crediting them when the work order is invoiced with nobody (S4-R17) are separate behaviours; S4-15b's work order is created and invoiced during setup."
+ },
+ "S4-19": {
+  "case_id": "C665958",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/665958",
+  "verdict": "SPLIT",
+  "parts": [
+   "S4-19",
+   "S4-19b"
+  ],
+  "part_titles": {
+   "S4-19": "The Deactivate window counts a customer once when a rep holds two fields",
+   "S4-19b": "Turning off the switch still shows today's warning with no customer count"
+  },
+  "steps_before": 5,
+  "steps_after": {
+   "S4-19": 2,
+   "S4-19b": 2
+  },
+  "why": "The Deactivate window counting a customer once (S4-R21) and the Turn Off Sales Representative warning staying as today (S4-R21 last sentence, answer 13) are two windows reached by two different actions; S4-19b starts on the staff record."
+ },
+ "S4-20": {
+  "case_id": "C665959",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/665959",
+  "verdict": "SPLIT",
+  "parts": [
+   "S4-20",
+   "S4-20b"
+  ],
+  "part_titles": {
+   "S4-20": "Renaming a rep updates their name on every customer",
+   "S4-20b": "A customer still holding a switched-off rep keeps them and saves"
+  },
+  "steps_before": 11,
+  "steps_after": {
+   "S4-20": 4,
+   "S4-20b": 5
+  },
+  "why": "Was 11 steps. A rename reaching every customer (S4-R22) and a customer still holding a switched-off representative being saved (S4-N2, answer 14) are separate behaviours; S4-20b has its own customer and representatives and its switch is turned off during setup, so nothing in it depends on the rename."
+ },
+ "S5-01": {
+  "case_id": "C665962",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/665962",
+  "verdict": "SPLIT",
+  "parts": [
+   "S5-01",
+   "S5-01b"
+  ],
+  "part_titles": {
+   "S5-01": "A split invoice gives the Labor rep a Labor row and the Parts rep a Parts row",
+   "S5-01b": "The Sales Type column shows after Status, with no value on summary rows"
+  },
+  "steps_before": 8,
+  "steps_after": {
+   "S5-01": 2,
+   "S5-01b": 1
+  },
+  "why": "The per-side credit of a split invoice (S5-R1, R3, R4, R5, R11, R13, R15, R16) and where the Sales Type column appears and how the summary and Totals rows fill it (S5-R19, answer 26, tech plan Phase 9) are separate behaviours on the same kind of invoice; neither part changes data."
+ },
+ "S5-08": {
+  "case_id": "C665969",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/665969",
+  "verdict": "SPLIT",
+  "parts": [
+   "S5-08",
+   "S5-08b"
+  ],
+  "part_titles": {
+   "S5-08": "One person on both sides shows one Labor, Parts row",
+   "S5-08b": "Narrowing Sales Type to Labor or Parts shows only that side"
+  },
+  "steps_before": 9,
+  "steps_after": {
+   "S5-08": 1,
+   "S5-08b": 3
+  },
+  "why": "One person on both sides reading as one \"Labor, Parts\" row (S5-R10, S5-R13, S5-R15) and the Sales Type filter narrowing it to one side (S5-R12) are separate behaviours; S5-08b reads its own invoice and changes nothing."
+ },
+ "S5-11": {
+  "case_id": "C665972",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/665972",
+  "verdict": "SPLIT",
+  "parts": [
+   "S5-11",
+   "S5-11b"
+  ],
+  "part_titles": {
+   "S5-11": "The Sales Type column is off by default and first in the column list",
+   "S5-11b": "A Sales Type column you turn on stays on when you sign in again"
+  },
+  "steps_before": 6,
+  "steps_after": {
+   "S5-11": 2,
+   "S5-11b": 5
+  },
+  "why": "The column being off by default and first in the list (S5-R20, S5-R21) and a column turned on being placed after Status and kept for later visits (S5-R19, S5-R22, S5-R24) are separate behaviours; each part starts with the column off."
+ },
+ "S6-01": {
+  "case_id": "C665976",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/665976",
+  "verdict": "SPLIT",
+  "parts": [
+   "S6-01",
+   "S6-01b"
+  ],
+  "part_titles": {
+   "S6-01": "Printed work order names the one person who holds both sides",
+   "S6-01b": "A split work order with one person on both sides prints one name"
+  },
+  "steps_before": 9,
+  "steps_after": {
+   "S6-01": 5,
+   "S6-01b": 2
+  },
+  "why": "One person on both sides of an unsplit work order (S6-R1, active and inactive) and on both sides of a split work order (tech plan Phase 5, the deliberate difference from the log) are separate checks with separate sources; S6-01b has its own split work order. The inactive person in S6-01 is now a second work order whose representative's switch was turned off during setup."
+ },
+ "S7-01": {
+  "case_id": "C665981",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/665981",
+  "verdict": "SPLIT",
+  "parts": [
+   "S7-01",
+   "S7-01b",
+   "S7-01c"
+  ],
+  "part_titles": {
+   "S7-01": "Changing the one field writes a log entry with before and after",
+   "S7-01b": "Adding the Parts field and changing it each write one log entry",
+   "S7-01c": "Removing the Parts field writes a log entry"
+  },
+  "steps_before": 13,
+  "steps_after": {
+   "S7-01": 3,
+   "S7-01b": 5,
+   "S7-01c": 3
+  },
+  "why": "Was 13 steps. A change to the one field (S7-R2), adding and changing the Parts field (S7-R3, answer 31) and removing the Parts field each write their own entry in their own wording. Each part starts from its own work order in the state its change needs, and keeps its change and the log entry it writes together (Rule 136 §2: a change and the log entry it creates are never split apart)."
+ },
+ "S8-02": {
+  "case_id": "C665985",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/665985",
+  "verdict": "SPLIT",
+  "parts": [
+   "S8-02",
+   "S8-02b"
+  ],
+  "part_titles": {
+   "S8-02": "Sales By Representative exports name the Sales Type selection",
+   "S8-02b": "With no Sales Type ticked, Sales By Representative export makes no file"
+  },
+  "steps_before": 7,
+  "steps_after": {
+   "S8-02": 5,
+   "S8-02b": 2
+  },
+  "why": "The filter line of the exports (S8-R4) and Export with no Sales Type selected (S8-R4 and answer 27: \"Empty export\", no file) are separate behaviours; S8-02b starts from the report as it opens."
+ },
+ "S8-04": {
+  "case_id": "C665987",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/665987",
+  "verdict": "SPLIT",
+  "parts": [
+   "S8-04",
+   "S8-04b"
+  ],
+  "part_titles": {
+   "S8-04": "Sales By Customer exports name the Sales Type selection",
+   "S8-04b": "With no Sales Type ticked, Sales By Customer export makes no file"
+  },
+  "steps_before": 10,
+  "steps_after": {
+   "S8-04": 8,
+   "S8-04b": 2
+  },
+  "why": "As S8-02, on Sales By Customer (S8-R9; answer 27). S8-04 keeps 8 steps: its three selections each need a PDF and a CSV export, and they are one requirement sentence."
+ },
+ "S8-06": {
+  "case_id": "C665996",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/665996",
+  "verdict": "SPLIT",
+  "parts": [
+   "S8-06",
+   "S8-06b"
+  ],
+  "part_titles": {
+   "S8-06": "A rep with no invoice of the chosen Sales Type leaves the report",
+   "S8-06b": "The Sales Type column header does not sort the report"
+  },
+  "steps_before": 3,
+  "steps_after": {
+   "S8-06": 2,
+   "S8-06b": 1
+  },
+  "why": "A representative leaving the report when the filter excludes their rows (S8-R2, SBR spec S5-R1) and the Sales Type column header not sorting (SBR spec S11-R6) are separate behaviours; both read the same records and change none."
+ },
+ "S8-09": {
+  "case_id": "C665999",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/665999",
+  "verdict": "SPLIT",
+  "parts": [
+   "S8-09",
+   "S8-09b"
+  ],
+  "part_titles": {
+   "S8-09": "Changing Sales Type on Sales By Customer collapses expanded rows",
+   "S8-09b": "Sales By Customer keeps its Sales Type choice when you go back"
+  },
+  "steps_before": 5,
+  "steps_after": {
+   "S8-09": 2,
+   "S8-09b": 4
+  },
+  "why": "Rows collapsing when the Sales Type choice changes (SBC spec S8-R20) and the choice surviving the browser's Back (SBC spec S9-R3) are separate behaviours; both read the same records and change none."
+ },
+ "S8-10": {
+  "case_id": "C666000",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/666000",
+  "verdict": "SPLIT",
+  "parts": [
+   "S8-10",
+   "S8-10b"
+  ],
+  "part_titles": {
+   "S8-10": "The Customer filter searches only within the chosen Sales Type",
+   "S8-10b": "The Customer filter sits between Sales Type and Location"
+  },
+  "steps_before": 4,
+  "steps_after": {
+   "S8-10": 3,
+   "S8-10b": 1
+  },
+  "why": "Where the Customer filter sits (SBC spec S18-R1) and its search following the Sales Type choice (S18-R2) are separate behaviours; S8-10b needs no records."
+ },
+ "S8-11": {
+  "case_id": "C666001",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/666001",
+  "verdict": "SPLIT",
+  "parts": [
+   "S8-11",
+   "S8-11b"
+  ],
+  "part_titles": {
+   "S8-11": "Sales By Representative's Sales Type filter works on a touch screen",
+   "S8-11b": "Sales By Customer's Sales Type filter works on a touch screen"
+  },
+  "steps_before": 5,
+  "steps_after": {
+   "S8-11": 2,
+   "S8-11b": 2
+  },
+  "why": "Each report's Sales Type filter on a touch screen is its own behaviour with its own requirement (SBR spec S17-R1 with S8-R3; SBC spec S21-R1 with S8-R8)."
+ },
+ "S8-12": {
+  "case_id": "C690671",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/690671",
+  "verdict": "SPLIT",
+  "parts": [
+   "S8-12",
+   "S8-12b"
+  ],
+  "part_titles": {
+   "S8-12": "Sales By Representative exports with no rows still have the headings",
+   "S8-12b": "Sales By Customer exports with no rows still have the headings"
+  },
+  "steps_before": 7,
+  "steps_after": {
+   "S8-12": 2,
+   "S8-12b": 2
+  },
+  "why": "An export with no rows on Sales By Representative (S8-R4) and on Sales By Customer (S8-R9) are separate requirements on separate reports; each part starts on its own report set to the empty date."
+ },
+ "REL-05": {
+  "case_id": "C666007",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/666007",
+  "verdict": "SPLIT",
+  "parts": [
+   "REL-05",
+   "REL-05b"
+  ],
+  "part_titles": {
+   "REL-05": "Saved report columns and sort reset once on release day",
+   "REL-05b": "An old Product Type link opens Sales By Representative with all types"
+  },
+  "steps_before": 6,
+  "steps_after": {
+   "REL-05": 5,
+   "REL-05b": 1
+  },
+  "why": "The one-time reset of saved columns and sort, and a saved Product Type link opening with every Sales Type, are two sentences of the PRD's release-day list and two behaviours; each part quotes only its own sentence, word for word."
+ },
+ "REL-18": {
+  "case_id": "C715571",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/715571",
+  "verdict": "SPLIT",
+  "parts": [
+   "REL-18",
+   "REL-18b"
+  ],
+  "part_titles": {
+   "REL-18": "The invoice preview still opens for a split work order",
+   "REL-18b": "A unit's invoice list still opens after a split work order is invoiced"
+  },
+  "steps_before": 4,
+  "steps_after": {
+   "REL-18": 1,
+   "REL-18b": 1
+  },
+  "why": "The invoice preview of a split work order (tech plan R-12) and a unit's invoice list holding a split invoice (tech plan NFR-004) are separate checks; REL-18b's work order is invoiced during setup."
+ },
+ "REL-19": {
+  "case_id": "C715572",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/715572",
+  "verdict": "SPLIT",
+  "parts": [
+   "REL-19",
+   "REL-19b"
+  ],
+  "part_titles": {
+   "REL-19": "A log entry saved before the release reads one representative",
+   "REL-19b": "A history version saved before the release shows one representative"
+  },
+  "steps_before": 5,
+  "steps_after": {
+   "REL-19": 2,
+   "REL-19b": 2
+  },
+  "why": "The log entry saved before the release (S7-R2, tech plan 0.5) and the history version saved before the release (S2-R17, tech plan frontend risks) are separate checks; both only read the same pre-release work order, which neither changes."
+ },
+ "D-05": {
+  "case_id": "C666021",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/666021",
+  "verdict": "SPLIT",
+  "parts": [
+   "D-05",
+   "D-05b"
+  ],
+  "part_titles": {
+   "D-05": "Labor and Parts fields at rest and on hover look as designed",
+   "D-05b": "Design: at 200% zoom the Labor and Parts labels show in full"
+  },
+  "steps_before": 9,
+  "steps_after": {
+   "D-05": 6,
+   "D-05b": 2
+  },
+  "why": "The labels at 200% zoom (S2-R14, S1-R11) are their own check; the 1440 px and 1536 px look stay in one case because the 1536 px look is compared with the 1440 px look of steps 1 and 2. The step that set the zoom back to 100% is gone."
+ },
+ "D-10": {
+  "case_id": "C666026",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/666026",
+  "verdict": "SPLIT",
+  "parts": [
+   "D-10",
+   "D-10b"
+  ],
+  "part_titles": {
+   "D-10": "Design: Edit Customer's Sales Representative field and list look as designed",
+   "D-10b": "Design: Edit Customer's + tooltip and menu look as designed"
+  },
+  "steps_before": 5,
+  "steps_after": {
+   "D-10": 3,
+   "D-10b": 2
+  },
+  "why": "The field and its list (boards 2.3 to 2.5; S4-R1, R3, R4, answer 15) and the + with its tooltip and menu (boards 2.6, 2.7; S4-R5, R6) are separate controls; D-10b starts in the Edit Customer window."
+ },
+ "D-11": {
+  "case_id": "C666027",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/666027",
+  "verdict": "SPLIT",
+  "parts": [
+   "D-11",
+   "D-11b"
+  ],
+  "part_titles": {
+   "D-11": "Design: adding Service Parts and Part Sales in Edit Customer looks as designed",
+   "D-11b": "Design: removing Service Parts in Edit Customer looks as designed"
+  },
+  "steps_before": 9,
+  "steps_after": {
+   "D-11": 4,
+   "D-11b": 3
+  },
+  "why": "Adding Service Parts and Part Sales (boards 2.8 to 2.11) and removing Service Parts from a customer that has all three (boards 2.12 to 2.14; S4-R11) are separate behaviours; D-11b's customer already has the three fields filled, so the two \"Set ...\" steps that only prepared board 2.12 became its precondition."
+ },
+ "D-15": {
+  "case_id": "C666031",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/666031",
+  "verdict": "SPLIT",
+  "parts": [
+   "D-15",
+   "D-15b",
+   "D-15c"
+  ],
+  "part_titles": {
+   "D-15": "Design: Sales By Representative rows and dashes look as designed",
+   "D-15b": "Design: the Sales Type filter on Sales By Representative looks as designed",
+   "D-15c": "Design: the Sales Type column on Sales By Representative looks as designed"
+  },
+  "steps_before": 10,
+  "steps_after": {
+   "D-15": 3,
+   "D-15b": 3,
+   "D-15c": 4
+  },
+  "why": "Was 10 steps. The report's rows and dashes (boards 4.4, 4.5), the Sales Type filter (4.6, 4.7) and the Sales Type column (4.8 to 4.10) are separate parts of the screen with their own requirements; all three read the same records and change none."
+ },
+ "D-18": {
+  "case_id": "C666034",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/666034",
+  "verdict": "SPLIT",
+  "parts": [
+   "D-18",
+   "D-18b"
+  ],
+  "part_titles": {
+   "D-18": "Design: on a phone the Sales Representative field looks as designed",
+   "D-18b": "Design: on a phone the + and the Labor and Parts fields look as designed"
+  },
+  "steps_before": 6,
+  "steps_after": {
+   "D-18": 3,
+   "D-18b": 3
+  },
+  "why": "The field and its list on a phone (boards 6.2 to 6.4) and the + with the Labor and Parts fields (6.5 to 6.7) are separate controls; D-18b starts from its own work order with the card expanded."
+ },
+ "S5-09": {
+  "case_id": "C665970",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/665970",
+  "verdict": "NOT-SPLIT",
+  "steps": 9,
+  "why": "9 steps (was 12). Before and after with a captured value (Rule 136 §2): step 1 writes down the report total for the unsplit invoice and step 8 compares the total after the same work order is reversed, split with Parts Unassigned and invoiced again; step 9 reads the effect of turning Show Unassigned off on that same report. Every later step needs the earlier ones, and the case needs one location with nothing else invoiced today, so running the halves as two cases would let one disturb the other's total."
+ },
+ "S2-04": {
+  "case_id": "C665928",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/665928",
+  "verdict": "NOT-SPLIT",
+  "steps": 8,
+  "why": "8 steps (unchanged). The reload at step 5 checks the picks of steps 2 and 4, and the reload at step 8 checks the pick of step 7 (Rule 136 §2: save then reload). Each pick checks the same rule, that a pick in one field never changes the other, in both directions."
+ },
+ "S2-14": {
+  "case_id": "C690667",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/690667",
+  "verdict": "NOT-SPLIT",
+  "steps": 8,
+  "why": "8 steps (unchanged). Two windows acting on the same work order (Rule 136 §2): the later save wins only because of the order of the two windows' changes."
+ },
+ "S7-05": {
+  "case_id": "C690670",
+  "link": "https://shopview.testrail.io/index.php?/cases/view/690670",
+  "verdict": "NOT-SPLIT",
+  "steps": 8,
+  "why": "8 steps (unchanged). Both work orders check one requirement (S7-R6, answer 30) in the log entry their own change writes; a change and its log entry stay together. Developer check (AUTOMATION: HOLD)."
+ }
+}

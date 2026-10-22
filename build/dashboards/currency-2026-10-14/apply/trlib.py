@@ -7,12 +7,14 @@ LAST = {"status": None}
 def api(ep, data=None):
     r = urllib.request.Request(f"{_HOST}/index.php?/api/v2/{ep}", data=(json.dumps(data).encode() if data is not None else None),
                                headers={"Authorization": "Basic " + _AUTH, "Content-Type": "application/json"})
-    for a in range(4):
+    for a in range(8):
         try:
             resp = urllib.request.urlopen(r, timeout=120); LAST["status"] = resp.status; return json.load(resp)
         except urllib.error.HTTPError as e:
             LAST["status"] = e.code
-            if e.code < 500 or a == 3: raise SystemExit(f"HTTP {e.code} on {ep.split('&')[0]}: {e.read()[:300]}")
+            if e.code == 429 and a < 7:  # 22 Oct 2026: TestRail allows 180 calls a minute; wait and retry instead of stopping
+                time.sleep(25); continue
+            if e.code < 500 or a == 7: raise SystemExit(f"HTTP {e.code} on {ep.split('&')[0]}: {e.read()[:300]}")
         except Exception:
-            if a == 3: raise
+            if a == 7: raise
         time.sleep(2 * (a + 1))

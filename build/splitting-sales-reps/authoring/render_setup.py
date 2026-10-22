@@ -21,7 +21,7 @@ for r in csv.DictReader(open(f"{P}/testrail-id-map.csv")):
         a = json.load(open(f"{P}/design-recheck-2026-10-20/applied/C{r['case_id']}-after.json"))
         pre = [(_h.unescape(re.sub(r"<[^>]+>", "", x.replace("<br>", "\n"))).split("\n") + [""])[:2] for x in re.findall(r"<li>(.*?)</li>", a["custom_preconds"], re.S)]
         DR.append({"key": r["key"], "sec": "DESIGN", "title": a["title"], "pre": [(x[0], x[1]) for x in pre]})
-link = lambda k: f"[C{ids[k]}](https://shopview.testrail.io/index.php?/cases/view/{ids[k]})" if k in ids else f"{k} (new 22 Oct 2026, tech plan pass; not yet in TestRail)"
+link = lambda k: f"[C{ids[k]}](https://shopview.testrail.io/index.php?/cases/view/{ids[k]})" if k in ids else (f"{k} (new 22 Oct 2026, Rule 136 split of {re.sub(r'[a-z]$', '', k)} C{ids.get(re.sub(r'[a-z]$', '', k), '?')}; not yet in TestRail)" if re.search(r"[a-z]$", k) else f"{k} (new 22 Oct 2026; not yet in TestRail)")
 L = []
 L += ["# Splitting Sales Representatives: setup file for Claude sessions",
       "",
@@ -30,7 +30,7 @@ L += ["# Splitting Sales Representatives: setup file for Claude sessions",
       "",
       "## 1. Header",
       f"- Feature: Splitting Sales Representatives (epic SV-10890; stories SV-11265 to SV-11272). TestRail group 84266, {len(ssr_lib.CASES) + len(DR)} cases.",
-      "- Generated: 19 Oct 2026, with the cases; regenerated 20 Oct 2026 for PRD version 10, Chris Ward's answers, the 7 new cases and the 8 design cases DR-01 to DR-08; regenerated 22 Oct 2026 for PRD version 11 (answers 39 and 40, new cases S5-18 and REL-16, DR-03 released, DR-08 deleted); regenerated again 22 Oct 2026 for the tech plan pass (Rule 134: 13 cases changed, 9 new draft cases S2-15, S2-16, S4-27, S4-28, S5-19, S5-20, REL-17, REL-18, REL-19, not yet in TestRail); regenerated again 22 Oct 2026 for the one-action-steps pass (steps split to one action each and unnecessary steps removed; no precondition changed, so every recipe below is unchanged).",
+      "- Generated: 19 Oct 2026, with the cases; regenerated 20 Oct 2026 for PRD version 10, Chris Ward's answers, the 7 new cases and the 8 design cases DR-01 to DR-08; regenerated 22 Oct 2026 for PRD version 11 (answers 39 and 40, new cases S5-18 and REL-16, DR-03 released, DR-08 deleted); regenerated again 22 Oct 2026 for the tech plan pass (Rule 134: 13 cases changed, 9 new draft cases S2-15, S2-16, S4-27, S4-28, S5-19, S5-20, REL-17, REL-18, REL-19, not yet in TestRail); regenerated again 22 Oct 2026 for the one-action-steps pass (steps split to one action each and unnecessary steps removed; no precondition changed, so every recipe below is unchanged); regenerated again 22 Oct 2026 for the Rule 136 pass (DRAFT: 32 cases split into 2 or 3, 36 new cases with keys ending b or c, not yet in TestRail; steps that only read are folded into the step before; untested state such as the report already open for today, an invoice already made, a switch already turned off, moved into the preconditions, so the recipes of the cases that changed follow their new precondition lines).",
       "- Sources: PRD Confluence 919928833 version 11 (21 Oct 2026, Chris Ward); Chris Ward's answers 1 to 40 to the question sheet (19 and 21 Oct 2026); tech plan (dated 14 Oct 2026, uploaded 19 Oct 2026 and again, byte-identical, 22 Oct 2026; read in full 22 Oct 2026); "
       "Claude design canvas https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm (export read 19 Oct 2026); Sales By Representative spec "
       "Confluence 585629698 version 28; Sales By Customer spec Confluence 577634305 version 21.",
@@ -66,6 +66,7 @@ L += ["# Splitting Sales Representatives: setup file for Claude sessions",
       "| P-PARTSALE | Part Sales > New Part Sale for the customer; add the part(s) and shop supplies named. | The part sale shows the named Sales Representative. |",
       "| P-FEE | On the work order Finance tab add the whole-invoice fee or discount (not on a line) or the line fee/discount the case names. | The Finance tab totals match the case's numbers. |",
       "| P-INVOICE | Finance tab > Create Invoice (close the payment dialog without paying). | The invoice exists; the card is read-only. |",
+      "| P-EXPAND | On Sales By Representative, a representative's invoice rows show only after their row is expanded with the chevron in its Date cell (the Date column header's chevron expands every row). | The invoice rows show under the representative. |",
       "| P-HISTORY | Open the work order's history and open a saved version (the read-only card). | The version opens read-only. |",
       "| P-SPLIT / P-REOPEN | Split Work Order or Split Part Sale moving one line or part to the new document; or pay the invoice in full and reopen the paid work order. | A new work order or part sale exists, made from the first. |",
       "| P-TAX-EXEMPT | Mark the customer tax exempt so no tax applies to its invoices; add a non-taxable whole-invoice discount on the Finance tab. | The invoice total before tax equals the total. |",
@@ -81,7 +82,7 @@ for c in ssr_lib.CASES + DR:
         L.append(f"- {a}" + (f" {b}" if b else ""))
     phs = sorted(set(re.findall(r"\{([A-Z][^{}]*)\}", " ".join(a for a, _ in c["pre"]))))
     L.append("Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; "
-             "P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases.")
+             "P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.")
     L.append("Placeholders used: " + ", ".join("{" + p + "}" for p in phs) + ". Values: the \"For example\" lines above; record the real work order and part sale numbers here after setup.")
     L.append("")
 L += ["## 5. Mapping table", "| Sub folder | Cases |", "|---|---|"]
@@ -92,7 +93,7 @@ L += ["", "## 6. Dependencies and shared fixtures",
       "", "## 7. Reset and cleanup",
       "- Leave ZZAUTOTEST records in place. Turn back on any \"Sales Representative\" switch a case turned off, and reactivate any staff member a case deactivated, before reusing them.",
       "", "## 8. Traceability",
-      "Every case's expected results quote their source sentences word for word (PRD v11, Chris Ward's answers, tech plan, report specs); the checker `authoring/build.py` refuses any quote not found verbatim. All 143 PRD version 11 requirement codes are covered (138 library cases, 22 Oct 2026).",
+      "Every case's expected results quote their source sentences word for word (PRD v11, Chris Ward's answers, tech plan, report specs); the checker `authoring/build.py` refuses any quote not found verbatim. All 143 PRD version 11 requirement codes are covered (" + str(len(ssr_lib.CASES)) + " library cases, 22 Oct 2026, after the Rule 136 pass).",
       "", "## 9. VIU status", "- Every case and recipe: UNVERIFIED — the build is not yet available.",
       "", "## 10. Open questions",
       "- Chris Ward answered all 38 questions of the first sheet on 19 Oct 2026 (design-recheck-2026-10-20/chris-answers.json).", "- Questions 39 and 40 (rows 46 and 47, light green) of the same sheet (https://docs.google.com/spreadsheets/d/17Ry1BtRTPEkecBP5TlgAE0T93Ai1TQewdJ7B7WpWDBQ) were answered by Chris Ward on 21 Oct 2026 and became PRD version 11: " + link("DR-03") + " was released; DR-08 (C690665) was deleted on 22 Oct 2026 because nothing makes a Lead Technician message show today (answer 40). (A third, on the phone control, was withdrawn on 20 Oct 2026 as answered by answer 9; its held case DR-05 was deleted.) Question 41 (a customer adds the Part Sales field while its Service Parts or one representative has the switch off: what does the new field start with?) was drafted on 22 Oct 2026 in tech-plan-pass-2026-10-22/NEW-QUESTIONS.md; it was added to the same sheet on 22 Oct 2026 (rows 48-49, light orange) and is not yet answered; no case is held on it."]

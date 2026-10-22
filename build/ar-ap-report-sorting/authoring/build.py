@@ -18,8 +18,16 @@ dups = {k for k in keys if keys.count(k) > 1}
 if dups: probs.append(f"duplicate keys {sorted(dups)}")
 for c in L.CASES:
     if c["sec"] not in SECS: probs.append(f"{c['key']}: unknown section {c['sec']}")
-    if not re.match({"DATA": r"DATA-\d\d$", "REL": r"REL-\d\d$", "DESIGN": r"D-\d\d$"}.get(c["sec"], c["sec"] + r"-\d\d$"), c["key"]):
+    # Rule 136 (22 Oct 2026): a split case keeps its key and C-id as part 1; the other parts are new keys "<key>b" to "<key>e"
+    if not re.match({"DATA": r"DATA-\d\d[b-e]?$", "REL": r"REL-\d\d[b-e]?$", "DESIGN": r"D-\d\d[b-e]?$"}.get(c["sec"], c["sec"] + r"-\d\d[b-e]?$"), c["key"]):
         probs.append(f"{c['key']}: key does not match section {c['sec']}")
+# Rule 136: every split part sits next to its original key; a result or note never points at a step the case does not have
+for c in L.CASES:
+    m = re.match(r"(.*\d\d)([b-e])$", c["key"])
+    if m and m.group(1) not in keys: probs.append(f"{c['key']}: split part without its original case {m.group(1)}")
+    for t in c["res"] + [c["note"], c["known"]]:
+        for n in re.findall(r"\b[Ss]teps? (\d+)", t):
+            if int(n) > len(c["steps"]): probs.append(f"{c['key']}: text points at step {n}, the case has {len(c['steps'])} steps")
 print("cases", len(L.CASES), dict(Counter(c["sec"] for c in L.CASES)))
 # ---- coverage of PRD codes and named items
 used = Counter(x for c in L.CASES for x in L.codes_of(c))
@@ -91,7 +99,7 @@ print("tech plan statements", len(TP.S), dict(Counter(st["verdict"] for st in TP
 markers = Counter(c["marker"] for c in L.CASES)
 print("markers", dict(markers))
 over = [(c["key"], len(c["steps"])) for c in L.CASES if len(c["steps"]) > 10]
-for k_, n_ in over: print(f"OVER-TARGET {k_}: {n_} steps (Rule 117 target about 10; kept whole, ask the QA lead before any split, Rule 127)")
+for k_, n_ in over: print(f"OVER-TARGET {k_}: {n_} steps (Rule 117 target about 10; split or kept whole under Rule 136, reason in rule136-2026-10-22/SPLITS.json)")
 for p in probs: print("PROBLEM", p)
 out = {c["key"]: dict(sec=c["sec"], section_id=SECS.get(c["sec"]), title=c["title"], refs=L.render(c)["refs"],
                       reports=[L.REPORTS[r] for r in L.reports_of(c)], codes=sorted(L.codes_of(c)), fields=L.render(c)) for c in L.CASES}
