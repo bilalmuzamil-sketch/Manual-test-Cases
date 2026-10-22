@@ -13,3 +13,11 @@ Test-run link: https://shopview.testrail.io/index.php?/tests/view/4216028
 Source currency at write time: SV-11588 PASSED comment 79306 + separate point 79307 (posted earlier today); build v26.43.0-003b8fb on sv11588.
 
 Rule checks: 34/47 union-only with snapshot before and by-id verification after; 50 byte-compared read-back; 6 written with explicit permission. No other run or case touched.
+
+## Windows check recorded (22 Oct 2026, QA lead "YES")
+| # | Operation | Target | HTTP | Verification |
+|---|---|---|---|---|
+| 4 | `add_result/4216028` status Passed, comment: QA lead checked on Chrome for Windows; points to SV-11686 for the fingers | test 4216028 | 200 | result id 535194; test now has 2 results (535194, 535192), both Passed; newest comment byte-identical; test status 1 |
+
+Jira: comment 79306 line 29 ("Not checked here: … Windows …") replaced by the Windows result with a dated note (12:31 CDT);
+read back — first line unchanged, 2 images still real attachments. Previous text kept in comment-79306-before-windows-edit.txt.

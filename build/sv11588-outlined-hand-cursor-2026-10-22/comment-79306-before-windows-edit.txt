@@ -1,0 +1,38 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+I tested this on the QA branch ([sv11588.qa.shopview.com|https://sv11588.qa.shopview.com/workorders], build v26.43.0-003b8fb) on 22 October 2026, as Admin at Staging Heavy Duty - 9919, and compared it with production (build v26.43.0-ffea43c).
+
+* Board View and Tech View now use our own hand pointers: a white hand with a black outline, an open hand while hovering and a closed hand while dragging.
+* They show in exactly the places the browser's hand showed before, and List and the other pages are unchanged.
+* One small point about how the open hand looks is in a separate comment below. It doesn't change this result.
+
+!SV-11588_1-the-new-pointers.png|width=700,height=310!
+_Picture 1: the two new pointers at real size and enlarged, on white and on blue._
+
+h3. What I checked
+
+||#||Check||Production (before)||QA branch (after)||Status||
+|1|Pointer over a technician column header in Board View (every part of the header, every technician column: 13 on the branch, 12 on production)|browser's own hand|our open hand|PASSED|
+|2|Pointer over the six-dot grip at the start of a Tech View row (all 67 rows)|browser's own hand|our open hand|PASSED|
+|3|Pointer over a technician header in Tech View|browser's own hand|our open hand|PASSED|
+|4|Dragging a Board View card: the hand during the whole drag|browser's own closed hand|our closed hand at every step|PASSED|
+|5|Dragging a Board View column header, a Tech View row and a Tech View technician header|browser's own closed hand|our closed hand at every step|PASSED|
+|6|The new pointers: white inside, black outline, 32 by 32 pixels, open and closed shapes, nothing cut off at the edges|-|as described|PASSED|
+|7|The browser's own hand stays as the backup if a browser can't show ours|-|kept for both hands|PASSED|
+|8|Nothing else changes in Board View and Tech View: cards, Tech View rows, the pin buttons and the "Unassigned" headers keep the same pointer as before|same as after|same as before|PASSED|
+|9|List and the other pages (Schedule, Customers, Parts, Reports, Dashboard, Notifications) keep every pointer as before (the only differences were page content that exists on one site and not the other)|same as after|same as before|PASSED|
+|10|Dark theme: the same pointers on cards, column headers, rows, grips and technician headers|same as light|same as light|PASSED|
+
+!SV-11588_2-where-the-hand-shows.png|width=420,height=1208!
+_Picture 2: where the new hand shows. Screenshots never include the mouse pointer, so I drew the page's pointer image at the exact spot the mouse was (comparison only)._
+
+*Not checked here:* how Chrome on Windows draws the pointer on screen. My test browser runs on Linux, and screenshots never show the pointer. What I could check is that the page now gives the browser our own outlined hand everywhere it used the browser's hand before.
+
+h3. How to see it
+
+# Open [https://sv11588.qa.shopview.com/workorders] and sign in as Admin.
+# Above the list, on the right, click the last of the three view icons ({{Board View}}).
+# Move the mouse over the grey bar at the top of any technician's column (where their name is). The pointer is a white open hand with a black outline.
+# Press on any work order card and drag it a little. The pointer is a white closed hand with a black outline for as long as you hold the button. Let go where it started.
+# Click the middle view icon ({{Tech View}}). Move the mouse over the six dots at the very left of any row: the open hand. Press and drag: the closed hand.
