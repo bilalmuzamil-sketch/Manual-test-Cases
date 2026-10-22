@@ -264,6 +264,9 @@ await run('C368153', async () => { const o: any = {}; const orig = (await roleRe
     await display(pg, 'Tech View'); await settle(pg); const f4 = evs(ev, 'work_orders_field_load', n2); o.step4 = { n: f4.length, totalPrice: f4.filter((e) => /total_price/.test(e.ep['ep.element_label'] ?? '')).length, labels: f4.map((e) => e.ep['ep.element_label']) };
     await display(pg, 'Board View'); await search(pg, s.q); await pg.waitForTimeout(2500); await pg.locator('[data-test-id="button_board_fields_selection"]').click(); await pg.waitForTimeout(900);
     o.step5 = { pickerHasTotal: await pg.locator('[data-test-id="toggle_board_field_total_price"]').count(), pickerItems: await pg.evaluate(`[...document.querySelectorAll('.q-menu [data-test-id^="toggle_board_field_"]')].map(e => e.getAttribute('data-test-id').replace('toggle_board_field_', ''))`) }; await pg.keyboard.press('Escape');
+    // 22 Oct 2026: on production the searched card sat in Ana's column off to the right — every column on screen read "No work orders";
+    // bring her column into view first and count the cards read (positive control: at least one card).
+    await toColumn(pg, ANA.staff_id).catch(() => {}); await pg.waitForTimeout(1500); o.step5.cardsOnScreen = await pg.locator('[data-test-id^="board_card_"]').count();
     o.step5.dollarOnCards = await pg.evaluate(`[...document.querySelectorAll('[data-test-id^="board_card_"]')].filter(c => /\\$\\s?\\d/.test(c.innerText)).length`); await shot(pg, 'C368153-board'); }); }
   finally { o.finRestore = await setFin(VIEW_ROLE, !!orig); }
   R.C368153 = o; });

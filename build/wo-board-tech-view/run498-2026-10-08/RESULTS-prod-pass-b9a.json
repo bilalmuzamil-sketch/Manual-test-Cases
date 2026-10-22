@@ -1,0 +1,109 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - pass-b9"
+ },
+ "results": {
+  "C97010": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 3: Board View, All tab, Search \"ZZAUTOTEST C97010 Failed Drop\": the deactivated technician ZZAUTOTEST F3 Dan Delta still has his column with S1-1368, marked \"Inactive\", count 1.",
+    "Steps 4 and 5: S1-1366 dragged from ZZAUTOTEST Ana Alpha's column onto Dan Delta's column was not accepted: it stayed with Ana Alpha, Dan Delta's count stayed 1 and no \"assigned to\" message appeared.",
+    "Steps 6 and 7: in a second tab S1-1367 was opened, Finance tab, Create Invoice pressed (invoice INV-S1-1367 shown).",
+    "Steps 8 to 10: back in the first tab without refreshing, S1-1367 dragged onto Ben Bravo's column went back to Ana Alpha's column and the alert read \"Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid.\"",
+    "Steps 11 and 12: the alert was still shown about 10 seconds later and went away when its Close button was clicked.",
+    "Steps 13 and 14: after a refresh S1-1367 is in Ana Alpha's column, and its own page reads Lead technician \"ZZAUTOTEST Ana Alpha\"."
+   ],
+   "pictures": [
+    "pictures-prod/C97010-1-prod-1022.png",
+    "pictures-prod/C97010-2-prod-1022.png",
+    "pictures-prod/C97010-3-prod-1022.png",
+    "pictures-prod/C97010-4-prod-1022.png"
+   ]
+  },
+  "C368176": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Step 1: on S1-1369 (customer \"ZZAUTOTEST Clock In Line 73448\", no lead technician) Line 1's Labor row reads \"Unassigned\".",
+    "Steps 2 and 3: in a second window as Esther Howard (no clock running before the test), S1-1369 > Lines tab.",
+    "Steps 4 and 5: Start on Line 1's Labor row, about a minute of work, Stop, text typed in \"What Have You Been Doing On This Line?\", Clock Out: message \"Timesheet clocked out\" (0.02 hours on the line); no clock left running.",
+    "Step 6: in browser 1 after a reload, Line 1's Labor row shows \"Esther Howard\" - the line took the technician who clocked in. Line 2, where nobody clocked in, still reads \"Unassigned\"."
+   ],
+   "pictures": [
+    "pictures-prod/C368176-1-prod-1022.png",
+    "pictures-prod/C368176-2-prod-1022.png",
+    "pictures-prod/C368176-3-prod-1022.png"
+   ]
+  },
+  "C368182": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Before step 1: in the Work Orders List, B (S1-1371) shows Progress 0%.",
+    "Step 1: customer \"ZZAUTOTEST Asset Tab 73448\" > Assets > TRK-201 > Work Orders tab.",
+    "Step 2: B (S1-1371) shows Progress 0% - the same as the List."
+   ],
+   "pictures": [
+    "pictures-prod/C368182-1-prod-1022.png"
+   ]
+  },
+  "C368183": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Step 1: customer \"ZZAUTOTEST Asset Tab 73448\" > Assets > TRK-201 > Work Orders tab (3 rows).",
+    "Steps 2 and 3: after clicking the Number header the rows read S1-1372, S1-1371, S1-1370 - number order (highest first; before the click the table was already lowest first).",
+    "Steps 4 and 5: after clicking it again they read S1-1370, S1-1371, S1-1372 - the same rows in reverse order. No row missing or repeated."
+   ],
+   "pictures": [
+    "pictures-prod/C368183-1-prod-1022.png"
+   ]
+  },
+  "C368186": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Before step 1: in the Work Orders List, B (S1-1375) shows Progress 0%.",
+    "Step 1: customer \"ZZAUTOTEST Customer Tab 73448\" > Work Orders tab (\"Work Orders (4)\").",
+    "Step 2: B (S1-1375) shows Progress 0% - the same as the List."
+   ],
+   "pictures": [
+    "pictures-prod/C368186-1-prod-1022.png",
+    "pictures-prod/C368186-2-prod-1022.png"
+   ]
+  },
+  "C368187": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Step 1: customer \"ZZAUTOTEST Customer Tab 73448\" > Work Orders tab (4 rows).",
+    "Steps 2 and 3: after clicking the Number header the rows read S1-1374, S1-1375, S1-1376, S1-1377 - number order.",
+    "Steps 4 and 5: after clicking it again they read S1-1377, S1-1376, S1-1375, S1-1374 - the same rows in reverse order. No row missing or repeated."
+   ],
+   "pictures": [
+    "pictures-prod/C368187-1-prod-1022.png"
+   ]
+  },
+  "C368196": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Set-up: three work orders S1-1378, S1-1379, S1-1380 made to differ in every column (status, on site, customer, asset, unit, VIN, service advisor, lead technician, clocked in, lines, price); Search \"ZZAUTOTEST List Sort 25587\" on the All tab in List.",
+    "Steps 2 to 5 (Number): first click S1-1378, S1-1379, S1-1380; second click S1-1380, S1-1379, S1-1378.",
+    "Step 6: On Site, Status, Customer, Asset, Unit, VIN/Serial #, Service Advisor, Lead Technician, Clocked In, Lines, Total Price and Created On each ordered the 3 rows one way and then the other, with the header marked as sorted (for example Total Price $241.98, $262.98, $404.73, then the reverse; Lines 1, 2, 3, then 3, 2, 1).",
+    "Clocked In orders by who is clocked in: nobody first, then the two rows with one person; the second click puts nobody last. Created On reads \"Today\" for all three, and the rows go in creation order, then the reverse.",
+    "Progress has no sort arrow and clicking it does not change the order. No header failed to order the rows."
+   ],
+   "pictures": [
+    "pictures-prod/C368196-1-prod-1022.png",
+    "pictures-prod/C368196-2-prod-1022.png",
+    "pictures-prod/C368196-3-prod-1022.png",
+    "pictures-prod/C368196-4-prod-1022.png"
+   ]
+  }
+ }
+}

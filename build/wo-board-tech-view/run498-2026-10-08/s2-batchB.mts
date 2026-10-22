@@ -149,6 +149,10 @@ await run('C96936', async () => {
     // step 5: tab B, the work order page, Lead Technician = Ralph Edwards
     const pB = await p.context().newPage(); pB.setDefaultTimeout(20_000); o.step5 = {};
     try { await pB.goto(`${APP}/workorders/${w1.id}/lines`, { waitUntil: 'domcontentloaded' }); await pB.waitForTimeout(7000);
+      // 22 Oct 2026 (production): a work order with no lines opens a "New Line" window over the page, hiding the status card's Lead
+      // Technician field (the old search then marked the On Site button). Close it first — its X, else Escape — and read it closed.
+      for (let k = 0; k < 2 && await pB.locator('.q-dialog').filter({ hasText: /New Line/ }).count(); k++) { await pB.locator('.q-dialog').filter({ hasText: /New Line/ }).locator('button:has(i:text-is("close")), [data-test-id="button_close_dialog"]').first().click({ timeout: 4000 }).catch(async () => { await pB.keyboard.press('Escape'); }); await pB.waitForTimeout(1500); }
+      o.step5.newLineWindowClosed = !(await pB.locator('.q-dialog').filter({ hasText: /New Line/ }).count());
       // FIX-UP 2c (17 Oct 2026, last automated try): on 17 Oct no Lead Technician field was found in tab B within 20 s. Every candidate is now
       // logged (test ids holding "lead", q-fields by label, the element reading "Lead Technician" and its clickable container) for up to
       // 20 s, the best one is MARKED (select_lead_technician > a test id with "lead" that is not read-only > the labelled q-field > the
