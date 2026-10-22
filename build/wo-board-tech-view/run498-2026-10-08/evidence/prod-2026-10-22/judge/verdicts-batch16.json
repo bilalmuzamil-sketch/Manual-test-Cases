@@ -1,0 +1,234 @@
+{
+ "C368193": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: no records of its own are needed for the result; the words \"ZZAUTOTEST Tab Clears Search\" were used as the search. At Truck Hill 1, signed in as ZZ WOB Runner.",
+   "Step 1: Work Orders opened in the List and the All tab clicked.",
+   "Step 2: Search clicked and \"ZZAUTOTEST Tab Clears Search\" typed; the search box read exactly that.",
+   "Step 3: the Estimates tab clicked.",
+   "Step 4: the search box is closed back to the plain Search button with nothing in it, and the Estimates tab shows its work orders for many customers (Ahsan, aqeel transport 56 and others, 30 rows, all Estimate), so the search is not applied."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368193-end.png"
+  ],
+  "reason_for_reviewer": "high2-batch.mts C368193: goList opens /workorders by address, All tab, List and Search typed on screen (before = the typed text); Estimates tab clicked on screen. after = null because the search input is no longer on the page (collapsed to the Search button, seen in the picture); rows 30, statuses Estimate only. Picture C368193-end = Estimates tab, Search empty, many customers. 0 differences from staging."
+ },
+ "C368194": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: needs no records. At the start Days open was off in Column Selection (read from the menu). At Truck Hill 1, signed in as ZZ WOB Runner.",
+   "Step 1: Work Orders opened in the List and the All tab clicked.",
+   "Steps 2 to 4: Column Selection clicked, the Days open switch turned on, the menu closed with Escape; the List headings now include Days Open.",
+   "Step 5: after reloading the page the List headings still end with Days Open (On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total Price, Created On, Days Open). The picture shows the List after the reload; Days Open sits past the right edge of the window."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368194-end.png"
+  ],
+  "reason_for_reviewer": "high2-batch.mts C368194: before = ['daysOpen','false'] read from the Column Selection menu; toggle_column_daysOpen clicked on screen, Escape; step4 true (visible headings), page.reload(), step5 true, heads list ends 'Days Open'. The end picture is the List after the reload but cut at Total Price, so the column itself is shown by the heading reading, not the picture. 0 differences from staging."
+ },
+ "C368195": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: a brand-new user \"ZZAUTOTEST ListNew Tech ...\" with Role = Technician was made at Truck Hill 1 and had no saved Work Orders settings (never opened Work Orders). The steps were done signed in as that user.",
+   "Step 1: as the new user, Work Orders opened, List clicked, All tab clicked.",
+   "Step 2: the headings are On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Created On.",
+   "Step 3: Column Selection shows these off: Waiting On Parts, Invoiced Date, Days open, Parts, Returns (5 columns off); every other choice (Asset, VIN, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Created On) is on and shown. Total Price is not offered to this Technician user."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368195-new-tech-user-list.png",
+   "evidence/prod-2026-10-22/C368195-new-tech-user-column-selection.png"
+  ],
+  "reason_for_reviewer": "high2-batch.mts C368195: new Technician-role user made behind the screen (set-up), saved prefs {} (never opened Work Orders); viewAs window: goList (address, All, List on screen), heads read; colMenu opened on screen: off = unreceivedPartRequestsCount (Waiting On Parts), invoicedDate, daysOpen, partRequestsCount, partReturnRequestsCount; all others true. The 'column-selection' picture was taken after the menu closed (shows the Column Selection tooltip), so the menu contents are from the reading. Both pictures are the new user's window (initials Z6, top menu Work Orders/Schedule/Customers). 0 differences from staging."
+ },
+ "C368198": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: customer \"ZZAUTOTEST Invoice Order 88884\" with two Invoiced work orders at Truck Hill 1: S1-1597 (X) invoiced first and S1-1598 (Y) invoiced about one minute later.",
+   "Step 1: Work Orders opened in the List and the All tab clicked.",
+   "Step 2: Status clicked and Invoiced ticked; the button reads \"Status: Invoiced\".",
+   "Step 3: Column Selection clicked and Invoiced Date turned on; the Invoiced Date column shows, with its sort arrow pointing down.",
+   "Step 4: Search clicked and \"ZZAUTOTEST Invoice Order\" typed.",
+   "Step 5: the rows read S1-1598 (Y) first, then S1-1597 (X); both Invoiced, both Invoiced Date \"Today\". Y is above X."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368198-step5-rows-and-invoiced-dates.png"
+  ],
+  "reason_for_reviewer": "high2-batch.mts C368198: both work orders invoiced behind the screen as set-up (mkSet ... status invoiced) with a 65-second gap. On screen: goList, Status chip > Invoiced, Column Selection > invoicedDate on, Search typed. rows [S1-1598, S1-1597], yAboveX true, statusChip 'Status: Invoiced', Invoiced Date 'Today' on both (the List shows days, not times, so the order between them is shown by the row order under the Invoiced Date sort). Picture taken at step 5. 0 differences from staging."
+ },
+ "C368199": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: needs no records; the site has work orders on every tab. At Truck Hill 1, signed in as ZZ WOB Runner.",
+   "Step 1: Work Orders opened in the List and the All tab clicked.",
+   "Step 2: Estimates, Completed, Work Orders and Completed clicked one after another as fast as possible.",
+   "Step 3: waited for the List to finish loading.",
+   "Step 4: the Completed tab is selected and every row reads Complete (S1-1064, S1-722, S1-668 and on); no error message appeared.",
+   "Requests the page stops on the way: not checked by hand."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368199.png"
+  ],
+  "reason_for_reviewer": "high2-batch.mts C368199: goList then the four tab clicks on screen 150 ms apart; after 6 s active tab 'Completed', statuses ['Complete'], toasts [], no failed work-order requests. Picture C368199 = Completed tab, all Complete. 0 differences from staging."
+ },
+ "C368200": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: customer \"ZZAUTOTEST Row Toggle 88884 One Co\" with one Approved work order S1-1599 at Truck Hill 1, its asset not on site at the start.",
+   "Step 1: Work Orders opened, All tab clicked, \"ZZAUTOTEST Row Toggle\" searched; S1-1599 is the only row.",
+   "Step 2: the location pin in the S1-1599 row's On Site column clicked.",
+   "Step 3: the page is still the Work Orders List (the work order did not open), and the pin is now green with the hover text \"Asset here. Click to toggle status.\" (it was off before the click)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368200-end.png"
+  ],
+  "reason_for_reviewer": "high2-batch.mts C368200: work order made behind the screen (set-up). goList + search on screen; button_vehicle_here_toggle in the row clicked on screen; url after = /workorders?search=... (List, not the work order); the work order's on-site value read 0 before and 1 after. Only an end picture exists (green pin + 'Asset here' tooltip on the List); the 'before' state is the reading. 0 differences from staging."
+ },
+ "C368201": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: customer \"ZZAUTOTEST Back Status 88884\" with one Approved work order S1-1600 at Truck Hill 1 with one approved ready-made line (the grease service line is not on production, so the first ready-made line was used). The shop's \"Require Review Before Completion\" setting was off on production, so it was switched on before step 1 and put back afterwards; without it a finished line goes straight to Complete.",
+   "Step 1: Work Orders opened, All tab clicked, \"ZZAUTOTEST Back Status\" searched; S1-1600 listed.",
+   "Step 2: the S1-1600 row clicked; the work order opened on its Lines tab.",
+   "Step 3: Complete clicked on the line; no Tech Story or Missing Details window came up on production. The line reads Complete and the work order's status reads Review (the \"Work order sent to review.\" message was not caught on the picture).",
+   "Step 4: the browser Back button pressed; the Work Orders List is shown again with the search still applied.",
+   "Step 5: the S1-1600 row reads \"Ready For Review\" straight away, with no reload. \"Ready For Review\" is the List's name for the same status the work order page shows as Review."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368201-sent-to-review.png",
+   "evidence/prod-2026-10-22/C368201-back.png"
+  ],
+  "reason_for_reviewer": "high2-batch.mts C368201: setRequireReview(true) before the customer is made (set-up; before false, put back to false in finally, 200 both ways). Row clicked on screen (td nth 2), opened /workorders/<id>/lines; part requests removed and the page reloaded (housekeeping, not a step); Complete on the line clicked on screen; dialog '' and no clickN keys = no window appeared; status ready_for_review, pageStatus 'Review'; toasts [] (message not caught). page.goBack() = browser Back; rowStatus 'Ready For Review' read 3.5 s later with no reload. Expected says 'reads Review'; the List badge for that status is 'Ready For Review' (staging judged the same wording Passed). 0 differences from staging."
+ },
+ "C368203": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: needs no records. The saved List was on the All tab with Assigned to me off at the start. At Truck Hill 1, signed in as ZZ WOB Runner.",
+   "Step 1: the Work Orders address with ?tab=estimate&assigned_to_me=1 added was opened in the address bar.",
+   "Step 2: the Estimates tab is selected and Assigned to me is highlighted (on); the List shows only Estimate work orders."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368203.png"
+  ],
+  "reason_for_reviewer": "high2-batch.mts C368203: goList (All tab) then page.goto('/workorders?tab=estimate&assigned_to_me=1'), which is what the step says (address bar). tab 'Estimates', assigned 'true', url kept. Picture C368203 = Estimates underlined, Assigned to me highlighted. 0 differences from staging."
+ },
+ "C368205": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: needs no records. The All tab was open with no Status or Asset on Site filter and Assigned to me off; it showed 30 rows, starting S1-915, S1-979, S1-914 (Ahsan). At Truck Hill 1, signed in as ZZ WOB Runner.",
+   "Step 1: the Work Orders address with ?vehicleHere=2 added was opened.",
+   "Step 2: Asset on Site clicked: Yes and No are both unticked (only Yes / No / Clear selection offered); the List still shows 30 rows starting S1-915, S1-979, S1-914, the same as before; no error message appeared."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368205-filter.png"
+  ],
+  "reason_for_reviewer": "high2-batch.mts C368205: goList (All) rowsBefore 30, then page.goto('/workorders?vehicleHere=2') as the step says; rowsAfter 30, toasts [], Asset on Site chip opened on screen: 'Yes No Clear selection', checked 0. Picture C368205-filter shows the open filter with nothing ticked over the same first rows as the All tab List (compare C368194-end). 0 differences from staging."
+ },
+ "C368206": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: the test role \"ZZAUTOTEST WO View Only\" (Work orders > View) had See Financial Data turned off (put back afterwards), and a new user \"ZZAUTOTEST NoFin ...\" with that role was made at Truck Hill 1. The steps were done signed in as that user.",
+   "Step 1: as that user, Work Orders opened, List clicked, All tab clicked.",
+   "Step 2: the headings are On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Created On: no Total Price column.",
+   "Step 3: Column Selection offers Waiting On Parts, Asset, VIN, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Created On, Invoiced Date, Days open, Parts, Returns: Total Price is not offered.",
+   "Step 4: after scrolling to the bottom there is no total row and no money figure anywhere on the page."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368206.png"
+  ],
+  "reason_for_reviewer": "high2-batch.mts C368206: role change and user made behind the screen (set-up; role put back, 200). viewAs window: goList, heads (no Total Price), colMenu opened on screen (no totalPrice option), window scrolled to the end, .q-table__bottom absent and no '$0.00'-style figure in the whole page text. The picture is the user's List (initials Z6, top menu Work Orders only, no Total Price heading) but shows the top of the List; the 'no total' part rests on the whole-page reading (the total row, when present, is in the page text, as on C368198/C368203). 0 differences from staging."
+ },
+ "C368207": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: a new user \"ZZAUTOTEST VO ...\" with the role \"ZZAUTOTEST WO View Only\" (Work orders > View on, Create & Edit off) at Truck Hill 1. The steps were done signed in as that user.",
+   "Step 1: as that user, Work Orders opened, List clicked, All tab clicked.",
+   "Step 2: there is no Create Work Order button on the toolbar (Search, Status, Assigned to me, Asset on Site, the column and display buttons only)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368207-viewonly-list.png"
+  ],
+  "reason_for_reviewer": "high2-batch.mts C368207: user made behind the screen (set-up); viewAs window goList; visible button_new_work_order count 0. Picture is the view-only user's own List with no Create Work Order button (compare the admin's C368203 picture, which has it). 0 differences from staging."
+ },
+ "C368208": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: customer \"ZZAUTOTEST View Only Toggle 88884 One Co\" with one Approved work order S1-1601 at Truck Hill 1 (its asset not on site, red pin), and a new user \"ZZAUTOTEST VOT ...\" with the role \"ZZAUTOTEST WO View Only\". The steps were done signed in as that user.",
+   "Step 1: as that user, Work Orders opened, List and All tab clicked, \"ZZAUTOTEST View Only Toggle\" searched; S1-1601 is the only row.",
+   "Step 2: the pin in S1-1601's On Site column is shown disabled (greyed, not-allowed pointer; hover text \"Asset not here. Click to toggle status.\"); clicking it changed nothing, the pin stays red.",
+   "Step 3: after the reload the pin is still red and disabled; the work order's asset is still not on site."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368208-viewonly-hover.png",
+   "evidence/prod-2026-10-22/C368208-viewonly-after-click.png",
+   "evidence/prod-2026-10-22/C368208-viewonly-after-reload.png"
+  ],
+  "reason_for_reviewer": "high2-batch.mts C368208: work order and user made behind the screen (set-up). viewAs window: goList + search; toggle disabled true (disabled attribute, cursor not-allowed, opacity 0.6); hover tooltip read; click on screen (forced, as the button is disabled); reload; on-site value 0 before and 0 after. Pictures before/after click and after reload all show the same red pin. Note the case's set-up check expects a green pin; on production the new work order starts 'not here', which does not affect 'does not change'. 0 differences from staging."
+ },
+ "C368209": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 3: the sort already read Customer A-Z before step 3 (the starting value Newest First was not set first), so picking Customer A-Z changed nothing and the reload does not show that a newly picked sort is kept.",
+  "bold_steps": [
+   3
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The steps were followed, but the starting sort the test needs (Newest First) was not set, so step 3 made no change.",
+   "Set-up: needs no records. Phone width 390 px, at Truck Hill 1, signed in as ZZ WOB Runner. The starting sort was not set to Newest First: the sort list already had the tick on Customer A-Z.",
+   "Step 1: Work Orders opened at phone width.",
+   "Step 2: the sort button (two arrows) tapped; it offers Newest First, Oldest First, Customer A-Z and Customer Z-A, with the tick already on Customer A-Z.",
+   "Step 3 (NO CHANGE MADE): Customer A-Z tapped, but it was already the chosen sort.",
+   "Step 4: the page reloaded.",
+   "Step 5: the sort list shows the tick on Customer A-Z, and the cards run in customer name order A to Z: Ahsan, Ali Raza Hamid, aqeel transport 56, Asher transport3, Ayesha, Bilal Production, First Customer Prod."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368209-phone.png",
+   "evidence/prod-2026-10-22/C368209-phone-customer-7.png"
+  ],
+  "reason_for_reviewer": "high2-batch.mts C368209: no set-up to Newest First; options read BEFORE the pick = ['Newest First','Oldest First','Customer A-Z\\ncheck','Customer Z-A'], i.e. Customer A-Z already ticked (left from an earlier run). After reload ticked ['Customer A-Z'], customersInOrder A to Z (aToZ true, 150 cards collected). The end result matches the Expected, but because the starting value was already Customer A-Z the test does not show that a NEW choice survives a reload. Manual check: at 390 px set the sort to Newest First, reload and confirm the tick is on Newest First; then pick Customer A-Z, reload, and confirm the tick is on Customer A-Z and the cards run A to Z."
+ },
+ "C368210": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: needs no records; the All tab holds far more than one page of work orders. Phone width 390 px, at Truck Hill 1, signed in as ZZ WOB Runner.",
+   "Step 1: Work Orders opened at phone width and the All tab tapped.",
+   "Step 2: without scrolling, 30 different work order cards are on the page (first S1-915, S1-979, S1-914).",
+   "Step 3: the cards scrolled to the bottom.",
+   "Step 4: 390 different work order cards are now on the page, none shown twice; more cards appeared only after the scroll."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368210-phone-first-page.png",
+   "evidence/prod-2026-10-22/C368210-phone-after-scroll.png"
+  ],
+  "reason_for_reviewer": "high2-batch.mts C368210: phone viewport 390x844, /workorders by address, All tab on screen; before 30 distinct numbers; scrolled to the bottom 6 times; after 390, unique true. Pictures: first page (S1-915 at the top) and far down the list after the scroll. 0 differences from staging."
+ },
+ "C368212": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: customer \"ZZAUTOTEST Loc2 Customer 88884\" with work order S2-1602, made while Trucks Hill 2 was the chosen location; then the location was set back to Truck Hill 1 before step 1. Signed in as ZZ WOB Runner.",
+   "Step 1: at Truck Hill 1, Work Orders opened and the All tab clicked.",
+   "Step 2: Search \"Loc2\": the List reads \"No work orders match the search \"Loc2\".\"; S2-1602 does not appear.",
+   "Step 3: searched by its number S2-1602 instead: \"No work orders match the search \"S2-1602\".\"; it does not appear at Truck Hill 1.",
+   "Step 4: initials > Change Location > Trucks Hill 2 (the name next to the bell reads Trucks Hill 2), Work Orders, All, search \"Loc2\": S2-1602 (ZZAUTOTEST Loc2 Customer 88884) is listed, so the record exists and is only hidden where it does not belong.",
+   "After the test the screen stayed on Trucks Hill 2 (the switch back is not part of this test's steps)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368212-heavy-loc2.png",
+   "evidence/prod-2026-10-22/C368212-heavy-by-number.png",
+   "evidence/prod-2026-10-22/C368212-lethbridge.png"
+  ],
+  "reason_for_reviewer": "high2-batch.mts C368212: location set to Trucks Hill 2 behind the screen to create the work order and back to Truck Hill 1 (set-up, both 200). goList 'Loc2' at Truck Hill 1: heavyLoc2 false; step 3 uses the case's own alternative (search its number): heavyByNumber false; step 4 switched ON SCREEN via the location menu (switchLocUI -> 'Trucks Hill 2', top bar read back), goList 'Loc2': lethLoc2 true. The switch back failed (backTopBarFinal 'Trucks Hill 2') - script return problem, not a case step. 0 differences from staging."
+ }
+}
