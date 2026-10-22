@@ -178,7 +178,7 @@ C(k, "S2", "A/P Unpaid Invoices: a vendor credit stays at the bottom when Due Da
    START("APU")],
   ["Expand {Vendor-A}'s group.", "Look at {Vendor-credit-A}'s Due Date and Past Due cells.", "Click the \"Due Date\" header.",
    "Click the \"Due Date\" header again.", "Click the \"Past Due\" header.", "Click the \"Past Due\" header again."],
-  ["Step 1: the group shows the two bills and the vendor credit.", "Step 2: both cells are blank: a vendor credit has no due date and no Past Due here.",
+  ["Step 1: the group shows the two bills and the vendor credit.", "Step 2: neither cell holds a date or a number (the screen draws a dash, \"—\"): a vendor credit has no due date and no Past Due here.",
    "Step 3: {Bill-B}, then {Bill-A}, then {Vendor-credit-A} at the bottom of the group.",
    "Step 4: {Bill-A}, then {Bill-B}, and {Vendor-credit-A} still at the bottom.",
    "Step 5: {Bill-B} (20 days), then {Bill-A} (10 days), then {Vendor-credit-A} at the bottom.",

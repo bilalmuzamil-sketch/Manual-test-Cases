@@ -131,10 +131,10 @@ C("S1-14", "S1", "Without Reports page access the six reports are not available"
     "For example: {User-B} is ZZAUTOTEST S1-14 No Reports with the custom role ZZAUTOTEST S1-14 No Reports Role."),
    ("You have a link to A/R Summary and a link to A/P Detail, copied earlier from the address bar by an Admin user.", None),
    "Starting screen: the ShopView home page in a desktop browser window 1440 px wide."],
-  ["Open the main menu and look for Reports > Finance.",
+  ["Click Reports in the top menu and read the left menu's ACCOUNTS RECEIVABLE and ACCOUNTS PAYABLE sections.",
    "Paste the A/R Summary link into the address bar and press Enter.",
    "Paste the A/P Detail link into the address bar and press Enter."],
-  ["Step 1: none of A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail or A/P Unpaid Invoices is offered, as today.",
+  ["Step 1: none of the six reports is offered (on screen: \"A/R Aging Summary\", \"A/R Aging Detail\", \"A/R Aging Collection\", \"A/P Aging Summary\", \"A/P Aging Detail\", \"A/P Unpaid Invoices\"), as today.",
    "Step 2: the report does not open, as today for a user without this permission.",
    "Step 3: the report does not open, as today."],
   ["S1-N1", "KD-PERM"], reports=ALL6)

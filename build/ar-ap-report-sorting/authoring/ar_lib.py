@@ -2,8 +2,12 @@
 Pattern: build/splitting-sales-reps/authoring/ssr_lib.py. Shape: Rule 117 with all twelve amendments (two-audience preconditions,
 {placeholders} with a "For example:" second line, one action per step, one "Step N:" result per step, "Exact quotes from the source
 (for reproducibility)" with a "From:" line per document, the build line, "References from Design", the AUTOMATION line last).
-Every expected result comes from a verbatim PRD v5 sentence (Rules 57, 113). No build and no design access yet (22 Oct 2026)."""
+Every expected result comes from a verbatim PRD v5 sentence (Rules 57, 113). No build yet. The design canvas was read in full on 22 Oct 2026
+(design-2026-10-22/): every case's "References from Design" block names the boards, the pictures and the design's own words, and every
+design-vs-PRD difference that touches the case (design_data.py, Rule 130). On-screen navigation comes from the design pictures (Rule 57:
+labels and navigation)."""
 import os, re, html, json
+import design_data as DD
 D = os.path.dirname(os.path.abspath(__file__)); P = os.path.dirname(D)
 
 def ws(s): return re.sub(r"\s+", " ", html.unescape(s).replace("**", "").replace("\\", "")).strip()
@@ -42,6 +46,7 @@ NOBUILD = "The build is not yet available to check this case against."
 MARKER = "AUTOMATION: HOLD - not yet build-verified (no build yet)"
 PRE_REL = "AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site"
 BLOCKED = 'If any record above is missing, mark this test Blocked: "setup not done".'
+DESIGN_HOLD = "AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO"
 
 # ---- requirement codes (S1-R1 ... S9-N2) -------------------------------------------------------------------------------------
 CODE = {}
@@ -156,12 +161,37 @@ DESIGN_PAGE = {1: "page 1 (Opening order and header sorting)", 2: "page 1 (Openi
 NAMED_STORY = {"EH": 3, "UFS-1": 3, "UFS-2": 3, "UFS-3": 7, "UFS-4": 7, "UFS-5": 4, "UFS-6": 3, "UFS-7": 3, "UFS-8": 3,
                "UFS-9": 8, "UFS-10": 8}
 
+# On-screen navigation (design pictures, 22 Oct 2026): the reports sit under Reports in the top menu, in the left menu's ACCOUNTS
+# RECEIVABLE and ACCOUNTS PAYABLE sections (the PRD's "Reports > Finance" is its own description, not a label on screen).
+MENU = {"A/R Summary": ("A/R Aging Summary", "ACCOUNTS RECEIVABLE"), "A/R Detail": ("A/R Aging Detail", "ACCOUNTS RECEIVABLE"),
+        "A/R Collection": ("A/R Aging Collection", "ACCOUNTS RECEIVABLE"), "A/P Summary": ("A/P Aging Summary", "ACCOUNTS PAYABLE"),
+        "A/P Detail": ("A/P Aging Detail", "ACCOUNTS PAYABLE"), "A/P Unpaid Invoices": ("A/P Unpaid Invoices", "ACCOUNTS PAYABLE"),
+        "Sales By Customer": ("Sales By Customer", "PERFORMANCE"), "Work In Progress": ("Work In Progress", "PERFORMANCE"),
+        "Inventory Value": ("Inventory Value", "PARTS")}
+def where(name):
+    m, sec = MENU[name]
+    t = '; the page title reads "A/P Unpaid Invoices Report"' if name == "A/P Unpaid Invoices" else ""
+    return f'{name} (Reports, then "{m}" under {sec} in the left menu{t})'
+NAV = [(f"Reports > Finance > {n}", where(n)) for n in sorted(MENU, key=len, reverse=True)]
+NAV += [("Reports > Inventory > Inventory Value", where("Inventory Value")), ("Reports > Work In Progress", where("Work In Progress")),
+        ("Reports > Finance", "Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE)")]
+def ui(s):
+    if not s: return s
+    for a, b in NAV:
+        if a in s: s = s.replace(a, b)
+    return s
+def ui_res(s):
+    s = ui(s)
+    return s.replace("marked as the sorted column", "marked as the sorted column (a small arrow beside its heading)", 1) if "small arrow" not in s else s
+
 CASES = []
 def C(key, sec, title, pre, steps, res, q, stories=None, note="", marker=None, known="", reports=None, design=None):
-    """pre: list of str or (state, example). res: one 'Step N:' line per step. q: PRD codes, NAMED keys, SUB keys or ('label', 'verbatim')."""
-    CASES.append(dict(key=key, sec=sec, title=title, pre=[p if isinstance(p, tuple) else (p, None) for p in pre] + [(BLOCKED, None)],
-                      steps=steps, res=res, q=q, stories=stories, note=note, marker=marker or MARKER, known=known,
-                      reports=reports, design=design))
+    """pre: list of str or (state, example). res: one 'Step N:' line per step. q: PRD codes, NAMED keys, SUB keys or ('label', 'verbatim').
+    design: None (pictures chosen from the codes the case quotes) or a dict: figs (I-ids), boards (for a picture used twice), why, words."""
+    pre = [p if isinstance(p, tuple) else (p, None) for p in pre]
+    CASES.append(dict(key=key, sec=sec, title=title, pre=[(ui(a), ui(b) if b else b) for a, b in pre] + [(BLOCKED, None)],
+                      steps=[ui(x) for x in steps], res=[ui_res(x) for x in res], q=q, stories=stories, note=note, marker=marker or MARKER,
+                      known=known, reports=reports, design=design))
 
 def quotes(c):
     out = []
@@ -202,12 +232,54 @@ def reports_of(c):
 e = lambda s: html.escape(s, quote=False)
 
 def design_block(c):
-    """Rule 117 tenth amendment: design references in their own block. The design could not be read on 22 Oct 2026."""
-    pages = sorted({DESIGN_PAGE[n] for n in story_nums(c) if n in DESIGN_PAGE})
-    ref = (f'Design canvas "A/R and A/P Report Sorting" ({DESIGN_URL}), ' + " and ".join(pages) + " as the PRD names it. "
-           "Not yet read: the design was not available to this pass (22 Oct 2026), so nothing here is taken from it. "
-           "When the design is driven, this case is re-checked against it (Rules 120, 122).")
-    h = "<p></p><p><strong>References from Design</strong></p>" + f"<p>{e(c['design'] or ref)}</p>"
+    """Rule 117 tenth amendment: design references in their own block, below the quotes. The design was read on 22 Oct 2026:
+    the board and page, the pictures to compare against, the design's own words (board title, figure heading, caption), every
+    design-vs-PRD difference that touches the case (Rule 130 item 3), rulings, and what the design does not draw."""
+    d = c["design"] if isinstance(c["design"], dict) else {}
+    codes = codes_of(c); reps = reports_of(c)
+    boards = d.get("boards", {})
+    figs = [DD.fig(i, boards.get(i)) for i in d.get("figs", [])] or DD.relevant(codes, reps)
+    figs = figs + [f for f in DD.before_for(codes, reps) if f not in figs]
+    diffs = DD.diffs_for(codes, reps)
+    diffs += [x for x in DD.DIFFS if x["id"] in d.get("diffs", []) and x not in diffs]
+    pages = sorted({f["page"] for f in figs})
+    if not pages:
+        for n in story_nums(c):
+            pages += [int(m) for m in re.findall(r"page (\d+)", DESIGN_PAGE.get(n, ""))]
+        pages = sorted(set(pages))
+    if d.get("why"): why = d["why"]
+    elif c["marker"] == DESIGN_HOLD:
+        why = ("This held case follows the design picture below, not the PRD sentence quoted above (Rule 130 item 5): the quote shows "
+               "what the PRD says today, the picture what the design shows.")
+    elif figs: why = ("Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD quotes above, "
+                      "the pictures give the look and the on-screen labels.")
+    else: why = "The design draws no picture of this behaviour (all 7 boards and 45 figures checked); the case follows the PRD."
+    lead = 'Design canvas "A/R and A/P Report Sorting" (' + DD.URL + "), " + DD.READ + ": " + "; ".join(DD.PAGE_TEXT[n] for n in pages) + ". " + why
+    h = "<p></p><p><strong>References from Design</strong></p>" + "<p>" + e(lead) + "</p>"
+    if figs:
+        h += "<p>Design pictures attached to this case:</p><ul>"
+        for f in figs:
+            today = "" if f["after"] else " (today's look, for comparison only)"
+            h += "<li>" + e(DD.pic(f) + ': figure "' + f["heading"] + '" (' + f["badge"] + '), board "' + DD.BOARD[f["board"]][2] + '"' + today) + "</li>"
+        h += "</ul><p>The design's own words:</p><ul>"
+        for f in figs:
+            h += "<li>" + e('"' + f["caption"] + '" (caption of "' + f["heading"] + '")') + "</li>"
+        for w in d.get("words", []):
+            h += "<li>" + e('"' + w + '"') + "</li>"
+        h += "</ul>"
+    held = c["marker"] == DESIGN_HOLD
+    for x in diffs:
+        if x["q"] == 4: how = "question 4 on Chris Ward's sheet (sent 22 Oct 2026)"
+        else: how = "question " + str(x["q"]) + " on Chris Ward's question sheet (added 22 Oct 2026)"
+        follows = "This held case follows the design" if held else "This case follows the PRD"
+        tail = "this case." if c["key"] == x["held"] else "held in " + x["held"] + "."
+        t = ("Difference from the PRD (" + x["id"] + "): the PRD says " + x["prd"] + "; the design shows " + x["design"] + ". "
+             + follows + "; the difference is " + how + "; the design version is " + tail)
+        h += "<p>" + e(t) + "</p>"
+    for x in DD.ruled_for(codes):
+        if reps and not ({DD.SHOWS.get(i) for i in x["figs"]} & set(reps)): continue
+        t = "Design note (" + x["id"] + "): the design shows " + x["design"] + ". Closed without a question: " + x["ruling"]
+        h += "<p>" + e(t) + "</p>"
     return h + "<p></p>"
 
 def quotes_block(c):

@@ -17,7 +17,9 @@ for fam, codes, old, keep in (("A/R", AR3, "Location full name", ("ID", "Custome
         if code in ("ARS", "APS"):
             res += [f"Step {n0+1}: a column labelled exactly \"Location\" (new on this report) sits right after {namecol(code)}, before the money columns."]
         else:
-            res += [f"Step {n0+1}: the column is labelled exactly \"Location\" (no longer \"{old}\") and sits right after \"Date\"; \"{keep[0]}\" and \"{keep[1]}\" keep their names."]
+            shown = {"Location full name": "Location Full Name", "Customer full name": "Customer Full Name"}
+            res += [f"Step {n0+1}: the column is labelled exactly \"Location\" (no longer \"{old}\"" + (f", which today's screen writes \"{shown[old]}\"" if old in shown else "")
+                    + f") and sits right after \"Date\"; \"{keep[0]}\" and \"{keep[1]}\" keep their names" + (f" (today's screen: \"{shown[keep[1]]}\")" if keep[1] in shown else "") + "."]
     C(k, "S6", f"{fam} reports: the column is named Location and sits in its place",
       [ADMIN(), TWO_LOC, "Starting screen: Reports > Finance in a desktop browser window 1440 px wide."],
       steps, res, ["S6-R1", "S6-R3", "WC-9", "OOS-3"], reports=codes)

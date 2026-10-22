@@ -1,7 +1,495 @@
 {
  "project": "A/R and A/P Report Sorting, Export and Location Filter",
  "design": "https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4",
- "design_read": false,
- "note": "22 Oct 2026: the design canvas was not available to this pass, so no design-vs-PRD difference could be found yet. Rule 130 applies the day it is read.",
- "differences": []
+ "design_read": true,
+ "read": "22 Oct 2026: 7 boards, 45 figures, 43 screenshots viewed (design-2026-10-22/DESIGN-READING-RECORD.md)",
+ "note": "Both directions checked (Rule 130): design to cases (DESIGN-TEXT-INVENTORY, DESIGN-VISUAL-INVENTORY) and PRD to design (spec_to_design_check.py on the boards plus the after-pictures' words, AFTER-SCREEN-WORDS.txt, and the by-hand list below). Questions 11 to 15 are drafted, not sent: they close their rows once the QA lead adds them to Chris Ward's sheet https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA (Rule 131).",
+ "differences": [
+  {
+   "id": "DD-01",
+   "kind": "label letter case, button order and an extra control (L-02, L-04)",
+   "prd": "buttons \"Switch location\" and \"Cancel\" (S7-R3), title \"Switch location?\"",
+   "design": "buttons \"Cancel\" (left, grey) then \"Switch Location\" (right, blue, capital L), and a close \"×\" at the top right of the dialog; caption: \"Switch Location opens it there.\"",
+   "pictures": [
+    "ar-ap-p5-another-location-asks-first.png"
+   ],
+   "outcome": "QUESTION-READY",
+   "where": "question 11, drafted 22 Oct 2026 in design-2026-10-22/NEW-QUESTIONS.py, not yet sent (the QA lead adds it to the sheet: Rule 131)",
+   "held_case": "D-76"
+  },
+  {
+   "id": "DD-02",
+   "kind": "placeholder wording (L-04)",
+   "prd": "Vendor \"exactly as Inventory Value's Vendor filter (truck icon, \"Search vendors\")\" (S5-R13)",
+   "design": "the Vendor menu's search box reads \"Search vendor\" (singular); alt text: \"Search vendor, All vendors and the helper line\"",
+   "pictures": [
+    "ar-ap-p7-the-native-vendor-menu.png"
+   ],
+   "outcome": "QUESTION-READY",
+   "where": "question 12, drafted 22 Oct 2026 in design-2026-10-22/NEW-QUESTIONS.py, not yet sent (the QA lead adds it to the sheet: Rule 131)",
+   "held_case": "D-77"
+  },
+  {
+   "id": "DD-03",
+   "kind": "an extra row in an empty state",
+   "prd": "with no location ticked, \"the native empty state (S8-R5) with \"Clear all filters\", no totals and no Location column\" (S5-R6a)",
+   "design": "\"Location: No locations\" with a Totals row reading $0.00 and $0.00 under the headings, above the empty state",
+   "pictures": [
+    "ar-ap-p4-cleared-no-locations.png"
+   ],
+   "outcome": "QUESTION-READY",
+   "where": "question 13, drafted 22 Oct 2026 in design-2026-10-22/NEW-QUESTIONS.py, not yet sent (the QA lead adds it to the sheet: Rule 131)",
+   "held_case": "D-78"
+  },
+  {
+   "id": "DD-04",
+   "kind": "row order",
+   "prd": "\"inside each group, rows open oldest date first, ties by document number (S2-R4)\" (S1-R6)",
+   "design": "in the CMLZ Truck Repair - Talladega group five invoices dated Aug 27, 2026 read S3-14690, S3-14693, S3-15660, S3-14691, S3-14692 (not number order)",
+   "pictures": [
+    "ar-ap-p3-the-customer-row-stays-pinned.png"
+   ],
+   "outcome": "QUESTION-READY",
+   "where": "question 14, drafted 22 Oct 2026 in design-2026-10-22/NEW-QUESTIONS.py, not yet sent (the QA lead adds it to the sheet: Rule 131)",
+   "held_case": "D-79"
+  },
+  {
+   "id": "DD-05",
+   "kind": "text weight",
+   "prd": "\"the same blue as Work In Progress, semi-bold, no underline\" (S7-R7)",
+   "design": "document numbers and customer and vendor names are blue at the same (regular) weight as the plain text beside them",
+   "pictures": [
+    "ar-ap-p5-links-only-where-they-can-open.png",
+    "ar-ap-p1-a-r-aging-summary-opens-a-to-z.png",
+    "ar-ap-p3-same-on-a-p-unpaid-invoices.png"
+   ],
+   "outcome": "QUESTION-READY",
+   "where": "question 15, drafted 22 Oct 2026 in design-2026-10-22/NEW-QUESTIONS.py, not yet sent (the QA lead adds it to the sheet: Rule 131)",
+   "held_case": "D-80"
+  },
+  {
+   "id": "DD-06",
+   "kind": "heading letter case (L-04); already question 4 (sent 22 Oct 2026)",
+   "prd": "A/R Detail and A/R Collection headings written \"Transaction type\", \"Customer full name\", \"Due date\", \"Past due\", \"Open balance\" (S2-R1)",
+   "design": "the after pictures read \"Transaction Type\", \"Customer Full Name\", \"Due Date\", \"Past Due\", \"Open Balance\"; today's production pictures already read the same, with \"Location Full Name\"",
+   "pictures": [
+    "ar-ap-p3-expand-all-from-the-header.png",
+    "ar-ap-p5-links-only-where-they-can-open.png",
+    "ar-ap-p7-a-r-collection-date-and-customer-only.png",
+    "ar-ap-p5-every-invoice-number-is-a-link.png"
+   ],
+   "outcome": "QUESTION-SENT",
+   "where": "question 4 on https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA (row 9), sent 22 Oct 2026",
+   "held_case": "D-81"
+  }
+ ],
+ "closed_by_ruling": [
+  {
+   "id": "DR-01",
+   "design": "the Totals row sits on a light-grey band in some pictures (A/R Collection expanded, A/P Detail, A/P Unpaid Invoices, A/R Detail I32) and on the page colour in others (Summaries, I28, the same A/R Detail screen in I30)",
+   "outcome": "PO-RULED",
+   "where": "PRD S8-R4: \"The Totals row uses the native totals row style of the newer reports.\" The cases compare with Sales By Customer's Totals row; the pictures are not the reference for this one attribute.",
+   "pictures": [
+    "ar-ap-p3-expand-all-from-the-header.png",
+    "ar-ap-p3-the-customer-row-stays-pinned.png",
+    "ar-ap-p3-same-on-a-p-unpaid-invoices.png",
+    "ar-ap-p6-open-balance-pinned-light.png",
+    "ar-ap-p6-a-p-unpaid-invoices-at-1440-every-column-visible.png",
+    "ar-ap-p4-opens-on-all-locations.png",
+    "ar-ap-p1-a-r-aging-summary-opens-a-to-z.png",
+    "ar-ap-p5-links-only-where-they-can-open.png",
+    "ar-ap-p5-cancel-stays-on-the-report.png"
+   ]
+  },
+  {
+   "id": "DR-02",
+   "design": "with one location unticked and the menu still open, the ticked location is listed second (\"Staging Heavy Duty - 9919\" unticked above \"Staging Lethbridge - 4310\" ticked)",
+   "outcome": "PO-RULED",
+   "where": "No conflict: PRD S5-R2 \"the locations with the ticked ones first\" is checked when the menu is opened again (S5-02, S5-03 close and reopen it); the picture shows the menu still open, where nothing moves. Native as on Sales By Customer.",
+   "pictures": [
+    "ar-ap-p4-one-location-ticked.png"
+   ]
+  },
+  {
+   "id": "DR-03",
+   "design": "with one name ticked the chip keeps its prefix: \"Location: Staging Lethbri...\", \"Customer: 10 Trucking\", \"Customer: Andrews' Truck ...\"",
+   "outcome": "PO-RULED",
+   "where": "No conflict: PRD S5-R6 / S5-R13 say the chip shows \"the name\" and the chips are \"exactly as on Sales By Customer\"; the design shows how (prefix kept, shortened with \"...\"). Cases now say what the picture shows.",
+   "pictures": [
+    "ar-ap-p4-one-location-ticked.png",
+    "ar-ap-p4-drill-down-keeps-the-as-of-date.png",
+    "ar-ap-p7-call-list-on-a-r-collection.png"
+   ]
+  },
+  {
+   "id": "DR-04",
+   "design": "the Customer menu with two ticked shows the ticked names as tags in the search box, a clear \"×\", and \"2 selected\" on the \"All customers\" row",
+   "outcome": "PO-RULED",
+   "where": "No conflict: PRD S5-R13 \"Customer exactly as Sales By Customer's Customer filter\"; the PRD lists the menu's main rows, the design shows the native extras. The design case checks them.",
+   "pictures": [
+    "ar-ap-p7-two-customers-ticked.png"
+   ]
+  },
+  {
+   "id": "DR-05",
+   "design": "a vendor credit's Due Date and Past Due cells show an em dash \"—\"",
+   "outcome": "PO-RULED",
+   "where": "No conflict: PRD S2-R6 calls them \"A blank value\"; the dash is how the screen draws an empty cell. Cases say \"no date and no number (a dash)\".",
+   "pictures": [
+    "ar-ap-p3-same-on-a-p-unpaid-invoices.png",
+    "ar-ap-p6-a-p-unpaid-invoices-at-1440-every-column-visible.png",
+    "ar-ap-p7-vendor-credits-link.png"
+   ]
+  }
+ ],
+ "design_silent": [
+  {
+   "code": "S3-R10",
+   "what": "the Success message \"Data exported successfully.\" and the Empty export warning",
+   "outcome": "DESIGN-SILENT",
+   "where": "all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+  },
+  {
+   "code": "S3-N2",
+   "what": "the CSV-too-large message",
+   "outcome": "DESIGN-SILENT",
+   "where": "all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+  },
+  {
+   "code": "UFS-8",
+   "what": "the failed-export message \"We couldn't export this report. Please try again.\"",
+   "outcome": "DESIGN-SILENT",
+   "where": "all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+  },
+  {
+   "code": "S8-R5",
+   "what": "the loading progress bar",
+   "outcome": "DESIGN-SILENT",
+   "where": "all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+  },
+  {
+   "code": "S8-R6",
+   "what": "the load-error state \"Something went wrong loading this report. Please try again.\"",
+   "outcome": "DESIGN-SILENT",
+   "where": "all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+  },
+  {
+   "code": "S4-R1",
+   "what": "the \"Collapse all\" / \"Expand all\" tooltip (the pictures show the chevron only)",
+   "outcome": "DESIGN-SILENT",
+   "where": "all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+  },
+  {
+   "code": "S5-R2",
+   "what": "the \"Search locations\" box (more than 8 locations)",
+   "outcome": "DESIGN-SILENT",
+   "where": "all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+  },
+  {
+   "code": "S5-R6",
+   "what": "\"Location: N locations\"",
+   "outcome": "DESIGN-SILENT",
+   "where": "all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+  },
+  {
+   "code": "S5-R13",
+   "what": "\"Vendor: N vendors\"",
+   "outcome": "DESIGN-SILENT",
+   "where": "all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+  },
+  {
+   "code": "S5-R15",
+   "what": "\"Past due: 4 ranges\" and one range ticked",
+   "outcome": "DESIGN-SILENT",
+   "where": "all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+  },
+  {
+   "code": "S7-R3",
+   "what": "the part sale version of the dialog (\"This part sale is in {location}...\")",
+   "outcome": "DESIGN-SILENT",
+   "where": "all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+  },
+  {
+   "code": "S7-R7",
+   "what": "a link with keyboard focus (underline)",
+   "outcome": "DESIGN-SILENT",
+   "where": "all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+  },
+  {
+   "code": "S8-R1",
+   "what": "the descriptions of the five other reports (only A/R Collection's is pictured)",
+   "outcome": "DESIGN-SILENT",
+   "where": "all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+  },
+  {
+   "code": "S8-R3",
+   "what": "a window narrower than 1440 px, and 1536 px",
+   "outcome": "DESIGN-SILENT",
+   "where": "all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+  },
+  {
+   "code": "OOS-9",
+   "what": "the phone and tablet layout",
+   "outcome": "DESIGN-SILENT",
+   "where": "all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+  },
+  {
+   "code": "S3-R4",
+   "what": "the PDF and CSV files themselves (no export file is pictured)",
+   "outcome": "DESIGN-SILENT",
+   "where": "all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+  },
+  {
+   "code": "S3-R1",
+   "what": "the \"Export report\" label of the ⋯ button",
+   "outcome": "DESIGN-SILENT",
+   "where": "all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+  },
+  {
+   "code": "S1-R8",
+   "what": "paging controls (no picture shows the end of a page; the Totals row stays at the bottom while rows scroll under it)",
+   "outcome": "DESIGN-SILENT",
+   "where": "all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+  }
+ ],
+ "by_hand": [
+  {
+   "what": "Export menu (I09)",
+   "design": [
+    "Download (PDF)",
+    "Download (CSV)"
+   ],
+   "prd": "S3-R1: \"Download (PDF)\" and \"Download (CSV)\" (the ⋯ button \"labelled \"Export report\"\")",
+   "verdict": "same rows and order; the label \"Export report\" is not visible (DESIGN-SILENT)"
+  },
+  {
+   "what": "PDF-too-large message (I11)",
+   "design": [
+    "This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.",
+    "Close"
+   ],
+   "prd": "S3-N1 message; User Feedback Summary \"Error toast, as on the other reports\"",
+   "verdict": "same words; one message; red error toast with Close"
+  },
+  {
+   "what": "Switch location dialog (I29)",
+   "design": [
+    "Switch location?",
+    "This work order is in Staging Lethbridge - 4310. Switch your active location to view it?",
+    "Cancel",
+    "Switch Location",
+    "× (top right)"
+   ],
+   "prd": "S7-R3: title \"Switch location?\", message \"This work order is in {location}. Switch your active location to view it?\", buttons \"Switch location\" and \"Cancel\"",
+   "verdict": "DIFFERENT: button letter case, button order, extra × (DD-01, question 11)"
+  },
+  {
+   "what": "Location menu, two locations (I33)",
+   "design": [
+    "Select all · 2 selected",
+    "Staging Heavy Duty - 9919 (ticked)",
+    "Staging Lethbridge - 4310 (ticked)",
+    "—",
+    "Clear selection"
+   ],
+   "prd": "S5-R2: \"Select all\", \"{N} selected\", the locations with the ticked ones first, \"Search locations\" over 8 locations, \"Clear selection\"",
+   "verdict": "same rows and order; the chip shows a circled × while open (native)"
+  },
+  {
+   "what": "Location menu, one ticked (I34)",
+   "design": [
+    "Select all (unticked) · 1 selected",
+    "Staging Heavy Duty - 9919 (unticked)",
+    "Staging Lethbridge - 4310 (ticked)",
+    "—",
+    "Clear selection"
+   ],
+   "prd": "S5-R2 \"the locations with the ticked ones first\"",
+   "verdict": "no conflict: the menu is still open after the untick; checked on reopening (DR-02)"
+  },
+  {
+   "what": "Past due menu (I38)",
+   "design": [
+    "Any (ticked)",
+    "—",
+    "All ranges are included. Pick one or more to narrow.",
+    "1-30 days",
+    "31-60 days",
+    "61-90 days",
+    "91+ days"
+   ],
+   "prd": "S5-R15: \"Any\" row, the native line, then \"1-30 days\", \"31-60 days\", \"61-90 days\", \"91+ days\"",
+   "verdict": "same rows and order; range boxes drawn with a dash (look, D-71)"
+  },
+  {
+   "what": "Vendor menu (I40)",
+   "design": [
+    "Search vendor (search box)",
+    "All vendors (ticked)",
+    "—",
+    "All vendors are included. Pick one or more to narrow.",
+    "vendors (not A to Z)"
+   ],
+   "prd": "S5-R13: search box (\"Search vendors\"), \"All vendors\" row, the native line, the list",
+   "verdict": "DIFFERENT placeholder (DD-02, question 12); rows and order the same"
+  },
+  {
+   "what": "Customer menu, two ticked (I41)",
+   "design": [
+    "search box with tags 10 Trucking ×, 4 Star Truck Repair × and a clear ×",
+    "All customers (unticked) · 2 selected",
+    "—",
+    "customers A to Z (two ticked)"
+   ],
+   "prd": "S5-R13: search box, \"All customers\" row, the native line while none is ticked, the list",
+   "verdict": "no conflict: the line is hidden because two are ticked; tags and count are the native extras (DR-04)"
+  },
+  {
+   "what": "Empty state, No locations (I35)",
+   "design": [
+    "Totals $0.00 $0.00",
+    "No record matches these filters",
+    "Try changing filters to widen your results.",
+    "Clear all filters"
+   ],
+   "prd": "S5-R6a \"no totals and no Location column\"; S8-R5 messages and \"Clear all filters\"",
+   "verdict": "DIFFERENT: an extra Totals row (DD-03, question 13); words and button the same"
+  },
+  {
+   "what": "Description tooltip (I20, I22)",
+   "design": [
+    "Overdue invoices, unused credit memos and deposits for each customer to help you follow up on payments. Excludes invoices that aren’t due yet."
+   ],
+   "prd": "S8-R1 A/R Collection description",
+   "verdict": "same words; opens below the icon (look, D-60)"
+  },
+  {
+   "what": "Collapse all / Expand all tooltip",
+   "design": [
+    "not drawn (the chevron is: I05 right, I14 down)"
+   ],
+   "prd": "S4-R1 tooltip above the button",
+   "verdict": "DESIGN-SILENT for the tooltip"
+  }
+ ],
+ "S1-R2|A-1 Towing": {
+  "outcome": "DESIGN-SILENT",
+  "where": "a PRD example name; the design's pictures use other names (\"10 Trucking\" before \"2 Trucking\" is drawn, I03). all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S1-R2|a1 towing": {
+  "outcome": "DESIGN-SILENT",
+  "where": "a PRD example name, not drawn. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S1-R3|Émile's": {
+  "outcome": "SHOWN-WHEN-DRIVEN",
+  "where": "drawn as \"Émile's Test Fleet\" among the E names on A/R Summary sorted by Location (I36, images/e15cddb093bbdcadbc7736034b730d06.png)"
+ },
+ "S3-R1|Export report": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the ⋯ button's label is not visible on any picture (I09 shows the open menu, I10 the button). all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S3-R4|As of Oct 15, 2026": {
+  "outcome": "DESIGN-SILENT",
+  "where": "no PDF is pictured. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S3-R4|As of: Oct 15, 2026": {
+  "outcome": "DESIGN-SILENT",
+  "where": "no CSV is pictured. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S3-R5|Locations: All locations": {
+  "outcome": "DESIGN-SILENT",
+  "where": "no export file is pictured. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S3-R5|Locations: ": {
+  "outcome": "DESIGN-SILENT",
+  "where": "no export file is pictured. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S3-R5|Past due: 31-60 days, 91+ days": {
+  "outcome": "DESIGN-SILENT",
+  "where": "no export file is pictured. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S3-R5|Customers: ": {
+  "outcome": "DESIGN-SILENT",
+  "where": "no export file is pictured. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S3-R5|Vendors: ": {
+  "outcome": "DESIGN-SILENT",
+  "where": "no export file is pictured. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S3-R10|Success": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the Success message is not pictured. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S3-R10|Data exported successfully.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the Success message is not pictured. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S3-R10|Empty export": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the Empty export warning is not pictured. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S3-R10|Export didn't yield any results": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the Empty export warning is not pictured. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S3-N2|This report is too large to export. Choose an earlier as-of date, then try again.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "only the PDF refusal is pictured (I11); the CSV limit is named in the caption (\"CSV limit 50,000 rows.\"). all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S5-R1|As of: 10/15/2026": {
+  "outcome": "SHOWN-WHEN-DRIVEN",
+  "where": "drawn as \"As of: 10/19/2026\" and \"As of: 09/30/2026\": the same format with another date (I03, I37)"
+ },
+ "S5-R2|Search locations": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the Location menu is pictured with two locations only, so no search box (I33, I34). all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S5-R6|Location: N locations": {
+  "outcome": "DESIGN-SILENT",
+  "where": "pictured: \"Location: All locations\", one name and \"Location: No locations\" only. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S5-R6a|Empty export": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the Empty export warning is not pictured. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S5-R6a|Export didn't yield any results": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the Empty export warning is not pictured. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S5-R13|Search vendors": {
+  "outcome": "QUESTION-READY",
+  "where": "DD-02: the design shows \"Search vendor\" (I40). Question 12, drafted 22 Oct 2026 in design-2026-10-22/NEW-QUESTIONS.py, not yet sent (the QA lead adds it to the sheet: Rule 131). Held design version D-77."
+ },
+ "S5-R13|All customers are included. Pick one or more to narrow.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the Customer menu is pictured with two customers ticked, where the line is hidden (I41); the Vendor and Past due lines are drawn (I40, I38). all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S5-R13|Customer: N customers": {
+  "outcome": "SHOWN-WHEN-DRIVEN",
+  "where": "drawn as \"Customer: 2 customers\" (I41)"
+ },
+ "S5-R13|Vendor: N vendors": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not pictured. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S5-R15|Past due: 91+ days": {
+  "outcome": "DESIGN-SILENT",
+  "where": "pictured: \"Past due: Any\" and \"Past due: 2 ranges\" only. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S5-R15|Past due: N ranges": {
+  "outcome": "SHOWN-WHEN-DRIVEN",
+  "where": "drawn as \"Past due: 2 ranges\" (I39)"
+ },
+ "S5-R15|Past due: 4 ranges": {
+  "outcome": "DESIGN-SILENT",
+  "where": "not pictured. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S6-R1|Location full name": {
+  "outcome": "PO-RULED",
+  "where": "CASE-DIFFERS: today's screen writes \"Location Full Name\" (I12, I26, I31). PRD v5 S6-R1 renames the column \"Location\", so the old label leaves the screen; S6-01 names today's spelling. Ruling: the PRD's own rename (no question needed)."
+ },
+ "S8-R6|Something went wrong loading this report. Please try again.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the load-error state is not pictured. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ }
 }

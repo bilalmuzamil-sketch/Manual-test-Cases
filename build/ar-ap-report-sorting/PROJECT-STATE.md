@@ -58,3 +58,9 @@
 - Incident: commit 256d8c4c7 pushed the design tool's runtime files, one of which (fast-edit-worker.js) bundles a private-key block
   (claude.ai's public viewer code, not a ShopView secret). Cause: the secret scan was piped into `tail`, so its failure did not stop
   the commit. Removed from the branch in f1d80b658 (.gitignore fixed). QA lead: leave history as is.
+- Full pass against the design done by worker, reviewed by me (289 cases, 907 quotes verbatim, build 0 PROBLEM; text inventory 794 rows
+  and visual inventory 97 rows, 0 unclassified; §6d checklist done): 257 existing cases updated (28 with result/step changes from the
+  design, 228 navigation/labels from the pictures, every case gets a "References from Design" block), 32 new design cases D-50 to D-81
+  (6 held design-version cases D-76 to D-81 out of the run). Pictures uploaded to each case under readable names (ar-ap-p<page>-<figure>.png).
+- Design differences DD-01 to DD-05 → questions 11-15 added to Chris's sheet 22 Oct 2026 (rows 16-21, light green, colour guide E3);
+  DD-06 = question 4 (today's A/R headings already use capitals, so its options (a) and (b) give the same headings).

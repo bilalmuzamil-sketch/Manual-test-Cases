@@ -72,26 +72,39 @@ for i, (slug, q, basis, opts, holds) in enumerate(QUESTIONS, 1):
 Q += ["", "Not for Chris (for the QA lead): SV-11597 and SV-11600 are the same developer task, word for word."]
 open(f"{P}/PO-QUESTIONS-DRAFT.md", "w").write("\n".join(Q) + "\n")
 
-# ---------------- design-case checklist and divergence register ----------------
+# ---------------- design-case checklist and divergence register (design full pass, 22 Oct 2026) ----------------
+import design_data as DD, design_register as DR
 design = [c for c in CASES if c["sec"] == "DESIGN"]
 dk = lambda pat: ", ".join(c["key"] for c in design if re.search(pat, c["title"])) or "—"
-CL = ["# Design-case checklist (skill 21 §6d, Rule 133) — 22 Oct 2026", "",
-      "**The design canvas could not be read in this pass**, so lines that need the design are OPEN, not ticked. The design cases are written "
-      "from the PRD's own look sentences (the brief) and compare with the native reports the PRD names. When the design arrives the whole design is "
-      "driven and every case is re-checked (Rules 120, 122). The suite is not reported complete while a line is open.", "",
+held = [c["key"] for c in design if c["marker"] == L.DESIGN_HOLD]
+pics = [c["key"] for c in design if "design picture" in c["title"] or "pictures" in c["title"] or "as pictured" in c["title"]]
+after = sorted({f["iid"] for f in DD.FIGS if f["after"]})
+attached = defaultdict(list)
+for c in CASES:
+    h = L.render(c)["custom_expected"].split("References from Design")[-1]
+    for f in DD.FIGS:
+        if DD.pic(f) in h and c["key"] not in attached[f["iid"]]: attached[f["iid"]].append(c["key"])
+CL = ["# Design-case checklist (skill 21 §6d, Rule 133) — A/R and A/P Report Sorting, 22 Oct 2026", "",
+      "Full pass against the design canvas (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read in full on 22 Oct 2026: 7 boards, 45 figures, "
+      "all 43 screenshots viewed and transcribed (design-2026-10-22/). Every line below is DONE with the cases that cover it or the register row "
+      "that closes it. Line 4 is DONE as far as a drafting worker can take it: the held cases exist and the questions are drafted; the five new "
+      "questions still have to be SENT by the QA lead (Rule 126 point 6: unsent count must be 0 before the suite is called complete).", "",
       "| # | Checklist line | Status | Cases / where |", "|---|---|---|---|",
-      f"| 1 | Every screen and state the design draws has a \"Design: … looks as described\" case | PARTLY: every screen and state the PRD names, for all six reports (1440 light, dark, 1536 both, loading/empty/error); the design's own screens OPEN until it is read | {dk('1440|dark theme|1536|loading')} |",
-      f"| 2 | Every menu, dialog, tooltip, toast, prompt and empty state listed with its rows and buttons in order, compared with the PRD | DONE from the PRD (Location, Customer, Vendor, Past due and Export menus; switch-location dialog; Collapse/Expand tooltip; info tooltip; Success, Empty export, too-large and failed-export messages; empty and error states); the design's versions OPEN | {dk('menu|dialog|tooltip|messages|chevrons|states')} |",
-      f"| 3 | Every label compared letter for letter, capitals included (L-04) | DONE in every design case step; the letter-case conflict inside the PRD asked (question {QN['open-balance-case']}); every other heading stays as today | all design cases |",
-      "| 4 | Every design behaviour that differs from the PRD has a held design-version case and a sent question (Rule 130) | OPEN: needs the design; the divergence register is empty for that reason | DESIGN-DIVERGENCE-REGISTER.json |",
-      "| 5 | Both directions checked: design → cases (text and visual inventory) and PRD → design (spec_to_design_check.py) | OPEN: needs the design | — |",
-      f"| 6 | Sizes, colours, icons, column order, widths at 1440 and 1536 px, no overlap, no truncation | DONE where the PRD states them | {dk('1440|1536|narrower')} |",
-      f"| 7 | Every PRD look sentence has a design case even without a design file | DONE (S7-R7, S8-R1 to S8-R5, S3-R7, S4-R1, S4-R5, S4-R6, S5-R2, S5-R13, S5-R15, KD reuse rule, Out of Scope phone layout) | {len(design)} design cases |",
-      "| 8 | Result written down in the divergence register and the proof file; checklist committed beside them | PARTLY: this file and the register exist; the proof file (DESIGN-COVERAGE) waits for the design | this folder |"]
+      f"| 1 | Every screen and state the design draws has a \"looks as in the design\" case with the board picture attached | DONE: one case per after-picture state (all {len(after)} after-pictures attached: "
+      + ", ".join(f"{i}→{'/'.join(sorted(attached[i], key=lambda k: (not (k.startswith('D-') and int(k[2:]) >= 50), k))[:2])}" for i in after) + f"); light and dark where the design shows dark (A/R Collection, A/P Detail); 1536 px overlap step in each | {', '.join(pics)}; plus D-01 to D-49 re-checked with their pictures |",
+      "| 2 | Every menu, dialog, tooltip, toast, prompt and empty state listed with its rows and buttons in order, compared with the PRD | DONE: 11 listed by hand in the register's by_hand list (Export menu, PDF-too-large toast, Switch location dialog, Location menu x2, Past due menu, Vendor menu, Customer menu, empty state, description tooltip, Collapse/Expand tooltip) | "
+      + dk("Export menu|message|dialog|menu|tooltip|empty state|No locations") + " |",
+      "| 3 | Every label compared letter for letter, capitals included (L-04) | DONE: \"Switch Location\" (DD-01), \"Search vendor\" (DD-02), A/R headings in capitals (DD-06, question 4), \"Location Full Name\" (S6-R1 rename), chip prefixes (DR-03); text inventory 0 unclassified | DESIGN-TEXT-INVENTORY.md; D-76, D-77, D-81, S6-01 |",
+      f"| 4 | Every design behaviour that differs from the PRD has a held design-version case and a SENT question (Rule 130) | DONE for the cases ({len(held)} held: {', '.join(held)}); questions: 4 sent, 11 to 15 drafted (NEW-QUESTIONS.py) and waiting for the QA lead to send them | DESIGN-DIVERGENCE-REGISTER.json differences DD-01 to DD-06 |",
+      "| 5 | Both directions checked: design → cases (text and visual inventory) and PRD → design (spec_to_design_check.py) | DONE: text inventory 794 texts, 0 unclassified; visual inventory 0 unclassified; spec_to_design_check.py: 30 PRD words not drawn, all in the register (exit 1 only for the drafted question 12 row until it is sent) | DESIGN-TEXT-INVENTORY.md, DESIGN-VISUAL-INVENTORY.md, register |",
+      f"| 6 | Sizes, spacing, colours, icons, column order, widths at 1440 and 1536 px, no overlap, no truncation | DONE: column order per report, chip styles and icons, sort arrow, chevrons, pinned rows, Totals row, link colour (weight: DD-05), tooltip and menu positions, wrapping at 1440, 1536 px step in every picture case | {dk('1440|1536|narrower|every column')}, D-50 to D-75 |",
+      "| 7 | Every PRD look sentence has a design case | DONE (S7-R7, S8-R1 to S8-R6, S3-R7, S4-R1, S4-R5, S4-R6, S5-R2, S5-R13, S5-R15, KD reuse rule, Out of Scope phone layout); re-checked against the design | D-01 to D-49 |",
+      "| 8 | Result written down in the divergence register and the proof file; checklist beside them | DONE: DESIGN-DIVERGENCE-REGISTER.json, design-2026-10-22/DESIGN-READING-RECORD.md, DESIGN-TEXT-INVENTORY, DESIGN-VISUAL-INVENTORY, PASS-REPORT.md | this folder and design-2026-10-22/ |",
+      "", "Lessons applied (LESSONS-REGISTER): L-01 look covered (visual inventory, picture cases); L-02 both directions and every dialog's rows and buttons; "
+      "L-03 not applicable (no Jira writes in this pass); L-04 letter case compared by hand; L-05 this checklist."]
 open(f"{P}/DESIGN-CASE-CHECKLIST-2026-10-22.md", "w").write("\n".join(CL) + "\n")
-json.dump({"project": "A/R and A/P Report Sorting, Export and Location Filter", "design": L.DESIGN_URL, "design_read": False,
-           "note": "22 Oct 2026: the design canvas was not available to this pass, so no design-vs-PRD difference could be found yet. Rule 130 applies the day it is read.",
-           "differences": []}, open(f"{P}/DESIGN-DIVERGENCE-REGISTER.json", "w"), indent=1)
+open(f"{P}/design-2026-10-22/DESIGN-CASE-CHECKLIST-2026-10-22.md", "w").write("\n".join(CL) + "\n")
+json.dump(DR.build(), open(f"{P}/DESIGN-DIVERGENCE-REGISTER.json", "w"), indent=1, ensure_ascii=False)
 
 # ---------------- REPORT.md ----------------
 sec_names = {"S1": "Story 1", "S2": "Story 2", "S3": "Story 3", "S4": "Story 4", "S5": "Story 5", "S6": "Story 6", "S7": "Story 7", "S8": "Story 8",
@@ -156,7 +169,7 @@ R += ["| Stories SV-11531 to SV-11539 (description, requirements, acceptance cri
       "| Origin tickets SV-7192, SV-10798; out-of-scope SV-11441 to SV-11447; verify tasks SV-11595 to SV-11600; epic SV-11315 | via Jira | — | 100% |",
       "| Rules: LESSONS-REGISTER.md (L-01 to L-05); RULES-61-96.md Rules 96, 113, 114, 115, 116, 117 (all twelve amendments), 122, 126, 130, 133 | repo | — | 100% of those sections |",
       "| Skills: 17-REGRESSION-IMPACT-V1-TO-V2.md (whole), 21-DESIGN-DRIVE-PROTOCOL.md (whole, incl. §4b, §6b, §6c, §6d), IDEAL-TEST-CASE-STANDARD.md (whole) | repo | — | 100% |",
-      f"| Design canvas {L.DESIGN_URL} | — | — | **NOT READ: not available to this pass** |",
+      f"| Design canvas {L.DESIGN_URL} (saved in design-2026-10-22/) | 7 boards, 45 figures, 43 screenshots | — | 100% (DESIGN-READING-RECORD.md) |",
       "| Tech plan | — | — | **not available** |", "",
       "## Outputs", "",
       "- `authoring/` — `ar_lib.py`, `common.py`, `po_questions.py`, `cases_*.py`, `build.py`, `render_setup.py`, `render_outputs.py`, `proposals.json`.",
@@ -166,7 +179,7 @@ R += ["| Stories SV-11531 to SV-11539 (description, requirements, acceptance cri
       "- `DESIGN-CASE-CHECKLIST-2026-10-22.md`, `DESIGN-DIVERGENCE-REGISTER.json`, `cases/design/DESIGN-CASES.json`.", "",
       "## OUTSTANDING — what I need from you", "",
       "| What | Who | What it blocks | Since |", "|---|---|---|---|",
-      "| The design canvas (export or a readable link) | QA lead / Chris Ward | Rules 120/124/126/130/133: the design drive, the text and visual inventories, design-version cases, checklist lines 1, 2, 4, 5 and 8 | 22 Oct 2026 |",
+      "| Send questions 11 to 15 (design differences) to Chris Ward in the same sheet (Rule 131) | QA lead | the 5 new held design-version cases (D-76 to D-80) | 22 Oct 2026 |",
       "| The tech plan | QA lead | Rule 115 coverage from the tech plan | 22 Oct 2026 |",
       "| Permission to add the cases to TestRail (Rule 6) and to the project's run (Rule 123) | QA lead | Every case stays a draft | 22 Oct 2026 |",
       "| Send the question sheet to Chris Ward (18 questions) | QA lead | 9 held cases; exact words in several cases | 22 Oct 2026 |",

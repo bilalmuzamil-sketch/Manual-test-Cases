@@ -2,7 +2,7 @@
 
 ## What I did
 
-- Drafted the whole suite as authoring files: **257 cases** in 12 sections, every one in the Rule 117 shape (all twelve amendments). `python3 authoring/build.py` passes with **0 PROBLEM lines**; it wrote `authoring/proposals.json` (one entry per case: section, title, refs, the three HTML fields).
+- Drafted the whole suite as authoring files: **289 cases** in 12 sections, every one in the Rule 117 shape (all twelve amendments). `python3 authoring/build.py` passes with **0 PROBLEM lines**; it wrote `authoring/proposals.json` (one entry per case: section, title, refs, the three HTML fields).
 - Nothing was written to TestRail, Jira, Slack or Google, and nothing was committed.
 - Saved PRD v5 (Confluence 947650561, 21 Oct 2026, Chris Ward) and checked the saved copy word for word against the page's HTML (352 text blocks, 0 missing apart from the epic link's display form).
 - Read every ticket under the epic (25) and listed every sentence that differs from the PRD.
@@ -22,15 +22,16 @@
 | Story 9 | 90427 | 4 |
 | Totals and counts — exact amounts | 90428 | 21 |
 | Release day and what must not change | 90429 | 10 |
-| Design — how it looks | 90430 | 49 |
-| **Total** | group 90418 | **257** |
+| Design — how it looks | 90430 | 81 |
+| **Total** | group 90418 | **289** |
 
 ## Automation markers (read back from the cases)
 
 | Marker | Cases |
 |---|---|
-| `AUTOMATION: HOLD - not yet build-verified (no build yet)` | 245 |
+| `AUTOMATION: HOLD - not yet build-verified (no build yet)` | 271 |
 | `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site` | 6 |
+| `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO` | 6 |
 | `AUTOMATION: HOLD - waiting on the PO (question 9: should Summary and Detail Totals agree)` | 2 |
 | `AUTOMATION: HOLD - needs more rows than any test site holds; the developers check this limit in their own check tasks (SV-11595, SV-11598)` | 2 |
 | `AUTOMATION: HOLD - waiting on the PO (question 1: tie order of accented names)` | 1 |
@@ -54,33 +55,39 @@ Every case is HOLD today because no build exists (Rule 85: source-verified only)
 | REL-06 | Other reports keep their own export error message | needs records and screenshots captured before the release is installed on the test site |
 | REL-08 | A credit dated on the as-of date stays in the same bucket as before | needs records and screenshots captured before the release is installed on the test site |
 | REL-10 | The location switcher in the top right is unchanged | needs records and screenshots captured before the release is installed on the test site |
+| D-76 | Design: the switch-location dialog as the design draws it | the design differs from the PRD, waiting on the PO |
+| D-77 | Design: the Vendor menu's search box reads Search vendor | the design differs from the PRD, waiting on the PO |
+| D-78 | Design: with No locations a Totals row of $0.00 shows | the design differs from the PRD, waiting on the PO |
+| D-79 | Design: same-day invoices on A/R Collection keep the time order | the design differs from the PRD, waiting on the PO |
+| D-80 | Design: report links are blue at regular weight | the design differs from the PRD, waiting on the PO |
+| D-81 | Design: A/R Detail and Collection headings keep their capital letters | the design differs from the PRD, waiting on the PO |
 
 ## PRD v5 coverage — every requirement code
 
 | Code | Cases | Reports covered |
 |---|---|---|
-| S1-R1 | S1-01, S1-02, S1-03, S1-04, S1-15 | A/R Summary, A/P Summary |
-| S1-R2 | S1-01, S1-02, S1-05, S1-06 | A/R Summary, A/P Summary |
+| S1-R1 | S1-01, S1-02, S1-03, S1-04, S1-15, D-50, D-54 | A/R Summary, A/P Summary |
+| S1-R2 | S1-01, S1-02, S1-05, S1-06, D-50 | A/R Summary, A/P Summary |
 | S1-R3 | S1-03, S1-04, S1-07 | A/R Summary, A/P Summary |
-| S1-R4 | S1-05, S1-06, S1-07 | A/R Summary, A/P Summary |
-| S1-R5 | S1-08, S1-09 | A/R Detail, A/P Detail |
-| S1-R6 | S1-10, S1-11, S2-12, S2-20 | A/R Collection, A/P Unpaid Invoices |
-| S1-R7 | S1-01, S1-02, S1-08, S1-09, S1-10, S1-11, S1-12, S1-13, S2-36, S2-37, S2-38 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S1-R4 | S1-05, S1-06, S1-07, D-79 | A/R Summary, A/R Collection, A/P Summary |
+| S1-R5 | S1-08, S1-09, D-52, D-63 | A/R Detail, A/P Detail |
+| S1-R6 | S1-10, S1-11, S2-12, S2-20, D-79 | A/R Collection, A/P Unpaid Invoices |
+| S1-R7 | S1-01, S1-02, S1-08, S1-09, S1-10, S1-11, S1-12, S1-13, S2-36, S2-37, S2-38, D-50, D-51, D-52, D-56 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S1-R8 | S4-07, S4-08, DATA-01, DATA-02, DATA-03, DATA-04, DATA-05, DATA-06 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S1-N1 | S1-14, REL-04 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
-| S1-E1 | S1-15 | A/R Summary |
-| S2-R1 | S2-01, S2-02, S2-03, S2-04, S2-05, S2-06, S2-07, S2-08, S2-09, S2-10, S2-11, S2-12, S2-13, S2-14, S2-15, S2-16, S2-17, S2-18, S2-19, S2-20, S2-21, S2-22, D-01, D-04, D-07, D-10, D-13, D-16 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
-| S2-R2 | S2-01, S2-02, S2-03, S2-04, S2-05, S2-06, S2-07, S2-08, S2-09, S2-10, S2-11, S2-12, S2-13, S2-14, S2-15, S2-16, S2-17, S2-18, S2-19, S2-20, S2-21, S2-22, S2-23, S2-29, S2-30, S2-31, S2-32, S2-33, S2-34 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
-| S2-R3 | S2-01, S2-04, S2-07, S2-12, S2-15, S2-20 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S1-E1 | S1-15, D-74 | A/R Summary |
+| S2-R1 | S2-01, S2-02, S2-03, S2-04, S2-05, S2-06, S2-07, S2-08, S2-09, S2-10, S2-11, S2-12, S2-13, S2-14, S2-15, S2-16, S2-17, S2-18, S2-19, S2-20, S2-21, S2-22, D-01, D-04, D-07, D-10, D-13, D-16, D-52, D-56, D-61, D-63, D-81 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S2-R2 | S2-01, S2-02, S2-03, S2-04, S2-05, S2-06, S2-07, S2-08, S2-09, S2-10, S2-11, S2-12, S2-13, S2-14, S2-15, S2-16, S2-17, S2-18, S2-19, S2-20, S2-21, S2-22, S2-23, S2-29, S2-30, S2-31, S2-32, S2-33, S2-34, D-51, D-69 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S2-R3 | S2-01, S2-04, S2-07, S2-12, S2-15, S2-20, D-51 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S2-R4 | S1-08, S1-09, S1-10, S1-11, S2-10, S2-14, S2-18, S2-22, S2-39 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
 | S2-R5 | S2-07, S2-08, S2-09, S2-11, S2-12, S2-13, S2-15, S2-16, S2-17, S2-19, S2-20, S2-21, S2-25, S2-26, S2-27, S2-28 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
-| S2-R6 | S2-23, S2-24 | A/P Detail, A/P Unpaid Invoices |
+| S2-R6 | S2-23, S2-24, D-58 | A/P Detail, A/P Unpaid Invoices |
 | S2-R7 | S2-29, S2-30, S2-31, S2-32, S2-33, S2-34, S2-35 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S2-R8 | S2-36, S2-37, S2-38 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S2-R9 | S2-25, S2-26, S2-27, S2-28 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
-| S2-N1 | S2-19 | A/P Unpaid Invoices |
+| S2-N1 | S2-19, D-62 | A/P Unpaid Invoices |
 | S2-E1 | S2-39 | A/R Collection |
-| S3-R1 | S3-01, S3-02, D-35, D-36 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S3-R1 | S3-01, S3-02, D-35, D-36, D-53, D-54 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S3-R2 | S1-05, S1-06, S3-03, S3-04, S3-05, S3-06, S3-07, S3-08 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S3-R3 | S3-03, S3-04, S3-05, S3-06, S3-07, S3-08, REL-03 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S3-R4 | S3-09, S3-10, S3-11, S3-12, S3-13, S3-14, REL-03, D-46 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
@@ -91,74 +98,74 @@ Every case is HOLD today because no build exists (Rule 85: source-verified only)
 | S3-R8a | S9-03, S9-04 | A/R Collection |
 | S3-R9 | DATA-18, DATA-19, DATA-20, DATA-21 | A/R Summary, A/P Detail |
 | S3-R10 | S3-03, S3-04, S3-05, S3-06, S3-07, S3-08, S3-24, S3-25, DATA-20, D-37 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
-| S3-N1 | DATA-18, DATA-19, DATA-20, D-38 | A/R Summary, A/P Detail |
+| S3-N1 | DATA-18, DATA-19, DATA-20, D-38, D-55 | A/R Summary, A/P Detail |
 | S3-N2 | DATA-21 | A/P Detail |
-| S3-N3 | DATA-18, DATA-19, DATA-20, DATA-21 | A/R Summary, A/P Detail |
-| S4-R1 | S4-01, S4-02, S4-03, S4-04, S4-05, S4-06, D-25, D-26, D-27, D-28 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
+| S3-N3 | DATA-18, DATA-19, DATA-20, DATA-21, D-55 | A/R Summary, A/P Detail |
+| S4-R1 | S4-01, S4-02, S4-03, S4-04, S4-05, S4-06, D-25, D-26, D-27, D-28, D-52, D-56, D-59 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
 | S4-R2 | S4-05, S4-06 | A/R Collection, A/P Unpaid Invoices |
 | S4-R3 | S4-01, S4-02, S4-03, S4-04 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
 | S4-R4 | S4-07, S4-08, DATA-05, DATA-06 | A/R Detail, A/P Detail |
-| S4-R5 | S4-01, S4-02, S4-03, S4-04, D-25, D-26, D-27, D-28 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
-| S4-R6 | S4-09, S4-10, S4-11, S4-12, D-25, D-26, D-27, D-28 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
+| S4-R5 | S4-01, S4-02, S4-03, S4-04, D-25, D-26, D-27, D-28, D-52, D-56, D-59 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
+| S4-R6 | S4-09, S4-10, S4-11, S4-12, D-25, D-26, D-27, D-28, D-57, D-58, D-61 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
 | S4-R7 | S4-09, S4-10, S4-11, S4-12, D-47, D-48 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
 | S4-R8 | S2-25, S2-26, S2-27, S2-28, S4-13, S4-14 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
 | S4-R9 | S4-15, S4-16 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
 | S4-N1 | S4-17, S4-18, S4-19, S4-20 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
 | S4-N2 | S4-21 | A/R Summary, A/P Summary |
-| S5-R1 | S3-09, S3-10, S3-11, S3-12, S3-13, S3-14, S5-01, S5-02, S5-03, S5-04, S5-05, S5-06 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
-| S5-R2 | S5-01, S5-02, S5-03, S5-04, S5-05, S5-06, S5-07, S5-08, S5-09, D-29, D-30 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S5-R1 | S3-09, S3-10, S3-11, S3-12, S3-13, S3-14, S5-01, S5-02, S5-03, S5-04, S5-05, S5-06, D-50, D-52, D-54, D-65 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S5-R2 | S5-01, S5-02, S5-03, S5-04, S5-05, S5-06, S5-07, S5-08, S5-09, D-29, D-30, D-66, D-67 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S5-R3 | S5-10, S5-11 | A/R Collection, A/P Unpaid Invoices |
-| S5-R4 | S5-12 | A/R Detail |
-| S5-R5 | S5-07, S5-08, REL-01, REL-02 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
-| S5-R6 | S3-17, S5-01, S5-02, S5-03, S5-04, S5-05, S5-06, S5-07, S5-08, S5-13 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
-| S5-R6a | S3-24, S5-14, S6-03 | A/R Summary, A/R Collection, A/P Detail |
+| S5-R4 | S5-12, D-65, D-66 | A/R Detail |
+| S5-R5 | S5-07, S5-08, REL-01, REL-02, D-65, D-66 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S5-R6 | S3-17, S5-01, S5-02, S5-03, S5-04, S5-05, S5-06, S5-07, S5-08, S5-13, D-67, D-68 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S5-R6a | S3-24, S5-14, S6-03, D-68, D-78 | A/R Summary, A/R Detail, A/R Collection, A/P Detail |
 | S5-R7 | S5-15, S5-16, S5-17, DATA-09, DATA-10, DATA-11, DATA-12 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
 | S5-R8 | DATA-07, DATA-08 | A/R Summary, A/P Summary |
-| S5-R9 | S5-18 | A/R Collection |
+| S5-R9 | S5-18, D-68 | A/R Detail, A/R Collection |
 | S5-R10 | S5-14, S5-19, S5-20, S5-23 | A/R Summary, A/R Collection, A/P Summary, A/P Detail |
 | S5-R10a | S5-01, S5-02, S5-03, S5-04, S5-05, S5-06, S5-25 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
-| S5-R11 | S5-26, S5-27 | A/R Summary, A/R Collection, A/P Summary, A/P Unpaid Invoices |
+| S5-R11 | S5-26, S5-27, D-70 | A/R Summary, A/R Collection, A/P Summary, A/P Unpaid Invoices |
 | S5-R12 | S5-10, S5-11, S7-11 | A/R Detail, A/R Collection, A/P Unpaid Invoices |
-| S5-R13 | S3-09, S3-10, S3-11, S3-12, S3-13, S3-14, S5-01, S5-02, S5-03, S5-04, S5-05, S5-06, S5-28, S5-29, DATA-20, D-02, D-05, D-08, D-11, D-14, D-17, D-31, D-32 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S5-R13 | S3-09, S3-10, S3-11, S3-12, S3-13, S3-14, S5-01, S5-02, S5-03, S5-04, S5-05, S5-06, S5-28, S5-29, DATA-20, D-02, D-05, D-08, D-11, D-14, D-17, D-31, D-32, D-50, D-70, D-73, D-74, D-75, D-77 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S5-R14 | S5-24 | A/R Collection |
-| S5-R15 | S5-01, S5-02, S5-03, S5-04, S5-05, S5-06, S5-22, S5-30, S5-31, DATA-16, DATA-17, D-02, D-05, D-08, D-11, D-14, D-17, D-33, D-34 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S5-R15 | S5-01, S5-02, S5-03, S5-04, S5-05, S5-06, S5-22, S5-30, S5-31, DATA-16, DATA-17, D-02, D-05, D-08, D-11, D-14, D-17, D-33, D-34, D-50, D-71, D-72 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S5-R16 | S2-35, DATA-09, DATA-10, DATA-11, DATA-12, DATA-16, DATA-17 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
-| S5-R17 | DATA-07, DATA-08 | A/R Summary, A/P Summary |
-| S5-R18 | DATA-01, DATA-02, DATA-03, DATA-04, DATA-07, DATA-08, DATA-09, DATA-10, DATA-11, DATA-12, DATA-13, DATA-14, DATA-15, DATA-16, DATA-17 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S5-R17 | DATA-07, DATA-08, D-72 | A/R Summary, A/P Summary |
+| S5-R18 | DATA-01, DATA-02, DATA-03, DATA-04, DATA-07, DATA-08, DATA-09, DATA-10, DATA-11, DATA-12, DATA-13, DATA-14, DATA-15, DATA-16, DATA-17, D-51, D-70, D-72, D-74, D-75 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S5-R19 | S5-23 | A/R Summary |
 | S5-N1 | S5-18 | A/R Collection |
 | S5-N2 | S5-21 | A/R Detail |
 | S5-N3 | S5-22 | A/P Unpaid Invoices |
 | S5-E1 | S3-25, S5-32 | A/R Summary, A/P Unpaid Invoices |
 | S5-E2 | S5-33, S5-34, REL-10 | A/R Summary, A/R Collection, A/P Detail |
-| S6-R1 | S6-01, S6-02 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
-| S6-R2 | S3-03, S3-04, S3-05, S3-06, S3-07, S3-08, S5-15, S6-03, S6-04, S6-05 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
-| S6-R3 | S6-01, S6-02, D-01, D-04, D-07, D-10, D-13, D-16 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
-| S6-R4 | S2-01, S2-04, S6-04, S6-05, DATA-07, DATA-08 | A/R Summary, A/P Summary |
-| S6-R5 | S2-01, S2-04 | A/R Summary, A/P Summary |
-| S6-N1 | S3-09, S3-10, S3-11, S3-12, S3-13, S3-14, S6-03 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
-| S7-R1 | S7-01, S7-02, S7-06, S7-12, S7-13, S7-15, S7-16, S7-18, S7-19 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S6-R1 | S6-01, S6-02, D-65 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S6-R2 | S3-03, S3-04, S3-05, S3-06, S3-07, S3-08, S5-15, S6-03, S6-04, S6-05, D-65, D-67 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S6-R3 | S6-01, S6-02, D-01, D-04, D-07, D-10, D-13, D-16, D-50, D-65 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S6-R4 | S2-01, S2-04, S6-04, S6-05, DATA-07, DATA-08, D-54, D-69 | A/R Summary, A/P Summary |
+| S6-R5 | S2-01, S2-04, D-69 | A/R Summary, A/P Summary |
+| S6-N1 | S3-09, S3-10, S3-11, S3-12, S3-13, S3-14, S6-03, D-67 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S7-R1 | S7-01, S7-02, S7-06, S7-12, S7-13, S7-15, S7-16, S7-18, S7-19, D-62, D-63 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S7-R2 | S7-01, S7-02, S7-14 | A/R Detail, A/R Collection |
-| S7-R3 | S7-03, S7-04, D-39, D-40 | A/R Detail, A/R Collection |
+| S7-R3 | S7-03, S7-04, D-39, D-40, D-63, D-64, D-76 | A/R Detail, A/R Collection |
 | S7-R4 | S7-03, S7-04 | A/R Detail, A/R Collection |
-| S7-R5 | S7-05 | A/R Collection |
-| S7-R6 | S7-06, S7-07, S7-08, S7-15, S7-16 | A/P Detail, A/P Unpaid Invoices |
-| S7-R7 | D-01, D-02, D-03, D-04, D-05, D-06, D-07, D-08, D-09, D-10, D-11, D-12, D-13, D-14, D-15, D-16, D-17, D-18 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S7-R5 | S7-05, D-64 | A/R Detail, A/R Collection |
+| S7-R6 | S7-06, S7-07, S7-08, S7-15, S7-16, D-58, D-62 | A/P Detail, A/P Unpaid Invoices |
+| S7-R7 | D-01, D-02, D-03, D-04, D-05, D-06, D-07, D-08, D-09, D-10, D-11, D-12, D-13, D-14, D-15, D-16, D-17, D-18, D-59, D-61, D-80 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S7-R8 | S7-09 | A/R Detail |
-| S7-R9 | S7-07, S7-08, S7-17 | A/P Detail, A/P Unpaid Invoices |
-| S7-R10 | S7-10 | A/R Detail |
+| S7-R9 | S7-07, S7-08, S7-17, D-58 | A/P Detail, A/P Unpaid Invoices |
+| S7-R10 | S7-10, D-56, D-63 | A/R Detail, A/R Collection |
 | S7-N1 | S7-11 | A/R Detail |
 | S7-N2 | S7-12, S7-13, S7-14, S7-17 | A/R Detail, A/R Collection, A/P Detail |
 | S7-E1 | S5-33, S5-34, REL-10 | A/R Summary, A/R Collection, A/P Detail |
-| S8-R1 | S8-01, S8-02, S8-03, S8-04, S8-05, S8-06, S8-07, S8-13, D-41, D-42 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
-| S8-R2 | D-01, D-03, D-04, D-06, D-07, D-09, D-10, D-12, D-13, D-15, D-16, D-18 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
-| S8-R3 | S4-09, S4-10, S4-11, S4-12, D-01, D-02, D-03, D-04, D-05, D-06, D-07, D-08, D-09, D-10, D-11, D-12, D-13, D-14, D-15, D-16, D-17, D-18, D-47, D-48 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
-| S8-R4 | D-01, D-02, D-03, D-04, D-05, D-06, D-07, D-08, D-09, D-10, D-11, D-12, D-13, D-14, D-15, D-16, D-17, D-18 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
-| S8-R5 | S5-14, S5-32, S8-08, S8-09, S8-12, D-19, D-20, D-21, D-22, D-23, D-24 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S8-R1 | S8-01, S8-02, S8-03, S8-04, S8-05, S8-06, S8-07, S8-13, D-41, D-42, D-59, D-60 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S8-R2 | D-01, D-03, D-04, D-06, D-07, D-09, D-10, D-12, D-13, D-15, D-16, D-18, D-50, D-59 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S8-R3 | S4-09, S4-10, S4-11, S4-12, D-01, D-02, D-03, D-04, D-05, D-06, D-07, D-08, D-09, D-10, D-11, D-12, D-13, D-14, D-15, D-16, D-17, D-18, D-47, D-48, D-50, D-56, D-58, D-61, D-62 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S8-R4 | D-01, D-02, D-03, D-04, D-05, D-06, D-07, D-08, D-09, D-10, D-11, D-12, D-13, D-14, D-15, D-16, D-17, D-18, D-50, D-61 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S8-R5 | S5-14, S5-32, S8-08, S8-09, S8-12, D-19, D-20, D-21, D-22, D-23, D-24, D-68 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S8-R6 | S8-10, S8-11, D-19, D-20, D-21, D-22, D-23, D-24 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S8-N1 | S8-07 | A/R Summary, A/P Unpaid Invoices |
-| S9-R1 | S9-01, D-43 | A/R Collection |
-| S9-R2 | S9-01, D-43 | A/R Collection |
+| S9-R1 | S9-01, D-43, D-56, D-57, D-59, D-75 | A/R Collection |
+| S9-R2 | S9-01, D-43, D-56, D-59, D-75 | A/R Collection |
 | S9-R3 | S9-03, D-46 | A/R Collection |
 | S9-N1 | S9-02, D-43 | A/R Collection |
 | S9-N2 | S9-04 | A/R Collection |
@@ -168,9 +175,9 @@ Every case is HOLD today because no build exists (Rule 85: source-verified only)
 | Item | What it is | Cases |
 |---|---|---|
 | EH | Story 3, Error Handling: If an export fails for any other reason (a server error or a lost connection), nothing dow… | S3-26, S3-27, REL-06, D-38 |
-| UFS-1 | User Feedback Summary: PDF export over 2,000 rows | "This report is too large for PDF. Export it as CSV, or narro… | DATA-18, D-38 |
+| UFS-1 | User Feedback Summary: PDF export over 2,000 rows | "This report is too large for PDF. Export it as CSV, or narro… | DATA-18, D-38, D-55 |
 | UFS-2 | User Feedback Summary: CSV export over 50,000 rows | "This report is too large to export. Choose an earlier as-of… | DATA-21 |
-| UFS-3 | User Feedback Summary: Click an invoice at another enrolled location | Title "Switch location?", message "This wo… | S7-03, S7-05, D-39 |
+| UFS-3 | User Feedback Summary: Click an invoice at another enrolled location | Title "Switch location?", message "This wo… | S7-03, S7-05, D-39, D-64, D-76 |
 | UFS-4 | User Feedback Summary: Click a part sale at another enrolled location | "This part sale is in {location}. Switch … | S7-04, D-40 |
 | UFS-5 | User Feedback Summary: Collapse all / Expand all button | "Collapse all" / "Expand all" | Tooltip above the butto… | S4-01, S4-02, S4-03, S4-04, D-25, D-26, D-27, D-28 |
 | UFS-6 | User Feedback Summary: Export succeeds | "Success", "Data exported successfully." | Success toast, as on the othe… | S3-03, S3-04, S3-05, S3-06, S3-07, S3-08, D-37 |
@@ -187,20 +194,20 @@ Every case is HOLD today because no build exists (Rule 85: source-verified only)
 | WC-7 | What changes for existing users: The date filter is labelled "As of" (was "Date"). On A/R Collection and A/P Unpaid Invoice… | S5-01, S5-02, S5-03, S5-04, S5-05, S5-06 |
 | WC-8 | What changes for existing users: Re-sorting A/R Collection or A/P Unpaid Invoices no longer collapses the open groups. | S2-26, S2-28 |
 | WC-9 | What changes for existing users: The A/R column "Location full name" and the A/P column "Location Name" are renamed "Locati… | S6-01, S6-02 |
-| WC-10 | What changes for existing users: Which rows and amounts each user can see is unchanged: an untouched report shows exactly t… | DATA-14, DATA-15, REL-01, REL-02 |
+| WC-10 | What changes for existing users: Which rows and amounts each user can see is unchanged: an untouched report shows exactly t… | DATA-14, DATA-15, REL-01, REL-02, D-50 |
 | OOS-1 | Out of Scope: Background exports for very large reports ("we'll email you when it's ready"), as Sage Int… | DATA-21 |
 | OOS-2 | Out of Scope: Restricting these reports by the user's location enrollment. The reports stay organization… | S5-10, S5-11 |
-| OOS-3 | Out of Scope: Renaming columns other than Location. A/R keeps "ID" and "Customer full name", A/P keeps "… | S6-01, S6-02 |
+| OOS-3 | Out of Scope: Renaming columns other than Location. A/R keeps "ID" and "Customer full name", A/P keeps "… | S6-01, S6-02, D-81 |
 | OOS-4 | Out of Scope: Other improvements found in research, each a separate ticket on SV-11315: a credit dated o… | REL-08, REL-09 |
 | OOS-5 | Out of Scope: Email and a primary contact on the A/R Collection call list. A customer has no primary con… | S9-01 |
 | OOS-6 | Out of Scope: Links for A/R credit memos and deposits. They have no page of their own to open, so they s… | S7-10 |
-| OOS-7 | Out of Scope: A/P print from a separate print button. A/P printing is delivered through the Export menu'… | S3-02 |
+| OOS-7 | Out of Scope: A/P print from a separate print button. A/P printing is delivered through the Export menu'… | S3-02, D-54 |
 | OOS-8 | Out of Scope: The location switcher in the top right of ShopView. It is not changed. Switching location … | S5-33, S5-34, REL-10 |
 | OOS-9 | Out of Scope: A phone or tablet layout. Narrower than 1024 pixels, the reports show the native mobile fi… | D-49 |
 | KD-PERM | Key Decisions, Permissions: Permissions. Viewing all six reports, and exporting them, is governed by 'Reports → Page A… | S1-14, S9-04, REL-04 |
 | KD-ROW | Key Decisions, row location: A row belongs to the location of its own open document (the invoice, credit memo or deposi… | S5-15, DATA-07, DATA-08 |
-| KD-REUSE | Key Decisions, reuse rule: The reuse rule. Every control on these reports reuses an existing ShopView pattern: the na… | REL-05, REL-07, D-01, D-04, D-07, D-10, D-13, D-16, D-25, D-26, D-27, D-28, D-29, D-30, D-31, D-32, D-33, D-34, D-35, D-36, D-39, D-40, D-41, D-42 |
-| KD-DRILL | Key Decisions, drill-down: Drill-down keeps the report's scope. Clicking a customer or vendor on a Summary opens Coll… | S5-26, S5-27 |
+| KD-REUSE | Key Decisions, reuse rule: The reuse rule. Every control on these reports reuses an existing ShopView pattern: the na… | REL-05, REL-07, D-01, D-04, D-07, D-10, D-13, D-16, D-25, D-26, D-27, D-28, D-29, D-30, D-31, D-32, D-33, D-34, D-35, D-36, D-39, D-40, D-41, D-42, D-50, D-53, D-71, D-73 |
+| KD-DRILL | Key Decisions, drill-down: Drill-down keeps the report's scope. Clicking a customer or vendor on a Summary opens Coll… | S5-26, S5-27, D-70 |
 | KD-ORG | Key Decisions, organization-wide: The reports stay organization-wide, by decision. Everyone with access sees every location'… | S5-10, S5-11, REL-01, REL-02 |
 | GOAL-ACCESS | Goals: Nobody gains or loses access to any data, and no setup is needed. | S5-10, S5-11, REL-04 |
 | ASSUME-13540 | Assumptions: A shop's A/P Detail can carry well over 10,000 open lines (the QA organization has 13,540 … | DATA-18 |
@@ -216,22 +223,22 @@ Code baseline: NOT AVAILABLE (no product source code in this pass), so the invar
 
 | Must not change (PRD wording) | Case(s) |
 |---|---|
-| WC-10: Which rows and amounts each user can see is unchanged: an untouched report shows exactly today's organization-… | DATA-14, DATA-15, REL-01, REL-02 |
+| WC-10: Which rows and amounts each user can see is unchanged: an untouched report shows exactly today's organization-… | DATA-14, DATA-15, REL-01, REL-02, D-50 |
 | KD-PERM: Permissions. Viewing all six reports, and exporting them, is governed by 'Reports → Page Access', unchanged. N… | S1-14, S9-04, REL-04 |
 | GOAL-ACCESS: Nobody gains or loses access to any data, and no setup is needed. | S5-10, S5-11, REL-04 |
 | KD-ORG: The reports stay organization-wide, by decision. Everyone with access sees every location's data, as today; th… | S5-10, S5-11, REL-01, REL-02 |
 | OOS-2: Restricting these reports by the user's location enrollment. The reports stay organization-wide for everyone w… | S5-10, S5-11 |
-| OOS-3: Renaming columns other than Location. A/R keeps "ID" and "Customer full name", A/P keeps "No." and "Vendor Nam… | S6-01, S6-02 |
+| OOS-3: Renaming columns other than Location. A/R keeps "ID" and "Customer full name", A/P keeps "No." and "Vendor Nam… | S6-01, S6-02, D-81 |
 | OOS-4: Other improvements found in research, each a separate ticket on SV-11315: a credit dated on the as-of date lan… | REL-08, REL-09 |
 | OOS-8: The location switcher in the top right of ShopView. It is not changed. Switching location while on one of thes… | S5-33, S5-34, REL-10 |
 | S7-E1: The location switcher in the top right of ShopView is not changed. | S5-33, S5-34, REL-10 |
 | S1-N1: If the user lacks 'Reports → Page Access', the reports are not available, as today. | S1-14, REL-04 |
-| S1-E1: A customer with no open documents on the as-of date does not appear, as today. | S1-15 |
-| S4-R5: Each group's own expand toggle uses the same chevron: pointing down when open, right when closed. Behavior is … | S4-01, S4-02, S4-03, S4-04, D-25, D-26, D-27, D-28 |
-| KD-REUSE: The reuse rule. Every control on these reports reuses an existing ShopView pattern: the native filter chips, t… | REL-05, REL-07, D-01, D-04, D-07, D-10, D-13, D-16, D-25, D-26, D-27, D-28, D-29, D-30, D-31, D-32, D-33, D-34, D-35, D-36, D-39, D-40, D-41, D-42 |
+| S1-E1: A customer with no open documents on the as-of date does not appear, as today. | S1-15, D-74 |
+| S4-R5: Each group's own expand toggle uses the same chevron: pointing down when open, right when closed. Behavior is … | S4-01, S4-02, S4-03, S4-04, D-25, D-26, D-27, D-28, D-52, D-56, D-59 |
+| KD-REUSE: The reuse rule. Every control on these reports reuses an existing ShopView pattern: the native filter chips, t… | REL-05, REL-07, D-01, D-04, D-07, D-10, D-13, D-16, D-25, D-26, D-27, D-28, D-29, D-30, D-31, D-32, D-33, D-34, D-35, D-36, D-39, D-40, D-41, D-42, D-50, D-53, D-71, D-73 |
 | EH: If an export fails for any other reason (a server error or a lost connection), nothing downloads and one error… | S3-26, S3-27, REL-06, D-38 |
 | S7-R2: An invoice or part sale at the user's current location opens its finance page, as today. | S7-01, S7-02, S7-14 |
-| S7-R6: A bill at the user's current location opens its delivery, as today. A bill at another location shows as plain … | S7-06, S7-07, S7-08, S7-15, S7-16 |
+| S7-R6: A bill at the user's current location opens its delivery, as today. A bill at another location shows as plain … | S7-06, S7-07, S7-08, S7-15, S7-16, D-58, D-62 |
 
 ## Where Jira differs from PRD v5 (the PRD wins; listed for the PO)
 
@@ -258,7 +265,7 @@ Code baseline: NOT AVAILABLE (no product source code in this pass), so the invar
 | Origin tickets SV-7192, SV-10798; out-of-scope SV-11441 to SV-11447; verify tasks SV-11595 to SV-11600; epic SV-11315 | via Jira | — | 100% |
 | Rules: LESSONS-REGISTER.md (L-01 to L-05); RULES-61-96.md Rules 96, 113, 114, 115, 116, 117 (all twelve amendments), 122, 126, 130, 133 | repo | — | 100% of those sections |
 | Skills: 17-REGRESSION-IMPACT-V1-TO-V2.md (whole), 21-DESIGN-DRIVE-PROTOCOL.md (whole, incl. §4b, §6b, §6c, §6d), IDEAL-TEST-CASE-STANDARD.md (whole) | repo | — | 100% |
-| Design canvas https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4 | — | — | **NOT READ: not available to this pass** |
+| Design canvas https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4 (saved in design-2026-10-22/) | 7 boards, 45 figures, 43 screenshots | — | 100% (DESIGN-READING-RECORD.md) |
 | Tech plan | — | — | **not available** |
 
 ## Outputs
@@ -273,7 +280,7 @@ Code baseline: NOT AVAILABLE (no product source code in this pass), so the invar
 
 | What | Who | What it blocks | Since |
 |---|---|---|---|
-| The design canvas (export or a readable link) | QA lead / Chris Ward | Rules 120/124/126/130/133: the design drive, the text and visual inventories, design-version cases, checklist lines 1, 2, 4, 5 and 8 | 22 Oct 2026 |
+| Send questions 11 to 15 (design differences) to Chris Ward in the same sheet (Rule 131) | QA lead | the 5 new held design-version cases (D-76 to D-80) | 22 Oct 2026 |
 | The tech plan | QA lead | Rule 115 coverage from the tech plan | 22 Oct 2026 |
 | Permission to add the cases to TestRail (Rule 6) and to the project's run (Rule 123) | QA lead | Every case stays a draft | 22 Oct 2026 |
 | Send the question sheet to Chris Ward (18 questions) | QA lead | 9 held cases; exact words in several cases | 22 Oct 2026 |

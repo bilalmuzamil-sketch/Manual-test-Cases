@@ -92,7 +92,7 @@ C(k, "S5", "A/R Summary: the Location chip reads all, a count, one name or none"
    START("ARS")],
   ["Read the Location chip.", "In the Location menu, untick {Location-B}.", "Untick {Location-A}.", "Untick {Location-C}."],
   ["Step 1: \"Location: All locations\".", "Step 2: \"Location: 2 locations\".",
-   "Step 3: the chip shows {Location-C}'s name, shortened with \"...\" because it is long.",
+   "Step 3: the chip reads \"Location: \" and {Location-C}'s name, shortened with \"...\" because it is long.",
    "Step 4: \"Location: No locations\"."],
   ["S5-R6"],
   note="The Location chip is the native one, exactly as on Sales By Customer: with one location ticked, and for a long name, it reads as that chip does.")
@@ -151,7 +151,7 @@ C(k, "S5", "A/R Collection: the Location chip hides when only one location has d
    START("ARC")],
   ["Look for the Location chip.", "In the Location menu, untick {Location-B}.", "Change the as-of date to {Date-A}.", "Look for the Location chip."],
   ["Step 1: the Location chip shows (two locations in the list).",
-   "Step 2: the chip still shows, reading {Location-A}'s name, so the choice can be undone.",
+   "Step 2: the chip still shows, reading \"Location: \" and {Location-A}'s name, so the choice can be undone.",
    "Step 3: the report reloads for {Date-A}.",
    "Step 4: the Location chip is not shown: the only location in the list is ticked."],
   ["S5-R9", "S5-N1"],
@@ -189,7 +189,7 @@ C(k, "S5", "A/R Detail: a link with an unknown location ignores it",
    "In the copied address, add a location that does not exist (for example \"Nowhere\"), separated by a comma, and open it.",
    "Read the Location chip and look for the Location column."],
   ["Step 1: the report narrows to {Location-A}.", "Step 2: the address carries {Location-A}.", "Step 3: the report loads normally, with no error.",
-   "Step 4: the chip reads as if only {Location-A} were in the link ({Location-A}'s name), and the Location column is hidden, following the remaining choice."],
+   "Step 4: the chip reads as if only {Location-A} were in the link (\"Location: \" and {Location-A}'s name), and the Location column is hidden, following the remaining choice."],
   ["S5-N2"],
   note="The tester edits only the list of locations in the copied address.")
 
@@ -222,8 +222,8 @@ C(k, "S5", "A/R Collection: a customer ticked by link is named even if hard to f
    START("ARC")],
   ["In the Customer filter, search for {Customer-A} and tick it.", "Copy the page address.", "Paste the address into a new tab.",
    "Read the Customer chip.", "Open the Customer menu."],
-  ["Step 1: the chip shows {Customer-A}'s name.", "Step 2: the address is copied.", "Step 3: the report opens with only {Customer-A}'s group.",
-   "Step 4: the chip names {Customer-A}.", "Step 5: {Customer-A} is shown ticked in the menu."],
+  ["Step 1: the chip reads \"Customer: \" and {Customer-A}'s name.", "Step 2: the address is copied.", "Step 3: the report opens with only {Customer-A}'s group.",
+   "Step 4: the chip reads \"Customer: \" and {Customer-A}'s name.", "Step 5: {Customer-A} is shown ticked in the menu."],
   ["S5-R14"])
 
 k = nk()
@@ -231,8 +231,8 @@ C(k, "S5", "A/P Unpaid Invoices: opening from the Reports menu starts with no fi
   [ADMIN(), TWO_LOC, ("Vendor {Vendor-A} has unpaid bills on yesterday's date.", f"For example: {{Vendor-A}} is {ex(k, 'Fresh Start')[0]}."), START("APU")],
   ["Change the as-of date to yesterday.", "In the Vendor filter, tick {Vendor-A}.", "In the Past due filter, tick \"61-90 days\".", "In the Location menu, untick {Location-B}.",
    "Open Reports > Finance > Sales By Customer.", "Open Reports > Finance > A/P Unpaid Invoices from the Reports menu.", "Read the filter row."],
-  ["Step 1: the date chip shows yesterday.", "Step 2: the Vendor chip shows {Vendor-A}'s name.", "Step 3: \"Past due: 61-90 days\".",
-   "Step 4: the chip shows {Location-A}'s name.", "Step 5: Sales By Customer opens.",
+  ["Step 1: the date chip shows yesterday.", "Step 2: the Vendor chip reads \"Vendor: \" and {Vendor-A}'s name.", "Step 3: \"Past due: 61-90 days\".",
+   "Step 4: the chip reads \"Location: \" and {Location-A}'s name.", "Step 5: Sales By Customer opens.",
    "Step 6: A/P Unpaid Invoices opens.",
    "Step 7: \"As of: \" today's date, \"Vendor: All vendors\", \"Past due: Any\" and \"Location: All locations\": nothing was remembered."],
   ["S5-R10a"])
@@ -262,7 +262,7 @@ for code in ("ARD", "APD"):
        "Read the chip.", f"Search for {{{P}-A}} and tick it.", "Read the chip and expand every group.", f"Untick both {Ps}.", "Read the chip."],
       [f"Step 1: the menu opens {srch}, an \"All {Ps}\" row, the line \"All {Ps} are included. Pick one or more to narrow.\" and the list of {Ps}.",
        f"Step 2: {{{P}-B}} is ticked.",
-       f"Step 3: the chip shows {{{P}-B}}'s name, shortened with \"...\" because it is long.",
+       f"Step 3: the chip reads \"{P}: \" and {{{P}-B}}'s name, shortened with \"...\" because it is long.",
        f"Step 4: {{{P}-A}} is ticked as well.",
        f"Step 5: the chip reads \"{P}: 2 {Ps}\"; only the two {Ps}' rows remain.",
        f"Step 6: no {P.lower()} is ticked.",

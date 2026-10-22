@@ -6,6 +6,7 @@ Holds no environment address, credentials, cookies or session data. python3 rend
 import os, sys, re, json, importlib
 D = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, D)
 import ar_lib as L
+import design_data as DD
 for m in ["cases_s1", "cases_s2", "cases_s3", "cases_s4", "cases_s5", "cases_s6_s9", "cases_data", "cases_rel", "cases_design"]: importlib.import_module(m)
 from po_questions import QUESTIONS, QN
 SEC = json.load(open(f"{L.P}/sections.json"))
@@ -61,7 +62,8 @@ A("## 1. Header and sources")
 A(f"- Feature: A/R and A/P Report Sorting, Export and Location Filter (epic SV-11315; stories SV-11531 to SV-11539). TestRail group 90418, sections in `sections.json`. {len(L.CASES)} cases, drafted 22 Oct 2026, not yet in TestRail.")
 A(f"- PRD: {L.PRD_NAME}; saved `sources/CONFLUENCE-947650561-v5-2026-10-22.md` (checked word for word against the page's HTML, `sources/CONFLUENCE-947650561-v5-2026-10-22-html.json`).")
 A("- Jira: every ticket under the epic read 22 Oct 2026, `sources/JIRA-READING-2026-10-22.md` (differences from the PRD listed there).")
-A(f"- Design: {L.DESIGN_URL} — NOT READ (not available to this pass). Tech plan: not available. Both are inputs to the next full pass (Rules 115, 120, 122).")
+A(f"- Design: {L.DESIGN_URL} — read in full 22 Oct 2026, saved in `design-2026-10-22/` (7 boards, 45 figures; the 43 screenshots in `design-2026-10-22/images/`, every word transcribed in `TRANSCRIPTS.md`). Each recipe below names the pictures its case compares with. Design-vs-PRD differences: `DESIGN-DIVERGENCE-REGISTER.json`.")
+A("- Tech plan: not available (a second full pass follows when it arrives: Rules 115, 122).")
 A("- No build yet. Every recipe below is UNVERIFIED until the build verification session runs it.")
 A("- At session start, ask the user for the site to use and how to sign in as each slot below. Never write a secret into this file.")
 A("")
@@ -87,7 +89,8 @@ A("")
 A("## 3. Flags and settings")
 A("- No feature setting: the PRD says nobody gains or loses access and no setup is needed.")
 A("- Browser: desktop, window 1440 px wide at 100% zoom unless the case names 1536, 1280, 1200 or 900 px; light theme unless the case says dark.")
-A("- Every report is opened from the Reports menu (Reports > Finance) so nothing is remembered from an earlier visit.")
+A("- Every report is opened from the Reports menu so nothing is remembered from an earlier visit. On screen (design pictures): Reports in the top menu; the left menu lists \"A/R Aging Summary\", \"A/R Aging Detail\", \"A/R Aging Collection\" under ACCOUNTS RECEIVABLE and \"A/P Aging Summary\", \"A/P Aging Detail\", \"A/P Unpaid Invoices\" under ACCOUNTS PAYABLE (page title \"A/P Unpaid Invoices Report\"); Sales By Customer and Work In Progress under PERFORMANCE, Inventory Value under PARTS.")
+A("- Design picture cases (D-50 to D-81): open the named picture from `design-2026-10-22/images/` (in TestRail, attached to the case) at 100% zoom beside the browser.")
 A("- Comparison tabs: design cases open Sales By Customer, Inventory Value or Work In Progress in a second tab, as the case says.")
 A("")
 A("## 4. Shared procedures (UNVERIFIED click paths; no build yet)")
@@ -105,6 +108,9 @@ for c in L.CASES:
     A("Placeholders: " + (", ".join("{" + p + "}" for p in phs) or "none") + ". Values: the \"For example\" lines above; write the real document numbers here after setup.")
     A("Procedures: " + ", ".join(procs_for(c)) + ".")
     A("Sources (verbatim text in section 9): " + ", ".join(sorted(L.codes_of(c))) + ".")
+    h = L.render(c)["custom_expected"].split("References from Design")[-1]
+    pics = [f"`design-2026-10-22/{DD.pic(f)}` ({f['iid']}, \"{f['heading']}\")" for f in DD.FIGS if DD.pic(f) in h]
+    A("Design pictures: " + (", ".join(dict.fromkeys(pics)) if pics else "none (the design does not draw this; the case follows the PRD)") + ".")
     A("")
 A("## 6. Mapping table")
 A("| Section | Cases |"); A("|---|---|")
@@ -129,10 +135,13 @@ oth = {(x[0], x[1]) for c in L.CASES for x in c["q"] if isinstance(x, tuple) and
 for l, t in sorted(oth): A(f"- **{l}**: \"{t}\"")
 A("")
 A("## 10. VIU status")
-A("- Every case and recipe: UNVERIFIED — the build is not yet available; the design and the tech plan have not been read.")
+A("- Every case and recipe: UNVERIFIED — the build is not yet available. The design was read and every case re-checked against it on 22 Oct 2026; the tech plan has not been received.")
 A("")
-A("## 11. Open questions (draft, not sent; `PO-QUESTIONS-DRAFT.md`)")
+A("## 11. Open questions (Chris Ward's sheet, questions 1 to 10 sent 22 Oct 2026; 11 to 15 drafted from the design, not yet sent)")
 for i, (slug, q, basis, opts, holds) in enumerate(QUESTIONS, 1):
     A(f"- Q{i}: {q} — {holds}")
+import importlib.util as _u
+_sp = _u.spec_from_file_location("newq", f"{L.P}/design-2026-10-22/NEW-QUESTIONS.py"); _m = _u.module_from_spec(_sp); _sp.loader.exec_module(_m)
+for r in _m.ROWS: A(f"- Q{r[0]} (drafted, not sent): {r[1].split(': ', 1)[1]} — cases {', '.join(r[5])}")
 open(f"{L.P}/AR-AP-SETUP-FILE.md", "w").write("\n".join(Lines) + "\n")
 print("setup file:", len(Lines), "lines")
