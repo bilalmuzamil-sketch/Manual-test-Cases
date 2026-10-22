@@ -1,0 +1,54 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+The "New" pills are now on staging, so I tested again on staging ([app.staging.shopview.com|https://app.staging.shopview.com/workorders], build v26.43.0-e48011d, put on staging on 22 October 2026 at 10:25 UTC). My earlier FAILED comment was written while staging still had the old build; this comment is the result on the new one.
+
+* The Dashboard link and the List / Tech View / Board View buttons each carry one {{New}} pill, in the right place, and nothing around them moved.
+* The pills are only there for the people they should be, they go at the end time, and the phone menu is fine.
+
+!SV-11636_1-before-after-1440.png|width=615,height=614!
+_Picture 1: the same screen before and after. Top, the Dashboard link; bottom, the three view buttons. Neither had a pill on the old build._
+
+h3. What I checked
+
+||#||Check||Status||
+|1|Dashboard pill sits on the top-left corner of {{Dashboard}}, does not cover the word, stays clear of {{Reports}} and the search box (1920, 1440, 1280 and 1024 px wide, light and dark theme)|PASSED|
+|2|Nothing moves: with the pills on or off, every item in the top menu and every button on the toolbar keeps the same size and place (0 px change at all four widths, both themes)|PASSED|
+|3|One pill centred above the List / Tech View / Board View buttons, 2 px above them, covering none of them and not cut off (same widths, both themes)|PASSED|
+|4|Both pills look the same: same size, bold text, and the same colours in the light and the dark theme|PASSED|
+|5|The pill shows on the List, Tech View and Board View pages|PASSED|
+|6|All three view buttons still work: I clicked each one and the right view opened|PASSED|
+|7|Tablet width (1024 px): menu and view buttons fit with both pills, nothing overlaps (Picture 2)|PASSED|
+|8|Phone and narrow widths (390, 768 and 1023 px): the {{Dashboard}} row in the menu carries the pill, no other row changed, and there are no view buttons and no pill|PASSED|
+|9|Users without access to Reports see no {{Dashboard}} link and no pill, on a computer and on a phone: Technician and Service Advisor (Picture 3)|PASSED|
+|10|A user with access to Reports who is not an Admin (Parts Manager) sees the {{Dashboard}} link with its pill, on a computer and in the phone menu (Picture 3)|PASSED|
+|11|Both pills disappear together at 31 October 2026, 07:00 UTC, including in a tab that was already open, and in the phone menu. Before that time they show, from 30 October and from 06:50 UTC on 31 October (Picture 5, comparison only)|PASSED|
+|12|Tech View button: the pill sits right above it, covers none of it, and the button stays clickable (Picture 4)|PASSED|
+
+!SV-11636_2-tablet-and-phone.png|width=464,height=781!
+_Picture 2: top, tablet width (1024 px). Bottom, the phone menu (390 px)._
+
+!SV-11636_3-access-to-reports.png|width=800,height=588!
+_Picture 3: the top menu for a Technician, a Service Advisor (neither has access to Reports) and a Parts Manager (has access, not an Admin). Before each test I reset that role to its template._
+
+!SV-11636_4-tech-view-button.png|width=280,height=793!
+_Picture 4: top, the pill above Tech View. Bottom, hovering the Tech View button: its label shows on top of the pill until the pointer moves away._
+
+!SV-11636_5-expiry-comparison-only.png|width=740,height=577!
+_Picture 5: comparison only, not a ShopView feature. I changed the browser's own clock with my test tool to see what the pills do at the end time. Users cannot do this._
+
+h3. Where the expected behaviour comes from
+
+* This ticket, "How to check": "Dashboard shows "New" on its top-left corner; nav items are in the same place as on production." and "The view switcher shows one "New" pill centered above it; all three buttons are fully visible and clickable." and "After Oct 31, 2026 07:00 UTC both badges are gone, including in a tab left open across that time."
+* Chris Ward's comment on this ticket: the phone menu must not break and, at about 1024 px, nothing may overlap or be cut off.
+* Chris Ward in Slack, 22 October: "Dashboard is not visible to anyone that doesnt have reports access, so that pill shouldnt appear if they cannot have reports access" and, for phone, the "new" shouldn't show where the Board / Tech options aren't visible. This matches epic SV-490 (Dashboard): "Access is the existing reports permission, all or nothing, scoped by location".
+
+h3. How to see it
+
+# Open [https://app.staging.shopview.com/workorders] and sign in as Admin.
+# At the top right, make sure the location reads {{Staging Heavy Duty - 9919}}.
+# Make the browser window at least 1440 pixels wide. In the top menu, a small blue {{New}} pill sits on the top-left corner of {{Dashboard}}, to the right of {{Reports}}.
+# Under the top menu, on the right, look at the three view buttons (list, person and board icons). One {{New}} pill sits just above them.
+# Make the window narrower than 1024 pixels (or open the page on a phone). The view buttons and their pill are gone. Click the three-line menu icon at the top left: the {{Dashboard}} row has a {{New}} pill.
+
+*Environment:* staging, build v26.43.0-e48011d, Admin and test users at Staging Heavy Duty - 9919, checked on 22 October 2026 between 05:10 and 06:50 CDT.

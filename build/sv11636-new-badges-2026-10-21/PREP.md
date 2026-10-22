@@ -91,3 +91,5 @@ Extra cells:
   Pre-post gate run (build, ticket state, PRD v73, text scan); read back: 1 attachment 1440x841, 5 numbered steps, 3 table rows.
 - Status change to REJECTED FROM TESTING NOT done: from TESTING STAGE Jira offers only Board Backlog, Blocked, OBSOLETE, Done,
   Ready for production (no Rejected-from-testing transition for this account). Asked the QA lead.
+
+## 22 Oct ~11:50 UTC — DONE: tested on v26.43.0-e48011d, PASSED comment 79273. See FINDINGS.md. Routine trig_016o1PRHVCDYnqEFJsfaDbHR disabled.
