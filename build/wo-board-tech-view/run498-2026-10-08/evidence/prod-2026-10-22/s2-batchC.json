@@ -1079,5 +1079,101 @@
    "Parts",
    "Returns"
   ]
+ },
+ "C368161": {
+  "wo": "S1-1396",
+  "lead": "Theresa Webb",
+  "leadStaff": "4535d090",
+  "theresaLog": [],
+  "lineTech": "Jenny Wilson",
+  "created": {
+   "approve": 201,
+   "lead": 201,
+   "line": 201
+  },
+  "olderWorkOrders": [],
+  "lineTechsBefore": [
+   "Theresa Webb"
+  ],
+  "canned": "Test",
+  "editorOpen": 0,
+  "lineTechsAfterEditor": [
+   "Theresa Webb"
+  ],
+  "fallback": "the line editor did not give the line to Jenny Wilson; the same save the editor makes was sent: 200",
+  "lineTechsAfterFallback": [
+   "Jenny Wilson"
+  ],
+  "lineCalls": [
+   "POST /api/user/recent-entities/touch {\"type\":\"customers\",\"id\":\"273a0bd7-c720-4e74-a084-67cfb2cb2d17\"}",
+   "PUT /api/work-orders/lines/a141a8c0-2c0f-427a-8ff7-6a4e09c72650/technicians {\"staffIds\":[\"bd39bb49-c650-48e7-8128-cebda29f96ba\"]}"
+  ],
+  "reach": {
+   "found": true,
+   "wasOpen": false
+  },
+  "header": {
+   "avatar": "TW",
+   "hasImg": false,
+   "text": "TW Theresa Webb 1 1 work order"
+  },
+  "rowAvatars": {
+   "avatars": [
+    "SA",
+    "TW",
+    "JW"
+   ],
+   "brokenImg": 0
+  },
+  "boardHeader": null,
+  "fieldsButton": "Column Selection",
+  "fieldsMenu": [
+   "Lead technician=true",
+   "Customer=true",
+   "Asset=true",
+   "VIN/serial=false",
+   "Progress=true",
+   "Service advisor=false",
+   "Clocked in=false",
+   "Line count=false",
+   "Line technicians=true",
+   "Estimated hours=true",
+   "Total price=true",
+   "On-site=false",
+   "Created date=false"
+  ],
+  "lineTechOn": null,
+  "cardAvatars": null
+ },
+ "C96938": {
+  "techA": "Ayesha Khan",
+  "reachA": true,
+  "avatarA": {
+   "found": true,
+   "tooltip": "",
+   "titleUnderPointer": [
+    "div title=\"Ayesha Khan\""
+   ]
+  },
+  "reachLong": true,
+  "nameLong": {
+   "found": true,
+   "tooltip": "",
+   "titleUnderPointer": [
+    "span title=\"Maximiliana Fitzgerald-Montgomery\""
+   ]
+  },
+  "avatarLong": {
+   "found": true,
+   "tooltip": "",
+   "titleUnderPointer": [
+    "div title=\"Maximiliana Fitzgerald-Montgomery\""
+   ]
+  },
+  "nameLongShown": {
+   "text": "Maximiliana Fitzgerald-Montgomery",
+   "title": "Maximiliana Fitzgerald-Montgomery",
+   "truncated": false
+  }
  }
 }
