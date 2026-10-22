@@ -684,3 +684,9 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - Still staging-only data on production: the "ZZAUTOTEST Empty Shop" location (s2-batchB / s2-batchC / s5-batchA pick it from the location menu) does not exist there — those tests will need it created (Rule 107) when they come up.
 - With L0510/L0511 the full checklist for a new environment is: ids (`b3c8c820…`), location names, "me" name, own-sign-in scripts, staging-only records. grep all five before the first step.
 #run498 #production #location → L0510, L0511, L0515
+
+## L0517 — 2026-10-22 — Production data the run 498 cases assume: make it, or reuse what another test made
+- C707077 needs a technician whose staff record and account name differ (staging's "Carol Neal" / "David Sparks"); production had none → `seed-carol-prod-1022.mts` makes the staff record, then account access as her → `POST /api/iam/change-name` "David Sparks" → Exit, and reads both back.
+- The count-bubble pill cases (C682440, C682420) need a work order whose status pill shows BOTH a red and a blue number; a scan of List's first screens on production found none. The C590115 re-run had just made one (**S1-1262**: a line in Auth Req'd + a part Authorized to Order) — `c682439-440.mts` now takes `WOB_PILL_WO=<number>`. Before scanning or seeding, look in today's readings for a record another test already built.
+- Scripts whose readings are not keyed by C-id (c698883-1021, c698884-1021, c682439-440) show "tests=0" in the step watcher — not a failure; wrap them as `{"<C-id>": readings}` (`<script>.keyed.json`) for `judge_pack.py`.
+#run498 #production #seed → L0507, L0516
