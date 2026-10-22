@@ -13,7 +13,9 @@ try {
   if (!row) { const r = await person(a, 'Carol', 'Neal', { role: (await roleIds(a))['Technician'], email: EM, clockable: true, billable: true }); o.create = r.log; row = r.row ?? (await staffRows(a, EM))[0]; }
   if (!row) throw new Error('staff Carol Neal could not be made');
   o.before = { staff: `${row.first_name} ${row.last_name}`, user_id: row.id, staff_id: row.staff_id };
-  await p.goto(`${APP}/impersonate-user/${row.id}`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(8000);
+  // 22 Oct 2026: on production the /impersonate-user/<id> page did not start account access (imp-fix3); the server request the run's
+  // runner uses (viewas.mts: POST /api/switch-user) does — so that, then the page is reloaded so it runs as her.
+  o.switchUser = (await a.post('/api/switch-user', { user_id: row.id })).status; await p.goto(`${APP}/workorders`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(8000);
   o.asWho = JSON.stringify((await a.get('/api/iam/view-profile/').catch(() => ({ body: null } as any))).body?.data ?? null).slice(0, 200);
   let ch: any = await a.post('/api/iam/change-name', { first_name: 'David', last_name: 'Sparks' });
   if (ch.status >= 300) ch = await a.post('/api/iam/change-name', { firstName: 'David', lastName: 'Sparks' });
