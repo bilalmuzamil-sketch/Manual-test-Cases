@@ -427,7 +427,7 @@ await run('C368157', async () => {
  *  On Site control (its text, pressed state and class) — with a picture. Used by C368158 step 6 and C368159 step 7. */
 async function woPage(pg: any, w: any, pic: string) {
   // 22 Oct 2026 (production judging): open the work order FROM THE LIST (Work Orders > All > Search its number > click the row), not by address
-  const id = w.id; await pg.goto(`${APP}/workorders?tab=all`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000); await tab(pg, 'All').catch(() => {});
+  const id = w.id; await pg.goto(`${APP}/workorders?tab=all`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000); await tab(pg, 'All').catch(() => {}); await display(pg, 'List').catch(() => {});
   if (w.number) { await search(pg, w.number); await pg.waitForTimeout(2500); await pg.screenshot({ path: path.join(EV, pic + '-list.png') }).catch(() => {}); const row = pg.locator('tbody tr').filter({ hasText: w.number }).first();
     if (await row.count()) { await row.locator('td').nth(2).click().catch(() => row.click()); for (let i = 0; i < 12 && !/\/workorders\/[0-9a-f-]{36}/.test(pg.url()); i++) await pg.waitForTimeout(800); } }
   const fromList = /\/workorders\/[0-9a-f-]{36}/.test(pg.url()); if (!fromList) await pg.goto(`${APP}/workorders/${id}/lines`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(7000);

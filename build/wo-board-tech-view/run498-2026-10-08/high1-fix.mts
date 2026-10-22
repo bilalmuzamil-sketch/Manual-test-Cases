@@ -165,7 +165,7 @@ const NAMES: Record<string, string> = { [ES.staff_id]: 'Esther', [RE.staff_id]: 
 // 22 Oct 2026 (production judging): "Open the work order" through the screen — Work Orders > All > Search its number > click its row
 // (then the Lines tab when asked), never by its address; falls back to the address and SAYS so.
 const uiPage = async (w: any, lines = false, pg: Page = p) => { const r: any = {}; await pg.goto(`${APP}/workorders?tab=all`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(5000);
-  await tab(pg, 'All').catch(() => {}); await search(pg, w.number); await pg.waitForTimeout(2500); const row = pg.locator('tbody tr').filter({ hasText: w.number }).first(); r.rowShown = await row.count();
+  await tab(pg, 'All').catch(() => {}); await display(pg, 'List').catch(() => {}); await search(pg, w.number); await pg.waitForTimeout(2500); const row = pg.locator('tbody tr').filter({ hasText: w.number }).first(); r.rowShown = await row.count();
   if (r.rowShown) { await row.locator('td').nth(2).click().catch(() => row.click()); for (let i = 0; i < 12 && !/\/workorders\/[0-9a-f-]{36}/.test(pg.url()); i++) await pg.waitForTimeout(800); }
   r.opened = /\/workorders\/[0-9a-f-]{36}/.test(pg.url()); if (!r.opened) { r.fallback = 'NOT FROM THE LIST: opened by address'; await page(w.id, 'lines', pg); return r; }
   await pg.waitForTimeout(6000); await pg.keyboard.press('Escape').catch(() => {});

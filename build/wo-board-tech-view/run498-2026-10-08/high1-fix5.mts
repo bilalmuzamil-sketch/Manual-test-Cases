@@ -333,7 +333,7 @@ await run('C368173', async () => { let w = R.w172; const o: any = {};
   // 22 Oct 2026: steps 1-5 done as written — Work Orders > All, the customer's name in Search, click the work order's row, the Lines tab,
   // then the line's name (the set-up above still uses the direct address). Each hop is recorded; the direct route is only a fallback.
   const uiOpen = async () => { const r: any = {}; await p.goto(`${APP}/workorders?tab=all`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000);
-    await tab(p, 'All').catch(() => {}); await search(p, w.q ?? w.number); await p.waitForTimeout(2500);
+    await tab(p, 'All').catch(() => {}); await display(p, 'List').catch(() => {}); await search(p, w.q ?? w.number); await p.waitForTimeout(2500);   // 22 Oct: the saved display can be Tech View (no table row) — List first
     const row = p.locator('tbody tr').filter({ hasText: w.number }).first(); r.rowShown = await row.count();
     if (r.rowShown) { await row.locator('td').nth(2).click().catch(() => row.click()); for (let i = 0; i < 10 && !/\/workorders\/[0-9a-f-]{36}/.test(p.url()); i++) await p.waitForTimeout(800); }
     r.opened = /\/workorders\/[0-9a-f-]{36}/.test(p.url()); await p.waitForTimeout(3000);

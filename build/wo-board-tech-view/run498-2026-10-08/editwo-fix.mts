@@ -236,7 +236,7 @@ const setPO = async (id: string, po: string) => { await page(id, 'finance'); con
 /** 22 Oct 2026: steps 1-3 as the cases write them — Work Orders > All, the customer's name in Search, click the work order's row (the
  *  direct address only as a recorded fallback). Judged 22 Oct: C368169-C368171 had opened the work order by its address. */
 async function uiOpen(w: any) { const r: any = {}; await p.goto(`${APP}/workorders?tab=all`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000);
-  await tab(p, 'All').catch(() => {}); await search(p, w.q ?? w.number); await p.waitForTimeout(2500);
+  await tab(p, 'All').catch(() => {}); await display(p, 'List').catch(() => {}); await search(p, w.q ?? w.number); await p.waitForTimeout(2500);
   const row = p.locator('tbody tr').filter({ hasText: w.number }).first(); r.rowShown = await row.count();
   if (r.rowShown) { await row.locator('td').nth(2).click().catch(() => row.click()); for (let i = 0; i < 12 && !/\/workorders\/[0-9a-f-]{36}/.test(p.url()); i++) await p.waitForTimeout(800); }
   r.opened = /\/workorders\/[0-9a-f-]{36}/.test(p.url()); if (!r.opened) { r.fallbackGoto = true; await page(w.id); } else await p.waitForTimeout(6000);
