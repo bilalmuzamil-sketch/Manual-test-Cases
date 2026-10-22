@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109–133** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109–134** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -95,6 +95,10 @@ These are stated here **in full** because a session that gets only this far must
   on them. The list lives in `build/PO-QUESTIONS-OPEN.md`; read every sheet's answer column before each report.
 - **🔴 DESIGN CASES MISS NOTHING THE DESIGN SHOWS (133, 22 Oct 2026).** Every design pass runs the design-case checklist in
   `build/skills/21-DESIGN-DRIVE-PROTOCOL.md` §6d and every lessons-register row; an unticked line means the suite is not complete.
+- **🔴 A SOURCE THAT CHANGES A CASE CHANGES THE WHOLE CASE, TOP TO BOTTOM (134, 22 Oct 2026).** Every new or changed source is
+  checked against every case (CONFIRMED / CHANGE / RETIRE / NEW); a case that needs any change is rewritten top to bottom (title,
+  preconditions, steps, results, quotes and From lines, design references, notes, marker, refs, setup recipe, run), never only the part
+  that prompted it; the pass report proves every part per case. Strengthens Rule 41.
 - **🔴 KEEP TEST RUNS IN STEP WITH THE CASES — ALWAYS (123).** New and changed cases go into the project's run in the
   same pass, union only (34). Before editing a case someone else created: give the QA lead the list with C-ids, links,
   who created each and when, and ask permission. No edit until he says yes.

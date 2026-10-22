@@ -3435,3 +3435,26 @@ menu/dialog/tooltip/toast row by row, letter-for-letter labels, held design-vers
 sizes and widths, every PRD look sentence, written down) and applies every row of `build/LESSONS-REGISTER.md`. A suite whose
 checklist has an unticked line is not complete and is not reported as complete. When a design arrives after the cases were written,
 the whole design is driven and every case re-checked (Rules 120, 122).
+
+## 134 · A SOURCE THAT CHANGES A CASE CHANGES THE WHOLE CASE, TOP TO BOTTOM — NEVER ONLY THE PART THAT WAS LOOKED AT (all projects, permanent)
+
+**Ordered by the QA lead, 22 Oct 2026, verbatim:** *"make sure that you Check if ANY of the test cases you created needs to be
+changed/edited/retired based on them anything that needs to be changed in the test cases from top to the bottom of those test cases if
+required should be done. It has happened in the past that you have edited the part of the test case where full case or more than that
+just part of the case was required to be updated. Make it a rule to NEVER repeat such mistakes."*
+
+It strengthens Rule 41 (re-verify the whole case) from a re-read into a rewrite with proof:
+
+1. **Every new or changed source (PRD version, tech plan, design, PO answer, story, any shared document) is checked against EVERY case of
+   the suite**, not only the cases that quote the changed sentence. Each case gets one verdict: CONFIRMED / CHANGE / RETIRE / NEW CASE
+   NEEDED, with the reason.
+2. **A case that needs any change is rewritten from top to bottom against all current sources**: title, every precondition (and its
+   "For example" line), every step, every expected result, the exact quotes and their "From:" lines (document versions and read dates),
+   the build line, the "References from Design" block, any held/known-problem note, the AUTOMATION marker, refs, its setup-file recipe and
+   its run membership. Never only the sentence or field that prompted the change.
+3. **Proof per case**: the pass report lists, for every case, each of those parts as CHANGED or CONFIRMED against named source versions.
+   A report or log that names only the edited field is non-compliant, and a pass without the per-part record is not complete.
+4. **Retire honestly**: a case the sources no longer support is listed for retirement with its C-id and link, and deleted only with the
+   QA lead's go-ahead.
+5. **The tech plan informs, it never overrules** (Rules 30, 57, 115): what it adds that is testable becomes a case cited to it; where it
+   conflicts with the PRD or a PO answer, the case follows the PRD and the conflict becomes a PO question (Rule 96).
