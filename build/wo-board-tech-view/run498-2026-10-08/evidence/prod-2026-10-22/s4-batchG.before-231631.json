@@ -1,0 +1,442 @@
+{
+ "runner": {
+  "id": "88b0aaad",
+  "perms": 45,
+  "who": 200,
+  "log": []
+ },
+ "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
+ "C96963": {
+  "log": [
+   "mileage 201",
+   "remove part request 200",
+   "story 201",
+   "line complete 200",
+   "lines now complete",
+   "wo in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "invoice 201",
+   "status now Invoiced",
+   "mileage 201",
+   "remove part request 200",
+   "story 201",
+   "line complete 200",
+   "lines now complete",
+   "wo in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "invoice 201",
+   "paid 201",
+   "status now Paid",
+   "mileage 201",
+   "remove part request 200",
+   "story 201",
+   "line complete 200",
+   "lines now complete",
+   "wo in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "invoice 201",
+   "status now Invoiced",
+   "declined 201",
+   "mileage 201",
+   "remove part request 200",
+   "story 201",
+   "line complete 200",
+   "lines now complete",
+   "wo in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]"
+  ],
+  "set": {
+   "S1-1555": "complete lead=Esther Howard",
+   "S1-1554": "declined lead=Esther Howard",
+   "S1-1553": "invoiced lead=none",
+   "S1-1552": "paid lead=Esther Howard",
+   "S1-1551": "invoiced lead=Esther Howard",
+   "S1-1550": "approved lead=Esther Howard"
+  },
+  "ids": {
+   "W1": "S1-1550",
+   "W2": "S1-1551",
+   "W3": "S1-1552",
+   "W4": "S1-1553",
+   "W5": "S1-1554",
+   "W6": "S1-1555"
+  },
+  "views": {
+   "Board View": {
+    "declinedToRalph": {
+     "lead": "Ralph Edwards",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    },
+    "completeToRalph": {
+     "lead": "Ralph Edwards",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    },
+    "invToRalph": {
+     "lead": "Esther Howard",
+     "message": [],
+     "prompt": null
+    },
+    "invToUnassigned": {
+     "lead": "Esther Howard",
+     "message": [],
+     "prompt": null
+    },
+    "paidToRalph": {
+     "lead": "Esther Howard",
+     "message": [],
+     "prompt": null
+    },
+    "paidToUnassigned": {
+     "lead": "Esther Howard",
+     "message": [],
+     "prompt": null
+    },
+    "inv4ToEsther": {
+     "lead": "Unassigned",
+     "message": [],
+     "prompt": null
+    },
+    "W2-inv-reorder": {
+     "before": [
+      "S1-1550",
+      "S1-1551",
+      "S1-1552"
+     ],
+     "afterReload": [
+      "S1-1551",
+      "S1-1550",
+      "S1-1552"
+     ],
+     "lead": "Esther Howard",
+     "message": []
+    },
+    "W3-paid-reorder": {
+     "before": [
+      "S1-1551",
+      "S1-1550",
+      "S1-1552"
+     ],
+     "afterReload": [
+      "S1-1551",
+      "S1-1552",
+      "S1-1550"
+     ],
+     "lead": "Esther Howard",
+     "message": []
+    },
+    "W4reorderUnassigned": {
+     "onScreen": {
+      "W4": true,
+      "W1": true
+     },
+     "before": [
+      "S1-1550",
+      "S1-1553"
+     ],
+     "dropAt": {
+      "y": 453,
+      "w1Top": 278,
+      "w1Bottom": 459
+     },
+     "midDrag": {
+      "marks": [
+       "q-field__native q-placeholder",
+       "board-drag-ghost row no-wrap items-center",
+       "board-drag-ghost__text column",
+       "board-drag-ghost__title ellipsis",
+       "board-drag-ghost__subtitle ellipsis"
+      ],
+      "underPointer": "DIV.q-card board-card cursor-pointer wo-dens",
+      "column": "board_column_unassigned",
+      "cursor": "pointer",
+      "orderNow": [
+       "S1-1550",
+       "S1-1553"
+      ]
+     },
+     "message": [],
+     "afterNoReload": [
+      "S1-1550",
+      "S1-1553"
+     ],
+     "afterReload": [
+      "S1-1550",
+      "S1-1553"
+     ],
+     "server": {
+      "listOrder": [
+       "S1-1553",
+       "S1-1550"
+      ],
+      "fields": {
+       "S1-1553": {
+        "statusAuthToOrderCount": 0,
+        "orderId": null
+       },
+       "S1-1550": {
+        "statusAuthToOrderCount": 0,
+        "orderId": null
+       }
+      },
+      "prefKeys": {}
+     },
+     "reordered": false,
+     "lead": "Unassigned"
+    }
+   },
+   "Tech View": {
+    "declinedToRalph": {
+     "lead": "Ralph Edwards",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    },
+    "completeToRalph": {
+     "lead": "Ralph Edwards",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    },
+    "invToRalph": {
+     "lead": "Esther Howard",
+     "message": [],
+     "prompt": null
+    },
+    "invToUnassigned": {
+     "lead": "Esther Howard",
+     "message": [],
+     "prompt": null
+    },
+    "paidToRalph": {
+     "lead": "Esther Howard",
+     "message": [],
+     "prompt": null
+    },
+    "paidToUnassigned": {
+     "lead": "Esther Howard",
+     "message": [],
+     "prompt": null
+    },
+    "inv4ToEsther": {
+     "lead": "Unassigned",
+     "message": [],
+     "prompt": null
+    },
+    "W2-inv-reorder": {
+     "before": [
+      "S1-1553",
+      "drag_handle_da71a2c4-ef4c-4f97-b2cd-5fc3ac8d0ae8",
+      "number_link_da71a2c4-ef4c-4f97-b2cd-5fc3ac8d0ae8",
+      "lock",
+      "progress_da71a2c4-ef4c-4f97-b2cd-5fc3ac8d0ae8",
+      "advisor_avatar_da71a2c4-ef4c-4f97-b2cd-5fc3ac8d0ae8",
+      "S1-1551",
+      "drag_handle_20a8ce9a-b26d-4a40-b2bc-6ff10302bd2c",
+      "number_link_20a8ce9a-b26d-4a40-b2bc-6ff10302bd2c",
+      "lock",
+      "progress_20a8ce9a-b26d-4a40-b2bc-6ff10302bd2c",
+      "advisor_avatar_20a8ce9a-b26d-4a40-b2bc-6ff10302bd2c",
+      "S1-1552",
+      "drag_handle_ced401b8-3bb0-4e1f-ab56-c406be25c645",
+      "number_link_ced401b8-3bb0-4e1f-ab56-c406be25c645",
+      "lock",
+      "progress_ced401b8-3bb0-4e1f-ab56-c406be25c645",
+      "advisor_avatar_ced401b8-3bb0-4e1f-ab56-c406be25c645",
+      "S1-1550",
+      "drag_handle_1b030777-3033-40c5-beef-de535596d02f",
+      "number_link_1b030777-3033-40c5-beef-de535596d02f",
+      "progress_1b030777-3033-40c5-beef-de535596d02f",
+      "advisor_avatar_1b030777-3033-40c5-beef-de535596d02f",
+      "S1-1554",
+      "drag_handle_1a83e273-df83-4619-8ac6-3714c4e56461",
+      "number_link_1a83e273-df83-4619-8ac6-3714c4e56461",
+      "progress_1a83e273-df83-4619-8ac6-3714c4e56461",
+      "advisor_avatar_1a83e273-df83-4619-8ac6-3714c4e56461",
+      "S1-1555",
+      "drag_handle_55bf4e4b-c21d-413c-bdb2-6a6b25e28928",
+      "number_link_55bf4e4b-c21d-413c-bdb2-6a6b25e28928",
+      "progress_55bf4e4b-c21d-413c-bdb2-6a6b25e28928",
+      "advisor_avatar_55bf4e4b-c21d-413c-bdb2-6a6b25e28928"
+     ],
+     "afterReload": [
+      "S1-1553",
+      "drag_handle_da71a2c4-ef4c-4f97-b2cd-5fc3ac8d0ae8",
+      "number_link_da71a2c4-ef4c-4f97-b2cd-5fc3ac8d0ae8",
+      "lock",
+      "progress_da71a2c4-ef4c-4f97-b2cd-5fc3ac8d0ae8",
+      "advisor_avatar_da71a2c4-ef4c-4f97-b2cd-5fc3ac8d0ae8",
+      "S1-1552",
+      "drag_handle_ced401b8-3bb0-4e1f-ab56-c406be25c645",
+      "number_link_ced401b8-3bb0-4e1f-ab56-c406be25c645",
+      "lock",
+      "progress_ced401b8-3bb0-4e1f-ab56-c406be25c645",
+      "advisor_avatar_ced401b8-3bb0-4e1f-ab56-c406be25c645",
+      "S1-1551",
+      "drag_handle_20a8ce9a-b26d-4a40-b2bc-6ff10302bd2c",
+      "number_link_20a8ce9a-b26d-4a40-b2bc-6ff10302bd2c",
+      "lock",
+      "progress_20a8ce9a-b26d-4a40-b2bc-6ff10302bd2c",
+      "advisor_avatar_20a8ce9a-b26d-4a40-b2bc-6ff10302bd2c",
+      "S1-1550",
+      "drag_handle_1b030777-3033-40c5-beef-de535596d02f",
+      "number_link_1b030777-3033-40c5-beef-de535596d02f",
+      "progress_1b030777-3033-40c5-beef-de535596d02f",
+      "advisor_avatar_1b030777-3033-40c5-beef-de535596d02f",
+      "S1-1554",
+      "drag_handle_1a83e273-df83-4619-8ac6-3714c4e56461",
+      "number_link_1a83e273-df83-4619-8ac6-3714c4e56461",
+      "progress_1a83e273-df83-4619-8ac6-3714c4e56461",
+      "advisor_avatar_1a83e273-df83-4619-8ac6-3714c4e56461",
+      "S1-1555",
+      "drag_handle_55bf4e4b-c21d-413c-bdb2-6a6b25e28928",
+      "number_link_55bf4e4b-c21d-413c-bdb2-6a6b25e28928",
+      "progress_55bf4e4b-c21d-413c-bdb2-6a6b25e28928",
+      "advisor_avatar_55bf4e4b-c21d-413c-bdb2-6a6b25e28928"
+     ],
+     "lead": "Esther Howard",
+     "message": []
+    },
+    "W3-paid-reorder": {
+     "before": [
+      "S1-1553",
+      "drag_handle_da71a2c4-ef4c-4f97-b2cd-5fc3ac8d0ae8",
+      "number_link_da71a2c4-ef4c-4f97-b2cd-5fc3ac8d0ae8",
+      "lock",
+      "progress_da71a2c4-ef4c-4f97-b2cd-5fc3ac8d0ae8",
+      "advisor_avatar_da71a2c4-ef4c-4f97-b2cd-5fc3ac8d0ae8",
+      "S1-1552",
+      "drag_handle_ced401b8-3bb0-4e1f-ab56-c406be25c645",
+      "number_link_ced401b8-3bb0-4e1f-ab56-c406be25c645",
+      "lock",
+      "progress_ced401b8-3bb0-4e1f-ab56-c406be25c645",
+      "advisor_avatar_ced401b8-3bb0-4e1f-ab56-c406be25c645",
+      "S1-1551",
+      "drag_handle_20a8ce9a-b26d-4a40-b2bc-6ff10302bd2c",
+      "number_link_20a8ce9a-b26d-4a40-b2bc-6ff10302bd2c",
+      "lock",
+      "progress_20a8ce9a-b26d-4a40-b2bc-6ff10302bd2c",
+      "advisor_avatar_20a8ce9a-b26d-4a40-b2bc-6ff10302bd2c",
+      "S1-1550",
+      "drag_handle_1b030777-3033-40c5-beef-de535596d02f",
+      "number_link_1b030777-3033-40c5-beef-de535596d02f",
+      "progress_1b030777-3033-40c5-beef-de535596d02f",
+      "advisor_avatar_1b030777-3033-40c5-beef-de535596d02f",
+      "S1-1554",
+      "drag_handle_1a83e273-df83-4619-8ac6-3714c4e56461",
+      "number_link_1a83e273-df83-4619-8ac6-3714c4e56461",
+      "progress_1a83e273-df83-4619-8ac6-3714c4e56461",
+      "advisor_avatar_1a83e273-df83-4619-8ac6-3714c4e56461",
+      "S1-1555",
+      "drag_handle_55bf4e4b-c21d-413c-bdb2-6a6b25e28928",
+      "number_link_55bf4e4b-c21d-413c-bdb2-6a6b25e28928",
+      "progress_55bf4e4b-c21d-413c-bdb2-6a6b25e28928",
+      "advisor_avatar_55bf4e4b-c21d-413c-bdb2-6a6b25e28928"
+     ],
+     "afterReload": [
+      "S1-1553",
+      "drag_handle_da71a2c4-ef4c-4f97-b2cd-5fc3ac8d0ae8",
+      "number_link_da71a2c4-ef4c-4f97-b2cd-5fc3ac8d0ae8",
+      "lock",
+      "progress_da71a2c4-ef4c-4f97-b2cd-5fc3ac8d0ae8",
+      "advisor_avatar_da71a2c4-ef4c-4f97-b2cd-5fc3ac8d0ae8",
+      "S1-1551",
+      "drag_handle_20a8ce9a-b26d-4a40-b2bc-6ff10302bd2c",
+      "number_link_20a8ce9a-b26d-4a40-b2bc-6ff10302bd2c",
+      "lock",
+      "progress_20a8ce9a-b26d-4a40-b2bc-6ff10302bd2c",
+      "advisor_avatar_20a8ce9a-b26d-4a40-b2bc-6ff10302bd2c",
+      "S1-1552",
+      "drag_handle_ced401b8-3bb0-4e1f-ab56-c406be25c645",
+      "number_link_ced401b8-3bb0-4e1f-ab56-c406be25c645",
+      "lock",
+      "progress_ced401b8-3bb0-4e1f-ab56-c406be25c645",
+      "advisor_avatar_ced401b8-3bb0-4e1f-ab56-c406be25c645",
+      "S1-1550",
+      "drag_handle_1b030777-3033-40c5-beef-de535596d02f",
+      "number_link_1b030777-3033-40c5-beef-de535596d02f",
+      "progress_1b030777-3033-40c5-beef-de535596d02f",
+      "advisor_avatar_1b030777-3033-40c5-beef-de535596d02f",
+      "S1-1554",
+      "drag_handle_1a83e273-df83-4619-8ac6-3714c4e56461",
+      "number_link_1a83e273-df83-4619-8ac6-3714c4e56461",
+      "progress_1a83e273-df83-4619-8ac6-3714c4e56461",
+      "advisor_avatar_1a83e273-df83-4619-8ac6-3714c4e56461",
+      "S1-1555",
+      "drag_handle_55bf4e4b-c21d-413c-bdb2-6a6b25e28928",
+      "number_link_55bf4e4b-c21d-413c-bdb2-6a6b25e28928",
+      "progress_55bf4e4b-c21d-413c-bdb2-6a6b25e28928",
+      "advisor_avatar_55bf4e4b-c21d-413c-bdb2-6a6b25e28928"
+     ],
+     "lead": "Esther Howard",
+     "message": []
+    },
+    "declinedBack": {
+     "lead": "Esther Howard",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    },
+    "completeBack": {
+     "lead": "Esther Howard",
+     "message": [
+      "Lead technician updated"
+     ],
+     "prompt": null
+    }
+   }
+  },
+  "woPage": {
+   "present": 0,
+   "disabled": "n/a",
+   "text": null
+  },
+  "serverRefusal": "409 [{\"error\":\"The lead technician can't be changed once a work order is Invoiced or Paid.\"}]",
+  "final": {
+   "S1-1555": "complete lead=Esther Howard",
+   "S1-1554": "declined lead=Esther Howard",
+   "S1-1553": "invoiced lead=none",
+   "S1-1552": "paid lead=Esther Howard",
+   "S1-1551": "invoiced lead=Esther Howard",
+   "S1-1550": "approved lead=Esther Howard"
+  }
+ },
+ "C96972": {
+  "log": [
+   "mileage 201",
+   "remove part request 200",
+   "story 201",
+   "line complete 200",
+   "lines now complete",
+   "wo in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
+   "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]"
+  ],
+  "cardStatus": "Complete",
+  "invoiced": "201",
+  "statusNow": "invoiced",
+  "cardStatusStill": "Complete",
+  "message": [
+   "Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid."
+  ],
+  "column": "Esther Howard",
+  "afterReload": {
+   "lead": {
+    "S1-1556": "invoiced lead=Esther Howard"
+   },
+   "column": "Esther Howard"
+  }
+ }
+}

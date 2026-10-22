@@ -1,0 +1,431 @@
+{
+ "runner": {
+  "id": "88b0aaad",
+  "perms": 45,
+  "who": 200,
+  "log": []
+ },
+ "localStorageKeys": [
+  "organization_features",
+  "mode",
+  "user",
+  "fe_permissions_wrapper",
+  "organization_features_timestamp"
+ ],
+ "C96975": {
+  "locationFound": "Truck Hill 1",
+  "foundList": {
+   "on": [
+    "vehicle",
+    "vin",
+    "progress",
+    "serviceAdvisor",
+    "technician",
+    "clockedInTechnicians",
+    "linesCount",
+    "totalPrice",
+    "startDate"
+   ],
+   "labelsOn": [
+    "Asset",
+    "VIN/Serial #",
+    "Progress",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total price",
+    "Created on"
+   ],
+   "heads": [
+    "On Site",
+    "Status",
+    "Number",
+    "Customer",
+    "Asset",
+    "Unit",
+    "VIN/Serial #",
+    "Progress",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total Price",
+    "Created On"
+   ]
+  },
+  "foundTech": {
+   "on": [
+    "unreceived_part_requests_count",
+    "unit",
+    "vehicle",
+    "progress",
+    "service_advisor",
+    "clocked_in_technicians",
+    "lines_count",
+    "start_date",
+    "total_price"
+   ],
+   "labelsOn": [
+    "Waiting On Parts",
+    "Unit",
+    "Asset",
+    "Progress",
+    "Service Advisor",
+    "Clocked In",
+    "Lines",
+    "Created on",
+    "Total price"
+   ],
+   "heads": [
+    "Status",
+    "Waiting On Parts",
+    "Number",
+    "Customer",
+    "Unit",
+    "Asset",
+    "Progress",
+    "Service Advisor",
+    "Clocked In",
+    "Lines",
+    "Created On",
+    "Total Price"
+   ]
+  },
+  "setup": [
+   "service_advisor=on ok",
+   "progress=on ok",
+   "assigned_techs=on ok",
+   "serviceAdvisor=on ok",
+   "progress=on ok"
+  ],
+  "step3": {
+   "on": [
+    "vehicle",
+    "vin",
+    "progress",
+    "serviceAdvisor",
+    "technician",
+    "clockedInTechnicians",
+    "linesCount",
+    "totalPrice",
+    "startDate"
+   ],
+   "labelsOn": [
+    "Asset",
+    "VIN/Serial #",
+    "Progress",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total price",
+    "Created on"
+   ],
+   "heads": [
+    "On Site",
+    "Status",
+    "Number",
+    "Customer",
+    "Asset",
+    "Unit",
+    "VIN/Serial #",
+    "Progress",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total Price",
+    "Created On"
+   ]
+  },
+  "step7": "service_advisor=off ok",
+  "step8": "assigned_techs=off ok",
+  "techAfter8": {
+   "on": [
+    "unreceived_part_requests_count",
+    "unit",
+    "vehicle",
+    "progress",
+    "clocked_in_technicians",
+    "lines_count",
+    "start_date",
+    "total_price"
+   ],
+   "labelsOn": [
+    "Waiting On Parts",
+    "Unit",
+    "Asset",
+    "Progress",
+    "Clocked In",
+    "Lines",
+    "Created on",
+    "Total price"
+   ],
+   "heads": [
+    "Status",
+    "Waiting On Parts",
+    "Number",
+    "Customer",
+    "Unit",
+    "Asset",
+    "Progress",
+    "Clocked In",
+    "Lines",
+    "Created On",
+    "Total Price"
+   ]
+  },
+  "step11": {
+   "on": [
+    "vehicle",
+    "vin",
+    "progress",
+    "serviceAdvisor",
+    "technician",
+    "clockedInTechnicians",
+    "linesCount",
+    "totalPrice",
+    "startDate"
+   ],
+   "labelsOn": [
+    "Asset",
+    "VIN/Serial #",
+    "Progress",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total price",
+    "Created on"
+   ],
+   "heads": [
+    "On Site",
+    "Status",
+    "Number",
+    "Customer",
+    "Asset",
+    "Unit",
+    "VIN/Serial #",
+    "Progress",
+    "Service Advisor",
+    "Lead Technician",
+    "Clocked In",
+    "Lines",
+    "Total Price",
+    "Created On"
+   ],
+   "serviceAdvisorShown": true,
+   "assignedTechsShown": false
+  },
+  "step13": "progress=off ok",
+  "step15": {
+   "on": [
+    "unreceived_part_requests_count",
+    "unit",
+    "vehicle",
+    "progress",
+    "clocked_in_technicians",
+    "lines_count",
+    "start_date",
+    "total_price"
+   ],
+   "labelsOn": [
+    "Waiting On Parts",
+    "Unit",
+    "Asset",
+    "Progress",
+    "Clocked In",
+    "Lines",
+    "Created on",
+    "Total price"
+   ],
+   "heads": [
+    "Status",
+    "Waiting On Parts",
+    "Number",
+    "Customer",
+    "Unit",
+    "Asset",
+    "Progress",
+    "Clocked In",
+    "Lines",
+    "Created On",
+    "Total Price"
+   ],
+   "progressShown": true
+  },
+  "steps16to18": "not done: logging out ends the one shared staging sign-in (L0394); fresh page load read instead",
+  "step18reload": {
+   "tech": {
+    "on": [
+     "unreceived_part_requests_count",
+     "unit",
+     "vehicle",
+     "progress",
+     "clocked_in_technicians",
+     "lines_count",
+     "start_date",
+     "total_price"
+    ],
+    "labelsOn": [
+     "Waiting On Parts",
+     "Unit",
+     "Asset",
+     "Progress",
+     "Clocked In",
+     "Lines",
+     "Created on",
+     "Total price"
+    ],
+    "heads": [
+     "Status",
+     "Waiting On Parts",
+     "Number",
+     "Customer",
+     "Unit",
+     "Asset",
+     "Progress",
+     "Clocked In",
+     "Lines",
+     "Created On",
+     "Total Price"
+    ]
+   },
+   "list": {
+    "on": [
+     "vehicle",
+     "vin",
+     "serviceAdvisor",
+     "technician",
+     "clockedInTechnicians",
+     "linesCount",
+     "totalPrice",
+     "startDate"
+    ],
+    "labelsOn": [
+     "Asset",
+     "VIN/Serial #",
+     "Service Advisor",
+     "Lead Technician",
+     "Clocked In",
+     "Lines",
+     "Total price",
+     "Created on"
+    ],
+    "heads": [
+     "On Site",
+     "Status",
+     "Number",
+     "Customer",
+     "Asset",
+     "Unit",
+     "VIN/Serial #",
+     "Service Advisor",
+     "Lead Technician",
+     "Clocked In",
+     "Lines",
+     "Total Price",
+     "Created On"
+    ]
+   }
+  },
+  "secondKept": [
+   "user",
+   "fe_permissions_wrapper"
+  ],
+  "secondBrowser": {
+   "at": "Truck Hill 1",
+   "tech": {
+    "on": [
+     "unreceived_part_requests_count",
+     "unit",
+     "vehicle",
+     "progress",
+     "clocked_in_technicians",
+     "lines_count",
+     "start_date",
+     "total_price"
+    ],
+    "labelsOn": [
+     "Waiting On Parts",
+     "Unit",
+     "Asset",
+     "Progress",
+     "Clocked In",
+     "Lines",
+     "Created on",
+     "Total price"
+    ],
+    "heads": [
+     "Status",
+     "Waiting On Parts",
+     "Number",
+     "Customer",
+     "Unit",
+     "Asset",
+     "Progress",
+     "Clocked In",
+     "Lines",
+     "Created On",
+     "Total Price"
+    ]
+   },
+   "list": {
+    "on": [
+     "vehicle",
+     "vin",
+     "serviceAdvisor",
+     "technician",
+     "clockedInTechnicians",
+     "linesCount",
+     "totalPrice",
+     "startDate"
+    ],
+    "labelsOn": [
+     "Asset",
+     "VIN/Serial #",
+     "Service Advisor",
+     "Lead Technician",
+     "Clocked In",
+     "Lines",
+     "Total price",
+     "Created on"
+    ],
+    "heads": [
+     "On Site",
+     "Status",
+     "Number",
+     "Customer",
+     "Asset",
+     "Unit",
+     "VIN/Serial #",
+     "Service Advisor",
+     "Lead Technician",
+     "Clocked In",
+     "Lines",
+     "Total Price",
+     "Created On"
+    ]
+   }
+  }
+ },
+ "loc2": {
+  "runnerDeps": [
+   "Truck Hill 1/Department1",
+   "Trucks Hill 2/Department1"
+  ],
+  "ayeshaDeps": [
+   "Truck Hill 1/Department1"
+  ],
+  "ayeshaWorkplace": "Truck Hill 1",
+  "ids": 0,
+  "enrolLeth": "400 {\"errors\":[{\"error\":\"Staff is already enrolled in department\"}]}",
+  "runnerDepsAfter": [
+   "Truck Hill 1/Department1",
+   "Trucks Hill 2/Department1"
+  ],
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('header').getByText(/^[A-Z]{2}$/).last()\n"
+ },
+ "restored": true
+}
