@@ -1,0 +1,8 @@
+63a64
+> - One display change on Sales By Representative: a Part Sales row shows a dash in Labor Delta, Labor Invoiced and Labor Margin (an empty cell in the CSV), where today's report shows 0.00 and $0.00. A part sale has no labor, so these columns don't apply to it (S5-R15b). Totals don't change.
+84a86
+> > *\* Context note (S1-R6a): today the Lead Technician field on the card never shows a message: it isn't required and has no hint, so the 20px strip it used to keep was always empty. S1-R6a is the rule if a message is ever added. Test that no blank strip remains under Lead Technician and every gap is 16px.*
+222a225
+> - **S5-R15b:** On a Part Sales row, Labor Delta, Labor Invoiced and Labor Margin, and the labor and hours cells of the Expanded downloads, show a dash on screen and in the PDF and are blank in the CSV. A part sale has no labor, so these columns don't apply to it.
+308a312
+> | 2026-10-21 | Chris Ward | New S5-R15b: a Part Sales row shows a dash in the labor columns (blank in the CSV), was 0.00 / $0.00; added to Release day. S1-R6a: context note that the card's Lead Technician field shows no message today. v11. | Bilal's QA sheet, questions 39 and 40, 2026-10-21. Chris ruling. |
