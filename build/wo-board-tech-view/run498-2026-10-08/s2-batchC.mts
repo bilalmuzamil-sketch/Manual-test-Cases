@@ -428,6 +428,8 @@ await run('C368161', async () => {
   await p.evaluate(`(() => { const c = document.querySelector('[data-test-id="board_column_${lead.staff_id}"]'); const h = document.querySelector('.board-view__scroller'); for (let i = 0; i < 40 && !document.querySelector('[data-test-id="board_column_${lead.staff_id}"]'); i++) h.scrollLeft += 600; })()`);
   for (let i = 0; i < 30 && !(await p.locator(`[data-test-id="board_column_${lead.staff_id}"]`).count()); i++) { await p.evaluate(`document.querySelector('.board-view__scroller').scrollLeft += 600`); await p.waitForTimeout(400); }
   await p.evaluate(`document.querySelector('[data-test-id="board_column_${lead.staff_id}"]')?.scrollIntoView({ inline: 'center' })`); await p.waitForTimeout(1000);
+  // 22 Oct 2026 (production): the old scroll used '.board-view__scroller' and never reached her column — wob.mts toColumn() does
+  await toColumn(p, lead.staff_id).catch(() => {}); await p.waitForTimeout(1200); R.C368161.columnReached = await p.locator(`[data-test-id="board_column_${lead.staff_id}"]`).count();
   R.C368161.boardHeader = await p.evaluate(`(() => { const c = document.querySelector('[data-test-id="board_column_${lead.staff_id}"]'); if (!c) return null; const av = c.querySelector('.q-avatar'); return av ? av.innerText.trim() : null; })()`);
   const fieldsBtn = p.locator('button[aria-label*="Fields" i], [data-test-id*="field" i]').first();
   R.C368161.fieldsButton = await fieldsBtn.evaluate((e) => e.getAttribute('aria-label') || e.getAttribute('data-test-id')).catch(() => null);
@@ -438,7 +440,7 @@ await run('C368161', async () => {
     if ((await lt2.getAttribute('aria-checked')) !== 'true') { await lt2.click().catch(() => {}); await p.waitForTimeout(1500); }
     await p.keyboard.press('Escape'); await p.waitForTimeout(1000);
   }
-  R.C368161.lineTechOn = await p.locator('[aria-label="Fields to display"]').first().click().then(async () => { await p.waitForTimeout(800); const v = await p.locator('.q-menu [aria-label="Line technicians"]').first().getAttribute('aria-checked'); await p.keyboard.press('Escape'); return v; }).catch(() => null);
+  R.C368161.lineTechOn = await p.locator('[data-test-id="button_board_fields_selection"], [aria-label="Column Selection"], [aria-label="Fields to display"]').first().click() /* 22 Oct 2026: on production the board's button reads "Column Selection" */.then(async () => { await p.waitForTimeout(800); const v = await p.locator('.q-menu [aria-label="Line technicians"]').first().getAttribute('aria-checked'); await p.keyboard.press('Escape'); return v; }).catch(() => null);
   R.C368161.cardAvatars = await p.evaluate(`(() => { const c = [...document.querySelectorAll('[data-test-id^="board_column_"] *')].find(e => e.children.length === 0 && e.textContent.trim() === ${JSON.stringify(w.number)}); let card = c; while (card && !(card.querySelectorAll && card.innerText && card.innerText.includes('Customer') && card.querySelector('.q-avatar'))) card = card.parentElement; if (!card) return null; return { avatars: [...card.querySelectorAll('.q-avatar')].map(a => a.innerText.trim() || (a.querySelector('img') ? 'img' : 'EMPTY')), text: card.innerText.replace(/\\s+/g, ' ').slice(0, 200) }; })()`);
   await shot(p, 'C368161-board'); await display(p, 'List');
 });

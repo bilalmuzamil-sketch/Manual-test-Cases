@@ -1,0 +1,134 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - pass-b10"
+ },
+ "results": {
+  "C96919": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 and 2: Work Orders was opened on the All tab and Board View was clicked in the display switcher.",
+    "Steps 3 and 4: after refreshing the page it opened in Board View, so the choice was saved (the control check).",
+    "Not checked by hand: when the saved display was made unreadable by the test tool, the page opened in List, with the general message \"Ooooops! An error occurred\"; once it could be read again the page opened in Board View again."
+   ],
+   "pictures": [
+    "pictures-prod/C96919-1-prod-1022.png",
+    "pictures-prod/C96919-2-prod-1022.png"
+   ]
+  },
+  "C96923": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 4 (baseline): at Truck Hill 1 in List with Assigned to me on, changing location through your initials > Change Location to Trucks Hill 2 opened Work Orders on the All tab in List, with Assigned to me still on (also after a refresh).",
+    "Step 5: back at Truck Hill 1, Assigned to me was turned off.",
+    "Steps 6 to 9: Board View chosen and Assigned to me turned on; after changing to Trucks Hill 2 the page is Work Orders on the All tab (same as the baseline), Board View is still selected and Assigned to me is still on.",
+    "Step 10: Tech View chosen at Trucks Hill 2; Assigned to me was still on.",
+    "Steps 11 and 12: after changing back to Truck Hill 1 the page is Work Orders on the All tab, Tech View is still selected and Assigned to me is still on."
+   ],
+   "pictures": [
+    "pictures-prod/C96923-1-prod-1022.png",
+    "pictures-prod/C96923-2-prod-1022.png",
+    "pictures-prod/C96923-3-prod-1022.png"
+   ]
+  },
+  "C96930": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Set-up: the seven staff were checked in their staff records: Esther Howard and Billy Nobill (Billable off) are active Technicians at Truck Hill 1 with Time Clock on; Ina Active is deactivated; Nick Noclock has Time Clock off; Olive Office is an Office User; Tim Clockuser is a Time Clock User; Ella Elsewhere is only at Trucks Hill 2.",
+    "Steps 1 to 4: on the All tab in Tech View, every group header was read (64 groups): Esther Howard and Billy Nobill each have a group (count 0, \"No work orders\"); Ina Active, Nick Noclock, Olive Office, Tim Clockuser and Ella Elsewhere have none.",
+    "Steps 5 and 6: in Board View every column header was read: Esther Howard and Billy Nobill each have a column (count 0, \"Drag a work order here to assign it\"); the other five have no column.",
+    "Where each missing person would sit in name order, the neighbouring groups and columns are shown with no group or column for them (for example Floyd Miles is followed directly by Jenny Wilson where Ina Active would be)."
+   ],
+   "pictures": [
+    "pictures-prod/C96930-1-prod-1022.png",
+    "pictures-prod/C96930-2-prod-1022.png",
+    "pictures-prod/C96930-3-prod-1022.png",
+    "pictures-prod/C96930-4-prod-1022.png"
+   ]
+  },
+  "C368127": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c). Loading in batches not seen by hand.",
+    "Steps 1 to 3: a brand-new Admin user (who had never collapsed anything) opened Work Orders, All tab, Tech View: Unassigned opens expanded and its header shows 289, the same number of work orders with no lead technician that List holds on the All tab (289 of 609).",
+    "Steps 4 and 5: while scrolling deep into Unassigned, its header (Unassigned, 289) stays on screen just under the column header row as the rows scroll past.",
+    "Step 6: rows kept appearing while scrolling, but no loading pause was visible on the pictures: loading in batches not seen by hand.",
+    "Step 7: clicking the arrow on the held Unassigned header while deep inside the group collapsed Unassigned straight away, without scrolling up first; the table then shows the collapsed Unassigned header followed by Aaron Baker's group."
+   ],
+   "pictures": [
+    "pictures-prod/C368127-1-prod-1022.png",
+    "pictures-prod/C368127-2-prod-1022.png",
+    "pictures-prod/C368127-3-prod-1022.png",
+    "pictures-prod/C368127-4-prod-1022.png"
+   ]
+  },
+  "C96927": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 5: with \"ZZAUTOTEST F2 Tech Columns\" searched on the All tab in List, the Column Selection menu offers Waiting On Parts, Asset, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total price, Created on, Invoiced Date, Days open, Parts and Returns; it does not offer Assigned Techs.",
+    "Steps 6 and 7: Tech View has its own Column Selection button and menu. It offers every column List's menu offers, plus On Site, Unit and Assigned Techs; Assigned Techs is on, and On Site, VIN/Serial # and Lead Technician are off.",
+    "Steps 8 to 11: after turning on On Site, VIN/Serial # and Lead Technician, each shows as a column in the Tech View table.",
+    "Steps 12 to 14: after turning Assigned Techs off, the Assigned Techs column no longer shows.",
+    "Steps 15 and 16: after turning it back on, the Assigned Techs column shows again.",
+    "Step 17: Status, Number and Customer are not in the menu at all, so they cannot be turned off, and all three stay in the table.",
+    "Steps 18 to 20: after turning Unit off, the Unit column no longer shows while Status, Number and Customer still show; Unit was then turned back on."
+   ],
+   "pictures": [
+    "pictures-prod/C96927-1-prod-1022.png",
+    "pictures-prod/C96927-2-prod-1022.png",
+    "pictures-prod/C96927-3-prod-1022.png",
+    "pictures-prod/C96927-4-prod-1022.png"
+   ]
+  },
+  "C96938": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 4: on the All tab with \"ZZAUTOTEST F2 Name Tooltip\" searched, in Tech View.",
+    "Step 5: with the pointer held on Ayesha Khan's group header avatar, the hover label is \"Ayesha Khan\".",
+    "Step 6: with the pointer held on the name in the long-named group header, the hover label is \"Maximiliana Fitzgerald-Montgomery\". At this window width the name was shown in full, not shortened.",
+    "Step 7: with the pointer held on her avatar, the hover label is \"Maximiliana Fitzgerald-Montgomery\".",
+    "The hover label is the browser's own, which automated pictures do not draw, so the pictures show where the pointer was, not the label itself."
+   ],
+   "pictures": [
+    "pictures-prod/C96938-1-prod-1022.png",
+    "pictures-prod/C96938-2-prod-1022.png",
+    "pictures-prod/C96938-3-prod-1022.png"
+   ]
+  },
+  "C96934": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Step 1: Ralph Edwards was deactivated in Settings > Staff > his edit icon > Deactivate Account; his staff record then read inactive.",
+    "Steps 2 to 4: Work Orders, All tab, search \"ZZAUTOTEST F2 Inactive Lead\", Tech View.",
+    "Step 5: Ralph Edwards' group is still shown with both his work orders, S1-1399 and S1-1400, count 2.",
+    "His group header shows a grey \"Inactive\" label right after his name.",
+    "Afterwards Ralph Edwards was set active again (read back: active)."
+   ],
+   "pictures": [
+    "pictures-prod/C96934-1-prod-1022.png",
+    "pictures-prod/C96934-2-prod-1022.png"
+   ]
+  },
+  "C368125": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 4: on the All tab in Tech View, Esther Howard's group (38 work orders) was collapsed with the arrow on her header.",
+    "Steps 5 and 6: after typing \"Collapse Kept\" in Search, Esther Howard's group stays collapsed (it did not open by itself) and its header count shows 1; none of her rows show.",
+    "Step 7: expanding her group shows the 1 matching row, S1-1401 (\"ZZAUTOTEST F2 Collapse Kept\"); her other test work order, S1-1402 (\"ZZAUTOTEST F2 Collapse Other\"), does not show."
+   ],
+   "pictures": [
+    "pictures-prod/C368125-1-prod-1022.png",
+    "pictures-prod/C368125-2-prod-1022.png"
+   ]
+  }
+ }
+}
