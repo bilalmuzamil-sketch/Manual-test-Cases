@@ -20,7 +20,10 @@ import { mkShift, shiftsOn, localDate } from './shifts.mts';
 
 const only = (process.env.ONLY || '').split(',').filter(Boolean);
 const want = (id: string) => !only.length || only.includes(id);
-const { browser, page: p, APP } = await bootOrigin({ app: 'https://app.staging.shopview.com', apiHost: 'api.staging.shopview.com', ssoFile: '/tmp/qa-cookies/staging-sso.txt', label: 'staging', route: '/workorders', key: 'admin' }) as any;
+// 22 Oct 2026: on production (WOB_PROD_LOGIN) the normal password sign-in of the second admin test account; staging keeps its quick-login.
+const { browser, page: p, APP } = (process.env.WOB_PROD_LOGIN
+  ? await (await import('../../testing-tools/prod-login-boot.mjs') as any).bootProdLogin('/workorders', { viewport: { width: 1600, height: 1000 } })
+  : await bootOrigin({ app: 'https://app.staging.shopview.com', apiHost: 'api.staging.shopview.com', ssoFile: '/tmp/qa-cookies/staging-sso.txt', label: 'staging', route: '/workorders', key: 'admin' })) as any;
 const pg: Page = p; pg.setDefaultTimeout(30_000);
 const a = api(pg);
 const OUT = path.join(EV, 'stg6.json');
