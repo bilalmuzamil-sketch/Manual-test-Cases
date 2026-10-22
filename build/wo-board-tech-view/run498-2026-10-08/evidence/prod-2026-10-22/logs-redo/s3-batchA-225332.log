@@ -4,3 +4,20 @@
 22:54:11 START STATE set s3-batchA {"savedAfter":{"status":200,"display":"board_view","collapsedGroups":["unassigned"],"pinned":["3ff0914b"],"filters":{"status":[]},"density":"regular","tab":"all"}}
 22:54:12 people Esther Howard:true, Ralph Edwards:true, Jenny Wilson:true, Theresa Webb:true, Kristin Watson:true, ZZAUTOTEST WOB View Only:true
 22:55:12 signed in as bilal.muzamil+serviceadvisornoreports@shopview.com — shop: Trucks Hill 2
+22:55:26 https://app.shopview.com/customers | app-version=v26.43.0-ffea43c | fe_permissions=45
+22:55:39 C96948 {"saved":["3ff0914b-49a3-4d80-b07d-92a10e1a89f8","Ralph Edwards","Jenny Wilson"],"tech":["Unassigned","Ralph Edwards (pinned)","Jenny Wilson (pinned)","Ayesha Khan"],"userB":{"pinned":[],"first":["Unassigned","Aaron Baker","Aaron Zed","Admin ShopView"]},"newSignInLocation":200,"newSignIn":["Unassigned","Ralph Edwards (pinned)","Jenny Wilson (pinned)","Ayesha Khan"]}
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator('.q-tab, [role=tab]').filter({ hasText: /^\s*All\s*$/ }).first()
+
+    at tab (/home/user/Manual-test-Cases/build/wo-board-tech-view/run498-2026-10-08/wob.mts:19:156)
+    at bv (/home/user/Manual-test-Cases/build/wo-board-tech-view/run498-2026-10-08/s3-batchA.mts:36:149)
+    at async <anonymous> (/home/user/Manual-test-Cases/build/wo-board-tech-view/run498-2026-10-08/s3-batchA.mts:280:1) {
+  name: 'TimeoutError'
+}
+
+Node.js v22.22.0
