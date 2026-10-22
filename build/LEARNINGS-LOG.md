@@ -778,3 +778,7 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - The same third-location route is now the last fallback in `backHome()` (`high2-batch.mts`) and the switch back in `ps-counts.mts`.
 - This script writes `C368156-b40.json` (not `<script>.json`), so the step watcher reports "no readings file"; wrap it as `{"C368156": …}` before `judge_pack.py`.
 #production #location #stale-field → L0400, L0531
+
+## L0534 — 2026-10-22 — The draft scripts (C6147xx-stg.mts) write FLAT readings; wrap them before judging
+- `C614714-stg.mts` … `C614719-stg.mts` (run 498's drafts, full-run steps 74–78) and `C368156-pins-loc-stg.mts` write one flat object to `<script>.json` / `C368156-b40.json`, not `{ "<C-id>": {...} }`, so `judge_pack.py` finds no readings for the case and the step watcher says "tests=0". Wrap first: `python3 -c "import json;o=json.load(open('X.stepN.json'));json.dump({'C614714':o},open('X.stepNw.json','w'),indent=1)"`, then `judge_pack.py X.stepNw.json C614714`.
+#run498 #judging #tooling → L0533

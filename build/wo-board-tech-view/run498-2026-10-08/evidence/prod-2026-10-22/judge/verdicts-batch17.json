@@ -1,0 +1,162 @@
+{
+ "C97021": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: four Approved work orders at Truck Hill 1 found by the search \"ZZAUTOTEST F3 Keyboard Reach 9792\": S1-1604 (Work order 1) and S1-1605 (Work order 2) led by ZZAUTOTEST Ana Alpha (Technician A), S1-1606 (Work order 3) led by ZZAUTOTEST Ben Bravo (Technician B), S1-1607 (Work order 4) with no lead. Ana then Ben pinned, no other pins, no filters, Assigned to me off, window 1600 px wide, All tab, Board View. Signed in as ZZ WOB Runner. Each work order has its own customer whose name starts with the searched words (\"... Alpha Co\", \"... Bravo Co\", \"... Charlie Co\", \"... Golf Co\") instead of one shared customer; the search shows exactly these four.",
+   "Step 1: the cursor is in Search (it holds the customer words) and nothing on the board has a focus ring.",
+   "Step 2: after the toolbar buttons, Tab lands on the first card on the board, S1-1607 (Work order 4) in Unassigned, with a blue focus ring; no column header got the ring on the way.",
+   "Step 3: pressing the Right arrow key moved the ring to S1-1604 in ZZAUTOTEST Ana Alpha's column.",
+   "Step 4: pressing the Down arrow key moved the ring to the next card in Ana's column, S1-1605.",
+   "Step 5: Tab moved to that same card's own More actions (...) button (\"More actions for S1-1605\"), not to another card.",
+   "Step 6: Tab again left the board; no card or column header shows a focus ring.",
+   "Step 7: Tech View shows Unassigned first (S1-1607), then ZZAUTOTEST Ana Alpha's group (S1-1604, S1-1605), then ZZAUTOTEST Ben Bravo's group (S1-1606).",
+   "Step 8: the cursor is in Search and nothing in the table has a focus ring.",
+   "Step 9: Tab lands on the first work order row, S1-1607 in Unassigned, not on a group header.",
+   "Step 10: pressing the Down arrow key moved the ring to ZZAUTOTEST Ana Alpha's group header."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C97021-s2-first-tab-stop.png",
+   "evidence/prod-2026-10-22/C97021-s5-tab-more-actions.png",
+   "evidence/prod-2026-10-22/C97021-s6-tab-leaves.png",
+   "evidence/prod-2026-10-22/C97021-s10-arrow-down.png"
+  ],
+  "reason_for_reviewer": "kbd-fix4.mts C97021: start = All, search set, Assigned to me false, width 1600, columns unassigned[Golf] Ana[Alpha,Bravo] Ben[Charlie] (pins Ana, Ben written to the person's saved settings before step 1). s1 focus page_search_input, ringsInViews 0; s2 11 Tab presses, landed board_card Golf (unassigned), headerOnTheWay false; s3 ArrowRight -> Alpha (Ana); s4 ArrowDown -> Bravo (Ana); s5 Tab -> 'More actions for S1-1605' in the Bravo card; s6 Tab -> body, leftBoard true (positive control = s2 landing on the board); Tech View clicked on screen; s7 groups unassigned, Ana, Ben; s8 search, 0 rings; s9 12 presses, landed tech_view_row Golf; s10 ArrowDown -> tech_view_group Ana. Pictures s2 (ring on S1-1607), s5 (... shown on S1-1605, ring), s6 (no ring), s10 (ring on Ana's group header) agree. Set-up used four customers sharing the searched prefix rather than one customer (same pattern accepted on staging and in earlier production batches); it does not change what the steps check. 0 differences from staging."
+ },
+ "C368150": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: four Approved work orders at Truck Hill 1 found by the search \"ZZAUTOTEST F3 Keyboard Enter Opens 9792\": S1-1608 (Work order 1) and S1-1609 led by ZZAUTOTEST Ana Alpha (Technician A), S1-1610 led by ZZAUTOTEST Ben Bravo (Technician B), S1-1611 (Work order 4) with no lead. Ana and Ben pinned, no other pins, no filters, Assigned to me off, All tab, Board View, window 1600 px wide. Signed in as ZZ WOB Runner. Each work order has its own customer starting with the searched words (for example \"ZZAUTOTEST F3 Keyboard Enter Opens 9792 Alpha Co\") instead of one shared customer.",
+   "Step 1: the cursor is in Search.",
+   "Step 2: Tab lands on the first card in Unassigned, S1-1611 (Work order 4), with a focus ring.",
+   "Step 3: using the arrow keys (Up to the Unassigned header, Right to Ana's header, Down) the ring reached S1-1608's card.",
+   "Step 4: Space, then Shift with the Up, Down, Left and Right arrow keys were pressed: S1-1608 stayed first in Ana's column (Ana still holds S1-1608 and S1-1609), its lead is still ZZAUTOTEST Ana Alpha, and no message about a lead change appeared.",
+   "Step 5: Enter opened the work order page for S1-1608 (Lines tab, lead ZZAUTOTEST Ana Alpha).",
+   "Step 6: the browser Back button brought back Board View with the same search.",
+   "Step 7: Tech View shows the same work orders: Unassigned 1, Ana 2, Ben 1, as on the board.",
+   "Step 8: the cursor is in Search.",
+   "Step 9: Tab lands on a work order row (S1-1611 in Unassigned) with a focus ring.",
+   "Step 10: the Down arrow key moved the ring to Ana's group header and then to S1-1608's row.",
+   "Step 11: Enter opened the work order page for S1-1608.",
+   "Step 12: the browser Back button brought back Tech View.",
+   "Step 13: a plain mouse click (no movement while held) on S1-1608's row opened its work order page."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368150-s4-after-keys.png",
+   "evidence/prod-2026-10-22/C368150-s5-after-enter.png",
+   "evidence/prod-2026-10-22/C368150-s10-arrows-row.png",
+   "evidence/prod-2026-10-22/C368150-s13-after-click.png"
+  ],
+  "reason_for_reviewer": "kbd-fix4.mts C368150: s1 search focus; s2 landed board_card Golf (unassigned, ring) after 11 Tabs; s3 keys ArrowDown, ArrowUp x2, ArrowRight, ArrowDown -> Alpha; s4 Space, Shift+ArrowUp/Down/Left/Right: focus moved with the arrows (S11-R3) but column stayed Technician-A index 0 [Alpha, Bravo], updatedMessage [] for every key, lead 'ZZAUTOTEST Ana Alpha', messagesNow []; s5 Enter -> /workorders/<id>/lines openedWorkOrder1 true; s6 page.goBack() -> Board View, counts U1 A2 B1; Tech View clicked on screen, s7 same counts sameAsBoard true; s8-s10 Tab landed on row Golf, ArrowDown x2 -> row Alpha; s11 Enter opened WO1; s12 goBack -> Tech View; s13 mouse down/up without moving at (420,404) opened WO1. Pictures s4 (S1-1608 first in Ana's column with ring, no message), s5 (S1-1608 page), s10 (ring on S1-1608 row) agree. Four customers sharing the searched prefix rather than one customer (as on staging). 0 differences from staging."
+ },
+ "C368151": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 5, 6 and 7: in Tech View the arrow keys were pressed the wrong way (Down instead of Up), so ZZAUTOTEST Ana Alpha's group header was never reached, its collapse arrow was never pressed, and the Assigned Techs column was never turned on, so no avatar could be reached.",
+  "bold_steps": [
+   5,
+   6,
+   7
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1 to 4 and 8 to 10 were followed and matched; steps 5 to 7 were not carried out as written.",
+   "Set-up: one Approved work order S1-1612 for \"ZZAUTOTEST F3 Keyboard Controls One 9792 Alpha Co\" at Truck Hill 1, led by ZZAUTOTEST Ana Alpha, who is also the technician on its line and was not pinned at the start. Signed in as ZZ WOB Runner, window 1600 px wide, All tab, the customer searched. The Assigned Techs column was NOT turned on in Tech View (the set-up could not find it in Column Selection).",
+   "Step 1: Tab from Search lands on S1-1612's card with a focus ring, and its More actions (...) button shows without hovering.",
+   "Step 2: Tab reached \"More actions for S1-1612\"; Enter opened the menu (Reassign lead technician, Unassign); Escape put the focus back on More actions; Space opened the same menu; Escape again put the focus back on More actions and the menu was fading away in the picture.",
+   "Step 3: the Up arrow key reached ZZAUTOTEST Ana Alpha's column header, Tab reached its pin button, Enter pinned her (her column moved next to Unassigned with the pin shown as pinned).",
+   "Step 4: with focus still on the pin, Space unpinned her.",
+   "Step 5 (NOT DONE AS WRITTEN): in Tech View the Down arrow key was pressed from S1-1612's row, which moves away from Ana's header (her header is above the row) to other technicians' headers; Tab then left the table, so Enter was never pressed on Ana's collapse arrow. The picture shows Ana's group still open.",
+   "Step 6 (NOT DONE AS WRITTEN): Space was pressed while the focus sat on the Work Orders link in the top menu, not on the collapse arrow; this reloaded Work Orders and cleared the search.",
+   "Step 7 (NOT DONE AS WRITTEN): S1-1612's row was no longer shown and no Assigned Techs avatar was reached; the focus ended on the Parts link in the top menu.",
+   "Step 8: Column Selection, reached with Shift+Tab, opened with Enter; Tab moved into its options (On Site); Escape closed it with the focus back on Column Selection.",
+   "Step 9: Tab reached Status; Enter opened it; Tab moved to Estimate, then Approved; Enter ticked Approved and the chip read \"Status: Approved\"; Escape closed the options with the focus on the chip; Tab reached its x (\"Clear Status filter\") and Enter cleared it (chip back to \"Status\").",
+   "Step 10: Enter on the Board View switcher button changed the display to Board View.",
+   "Manual check for steps 5 to 7: in Tech View with Assigned Techs turned on in Column Selection, Tab into the table, press the Up arrow key to ZZAUTOTEST Ana Alpha's group header, Tab to its collapse arrow and press Enter (group should collapse) then Space (group should open); then Down arrow to S1-1612's row, Tab to the avatar in Assigned Techs and check it shows \"ZZAUTOTEST Ana Alpha\"."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368151-s3-after-enter-pin.png",
+   "evidence/prod-2026-10-22/C368151-s5-after-enter-collapse.png",
+   "evidence/prod-2026-10-22/C368151-s7-avatar-focus.png",
+   "evidence/prod-2026-10-22/C368151-s9-approved-ticked.png"
+  ],
+  "reason_for_reviewer": "kbd-fix4.mts C368151: s1 landed board_card Alpha (ring), moreActionsWithoutHover true; s2 Tab -> 'More actions for S1-1612', Enter menusOpen 1 [Reassign lead technician, Unassign], Escape focus on More actions (menusOpen still 1 read 250 ms later, picture shows the menu fading), Space menusOpen 1 same items, Escape focus on More actions; s3 Shift+Tab to card, ArrowDown/ArrowUp -> board_column_header_Ana, Tab -> pin, Enter pinnedSaved true pinPressed true; s4 Space pinnedSaved false. Set-up: assignedTechsWasOn null (the Assigned Techs item was not found in Column Selection, so the column stayed off; it does exist on production - seen in C97003-v4-step10-after.png). s5 Tab landed tech_view_row Alpha (ring); kArrowsTo table mode scans ArrowDown first: Cal, Dan, other groups, then one ArrowUp, reached false; Tab stops: DC01 group toggle, its pin, body, skip-to-content, module selector, Work Orders nav link - toggle for Ana never found, Enter not pressed. s6 Space on the Work Orders nav link: collapsed 'no group', rows 0 (page reset, search cleared - later rows are S1-915 etc.). s7 toRow reached false, assignedTechsColumnIndex -1, focus Parts nav link, no tooltip. s8: Shift+Tab to Column Selection, Enter menu 1, Tab -> toggle On Site insideMenu true, Escape menusOpen 0 focus back on Column Selection. s9 (started from a mouse click on an empty spot to clear focus, then keyboard only): Tab to Status chip, Enter opens, Tab Estimate, Tab Approved, Enter ticked [Approved] chip 'Status: Approved', Escape closed focus on chip, Tab -> filter_chip_clear_status, Enter chip 'Status'. s10 Shift+Tab to Board View, Enter active 'Board View'. Steps 8-10 ran on the unsearched page after the step 6 reload, which those steps do not depend on. 0 differences from staging (staging passed after round 4 with the arrow route working)."
+ },
+ "C368152": {
+  "verdict": "Failed",
+  "failed_steps": "Failed at step(s) 8, 12: after the keyboard reassign the message read \"Lead technician updated\" (green, with Close) instead of \"S1-1613 assigned to ZZAUTOTEST Ben Bravo\" with an Undo button; after Unassign it read \"Lead technician removed\" instead of \"S1-1614 moved to Unassigned\" with an Undo button. The work orders did move as expected.",
+  "bold_steps": [
+   8,
+   12
+  ],
+  "expected_quote": "Step 8: the dialog closes, {Work-order-1} moves to {Technician-B}'s column and the message \"{Work-order-1} assigned to {Technician-B}\" shows, with an \"Undo\" button. | Step 12: {Work-order-2} moves to the \"Unassigned\" column and the message \"{Work-order-2} moved to Unassigned\" shows, with an \"Undo\" button.",
+  "evidence": "Message readings after step 8 = [\"Lead technician updated\"] and after step 12 = [\"Lead technician removed\"]; pictures C368152-s8-after-reassign.png and C368152-s12-after-unassign.png show a green message with a check, the words \"Lead technician updated\" / \"Lead technician removed\" and a Close button, no work order number, no technician name and no Undo.",
+  "observed": [
+   "Result: Failed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: three Approved work orders at Truck Hill 1 found by the search \"ZZAUTOTEST F3 Keyboard Reassign 9792\": S1-1613 (Work order 1) led by ZZAUTOTEST Ana Alpha (Technician A), S1-1614 (Work order 2) led by ZZAUTOTEST Ben Bravo (Technician B), S1-1615 (Work order 3) with no lead. Ana and Ben pinned, no filters, Assigned to me off, All tab, Board View, window 1600 px wide. Signed in as ZZ WOB Runner. Each work order has its own customer starting with the searched words instead of one shared customer.",
+   "Step 1: the cursor is in Search.",
+   "Step 2: Tab lands on the first card in Unassigned, S1-1615 (Work order 3), with a focus ring.",
+   "Step 3: the arrow keys moved the ring to S1-1613's card in Ana's column.",
+   "Step 4: Tab moved to S1-1613's own More actions (...) button, which shows and has the focus.",
+   "Step 5: Enter opened the menu with \"Reassign lead technician\" and \"Unassign\".",
+   "Step 6: the Down arrow key reached \"Reassign lead technician\" and Enter opened the \"Reassign lead technician S1-1613\" dialog.",
+   "Step 7: typing \"ZZAUTOTEST Be\" narrowed the list to Unassigned and ZZAUTOTEST Ben Bravo.",
+   "Step 8 (FAILED): Ben Bravo was chosen with the arrow keys and Enter, then the dialog's Confirm button was reached with Tab and pressed with Enter. The dialog closed and S1-1613 moved to Ben's column, but the message read \"Lead technician updated\" (green, with a Close button) - not \"S1-1613 assigned to ZZAUTOTEST Ben Bravo\" and no Undo button.",
+   "Step 9: the arrow keys moved the ring to S1-1614's card in Ben's column.",
+   "Step 10: Tab moved to S1-1614's More actions (...) button.",
+   "Step 11: Enter opened the menu (Reassign lead technician, Unassign).",
+   "Step 12 (FAILED): the arrow keys reached \"Unassign\" and Enter moved S1-1614 to the Unassigned column, but the message read \"Lead technician removed\" (green, with a Close button) - not \"S1-1614 moved to Unassigned\" and no Undo button."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368152-s5-menu.png",
+   "evidence/prod-2026-10-22/C368152-s6-dialog.png",
+   "evidence/prod-2026-10-22/C368152-s8-after-reassign.png",
+   "evidence/prod-2026-10-22/C368152-s12-after-unassign.png"
+  ],
+  "reason_for_reviewer": "kbd-fix4.mts C368152: start wo1Column Technician-A, wo2Column Technician-B; s2 landed board_card Golf (unassigned); s3 -> Alpha; s4 Tab 'More actions for S1-1613', moreShows true; s5 menu [Reassign lead technician, Unassign]; s6 ArrowDown reached Reassign, Enter, dialog 1 'Reassign lead technician S1-1613 ...'; s7 typed 'ZZAUTOTEST Be', rows [Unassigned, ZB ZZAUTOTEST Ben Bravo 26 open]; s8 Tab to the list then arrows to Ben, Enter, Tab to Confirm, Enter (the dialog needs Confirm; the case step does not mention it), messages ['Lead technician updated'], dialogsLeft 0, wo1Column Technician-B, lead Ben Bravo; s9 arrows -> Bravo card; s10 Tab -> 'More actions for S1-1614'; s11 menu [Reassign, Unassign]; s12 Unassign, messages ['Lead technician removed'], wo2Column unassigned, lead none. Pictures s8/s12: green toast with check and 'Close', text as read. The Expected follows PRD v68 S4-R5 (toast '{number} assigned to {name}' / '{number} moved to Unassigned' with Undo, white design toast); the case was 'Not yet checked against a build in this wording' and the staging pass (17 Oct) predates the rewrite and also saw the old wording. Ben was not on any line of S1-1613, so the 'lead technician set to' variant does not apply; neither variant appeared. No known ticket in the case; none raised (holds stand). 0 differences from staging readings."
+ },
+ "C97003": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: at Truck Hill 1, two Approved work orders found by the search \"ZZAUTOTEST F3 Viewer Column Order 31653\": S1-1616 (Alpha Co, lead ZZAUTOTEST Ana Alpha) and S1-1617 (Golf Co, no lead). Technicians ZZAUTOTEST Ana Alpha, Ben Bravo, Cal Charlie (and Dan Delta). A brand-new view-only user \"ZZAUTOTEST Viewer4 ...\" (role ZZAUTOTEST WO View Only: under Work orders only View) with no pins and no saved order; the dispatcher is the admin ZZ WOB Runner. The view-only user was opened by switching into that person's account in a second window (initials Z9, top menu shows only Work Orders), 2560 px wide.",
+   "Steps 1 to 5: as the view-only user, Work Orders > All tab, the search typed, Board View; the order of the test technicians read Unassigned, Ana, Ben, Cal (Dan after them).",
+   "Step 6: Cal's column was dragged by its six-dot handle before Ana's; the order became Unassigned, Cal, Ana, Ben.",
+   "Step 7: Ben's column was dragged to the left of Unassigned and released; Ben landed just after Unassigned (Unassigned, Ben, Cal, Ana) and Unassigned stayed the first column.",
+   "Step 8: Unassigned has no drag handle; pressing on its header and dragging to the right of Cal changed nothing. Order written down: Unassigned, Ben, Cal, Ana.",
+   "Step 9: Tech View clicked.",
+   "Step 10: Ben's group was dragged by its handle above the Unassigned group and released; Unassigned stayed the first group and Ben stayed right below it.",
+   "Step 11: after a refresh, Tech View reads Unassigned, Ben, Cal, Ana and Board View reads Unassigned, Ben, Cal, Ana - the order written down at step 8.",
+   "Step 12: in the dispatcher's own window (ZZ WOB Runner), Work Orders > All > Board View still reads Unassigned, Ana, Ben, Cal - unchanged."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C97003-v4-step6-after.png",
+   "evidence/prod-2026-10-22/C97003-v4-step7-after.png",
+   "evidence/prod-2026-10-22/C97003-v4-step10-after.png",
+   "evidence/prod-2026-10-22/C97003-v4-step11.png"
+  ],
+  "reason_for_reviewer": "s9-fix7.mts C97003: view-only role seeded on production earlier (seed-viewonly-prod-1022.json: read back workOrdersView + woFullViewMode only); a new user on that role, opened with viewAs (switch into the account) in its own window at 2560x1100; goP opens /workorders by address then clicks All, Board View and types the search on screen. dispatcherStart and step5 [Unassigned, Ana, Ben, Cal, Dan]; step6 real mouse drag by board_column_drag_handle -> [U, Cal, Ana, Ben, Dan]; step7 drag Ben onto Unassigned header -> [U, Ben, Cal, Ana, Dan]; step8handle 0/0/0 (no grip on Unassigned), mouse press+drag on the Unassigned header to Cal -> unchanged; techHandles show no handle count on any group header icon but tech_view_group_drag_handle_<id> exists for technicians and none for unassigned; step10 drag Ben's handle to the Unassigned group -> unchanged [U, Ben, Cal, Ana, Dan]; reload -> step11tech and step11board [U, Ben, Cal, Ana, Dan]; step12dispatcher (runner's own window) [U, Ana, Ben, Cal, Dan]. Orders are the test technicians' relative order among ~68 columns. Pictures: step6-after (ZC before ZA), step7-after, step10-after (Unassigned then ZZAUTOTEST Ben Bravo, no handle on Unassigned), step11 (Board: Unassigned, ZB ... next). Step 11 judged against the step 8 order per the QA lead decision of 19 Oct recorded in the case. 0 differences from staging."
+ },
+ "C368146": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 4 and 6: Aaron Able was created, and Ezra Echo's Time Clock was turned on, behind the screen, not through Settings > Staff > New Staff Member / Edit Staff Member as the steps say. The board order afterwards matched the expected result.",
+  "bold_steps": [
+   4,
+   6
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 4 and 6 (the staff changes) were not done on screen.",
+   "Set-up: at Truck Hill 1, signed in as ZZ WOB Runner, only ZZAUTOTEST Dan Delta pinned and the saved technician order set to Dan, Cal, Ben first. 68 columns on the board.",
+   "Steps 1 to 3: Work Orders > All > Board View reads Unassigned, Dan (pinned), Cal, Ben.",
+   "Step 4 (NOT DONE ON SCREEN): \"ZZAUTOTEST Aaron Able 932906\" (Active, Time Clock on, Technician, Truck Hill 1) was created behind the screen.",
+   "Step 5: Board View shows Aaron Able as column 68 of 69 - after every existing technician, with only the \"Deleted technician\" column after him; he is not placed first by name and the order before him (Unassigned, Dan, Cal, Ben, ...) is kept.",
+   "Step 6 (NOT DONE ON SCREEN): \"ZZAUTOTEST Ezra Echo 932906\" was created with Time Clock off at this point and then had Time Clock turned on, both behind the screen.",
+   "Step 7: Board View shows Ezra Echo right after Aaron Able (columns 68 and 69 of 70), followed only by \"Deleted technician\".",
+   "Step 8: Tech View shows the groups in the same order: Unassigned, Dan, Cal, Ben first; ... ZZAUTOTEST Aaron Able 932906, ZZAUTOTEST Ezra Echo 932906, then Deleted technician (Inactive).",
+   "Manual check for steps 4 and 6: in Settings > Staff, add a new staff member through New Staff Member (Active, Time Clock on, role Technician, Truck Hill 1, a Department) and Save; check Board View shows him after the last technician. Then open an existing non-technician staff member with Time Clock off, turn Time Clock on in Edit Staff Member, save, and check he appears right after the first new one, in Board View and Tech View."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368146-v4-tech.png"
+  ],
+  "reason_for_reviewer": "s9-fix7.mts C368146: seed (behind the screen, set-up) pinnedTechnicianIds [Dan], technicianOrder [Dan, Cal, Ben, ...rest] 200; goP opens /workorders by address and clicks Board View. start count 68 first4 [U, Dan, Cal, Ben]. Aaron made with person() (staff record by the back end, role Technician, clockable true) - step 4 says New Staff Member on screen; afterAaron count 69 aaronAt 67 lastIndex 68. Ezra made at that moment with clockable false, then person() again with clockable true ('change 201') - step 6 says Edit Staff Member on screen, and the precondition's 'Ezra exists with Time Clock off' was created inside the step rather than before it. afterEzra count 70, aaron 67, ezra 68, last 69. Tech View count 69, aaron 67, ezra 68, first4 [U, Dan, Cal, Ben], diffAt -1 (Tech View list is the board list without its last entry; sameAsBoard false only because of the length). The last entry after Ezra is the 'Deleted technician' (Inactive) group, seen in the picture. C368146-end.png is the same Tech View picture. Only Tech View pictures exist; the Board View order is from the readings. 0 differences from staging."
+ }
+}
