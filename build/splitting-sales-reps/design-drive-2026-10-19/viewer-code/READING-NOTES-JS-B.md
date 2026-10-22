@@ -10,3 +10,255 @@ Read only. Chunks of at most 1,500 lines, read in order with the Read tool. One 
   `@font-face{font-family:'mc-anthropicons';...;font-display:block}` (lines ~53547-53556). Tables: GSUB OS/2 cmap glyf head hhea hmtx loca maxp name post.
 
 ## Chunks
+
+### Chunk 1: lines 45,401-46,900 (read)
+What it is: the "dc-runtime" (Design Component runtime) source, held inside a JS string/template literal (escaped `\\(` regexes and `\``
+quotes show it is text that the app injects into the board iframe, not code the outer app runs directly). Keyframe parsing/easing
+(45404-45575), template compiler for `<x-dc>` design components (`sc-for`, `sc-if`, `x-import`, `dc-import`, `sc-helmet`, `{{ }}`
+holes; 45577-45941), logic class eval (45943-45978), component factory with error boundary/placeholders (45980-46262), CDN loader
+(unpkg react@18.3.1, react-dom@18.3.1, @babel/standalone@7.29.0 with SRI; 46271-46282), external module loader (46284-46483),
+atomic CSS utility classes (46486-46489), helmet/head manager (46491-46624), pseudo-class sheet, registry, runtime, stream tracker.
+Found:
+- 45691-45711: a `{{ value }}` hole that never resolves renders as EMPTY (nothing) in normal viewing; only with
+  `data-dc-editor-on` on body is it shown as literal "{{ name }}" text; while streaming it shows the hole's name. (Behaviour: a design
+  that relies on a missing value shows a blank, not an error.)
+- 46492-46534: if the root design file has `<meta name="design_doc_mode" content="canvas">`, the runtime sets
+  `data-dc-canvas` and paints html/body background #f0eee6 (light) or #2e2c26 (dark). Theme comes from
+  `documentElement.dataset.theme`, else URL `?theme=dark`, else light; can be switched by a `__dc_theme` postMessage (46536-46548).
+  This changes the canvas BACKGROUND colour around boards, not the boards themselves.
+- 46003-46008, 46175-46199: errors render as a placeholder box with "name: error" text and a `sc-logic-error` banner (not design content).
+- 46714: sibling design components fetched as `./<Name>.dc.html` (from bundled `window.__resources`/`__resourceBlobs` when present).
+No ShopView content.
+
+### Chunk 2: lines 46,901-48,400 (read)
+What it is: end of the dc-runtime string (boot: loads React UMD from unpkg, exposes `window.__dcUpdate/__dcSetProps/__dcSeekKeyframes/
+__dcBoot`, posts `__dc_booted` to parent; string closes at 46994). Then the outer viewer app's UI kit: colour tokens `mr` (all
+`var(--om-*)` CSS variables plus a fixed dark "presenter" palette #1a1a1a/#e8e8e8 etc., 46997-47099); icon component `ji` (icon font
+class `ai-<Name>`, 47109-47128); buttons, icon buttons, tooltip (400 ms hover delay, max width 240 px, flips top/bottom to stay on
+screen, 47288-47429); text input/textarea/auto-growing textarea (Enter / Ctrl+Enter submit, 47430-47564); toggle switch; menu items
+and menus (47602-47874); clipboard copy hook; toast system (5 s default, error toasts carry "Copy error message", 47905-48061);
+modal with focus trap and Escape (48062-48148); confirm dialog (default buttons "Cancel" / "Confirm" or "Delete", 48165-48275);
+notice banners (info/hint/warning/error, 48276-48337); canvas colour constant `jZ = "#f0eee6"` (48340); base64 and byte-size
+helpers; `globalThis.claude` capability probe and permission error codes (48367-48400).
+Found: nothing about board content. 48340: the light canvas background colour #f0eee6 is defined again for the outer viewer.
+No ShopView content.
+
+### Chunk 3: lines 48,401-49,900 (read)
+What it is: the "appifact" document layer. Self-publish capability (`window.claude.self.publish`) and its error codes (48396-48468);
+page assembly `$Z` = the exact anatomy of the exported HTML: `<title>`, `<!-- README ... -->` comment, `<meta name="README">`,
+`<meta name="appifact-capabilities">`, `<style id="appifact-style">`, `<div id="root">`, `<script type="application/json"
+id="appifact-doc">` (the document JSON), `<script id="appifact-app">` (48469-48527); reading those parts back (48528-48596);
+comments model (max 200 comments, text cut to 4,000 chars, author to 80, elementLabel to 160; 48597-48675); title cut to 200
+chars (48676-48682); autosave and manual-save document stores with sessionStorage stash, conflict and size messages
+(48683-49392); the DESIGN document content = `{ files: { "<path>": "<text>" } }` (49393-49424); KV/file seam (`file/<path>`),
+image files turned into `data:` URLs (49490-49594); preview-frame liveness ping and generation tracker (49595-49719); CSS colour
+sanitiser (49720-49739); platform flags (49740-49794); screenshot/thumbnail compression to <=3.6 MB (49795-49837); a page-capture
+script that waits for fonts and images and, when "reveal" is on, OPENS every `<details>` and switches lazy images to eager
+(49847-49882); export file naming `<name>-slide-<n>` (49883-49889).
+Found:
+- 49397-49416: when the design document loads, any file whose text is over 2 MiB, whose path is empty, over 300 chars, starts
+  with "/", contains ".." or a backslash, or any file after the first 200, is SILENTLY DROPPED. (Check: does any file in our
+  export exceed 2 MiB or are there >200 files? If so the viewer would not show it.)
+- 49425-49430: the entry page of a design is `Main.dc.html` if present, otherwise the first `*.dc.html` alphabetically, otherwise
+  the first file.
+- 49855-49858: the capture script (used for screenshots/thumbnails) force-opens every `<details>` element. A screenshot taken this
+  way can show expanded sections that a person viewing live would see collapsed.
+- 49514-49517, 49574-49588: image files png/jpg/jpeg/gif/webp/avif/bmp/svg are served to the board as base64 data URLs.
+No ShopView content.
+
+### Chunk 4: lines 49,901-51,400 (read)
+What it is: the viewer's own page-capture (screenshot / thumbnail / PDF / PPTX export) pipeline. Clone-with-computed-styles walker
+`Gwe` (49890-50088), animation settle/freeze helpers (50089-50203), selection-root sizing (50204-50229), PDF text-layer measurer
+`Ywe` (50230-50416), paginator (50417-50444), deck-stage detection (50445-50466), font-face collection and inlining (50467-50550),
+background-image url inlining (50551-50568), WebGL canvas capture (50569-50622), the capture script template `n0e`
+(50623-51002) and its parameter splicer `mp` (51003-51067), the preview-iframe controller `ir` (reload, zoom by CSS
+`transform: scale()`, viewport lock, executeJavaScript via postMessage, capturePage; 51068-51336), colour parsing HSV helpers (51337-).
+Found (these affect only pictures the VIEWER makes, not what a person sees live in the board):
+- 49891-49919: in a viewer capture, `::before`/`::after` content is reproduced only when it is a single quoted string; anything else
+  (counters, attr(), icons by url) is dropped with a warning.
+- 49958-49971: `<script>`, `<style>`, elements marked `data-omelette-chrome` / `data-noncommentable` / `data-dc-editor-overlay`
+  are left out of captures; `<iframe>` content is NOT captured (warning).
+- 49989-49995: for canvas-mode documents the root/body background is made transparent in the capture and a flat matte is painted
+  behind; thumbnails use matte `jZ` = #f0eee6 (51214).
+- 50716-50749: an image that cannot be fetched and inlined renders BLANK in an exported picture (warning "image could not be
+  embedded"); a font that cannot be embedded falls back to another face (warning "font could not be embedded").
+- 51228-51247: ordinary (non-hq) screenshots are JPEG at quality 0.4, max 2,576 px on the long side; hq is PNG re-encoded lossy
+  (UPNG, 77 colours-quality) or WebP when over 3.6 MB (51285-51315). Thumbnails are WebP 0.8, max 640 px (51170-51219).
+- 51119-51124: viewer zoom is a CSS `transform: scale(z)` on the board iframe with width/height set to 100/z %, i.e. the board is
+  laid out at full size and scaled visually (no re-layout at a different width).
+No ShopView content.
+
+### Chunk 5: lines 51,401-52,900 (read)
+What it is: colour helpers and the viewer's colour picker (hex/alpha inputs, eye-dropper "Pick color from screen", swatches;
+51396-51806); computed-style extract for the editor's style panel (fontSize, color, backgroundColor, fill, stroke, borderTopColor;
+51807-51847); downloads capability; PNG/JPG selection export at 1x/2x/3x (51870-52005); PDF page export with text layer
+(52006-52243); "You have unsaved work from a previous session." Restore/Discard banner and Ctrl/Cmd+S save (52246-52302); paint
+nudges; image downsizing/upload to the asset store (max 2560 px edge, 1.5 MB, 70 KB inline fallback; 52335-52554); blob fetch
+cache (52555-52606); the PREVIEW SANDBOX bootstrap script `z0e` injected into every board iframe before the design's own code
+(52607-52705) and the start of the frame-blocking lockdown script `H0e` (52706-).
+Found:
+- 52666-52677: confirms a "Play mode" in which "an artboard fills the window"; pressing Escape inside the board relays to the host
+  and LEAVES Play mode (so Escape cannot be used to test a board's own Escape behaviour while in Play mode without also exiting).
+- 52614-52617: WebRTC constructors are deleted inside every board (irrelevant to ShopView boards).
+- 52733, 52764-52773: the design sandbox REMOVES every `<iframe>`, `<frame>`, `<frameset>`, `<object>`, `<embed>`, `<portal>`,
+  `<fencedframe>` (also inside `<template>`) from a board and logs "[design sandbox] removed a nested browsing-context element ...;
+  frames are not supported in design previews". A board that embeds another page in a frame would show a gap in the viewer.
+- 52681-52703: the host can run any script inside the board (eval over postMessage); used for captures/zoom.
+No ShopView content.
+
+### Chunk 6a: lines 52,901-53,545 (read)
+What it is: rest of the frame-blocking lockdown (`document.write/writeln/open`, `setHTMLUnsafe`, `setHTML`, `parseHTML*` throw
+"... is not supported in the design preview sandbox"; every DOM insertion path re-scans for frames; 52901-52997); a CSP meta
+`frame-src 'none'; object-src 'none'` (52999); the fetch shim that serves the design's own files from `window.__dcFiles`
+(53000-53032); image inlining into board HTML (53033-53065); `_blob/<id>` asset inlining with a 12 MB-per-artboard budget and a
+grey placeholder picture (53066-53137); pre-flight frame/noscript scan (53138-53171); import graph (`<dc-import>`/`<x-import>`
+name/component, and any file name mentioned in the text) (53172-53240); `Xee` = assembles the board iframe document
+(53241-53302); small button components (53303-53360); icon-name to private-use code point map `$ee` (182 names, Activity
+U+F1B5 ... XSmall U+F101; 53361-53544) — matches the decoded font's 182 glyphs.
+Found:
+- 53066-53127 + 53069-53073: an image referenced as `_blob/<32 hex>` (or a blob: URL) that cannot be fetched, OR that would push
+  the artboard past 12 MB of inlined images, is REPLACED by a grey placeholder picture (160x120 SVG, fill #e8e6e1 with a
+  mountain-and-sun glyph) and a console warning "[design] asset ... shown as a placeholder". A board can therefore show a grey
+  "image" box in the viewer that is not in the design. Check our board pictures for this placeholder.
+- 53033-53065: images referenced as `src="./name.png"`, `src="name.png"` or `url(name.png)` are swapped for data URLs from the
+  design's files (only png/jpg/jpeg/gif/webp/avif/bmp/svg).
+- 53162-53171, 53290-53300: a design file containing `<noscript>` or any frame/object/embed element CANNOT BE PREVIEWED at all;
+  the viewer shows "This design can't be previewed: ..." instead of the board.
+- 53211-53222: only files reachable from the entry file (by `<dc-import>`/`<x-import>` or by the file name appearing in the text)
+  are given to the board; images are inlined, not served.
+- 53256-53262, 53265-53278: the board gets `<base href="/appifact/<path>">`, the files map, React 18.3.1 UMD and a `support.js`
+  (replacing any `<script src="support.js">` in the design).
+No ShopView content.
+
+### Line 53546 (the embedded font, decoded by script, see top of file)
+Line = `"data:font/woff2;base64,` + 19,592 base64 characters (verified only base64 alphabet) + `",`. Decoded: anthropicons icon font.
+
+### Chunk 6b: lines 53,547-54,900 (read; chunk 6 = 52,901-54,900 split around the font line because of its size)
+What it is: registers the icon font as `@font-face 'mc-anthropicons' ... font-display:block` and the `_n` icon component
+(53547-53583); small SVG icons (undo/redo/zoom-in; 53584-53632); canvas pan/zoom engine: `Eh` zoom about a point with limits
+min 0.05 / max 40 by default (53641-53650), wheel = pan, Ctrl/Cmd+wheel or trackpad pinch = zoom, touch pinch, Safari gesture
+events, no pan when starting on BUTTON/A/INPUT/SELECT/TEXTAREA/slider/`data-no-pan` (53673-54055); inputs, dialog with "Close"
+(54056-54159); numeric field commit logic; shortcut label helper ("⌘"/"Ctrl+"; 54190-54199); popover menu (54207-54344);
+tooltip (54351-54427); "Chat about…" label (54434); resize handles "Drag to resize. Double-click to fit content." (54436-54607);
+floating toolbar strip, colour swatch button (54608-54710); shimmer/spinner and load gate "The latest content failed to load" /
+"Retry" (54711-54770); 4 s status toasts with "Dismiss" (54771-54888); start of toolbar button `zc` (54889-).
+Found:
+- 53641-53650, 53803-53806: canvas zoom range 5 % to 4,000 % by default; zoom is the viewer's camera, boards are not re-laid out.
+- 53556: the icon font uses `font-display:block` (icons are invisible until the font loads) - viewer chrome only.
+No ShopView content.
+
+### Chunk 7: lines 54,901-56,400 (read)
+What it is: toolbar button with badge (54889-54953); ZOOM PRESETS `ST = [0.25, 0.5, 0.75, 1, 1.5, 2]` (54957); property-panel
+widgets (checkbox rows, segmented buttons, collapsible sections; 54958-55172); "Export ready" dialog with Download / "Drag out…" /
+copy image, and "One image could not be embedded and renders blank in the export." (55173-55364); a hand-written PDF writer:
+each page = one JPEG plus an invisible Helvetica text layer for selection (55365-55773); artboard ordering and PDF export of all
+artboards (55774-56004); export mode bar "Click an element to export it, or" / "Export all" / "Export PDF" / "Cancel"
+(56005-56125); element picker overlay script (pink #c46686 outline, crosshair) (56126-56279); editor helpers for inserting nodes
+(56280-56400).
+Found:
+- ARTBOARD FIELDS READ: `file`, `w`, `h` (frame size; 55833, 56037-56041), `x`, `y` (55796-55807), `print` (value "flow" =
+  paginate; 55833, 55878). These are per-artboard properties the viewer holds (most likely from canvas.json; confirm in later
+  chunks where they are parsed).
+- 55796-55807: when exporting, artboards are ordered into ROWS by their y (an item joins a row if its top is above the row's
+  middle), then left-to-right by x. This is reading order the viewer assumes; it is not shown on screen.
+- 56037-56041: "Export all" saves each artboard as `<artboard file name>.png` at 2x, clipped to the artboard's declared frame
+  w x h (content past the frame is padded/cut).
+- 55880-55895, 55955-55965: artboards hidden "while an artboard is expanded" are skipped (an expanded = full-window view).
+- 55970-55994: PDF messages "runs past its frame, so the PDF keeps one page — set Print mode to Flow to paginate"; "stopped at
+  40 pages"; content "past the frame that isn't in the PDF". A board taller than its frame is cut at the frame unless Print
+  mode = Flow.
+No ShopView content.
+
+### Chunk 8a: lines 56,401-57,150 (read; chunk 8 split in two halves because of token density)
+What it is: geometry helpers, then the start of `kSe` = the in-board EDITOR/PICKER script (a template string injected into the
+board iframe when the viewer's Edit or comment tools are used; 56423-). Its stylesheet (56430-56507), state variables
+(56508-56677), overlay root, ownership helpers, colour normaliser, comment anchor path builder (`#id` or `tag:nth-of-type(n)`,
+max 8 segments; 56805-56868), hover/selection rings, drag-to-move and drop-target rules, deck-stage rules (56974-57150).
+Found (all only while the viewer's Edit mode / tools are ON, not in plain viewing or Play):
+- 56456-56457: with Edit on (any tool except "interact"), EVERY element in the board gets `transition:none; animation:none;
+  pointer-events:auto; cursor:default; user-select:none`. Hover/animated effects of the design are therefore frozen/altered while
+  editing; a tester comparing hover states must use plain view/Play, not Edit.
+- 56491-56493: Edit on, non-canvas page: page background turns grey #e9e7e4 and the root gets min-height 100vh on white (or the
+  page's own background) — a viewer framing, not the design.
+- 56499, 56507: canvas-mode pages: `html{overflow:hidden}`; in Edit the area left/above (0,0) is hatched with 45° stripes.
+- 56445-56448, 56611-56621: selection/hover chrome colour #c46686 ("Fig"), 12 px handles, 2 px stroke.
+No ShopView content.
+
+### Chunk 8b: lines 57,151-57,900 (read)
+What it is: continuation of the in-board editor script `kSe`: drop-container rules (invisible containers skipped, deck rules),
+flow-slot calculation, violet structure overlay while dragging, gesture style patches, endDrag commit/revert messages
+(move / styleRevert / dragCancel), insertion-tool ghost sizes (rect 120x120, oval 96, frame 200x96, grid 200x120, text 140x22),
+insert commit, selection resize handles (24 px hit box, 12 px visual), line/arrow endpoint detection, handle box layout.
+Found: editor-only behaviour; nothing that alters a board in plain viewing. No ShopView content.
+
+### Chunk 9: lines 57,901-58,900 (read)
+What it is: editor script continued: handle sizing, endpoint/resize commits, hover/selection ring drawing (solid 2 px #c46686
+outside edge for selected, 1.5 px dashed for hover), directive (sc-if/sc-for) state badges, inline insertion anchors, pencil tool,
+mouse-up dispatch, then the IN-BOARD pan/zoom: the board's root `.sc-host` (or `<body>`) gets `transform: translate(x,y)
+scale(z)` (58522-58641); zoom limits 0.2-4 normally, 0.05-10 for canvas-mode pages (58684, 58697); "Fit width" fits the content's
+layout width to the window, left edge at the left, top at the origin (58654-58695); host messages `__dc_set_zoom` / `__dc_probe`
+/ `__dc_cancel_preview_dbl` (58711-58734); grey overlay pan scrollbars on canvas pages (58744-58888); start of wheel forwarding
+to the parent canvas (58889-).
+Found:
+- 58540-58545, 58696-58707: inside a canvas-mode design, zoom is a CSS transform on the root container (layout unchanged);
+  "Fit width" = scale to window width. A board picture taken at a zoom other than 100 % is a scaled image of the same layout.
+- 58576-58604: on non-canvas pages pan is clamped to the content; on canvas pages it is free (rescue clamp only when content is
+  more than a full viewport away; 58613-58638).
+No ShopView content.
+
+### Chunk 10: lines 58,901-59,900 (read)
+What it is: editor script continued: wheel/pinch handling inside a board (plain wheel over an inner scroller scrolls it, otherwise
+pans the canvas; Ctrl/Cmd+wheel zooms; a "mega host" mode forwards all pan/zoom to the parent canvas), Safari gesture events,
+touch pan/pinch forwarding, iOS touch swallow, OS image file drop / paste, mouse-move handling for drawing, endpoint drag,
+resize (Shift keeps aspect), drag-to-move with cross-artboard handoff, refusal to drag a repeated (sc-for) row, start of inline
+text editing format actions (bold/italic/underline/lists/link).
+Found:
+- 58912-58994: in a canvas-mode board (pan/zoom armed), a plain mouse-wheel over open canvas PANS instead of scrolling the page;
+  over an inner scrollable area it scrolls that area (decision latched per gesture, 200 ms gap starts a new gesture). Relevant to
+  how a tester scrolls a long board in the viewer: wheel does not scroll a canvas page; it pans.
+- 59110: in host-owned pan/zoom the board root gets `touch-action:none` (touch gestures go to the canvas, not the page).
+No ShopView content.
+
+### Chunk 11: lines 59,901-60,900 (read)
+What it is: editor script continued: link editing popover hand-off, text-edit state reporting, URL paste turns selection into a
+link, inline text edit start (prop / script-literal / template-source fallback) and commit (`textEdit`, `foreignTextEdit`),
+double-click to edit, PREVIEW-mode click and double-click handling (60331-60417), deck slide-change deselect, preview OS image
+drop (stash + toast, 8 s), Edit-mode key handling (Escape cancels gestures, Cmd/Ctrl+\ side panel, Cmd/Ctrl+0/=/+/- zoom,
+Shift+A auto layout).
+Found:
+- 60340-60353: in plain preview (browse) mode, a single click on board content that is NOT interactive (not a link, button,
+  input, select, textarea, summary, label, media control, role=button, onclick/ondblclick, contenteditable, image-slot) tells the
+  viewer to SELECT THAT ARTBOARD; the click still reaches the design normally (no preventDefault). Clicks on interactive elements
+  are left entirely to the design.
+- 60354-60382: a double-click in preview does nothing visible; it is remembered for 2 s in case the user then enters Edit.
+- 60881-60888: Cmd/Ctrl+0, +, = and - inside a board zoom the viewer canvas (not the browser).
+No ShopView content.
+
+### Chunk 12: lines 60,901-61,900 (read)
+What it is: editor script continued: Delete/Backspace, Cmd/Ctrl+Z/G/A/C/X/V/D forwarding, Enter inserts a line break while
+editing, Escape ends editing, context menu, edit-transparent selectors (`[data-dc-edit-transparent]`, `[data-omelette-chrome]`,
+`[data-noncommentable]`, `.twk-panel`), wheel passthrough rules, mousedown routing (endpoint/resize/draw/drag arm), inline-drag
+promotion, `data-drags-parent`, the Edit-mode click (select / multi-select / insert / foreign element), then the editor `api`:
+setHostPanZoom, enable (captures page background into `--dc-editor-host-bg`), disable, enablePanZoomOnly (preview), 
+setPanZoomArmed with BOOT-FIT, setAppTheme (dark backdrop #2e2c26), rings-only mode, pickAt, commentAt/commentFor.
+Found:
+- 61739-61775: BOOT-FIT: when a page declares `<meta name="design_doc_mode" content="canvas">` and its content is wider than
+  105 % of the window, the viewer automatically ZOOMS OUT at load to fit the width (re-checked after one frame and after 250 ms;
+  stands down if the user zooms first). So the first view of the canvas is scaled to the window; text may look small. Not a
+  change to the boards, only the camera.
+- 61725, 61636-61640: in preview the only editor rule applied is `html[data-dc-canvas]{overflow:hidden}` — the page itself never
+  scrolls; navigation is by pan.
+- 61665-61671: leaving Edit re-renders the page once (so unresolved `{{ }}` spans shown in Edit disappear again).
+No ShopView content.
+
+### Chunk 13: lines 61,901-62,900 (read)
+What it is: end of the editor `api` (commentRects, get/setPanZoom, setHostScale, setTextEditable, setDirectiveMap, setTool,
+patchStyle/setScrubbing, setOverlayHidden, start text edit, select/hover, finishEdit, format, applyLink/cancelLinkEdit,
+deleteForeign, stampLive/applyBody/bodySnapshot for non-DC pages, firstTextFont, inspect, verify; script ends 62492), then the
+outer app's one-line wrappers that call each api method in the board iframe via executeJavaScript (62493-62806), modal/popover
+detector, and the start of the image-drop upload pipeline `DT` (62817-).
+Found:
+- 61904-61920, 62613-62647: comment pins are anchored to elements by CSS path (max 500 chars) + template id + fractional point;
+  html/body = the artboard itself. Viewer-only.
+- 62783-62795: font-weight probe 100-900 via `document.fonts.check` (editor panel only).
+No ShopView content.
