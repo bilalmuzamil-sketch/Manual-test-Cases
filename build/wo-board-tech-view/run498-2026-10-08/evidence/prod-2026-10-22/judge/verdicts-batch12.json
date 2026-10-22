@@ -1,0 +1,212 @@
+{
+ "C96943": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 4: on the All tab, with \"ZZAUTOTEST F2 Card Required Fields\" in Search, Board View was chosen. Esther Howard's column holds S1-1520 (unit TRK-118) and S1-1521 (an asset with no unit).",
+   "Steps 5 and 6: the fields button opens a list of 13 fields with switches (Lead technician, Customer, Asset, VIN/serial, Progress, Service advisor, Clocked in, Line count, Line technicians, Estimated hours, Total price, On-site, Created date). Work order number, unit number and status are not in the list, so they cannot be turned off.",
+   "Step 7: every field in the list was switched off and the list closed.",
+   "Step 8: the S1-1520 card still shows S1-1520, TRK-118 and Approved. The S1-1521 card shows S1-1521 and Approved, and no unit number because it has none.",
+   "The board has a fields button, so the last line of the expected result (no button at all would be a fail) does not apply."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96943-cards-minimal.png",
+   "evidence/prod-2026-10-22/C96943-end.png"
+  ],
+  "reason_for_reviewer": "s3-batchB.mts C96943: work orders seeded behind the screen (set-up); page opened by address, then All tab, Board View and Search done on screen; picker opened with the board's fields button. pickerLabels = 13 labels, none is number/unit/status. All 'on' switches clicked off on screen; cards: S1-1520 {number S1-1520, unit TRK-118, status Approved}, S1-1521 {number S1-1521, unit null, status Approved}. Picture of the minimal cards confirms. Case's S1-702/S1-472 are example numbers. 0 differences from staging."
+ },
+ "C154886": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Set-up check: both work orders for \"ZZAUTOTEST F2 Board Empty Unassigned\" (S1-1522 and S1-1523) are Approved and led by Esther Howard; none for this customer is without a lead. Nothing had to be changed.",
+   "Steps 1 to 5: All tab, Search for the customer, Assigned to me was already off, Board View chosen.",
+   "Step 6: the Unassigned column is on screen, first, with 0 work orders and the text \"Drag a work order here to assign it\". Esther Howard's column shows 2.",
+   "Step 7: S1-1523 was dragged from Esther Howard's column onto Unassigned and let go. No shift question appeared.",
+   "Step 8: Unassigned now shows 1 card (S1-1523) and Esther Howard's count dropped from 2 to 1."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C154886-empty-unassigned.png",
+   "evidence/prod-2026-10-22/C154886-after-drop.png"
+  ],
+  "reason_for_reviewer": "s3-batchB.mts C154886: setup [] (precondition already true), noLeadLeft [], estherCountData 2, assignedToMeOn false. firstColumn 'Unassigned', count 0, empty text 'Drag a work order here to assign it'. Drag done with the mouse on screen; after {unassigned [S1-1523], unassignedCount 1, esther 1, lead none}. Pictures before and after confirm. Only difference from staging is that no set-up fix was needed. The case's S1-644 is an example number."
+ },
+ "C368132": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Set-up: both work orders for \"ZZAUTOTEST F2 Empty Tech Column\" (S1-1524 and S1-1525) are led by Esther Howard; Jenny Wilson leads none of them.",
+   "Steps 1 to 6: All tab, Search for the customer, Assigned to me off, Board View chosen. Jenny Wilson's column is on the board with 0 work orders and \"Drag a work order here to assign it\".",
+   "Step 7: no button, switch or menu item to hide empty columns was found on the page, in the column headers or in the fields list.",
+   "Steps 8 and 9: S1-1524 was dragged onto Jenny Wilson's column; \"Lead technician updated\" appeared with no shift question. Jenny Wilson now shows 1 and Esther Howard dropped from 2 to 1.",
+   "To have both columns side by side for the drag, Esther Howard and Jenny Wilson were pinned first (counts and leads are not affected by pins) and unpinned afterwards."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368132-before-drop.png",
+   "evidence/prod-2026-10-22/C368132-after-drop.png"
+  ],
+  "reason_for_reviewer": "s3-batchB.mts C368132: jenny {count 0, empty 'Drag a work order here to assign it'} read BEFORE the pin preference was set. hideControls [] (all buttons, menu items, switches and labels scanned for hide/empty/show only), fieldsMenuMentionsEmpty false. Then pinnedTechnicianIds set to [Esther, Jenny] through the saved preference for the drag only (not a precondition conflict; restored after). before {jenny 0, esther 2}; drag on screen; toast 'Lead technician updated', shiftPrompt null; after {jenny 1, esther 1, lead Jenny}. 0 differences from staging. Column headers only carry a drag grip, pin button and count (pictures)."
+ },
+ "C96974": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Set-up check: Nina Newtech leads eight work orders for \"ZZAUTOTEST F1 Open Count\", one in each status: Estimate S1-1526, Invoiced S1-1527, In Progress S1-1528, Review S1-1529, Complete S1-1530, Approved S1-1531, Paid S1-1532, Declined S1-1533. She leads nothing else at Truck Hill 1.",
+   "Set-up check: S1-1535 is Approved and led by Esther Howard, with Nina Newtech only as the technician on its line. At Trucks Hill 2, S2-1536 is Approved and led by Nina Newtech.",
+   "Steps 1 to 3 on the Work Orders tab in Board View: More actions > Reassign lead technician on a card in Esther Howard's column opens the dialog, and Nina Newtech reads \"4 open\".",
+   "The same on the All tab: Nina Newtech still reads \"4 open\", so the tab does not change the number.",
+   "Step 4: Cancel closed the dialog each time.",
+   "4 = Approved 1 + In Progress 1 + Review 1 + Complete 1; Estimate, Invoiced, Paid, Declined, the line-only work order and the other location's work order are not counted."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96974-dialog-WorkOrders.png",
+   "evidence/prod-2026-10-22/C96974-dialog-All.png",
+   "evidence/prod-2026-10-22/C96974-board.png"
+  ],
+  "reason_for_reviewer": "s4-batchD.mts C96974: set-up made behind the screen (ninaLeadsByStatus one of each of the 8 statuses; the first Invoiced attempt was refused and was then made by completing the lines and creating an invoice: 'status now Invoiced'). lineOnly S1-1535 read back with lineTechnicians ['Nina Newtech'], lead Esther Howard; second location Trucks Hill 2 S2-1536 lead Nina. Steps on screen: Work Orders tab clicked, Board View, Search (extra, harmless: the count must ignore filters), hover > More actions > Reassign lead technician; count_Work Orders '4 open', count_All '4 open'; Cancel. Both dialog pictures show Nina Newtech 4 open. The 11 differences from staging are set-up logs and work order order only."
+ },
+ "C96968": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 3 and 7 (and their repeat in step 8): the computer's network was never switched off. Instead the run made the save fail on purpose. Manual check: in Board View switch Wi-Fi off, drag the \"ZZAUTOTEST F1 Reassign Offline\" card to another technician, and write down the card's place and the exact alert words; then the same in Tech View.",
+  "bold_steps": [
+   3,
+   7,
+   8
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The test says to switch the network off; the run made the save fail a different way, so what a real loss of network shows was not seen. Everything the run did see agrees with the expected result.",
+   "Steps 1 and 2: All tab, Board View, Search \"ZZAUTOTEST F1 Reassign Offline\"; S1-1537 is in Esther Howard's column.",
+   "Step 3 (NOT DONE AS WRITTEN): the network stayed on; the save was refused instead.",
+   "Steps 4 and 5: S1-1537 was dragged to Ralph Edwards' column. It went back to Esther Howard's column and a red alert read \"Failed to update lead technician, please try again.\" with a Close button.",
+   "Step 6: after 10 seconds the alert was still there; clicking Close removed it.",
+   "Step 7: after a reload the lead is still Esther Howard.",
+   "Step 8: in Tech View the row went back to Esther Howard's group with the same alert, which stayed until closed; after reload the lead is still Esther Howard."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96968-board-alert.png",
+   "evidence/prod-2026-10-22/C96968-tech-alert.png",
+   "evidence/prod-2026-10-22/C96968-end.png"
+  ],
+  "reason_for_reviewer": "s4-batchD.mts C96968 replaces 'network off' with p.route() answering every non-GET /api/work-orders/** with a fake 500 ('the QA branch's sleep guard takes the page away on a dropped request'). refused POST .../board-move; message, after10s = the exact sentence; afterX []; cardBack true; leadAfterReload Esther Howard; same for tech. The case's Expected explicitly asks to record a DIFFERENT offline message if one appears, and production elsewhere showed 'Network Error' when truly offline (C96920, batch3), so a real offline drop could differ. NOTE: batch4 judged C154890 Passed with the same substitution; review the two together."
+ },
+ "C368137": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 4 and 7 (and their repeat in step 8): the computer's network was never switched off. Instead the run made the save fail on purpose. Manual check: in Board View switch Wi-Fi off, drag the last \"ZZAUTOTEST F1 Reorder Offline\" card to the top of Esther Howard's column, and write down the alert words and the order; then the same in Tech View.",
+  "bold_steps": [
+   4,
+   7,
+   8
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The test says to switch the network off; the run made the save fail a different way, so what a real loss of network shows was not seen. Everything the run did see agrees with the expected result.",
+   "Steps 1 to 3: All tab, Board View, Search \"ZZAUTOTEST F1 Reorder Offline\"; Esther Howard's column reads S1-1538, S1-1539, S1-1540.",
+   "Step 4 (NOT DONE AS WRITTEN): the network stayed on; the save was refused instead.",
+   "Steps 5 and 6: S1-1540 was dragged to the top. A red alert read \"Couldn't save the new order. Please try again.\" and the order is again S1-1538, S1-1539, S1-1540. No lead change message appeared.",
+   "Step 7: after a reload the order is still S1-1538, S1-1539, S1-1540.",
+   "Step 8: Tech View behaved the same way: same alert, same order before, after and after the reload."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368137-board.png",
+   "evidence/prod-2026-10-22/C368137-tech.png",
+   "evidence/prod-2026-10-22/C368137-end.png"
+  ],
+  "reason_for_reviewer": "s4-batchD.mts C368137: same fake-500 substitution for 'network off' as C96968 (refused POST .../board-move). board/tech: before = after = afterReload [S1-1538, S1-1539, S1-1540]; message exactly 'Couldn't save the new order. Please try again.'; no lead toast. Real offline could add or replace the message (production showed 'Network Error' offline in C96920). Same caveat as C96968; batch4's C154890 was Passed with this substitution."
+ },
+ "C96971": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 5: the work order was never opened in either browser, so its Lead Technician was not read on the work order page. Also, browser 2 was a second window of the same signed-in person, not the second user the test names (steps 1 and 3). Manual check: with a second user signed in in another browser, do steps 2 to 4 again, then open the work order in both browsers and confirm Lead Technician reads Dana Ortiz.",
+  "bold_steps": [
+   1,
+   3,
+   5
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Step 5 (open the work order and read Lead Technician) was not done, and the second browser was the same person rather than a second user. What was seen agrees with the expected result.",
+   "Step 1: two windows, each on the All tab in Board View with \"ZZAUTOTEST F1 Later Reassign Wins\" in Search; S1-1541 is in Esther Howard's column.",
+   "Step 2: window 1, More actions > Reassign lead technician > Ralph Edwards; the lead became Ralph Edwards.",
+   "Step 3: window 2, without reloading, reassigned the same card to Dana Ortiz: \"Lead technician updated\".",
+   "Step 4: after reloading both windows, the card is in Dana Ortiz's column in both.",
+   "Step 5 (NOT CHECKED AS WRITTEN): the work order page was not opened; the saved record names Dana Ortiz as the lead."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96971-end.png"
+  ],
+  "reason_for_reviewer": "s4-batchD.mts C96971: p2 = p.context().newPage() (same account, not User-B). afterBrowser1 Ralph Edwards, browser2Message ['Lead technician updated'], afterBrowser2 Dana Ortiz (record), reload {browser1 'Dana Ortiz', browser2 'Dana Ortiz'} = the board column holding the card. The script never opens the work order page. End picture shows S1-1541 under Dana Ortiz (window 1, which after reload sits on the Work Orders tab). 0 differences from staging."
+ },
+ "C368138": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1 and 2: browser 2 was a second window of the same signed-in person, not the second user the test names, so 'someone else moved it' was not set up as written. Manual check: sign in as a second user in another browser, move [WO-2] to Ralph Edwards there, then in browser 1 drop [WO-3] directly above [WO-2] and read the alert.",
+  "bold_steps": [
+   1,
+   2
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The second browser was the same person, not a second user as the test requires. Everything seen agrees with the expected result.",
+   "Step 1: two windows on the All tab in Board View with \"ZZAUTOTEST F1 Moved Neighbour\"; Esther Howard's column holds S1-1542, S1-1543, S1-1544.",
+   "Step 2: window 2 dragged S1-1543 into Ralph Edwards' column; it is now led by Ralph Edwards.",
+   "Steps 3 and 4: window 1, not reloaded, dropped S1-1544 next to S1-1543. The alert reads \"Couldn't save the new order. Please try again.\" and below it \"The card you dropped this next to has moved. Refresh the board and try again.\" (the headline is allowed). S1-1544 stayed in Esther Howard's column.",
+   "Step 5: after reloading window 1, Esther Howard has S1-1542 and S1-1544 and Ralph Edwards has S1-1543, the same as window 2."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368138-browser1.png",
+   "evidence/prod-2026-10-22/C368138-end.png"
+  ],
+  "reason_for_reviewer": "s4-batchD.mts C368138: p2 is a new tab of the same account (preconditions: User-B, a second Admin, in browser 2). moved S1-1543, browser2Lead Ralph Edwards; browser1 message contains the required sentence; esther [S1-1542, S1-1544]; afterReload esther [S1-1542, S1-1544], ralph [S1-1543]. The browser1 picture (taken after the refused drop) already shows S1-1543 under Ralph, so it cannot prove where S1-1543 was drawn at the moment of the drop; the alert text implies the stale place. 0 differences from staging. Compare batch6 C368159, where the same-account substitution was noted but not the deciding reason."
+ },
+ "C368139": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1 to 3: the two drops came from two windows of the same signed-in person, not from two different users as the test sets up. Manual check: with a second user in another browser, drop the two \"ZZAUTOTEST F1 Board Busy\" cards on Ralph Edwards' column at the same moment up to five times, reload both, and check each card is in exactly one column.",
+  "bold_steps": [
+   1,
+   2,
+   3
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The two browsers were the same person, not two users as the test requires. Everything seen agrees with the expected result.",
+   "Step 1: two windows on the All tab in Board View with \"ZZAUTOTEST F1 Board Busy\"; S1-1545 and S1-1546 start in Esther Howard's column each time.",
+   "Steps 2 to 4, five times: window 1 dragged S1-1545 and window 2 dragged S1-1546 over Ralph Edwards' column and both were let go together. Every time both windows showed \"Lead technician updated\" and both cards ended under Ralph Edwards. Busy alert not reproduced.",
+   "Step 5: after the reload each card is in exactly one column (Ralph Edwards'); none is missing or shown twice."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368139-end.png"
+  ],
+  "reason_for_reviewer": "s4-batchD.mts C368139: p2 = second tab of the same account (preconditions: User-B 'Sam Second'). Leads reset to Esther behind the screen before each of the 5 tries (set-up). Each try b1/b2 ['Lead technician updated'], leads both Ralph Edwards; afterReload [S1-1545@Ralph Edwards, S1-1546@Ralph Edwards]. The case's fallback pass rule (no card lost or doubled) is met; the 20 differences from staging are work order numbers only."
+ },
+ "C96960": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 5 and 6: the work order was never opened on screen and its Lines tab was never read; the line technicians and the running clock were read behind the screen. Manual check: open S1-1547, go to the Lines tab, and read the Labor technician of the six lines and whether Line 6's clock is running.",
+  "bold_steps": [
+   5,
+   6
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The lines were not read on the work order's Lines tab as the test says; the saved data agrees with every expected line.",
+   "Set-up: S1-1547 led by Esther Howard with six lines: 1 no technician, 2 following the lead, 3 given to Dana Ortiz, 4 Complete, 5 with logged time, 6 with Esther Howard's clock running.",
+   "Steps 1 to 4: Board View on the All tab, searched by the work order number S1-1547 (the test says the customer name); the card was dragged from Esther Howard's column to Ralph Edwards' column and \"Lead technician updated\" appeared.",
+   "Steps 5 and 6 (NOT CHECKED ON SCREEN): the saved data shows Line 1 and Line 2 now Ralph Edwards; Line 3 still Dana Ortiz; Lines 4, 5 and 6 still Esther Howard; her clock on Line 6 still running. So exactly 2 of 6 lines moved.",
+   "The card on the board shows Ralph Edwards as lead and Esther Howard as clocked in."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96960-end.png"
+  ],
+  "reason_for_reviewer": "s4-batchE.mts C96960: lines and clock made behind the screen (set-up). bv(s.num) searched the work order number. Drag on screen; toast 'Lead technician updated'. after (from /line-technicians): L1 Ralph, L2 Ralph, L3 Dana, L4/L5/L6 Esther; clockStillRunning shows the running task (start_date '2026-10-22 17:38:40', raw value, zone not stated; not shown on screen and not needed for the verdict). No screen visit to the work order or its Lines tab. Clock stopped afterwards (201)."
+ },
+ "C96961": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 6 and 7: the work order was never opened on screen and its Lines tab was never read; the line technicians and the running clock were read behind the screen. Manual check: open S1-1548, go to the Lines tab, and read each line's Labor technician and whether Line 6's clock is running.",
+  "bold_steps": [
+   6,
+   7
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The lines were not read on the work order's Lines tab as the test says; the saved data agrees with every expected line.",
+   "Set-up: S1-1548 led by Esther Howard with the six lines, and Esther Howard clocked in on Line 6.",
+   "Steps 1 to 5: Board View on the All tab, searched by the work order number S1-1548 (the test says the customer name); More actions > Reassign lead technician > Unassigned > confirm: \"Lead technician removed\". The card is in the Unassigned column and the work order has no lead, although she was clocked in.",
+   "Steps 6 and 7 (NOT CHECKED ON SCREEN): the saved data shows Line 2 now Unassigned, Line 1 still Unassigned, Line 3 still Dana Ortiz, Lines 4 and 5 still Esther Howard, and Line 6 still Esther Howard with her clock still running."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96961-end.png"
+  ],
+  "reason_for_reviewer": "s4-batchE.mts C96961: set-up behind the screen (the clock was started by acting as Esther, not by her signing in on a second browser). Reassign dialog used on screen; toast 'Lead technician removed'; lead 'none' (record); inUnassigned true (board). after (from /line-technicians): L1 Unassigned, L2 Unassigned, L3 Dana, L4/L5/L6 Esther; clockStillRunning shows the running task (start_date '2026-10-22 17:40:17', raw, zone not stated; not on screen, not needed for the verdict). No screen visit to the work order page. Clock stopped afterwards (201)."
+ }
+}
