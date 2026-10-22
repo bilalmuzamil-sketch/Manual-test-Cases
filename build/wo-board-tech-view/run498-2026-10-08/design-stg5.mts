@@ -925,10 +925,18 @@ await run('C590120', async (o) => { // Board View card layout and text sizes at 
   if (redWo) { await search(p, redWo.number); await W(2500); await toColumn(p, redWo.lead ?? 'unassigned').catch(() => {}); const where = await D(p, `__D.whereCard(${J(redWo.id)})`);
     await cardPic(redWo.id, 'C590120-s4-red-count-card'); o.s4.red = { card: await pillOf(`[data-test-id="board_card_${redWo.id}"]`), column: where }; o.s4.red.compare = cmp(o.s1.red, o.s4.red.card); o.s4.red.picture = await clip(p, 'C590120-s4-card-red-count-pill', boxOf(o.s4.red.card), 40);
     await search(p, c.name); await W(2000); await toColumn(p, A.staff); }
-  // steps 6-7: Compact, Comfortable: same fields and values, text 14 / 12 px, card avatars 24 px, pills 22 px
-  for (const [d, k] of [['compact', 's6'], ['comfortable', 's7']] as const) { o[k] = { menu: await density(p, d), card: await D(p, `__D.card(${J(w1.id)})`), sizes: await sizes(), avatars: await avatarSizes(), wo1PillHeight: ((await pillOf(`[data-test-id="board_card_${w1.id}"]`)) as any)?.height ?? null, picture: await cardPic(w1.id, `C590120-${k}-${d}-card`) };
-    const p2: any = await pillOf(`[data-test-id="board_card_${w2.id}"]`); o[k].wo2PillHeight = p2?.height ?? null; }
-  await density(p, 'regular'); o.backAtRegular = await sizes(); await search(p, '');
+  // 22 Oct 2026: steps 6-7 as REWRITTEN on the QA lead's instruction (PRD v73 S3-R11 / S6-E1): step 6 = Board View's toolbar has no density
+  // button; step 7 = choose Compact then Comfortable in Tech View, come back to Board View, WO1's card reads as at step 2 (spacing, sizes,
+  // avatars, pills). The step-2-equivalent baseline is read here, at the same window, just before Tech View is opened.
+  o.s7_baseline = { card: await D(p, `__D.card(${J(w1.id)})`), sizes: await sizes(), avatars: await avatarSizes(), wo1PillHeight: ((await pillOf(`[data-test-id="board_card_${w1.id}"]`)) as any)?.height ?? null };
+  o.s6 = { boardDensityButtons: await p.evaluate(`[...document.querySelectorAll('[data-test-id="button_density"]')].filter(e => e.getBoundingClientRect().width > 0).length`),
+    columnSelection: await p.evaluate(`!!document.querySelector('[data-test-id="button_board_fields_selection"]')`), picture: await pic(p, 'C590120-s6-board-toolbar') };
+  await display(p, 'Tech View'); await W(2000); o.s7 = { compact: await density(p, 'compact'), comfortable: await density(p, 'comfortable') };
+  await display(p, 'Board View'); await W(2500); await search(p, c.name); await W(2000); await toColumn(p, A.staff).catch(() => {});
+  o.s7.card = await D(p, `__D.card(${J(w1.id)})`); o.s7.sizes = await sizes(); o.s7.avatars = await avatarSizes();
+  o.s7.wo1PillHeight = ((await pillOf(`[data-test-id="board_card_${w1.id}"]`)) as any)?.height ?? null; o.s7.picture = await cardPic(w1.id, 'C590120-s7-card-after-tech-density');
+  o.s7.sameAsBaseline = JSON.stringify([o.s7_baseline.card?.box?.h ?? o.s7_baseline.card?.h ?? null, o.s7_baseline.sizes, o.s7_baseline.avatars, o.s7_baseline.wo1PillHeight]) === JSON.stringify([o.s7.card?.box?.h ?? o.s7.card?.h ?? null, o.s7.sizes, o.s7.avatars, o.s7.wo1PillHeight]);
+  await display(p, 'Tech View'); await W(1500); await density(p, 'regular'); await display(p, 'Board View'); await W(1500); o.backAtRegular = await sizes(); await search(p, '');
 });
 
 await run('C590121', async (o) => { // More actions button and menu
