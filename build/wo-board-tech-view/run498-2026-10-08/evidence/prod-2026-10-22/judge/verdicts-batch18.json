@@ -1,0 +1,125 @@
+{
+ "C614714": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 2 and 8: Time Clock was switched off on screen but Save & Close did not save it (the window stayed open), so the change was made behind the screen; and on the work order page no Lead Technician field could be found to choose, so Lead Technician was set to Unassigned behind the screen.",
+  "bold_steps": [
+   2,
+   8
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1, 3 to 7, 9 and 10 were followed and matched; steps 2 and 8 were not done through the screen.",
+   "Set-up: a new technician ZZAUTOTEST N1 Tim 52877 (Technician role, Time Clock on) at Truck Hill 1; customer ZZAUTOTEST N1 Time Clock Off 52877 with S1-1618 (Work order 1, Approved, led by Tim) and S1-1619 (Work order 2, Approved, no lead). Signed in as Service Advisor No Reports (Admin).",
+   "Step 1: clicking the pencil on Tim's row in Settings > Staff opened his \"Edit Staff Member\" window.",
+   "Step 2 (NOT DONE THROUGH THE SCREEN): the \"Time Clock\" switch was turned off and \"Save & Close\" was pressed, but the window stayed open with no message and no field marked in error, and the record still had Time Clock on. Time Clock was then turned off behind the screen; the record read back with Time Clock off.",
+   "Step 3: Work Orders > All > Board View shows.",
+   "Step 4: with the customer's name in Search, S1-1618 is in a column of its own headed ZZAUTOTEST N1 Tim 52877.",
+   "Step 5: S1-1619 was dragged from Unassigned onto Tim's column: it stayed in Unassigned, no lead was set, and Tim's column still holds only S1-1618. (The same drag onto Esther Howard's column was accepted, so the dragging itself worked.)",
+   "Step 6: Tech View shows S1-1618 in a group headed ZZAUTOTEST N1 Tim 52877.",
+   "Step 7: clicking S1-1618's row opened its work order page (Lines tab).",
+   "Step 8 (NOT DONE THROUGH THE SCREEN): on the work order page Lead technician is shown as plain text in the left panel and no field to choose from was found; Lead Technician was cleared behind the screen, after which the page reads \"Lead technician Unassigned\".",
+   "Step 9: Board View shows no column for Tim.",
+   "Step 10: Tech View (customer searched) shows no group for Tim; Unassigned now holds both work orders."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C614714-stg-s2-saved.png",
+   "evidence/prod-2026-10-22/C614714-stg-s5-after-drop.png",
+   "evidence/prod-2026-10-22/C614714-stg-s6-tech-view.png",
+   "evidence/prod-2026-10-22/C614714-stg-s8-lead-unassigned.png"
+  ],
+  "reason_for_reviewer": "C614714-stg.mts: s1 row found, Edit Staff Member opened; s2 toggle found, before true, afterClick false, Save & Close clicked, s2_windowAfterSave open 1 fieldErrors [], messages [], record still clockable -> s2_route 'API change used (steps 1-2 NOT done through the screen)', s2_api 201, clockableAfter false. Pictures s2-after-save and s2-saved both show the window still open with Time Clock off. s4 column Technician-A = [S1-1618]; s5 messages [], wo2 lead null, column after [S1-1618], positive control Esther Howard accepted ('Lead technician updated'). s6 group 'ZZAUTOTEST N1 Tim 52877' rows [S1-1618]. s7 number link 0, a cell was clicked, url /workorders/<id>/lines, opened true. s8_field 0 (no Lead Technician select on the page; production shows lead_technician_readonly) -> s8_route API, s8_api 201, page reads 'Lead technician Unassigned'. s9 columnForA false (board opened without re-searching); s10 groupForA false with the search, Unassigned(2). Not judged Failed: whether Save & Close really fails to save on production, and whether the work order page offers another on-screen way to change the lead, needs a person to check.",
+  "todo": "On production, a tester opens a fresh test technician in Settings > Staff, turns Time Clock off and presses Save & Close, and notes whether the window closes and the record keeps Time Clock off; then, on the work order page, tries to set Lead Technician to Unassigned through the screen (left panel or the page's menu) and notes whether that is possible. If both work, mark this test Passed with steps 3 to 7, 9 and 10 as read here."
+ },
+ "C614715": {
+  "verdict": "Blocked",
+  "failed_steps": "Blocked at step 1: the empty location this test needs (a location with no work orders at all) could not be made on production, so the switch never happened and steps 2 to 6 ran at Truck Hill 1, which has hundreds of work orders.",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Blocked on production (v26.43.0-ffea43c). The location with no work orders that the test needs was not available, so the test could not be run as written.",
+   "Set-up: the run tried twice to make a new empty location (\"ZZAUTOTEST C614715 Empty Location\", then \"ZZAUTOTEST C614715 Empty 99718\") through Administration > Locations > New Location; neither was created. Signed in as Service Advisor No Reports (Admin).",
+   "Step 1: the top bar still shows Truck Hill 1 after Change Location; the empty location could not be chosen because it does not exist.",
+   "Steps 2 to 6 were run at Truck Hill 1 only and are not judged: Tech View and Board View show their groups and columns (Unassigned 336, Ayesha Khan 67 and more), which is expected for a location that has work orders."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C614715-stg-s1-top-bar.png",
+   "evidence/prod-2026-10-22/C614715-stg-s2-tech-view.png"
+  ],
+  "reason_for_reviewer": "C614715-stg.mts: start 'Truck Hill 1', made null (makeLocation found no new location after Save & Close), s1_top 'Truck Hill 1', control rows 5 -> remade null, control2 rows 5, so the page was never at an empty location. s2 empty null, groups 8; s3 empty null, columns 14 (Unassigned 336). Pictures s1 and s2 show Truck Hill 1 with full boards. The New Work Order window readings (s4/s5) were taken at Truck Hill 1 from the toolbar button only (s4_emptyButton false) and do not test the empty state. Blocked, not Failed: the first-run state was never reached because its precondition was missing.",
+  "todo": "On production, create a location with no work orders (Administration > Locations > New Location, for example \"ZZAUTOTEST Empty Location\"), make sure the admin used can switch to it, then run the test from step 1."
+ },
+ "C614716": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: customer ZZAUTOTEST N3 Tooltips with an Approved work order led by ZZAUTOTEST N3 Tia at Truck Hill 1; window 1440 px wide; All tab, Tech View, the customer's name in Search, no filter, Assigned to me off. Signed in as Service Advisor No Reports (Admin).",
+   "Step 1: hovering the density button shows the \"Density\" tooltip above the button; it does not cover the table's column header row.",
+   "Step 2: clicking the density button opens the Density menu (Compact, Regular, Comfortable) and no tooltip shows.",
+   "Step 3: Escape closes the menu.",
+   "Step 4: hovering \"Column Selection\" shows its \"Column Selection\" tooltip above the button.",
+   "Step 5: clicking it opens the column menu (On Site, Waiting On Parts, Unit, Asset and so on) and no tooltip shows.",
+   "Step 6: Escape closes the menu.",
+   "Step 7: hovering the \"Tech View\" button in the display switcher shows the \"Tech View\" tooltip above it, the same way as the other two."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C614716-stg-s1-density-hover.png",
+   "evidence/prod-2026-10-22/C614716-stg-s2-density-open.png",
+   "evidence/prod-2026-10-22/C614716-stg-s5-columns-open.png",
+   "evidence/prod-2026-10-22/C614716-stg-s7-switcher-hover.png"
+  ],
+  "reason_for_reviewer": "C614716-stg.mts at 1440x900: s1 button y 81.75, tooltip 'Density' y 43 h 31 (bottom 74) -> above true, coversHeaderRow false; s2 menu 'Density Compact Regular Comfortable', tooltips []; s3 menus []; s4 'Column Selection' tooltip y 43 h 31 over button y 81.75 -> above, no header overlap; s5 column menu open, tooltips []; s6 menus []; s7 'Tech View' tooltip y 103 h 31 over switcher y 142 -> above, no overlap. Positive control: hovers produced tooltips. Pictures agree. At 1440 px the display switcher wraps to the second toolbar row on production; this does not change what the steps check. The test's work order row is not in view in the pictures (the list shows other technicians first); the steps do not depend on it. 0 differences from staging."
+ },
+ "C614717": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: S1-1621 for customer ZZAUTOTEST N4 Name Bubbles at Truck Hill 1, Approved, led by ZZAUTOTEST N4 Ana, with five approved lines for ZZAUTOTEST N4 Ben, Cal, Dee, Eve and Fay; its avatars end in \"+2\". Board View's \"Fields to display\" has \"Line technicians\" on. All tab, Tech View, the customer's name in Search, no filter, Assigned to me off. Signed in as Service Advisor No Reports (Admin).",
+   "Step 1: pointing at the first avatar in S1-1621's Assigned Techs cell opens a name bubble \"ZZAUTOTEST N4 Ana\" above it.",
+   "Step 2: pointing at \"+2\" opens a bubble above it listing \"ZZAUTOTEST N4 Eve, ZZAUTOTEST N4 Fay\".",
+   "Step 3: the avatar in ZZAUTOTEST N4 Ana's group header carries the browser's plain name tip \"ZZAUTOTEST N4 Ana\" and no bubble opens.",
+   "Step 4: Board View shows S1-1621's card in Ana's column with its technician avatars and \"+2\".",
+   "Step 5: pointing at the first avatar on the card opens a bubble \"ZZAUTOTEST N4 Ana\" above it.",
+   "Step 6: pointing at \"+2\" on the card opens a bubble above it listing \"ZZAUTOTEST N4 Eve, ZZAUTOTEST N4 Fay\".",
+   "Step 7: the avatar in Ana's column header carries the plain name tip \"ZZAUTOTEST N4 Ana\" and no bubble opens."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C614717-stg-s1-row-avatar.png",
+   "evidence/prod-2026-10-22/C614717-stg-s3-group-header-avatar.png",
+   "evidence/prod-2026-10-22/C614717-stg-s6-card-plus.png",
+   "evidence/prod-2026-10-22/C614717-stg-s7-column-header-avatar.png"
+  ],
+  "reason_for_reviewer": "C614717-stg.mts: wo S1-1621, five lines 200, approve 201, lead 201; Line technicians field already on (lineTechField true). s1 pointer on target, bubble 'ZZAUTOTEST N4 Ana' above; s2 '+2' bubble 'ZZAUTOTEST N4 Eve, ZZAUTOTEST N4 Fay' above; s3 header avatar title 'ZZAUTOTEST N4 Ana', bubbles []; s4 card 1; s5 bubble 'ZZAUTOTEST N4 Ana' above; s6 '+2' bubble Eve, Fay above; s7 column header title 'ZZAUTOTEST N4 Ana', bubbles []. The browser's own plain tip is not drawn in screenshots, so steps 3 and 7 rest on the name tip text read from the avatar plus the pictures showing no bubble (same reading accepted on staging). Pictures s1 and s6 show the bubbles above the avatars. 0 differences from staging."
+ },
+ "C614719": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 8 to 13: these steps (narrow window, Customer-C's work order far to the right on the board and far down in Tech View) were not run at all; the run covered only steps 1 to 7, which matched, and the set-up for a third pinned-last technician and Customer-C was never made.",
+  "bold_steps": [
+   8,
+   9,
+   10,
+   11,
+   12,
+   13
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1 to 7 were followed and matched; steps 8 to 13 were not run.",
+   "Set-up: technicians ZZAUTOTEST C614719 Ana (A) and ZZAUTOTEST C614719 Ben (B) pinned first and second at Truck Hill 1; customer ZZAUTOTEST C614719 Keyboard A with S1-1622 (WO-1, led by Ana) and S1-1623 (WO-2, led by Ben); customer ZZAUTOTEST C614719 Keyboard B with S1-1624 (WO-3, no lead); search \"ZZAUTOTEST C614719 Keyboard\"; All tab, Tech View, every group open. Signed in as Service Advisor No Reports (Admin). Technician C and Customer-C (WO-4 to WO-6) were not set up.",
+   "Step 1: clicking the arrow on \"Unassigned\" collapsed it: its header stays and S1-1624 is hidden; Ana's group follows, then Ben's.",
+   "Step 2: the cursor is in Search and nothing in the table has a focus ring.",
+   "Step 3: Tab lands the focus ring on S1-1622, the first row of Ana's group, not on the collapsed Unassigned header or any other header.",
+   "Step 4: Board View shows Unassigned first, then Ana's and Ben's columns.",
+   "Step 5: with Customer-A's name in Search, only S1-1622 (Ana's column) and S1-1623 (Ben's column) show; Unassigned has no cards.",
+   "Step 6: the cursor is in Search and nothing on the board has a focus ring.",
+   "Step 7: Tab lands the focus ring on S1-1622's card, the first card in Ana's column, not on a column header.",
+   "Steps 8 to 13 (NOT RUN): the window was not narrowed, Customer-C was never searched and Tech View was not made shorter, so nothing was read for them."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C614719-stg-s1-unassigned-collapsed.png",
+   "evidence/prod-2026-10-22/C614719-stg-s3-first-tab.png",
+   "evidence/prod-2026-10-22/C614719-stg-s5-board-customer-a.png",
+   "evidence/prod-2026-10-22/C614719-stg-s7-first-tab-board.png"
+  ],
+  "reason_for_reviewer": "C614719-stg.mts was written for the 7-step version of the case (16 Oct) and stops after step 7; the live case now has 13 steps (8-13 added 20 Oct from Chris Ward's SV-11422 comment) and a set-up with four technicians and Customer-C (WO-4 to WO-6). Readings: s1 Unassigned collapsed true, rows [], then Ana [S1-1622], Ben [S1-1623]; s2 page_search_input, ring false; s3 12 Tabs -> tech_view_row of WO-1, ring true, isWo1Row true, no header seen on the way; s4 Unassigned [S1-1624], Ana [S1-1622], Ben [S1-1623]; s5 Unassigned [], Ana [S1-1622], Ben [S1-1623]; s6 search, ring false; s7 11 Tabs -> board_card WO-1, ring true. Pictures s1, s3, s5, s7 agree. Steps 1-7 would be Passed on their own.",
+  "todo": "Run steps 8 to 13 on production by hand (or extend the run): add a third and fourth technician who can lead work at Truck Hill 1, the last one (C) not pinned, and a Customer-C whose name does not contain the search words with three Approved work orders led by C; then, with the window 1024 px wide, search Customer-C on Board View, Tab onto the board and check the ring lands on WO-4's card fully in view; switch to Tech View, make the window short, Tab into the table and check WO-4's row shows just below C's heading with its blue ring fully visible."
+ }
+}
