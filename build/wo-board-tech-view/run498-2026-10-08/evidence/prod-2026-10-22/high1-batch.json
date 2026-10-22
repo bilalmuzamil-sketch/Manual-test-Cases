@@ -6,50 +6,7 @@
   "cal": true,
   "dan": true
  },
- "w176": {
-  "c": {
-   "company_id": "b0fd5b30-8a2d-4ad7-9d8c-e4b56da7e4c2",
-   "contact_id": "664717d0-2a58-4260-99c2-82427f86d57d",
-   "vehicle_id": "4965b6cd-8e82-449b-9b94-776379a1999c"
-  },
-  "id": "0dc9b7ed-9e1e-4253-adab-2762232b2829",
-  "ls": [
-   "bbcad157-4cb4-4cbe-b4f9-72a62bacf72b",
-   "50e07cf8-36d4-4bd5-9da3-af87f93d68fa"
-  ],
-  "number": "S1-1369",
-  "q": "ZZAUTOTEST Clock In Line 73448"
- },
- "C368176": {
-  "step1": {
-   "bbcad157": "Unassigned",
-   "50e07cf8": "Unassigned"
-  },
-  "clocksStoppedFirst": [],
-  "clockBeforeStart": "no clock running",
-  "startFound": 1,
-  "afterStart": [],
-  "stopFound": 1,
-  "stopDialog": "Stop working on S1-1369, Line 1 - Line 2 close Line Completed? What Have You Been Doing On This Line? AI SHOPCOACH SUGGEST STORY Department Department1 Or, If you wish to finish work altogether, you c",
-  "stopButtons": [
-   "close",
-   "AI\nSHOPCOACH IMPROVE STORY",
-   "Clock Out"
-  ],
-  "clockOutFound": 1,
-  "stopToasts": [
-   "Timesheet clocked out"
-  ],
-  "clockRunningAfter": null,
-  "step6": {
-   "bbcad157": "Esther Howard",
-   "50e07cf8": "Unassigned"
-  },
-  "techs": {
-   "bbcad157-4cb4-4cbe-b4f9-72a62bacf72b": "Esther Howard",
-   "50e07cf8-36d4-4bd5-9da3-af87f93d68fa": "Unassigned"
-  }
- },
+ "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
  "C368180": {
   "url": "/customers/vehicle/<id>/work-orders?companyId=<id>",
   "tabs": [
@@ -61,162 +18,16 @@
   "tab": "Work Orders",
   "bottom": null,
   "rows": [
-   "S1-1370",
-   "S1-1371",
-   "S1-1372"
+   "S1-1666",
+   "S1-1667",
+   "S1-1668"
   ],
   "expect": [
-   "S1-1370",
-   "S1-1371",
-   "S1-1372"
+   "S1-1666",
+   "S1-1667",
+   "S1-1668"
   ],
-  "D": "S1-1373",
+  "D": "S1-1669",
   "toasts": []
- },
- "C368181": {
-  "url": "/customers/vehicle/<id>/work-orders?companyId=<id>",
-  "tabs": [
-   "Work Orders",
-   "Invoices",
-   "Notes",
-   "Inspections"
-  ],
-  "tab": "Work Orders",
-  "bottom": null,
-  "rowCount": 3,
-  "production": {
-   "build": null,
-   "buildNote": "production build read at sign-in: unknown (earlier today, 08:39 UTC: v26.40.17-f5bf8f4)",
-   "tried": [
-    "customer 0: no Assets tab",
-    "customer 1 asset row 0 did not open an asset page (/customers/<id>/vehicles)",
-    "Work Orders rows=0",
-    "customer 1 asset row 2 did not open an asset page (/customers/<id>/vehicles)",
-    "customer 2 asset row 0 did not open an asset page (/customers/<id>/vehicles)",
-    "Work Orders rows=8"
-   ],
-   "steps": [
-    "16:31:55 open /customers: ok",
-    "16:32:02 customer rows 32",
-    "16:32:04 open /customers: ok",
-    "16:32:20 click customer row 0: no",
-    "16:32:26 open /customers: ok",
-    "16:32:32 click customer row 1: ok",
-    "16:32:38 click Assets tab: ok",
-    "16:32:52 click asset row 0 cell 0: no",
-    "16:33:05 click asset row 0 cell 1: no",
-    "16:33:19 click asset row 0 cell 2: no",
-    "16:33:32 click asset row 0 cell 3: no",
-    "16:33:37 open /customers/<id>/vehicles: ok",
-    "16:33:42 click Assets tab again: ok",
-    "16:33:45 click asset row 1 cell 0: ok",
-    "16:33:49 click asset Work Orders tab: ok",
-    "16:33:54 open /customers/<id>/vehicles: ok",
-    "16:33:59 click Assets tab again: ok",
-    "16:34:13 click asset row 2 cell 0: no",
-    "16:34:26 click asset row 2 cell 1: no",
-    "16:34:40 click asset row 2 cell 2: no",
-    "16:34:53 click asset row 2 cell 3: no",
-    "16:34:58 open /customers: ok",
-    "16:35:04 click customer row 2: ok",
-    "16:35:09 click Assets tab: ok",
-    "16:35:23 click asset row 0 cell 0: no",
-    "16:35:37 click asset row 0 cell 1: no",
-    "16:35:50 click asset row 0 cell 2: no",
-    "16:36:04 click asset row 0 cell 3: no",
-    "16:36:09 open /customers/<id>/vehicles: ok",
-    "16:36:14 click Assets tab again: ok",
-    "16:36:17 click asset row 1 cell 0: ok",
-    "16:36:21 click asset Work Orders tab: ok"
-   ],
-   "found": {
-    "url": "/customers/vehicle/<id>/work-orders?companyId=<id>",
-    "tabs": [
-     "Work Orders",
-     "Invoices",
-     "Notes",
-     "Inspections"
-    ],
-    "tabLabel": "Work Orders",
-    "bottom": null,
-    "rows": 8,
-    "countShown": false
-   }
-  },
-  "staging": {
-   "tabLabel": "Work Orders",
-   "bottom": null,
-   "rows": 3,
-   "countShown": false
-  }
- },
- "C368182": {
-  "url": "/customers/vehicle/<id>/work-orders?companyId=<id>",
-  "tabs": [
-   "Work Orders",
-   "Invoices",
-   "Notes",
-   "Inspections"
-  ],
-  "tab": "0%",
-  "bottom": null,
-  "list": "0%",
-  "bLine": "200"
- },
- "C368183": {
-  "first": [
-   "S1-1372",
-   "S1-1371",
-   "S1-1370"
-  ],
-  "second": [
-   "S1-1370",
-   "S1-1371",
-   "S1-1372"
-  ]
- },
- "C368184": {
-  "tab": "Work Orders (4)",
-  "bottom": null,
-  "rows": [
-   "S1-1377",
-   "S1-1376",
-   "S1-1375",
-   "S1-1374"
-  ],
-  "expect": [
-   "S1-1374",
-   "S1-1375",
-   "S1-1376",
-   "S1-1377"
-  ],
-  "D": "S1-1377",
-  "toasts": []
- },
- "C368185": {
-  "tab": "Work Orders (4)",
-  "bottom": null,
-  "rowCount": 4
- },
- "C368186": {
-  "tab": "0%",
-  "bottom": null,
-  "list": "0%",
-  "bLine": "200"
- },
- "C368187": {
-  "first": [
-   "S1-1374",
-   "S1-1375",
-   "S1-1376",
-   "S1-1377"
-  ],
-  "second": [
-   "S1-1377",
-   "S1-1376",
-   "S1-1375",
-   "S1-1374"
-  ]
- },
- "restored": true
+ }
 }
