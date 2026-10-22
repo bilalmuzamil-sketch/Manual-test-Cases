@@ -1,0 +1,122 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - pass-b5"
+ },
+ "results": {
+  "C97001": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 4: with the search \"ZZAUTOTEST F3 Drag Order\" in Tech View, Ana's group read Alpha Co, Bravo Co, Charlie Co.",
+    "Step 5: Charlie Co dragged above Alpha Co; Ana's group then read Charlie Co, Alpha Co, Bravo Co.",
+    "Step 6: Bravo Co dragged into Ben's group below Delta Co; the message \"Lead technician updated\" showed, Ben's group read Delta Co, Bravo Co and Bravo Co was gone from Ana's group.",
+    "Step 8: in Board View Bravo Co dragged above Delta Co; Ben's column read Bravo Co, Delta Co.",
+    "Step 9: Echo Co dragged from Cal's column to the bottom of Ana's column; \"Lead technician updated\" showed, Ana's column read Charlie Co, Alpha Co, Echo Co and Cal's column was empty (count 0).",
+    "Every drag was allowed and each row or card stayed where it was released, also after reloading the page."
+   ],
+   "pictures": [
+    "pictures-prod/C97001-1-prod-1022.png",
+    "pictures-prod/C97001-2-prod-1022.png"
+   ]
+  },
+  "C97004": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 4: Board View with the search \"ZZAUTOTEST F3 Pinned Reorder\" read Unassigned, Ana, Ben (both pinned), Cal, Dan; counts Ana 1, Ben 2, Cal 1, Dan 0.",
+    "Step 5: Ben's column dragged by its handle before Ana's; the order became Unassigned, Ben, Ana, Cal, Dan.",
+    "Step 6: Ben's column dragged to after Cal's; he did not leave the pinned area: the order read Unassigned, Ana, Ben, Cal, Dan, and only Ana and Ben were pinned.",
+    "Step 8: Tech View showed the pinned groups right after Unassigned in the same order (Ana, Ben); dragging Ana's group below Cal's left Ana among the pinned groups (Unassigned, Ben, Ana, Cal, Dan).",
+    "Step 9: counts unchanged (Ana 1, Ben 2, Cal 1, Dan 0) and Bravo Co's Lead Technician is still ZZAUTOTEST Ben Bravo.",
+    "Other technicians on production (for example Aaron Baker, Aaron Zed) sit among the unpinned columns; Cal and Dan are still after the pinned ones."
+   ],
+   "pictures": [
+    "pictures-prod/C97004-1-prod-1022.png",
+    "pictures-prod/C97004-2-prod-1022.png"
+   ]
+  },
+  "C97011": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 4: Board View with the search \"ZZAUTOTEST F3 Cancelled Drag\": Ana's column read Alpha Co, Bravo Co; counts Ana 2, Ben 1.",
+    "Step 5: Bravo Co dragged over Ben's column and Escape pressed before release: nothing moved, Ana still Alpha Co, Bravo Co, counts 2 and 1, no message.",
+    "Step 6: Bravo Co dragged above Alpha Co and Escape pressed: nothing moved, no message.",
+    "Step 7: Bravo Co dropped on the toolbar outside every column: nothing moved, counts 2 and 1, no message.",
+    "Step 9: in Tech View, Bravo Co's row dragged over Ben's group and Escape pressed: Ana's group still Alpha Co, Bravo Co, Ben's group Charlie Co, counts 2 and 1, no message.",
+    "Step 10: after a refresh nothing changed and Bravo Co's Lead Technician is still ZZAUTOTEST Ana Alpha."
+   ],
+   "pictures": [
+    "pictures-prod/C97011-1-prod-1022.png",
+    "pictures-prod/C97011-2-prod-1022.png",
+    "pictures-prod/C97011-3-prod-1022.png"
+   ]
+  },
+  "C97013": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 4: Tech View with the search \"ZZAUTOTEST F3 Filtered Reorder\": Ana's group read Alpha Co, Bravo Co, Charlie Co, Delta Co (Alpha and Charlie In Progress).",
+    "Step 5: Status \"In progress\" only: Ana's group showed Alpha Co and Charlie Co.",
+    "Steps 6 and 7: Charlie Co dragged above Alpha Co; after Clear selection Ana's group read Charlie Co, Alpha Co, Bravo Co, Delta Co (C, A, B, D).",
+    "Step 8: rows dragged back to Alpha Co, Bravo Co, Charlie Co, Delta Co.",
+    "Steps 9 and 10: filtered again, Alpha Co dragged below Charlie Co; after Clear selection the group read Bravo Co, Charlie Co, Alpha Co, Delta Co (B, C, A, D).",
+    "Step 11: Board View shows Ana's column in the same order: Bravo Co, Charlie Co, Alpha Co, Delta Co."
+   ],
+   "pictures": [
+    "pictures-prod/C97013-1-prod-1022.png",
+    "pictures-prod/C97013-2-prod-1022.png",
+    "pictures-prod/C97013-3-prod-1022.png",
+    "pictures-prod/C97013-4-prod-1022.png"
+   ]
+  },
+  "C368145": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 4: Board View with the search \"ZZAUTOTEST F3 Created With Lead\": Ben's column read Bravo Co, then Delta Co.",
+    "Step 5: the New Work Order window offers only Customer and Asset (no Lead Technician field), so the test's other route was used: a line of the Bravo Co work order was split off into a new work order with \"Split work order\". The new work order (S1-1232) kept ZZAUTOTEST Ben Bravo as Lead Technician.",
+    "Step 6: Ben's column read S1-1232 (Bravo Co, split off), S1-1230 (Bravo Co), S1-1231 (Delta Co): the split-off work order took its customer-name place and is not at the bottom."
+   ],
+   "pictures": [
+    "pictures-prod/C368145-1-prod-1022.png",
+    "pictures-prod/C368145-2-prod-1022.png"
+   ]
+  },
+  "C368148": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 3: Board View with the search \"ZZAUTOTEST F3 Hidden Tech Order\": the columns read Unassigned, Ana, Ben, Cal, Dan.",
+    "Step 4: with Assigned to me on, only Ana's and Cal's columns showed (the signed-in account is the Service Advisor on Alpha Co and Charlie Co only).",
+    "Step 5: Cal's column dragged by its handle before Ana's: Cal, Ana.",
+    "Step 6: with Assigned to me off again the order read Unassigned, Cal, Ana, Ben, Dan: the hidden Ben and Dan kept their order.",
+    "Other technicians on production (for example \"...sa Webb\" and another ZZAUTOTEST staff member with 0 work orders) sit before Cal; this does not affect the order of the four test technicians."
+   ],
+   "pictures": [
+    "pictures-prod/C368148-1-prod-1022.png",
+    "pictures-prod/C368148-2-prod-1022.png"
+   ]
+  },
+  "C96917": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Steps 1 to 4 (Board View): on the All tab the board was scrolled right and the long Unassigned column scrolled down.",
+    "Steps 5 and 6: after clicking Estimates and then All, the board was back at the top-left: Unassigned and the first technicians (Ayesha Khan, Aaron Baker, Aaron Zed, Admin ShopView) in view, every column at its first card.",
+    "Steps 7 to 9: after scrolling again, going to Schedule and back through Work Orders, the board was again at the top-left and still in Board View.",
+    "Steps 10 to 12: after scrolling again, clicking Work Orders in the top navigation while on Board View left the board exactly where it was (same columns and the same card at the top of Unassigned).",
+    "Step 13 and the repeat in Tech View: top-left after a tab click; top-left and still Tech View after Schedule and back; unchanged scroll after clicking Work Orders while already on Tech View."
+   ],
+   "pictures": [
+    "pictures-prod/C96917-1-prod-1022.png",
+    "pictures-prod/C96917-2-prod-1022.png",
+    "pictures-prod/C96917-3-prod-1022.png",
+    "pictures-prod/C96917-4-prod-1022.png"
+   ]
+  }
+ }
+}

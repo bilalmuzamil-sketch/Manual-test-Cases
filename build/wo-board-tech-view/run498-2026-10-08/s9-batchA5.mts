@@ -207,8 +207,10 @@ await run('C97006', async () => {
   for (let i = 0; i < 3; i++) { await th.click(); await p.waitForTimeout(2500); const r = await listRows(); if (r[0] === 'Charlie Co') break; }
   o.step4 = { sort: await sortState(), rows: await listRows() };
   await display(p, 'Tech View'); await p.waitForTimeout(2000); await expandSmallGroups(p);
-  const g = await grp(ANA.staff_id, s); if (g.length >= 2) await drag(p, row(s, g[1]), row(s, g[0]), 4); await shiftPrompt(p, 'Keep shifts'); o.techAfter = await grp(ANA.staff_id, s);
-  await display(p, 'Board View'); await p.waitForTimeout(2000); const c = await col(ANA.staff_id, s); if (c.length >= 2) await drag(p, card(s, c[1]), card(s, c[0]), 4); await shiftPrompt(p, 'Keep shifts'); o.boardAfter = await col(ANA.staff_id, s);
+  // 22 Oct 2026: steps 6 and 8 done as the case writes them — step 6 drags Alpha Co above Bravo Co in Ana's group; step 8 drags the
+  // Charlie Co CARD from Ben's column into Ana's column (the old code reordered Ana's own cards instead).
+  const g = await grp(ANA.staff_id, s); o.techBefore = g; if (g.includes('Alpha Co') && g.includes('Bravo Co')) await drag(p, row(s, 'Alpha Co'), row(s, 'Bravo Co'), 4); await shiftPrompt(p, 'Keep shifts'); o.techAfter = await grp(ANA.staff_id, s);
+  await display(p, 'Board View'); await p.waitForTimeout(2000); const c = await col(ANA.staff_id, s); o.boardBefore = { ana: c, ben: await col(BEN.staff_id, s) }; if (c.length) await drag(p, card(s, 'Charlie Co'), card(s, c[0]), 4); await shiftPrompt(p, 'Keep shifts'); o.boardAfter = await col(ANA.staff_id, s);
   await display(p, 'List'); await p.waitForTimeout(2500); o.step9 = { sort: await sortState(), rows: await listRows() }; await shot(p, 'C97006-list');
   R.C97006 = o;
 });
