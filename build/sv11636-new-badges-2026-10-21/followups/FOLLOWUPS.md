@@ -19,3 +19,5 @@ covers the chip row; Board/Tech View PRD S1-R14 says the phone list stays "exact
 - LESSONS-INDEX: 2 rows (wrong overflow cause; badge at the screen edge).
 - Playbook §AL.4 (page-width cause recipe + header numbers).
 - Ticket standard §5: striped "past the edge" strip.
+
+**QA lead's ruling (22 Oct 2026), on the options (a) file / (b) ask Chris / (c) drop: "c"** — dropped as test data only. Nothing filed, nothing to Chris.
