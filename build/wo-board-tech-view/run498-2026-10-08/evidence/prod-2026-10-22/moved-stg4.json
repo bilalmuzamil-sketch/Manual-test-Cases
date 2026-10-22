@@ -825,5 +825,1028 @@
     "CLocation": "Truck Hill 1"
    }
   }
+ },
+ "C96970": {
+  "technicians": {
+   "A": {
+    "email": "zz.wob.aaa.ina.inactive@staging.shopview.local",
+    "id": "2595f4aa-d608-4572-b044-96ee7fa9763c",
+    "staff_id": "d9e79f90-0859-46f4-83af-495bffd577e3",
+    "name": "Aaa ZZAUTOTEST Ina Inactive",
+    "setup": [
+     "create 201",
+     "change 201",
+     "enrol Heavy 400 {\"errors\":[{\"department_id\":\"Missing required parameter\"}]}"
+    ],
+    "active": true,
+    "location": "Truck Hill 1"
+   },
+   "B": {
+    "email": "zz.wob.aaa.mia.holder@staging.shopview.local",
+    "id": "3c9cfed2-c5c6-40a2-affb-fcb3cea37957",
+    "staff_id": "b23c4b3b-6365-4874-beb0-7d38a310cf72",
+    "name": "Aaa ZZAUTOTEST Mia Holder",
+    "setup": [
+     "create 201",
+     "change 201",
+     "enrol Heavy 400 {\"errors\":[{\"department_id\":\"Missing required parameter\"}]}"
+    ],
+    "active": true,
+    "location": "Truck Hill 1"
+   },
+   "C": {
+    "email": "zz.wob.aaa.mona.moved@staging.shopview.local",
+    "id": "6468a67b-1921-4fcc-936d-be20a652f725",
+    "staff_id": "4f8d776f-5a0d-4310-8ff9-c2429e4e6bd1",
+    "name": "Aaa ZZAUTOTEST Mona Moved",
+    "setup": [
+     "create 201",
+     "change 201",
+     "enrol Heavy 400 {\"errors\":[{\"department_id\":\"Missing required parameter\"}]}",
+     "enrol Lethbridge 400 {\"errors\":[{\"department_id\":\"Missing required parameter\"}]}"
+    ],
+    "active": true,
+    "location": "Truck Hill 1"
+   }
+  },
+  "workOrders": {
+   "set": [
+    "S1-1289 201",
+    "S1-1290 201",
+    "S1-1291 201"
+   ],
+   "wo1": "S1-1289",
+   "wo2": "S1-1290",
+   "wo3": "S1-1291"
+  },
+  "setupDeactivateA": "201",
+  "aActive": false,
+  "pinC": 200,
+  "moveC": {
+   "locationFieldError": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('.q-menu .q-item, [role=option]').filter({ hasText: 'Trucks Hill 2' }).first()\n",
+   "locationNow": "Truck Hill 1",
+   "eligibleAfterLocationField": true,
+   "unenrolHeavy": "400 {\"errors\":[{\"department_id\":\"Missing required parameter\"}]}",
+   "eligibleAfterUnenrol": true
+  },
+  "cStillActive": true,
+  "leadsAtStart": [
+   "S1-1289 lead=Aaa ZZAUTOTEST Ina Inactive",
+   "S1-1290 lead=Aaa ZZAUTOTEST Mia Holder",
+   "S1-1291 lead=Aaa ZZAUTOTEST Mona Moved"
+  ],
+  "step3": [
+   {
+    "id": "unassign",
+    "name": "Unassigned",
+    "header": "Unassigned 0 0 work orders",
+    "pinned": "no pin control",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 17
+   },
+   {
+    "id": "4f8d776f",
+    "name": "Aaa ZZAUTOTEST Mona Moved",
+    "header": "AZ Aaa ZZAUTOTEST Mona Moved 1 1 work order",
+    "pinned": "true",
+    "cards": [
+     "S1-1291"
+    ],
+    "empty": null,
+    "left": 321
+   },
+   {
+    "id": "90e2ab51",
+    "name": "Ayesha Khan",
+    "header": "AK Ayesha Khan 0 0 work orders",
+    "pinned": "false",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 625
+   },
+   {
+    "id": "3d600422",
+    "name": "Aaron Baker",
+    "header": "AB Aaron Baker 0 0 work orders",
+    "pinned": "false",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 929
+   },
+   {
+    "id": "b25f46f9",
+    "name": "Aaron Zed",
+    "header": "AZ Aaron Zed 0 0 work orders",
+    "pinned": "false",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 1233
+   },
+   {
+    "id": "c4dfdb4c",
+    "name": "Admin ShopView",
+    "header": "AS Admin ShopView 0 0 work orders",
+    "pinned": "false",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 1537
+   },
+   {
+    "id": "12048b05",
+    "name": "Ahtasham Amjad",
+    "header": "AA Ahtasham Amjad 0 0 work orders",
+    "pinned": "false",
+    "cards": [],
+    "empty": "Drag a work order here to assign it",
+    "left": 1841
+   }
+  ],
+  "step3Headers": {
+   "A": {
+    "id": "d9e79f90",
+    "name": "Aaa ZZAUTOTEST Ina Inactive",
+    "header": "AZ Aaa ZZAUTOTEST Ina Inactive Inactive 1 1 work order",
+    "pinned": "false",
+    "cards": [
+     "S1-1289"
+    ],
+    "empty": null,
+    "left": 809
+   },
+   "C": {
+    "id": "4f8d776f",
+    "name": "Aaa ZZAUTOTEST Mona Moved",
+    "header": "AZ Aaa ZZAUTOTEST Mona Moved 1 1 work order",
+    "pinned": "true",
+    "cards": [
+     "S1-1291"
+    ],
+    "empty": null,
+    "left": 321
+   }
+  },
+  "step4": {
+   "from": "not drawn",
+   "to": "not drawn",
+   "whileHolding": [
+    {
+     "ms": 93,
+     "kind": "new text",
+     "text": "S1-1290 ZZAUTOTEST C96970 Refused Drops",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 286,
+     "kind": "new text",
+     "text": "This technician can't be assigned work orders.",
+     "cls": "board-drag-denied row no-wrap items-center"
+    }
+   ],
+   "reach": {
+    "from": "on screen",
+    "toBeforePress": "on screen @496",
+    "toAtDrop": "on screen @496"
+   },
+   "shiftPrompt": null,
+   "message": [],
+   "watched": [
+    {
+     "ms": 93,
+     "kind": "new text",
+     "text": "S1-1290 ZZAUTOTEST C96970 Refused Drops",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 286,
+     "kind": "new text",
+     "text": "This technician can't be assigned work orders.",
+     "cls": "board-drag-denied row no-wrap items-center"
+    }
+   ],
+   "leads": [
+    "S1-1289 lead=Aaa ZZAUTOTEST Ina Inactive",
+    "S1-1290 lead=Aaa ZZAUTOTEST Mia Holder",
+    "S1-1291 lead=Aaa ZZAUTOTEST Mona Moved"
+   ]
+  },
+  "step5": [
+   "Aaa ZZAUTOTEST Mia Holder"
+  ],
+  "step6": {
+   "from": "on screen @821",
+   "to": "not drawn",
+   "whileHolding": [
+    {
+     "ms": 83,
+     "kind": "new text",
+     "text": "S1-1290 ZZAUTOTEST C96970 Refused Drops",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 253,
+     "kind": "new text",
+     "text": "CW Cameron Williamson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 253,
+     "kind": "new text",
+     "text": "BM Brenda Martinez 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 253,
+     "kind": "new text",
+     "text": "BC Branko Cicovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 253,
+     "kind": "new text",
+     "text": "BN Billy Nobill 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 253,
+     "kind": "new text",
+     "text": "Bilal Muzammil 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 253,
+     "kind": "new text",
+     "text": "BM Bilal Muzamil 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 253,
+     "kind": "new text",
+     "text": "AA Ahtesham ABCPROD 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 253,
+     "kind": "new text",
+     "text": "AA Ahtasham Amjad 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 253,
+     "kind": "new text",
+     "text": "AS Admin ShopView 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 253,
+     "kind": "new text",
+     "text": "AZ Aaron Zed 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 254,
+     "kind": "new text",
+     "text": "AB Aaron Baker 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 254,
+     "kind": "new text",
+     "text": "AK Ayesha Khan 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 254,
+     "kind": "new text",
+     "text": "AZ Aaa ZZAUTOTEST Mona Moved 1 1 work order",
+     "cls": "board-column"
+    },
+    {
+     "ms": 300,
+     "kind": "new text",
+     "text": "S1-1291 Approved Customer ZZAUTOTEST C96970 Refused Drops ZZC970 Progress 0% Lead technician Aaa ZZAUTOTEST Mona Moved Total price $0.00",
+     "cls": "board-column__card"
+    }
+   ],
+   "reach": {
+    "from": "on screen",
+    "toBeforePress": "not drawn",
+    "toWhileHolding": "on screen",
+    "toAtDrop": "on screen @312"
+   },
+   "shiftPrompt": null,
+   "message": [
+    "Lead technician updated"
+   ],
+   "watched": [
+    {
+     "ms": 83,
+     "kind": "new text",
+     "text": "S1-1290 ZZAUTOTEST C96970 Refused Drops",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 253,
+     "kind": "new text",
+     "text": "CW Cameron Williamson 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 253,
+     "kind": "new text",
+     "text": "BM Brenda Martinez 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 253,
+     "kind": "new text",
+     "text": "BC Branko Cicovic 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 253,
+     "kind": "new text",
+     "text": "BN Billy Nobill 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 253,
+     "kind": "new text",
+     "text": "Bilal Muzammil 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 253,
+     "kind": "new text",
+     "text": "BM Bilal Muzamil 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 253,
+     "kind": "new text",
+     "text": "AA Ahtesham ABCPROD 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 253,
+     "kind": "new text",
+     "text": "AA Ahtasham Amjad 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 253,
+     "kind": "new text",
+     "text": "AS Admin ShopView 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 253,
+     "kind": "new text",
+     "text": "AZ Aaron Zed 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 254,
+     "kind": "new text",
+     "text": "AB Aaron Baker 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 254,
+     "kind": "new text",
+     "text": "AK Ayesha Khan 0 0 work orders Drag a work order here to assign it",
+     "cls": "board-column"
+    },
+    {
+     "ms": 254,
+     "kind": "new text",
+     "text": "AZ Aaa ZZAUTOTEST Mona Moved 1 1 work order",
+     "cls": "board-column"
+    },
+    {
+     "ms": 300,
+     "kind": "new text",
+     "text": "S1-1291 Approved Customer ZZAUTOTEST C96970 Refused Drops ZZC970 Progress 0% Lead technician Aaa ZZAUTOTEST Mona Moved Total price $0.00",
+     "cls": "board-column__card"
+    },
+    {
+     "ms": 2666,
+     "kind": "new text",
+     "text": "S1-1290 Approved Customer ZZAUTOTEST C96970 Refused Drops ZZC970 Progress 0% Lead technician Aaa ZZAUTOTEST Mona Moved Total price $0.00",
+     "cls": "board-column__card"
+    },
+    {
+     "ms": 2911,
+     "kind": "message",
+     "text": "Lead technician updated",
+     "cls": "q-notification row items-stretch q-notification--standard bg"
+    }
+   ],
+   "leads": [
+    "S1-1289 lead=Aaa ZZAUTOTEST Ina Inactive",
+    "S1-1290 lead=Aaa ZZAUTOTEST Mona Moved",
+    "S1-1291 lead=Aaa ZZAUTOTEST Mona Moved"
+   ]
+  },
+  "step7": [
+   "Aaa ZZAUTOTEST Mona Moved"
+  ],
+  "step9": [
+   {
+    "name": "Unassigned",
+    "count": 0,
+    "rows": [],
+    "pin": null
+   },
+   {
+    "name": "Aaa ZZAUTOTEST Mona Moved",
+    "count": 2,
+    "rows": [
+     "S1-1290",
+     "S1-1291"
+    ],
+    "pin": "true"
+   }
+  ],
+  "step9Headers": [
+   "not drawn",
+   "AZ Aaa ZZAUTOTEST Mona Moved 2 2 work orders"
+  ],
+  "step10": {
+   "from": "off screen @0",
+   "to": "not drawn",
+   "whileHolding": [
+    {
+     "ms": 104,
+     "kind": "new text",
+     "text": "S1-1290 ZZAUTOTEST C96970 Refused Drops",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 641,
+     "kind": "new text",
+     "text": "AB Aaron Baker 0 0 work orders",
+     "cls": "tech-view__sticky"
+    },
+    {
+     "ms": 1194,
+     "kind": "new text",
+     "text": "No work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1456,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC05 Eva Cells 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1456,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC06 Gia Pills 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1456,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC07 Hana Grip 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1456,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC08 Ines Header 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1706,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC09 Kai Board 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1706,
+     "kind": "new text",
+     "text": "ZZAUTOTEST DC10 Lea Pin 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1706,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-88821 Pia Card 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1706,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-88821 Quinn Card 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1706,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC12 Rae Menu 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1964,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC13 Sam Idle 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1965,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC14 Tia Drag 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1965,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC14-88821 Tia Drag 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1965,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC14-88821 Uma Drag 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2211,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC15 Vic Hover 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2211,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC15 Wes Hover 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2211,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC16 Xia Dark 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2211,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC17 Maximiliana Abernathy-Kowalczyk 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2462,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC18 Yan Filter 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2462,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC19 Abe Density 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2463,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC19 Zoe Density 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2463,
+     "kind": "new text",
+     "text": "ZZAUTOTEST DC20 Bea Dialog 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2463,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC20 Cal Dialog 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2714,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC21 Dee Toast 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2714,
+     "kind": "new text",
+     "text": "ZS ZZAUTOTEST S6 Pia Pills 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2715,
+     "kind": "new text",
+     "text": "AZ Aaa ZZAUTOTEST Ina Inactive Inactive 1 1 work order",
+     "cls": ""
+    },
+    {
+     "ms": 2715,
+     "kind": "new text",
+     "text": "Approved — S1-1289 ZZC970 0% SA Service Advisor No Reports (Admin) 0 AZ Today $0.00",
+     "cls": "cursor-pointer"
+    },
+    {
+     "ms": 2715,
+     "kind": "new text",
+     "text": "AZ Aaa ZZAUTOTEST Mia Holder 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2731,
+     "kind": "new text",
+     "text": "ZZAUTOTEST C96970 Refused Drop..",
+     "cls": "short-text-wrapper"
+    },
+    {
+     "ms": 2990,
+     "kind": "new text",
+     "text": "ZA ZZAUTOTEST Ana Alpha 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2990,
+     "kind": "new text",
+     "text": "ZB ZZAUTOTEST Ben Bravo 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2990,
+     "kind": "new text",
+     "text": "ZC ZZAUTOTEST Cal Charlie 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2990,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST Dan Delta 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2990,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC10 Max Pin 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2990,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC10 Nia Pin 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2990,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC10 Oli Pin 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2990,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-65540 Pia Card 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2990,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-65540 Quinn Card 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 3921,
+     "kind": "new text",
+     "text": "This technician can't be assigned work orders.",
+     "cls": "board-drag-denied row no-wrap items-center"
+    }
+   ],
+   "reach": {
+    "from": "off screen @-147,380",
+    "toBeforePress": "not drawn",
+    "toWhileHolding": "off screen @-147,582",
+    "toAtDrop": "off screen @-147"
+   },
+   "shiftPrompt": null,
+   "message": [],
+   "watched": [
+    {
+     "ms": 104,
+     "kind": "new text",
+     "text": "S1-1290 ZZAUTOTEST C96970 Refused Drops",
+     "cls": "board-drag-overlay"
+    },
+    {
+     "ms": 641,
+     "kind": "new text",
+     "text": "AB Aaron Baker 0 0 work orders",
+     "cls": "tech-view__sticky"
+    },
+    {
+     "ms": 1194,
+     "kind": "new text",
+     "text": "No work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1456,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC05 Eva Cells 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1456,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC06 Gia Pills 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1456,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC07 Hana Grip 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1456,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC08 Ines Header 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1706,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC09 Kai Board 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1706,
+     "kind": "new text",
+     "text": "ZZAUTOTEST DC10 Lea Pin 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1706,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-88821 Pia Card 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1706,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-88821 Quinn Card 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1706,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC12 Rae Menu 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1964,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC13 Sam Idle 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1965,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC14 Tia Drag 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1965,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC14-88821 Tia Drag 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 1965,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC14-88821 Uma Drag 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2211,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC15 Vic Hover 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2211,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC15 Wes Hover 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2211,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC16 Xia Dark 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2211,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC17 Maximiliana Abernathy-Kowalczyk 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2462,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC18 Yan Filter 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2462,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC19 Abe Density 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2463,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC19 Zoe Density 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2463,
+     "kind": "new text",
+     "text": "ZZAUTOTEST DC20 Bea Dialog 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2463,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC20 Cal Dialog 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2714,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC21 Dee Toast 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2714,
+     "kind": "new text",
+     "text": "ZS ZZAUTOTEST S6 Pia Pills 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2715,
+     "kind": "new text",
+     "text": "AZ Aaa ZZAUTOTEST Ina Inactive Inactive 1 1 work order",
+     "cls": ""
+    },
+    {
+     "ms": 2715,
+     "kind": "new text",
+     "text": "Approved — S1-1289 ZZC970 0% SA Service Advisor No Reports (Admin) 0 AZ Today $0.00",
+     "cls": "cursor-pointer"
+    },
+    {
+     "ms": 2715,
+     "kind": "new text",
+     "text": "AZ Aaa ZZAUTOTEST Mia Holder 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2731,
+     "kind": "new text",
+     "text": "ZZAUTOTEST C96970 Refused Drop..",
+     "cls": "short-text-wrapper"
+    },
+    {
+     "ms": 2990,
+     "kind": "new text",
+     "text": "ZA ZZAUTOTEST Ana Alpha 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2990,
+     "kind": "new text",
+     "text": "ZB ZZAUTOTEST Ben Bravo 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2990,
+     "kind": "new text",
+     "text": "ZC ZZAUTOTEST Cal Charlie 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2990,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST Dan Delta 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2990,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC10 Max Pin 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2990,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC10 Nia Pin 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2990,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC10 Oli Pin 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2990,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-65540 Pia Card 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 2990,
+     "kind": "new text",
+     "text": "ZD ZZAUTOTEST DC11-65540 Quinn Card 0 0 work orders",
+     "cls": ""
+    },
+    {
+     "ms": 3921,
+     "kind": "new text",
+     "text": "This technician can't be assigned work orders.",
+     "cls": "board-drag-denied row no-wrap items-center"
+    }
+   ],
+   "leads": [
+    "S1-1289 lead=Aaa ZZAUTOTEST Ina Inactive",
+    "S1-1290 lead=Aaa ZZAUTOTEST Mona Moved",
+    "S1-1291 lead=Aaa ZZAUTOTEST Mona Moved"
+   ],
+   "rowGroup": "4f8d776f-5a0d-4310-8ff9-c2429e4e6bd1"
+  },
+  "step11": {
+   "from": "off screen @-147",
+   "to": "off screen @-147",
+   "whileHolding": [
+    {
+     "ms": 129,
+     "kind": "new text",
+     "text": "S1-1290 ZZAUTOTEST C96970 Refused Drops",
+     "cls": "board-drag-overlay"
+    }
+   ],
+   "reach": {
+    "from": "off screen @-147,380",
+    "toBeforePress": "off screen @-147",
+    "toWhileHolding": "off screen @-147,336",
+    "toAtDrop": "off screen @-147"
+   },
+   "shiftPrompt": null,
+   "message": [],
+   "watched": [
+    {
+     "ms": 129,
+     "kind": "new text",
+     "text": "S1-1290 ZZAUTOTEST C96970 Refused Drops",
+     "cls": "board-drag-overlay"
+    }
+   ],
+   "leads": [
+    "S1-1289 lead=Aaa ZZAUTOTEST Ina Inactive",
+    "S1-1290 lead=Aaa ZZAUTOTEST Mona Moved",
+    "S1-1291 lead=Aaa ZZAUTOTEST Mona Moved"
+   ],
+   "rowGroup": "4f8d776f-5a0d-4310-8ff9-c2429e4e6bd1"
+  },
+  "step12": {
+   "group": "4f8d776f-5a0d-4310-8ff9-c2429e4e6bd1",
+   "techBId": "b23c4b3b-6365-4874-beb0-7d38a310cf72"
+  },
+  "step13": {
+   "field": null,
+   "testIds": [
+    "lead_technician_readonly=Aaa ZZAUTOTEST Mona Moved"
+   ],
+   "near": "Lead technician Aaa ZZAUTOTEST Mona Moved"
+  },
+  "restore": {
+   "C": [
+    "enrol Heavy 400 {\"errors\":[{\"department_id\":\"Missing required parameter\"}]}",
+    "unenrol Leth 400 {\"errors\":[{\"department_id\":\"Missing required parameter\"}]}",
+    "deactivate 201"
+   ],
+   "A": [
+    "enrol Heavy 400 {\"errors\":[{\"department_id\":\"Missing required parameter\"}]}",
+    "unenrol Leth 400 {\"errors\":[{\"department_id\":\"Missing required parameter\"}]}"
+   ],
+   "B": [
+    "enrol Heavy 400 {\"errors\":[{\"department_id\":\"Missing required parameter\"}]}",
+    "unenrol Leth 400 {\"errors\":[{\"department_id\":\"Missing required parameter\"}]}",
+    "deactivate 201"
+   ],
+   "pins": 200
+  }
  }
 }
