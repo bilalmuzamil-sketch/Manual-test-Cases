@@ -64,3 +64,6 @@
   (6 held design-version cases D-76 to D-81 out of the run). Pictures uploaded to each case under readable names (ar-ap-p<page>-<figure>.png).
 - Design differences DD-01 to DD-05 → questions 11-15 added to Chris's sheet 22 Oct 2026 (rows 16-21, light green, colour guide E3);
   DD-06 = question 4 (today's A/R headings already use capitals, so its options (a) and (b) give the same headings).
+- TestRail write done 22 Oct 2026 (applied/design-2026-10-22-log.jsonl): 257 updated + 32 added (C715532-C715563), all read back OK;
+  555 pictures uploaded, attachments read back OK on all 259 cases with pictures. Run 549: 253 → 279 tests (26 new non-held design
+  cases), none lost. Held out of run 549: C715279, C715322, C715463, C715464 (q1, q6, q9) and C715558-C715563 (q11-q15, q4).

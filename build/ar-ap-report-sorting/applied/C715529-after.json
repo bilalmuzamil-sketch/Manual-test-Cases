@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792659867,
  "updated_by": 3,
- "updated_on": 1792659867,
+ "updated_on": 1792681184,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,14 +22,14 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/ar-ap-report-sorting/AR-AP-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with the \"Admin\" role, with {Location-A} as your current location.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Starting screen: Reports &gt; Finance &gt; A/R Summary is open in a desktop browser window 900 px wide, as opened from the Reports menu.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/ar-ap-report-sorting/AR-AP-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with the \"Admin\" role, with {Location-A} as your current location.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Starting screen: A/R Summary (Reports, then \"A/R Aging Summary\" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 900 px wide, as opened from the Reports menu.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Look at the filter row.</li><li>Look at the table.</li><li>Open A/P Unpaid Invoices at the same width and look again.</li></ol>",
  "custom_testrail_bdd_scenario": null,
- "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the native mobile filter row shows instead of the desktop chips.</li><li>Step 2: the table scrolls sideways; nothing else is laid out for small screens.</li><li>Step 3: the same: the mobile filter row and a table that scrolls sideways.</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"A/R and A/P Report Sorting, Export and Location Filter\", Confluence 947650561, version 5 (21 Oct 2026, Chris Ward), read 22 Oct 2026 &middot; Epic SV-11315, story SV-11531 (Story 1, Reports open in QuickBooks name order)</p><ul><li><strong>Out of Scope:</strong> &ldquo;A phone or tablet layout. Narrower than 1024 pixels, the reports show the native mobile filter row and the table scrolls sideways; nothing else is designed for small screens in this release.&rdquo;</li><li><strong>Form factor:</strong> &ldquo;Form factor: Desktop only by rule: these are detailed reports.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"A/R and A/P Report Sorting\" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), page 6 (Descriptions and pinned column) as the PRD names it. Not yet read: the design was not available to this pass (22 Oct 2026). Until it is, this case compares with the native reports the PRD names. When the design is driven, its picture of this screen is attached here, every attribute is re-checked against it, and any difference gets a sent question and a held design-version case (Rules 120, 126, 130).</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
+ "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the native mobile filter row shows instead of the desktop chips.</li><li>Step 2: the table scrolls sideways; nothing else is laid out for small screens.</li><li>Step 3: the same: the mobile filter row and a table that scrolls sideways.</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"A/R and A/P Report Sorting, Export and Location Filter\", Confluence 947650561, version 5 (21 Oct 2026, Chris Ward), read 22 Oct 2026 &middot; Epic SV-11315, story SV-11531 (Story 1, Reports open in QuickBooks name order)</p><ul><li><strong>Out of Scope:</strong> &ldquo;A phone or tablet layout. Narrower than 1024 pixels, the reports show the native mobile filter row and the table scrolls sideways; nothing else is designed for small screens in this release.&rdquo;</li><li><strong>Form factor:</strong> &ldquo;Form factor: Desktop only by rule: these are detailed reports.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"A/R and A/P Report Sorting\" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 1 \"Opening order and header sorting\" (board Main.dc.html). The design draws no phone or tablet layout (all 7 boards checked); the case follows the PRD's Out of Scope line.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
  "custom_steps_separated": null,
  "custom_mission": null,
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 1
+ "version": 2
 }
