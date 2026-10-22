@@ -262,9 +262,24 @@ const partsOf = async (id: string) => { const d = (await a.get(`/api/work-orders
 const psRow = async (num: string) => { const r = await a.get(`/api/part-sales?search=${encodeURIComponent(num)}&limit=50`); const d = r.body?.data; const rows = d?.partSales ?? d?.collection ?? d ?? []; return (Array.isArray(rows) ? rows : []).find((x: any) => x.number === num) ?? null; };
 
 await run('C368215', async () => { const ps = await partSale(`ZZAUTOTEST Part Sale Card ${RUNNO}`); const o: any = { number: ps.number, create: ps.create };
-  o.part = await addPartUI(ps.id, 'Brake'); await p.goto(APP + `/parts/part-sale/${ps.id}/part-requests`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000);
+  o.part = await addPartUI(ps.id, 'Brake');
+  // 22 Oct 2026: steps 1-2 as written — top menu Parts > Part Sales, then click this sale's row (was: the page opened by its address).
+  await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000);
+  await p.locator('[data-test-id="button_desktop_nav_link"]').filter({ hasText: /^\s*Parts\s*$/ }).first().click().catch(() => { o.navParts = 'no Parts link'; }); await p.waitForTimeout(3000);
+  await p.getByText('Part Sales', { exact: true }).first().click().catch(() => { o.navPartSales = 'no Part Sales link'; }); await p.waitForTimeout(4500); o.listUrl = p.url().replace(APP, '');
+  const num0 = ps.number ?? null; o.rowFound = 0;
+  if (num0) { const box = p.locator('[data-test-id="page_search_input"]'); if (!(await box.isVisible().catch(() => false))) await p.locator('[data-test-id="page_search_toggle"]').click().catch(() => {}); await box.fill(num0).catch(() => {}); await p.waitForTimeout(3500);
+    const row = p.locator('tbody tr').filter({ hasText: num0 }).first(); o.rowFound = await row.count(); if (o.rowFound) { await shot(p, 'C368215-list'); await row.locator('td').nth(1).click().catch(() => row.click()); await p.waitForTimeout(6000); } }
+  o.openedFromList = new RegExp(`/parts/part-sale/${ps.id}`).test(p.url());
+  if (!o.openedFromList) { o.fallback = 'NOT FROM THE LIST: opened by address'; await p.goto(APP + `/parts/part-sale/${ps.id}/part-requests`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000); }
   o.card = await p.evaluate(`(() => { const c = document.querySelector('[data-test-id*="status_card"], [class*="status-card"], .q-card'); return c ? c.innerText.replace(/\\n+/g, ' | ').slice(0, 500) : null; })()`);
-  o.errors = await toastsOn(p); await shot(p, 'C368215-part-sale'); R.ps = ps; R.C368215 = o; });
+  o.errors = await toastsOn(p); await shot(p, 'C368215-part-sale');
+  // the Expected: "Sales Representative is a dropdown you can open to pick a person" — open it, read the choices, close it
+  const rep = p.locator('.q-field').filter({ hasText: /Sales Representative/i }).first(); o.repField = await rep.count();
+  if (o.repField) { o.repValue = (await rep.innerText().catch(() => '')).replace(/\s+/g, ' ').trim(); await rep.click().catch((e) => { o.repClick = String(e).slice(0, 80); }); await p.waitForTimeout(1500);
+    o.repOptions = (await p.evaluate(`[...document.querySelectorAll('.q-menu')].filter(m => m.getBoundingClientRect().width > 20).flatMap(m => [...m.querySelectorAll('.q-item')].map(i => i.innerText.replace(/\\s+/g, ' ').trim()))`).catch(() => []) as string[]).slice(0, 15);
+    await shot(p, 'C368215-sales-rep-open'); await p.keyboard.press('Escape').catch(() => {}); await p.waitForTimeout(600); }
+  R.ps = ps; R.C368215 = o; });
 await run('C368216', async () => { const ps = R.ps ?? await partSale(`ZZAUTOTEST Part Sale Person ${RUNNO}`); const o: any = {};
   await p.goto(APP + `/parts/part-sale/${ps.id}/part-requests`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000);
   o.labels = await p.evaluate(`[...document.querySelectorAll('.q-field__label, label, .text-caption, .q-item__label--caption')].map(e => e.innerText.trim()).filter(x => x && x.length < 40).slice(0, 40)`);

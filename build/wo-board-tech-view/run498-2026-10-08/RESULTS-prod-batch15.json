@@ -1,0 +1,103 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - batch15"
+ },
+ "results": {
+  "C97030": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: seven work orders for \"ZZAUTOTEST F3 Header Counts 22 ...\" at Truck Hill 1: Alpha Co and Bravo Co Approved and Charlie Co Estimate led by ZZAUTOTEST Ana Alpha; Delta Co In Progress and Echo Co Invoiced led by ZZAUTOTEST Ben Bravo; Golf Co Approved and Hotel Co Estimate with no lead; none for ZZAUTOTEST Cal Charlie. The Status filter started with nothing ticked.",
+    "Steps 1 to 3: Work Orders, All tab, \"ZZAUTOTEST F3 Header Counts\" typed in Search, List picked.",
+    "Step 4: List shows 7 rows.",
+    "Steps 5 and 6: Tech View headers read Unassigned 2, Ana 3, Ben 2, Cal 0, and each matches the rows under it (total 7).",
+    "Steps 7 and 8: Board View columns read Unassigned 2, Ana 3, Ben 2, Cal 0, and each matches the cards in it (total 7).",
+    "Step 9: Status with only Approved ticked: List shows 3 rows (S1-1573, S1-1574, S1-1578, all Approved); Board View and Tech View both read Unassigned 1, Ana 2, Ben 0, Cal 0, each matching what is listed under it.",
+    "Step 10: Status cleared, Estimates tab: Board View and Tech View both read Unassigned 1 (S1-1579, Hotel Co) and Ana 1 (S1-1575, Charlie Co), Ben 0, Cal 0, each matching what is listed under it."
+   ],
+   "pictures": [
+    "pictures-prod/C97030-1-prod-1022.png",
+    "pictures-prod/C97030-2-prod-1022.png",
+    "pictures-prod/C97030-3-prod-1022.png"
+   ]
+  },
+  "C96982": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: customer \"ZZAUTOTEST F2 Required Only UI 83413\" with an asset 2022 Freightliner M2 unit TRK-118 and an asset 1999 Ford Explorer with no unit (both made on the New Asset screen); two Approved work orders led by Esther Howard: S1-1591 on TRK-118 and S1-1592 on the 1999 Ford Explorer.",
+    "Steps 1 and 2: Work Orders, All tab, Board View, \"ZZAUTOTEST F2 Required Only\" searched.",
+    "Step 3: Column Selection (production's name for Fields to display) opened and every switched-on field turned off.",
+    "Step 4: S1-1591 shows only \"S1-1591\", \"Approved\" and \"TRK-118\"; S1-1592 shows only \"S1-1592\", \"Approved\" and \"1999 Ford Explorer\" in the unit's place."
+   ],
+   "pictures": [
+    "pictures-prod/C96982-1-prod-1022.png"
+   ]
+  },
+  "C96984": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: customer \"ZZAUTOTEST F2 Unit Fallback UI 55464\" with assets 2022 Freightliner M2 unit TRK-118 and 1999 Ford Explorer with no unit (made on the New Asset screen); three Approved work orders led by Esther Howard: S1-1593 (TRK-118), S1-1594 (1999 Ford Explorer) and S1-1595 (another asset, no lines). (c) not built - an asset needs a Make.",
+    "Steps 1 and 2: Work Orders, All tab, Board View, \"ZZAUTOTEST F2 Unit Fallback\" searched.",
+    "Step 3: Column Selection opened; Asset, Line count, Total price and Progress are on (the other fields were switched off, which does not touch what this test reads).",
+    "Step 4 (a): S1-1593 shows \"TRK-118\" and its asset \"2022 Freightliner M2\".",
+    "Step 4 (b): S1-1594 shows \"1999 Ford Explorer\" where the unit would be.",
+    "Step 4 (c): not built - an asset needs a Make.",
+    "Step 4 (d): the work orders with no lines show their zeros as values: \"0 lines\", \"0%\" and \"$0.00\"."
+   ],
+   "pictures": [
+    "pictures-prod/C96984-1-prod-1022.png"
+   ]
+  },
+  "C368241": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: the signed-in user's own photo was set to a plain red square on Edit Profile (the user is \"ZZ WOB Runner\" at Truck Hill 1).",
+    "Step 1: the avatar at the top right shows the red photo.",
+    "Step 2: initials > Edit Profile, the photo clicked and the blue square picked.",
+    "Step 3: the Edit Profile page reloaded.",
+    "Step 4: the avatar at the top right and the photo on the page both show the blue photo, not the red one."
+   ],
+   "pictures": [
+    "pictures-prod/C368241-1-prod-1022.png",
+    "pictures-prod/C368241-2-prod-1022.png",
+    "pictures-prod/C368241-3-prod-1022.png"
+   ]
+  },
+  "C368243": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: technician \"ZZAUTOTEST Photo Tech ...\" made at Truck Hill 1 with Time Clock on; her own Edit Profile screen was used to give her the red photo. She has a row on the Schedule.",
+    "Step 1: Schedule: her row's avatar shows the red photo.",
+    "Step 2: on her own Edit Profile screen (her account, a separate browser window) the blue photo was uploaded.",
+    "Step 3: back on the Schedule in the first browser, the page was reloaded.",
+    "Step 4: her row's avatar shows the blue photo, not the red one."
+   ],
+   "pictures": [
+    "pictures-prod/C368243-1-prod-1022.png",
+    "pictures-prod/C368243-2-prod-1022.png"
+   ]
+  },
+  "C368244": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: technician \"ZZAUTOTEST Photo Tech ...\" leads S1-1596 (\"ZZAUTOTEST Photo Board\", Approved) at Truck Hill 1, and has the red photo from her own Edit Profile screen. Her column was pinned so it shows next to Unassigned.",
+    "Step 1: Work Orders, Board View, her column header shows the red photo.",
+    "Step 2: on her own Edit Profile screen (her account, a separate browser window) the blue photo was uploaded.",
+    "Step 3: Board View opened again in the first browser and the page reloaded.",
+    "Step 4: her column header shows the blue photo, not the red one."
+   ],
+   "pictures": [
+    "pictures-prod/C368244-1-prod-1022.png",
+    "pictures-prod/C368244-2-prod-1022.png"
+   ]
+  }
+ }
+}

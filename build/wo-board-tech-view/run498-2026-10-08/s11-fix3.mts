@@ -216,7 +216,27 @@ await run('C97032', async () => {
   await goP(p, 'Board View', s.q); await p.waitForSelector('[data-test-id="board_view_scroller"]', { timeout: 20000 }).catch(() => {}); o.boardReady = await p.locator('[data-test-id="board_view_scroller"]').count(); o.step5 = await readCount('Spare Co', 'C97032-step5-dialog-open');
   await statusOnly('Estimate'); const vis = Object.keys(s.w).find((k) => k === 'Estimate Co'); await toColumn(p, cben.staff_id).catch(() => {});
   o.visibleAfterFilter = await p.evaluate(`[...document.querySelectorAll('[data-test-id^="board_card_"]')].map(e => e.getAttribute('data-test-id')).filter(t => /^board_card_[0-9a-f-]{36}$/.test(t)).map(t => t.replace('board_card_', ''))`); const firstVis = o.visibleAfterFilter[0]; if (firstVis) { await p.locator(`[data-test-id="board_card_${firstVis}"]`).scrollIntoViewIfNeeded().catch(() => {}); } o.step6from = Object.keys(s.w).find((k) => (s.w as any)[k].id === firstVis) ?? firstVis; o.step6 = firstVis ? await readCount(firstVis, 'C97032-step6-dialog-open').catch((e) => `could not open: ${String(e).slice(0, 80)}`) : 'no card visible'; await shot(p, 'C97032-step6');   // FIX: 'any visible card', as the case says await statusOnly(null);
-  o.approve = `line ${await mkLine(s.w['Estimate Co'].id, 1) ? 'added' : 'not added'}; status ${(await a.get(`/api/work-orders/view/${s.w['Estimate Co'].id}`)).body?.data?.work_order?.status}`;   // an authorized line approves it (the app's own rule)
+  // 22 Oct 2026: step 7 "Open Ben's Estimate work order, approve it" ON THE SCREEN (was: an authorized line added behind the screen).
+  // Set-up only: the Estimate gets one line waiting for authorization. Then: Work Orders > All > Search > its row > click the line >
+  // Edit Line > Status "Authorized" > Save & Close (an authorized line approves the work order — the app's own rule). Fallback, labelled.
+  { const eid = s.w['Estimate Co'].id; const ap: any = {};
+    ap.line = (await a.post(`/api/work-orders/${eid}/lines/create-from-canned-line`, { canned_line_id: canned[1 % canned.length].id, status: 'authorization_required' })).body?.data?.line_id ?? null;
+    ap.statusBefore = (await a.get(`/api/work-orders/view/${eid}`)).body?.data?.work_order?.status;
+    const num = (await workOrders(a, s.q)).find((x: any) => x.id === eid)?.number; ap.number = num;
+    await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); await tab(p, 'All').catch(() => {}); await search(p, s.q); await p.waitForTimeout(2500);
+    const row = p.locator('tbody tr').filter({ hasText: num ?? '###' }).first(); ap.rowShown = await row.count();
+    if (ap.rowShown) { await row.locator('td').nth(2).click().catch(() => row.click()); for (let i = 0; i < 12 && !/\/workorders\/[0-9a-f-]{36}/.test(p.url()); i++) await p.waitForTimeout(800); }
+    ap.opened = /\/workorders\/[0-9a-f-]{36}/.test(p.url()); await p.waitForTimeout(5000);
+    if (ap.opened) { await p.keyboard.press('Escape').catch(() => {}); await p.waitForTimeout(600);
+      const title = p.locator('[data-test-id="line_title"]').first(); ap.lineShown = await title.count();
+      if (ap.lineShown) { ap.lineTitle = ((await title.innerText().catch(() => '')) || '').split('\n')[0].trim(); await title.click().catch(() => {}); await p.waitForTimeout(2500);
+        const d = p.locator('.q-dialog').last(); ap.editOpen = await d.isVisible().catch(() => false);
+        await d.locator('.q-field').filter({ hasText: /^\s*Status/ }).first().click().catch(() => d.locator('.q-field').filter({ hasText: /Authorization required/i }).first().click().catch(() => {})); await p.waitForTimeout(1000);
+        const opt = p.locator('.q-menu .q-item').filter({ hasText: /^\s*Authorized\s*$/ }).last(); ap.optionShown = await opt.count(); if (ap.optionShown) { await opt.click(); await p.waitForTimeout(800); }
+        await shot(p, 'C97032-step7-edit-line'); await d.locator('[data-test-id="button_save_close"], button:has-text("Save & Close")').first().click().catch(() => {}); await p.waitForTimeout(4000); await shot(p, 'C97032-step7-approved-page'); } }
+    ap.statusAfter = (await a.get(`/api/work-orders/view/${eid}`)).body?.data?.work_order?.status; ap.onScreen = ap.statusAfter === 'approved';
+    if (!ap.onScreen) { ap.fallback = `NOT ON SCREEN: authorized line added behind the screen: ${await mkLine(eid, 1) ? 'added' : 'not added'}`; ap.statusAfter = (await a.get(`/api/work-orders/view/${eid}`)).body?.data?.work_order?.status; }
+    o.approve = ap; }
   await goP(p, 'Board View', s.q); o.step7 = await readCount('Spare Co', 'C97032-step7-dialog-open');
   R.C97032 = o;
 });
@@ -237,8 +257,12 @@ async function techGroups(pg: Page) {
 }
 await run('C368157', async () => { await pins([]); const o: any = {};
   await goP(p, 'Board View', ''); const before = await allCols(p); o.calIndexBefore = before.indexOf(CAL.staff_id);
-  await pins([CAL.staff_id]); await goP(p, 'Board View', ''); const pinned = await allCols(p); o.pinned = { calIndex: pinned.indexOf(CAL.staff_id), first3: named(pinned.slice(0, 3), IDS) };
-  await pins([]); await goP(p, 'Board View', ''); const after = await allCols(p); o.unpinned = { calIndex: after.indexOf(CAL.staff_id), sameAsBefore: JSON.stringify(after) === JSON.stringify(before) };
+  // 22 Oct 2026: steps 3-4 say "the pin icon in his header" — click it on the screen (was: the saved setting changed behind the screen).
+  const pinClick = async (label: string) => { const ok = await toColumn(p, CAL.staff_id); const b = p.locator(`[data-test-id="button_board_pin_${CAL.staff_id}"]`);
+    const s: any = { column: ok, found: await b.count() }; if (s.found) { await b.click().catch((e) => { s.err = String(e).slice(0, 80); }); await p.waitForTimeout(2000);
+      s.after = ((await b.getAttribute('class').catch(() => '')) ?? '').match(/board-column-header__pin--\w+/)?.[0] ?? null; } s.toasts = await toasts(p); await shot(p, `C368157-${label}`); return s; };
+  o.pinClick = await pinClick('s3-pinned'); const pinned = await allCols(p); o.pinned = { calIndex: pinned.indexOf(CAL.staff_id), first3: named(pinned.slice(0, 3), IDS) };
+  o.unpinClick = await pinClick('s4-unpinned'); await p.waitForTimeout(1500); const after = await allCols(p); o.unpinned = { calIndex: after.indexOf(CAL.staff_id), sameAsBefore: JSON.stringify(after) === JSON.stringify(before) };
   await display(p, 'Tech View'); await p.waitForTimeout(3000); const g = await techGroups(p);
   const nb = (arr: string[]) => { const i = arr.indexOf(CAL.staff_id); return i < 0 ? null : [arr[i - 1] ?? null, arr[i + 1] ?? null].map((x) => x && x.slice(0, 8)); };
   o.neighbours = { boardBefore: nb(before), boardAfter: nb(after), tech: nb(g) }; o.tech = { count: g.length, boardCount: after.length, calIndex: g.indexOf(CAL.staff_id), sameAsBoard: JSON.stringify(g) === JSON.stringify(after), firstDiff: g.findIndex((x, i) => x !== after[i]) };
