@@ -460,3 +460,160 @@ Found:
 - 79990, 81049-81071: in an EXPANDED (full-window) artboard the board scrolls natively (mouse wheel scrolls the board); on the
   canvas the wheel pans/zooms the canvas.
 No ShopView content.
+
+### Chunk 28: lines 81,201-82,600 (read)
+What it is: editor selection-menu controls (font picker "In this project"/"Web-safe", size picker, B/I/U/list/link format strip,
+Duplicate/Delete/Edit/Text color/Fill color/Stroke color/Comment/Properties), generic menu/swatch/size popovers, the NOTE
+restyle menu `Yie` (Note style: "Sticky note"/"Title"; sizes Small 14, Medium 24, Large 40, Extra large 72, Huge 120; text
+colour swatches; Bold; Italic) (81812-81895), the live-artboard budget `$ie`/`Xie` (82051+), the per-artboard export menu `nA`
+(PNG 1x/2x with output size and "too large" disabled, "PDF (.pdf)" "One page at this artboard's size" vs "Paginated…" for
+print=flow, "HTML (.zip)", "All artboards (.pdf)" "All N artboards in order of canvas position") (81958-82030), and the start
+of the multi-artboard canvas component `Jie` (82051+): outer canvas pan/zoom limits 0.05-8 here (82241), Space-to-pan, frame
+drag (moves artboards; Alt-drag duplicates), canvas background black in fullscreen else muted grey (82562-82572).
+Found:
+- 81904-81906 + 81919-81952 + 82404-82430: LIVE-BOARD CAP. Only a limited number of artboards are kept running as live iframes
+  at once: 10 on a desktop (fine pointer), 6 on a touch tablet, 3 on a phone (short screen side < 768). Boards chosen: focused/
+  fullscreen/pinned first, then recently used ones in view, then nearest to the viewport. Other boards are not live (see later
+  chunks for what they show instead). With 68 boards on 6 pages, panning the canvas swaps boards in/out with a 200-600 ms
+  settle (82033-82034, 82460-82465). Affects how a tester sees boards far from the viewport (not the board content).
+- 82241: canvas camera zoom range in this component is 0.05x-8x.
+- 81958-82030: per-board PDF export of a Fixed board (all 68 of ours) is "One page at this artboard's size".
+No ShopView content.
+
+### Chunk 29: lines 82,601-84,000 (read)
+What it is: rest of the multi-artboard canvas `Jie` render: file drop, note/frame/shape tools (edit only), the world transform
+`translate(-x*s,-y*s) scale(s)` (82792-82805), the PER-ARTBOARD WRAPPER (82808-83251), the notes layer (83253-83275), ghosts,
+drag toast ("Move"/"Copy" + label), the artboard context menu ("Delete artboard"; "The last artboard stays — a canvas needs at
+least one"), the export menu, the note restyle strip, the selection menu `Zie`; then a plain ZIP writer (CRC32, stored, no
+compression; 83595-83670) and the top toolbar pieces: save status ("Saving…", "Unsaved edits", "Saved automatically",
+"Read-only", "Couldn't save"), sync dot ("All changes synced", "Couldn't sync — click to retry"), Edit / Save buttons
+("Publish your changes — every open view updates"), and a horizontally scrolling toolbar with left/right scroll buttons.
+Found:
+- 82862-82933 BOARD TITLE RENDERING: the title sits ABOVE the board (bottom-full), 28 px high, 12 px text (text-xs), grey
+  (tertiary) normally, accent colour when selected; kept at constant screen size (scale 1/zoom); its width equals the board's
+  on-screen width and the text has `truncate` (one line, ellipsis) with min width 16 (4rem). The title shown is `title`, or
+  when absent the file name minus ".dc.html". Double-click renames (edit only). So a title wider than its board on screen is
+  cut with "…". Our longest title is 42 characters; at 12 px that is roughly 250-300 px, so at 100% zoom it fits even the
+  narrowest board (390 px), but when zoomed out (e.g. 25%, a 390 px board is ~98 px wide on screen) titles ARE shortened with
+  an ellipsis. Matters for anyone reading board titles off the canvas at low zoom: read them from canvas.json, not the screen.
+- 82938-82975: each title row has a Play button: tooltip "Play: open this artboard as a clickable prototype" (or "Play: this
+  artboard is an interactive prototype" + blue halo 82853-82860 when is_interactive; none of ours) and an "Export this artboard"
+  download button (82976-83016).
+- 83097-83108: board body is `overflow-hidden bg-white` with a shadow and 1 px ring: the board is painted on WHITE and anything
+  outside its w x h frame is CLIPPED on the canvas. A board whose HTML is taller than canvas.json `h` shows only the top `h`
+  pixels on the canvas (Play/expanded uses the fullscreen box and native scroll, chunk 27).
+- 83169-83218: a board outside the live-board cap is shown as a diagonal hatched placeholder with faint (15% opacity) "Click to
+  load" / "Tap to load"; clicking loads it. So on the canvas, distant boards look blank-hatched until clicked - NOT a design state.
+- 83253-83275: notes are drawn only when no board is fullscreen (Play hides all notes).
+- 83117: board chrome is interactive only when zoom >= 0.25.
+No ShopView content.
+
+### Chunk 30: lines 84,001-85,400 (read)
+What it is: toolbar Undo/Redo ("Nothing to undo yet"), in-app confirm/prompt dialogs (replace browser alert/prompt; "Type
+something first"), the zoom menu `hH` ("Fit", preset % list, "Now N%"), clipboard copy, the "Ask Claude" popover (wraps title
+and selection as untrusted data, 2,000-char selection cap; "Send to Claude", "Prompt copied — paste it to Claude.") - not shown
+in Electron/desktop (84359-84384); multiplayer presence/peer cursors (coloured arrows with names, idle after 60 s, gone after
+15 min; 84694-84899); user canEdit / me; board path rules for links (`*.dc.html#n:n/...`, 84938-84962); a canonical-JSON diff
+library; then the LIVE-STORE adapter for designs (85092-85319): artboards stored as `boards/<file>` with fields x, y, w, h,
+title, expand, print, page, is_interactive + html; notes as `notes/<id>`; images/CSS as `files/<path>`; meta `design/meta`
+{v:2,title,boardOrder,pages,launch}; size refusals; then the start of the design-viewer host `fTe` (85351+) with Fae fit maths.
+Found:
+- 85135-85146 / 85283-85312: the LIVE-SYNC store copies exactly the artboard fields x, y, w, h, title, expand, print, page,
+  is_interactive (same set as canvas.json parsing, chunk notes 63697-63716). An artboard over 200 KB "is too large to sync
+  (... KB > 200 KB). Split it or move images to assets." This refusal applies only when a design is edited/synced in the live
+  store, not when viewing an exported package. Probe: 7 of our 68 boards are over 200 KB (card-00-b-wo-rest2 226 KB,
+  card-01-b-wo-open 237 KB, card-18-b-audit 265 KB, sbr-03-b-sbr-expanded 329 KB, sbr-06-a4-filter-open 208 KB,
+  sbr-08-a4-columns-off 214 KB, sbr-09-a4-columns-on 218 KB) - they would be refused for live sync if anyone edited them;
+  no effect on viewing or on our text inventory.
+- 85230-85237: live store silently hides documents whose names break the naming rules (logged to console only).
+- 85346-85350: `Fae` focused-board fit: scale = min(1, viewportW/w, viewportH/h) - a focused board is shrunk to fit but never
+  enlarged above 100%; `MH` = board is NOT expand:"fill" (all of ours).
+- 84326-84416: the Ask-Claude prompt marks board titles as untrusted data (security wrapper) - not relevant to boards.
+No ShopView content.
+
+### Chunk 31: lines 85,401-86,800 (read)
+What it is: the design-viewer host `fTe` state: Ask-Claude selection labels, edit vs preview mode (edit by default when not
+read-only, 85426-85431), save state ("Changes waiting to sync"), the canvas model parsed from canvas.json with live updates
+(85509-85522), START PAGE and START VIEW (85527-85604), layout save ("Couldn't save the layout"), live-store holds, cross-artboard
+copy/move of elements with toasts ("Moved to X — ⌘Z undoes it", "Nothing moved — release over another artboard…"), forwarded
+wheel/pinch from inside boards (rate-limited pan 20,000 px/s, zoom 5 e-folds/s, 0.05-8x; 86137-86201), style edits/format
+commands, the selection-menu seed (fonts/sizes read from the boards), page add ("This canvas is at its page limit (40).",
+new page "Page N") / rename ("Rename page", 120 chars), add artboard (80 px right of the right-most), notes add/duplicate/delete
+("This canvas is at its note limit (200)."), Delete/Backspace deletes a selected note, image drop/paste ("Only image files can
+be dropped on the canvas.", "This design is view-only — images can't be added.", first 6 images).
+Found:
+- 85527-85539: START PAGE = launch.page when launch.view is "canvas" (ours: "card"), else the page of the launch/entry file,
+  else the first page. So the viewer opens on the Work order card page for our package.
+- 85575-85590: START VIEW: with a canvas.json and launch.view "canvas" there is no focused board, so the camera starts at
+  x=-60, y=-80, zoom 50% (a later fit may replace it - see following chunks); with launch.view "focused" the board is fitted
+  (Fae: shrink to fit 1200x800, never above 100%).
+- 85599-85604: the first board "current" on the start page = the entry file if on that page, else the first artboard of the page.
+- 85805-85823: the canvas zoom is pushed into every live board (`_T`) after a 2% change or 150 ms - boards know the canvas zoom
+  (used for crisp rendering / chrome sizing, no layout change found).
+- 85426-85431: a writable design opens in EDIT mode by default; read-only opens in preview. (Edit mode kills transitions/
+  animations - chunk 8a finding 13 - so hover/transition looks must be judged in preview/Play, not Edit.)
+No ShopView content.
+
+### Chunk 32: lines 86,801-88,200 (read)
+What it is: more of the host `fTe`: tool hints ("Click inside an artboard to add text."), duplicate artboard (title + " copy"),
+FOCUS / PLAY state `Un` (86880-86884, 86958-86968, 87046-87087), presence reporting (mode canvas/focused, page, visible boards),
+Cmd/Ctrl+\ toggles the side panel in edit, launch-state save on exit (86988-87020: remembers focused board or current page as
+`launch` - edit/writable only), Escape (or the board's relayed Escape) leaves focus, rename/print-mode setters, the artboard
+undo/redo history with toasts ("Artboard move undone."), delete artboards (Delete/Backspace; "The last artboard stays…"),
+copy/paste artboards (Cmd+C / Cmd+V), export of an element (PNG 2x), per-board PNG download (`<title>.png` or `@Nx.png`), the
+HTML (.zip) export with a generated README ("design reference … REFERENCE MOCKUP, not production code"), PDF export of one or
+all boards of the page, the board list for the panel (label = title or file stem), toasts, canvas zoom about centre (0.05-8x),
+FIT-ALL `Zs` (88130-88158), first-load fit (88161-88170), keyboard zoom Cmd/Ctrl+0 / +/= / - (88171-88200).
+Found:
+- 88130-88170 START VIEW (supersedes chunk 31's -60/-80/50%): 50 ms after load the canvas FITS ALL artboards and notes of the
+  current page, with a 48 px margin, and 40 px headroom above each board for its title; fit zoom is clamped 5%-200%. So each
+  page opens showing every board and note of that page. With many boards per page, boards appear small (titles then truncate,
+  chunk 29). Cmd/Ctrl+0 re-fits; Cmd/Ctrl + / - zoom by 1.25x / 0.8x about the centre (88171-88192).
+- 86958-86968 + 87078-87087 + 85346-85350 FOCUS/PLAY: opening a board (Play) remembers the canvas view, then fits the board to
+  the window: zoom = min(1, windowW/w, windowH/h) - shrinks a board that is bigger than the window, NEVER enlarges a small one;
+  re-fits on window resize. Escape returns to the remembered canvas view (87046-87071).
+- 87889-87950: HTML zip export adds React UMD + support.js and a README; images inside the board are inlined data URLs
+  (ours), so the zip is self-contained.
+- 88049-88055: the side-panel board list labels each board with its title (or the file name minus .dc.html).
+No ShopView content.
+
+### Chunk 33: lines 88,201-89,600 (read)
+What it is: end of host `fTe`: Play-mode toolbar (Fit/Fill toggle, Export menu, "Back to canvas" (Esc)), Properties toggle,
+the toolbar (`dH`) with zoom menu ("Fit artboards"; "Zoom: ⌘0 fit, ⌘+ / ⌘− step"; "Zoom is fixed while an artboard is
+expanded"), the PAGES menu (88336-88455), the canvas `Jie` wiring (88484-88801), export picker, "Add an artboard to this page"
+(edit, empty page), a loading-skeleton host `hTe`, the wrapper `OH`; then the FILES-MODE LOADER (88968-89239): a fallback
+"Couldn't load this canvas" page, `design.json` index ({files:[...], title, comments}), file-name rules, fetch of each file
+(15 s timeout; 2 MiB cap; skipped files listed), demo fallback `design/demo/design.json`, read-only banner text; read-only
+reasons; then the live-store sync engine `dse` (89408+), "Edits sync as you go; if two people change the same thing, the last
+change wins.", "Live sync ended for this view. Reload to continue.", "Loading the latest content…".
+Found:
+- 88204-88215 + 88745-88746 + 86890-86900 PLAY FIT vs FILL: in Play the toolbar has a toggle. FIT (default for all our boards,
+  since none is expand:"fill"): "at its own size, scaled down to fit" - the board keeps its canvas.json w x h and is only
+  shrunk. FILL: "filling the window" - the board's frame is RESIZED to the whole window (fullscreenBox = window w x h), so the
+  board's HTML is laid out at the WINDOW's width/height, not the design's. Anything responsive in a board reflows, and a fixed-
+  width design shows extra blank space or a different layout. Design looks (sizes, widths, wrapping) must be judged in FIT
+  (or on the canvas), never in FILL.
+- 88323-88332: canvas zoom menu is disabled while a board is in Play ("Zoom is fixed while an artboard is expanded").
+- 88336-88455: Pages button shows "6 pages" for us; the menu lists each page NAME with a tick on the current one and the COUNT
+  of boards on it; names truncate with ellipsis in a 240 px menu.
+- 89009-89047: files-mode file-name rules: root names only, no "/", must be *.dc.html, canvas.json or an image; names starting
+  "_" are reserved; a file over 2 MiB or that fails to fetch is SKIPPED and named in the read-only banner ("N listed files
+  couldn't be loaded (…)"). Our 68 boards + canvas.json all satisfy these (probe: no file over 2 MiB, all plain names).
+- 89200-89228: banner "This canvas is served from the shared Design runtime. Saving from the page isn't available yet; it opens
+  here for viewing only." (viewer chrome).
+No ShopView content.
+
+### Chunk 34: lines 89,601-90,786 (read; end of file)
+What it is: rest of the live-store sync engine `dse` (save-state messages: "The latest content failed to load. Click to retry.",
+"Read-only. You're seeing live changes.", "Read-only. This document hasn't been set up by an editor yet.", "Live updates
+stopped. Reconnecting…", "The store is unreachable…", "N changes waiting to sync.", "All changes synced · <time>"; batching
+350 ms / 1.5 s, retries with back-off, an edit lease, deletes by others), the BOOT sequence (90585-90705): mode detection
+(`files` = design.json index, `db` = live store, `legacy`/embedded), file-mode load, live-store boot with snapshot read-only
+fallback ("Live sync is unavailable here. Reload to retry."), entry file = `IR(...)` else "Main.dc.html", render after the
+frame-size poke + 300 ms or at most 3 s after start; then React licence comments (90707-90786).
+Found:
+- 90655-90670: if a design has no usable artboard the viewer shows its own "Couldn't load this canvas" page (88968-89008).
+- 90695-90698: the viewer waits for the host's frame-size message (+300 ms) or 3 s before first render (a picture taken in the
+  first ~3 s may show nothing).
+- 90707-90786: licence comments only.
+No ShopView content.

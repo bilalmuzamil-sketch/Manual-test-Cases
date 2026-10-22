@@ -39,7 +39,7 @@ Intake: INTAKE-2026-10-19.md. Worker brief: WORKER-BRIEF.md.
   - C690660 (DR-03) released: S5-R15b and answer 39 quoted, marker "not yet build-verified (no build yet)". Five other DR cases' PRD line moved to v11.
   - C690665 (DR-08) deleted (snapshot design-recheck-2026-10-20/deleted/C690665-before-delete.json; get_case answers 400).
   - Run 547: 135 tests (was 132; added C690660, C715271, C715272), none lost, no result changed. Id map 135 rows. Setup file regenerated. No PO question open.
-- QA lead 21 Oct: the 41 report-suite cases this feature breaks wait until the feature is live. 2.47 MB design viewer code: skip still to be confirmed.
+- QA lead 21 Oct: the 41 report-suite cases this feature breaks wait until the feature is live. 2.47 MB design viewer code: read in full 22 Oct 2026 (design-drive-2026-10-19/viewer-code/VIEWER-CODE-READING-SUMMARY-2026-10-22.md): no ShopView content, no effect on the cases.
 
 ## 20 Oct 2026 (afternoon) — suite brought to PRD v10 and Chris Ward's answers
 

@@ -12,6 +12,8 @@ Rule 119 reading coverage for the design export `sources/design-2026-10-19-uploa
 | `<script id="appifact-doc">` | 8,066,310 | **the design itself**: 70 embedded files | unpacked; every file below read / viewed |
 
 > **Note for the QA lead (Rule 119):** the two editor-runtime blocks (2.47 MB) are Anthropic's canvas viewer, identical in every Claude design export, and hold no ShopView design content (script scan above). I did not read them line by line. If you want them read in full anyway, say so and I will; otherwise please confirm the skip.
+>
+> **22 Oct 2026:** the QA lead said "No you can read it now". Both blocks were then read in full, every line (`viewer-code/VIEWER-CODE-READING-SUMMARY-2026-10-22.md` and its three reading records): no ShopView content; nothing in them changes the board files or our text inventory.
 
 ## The 70 embedded design files
 
