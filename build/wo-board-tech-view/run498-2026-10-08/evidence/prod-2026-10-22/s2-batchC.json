@@ -1,0 +1,286 @@
+{
+ "roles": {
+  "count": 32,
+  "labels": [
+   "9898",
+   "ZZAUTOTEST Complete Only",
+   "Sales Representative",
+   "BIlal Bug Admin",
+   "Senior Service Advisor",
+   "Admin",
+   "Technician",
+   "66",
+   "Time Clock User",
+   "Parts Manager",
+   "ZZAUTOTEST Review Only",
+   "ZZAUTOTEST No Work Orders Or Vendors",
+   "ABC",
+   "ZZAUTOTEST WO View Only",
+   "Office User",
+   "ZZAUTOTEST No Vendor Order View",
+   "ZZAUTOTEST Receive Later",
+   "ZZAUTOTEST No Part Sales View",
+   "ZZAUTOTEST Lines Read Only",
+   "ZZAUTOTEST No Financial Data"
+  ],
+  "techRole": "31e70dbe-8d9f-485b-9e32-457acd069743",
+  "officeRole": "6b99183b-f9c4-44f3-a76e-aa8d61352160",
+  "tcRole": "36cbed0d-935b-455e-8ef0-03e4462de14d"
+ },
+ "staff_Olive": {
+  "role": "Office User",
+  "clockable": true,
+  "active": true,
+  "log": [
+   "create 201",
+   "change 201"
+  ]
+ },
+ "staff_Tim": {
+  "role": "Time Clock User",
+  "clockable": true,
+  "active": true,
+  "log": []
+ },
+ "billable": {
+  "esther.howard": 1,
+  "billy.nobill": 0
+ },
+ "staffInputs_Ina Active": [
+  "Type to search"
+ ],
+ "staffRowHtml_Ina Active": "\" data-test-id=\"staff_billable_badge\">Yes</div></td><td data-v-4d443fd3=\"\" class=\"q-td q-table--col-auto-width text-right\"><button data-v-68e00a17=\"\" data-v-4d443fd3=\"\" class=\"q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--round text-dark q-btn--actionable q-focusable q-hoverable q-mx-xs\" tabindex=\"0\" type=\"button\" data-test-id=\"staff_edit_button\" filled=\"true\" style=\"font-size: 10px; padding: 4px; min-width: 0px; min-height: 0px;\"><span class=\"q-focus-helper\"></span><span class=\"q-btn__content text-center col items-center q-anchor--skip justify-center row\"><i class=\"q-icon notranslate material-icons\" aria-hidden=\"true\" role=\"img\">edit_note</i><!----></span></button></td></tr>",
+ "C96930": {
+  "inaDeactivate": {
+   "done": true,
+   "label": "Deactivate Account",
+   "confirm": [],
+   "calls": [
+    "POST /api/iam/change-status {\"id\":\"ef40f153-d17c-4362-8d7a-4392d38abf0c\"}"
+   ]
+  },
+  "inaActiveNow": false,
+  "tech": {
+   "Esther Howard": true,
+   "Billy Nobill": true,
+   "Ina Active": false,
+   "Nick Noclock": false,
+   "Olive Office": false,
+   "Tim Clockuser": false,
+   "Ella Elsewhere": false
+  },
+  "techGroups": 64,
+  "board": {
+   "Esther Howard": true,
+   "Billy Nobill": true,
+   "Ina Active": false,
+   "Nick Noclock": false,
+   "Olive Office": false,
+   "Tim Clockuser": false,
+   "Ella Elsewhere": false
+  },
+  "boardColumns": 64,
+  "inaKeptInactive": "Ina Active stays deactivated: that is her set-up for this case",
+  "staffProof": {
+   "Esther Howard": {
+    "email": "zz.wob.esther.howard@staging.shopview.local",
+    "role": "Technician",
+    "timeClock": true,
+    "active": true,
+    "billable": 1,
+    "location": "Truck Hill 1",
+    "workplaces": [
+     "Truck Hill 1/Department1"
+    ]
+   },
+   "Billy Nobill": {
+    "email": "zz.wob.billy.nobill@staging.shopview.local",
+    "role": "Technician",
+    "timeClock": true,
+    "active": true,
+    "billable": 0,
+    "location": "Truck Hill 1",
+    "workplaces": [
+     "Truck Hill 1/Department1"
+    ]
+   },
+   "Ina Active": {
+    "email": "zz.wob.ina.active@staging.shopview.local",
+    "role": "Technician",
+    "timeClock": true,
+    "active": false,
+    "billable": 1,
+    "location": "Truck Hill 1",
+    "workplaces": [
+     "Truck Hill 1/Department1"
+    ]
+   },
+   "Nick Noclock": {
+    "email": "zz.wob.nick.noclock@staging.shopview.local",
+    "role": "Technician",
+    "timeClock": false,
+    "active": true,
+    "billable": 0,
+    "location": "Truck Hill 1",
+    "workplaces": [
+     "Truck Hill 1/Department1"
+    ]
+   },
+   "Olive Office": {
+    "email": "zz.wob.olive.office@staging.shopview.local",
+    "role": "Office User",
+    "timeClock": true,
+    "active": true,
+    "billable": 0,
+    "location": "Truck Hill 1",
+    "workplaces": [
+     "Truck Hill 1/Department1"
+    ]
+   },
+   "Tim Clockuser": {
+    "email": "zz.wob.tim.clockuser@staging.shopview.local",
+    "role": "Time Clock User",
+    "timeClock": true,
+    "active": true,
+    "billable": 0,
+    "location": "Truck Hill 1",
+    "workplaces": [
+     "Truck Hill 1/Department1"
+    ]
+   },
+   "Ella Elsewhere": {
+    "email": "zz.wob.ella.elsewhere@staging.shopview.local",
+    "role": "Technician",
+    "timeClock": true,
+    "active": true,
+    "billable": 0,
+    "location": "Trucks Hill 2",
+    "workplaces": [
+     "Trucks Hill 2/Department1"
+    ]
+   }
+  },
+  "offeredAsLead": {
+   "Esther Howard": true,
+   "Billy Nobill": true,
+   "Ina Active": true,
+   "Nick Noclock": false,
+   "Olive Office": false,
+   "Tim Clockuser": false,
+   "Ella Elsewhere": false
+  },
+  "pictures": {
+   "tech": {
+    "Esther Howard": {
+     "shows": "Esther Howard",
+     "exists": true,
+     "picture": "C96930-tech-Esther-Howard.png"
+    },
+    "Billy Nobill": {
+     "shows": "Billy Nobill",
+     "exists": true,
+     "picture": "C96930-tech-Billy-Nobill.png"
+    },
+    "Ina Active": {
+     "shows": "Jenny Wilson",
+     "before": "Floyd Miles",
+     "after": "Jenny Wilson",
+     "exists": false,
+     "picture": "C96930-tech-Ina-Active.png"
+    },
+    "Nick Noclock": {
+     "shows": "Nina Newtech",
+     "before": "Maximiliana Fitzgerald-Montgomery",
+     "after": "Nina Newtech",
+     "exists": false,
+     "picture": "C96930-tech-Nick-Noclock.png"
+    },
+    "Olive Office": {
+     "shows": "Ralph Edwards",
+     "before": "Nina Newtech",
+     "after": "Ralph Edwards",
+     "exists": false,
+     "picture": "C96930-tech-Olive-Office.png"
+    },
+    "Tim Clockuser": {
+     "shows": "ZZAUTOTEST Deleted Lead 46045",
+     "before": "Theresa Webb",
+     "after": "ZZAUTOTEST Deleted Lead 46045",
+     "exists": false,
+     "picture": "C96930-tech-Tim-Clockuser.png"
+    },
+    "Ella Elsewhere": {
+     "shows": "Esther Howard",
+     "before": "Dana Ortiz",
+     "after": "Esther Howard",
+     "exists": false,
+     "picture": "C96930-tech-Ella-Elsewhere.png"
+    }
+   },
+   "board": {
+    "Esther Howard": {
+     "shows": "Esther Howard",
+     "exists": true,
+     "picture": "C96930-board-Esther-Howard.png",
+     "reached": true
+    },
+    "Billy Nobill": {
+     "shows": "Billy Nobill",
+     "exists": true,
+     "picture": "C96930-board-Billy-Nobill.png",
+     "reached": true
+    },
+    "Ina Active": {
+     "shows": "Jenny Wilson",
+     "before": "Floyd Miles",
+     "after": "Jenny Wilson",
+     "exists": false,
+     "picture": "C96930-board-Ina-Active.png",
+     "reached": true
+    },
+    "Nick Noclock": {
+     "shows": "Nina Newtech",
+     "before": "Maximiliana Fitzgerald-Montgomery",
+     "after": "Nina Newtech",
+     "exists": false,
+     "picture": "C96930-board-Nick-Noclock.png",
+     "reached": true
+    },
+    "Olive Office": {
+     "shows": "Ralph Edwards",
+     "before": "Nina Newtech",
+     "after": "Ralph Edwards",
+     "exists": false,
+     "picture": "C96930-board-Olive-Office.png",
+     "reached": true
+    },
+    "Tim Clockuser": {
+     "shows": "ZZAUTOTEST Deleted Lead 46045",
+     "before": "Theresa Webb",
+     "after": "ZZAUTOTEST Deleted Lead 46045",
+     "exists": false,
+     "picture": "C96930-board-Tim-Clockuser.png",
+     "reached": true
+    },
+    "Ella Elsewhere": {
+     "shows": "Esther Howard",
+     "before": "Dana Ortiz",
+     "after": "Esther Howard",
+     "exists": false,
+     "picture": "C96930-board-Ella-Elsewhere.png",
+     "reached": true
+    }
+   }
+  },
+  "techOrderLength": 64,
+  "boardOrderLength": 65
+ },
+ "C96926": {
+  "wo1_firstChrisLee": "S1-1393",
+  "wo2_secondChrisLee": "S1-1394",
+  "error": "Cannot read properties of undefined (reading 'id')"
+ },
+ "C96929": {
+  "error": "Carol Neal is not offered as a technician at this location"
+ }
+}
