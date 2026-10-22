@@ -740,3 +740,7 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 ## L0526 — 2026-10-22 — A script can lag its own case: read the case before blaming it
 - Step 51: C96955's CASE had already been rewritten to PRD v73 (Board View has no density; Tech View keeps its own; Board cards stay the same), but `s3-batchA.mts` still drove the old version (density on Board View) — and C96954's case never mentions density, yet its script looped over three densities on Board View. Both are script lag, fixed without any case change; only C96944, whose own step 6 says to change density on Board View, went to the QA lead (Rule 114(c), Rule 134 wording). Before asking him anything about a case, read the live case text and compare it with what the script does.
 #run498 #prd-v73 #density #script-lag → L0514
+
+## L0527 — 2026-10-22 — Location names hide in PATTERNS too, not only in quoted strings
+- L0516 replaced the quoted staging names, but step 59 (s5-batchA3) still stopped: its location reader looked for a top-bar line ending in `/ - \d{3,5}$/` (staging's "Staging Heavy Duty - 9919") and tested `/Heavy Duty/`; production's "Truck Hill 1" matches neither, so the reader returned null and the script refused to start. ui-fallback had `/Lethbridge/` the same way. Fixed with the profile's `LOC1_NAME` / `LOC2_NAME`. The new-environment grep must include regex literals: `grep -n "/Heavy Duty/\|/Lethbridge/\| - \\\\d{3,5}" <scripts>`.
+#run498 #production #location → L0516
