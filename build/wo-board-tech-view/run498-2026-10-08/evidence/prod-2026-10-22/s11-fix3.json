@@ -7,65 +7,6 @@
   "dan": true
  },
  "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
- "C97030": {
-  "statuses": {
-   "Alpha Co": "approved",
-   "Bravo Co": "approved",
-   "Charlie Co": "estimate",
-   "Delta Co": "in_progress",
-   "Echo Co": "invoiced",
-   "Golf Co": "approved",
-   "Hotel Co": "estimate"
-  },
-  "step4": 7,
-  "step6": {
-   "Unassigned": "2/2",
-   "Ana": "3/3",
-   "Ben": "2/2",
-   "Cal": "0/0"
-  },
-  "step8": {
-   "Unassigned": "2/2",
-   "Ana": "3/3",
-   "Ben": "2/2",
-   "Cal": "0/0"
-  },
-  "tickedBefore": [],
-  "tickedAfter": [
-   "Approved"
-  ],
-  "chip": "Status: Approved\nkeyboard_arrow_down\ncancel",
-  "url": "/workorders?status=approved&search=ZZAUTOTEST+F3+Header+Counts+22",
-  "step9list": [
-   "S1-1573 Approved",
-   "S1-1574 Approved",
-   "S1-1578 Approved"
-  ],
-  "step9board": {
-   "Unassigned": "1/1",
-   "Ana": "2/2",
-   "Ben": "0/0",
-   "Cal": "0/0"
-  },
-  "step9tech": {
-   "Unassigned": "1/1",
-   "Ana": "2/2",
-   "Ben": "0/0",
-   "Cal": "0/0"
-  },
-  "step10board": {
-   "Unassigned": "1/1",
-   "Ana": "1/1",
-   "Ben": "0/0",
-   "Cal": "0/0"
-  },
-  "step10tech": {
-   "Unassigned": "1/1",
-   "Ana": "1/1",
-   "Ben": "0/0",
-   "Cal": "0/0"
-  }
- },
  "C97032": {
   "requireReview": {
    "on": {
@@ -84,7 +25,7 @@
    "enrol": "201",
    "approved": "201",
    "lead": "201",
-   "wo": "S2-1590 approved lead=ZZAUTOTEST F3 Count Ben"
+   "wo": "S2-1694 approved lead=ZZAUTOTEST F3 Count Ben"
   },
   "statuses": {
    "Approved Co": "approved",
@@ -101,47 +42,20 @@
   "boardReady": 1,
   "step5": "4 open",
   "visibleAfterFilter": [
-   "8eb44972-c634-470b-86c3-d475f883c622"
+   "b31122cf-1444-4888-9e9e-5c22739204a8"
   ],
   "step6from": "Estimate Co",
   "step6": "4 open",
-  "approve": "line added; status Approved",
+  "approve": {
+   "line": "25290c4c-e0bd-42c1-bf55-f8126f4ed3c8",
+   "statusBefore": "Estimate",
+   "number": "S1-1688",
+   "rowShown": 0,
+   "opened": false,
+   "statusAfter": "Approved",
+   "onScreen": false,
+   "fallback": "NOT ON SCREEN: authorized line added behind the screen: added"
+  },
   "step7": "5 open"
- },
- "C368157": {
-  "calIndexBefore": 30,
-  "pinned": {
-   "calIndex": 1,
-   "first3": [
-    "Unassigned",
-    "Cal"
-   ]
-  },
-  "unpinned": {
-   "calIndex": 30,
-   "sameAsBefore": true
-  },
-  "neighbours": {
-   "boardBefore": [
-    "48e57869",
-    "0db16f53"
-   ],
-   "boardAfter": [
-    "48e57869",
-    "0db16f53"
-   ],
-   "tech": [
-    "48e57869",
-    "0db16f53"
-   ]
-  },
-  "tech": {
-   "count": 66,
-   "boardCount": 67,
-   "calIndex": 30,
-   "sameAsBoard": false,
-   "firstDiff": -1
-  }
- },
- "restored": true
+ }
 }
