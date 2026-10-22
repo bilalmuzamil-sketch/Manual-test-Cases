@@ -1,0 +1,158 @@
+{
+ "C590112": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Step 1: at 1440 px the Tech View table is white and runs from the left edge of the page to the right edge, with no grey strip, card or shadow around it.",
+   "Step 2: a double grey line sits above each group header (seen between \"Unassigned\" and the next technician group).",
+   "Step 3: after scrolling down, the column header row stays at the top while the rows move up under it.",
+   "Step 4: the table scrolls sideways inside the page right to its end (\"Total Price\" fully in view); each header label stays above its own column and no column is squeezed or cut off.",
+   "Step 5: at 1536 px the table still runs edge to edge on white.",
+   "Step 6: with only Approved and Estimate on the page, the Status column is 88 px, just the width of the 72 px pills, with no empty space after them.",
+   "Step 7: with a Ready For Review work order on the page, the Status column widens to 130 px, just enough for its 114 px pill (the design says about 132 px).",
+   "Step 8: List keeps its grey margin around the table, as it looks in production today."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C590112-s4-scrolled-sideways.png",
+   "evidence/prod-2026-10-22/C590112-s1-tech-1440.png",
+   "evidence/prod-2026-10-22/C590112-s6-status-column-customer-a.png",
+   "evidence/prod-2026-10-22/C590112-s7-status-column-customer-b.png"
+  ],
+  "reason_for_reviewer": "Re-run 14:09-14:10 UTC. Step 4 now settled: scrollToEnd reached scrollLeft 443/443 (scrollW 1883, clientW 1440) on three tries; the picture shows the right end with Total Price fully visible. Every header cell's label width equals its column width (no squeeze). The script's 'cut: Customer' flag is the LEFT window edge after scrolling (Customer header starts at x -45), not a clipped column. Step 1: table/tech_view boxes 0-1440, background white (main is rgb(249,250,251) with the tech_view pulled out by margin 0 -30px); the q-table container reports border-radius 4px but sits flush to the page edges, same as staging (no difference listed). Step 2: script reading only captured the Unassigned group (no border above the first group); the double line is observed in the step 6/7 pictures between Unassigned and the ZZAUTOTEST DC03 Cara Edge group and between every technician group. Step 3: th position sticky top 0, picture shows header pinned after scrollTop 2100. Steps 6/7: header 88.4 / 130 px, pills 72.4 / 114 px, 8 px padding each side, spaceAfterPill 0. Step 8: List container x 30-1506 on grey, as production. Data: S1-1258 (Approved, lead ZZAUTOTEST DC03 Cara Edge), S1-1259 (Estimate, no lead), S1-1260 (Ready For Review, set via Require Review Before Completion, setting put back to off)."
+ },
+ "C590113": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Step 1: a brand-new Admin user who had never opened Tech View sees 13 columns in this order: Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created On, Total Price. On Site, VIN/Serial # and Lead Technician are not shown.",
+   "Steps 2 and 3: the header labels are small (12 px against 14 px row text), medium weight and grey; no label touches its neighbour.",
+   "Steps 4 to 6: the column list offers On Site, VIN/Serial # and Lead Technician; turning them on (and Invoiced Date, Days Open, Parts and Returns) shows each as a column; Escape closes the list.",
+   "Step 7: with every column on, scrolling sideways, no header label touches, overlaps or is cut off by its neighbour (only the window edge cuts a label while scrolling).",
+   "Steps 8 and 9: at Compact and at Comfortable the header labels keep the same 12 px, medium weight and grey colour.",
+   "Step 10: at 1536 px no header label touches or overlaps its neighbour."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C590113-s2-default-headers.png",
+   "evidence/prod-2026-10-22/C590113-s5-all-on-menu.png",
+   "evidence/prod-2026-10-22/C590113-s5-all-columns-2.png",
+   "evidence/prod-2026-10-22/C590113-s7-1536-1.png"
+  ],
+  "reason_for_reviewer": "Re-run 14:10-14:11 UTC as new user ZZAUTOTEST DC04 New 65540 (Admin role, column preference null before). All header cells fontSize 12px / weight 500 / rgb(105,117,134); row text 14px/400 black. Overlap scans: default minGap 32.6 px; all columns minGap 16 px at 1440 and 1536, touchingOrOverlapping empty at every scroll position; the only 'cut' entries (Total price at scrollLeft 700, Days open at 800) are labels at the window edge mid-scroll, same pattern as staging. Menu items 17, all seven off switches turned on and read back true. Escape: the after-Escape picture (all-columns-0, taken after a mouse move only, no click) shows the menu closed. Density menus read Regular->Compact->Comfortable correctly; header heights 48 at both. 'Created On'/'Total Price' display capitalised by CSS text-transform; the case quotes 'Created on'/'Total price' - capitalisation only, not a divergence. Precondition not followed: the script did not type the customer's name in Search (it read the unfiltered table); no Expected depends on it."
+ },
+ "C590115": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Set-up: S1-1262 (Approved, led by ZZAUTOTEST DC06 Gia Pills) with a part ready to order (blue number) and a second line waiting for approval (red number).",
+   "Steps 2 and 3 (List): an Approved pill with a red 1 and a blue 1; pointing at the red number shows \"1 Line in Auth Req'd\", at the blue number \"1 Part Ready to Order\".",
+   "Steps 5 and 6 (Tech View): the same pill - same colours, word, rounded shape and width (72 px in both views), the same red and blue numbers and the same two tooltips.",
+   "Steps 8 and 10: the pill is 16 px tall at Compact and at Regular.",
+   "Step 12: at Comfortable the pill is 22 px tall and keeps its 72 px width.",
+   "Step 13: back in List the pill is unchanged (72 by 21 px, same colours and numbers)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C590115-s2-list-number1-hover.png",
+   "evidence/prod-2026-10-22/C590115-s5-tech-number2-hover.png",
+   "evidence/prod-2026-10-22/C590115-comfortable-tech.png",
+   "evidence/prod-2026-10-22/C590115-s13-list-pill.png"
+  ],
+  "reason_for_reviewer": "Re-run 14:11-14:12 UTC; the earlier gap (no red number) is closed: redLine created (authorization_required), server serviceActionsCount 1, partRequestsCount 2 (one authorized_to_order + one in_stock), status still approved. List: pill 72.4x21, red rgb(239,83,80) + blue rgb(66,165,245), tooltips as quoted. Tech View: pill 72.4x16 at Regular, same numbers/tooltips. Density: Compact h16, Regular h16, Comfortable h22, width 72.4 throughout. List after: identical box and numbers. The case's precondition puts both counts on Line-1 (part requested, not ordered); the set-up put the red count on a second line - data only, the Expected compares List with Tech View. List and Tech View were both searched to the test customer."
+ },
+ "C590116": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Step 2: every technician group header shows the six-dot grip at its left edge; the Unassigned header shows none.",
+   "Step 3: every row shows the same six-dot grip, including the Estimate S1-1265 in Unassigned.",
+   "Step 4: the hovered row S1-1263 turns light grey and its grip stays visible.",
+   "Step 5: S1-1263, grabbed by its Customer cell, was dragged down and released on S1-1264's row; it now sits below S1-1264 in the same group, the lead technician is unchanged and no message appeared.",
+   "Step 6: a plain click on S1-1263's Customer cell opened the work order; no drag started.",
+   "Step 9: for the view-only user (role \"ZZAUTOTEST WO View Only\") no grip shows on the work order rows; every technician group header still shows the grip; the Unassigned header shows none."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C590116-s5-dragging.png",
+   "evidence/prod-2026-10-22/C590116-s5-after-drop.png",
+   "evidence/prod-2026-10-22/C590116-s9-user-b-tech.png",
+   "evidence/prod-2026-10-22/C590116-s4-row-hover.png"
+  ],
+  "reason_for_reviewer": "Re-run 14:12-14:14 UTC. Step 5 now settled: drop point checked before pressing (elementFromPoint at y588 = row WO-2, group Technician-A, not a header) and again while held; drop indicator drawn at WO-2's bottom edge; order before [S1-997, WO-1, WO-2], after [S1-997, WO-2, WO-1]; lead before/after ZZAUTOTEST DC07 Hana Grip; no toast. Step 6: URL /workorders -> /workorders/<id>/lines (the work order page opened with its New Line dialog, the product's normal behaviour for a work order without lines). Step 9 now run: view-only role present (perms 2), rows' grip cells have no icon (wo1, wo2 and sample rows), s9 group headers: Unassigned grip null, five technician headers grip-vertical. Step 2 reading captured only the Unassigned header (the technician headers were not drawn yet); technician-header grips for the Admin are observed in the step 5 pictures (Hana Grip, Aaron Baker). Step 4: background readings did not change (as on staging) but the hover picture shows the grey row with its grip. How it differs from the case: step 7 (Logout, sign in as User-B) was done by opening User-B's own signed-in window, not by logging the Admin out; step 7 has no Expected of its own and step 9 was read in User-B's session."
+ },
+ "C590119": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Step 1: the Unassigned column header shows a round light-grey avatar with a grey person icon, \"Unassigned\" in dark semibold text, a short grey divider, a clipboard icon and the count; no grip and no pin.",
+   "Step 2: Technician-B's header shows the six-dot grip, a light-grey circle with dark grey initials, the name in dark slate semibold text, a grey outline pin, a short divider, the clipboard icon and the count.",
+   "Step 3: Technician-A's avatar is the technician's round photo.",
+   "Steps 4 and 5: once pinned, Technician-B's column moves to just after Unassigned and its pin becomes a blue pin with a slash.",
+   "Steps 6 and 7: Technician-A and Technician-C are pinned too; three technicians are pinned.",
+   "Step 8: the pins on the other columns look faded, and pointing at Technician-D's pin shows \"You can pin up to 3 technicians.\"",
+   "Step 9: after unpinning, every technician column header shows the grey outline pin again."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C590119-s7-three-pinned.png",
+   "evidence/prod-2026-10-22/C590119-s8-pin-hover.png",
+   "evidence/prod-2026-10-22/C590119-s2-techB-header.png",
+   "evidence/prod-2026-10-22/C590119-s5-techB-pinned.png"
+  ],
+  "reason_for_reviewer": "Re-run 14:14-14:16 UTC (first attempt errored, no earlier verdict). Unassigned: avatar 28px rgb(238,242,246) round, user icon rgb(105,117,134), name 14px/600 rgb(54,65,82), divider rgb(227,232,239), count 14px/500; grip null, pin null. Technician-B (no photo): grip icon, avatar rgb(238,242,246) with initials 'ZD' rgb(75,85,101) 600, name 14px/600 rgb(54,65,82), pin icon rgb(105,117,134), divider, clipboard, count 1. Technician-A: img element 28px radius 50% (photo uploaded by the set-up, a plain red image). Pins saved in order B, A, C; firstColumns after each click match. Pinned B: aria-pressed true, label 'Unpin ...', icon rgb(34,118,218). At 3 pinned: other pin buttons disabled, opacity 0.7; tooltip text exact. After unpinning: savedPins [], A-D pressed false, grey icons. Data: S1-1266 (lead Lea Pin), S1-1267 (lead Max Pin), S1-1268 (Estimate); search held 'ZZAUTOTEST DC10 Column Header 65540'."
+ },
+ "C590120": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Step 1: List shows the prepared work orders: S1-1269 Approved with a blue 1, S1-1270 Invoiced, and S1-785 Estimate with a red 1.",
+   "Step 2: S1-1269's card has the blue number at top left and the status at top right, the dark customer name, a smaller grey \"TRK-118 · 2022 Freightliner M2\" line, a thin blue progress bar and a divider, then two overlapping round avatars (lead and line technician) on the left and the total on the right, on a white card with rounded corners and a thin grey border. The lead technician's name is also printed beside the avatars, because it is one of the card's default fields.",
+   "Step 3: number, customer and total are 14 px, medium weight; the unit/asset line is 12 px and grey.",
+   "Step 4: each Board pill matches List's word, colours, rounded shape and red or blue number; Board pills are 22 px tall.",
+   "Step 5: an outline padlock sits right after the Invoiced number S1-1270.",
+   "Step 6: the Board View toolbar has no Density control between the filters and the display switcher.",
+   "Step 7: after choosing Compact and then Comfortable in Tech View and coming back, S1-1269's card looks exactly as at step 2 (same size and spacing)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C590120-s2-card-regular.png",
+   "evidence/prod-2026-10-22/C590120-s6-board-toolbar.png",
+   "evidence/prod-2026-10-22/C590120-s7-card-after-tech-density.png",
+   "evidence/prod-2026-10-22/C590120-s4-red-count-card.png"
+  ],
+  "reason_for_reviewer": "Re-run 14:16-14:21 UTC; judged against the REWRITTEN case text (steps 6-7 from PRD v73 S3-R11 / S6-E1). Step 6: boardDensityButtons 0, column selection present. Step 7: Tech View density menu read Regular->Compact->Comfortable; back in Board the S1-1269 card box 262x225.1, class wo-density--regular, parts identical to the step 2 baseline (sameAsBaseline). Steps 3-4: number/customer/total 14px/500, unit/asset 12px/500 rgb(105,117,134); pill compare sameWord/Bg/TextColour/Radius/Numbers true for Approved (blue 1), Invoiced and Estimate S1-785 (red 1), List 21 px vs Board 22 px. Step 5: 12px lock icon directly after S1-1270. Step 2 notes: progress 3% (the Edit Line estimate fill timed out, but the clock-in/out still gave non-zero progress); the avatar group shows two avatars (lead Pia Card + line technician Quinn Card, both initials 'ZD' because both names start 'ZZAUTOTEST DC11'), so distinctness is inferred from the set-up, not from initials. Board fields: Lead technician name was ON by default (PRD v64 S5-R13 default selection includes lead technician name), so production prints the lead's name next to the avatars and puts the total on its own line under them; the staging reading did not show this text. The Expected does not exclude extra default fields, so not a failure - flagged for the reviewer."
+ },
+ "C590127": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Step 1: the \"Technician\" filter sits directly after \"Assigned to me\", with the thin outline wrench icon, the word \"Technician\" and a down arrow. There is no Department filter.",
+   "Step 2: the list opens directly below the filter.",
+   "Step 3: the list starts with \"Unassigned\", then the location's technicians in first-name order, each with a tick box.",
+   "Step 4: ZZAUTOTEST DC18 Yan Filter is ticked.",
+   "Step 5: pressing Escape closes the list; the chip reads \"Technician: ZZAUTOTEST DC18...\".",
+   "Step 6: Board View shows the same \"Technician\" filter in the same place, still with ZZAUTOTEST DC18 Yan Filter chosen.",
+   "Step 7: List's filter bar has no \"Technician\" filter."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C590127-s5-after-escape.png",
+   "evidence/prod-2026-10-22/C590127-s4-technician-list.png",
+   "evidence/prod-2026-10-22/C590127-s7-board.png",
+   "evidence/prod-2026-10-22/C590127-s8-list.png"
+  ],
+  "reason_for_reviewer": "Re-run 14:21-14:22 UTC; step 5 now isolated: script presses Escape, waits 800 ms and reads (open menus 1 -> 0) with no away() in between, and takes the after-Escape picture. Chip order: Status, Assigned to me, Technician (filter_chip_lead_technician), Asset on Site; no department chip. Menu box top y117 below chip bottom y111, x aligned at 797. List items (first 39 drawn): Unassigned, Aaron Baker, Aaron Zed, Admin ShopView, ... Theresa Webb, ZZAUTOTEST Deleted Lead 46045, ZZAUTOTEST Ana Alpha, ... ZZAUTOTEST DC06 Gia Pills. 'Deleted Lead' before 'Ana Alpha' is consistent with first-name sort: that record's first name is 'ZZAUTOTEST' (prod-deleted-lead.mts), the others' first names are 'ZZAUTOTEST Ana', 'ZZAUTOTEST DC01' etc.; first names were not read from the server for every entry. Board chips same order, Technician chip highlighted with the chosen name; List chips: Status, Assigned to me, Asset on Site only. The red '50-value limit' message seen on staging did not appear here."
+ },
+ "C598326": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Set-up: S1-1272 (Approved) and S1-1273 (Ready For Review), both led by ZZAUTOTEST S6 Pia Pills, for this test's customer.",
+   "Step 3 (List): the two pills are the same width (114 px); the Approved pill is as wide as the Ready For Review pill.",
+   "Step 5 (Tech View): both pills keep the same 114 px width as in List.",
+   "Steps 6 and 7: at Compact the pills are 16 px tall and at Comfortable 22 px; their width stays 114 px.",
+   "Step 9: back in List the two pills are exactly as at step 3 (114 by 21 px)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C598326-s3-list.png",
+   "evidence/prod-2026-10-22/C598326-s5-tech.png",
+   "evidence/prod-2026-10-22/C598326-s7-comfortable-pills.png",
+   "evidence/prod-2026-10-22/C598326-s9-list-pills.png"
+  ],
+  "reason_for_reviewer": "Re-run 14:22-14:23 UTC; the earlier data gap is closed. First status attempt failed again ('Complete work order cannot change its status again'); the fallback turned on Require Review Before Completion (before false, after true), the retry reached ready_for_review (read back), and the setting was put back to off (after false). List: Approved 114x21, Ready For Review 114x21. Tech View Regular 114x16 both; Compact 114x16; Comfortable 114x22; Regular selected again (menu read Comfortable [true] before the click); List after 114x21 both, same positions. Tech View was read without the search (find1.usedSearch false), so the group also shows older S6 work orders (S1-1015 Approved, S1-1016 Complete) - data only."
+ }
+}
