@@ -1,0 +1,23 @@
+{
+ "C368154": {
+  "verdict": "Blocked",
+  "failed_steps": "Blocked at step 4: the test asks to open the density control in Board View, and this release has no density control in Board View.",
+  "bold_steps": [
+   4
+  ],
+  "observed": [
+   "Result: Blocked on production (v26.43.0-ffea43c): step 4 cannot be done as written.",
+   "Steps 1 and 2: a brand-new user (ZZAUTOTEST Fresh) opened Work Orders and List was the active display.",
+   "Step 3: Board View opened.",
+   "Step 4: Board View's toolbar has no density control (only Fields to display and the display switcher), so the selected density cannot be read there. The current product document says: \"Board View shows no Density control in this release (SV-11580).\" (PRD v73, S3-R11, read 22 Oct 2026). The product matches the current document; the test step is out of date.",
+   "Step 5: not reached, because the run stopped at step 4.",
+   "What needs to be done: the QA lead decides whether step 4 is reworded to read density in Tech View; the test is then run again."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368154-fresh-start.png",
+   "evidence/prod-2026-10-22/C368154-error.png"
+  ],
+  "todo": "QA lead to decide whether step 4 is rewritten (density read in Tech View, where it exists); then re-run steps 4-5.",
+  "reason_for_reviewer": "s11-batch.mts C368154 clicked [data-test-id=button_density] after display(pg,'Board View') -> 30 s timeout. PRD v73 S3-R11 removed Board View density (same reason C590120 steps 6-7 were rewritten on the QA lead's instruction today). Step 2 from the fresh-start picture (List pressed). The error picture is the runner's Board View (no density button in the toolbar), not the fresh user's page."
+ }
+}
