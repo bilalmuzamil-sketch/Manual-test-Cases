@@ -1,0 +1,163 @@
+{
+ "runner": "88b0aaad",
+ "startState": {
+  "found": {
+   "saved": {
+    "status": 200,
+    "display": "board_view",
+    "collapsedGroups": [
+     "unassigned"
+    ],
+    "pinned": [
+     "3adb78a3"
+    ],
+    "filters": null,
+    "density": null,
+    "tab": null
+   },
+   "screen": {
+    "switcher": 3,
+    "active": "Board View"
+   }
+  },
+  "savedAfter": {
+   "status": 200,
+   "display": "board_view",
+   "collapsedGroups": [
+    "unassigned"
+   ],
+   "pinned": [
+    "3adb78a3"
+   ],
+   "filters": null,
+   "density": null,
+   "tab": null
+  }
+ },
+ "techs": {
+  "ana": true,
+  "ben": true,
+  "cal": true,
+  "dan": true
+ },
+ "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
+ "C368158": {
+  "status": "invoiced",
+  "before": "0",
+  "msg": [],
+  "after": "1",
+  "lead": "ZZAUTOTEST Ana Alpha",
+  "step6": {
+   "url": "/workorders/<id>/lines",
+   "lead": null,
+   "site": [
+    {
+     "tid": "button_toggle_vehicle_here",
+     "aria": null,
+     "pressed": null,
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-positive q-btn--actionable q-focusable q-ho",
+     "text": "location_on"
+    }
+   ]
+  }
+ },
+ "C368159": {
+  "eligible": [],
+  "offered": {
+   "ana": true,
+   "ben": true
+  },
+  "before": {
+   "here": "0",
+   "lead": "ZZAUTOTEST Ana Alpha"
+  },
+  "benWhyBefore": {
+   "email": "zz.wob.ben.bravo@staging.shopview.local",
+   "name": "ZZAUTOTEST Ben Bravo",
+   "staffId": "48e57869",
+   "active": true,
+   "timeClock": true,
+   "role": "Technician",
+   "location": "this location",
+   "departments": [
+    "Truck Hill 1/Department1"
+   ],
+   "enrolments": [],
+   "viewKeys": [
+    "collection"
+   ],
+   "offeredAsLead": true,
+   "sameNameOffered": [
+    "48e57869 open=26"
+   ]
+  },
+  "benWhyAfter": {
+   "email": "zz.wob.ben.bravo@staging.shopview.local",
+   "name": "ZZAUTOTEST Ben Bravo",
+   "staffId": "48e57869",
+   "active": true,
+   "timeClock": true,
+   "role": "Technician",
+   "location": "this location",
+   "departments": [
+    "Truck Hill 1/Department1"
+   ],
+   "enrolments": [],
+   "viewKeys": [
+    "collection"
+   ],
+   "offeredAsLead": true,
+   "sameNameOffered": [
+    "48e57869 open=26"
+   ]
+  },
+  "pageTyped": {
+   "field": 1,
+   "tries": [
+    {
+     "term": "Ben Bravo",
+     "hasInput": 1,
+     "count": 30,
+     "offered": [
+      "check Kristin Watson",
+      "check Maximiliana Fitzgerald-Montgomery",
+      "check Nina Newtech",
+      "check Ralph Edwards",
+      "check Service Advisor No Reports (Admin)",
+      "check Service advisor. No Reports",
+      "check Technician 1",
+      "check Theresa Webb",
+      "check ZZAUTOTEST Deleted Lead 46045",
+      "check ZZAUTOTEST Aaron Able 932906"
+     ]
+    }
+   ],
+   "picked": true,
+   "pickedWith": "Ben Bravo"
+  },
+  "page": {
+   "picked": true,
+   "by": "typed into the field: Ben Bravo"
+  },
+  "leadAfterB2": "ZZAUTOTEST Ben Bravo",
+  "leadIsThisBen": true,
+  "after": {
+   "here": "1",
+   "lead": "ZZAUTOTEST Ben Bravo"
+  },
+  "step7": {
+   "url": "/workorders/<id>/lines",
+   "lead": "ZZAUTOTEST Ben Bravo",
+   "site": [
+    {
+     "tid": "button_toggle_vehicle_here",
+     "aria": null,
+     "pressed": null,
+     "cls": "q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-positive q-btn--actionable q-focusable q-ho",
+     "text": "location_on"
+    }
+   ]
+  }
+ },
+ "restored": true
+}
