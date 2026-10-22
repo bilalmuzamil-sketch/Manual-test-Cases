@@ -24,7 +24,14 @@ try {
   o.rowsLeft = await p.locator('tbody tr').count(); o.cardsLeft = await p.locator('[data-test-id^="board_card_"], [data-test-id^="tech_view_row_"]').count(); await shot(p, 'C368240-tab1');
   // sign in again through the sign-in page (DEV MODE quick-login on QA branches)
   const qb = p.getByRole('button', { name: /admin/i }).first(); o.quickLoginButton = await qb.count();
-  if (o.quickLoginButton) { await qb.click(); await p.waitForTimeout(8000); }
+  if (process.env.WOB_PROD_LOGIN) { // 22 Oct 2026: production has no quick-login; sign in through the form with the test account (L0525)
+    o.signInHow = 'sign-in form, test account';
+    const cr: Record<string, string> = {}; for (const l of fs.readFileSync(process.env.PROD_ENVF || '/tmp/shopview/prod-login.env', 'utf8').split('\n')) { const m = /^([A-Z_]+)=(.*)$/.exec(l.trim()); if (m) cr[m[1]] = m[2]; }
+    if (!/\/login/.test(p.url())) { await p.goto(APP + '/login', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); }
+    await p.locator('input[type=email], input[autocomplete=username]').first().fill(cr.SV_USER); await p.locator('input[type=password]').first().fill(cr.SV_PASS);
+    await p.locator('button:has-text("Login"), button:has-text("Sign in"), button[type=submit]').first().click();
+    for (let i = 0; i < 20 && /\/login/.test(p.url()); i++) await p.waitForTimeout(2000);
+  } else if (o.quickLoginButton) { await qb.click(); await p.waitForTimeout(8000); }
   o.afterSignIn = p.url().replace(APP, '').slice(0, 80);
   if (!/login/i.test(p.url())) { await p.goto(APP + '/workorders', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); await report(p).catch(() => {}); await p.waitForTimeout(7000);
     o.reportAfter = { url: p.url().replace(APP, '').slice(0, 60), rows: await p.locator('tbody tr').count(), toasts: await toasts(p, 3000) }; await shot(p, 'C368240-after-sign-in'); }

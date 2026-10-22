@@ -61,15 +61,15 @@ await run('loc2', async () => {
   R.loc2 = { saved: (await a.get(PREF)).body?.data?.value };
   await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000);
   await p.locator('header').getByText(/^[A-Z]{2}$/).last().click(); await p.waitForTimeout(1500);
-  const cur = p.locator('.q-menu').getByText(/ - \d{3,5}$/).first(); R.loc2.menuButton = await cur.count();
+  const cur = p.locator('.q-menu').getByText(new RegExp('( - \\d{3,5}|' + LOC1_NAME.replace(/[.*+?^$(){}|[\]\\]/g, '\\$&') + ')$')).first(); R.loc2.menuButton = await cur.count();
   if (await cur.count()) { await cur.click(); await p.waitForTimeout(1500); R.loc2.options = await p.locator('.q-menu .q-item').allInnerTexts();
-    await p.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: 'Lethbridge' }).first().click().catch(() => {}); await p.waitForTimeout(6000); }
+    await p.locator('.q-menu .q-item, .q-menu .q-checkbox').filter({ hasText: LOC2_NAME }).first().click().catch(() => {}); await p.waitForTimeout(6000); }
   await p.keyboard.press('Escape').catch(() => {}); R.loc2.at = await where(); await shot(p, 'ui-loc2');
-  if (/lethbridge/i.test(String(R.loc2.at))) {
+  if (String(R.loc2.at).includes(LOC2_NAME)) {
     const sw = async (btn: string) => { await p.locator(`[data-test-id="${btn}"]`).click(); await p.waitForTimeout(1000); const r = await p.evaluate(`[...document.querySelectorAll('.q-menu [data-test-id^="toggle_"]')].filter(e => (e.querySelector('[role=switch]') || e).getAttribute('aria-checked') === 'true').map(e => e.innerText.trim())`); await p.keyboard.press('Escape'); await p.waitForTimeout(500); return r; };
     const dens = async () => { await p.locator('[data-test-id="button_density"]').click(); await p.waitForTimeout(800); const r = await p.evaluate(`[...document.querySelectorAll('[data-test-id^="option_density_"]')].filter(e => /check/.test(e.innerText)).map(e => e.innerText.replace('check','').trim())`); await p.keyboard.press('Escape'); await p.waitForTimeout(400); return r; };
     await tab(p, 'All'); await display(p, 'Tech View'); R.loc2.tech = await sw('button_tech_view_column_selection'); R.loc2.techDensity = await dens();
-    await display(p, 'Board View'); R.loc2.board = await sw('button_board_fields_selection'); R.loc2.boardDensity = await dens();
+    await display(p, 'Board View'); R.loc2.board = await sw('button_board_fields_selection'); /* 22 Oct 2026: no Board View density (PRD v73 S3-R11) */ R.loc2.boardDensityButtons = await p.locator('[data-test-id="button_density"]:visible').count();
     await display(p, 'List'); R.loc2.list = await sw('button_column_selection'); await shot(p, 'ui-loc2-lethbridge');
   }
   await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') }); await a.put(PREF, { value: before });
