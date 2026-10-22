@@ -1,14 +1,11 @@
 {
  "clearedSwitch": 200,
- "nina": [
-  "create 201",
-  "change 201"
- ],
+ "nina": [],
  "startState": {
   "found": {
    "saved": {
     "status": 200,
-    "display": "list",
+    "display": "board_view",
     "collapsedGroups": [],
     "pinned": [],
     "filters": {
@@ -19,14 +16,14 @@
    },
    "screen": {
     "switcher": 3,
-    "active": "List"
+    "active": "Board View"
    }
   },
   "clearCollapsedPut": 200,
   "collapsedSavedAfter": [],
   "savedAfter": {
    "status": 200,
-   "display": "list",
+   "display": "board_view",
    "collapsedGroups": [],
    "pinned": [],
    "filters": {
@@ -37,21 +34,154 @@
   }
  },
  "C96956": {
-  "error": "Cannot read properties of undefined (reading 'staff_id')"
- },
- "C96957": {
-  "error": "Cannot read properties of undefined (reading 'staff_id')"
- },
- "C96959": {
-  "error": "Cannot read properties of undefined (reading 'staff_id')"
- },
- "C96969": {
-  "error": "Cannot read properties of undefined (reading 'staff_id')"
- },
- "C96973": {
-  "error": "Cannot read properties of undefined (reading 'id')"
- },
- "C368163": {
-  "error": "Cannot read properties of undefined (reading 'staff_id')"
+  "setLeadA": 201,
+  "leadAtStart": [
+   "S1-1159 lead=Esther Howard"
+  ],
+  "wo": "S1-1159",
+  "menuDisabled": false,
+  "s4_dialogOpen": 1,
+  "s5": {
+   "detail": {
+    "search": {
+     "placeholder": "Search technicians",
+     "value": ""
+    },
+    "rowCount": 57,
+    "nonRowItemsInList": [],
+    "rows": [
+     {
+      "key": "unassigned",
+      "text": "Unassigned",
+      "avatar": false,
+      "photo": false,
+      "open": false,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "3d600422",
+      "text": "AB Aaron Baker 5 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "b25f46f9",
+      "text": "AZ Aaron Zed 3 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "c4dfdb4c",
+      "text": "AS Admin ShopView 2 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "12048b05",
+      "text": "AA Ahtasham Amjad 3 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "a97d3486",
+      "text": "AA Ahtesham ABCPROD 4 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "90e2ab51",
+      "text": "AK Ayesha Khan 42 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "4c557617",
+      "text": "BM Bilal Muzamil 10 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "3d2a9387",
+      "text": "Bilal Muzammil 4 open",
+      "avatar": true,
+      "photo": true,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "0c537d8f",
+      "text": "BN Billy Nobill 0 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "bf724dc5",
+      "text": "BC Branko Cicovic 2 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     },
+     {
+      "key": "7ef676d8",
+      "text": "BM Brenda Martinez 2 open",
+      "avatar": true,
+      "photo": false,
+      "open": true,
+      "bg": "rgba(0, 0, 0, 0)"
+     }
+    ]
+   },
+   "list": {
+    "count": 57,
+    "first": "Unassigned",
+    "unassigned": true,
+    "esther": true,
+    "ralph": true,
+    "jenny": true,
+    "oliveOffice": false,
+    "timClockuser": false,
+    "inaInactive": true,
+    "nickNoclock": false,
+    "ellaElsewhere": false
+   }
+  },
+  "s6_toRalph": {
+   "prompt": null,
+   "toast": [
+    "Lead technician updated"
+   ],
+   "lead": [
+    "S1-1159 lead=Ralph Edwards"
+   ]
+  },
+  "s6_inRalphColumn": true,
+  "s9_toUnassigned": {
+   "prompt": null,
+   "toast": [
+    "Lead technician removed"
+   ],
+   "lead": [
+    "S1-1159 lead=none"
+   ]
+  },
+  "s9_inUnassigned": true,
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('.q-menu .q-item').filter({ hasText: 'Reassign lead technician' }).first()\n"
  }
 }
