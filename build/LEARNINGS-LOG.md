@@ -419,3 +419,8 @@
 - C97029's set-up says the dispatcher is saved on Board View with a density; production's Board View has no density (PRD v73 S3-R11). The script saved Tech View + Comfortable instead, so clicking Tech View at step 3 was not a switch and only 1 display record was sent (case expects 2). Same family as C97024/C97025/C97027/C97035, which the QA lead had moved to Tech View on 22 Oct — a set-up change for C97029 is HIS call (preconditions are editable, Expected is not, Rule 114): ask, don't patch the script to a different start.
 - Pattern for judges: when a case's set-up is impossible on an environment, the verdict is Unsure with "set-up cannot exist here" — never a pass on a substitute set-up.
 #run498 #production #analytics #density → L0522
+
+## L0546 — 2026-10-22 — run_queue.sh reported QUEUE-DONE at 54 of 74: lines appended late were never read
+- The production re-run queue (`q-prod-redo3.txt`, tag prod-redo3) printed `QUEUE-DONE 23:23:49 -- 54 steps` although 20 more lines (55–74) had been appended while it ran. Do not count on lazy reading of appended lines over a long run: after QUEUE-DONE, compare `grep -c '^EXIT'` with the queue file's line count, and put any unrun tail into a NEW queue (`sed -n '55,$p' … > q-prod-redo4.txt`; tag prod-redo4) — with read-only probes first and any sign-out script last.
+- `redo4-pack-1022.sh` and the scratchpad watcher are the redo3 versions pointed at the new log.
+#queue #tooling #production → L0537
