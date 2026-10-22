@@ -95,7 +95,7 @@ C(k, "S5", "A/R Summary: the Location chip reads all, a count, one name or none"
    "Step 3: the chip shows {Location-C}'s name, shortened with \"...\" because it is long.",
    "Step 4: \"Location: No locations\"."],
   ["S5-R6"],
-  note=f"Whether the one-name chip also says \"Location: \" (question {QN['chip-one']}) and from what length a name is shortened (question {QN['chip-long']}) are asked.")
+  note="The Location chip is the native one, exactly as on Sales By Customer: with one location ticked, and for a long name, it reads as that chip does.")
 
 k = nk()
 C(k, "S5", "A/P Detail: with no location ticked the report is empty",
@@ -180,7 +180,7 @@ C(k, "S5", "A/P Summary: a link naming several locations or every location",
    "Step 4: every location is ticked.", "Step 5: with every location ticked the address no longer lists locations.",
    "Step 6: a link naming every location opens as \"Location: All locations\"."],
   ["S5-R10"],
-  note=f"How a location is written in the address is question {QN['link-format']}; the tester copies the address after ticking and edits only the list.")
+  note="The tester copies the address after ticking and edits only the list of locations in it.")
 
 k = nk()
 C(k, "S5", "A/R Detail: a link with an unknown location ignores it",
@@ -191,7 +191,7 @@ C(k, "S5", "A/R Detail: a link with an unknown location ignores it",
   ["Step 1: the report narrows to {Location-A}.", "Step 2: the address carries {Location-A}.", "Step 3: the report loads normally, with no error.",
    "Step 4: the chip reads as if only {Location-A} were in the link ({Location-A}'s name), and the Location column is hidden, following the remaining choice."],
   ["S5-N2"],
-  note=f"How a location is written in the address is question {QN['link-format']}.")
+  note="The tester edits only the list of locations in the copied address.")
 
 k = nk()
 C(k, "S5", "A/P Unpaid Invoices: a Past due value the chip does not offer reads Any",
@@ -202,7 +202,7 @@ C(k, "S5", "A/P Unpaid Invoices: a Past due value the chip does not offer reads 
   ["Step 1: the chip reads \"Past due: 31-60 days\".", "Step 2: the address is copied.", "Step 3: the report loads normally.",
    "Step 4: \"Past due: Any\" in the resting (grey) style.", "Step 5: the report loads normally.", "Step 6: \"Past due: Any\"."],
   ["S5-N3", "S5-R15"],
-  note=f"How the Past due value is written in the address is question {QN['link-format']}.")
+  note="The tester edits only the Past due value in the copied address.")
 
 k = nk()
 C(k, "S5", "A/R Summary: ticked customers and ranges survive reload and Back",
@@ -268,7 +268,7 @@ for code in ("ARD", "APD"):
        f"Step 6: no {P.lower()} is ticked.",
        f"Step 7: \"{P}: All {Ps}\" in the resting (grey) style."],
       ["S5-R13"],
-      note=f"Whether the one-name chip also says \"{P}: \" is question {QN['chip-one']}; from what length a name is shortened is question {QN['chip-long']}.")
+      note=f"The {P} chip is the native one (as on " + ("Sales By Customer" if P == "Customer" else "Inventory Value") + "): with one name ticked, and for a long name, it reads as that chip does.")
 
 # ---- the Past due menu
 for code in ("ARC", "APS"):

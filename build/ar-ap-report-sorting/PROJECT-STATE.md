@@ -29,3 +29,21 @@
   colour-coded sheet.
 - Still to come: design (readable copy) and tech plan → full pass (Rules 120, 122, 124, 126, 130, 133). Findings for the QA lead:
   SV-11597 and SV-11600 are word-for-word the same developer task.
+
+## 22 Oct 2026 — question sheet sent; export-limit answer
+- QA lead: "Create the file the same you do and share it with Chris Ward with Editor rights" + asked whether the 2,000 / 50,000 test
+  data is really needed and whether asking the developers would be authentic.
+- Answer (record): the limits ARE PRD requirements (S3-N1 "Exactly 2,000 rows is allowed.", S3-N2 "Exactly 50,000 rows is allowed.",
+  S3-R9, the error-message table). No request to the developers is needed: (1) the PDF 2,000 / 2,001 boundary is reachable on the
+  QA organization (PRD: 13,540 open A/P lines) by ticking vendors whose lines add up to 2,000 — DATA-20 (C715469) rewritten that way;
+  (2) the 2,000-customer Summary boundary (DATA-19, C715468) and the 50,000 / 50,001 CSV boundary (DATA-21, C715470) cannot be
+  reached on any test site, and the developers already check the limits in their own verify tasks (SV-11595 "PDF over 2,000 rows and
+  CSV over 50,000 are refused with exactly one message"; SV-11598 covers the Detail exports) — those two cases stay marked
+  AUTOMATION: HOLD with that reason. Question 14 was dropped.
+- Before sending, all 18 drafted questions were tested against skill 07 §6; 8 dropped as answerable by our own sources or
+  self-service (authoring/po_questions.py DROPPED): first-column heading, groups' opening state, link wording, one-name chip,
+  long-name chip, export-limit data, overpaid invoice (self-service setup), credit on the as-of date (out of scope → must not change).
+- 41 cases updated (notes, markers, DATA-20 rewritten), each read back (applied/update-2026-10-22-log.jsonl). Run 549: C715462 and
+  C715478 added (no longer held) → 253 tests; held out: C715279, C715322, C715463, C715464.
+- Sheet https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA — 10 questions, same layout as the
+  Splitting Sales Representatives sheet; shared with chris.w@shopview.com (Editor). Mapping: questions-2026-10-22/QUESTION-SHEET-2026-10-22.md.

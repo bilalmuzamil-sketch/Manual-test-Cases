@@ -33,7 +33,7 @@ for code in GROUPED:
        "Step 6: every group expands, and the column under the button is still not sorted.",
        f"Step 7: every {g} row's chevron points down (open)."],
       ["S4-R1", "S4-R3", "S4-R5", "UFS-5"],
-      note=f"The opening state of the groups is not stated in the PRD (question {QN['groups-open']}); the starting screen asks for every group collapsed, collapsing any that are open.")
+      note="This release does not change how the groups open, so they open as today; the starting screen asks for every group collapsed, collapsing any that are open.")
 
 for code in ("ARC", "APU"):
     r = R[code]; k = nk()

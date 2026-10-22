@@ -60,7 +60,7 @@ for code in ALL6:
        "Step 9: the focused link is underlined; links are underlined only on keyboard focus.",
        "Step 10: nothing overlaps, is cut off or clipped."],
       ["S8-R2", "S8-R3", "S8-R4", "S7-R7", f"S2-R1 {code}", "S6-R3", "KD-REUSE"],
-      note=(f"The exact heading of the first column is not stated in the PRD (question {QN['summary-name-col']})." if summ else
+      note=("The first column keeps today's heading: only the Location column is renamed in this release." if summ else
             (f"The PRD writes \"Open balance\", \"Due date\" and \"Transaction type\" for this report (S2-R1) but \"Open Balance\" in its Terminology; "
              f"which letter case is right is question {QN['open-balance-case']}." if r["fam"] == "A/R" else "")),
       design=DREF("page 6 (Descriptions and pinned column) and page 1 (Opening order and header sorting)"))

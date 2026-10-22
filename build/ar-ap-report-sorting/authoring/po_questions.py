@@ -73,4 +73,17 @@ QUESTIONS = [
   ["A) yes, the PRD wins and the stories will be updated", "B) a story is right (please say which)"],
   "Nothing is held: the cases follow PRD v5 and name the story wording where it differs."),
 ]
+# 22 Oct 2026, before the sheet went to Chris Ward (skill 07 §6: prove each question is necessary; QA lead: no request that wastes
+# anyone's time). These seven are answered by our own sources or by self-service, so they are not asked:
+DROPPED = {
+ "summary-name-col": "Only the Location column is renamed (What changes for existing users); every other heading stays as today.",
+ "groups-open": "The PRD does not change how the grouped reports open (S4-R5: behaviour unchanged), so they open as today.",
+ "link-format": "A tester copies the address after ticking and edits only the list; the wording of the address is a developer detail.",
+ "chip-one": "The chips are the native ones, exactly as on Sales By Customer (S5-R2, S5-R13): one ticked name reads as it does there.",
+ "chip-long": "Same native chips: names are shortened at the same length as on Sales By Customer.",
+ "limits-data": "The PDF 2,000 / 2,001 boundary is reachable on the QA organization with the Vendor filter; the 2,000-customer and 50,000-row boundaries are in the developers' own check tasks (SV-11595, SV-11598).",
+ "credit-asof": "Out of scope for this release (SV-11441), so today's behaviour must not change (Rule 96); the check stays.",
+ "overpaid": "Self-service first: the setup records a payment larger than the invoice on the test site; only if the site refuses do we ask.",
+}
+QUESTIONS = [q for q in QUESTIONS if q[0] not in DROPPED]
 QN = {s: i for i, (s, *_) in enumerate(QUESTIONS, 1)}

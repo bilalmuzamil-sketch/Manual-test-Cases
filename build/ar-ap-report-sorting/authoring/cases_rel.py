@@ -95,7 +95,8 @@ C(k, "REL", "A credit dated on the as-of date stays in the same bucket as before
   ["Expand every bucket and find {Credit-memo-A}."],
   ["Step 1: it is in the same bucket as before the release (today that is \"1-30 days past due\"): this release does not change how credits are aged."],
   ["OOS-4"], stories=[1],
-  marker=f"AUTOMATION: HOLD - waiting on the PO (question {QN['credit-asof']}: keep a must-not-change check for SV-11441)")
+  marker="AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site",
+  note="Changing how such a credit is aged is a separate ticket (SV-11441) outside this release, so this release must leave it as it is.")
 
 k = nk()
 C(k, "REL", "The research ideas left out of this release do not appear",

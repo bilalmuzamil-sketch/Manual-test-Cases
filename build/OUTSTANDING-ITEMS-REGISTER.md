@@ -3252,3 +3252,6 @@ Done: 42 updates + C598326 new, run 498 = 272 (record `wo-board-tech-view/answer
 - 22 Oct 2026: SSR moved to PRD v11 (answers 39/40 acted on; C690660 released, C690665 deleted, C715271/C715272 new; run 547 = 135).
   A/R and A/P: 257 cases created (group 90418), run 549 in milestone 5 (251 tests, 6 held on PO questions). OPEN: QA lead to say
   whether the 18 A/R questions go to Chris in a new colour-coded sheet; design (readable) and tech plan awaited.
+- 22 Oct 2026: A/R and A/P question sheet (10 questions) created and shared with Chris Ward as Editor:
+  https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA — waiting on his answers (4 cases held out of run 549).
+  Export-limit data: no developer request needed (see ar-ap-report-sorting/PROJECT-STATE.md, 22 Oct).

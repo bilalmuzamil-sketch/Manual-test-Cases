@@ -29,14 +29,12 @@
 
 | Marker | Cases |
 |---|---|
-| `AUTOMATION: HOLD - not yet build-verified (no build yet)` | 243 |
-| `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site` | 5 |
-| `AUTOMATION: HOLD - a manual tester cannot build exactly this many rows by hand; waiting on the test data (question 14)` | 3 |
-| `AUTOMATION: HOLD - waiting on the PO (question 16: should Summary and Detail Totals agree)` | 2 |
-| `AUTOMATION: HOLD - waiting on the PO (question 2: tie order of accented names)` | 1 |
-| `AUTOMATION: HOLD - waiting on the PO (question 7: does the Past due filter keep the sort)` | 1 |
-| `AUTOMATION: HOLD - waiting on the PO (question 15: how to get an overpaid invoice on a test site)` | 1 |
-| `AUTOMATION: HOLD - waiting on the PO (question 17: keep a must-not-change check for SV-11441)` | 1 |
+| `AUTOMATION: HOLD - not yet build-verified (no build yet)` | 245 |
+| `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site` | 6 |
+| `AUTOMATION: HOLD - waiting on the PO (question 9: should Summary and Detail Totals agree)` | 2 |
+| `AUTOMATION: HOLD - needs more rows than any test site holds; the developers check this limit in their own check tasks (SV-11595, SV-11598)` | 2 |
+| `AUTOMATION: HOLD - waiting on the PO (question 1: tie order of accented names)` | 1 |
+| `AUTOMATION: HOLD - waiting on the PO (question 6: does the Past due filter keep the sort)` | 1 |
 
 Every case is HOLD today because no build exists (Rule 85: source-verified only). READY + EXPECT-FAIL = 0 = total − HOLD.
 
@@ -44,19 +42,17 @@ Every case is HOLD today because no build exists (Rule 85: source-verified only)
 
 | Case | Title | Why held |
 |---|---|---|
-| S1-07 | A/R Summary lists Emile before Émile when only the accent differs | waiting on the PO (question 2: tie order of accented names) |
-| S2-35 | A/R Collection: changing the Past due filter keeps the sort | waiting on the PO (question 7: does the Past due filter keep the sort) |
-| DATA-13 | A/R Summary: the Totals row leaves out overpaid invoices, as the rows do | waiting on the PO (question 15: how to get an overpaid invoice on a test site) |
-| DATA-14 | A/R Summary and A/R Detail show the same Totals for the same filters | waiting on the PO (question 16: should Summary and Detail Totals agree) |
-| DATA-15 | A/P Summary and A/P Detail show the same Totals for the same filters | waiting on the PO (question 16: should Summary and Detail Totals agree) |
-| DATA-19 | A/R Summary: a PDF of exactly 2,000 customers downloads, 2,001 is refused | a manual tester cannot build exactly this many rows by hand; waiting on the test data (question 14) |
-| DATA-20 | A/P Detail: 2,000 document rows download as PDF, headings not counted | a manual tester cannot build exactly this many rows by hand; waiting on the test data (question 14) |
-| DATA-21 | A/P Detail: a CSV of 50,000 rows downloads, 50,001 is refused | a manual tester cannot build exactly this many rows by hand; waiting on the test data (question 14) |
+| S1-07 | A/R Summary lists Emile before Émile when only the accent differs | waiting on the PO (question 1: tie order of accented names) |
+| S2-35 | A/R Collection: changing the Past due filter keeps the sort | waiting on the PO (question 6: does the Past due filter keep the sort) |
+| DATA-14 | A/R Summary and A/R Detail show the same Totals for the same filters | waiting on the PO (question 9: should Summary and Detail Totals agree) |
+| DATA-15 | A/P Summary and A/P Detail show the same Totals for the same filters | waiting on the PO (question 9: should Summary and Detail Totals agree) |
+| DATA-19 | A/R Summary: a PDF of exactly 2,000 customers downloads, 2,001 is refused | needs more rows than any test site holds; the developers check this limit in their own check tasks (SV-11595, SV-11598) |
+| DATA-21 | A/P Detail: a CSV of 50,000 rows downloads, 50,001 is refused | needs more rows than any test site holds; the developers check this limit in their own check tasks (SV-11595, SV-11598) |
 | REL-01 | On release day an untouched A/R report shows the same rows and amounts | needs records and screenshots captured before the release is installed on the test site |
 | REL-02 | On release day an untouched A/P report shows the same rows and amounts | needs records and screenshots captured before the release is installed on the test site |
 | REL-05 | Inventory Value, Sales By Customer and Work In Progress work as before | needs records and screenshots captured before the release is installed on the test site |
 | REL-06 | Other reports keep their own export error message | needs records and screenshots captured before the release is installed on the test site |
-| REL-08 | A credit dated on the as-of date stays in the same bucket as before | waiting on the PO (question 17: keep a must-not-change check for SV-11441) |
+| REL-08 | A credit dated on the as-of date stays in the same bucket as before | needs records and screenshots captured before the release is installed on the test site |
 | REL-10 | The location switcher in the top right is unchanged | needs records and screenshots captured before the release is installed on the test site |
 
 ## PRD v5 coverage — every requirement code
@@ -94,10 +90,10 @@ Every case is HOLD today because no build exists (Rule 85: source-verified only)
 | S3-R8 | S3-18, S3-19, S3-20, S3-21, S3-22, S3-23 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S3-R8a | S9-03, S9-04 | A/R Collection |
 | S3-R9 | DATA-18, DATA-19, DATA-20, DATA-21 | A/R Summary, A/P Detail |
-| S3-R10 | S3-03, S3-04, S3-05, S3-06, S3-07, S3-08, S3-24, S3-25, D-37 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S3-R10 | S3-03, S3-04, S3-05, S3-06, S3-07, S3-08, S3-24, S3-25, DATA-20, D-37 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S3-N1 | DATA-18, DATA-19, DATA-20, D-38 | A/R Summary, A/P Detail |
 | S3-N2 | DATA-21 | A/P Detail |
-| S3-N3 | DATA-18, DATA-19, DATA-21 | A/R Summary, A/P Detail |
+| S3-N3 | DATA-18, DATA-19, DATA-20, DATA-21 | A/R Summary, A/P Detail |
 | S4-R1 | S4-01, S4-02, S4-03, S4-04, S4-05, S4-06, D-25, D-26, D-27, D-28 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
 | S4-R2 | S4-05, S4-06 | A/R Collection, A/P Unpaid Invoices |
 | S4-R3 | S4-01, S4-02, S4-03, S4-04 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
@@ -123,7 +119,7 @@ Every case is HOLD today because no build exists (Rule 85: source-verified only)
 | S5-R10a | S5-01, S5-02, S5-03, S5-04, S5-05, S5-06, S5-25 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S5-R11 | S5-26, S5-27 | A/R Summary, A/R Collection, A/P Summary, A/P Unpaid Invoices |
 | S5-R12 | S5-10, S5-11, S7-11 | A/R Detail, A/R Collection, A/P Unpaid Invoices |
-| S5-R13 | S3-09, S3-10, S3-11, S3-12, S3-13, S3-14, S5-01, S5-02, S5-03, S5-04, S5-05, S5-06, S5-28, S5-29, D-02, D-05, D-08, D-11, D-14, D-17, D-31, D-32 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S5-R13 | S3-09, S3-10, S3-11, S3-12, S3-13, S3-14, S5-01, S5-02, S5-03, S5-04, S5-05, S5-06, S5-28, S5-29, DATA-20, D-02, D-05, D-08, D-11, D-14, D-17, D-31, D-32 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S5-R14 | S5-24 | A/R Collection |
 | S5-R15 | S5-01, S5-02, S5-03, S5-04, S5-05, S5-06, S5-22, S5-30, S5-31, DATA-16, DATA-17, D-02, D-05, D-08, D-11, D-14, D-17, D-33, D-34 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S5-R16 | S2-35, DATA-09, DATA-10, DATA-11, DATA-12, DATA-16, DATA-17 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
@@ -286,4 +282,4 @@ Code baseline: NOT AVAILABLE (no product source code in this pass), so the invar
 
 ### Waiting on the PO
 
-Sheet: `PO-QUESTIONS-DRAFT.md` (draft, not sent). Unanswered: questions 1 to 18. Cases held on them: S1-07 (Q2), S2-35 (Q7), DATA-13 (Q15), DATA-14 (Q16), DATA-15 (Q16), DATA-19 (Q14), DATA-20 (Q14), DATA-21 (Q14), REL-08 (Q17).
+Sheet: `PO-QUESTIONS-DRAFT.md` (draft, not sent). Unanswered: questions 1 to 18. Cases held on them: S1-07 (Q1), S2-35 (Q6), DATA-14 (Q9), DATA-15 (Q9).

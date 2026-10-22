@@ -8,7 +8,7 @@ from po_questions import QN
 ORDER = {"n": 0}
 def nk():
     ORDER["n"] += 1; return f"DATA-{ORDER['n']:02d}"
-LIMIT_HOLD = f"AUTOMATION: HOLD - a manual tester cannot build exactly this many rows by hand; waiting on the test data (question {QN['limits-data']})"
+LIMIT_HOLD = "AUTOMATION: HOLD - needs more rows than any test site holds; the developers check this limit in their own check tasks (SV-11595, SV-11598)"
 
 # ---------------- paging: 30 per page, nothing repeated or skipped, in any sort ----------------
 for code in ("ARS", "APS", "ARC", "APU"):
@@ -107,7 +107,7 @@ C(k, "DATA", "A/R Summary: the Totals row leaves out overpaid invoices, as the r
    "Step 2: the Totals row's Total reads $500.00.",
    "Step 3: every column of the Totals row equals {Customer-A}'s row: the Totals row adds up exactly the rows above it."],
   ["WC-5", "S5-R18"],
-  marker=f"AUTOMATION: HOLD - waiting on the PO (question {QN['overpaid']}: how to get an overpaid invoice on a test site)")
+  note="To set this up, record a payment of $120.00 on the $100.00 invoice. If the test site does not accept a payment larger than the invoice, mark this test Blocked: \"setup not done\" and tell the QA lead.")
 
 # ---------------- Summary and Detail parity ----------------
 for fam, s, d in (("A/R", "ARS", "ARD"), ("A/P", "APS", "APD")):
@@ -161,17 +161,25 @@ C(k, "DATA", "A/R Summary: a PDF of exactly 2,000 customers downloads, 2,001 is 
    "Step 3: 2,001 customer rows.", "Step 4: \"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\"",
    "Step 5: exactly one message and no PDF downloaded."],
   ["S3-N1", "S3-R9", "S3-N3"], marker=LIMIT_HOLD,
-  note="The row count is the customers listed, not the Totals row. A manual tester cannot build 2,000 customers by hand; the case waits for a prepared data set.")
+  note="The row count is the customers listed, not the Totals row. No test site has 2,000 customers with open invoices (the QA organization has 46), so this exact boundary is checked by the developers (SV-11595); the PDF boundary itself is checked by hand on A/P Detail.")
 
 k = nk()
-C(k, "DATA", "A/P Detail: 2,000 document rows download as PDF, headings not counted",
-  [ADMIN(), ("On {Date-A} A/P Detail has exactly 2,000 open lines across its buckets (plus bucket rows, subtotals and the Totals row), and on {Date-B} exactly 2,001.",
-             "For example: a prepared test organization (see the note)."),
+C(k, "DATA", "A/P Detail: a PDF of exactly 2,000 lines downloads, 2,001 is refused",
+  [ADMIN(), ("Today the organization has more than 2,001 open A/P lines, and the vendors {Vendors-A} together have exactly 2,000 of them.",
+             "For example: the QA organization (13,540 open A/P lines); {Vendors-A} is the list of vendors the setup file gives for today."),
+   ("Vendor {Vendor-B} is not one of {Vendors-A} and has exactly one open A/P line today.", f"For example: {{Vendor-B}} is ZZAUTOTEST {k} One Bill, with one open bill."),
    START("APD")],
-  ["Set the as-of date to {Date-A}.", "Choose \"Download (PDF)\" from the ⋯ menu.", "Set the as-of date to {Date-B}.", "Choose \"Download (PDF)\" from the ⋯ menu."],
-  ["Step 1: 2,000 document rows.", "Step 2: the PDF downloads: bucket rows, subtotals and the Totals row are not counted.", "Step 3: 2,001 document rows.",
-   "Step 4: \"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\" and nothing downloads."],
-  ["S3-R9", "S3-N1"], marker=LIMIT_HOLD)
+  ["In the Vendor filter, tick every vendor in {Vendors-A}.", "Choose \"Download (CSV)\" from the ⋯ menu.",
+   "Open the CSV and count its document rows (leave out the heading and the Totals row).", "Choose \"Download (PDF)\" from the ⋯ menu.",
+   "In the Vendor filter, also tick {Vendor-B}.", "Choose \"Download (PDF)\" from the ⋯ menu.", "Count the messages and look at the browser's downloads."],
+  ["Step 1: only the lines of the ticked vendors remain.", "Step 2: the CSV downloads with the \"Success\" message.",
+   "Step 3: exactly 2,000 document rows.",
+   "Step 4: the PDF downloads with the \"Success\" message: exactly 2,000 rows is allowed, and bucket rows, subtotals and the Totals row are not counted.",
+   "Step 5: {Vendor-B}'s line is added, so the report now has 2,001 document rows.",
+   "Step 6: \"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\"",
+   "Step 7: exactly one message, and no PDF was downloaded."],
+  ["S3-R9", "S3-N1", "S3-N3", "S3-R10", "S5-R13"],
+  note="The QA organization has far more than 2,000 open A/P lines, so the exact boundary is reached by ticking vendors whose lines add up to 2,000; the setup file lists them for the day of the test.")
 
 k = nk()
 C(k, "DATA", "A/P Detail: a CSV of 50,000 rows downloads, 50,001 is refused",
@@ -182,4 +190,5 @@ C(k, "DATA", "A/P Detail: a CSV of 50,000 rows downloads, 50,001 is refused",
   ["Step 1: 50,000 document rows.", "Step 2: the CSV downloads with the \"Success\" message.", "Step 3: 50,001 document rows.",
    "Step 4: \"This report is too large to export. Choose an earlier as-of date, then try again.\"",
    "Step 5: exactly one message, and nothing downloaded.", "Step 6: there is no offer to email the export or prepare it in the background (that comes in a later phase)."],
-  ["S3-N2", "S3-N3", "UFS-2", "S3-R9", "OOS-1"], marker=LIMIT_HOLD)
+  ["S3-N2", "S3-N3", "UFS-2", "S3-R9", "OOS-1"], marker=LIMIT_HOLD,
+  note="No test site has 50,000 open A/P lines (the QA organization has 13,540), so a manual tester cannot reach this limit; the developers check it in their own check task (SV-11598).")

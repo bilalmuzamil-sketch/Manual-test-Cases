@@ -32,7 +32,7 @@ row("SV-7192", "COVERED", find("S1", "name order|capitals") + find("S3", "match 
 row("SV-10798", "COVERED", find("S1", "name order") + [c["key"] for c in CASES if c["sec"] == "S2"][:6] + find("S3", "Export menu"),
     "Origin ticket (Cody): default alphabetical order, sort by any header, export. Covered by Stories 1 to 3.")
 row("SV-11441", "NEW-CASES", relk("credit dated on the as-of date"),
-    f"Out of scope (later ticket). One must-not-change case, held on question {QN['credit-asof']}.")
+    f"Out of scope (later ticket). One must-not-change case (today's aging must stay as it is in this release).")
 for k, what in (("SV-11442", "configurable aging periods"), ("SV-11443", "send a statement"), ("SV-11444", "salesperson and Parts vs Service filters"),
                 ("SV-11446", "last payment date and credit limit columns"), ("SV-11447", "collection notes log")):
     row(k, "NEW-CASES", relk("research ideas"), f"Out of scope (later ticket: {what}). Covered only as a must-not-appear check; no case for the feature itself.")
@@ -82,7 +82,7 @@ CL = ["# Design-case checklist (skill 21 §6d, Rule 133) — 22 Oct 2026", "",
       "| # | Checklist line | Status | Cases / where |", "|---|---|---|---|",
       f"| 1 | Every screen and state the design draws has a \"Design: … looks as described\" case | PARTLY: every screen and state the PRD names, for all six reports (1440 light, dark, 1536 both, loading/empty/error); the design's own screens OPEN until it is read | {dk('1440|dark theme|1536|loading')} |",
       f"| 2 | Every menu, dialog, tooltip, toast, prompt and empty state listed with its rows and buttons in order, compared with the PRD | DONE from the PRD (Location, Customer, Vendor, Past due and Export menus; switch-location dialog; Collapse/Expand tooltip; info tooltip; Success, Empty export, too-large and failed-export messages; empty and error states); the design's versions OPEN | {dk('menu|dialog|tooltip|messages|chevrons|states')} |",
-      f"| 3 | Every label compared letter for letter, capitals included (L-04) | DONE in every design case step; letter-case conflicts inside the PRD asked (questions {QN['open-balance-case']} and {QN['summary-name-col']}) | all design cases |",
+      f"| 3 | Every label compared letter for letter, capitals included (L-04) | DONE in every design case step; the letter-case conflict inside the PRD asked (question {QN['open-balance-case']}); every other heading stays as today | all design cases |",
       "| 4 | Every design behaviour that differs from the PRD has a held design-version case and a sent question (Rule 130) | OPEN: needs the design; the divergence register is empty for that reason | DESIGN-DIVERGENCE-REGISTER.json |",
       "| 5 | Both directions checked: design → cases (text and visual inventory) and PRD → design (spec_to_design_check.py) | OPEN: needs the design | — |",
       f"| 6 | Sizes, colours, icons, column order, widths at 1440 and 1536 px, no overlap, no truncation | DONE where the PRD states them | {dk('1440|1536|narrower')} |",

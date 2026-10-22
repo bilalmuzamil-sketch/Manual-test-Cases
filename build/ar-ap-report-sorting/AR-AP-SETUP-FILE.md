@@ -49,7 +49,7 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 | P-ROLE | Custom role and user | Settings > Roles: copy a role and set only the permissions the case names (Reports → Page Access always on unless the case says off); Settings > Staff: a user with that role, enrolled at the locations the case names. | Signing in as the user shows only what the case expects. |
 | P-PRE-RELEASE | Before-the-release capture | For REL cases marked PRE_REL: before the release is installed, create the records, take the screenshots or exports named and keep them with their dates. | Files saved and dated. |
 | P-OFFLINE | Lost connection | Switch the computer's Wi-Fi off (or unplug the network cable) after the report has loaded; switch it back on at the end. | The browser shows it is offline. |
-| P-VOLUME | Large data | Paging and limit cases need many rows: use the QA organization (13,540 open A/P lines; 46 A/R Summary customers) or create ZZAUTOTEST customers or bills in bulk. Exact-boundary export cases wait for a prepared data set (question 14). | The counts in the case hold. |
+| P-VOLUME | Large data | Paging and limit cases need many rows: use the QA organization (13,540 open A/P lines; 46 A/R Summary customers) or create ZZAUTOTEST customers or bills in bulk. Exact 2,000 / 2,001 PDF boundary (A/P Detail): on the day of the test, export the A/P Detail CSV with every vendor, count open lines per vendor by script, pick a set of vendors ({Vendors-A}) whose lines add up to exactly 2,000 (prefer few, large vendors; if no exact set exists, top up with ZZAUTOTEST bills for one vendor in the set), and create one ZZAUTOTEST vendor with exactly one open bill ({Vendor-B}); write both into the case's values. The 2,000-customer Summary boundary and the 50,000 / 50,001 CSV boundary cannot be reached on any test site and are checked by the developers (SV-11595, SV-11598). | The counts in the case hold. |
 
 ## 5. One recipe per case: the placeholder values (the examples in the case are the values)
 ### SETUP-S1-01 — A/R Summary opens with customers in name order, A to Z
@@ -119,7 +119,7 @@ Procedures: P-LOC, P-VENDOR, P-BILL.
 Sources (verbatim text in section 9): S1-R2, S1-R4, S3-R2.
 
 ### SETUP-S1-07 — A/R Summary lists Emile before Émile when only the accent differs
-Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - waiting on the PO (question 2: tie order of accented names)`.
+Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - waiting on the PO (question 1: tie order of accented names)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two customers have open invoices on today's date and their names differ only by an accent: {Customer-A} without it and {Customer-B} with it. For example: {Customer-A} is ZZAUTOTEST S1-07 Emile and {Customer-B} is ZZAUTOTEST S1-07 Émile.
@@ -623,7 +623,7 @@ Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY.
 Sources (verbatim text in section 9): S2-R2, S2-R7.
 
 ### SETUP-S2-35 — A/R Collection: changing the Past due filter keeps the sort
-Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - waiting on the PO (question 7: does the Past due filter keep the sort)`.
+Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - waiting on the PO (question 6: does the Past due filter keep the sort)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has overdue invoices on today's date, some 1 to 30 days and some 31 to 60 days past due. For example: {Customer-A} is ZZAUTOTEST S2-35 Past Due Sort.
@@ -2209,7 +2209,7 @@ Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL, P-VC, P-AGE.
 Sources (verbatim text in section 9): S5-R16, S5-R18, S5-R7, WC-4.
 
 ### SETUP-DATA-13 — A/R Summary: the Totals row leaves out overpaid invoices, as the rows do
-Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - waiting on the PO (question 15: how to get an overpaid invoice on a test site)`.
+Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has an invoice {Invoice-A} of $100.00 paid $120.00 (overpaid), and an open invoice {Invoice-B} of $500.00 on today's date. For example: {Customer-A} is ZZAUTOTEST DATA-13 Overpaid.
@@ -2220,7 +2220,7 @@ Procedures: P-LOC, P-CUST, P-INV-WO, P-PAY.
 Sources (verbatim text in section 9): S5-R18, WC-5.
 
 ### SETUP-DATA-14 — A/R Summary and A/R Detail show the same Totals for the same filters
-Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Summary, A/R Detail. Marker: `AUTOMATION: HOLD - waiting on the PO (question 16: should Summary and Detail Totals agree)`.
+Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Summary, A/R Detail. Marker: `AUTOMATION: HOLD - waiting on the PO (question 9: should Summary and Detail Totals agree)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
@@ -2232,7 +2232,7 @@ Procedures: P-LOC, P-INV-WO, P-CM.
 Sources (verbatim text in section 9): S5-R18, WC-10.
 
 ### SETUP-DATA-15 — A/P Summary and A/P Detail show the same Totals for the same filters
-Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Summary, A/P Detail. Marker: `AUTOMATION: HOLD - waiting on the PO (question 16: should Summary and Detail Totals agree)`.
+Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Summary, A/P Detail. Marker: `AUTOMATION: HOLD - waiting on the PO (question 9: should Summary and Detail Totals agree)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
@@ -2277,7 +2277,7 @@ Procedures: P-LOC, P-VOLUME.
 Sources (verbatim text in section 9): ASSUME-13540, S3-N1, S3-N3, S3-R9, UFS-1.
 
 ### SETUP-DATA-19 — A/R Summary: a PDF of exactly 2,000 customers downloads, 2,001 is refused
-Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - a manual tester cannot build exactly this many rows by hand; waiting on the test data (question 14)`.
+Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - needs more rows than any test site holds; the developers check this limit in their own check tasks (SV-11595, SV-11598)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - On {Date-A} A/R Summary lists exactly 2,000 customers, and on {Date-B} exactly 2,001. For example: a prepared test organization (see the note).
@@ -2287,19 +2287,20 @@ Placeholders: {Date-A}, {Date-B}, {Location-A}. Values: the "For example" lines 
 Procedures: P-LOC, P-VOLUME.
 Sources (verbatim text in section 9): S3-N1, S3-N3, S3-R9.
 
-### SETUP-DATA-20 — A/P Detail: 2,000 document rows download as PDF, headings not counted
-Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - a manual tester cannot build exactly this many rows by hand; waiting on the test data (question 14)`.
+### SETUP-DATA-20 — A/P Detail: a PDF of exactly 2,000 lines downloads, 2,001 is refused
+Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
-- On {Date-A} A/P Detail has exactly 2,000 open lines across its buckets (plus bucket rows, subtotals and the Totals row), and on {Date-B} exactly 2,001. For example: a prepared test organization (see the note).
+- Today the organization has more than 2,001 open A/P lines, and the vendors {Vendors-A} together have exactly 2,000 of them. For example: the QA organization (13,540 open A/P lines); {Vendors-A} is the list of vendors the setup file gives for today.
+- Vendor {Vendor-B} is not one of {Vendors-A} and has exactly one open A/P line today. For example: {Vendor-B} is ZZAUTOTEST DATA-20 One Bill, with one open bill.
 - Starting screen: Reports > Finance > A/P Detail is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders: {Date-A}, {Date-B}, {Location-A}. Values: the "For example" lines above; write the real document numbers here after setup.
-Procedures: P-LOC, P-VOLUME.
-Sources (verbatim text in section 9): S3-N1, S3-R9.
+Placeholders: {Location-A}, {Vendor-B}, {Vendors-A}. Values: the "For example" lines above; write the real document numbers here after setup.
+Procedures: P-LOC, P-VENDOR, P-BILL, P-VOLUME.
+Sources (verbatim text in section 9): S3-N1, S3-N3, S3-R10, S3-R9, S5-R13.
 
 ### SETUP-DATA-21 — A/P Detail: a CSV of 50,000 rows downloads, 50,001 is refused
-Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - a manual tester cannot build exactly this many rows by hand; waiting on the test data (question 14)`.
+Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - needs more rows than any test site holds; the developers check this limit in their own check tasks (SV-11595, SV-11598)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - On {Date-A} A/P Detail has exactly 50,000 open lines, and on {Date-B} exactly 50,001. For example: a prepared test organization (see the note).
@@ -2393,14 +2394,14 @@ Procedures: P-LOC.
 Sources (verbatim text in section 9): KD-REUSE.
 
 ### SETUP-REL-08 — A credit dated on the as-of date stays in the same bucket as before
-Section: Release day and what must not change (TestRail section 90429). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - waiting on the PO (question 17: keep a must-not-change check for SV-11441)`.
+Section: Release day and what must not change (TestRail section 90429). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has an unused credit memo {Credit-memo-A} dated {Date-A}; before the release you noted which A/R Detail bucket it was in with {Date-A} as the as-of date. For example: {Customer-A} is ZZAUTOTEST REL-08 Same Day Credit; {Date-A} is the day before the release.
 - Starting screen: Reports > Finance > A/R Detail is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Date-A} as the as-of date and {Customer-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Credit-memo-A}, {Customer-A}, {Date-A}, {Location-A}. Values: the "For example" lines above; write the real document numbers here after setup.
-Procedures: P-LOC, P-CUST, P-CM, P-AGE.
+Procedures: P-LOC, P-CUST, P-CM, P-AGE, P-PRE-RELEASE.
 Sources (verbatim text in section 9): OOS-4.
 
 ### SETUP-REL-09 — The research ideas left out of this release do not appear
@@ -3207,21 +3208,13 @@ Sources (verbatim text in section 9): FORM, OOS-9.
 - Every case and recipe: UNVERIFIED — the build is not yet available; the design and the tech plan have not been read.
 
 ## 11. Open questions (draft, not sent; `PO-QUESTIONS-DRAFT.md`)
-- Q1: What is the exact heading of the first column on A/R Summary and A/P Summary? — Not held: the design cases name it "the customer (or vendor) name heading (first column)" and check the exact words once answered.
-- Q2: When two names differ only by an accent (Emile and Émile), which comes first? — Held: one case waits on this answer.
-- Q3: What does the first click on ID (A/R) or No. (A/P) give: smallest number first, or largest first? — Not held: the number-order cases check number order in both directions and say which comes first once answered.
-- Q4: When a sort is reversed, do rows that tie keep the smaller document number first, or does the tie order reverse too? — Not held: the sort cases check the tie order on the first click only until answered.
-- Q5: On A/R Detail and A/R Collection, is the headline column "Open balance" (small b) or "Open Balance"? — Not held: the cases follow S2-R1 letter for letter (A/R small letters); the A/R design cases name this question.
-- Q6: On A/R Summary, A/P Summary, A/R Collection and A/P Unpaid Invoices, how does the user reach the next 30 customers or vendors: page buttons, or more rows loading as they scroll? — Not held: the paging cases say "go to the next page (or scroll until the next ones load)" and are re-worded once answered. Please also update SV-11531 S1-R8 to the PRD wording.
-- Q7: Does changing the Past due filter keep the sort, like the as-of date and the customer, vendor and Location filters? — Held: one case waits on this answer; the other sort cases leave the Past due filter out.
-- Q8: Do the grouped reports (A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices) open with every group collapsed, or expanded? — Not held: cases that need a set starting state say which groups are expanded; they are re-checked once answered.
-- Q9: For a tester writing a link by hand: how are locations, customers or vendors and Past due ranges written in the page address? — Not held: the link cases tell the tester to copy the address after ticking and edit only the list; this is a question for the developers too.
-- Q10: When exactly one location (or customer, vendor, range) is ticked, does the chip read the name alone or "Location: " and the name? — Not held: the chip cases check that the name shows; the exact words are checked once answered.
-- Q11: From what length is a location, customer or vendor name on a chip shortened with "..."? — Not held: the chip cases use a name of more than 40 characters.
-- Q12: In the PDF and the CSV, in what order are several ticked locations listed on the "Locations: " line, and with what separator? And where do the As of, Locations, Past due and Customer lines sit in the CSV: as rows above the table? — Not held: the export cases check that every ticked name appears; their order and separator are checked once answered.
-- Q13: What are the CSV column headings for the aging bucket and for the customer or vendor on the Detail, Collection and Unpaid Invoices CSVs? — Not held: the CSV cases check that the columns exist; their headings are checked once answered.
-- Q14: How can QA reach exactly 2,000 and 2,001 rows (PDF) and 50,000 and 50,001 rows (CSV) on a test site? — Held: the exact-boundary export cases wait on this answer; the over-the-limit PDF case on the QA organization can run.
-- Q15: Can QA create an overpaid invoice (paid for more than its amount) on a test site, or should DATA-14 use an existing one? — Held: one case waits on this answer.
-- Q16: For the same as-of date and filters, should A/R Summary's Totals equal A/R Detail's Totals (and A/P Summary's equal A/P Detail's), and should a report show a payment recorded a moment ago as soon as it is reloaded? — Held: two cases wait on this answer (Rule 116: a number shown on two reports must agree, or the difference must be written down).
-- Q17: Should the suite keep a check that a credit dated exactly on the as-of date still lands in 1-30, as today, since this release does not change it (SV-11441)? — Held: one case waits on this answer.
-- Q18: Three stories differ from PRD v5. Can they be updated to match, and does the PRD win meanwhile? — Nothing is held: the cases follow PRD v5 and name the story wording where it differs.
+- Q1: When two names differ only by an accent (Emile and Émile), which comes first? — Held: one case waits on this answer.
+- Q2: What does the first click on ID (A/R) or No. (A/P) give: smallest number first, or largest first? — Not held: the number-order cases check number order in both directions and say which comes first once answered.
+- Q3: When a sort is reversed, do rows that tie keep the smaller document number first, or does the tie order reverse too? — Not held: the sort cases check the tie order on the first click only until answered.
+- Q4: On A/R Detail and A/R Collection, is the headline column "Open balance" (small b) or "Open Balance"? — Not held: the cases follow S2-R1 letter for letter (A/R small letters); the A/R design cases name this question.
+- Q5: On A/R Summary, A/P Summary, A/R Collection and A/P Unpaid Invoices, how does the user reach the next 30 customers or vendors: page buttons, or more rows loading as they scroll? — Not held: the paging cases say "go to the next page (or scroll until the next ones load)" and are re-worded once answered. Please also update SV-11531 S1-R8 to the PRD wording.
+- Q6: Does changing the Past due filter keep the sort, like the as-of date and the customer, vendor and Location filters? — Held: one case waits on this answer; the other sort cases leave the Past due filter out.
+- Q7: In the PDF and the CSV, in what order are several ticked locations listed on the "Locations: " line, and with what separator? And where do the As of, Locations, Past due and Customer lines sit in the CSV: as rows above the table? — Not held: the export cases check that every ticked name appears; their order and separator are checked once answered.
+- Q8: What are the CSV column headings for the aging bucket and for the customer or vendor on the Detail, Collection and Unpaid Invoices CSVs? — Not held: the CSV cases check that the columns exist; their headings are checked once answered.
+- Q9: For the same as-of date and filters, should A/R Summary's Totals equal A/R Detail's Totals (and A/P Summary's equal A/P Detail's), and should a report show a payment recorded a moment ago as soon as it is reloaded? — Held: two cases wait on this answer (Rule 116: a number shown on two reports must agree, or the difference must be written down).
+- Q10: Three stories differ from PRD v5. Can they be updated to match, and does the PRD win meanwhile? — Nothing is held: the cases follow PRD v5 and name the story wording where it differs.

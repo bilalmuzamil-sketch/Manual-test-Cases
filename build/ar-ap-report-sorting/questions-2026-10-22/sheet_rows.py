@@ -1,0 +1,60 @@
+"""The question sheet for Chris Ward, 22 Oct 2026 (QA lead: "Create the file the same you do and share it with Chris Ward with Editor
+rights"). Same layout as the Splitting Sales Representatives sheet 17Ry1Bt (title, greeting, colour guide, header, one row per question).
+10 questions; 8 of the 18 drafted were dropped as answerable by our own sources or self-service (authoring/po_questions.py DROPPED)."""
+import json, os
+T = "A/R and A/P Report Sorting: "
+TITLE = "A/R and A/P Report Sorting, Export and Location Filter – questions for Chris Ward (22 Oct 2026)"
+GREET = ("Hi Chris, we are writing the A/R and A/P Report Sorting, Export and Location Filter test cases from the feature spec (version 5, 21 Oct) "
+         "and its Jira stories, and found the points below that only you can decide. Please write your answer in the yellow column (a letter such as "
+         "(a) is enough); an option marked \"Suggested\" is what the documents point to.")
+ROWS = [
+ [1, T + "name order when two names differ only by an accent",
+  "On all six reports, customers and vendors are listed A to Z. When two names differ only by an accent (for example \"Emile's Towing\" and \"Émile's Towing\"), which comes first?\n(a) \"Emile's Towing\" first, then \"Émile's Towing\".\n(b) No fixed order between them, as long as the screen, the PDF and the CSV always agree.\n(c) Something else (please say).",
+  "The spec says: \"Two names that compare equal are ordered by the plain lower-cased name, then by the customer or vendor itself\". It does not say how an accent is treated.",
+  "PRD v5 (21 Oct 2026) S1-R4; Jira SV-11531 (Story 1)", ["S1-07"]],
+ [2, T + "first click on the ID or No. column",
+  "The document column is \"ID\" on the A/R reports and \"No.\" on the A/P reports. What does the first click on that column header give?\n(a) Smallest number first (S1-99, S1-100, S1-101); the second click largest first.\n(b) Largest number first; the second click smallest first.\n(c) Something else (please say).",
+  "The spec gives the first-click order for names (A to Z), money (largest first), dates (oldest first) and Past Due (largest first), and says ID and No. sort by number value (\"S1-99 before S1-100 before S1-101\"), but not which way the first click goes.",
+  "PRD v5 S2-R2, S2-R4; Jira SV-11532 (Story 2)", ["S2-10", "S2-14", "S2-18", "S2-22"]],
+ [3, T + "rows that tie when a sort is reversed",
+  "When two rows have the same value in the sorted column (for example two invoices of $100.00), they are put in document-number order. When the user clicks again to reverse the sort, what happens to those two rows?\n(a) They stay smallest document number first in both directions.\n(b) Their order reverses with the sort.\n(c) Something else (please say).",
+  "The spec says: \"The same number-aware order breaks ties in every sort.\" It does not say whether the tie order also reverses.",
+  "PRD v5 S2-R4; Jira SV-11532 (Story 2)", ["S2-10", "S2-14", "S2-18", "S2-22"]],
+ [4, T + "capital letters in the A/R column headings",
+  "The spec writes some A/R column headings with small letters in one place (\"Open balance\", \"Due date\", \"Past due\", \"Transaction type\") and with capitals in others (\"Open Balance\"). Which is right on A/R Detail and A/R Collection?\n(a) Suggested: keep today's headings exactly as they are. The spec renames only the Location column, so the others don't change.\n(b) Capitals on all six reports (\"Open Balance\", \"Due Date\", \"Past Due\", \"Transaction Type\").\n(c) Something else (please say).",
+  "The column list gives \"Open balance\" for A/R and \"Open Balance\" for A/P; the Terminology section and the layout rule say \"Open Balance\" for all four transaction reports. The list of changes for existing users renames only the Location column.",
+  "PRD v5 S2-R1, Terminology, S8-R3, What changes for existing users", ["D-04", "D-07"]],
+ [5, T + "reaching the next 30 customers or vendors",
+  "A/R Summary, A/P Summary, A/R Collection and A/P Unpaid Invoices show 30 customers or vendors at a time. How does the user reach the next 30?\n(a) Page buttons.\n(b) The next 30 load as the user scrolls down.\n(c) Something else (please say).",
+  "The spec says \"show 30 customers or vendors per page\". The developers' check task for the Summaries says \"Scrolling page after page never repeats or skips a customer or vendor\", which sounds like scrolling.",
+  "PRD v5 S1-R8; Jira SV-11531 (Story 1), SV-11595", ["S4-05", "S4-06", "S4-13", "S4-14", "DATA-01", "DATA-02", "DATA-03", "DATA-04"]],
+ [6, T + "does the Past due filter keep the sort?",
+  "After the user sorts a report by a column, the sort stays when the as-of date, the page, or the customer, vendor or Location filter changes. Does it also stay when the Past due filter changes?\n(a) Yes, the sort stays when Past due changes too (as Story 2 says).\n(b) No, changing Past due puts the report back in its opening order.\n(c) Something else (please say).",
+  "The spec lists \"changing the as-of date, paging, and changing the customer, vendor or Location filter\" and does not name Past due. Story 2's acceptance criteria include the Past due filter.",
+  "PRD v5 S2-R7; Jira SV-11532 (Story 2), acceptance criterion 7", ["S2-35"]],
+ [7, T + "the filter lines at the top of the PDF and the CSV",
+  "Exports carry lines such as \"As of\", \"Locations: \", \"Past due\" and the customer or vendor line. Two points:\n1. When several locations are ticked, in what order are they listed on the \"Locations: \" line, and with what between them?\n(a) In the order of the Location menu, separated by a comma and a space.\n(b) In the order they were ticked (as the spec says for customers and vendors), separated by a comma and a space.\n(c) Something else (please say).\n2. In the CSV, are those lines rows above the table?\n(a) Yes, rows above the column headings.\n(b) No, the CSV has only the table; the lines are in the PDF only.\n(c) Something else (please say).",
+  "The spec says the line reads \"Locations: \" followed by the ticked locations' names, and that customers and vendors are listed \"in the order they were ticked\". It also says \"The CSV is one flat table\".",
+  "PRD v5 S3-R5, S3-R8; Jira SV-11533 (Story 3)", ["S3-17"]],
+ [8, T + "CSV column headings for the aging bucket and the customer or vendor",
+  "The CSVs of A/R Detail, A/R Collection, A/P Detail and A/P Unpaid Invoices have the aging bucket and the customer or vendor in their own columns. What are those column headings?\n(a) \"Aging bucket\", and \"Customer\" or \"Vendor\".\n(b) The same words as on the screen.\n(c) Something else (please give them letter for letter).",
+  "The spec says the CSV has \"the aging bucket, customer or vendor in its own column\" but does not name those columns. For A/R Collection it names \"Phone\", \"Credit term\" and \"Customer\".",
+  "PRD v5 S3-R8, S3-R8a; Jira SV-11533 (Story 3)", ["S3-20", "S3-21", "S3-22", "S3-23"]],
+ [9, T + "do the Summary and Detail totals agree, and are the figures current?",
+  "Two points about the numbers:\n1. For the same as-of date and filters, should A/R Summary's Totals equal A/R Detail's Totals (and A/P Summary's equal A/P Detail's)?\n(a) Yes, always.\n(b) They can differ (please say when).\n2. If a payment is recorded and the report is then reloaded, should the report show it straight away?\n(a) Yes, the figures are current on reload.\n(b) No, there can be a delay (please say how long).",
+  "The spec says the Totals row adds up exactly the rows the filters leave, and that an untouched report shows \"exactly today's organization-wide numbers\". It does not say whether the Summary and Detail reports must agree, or how fresh the figures are.",
+  "PRD v5 S5-R18, What changes for existing users", ["DATA-14", "DATA-15"]],
+ [10, T + "three Jira stories differ from the spec",
+  "Three Jira stories still say something different from the spec (version 5). Could they be updated to match, and does the spec win until then?\n(a) Yes, the spec wins and the stories will be updated.\n(b) A story is right (please say which).\nThe differences: Story 1 says \"Paging (30 rows per page)\" for every report, while the spec gives A/R Detail and A/P Detail 100 lines per bucket, then more as the user scrolls. Story 4 gives that 100-lines rule to A/P Detail only, not A/R Detail. Story 5 leaves \"or the Past due filter\" out of one rule, misses the A/P rule for which location a document belongs to, and still has the single-threshold Past due link the spec removed on 20 Oct.",
+  "The spec was updated after the stories. Our test cases follow the spec meanwhile.",
+  "Jira SV-11531 (Story 1), SV-11534 (Story 4), SV-11535 (Story 5); PRD v5 S1-R8, S4-R4, S5-R3, S5-R7, S5-R19", []],
+]
+def values():
+    v = [[TITLE, "", "", "", "", ""], [GREET, "", "", "", "", ""],
+         ["Colour guide:", "Yellow = please write your answer here", "Blue = the topic", "Grey = where we found it", "", ""],
+         ["", "", "", "", "", ""], ["#", "Topic", "Question for you", "What we know today", "Your answer", "Where we found it"]]
+    for n, t, q, k, w, _ in ROWS: v.append([str(n), t, q, k, "", w])
+    return v
+if __name__ == "__main__":
+    json.dump(values(), open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "sheet-values.json"), "w"), ensure_ascii=False, indent=1)
+    print(len(values()), "rows")
