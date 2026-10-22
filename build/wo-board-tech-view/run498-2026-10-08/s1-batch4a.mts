@@ -4,6 +4,7 @@
  * C96923 changing location. [User-B] is a fresh ZZAUTOTEST staff member, reached by switching user inside
  * the admin session (staging's quick sign-in has only the admin account); always switched back.
  */
+import { ME_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -22,7 +23,7 @@ const R: Record<string, any> = {};
 const HEAVY = 'b3c8c820-f815-4cf1-8938-10956c5ee71a';
 const techs = await candidates(a);
 const tA = techs.find((x) => x.name === 'Ayesha Khan')!;
-const adminStaff = techs.find((x) => x.name === 'Admin ShopView')!.id;
+const adminStaff = techs.find((x) => x.name === ME_NAME)!.id;
 const wpsRaw = (await a.get('/api/staff/my-workplaces')).body?.data;
 const wps: any[] = Array.isArray(wpsRaw) ? wpsRaw : wpsRaw?.collection ?? [];
 const loc2 = wps.find((w) => w.id !== HEAVY && /lethbridge/i.test(w.name)) ?? wps.find((w) => w.id !== HEAVY);

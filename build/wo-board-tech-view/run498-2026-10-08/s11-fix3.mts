@@ -8,6 +8,7 @@
  * Analytics: this harness always blocks Google Analytics / Tag Manager (session.mts NOISE), so every run is a
  * "blocked analytics" run; C97028 states it and checks the requests were indeed refused.
  */
+import { ME_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -117,7 +118,7 @@ async function run(id: string, f: () => Promise<void>) {
 const IDS = { Ana: ANA.staff_id, Ben: BEN.staff_id, Cal: CAL.staff_id, Dan: DAN.staff_id };
 
 
-const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView')!;
+const me = (await candidates(a)).find((x) => x.name === ME_NAME)!;
 const ORG = (await import('./profile.mts')).ORG;
 const rolesL: any[] = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data) /* 15 Oct 2026: staging answers a plain list (L0339) */;
 const RI = await roleIds(a);

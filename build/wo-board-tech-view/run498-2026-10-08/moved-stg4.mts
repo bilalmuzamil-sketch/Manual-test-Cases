@@ -20,6 +20,7 @@
  * and then deactivating them with no work orders left, so their columns do not stand in front of other checks; the next run
  * reactivates them.
  */
+import { ME_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -49,7 +50,7 @@ const TECH_ROLE = roles.find((r) => /^Technician$/i.test(r.label ?? r.name ?? ''
 if (!TECH_ROLE) throw new Error('no Technician role in this organisation');
 const depsR = (await a.get('/api/departments')).body?.data; const deps: any[] = Array.isArray(depsR) ? depsR : depsR?.collection ?? [];
 const SERVICE = deps.find((d) => (d.name ?? d.label) === 'Service')?.id;
-const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView')!;
+const me = (await candidates(a)).find((x) => x.name === ME_NAME)!;
 const wps = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/workplaces')).body?.data);
 const LETH_NAME = wps.find((w: any) => w.id === LETH)?.name ?? 'Staging Lethbridge - 4310';
 const HEAVY_NAME = wps.find((w: any) => w.id === HEAVY)?.name ?? 'Staging Heavy Duty - 9919';

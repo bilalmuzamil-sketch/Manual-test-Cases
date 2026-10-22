@@ -3,6 +3,7 @@
  * (eligible technicians at Staging Heavy Duty - 9919; names in the cases are examples). Each case seeds its
  * own customer first. Pins and collapsed groups are per user and are put back at the end.
  */
+import { ME_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -20,7 +21,7 @@ const a = api(p);
 const R: Record<string, any> = {};
 const techs = await candidates(a);
 const by = (n: string) => techs.find((x) => x.name === n)!;
-const tA = by('Ayesha Khan'), tB = by('Bilal Muzamil'), tC = by('Branko Cicovic'), me = by('Admin ShopView');
+const tA = by('Ayesha Khan'), tB = by('Bilal Muzamil'), tC = by('Branko Cicovic'), me = by(ME_NAME);
 console.log(t(), 'techs', [tA, tB, tC, me].map((x) => x?.name).join(', '));
 // 17 Oct 2026: fix-up — log the saved display / collapsed groups found BEFORE anything is set, clear the saved collapsed groups and read back
 R.startState = await startState(p, a, 's2-batchA', { clearCollapsed: true });
@@ -106,6 +107,10 @@ await run('C96931', async () => {
   R.C96931 = { byName: await pick() }; await shot(p, 'C96931-by-name');
   const w1 = wos.find((w: any) => w.techAssignedFirstName === 'Ayesha')?.number;
   await search(p, w1); R.C96931.byNumber = { searched: w1, groups: await pick() }; await shot(p, 'C96931-by-number');
+  // 22 Oct 2026 (production): [Tech-B]'s group came back collapsed (a saved choice), so its "No work orders" text was never drawn.
+  // Open every collapsed group of the three, as a tester would with the arrow, and read again.
+  for (const g of await groups(p)) if ([tA.id, tB.id, tC.id, 'unassigned'].includes(g.id) && g.collapsed) await toggleGroup(p, g.id);
+  R.C96931.byNumberOpened = await pick(); await shot(p, 'C96931-by-number-opened');
 });
 
 await run('C96932', async () => {
@@ -152,6 +157,11 @@ await run('C96933', async () => {
 await run('C96935', async () => {
   const n = 'ZZAUTOTEST F2 Sticky Header';
   await seedCase(a, n, 'ZZF2SH', [...Array(25).fill({ lead: tA.id }), { lead: tB.id }, { lead: tB.id }, { lead: tB.id }]);
+  // 22 Oct 2026 (production): the staging plan line pinned both at sign-in (WOB_PIN_NAMES); the production order does not, so the pins
+  // are set here — [Tech-A] and [Tech-B] pinned, so [Tech-B]'s group directly follows [Tech-A]'s — and the earlier pins put back at the end.
+  const PIN_U = '/api/users/me/preferences/work-orders-list'; const pinPv0 = await prefs();
+  await a.put(PIN_U, { value: { ...pinPv0, pinnedTechnicianIds: [tA.id, tB.id] } });
+  try {
   await tv(n);
   for (const g of await groups(p)) if ((g.id === tA.id || g.id === tB.id) && g.collapsed) await toggleGroup(p, g.id);
   const scroller = '.q-table__middle';
@@ -195,6 +205,7 @@ await run('C96935', async () => {
     const gB = (sm.groupHeaders ?? []).find((g: any) => g.name === tB.name);
     if (gB && gB.row.top < -150) { await shot(p, 'C96935-in-B'); break; }
   }
+  } finally { R.C96935.pinsPutBack = (await a.put(PIN_U, { value: { ...(await prefs()), pinnedTechnicianIds: pinPv0.pinnedTechnicianIds ?? [] } })).status; }
 });
 
 await run('C368125', async () => {
@@ -257,7 +268,7 @@ const pinBtn = (id: string) => p.locator(`[data-test-id="button_tech_view_pin_${
 async function unpinAll() { for (const g of await groups(p)) if (g.pin?.pressed === 'true') { await pinBtn(g.id).click(); await p.waitForTimeout(1500); } }
 await run('C96939', async () => {
   const n = 'ZZAUTOTEST F2 Tech Pin Limit';
-  const five = [tA, tB, tC, techs.find((x) => !['Ayesha Khan', 'Bilal Muzamil', 'Branko Cicovic', 'Admin ShopView'].includes(x.name))!, techs.filter((x) => !['Ayesha Khan', 'Bilal Muzamil', 'Branko Cicovic', 'Admin ShopView'].includes(x.name))[1]];
+  const five = [tA, tB, tC, techs.find((x) => !['Ayesha Khan', 'Bilal Muzamil', 'Branko Cicovic', ME_NAME].includes(x.name))!, techs.filter((x) => !['Ayesha Khan', 'Bilal Muzamil', 'Branko Cicovic', ME_NAME].includes(x.name))[1]];
   await seedCase(a, n, 'ZZF2PL', five.map((x) => ({ lead: x.id })));
   await tv(n); await unpinAll();
   R.C96939 = { five: five.map((x) => x.name), pinsShown: (await groups(p)).filter((g) => g.id !== 'unassigned').every((g) => !!g.pin) };
@@ -276,14 +287,14 @@ await run('C96937', async () => {
   // (Advisor Analysis on staging), not Jenny Wilson. Now the case's own names are used where they exist: [WO-2] is led by Ralph
   // Edwards with Ralph as its Service Advisor, [WO-3] (no lead) keeps you as advisor, and Jenny Wilson is pinned.
   const RE = by('Ralph Edwards') ?? tB;
-  const jw = by('Jenny Wilson') ?? techs.filter((x) => !['Ayesha Khan', 'Bilal Muzamil', 'Branko Cicovic', 'Admin ShopView'].includes(x.name))[2];
+  const jw = by('Jenny Wilson') ?? techs.filter((x) => !['Ayesha Khan', 'Bilal Muzamil', 'Branko Cicovic', ME_NAME].includes(x.name))[2];
   await seedCase(a, n, 'ZZF2AG', [{ lead: me.id }, { lead: RE.id }, { lead: null }]);
   const fix: string[] = [];
   for (const w of await workOrders(a, n)) {
     const lead = `${w.techAssignedFirstName ?? ''} ${w.techAssignedLastName ?? ''}`.trim();
-    if (lead && lead !== 'Admin ShopView' && lead !== RE.name) fix.push(`${w.number} lead -> ${RE.name}: ` + (await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: RE.id })).status);
-    if (lead && lead !== 'Admin ShopView') fix.push(`${w.number} advisor -> ${RE.name}: ` + (await a.post('/api/work-orders/change-service-advisor', { work_order_id: w.id, service_advisor_id: RE.id })).status);
-    if (!lead && `${w.serviceAdvisorFirstName} ${w.serviceAdvisorLastName}` !== 'Admin ShopView') fix.push(`${w.number} advisor -> you: ` + (await a.post('/api/work-orders/change-service-advisor', { work_order_id: w.id, service_advisor_id: me.id })).status);
+    if (lead && lead !== ME_NAME && lead !== RE.name) fix.push(`${w.number} lead -> ${RE.name}: ` + (await a.post('/api/work-orders/change-lead-technician', { work_order_id: w.id, tech_assigned_id: RE.id })).status);
+    if (lead && lead !== ME_NAME) fix.push(`${w.number} advisor -> ${RE.name}: ` + (await a.post('/api/work-orders/change-service-advisor', { work_order_id: w.id, service_advisor_id: RE.id })).status);
+    if (!lead && `${w.serviceAdvisorFirstName} ${w.serviceAdvisorLastName}` !== ME_NAME) fix.push(`${w.number} advisor -> you: ` + (await a.post('/api/work-orders/change-service-advisor', { work_order_id: w.id, service_advisor_id: me.id })).status);
   }
   const setup = (await workOrders(a, n)).map((w: any) => `${w.number} lead=${`${w.techAssignedFirstName ?? ''} ${w.techAssignedLastName ?? ''}`.trim() || '-'} advisor=${w.serviceAdvisorFirstName} ${w.serviceAdvisorLastName}`);
   // pin ONLY Jenny Wilson (her group can be far down among ~119 technicians, so the pin is set on the saved choice, then read back on screen)

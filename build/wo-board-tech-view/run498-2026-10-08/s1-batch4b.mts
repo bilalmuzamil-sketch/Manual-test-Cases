@@ -123,12 +123,13 @@ await run('C96916', async () => {
   // set to Approved there; if not, the reading says so (the case's starting screen cannot be built on this build — reported, the rest
   // of the case still runs) and the saved filters are read so the judge sees what the page holds.
   const chipCount = () => p.locator('[data-test-id="filter_chip_status"]:visible').count();
-  await go(); await tab(p, 'Work Orders'); const bvStart = await setDisplay(p, a, 'Board View', 'C96916 start');
+  // 22 Oct 2026: the case now starts on the All tab (QA lead decision 19 Oct: Status is offered on the All tab only, as in production).
+  await go(); await tab(p, 'All'); const bvStart = await setDisplay(p, a, 'Board View', 'C96916 start');
   await p.locator('[data-test-id="clear_filters"]').click().catch(() => {}); await p.waitForTimeout(1500);
   const sc: any = { workOrdersTabBoard: await chipCount() };
   if (!sc.workOrdersTabBoard) { await display(p, 'List'); sc.workOrdersTabList = await chipCount(); }
   const where = sc.workOrdersTabBoard ? 'Board View' : sc.workOrdersTabList ? 'List' : null;
-  if (!where) { await tab(p, 'All'); sc.allTabControl = await chipCount(); await tab(p, 'Work Orders'); }
+  if (!where) { sc.allTabControl = await chipCount(); }
   if (where) {
     await p.locator('[data-test-id="filter_chip_status"]:visible').first().click({ timeout: 10_000 }); await p.waitForTimeout(800);
     await p.locator('.q-menu').getByText('Clear selection').first().click({ timeout: 5000 }).catch(() => {}); await p.waitForTimeout(600);

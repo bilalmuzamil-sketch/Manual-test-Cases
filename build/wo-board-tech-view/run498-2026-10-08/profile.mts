@@ -24,3 +24,6 @@ export const ORG: string = process.env.WOB_ORG || saved.org || base.org || '';
 export const HEAVY: string = process.env.WOB_LOC1 || saved.heavy || base.heavy || '';
 export const LETH: string = process.env.WOB_LOC2 || saved.leth || base.leth || '';
 export const PROFILE_FILE = file;
+// 22 Oct 2026: the staff name of the SIGNED-IN user ("me" in Assigned to me, my own group). Staging/QA: Admin ShopView. Production signs in
+// with the second admin test account, whose staff name is in its profile (meName). Scripts pick "me" by this, never by a literal.
+export const ME_NAME: string = process.env.WOB_ME_NAME || saved.meName || 'Admin ShopView';

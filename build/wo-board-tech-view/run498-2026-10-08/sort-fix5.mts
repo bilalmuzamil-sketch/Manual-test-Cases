@@ -8,6 +8,7 @@
  * no financial data (C368206), view-only (C368207, C368208), phone width (C368209, C368210, C368211), another location
  * (C368212), Back / Forward (C368214). Runs as our own test admin (runner.mts); other people by viewAs.
  */
+import { ME_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -116,7 +117,7 @@ async function run(id: string, f: () => Promise<void>) {
 const IDS = { Ana: ANA.staff_id, Ben: BEN.staff_id, Cal: CAL.staff_id, Dan: DAN.staff_id };
 
 
-const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView')!;
+const me = (await candidates(a)).find((x) => x.name === ME_NAME)!;
 const ORG = (await import('./profile.mts')).ORG;
 const rolesL: any[] = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data) /* 15 Oct 2026: staging answers a plain list (L0339) */;
 const RI = await roleIds(a);
@@ -195,7 +196,7 @@ await run('C368196', async () => {
     const m = await makeModel(x.mk[0] as RegExp, x.mk[1] as RegExp); made[x.co] = { id: w, ls, c: cst, mm: m?.from ?? null, shape: m ? await shape(cst, cst.vehicle_id, { unit: x.unit, year: 2020, mm: m }) : 'no make found' }; }
   o.assets = Object.fromEntries(Object.entries(made).map(([k, v]: any) => [k, `${v.mm} ${v.shape}`]));
   // Clocked In: Ralph on Bravo's first line, Dana on Charlie's first line (each in their own session), Alpha nobody
-  const RE = (await staffRows(a, 'zz.wob.ralph.edwards@staging.shopview.local'))[0]; const DO = (await staffRows(a, 'zz.wob.dana.ortiz@staging.shopview.local'))[0]; const me = (await (await import('./data.mts')).candidates(a)).find((x: any) => x.name === 'Admin ShopView')!;
+  const RE = (await staffRows(a, 'zz.wob.ralph.edwards@staging.shopview.local'))[0]; const DO = (await staffRows(a, 'zz.wob.dana.ortiz@staging.shopview.local'))[0]; const me = (await (await import('./data.mts')).candidates(a)).find((x: any) => x.name === ME_NAME)!;
   for (const [tech, co] of [[RE, 'Bravo Co'], [DO, 'Charlie Co']] as const) { if (!tech) { o[`clock ${co}`] = 'technician not found'; continue; } const v = await viewAs(browser, p, a, tech.id, me.id, RUN.toRunner);
     try { const pg = v.page; await pg.goto(`${APP}/workorders/${made[co].id}/lines`, { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(7000); const st = pg.locator(`[data-test-id="button_clock_toggle_task_${made[co].ls[0]}"]`).first(); o[`clock ${co}`] = await st.count(); await st.click().catch(() => {}); await pg.waitForTimeout(3000);
       /* FIX 5: a window can follow Start ("Stop <other job> / Start <this>", or a clock-in question): answer it and record its words */

@@ -7,6 +7,7 @@
  * nothing from an earlier run is mixed in. The runner's pins are set per case as the case asks.
  * Column drag: the six-dot handle (drag_indicator) in a column/group header.
  */
+import { ME_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -249,7 +250,7 @@ await run('C97007', async () => {
   // step 12: a second dispatcher (a fresh Admin-role user, Time Clock off) in their own window
   const rl2 = (await a.get(`/api/organizations/${(await import('./profile.mts')).ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data; const ADM = (Array.isArray(rl2) ? rl2 : rl2?.collection ?? []).find((r: any) => /^admin(istrator)?$/i.test(r.label ?? r.name ?? ''))?.id;
   const d2 = (await person(a, 'ZZAUTOTEST Second', 'Dispatcher', { role: ADM, email: `zz.wob.second.dispatcher${D}`, clockable: false })).row;
-  const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView');
+  const me = (await candidates(a)).find((x) => x.name === ME_NAME);
   if (d2) { const v = await viewAs(browser, p, a, d2.id, me?.id ?? '', RUN.toRunner);
     try { const pg2 = v.page; await go('Tech View', s.q, pg2);
       // 15 Oct 2026 (wave 19): the second dispatcher's Tech View read Ben's group as empty — Unassigned (~3,450 rows on staging) opens

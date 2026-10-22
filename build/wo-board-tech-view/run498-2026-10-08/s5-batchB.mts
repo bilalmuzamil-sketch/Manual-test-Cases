@@ -7,6 +7,7 @@
  * cross_toggles; playbook §C). The role is saved to evidence first and put back, then read back, at the end.
  * The screen is seen as each person through viewAs.mts (switch on the server + that person's own page storage).
  */
+import { ME_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -70,7 +71,7 @@ const roles: any[] = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((a
 const fromStaff = await roleIds(a);
 const rid = (re: RegExp) => roles.find((r) => re.test(r.label ?? r.name ?? ''))?.id ?? Object.entries(fromStaff).find(([l]) => re.test(l))?.[1];
 const ADMIN_ROLE = rid(/^admin(istrator)?$/i), VIEW_ROLE = rid(/^ZZAUTOTEST WO View Only$/) ?? (await sid('viewonly'))?.role_id;
-const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView')!;
+const me = (await candidates(a)).find((x) => x.name === ME_NAME)!;
 R.roles = { admin: !!ADMIN_ROLE, viewOnly: !!VIEW_ROLE, names: roles.map((r) => r.label ?? r.name).slice(0, 40) };
 const stamp = Date.now() % 1000000;
 const mkUser = async (first: string, last: string, role: string, tag: string) => { const r = await person(a, first, last, { role, email: `zz.wob.${tag}.${stamp}${D}` }); return r.row; };
@@ -101,8 +102,17 @@ await run('C96979', async () => {
   const nora = await mkUser('Nora', 'New', ADMIN_ROLE, 'nora.new'); R.C96979 = { nora: nora?.email };
   R.C96979.nora = await asUser(nora, async (pg) => { const prefBefore = (await a.get(PREF)).body?.data?.value ?? null;
     await go('List', n, pg); const list = { heads: await heads(pg), on: onKeys(await menu('List', pg)) }; await close(pg);
-    await display(pg, 'Tech View'); await pg.waitForTimeout(1500); await expandSmallGroups(pg); const tech = { heads: await heads(pg), on: onKeys(await menu('Tech View', pg)) }; await close(pg);
+    // 22 Oct 2026: step 6 also needs what the menu OFFERS (On Site, VIN/Serial #, Lead Technician offered but off), so the items are kept
+    await display(pg, 'Tech View'); await pg.waitForTimeout(1500); await expandSmallGroups(pg); const tm = await menu('Tech View', pg); await shot(pg, 'C96979-nora-techview-menu');
+    const tech = { heads: await heads(pg), on: onKeys(tm), offered: (tm.items ?? []).map((x: any) => x[0]), items: tm.items ?? null }; await close(pg);
     await shot(pg, 'C96979-nora-techview'); return { prefBefore, list, tech }; });
+  // 22 Oct 2026: steps 8-9 — {User-C}, a brand-new user whose role has no see-financial-data permission ({Role-A}): Tech View's columns
+  if (VIEW_ROLE) { const r0 = (await roleRead(VIEW_ROLE))?.cross_toggles?.seeFinancialData; R.C96979.roleA = { role: 'ZZAUTOTEST WO View Only', seeFinancialDataBefore: r0 };
+    if (r0) R.C96979.roleA.setOff = await roleSetFinancial(VIEW_ROLE, false);
+    const userC = await mkUser('Nate', 'Nofinance', VIEW_ROLE, 'nate.nofinance.td'); R.C96979.userC = { email: userC?.email };
+    R.C96979.userC.tech = await asUser(userC, async (pg) => { await go('Tech View', n, pg); await pg.waitForTimeout(1500); await expandSmallGroups(pg);
+      const h = await heads(pg); await shot(pg, 'C96979-userC-techview'); return { heads: h, perms: (await a.get('/api/auth/me/fe-permissions')).body?.data?.length ?? null }; });
+  } else R.C96979.roleA = 'no ZZAUTOTEST WO View Only role on this environment';
   // own user: List Service Advisor off, Created on on, reload; change a Tech View column; back to List, reload
   await go('List'); R.C96979.mine = [await setSwitch('List', 'serviceAdvisor', false), await setSwitch('List', 'startDate', true)];
   await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); R.C96979.mineAfterReload = onKeys(await menu('List')); await close();

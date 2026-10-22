@@ -4,6 +4,7 @@
  * C368163 dialog search, C96967 view-only cannot move or reassign, C96970 no drop on inactive / not-eligible.
  * Tech-A = Esther Howard, Tech-B = Ralph Edwards, Tech-C = Jenny Wilson (ZZ test people) unless a case needs others.
  */
+import { ME_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -26,7 +27,7 @@ const roles: any[] = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((a
 R.nina = (await person(a, 'Nina', 'Newtech', { role: roles.find((r) => (r.label ?? r.name) === 'Technician')?.id, email: `zz.wob.nina.newtech${D}`, clockable: true })).log; console.log(t(), 'roles', roles.length, 'nina', JSON.stringify(R.nina));
 const ES = await sid('esther.howard'), RE = await sid('ralph.edwards'), JW = await sid('jenny.wilson'), NN = await sid('nina.newtech'), VO = await sid('viewonly'), NK = await sid('nick.noclock');
 const techs = await candidates(a);
-const me = techs.find((x) => x.name === 'Admin ShopView')!;
+const me = techs.find((x) => x.name === ME_NAME)!;
 // 17 Oct 2026: fix-up — log the saved display / pins / collapsed groups found BEFORE anything is set, clear the saved collapsed groups
 R.startState = await startState(p, a, 's4-batchA', { clearCollapsed: true });
 const bv = async (pg: Page, n: string, d = 'Board View') => { await pg.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(4500); await tab(pg, 'All'); await display(pg, d); if (n) await search(pg, n); };
@@ -44,7 +45,7 @@ const dialogDetail = (pg: Page) => pg.evaluate(`(() => { const d = [...document.
   const opts = [...d.querySelectorAll('[data-test-id^="option_lead_technician_"]')]; const list = opts[0] ? opts[0].parentElement : null;
   const others = list ? [...list.children].filter(c => !c.matches('[data-test-id^="option_lead_technician_"]') && c.getBoundingClientRect().height > 0).map(c => (c.className + ' ' + c.innerText.replace(/\\s+/g, ' ').trim()).slice(0, 60)) : [];
   return { search: inp ? { placeholder: inp.getAttribute('placeholder'), value: inp.value } : null, rowCount: opts.length, nonRowItemsInList: others,
-    rows: opts.slice(0, 12).map(o => ({ key: o.getAttribute('data-test-id').replace('option_lead_technician_', '').replace(/^([0-9a-f]{8})[0-9a-f-]{28}$/, '$1'), text: o.innerText.replace(/\\s+/g, ' ').trim().slice(0, 60), avatar: !!o.querySelector('.q-avatar, img'), photo: !!o.querySelector('img'), open: /\\d+ open/.test(o.innerText), bg: getComputedStyle(o).backgroundColor })) }; })()`) as Promise<any>;
+    rows: opts.slice(0, 80) /* 22 Oct 2026: all rows (Tech-C sat past row 12 on production) */.map(o => ({ key: o.getAttribute('data-test-id').replace('option_lead_technician_', '').replace(/^([0-9a-f]{8})[0-9a-f-]{28}$/, '$1'), text: o.innerText.replace(/\\s+/g, ' ').trim().slice(0, 60), avatar: !!o.querySelector('.q-avatar, img'), photo: !!o.querySelector('img'), open: /\\d+ open/.test(o.innerText), bg: getComputedStyle(o).backgroundColor })) }; })()`) as Promise<any>;
 const typeIn = async (pg: Page, q: string) => { const box = pg.locator('[data-test-id="input_reassign_lead_search"] input, input[data-test-id="input_reassign_lead_search"], .q-dialog input').first(); await box.fill(''); await box.type(q, { delay: 60 }); await pg.waitForTimeout(1200); };
 const cancelDlg = async (pg: Page) => { const c = pg.locator('[data-test-id="button_cancel_reassign_lead_technician"]').first(); if (await c.count()) await c.click(); else await pg.locator('.q-dialog button').filter({ hasText: /^\s*Cancel\s*$/i }).first().click(); await pg.waitForTimeout(1500); };
 

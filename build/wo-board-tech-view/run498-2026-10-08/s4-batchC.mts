@@ -5,6 +5,7 @@
  * Tech-A Esther Howard, Tech-B Ralph Edwards, Tech-C Dana Ortiz. For the drags, Tech-A and Tech-B are pinned so their
  * columns stand side by side; the admin's own pins are put back at the end.
  */
+import { ME_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -29,7 +30,7 @@ const ES = await sid('esther.howard'), RE = await sid('ralph.edwards');
 await person(a, 'Dana', 'Ortiz', { role: ES.role_id, email: `zz.wob.dana.ortiz${D}`, clockable: true });
 const DO = await sid('dana.ortiz');
 const names: Record<string, string> = { [ES.staff_id]: 'Esther', [RE.staff_id]: 'Ralph', [DO?.staff_id]: 'Dana' };
-const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView')!;
+const me = (await candidates(a)).find((x) => x.name === ME_NAME)!;
 const prefGet = async () => (await a.get('/api/users/me/preferences/work-orders-list')).body?.data?.value ?? {};
 const ADMIN_PINS = ['3ff0914b-49a3-4d80-b07d-92a10e1a89f8'];
 // 17 Oct 2026: fix-up — log the saved display / collapsed groups / pins found BEFORE anything is set (16 Oct: every Tech View group

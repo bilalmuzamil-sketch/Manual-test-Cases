@@ -7,6 +7,7 @@
  * Line technicians: PUT /api/work-orders/lines/{lineId}/technicians {staffIds}; shifts on lines: shifts.mts mkShift.
  * Runs as our own test admin (runner.mts).
  */
+import { ME_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -73,7 +74,7 @@ const say = (r: any) => `${r.status}${r.status >= 300 ? ' ' + JSON.stringify(r.b
 const DO = await sid('dana.ortiz'), JW = await sid('jenny.wilson'), KW = await sid('kristin.watson'), TW = await sid('theresa.webb');
 R.people = Object.fromEntries(Object.entries({ ES, RE, DO, JW, KW, TW }).map(([k, v]: [string, any]) => [k, !!v?.staff_id]));
 await a.put(PREF, { value: { ...(await prefGet()), pinnedTechnicianIds: [ES.staff_id, RE.staff_id] } });
-const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView')!;
+const me = (await candidates(a)).find((x) => x.name === ME_NAME)!;
 const canned: any[] = []; { const c = (await a.get('/api/work-orders/canned-lines')).body?.data; canned.push(...(Array.isArray(c) ? c : c?.collection ?? [])); }
 const mkLine = async (wo: string, i: number) => (await a.post(`/api/work-orders/${wo}/lines/create-from-canned-line`, { canned_line_id: canned[i % canned.length].id, status: 'authorized' })).body?.data?.line_id as string;
 const lineName = (i: number) => String(canned[i % canned.length].canned_line_name ?? canned[i % canned.length].name ?? '').trim();

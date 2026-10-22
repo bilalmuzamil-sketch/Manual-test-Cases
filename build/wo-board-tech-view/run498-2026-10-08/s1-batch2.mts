@@ -2,6 +2,7 @@
  * S1 batch 2 (2026-10-08) — C96913 tabs in every display, C154884 Assigned to me, C96921 two tabs.
  * Each case makes its own customer and work orders first (named as the case names them).
  */
+import { ME_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -32,8 +33,8 @@ const search = async (pg: Page, q: string) => {
   await box.fill(q); await pg.waitForTimeout(3500);
 };
 const techs = await candidates(a);
-const me = techs.find((x) => x.name === 'Admin ShopView');
-const tA = techs.find((x) => x.name !== 'Admin ShopView')!;
+const me = techs.find((x) => x.name === ME_NAME);
+const tA = techs.find((x) => x.name !== ME_NAME)!;
 console.log(t(), 'technicians', techs.length, '| me', !!me, '| Tech-A', tA?.name);
 
 async function run(id: string, f: () => Promise<void>) {

@@ -1,5 +1,6 @@
 /** S3 Board View, batch B (2026-10-08): C96943 card required fields (real TRK-118 unit), C96950 / C368131 empty texts for
  *  a reassigning user vs a view-only user, C154886 / C368132 dropping on empty columns. Everything changed is put back. */
+import { ME_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import { open, done, APP } from './session.mts';
@@ -18,7 +19,7 @@ const R: Record<string, any> = {};
 const D = '@staging.shopview.local';
 const sid = async (e: string) => (await staffRows(a, `zz.wob.${e}${D}`)).find((x) => x.email === `zz.wob.${e}${D}`);
 const ES = await sid('esther.howard'), JW = await sid('jenny.wilson'), TW = await sid('theresa.webb'), VO = await sid('viewonly');
-const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView')!;
+const me = (await candidates(a)).find((x) => x.name === ME_NAME)!;
 const bv = async (n: string) => { await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); await tab(p, 'All'); await display(p, 'Board View'); if (n) await search(p, n); };
 const col = async (id: string) => { await toColumn(p, id); return (await boardCols(p)).find((c) => c.id === id) ?? null; };
 async function run(id: string, f: () => Promise<void>) {

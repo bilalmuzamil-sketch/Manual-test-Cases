@@ -1,5 +1,6 @@
 /** S3 Board View, batch C (2026-10-08): C96950 and C368131 again, now seeing the view-only person's own screen
  *  (viewas.mts), and moving Theresa Webb off this location through her staff form's Location field. */
+import { ME_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import { open, done, APP } from './session.mts';
@@ -20,7 +21,7 @@ const D = '@staging.shopview.local';
 const sid = async (e: string) => (await staffRows(a, `zz.wob.${e}${D}`)).find((x) => x.email === `zz.wob.${e}${D}`);
 const ES = await sid('esther.howard'), JW = await sid('jenny.wilson'), VO = await sid('viewonly');
 const TW = (await staffRows(a, 'ayesha.khan@shopview.com')).find((x) => x.email === 'ayesha.khan@shopview.com') ?? (await staffRows(a, `zz.wob.ayesha.khan${D}`)).find((x) => x.email === `zz.wob.ayesha.khan${D}`);   // 22 Oct: production has only the zz test copy
-const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView')!;
+const me = (await candidates(a)).find((x) => x.name === ME_NAME)!;
 R.clearedLeftoverSwitch = (await a.post('/api/exit-switch-user', {})).status;
 // a stopped earlier attempt left Jenny Wilson deactivated: put her back first
 if (JW && !JW.is_active) { R.jennyRestoredAtStart = (await a.post('/api/iam/change-status', { id: JW.id })).status; }

@@ -3,6 +3,7 @@
  * trip, C96920 change made offline is not saved, C96919 control check, C96915 List sort vs dragged order.
  * Each case makes its own customer and work orders first (names as the case gives them).
  */
+import { ME_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import { open, done, APP } from './session.mts';
@@ -22,7 +23,7 @@ R.startState = await startState(p, a, 's1-batch3');
 p.on('request', (q) => { if (/preference/i.test(q.url())) prefCalls.push(`${q.method()} ${q.url().replace(/^https:\/\/[^/]+/, '')} ${(q.postData() || '').slice(0, 200)}`); });
 const techs = await candidates(a);
 const tA = techs.find((x) => x.name === 'Ayesha Khan')!;
-const tB = techs.find((x) => x.name !== 'Ayesha Khan' && x.name !== 'Admin ShopView')!;
+const tB = techs.find((x) => x.name !== 'Ayesha Khan' && x.name !== ME_NAME)!;
 console.log(t(), 'Tech-A', tA?.name, '| Tech-B', tB?.name);
 const go = async () => { await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); };
 async function ensure(name: string, unit: string, plan: { lead: string | null; here?: boolean }[]) {

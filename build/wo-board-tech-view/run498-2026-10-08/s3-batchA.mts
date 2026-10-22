@@ -3,6 +3,7 @@
  * Ralph Edwards, Jenny Wilson, Theresa Webb, Kristin Watson); [User-B] view-only = a person on the
  * "ZZAUTOTEST WO View Only" role, reached by switching user. Pins are per user: cleared first, put back at the end.
  */
+import { ME_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -29,7 +30,7 @@ await person(a, 'ZZAUTOTEST', 'WOB View Only', { role: rid('ZZAUTOTEST WO View O
 const sid = async (e: string) => (await staffRows(a, `zz.wob.${e}${D}`)).find((x) => x.email === `zz.wob.${e}${D}`);
 const ES = await sid('esther.howard'), RE = await sid('ralph.edwards'), JW = await sid('jenny.wilson'), TW = await sid('theresa.webb'), KW = await sid('kristin.watson'), VO = await sid('viewonly');
 const techs = await candidates(a);
-const me = techs.find((x) => x.name === 'Admin ShopView')!;
+const me = techs.find((x) => x.name === ME_NAME)!;
 const nameOf = (id: string) => (id === 'unassigned' ? 'Unassigned' : techs.find((x) => x.id === id)?.name ?? id);
 console.log(t(), 'people', [ES, RE, JW, TW, KW, VO].map((x) => `${x?.first_name} ${x?.last_name}:${x?.is_active}`).join(', '));
 const bv = async (n: string) => { await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); await tab(p, 'All'); await display(p, 'Board View'); if (n) await search(p, n); };

@@ -4,6 +4,7 @@
  * C96927, C368125, C96929, C368127, C368130. Staff are made by staff.mts; deactivation goes through the
  * screen (Settings > Staff > edit > Deactivate Account) and is undone afterwards.
  */
+import { ME_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -26,7 +27,7 @@ const ORG = (await import('./profile.mts')).ORG;
 const D = '@staging.shopview.local';
 const techs = await candidates(a);
 const by = (n: string) => techs.find((x) => x.name === n)!;
-const me = by('Admin ShopView'), tA = by('Ayesha Khan');
+const me = by(ME_NAME), tA = by('Ayesha Khan');
 const sid = async (email: string) => (await staffRows(a, email)).find((x) => x.email === email);
 const tv = async (name: string) => { await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(4000); await tab(p, 'All'); await display(p, 'Tech View'); if (name) await search(p, name); };
 const OWN_END = new Set(['C96926', 'C96929', 'C368127', 'C96930']); // 15 Oct 2026: these take their end picture where the result shows

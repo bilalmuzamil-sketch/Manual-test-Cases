@@ -5,6 +5,7 @@
  * collapsed Tech View group with a small count is expanded before reading. Each number is read with the
  * group (Tech View) or column (Board View) it sits in.
  */
+import { ME_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -62,7 +63,7 @@ async function read(d: string): Promise<Record<string, string>> {
 }
 const raw = (await a.get('/api/work-orders/lead-technician-candidates')).body?.data?.technicians ?? [];
 // 15 Oct 2026: any technician who is not the signed-in admin will do as "someone other than you" (Ayesha Khan first, as before)
-const other = raw.find((x: any) => `${x.firstName} ${x.lastName}` === 'Ayesha Khan') ?? raw.find((x: any) => `${x.firstName} ${x.lastName}` === 'Ralph Edwards') ?? raw.find((x: any) => `${x.firstName} ${x.lastName}` !== 'Admin ShopView');
+const other = raw.find((x: any) => `${x.firstName} ${x.lastName}` === 'Ayesha Khan') ?? raw.find((x: any) => `${x.firstName} ${x.lastName}` === 'Ralph Edwards') ?? raw.find((x: any) => `${x.firstName} ${x.lastName}` !== ME_NAME);
 
 // ── C96913 again: tab by tab, search typed after each tab click ─────────
 try {
@@ -92,7 +93,7 @@ try {
   R.C154884.changes = [];
   // 15 Oct 2026 (staging second pass): the filter named the QA branch's numbers (S10043-17602/3), so on staging nothing was changed.
   // The case's setup: every work order NOT led by you ([WO-3] other lead, [WO-4] no lead) gets another Service Advisor.
-  const notMine = (w: any) => `${w.techAssignedFirstName ?? ''} ${w.techAssignedLastName ?? ''}`.trim() !== 'Admin ShopView';
+  const notMine = (w: any) => `${w.techAssignedFirstName ?? ''} ${w.techAssignedLastName ?? ''}`.trim() !== ME_NAME;
   for (const w of list.filter(notMine)) {
     for (const body of [{ work_order_id: w.id, service_advisor_id: other?.staffId }, { work_order_id: w.id, service_advisor_id: other?.userId }, { id: w.id, service_advisor_id: other?.userId }]) {
       const r = await a.post('/api/work-orders/change-service-advisor', body);

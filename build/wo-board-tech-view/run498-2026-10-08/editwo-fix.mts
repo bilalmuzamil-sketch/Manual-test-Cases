@@ -7,6 +7,7 @@
  *  Screen routes from probe-ui.json: select_lead_technician (status card), button_new_line / select_line_roster_add_technician
  *  / input_time_estimate / button_save_close (line window), line_labor_name_<id> (Labor row), button_work_order_nav_bar_menu
  *  (three-dots: Timesheets, Audit Log), schedule lanes [data-staff-id], sidebar_work_order_card, input_sidebar_search. */
+import { ME_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -118,7 +119,7 @@ async function run(id: string, f: () => Promise<void>) {
 const IDS = { Ana: ANA.staff_id, Ben: BEN.staff_id, Cal: CAL.staff_id, Dan: DAN.staff_id };
 
 
-const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView')!;
+const me = (await candidates(a)).find((x) => x.name === ME_NAME)!;
 const ORG = (await import('./profile.mts')).ORG;
 const rolesL: any[] = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get(`/api/organizations/${ORG}/roles?pagination[rowsPerPage]=1000`)).body?.data) /* 15 Oct 2026: staging answers a plain list (L0339) */;
 const RI = await roleIds(a);
