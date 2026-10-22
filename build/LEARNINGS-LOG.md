@@ -799,3 +799,8 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - `redo-one-1022.sh` writes the script's normal `<script>.json`, so a later queue entry for the same script (e.g. two `high2-batch` or `s11-fix3` lines) overwrites the earlier readings. `run498-2026-10-08/redo3-pack-1022.sh` copies each finished entry's file to `<script>.redo3-<n>.json` and writes the judging packs for exactly the tests that entry ran; already-handled entries are listed in `evidence/prod-2026-10-22/redo3-packed.txt`. Run it on each queue EXIT, then judge in batches.
 - Watching the queue: a `tail -F … | grep` Monitor delivered the full-run line but none of the queue's `EXIT` lines in 30 min; a 30-second polling loop over `grep -c '^EXIT'` (scratchpad `watch-redo2.sh`) works.
 #run498 #production #queue #tooling → L0534
+
+## L0538 — 2026-10-22 — On production "me" has TWO names: ME_NAME for the staff list, a shorter one as a work order's lead
+- The production test admin's staff name is "Service Advisor No Reports (Admin)" (`ME_NAME`, profile meName), but a work order's lead reads first + last only: "Service Advisor No Reports". `s2-batchA.mts` C96937 compared the lead NAME with `ME_NAME`, decided the admin's own work order had a wrong lead and re-led it to Ralph, so the admin's group never appeared (judged Unsure). Compare a work order's lead by **id** (`techAssignedId ?? tech_assigned_id` vs `me.id`), never by name.
+- Same batch: C96928 steps 9–10 on production now close every Work Orders tab (page to blank, fresh tab) and do a real Logout + sign-in form in that browser, instead of a second browser (which ends the first session).
+#run498 #production #me #names → L0510-ish ME_NAME, L0529
