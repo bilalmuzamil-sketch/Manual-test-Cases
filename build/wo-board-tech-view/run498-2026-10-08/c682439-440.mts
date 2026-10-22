@@ -12,7 +12,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { open, done } from './session.mts';
 import { EV, t, display, tab, search } from './wob.mts';
-import { api } from './data.mts';
+import { api, customer, workOrder, workOrders } from './data.mts';
 
 const { browser: b0, page: p0 } = await open('/workorders?tab=all');
 const scale = Number(process.env.WOB_SCALE || 1);
@@ -63,6 +63,18 @@ if (!(await p.evaluate(PILL(N)) as any)?.pill) {
     if (!o.pickedWo) { await p.mouse.wheel(0, 1500); await W(1500); }
   }
   if (o.pickedWo) { N = o.pickedWo; await search(p, N); await W(3000); }
+  // 22 Oct 2026 (production re-run): no work order in the first screens had both counts. Make one (Rule 107; playbook §Y "THE RED / BLUE
+  // NUMBERS"): Line-1 authorized with a part requested (blue), Line-2 waiting for authorization (red), then Ready For Review if accepted.
+  if (!o.pickedWo) { const sd: any = {}; try {
+    const cn = `ZZAUTOTEST C682440 Pill ${Date.now() % 100000}`; const c = await customer(a, cn, 'ZZPILL'); const w = await workOrder(a, c, 'estimate', null);
+    const canned = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/work-orders/canned-lines')).body?.data);
+    const l1 = (await a.post(`/api/work-orders/${w}/lines/create-from-canned-line`, { canned_line_id: canned[1 % canned.length].id, status: 'authorized' })).body?.data?.line_id;
+    const vendors = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/parts-catalogue/vendors')).body?.data); const cats = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/inventory/categories')).body?.data);
+    sd.part = (await a.post('/api/work-orders/part/make-request', { line: l1, work_order: w, description: 'ZZAUTOTEST-PN-PILL', quantity: 1, part_source_type: 'vendor', part_category_id: cats[0]?.value ?? cats[0]?.id, part_number: `ZZAUTOTEST-PN-PILL-${Date.now() % 100000}`, cost: 10, sell_price: 20, vendor: vendors[0]?.id, is_core: false })).status;
+    sd.red = (await a.post(`/api/work-orders/${w}/lines/create-from-canned-line`, { canned_line_id: canned[2 % canned.length].id, status: 'authorization_required' })).status;
+    sd.approved = (await a.post('/api/work-orders/change-status', { id: w, status: 'approved' })).status; sd.review = (await a.post('/api/work-orders/change-status', { id: w, work_order: w, status: 'ready_for_review' })).status;
+    const r = (await workOrders(a, cn))[0]; sd.read = r ? { number: r.number, status: r.status, red: r.serviceActionsCount ?? null, blue: r.partRequestsCount ?? r.statusRequestedCount ?? null } : null;
+    if (r?.number) { N = r.number; o.seededWo = N; await search(p, N); await W(3000); } } catch (e: any) { sd.error = String(e?.message || e).slice(0, 160); } o.seed = sd; }
 }
 o.wo = N;
 o.c440 = { list: await p.evaluate(PILL(N)) }; await crop('s1-list', o.c440.list); await p.screenshot({ path: path.join(EV, 'C682440-s1-list-page.png') });
