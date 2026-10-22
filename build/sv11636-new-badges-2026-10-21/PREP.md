@@ -68,3 +68,7 @@ Extra cells:
   Dashboard row 8th at y 431, 57 px. Pictures prep/e636-now-1440.png, prep/e636-now-390-menu.png; data prep/e636-now.json.
 - Jira development panel for SV-11636: no pull request and no branch linked.
 - So the change is not on staging; nothing to test against. No comment posted — asked the QA lead how to proceed.
+
+## 22 Oct 05:01 UTC — developer ETA
+- Minja (Milomir Kotlajic) in Slack C0C45KCLS92 ts 1792645311.856259: "I expect to have it ready on staging in about 3 hours"
+  → ~08:00 UTC. Extra one-shot check trig_012Q3RSeWZrJEKqbjjVQBmvo at 08:30 UTC; the 2-hourly routine continues.

@@ -24,3 +24,6 @@ on screen. AC1/AC4 are back-end behaviours (PR tests) — observable only via Se
 ## Asked Nikola (QA lead: "Yes if that makes sense", 21 Oct)
 Comment **79215** (tags Nikola Mitrovic): (1) switch Accounting on for the sv11527 org, (2) pause one sandbox feed and name
 the bank card. Picture `ev/SV-11527_accounting-not-enabled.png`; height corrected in place 10:33 CDT with a dated note.
+
+## 22 Oct 2026 — dropped
+QA lead, verbatim: "for 11527 ignore it and do not remind me again." No further work or reminders on SV-11527.
