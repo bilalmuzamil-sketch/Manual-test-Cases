@@ -1,0 +1,134 @@
+{
+ "C96972": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 2: the work order was invoiced behind the screen by the test script, not in a second browser through Finance tab > Create Invoice as the step says. Everything the board did afterwards matches the expected result.",
+  "bold_steps": [
+   2
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The invoicing in step 2 was not done on a screen in a second browser; the board's behaviour after it matches the expected result.",
+   "Set-up: S1-1556 for \"ZZAUTOTEST F1 Invoiced Elsewhere 99795\", led by Esther Howard, taken to Complete.",
+   "Step 1: Work Orders, All tab, Board View, customer searched: the card shows Complete in Esther Howard's column.",
+   "Step 2 (NOT DONE ON SCREEN): the work order was invoiced behind the screen; its status became Invoiced while the open board, not reloaded, still showed Complete.",
+   "Step 3: the card was dragged from Esther Howard's column into Ralph Edwards' column.",
+   "Step 4: the drop was refused, the card is back in Esther Howard's column, and a red alert reads \"Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid.\"",
+   "Step 5: after a reload the card is still in Esther Howard's column, now shown as Invoiced, and Esther Howard is still the lead."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96972-alert.png",
+   "evidence/prod-2026-10-22/C96972-end.png"
+  ],
+  "reason_for_reviewer": "s4-batchG.mts C96972: set-up behind the screen (lines completed, WO Complete; the three 400 'Complete work order cannot change its status again' log lines are the set-up's harmless extra status calls). cardStatus 'Complete'; 'browser 2' = POST /api/invoices/create (201), statusNow invoiced, cardStatusStill 'Complete' on the unreloaded board; drag on screen Esther -> Ralph; message ['Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid.']; column 'Esther Howard'; afterReload S1-1556 'invoiced lead=Esther Howard', column Esther Howard. The alert picture already shows the card re-drawn as Invoiced after the refused drop. Same treatment as C368170 (batch 8, invoice by API = Unsure). One manual check settles it: with the board open in browser 1 showing the Complete card, invoice it in a second browser (Finance tab > Create Invoice), then drag it in browser 1 without reloading and read the alert and the column. No time-of-day readings in this test."
+ },
+ "C96958": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 2, 7 and 8: the technicians' notifications were read by the admin viewing each technician's account, not by the technician signing in on a second browser, and email was not checked (the test technicians' addresses are not real mailboxes). The in-app Notifications page was empty after every lead change, as expected.",
+  "bold_steps": [
+   2,
+   7,
+   8
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). No in-app notification arrived after any of the three lead changes, which matches the expected result, but the technicians never signed in themselves and nobody checked email.",
+   "Set-up: S1-1558 for \"ZZAUTOTEST F1 Lead Notifications 35572\", Approved, one line, led by Esther Howard. Before any change, the Notifications pages of Esther Howard, Ralph Edwards and Dana Ortiz were empty.",
+   "Step 1: on the work order page Lead Technician was changed from Esther Howard to Dana Ortiz by picking her in the list; the page reads Lead Technician Dana Ortiz.",
+   "Step 2: Esther Howard's and Dana Ortiz's Notifications pages read \"There are no notifications for selected filters\" (nothing new). Email not checked.",
+   "Steps 3 to 6: Board View on the All tab, customer searched, the card dragged from Dana Ortiz's column to Ralph Edwards' column; no shifts prompt; \"Lead technician updated\".",
+   "Step 7: Dana Ortiz's and Ralph Edwards' Notifications pages are empty. Email not checked.",
+   "Step 8: in Tech View, the row's More actions > Reassign lead technician moved it from Ralph Edwards to Esther Howard; \"Lead technician updated\". Ralph Edwards' and Esther Howard's Notifications pages are empty.",
+   "So the work order page, Board View and Tech View all produced the same thing: no in-app notification."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96958-notifications-after-board-ralph.png",
+   "evidence/prod-2026-10-22/C96958-wo-page-after-pick.png",
+   "evidence/prod-2026-10-22/C96958-board-after-drag.png",
+   "evidence/prod-2026-10-22/C96958-tech-after-reassign.png"
+  ],
+  "reason_for_reviewer": "s4-batchH.mts C96958: roles mapped as examples allow: Tech-A Esther Howard, Tech-B Dana Ortiz (picked on the work order page; page opened by address, the pick itself on screen, woPagePick picked true, leadAfterWoPage Dana, no API fallback), Tech-C Ralph Edwards. read() = viewAs (admin switch-user into the technician + new browser context) then /notifications by address; every read count 0, empty true, bell badge ''. Board drag toast 'Lead technician updated', leadAfterBoard Ralph; Tech View reassign dialog, toast 'Lead technician updated', leadAfterTech Esther. The Notifications pictures show the 'Unread only' button highlighted, so the empty list means 'no unread'; any new notification would be unread, so this does not hide one. Gaps: (1) the case says the technicians sign in in a second browser and the preconditions require that they can sign in; production test technicians have zz.wob.*@staging.shopview.local addresses (not real mailboxes) and were never signed in (same treatment as C96910/C96912, batch 10); (2) the case lists email as a channel to write down and the Expected compares all notifications; email was not observed. The staging pass made the same two omissions. One manual check settles it: on production give the three technicians mailboxes you can open, sign in as each in a second browser after each of the three lead changes, and confirm the bell and the inbox stay empty. No time-of-day readings in this test."
+ },
+ "C96966": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Set-up: S1-1557 for \"ZZAUTOTEST F1 Status And Time Kept 94314\", In Progress, led by Esther Howard, one line with her logged time and her clock running on it, and a shift for her tomorrow (Fri, Oct 23). No time entries are locked on this site. Before anything: line Actual 0.02 / 1.00, Total Hours 1.0 hrs.",
+   "Step 1: on the Schedule the shift was dragged 5 hours later (\"Shift moved.\"), its end dragged back 1 hour (\"Shift resized.\"), then dragged onto Dana Ortiz's row and \"Reassign shift ... Move this shift to Dana Ortiz on Fri, Oct 23?\" confirmed.",
+   "Step 2: the work order page still reads Lead Technician Esther Howard and status In Progress.",
+   "Steps 3 to 5: Board View on the All tab, customer searched, the card dragged from Esther Howard's column to Ralph Edwards' column; no shifts prompt opened (her shift had already moved to Dana Ortiz); \"Lead technician updated\".",
+   "Step 6: the work order page reads Lead Technician Ralph Edwards and status In Progress; the line's Actual went 0.02 then 0.06 then 0.08 (only the running clock adding minutes); Total Hours still 1.0 hrs; the work order's Timesheets show Esther Howard's entry as Active, so her clock is still running; no locked entry exists.",
+   "TIME NOTE (does not affect this result): the Schedule drew the shift made for tomorrow 8:00-12:00 at 3 AM-7 AM, and after the moves it read 8:00 AM-12:00 PM, then 8 AM-11 AM, instead of the case's 13:00-17:00 and 13:00-16:00. The Timesheets read Start 05:54 PM / 05:56 PM, which matches the clock's raw start time of 17:56 without a Karachi offset."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96966-wo-page-after-schedule.png",
+   "evidence/prod-2026-10-22/C96966-wo-page-after-lead-change.png",
+   "evidence/prod-2026-10-22/C96966-schedule-after-reassign.png",
+   "evidence/prod-2026-10-22/C96966-timesheets.png"
+  ],
+  "reason_for_reviewer": "s4-batchH.mts C96966: set-up behind the screen (lines, lead, clock started by acting as Esther, shift made with mkShift for tomorrow 08:00 location time = stored 03:00Z-07:00Z). Step 1 done on the Schedule screen: scheduleWrites are three PATCHes sent by the Schedule page itself (move startsAt 08:00Z; resize durationMinutes 180; reassign staffId Dana, reassign true), no apiFallback fields; toasts 'Shift moved.' / 'Shift resized.' in the pictures; reassign dialog text read and confirmed. Read back: Esther 08:00Z-12:00Z, then 08:00Z-11:00Z, then Dana 08:00Z-11:00Z; lead Esther Howard after each. Work order page opened by address for reading (steps 2 and 6; the readings do not depend on how the page is reached), screen pictures show Lead Technician Esther Howard / Ralph Edwards and the In Progress pill; actualHours '0.02 / 1.00' -> '0.06 / 1.00' -> '0.08 / 1.00'; Total Hours label 1.0 hrs in all three pictures (the script's own totalHours reader returned null; read from the pictures). prompt null, message ['Lead technician updated'], lead Ralph Edwards, status in_progress. clockStillRunning shows the same task e8be4031 (start_date '2026-10-22 17:56:03'); Timesheets picture: Esther Howard 05:56 PM Active 0.07 and 05:54 PM-05:56 PM 0.02. lockOrApprovalWords hits on the Timesheet Activities report are only the word 'Clock'; no lock or approval control found. TIME-OF-DAY READINGS: Schedule grid 3 AM-7 AM (made as 8:00-12:00 location time), move details 'Fri, Oct 23, 2026 · 8:00 AM – 12:00 PM', after resize block 8 AM-11 AM (case: 13:00-17:00 / 13:00-16:00); i.e. the grid shows the stored UTC hours, 5 h behind Asia/Karachi. Timesheets 05:54 PM / 05:56 PM = raw 17:56 (UTC-looking). The drags moved the shift by the case's amounts (+5 h, -1 h, onto Dana) and the Expected is about the lead, status and time totals, not the shift's clock time, so the open time-zone question does not decide this result."
+ },
+ "C96977": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Set-up: at Truck Hill 1, S1-1559 for \"ZZAUTOTEST F2 Card Always On\", Approved, unit TRK-118, led by Esther Howard.",
+   "Steps 1 and 2: Work Orders, All tab, Board View, customer searched.",
+   "Step 3: Column Selection (production's name for Fields to display) lists 13 fields: Lead technician, Customer, Asset, VIN/serial, Progress, Service advisor, Clocked in, Line count, Line technicians, Estimated hours, Total price, On-site, Created date. Work order number, Unit number and Status are not in the list, so they cannot be turned off.",
+   "Steps 4 and 5: with every listed field turned off, the card still shows S1-1559, TRK-118 and Approved.",
+   "Step 6 (turning the fields back on) was not done by the test run; it has no expected result."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96977-card.png",
+   "evidence/prod-2026-10-22/C96977-menu.png"
+  ],
+  "reason_for_reviewer": "s5-batchA.mts C96977: atHeavy confirmed top bar 'Truck Hill 1'; seed customer + Approved WO led by Esther (set-up). go(): page by address, All tab, Board View and Search on screen; menu opened with the board's Column Selection button; menuItems 13, offersNumberUnitStatus []; every 'on' switch clicked off on screen; cardAllOff {number S1-1559, status Approved, unit TRK-118}; unitOnAsset TRK-118. The Expected accepts either 'not in the list' or 'listed as always on' (QA lead decision 12 Oct 2026). Step 6 restore not performed (the fields stayed off; C96981 below set what it needs itself). 0 differences from staging. No time-of-day readings."
+ },
+ "C96981": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Set-up: at Truck Hill 1, three Approved work orders for \"ZZAUTOTEST F2 Fields No Reload\": S1-1560 and S1-1561 led by Esther Howard, S1-1562 led by Ralph Edwards. Before starting, all three cards show the customer and no created date.",
+   "Steps 1 and 2: Work Orders, All tab, Board View, customer searched.",
+   "Steps 3 and 4: in Column Selection, Created date was turned on and Customer turned off.",
+   "Step 5: straight away, with the menu still open, all three cards show the created date (\"Today\") and no longer show the customer.",
+   "The page did not reload: the search text \"ZZAUTOTEST F2 Fields No Reload\" is still there and the board stayed as it was."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96981-after.png",
+   "evidence/prod-2026-10-22/C96981-end.png"
+  ],
+  "reason_for_reviewer": "s5-batchA.mts C96981: atHeavy 'Truck Hill 1'; set-up switches put start_date off / company_name on (precondition). window.__zzNoReload = 1 set before the change and still 1 afterwards (stillSamePage true); toggles clicked on screen in the open menu; cards read 400 ms after the second click: before field_company_name 'Customer ZZAUTOTEST F2 Fields No Reload' on S1-1560/61/62, after field_start_date 'Created date Today' and no company field on all three; search value kept. The cards also lack lead, progress and price because C96977 turned those off just before; this case does not look at them. 0 differences from staging. 'Today' is a date, no time-of-day readings."
+ },
+ "C96978": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Set-up: S1-1564 for \"ZZAUTOTEST F2 Card Field Values 83590\", asset on site with a VIN, Service Advisor Esther Howard, three lines (1.0 + 5.0 + 1.0 hours), led by \"ZZAUTOTEST Cora86246 Clock\", with Cora and \"ZZAUTOTEST Rory86246 Clock\" both clocked in (the work order is now In Progress).",
+   "Steps 1 to 3 (List): On Site pin shown, Customer \"ZZAUTOTEST F2 Card Field Value..\", Asset empty, VIN/Serial # ZZWOB179269258424, Progress 0%, Service Advisor Esther Howard, Lead Technician ZZAUTOTEST Cora86246 Clock, Clocked In \"ZZAUTOTEST Cora86246 Clock +1\", Lines 3, Total Price $404.73, Created On Today.",
+   "Step 4: hovering Clocked In shows \"ZZAUTOTEST Cora86246 Clock, ZZAUTOTEST Rory86246 Clock\".",
+   "Steps 5 and 6: in Board View, Column Selection offers 13 optional fields: Lead technician, Customer, Asset, VIN/serial, Progress, Service advisor, Clocked in, Line count, Line technicians, Estimated hours, Total price, On-site, Created date.",
+   "Steps 7 and 8: with all 13 on, the card shows the same values as List: the customer, VIN ZZWOB179269258424, Esther Howard, Cora +1, 3 lines, On site, Today, 0%, lead Cora, $404.73 (no asset, as List shows none), plus line technicians ZC ZR. Estimated hours read \"Est. 7.0 hrs\", the same as the work order page's \"Total Hours: 7.0 hrs\".",
+   "Step 9: the card's clocked-in field reads \"ZZAUTOTEST Cora86246 Clock +1\", and hovering it shows both names."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96978-card-clock-hover.png",
+   "evidence/prod-2026-10-22/C96978-list.png",
+   "evidence/prod-2026-10-22/C96978-wo-page-total-hours.png",
+   "evidence/prod-2026-10-22/C96978-card-close.png"
+  ],
+  "reason_for_reviewer": "s5-batchC.mts C96978: set-up behind the screen (fresh technicians Cora/Rory, line technicians, advisor, clock-ins by acting as each; Rory's task id was missing but his check-in answered 201 and he is clocked in on line 2 'New York State Inspection', which shows him in its Labor). List read from the row cells after on-screen List + Search; hover tooltip read. Board View and Column Selection clicked on screen; offeredCount 13; allOn switched each off item on screen; menuAfterAllOn 13 keys. Card fields all match List; Asset: List cell '' and the card has no asset field — this run's asset has no year/make/model, so the asset comparison is blank-vs-blank (the asset value itself was not exercised; the precondition only asks for a VIN). Estimated hours 'Est. 7.0 hrs' vs work order page 'Total Hours: 7.0 hrs' (line estimates 60+300+60 min = 7.0 h; the case's 8.0 is an example). cardClockHover ['ZZAUTOTEST Cora86246 Clock, ZZAUTOTEST Rory86246 Clock']. The full first name in the List and on the card follows PRD v73 S5-R11 / answer 31. 0 differences from staging. 'Today' is a date; no time-of-day readings."
+ },
+ "C96985": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Set-up: S1-1565 for \"ZZAUTOTEST F2 Empty Fields Hidden 72032\", Approved, led by Esther Howard, with no Service Advisor, no VIN on the asset and nobody clocked in.",
+   "Steps 1 and 2: Work Orders, All tab, Board View, customer searched.",
+   "Step 3: in Column Selection (production's name for Fields to display) Service advisor, VIN/serial and Clocked in were turned on, with Lead technician, Customer and Progress.",
+   "Step 4: the card shows only S1-1565, Approved, the customer, unit ZZF2EH, Progress 0% and Esther Howard; there is no service advisor, VIN/serial or clocked-in line at all (no label, no blank, no dash), while its other fields still show."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96985-card.png",
+   "evidence/prod-2026-10-22/C96985-end.png"
+  ],
+  "reason_for_reviewer": "s5-batchC.mts C96985: asset created without a VIN (200); the later make/model reshape was refused (400 'Cannot remove VIN form vehicle, update to valid one'), so the asset kept no VIN and no make/model, which is what this case needs; work order record advisor null, vin null; no clock started. allOff then six switches on, on screen; on = technician, company_name, vin, progress, service_advisor, clocked_in_technicians. Card text: 'S1-1565 / Approved / Customer / ZZAUTOTEST F2 Empty Fields Hidden 72032 / ZZF2EH / Progress / 0% / Lead technician / Esther Howard' — no service_advisor, vin or clocked_in element. 0 differences from staging. No time-of-day readings."
+ }
+}
