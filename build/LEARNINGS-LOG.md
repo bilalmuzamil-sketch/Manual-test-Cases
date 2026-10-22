@@ -788,3 +788,9 @@ app's HTML (the API lives on the api. host, not the app host) — read preferenc
 - The push tool REFUSES a non-Passed result without a `"todo"` ("What needs to be done", Rule 7) — `post_verdicts.py` copies `todo` from the verdicts file, so put it there.
 - Always check `custom_atmstatus` of a case before its title is prefixed (Rule 133/71): C368152 is 1 (not Automated), fine.
 #run498 #production #known-ticket #push → L0529
+
+## L0536 — 2026-10-22 — A script can be shorter than its case: count the steps before trusting a clean run
+- C614719 ran clean on production ("tests=0 errors=0") yet only covered steps 1–7: steps 8–13 were added to the case on 20 Oct (Chris Ward, SV-11422 comment 79047) after the draft script was written on 16 Oct. The judge marked it Unsure. Now `C614719-stg.mts` makes technicians C (not pinned) and D and "ZZAUTOTEST C614719 Third Customer" with three Approved work orders led by C, narrows the window to 1024 px (steps 8–10, board sideways scroll and card fully on screen), shortens it to about 2.5 Tech View group headings (steps 11–13) and records the row/heading geometry.
+- Check before queueing any script: number of steps in the LIVE case vs the `step N` markers in the script (`grep -c "step" <script>` against the pack's Steps list). A mismatch is a script to extend, never a verdict.
+- Production Edit Staff Member: turning Time Clock off and pressing Save & Close left the window open, no message, record unchanged (C614714 step 2, one reading). `C614714-stg.mts` now records every non-GET call the save sends and its answer, so the second attempt tells "refused" from "never fired" before anything is called a product problem (Rule 104).
+#run498 #production #script-vs-case → L0526, L0528
