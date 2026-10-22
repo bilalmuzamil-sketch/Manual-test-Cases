@@ -143,7 +143,9 @@ await run('C96930', async () => {
 
 // ── as User-B for name order and default sort ─────────────────────────
 const UB = 'zzautotest.wob.userb.1008@staging.shopview.local';
-const ub = (await staffRows(a, UB)).find((x) => x.email === UB);
+// 22 Oct 2026: on production User-B did not exist (C96926 "reading 'id'") — made here (Admin role, at the profile location) when missing
+let ub = (await staffRows(a, UB)).find((x) => x.email === UB);
+if (!ub) { const rr = await person(a, 'ZZAUTOTEST', 'WOB User B', { role: (await roleIds(a))['Admin'], email: UB }); ub = rr.row ?? (await staffRows(a, UB)).find((x) => x.email === UB); }
 async function asUserB<T>(f: () => Promise<T>): Promise<T> {
   const s = await a.post('/api/switch-user', { user_id: ub.id }); if (s.status >= 300) throw new Error(`switch ${s.status}`);
   await p.waitForTimeout(800); await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: (process.env.WOB_LOC_TZ || 'America/Edmonton') });
