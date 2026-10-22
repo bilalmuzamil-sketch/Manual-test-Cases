@@ -60,6 +60,10 @@ async function keepAfterReload(id: string, label: string, pick: number | string,
   if (opts.restore && tickedStart.some((x: string) => !ALLRX.test(x))) { o.setupCleared = await clickAllItem(); await p.waitForTimeout(1500); o.menuBefore = await menuState(); console.log(t(), 'START STATE set', id, JSON.stringify({ cleared: o.setupCleared, ticked: (o.menuBefore ?? []).filter((x: string) => x.startsWith('[x]')).slice(0, 5) })); }
   const items = menuItems();
   if ((await items.count()) < 3) { await p.keyboard.type('a', { delay: 60 }); await p.waitForTimeout(2500); o.typedToLoad = await items.count(); }   // FIX: some lists load their options only after typing
+  // 22 Oct 2026 (production): the Location filter starts with BOTH locations ticked ("All locations"); the case's start is the first
+  // location only, and step 3 ticks the second "as well". Set-up: untick the case's pick first (read back), then step 3 ticks it.
+  if (typeof pick === 'string' && tickedStart.includes(pick)) { await items.filter({ hasText: pick }).first().click().catch(() => {}); await p.waitForTimeout(2000);
+    o.setupUntickedPick = (await menuState() ?? []).filter((x: string) => x.startsWith('[x]')).map((x: string) => x.slice(4)); console.log(t(), 'START STATE set', id, JSON.stringify({ ticked: o.setupUntickedPick })); await p.screenshot({ path: path.join(EV, `${id}-start-first-only.png`) }).catch(() => {}); }
   o.tableStart = await table();
   o.options = (await items.allInnerTexts().catch(() => [])).map((x) => x.replace(/\s+/g, ' ').trim()).slice(0, 12); let it = typeof pick === 'number' ? items.nth(Math.min(pick, Math.max(0, (await items.count()) - 1))) : items.filter({ hasText: pick }).first(); o.picked = (await it.innerText().catch(() => '')).replace(/\s+/g, ' ').trim();
   // FIX-UP 2 (17 Oct 2026, C368224/C368225): option 0 was the default "All manufacturers" / "All categories", so no real filter was chosen.

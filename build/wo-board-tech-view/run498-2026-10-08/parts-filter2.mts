@@ -23,7 +23,7 @@ for (const [id, route, col] of [['C368218', '/parts/orders', 2], ['C368219', '/p
     const LEFT: Record<string, RegExp> = { C368218: /^\s*Purchase Orders\s*$/, C368219: /^\s*Vendors\s*$/, C368223: /^\s*Vendor Invoices\s*$/ };
     await p.goto(APP + '/workorders', { waitUntil: 'domcontentloaded', timeout: 90_000 }); await p.waitForTimeout(4000);
     await p.locator('[data-test-id="button_desktop_nav_link"]').filter({ hasText: /^\s*Parts\s*$/ }).first().click().catch((e) => { o.partsClick = String(e).slice(0, 100); }); await p.waitForTimeout(4000);
-    await p.locator('a, .q-item, [role=link], [role=menuitem]').filter({ hasText: LEFT[id] }).first().click().catch((e) => { o.leftClick = String(e).slice(0, 100); }); await p.waitForTimeout(4000);
+    await p.locator('a:visible, .q-item:visible, [role=link]:visible, [role=menuitem]:visible').filter({ hasText: LEFT[id] }).first().click({ timeout: 10_000 }).catch((e) => { o.leftClick = String(e).slice(0, 100); }); await p.waitForTimeout(4000);
     o.route1 = p.url().replace(APP, ''); if (!o.route1.startsWith(route)) { o.fallbackGoto = true; await p.goto(APP + route, { waitUntil: 'domcontentloaded', timeout: 90_000 }); }
     for (let i = 0; i < 20 && !(await rows()).length; i++) await p.waitForTimeout(1500); await p.waitForTimeout(1500); const all = await rows(); o.rowsBefore = all.length; o.heads = await heads(); await shot(p, `${id}-step1`);
     const v = await p.evaluate(`(() => { const r = [...document.querySelectorAll('tbody tr')].find(r => r.getBoundingClientRect().height > 0); return r ? (r.cells[${col}]?.innerText || '').trim() : null; })()`) as string | null; o.value = v;
