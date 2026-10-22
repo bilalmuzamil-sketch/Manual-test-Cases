@@ -1,1 +1,18 @@
 16:54:27 logged in as bilal.muzamil+serviceadvisornoreports@shopview.com - PHPSESSID minted by POST /api/login
+16:54:40 prod https://app.shopview.com/workorders | app-version=v26.43.0-ffea43c | fe_permissions=45
+16:54:41 START STATE found s2-batchB {"saved":{"status":200,"display":"list","collapsedGroups":[],"pinned":["3ff0914b"],"filters":{"assigned_to_me":[]},"density":"comfortable","tab":"all"},"screen":{"switcher":3,"active":"List"}}
+16:54:41 START STATE set s2-batchB {"savedAfter":{"status":200,"display":"list","collapsedGroups":[],"pinned":["3ff0914b"],"filters":{"assigned_to_me":[]},"density":"comfortable","tab":"all"}}
+16:54:41 technicians with no open work Billy Nobill, Cameron Williamson, Chris Lee, Chris Lee, Floyd Miles, Ina Active
+16:54:42 START STATE found C96936 []
+16:54:47 START STATE set C96936 {"wos":[{"wo":"WO-1","number":"S1-1385","lead":"Esther Howard"},{"wo":"WO-2","number":"S1-1386","lead":"Esther Howard"},{"wo":"WO-3","number":"S1-1387","lead":"Esther Howard"},{"wo":"WO-4","number":"S1-1388","lead":"Ralph Edwards"},{"wo":"WO-5","number":"S1-1389","lead":"Ralph Edwards"}],"setupOk":true,"others":[]}
+16:55:12 C96936 tab B Lead Technician candidates {"picked":"button_toggle_vehicle_here","byTestId":["lead_technician_readonly=Esther Howard"],"labelledFields":[],"label":"Lead technician","nearLabel":"button_toggle_vehicle_here=location_on","url":"/workorders/d8988672-bea5-49dc-998a-386e67fcb46f/lines"}
+16:55:33 C96936 {"setLeads":["S1-1385 201","S1-1386 201","S1-1387 201","S1-1388 201","S1-1389 201"],"wos":[{"wo":"WO-1","number":"S1-1385","lead":"Esther Howard"},{"wo":"WO-2","number":"S1-1386","lead":"Esther Howard"},{"wo":"WO-3","number":"S1-1387","lead":"Esther Howard"},{"wo":"WO-4","number":"S1-1388","lead":"Ralph Edwards"},{"wo":"WO-5","number":"S1-1389","lead":"Ralph Edwards"}],"setupOk":true,"wo1":"S1-1385","pinsAtStart":["3ff0914b-49a3-4d80-b07d-92a10e1a89f8"],"pin":200,"before":[{"name":"Esther Howard","count":3,"rows":["S1-1385","S1-1386","S1-1387"]},{"name":"Ralph Edwards","count":2,"rows":["S1-1388","S1-1389"]}],"step5":{"leadCandidates":{"picked":"button_toggle_vehicle_here","byTestId":["lead_technician_readonly=Esther Howard"],"labelledFields":[],"label":"Lead technician","nearLabel":"button_toggle_vehicle_here=location_on","url":"/workorders/d8988672-bea5-49dc-998a-386e67fcb46f/lines"}},"pinsBack":200,"error":"locator.click: Timeout 20000ms exceeded.\nCall log:\n  - waiting for locator('[data-zz-lead=\"1\"]').first()\n    - locator resolved to <button outlined=\"\" tabindex=\"0\" type=\"button\" filled=\"true\" data-zz-lead=\"1\" data-v-68e00a17=\"\" data-v-ea6ba2cd=\"\" data-test-id=\"button_toggle_vehicle_here\" class=\"q-btn q-btn-item non-selectable no-outline q-btn--flat q-btn--rectangle text-negative q-btn--actionable "}
+/home/user/Manual-test-Cases/build/wo-board-tech-view/run498-2026-10-08/s2-batchB.mts:192
+  const s = await a.post('/api/switch-user', { user_id: ub.id }); if (s.status >= 300) throw new Error(`switch to User-B ${s.status} ${JSON.stringify(s.body).slice(0, 200)}`);
+                                                           ^
+
+TypeError: Cannot read properties of undefined (reading 'id')
+    at asUserB (/home/user/Manual-test-Cases/build/wo-board-tech-view/run498-2026-10-08/s2-batchB.mts:192:60)
+    at <anonymous> (/home/user/Manual-test-Cases/build/wo-board-tech-view/run498-2026-10-08/s2-batchB.mts:196:65)
+
+Node.js v22.22.0

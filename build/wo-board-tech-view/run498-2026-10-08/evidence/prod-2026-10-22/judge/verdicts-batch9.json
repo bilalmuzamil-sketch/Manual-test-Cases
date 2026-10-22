@@ -1,0 +1,261 @@
+{
+ "C97023": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1 and 8: opening Work Orders recorded 3 display views for List instead of the expected 1, but the run opened Work Orders by its address (not from the top menu), and on production the sign-in helper had already opened Work Orders once just before step 1, so the extra two cannot be put on the product. Manual check: in a fresh private window, sign in, click Work Orders in the top menu once and count work_orders_display_view in DebugView (expected exactly 1, for List).",
+  "bold_steps": [
+   1,
+   8
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Opening Work Orders recorded 3 display views for List where the test expects 1; the way the run opened the page may have caused the extra two.",
+   "Step 1: after Work Orders opened (by its address, not by the top menu), 3 display views were recorded, all for List on the All tab.",
+   "Steps 2 and 3: clicking Tech View and then Board View recorded exactly 1 more each, naming Tech View and then Board View.",
+   "Step 4: clicking the Estimates tab and then the All tab recorded exactly 1 more each, naming Estimates and then All.",
+   "Steps 5 to 7: scrolling to load more cards and waiting 30 seconds, searching \"ZZAUTOTEST\", ticking Approved in Status, and narrowing then widening the window recorded no new display view.",
+   "Step 8: total 7 display views (3 + 2 + 2) instead of 5. The 2 extra are both the List view at step 1. The page worked as usual throughout."
+  ],
+  "pictures": [],
+  "reason_for_reviewer": "analytics-batch.mts C97023 (fresh user 'ZZAUTOTEST GA Views', analytics allowed, events read from the page's own Google Analytics requests). step1 = 3 x 'display_view list all default'; deltas after step 1 are exactly as expected (+tech_view, +board_view, +estimates, +all; step5to7new []). On production only, viewas.mts opens /workorders once BEFORE the case's own openWO (WOB_PROD_LOGIN, added 22 Oct) and before the listener is attached; Google Analytics sends in batches, so that earlier open's view(s) can arrive inside step 1. Positive control for this reading: in C97029 step 2 the runner's page, opened ONCE by address without that pre-open, recorded exactly 1 display view; C97029 step 1 (pre-open again) also shows 3 List views. So the extra two are most likely the helper's pre-open, but that is inference; and step 1 was a full page load by address, not the top-menu click the case names. Staging (17 Oct, no pre-open) recorded exactly 1. The -end picture is the runner's own Tech View page (identical file for all five analytics tests), not this user's screen, so no picture is attached."
+ },
+ "C97024": {
+  "verdict": "Blocked",
+  "failed_steps": "Blocked at step 2: the test expects one density record for Board View, and this release has no density in Board View (PRD v73, S3-R11), so none is recorded. Everything else in the test is met.",
+  "bold_steps": [
+   2
+  ],
+  "observed": [
+   "Result: Blocked on production (v26.43.0-ffea43c). The test expects a density record for Board View, and this release has no density in Board View.",
+   "Set-up: as the test user, in Board View > Fields to display, VIN/serial was turned on and the user went back to List; then a fresh session was started.",
+   "Steps 1 and 2: opening Work Orders and clicking Board View recorded 13 field records, one per optional Board View field (lead technician, customer, asset, VIN/serial, progress, service advisor, clocked in, line count, line technicians, estimated hours, total price, on-site, created date). VIN/serial reads on with source saved; the other 12 read source default.",
+   "Step 2 (density): no density record was recorded for Board View. The current product document says: \"Board View shows no Density control in this release (SV-11580).\" (PRD v73, S3-R11, read 22 Oct 2026). The product follows that document; the test's expected result predates it.",
+   "Steps 3 and 4: clicking Tech View recorded 17 field records (Tech View's columns, including Assigned Techs) and 1 density record (Regular, default).",
+   "Steps 5 to 8: Board View, List and Board View again recorded no new field records and no new density records. Field records for the session: 13 + 17 = 30."
+  ],
+  "pictures": [],
+  "todo": "QA lead decision per test (Rule 114(c)), as already made for C97025, C97027 and C97035 on 22 Oct: say whether the Board View density record in step 2 is still expected now that Board View has no density; then re-judge (every other reading already matches).",
+  "reason_for_reviewer": "analytics-batch.mts C97024: setup toggled VIN on screen (toggle_board_field_vin) in a first session; second session step2.field = 13 (vin on saved, rest default), step2.density = []; step4.field = 17 incl. assigned_techs, step4.density = ['tech_view regular default']; step8 field 0 / density 0; totalFieldLoads 30. Staging (19 Oct) had 1 Board View density record because Board View still had density then. Opened by address with no top-menu wording in the step. No picture of this user's screen exists (the -end file is the runner's page)."
+ },
+ "C97029": {
+  "verdict": "Blocked",
+  "failed_steps": "Blocked at step 2: the test expects the restored density to be recorded when the dispatcher opens Board View, and this release has no density in Board View (PRD v73, S3-R11), so none is recorded. Steps 1, 3, 4 and 5 are met.",
+  "bold_steps": [
+   2
+  ],
+  "observed": [
+   "Result: Blocked on production (v26.43.0-ffea43c). Step 2 expects a saved density to be recorded in Board View, and this release has no density in Board View.",
+   "Step 1, a brand-new user: opening Work Orders recorded the List display view with source default, and clicking Board View recorded 13 field records, all with source default.",
+   "Step 2, the dispatcher with a saved display (Board View), one saved field (Line technicians) and a saved density (Comfortable): the display view names Board View with source saved, and Line technicians reads on with source saved (the 12 fields never changed read default). No density record was recorded. The current product document says: \"Board View shows no Density control in this release (SV-11580).\" (PRD v73, S3-R11, read 22 Oct 2026).",
+   "Step 3: Tech View and then the Estimates tab recorded exactly 2 display views.",
+   "Step 4: turning VIN/serial on in Board View's Fields to display recorded exactly 1 field change (VIN/serial, on).",
+   "Step 5, a user without See financial data: Board View recorded 12 field records and none for total price.",
+   "Fallback and failed save: not checked by hand."
+  ],
+  "pictures": [],
+  "todo": "QA lead decision per test (Rule 114(c)): say whether step 2's \"density show source saved\" still applies in Board View now that Board View has no density (or whether step 2 should open Tech View); then re-run step 2.",
+  "reason_for_reviewer": "analytics-batch.mts C97029. step1.views = 3 x 'list all default' (same production pre-open effect as C97023) + 'board_view all saved' after the click; fields 13, sources default. The dispatcher's saved display/density were written straight into the saved preferences, not picked on screen (savedBeforeStep2 display board_view, density comfortable, boardFields 1) - on production the density could not have been picked in Board View anyway. step2.views = 1 x board_view saved; fields: line_technicians on saved, rest default; density []. step3 = tech_view all + tech_view estimates; step4 = 'field_toggle board_view vin on'; step5 fields 12, totalPrice 0 (role already had See financial data off before and after). Staging (17 Oct) recorded density comfortable/saved because Board View still had density then."
+ },
+ "C368153": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 5: Fields to display does not offer Total price, but no work-order card was on screen when it was checked (every visible column read \"No work orders\"), so \"no card shows a dollar amount\" was not seen. Manual check: as the user without See financial data, in Board View search \"ZZAUTOTEST GA No Money\", scroll to ZZAUTOTEST Ana Alpha's column and confirm the card shows no dollar amount.",
+  "bold_steps": [
+   5
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The cards part of step 5 was not seen: no card was on screen.",
+   "Steps 1 and 2: as a user whose role does not have See financial data, Board View recorded 12 field records and none for total price.",
+   "Steps 3 and 4: Tech View recorded 16 field records and none for total price. Total for this user: 12 + 16 = 28.",
+   "Step 5: Board View's Fields to display lists Lead technician, Customer, Asset, VIN/serial, Progress, Service advisor, Clocked in, Line count, Line technicians, Estimated hours, On-site and Created date - Total price is not offered.",
+   "Step 5 (cards): the visible columns (Unassigned, Aaron Baker, Aaron Zed, Admin ShopView) all read \"No work orders\", so whether a card shows a dollar amount could not be seen."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368153-board.png"
+  ],
+  "reason_for_reviewer": "analytics-batch.mts C368153: step2 n 12 totalPrice 0; step4 n 16 totalPrice 0 (labels listed, no total_price); step5 pickerHasTotal 0, 12 picker items; dollarOnCards 0 - but the picture shows only empty columns, the seeded 'Alpha Co' card (lead Ana Alpha) was not in view and the count of cards checked was not recorded, so the zero has no positive control (Rule 104). The role already had See financial data off (finOff/finRestore both 'now false')."
+ },
+ "C368155": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Step 1: Work Orders opened and Board View was clicked.",
+   "Step 2: a work-order card was clicked, the work order opened on its Lines tab, then Back.",
+   "Step 3: the display-view records and the existing work-order-view record carry the same ShopView user - the user signed in for the test.",
+   "No other user or customer identifier appears on the Work Orders records."
+  ],
+  "pictures": [],
+  "reason_for_reviewer": "analytics-batch.mts C368155: 5 display_view events all uid 10aff6b1 with no user properties; work_order_view uid 10aff6b1; switched user's id starts 10aff6b1. The script's own 'sameUid: false' compares against the FIRST page_view in the list, which has no uid (sent before the identity was set, probably the production-only pre-open of Work Orders); every later page_view and the work_order_view carry 10aff6b1. Opened /workorders/<id>/lines by clicking the card. No picture of this user's screen (the -end file is the runner's page)."
+ },
+ "C97010": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Steps 1 to 3: Board View, All tab, Search \"ZZAUTOTEST C97010 Failed Drop\": the deactivated technician ZZAUTOTEST F3 Dan Delta still has his column with S1-1368, marked \"Inactive\", count 1.",
+   "Steps 4 and 5: S1-1366 dragged from ZZAUTOTEST Ana Alpha's column onto Dan Delta's column was not accepted: it stayed with Ana Alpha, Dan Delta's count stayed 1 and no \"assigned to\" message appeared.",
+   "Steps 6 and 7: in a second tab S1-1367 was opened, Finance tab, Create Invoice pressed (invoice INV-S1-1367 shown).",
+   "Steps 8 to 10: back in the first tab without refreshing, S1-1367 dragged onto Ben Bravo's column went back to Ana Alpha's column and the alert read \"Failed to update lead technician, please try again. The lead technician can't be changed once a work order is Invoiced or Paid.\"",
+   "Steps 11 and 12: the alert was still shown about 10 seconds later and went away when its Close button was clicked.",
+   "Steps 13 and 14: after a refresh S1-1367 is in Ana Alpha's column, and its own page reads Lead technician \"ZZAUTOTEST Ana Alpha\"."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C97010-step10-alert.png",
+   "evidence/prod-2026-10-22/C97010-step3.png",
+   "evidence/prod-2026-10-22/C97010-step7-second-tab.png",
+   "evidence/prod-2026-10-22/C97010-step13.png"
+  ],
+  "reason_for_reviewer": "c368149-two.mts C97010. Dan deactivated (201, is_active false). step3 header 'ZZAUTOTEST F3 Dan Delta Inactive 1', cards [S1-1368]. step5 lead Ana, msg [], danCount 1. step7 Create Invoice pressed on screen (button present, enabled); the invoice shows in the second-tab picture (status badge still 'Complete' at that moment). step10 alert text as quoted, Ana's column holds Alpha+Bravo, Ben's empty; the card was draggable (step-3 picture shows S1-1367 as Complete, unlocked) and after the refused drop it shows Invoiced with a lock. step11 still shown; step12 Close clicked -> []. step13/14 lead Ana. The dismiss button is labelled 'Close' rather than an X. The setup's status-change log lines (400 'Complete work order cannot change its status again') are the seed helper retrying an already-Complete order, not a test step."
+ },
+ "C368176": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Step 1: on S1-1369 (customer \"ZZAUTOTEST Clock In Line 73448\", no lead technician) Line 1's Labor row reads \"Unassigned\".",
+   "Steps 2 and 3: in a second window as Esther Howard (no clock running before the test), S1-1369 > Lines tab.",
+   "Steps 4 and 5: Start on Line 1's Labor row, about a minute of work, Stop, text typed in \"What Have You Been Doing On This Line?\", Clock Out: message \"Timesheet clocked out\" (0.02 hours on the line); no clock left running.",
+   "Step 6: in browser 1 after a reload, Line 1's Labor row shows \"Esther Howard\" - the line took the technician who clocked in. Line 2, where nobody clocked in, still reads \"Unassigned\"."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368176-end.png",
+   "evidence/prod-2026-10-22/C368176-after-clock-out.png",
+   "evidence/prod-2026-10-22/C368176-tech-lines.png"
+  ],
+  "reason_for_reviewer": "high1-batch.mts C368176: step1 both lines Unassigned; clocksStoppedFirst [] and 'no clock running'; Start and Stop pressed on screen, Stop dialog 'Stop working on S1-1369, Line 1 ...', Clock Out pressed, toast 'Timesheet clocked out', clockRunningAfter null; step6 line 1 'Esther Howard', line 2 'Unassigned' (also in the saved line data). Esther was reached through the admin's switch-user in a separate browser window (as accepted for C368177). No time-of-day is shown on these screens (only '0.04 Hrs Today')."
+ },
+ "C368180": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 2: the table listed exactly A, B and C and not D, but the three work orders on TRK-201 were all Approved on production; the test needs [WO-A] as an Estimate and [WO-C] as Complete, so it is not shown that an Estimate and a Complete work order also appear. Manual check: on production make S1-1370 an Estimate and S1-1372 Complete (or build a fresh set as the Setup says), reopen TRK-201's Work Orders tab and confirm all three are still listed and S1-1373 is not.",
+  "bold_steps": [
+   2
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The rows were right, but the work orders were not in the statuses the test asks for.",
+   "Step 1: customer \"ZZAUTOTEST Asset Tab 73448\" > Assets > TRK-201 > the asset page opened > Work Orders tab (tabs: Work Orders, Invoices, Notes, Inspections).",
+   "Step 2: the table lists S1-1370, S1-1371 and S1-1372 (A, B and C, 3 rows) and nothing else; D (S1-1373, on TRK-202) is not listed. No error message; the table finished loading.",
+   "But all three rows read \"Approved\": the test's [WO-A] should be an Estimate and [WO-C] Complete."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368180-tab.png"
+  ],
+  "reason_for_reviewer": "high1-batch.mts tabSet() creates every work order as an estimate and then changes ALL FOUR to Approved (change-status approved for A, B, C, D), so the Estimate/Complete mix in the preconditions was never built; the picture shows three Approved rows. rows == expect [S1-1370, S1-1371, S1-1372], D S1-1373 absent, toasts []. The customer's Assets page was opened by address, then TRK-201 row and the Work Orders tab by clicks (same as accepted for C368188). Staging (17 Oct) passed with the same all-Approved set; the gap was not noted there."
+ },
+ "C368181": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 3: TRK-201's Work Orders tab shows 3 rows and no count (and another asset on production also shows no count), but the three work orders on TRK-201 were all Approved on production; the test needs [WO-A] as an Estimate and [WO-C] as Complete, so it is not shown that an Estimate and a Complete work order also appear, so whether the table still has 3 rows with that mix is not shown. Manual check: with S1-1370 as an Estimate and S1-1372 Complete, reopen TRK-201's Work Orders tab and count the rows (expected 3, no count shown).",
+  "bold_steps": [
+   3
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Count and rows agree, but the work orders were not in the statuses the test asks for.",
+   "Steps 1 and 2: customer \"ZZAUTOTEST Asset Tab 73448\" > Assets > TRK-201 > Work Orders tab. The tab reads \"Work Orders\" and there is no count on the tab, above or under the table: no count.",
+   "Step 3: the table has 3 rows (S1-1370, S1-1371, S1-1372) - all three \"Approved\", where the test's [WO-A] should be an Estimate and [WO-C] Complete.",
+   "Steps 4 to 6: in another tab, customer Ahsan > Assets > 2019 Freightliner > Work Orders tab lists 8 work orders and also shows no count. This run is on production, so \"no count\" is how production works, as the test allows."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368181-staging.png",
+   "evidence/prod-2026-10-22/C368181-production.png"
+  ],
+  "reason_for_reviewer": "high1-batch.mts loop: rowCount 3, tab 'Work Orders', bottom null (countShown false). The 'production' half was a second tab on the same production session (found: Ahsan's asset, rows 8, countShown false). The file named C368181-staging.png is the production TRK-201 tab (the script's name for 'this build'). Same all-Approved set as C368180 (tabSet sets A-D to Approved)."
+ },
+ "C368182": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Before step 1: in the Work Orders List, B (S1-1371) shows Progress 0%.",
+   "Step 1: customer \"ZZAUTOTEST Asset Tab 73448\" > Assets > TRK-201 > Work Orders tab.",
+   "Step 2: B (S1-1371) shows Progress 0% - the same as the List."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368182-end.png"
+  ],
+  "reason_for_reviewer": "high1-batch.mts: list '0%' (List, search, B's row), tab '0%' (B's row on the asset tab); B's line 1 completed with 200. A and C were Approved rather than Estimate/Complete (tabSet), which does not touch B's Progress. Customer Assets page opened by address, then clicks."
+ },
+ "C368183": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Step 1: customer \"ZZAUTOTEST Asset Tab 73448\" > Assets > TRK-201 > Work Orders tab (3 rows).",
+   "Steps 2 and 3: after clicking the Number header the rows read S1-1372, S1-1371, S1-1370 - number order (highest first; before the click the table was already lowest first).",
+   "Steps 4 and 5: after clicking it again they read S1-1370, S1-1371, S1-1372 - the same rows in reverse order. No row missing or repeated."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368183-end.png"
+  ],
+  "reason_for_reviewer": "high1-batch.mts sortBy(/Number/): first [S1-1372, S1-1371, S1-1370], second [S1-1370, S1-1371, S1-1372]. The table opened already sorted by Number ascending, so the first click gave descending; the expected result asks for number order then the reverse, which is met. Same all-Approved set (tabSet)."
+ },
+ "C368184": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 2: the tab listed exactly A, B, C and D, but the customer's work orders were all Approved on production; the test needs [WO-A] as an Estimate and [WO-C] as Complete, so it is not shown that an Estimate and a Complete work order also appear. Manual check: on production make S1-1374 an Estimate and S1-1376 Complete, reopen the customer's Work Orders tab and confirm all four are listed and nothing else.",
+  "bold_steps": [
+   2
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The rows were right, but the work orders were not in the statuses the test asks for.",
+   "Step 1: customer \"ZZAUTOTEST Customer Tab 73448\" > Work Orders tab, label \"Work Orders (4)\".",
+   "Step 2: the table lists S1-1374, S1-1375, S1-1376 (TRK-201) and S1-1377 (TRK-202) - A, B, C and D, 4 rows - and no other customer's work orders. No error message; the table finished loading.",
+   "But all four rows read \"Approved\": the test's [WO-A] should be an Estimate and [WO-C] Complete."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368184-tab.png"
+  ],
+  "reason_for_reviewer": "high1-batch.mts customerTab(): opened the customer's Work Orders tab by its address (/customers/<id>/work-orders) rather than Customers > customer > Work Orders tab; tab 'Work Orders (4)'; rows [S1-1377..S1-1374] == expect; toasts []. tabSet set A-D all to Approved, so the Estimate/Complete mix was never built (picture: four Approved rows)."
+ },
+ "C368185": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 3: the count reads 4 and the table has 4 rows, but the customer's work orders were all Approved on production; with [WO-A] an Estimate and [WO-C] Complete, as the test asks, it is not shown that the count and rows still agree. Manual check: make S1-1374 an Estimate and S1-1376 Complete, reopen the customer's Work Orders tab and compare the count on the tab label with the rows.",
+  "bold_steps": [
+   3
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Count and rows agree, but the work orders were not in the statuses the test asks for.",
+   "Steps 1 and 2: customer \"ZZAUTOTEST Customer Tab 73448\" > Work Orders tab; the tab label reads \"Work Orders (4)\".",
+   "Step 3: the table has 4 rows - the same as the count. All four rows read \"Approved\"."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368184-tab.png"
+  ],
+  "reason_for_reviewer": "high1-batch.mts: tab 'Work Orders (4)', rowCount 4, bottom null. Same customer and same all-Approved set as C368184 (the C368184 picture is that screen; C368185-end.png is the same page). The tab was opened by its address."
+ },
+ "C368186": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Before step 1: in the Work Orders List, B (S1-1375) shows Progress 0%.",
+   "Step 1: customer \"ZZAUTOTEST Customer Tab 73448\" > Work Orders tab (\"Work Orders (4)\").",
+   "Step 2: B (S1-1375) shows Progress 0% - the same as the List."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368184-tab.png",
+   "evidence/prod-2026-10-22/C368186-end.png"
+  ],
+  "reason_for_reviewer": "high1-batch.mts: list '0%', tab '0%' for B; B's line 1 completed (200). The tab was opened by its address; A and C were Approved rather than Estimate/Complete, which does not touch B's Progress."
+ },
+ "C368187": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Step 1: customer \"ZZAUTOTEST Customer Tab 73448\" > Work Orders tab (4 rows).",
+   "Steps 2 and 3: after clicking the Number header the rows read S1-1374, S1-1375, S1-1376, S1-1377 - number order.",
+   "Steps 4 and 5: after clicking it again they read S1-1377, S1-1376, S1-1375, S1-1374 - the same rows in reverse order. No row missing or repeated."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368187-end.png"
+  ],
+  "reason_for_reviewer": "high1-batch.mts sortBy(/Number/): first ascending, second descending, 4 distinct rows both times. The tab opened by its address (sorted descending by default, as in the C368184 picture), header clicks on screen."
+ },
+ "C368196": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Set-up: three work orders S1-1378, S1-1379, S1-1380 made to differ in every column (status, on site, customer, asset, unit, VIN, service advisor, lead technician, clocked in, lines, price); Search \"ZZAUTOTEST List Sort 25587\" on the All tab in List.",
+   "Steps 2 to 5 (Number): first click S1-1378, S1-1379, S1-1380; second click S1-1380, S1-1379, S1-1378.",
+   "Step 6: On Site, Status, Customer, Asset, Unit, VIN/Serial #, Service Advisor, Lead Technician, Clocked In, Lines, Total Price and Created On each ordered the 3 rows one way and then the other, with the header marked as sorted (for example Total Price $241.98, $262.98, $404.73, then the reverse; Lines 1, 2, 3, then 3, 2, 1).",
+   "Clocked In orders by who is clocked in: nobody first, then the two rows with one person; the second click puts nobody last. Created On reads \"Today\" for all three, and the rows go in creation order, then the reverse.",
+   "Progress has no sort arrow and clicking it does not change the order. No header failed to order the rows."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368196-Number.png",
+   "evidence/prod-2026-10-22/C368196-ClockedIn.png",
+   "evidence/prod-2026-10-22/C368196-TotalPrice.png",
+   "evidence/prod-2026-10-22/C368196-Status.png"
+  ],
+  "reason_for_reviewer": "sort-fix5.mts: every header clicked on screen twice; mark1 'sortable,sorted', mark2 'sortable,sorted,sort-desc', orderChanged true for all 13 sortable headers; Progress has no sort mark, orderChanged false. Clocked In: first [blank, Ralph Edwards, Dana Ortiz], second [Ralph Edwards, Dana Ortiz, blank] - ordered by number of people clocked in (0,1,1 then 1,1,0), the two one-person rows keeping their order, as on staging; not alphabetical by name. Created On all 'Today' (one value). The set used three customers (Alpha/Bravo/Charlie) instead of the precondition's one customer and one asset, so every column differs; clocks were started on screen and stopped afterwards (201). No time-of-day is shown."
+ }
+}
