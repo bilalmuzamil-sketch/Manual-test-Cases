@@ -1,0 +1,16 @@
+{
+ "C97024": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c).",
+   "Set-up: as the test user, in Board View > Fields to display, VIN/serial was turned on and the user went back to List; then a fresh session was started.",
+   "Steps 1 and 2: opening Work Orders and clicking Board View recorded 13 field records, one per optional Board View field (lead technician, customer, asset, VIN/serial, progress, service advisor, clocked in, line count, line technicians, estimated hours, total price, on-site, created date). VIN/serial reads on with source saved; the other 12 read source default.",
+   "Step 2 (density): no density record was recorded for Board View. The current product document says: \"Board View shows no Density control in this release (SV-11580).\" (PRD v73, S3-R11, read 22 Oct 2026). The product follows that document; the test's expected result predates it.",
+   "Steps 3 and 4: clicking Tech View recorded 17 field records (Tech View's columns, including Assigned Techs) and 1 density record (Regular, default).",
+   "Steps 5 to 8: Board View, List and Board View again recorded no new field records and no new density records. Field records for the session: 13 + 17 = 30.",
+   "QA lead decision, 22 Oct 2026: Board View has no spacing control in this release, so it records no spacing event; that sentence was removed from the test's Step 2 and the test is judged on today's readings."
+  ],
+  "pictures": [],
+  "reason_for_reviewer": "analytics-batch.mts C97024: setup toggled VIN on screen (toggle_board_field_vin) in a first session; second session step2.field = 13 (vin on saved, rest default), step2.density = []; step4.field = 17 incl. assigned_techs, step4.density = ['tech_view regular default']; step8 field 0 / density 0; totalFieldLoads 30. Staging (19 Oct) had 1 Board View density record because Board View still had density then. Opened by address with no top-menu wording in the step. No picture of this user's screen exists (the -end file is the runner's page)."
+ }
+}
