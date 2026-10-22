@@ -183,8 +183,16 @@ await run('C96972', async () => {
   await finish(wo, 'complete', log);
   await bv(n); await ensure(`[data-test-id="board_card_${wo}"]`, n); R.C96972 = { log, cardStatus: await p.locator(`[data-test-id="board_card_${wo}"] [data-test-id="board_card_status"]`).innerText().catch(() => null) };
   // "browser 2": invoice it now, behind this board's back
-  const inv = await a.post('/api/invoices/create', { work_order_id: wo, issue_date: new Date().toISOString().slice(0, 10), due_date: new Date(Date.now() + 30 * 86400000).toISOString().slice(0, 10) });
-  R.C96972.invoiced = say(inv); R.C96972.statusNow = (await workOrders(a, n))[0]?.status;
+  // 22 Oct 2026: step 2 as written — a second tab of the same session opens the work order, Finance > Create Invoice; the New Customer
+  // Payment window that production opens is LEFT OPEN (closing it takes the invoice back off, L0521). The API route stays only as a
+  // recorded fallback if the screen route does not invoice it.
+  { const t2 = await p.context().newPage(); try { await t2.goto(`${APP}/workorders/${wo}/lines`, { waitUntil: 'domcontentloaded' }); await t2.waitForTimeout(7000);
+      await t2.locator('.q-tab, [role=tab]').filter({ hasText: /^\s*Finance/ }).first().click().catch(() => {}); await t2.waitForTimeout(3000);
+      await t2.locator('button').filter({ hasText: /^\s*Create Invoice\s*$/ }).first().click().catch((e) => { R.C96972.createClick = String(e).slice(0, 80); }); await t2.waitForTimeout(6000);
+      R.C96972.paymentWindow = (await t2.locator('.q-dialog').filter({ hasText: /Payment/i }).last().innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 100);
+      await t2.screenshot({ path: path.join(EV, 'C96972-tab2-invoiced.png') }).catch(() => {}); } finally { await t2.close().catch(() => {}); } }
+  R.C96972.invoiced = 'screen: ' + ((await workOrders(a, n))[0]?.status ?? '?');
+  if (!/invoic/i.test(String((await workOrders(a, n))[0]?.status))) { const inv = await a.post('/api/invoices/create', { work_order_id: wo, issue_date: new Date().toISOString().slice(0, 10), due_date: new Date(Date.now() + 30 * 86400000).toISOString().slice(0, 10) }); R.C96972.invoicedFallbackApi = say(inv); } R.C96972.statusNow = (await workOrders(a, n))[0]?.status;
   R.C96972.cardStatusStill = await p.locator(`[data-test-id="board_card_${wo}"] [data-test-id="board_card_status"]`).innerText().catch(() => null);
   await drag(p, `[data-test-id="board_card_${wo}"]`, `[data-test-id="board_column_${RE.staff_id}"]`, 120); await shiftPrompt(p, 'Keep shifts'); await p.waitForTimeout(1500);
   R.C96972.message = await toasts(p); await shot(p, 'C96972-alert');

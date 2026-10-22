@@ -1,0 +1,90 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - pass-b13"
+ },
+ "results": {
+  "C96966": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Set-up: S1-1557 for \"ZZAUTOTEST F1 Status And Time Kept 94314\", In Progress, led by Esther Howard, one line with her logged time and her clock running on it, and a shift for her tomorrow (Fri, Oct 23). No time entries are locked on this site. Before anything: line Actual 0.02 / 1.00, Total Hours 1.0 hrs.",
+    "Step 1: on the Schedule the shift was dragged 5 hours later (\"Shift moved.\"), its end dragged back 1 hour (\"Shift resized.\"), then dragged onto Dana Ortiz's row and \"Reassign shift ... Move this shift to Dana Ortiz on Fri, Oct 23?\" confirmed.",
+    "Step 2: the work order page still reads Lead Technician Esther Howard and status In Progress.",
+    "Steps 3 to 5: Board View on the All tab, customer searched, the card dragged from Esther Howard's column to Ralph Edwards' column; no shifts prompt opened (her shift had already moved to Dana Ortiz); \"Lead technician updated\".",
+    "Step 6: the work order page reads Lead Technician Ralph Edwards and status In Progress; the line's Actual went 0.02 then 0.06 then 0.08 (only the running clock adding minutes); Total Hours still 1.0 hrs; the work order's Timesheets show Esther Howard's entry as Active, so her clock is still running; no locked entry exists.",
+    "TIME NOTE (does not affect this result): the Schedule drew the shift made for tomorrow 8:00-12:00 at 3 AM-7 AM, and after the moves it read 8:00 AM-12:00 PM, then 8 AM-11 AM, instead of the case's 13:00-17:00 and 13:00-16:00. The Timesheets read Start 05:54 PM / 05:56 PM, which matches the clock's raw start time of 17:56 without a Karachi offset."
+   ],
+   "pictures": [
+    "pictures-prod/C96966-1-prod-1022.png",
+    "pictures-prod/C96966-2-prod-1022.png",
+    "pictures-prod/C96966-3-prod-1022.png",
+    "pictures-prod/C96966-4-prod-1022.png"
+   ]
+  },
+  "C96977": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Set-up: at Truck Hill 1, S1-1559 for \"ZZAUTOTEST F2 Card Always On\", Approved, unit TRK-118, led by Esther Howard.",
+    "Steps 1 and 2: Work Orders, All tab, Board View, customer searched.",
+    "Step 3: Column Selection (production's name for Fields to display) lists 13 fields: Lead technician, Customer, Asset, VIN/serial, Progress, Service advisor, Clocked in, Line count, Line technicians, Estimated hours, Total price, On-site, Created date. Work order number, Unit number and Status are not in the list, so they cannot be turned off.",
+    "Steps 4 and 5: with every listed field turned off, the card still shows S1-1559, TRK-118 and Approved.",
+    "Step 6 (turning the fields back on) was not done by the test run; it has no expected result."
+   ],
+   "pictures": [
+    "pictures-prod/C96977-1-prod-1022.png",
+    "pictures-prod/C96977-2-prod-1022.png"
+   ]
+  },
+  "C96981": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Set-up: at Truck Hill 1, three Approved work orders for \"ZZAUTOTEST F2 Fields No Reload\": S1-1560 and S1-1561 led by Esther Howard, S1-1562 led by Ralph Edwards. Before starting, all three cards show the customer and no created date.",
+    "Steps 1 and 2: Work Orders, All tab, Board View, customer searched.",
+    "Steps 3 and 4: in Column Selection, Created date was turned on and Customer turned off.",
+    "Step 5: straight away, with the menu still open, all three cards show the created date (\"Today\") and no longer show the customer.",
+    "The page did not reload: the search text \"ZZAUTOTEST F2 Fields No Reload\" is still there and the board stayed as it was."
+   ],
+   "pictures": [
+    "pictures-prod/C96981-1-prod-1022.png",
+    "pictures-prod/C96981-2-prod-1022.png"
+   ]
+  },
+  "C96978": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Set-up: S1-1564 for \"ZZAUTOTEST F2 Card Field Values 83590\", asset on site with a VIN, Service Advisor Esther Howard, three lines (1.0 + 5.0 + 1.0 hours), led by \"ZZAUTOTEST Cora86246 Clock\", with Cora and \"ZZAUTOTEST Rory86246 Clock\" both clocked in (the work order is now In Progress).",
+    "Steps 1 to 3 (List): On Site pin shown, Customer \"ZZAUTOTEST F2 Card Field Value..\", Asset empty, VIN/Serial # ZZWOB179269258424, Progress 0%, Service Advisor Esther Howard, Lead Technician ZZAUTOTEST Cora86246 Clock, Clocked In \"ZZAUTOTEST Cora86246 Clock +1\", Lines 3, Total Price $404.73, Created On Today.",
+    "Step 4: hovering Clocked In shows \"ZZAUTOTEST Cora86246 Clock, ZZAUTOTEST Rory86246 Clock\".",
+    "Steps 5 and 6: in Board View, Column Selection offers 13 optional fields: Lead technician, Customer, Asset, VIN/serial, Progress, Service advisor, Clocked in, Line count, Line technicians, Estimated hours, Total price, On-site, Created date.",
+    "Steps 7 and 8: with all 13 on, the card shows the same values as List: the customer, VIN ZZWOB179269258424, Esther Howard, Cora +1, 3 lines, On site, Today, 0%, lead Cora, $404.73 (no asset, as List shows none), plus line technicians ZC ZR. Estimated hours read \"Est. 7.0 hrs\", the same as the work order page's \"Total Hours: 7.0 hrs\".",
+    "Step 9: the card's clocked-in field reads \"ZZAUTOTEST Cora86246 Clock +1\", and hovering it shows both names."
+   ],
+   "pictures": [
+    "pictures-prod/C96978-1-prod-1022.png",
+    "pictures-prod/C96978-2-prod-1022.png",
+    "pictures-prod/C96978-3-prod-1022.png",
+    "pictures-prod/C96978-4-prod-1022.png"
+   ]
+  },
+  "C96985": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c).",
+    "Set-up: S1-1565 for \"ZZAUTOTEST F2 Empty Fields Hidden 72032\", Approved, led by Esther Howard, with no Service Advisor, no VIN on the asset and nobody clocked in.",
+    "Steps 1 and 2: Work Orders, All tab, Board View, customer searched.",
+    "Step 3: in Column Selection (production's name for Fields to display) Service advisor, VIN/serial and Clocked in were turned on, with Lead technician, Customer and Progress.",
+    "Step 4: the card shows only S1-1565, Approved, the customer, unit ZZF2EH, Progress 0% and Esther Howard; there is no service advisor, VIN/serial or clocked-in line at all (no label, no blank, no dash), while its other fields still show."
+   ],
+   "pictures": [
+    "pictures-prod/C96985-1-prod-1022.png",
+    "pictures-prod/C96985-2-prod-1022.png"
+   ]
+  }
+ }
+}
