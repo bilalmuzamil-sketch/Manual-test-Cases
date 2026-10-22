@@ -1,0 +1,28 @@
+Found while testing [SV-11588|https://shopview.atlassian.net/browse/SV-11588]
+
+h3. Summary
+In Board View and Tech View, the new open-hand pointer (the one you see while hovering over something you can drag) has almost all-black fingers. The top half of the hand looks black instead of white. The closed hand you see while dragging is fine.
+
+h3. Steps to reproduce
+Open the QA branch to reproduce the issue: [https://sv11588.qa.shopview.com/workorders]
+# Sign in as Admin.
+# Above the work order list, on the right, there are three small view icons. Click the middle one ({{Tech View}}).
+# Move the mouse pointer (don't click) over the column of six small grey dots at the very left of any row, just before the status label.
+# Look at the fingers of the hand pointer that appears. They are almost all black, not white with a black outline:
+!01-open-hand-fingers-almost-black-hd.png|width=560,height=431!
+# Now press and hold on those dots and drag a little. The closed hand that appears is white with a black outline. That is what the open hand should look like too.
+
+*Fastest way to see it:* open [https://sv11588.qa.shopview.com/workorders], click the middle view icon ({{Tech View}}) and point at the six dots at the start of any row.
+
+h3. Expected behaviour
+The open hand is a white hand with a black outline, like the closed hand.
+*Where this comes from:* [SV-11588|https://shopview.atlassian.net/browse/SV-11588], the ticket that introduced the new pointers: _"a white hand with a 2px black outline, the same shapes (open hand while hovering, closed hand while dragging), about 32px."_
+
+h3. Current behaviour
+At the size the pointer is actually shown, each finger of the open hand has at most one column of white pixels inside it, and the two middle fingers have none, only grey. So the fingers read as black. The same open hand shows everywhere it is used: Board View column headers, Tech View row dots and Tech View technician headers.
+
+||Pointer||What it looks like||
+|Open hand (hovering)|Fingers almost all black|
+|Closed hand (dragging)|White with a black outline, as expected|
+
+Tested on the QA branch sv11588, build v26.43.0-003b8fb, 22 October 2026.
