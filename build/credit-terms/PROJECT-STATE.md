@@ -24,3 +24,7 @@
   `build/sv9087-credit-term-2026-08-27/FINDINGS.md`. To confirm with the QA lead.
 - TestRail sections under group 91454 (`sections.json`): S1 91455 … S12 91466, DATA 91467 "Counts and due dates — exact numbers",
   DESIGN 91468 "Design — how it looks".
+- QA lead, 23 Oct 2026: "It is an updgrade" — project type (ii) V2 / upgrade CONFIRMED (Rule 96 invariants apply).
+- 23 Oct: PRD draft done by worker — 291 cases (S1 36, S2 36, S3 28, S4 36, S5 26, S6 8, S7 12, S8 13, S9 10, S10 16, S11 20, S12 21,
+  DATA 29), build gate 0 PROBLEM lines, 211/211 PRD codes covered; 7 PO questions drafted (PO-QUESTIONS-DRAFT.md). Design drive done:
+  62 figures, 962-row text inventory (0 unclassified), 10 differences (CT-D01..D10), 5 design questions, 53 planned design cases.

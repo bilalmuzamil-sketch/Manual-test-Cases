@@ -224,7 +224,6 @@ SUB = {
 NOT_TESTABLE = {
  "EH-S7": "States that due-date calculation has no failure path; there is nothing to trigger. The due-date cases (S7, DATA) cover the behaviour.",
  "EH-S11": "States that release has no failure path; nothing to trigger. The release-day cases (S11) cover the behaviour.",
- "T-VI": "Vocabulary note (vendor invoice versus QuickBooks bill); the QuickBooks cases use both words as the PRD says.",
  "T-VOCAB": "Vocabulary note mapping screen words to back-end words; no behaviour.",
  "A-DESK": "Describes who uses the page (desktop office user); the page cases run in a desktop browser. No separate check.",
  "OOS-8": "A permission that is not built in this release and has no screen; there is nothing a tester can look for.",
@@ -253,8 +252,22 @@ def C(key, sec, title, pre, steps, res, q, stories=None, note="", marker=None, a
     """pre: list of str or (state, example). res: one 'Step N:' line per step. q: PRD codes, NAMED keys, SUB keys or ('label', 'verbatim').
     api: True for a case whose steps send a Public API request (Rule 4: placed in a section titled with 'API')."""
     pre = [p if isinstance(p, tuple) else (p, None) for p in pre]
+    steps, res = fold_reads(steps, res)
     CASES.append(dict(key=key, sec=sec, title=title, pre=pre + [(BLOCKED, None)], steps=steps, res=res, q=q, stories=stories,
                       note=note, marker=marker or MARKER, api=api))
+
+READ_ONLY = re.compile(r"^(Look at|Read|Find|Without clicking)\b(?!.*\b(export|file)\b)")
+def fold_reads(steps, res):
+    """Rule 136 5(a): a step that only reads what the previous action produced is folded into that action's result."""
+    if len(steps) != len(res): return steps, res
+    body = [re.sub(r"^Step \d+: ", "", r) for r in res]
+    st, bd = [], []
+    for s_, b_ in zip(steps, body):
+        if st and READ_ONLY.match(s_):
+            bd[-1] = bd[-1].rstrip() + " " + b_[0].upper() + b_[1:]
+        else:
+            st.append(s_); bd.append(b_)
+    return st, [f"Step {i}: {b}" for i, b in enumerate(bd, 1)]
 
 def quotes(c):
     out = []

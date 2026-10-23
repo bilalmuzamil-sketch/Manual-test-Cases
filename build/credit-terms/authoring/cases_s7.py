@@ -8,18 +8,25 @@ def dd(key, title, pre, pairs, q, note="", marker=None, start=None, who=None):
     st = [a for a, _ in pairs]; rs = [f"Step {i}: {b}" for i, (_, b) in enumerate(pairs, 1)]
     C(key, "S7", title, [who or ADMIN()] + pre + ([start] if start else []), st, rs, q, note=note, marker=marker)
 
-dd("S7-01", "An invoice keeps its term and due date when the customer's term changes",
-   [("Customer {Customer-A} holds Net 30 and has an invoice {Invoice-A} dated Oct 5, 2026, due Nov 4, 2026, showing Terms Net 30.",
-     "For example: {Customer-A} is ZZAUTOTEST S7-01 Customer and {Invoice-A} is the invoice of work order S2-15440.")],
+INV701 = ("Customer {Customer-A} holds Net 30 and has an invoice {Invoice-A} dated Oct 5, 2026, due Nov 4, 2026, showing Terms Net 30.",
+          "For example: {Customer-A} is ZZAUTOTEST S7-01 Customer and {Invoice-A} is the invoice of work order S2-15440.")
+dd("S7-01", "An invoice keeps its term and due date when the customer is edited",
+   [INV701],
    [("Open Edit Customer for {Customer-A}.", "the window opens."), ('Choose "Net 60" in Credit Terms.', "Net 60 is chosen."), ("Click Save.", "the customer is on Net 60."),
-    ("Open {Invoice-A}.", "it still shows Terms Net 30 and Due date Nov 4, 2026."),
-    ('On the Credit Terms page, click the "⋯" at the right of the "Net 60" row.', "the menu opens."), ('Click "Deactivate".', 'the toast "Net 60 deactivated" shows.'),
-    ("Open {Invoice-A} again.", "it still shows Terms Net 30 and Due date Nov 4, 2026."),
-    ('On the Inactive tab, click the "⋯" at the right of the "Net 60" row.', "the menu opens."), ('Click "Move Customers".', "the Move Customers window opens."),
-    ('Choose "Net 15" in "Move To".', "Net 15 is chosen (untick every customer but {Customer-A} first if others are listed)."), ("Click the move button.", "the move toast shows."),
-    ("Open {Invoice-A} again.", "it still shows Terms Net 30 and Due date Nov 4, 2026: the invoice never changed.")],
+    ("Open {Invoice-A}.", "it still shows Terms Net 30 and Due date Nov 4, 2026.")],
    ["S7-R7", "KD-LOCK"])
-
+dd("S7-01b", "An invoice keeps its term and due date when the term is deactivated",
+   [(INV701[0], INV701[1].replace("S7-01", "S7-01b")), PAGE],
+   [('Click the "⋯" at the right of the "Net 30" row.', "the menu opens."), ('Click "Deactivate".', 'the toast "Net 30 deactivated" shows.'),
+    ("Open {Invoice-A}.", "it still shows Terms Net 30 (the plain name) and Due date Nov 4, 2026.")],
+   ["S7-R7"])
+dd("S7-01c", "An invoice keeps its term and due date when the customer is moved",
+   [("Customer {Customer-A} is the only customer on Net 20 and has an invoice {Invoice-A} dated Oct 5, 2026, due Oct 25, 2026, showing Terms Net 20.",
+     "For example: {Customer-A} is ZZAUTOTEST S7-01c Customer and {Invoice-A} is the invoice of work order S2-15448."), PAGE],
+   [('Click the "⋯" at the right of the "Net 20" row.', "the menu opens."), ('Click "Move Customers".', "the window opens with {Customer-A} ticked."),
+    ('Choose "Net 60" in "Move To".', "Net 60 is chosen."), ('Click "Move 1 Customer".', 'the toast "1 customer moved to Net 60." shows.'),
+    ("Open {Invoice-A}.", "it still shows Terms Net 20 and Due date Oct 25, 2026 (Oct 5 + 20 days).")],
+   ["S7-R7"])
 dd("S7-02", "A vendor invoice is due by the vendor's term and recalculated on change",
    [("Vendor {Vendor-A} holds the shop's own term {Term-A}, due 14 days after the invoice date, and vendor {Vendor-B} holds Net 30.",
      "For example: {Vendor-A} is ZZAUTOTEST S7-02 Vendor A, {Term-A} is ZZAUTOTEST S7-02 Fourteen and {Vendor-B} is ZZAUTOTEST S7-02 Vendor B."),

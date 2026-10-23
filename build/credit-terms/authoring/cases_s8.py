@@ -56,17 +56,18 @@ qb("S8-06", "Move Customers does not change the customer in QuickBooks",
     ('Click "Move 1 Customer".', 'the toast "1 customer moved to Net 45." shows.'), ("In QuickBooks, open the customer {Customer-A}.", "its terms still read Net 20: no customer update was sent.")],
    ["S8-R6", "S4-R12"])
 
-qb("S8-07", "Deactivating, reactivating, editing or deleting a term sends nothing",
-   [("The shop's own term {Term-A} is already in QuickBooks (an invoice used it) and its term {Term-B}, held by nobody, is not.",
-     "For example: {Term-A} is ZZAUTOTEST S8-07 Used and {Term-B} is ZZAUTOTEST S8-07 Unused."), PAGE],
+qb("S8-07", "Deactivating or reactivating a term sends nothing to QuickBooks",
+   [("The shop's own term {Term-A} is already in QuickBooks (an invoice used it).", "For example: {Term-A} is ZZAUTOTEST S8-07 Used."), PAGE],
    [('Click the "⋯" at the right of the {Term-A} row.', "the menu opens."), ('Click "Deactivate".', 'the toast "{Term-A} deactivated" shows.'),
     (TERMS[0], "{Term-A} is still there, unchanged (active in QuickBooks)."), ('On the Inactive tab, click the "⋯" at the right of the {Term-A} row.', "the menu opens."),
-    ('Click "Reactivate".', "the term is active again."), ('Click the "⋯" at the right of the {Term-B} row.', "the menu opens."), ('Click "Edit".', "the window opens."),
-    ("Type 21 in the Days box in place of the number there.", "the blue line shows."), ('Click "Save Changes".', "the toast shows."), ('Click the "⋯" at the right of the {Term-B} row.', "the menu opens."),
-    ('Click "Delete Credit Term".', "the confirmation opens."), ('Click the red "Delete Credit Term" button.', 'the toast "{Term-B} deleted" shows.'),
-    ("In QuickBooks, refresh the Terms list.", "{Term-A} is unchanged and {Term-B} never appeared.")],
+    ('Click "Reactivate".', "the term is active again."), ("In QuickBooks, refresh the Terms list.", "{Term-A} is unchanged.")],
+   ["S8-R7"])
+qb("S8-07b", "Editing or deleting an unused term sends nothing to QuickBooks",
+   [("The shop's own term {Term-B}, due 14 days after the invoice date, is held by nobody and is not in QuickBooks.", "For example: {Term-B} is ZZAUTOTEST S8-07b Unused."), PAGE],
+   [('Click the "⋯" at the right of the {Term-B} row.', "the menu opens."), ('Click "Edit".', "the window opens."), ("Replace 14 with 21 in the Days box.", "the blue line shows."),
+    ('Click "Save Changes".', "the toast shows."), ('Click the "⋯" at the right of the {Term-B} row.', "the menu opens."), ('Click "Delete Credit Term".', "the confirmation opens."),
+    ('Click the red "Delete Credit Term" button.', 'the toast "{Term-B} deleted" shows.'), (TERMS[0], "{Term-B} never appeared.")],
    ["S8-R7", "S8-N2"])
-
 qb("S8-08", "A shop term nobody has used on a synced record is never sent",
    [("The shop's own term {Term-A} was created today and is held only by a customer {Customer-A} who has no invoice.",
      "For example: {Term-A} is ZZAUTOTEST S8-08 Fresh and {Customer-A} is ZZAUTOTEST S8-08 Customer (not yet in QuickBooks).")],
