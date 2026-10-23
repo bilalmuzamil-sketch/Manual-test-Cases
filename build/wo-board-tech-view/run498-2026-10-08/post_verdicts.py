@@ -18,7 +18,7 @@ for c in ids:
         if r.returncode == 0: pics.append(os.path.relpath(dst, H))
         else: print('annotate failed', c, p, r.stderr[-200:])
     res = {'verdict': v['verdict'], 'observed': v['observed'], 'pictures': pics}
-    for k in ('failed_steps', 'bold_steps', 'todo', 'ticket', 'ticket_held'):
+    for k in ('failed_steps', 'bold_steps', 'todo', 'ticket', 'ticket_held', 'source'):
         if k in v: res[k] = v[k]
     out['results'][c] = res; print(c, v['verdict'], len(pics), 'pictures')
 json.dump(out, open(os.path.join(H, f'RESULTS-prod-{tag}.json'), 'w'), indent=1)

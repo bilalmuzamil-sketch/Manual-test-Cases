@@ -670,3 +670,6 @@ it passed before. No bullet about a step that passed. Annotated pictures of the 
 attached). Then the ticket line and "what to do next". `push_results_to_run.py` refuses a Failed result whose `observed` has a
 "Step N" bullet outside `bold_steps`. Old comments are corrected by editing them in TestRail's screen (L0475,
 `comment-edits-1020/apply_edits.mjs`). Full text: `build/rules/RULES-61-ONWARD.md` rule 135.
+**Rule 135(8), same day:** right under the bold failing-step line, "Fails against:" + the source's rule in its own words (document,
+version, rule id) — pass it as `source` in the RESULTS json (the push tool refuses a Failed result without it). The ticket's
+Description opens "What the PRD (or design …) requires:" with the quote, then "What happens instead:".

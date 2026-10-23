@@ -157,6 +157,10 @@ def comment_for(rec, todo, header, footer=None, lead=None):
     obs = rec['observed']
     if rec.get('verdict') != 'Passed' and (rec.get('failed_steps') or '').strip():
         blocks.append('<p><strong>%s</strong></p>' % esc(rec['failed_steps'].strip()))
+    # Rule 135(8) (QA lead 2026-10-23): a Failed result says right under the bold line WHAT it failed against —
+    # the source's rule in its own words, with the document (PRD / design / ticket / Slack), version and rule id.
+    if rec.get('verdict') == 'Failed' and (rec.get('source') or '').strip():
+        blocks.append('<p><strong>Fails against:</strong> %s</p>' % esc(rec['source'].strip()))
     blocks += ['<p>%s</p>' % esc(header), bullets(obs) if isinstance(obs, list) else '<p>%s</p>' % esc(obs.strip())]
     nobs = rec.get('not_observed') or ''
     if isinstance(nobs, list):
@@ -298,6 +302,11 @@ def main():
         sys.exit('REFUSING: no "failed_steps" on %s (Rule 132: every Failed/Blocked/Retest result opens with the '
                  'failing step number(s) in bold, e.g. "Failed at steps 6 and 10: ..."; list those steps in '
                  '"bold_steps" so their bullets are bold too).' % ', '.join(no_steps))
+    # Rule 135(8) (QA lead 2026-10-23): every Failed result names what it failed against (`source`).
+    no_src = sorted(c for c, r in res.items() if r['verdict'] == 'Failed' and not (r.get('source') or '').strip())
+    if no_src:
+        sys.exit('REFUSING (Rule 135(8)): Failed with no "source" for %s — say what the test failed against: the '
+                 'source rule in its own words, with the document (PRD / design / ticket / Slack), version and rule id.' % ', '.join(no_src))
     # Rule 135 (QA lead 2026-10-23): a Failed comment tells ONLY what failed — no bullet about a step that passed.
     # Every "Step N"/"Steps N to M" bullet of a Failed result must name at least one step listed in bold_steps.
     passed_talk = {}

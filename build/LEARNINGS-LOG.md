@@ -489,3 +489,9 @@
 - QA lead, 23 Oct 2026: "Any test which is failed due to this issue https://shopview.atlassian.net/browse/SV-11720 Please ignore that part as this is an expected behavior". Searched run 498's results for SV-11720 (defects field + comments): only C96953 (test 3481897). Re-posted Passed on the same production readings with a dated QA-lead decision line; push tool removed the "SV-11720 - " title prefix (Rule 133).
 - Rule 114(d) applies (passed on a ruling, the case as written would fail): propose the C96953 rewrite to him ONE case at a time and edit only after his yes. SV-11720 itself stays Open; nothing is done to the ticket without his word.
 #run498 #ruling #sv-11720 → L0555
+
+## L0559 — 2026-10-23 — A failure must say WHAT it failed against; the QA lead reopened SV-11720
+- After I posted C96953 Passed on his "expected behaviour" ruling, the QA lead reopened SV-11720 and asked for the test to show Failed, with both the result and the ticket saying plainly that the PRD forbids the page itself scrolling and that the page itself now scrolls. His reason: "when we are reading what failed the test we need to know what really failed it and against what in design/source/slack/PRD".
+- Now Rule 135(8): result = bold failing step → "Fails against:" + quoted source rule (doc, version, id) → what happens instead; ticket Description = "What the PRD requires:" + quote → "What happens instead:" → why. `push_results_to_run.py` takes `source` (post_verdicts.py passes it through) and refuses a Failed result without it.
+- A ruling can be reversed the same day; keep the evidence and drafts so the Failed result and ticket can be restored quickly (the held draft and pictures were reused as-is).
+#rule135 #tickets #results #run498 → L0558

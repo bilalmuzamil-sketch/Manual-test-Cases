@@ -1,0 +1,31 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - c96953fail"
+ },
+ "results": {
+  "C96953": {
+   "verdict": "Failed",
+   "observed": [
+    "Result: Failed on production (v26.43.0-ffea43c), following the test's steps; seen on three separate runs (22 Oct 17:5x and 23:11, 23 Oct 02:51 UTC).",
+    "Set-up: browser window 1600 x 1000. Work Orders, All tab, Board View, at Truck Hill 1. Search \"ZZAUTOTEST F2 Column Scroll\".",
+    "Before step 7, look at the top: \"Create Work Order\" sits on its own second line under the row of tabs and filters (picture 1).",
+    "Step 7: put the mouse over the empty space below a short column (for example Ayesha Khan's) and turn the wheel down. The whole page moves up 56 px: the tabs, Search, the filters and the view buttons disappear under the top bar, and the column headings move up too (picture 2).",
+    "Why the page can scroll now: the new Technician filter (SV-11326, Done 20 Oct) makes the toolbar row too wide for a 1600 px window, so \"Create Work Order\" drops to a second line and the page (1056 px) becomes taller than the window (1000 px). Our last staging pass (19 Oct) was before that filter was added."
+   ],
+   "pictures": [
+    "pictures-prod-1023/C96953-1-before-wheel.png",
+    "pictures-prod-1023/C96953-2-after-wheel.png"
+   ],
+   "failed_steps": "Failed at step 7: the page itself scrolls. The PRD allows only the content inside each column to scroll, but the mouse wheel over an empty part of the board moves the whole page.",
+   "bold_steps": [
+    7
+   ],
+   "todo": "What needs to be done: run this test again once SV-11720 is fixed on production.",
+   "ticket": "Ticket: https://shopview.atlassian.net/browse/SV-11720 (Bug in the Board/Tech View Fast Follow, status Open, reopened 23 October 2026).",
+   "source": "PRD \"Work Orders \u2014 Board View & Tech View Display Options\" (Confluence 845185030, version 74, 22 Oct 2026), S3-E1: \"The page itself does not scroll vertically; only the content inside each column does.\""
+  }
+ }
+}

@@ -1,12 +1,14 @@
-TITLE: Board View – Mouse Wheel Over Empty Board Space Scrolls the Whole Page
-STATUS: FILING APPROVED by the QA lead 23 Oct 2026 ("file a bug in fast follow"), as a Bug under SV-11593. Earlier: HELD — not filed. Owning story SV-10046 is Done (read live 22 Oct 2026 18:25 UTC); where it goes (Story Defect under SV-10046, or a Bug under the Fast Follow epic SV-11593) is the QA lead's decision. Ask per ticket (Rule 113).
+TITLE: Board View – The Whole Page Scrolls, Although the PRD Lets Only the Columns Scroll
+STATUS: FILED as SV-11720 23 Oct 2026; reopened by the QA lead 23 Oct after a brief "expected" ruling; title and description reworded at his request to say plainly what the PRD restricts and what happens. FILING APPROVED by the QA lead 23 Oct 2026 ("file a bug in fast follow"), as a Bug under SV-11593. Earlier: HELD — not filed. Owning story SV-10046 is Done (read live 22 Oct 2026 18:25 UTC); where it goes (Story Defect under SV-10046, or a Bug under the Fast Follow epic SV-11593) is the QA lead's decision. Ask per ticket (Rule 113).
 Fields: Bug · parent SV-11593 (Board/Tech View Fast Follow) · Medium · Product Area Work Orders · labels board-tech-view, fast-follow · relates to SV-10046
 
 h2. Description
 
-*In Board View the page itself must not scroll up or down — only the cards inside a column scroll.* On production, turning the mouse wheel over the empty space below a short column moves the whole page instead, and the toolbar slides off the top of the screen.
+*What the PRD requires:* in Board View the page itself must never scroll up or down — only the cards inside each column may scroll (PRD *S3-E1*: "The page itself does not scroll vertically; only the content inside each column does.").
 
-For example,
+*What happens instead:* on production the page itself has become scrollable. Turning the mouse wheel over an empty part of the board moves the whole page, and the toolbar (tabs, *Search*, filters, view switcher) slides off the top of the screen.
+
+*Why the page can scroll now:*
 
 * at a 1600 px wide window the row of tabs, *Search* and filters no longer fits since the *Technician* filter was added (SV-11326, Done 20 Oct 2026), so *Create Work Order* drops to a second line
 * that pushes the board 56 px lower, so the page (1056 px) is taller than the window (1000 px) and has room to move
@@ -24,11 +26,11 @@ h2. Steps to Reproduce
 
 *Actual Result:*
 
-* The whole page scrolls down by 56 px and the toolbar is hidden.
+* The page itself scrolls: one turn of the wheel moves the whole page by 56 px and the toolbar goes out of sight.
 
 *Expected Result:*
 
-* The page does not scroll; only the content inside a column scrolls.
+* As the PRD requires (S3-E1), the page itself does not scroll; only the content inside each column scrolls.
 
 h2. Screenshots
 
