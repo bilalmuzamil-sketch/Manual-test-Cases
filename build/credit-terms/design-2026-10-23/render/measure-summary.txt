@@ -1,0 +1,538 @@
+
+## p1 fig1 Active tab: one table
+  tab Active 13 rgb(23, 92, 211) 600 2px rgb(37, 124, 255) countBg=rgb(233, 245, 255)
+  tab Inactive 2 rgb(105, 117, 134) 600 2px rgba(0, 0, 0, 0) countBg=rgb(238, 242, 246)
+  table cols: Name@x251 w347 left 12px/600 rgb(105, 117, 134) | Due@x598 w417 left 12px/600 rgb(105, 117, 134) | Customers@x1015 w139 right 12px/600 rgb(105, 117, 134) | Vendors@x1154 w139 right 12px/600 rgb(105, 117, 134) | Actions@x1293 w116 left 12px/600 rgb(105, 117, 134)
+  table rows 13 rowH 48
+  badge 'Default' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=Always available
+  tooltip right of host {'x': 335, 'y': 267, 'w': 403, 'h': 52} 14px r 4px bg rgba(97, 97, 97, 0.92) | host= Always available | Always available. / COD, Due on Receipt and Credit Hold can't be deactivated.
+  clipped ['Actions']
+
+## p1 fig2 Info tooltip: Due on Receipt
+  table rows 13 rowH 48
+  badge 'Default' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=Always available
+  tooltip right of host {'x': 383, 'y': 304, 'w': 270, 'h': 72} 14px r 4px bg rgba(97, 97, 97, 0.92) | host= Payment is due on the invoice  | Payment is due on the invoice date, but you can create the invoice without taking payment.
+  clipped ['Actions']
+
+## p1 fig3 Info tooltip: COD
+  table rows 13 rowH 48
+  badge 'Default' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=Always available
+  tooltip right of host {'x': 315, 'y': 257, 'w': 270, 'h': 72} 14px r 4px bg rgba(97, 97, 97, 0.92) | host= Cash on delivery. COD customer | Cash on delivery. COD customers can't charge to account, so payment is taken when the invoice is cre
+  clipped ['Actions']
+
+## p1 fig8 Row menu: the current default
+  table rows 13 rowH 48
+  badge 'Default' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=Net 30
+  tooltip left of host {'x': 907, 'y': 644, 'w': 330, 'h': 52} 14px r 4px bg rgba(97, 97, 97, 0.92) | host= Move Customers Deactivate This | This is your default for new customers / Pick another default first.
+  menu {'x': 1240, 'y': 601, 'w': 164, 'h': 96} seps 0 [('Move Customers', '', '', '', 'rgb(54, 65, 82)'), ('Deactivate', 'DIS', '', '', 'rgb(205, 213, 223)')]
+  menu {'x': 1240, 'y': 601, 'w': 164, 'h': 96} seps 0 [('Move Customers', '', '', '', 'rgb(54, 65, 82)'), ('Deactivate', 'DIS', '', '', 'rgb(205, 213, 223)')]
+  clipped ['Actions']
+
+## p1 fig9 Make Net 30 the default
+  table rows 13 rowH 48
+  badge 'Default' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=Always available
+  modal 'Make Net 30 the default?' {'x': 460, 'y': 473, 'w': 520, 'h': 219} title 20px radius 8px
+     btn Cancel bg rgb(255, 255, 255) fg rgb(54, 65, 82) border rgb(205, 213, 223) 
+     btn Make Default bg rgb(37, 124, 255) fg rgb(255, 255, 255) border rgba(0, 0, 0, 0) 
+  clipped ['Actions']
+
+## p1 fig10 Saved
+  table rows 13 rowH 48
+  badge 'Default' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=Net 30
+  toast {'text': 'check_circle Net 30 is now the default New customers start on Net 30. Close', 'box': {'x': 939, 'y': 967, 'w': 400, 'h': 56}, 'bg': 'rgb(33, 186, 69)', 'color': 'rgb(255, 255, 255)'}
+  clipped ['Actions']
+ REFLOW Main.dc.html 1280 [(1, 'overl', 0, 'head', False, [], 1278), (2, 'overl', 0, 'head', False, [], 1278), (3, 'overl', 0, 'head', False, [], 1278), (8, 'overl', 0, 'head', False, [], 1278), (9, 'overl', 0, 'head', False, [], 1278), (10, 'overl', 0, 'head', False, [], 1278)]
+ REFLOW Main.dc.html 1536 [(1, 'overl', 0, 'head', False, [], 1534), (2, 'overl', 0, 'head', False, [], 1534), (3, 'overl', 0, 'head', False, [], 1534), (8, 'overl', 0, 'head', False, [], 1534), (9, 'overl', 0, 'head', False, [], 1534), (10, 'overl', 0, 'head', False, [], 1534)]
+
+## p2 fig2 Move Customers from COD
+  table rows 13 rowH 48
+  badge 'Default' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=Always available
+  modal 'Move Customers from COD' {'x': 400, 'y': 244, 'w': 640, 'h': 677} title 18px radius 12px
+     btn Cancel bg rgb(255, 255, 255) fg rgb(54, 65, 82) border rgb(205, 213, 223) 
+     btn Move 214 Customers bg rgb(37, 124, 255) fg rgb(255, 255, 255) border rgba(0, 0, 0, 0) 
+     hint {'text': 'Prefilled with your default for new customers.', 'color': 'rgb(105, 117, 134)'}
+     field '' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 425, 'y': 333, 'w': 590, 'h': 40}
+     field 'Move To' = 'Due on Receipt'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 425, 'y': 765, 'w': 590, 'h': 40}
+  clipped ['Actions']
+
+## p2 fig3 Some customers unticked
+  table rows 13 rowH 48
+  badge 'Default' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=Always available
+  modal 'Move Customers from COD' {'x': 400, 'y': 244, 'w': 640, 'h': 677} title 18px radius 12px
+     btn Cancel bg rgb(255, 255, 255) fg rgb(54, 65, 82) border rgb(205, 213, 223) 
+     btn Move 180 Customers bg rgb(37, 124, 255) fg rgb(255, 255, 255) border rgba(0, 0, 0, 0) 
+     hint {'text': 'Prefilled with your default for new customers.', 'color': 'rgb(105, 117, 134)'}
+     field '' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 425, 'y': 333, 'w': 590, 'h': 40}
+     field 'Move To' = 'Due on Receipt'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 425, 'y': 765, 'w': 590, 'h': 40}
+  clipped ['Actions']
+
+## p2 fig4 Pick another term
+  table rows 13 rowH 48
+  badge 'Default' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=Always available
+  menu {'x': 425, 'y': 312, 'w': 300, 'h': 462} seps 0 [('Due on Receipt', '', '', 'ACT', 'rgb(23, 92, 211)'), ('Net 7', '', '', '', 'rgb(54, 65, 82)'), ('Net 10', '', '', '', 'rgb(54, 65, 82)'), ('Net 15', '', '', '', 'rgb(54, 65, 82)'), ('Net 20', '', '', '', 'rgb(54, 65, 82)'), ('Net 30', '', '', '', 'rgb(54, 65, 82)'), ('Net 45', '', '', '', 'rgb(54, 65, 82)'), ('Net 60', '', '', '', 'rgb(54, 65, 82)'), ('Net 90', '', '', '', 'rgb(54, 65, 82)')]
+  modal 'Move Customers from COD' {'x': 400, 'y': 257, 'w': 640, 'h': 651} title 18px radius 12px
+     btn Cancel bg rgb(255, 255, 255) fg rgb(54, 65, 82) border rgb(205, 213, 223) 
+     btn Move 214 Customers bg rgb(37, 124, 255) fg rgb(255, 255, 255) border rgba(0, 0, 0, 0) 
+     field '' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 425, 'y': 346, 'w': 590, 'h': 40}
+     field 'Move To' = 'Due on Receipt'  border rgb(37, 124, 255) bg rgb(255, 255, 255) {'x': 425, 'y': 778, 'w': 590, 'h': 40}
+  clipped ['Actions']
+
+## p2 fig5 Moved
+  table rows 13 rowH 48
+  badge 'Default' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=Always available
+  toast {'text': 'check_circle 214 customers moved to Due on Receipt. Close', 'box': {'x': 939, 'y': 967, 'w': 400, 'h': 56}, 'bg': 'rgb(33, 186, 69)', 'color': 'rgb(255, 255, 255)'}
+  clipped ['Actions']
+
+## p2 fig9 Without the customer permissions
+  table rows 13 rowH 48
+  badge 'Default' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=Always available
+  tooltip left of host {'x': 510, 'y': 366, 'w': 621, 'h': 32} 14px r 4px bg rgba(97, 97, 97, 0.92) | host= Make Default for New Customers | You need Customers → Create & Edit and View and Manage AP/AR Data to move customers.
+  menu {'x': 1134, 'y': 313, 'w': 270, 'h': 96} seps 0 [('Make Default for New Customers', '', '', '', 'rgb(54, 65, 82)'), ('Move Customers', 'DIS', '', '', 'rgb(205, 213, 223)')]
+  menu {'x': 1134, 'y': 313, 'w': 270, 'h': 96} seps 0 [('Make Default for New Customers', '', '', '', 'rgb(54, 65, 82)'), ('Move Customers', 'DIS', '', '', 'rgb(205, 213, 223)')]
+  clipped ['Actions']
+ REFLOW Default.dc.html 1280 [(2, 'overl', 0, 'head', False, [], 1278), (3, 'overl', 0, 'head', False, [], 1278), (4, 'overl', 0, 'head', False, [], 1278), (5, 'overl', 0, 'head', False, [], 1278), (9, 'overl', 0, 'head', False, [], 1278)]
+ REFLOW Default.dc.html 1536 [(2, 'overl', 0, 'head', False, [], 1534), (3, 'overl', 0, 'head', False, [], 1534), (4, 'overl', 0, 'head', False, [], 1534), (5, 'overl', 0, 'head', False, [], 1534), (9, 'overl', 0, 'head', False, [], 1534)]
+
+## p3 fig1 New credit term: Net X days
+  table rows 13 rowH 48
+  badge 'Default' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=Always available
+  modal 'New Credit Term' {'x': 400, 'y': 354, 'w': 640, 'h': 456} title 18px radius 12px
+     btn Cancel bg rgb(255, 255, 255) fg rgb(54, 65, 82) border rgb(205, 213, 223) 
+     btn Create Credit Term bg rgb(37, 124, 255) fg rgb(255, 255, 255) border rgba(0, 0, 0, 0) 
+     hint {'text': 'Up to 31 characters. Prints on invoices and goes to QuickBooks.', 'color': 'rgb(105, 117, 134)'}
+     alert {'text': 'Net 14 Days means payment is due 14 days after the invoice date. An invoice dated Oct 21 is due Nov 4.', 'bg': 'rgb(233, 245, 255)', 'color': 'rgb(23, 92, 211)'}
+     field 'Name' = 'Net 14 Days'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 425, 'y': 447, 'w': 590, 'h': 40}
+     field 'Days' = '14'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 687, 'y': 537, 'w': 120, 'h': 40}
+     field 'Day' = '' DISABLED border rgb(227, 232, 239) bg rgb(238, 242, 246) {'x': 687, 'y': 585, 'w': 120, 'h': 40}
+  clipped ['Actions']
+
+## p3 fig2 New credit term: day of the following month
+  table rows 13 rowH 48
+  badge 'Default' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=Always available
+  modal 'New Credit Term' {'x': 400, 'y': 354, 'w': 640, 'h': 456} title 18px radius 12px
+     btn Cancel bg rgb(255, 255, 255) fg rgb(54, 65, 82) border rgb(205, 213, 223) 
+     btn Create Credit Term bg rgb(37, 124, 255) fg rgb(255, 255, 255) border rgba(0, 0, 0, 0) 
+     hint {'text': 'Up to 31 characters. Prints on invoices and goes to QuickBooks.', 'color': 'rgb(105, 117, 134)'}
+     alert {'text': '10th of next month means payment is due on the 10th of the following month. An invoice dated Oct 21 is due Nov 10.', 'bg': 'rgb(233, 245, 255)', 'color': 'rgb(23, 92, 211)'}
+     field 'Name' = '10th of next month'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 425, 'y': 447, 'w': 590, 'h': 40}
+     field 'Days' = '' DISABLED border rgb(227, 232, 239) bg rgb(238, 242, 246) {'x': 687, 'y': 537, 'w': 120, 'h': 40}
+     field 'Day' = '10'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 687, 'y': 585, 'w': 120, 'h': 40}
+  clipped ['Actions']
+
+## p3 fig3 Validation errors
+  table rows 13 rowH 48
+  badge 'Default' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=Always available
+  modal 'New Credit Term' {'x': 400, 'y': 387, 'w': 640, 'h': 391} title 18px radius 12px
+     btn Cancel bg rgb(255, 255, 255) fg rgb(54, 65, 82) border rgb(205, 213, 223) 
+     btn Create Credit Term bg rgb(37, 124, 255) fg rgb(255, 255, 255) border rgba(0, 0, 0, 0) disabled
+     hint {'text': 'Net 30 is already a standard term. Pick another name.', 'color': 'rgb(180, 35, 24)'}
+     hint {'text': 'Enter 1 to 365 days.', 'color': 'rgb(180, 35, 24)'}
+     field 'Name' = 'net 30'  border rgb(240, 68, 56) bg rgb(255, 255, 255) {'x': 425, 'y': 480, 'w': 590, 'h': 40}
+     field 'Days' = '400'  border rgb(240, 68, 56) bg rgb(255, 255, 255) {'x': 687, 'y': 570, 'w': 120, 'h': 40}
+     field 'Day' = '' DISABLED border rgb(227, 232, 239) bg rgb(238, 242, 246) {'x': 687, 'y': 644, 'w': 120, 'h': 40}
+  clipped ['Actions']
+ REFLOW NewTerm.dc.html 1280 [(1, 'overl', 0, 'head', False, [], 1278), (2, 'overl', 0, 'head', False, [], 1278), (3, 'overl', 0, 'head', False, [], 1278)]
+ REFLOW NewTerm.dc.html 1536 [(1, 'overl', 0, 'head', False, [], 1534), (2, 'overl', 0, 'head', False, [], 1534), (3, 'overl', 0, 'head', False, [], 1534)]
+
+## p4 fig1 Active tab after deactivating everything it can
+  tab Active 4 rgb(23, 92, 211) 600 2px rgb(37, 124, 255) countBg=rgb(233, 245, 255)
+  tab Inactive 10 rgb(105, 117, 134) 600 2px rgba(0, 0, 0, 0) countBg=rgb(238, 242, 246)
+  table rows 4 rowH 48
+  badge 'Default' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=Net 30
+  clipped ['Actions']
+
+## p4 fig2 Inactive tab: the rest
+  tab Active 4 rgb(105, 117, 134) 600 2px rgba(0, 0, 0, 0) countBg=rgb(238, 242, 246)
+  tab Inactive 10 rgb(23, 92, 211) 600 2px rgb(37, 124, 255) countBg=rgb(233, 245, 255)
+  table rows 10 rowH 48
+  clipped ['Actions']
+
+## p4 fig3 A new shop: Inactive tab empty
+  tab Active 12 rgb(105, 117, 134) 600 2px rgba(0, 0, 0, 0) countBg=rgb(238, 242, 246)
+  tab Inactive 0 rgb(23, 92, 211) 600 2px rgb(37, 124, 255) countBg=rgb(233, 245, 255)
+  table rows 1 rowH 48
+  clipped ['Actions']
+ REFLOW Empty.dc.html 1280 [(1, 'overl', 0, 'head', False, [], 1278), (2, 'overl', 0, 'head', False, [], 1278), (3, 'overl', 0, 'head', False, [], 1278)]
+ REFLOW Empty.dc.html 1536 [(1, 'overl', 0, 'head', False, [], 1534), (2, 'overl', 0, 'head', False, [], 1534), (3, 'overl', 0, 'head', False, [], 1534)]
+
+## p5 fig2 New Customer: Credit Terms prefilled with the default
+  table cols: Customer Name@x1 w630 left 12px/600 rgb(105, 117, 134) | Telephone@x631 w300 left 12px/600 rgb(105, 117, 134) | State/Province@x931 w321 left 12px/600 rgb(105, 117, 134) | Assets@x1251 w188 right 12px/600 rgb(105, 117, 134)
+  table rows 16 rowH 48
+  modal 'New Customer' {'x': 416, 'y': 75, 'w': 608, 'h': 831} title 20px radius 12px
+     btn Save bg rgb(37, 124, 255) fg rgb(255, 255, 255) border rgba(0, 0, 0, 0) 
+     field 'Name *' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 164, 'w': 558, 'h': 40}
+     field 'Phone' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 220, 'w': 558, 'h': 40}
+     field 'Address 1' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 276, 'w': 558, 'h': 40}
+     field 'Address 2' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 332, 'w': 558, 'h': 40}
+     field 'City' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 388, 'w': 271, 'h': 40}
+     field 'ZIP/Postal Code' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 388, 'w': 271, 'h': 40}
+     field 'State/Province' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 444, 'w': 271, 'h': 40}
+     field 'Country' = 'Canada'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 444, 'w': 271, 'h': 40}
+     field 'Credit Terms' = 'Due on Receipt'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 500, 'w': 271, 'h': 40}
+     field 'Credit Limit' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 500, 'w': 271, 'h': 40}
+     field 'Sales Representative' = 'Unassigned'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 556, 'w': 506, 'h': 40}
+     field 'Notes' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 612, 'w': 558, 'h': 92}
+     field 'Website' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 720, 'w': 558, 'h': 40}
+     field 'IBS' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 776, 'w': 558, 'h': 40}
+
+## p5 fig3 New Customer: the Credit Terms picker
+  table rows 16 rowH 48
+  badge 'Default' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=Due on Receipt
+  menu {'x': 441, 'y': 38, 'w': 271, 'h': 462} seps 0 [('COD', '', '', '', 'rgb(54, 65, 82)'), ('Due on Receipt Default', '', '', 'ACT', 'rgb(23, 92, 211)'), ('Net 7', '', '', '', 'rgb(54, 65, 82)'), ('Net 10', '', '', '', 'rgb(54, 65, 82)'), ('Net 15', '', '', '', 'rgb(54, 65, 82)'), ('Net 20', '', '', '', 'rgb(54, 65, 82)'), ('Net 30', '', '', '', 'rgb(54, 65, 82)'), ('Net 45', '', '', '', 'rgb(54, 65, 82)'), ('Net 60', '', '', '', 'rgb(54, 65, 82)')]
+  modal 'New Customer' {'x': 416, 'y': 75, 'w': 608, 'h': 831} title 20px radius 12px
+     btn Save bg rgb(37, 124, 255) fg rgb(255, 255, 255) border rgba(0, 0, 0, 0) 
+     field 'Name *' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 164, 'w': 558, 'h': 40}
+     field 'Phone' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 220, 'w': 558, 'h': 40}
+     field 'Address 1' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 276, 'w': 558, 'h': 40}
+     field 'Address 2' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 332, 'w': 558, 'h': 40}
+     field 'City' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 388, 'w': 271, 'h': 40}
+     field 'ZIP/Postal Code' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 388, 'w': 271, 'h': 40}
+     field 'State/Province' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 444, 'w': 271, 'h': 40}
+     field 'Country' = 'Canada'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 444, 'w': 271, 'h': 40}
+     field 'Credit Terms' = 'Due on Receipt'  border rgb(37, 124, 255) bg rgb(255, 255, 255) {'x': 441, 'y': 500, 'w': 271, 'h': 40}
+     field 'Credit Limit' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 500, 'w': 271, 'h': 40}
+     field 'Sales Representative' = 'Unassigned'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 556, 'w': 506, 'h': 40}
+     field 'Notes' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 612, 'w': 558, 'h': 92}
+     field 'Website' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 720, 'w': 558, 'h': 40}
+     field 'IBS' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 776, 'w': 558, 'h': 40}
+
+## p5 fig4 New Customer: COD picked, limit locked at $0
+  table rows 16 rowH 48
+  tooltip overlapping host {'x': 548, 'y': 544, 'w': 572, 'h': 32} 14px r 4px bg rgba(97, 97, 97, 0.92) | host= COD and Credit Hold customers  | COD and Credit Hold customers can't charge to account, so they have no credit limit.
+  modal 'New Customer' {'x': 416, 'y': 75, 'w': 608, 'h': 831} title 20px radius 12px
+     btn Save bg rgb(37, 124, 255) fg rgb(255, 255, 255) border rgba(0, 0, 0, 0) 
+     field 'Name *' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 164, 'w': 558, 'h': 40}
+     field 'Phone' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 220, 'w': 558, 'h': 40}
+     field 'Address 1' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 276, 'w': 558, 'h': 40}
+     field 'Address 2' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 332, 'w': 558, 'h': 40}
+     field 'City' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 388, 'w': 271, 'h': 40}
+     field 'ZIP/Postal Code' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 388, 'w': 271, 'h': 40}
+     field 'State/Province' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 444, 'w': 271, 'h': 40}
+     field 'Country' = 'Canada'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 444, 'w': 271, 'h': 40}
+     field 'Credit Terms' = 'COD'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 500, 'w': 271, 'h': 40}
+     field 'Credit Limit' = '$ 0.00' DISABLED border rgb(227, 232, 239) bg rgb(238, 242, 246) {'x': 728, 'y': 500, 'w': 271, 'h': 40}
+     field 'Sales Representative' = 'Unassigned'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 556, 'w': 506, 'h': 40}
+     field 'Notes' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 612, 'w': 558, 'h': 92}
+     field 'Website' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 720, 'w': 558, 'h': 40}
+     field 'IBS' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 776, 'w': 558, 'h': 40}
+
+## p5 fig5 New Customer without View and Manage AP/AR Data
+  table rows 16 rowH 48
+  modal 'New Customer' {'x': 416, 'y': 75, 'w': 608, 'h': 775} title 20px radius 12px
+     btn Save bg rgb(37, 124, 255) fg rgb(255, 255, 255) border rgba(0, 0, 0, 0) 
+     field 'Name *' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 164, 'w': 558, 'h': 40}
+     field 'Phone' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 220, 'w': 558, 'h': 40}
+     field 'Address 1' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 276, 'w': 558, 'h': 40}
+     field 'Address 2' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 332, 'w': 558, 'h': 40}
+     field 'City' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 388, 'w': 271, 'h': 40}
+     field 'ZIP/Postal Code' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 388, 'w': 271, 'h': 40}
+     field 'State/Province' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 444, 'w': 271, 'h': 40}
+     field 'Country' = 'Canada'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 444, 'w': 271, 'h': 40}
+     field 'Sales Representative' = 'Unassigned'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 500, 'w': 506, 'h': 40}
+     field 'Notes' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 556, 'w': 558, 'h': 92}
+     field 'Website' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 664, 'w': 558, 'h': 40}
+     field 'IBS' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 720, 'w': 558, 'h': 40}
+ REFLOW NewCustomer.dc.html 1280 [(2, 'overl', 0, 'head', False, [], 1278), (3, 'overl', 0, 'head', False, [], 1278), (4, 'overl', 0, 'head', False, [], 1278), (5, 'overl', 0, 'head', False, [], 1278)]
+ REFLOW NewCustomer.dc.html 1536 [(2, 'overl', 0, 'head', False, [], 1534), (3, 'overl', 0, 'head', False, [], 1534), (4, 'overl', 0, 'head', False, [], 1534), (5, 'overl', 0, 'head', False, [], 1534)]
+
+## p6 fig2 Customer on a deactivated term
+  tab Work Orders 27 rgb(54, 65, 82) 500 0px rgb(54, 65, 82) countBg=None
+  tab Part Sales rgb(105, 117, 134) 500 0px rgb(105, 117, 134) countBg=None
+  tab Contacts 4 rgb(105, 117, 134) 500 0px rgb(105, 117, 134) countBg=None
+  tab Assets 17 rgb(105, 117, 134) 500 0px rgb(105, 117, 134) countBg=None
+  tab Invoices rgb(105, 117, 134) 500 0px rgb(105, 117, 134) countBg=None
+  tab Payments rgb(105, 117, 134) 500 0px rgb(105, 117, 134) countBg=None
+  table cols: Status@x306 w280 left 12px/600 rgb(105, 117, 134) | Number@x585 w245 left 12px/600 rgb(105, 117, 134) | Total Price@x830 w263 right 12px/600 rgb(105, 117, 134) | Created On@x1094 w321 right 12px/600 rgb(105, 117, 134)
+  table rows 8 rowH 48
+  badge 'In Progress' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+
+## p6 fig4 Edit Customer keeps the inactive term
+  table rows 8 rowH 48
+  badge 'In Progress' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  modal 'Edit Customer' {'x': 416, 'y': 51, 'w': 608, 'h': 1055} title 20px radius 12px
+     btn Delete bg rgb(255, 255, 255) fg rgb(54, 65, 82) border rgb(205, 213, 223) 
+     btn Save bg rgb(37, 124, 255) fg rgb(255, 255, 255) border rgba(0, 0, 0, 0) 
+     field 'Name *' = 'Gonsoulin Diesel Services Inc'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 140, 'w': 558, 'h': 40}
+     field 'Phone' = '(029) 938 - 2141'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 196, 'w': 558, 'h': 40}
+     field 'Address 1' = '62981 Kim Port'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 252, 'w': 558, 'h': 40}
+     field 'Address 2' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 308, 'w': 558, 'h': 40}
+     field 'City' = 'New Julieshire'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 364, 'w': 271, 'h': 40}
+     field 'ZIP/Postal Code' = 'R9S 3N3'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 364, 'w': 271, 'h': 40}
+     field 'State/Province' = 'British Columbia'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 420, 'w': 271, 'h': 40}
+     field 'Country' = 'Canada'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 420, 'w': 271, 'h': 40}
+     field 'Credit Terms' = 'Net 10 (Inactive)'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 476, 'w': 271, 'h': 40}
+     field 'Credit Limit' = '$ 5,000.00'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 476, 'w': 271, 'h': 40}
+     field 'Sales Representative - Service Labor' = 'Christian Wallace'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 532, 'w': 506, 'h': 40}
+     field 'Sales Representative - Service Parts' = 'Jason Garrison'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 588, 'w': 506, 'h': 40}
+     field 'Sales Representative - Part Sales' = 'Dylan Rush'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 644, 'w': 506, 'h': 40}
+     field 'Default Labor Rate' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 700, 'w': 558, 'h': 40}
+     field 'Default Shop Supplies' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 756, 'w': 263, 'h': 40}
+     field 'Min' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 720, 'y': 756, 'w': 132, 'h': 40}
+     field 'Max' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 868, 'y': 756, 'w': 132, 'h': 40}
+     field 'Notes' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 812, 'w': 558, 'h': 92}
+     field 'Website' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 920, 'w': 558, 'h': 40}
+     field 'IBS' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 976, 'w': 558, 'h': 40}
+
+## p6 fig5 This customer's picker
+  table rows 8 rowH 48
+  badge 'In Progress' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Default' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=Due on Receipt
+  menu {'x': 441, 'y': 14, 'w': 271, 'h': 462} seps 0 [('COD', '', '', '', 'rgb(54, 65, 82)'), ('Due on Receipt Default', '', '', '', 'rgb(54, 65, 82)'), ('Net 7', '', '', '', 'rgb(54, 65, 82)'), ('Net 15', '', '', '', 'rgb(54, 65, 82)'), ('Net 20', '', '', '', 'rgb(54, 65, 82)'), ('Net 30', '', '', '', 'rgb(54, 65, 82)'), ('Net 45', '', '', '', 'rgb(54, 65, 82)'), ('Net 60', '', '', '', 'rgb(54, 65, 82)'), ('Net 90', '', '', '', 'rgb(54, 65, 82)')]
+  modal 'Edit Customer' {'x': 416, 'y': 51, 'w': 608, 'h': 1055} title 20px radius 12px
+     btn Delete bg rgb(255, 255, 255) fg rgb(54, 65, 82) border rgb(205, 213, 223) 
+     btn Save bg rgb(37, 124, 255) fg rgb(255, 255, 255) border rgba(0, 0, 0, 0) 
+     field 'Name *' = 'Gonsoulin Diesel Services Inc'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 140, 'w': 558, 'h': 40}
+     field 'Phone' = '(029) 938 - 2141'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 196, 'w': 558, 'h': 40}
+     field 'Address 1' = '62981 Kim Port'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 252, 'w': 558, 'h': 40}
+     field 'Address 2' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 308, 'w': 558, 'h': 40}
+     field 'City' = 'New Julieshire'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 364, 'w': 271, 'h': 40}
+     field 'ZIP/Postal Code' = 'R9S 3N3'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 364, 'w': 271, 'h': 40}
+     field 'State/Province' = 'British Columbia'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 420, 'w': 271, 'h': 40}
+     field 'Country' = 'Canada'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 420, 'w': 271, 'h': 40}
+     field 'Credit Terms' = 'Net 10 (Inactive)'  border rgb(37, 124, 255) bg rgb(255, 255, 255) {'x': 441, 'y': 476, 'w': 271, 'h': 40}
+     field 'Credit Limit' = '$ 5,000.00'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 476, 'w': 271, 'h': 40}
+     field 'Sales Representative - Service Labor' = 'Christian Wallace'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 532, 'w': 506, 'h': 40}
+     field 'Sales Representative - Service Parts' = 'Jason Garrison'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 588, 'w': 506, 'h': 40}
+     field 'Sales Representative - Part Sales' = 'Dylan Rush'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 644, 'w': 506, 'h': 40}
+     field 'Default Labor Rate' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 700, 'w': 558, 'h': 40}
+     field 'Default Shop Supplies' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 756, 'w': 263, 'h': 40}
+     field 'Min' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 720, 'y': 756, 'w': 132, 'h': 40}
+     field 'Max' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 868, 'y': 756, 'w': 132, 'h': 40}
+     field 'Notes' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 812, 'w': 558, 'h': 92}
+     field 'Website' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 920, 'w': 558, 'h': 40}
+     field 'IBS' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 976, 'w': 558, 'h': 40}
+
+## p6 fig6 Edit Customer: COD or Credit Hold locks the limit
+  table rows 8 rowH 48
+  badge 'In Progress' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  tooltip overlapping host {'x': 548, 'y': 520, 'w': 572, 'h': 32} 14px r 4px bg rgba(97, 97, 97, 0.92) | host= COD and Credit Hold customers  | COD and Credit Hold customers can't charge to account, so they have no credit limit.
+  modal 'Edit Customer' {'x': 416, 'y': 51, 'w': 608, 'h': 1055} title 20px radius 12px
+     btn Delete bg rgb(255, 255, 255) fg rgb(54, 65, 82) border rgb(205, 213, 223) 
+     btn Save bg rgb(37, 124, 255) fg rgb(255, 255, 255) border rgba(0, 0, 0, 0) 
+     field 'Name *' = 'Gonsoulin Diesel Services Inc'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 140, 'w': 558, 'h': 40}
+     field 'Phone' = '(029) 938 - 2141'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 196, 'w': 558, 'h': 40}
+     field 'Address 1' = '62981 Kim Port'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 252, 'w': 558, 'h': 40}
+     field 'Address 2' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 308, 'w': 558, 'h': 40}
+     field 'City' = 'New Julieshire'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 364, 'w': 271, 'h': 40}
+     field 'ZIP/Postal Code' = 'R9S 3N3'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 364, 'w': 271, 'h': 40}
+     field 'State/Province' = 'British Columbia'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 420, 'w': 271, 'h': 40}
+     field 'Country' = 'Canada'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 420, 'w': 271, 'h': 40}
+     field 'Credit Terms' = 'COD'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 476, 'w': 271, 'h': 40}
+     field 'Credit Limit' = '$ 0.00' DISABLED border rgb(227, 232, 239) bg rgb(238, 242, 246) {'x': 728, 'y': 476, 'w': 271, 'h': 40}
+     field 'Sales Representative - Service Labor' = 'Christian Wallace'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 532, 'w': 506, 'h': 40}
+     field 'Sales Representative - Service Parts' = 'Jason Garrison'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 588, 'w': 506, 'h': 40}
+     field 'Sales Representative - Part Sales' = 'Dylan Rush'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 644, 'w': 506, 'h': 40}
+     field 'Default Labor Rate' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 700, 'w': 558, 'h': 40}
+     field 'Default Shop Supplies' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 756, 'w': 263, 'h': 40}
+     field 'Min' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 720, 'y': 756, 'w': 132, 'h': 40}
+     field 'Max' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 868, 'y': 756, 'w': 132, 'h': 40}
+     field 'Notes' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 812, 'w': 558, 'h': 92}
+     field 'Website' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 920, 'w': 558, 'h': 40}
+     field 'IBS' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 976, 'w': 558, 'h': 40}
+
+## p6 fig7 Any other customer's picker
+  table rows 8 rowH 48
+  badge 'In Progress' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Default' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=Due on Receipt
+  menu {'x': 441, 'y': 14, 'w': 271, 'h': 462} seps 0 [('COD', '', '', '', 'rgb(54, 65, 82)'), ('Due on Receipt Default', '', '', '', 'rgb(54, 65, 82)'), ('Net 7', '', '', '', 'rgb(54, 65, 82)'), ('Net 15', '', '', '', 'rgb(54, 65, 82)'), ('Net 20', '', '', '', 'rgb(54, 65, 82)'), ('Net 30', '', '', 'ACT', 'rgb(23, 92, 211)'), ('Net 45', '', '', '', 'rgb(54, 65, 82)'), ('Net 60', '', '', '', 'rgb(54, 65, 82)'), ('Net 90', '', '', '', 'rgb(54, 65, 82)')]
+  modal 'Edit Customer' {'x': 416, 'y': 51, 'w': 608, 'h': 1055} title 20px radius 12px
+     btn Delete bg rgb(255, 255, 255) fg rgb(54, 65, 82) border rgb(205, 213, 223) 
+     btn Save bg rgb(37, 124, 255) fg rgb(255, 255, 255) border rgba(0, 0, 0, 0) 
+     field 'Name *' = 'Gonsoulin Diesel Services Inc'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 140, 'w': 558, 'h': 40}
+     field 'Phone' = '(029) 938 - 2141'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 196, 'w': 558, 'h': 40}
+     field 'Address 1' = '62981 Kim Port'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 252, 'w': 558, 'h': 40}
+     field 'Address 2' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 308, 'w': 558, 'h': 40}
+     field 'City' = 'New Julieshire'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 364, 'w': 271, 'h': 40}
+     field 'ZIP/Postal Code' = 'R9S 3N3'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 364, 'w': 271, 'h': 40}
+     field 'State/Province' = 'British Columbia'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 420, 'w': 271, 'h': 40}
+     field 'Country' = 'Canada'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 420, 'w': 271, 'h': 40}
+     field 'Credit Terms' = 'Net 30'  border rgb(37, 124, 255) bg rgb(255, 255, 255) {'x': 441, 'y': 476, 'w': 271, 'h': 40}
+     field 'Credit Limit' = '$ 5,000.00'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 476, 'w': 271, 'h': 40}
+     field 'Sales Representative - Service Labor' = 'Christian Wallace'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 532, 'w': 506, 'h': 40}
+     field 'Sales Representative - Service Parts' = 'Jason Garrison'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 588, 'w': 506, 'h': 40}
+     field 'Sales Representative - Part Sales' = 'Dylan Rush'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 644, 'w': 506, 'h': 40}
+     field 'Default Labor Rate' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 700, 'w': 558, 'h': 40}
+     field 'Default Shop Supplies' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 756, 'w': 263, 'h': 40}
+     field 'Min' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 720, 'y': 756, 'w': 132, 'h': 40}
+     field 'Max' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 868, 'y': 756, 'w': 132, 'h': 40}
+     field 'Notes' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 812, 'w': 558, 'h': 92}
+     field 'Website' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 920, 'w': 558, 'h': 40}
+     field 'IBS' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 976, 'w': 558, 'h': 40}
+ REFLOW Inactive.dc.html 1280 [(2, 'overl', 0, 'head', False, [], 1278), (4, 'overl', 0, 'head', False, [], 1278), (5, 'overl', 0, 'head', False, [], 1278), (6, 'overl', 0, 'head', False, [], 1278), (7, 'overl', 0, 'head', False, [], 1278)]
+ REFLOW Inactive.dc.html 1536 [(2, 'overl', 0, 'head', False, [], 1534), (4, 'overl', 0, 'head', False, [], 1534), (5, 'overl', 0, 'head', False, [], 1534), (6, 'overl', 0, 'head', False, [], 1534), (7, 'overl', 0, 'head', False, [], 1534)]
+
+## p7 fig2 New Vendor: starts on COD, picker with your terms
+  menu {'x': 345, 'y': 38, 'w': 367, 'h': 462} seps 0 [('check COD', '', '', 'ACT', 'rgb(23, 92, 211)'), ('Due on Receipt', '', '', '', 'rgb(54, 65, 82)'), ('Net 7', '', '', '', 'rgb(54, 65, 82)'), ('Net 10', '', '', '', 'rgb(54, 65, 82)'), ('Net 15', '', '', '', 'rgb(54, 65, 82)'), ('Net 20', '', '', '', 'rgb(54, 65, 82)'), ('Net 30', '', '', '', 'rgb(54, 65, 82)'), ('Net 45', '', '', '', 'rgb(54, 65, 82)'), ('Net 60', '', '', '', 'rgb(54, 65, 82)')]
+  modal 'New Vendor' {'x': 320, 'y': 75, 'w': 800, 'h': 775} title 20px radius 12px
+     btn Save & Close bg rgb(37, 124, 255) fg rgb(255, 255, 255) border rgba(0, 0, 0, 0) 
+     field 'Name *' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 164, 'w': 750, 'h': 40}
+     field 'Address 1' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 220, 'w': 750, 'h': 40}
+     field 'Address 2' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 276, 'w': 750, 'h': 40}
+     field 'City' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 332, 'w': 367, 'h': 40}
+     field 'ZIP/Postal Code' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 332, 'w': 367, 'h': 40}
+     field 'Telephone' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 388, 'w': 367, 'h': 40}
+     field 'Email' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 388, 'w': 367, 'h': 40}
+     field 'State/Province' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 444, 'w': 367, 'h': 40}
+     field 'Country' = 'Canada'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 444, 'w': 367, 'h': 40}
+     field 'Credit Terms' = 'COD'  border rgb(37, 124, 255) bg rgb(255, 255, 255) {'x': 345, 'y': 500, 'w': 367, 'h': 40}
+     field 'Credit Limit' = '$ 0.00'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 500, 'w': 367, 'h': 40}
+     field 'Taxes' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 556, 'w': 750, 'h': 40}
+     field 'Notes' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 612, 'w': 750, 'h': 92}
+     field 'Website' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 720, 'w': 750, 'h': 40}
+
+## p7 fig4 Edit Vendor: the picker with your terms
+  menu {'x': 345, 'y': 38, 'w': 367, 'h': 462} seps 0 [('COD', '', '', '', 'rgb(54, 65, 82)'), ('Due on Receipt', '', '', '', 'rgb(54, 65, 82)'), ('Net 7', '', '', '', 'rgb(54, 65, 82)'), ('Net 10', '', '', '', 'rgb(54, 65, 82)'), ('Net 15', '', '', '', 'rgb(54, 65, 82)'), ('Net 20', '', '', '', 'rgb(54, 65, 82)'), ('check Net 30', '', '', 'ACT', 'rgb(23, 92, 211)'), ('Net 45', '', '', '', 'rgb(54, 65, 82)'), ('Net 60', '', '', '', 'rgb(54, 65, 82)')]
+  modal 'Edit Vendor' {'x': 320, 'y': 75, 'w': 800, 'h': 775} title 20px radius 12px
+     btn Save & Close bg rgb(37, 124, 255) fg rgb(255, 255, 255) border rgba(0, 0, 0, 0) 
+     field 'Name *' = 'Venice Gardens Truck Repair'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 164, 'w': 750, 'h': 40}
+     field 'Address 1' = '89680 Harper Mountain'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 220, 'w': 750, 'h': 40}
+     field 'Address 2' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 276, 'w': 750, 'h': 40}
+     field 'City' = 'Lake Theresa'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 332, 'w': 367, 'h': 40}
+     field 'ZIP/Postal Code' = 'N5M9V7'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 332, 'w': 367, 'h': 40}
+     field 'Telephone' = '(489) 420 - 2491'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 388, 'w': 367, 'h': 40}
+     field 'Email' = 'wendy.jenkins@staging.shopview.local'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 388, 'w': 367, 'h': 40}
+     field 'State/Province' = 'Nova Scotia'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 444, 'w': 367, 'h': 40}
+     field 'Country' = 'Canada'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 444, 'w': 367, 'h': 40}
+     field 'Credit Terms' = 'Net 30'  border rgb(37, 124, 255) bg rgb(255, 255, 255) {'x': 345, 'y': 500, 'w': 367, 'h': 40}
+     field 'Credit Limit' = '$ 0.00'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 500, 'w': 367, 'h': 40}
+     field 'Taxes' = 'GST'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 556, 'w': 750, 'h': 40}
+     field 'Notes' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 612, 'w': 750, 'h': 92}
+     field 'Website' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 720, 'w': 750, 'h': 40}
+
+## p7 fig6 Vendor on a deactivated term
+  tab Contacts 1 rgb(54, 65, 82) 500 0px rgb(54, 65, 82) countBg=None
+  tab Unpaid Invoices rgb(105, 117, 134) 500 0px rgb(105, 117, 134) countBg=None
+  table cols: First Name@x280 w142 left 12px/600 rgb(105, 117, 134) | Last Name@x421 w139 left 12px/600 rgb(105, 117, 134) | Title@x560 w83 left 12px/600 rgb(105, 117, 134) | Email@x643 w446 left 12px/600 rgb(105, 117, 134) | Telephone@x1089 w174 left 12px/600 rgb(105, 117, 134) | Department@x1263 w151 left 12px/600 rgb(105, 117, 134)
+  table rows 1 rowH 48
+
+## p7 fig7 Edit Vendor keeps the inactive term
+  table rows 1 rowH 48
+  menu {'x': 345, 'y': 38, 'w': 367, 'h': 462} seps 0 [('Net 20', '', '', '', 'rgb(54, 65, 82)'), ('Net 30', '', '', '', 'rgb(54, 65, 82)'), ('Net 45', '', '', '', 'rgb(54, 65, 82)'), ('Net 60', '', '', '', 'rgb(54, 65, 82)'), ('Net 90', '', '', '', 'rgb(54, 65, 82)'), ('Net 120', '', '', '', 'rgb(54, 65, 82)'), ('10th of next month', '', '', '', 'rgb(54, 65, 82)'), ('Credit Hold', '', '', '', 'rgb(54, 65, 82)'), ('check Net 10 (Inactive)', '', '', 'ACT', 'rgb(23, 92, 211)')]
+  modal 'Edit Vendor' {'x': 320, 'y': 75, 'w': 800, 'h': 775} title 20px radius 12px
+     btn Save & Close bg rgb(37, 124, 255) fg rgb(255, 255, 255) border rgba(0, 0, 0, 0) 
+     field 'Name *' = 'Venice Gardens Truck Repair'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 164, 'w': 750, 'h': 40}
+     field 'Address 1' = '89680 Harper Mountain'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 220, 'w': 750, 'h': 40}
+     field 'Address 2' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 276, 'w': 750, 'h': 40}
+     field 'City' = 'Lake Theresa'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 332, 'w': 367, 'h': 40}
+     field 'ZIP/Postal Code' = 'N5M9V7'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 332, 'w': 367, 'h': 40}
+     field 'Telephone' = '(489) 420 - 2491'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 388, 'w': 367, 'h': 40}
+     field 'Email' = 'wendy.jenkins@staging.shopview.local'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 388, 'w': 367, 'h': 40}
+     field 'State/Province' = 'Nova Scotia'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 444, 'w': 367, 'h': 40}
+     field 'Country' = 'Canada'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 444, 'w': 367, 'h': 40}
+     field 'Credit Terms' = 'Net 10 (Inactive)'  border rgb(37, 124, 255) bg rgb(255, 255, 255) {'x': 345, 'y': 500, 'w': 367, 'h': 40}
+     field 'Credit Limit' = '$ 0.00'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 500, 'w': 367, 'h': 40}
+     field 'Taxes' = 'GST'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 556, 'w': 750, 'h': 40}
+     field 'Notes' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 612, 'w': 750, 'h': 92}
+     field 'Website' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 720, 'w': 750, 'h': 40}
+
+## p7 fig8 Any other vendor's picker
+  table rows 1 rowH 48
+  menu {'x': 345, 'y': 38, 'w': 367, 'h': 462} seps 0 [('COD', '', '', '', 'rgb(54, 65, 82)'), ('Due on Receipt', '', '', '', 'rgb(54, 65, 82)'), ('Net 7', '', '', '', 'rgb(54, 65, 82)'), ('Net 15', '', '', '', 'rgb(54, 65, 82)'), ('Net 20', '', '', '', 'rgb(54, 65, 82)'), ('check Net 30', '', '', 'ACT', 'rgb(23, 92, 211)'), ('Net 45', '', '', '', 'rgb(54, 65, 82)'), ('Net 60', '', '', '', 'rgb(54, 65, 82)'), ('Net 90', '', '', '', 'rgb(54, 65, 82)')]
+  modal 'Edit Vendor' {'x': 320, 'y': 75, 'w': 800, 'h': 775} title 20px radius 12px
+     btn Save & Close bg rgb(37, 124, 255) fg rgb(255, 255, 255) border rgba(0, 0, 0, 0) 
+     field 'Name *' = 'Venice Gardens Truck Repair'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 164, 'w': 750, 'h': 40}
+     field 'Address 1' = '89680 Harper Mountain'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 220, 'w': 750, 'h': 40}
+     field 'Address 2' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 276, 'w': 750, 'h': 40}
+     field 'City' = 'Lake Theresa'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 332, 'w': 367, 'h': 40}
+     field 'ZIP/Postal Code' = 'N5M9V7'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 332, 'w': 367, 'h': 40}
+     field 'Telephone' = '(489) 420 - 2491'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 388, 'w': 367, 'h': 40}
+     field 'Email' = 'wendy.jenkins@staging.shopview.local'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 388, 'w': 367, 'h': 40}
+     field 'State/Province' = 'Nova Scotia'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 444, 'w': 367, 'h': 40}
+     field 'Country' = 'Canada'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 444, 'w': 367, 'h': 40}
+     field 'Credit Terms' = 'Net 30'  border rgb(37, 124, 255) bg rgb(255, 255, 255) {'x': 345, 'y': 500, 'w': 367, 'h': 40}
+     field 'Credit Limit' = '$ 0.00'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 728, 'y': 500, 'w': 367, 'h': 40}
+     field 'Taxes' = 'GST'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 556, 'w': 750, 'h': 40}
+     field 'Notes' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 612, 'w': 750, 'h': 92}
+     field 'Website' = ''  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 345, 'y': 720, 'w': 750, 'h': 40}
+
+## p7 fig10 Vendor on 10th of next month: Oct 5, due Nov 10
+  table cols: Description@x280 w432 left 12px/600 rgb(105, 117, 134) | Part Number@x712 w131 left 12px/600 rgb(105, 117, 134) | Category@x842 w152 left 12px/600 rgb(105, 117, 134) | Cost@x994 w132 right 12px/600 rgb(105, 117, 134) | Quantity Delivered@x1126 w176 right 12px/600 rgb(105, 117, 134) | Total Cost@x1302 w113 right 12px/600 rgb(105, 117, 134)
+  table rows 4 rowH 48
+
+## p7 fig11 Vendor on Net 10: Oct 5, due Oct 15
+  table rows 4 rowH 48
+ REFLOW Vendor.dc.html 1280 [(2, 'overl', 0, 'head', False, [], 1278), (4, 'overl', 0, 'head', False, [], 1278), (6, 'overl', 0, 'head', False, [], 1278), (7, 'overl', 0, 'head', False, [], 1278), (8, 'overl', 0, 'head', False, [], 1278), (10, 'overl', 0, 'head', False, [], 1278), (11, 'overl', 0, 'head', False, [], 1278)]
+ REFLOW Vendor.dc.html 1536 [(2, 'overl', 0, 'head', False, [], 1534), (4, 'overl', 0, 'head', False, [], 1534), (6, 'overl', 0, 'head', False, [], 1534), (7, 'overl', 0, 'head', False, [], 1534), (8, 'overl', 0, 'head', False, [], 1534), (10, 'overl', 0, 'head', False, [], 1534), (11, 'overl', 0, 'head', False, [], 1534)]
+
+## p8 fig2 COD customer, $0 limit, owes $1,200: no warning
+  table rows 8 rowH 48
+  badge 'In Progress' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  modal 'New Work Order' {'x': 416, 'y': 427, 'w': 608, 'h': 311} title 20px radius 12px
+     btn Save bg rgb(37, 124, 255) fg rgb(255, 255, 255) border rgba(0, 0, 0, 0) 
+     field 'Customer' = 'Gonsoulin Diesel Services Inc'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 516, 'w': 505, 'h': 40}
+     field 'Asset' = '2019 Kenworth T880'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 572, 'w': 505, 'h': 40}
+
+## p8 fig3 Still warns: limit above $0 exceeded
+  table rows 8 rowH 48
+  badge 'In Progress' bg=rgb(233, 245, 255) fg=rgb(23, 92, 211) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  badge 'Paid' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+  modal 'New Work Order' {'x': 416, 'y': 427, 'w': 608, 'h': 311} title 20px radius 12px
+     btn Save bg rgb(37, 124, 255) fg rgb(255, 255, 255) border rgba(0, 0, 0, 0) 
+     field 'Customer' = 'Gonsoulin Diesel Services Inc'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 516, 'w': 505, 'h': 40}
+     field 'Asset' = '2019 Kenworth T880'  border rgb(205, 213, 223) bg rgb(255, 255, 255) {'x': 441, 'y': 572, 'w': 505, 'h': 40}
+  modal 'Confirmation' {'x': 416, 'y': 473, 'w': 608, 'h': 219} title 20px radius 8px
+     btn Create bg rgb(240, 68, 56) fg rgb(255, 255, 255) border rgba(0, 0, 0, 0) 
+     btn Cancel bg rgb(255, 255, 255) fg rgb(54, 65, 82) border rgb(205, 213, 223) 
+ REFLOW OverCredit.dc.html 1280 [(2, 'overl', 0, 'head', False, [], 1278), (3, 'overl', 0, 'head', False, [], 1278)]
+ REFLOW OverCredit.dc.html 1536 [(2, 'overl', 0, 'head', False, [], 1534), (3, 'overl', 0, 'head', False, [], 1534)]
+
+## p9 fig2 10th of next month: invoice Oct 5, due Nov 10
+  tab Lines 4 rgb(105, 117, 134) 500 0px rgb(105, 117, 134) countBg=None
+  tab Parts 2 rgb(105, 117, 134) 500 0px rgb(105, 117, 134) countBg=None
+  tab Notes rgb(105, 117, 134) 500 0px rgb(105, 117, 134) countBg=None
+  tab Stats rgb(105, 117, 134) 500 0px rgb(105, 117, 134) countBg=None
+  tab Finance rgb(54, 65, 82) 500 0px rgb(54, 65, 82) countBg=None
+  badge 'Invoiced' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+
+## p9 fig3 Invoice Oct 28: still due Nov 10
+  badge 'Invoiced' bg=rgb(237, 252, 242) fg=rgb(8, 116, 67) h=22 after=None
+ REFLOW Invoice.dc.html 1280 [(2, 'overl', 0, 'head', False, [], 1278), (3, 'overl', 0, 'head', False, [], 1278)]
+ REFLOW Invoice.dc.html 1536 [(2, 'overl', 0, 'head', False, [], 1534), (3, 'overl', 0, 'head', False, [], 1534)]

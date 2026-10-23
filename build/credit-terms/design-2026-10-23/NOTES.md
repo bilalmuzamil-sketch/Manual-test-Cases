@@ -47,3 +47,13 @@ Running notes of the design drive. Anything that did not render, could not be do
 - Viewer runtime (app.js, app.css, dc-runtime.js, fast-edit-worker.js, viewer fonts) was not downloaded: recorded as "viewer runtime,
   not design content" (read in full for the SSR design on 22 Oct 2026, build/splitting-sales-reps/design-drive-2026-10-19/viewer-code/).
 - The container restarted once mid-pass (23 Oct); nothing on disk was lost and no background process was running.
+
+## Gate status at the end of the pass (23 Oct 2026)
+- Text inventory: 962 texts, 0 unclassified (DATA 335, PRD-MATCH 218, OUT-OF-SCOPE 341, LOOK-ONLY 61, SPEC-CONFLICT 7).
+- Visual inventory: 70 rows (51 screen/state + 19 design-library sentences), 0 unclassified.
+- spec_to_design_check.py: 21 PRD phrases not literally in the design, all with an outcome in the register (exit 0). Run on a copy of the
+  PRD with pandoc's `\$` escapes removed (render/prd-v3-unescaped.md) and with the screenshots' transcribed words (render/shots-text.txt);
+  7 of its 21 rows are the checker reading the text between two quotes, recorded as such.
+- Register: 10 hand differences (CT-D01 … CT-D10) + 15 not-shown states (CT-N01 … CT-N15). **5 questions drafted, 0 sent** (CT-D01 … CT-D05):
+  the §6d line 4 and the Rule 126 "unsent = 0" gate stay open until the QA lead sends them.
+- Not done by me (outside this brief): no cases written (round 2), nothing committed, nothing sent.

@@ -1,0 +1,2060 @@
+{
+ "made": "2026-10-23",
+ "prd": "PRD v3 (Confluence 963346440)",
+ "design": "https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf (1792722751-b285)",
+ "summary": {
+  "requirements": 211,
+  "by_verdict": {
+   "SHOWN": 84,
+   "NOT SHOWN": 38,
+   "DIFFERENT": 5,
+   "NO SCREEN": 84
+  },
+  "section8_rows": 52,
+  "section8_by_verdict": {
+   "NOT SHOWN": 22,
+   "DIFFERENT": 2,
+   "SHOWN": 28
+  },
+  "tool_rows": 21,
+  "tool_open_after_register": 0,
+  "differences": [
+   "CT-D01",
+   "CT-D02",
+   "CT-D03",
+   "CT-D04",
+   "CT-D05",
+   "CT-D06",
+   "CT-D07",
+   "CT-D08",
+   "CT-D09",
+   "CT-D10"
+  ],
+  "unsent_questions": [
+   "CT-D01",
+   "CT-D02",
+   "CT-D03",
+   "CT-D04",
+   "CT-D05"
+  ]
+ },
+ "by_hand": [
+  {
+   "code": "S1-R1",
+   "prd": "Under Settings, in the Finance group, a \"Credit Terms\" item appears directly below \"Payment Methods\". Selecting it opens the Credit Terms page.",
+   "verdict": "SHOWN",
+   "where": "p1 all figs: Finance > Payment Methods > Credit Terms",
+   "design_case": "DL-01"
+  },
+  {
+   "code": "S1-R2",
+   "prd": "The page header shows the title \"Credit Terms\" and, top right, a primary \"New Credit Term\" button (Story 3: Create or edit a credit term) with a \"⋯\" page menu b",
+   "verdict": "SHOWN",
+   "where": "p1 fig 1: title, New Credit Term, ⋯",
+   "design_case": "DL-01"
+  },
+  {
+   "code": "S1-R3",
+   "prd": "Below the header are two tabs, \"Active\" and \"Inactive\", each followed by a count of the terms in it. The page opens on Active.",
+   "verdict": "SHOWN",
+   "where": "p1 fig 1 (Active 13 / Inactive 2), p4",
+   "design_case": "DL-04"
+  },
+  {
+   "code": "S1-R4",
+   "prd": "Each tab shows one table with the columns Name, Due, Customers, Vendors, and an unlabeled actions column holding the row's \"⋯\" menu (Story 2: Row menu actions).",
+   "verdict": "SHOWN",
+   "where": "p1 fig 1; widths equal on p4 (measured 347/417/139/139/116)",
+   "design_case": "DL-01, DL-09"
+  },
+  {
+   "code": "S1-R5",
+   "prd": "Rows are listed in this order on both tabs: COD; Due on Receipt; every Net term (standard and the shop's own) by number of days, lowest first; every \"day of the",
+   "verdict": "SHOWN",
+   "where": "p1 fig 1 order; build captures (Net 2 / Net 5 tie A to Z)",
+   "design_case": "DL-01"
+  },
+  {
+   "code": "S1-R6",
+   "prd": "Clicking a column header sorts the table by that column, following the app-wide sorting rule: the first click sorts Name A to Z, Customers and Vendors lowest fi",
+   "verdict": "NOT SHOWN",
+   "where": "no sorted state drawn (CT-N05): app-wide sorting rule",
+   "design_case": "behaviour cases"
+  },
+  {
+   "code": "S1-R7",
+   "prd": "The Due column describes each term in words:",
+   "verdict": "SHOWN",
+   "where": "p1 fig 1 Due column; build captures (25th of the following month)",
+   "design_case": "DL-01"
+  },
+  {
+   "code": "S1-R8",
+   "prd": "COD, Due on Receipt and Credit Hold each show, after the name, an info icon and a lock icon. Hovering the info icon shows:",
+   "verdict": "DIFFERENT",
+   "where": "COD and Credit Hold words match; Due on Receipt differs (CT-D01)",
+   "design_case": "DL-02, DV-01"
+  },
+  {
+   "code": "S1-R9",
+   "prd": "Hovering the lock icon shows \"Always available.\" with the line \"COD, Due on Receipt and Credit Hold can't be deactivated.\" below it.",
+   "verdict": "SHOWN",
+   "where": "p1 fig 1 lock tooltip",
+   "design_case": "DL-02"
+  },
+  {
+   "code": "S1-R10",
+   "prd": "No other term (standard Net terms and every term the shop created) shows an info icon or a lock icon.",
+   "verdict": "SHOWN",
+   "where": "p1 fig 1",
+   "design_case": "DL-01"
+  },
+  {
+   "code": "S1-R11",
+   "prd": "The shop's default term shows a \"Default\" tag after its name (after the info and lock icons for COD and Due on Receipt). Exactly one row carries the tag.",
+   "verdict": "SHOWN",
+   "where": "p1 figs 1, 10; p4 fig 1",
+   "design_case": "DL-06"
+  },
+  {
+   "code": "S1-R12",
+   "prd": "The Customers column shows how many customers hold the term, right aligned, showing 0 when none. The Counter Sale customer is never counted. A customer with a b",
+   "verdict": "SHOWN",
+   "where": "right aligned, 0 shown; Counter Sale not counted (caption)",
+   "design_case": "DL-01"
+  },
+  {
+   "code": "S1-R13",
+   "prd": "The Vendors column shows how many vendors hold the term, right aligned, 0 when none, by the same rules as S1-R12 (a blank vendor term counts under COD).",
+   "verdict": "SHOWN",
+   "where": "as S1-R12",
+   "design_case": "DL-01"
+  },
+  {
+   "code": "S1-R14",
+   "prd": "The Active tab lists every active term; the Inactive tab lists every deactivated term, standard and the shop's own, in the same columns and order.",
+   "verdict": "SHOWN",
+   "where": "p4 figs 1-2",
+   "design_case": "DL-09"
+  },
+  {
+   "code": "S1-R15",
+   "prd": "Term names are never cut off in the table; a long name wraps onto a second line, with its icons and \"Default\" tag after it.",
+   "verdict": "SHOWN",
+   "where": "r15-long-name.png at 1440 (one line); wrapping not drawn (CT-N09)",
+   "design_case": "DL-05"
+  },
+  {
+   "code": "S1-R16",
+   "prd": "The page is organization-wide. Switching location while on the page reloads it with the same terms, counts and default.",
+   "verdict": "NO SCREEN",
+   "where": "location switch: behaviour",
+   "design_case": ""
+  },
+  {
+   "code": "S1-N1",
+   "prd": "If the user does not have the 'Settings → Finance' setting, they do not see \"Credit Terms\" under Settings, and opening the page's address directly does not show",
+   "verdict": "NOT SHOWN",
+   "where": "no board for a user without Settings → Finance",
+   "design_case": ""
+  },
+  {
+   "code": "S1-N2",
+   "prd": "If the Inactive tab has no terms, it shows the line \"No inactive terms\" in place of the table, and its count reads 0.",
+   "verdict": "DIFFERENT",
+   "where": "line drawn inside the table under the headings (CT-D02)",
+   "design_case": "DL-10, DV-02"
+  },
+  {
+   "code": "S1-N3",
+   "prd": "Every row has a \"⋯\" menu, because \"Move Customers\" appears on every row for every user who can open the page (S2-R1), greyed when it cannot be used. Credit Hold",
+   "verdict": "SHOWN",
+   "where": "every row has ⋯; COD/Credit Hold menus (r16-m-cod, p2 fig 9)",
+   "design_case": "DL-45"
+  },
+  {
+   "code": "S1-E1",
+   "prd": "If every term that can be deactivated has been deactivated, the Active tab lists COD, Due on Receipt, Credit Hold and, when the default is another term, the def",
+   "verdict": "SHOWN",
+   "where": "p4 fig 1",
+   "design_case": "DL-09"
+  },
+  {
+   "code": "S1-E2",
+   "prd": "A term held only by invoices (no customer or vendor on it today) shows 0 in both columns but still counts as in use for Story 2: Row menu actions's locks.",
+   "verdict": "NOT SHOWN",
+   "where": "no invoice-only term drawn",
+   "design_case": ""
+  },
+  {
+   "code": "S1-E3",
+   "prd": "While the list is loading, neither tab shows the \"No inactive terms\" line.",
+   "verdict": "NOT SHOWN",
+   "where": "loading not drawn (CT-N06)",
+   "design_case": ""
+  },
+  {
+   "code": "S2-R1",
+   "prd": "Each row's \"⋯\" menu shows only the items that apply to that term, in this order. An item that applies but is blocked shows greyed out and does nothing when clic",
+   "verdict": "SHOWN",
+   "where": "menus p1 figs 4-8, p2 figs 1/9, p3 fig 5: items, order, icons, greyed, red, divider; own inactive term's menu not drawn (CT-N12)",
+   "design_case": "DL-07, DL-35, DL-45 … DL-49"
+  },
+  {
+   "code": "S2-R2",
+   "prd": "\"{holders}\" names only the holder types the term has, each with its count, singular or plural: for example \"Used by 1 customer and 2 vendors\", \"Used by 12 custo",
+   "verdict": "SHOWN",
+   "where": "\"Used by 1 customer and 2 vendors\" (r16-m-inuse); invoice holders not drawn",
+   "design_case": "DL-46"
+  },
+  {
+   "code": "S2-R3",
+   "prd": "Hovering \"Deactivate\" (when not blocked) shows \"Hide from customer and vendor pickers\". Hovering \"Reactivate\" shows \"Show in pickers again\".",
+   "verdict": "SHOWN",
+   "where": "r16-m-standard, r16-m-inactive",
+   "design_case": "DL-35, DL-49"
+  },
+  {
+   "code": "S2-R4",
+   "prd": "\"Edit\" opens the \"Edit Credit Term\" window (Story 3: Create or edit a credit term) filled with the term's name, kind and days.",
+   "verdict": "SHOWN",
+   "where": "r15-edit.png",
+   "design_case": "DL-16"
+  },
+  {
+   "code": "S2-R5",
+   "prd": "\"Make Default for New Customers\" opens a confirmation titled \"Make {name} the default?\" with the message \"New customers start on {name}. Customers you already h",
+   "verdict": "SHOWN",
+   "where": "p1 fig 9 (title, message, Cancel, Make Default)",
+   "design_case": "DL-11"
+  },
+  {
+   "code": "S2-R6",
+   "prd": "On \"Make Default\", the term becomes the default, the \"Default\" tag moves to its row, and a success toast shows \"{name} is now the default\" with the line \"New cu",
+   "verdict": "SHOWN",
+   "where": "p1 fig 10",
+   "design_case": "DL-03, DL-06"
+  },
+  {
+   "code": "S2-R7",
+   "prd": "\"Deactivate\" acts at once, without a confirmation: the term moves to the Inactive tab, both tab counts update, and a success toast shows \"{name} deactivated\". E",
+   "verdict": "NOT SHOWN",
+   "where": "deactivated toast not drawn (CT-N02, PRD §2 toasts)",
+   "design_case": ""
+  },
+  {
+   "code": "S2-R8",
+   "prd": "\"Reactivate\" acts at once: the term moves back to the Active tab, the counts update, it appears in the customer and vendor pickers again, and a success toast sh",
+   "verdict": "NOT SHOWN",
+   "where": "reactivated toast not drawn (CT-N02)",
+   "design_case": ""
+  },
+  {
+   "code": "S2-R9",
+   "prd": "\"Delete Credit Term\" opens a confirmation titled \"Confirmation\" with the message \"Are you sure you want to delete this credit term?\" and the buttons \"Cancel\" an",
+   "verdict": "SHOWN",
+   "where": "r15-delete.png; deleted toast not drawn",
+   "design_case": "DL-12"
+  },
+  {
+   "code": "S2-R10",
+   "prd": "Make Default is not available on inactive terms (it is absent from their menu).",
+   "verdict": "SHOWN",
+   "where": "r16-m-inactive: no Make Default",
+   "design_case": "DL-49"
+  },
+  {
+   "code": "S2-R11",
+   "prd": "The confirm button in the Make Default and Delete confirmations is disabled while the change is saving, so a double click saves once.",
+   "verdict": "NOT SHOWN",
+   "where": "saving state not drawn (CT-N08)",
+   "design_case": ""
+  },
+  {
+   "code": "S2-R12",
+   "prd": "Every success toast that shows a term name ({name} or {term}) on the Credit Terms page, in Story 3: Create or edit a credit term and in Story 4: Move Customers ",
+   "verdict": "SHOWN",
+   "where": "r15-long-name toast wraps",
+   "design_case": "DL-05"
+  },
+  {
+   "code": "S2-N1",
+   "prd": "Standard terms never show \"Edit\" or \"Delete Credit Term\".",
+   "verdict": "SHOWN",
+   "where": "r16-m-standard",
+   "design_case": "DL-35"
+  },
+  {
+   "code": "S2-N2",
+   "prd": "COD, Due on Receipt and Credit Hold never show \"Deactivate\" (S1-R9 explains why on the lock icon).",
+   "verdict": "SHOWN",
+   "where": "r16-m-cod; p2 fig 9",
+   "design_case": "DL-45"
+  },
+  {
+   "code": "S2-N3",
+   "prd": "Credit Hold never shows \"Make Default for New Customers\".",
+   "verdict": "NOT SHOWN",
+   "where": "Credit Hold menu not drawn",
+   "design_case": ""
+  },
+  {
+   "code": "S2-N4",
+   "prd": "The current default never shows \"Make Default for New Customers\"; its \"Deactivate\" and, for a term the shop created, \"Delete Credit Term\" show blocked with the ",
+   "verdict": "SHOWN",
+   "where": "p1 fig 8",
+   "design_case": "DL-47"
+  },
+  {
+   "code": "S2-N5",
+   "prd": "A term in use shows \"Edit\" and \"Delete Credit Term\" blocked with the \"Used by ...\" reason; \"Deactivate\" stays available.",
+   "verdict": "SHOWN",
+   "where": "r16-m-inuse",
+   "design_case": "DL-46"
+  },
+  {
+   "code": "S2-N6",
+   "prd": "Clicking or pressing Enter on a blocked item does nothing and keeps the menu open.",
+   "verdict": "NO SCREEN",
+   "where": "click on a greyed item: behaviour",
+   "design_case": ""
+  },
+  {
+   "code": "S2-E1",
+   "prd": "Editing the name of an unused term that is the current default keeps it the default under its new name.",
+   "verdict": "NO SCREEN",
+   "where": "behaviour",
+   "design_case": ""
+  },
+  {
+   "code": "S2-E2",
+   "prd": "If a term becomes in use, becomes the default, or is changed by another user after the page loaded, the save is refused with the reason in S2 Error Handling, an",
+   "verdict": "NOT SHOWN",
+   "where": "error alert not drawn (CT-N03)",
+   "design_case": ""
+  },
+  {
+   "code": "S2-E3",
+   "prd": "Deactivating a standard term in use (for example Net 30 with 290 customers) is allowed; those customers keep Net 30, shown \"Net 30 (Inactive)\" on their card and",
+   "verdict": "SHOWN",
+   "where": "pattern \"Net 10 (Inactive)\" on cards (p6, p7)",
+   "design_case": "DL-26"
+  },
+  {
+   "code": "S3-R1",
+   "prd": "\"New Credit Term\" opens a window titled \"New Credit Term\"; Edit opens the same window titled \"Edit Credit Term\". The buttons are \"Cancel\" and \"Create Credit Ter",
+   "verdict": "SHOWN",
+   "where": "p3 figs 1-3, r15-edit",
+   "design_case": "DL-13, DL-16"
+  },
+  {
+   "code": "S3-R2",
+   "prd": "The window holds:",
+   "verdict": "SHOWN",
+   "where": "p3 figs 1-2 (Name, hint, two options, boxes, trailing words)",
+   "design_case": "DL-13, DL-14"
+  },
+  {
+   "code": "S3-R3",
+   "prd": "A new term opens on \"Due Net X days\" with both boxes empty and the Day box disabled. Only the chosen option's box is active; the other is disabled and empty.",
+   "verdict": "SHOWN",
+   "where": "p3 fig 1 (Day disabled, empty)",
+   "design_case": "DL-13"
+  },
+  {
+   "code": "S3-R4",
+   "prd": "Clicking the disabled box chooses its option and puts the cursor in it. Switching options empties the box being left, so only the chosen option's number is chec",
+   "verdict": "SHOWN",
+   "where": "p3 fig 2 (Days cleared and disabled)",
+   "design_case": "DL-14"
+  },
+  {
+   "code": "S3-R5",
+   "prd": "While the chosen box holds a valid number, a blue information line below the options explains the term, using today's date as the example invoice date (S3-R16):",
+   "verdict": "DIFFERENT",
+   "where": "words match exactly (Net 14 Days / 10th of next month examples); caption \"No sentence shows while a field is invalid\" differs (CT-D03)",
+   "design_case": "DL-13, DL-14, DV-03"
+  },
+  {
+   "code": "S3-R6",
+   "prd": "\"Create Credit Term\" / \"Save Changes\" stays disabled until the Name and the chosen box are both valid.",
+   "verdict": "SHOWN",
+   "where": "p3 fig 3 Create disabled",
+   "design_case": "DL-15"
+  },
+  {
+   "code": "S3-R7",
+   "prd": "On Create, the window closes, a success toast shows \"{name} created\", and the term appears on the Active tab in its S1-R5 position, with 0 customers and 0 vendo",
+   "verdict": "SHOWN",
+   "where": "r15-long-name toast \"… created\"",
+   "design_case": "DL-05"
+  },
+  {
+   "code": "S3-R8",
+   "prd": "On Save Changes, the window closes, a success toast shows \"{name} saved\", and the row shows the new name and Due text.",
+   "verdict": "NOT SHOWN",
+   "where": "saved toast not drawn (CT-N02)",
+   "design_case": ""
+  },
+  {
+   "code": "S3-R9",
+   "prd": "Validation rules and their exact messages, shown under the field:",
+   "verdict": "SHOWN",
+   "where": "p3 fig 3 (standard-term and Days messages drawn; others in caption)",
+   "design_case": "DL-15"
+  },
+  {
+   "code": "S3-R10",
+   "prd": "The Name is checked only once the user has typed in it (then each time they leave the field) or presses Create / Save. Opening the window, or clicking an option",
+   "verdict": "DIFFERENT",
+   "where": "caption \"Errors show only after a field is touched\" (CT-D04)",
+   "design_case": "DV-04"
+  },
+  {
+   "code": "S3-R11",
+   "prd": "The chosen box re-checks on every change: correcting an invalid number (for example 0 to 25 in the Day box) clears its error immediately, without leaving the bo",
+   "verdict": "NO SCREEN",
+   "where": "behaviour",
+   "design_case": ""
+  },
+  {
+   "code": "S3-R12",
+   "prd": "Leading and trailing spaces in the Name are removed, and runs of spaces become one space, before the name is saved.",
+   "verdict": "NO SCREEN",
+   "where": "behaviour",
+   "design_case": ""
+  },
+  {
+   "code": "S3-R13",
+   "prd": "Editing a term keeps its own name valid (saving \"Net 10\" unchanged on the term \"Net 10\" is not a duplicate).",
+   "verdict": "NO SCREEN",
+   "where": "behaviour",
+   "design_case": ""
+  },
+  {
+   "code": "S3-R14",
+   "prd": "\"Create Credit Term\" and \"Save Changes\" are disabled while saving, so a double click saves once.",
+   "verdict": "NOT SHOWN",
+   "where": "saving state not drawn (CT-N08)",
+   "design_case": ""
+  },
+  {
+   "code": "S3-R15",
+   "prd": "Pressing Escape or clicking outside the window does not close it, and keeps everything typed.",
+   "verdict": "NO SCREEN",
+   "where": "Escape / click outside: behaviour",
+   "design_case": ""
+  },
+  {
+   "code": "S3-R16",
+   "prd": "The example date in S3-R5 is today on the calendar of the location the user is working in; after a location switch it follows the new location.",
+   "verdict": "NO SCREEN",
+   "where": "today's date by location: behaviour",
+   "design_case": ""
+  },
+  {
+   "code": "S3-N1",
+   "prd": "If the user does not have the 'Settings → Finance' setting, they cannot reach the page and do not see \"New Credit Term\".",
+   "verdict": "NOT SHOWN",
+   "where": "no board for a user without Settings → Finance",
+   "design_case": ""
+  },
+  {
+   "code": "S3-N2",
+   "prd": "If the term is in use, standard, or inactive, Edit is not offered or is blocked (Story 2: Row menu actions), so the window cannot open in Edit mode for it.",
+   "verdict": "SHOWN",
+   "where": "greyed Edit (r16-m-inuse); none on standard (r16-m-standard)",
+   "design_case": "DL-46, DL-35"
+  },
+  {
+   "code": "S3-N3",
+   "prd": "\"Cancel\" or the close icon closes the window without saving and clears its contents; reopening \"New Credit Term\" starts empty.",
+   "verdict": "SHOWN",
+   "where": "Cancel and × drawn",
+   "design_case": "DL-13"
+  },
+  {
+   "code": "S3-E1",
+   "prd": "A name that reads like a standard term but is not one (for example \"Net 14\", \"Net 10\", \"Net 6\") is allowed. The name and the rule are independent: a term named ",
+   "verdict": "SHOWN",
+   "where": "build captures: Net 2 = 5 days, Net 6 = 25th of the following month",
+   "design_case": "DL-01"
+  },
+  {
+   "code": "S3-E2",
+   "prd": "If another user creates a term with the same name while the window is open, Create is refused with \"A term called {name} already exists.\" and the window stays o",
+   "verdict": "NOT SHOWN",
+   "where": "error alert not drawn (CT-N03)",
+   "design_case": ""
+  },
+  {
+   "code": "S4-R1",
+   "prd": "\"Move Customers\" in a term's row menu (Story 2: Row menu actions) opens a window titled \"Move Customers from {term}\".",
+   "verdict": "SHOWN",
+   "where": "p2 figs 2-4, r15-move-cod",
+   "design_case": "DL-17"
+  },
+  {
+   "code": "S4-R2",
+   "prd": "The window shows, top to bottom: a \"Search customers\" box; \"Select All\" and \"Select None\" with \"{n} selected\" on the right; a scrolling list of every customer o",
+   "verdict": "SHOWN",
+   "where": "p2 figs 2-4 (order of the parts; plural button)",
+   "design_case": "DL-17"
+  },
+  {
+   "code": "S4-R3",
+   "prd": "The list holds every customer whose term matches this term ignoring capitals and spaces. On COD it also holds customers with a blank term. The Counter Sale cust",
+   "verdict": "SHOWN",
+   "where": "caption p2 fig 2",
+   "design_case": "DL-17"
+  },
+  {
+   "code": "S4-R4",
+   "prd": "Every listed customer starts ticked.",
+   "verdict": "SHOWN",
+   "where": "p2 fig 2 all ticked",
+   "design_case": "DL-17"
+  },
+  {
+   "code": "S4-R5",
+   "prd": "Typing in the search box narrows the list to customers whose name contains the text, ignoring capitals. Pressing Enter in the search box does not move anyone. W",
+   "verdict": "NOT SHOWN",
+   "where": "search typed / no match not drawn (CT-N04)",
+   "design_case": ""
+  },
+  {
+   "code": "S4-R6",
+   "prd": "\"Select All\" ticks, and \"Select None\" unticks, every customer the search currently matches, including those not scrolled into view. Customers hidden by the sear",
+   "verdict": "NO SCREEN",
+   "where": "behaviour",
+   "design_case": ""
+  },
+  {
+   "code": "S4-R7",
+   "prd": "\"Move To\" offers every active term except the one being moved from, in the S1-R5 order. It is prefilled with the shop's default; while the default is selected, ",
+   "verdict": "SHOWN",
+   "where": "p2 fig 2 hint; fig 4 list; empty Move To not drawn (CT-N07)",
+   "design_case": "DL-17, DL-37"
+  },
+  {
+   "code": "S4-R8",
+   "prd": "\"Move {n} Customers\" is disabled while no customer is ticked or no term is chosen in \"Move To\".",
+   "verdict": "NOT SHOWN",
+   "where": "disabled button not drawn (CT-N08)",
+   "design_case": ""
+  },
+  {
+   "code": "S4-R9",
+   "prd": "On confirm, each ticked customer's credit term changes to the chosen term, the window closes, the page's Customers counts update, and a success toast shows \"{n}",
+   "verdict": "SHOWN",
+   "where": "p2 fig 5 toast",
+   "design_case": "DL-03"
+  },
+  {
+   "code": "S4-R10",
+   "prd": "When \"Move To\" is COD or Credit Hold, the window shows the line \"Their credit limit will be set to $0.\" below \"Move To\".",
+   "verdict": "SHOWN",
+   "where": "r15-move-cod",
+   "design_case": "DL-18"
+  },
+  {
+   "code": "S4-R11",
+   "prd": "Each moved customer gets a note on its Notes, authored by the user who moved it, reading \"Credit term changed from {old term} to {new term} by {user name} (Move",
+   "verdict": "NOT SHOWN",
+   "where": "customer note not drawn",
+   "design_case": ""
+  },
+  {
+   "code": "S4-R12",
+   "prd": "Each moved customer gets the new term (and, under S4-R16, a $0 credit limit) and the S4-R11 note. AccountingHub receives the same customer update an Edit Custom",
+   "verdict": "NO SCREEN",
+   "where": "back end",
+   "design_case": ""
+  },
+  {
+   "code": "S4-R13",
+   "prd": "For a term with up to 2,000 customers, the window shows its full list in under 1 second, and the list scrolls through every customer without paging.",
+   "verdict": "NO SCREEN",
+   "where": "performance",
+   "design_case": ""
+  },
+  {
+   "code": "S4-R14",
+   "prd": "When \"Move To\" is COD or Credit Hold, pressing \"Move {n} Customers\" first opens a confirmation titled \"Set {n} customers' credit limit to $0?\" (\"Set 1 customer'",
+   "verdict": "SHOWN",
+   "where": "r15-limit-confirm (title, message, Cancel, red button in its displayed form)",
+   "design_case": "DL-19"
+  },
+  {
+   "code": "S4-R15",
+   "prd": "\"Cancel\" in that confirmation returns to the Move Customers window with the search, ticks and \"Move To\" choice kept.",
+   "verdict": "SHOWN",
+   "where": "r15-limit-cancel",
+   "design_case": "DL-19"
+  },
+  {
+   "code": "S4-R16",
+   "prd": "On \"Set Limits to $0 and Move\", each moved customer's credit limit is set to $0 along with the term.",
+   "verdict": "NO SCREEN",
+   "where": "data change",
+   "design_case": ""
+  },
+  {
+   "code": "S4-R17",
+   "prd": "When \"Move To\" is any other term, no confirmation opens, and each moved customer's credit limit stays as it was.",
+   "verdict": "NO SCREEN",
+   "where": "behaviour",
+   "design_case": ""
+  },
+  {
+   "code": "S4-R18",
+   "prd": "Every field other than the credit term (and, under S4-R16, the credit limit) stays as it was on each moved customer.",
+   "verdict": "NO SCREEN",
+   "where": "data",
+   "design_case": ""
+  },
+  {
+   "code": "S4-R19",
+   "prd": "Customers not ticked, and customers on other terms, are untouched.",
+   "verdict": "NO SCREEN",
+   "where": "data",
+   "design_case": ""
+  },
+  {
+   "code": "S4-R20",
+   "prd": "When a move changes a customer's limit (a limit above $0 set to $0), that customer's note (S4-R11) ends with \"Credit limit {old limit} → $0.\" A customer whose l",
+   "verdict": "NOT SHOWN",
+   "where": "note not drawn",
+   "design_case": ""
+  },
+  {
+   "code": "S4-R21",
+   "prd": "\"Move {n} Customers\" and \"Set Limits to $0 and Move\" are disabled while the move is saving, so a double click moves once.",
+   "verdict": "NOT SHOWN",
+   "where": "saving state: the Move button behind the confirmation shows a spinner in r15-limit-confirm (NOTES.md)",
+   "design_case": ""
+  },
+  {
+   "code": "S4-R22",
+   "prd": "Pressing Escape or clicking outside the Move Customers window does not close it, and keeps the search, ticks and \"Move To\" choice. \"Cancel\" or the close icon cl",
+   "verdict": "NO SCREEN",
+   "where": "Escape / click outside: behaviour; × and Cancel drawn",
+   "design_case": "DL-17"
+  },
+  {
+   "code": "S4-R23",
+   "prd": "Customer names and term names are never cut off in the window title, the list or \"Move To\"; long names wrap.",
+   "verdict": "NOT SHOWN",
+   "where": "long names in the window not drawn (CT-N09)",
+   "design_case": ""
+  },
+  {
+   "code": "S4-R24",
+   "prd": "One move has no customer limit. For a term with more than 2,000 customers the window still lists every customer without paging; the S4-R13 one-second target app",
+   "verdict": "NO SCREEN",
+   "where": "volume",
+   "design_case": ""
+  },
+  {
+   "code": "S4-N1",
+   "prd": "If the user has 'Settings → Finance' but lacks 'Customers → Create & Edit' or 'View and Manage AP/AR Data', \"Move Customers\" shows greyed in every row menu with",
+   "verdict": "SHOWN",
+   "where": "p2 fig 9",
+   "design_case": "DL-48"
+  },
+  {
+   "code": "S4-N2",
+   "prd": "If no customer is on the term, \"Move Customers\" shows greyed with the hover text \"No customers are on this term\".",
+   "verdict": "SHOWN",
+   "where": "r16-m-cod, r16-m-unused",
+   "design_case": "DL-45, DL-07"
+  },
+  {
+   "code": "S4-N3",
+   "prd": "Inactive terms and Credit Hold are valid sources (Move Customers is how a shop empties a deactivated term). Inactive terms are never offered in \"Move To\".",
+   "verdict": "SHOWN",
+   "where": "r16-m-inactive (Move Customers on an inactive term); p2 fig 4 list without inactive terms",
+   "design_case": "DL-49, DL-37"
+  },
+  {
+   "code": "S4-E1",
+   "prd": "A customer ticked in the window whose term another user changed meanwhile is left alone and not counted in the toast.",
+   "verdict": "NO SCREEN",
+   "where": "concurrency",
+   "design_case": ""
+  },
+  {
+   "code": "S4-E2",
+   "prd": "Moving customers to Credit Hold is allowed; from then on no invoice can be created for them until their term changes (existing Credit Hold behavior).",
+   "verdict": "NO SCREEN",
+   "where": "behaviour",
+   "design_case": ""
+  },
+  {
+   "code": "S4-E3",
+   "prd": "Moving customers to COD or Credit Hold sets each moved customer's credit limit to $0 (S4-R16), whatever limit they had, and keeps the previous limit in each not",
+   "verdict": "NO SCREEN",
+   "where": "data",
+   "design_case": ""
+  },
+  {
+   "code": "S4-E4",
+   "prd": "Moving customers off a deactivated term empties it; once no customer, vendor or invoice holds a term the shop created, it can be deleted.",
+   "verdict": "NO SCREEN",
+   "where": "behaviour",
+   "design_case": ""
+  },
+  {
+   "code": "S5-R1",
+   "prd": "New Customer shows a \"Credit Terms\" dropdown and a \"Credit Limit\" field side by side, in the same place they sit on Edit Customer.",
+   "verdict": "SHOWN",
+   "where": "p5 fig 2; p6 fig 4",
+   "design_case": "DL-22, DL-27"
+  },
+  {
+   "code": "S5-R2",
+   "prd": "On New Customer, Credit Terms is prefilled with the shop's default.",
+   "verdict": "SHOWN",
+   "where": "p5 fig 2",
+   "design_case": "DL-22"
+  },
+  {
+   "code": "S5-R3",
+   "prd": "The Credit Terms dropdown on New Customer and Edit Customer lists the shop's active terms in the S1-R5 order. The default carries a \"Default\" tag after its name",
+   "verdict": "SHOWN",
+   "where": "p5 fig 3 (Default pill)",
+   "design_case": "DL-23"
+  },
+  {
+   "code": "S5-R4",
+   "prd": "When the chosen term is COD or Credit Hold, Credit Limit shows $0.00 and is disabled; hovering it shows \"COD and Credit Hold customers can't charge to account, ",
+   "verdict": "SHOWN",
+   "where": "p5 fig 4; p6 fig 6 (disabled $ 0.00 + hover text)",
+   "design_case": "DL-24, DL-40"
+  },
+  {
+   "code": "S5-R5",
+   "prd": "For any other term, Credit Limit is editable, as on Edit Customer today. Switching from COD or Credit Hold to another term leaves the limit at $0.00 until the u",
+   "verdict": "SHOWN",
+   "where": "p6 fig 4 editable limit",
+   "design_case": "DL-27"
+  },
+  {
+   "code": "S5-R6",
+   "prd": "On Save, the customer is created with the chosen term and limit.",
+   "verdict": "NO SCREEN",
+   "where": "save",
+   "design_case": ""
+  },
+  {
+   "code": "S5-R7",
+   "prd": "On Edit Customer, a customer whose term was deactivated shows it as \"{name} (Inactive)\" in the dropdown, selected, listed after the active terms.",
+   "verdict": "SHOWN",
+   "where": "p6 figs 4-5 (selected; the last row not visible in the drawing, CT-D10)",
+   "design_case": "DL-27, DL-28"
+  },
+  {
+   "code": "S5-R8",
+   "prd": "The customer card's \"Credit term\" shows \"{name} (Inactive)\" for a deactivated term. Invoices and printed documents show the plain name.",
+   "verdict": "SHOWN",
+   "where": "p6 fig 2 card; p9 Terms chip prints the plain name",
+   "design_case": "DL-26, DL-33"
+  },
+  {
+   "code": "S5-R9",
+   "prd": "Opening Edit Customer for a COD or Credit Hold customer that has a credit limit stored from before release shows $0.00, disabled; saving the customer saves $0.",
+   "verdict": "SHOWN",
+   "where": "p6 fig 6",
+   "design_case": "DL-40"
+  },
+  {
+   "code": "S5-R10",
+   "prd": "The Name field on New Customer and Edit Customer is checked only once the user has typed in it (then each time they leave it) or presses Save with no name, beca",
+   "verdict": "NOT SHOWN",
+   "where": "Name validation on customer windows not drawn",
+   "design_case": ""
+  },
+  {
+   "code": "S5-R11",
+   "prd": "A term name of up to 31 characters prints in full, without clipping, on modern and legacy invoices and estimates. Work order prints do not show the credit term.",
+   "verdict": "NOT SHOWN",
+   "where": "printed long names (PRD §2, CT-N13)",
+   "design_case": ""
+  },
+  {
+   "code": "S5-R12",
+   "prd": "The inactive term stays selected until the user picks another term.",
+   "verdict": "SHOWN",
+   "where": "p6 fig 4",
+   "design_case": "DL-27"
+  },
+  {
+   "code": "S5-R13",
+   "prd": "Once another term is picked and saved, the inactive term is no longer offered to that customer.",
+   "verdict": "NO SCREEN",
+   "where": "behaviour",
+   "design_case": ""
+  },
+  {
+   "code": "S5-R14",
+   "prd": "Term names are never cut off in the Credit Terms dropdown or on the customer card, including with \"(Inactive)\" or the \"Default\" tag; long names wrap.",
+   "verdict": "NOT SHOWN",
+   "where": "long names in dropdown/card not drawn (CT-N09)",
+   "design_case": ""
+  },
+  {
+   "code": "S5-R15",
+   "prd": "Every customer created in the app (from the Customers page, New Work Order and New Part Sale) is created in this New Customer window, so this story covers all o",
+   "verdict": "NO SCREEN",
+   "where": "scope statement",
+   "design_case": ""
+  },
+  {
+   "code": "S5-N1",
+   "prd": "If the user does not have the 'View and Manage AP/AR Data' setting, New Customer and Edit Customer show neither Credit Terms nor Credit Limit (as Edit Customer ",
+   "verdict": "SHOWN",
+   "where": "p5 fig 5",
+   "design_case": "DL-39"
+  },
+  {
+   "code": "S5-N2",
+   "prd": "Inactive terms are never offered to a customer not already on them.",
+   "verdict": "SHOWN",
+   "where": "p6 fig 7",
+   "design_case": "DL-41"
+  },
+  {
+   "code": "S5-N3",
+   "prd": "Credit Hold is offered in the dropdown (as today) but never carries the \"Default\" tag, because it can never be the default.",
+   "verdict": "NOT SHOWN",
+   "where": "Credit Hold not reached in the drawn customer lists (CT-N11)",
+   "design_case": ""
+  },
+  {
+   "code": "S5-N4",
+   "prd": "If the user does not have the 'View and Manage AP/AR Data' setting, the server ignores any term or limit sent with their save: a customer they create gets the s",
+   "verdict": "NO SCREEN",
+   "where": "server",
+   "design_case": ""
+  },
+  {
+   "code": "S5-E1",
+   "prd": "If the default changes while New Customer is open, the form keeps the term already shown; the user's Save uses what the form shows.",
+   "verdict": "NO SCREEN",
+   "where": "behaviour",
+   "design_case": ""
+  },
+  {
+   "code": "S5-E2",
+   "prd": "A customer whose stored term is text ShopView does not know (from an old import) shows that text selected in Edit Customer, after the active terms, without \"(In",
+   "verdict": "NOT SHOWN",
+   "where": "unknown-text term (PRD §2, CT-N14)",
+   "design_case": ""
+  },
+  {
+   "code": "S5-E3",
+   "prd": "If the term list has not loaded yet, the dropdown shows the twelve standard terms; the default is filled in as soon as the list arrives.",
+   "verdict": "NO SCREEN",
+   "where": "loading behaviour",
+   "design_case": ""
+  },
+  {
+   "code": "S6-R1",
+   "prd": "The Credit Terms dropdown on New Vendor and Edit Vendor lists the shop's active terms, standard and its own, in the S1-R5 order.",
+   "verdict": "SHOWN",
+   "where": "p7 figs 2, 4, 7, 8",
+   "design_case": "DL-29, DL-30"
+  },
+  {
+   "code": "S6-R2",
+   "prd": "New Vendor starts on COD, as today. The shop's default does not apply to vendors, and the vendor dropdown shows no \"Default\" tag.",
+   "verdict": "SHOWN",
+   "where": "p7 fig 2 (COD, no tag)",
+   "design_case": "DL-29"
+  },
+  {
+   "code": "S6-R3",
+   "prd": "A vendor on a deactivated term shows \"{name} (Inactive)\" on the vendor card's \"Credit term\" and selected in Edit Vendor, listed after the active terms, until so",
+   "verdict": "SHOWN",
+   "where": "p7 figs 6, 7",
+   "design_case": "DL-31, DL-42"
+  },
+  {
+   "code": "S6-R4",
+   "prd": "Vendor credit limits behave exactly as today on every term, COD and Credit Hold included: no lock, no $0 rule.",
+   "verdict": "SHOWN",
+   "where": "p7 figs 2, 4 editable $ 0.00",
+   "design_case": "DL-29"
+  },
+  {
+   "code": "S6-R5",
+   "prd": "The Name field on New Vendor and Edit Vendor is checked only once the user has typed in it (then each time they leave it) or presses Save & Close with no name, ",
+   "verdict": "NOT SHOWN",
+   "where": "vendor Name validation not drawn",
+   "design_case": ""
+  },
+  {
+   "code": "S6-R6",
+   "prd": "Term names are never cut off in the vendor Credit Terms dropdown or on the vendor card, including with \"(Inactive)\"; long names wrap.",
+   "verdict": "NOT SHOWN",
+   "where": "long names not drawn (CT-N09)",
+   "design_case": ""
+  },
+  {
+   "code": "S6-N1",
+   "prd": "If the user does not have the 'View and Manage AP/AR Data' setting, the vendor Credit Terms field stays hidden, as today.",
+   "verdict": "NOT SHOWN",
+   "where": "no board without AP/AR for vendors",
+   "design_case": ""
+  },
+  {
+   "code": "S6-N2",
+   "prd": "Inactive terms are never offered to a vendor not already on them.",
+   "verdict": "SHOWN",
+   "where": "p7 fig 8",
+   "design_case": "DL-30"
+  },
+  {
+   "code": "S6-E1",
+   "prd": "A vendor imported with a blank term starts on COD, as today; a vendor imported with a known term in any capitalization is saved in that term's correct spelling.",
+   "verdict": "NO SCREEN",
+   "where": "import",
+   "design_case": ""
+  },
+  {
+   "code": "S6-E2",
+   "prd": "Vendors on a term count toward its \"in use\" lock (Story 2: Row menu actions) and its Vendors column (Story 1: Credit Terms page and list).",
+   "verdict": "NO SCREEN",
+   "where": "counting",
+   "design_case": ""
+  },
+  {
+   "code": "S7-R1",
+   "prd": "A Net term (standard or the shop's own) is due that many days after the invoice date: an invoice dated Oct 5 on Net 30 is due Nov 4; on a shop's \"Net 10\" it is ",
+   "verdict": "SHOWN",
+   "where": "p7 fig 11 (Net 10: Oct 5 → Oct 15)",
+   "design_case": "DL-43"
+  },
+  {
+   "code": "S7-R2",
+   "prd": "A \"day of the following month\" term is always due in the month after the invoice date, whatever the day of the invoice: with day 10, an invoice dated Oct 5 and ",
+   "verdict": "SHOWN",
+   "where": "p9 figs 2-3 (Oct 5 / Oct 28 → Nov 10); p7 fig 10",
+   "design_case": "DL-33, DL-44, DL-32"
+  },
+  {
+   "code": "S7-R3",
+   "prd": "When the following month is shorter than the term's day, the due date is that month's last day: day 31 invoiced in October is due Nov 30; day 30 or 31 invoiced ",
+   "verdict": "NOT SHOWN",
+   "where": "short months only in captions",
+   "design_case": ""
+  },
+  {
+   "code": "S7-R4",
+   "prd": "An invoice dated in December on a \"day of the following month\" term is due in January of the next year (day 10, invoice Dec 15 2026, due Jan 10 2027).",
+   "verdict": "NOT SHOWN",
+   "where": "December not drawn",
+   "design_case": ""
+  },
+  {
+   "code": "S7-R5",
+   "prd": "COD, Due on Receipt and Credit Hold are due on the invoice date, as today.",
+   "verdict": "NO SCREEN",
+   "where": "dates",
+   "design_case": ""
+  },
+  {
+   "code": "S7-R6",
+   "prd": "Due dates are counted on the calendar of the location the invoice or vendor invoice belongs to, never the location of the user, API connection or import that cr",
+   "verdict": "NO SCREEN",
+   "where": "time zones",
+   "design_case": ""
+  },
+  {
+   "code": "S7-R6a",
+   "prd": "The same invoice shows the same due date to every user, whichever location they are working in. A vendor invoice created by receiving a delivery uses the delive",
+   "verdict": "NO SCREEN",
+   "where": "behaviour",
+   "design_case": ""
+  },
+  {
+   "code": "S7-R6b",
+   "prd": "When the record's location has no time zone set, the due date is counted on UTC.",
+   "verdict": "NO SCREEN",
+   "where": "behaviour",
+   "design_case": ""
+  },
+  {
+   "code": "S7-R7",
+   "prd": "An invoice keeps the term and due date it was created with. Changing the customer's term later, deactivating the term or moving the customer never changes an ex",
+   "verdict": "NO SCREEN",
+   "where": "behaviour (caption p2 fig 5)",
+   "design_case": ""
+  },
+  {
+   "code": "S7-R8",
+   "prd": "When a user changes the invoice date on an invoice (existing behavior), the due date is recalculated from the customer's term by the rules above, including the ",
+   "verdict": "NO SCREEN",
+   "where": "behaviour",
+   "design_case": ""
+  },
+  {
+   "code": "S7-R9",
+   "prd": "A vendor invoice stores no term. Its due date is calculated by the same rules from the vendor's term when the vendor invoice is created, recalculated when its i",
+   "verdict": "SHOWN",
+   "where": "p7 figs 9-11 vendor invoice due dates",
+   "design_case": "DL-32, DL-43"
+  },
+  {
+   "code": "S7-R10",
+   "prd": "A Net 30 invoice or vendor invoice whose span crosses the March or November clock change is due on the 30th calendar day after its date.",
+   "verdict": "NO SCREEN",
+   "where": "dates",
+   "design_case": ""
+  },
+  {
+   "code": "S7-R11",
+   "prd": "The Vendor Bill Export shows each vendor invoice's stored due date (S7-R9), never one recalculated from the vendor's current term; it is blank when no due date ",
+   "verdict": "NO SCREEN",
+   "where": "export",
+   "design_case": ""
+  },
+  {
+   "code": "S7-N1",
+   "prd": "A term whose text ShopView does not recognize (from an old import or the Public API) is dated exactly as today.",
+   "verdict": "NOT SHOWN",
+   "where": "unknown-text term (CT-N14)",
+   "design_case": ""
+  },
+  {
+   "code": "S7-E1",
+   "prd": "A deactivated term still dates invoices and vendor invoices for the customers and vendors that keep it.",
+   "verdict": "NO SCREEN",
+   "where": "behaviour (captions p6 fig 2, p7 fig 6)",
+   "design_case": ""
+  },
+  {
+   "code": "S7-E2",
+   "prd": "Due dates already stored on existing invoices and vendor invoices are never rewritten. A screen that recalculates a due date from the customer's term shows the ",
+   "verdict": "NO SCREEN",
+   "where": "stored data",
+   "design_case": ""
+  },
+  {
+   "code": "S7-E3",
+   "prd": "An invoice created after a reversal takes the customer's term at that moment, as today: a deactivated term the customer still holds, or the new term after a mov",
+   "verdict": "NO SCREEN",
+   "where": "behaviour",
+   "design_case": ""
+  },
+  {
+   "code": "S7-E4",
+   "prd": "If the customer on an open work order or part sale is changed, the invoice takes the new customer's term at invoicing, by the same rule. Nothing about the term ",
+   "verdict": "NO SCREEN",
+   "where": "behaviour",
+   "design_case": ""
+  },
+  {
+   "code": "S8-R1",
+   "prd": "When a record is sent to QuickBooks with a term QuickBooks does not have, ShopView first creates the term in QuickBooks under the same name, then sends the reco",
+   "verdict": "NO SCREEN",
+   "where": "Story 8 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S8-R2",
+   "prd": "A \"Due Net X days\" term is created in QuickBooks as a standard term due in X days.",
+   "verdict": "NO SCREEN",
+   "where": "Story 8 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S8-R3",
+   "prd": "A \"Due day of the following month\" term is created in QuickBooks as a date-driven term due on day X of the following month, so QuickBooks dates an invoice dated",
+   "verdict": "NO SCREEN",
+   "where": "Story 8 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S8-R4",
+   "prd": "A term already in QuickBooks under the same name is used as it is; ShopView never changes a term in QuickBooks.",
+   "verdict": "NO SCREEN",
+   "where": "Story 8 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S8-R5",
+   "prd": "Each invoice carries its own term and due date to QuickBooks, as today. A vendor invoice is sent to QuickBooks as a bill with its stored due date (S7-R9) and th",
+   "verdict": "NO SCREEN",
+   "where": "Story 8 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S8-R6",
+   "prd": "Changing a customer's term in ShopView, by Edit Customer or by Move Customers (Story 4: Move Customers), does not change the customer record in QuickBooks, exac",
+   "verdict": "NO SCREEN",
+   "where": "Story 8 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S8-R7",
+   "prd": "Deactivating, reactivating, editing or deleting a term in ShopView sends nothing to QuickBooks. A term already created in QuickBooks stays there.",
+   "verdict": "NO SCREEN",
+   "where": "Story 8 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S8-R8",
+   "prd": "AccountingHub and IBS are unchanged: both receive each invoice's or vendor invoice's due date only, never the term name, so a shop's own term names never reach ",
+   "verdict": "NO SCREEN",
+   "where": "Story 8 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S8-N1",
+   "prd": "If the QuickBooks integration is not connected, nothing is sent and Story 3: Create or edit a credit term, Story 4: Move Customers, Story 5: New Customer and Ed",
+   "verdict": "NO SCREEN",
+   "where": "Story 8 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S8-N2",
+   "prd": "A term the shop created but nobody has used on a synced record is never sent to QuickBooks.",
+   "verdict": "NO SCREEN",
+   "where": "Story 8 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S8-E1",
+   "prd": "If QuickBooks already has a term with the same name but a different rule, QuickBooks keeps its own rule for that term (S8-R4). Each invoice still carries its ow",
+   "verdict": "NO SCREEN",
+   "where": "Story 8 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S9-R1",
+   "prd": "When a user opens a new work order for a customer whose balance exceeds a credit limit above $0, and the customer is not on COD, Due on Receipt or Credit Hold, ",
+   "verdict": "DIFFERENT",
+   "where": "words and buttons match; the board redraw's Cancel is white, today's is blue (CT-D06, settled)",
+   "design_case": "DL-25, DL-34"
+  },
+  {
+   "code": "S9-R2",
+   "prd": "The \"Over limit\" badge on work orders and part sales follows the same rule as S9-R1.",
+   "verdict": "NOT SHOWN",
+   "where": "badge under the new rule not drawn; today's \"Over Limit\" (capital L) on before-invoice.png (CT-D07, CT-N10)",
+   "design_case": "DL-36"
+  },
+  {
+   "code": "S9-R3",
+   "prd": "Wording and buttons are unchanged.",
+   "verdict": "SHOWN",
+   "where": "p8 fig 3 wording",
+   "design_case": "DL-25"
+  },
+  {
+   "code": "S9-R4",
+   "prd": "Opening a part sale shows no over-credit confirmation, as today; for part sales only the 'Over limit' badge follows S9-R1.",
+   "verdict": "NO SCREEN",
+   "where": "part sales: no confirmation (caption)",
+   "design_case": ""
+  },
+  {
+   "code": "S9-N1",
+   "prd": "The warning and the badge never show when the customer's credit limit is $0 or blank.",
+   "verdict": "SHOWN",
+   "where": "p8 fig 2 (COD $0 limit: no warning); card value mismatch on fig 3 (CT-D09)",
+   "design_case": "DL-34"
+  },
+  {
+   "code": "S9-N2",
+   "prd": "The warning and the badge never show for a customer on COD, Due on Receipt or Credit Hold, whatever their limit or balance. A customer with a blank term counts ",
+   "verdict": "SHOWN",
+   "where": "p8 fig 2",
+   "design_case": "DL-34"
+  },
+  {
+   "code": "S9-E1",
+   "prd": "A customer on one of the shop's own terms is treated like a Net customer: the warning shows when their balance exceeds a limit above $0.",
+   "verdict": "NO SCREEN",
+   "where": "behaviour",
+   "design_case": ""
+  },
+  {
+   "code": "S9-E2",
+   "prd": "A customer on Credit Hold is still blocked from invoicing as today; only the Over Credit warning is removed for them.",
+   "verdict": "NO SCREEN",
+   "where": "Credit Hold warning unchanged (caption)",
+   "design_case": ""
+  },
+  {
+   "code": "S10-R1",
+   "prd": "A customer created by the contacts import with a blank credit term gets the shop's default.",
+   "verdict": "NO SCREEN",
+   "where": "Story 10 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S10-R2",
+   "prd": "A customer created through the Public API without a credit term, or with a blank one, gets the shop's default.",
+   "verdict": "NO SCREEN",
+   "where": "Story 10 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S10-R3",
+   "prd": "A credit term that matches one of the shop's terms (standard or its own) ignoring capitals and spaces is saved in that term's spelling: \"net 10\", \"NET10\" and \"N",
+   "verdict": "NO SCREEN",
+   "where": "Story 10 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S10-R4",
+   "prd": "Any other text is saved exactly as sent and dates invoices as it does today (lenient, as today).",
+   "verdict": "NO SCREEN",
+   "where": "Story 10 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S10-R5",
+   "prd": "Updating a customer's credit term through the Public API follows S10-R3 and S10-R4.",
+   "verdict": "NO SCREEN",
+   "where": "Story 10 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S10-R6",
+   "prd": "A new customer created by the contacts import on COD or Credit Hold gets a $0 credit limit, whatever limit the file holds.",
+   "verdict": "NO SCREEN",
+   "where": "Story 10 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S10-R7",
+   "prd": "The Public API reads, creates and updates a customer's credit term. It has no way to list the shop's terms or its default; an integrator sends a term name and r",
+   "verdict": "NO SCREEN",
+   "where": "Story 10 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S10-R8",
+   "prd": "A customer created or updated through the Public API, or updated by the contacts import, onto COD or Credit Hold is saved with a $0 credit limit, whatever limit",
+   "verdict": "NO SCREEN",
+   "where": "Story 10 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S10-N1",
+   "prd": "Imports and the Public API never refuse a row or a request because of its credit term.",
+   "verdict": "NO SCREEN",
+   "where": "Story 10 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S10-N2",
+   "prd": "Vendors imported with a blank term start on COD, not the default (S6-E1).",
+   "verdict": "NO SCREEN",
+   "where": "Story 10 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S10-E1",
+   "prd": "A name that matches a deactivated term is saved as that term; the customer then shows it as \"{name} (Inactive)\" (S5-R8).",
+   "verdict": "NO SCREEN",
+   "where": "Story 10 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S10-E2",
+   "prd": "Credit limits sent with an import or API customer are handled as today, except as S10-R6 and S10-R8 state. Both apply only to customers created or updated after",
+   "verdict": "NO SCREEN",
+   "where": "Story 10 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S10-E3",
+   "prd": "When an import updates an existing customer or vendor, a blank credit term cell keeps the stored term.",
+   "verdict": "NO SCREEN",
+   "where": "Story 10 has no canvas page (\"this story has no new screens\")",
+   "design_case": ""
+  },
+  {
+   "code": "S11-R1",
+   "prd": "Every organization that exists at release keeps COD as its default for new customers. Nothing changes for new customers until a user picks another default.",
+   "verdict": "NO SCREEN",
+   "where": "release",
+   "design_case": ""
+  },
+  {
+   "code": "S11-R2",
+   "prd": "No existing customer, vendor or invoice changes term, credit limit or due date at release. The Counter Sale customer stays on COD permanently.",
+   "verdict": "NO SCREEN",
+   "where": "release",
+   "design_case": ""
+  },
+  {
+   "code": "S11-R3",
+   "prd": "All twelve standard terms are active at release, and no organization has its own terms.",
+   "verdict": "NO SCREEN",
+   "where": "release (p4 fig 3 new shop: Active 12)",
+   "design_case": ""
+  },
+  {
+   "code": "S11-R4",
+   "prd": "The Credit Terms page appears under Settings → Finance for every user with 'Settings → Finance'.",
+   "verdict": "SHOWN",
+   "where": "p1 side menu",
+   "design_case": "DL-01"
+  },
+  {
+   "code": "S11-R5",
+   "prd": "New Customer now shows Credit Terms (prefilled with the default, COD for existing shops) and Credit Limit to users with 'View and Manage AP/AR Data'. Users with",
+   "verdict": "SHOWN",
+   "where": "p5 figs 2, 5",
+   "design_case": "DL-22, DL-39"
+  },
+  {
+   "code": "S11-R6",
+   "prd": "New Customer and Edit Customer no longer show \"Customer name is a required field\" as soon as the window opens and another field is clicked, which showed an erro",
+   "verdict": "NOT SHOWN",
+   "where": "old error not drawn (correct)",
+   "design_case": ""
+  },
+  {
+   "code": "S11-R7",
+   "prd": "New Vendor and Edit Vendor no longer show \"Name is a required field\" as soon as the window opens and another field is clicked, which showed an error before the ",
+   "verdict": "NOT SHOWN",
+   "where": "old error not drawn (correct)",
+   "design_case": ""
+  },
+  {
+   "code": "S11-R8",
+   "prd": "The Over Credit warning and the \"Over limit\" badge stop showing for customers with a $0 or blank credit limit and for customers on COD, Due on Receipt or Credit",
+   "verdict": "SHOWN",
+   "where": "p8 figs 2-3",
+   "design_case": "DL-34, DL-25"
+  },
+  {
+   "code": "S11-R9",
+   "prd": "Customers and vendors with a blank term are counted under COD on the Credit Terms page; their records are not changed.",
+   "verdict": "NO SCREEN",
+   "where": "counting",
+   "design_case": ""
+  },
+  {
+   "code": "S11-R10",
+   "prd": "COD behaves as today at invoicing: Create Invoice still opens the payment window, Charge Account is still hidden for COD customers, and closing the window witho",
+   "verdict": "NOT SHOWN",
+   "where": "payment window not drawn",
+   "design_case": ""
+  },
+  {
+   "code": "S11-R11",
+   "prd": "An existing COD or Credit Hold customer with a credit limit above $0 keeps that limit on release day.",
+   "verdict": "NO SCREEN",
+   "where": "data",
+   "design_case": ""
+  },
+  {
+   "code": "S11-R12",
+   "prd": "An organization created after release starts with Due on Receipt as its default.",
+   "verdict": "SHOWN",
+   "where": "p1 fig 1 Due on Receipt default (new-shop default); p4 fig 3",
+   "design_case": "DL-06"
+  },
+  {
+   "code": "S11-R13",
+   "prd": "Due dates ShopView calculates after release use the calendar of the record's own location (S7-R6); due dates stored on existing invoices and vendor invoices are",
+   "verdict": "NO SCREEN",
+   "where": "dates",
+   "design_case": ""
+  },
+  {
+   "code": "S11-R14",
+   "prd": "Screens that recalculate a due date from the term rather than showing a stored due date (the A/R dashboard for records with no stored due date, and credit memo ",
+   "verdict": "NO SCREEN",
+   "where": "dates",
+   "design_case": ""
+  },
+  {
+   "code": "S11-R16",
+   "prd": "The first time such a customer (S11-R11) is edited, Edit Customer shows $0.00, disabled, and saving saves $0 (S5-R9).",
+   "verdict": "SHOWN",
+   "where": "p6 fig 6",
+   "design_case": "DL-40"
+  },
+  {
+   "code": "S11-R17",
+   "prd": "If such a customer is moved to COD or Credit Hold with Move Customers, its limit becomes $0 at that moment, after the S4-R14 confirmation, and its previous limi",
+   "verdict": "NO SCREEN",
+   "where": "behaviour",
+   "design_case": ""
+  },
+  {
+   "code": "S11-N1",
+   "prd": "Nothing is moved, re-dated or re-sent to QuickBooks at release.",
+   "verdict": "NO SCREEN",
+   "where": "release",
+   "design_case": ""
+  },
+  {
+   "code": "S11-N2",
+   "prd": "Users without 'Settings → Finance' see no new Settings item; users without 'View and Manage AP/AR Data' see no new customer fields.",
+   "verdict": "NOT SHOWN",
+   "where": "no board for users without the permissions except p5 fig 5",
+   "design_case": "DL-39"
+  },
+  {
+   "code": "S11-E1",
+   "prd": "An organization with no settings record yet behaves as COD (the pre-release behavior) until a default is picked.",
+   "verdict": "NO SCREEN",
+   "where": "release",
+   "design_case": ""
+  },
+  {
+   "code": "S11-E2",
+   "prd": "Customers whose stored term has an odd spelling (for example \"NET 30\") keep that stored text; they count under the matching term on the page and show their stor",
+   "verdict": "NOT SHOWN",
+   "where": "odd spelling not drawn (CT-N14)",
+   "design_case": ""
+  },
+  {
+   "code": "S12-R1",
+   "prd": "The Credit Terms page header has a \"⋯\" page menu top right, beside \"New Credit Term\", with one item: \"Audit Log\".",
+   "verdict": "SHOWN",
+   "where": "r16-m-page",
+   "design_case": "DL-08"
+  },
+  {
+   "code": "S12-R2",
+   "prd": "\"Audit Log\" opens a window titled \"Credit Terms Log\" with the same layout as the Work Order Log and the Part Sale Log: a search box, then a table with the colum",
+   "verdict": "SHOWN",
+   "where": "r16-log",
+   "design_case": "DL-20"
+  },
+  {
+   "code": "S12-R3",
+   "prd": "Each change saved after release adds one row. There is no Line column. \"{rule}\" is the term's Due column text (S1-R7). The Event and Details columns read:",
+   "verdict": "SHOWN",
+   "where": "r16-log: created, edited (two lines), deactivated, reactivated, deleted; Default changed and Customers moved rows not drawn",
+   "design_case": "DL-20"
+  },
+  {
+   "code": "S12-R4",
+   "prd": "The User column shows the name of the user who made the change; Date and Time show when, on the calendar of the location the user is working in.",
+   "verdict": "SHOWN",
+   "where": "r16-log (Admin ShopView, Oct 22, 2026, 09:35 AM)",
+   "design_case": "DL-20"
+  },
+  {
+   "code": "S12-R5",
+   "prd": "Typing in the search box narrows the table to rows whose Event, User or Details text contains the search text, ignoring capitals.",
+   "verdict": "NOT SHOWN",
+   "where": "typed search not drawn (CT-N15)",
+   "design_case": ""
+  },
+  {
+   "code": "S12-R6",
+   "prd": "The log is organization-wide (one log for all locations), kept indefinitely, and cannot be edited or deleted by anyone.",
+   "verdict": "NO SCREEN",
+   "where": "data",
+   "design_case": ""
+  },
+  {
+   "code": "S12-R7",
+   "prd": "A row is written only when a change is saved. A refused or canceled action (the error handling of Stories 2, 3 and 4, or Cancel) writes nothing, and neither doe",
+   "verdict": "NO SCREEN",
+   "where": "behaviour (caption p2 fig 8: nothing logged)",
+   "design_case": ""
+  },
+  {
+   "code": "S12-R8",
+   "prd": "Event, User and Details text is never cut off; long names wrap.",
+   "verdict": "SHOWN",
+   "where": "r16-log two-line details",
+   "design_case": "DL-20"
+  },
+  {
+   "code": "S12-N1",
+   "prd": "If the user does not have the 'Settings → Finance' setting, they cannot reach the page or its \"⋯\" menu, and a request for the log is refused by the server.",
+   "verdict": "NOT SHOWN",
+   "where": "no board",
+   "design_case": ""
+  },
+  {
+   "code": "S12-N2",
+   "prd": "Changes made before release are not in the log; it starts empty on release day.",
+   "verdict": "NO SCREEN",
+   "where": "release",
+   "design_case": ""
+  },
+  {
+   "code": "S12-N3",
+   "prd": "Changes made outside the Credit Terms page (a customer's or vendor's term or credit limit changed in New Customer, Edit Customer, Edit Vendor, by import or by t",
+   "verdict": "NO SCREEN",
+   "where": "scope",
+   "design_case": ""
+  },
+  {
+   "code": "S12-E1",
+   "prd": "When the log has no rows, the table shows the log's standard empty state, \"No history here. Yet.\"",
+   "verdict": "SHOWN",
+   "where": "r15-log-empty",
+   "design_case": "DL-21"
+  },
+  {
+   "code": "S12-E2",
+   "prd": "A deleted term's earlier rows (created, edited, deactivated) stay in the log under its name.",
+   "verdict": "NO SCREEN",
+   "where": "data",
+   "design_case": ""
+  },
+  {
+   "code": "S12-E3",
+   "prd": "A move where some ticked customers had already left the term (S4-E1) logs the number actually moved.",
+   "verdict": "NO SCREEN",
+   "where": "data",
+   "design_case": ""
+  }
+ ],
+ "section8": [
+  {
+   "trigger": "Credit Terms list fails to load",
+   "message": "\"Something went wrong loading credit terms. Please try again.\"",
+   "behavior": "Inline line above the tabs, stays until a reload succeeds",
+   "verdict": "NOT SHOWN",
+   "note": "not drawn (PRD §2: toasts, error alerts and the no-match line follow the PRD text)"
+  },
+  {
+   "trigger": "Inactive tab is empty",
+   "message": "\"No inactive terms\"",
+   "behavior": "Inline line in place of the table",
+   "verdict": "DIFFERENT",
+   "note": "CT-D02"
+  },
+  {
+   "trigger": "Hover the lock on COD, Due on Receipt or Credit Hold",
+   "message": "\"Always available.\" / \"COD, Due on Receipt and Credit Hold can't be deactivated.\"",
+   "behavior": "Tooltip on hover",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Hover the info icon on COD",
+   "message": "\"Cash on delivery. COD customers can't charge to account, so payment is taken when the invoice is created.\"",
+   "behavior": "Tooltip on hover",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Hover the info icon on Due on Receipt",
+   "message": "\"Payment is due on the invoice date. You can charge the invoice to the customer's account instead of taking payment.\"",
+   "behavior": "Tooltip on hover",
+   "verdict": "DIFFERENT",
+   "note": "CT-D01"
+  },
+  {
+   "trigger": "Hover the info icon on Credit Hold",
+   "message": "\"No invoices can be created for a customer on Credit Hold until their credit term is changed.\"",
+   "behavior": "Tooltip on hover",
+   "verdict": "SHOWN",
+   "note": "the words are the icon's hover text on every board and in the p1 fig 2 caption; the tooltip is not drawn open"
+  },
+  {
+   "trigger": "Hover a blocked Edit or Delete Credit Term on a term in use",
+   "message": "\"Used by {holders}\" / \"Deactivate it instead to take it out of the pickers.\"",
+   "behavior": "Tooltip on hover, item greyed",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Hover a blocked Deactivate or Delete Credit Term on the default",
+   "message": "\"This is your default for new customers\" / \"Pick another default first.\"",
+   "behavior": "Tooltip on hover, item greyed",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Hover a blocked Move Customers",
+   "message": "\"No customers are on this term\"",
+   "behavior": "Tooltip on hover, item greyed",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Hover Deactivate / Reactivate",
+   "message": "\"Hide from customer and vendor pickers\" / \"Show in pickers again\"",
+   "behavior": "Tooltip on hover",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Make Default chosen",
+   "message": "\"Make {name} the default?\" / \"New customers start on {name}. Customers you already have keep their current term.\"",
+   "behavior": "Confirmation, buttons \"Cancel\" and \"Make Default\"",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Make Default confirmed",
+   "message": "\"{name} is now the default\" / \"New customers start on {name}.\"",
+   "behavior": "Success toast with a Close action",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Term deactivated",
+   "message": "\"{name} deactivated\"",
+   "behavior": "Success toast",
+   "verdict": "NOT SHOWN",
+   "note": "not drawn (PRD §2: toasts, error alerts and the no-match line follow the PRD text)"
+  },
+  {
+   "trigger": "Term reactivated",
+   "message": "\"{name} reactivated\"",
+   "behavior": "Success toast",
+   "verdict": "NOT SHOWN",
+   "note": "not drawn (PRD §2: toasts, error alerts and the no-match line follow the PRD text)"
+  },
+  {
+   "trigger": "Delete Credit Term chosen",
+   "message": "\"Are you sure you want to delete this credit term?\"",
+   "behavior": "Confirmation titled \"Confirmation\", buttons \"Cancel\" and red \"Delete Credit Term\"",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Term deleted",
+   "message": "\"{name} deleted\"",
+   "behavior": "Success toast",
+   "verdict": "NOT SHOWN",
+   "note": "not drawn (PRD §2: toasts, error alerts and the no-match line follow the PRD text)"
+  },
+  {
+   "trigger": "Credit term created",
+   "message": "\"{name} created\"",
+   "behavior": "Success toast",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Credit term edited and saved",
+   "message": "\"{name} saved\"",
+   "behavior": "Success toast",
+   "verdict": "NOT SHOWN",
+   "note": "not drawn (PRD §2: toasts, error alerts and the no-match line follow the PRD text)"
+  },
+  {
+   "trigger": "Name field hint",
+   "message": "\"Up to 31 characters. Prints on invoices and goes to QuickBooks.\"",
+   "behavior": "Hint under the field, always shown",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Name empty",
+   "message": "\"Enter a name.\"",
+   "behavior": "Inline error, persists until corrected",
+   "verdict": "NOT SHOWN",
+   "note": "not drawn; the PRD text stands (messages written only in captions: \"Enter a name.\", \"Use 31 characters or fewer.\", \"Enter a day from 1 to 31.\", \"A term called {name} already exists.\" appear in the p3 fig 3 caption)"
+  },
+  {
+   "trigger": "Name too long",
+   "message": "\"Use 31 characters or fewer.\"",
+   "behavior": "Inline error, persists until corrected",
+   "verdict": "NOT SHOWN",
+   "note": "not drawn; the PRD text stands (messages written only in captions: \"Enter a name.\", \"Use 31 characters or fewer.\", \"Enter a day from 1 to 31.\", \"A term called {name} already exists.\" appear in the p3 fig 3 caption)"
+  },
+  {
+   "trigger": "Name matches a standard term",
+   "message": "\"{name} is already a standard term. Pick another name.\"",
+   "behavior": "Inline error, persists until corrected",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Name matches one of the shop's terms",
+   "message": "\"A term called {name} already exists.\"",
+   "behavior": "Inline error, persists until corrected",
+   "verdict": "NOT SHOWN",
+   "note": "not drawn; the PRD text stands (messages written only in captions: \"Enter a name.\", \"Use 31 characters or fewer.\", \"Enter a day from 1 to 31.\", \"A term called {name} already exists.\" appear in the p3 fig 3 caption)"
+  },
+  {
+   "trigger": "Days out of range",
+   "message": "\"Enter 1 to 365 days.\"",
+   "behavior": "Inline error, clears as soon as the number is valid",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Day out of range",
+   "message": "\"Enter a day from 1 to 31.\"",
+   "behavior": "Inline error, clears as soon as the number is valid",
+   "verdict": "NOT SHOWN",
+   "note": "not drawn; the PRD text stands (messages written only in captions: \"Enter a name.\", \"Use 31 characters or fewer.\", \"Enter a day from 1 to 31.\", \"A term called {name} already exists.\" appear in the p3 fig 3 caption)"
+  },
+  {
+   "trigger": "No option sent on create (server)",
+   "message": "\"Pick Due Net X days or Due day of the following month.\"",
+   "behavior": "Standard error alert",
+   "verdict": "NOT SHOWN",
+   "note": "not drawn (PRD §2: toasts, error alerts and the no-match line follow the PRD text)"
+  },
+  {
+   "trigger": "Valid Net term typed",
+   "message": "\"{Name} means payment is due {X} days after the invoice date. An invoice dated {today} is due {due}.\"",
+   "behavior": "Blue information line, updates as the user types",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Valid day-of-month term typed",
+   "message": "\"{Name} means payment is due on the {ordinal X} of the following month. An invoice dated {today} is due {due}.\"",
+   "behavior": "Blue information line, updates as the user types",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Edit or delete of a term in use refused (server)",
+   "message": "\"Used by {holders}. Deactivate it instead to take it out of the pickers.\"",
+   "behavior": "Standard error alert",
+   "verdict": "NOT SHOWN",
+   "note": "not drawn (PRD §2: toasts, error alerts and the no-match line follow the PRD text)"
+  },
+  {
+   "trigger": "Deactivate or delete of the default refused (server)",
+   "message": "\"This is your default for new customers. Pick another default first.\"",
+   "behavior": "Standard error alert",
+   "verdict": "NOT SHOWN",
+   "note": "not drawn (PRD §2: toasts, error alerts and the no-match line follow the PRD text)"
+  },
+  {
+   "trigger": "Deactivate of COD, Due on Receipt or Credit Hold refused (server)",
+   "message": "\"Always available. COD, Due on Receipt and Credit Hold can't be deactivated.\"",
+   "behavior": "Standard error alert",
+   "verdict": "NOT SHOWN",
+   "note": "not drawn (PRD §2: toasts, error alerts and the no-match line follow the PRD text)"
+  },
+  {
+   "trigger": "Make Default of an inactive term or Credit Hold refused (server)",
+   "message": "\"Pick an active term other than Credit Hold.\"",
+   "behavior": "Standard error alert",
+   "verdict": "NOT SHOWN",
+   "note": "not drawn (PRD §2: toasts, error alerts and the no-match line follow the PRD text)"
+  },
+  {
+   "trigger": "Term no longer exists (server)",
+   "message": "\"Credit term not found.\"",
+   "behavior": "Standard error alert",
+   "verdict": "NOT SHOWN",
+   "note": "not drawn (PRD §2: toasts, error alerts and the no-match line follow the PRD text)"
+  },
+  {
+   "trigger": "Move To hint",
+   "message": "\"Prefilled with your default for new customers.\"",
+   "behavior": "Hint under Move To while the default is selected",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Move To is COD or Credit Hold",
+   "message": "\"Their credit limit will be set to $0.\"",
+   "behavior": "Line under Move To while COD or Credit Hold is selected",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Move to COD or Credit Hold pressed",
+   "message": "\"Set {n} customers' credit limit to $0?\" (\"Set 1 customer's credit limit to $0?\") / \"This can't be undone. Their current limits are kept in each customer's note, and the Credit Terms Log records the m",
+   "behavior": "Confirmation, buttons \"Cancel\" (back to the window, choices kept) and red \"Set Limits to $0 and Move\" (displayed \"Set Limits To $0 And Move\")",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Hover a greyed Move Customers (missing permission)",
+   "message": "\"You need Customers → Create & Edit and View and Manage AP/AR Data to move customers.\"",
+   "behavior": "Tooltip on hover, item greyed",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Move fails partway",
+   "message": "\"Couldn't move the customers. Nothing was changed. Please try again.\"",
+   "behavior": "Standard error alert, window stays open",
+   "verdict": "NOT SHOWN",
+   "note": "not drawn (PRD §2: toasts, error alerts and the no-match line follow the PRD text)"
+  },
+  {
+   "trigger": "Move Customers search has no match",
+   "message": "\"No customers match your search.\"",
+   "behavior": "Inline line in the list area",
+   "verdict": "NOT SHOWN",
+   "note": "not drawn (PRD §2: toasts, error alerts and the no-match line follow the PRD text)"
+  },
+  {
+   "trigger": "Customers moved",
+   "message": "\"{n} customers moved to {term}.\" / \"1 customer moved to {term}.\"",
+   "behavior": "Success toast",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Note on each moved customer",
+   "message": "\"Credit term changed from {old term} to {new term} by {user name} (Move Customers).\" followed by \"Credit limit {old limit} → $0.\" when the move changed the limit",
+   "behavior": "Note on the customer's Notes",
+   "verdict": "NOT SHOWN",
+   "note": "not drawn (PRD §2: toasts, error alerts and the no-match line follow the PRD text)"
+  },
+  {
+   "trigger": "Move with no ticked customer still on the term (server)",
+   "message": "\"Pick at least one customer to move.\"",
+   "behavior": "Standard error alert, window stays open",
+   "verdict": "NOT SHOWN",
+   "note": "not drawn (PRD §2: toasts, error alerts and the no-match line follow the PRD text)"
+  },
+  {
+   "trigger": "Move To term no longer active (server)",
+   "message": "\"Pick an active term other than {from term}.\"",
+   "behavior": "Standard error alert, window stays open",
+   "verdict": "NOT SHOWN",
+   "note": "not drawn (PRD §2: toasts, error alerts and the no-match line follow the PRD text)"
+  },
+  {
+   "trigger": "Hover the locked Credit Limit (COD or Credit Hold)",
+   "message": "\"COD and Credit Hold customers can't charge to account, so they have no credit limit.\"",
+   "behavior": "Tooltip on hover",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Limit above $0 sent for COD or Credit Hold (server)",
+   "message": "\"COD and Credit Hold customers can't charge to account, so they have no credit limit.\"",
+   "behavior": "Standard error alert, form stays open",
+   "verdict": "NOT SHOWN",
+   "note": "not drawn (PRD §2: toasts, error alerts and the no-match line follow the PRD text)"
+  },
+  {
+   "trigger": "New Customer term no longer active (server)",
+   "message": "\"Pick an active credit term.\"",
+   "behavior": "Standard error alert, form stays open",
+   "verdict": "NOT SHOWN",
+   "note": "not drawn (PRD §2: toasts, error alerts and the no-match line follow the PRD text)"
+  },
+  {
+   "trigger": "Page \"⋯\" menu item",
+   "message": "\"Audit Log\"",
+   "behavior": "Menu item, opens the \"Credit Terms Log\" window",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Credit Terms Log events",
+   "message": "\"Credit term created\", \"Credit term edited\", \"Credit term deactivated\", \"Credit term reactivated\", \"Credit term deleted\", \"Default changed\", \"Customers moved\"",
+   "behavior": "Event column text, one row per saved change",
+   "verdict": "SHOWN",
+   "note": "5 of the 7 events drawn (r16-log); \"Default changed\" and \"Customers moved\" not drawn"
+  },
+  {
+   "trigger": "Credit Terms Log details",
+   "message": "\"{name}: {rule}\" (created, deactivated, reactivated, deleted); \"Name: {old} → {new}\" and/or \"Due: {old rule} → {new rule}\" (edited); \"{old} → {new}\" (default changed); \"{n} customers from {from} to {t",
+   "behavior": "Details column text",
+   "verdict": "SHOWN",
+   "note": "created / edited / deactivated / reactivated / deleted details drawn; default-change and move details not drawn"
+  },
+  {
+   "trigger": "Credit Terms Log has no rows",
+   "message": "\"No history here. Yet.\"",
+   "behavior": "Empty state in the table",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Credit Terms Log fails to load",
+   "message": "\"Something went wrong loading the Credit Terms Log. Please try again.\"",
+   "behavior": "Standard error alert; the table shows no rows and repeats the same sentence in place of the empty-state line",
+   "verdict": "SHOWN",
+   "note": ""
+  },
+  {
+   "trigger": "Over credit limit on New Work Order (unchanged wording)",
+   "message": "\"Are you sure you want to open a new work order? This customer is over their credit limit.\"",
+   "behavior": "Confirmation titled \"Confirmation\", buttons \"Create\" and \"Cancel\"",
+   "verdict": "SHOWN",
+   "note": "words shown; Cancel style CT-D06 settled"
+  }
+ ],
+ "tool": {
+  "command": "python3 build/testing-tools/spec_to_design_check.py --prd render/prd-v3-unescaped.md --design 'files/project/*.dc.html' render/shots-text.txt --register build/credit-terms/DESIGN-DIVERGENCE-REGISTER.json",
+  "note": "render/prd-v3-unescaped.md is the saved PRD with pandoc's \\$ escapes removed (otherwise every \"$0\" phrase reads as not shown); render/shots-text.txt holds the 25 screenshots' transcribed words (tools/screen_text.py), because screenshot words are not in the HTML",
+  "rows": [
+   {
+    "key": "S1-R12|NET 30",
+    "code": "S1-R12",
+    "words": "NET 30",
+    "kind": "CASE-DIFFERS",
+    "outcome": null,
+    "closed": false
+   },
+   {
+    "key": "S1-N3| menu, because ",
+    "code": "S1-N3",
+    "words": " menu, because ",
+    "kind": "NOT-SHOWN",
+    "outcome": null,
+    "closed": false
+   },
+   {
+    "key": "S2-R2|Used by 12 customers, 3 vendors and 40 invoices",
+    "code": "S2-R2",
+    "words": "Used by 12 customers, 3 vendors and 40 invoices",
+    "kind": "NOT-SHOWN",
+    "outcome": null,
+    "closed": false
+   },
+   {
+    "key": "S2-R2|Used by 5 invoices",
+    "code": "S2-R2",
+    "words": "Used by 5 invoices",
+    "kind": "NOT-SHOWN",
+    "outcome": null,
+    "closed": false
+   },
+   {
+    "key": "S2-N5|Used by ...",
+    "code": "S2-N5",
+    "words": "Used by ...",
+    "kind": "NOT-SHOWN",
+    "outcome": null,
+    "closed": false
+   },
+   {
+    "key": "S2-E3|Net 30 (Inactive)",
+    "code": "S2-E3",
+    "words": "Net 30 (Inactive)",
+    "kind": "NOT-SHOWN",
+    "outcome": null,
+    "closed": false
+   },
+   {
+    "key": "S4-R2|Move 1 Customer",
+    "code": "S4-R2",
+    "words": "Move 1 Customer",
+    "kind": "NOT-SHOWN",
+    "outcome": null,
+    "closed": false
+   },
+   {
+    "key": "S4-R5|No customers match your search.",
+    "code": "S4-R5",
+    "words": "No customers match your search.",
+    "kind": "NOT-SHOWN",
+    "outcome": null,
+    "closed": false
+   },
+   {
+    "key": "S4-R9|1 customer moved to {term}.",
+    "code": "S4-R9",
+    "words": "1 customer moved to {term}.",
+    "kind": "NOT-SHOWN",
+    "outcome": null,
+    "closed": false
+   },
+   {
+    "key": "S4-R14|Set 1 customer's credit limit to $0?",
+    "code": "S4-R14",
+    "words": "Set 1 customer's credit limit to $0?",
+    "kind": "NOT-SHOWN",
+    "outcome": null,
+    "closed": false
+   },
+   {
+    "key": "S4-R14| and the buttons ",
+    "code": "S4-R14",
+    "words": " and the buttons ",
+    "kind": "NOT-SHOWN",
+    "outcome": null,
+    "closed": false
+   },
+   {
+    "key": "S4-R14| (displayed as ",
+    "code": "S4-R14",
+    "words": " (displayed as ",
+    "kind": "NOT-SHOWN",
+    "outcome": null,
+    "closed": false
+   },
+   {
+    "key": "S4-R16|Set Limits to $0 and Move",
+    "code": "S4-R16",
+    "words": "Set Limits to $0 and Move",
+    "kind": "CASE-DIFFERS",
+    "outcome": null,
+    "closed": false
+   },
+   {
+    "key": "S4-R21|Set Limits to $0 and Move",
+    "code": "S4-R21",
+    "words": "Set Limits to $0 and Move",
+    "kind": "CASE-DIFFERS",
+    "outcome": null,
+    "closed": false
+   },
+   {
+    "key": "S10-R3|net 10",
+    "code": "S10-R3",
+    "words": "net 10",
+    "kind": "CASE-DIFFERS",
+    "outcome": null,
+    "closed": false
+   },
+   {
+    "key": "S10-R3|NET10",
+    "code": "S10-R3",
+    "words": "NET10",
+    "kind": "NOT-SHOWN",
+    "outcome": null,
+    "closed": false
+   },
+   {
+    "key": "S11-R6|Customer name is a required field",
+    "code": "S11-R6",
+    "words": "Customer name is a required field",
+    "kind": "NOT-SHOWN",
+    "outcome": null,
+    "closed": false
+   },
+   {
+    "key": "S11-R7|Name is a required field",
+    "code": "S11-R7",
+    "words": "Name is a required field",
+    "kind": "NOT-SHOWN",
+    "outcome": null,
+    "closed": false
+   },
+   {
+    "key": "S11-E2|NET 30",
+    "code": "S11-E2",
+    "words": "NET 30",
+    "kind": "CASE-DIFFERS",
+    "outcome": null,
+    "closed": false
+   },
+   {
+    "key": "S12-R1| page menu top right, beside ",
+    "code": "S12-R1",
+    "words": " page menu top right, beside ",
+    "kind": "NOT-SHOWN",
+    "outcome": null,
+    "closed": false
+   },
+   {
+    "key": "S12-R1|, with one item: ",
+    "code": "S12-R1",
+    "words": ", with one item: ",
+    "kind": "NOT-SHOWN",
+    "outcome": null,
+    "closed": false
+   }
+  ]
+ }
+}
