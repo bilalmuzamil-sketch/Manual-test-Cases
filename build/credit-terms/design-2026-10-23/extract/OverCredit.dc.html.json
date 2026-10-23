@@ -1,0 +1,2921 @@
+{
+ "board": "OverCredit.dc.html",
+ "title": "8. Over Credit warning",
+ "h2": "8. Over Credit warning",
+ "note": "Before: today's warning. After: no warning for COD, Due on Receipt and no-limit customers, and the case that still warns, wording unchanged. Light theme.",
+ "helmet_css": "\n<style>\nbody{margin:0}\n/* build geometry (r6-01 / r8): 14px table text, one-line rows, 48px rows */\nfigure .sv-table { font-size: var(--sv-body-size); }\nfigure .sv-table td, figure .sv-table th { white-space: nowrap; overflow: visible; }\nfigure .sv-table td { height: 48px; padding-top: 0; padding-bottom: 0; }\nfigure .sv-table th { height: 56px; padding-top: 0; padding-bottom: 0; }\n.ct-page > .sv-page-head, .ct-page > .sv-tabs-row { margin-left: 0; margin-right: 0; }\n.ct-page > .sv-page-head { padding-top: 20px; margin-bottom: 12px; }\n</style>\n",
+ "figures": [
+  {
+   "n": 1,
+   "line": 31,
+   "badge": "Unchanged from production (before)",
+   "heading": "The Over Credit warning today",
+   "captions": [
+    "The dialog itself does not change. Captured on the branch build for a Net 45 customer $369,747 over a $50,000 limit, the case that still warns.",
+    "In production this same dialog also opens for a customer on COD or Due on Receipt, or with a blank or $0 limit, as soon as they owe anything."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-over-credit.png",
+     "alt": "Over credit limit confirmation",
+     "line": 33
+    }
+   ],
+   "texts": [
+    {
+     "text": "Unchanged from production (before)",
+     "line": 32,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 1
+    },
+    {
+     "text": "The Over Credit warning today",
+     "line": 32,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Over credit limit confirmation",
+     "line": 33,
+     "kind": "attr:alt",
+     "ctx": ""
+    },
+    {
+     "text": "The dialog itself does not change. Captured on the branch build for a Net 45 customer $369,747 over a $50,000 limit, the case that still warns.",
+     "line": 34,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "In production this same dialog also opens for a customer on COD or Due on Receipt, or with a blank or $0 limit, as soon as they owe anything.",
+     "line": 34,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 1
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "line": 36,
+   "badge": "This design",
+   "heading": "COD customer, $0 limit, owes $1,200: no warning",
+   "captions": [
+    "Save opens the work order. No Confirmation for a customer on COD, Due on Receipt or Credit Hold, or with a blank or $0 credit limit.",
+    "Credit Hold keeps its own, separate warning (\"This customer is on credit hold and the work order will not be able to be invoiced.\"), unchanged.",
+    "Source: WorkOrderDialog.vue (the new rule) drawn with DS Modals and Select.",
+    "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+   ],
+   "imgs": [],
+   "texts": [
+    {
+     "text": "This design",
+     "line": 37,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 2
+    },
+    {
+     "text": "COD customer, $0 limit, owes $1,200: no warning",
+     "line": 37,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "ShopView",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": "sv-header__logo"
+    },
+    {
+     "text": "ShopHub",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Work Orders",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Schedule",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Customers",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Parts",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Reports",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Dashboard",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Searc...",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Ctrl K",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-menu__kbd",
+     "fig": 2
+    },
+    {
+     "text": "timer",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 2
+    },
+    {
+     "text": "Clock In",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "notifications_none",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 2
+    },
+    {
+     "text": "Staging Heavy Duty - 9919",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "AS",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-avatar",
+     "fig": 2
+    },
+    {
+     "text": "Gonsoulin Diesel Services Inc",
+     "line": 39,
+     "kind": "text",
+     "ctx": "sv-h4",
+     "fig": 2
+    },
+    {
+     "text": "Edit customer",
+     "line": 39,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary"
+    },
+    {
+     "text": "Address",
+     "line": 40,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "62981 Kim Port",
+     "line": 40,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "New Julieshire, British Columbia",
+     "line": 40,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "R9S 3N3",
+     "line": 40,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Phone",
+     "line": 40,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "029-938-2141",
+     "line": 40,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Credit term",
+     "line": 40,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "COD",
+     "line": 40,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Credit limit",
+     "line": 40,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "$0.00",
+     "line": 40,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Sales Representative",
+     "line": 40,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Unassigned",
+     "line": 40,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Website",
+     "line": 40,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "www.lamberttrucking.com",
+     "line": 40,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "IBS",
+     "line": 40,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "N/A",
+     "line": 40,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Contacts",
+     "line": 41,
+     "kind": "text",
+     "ctx": "sv-body2",
+     "fig": 2
+    },
+    {
+     "text": "4",
+     "line": 41,
+     "kind": "text",
+     "ctx": "sv-h3",
+     "fig": 2
+    },
+    {
+     "text": "Assets",
+     "line": 41,
+     "kind": "text",
+     "ctx": "sv-body2",
+     "fig": 2
+    },
+    {
+     "text": "17",
+     "line": 41,
+     "kind": "text",
+     "ctx": "sv-h3",
+     "fig": 2
+    },
+    {
+     "text": "Work Orders",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 2
+    },
+    {
+     "text": "27",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-tab__count",
+     "fig": 2
+    },
+    {
+     "text": "Part Sales",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 2
+    },
+    {
+     "text": "Contacts",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 2
+    },
+    {
+     "text": "4",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-tab__count",
+     "fig": 2
+    },
+    {
+     "text": "Assets",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 2
+    },
+    {
+     "text": "17",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-tab__count",
+     "fig": 2
+    },
+    {
+     "text": "Invoices",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 2
+    },
+    {
+     "text": "Payments",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 2
+    },
+    {
+     "text": "New Work Order",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 2
+    },
+    {
+     "text": "Status",
+     "line": 42,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Number",
+     "line": 42,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Total Price",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Created On",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "In Progress",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 2
+    },
+    {
+     "text": "S2-17528",
+     "line": 42,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "$1,000.00",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Aug 27, 2026",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Paid",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--success",
+     "fig": 2
+    },
+    {
+     "text": "S2-17504",
+     "line": 42,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "$1,731.00",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Aug 26, 2026",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Paid",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--success",
+     "fig": 2
+    },
+    {
+     "text": "S2-17350",
+     "line": 42,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "$2,462.00",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Aug 25, 2026",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Paid",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--success",
+     "fig": 2
+    },
+    {
+     "text": "S2-16862",
+     "line": 42,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "$3,193.00",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Aug 24, 2026",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Paid",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--success",
+     "fig": 2
+    },
+    {
+     "text": "S2-13759",
+     "line": 42,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "$3,924.00",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Aug 23, 2026",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Paid",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--success",
+     "fig": 2
+    },
+    {
+     "text": "S2-13499",
+     "line": 42,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "$4,655.00",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Aug 22, 2026",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Paid",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--success",
+     "fig": 2
+    },
+    {
+     "text": "S2-13309",
+     "line": 42,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "$5,386.00",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Aug 21, 2026",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Paid",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--success",
+     "fig": 2
+    },
+    {
+     "text": "S2-12011",
+     "line": 42,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "$6,117.00",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Aug 20, 2026",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "New Work Order",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-modal__title",
+     "fig": 2
+    },
+    {
+     "text": "Close",
+     "line": 43,
+     "kind": "attr:aria-label",
+     "ctx": "sv-modal__close"
+    },
+    {
+     "text": " ",
+     "line": 45,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Gonsoulin Diesel Services Inc",
+     "line": 45,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Customer",
+     "line": 45,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Add",
+     "line": 45,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--link",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 46,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "2019 Kenworth T880",
+     "line": 46,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Asset",
+     "line": 46,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Add",
+     "line": 46,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--link",
+     "fig": 2
+    },
+    {
+     "text": "Asset Here?",
+     "line": 47,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Save",
+     "line": 49,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 2
+    },
+    {
+     "text": "Save opens the work order. No Confirmation for a customer on COD, Due on Receipt or Credit Hold, or with a blank or $0 credit limit.",
+     "line": 51,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Credit Hold keeps its own, separate warning (\"This customer is on credit hold and the work order will not be able to be invoiced.\"), unchanged.",
+     "line": 51,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Source: WorkOrderDialog.vue (the new rule) drawn with DS Modals and Select.",
+     "line": 51,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+     "line": 51,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "line": 53,
+   "badge": "This design",
+   "heading": "Still warns: limit above $0 exceeded",
+   "captions": [
+    "Only when a credit limit above $0 is set and the balance is over it. Wording unchanged: \"Are you sure you want to open a new work order? This customer is over their credit limit.\"",
+    "Part sales show no over-credit confirmation (S9-R4); for part sales only the \"Over limit\" badge follows this rule.",
+    "Source: CustomerWarningDialog.vue text, DS confirm modal; Create keeps its red (destructive) style.",
+    "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+   ],
+   "imgs": [],
+   "texts": [
+    {
+     "text": "This design",
+     "line": 54,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 3
+    },
+    {
+     "text": "Still warns: limit above $0 exceeded",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "ShopView",
+     "line": 55,
+     "kind": "attr:aria-label",
+     "ctx": "sv-header__logo"
+    },
+    {
+     "text": "ShopHub",
+     "line": 55,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Work Orders",
+     "line": 55,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Schedule",
+     "line": 55,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Customers",
+     "line": 55,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Parts",
+     "line": 55,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Reports",
+     "line": 55,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Dashboard",
+     "line": 55,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Searc...",
+     "line": 55,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Ctrl K",
+     "line": 55,
+     "kind": "text",
+     "ctx": "sv-menu__kbd",
+     "fig": 3
+    },
+    {
+     "text": "timer",
+     "line": 55,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 3
+    },
+    {
+     "text": "Clock In",
+     "line": 55,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "notifications_none",
+     "line": 55,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 3
+    },
+    {
+     "text": "Staging Heavy Duty - 9919",
+     "line": 55,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "AS",
+     "line": 55,
+     "kind": "text",
+     "ctx": "sv-avatar",
+     "fig": 3
+    },
+    {
+     "text": "Gonsoulin Diesel Services Inc",
+     "line": 56,
+     "kind": "text",
+     "ctx": "sv-h4",
+     "fig": 3
+    },
+    {
+     "text": "Edit customer",
+     "line": 56,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary"
+    },
+    {
+     "text": "Address",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "62981 Kim Port",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "New Julieshire, British Columbia",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "R9S 3N3",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Phone",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "029-938-2141",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Credit term",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Net 45",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Credit limit",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "$0.00",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Sales Representative",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Unassigned",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Website",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "www.lamberttrucking.com",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "IBS",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "N/A",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Contacts",
+     "line": 58,
+     "kind": "text",
+     "ctx": "sv-body2",
+     "fig": 3
+    },
+    {
+     "text": "4",
+     "line": 58,
+     "kind": "text",
+     "ctx": "sv-h3",
+     "fig": 3
+    },
+    {
+     "text": "Assets",
+     "line": 58,
+     "kind": "text",
+     "ctx": "sv-body2",
+     "fig": 3
+    },
+    {
+     "text": "17",
+     "line": 58,
+     "kind": "text",
+     "ctx": "sv-h3",
+     "fig": 3
+    },
+    {
+     "text": "Work Orders",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 3
+    },
+    {
+     "text": "27",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-tab__count",
+     "fig": 3
+    },
+    {
+     "text": "Part Sales",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 3
+    },
+    {
+     "text": "Contacts",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 3
+    },
+    {
+     "text": "4",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-tab__count",
+     "fig": 3
+    },
+    {
+     "text": "Assets",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 3
+    },
+    {
+     "text": "17",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-tab__count",
+     "fig": 3
+    },
+    {
+     "text": "Invoices",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 3
+    },
+    {
+     "text": "Payments",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 3
+    },
+    {
+     "text": "New Work Order",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 3
+    },
+    {
+     "text": "Status",
+     "line": 59,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Number",
+     "line": 59,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Total Price",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Created On",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "In Progress",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 3
+    },
+    {
+     "text": "S2-17528",
+     "line": 59,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "$1,000.00",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Aug 27, 2026",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Paid",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--success",
+     "fig": 3
+    },
+    {
+     "text": "S2-17504",
+     "line": 59,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "$1,731.00",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Aug 26, 2026",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Paid",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--success",
+     "fig": 3
+    },
+    {
+     "text": "S2-17350",
+     "line": 59,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "$2,462.00",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Aug 25, 2026",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Paid",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--success",
+     "fig": 3
+    },
+    {
+     "text": "S2-16862",
+     "line": 59,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "$3,193.00",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Aug 24, 2026",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Paid",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--success",
+     "fig": 3
+    },
+    {
+     "text": "S2-13759",
+     "line": 59,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "$3,924.00",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Aug 23, 2026",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Paid",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--success",
+     "fig": 3
+    },
+    {
+     "text": "S2-13499",
+     "line": 59,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "$4,655.00",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Aug 22, 2026",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Paid",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--success",
+     "fig": 3
+    },
+    {
+     "text": "S2-13309",
+     "line": 59,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "$5,386.00",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Aug 21, 2026",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Paid",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--success",
+     "fig": 3
+    },
+    {
+     "text": "S2-12011",
+     "line": 59,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "$6,117.00",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Aug 20, 2026",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "New Work Order",
+     "line": 60,
+     "kind": "text",
+     "ctx": "sv-modal__title",
+     "fig": 3
+    },
+    {
+     "text": "Close",
+     "line": 60,
+     "kind": "attr:aria-label",
+     "ctx": "sv-modal__close"
+    },
+    {
+     "text": " ",
+     "line": 62,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Gonsoulin Diesel Services Inc",
+     "line": 62,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Customer",
+     "line": 62,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Add",
+     "line": 62,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--link",
+     "fig": 3
+    },
+    {
+     "text": " ",
+     "line": 63,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "2019 Kenworth T880",
+     "line": 63,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Asset",
+     "line": 63,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Add",
+     "line": 63,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--link",
+     "fig": 3
+    },
+    {
+     "text": "Asset Here?",
+     "line": 64,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Save",
+     "line": 66,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 3
+    },
+    {
+     "text": "Confirmation",
+     "line": 68,
+     "kind": "text",
+     "ctx": "sv-modal__title",
+     "fig": 3
+    },
+    {
+     "text": "Close",
+     "line": 68,
+     "kind": "attr:aria-label",
+     "ctx": "sv-modal__close"
+    },
+    {
+     "text": "Are you sure you want to open a new work order? This customer is over their credit limit.",
+     "line": 69,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Create",
+     "line": 70,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--danger",
+     "fig": 3
+    },
+    {
+     "text": "Cancel",
+     "line": 70,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--secondary",
+     "fig": 3
+    },
+    {
+     "text": "Only when a credit limit above $0 is set and the balance is over it. Wording unchanged: \"Are you sure you want to open a new work order? This customer is over their credit limit.\"",
+     "line": 72,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Part sales show no over-credit confirmation (S9-R4); for part sales only the \"Over limit\" badge follows this rule.",
+     "line": 72,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Source: CustomerWarningDialog.vue text, DS confirm modal; Create keeps its red (destructive) style.",
+     "line": 72,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+     "line": 72,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    }
+   ]
+  }
+ ],
+ "texts": [
+  {
+   "text": "8. Over Credit warning",
+   "line": 5,
+   "kind": "text",
+   "ctx": "",
+   "fig": 0
+  },
+  {
+   "text": "8. Over Credit warning",
+   "line": 27,
+   "kind": "text",
+   "ctx": "sv-h2",
+   "fig": 0
+  },
+  {
+   "text": "Before: today's warning. After: no warning for COD, Due on Receipt and no-limit customers, and the case that still warns, wording unchanged. Light theme.",
+   "line": 28,
+   "kind": "text",
+   "ctx": "",
+   "fig": 0
+  },
+  {
+   "text": "Unchanged from production (before)",
+   "line": 32,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 1
+  },
+  {
+   "text": "The Over Credit warning today",
+   "line": 32,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "The dialog itself does not change. Captured on the branch build for a Net 45 customer $369,747 over a $50,000 limit, the case that still warns.",
+   "line": 34,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "In production this same dialog also opens for a customer on COD or Due on Receipt, or with a blank or $0 limit, as soon as they owe anything.",
+   "line": 34,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "This design",
+   "line": 37,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 2
+  },
+  {
+   "text": "COD customer, $0 limit, owes $1,200: no warning",
+   "line": 37,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "ShopHub",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Work Orders",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Schedule",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Customers",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Parts",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Reports",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Dashboard",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Searc...",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Ctrl K",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-menu__kbd",
+   "fig": 2
+  },
+  {
+   "text": "timer",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 2
+  },
+  {
+   "text": "Clock In",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "notifications_none",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 2
+  },
+  {
+   "text": "Staging Heavy Duty - 9919",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "AS",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-avatar",
+   "fig": 2
+  },
+  {
+   "text": "Gonsoulin Diesel Services Inc",
+   "line": 39,
+   "kind": "text",
+   "ctx": "sv-h4",
+   "fig": 2
+  },
+  {
+   "text": "Address",
+   "line": 40,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "62981 Kim Port",
+   "line": 40,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "New Julieshire, British Columbia",
+   "line": 40,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "R9S 3N3",
+   "line": 40,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Phone",
+   "line": 40,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "029-938-2141",
+   "line": 40,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Credit term",
+   "line": 40,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "COD",
+   "line": 40,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Credit limit",
+   "line": 40,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "$0.00",
+   "line": 40,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Sales Representative",
+   "line": 40,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Unassigned",
+   "line": 40,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Website",
+   "line": 40,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "www.lamberttrucking.com",
+   "line": 40,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "IBS",
+   "line": 40,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "N/A",
+   "line": 40,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Contacts",
+   "line": 41,
+   "kind": "text",
+   "ctx": "sv-body2",
+   "fig": 2
+  },
+  {
+   "text": "4",
+   "line": 41,
+   "kind": "text",
+   "ctx": "sv-h3",
+   "fig": 2
+  },
+  {
+   "text": "Assets",
+   "line": 41,
+   "kind": "text",
+   "ctx": "sv-body2",
+   "fig": 2
+  },
+  {
+   "text": "17",
+   "line": 41,
+   "kind": "text",
+   "ctx": "sv-h3",
+   "fig": 2
+  },
+  {
+   "text": "Work Orders",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 2
+  },
+  {
+   "text": "27",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-tab__count",
+   "fig": 2
+  },
+  {
+   "text": "Part Sales",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 2
+  },
+  {
+   "text": "Contacts",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 2
+  },
+  {
+   "text": "4",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-tab__count",
+   "fig": 2
+  },
+  {
+   "text": "Assets",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 2
+  },
+  {
+   "text": "17",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-tab__count",
+   "fig": 2
+  },
+  {
+   "text": "Invoices",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 2
+  },
+  {
+   "text": "Payments",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 2
+  },
+  {
+   "text": "New Work Order",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 2
+  },
+  {
+   "text": "Status",
+   "line": 42,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Number",
+   "line": 42,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Total Price",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Created On",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "In Progress",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 2
+  },
+  {
+   "text": "S2-17528",
+   "line": 42,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "$1,000.00",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Aug 27, 2026",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Paid",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--success",
+   "fig": 2
+  },
+  {
+   "text": "S2-17504",
+   "line": 42,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "$1,731.00",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Aug 26, 2026",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Paid",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--success",
+   "fig": 2
+  },
+  {
+   "text": "S2-17350",
+   "line": 42,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "$2,462.00",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Aug 25, 2026",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Paid",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--success",
+   "fig": 2
+  },
+  {
+   "text": "S2-16862",
+   "line": 42,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "$3,193.00",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Aug 24, 2026",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Paid",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--success",
+   "fig": 2
+  },
+  {
+   "text": "S2-13759",
+   "line": 42,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "$3,924.00",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Aug 23, 2026",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Paid",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--success",
+   "fig": 2
+  },
+  {
+   "text": "S2-13499",
+   "line": 42,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "$4,655.00",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Aug 22, 2026",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Paid",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--success",
+   "fig": 2
+  },
+  {
+   "text": "S2-13309",
+   "line": 42,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "$5,386.00",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Aug 21, 2026",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Paid",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--success",
+   "fig": 2
+  },
+  {
+   "text": "S2-12011",
+   "line": 42,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "$6,117.00",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Aug 20, 2026",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "New Work Order",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-modal__title",
+   "fig": 2
+  },
+  {
+   "text": "Customer",
+   "line": 45,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Add",
+   "line": 45,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--link",
+   "fig": 2
+  },
+  {
+   "text": "Asset",
+   "line": 46,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Add",
+   "line": 46,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--link",
+   "fig": 2
+  },
+  {
+   "text": "Asset Here?",
+   "line": 47,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Save",
+   "line": 49,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 2
+  },
+  {
+   "text": "Save opens the work order. No Confirmation for a customer on COD, Due on Receipt or Credit Hold, or with a blank or $0 credit limit.",
+   "line": 51,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Credit Hold keeps its own, separate warning (\"This customer is on credit hold and the work order will not be able to be invoiced.\"), unchanged.",
+   "line": 51,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Source: WorkOrderDialog.vue (the new rule) drawn with DS Modals and Select.",
+   "line": 51,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+   "line": 51,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "This design",
+   "line": 54,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 3
+  },
+  {
+   "text": "Still warns: limit above $0 exceeded",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "ShopHub",
+   "line": 55,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Work Orders",
+   "line": 55,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Schedule",
+   "line": 55,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Customers",
+   "line": 55,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Parts",
+   "line": 55,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Reports",
+   "line": 55,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Dashboard",
+   "line": 55,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Searc...",
+   "line": 55,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Ctrl K",
+   "line": 55,
+   "kind": "text",
+   "ctx": "sv-menu__kbd",
+   "fig": 3
+  },
+  {
+   "text": "timer",
+   "line": 55,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 3
+  },
+  {
+   "text": "Clock In",
+   "line": 55,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "notifications_none",
+   "line": 55,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 3
+  },
+  {
+   "text": "Staging Heavy Duty - 9919",
+   "line": 55,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "AS",
+   "line": 55,
+   "kind": "text",
+   "ctx": "sv-avatar",
+   "fig": 3
+  },
+  {
+   "text": "Gonsoulin Diesel Services Inc",
+   "line": 56,
+   "kind": "text",
+   "ctx": "sv-h4",
+   "fig": 3
+  },
+  {
+   "text": "Address",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "62981 Kim Port",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "New Julieshire, British Columbia",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "R9S 3N3",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Phone",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "029-938-2141",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Credit term",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Net 45",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Credit limit",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "$0.00",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Sales Representative",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Unassigned",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Website",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "www.lamberttrucking.com",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "IBS",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "N/A",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Contacts",
+   "line": 58,
+   "kind": "text",
+   "ctx": "sv-body2",
+   "fig": 3
+  },
+  {
+   "text": "4",
+   "line": 58,
+   "kind": "text",
+   "ctx": "sv-h3",
+   "fig": 3
+  },
+  {
+   "text": "Assets",
+   "line": 58,
+   "kind": "text",
+   "ctx": "sv-body2",
+   "fig": 3
+  },
+  {
+   "text": "17",
+   "line": 58,
+   "kind": "text",
+   "ctx": "sv-h3",
+   "fig": 3
+  },
+  {
+   "text": "Work Orders",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 3
+  },
+  {
+   "text": "27",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-tab__count",
+   "fig": 3
+  },
+  {
+   "text": "Part Sales",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 3
+  },
+  {
+   "text": "Contacts",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 3
+  },
+  {
+   "text": "4",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-tab__count",
+   "fig": 3
+  },
+  {
+   "text": "Assets",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 3
+  },
+  {
+   "text": "17",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-tab__count",
+   "fig": 3
+  },
+  {
+   "text": "Invoices",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 3
+  },
+  {
+   "text": "Payments",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 3
+  },
+  {
+   "text": "New Work Order",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 3
+  },
+  {
+   "text": "Status",
+   "line": 59,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Number",
+   "line": 59,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Total Price",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Created On",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "In Progress",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 3
+  },
+  {
+   "text": "S2-17528",
+   "line": 59,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "$1,000.00",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Aug 27, 2026",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Paid",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--success",
+   "fig": 3
+  },
+  {
+   "text": "S2-17504",
+   "line": 59,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "$1,731.00",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Aug 26, 2026",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Paid",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--success",
+   "fig": 3
+  },
+  {
+   "text": "S2-17350",
+   "line": 59,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "$2,462.00",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Aug 25, 2026",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Paid",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--success",
+   "fig": 3
+  },
+  {
+   "text": "S2-16862",
+   "line": 59,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "$3,193.00",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Aug 24, 2026",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Paid",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--success",
+   "fig": 3
+  },
+  {
+   "text": "S2-13759",
+   "line": 59,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "$3,924.00",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Aug 23, 2026",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Paid",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--success",
+   "fig": 3
+  },
+  {
+   "text": "S2-13499",
+   "line": 59,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "$4,655.00",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Aug 22, 2026",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Paid",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--success",
+   "fig": 3
+  },
+  {
+   "text": "S2-13309",
+   "line": 59,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "$5,386.00",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Aug 21, 2026",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Paid",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--success",
+   "fig": 3
+  },
+  {
+   "text": "S2-12011",
+   "line": 59,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "$6,117.00",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Aug 20, 2026",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "New Work Order",
+   "line": 60,
+   "kind": "text",
+   "ctx": "sv-modal__title",
+   "fig": 3
+  },
+  {
+   "text": "Customer",
+   "line": 62,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Add",
+   "line": 62,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--link",
+   "fig": 3
+  },
+  {
+   "text": "Asset",
+   "line": 63,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Add",
+   "line": 63,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--link",
+   "fig": 3
+  },
+  {
+   "text": "Asset Here?",
+   "line": 64,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Save",
+   "line": 66,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 3
+  },
+  {
+   "text": "Confirmation",
+   "line": 68,
+   "kind": "text",
+   "ctx": "sv-modal__title",
+   "fig": 3
+  },
+  {
+   "text": "Are you sure you want to open a new work order? This customer is over their credit limit.",
+   "line": 69,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Create",
+   "line": 70,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--danger",
+   "fig": 3
+  },
+  {
+   "text": "Cancel",
+   "line": 70,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--secondary",
+   "fig": 3
+  },
+  {
+   "text": "Only when a credit limit above $0 is set and the balance is over it. Wording unchanged: \"Are you sure you want to open a new work order? This customer is over their credit limit.\"",
+   "line": 72,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Part sales show no over-credit confirmation (S9-R4); for part sales only the \"Over limit\" badge follows this rule.",
+   "line": 72,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Source: CustomerWarningDialog.vue text, DS confirm modal; Create keeps its red (destructive) style.",
+   "line": 72,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+   "line": 72,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  }
+ ]
+}

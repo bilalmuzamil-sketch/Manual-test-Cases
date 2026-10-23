@@ -1,0 +1,2373 @@
+<html>
+  <head>
+    <meta>
+    <title>
+      "2. Move customers to another term"
+    <link>
+    <link>
+    <link>
+  <body>
+    <x-dc>
+      <helmet>
+      <div data-theme="light" [width:7488px; background:var(--sv-surface-canvas); color:var(--sv-text-primary)]>
+        <div>
+          <h2.sv-h2>
+            "2. Move customers to another term"
+          <p [color:var(--sv-text-secondary)]>
+            "Move Customers from a row menu: pick who moves and where, untick some, pick another term, and the result. Plus the menu for a user without the customer permissions. Light theme."
+        <div>
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--success>
+                "Build (local, abc42db)"
+              <span [font-weight:600]>
+                "Choose Move Customers"
+            <img alt="Row menu with Move Customers" src="shots/r16-m-move.png" [width:1440px; border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "Rendered from the local build: Net 15 (5 customers), Move Customers hovered. Every term with customers offers it, active or inactive."
+                <li>
+                  "Needs Settings → Finance plus Customers → Create & Edit and View and Manage AP/AR Data; without them it shows greyed (last board)."
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--info>
+                "This design"
+              <span [font-weight:600]>
+                "Move Customers from COD"
+            <div [width:1440px; background:var(--sv-surface); border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+              <header.sv-header [background:var(--sv-surface); border-bottom:1px solid var(--sv-border-default)]>
+                <a.sv-header__logo aria-label="ShopView">
+                  <svg >
+                <span [font-weight:600; border-right:1px solid var(--sv-border-default)]>
+                  "ShopHub"
+                  <svg >
+                <nav.sv-header__nav>
+                  <a>
+                    "Work Orders"
+                  <a>
+                    "Schedule"
+                  <a>
+                    "Customers"
+                  <a>
+                    "Parts"
+                  <a>
+                    "Reports"
+                  <a>
+                    "Dashboard"
+                <div.sv-header__spacer>
+                <div.sv-header__right>
+                  <div [width:150px; border-radius:var(--sv-header-control-radius); background:var(--sv-surface-sunken); border:1px solid var(--sv-border-default); font-weight:500; color:var(--sv-text-secondary)]>
+                    <svg >
+                    <span>
+                      "Searc..."
+                    <span.sv-menu__kbd>
+                      "Ctrl K"
+                  <span [font-weight:600; color:var(--sv-text-secondary)]>
+                    <span.material-icons-outlined>
+                      "timer"
+                    "Clock In"
+                  <span.material-icons-outlined [color:var(--sv-text-primary)]>
+                    "notifications_none"
+                  <span [border-radius:var(--sv-radius-md); background:var(--sv-surface-sunken); font-weight:500]>
+                    "Staging Heavy Duty - 9919"
+                    <span.sv-avatar>
+                      "AS"
+              <div.sv-main>
+                <aside [width:220px; background:var(--sv-surface); border-right:1px solid var(--sv-border-default)]>
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Settings"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "info"
+                      "Settings"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "supervisor_account"
+                      "Staff"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "verified_user"
+                      "Roles & Permissions"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "location_on"
+                      "Locations"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "apartment"
+                      "Departments"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "attach_money"
+                      "Taxes"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Service"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "groups_3"
+                      "Labor Rates"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "checklist_rtl"
+                      "Canned Lines"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "sell"
+                      "Fees & Discounts"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "groups_3"
+                      "Asset Types"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "fact_check"
+                      "Inspection Templates"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Parts"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "sell"
+                      "Pricing"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "inventory_2"
+                      "Bin Locations"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "category"
+                      "Categories"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Integrations"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "account_balance"
+                      "QuickBooks"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "sync_alt"
+                      "IBS"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Finance"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "payments"
+                      "Payment Methods"
+                    <a [color:#2276da; text-decoration:none]>
+                      <span.material-icons-outlined [width:16px]>
+                        "schedule"
+                      "Credit Terms"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Imports"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "call"
+                      "Contacts"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "local_shipping"
+                      "Assets"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "store"
+                      "Vendors"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "inventory_2"
+                      "Inventory"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "receipt_long"
+                      "Invoices"
+                <main.sv-content.sv-content--list.ct-page>
+                  <div.sv-page-head>
+                    <h1>
+                      "Credit Terms"
+                    <div.sv-page-head__spacer>
+                    <div>
+                      <button.sv-btn.sv-btn--secondary aria-label="More actions" [width:36px]>
+                        <svg >
+                    <button.sv-btn.sv-btn--primary>
+                      <svg >
+                      "New Credit Term"
+                  <div.sv-tabs-row [border-bottom:1px solid var(--sv-border-default)]>
+                    <div>
+                      <button [border:0; border-bottom:2px solid var(--sv-accent); background:transparent; font-weight:var(--sv-body-semibold-weight); color:var(--sv-accent-text)]>
+                        "Active"
+                        <span.sv-badge.sv-badge--flat.sv-badge--info [font-weight:var(--sv-body-bold-weight)]>
+                          "13"
+                      <button [border:0; border-bottom:2px solid transparent; background:transparent; font-weight:var(--sv-body-semibold-weight); color:var(--sv-text-secondary)]>
+                        "Inactive"
+                        <span.sv-badge.sv-badge--flat.sv-badge--neutral [font-weight:var(--sv-body-semibold-weight); color:var(--sv-text-secondary)]>
+                          "2"
+                  <table.sv-table [border-left:0; border-right:0; border-top:0; border-radius:0]>
+                    <colgroup>
+                      <col [width:30%]>
+                      <col [width:36%]>
+                      <col [width:12%]>
+                      <col [width:12%]>
+                      <col [width:10%]>
+                    <thead>
+                      <tr>
+                        <th>
+                          "Name"
+                        <th>
+                          "Due"
+                        <th.sv-num>
+                          "Customers"
+                        <th.sv-num>
+                          "Vendors"
+                        <th>
+                          <span [width:1px]>
+                            "Actions"
+                    <tbody>
+                      <tr>
+                        <td>
+                          <span>
+                            "COD"
+                          <span aria-label="Cash on delivery. COD customers can't charge to account, so payment is taken when the invoice is created." [color:var(--sv-text-muted)]>
+                            <svg >
+                          <span aria-label="Always available" [color:var(--sv-text-muted)]>
+                            <svg >
+                        <td>
+                          "Paid when the invoice is created"
+                        <td.sv-num>
+                          "214"
+                        <td.sv-num>
+                          "41"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for COD" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Due on Receipt"
+                          <span aria-label="Payment is due on the invoice date, but you can create the invoice without taking payment." [color:var(--sv-text-muted)]>
+                            <svg >
+                          <span aria-label="Always available" [color:var(--sv-text-muted)]>
+                            <svg >
+                          <span.sv-badge.sv-badge--info>
+                            "Default"
+                        <td>
+                          "Due on the invoice date"
+                        <td.sv-num>
+                          "38"
+                        <td.sv-num>
+                          "2"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Due on Receipt" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 7"
+                        <td>
+                          "7 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 7" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 10"
+                        <td>
+                          "10 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 10" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 15"
+                        <td>
+                          "15 days after the invoice date"
+                        <td.sv-num>
+                          "12"
+                        <td.sv-num>
+                          "1"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 15" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 20"
+                        <td>
+                          "20 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 20" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 30"
+                        <td>
+                          "30 days after the invoice date"
+                        <td.sv-num>
+                          "96"
+                        <td.sv-num>
+                          "3"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 30" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 45"
+                        <td>
+                          "45 days after the invoice date"
+                        <td.sv-num>
+                          "4"
+                        <td.sv-num>
+                          "1"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 45" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 60"
+                        <td>
+                          "60 days after the invoice date"
+                        <td.sv-num>
+                          "3"
+                        <td.sv-num>
+                          "2"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 60" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 90"
+                        <td>
+                          "90 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 90" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 120"
+                        <td>
+                          "120 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 120" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "10th of next month"
+                        <td>
+                          "10th of the following month"
+                        <td.sv-num>
+                          "12"
+                        <td.sv-num>
+                          "1"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for 10th of next month" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Credit Hold"
+                          <span aria-label="No invoices can be created for a customer on Credit Hold until their credit term is changed." [color:var(--sv-text-muted)]>
+                            <svg >
+                          <span aria-label="Always available" [color:var(--sv-text-muted)]>
+                            <svg >
+                        <td>
+                          "Invoicing is blocked"
+                        <td.sv-num>
+                          "2"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Credit Hold" [width:32px]>
+                              <svg >
+              <div.sv-scrim [background:var(--sv-scrim)]>
+                <div.sv-modal [width:640px]>
+                  <div.sv-modal__header>
+                    <span.sv-modal__title>
+                      "Move Customers from COD"
+                    <button.sv-modal__close aria-label="Close">
+                      <svg >
+                  <div.sv-modal__body>
+                    <div>
+                      <span [color:var(--sv-text-secondary)]>
+                        <svg >
+                      <div.sv-field>
+                        <input placeholder="Search customers">
+                    <div>
+                      <button.sv-btn.sv-btn--link.sv-btn--sm>
+                        "Select All"
+                      <button.sv-btn.sv-btn--link.sv-btn--sm>
+                        "Select None"
+                      <span>
+                      <span.sv-filter-row__count>
+                        "214 selected"
+                    <div [border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "4 Star Truck Repair"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "7 Star Truck Repair"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "A & J Truck & Trailer Repair"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "Aberdeen Diesel Services LLC"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "Aberdeen Truck Repair"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "Abilene Mechanical Services"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "Abode Trucking & Repair"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "Accokeek Heavy Truck Repair Inc"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "Ada Truck Service & Repair"
+                    <div>
+                      <div>
+                        <div.sv-field.sv-field--select>
+                          <input placeholder=" " value="Due on Receipt">
+                          <label>
+                            "Move To"
+                          <span.sv-field__chevron>
+                            <svg >
+                        <div.sv-hint>
+                          "Prefilled with your default for new customers."
+                  <div.sv-modal__footer>
+                    <button.sv-btn.sv-btn--secondary>
+                      "Cancel"
+                    <button.sv-btn.sv-btn--primary>
+                      "Move 214 Customers"
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "Every customer on COD is listed and ticked. The Counter Sale customer is never listed and never moves."
+                <li>
+                  "Search narrows the list; Select All and Select None act on the customers the search shows. The count reads "{n} selected"."
+                <li>
+                  ""Move To" is prefilled with the default for new customers (Due on Receipt) and lists every active term except the one being moved from."
+                <li>
+                  "The button names the count: "Move 214 Customers". Cancel closes without changes."
+                <li>
+                  "Title uses the 18px form-dialog title, as New Credit Term. List rows are 36px with a 1px line between them."
+                <li>
+                  "Source: DS Modals (form body), DS Text field, DS Checkbox, DS link buttons, DS Select."
+                <li>
+                  "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--info>
+                "This design"
+              <span [font-weight:600]>
+                "Some customers unticked"
+            <div [width:1440px; background:var(--sv-surface); border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+              <header.sv-header [background:var(--sv-surface); border-bottom:1px solid var(--sv-border-default)]>
+                <a.sv-header__logo aria-label="ShopView">
+                  <svg >
+                <span [font-weight:600; border-right:1px solid var(--sv-border-default)]>
+                  "ShopHub"
+                  <svg >
+                <nav.sv-header__nav>
+                  <a>
+                    "Work Orders"
+                  <a>
+                    "Schedule"
+                  <a>
+                    "Customers"
+                  <a>
+                    "Parts"
+                  <a>
+                    "Reports"
+                  <a>
+                    "Dashboard"
+                <div.sv-header__spacer>
+                <div.sv-header__right>
+                  <div [width:150px; border-radius:var(--sv-header-control-radius); background:var(--sv-surface-sunken); border:1px solid var(--sv-border-default); font-weight:500; color:var(--sv-text-secondary)]>
+                    <svg >
+                    <span>
+                      "Searc..."
+                    <span.sv-menu__kbd>
+                      "Ctrl K"
+                  <span [font-weight:600; color:var(--sv-text-secondary)]>
+                    <span.material-icons-outlined>
+                      "timer"
+                    "Clock In"
+                  <span.material-icons-outlined [color:var(--sv-text-primary)]>
+                    "notifications_none"
+                  <span [border-radius:var(--sv-radius-md); background:var(--sv-surface-sunken); font-weight:500]>
+                    "Staging Heavy Duty - 9919"
+                    <span.sv-avatar>
+                      "AS"
+              <div.sv-main>
+                <aside [width:220px; background:var(--sv-surface); border-right:1px solid var(--sv-border-default)]>
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Settings"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "info"
+                      "Settings"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "supervisor_account"
+                      "Staff"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "verified_user"
+                      "Roles & Permissions"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "location_on"
+                      "Locations"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "apartment"
+                      "Departments"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "attach_money"
+                      "Taxes"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Service"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "groups_3"
+                      "Labor Rates"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "checklist_rtl"
+                      "Canned Lines"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "sell"
+                      "Fees & Discounts"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "groups_3"
+                      "Asset Types"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "fact_check"
+                      "Inspection Templates"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Parts"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "sell"
+                      "Pricing"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "inventory_2"
+                      "Bin Locations"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "category"
+                      "Categories"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Integrations"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "account_balance"
+                      "QuickBooks"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "sync_alt"
+                      "IBS"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Finance"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "payments"
+                      "Payment Methods"
+                    <a [color:#2276da; text-decoration:none]>
+                      <span.material-icons-outlined [width:16px]>
+                        "schedule"
+                      "Credit Terms"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Imports"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "call"
+                      "Contacts"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "local_shipping"
+                      "Assets"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "store"
+                      "Vendors"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "inventory_2"
+                      "Inventory"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "receipt_long"
+                      "Invoices"
+                <main.sv-content.sv-content--list.ct-page>
+                  <div.sv-page-head>
+                    <h1>
+                      "Credit Terms"
+                    <div.sv-page-head__spacer>
+                    <div>
+                      <button.sv-btn.sv-btn--secondary aria-label="More actions" [width:36px]>
+                        <svg >
+                    <button.sv-btn.sv-btn--primary>
+                      <svg >
+                      "New Credit Term"
+                  <div.sv-tabs-row [border-bottom:1px solid var(--sv-border-default)]>
+                    <div>
+                      <button [border:0; border-bottom:2px solid var(--sv-accent); background:transparent; font-weight:var(--sv-body-semibold-weight); color:var(--sv-accent-text)]>
+                        "Active"
+                        <span.sv-badge.sv-badge--flat.sv-badge--info [font-weight:var(--sv-body-bold-weight)]>
+                          "13"
+                      <button [border:0; border-bottom:2px solid transparent; background:transparent; font-weight:var(--sv-body-semibold-weight); color:var(--sv-text-secondary)]>
+                        "Inactive"
+                        <span.sv-badge.sv-badge--flat.sv-badge--neutral [font-weight:var(--sv-body-semibold-weight); color:var(--sv-text-secondary)]>
+                          "2"
+                  <table.sv-table [border-left:0; border-right:0; border-top:0; border-radius:0]>
+                    <colgroup>
+                      <col [width:30%]>
+                      <col [width:36%]>
+                      <col [width:12%]>
+                      <col [width:12%]>
+                      <col [width:10%]>
+                    <thead>
+                      <tr>
+                        <th>
+                          "Name"
+                        <th>
+                          "Due"
+                        <th.sv-num>
+                          "Customers"
+                        <th.sv-num>
+                          "Vendors"
+                        <th>
+                          <span [width:1px]>
+                            "Actions"
+                    <tbody>
+                      <tr>
+                        <td>
+                          <span>
+                            "COD"
+                          <span aria-label="Cash on delivery. COD customers can't charge to account, so payment is taken when the invoice is created." [color:var(--sv-text-muted)]>
+                            <svg >
+                          <span aria-label="Always available" [color:var(--sv-text-muted)]>
+                            <svg >
+                        <td>
+                          "Paid when the invoice is created"
+                        <td.sv-num>
+                          "214"
+                        <td.sv-num>
+                          "41"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for COD" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Due on Receipt"
+                          <span aria-label="Payment is due on the invoice date, but you can create the invoice without taking payment." [color:var(--sv-text-muted)]>
+                            <svg >
+                          <span aria-label="Always available" [color:var(--sv-text-muted)]>
+                            <svg >
+                          <span.sv-badge.sv-badge--info>
+                            "Default"
+                        <td>
+                          "Due on the invoice date"
+                        <td.sv-num>
+                          "38"
+                        <td.sv-num>
+                          "2"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Due on Receipt" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 7"
+                        <td>
+                          "7 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 7" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 10"
+                        <td>
+                          "10 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 10" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 15"
+                        <td>
+                          "15 days after the invoice date"
+                        <td.sv-num>
+                          "12"
+                        <td.sv-num>
+                          "1"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 15" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 20"
+                        <td>
+                          "20 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 20" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 30"
+                        <td>
+                          "30 days after the invoice date"
+                        <td.sv-num>
+                          "96"
+                        <td.sv-num>
+                          "3"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 30" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 45"
+                        <td>
+                          "45 days after the invoice date"
+                        <td.sv-num>
+                          "4"
+                        <td.sv-num>
+                          "1"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 45" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 60"
+                        <td>
+                          "60 days after the invoice date"
+                        <td.sv-num>
+                          "3"
+                        <td.sv-num>
+                          "2"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 60" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 90"
+                        <td>
+                          "90 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 90" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 120"
+                        <td>
+                          "120 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 120" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "10th of next month"
+                        <td>
+                          "10th of the following month"
+                        <td.sv-num>
+                          "12"
+                        <td.sv-num>
+                          "1"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for 10th of next month" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Credit Hold"
+                          <span aria-label="No invoices can be created for a customer on Credit Hold until their credit term is changed." [color:var(--sv-text-muted)]>
+                            <svg >
+                          <span aria-label="Always available" [color:var(--sv-text-muted)]>
+                            <svg >
+                        <td>
+                          "Invoicing is blocked"
+                        <td.sv-num>
+                          "2"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Credit Hold" [width:32px]>
+                              <svg >
+              <div.sv-scrim [background:var(--sv-scrim)]>
+                <div.sv-modal [width:640px]>
+                  <div.sv-modal__header>
+                    <span.sv-modal__title>
+                      "Move Customers from COD"
+                    <button.sv-modal__close aria-label="Close">
+                      <svg >
+                  <div.sv-modal__body>
+                    <div>
+                      <span [color:var(--sv-text-secondary)]>
+                        <svg >
+                      <div.sv-field>
+                        <input placeholder="Search customers">
+                    <div>
+                      <button.sv-btn.sv-btn--link.sv-btn--sm>
+                        "Select All"
+                      <button.sv-btn.sv-btn--link.sv-btn--sm>
+                        "Select None"
+                      <span>
+                      <span.sv-filter-row__count>
+                        "180 selected"
+                    <div [border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "4 Star Truck Repair"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check>
+                        <span>
+                          "7 Star Truck Repair"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "A & J Truck & Trailer Repair"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "Aberdeen Diesel Services LLC"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check>
+                        <span>
+                          "Aberdeen Truck Repair"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "Abilene Mechanical Services"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check>
+                        <span>
+                          "Abode Trucking & Repair"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "Accokeek Heavy Truck Repair Inc"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "Ada Truck Service & Repair"
+                    <div>
+                      <div>
+                        <div.sv-field.sv-field--select>
+                          <input placeholder=" " value="Due on Receipt">
+                          <label>
+                            "Move To"
+                          <span.sv-field__chevron>
+                            <svg >
+                        <div.sv-hint>
+                          "Prefilled with your default for new customers."
+                  <div.sv-modal__footer>
+                    <button.sv-btn.sv-btn--secondary>
+                      "Cancel"
+                    <button.sv-btn.sv-btn--primary>
+                      "Move 180 Customers"
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "Unticking customers lowers the count ("180 selected") and the button ("Move 180 Customers"). Unticked customers stay on COD."
+                <li>
+                  "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--info>
+                "This design"
+              <span [font-weight:600]>
+                "Pick another term"
+            <div [width:1440px; background:var(--sv-surface); border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+              <header.sv-header [background:var(--sv-surface); border-bottom:1px solid var(--sv-border-default)]>
+                <a.sv-header__logo aria-label="ShopView">
+                  <svg >
+                <span [font-weight:600; border-right:1px solid var(--sv-border-default)]>
+                  "ShopHub"
+                  <svg >
+                <nav.sv-header__nav>
+                  <a>
+                    "Work Orders"
+                  <a>
+                    "Schedule"
+                  <a>
+                    "Customers"
+                  <a>
+                    "Parts"
+                  <a>
+                    "Reports"
+                  <a>
+                    "Dashboard"
+                <div.sv-header__spacer>
+                <div.sv-header__right>
+                  <div [width:150px; border-radius:var(--sv-header-control-radius); background:var(--sv-surface-sunken); border:1px solid var(--sv-border-default); font-weight:500; color:var(--sv-text-secondary)]>
+                    <svg >
+                    <span>
+                      "Searc..."
+                    <span.sv-menu__kbd>
+                      "Ctrl K"
+                  <span [font-weight:600; color:var(--sv-text-secondary)]>
+                    <span.material-icons-outlined>
+                      "timer"
+                    "Clock In"
+                  <span.material-icons-outlined [color:var(--sv-text-primary)]>
+                    "notifications_none"
+                  <span [border-radius:var(--sv-radius-md); background:var(--sv-surface-sunken); font-weight:500]>
+                    "Staging Heavy Duty - 9919"
+                    <span.sv-avatar>
+                      "AS"
+              <div.sv-main>
+                <aside [width:220px; background:var(--sv-surface); border-right:1px solid var(--sv-border-default)]>
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Settings"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "info"
+                      "Settings"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "supervisor_account"
+                      "Staff"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "verified_user"
+                      "Roles & Permissions"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "location_on"
+                      "Locations"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "apartment"
+                      "Departments"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "attach_money"
+                      "Taxes"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Service"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "groups_3"
+                      "Labor Rates"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "checklist_rtl"
+                      "Canned Lines"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "sell"
+                      "Fees & Discounts"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "groups_3"
+                      "Asset Types"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "fact_check"
+                      "Inspection Templates"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Parts"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "sell"
+                      "Pricing"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "inventory_2"
+                      "Bin Locations"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "category"
+                      "Categories"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Integrations"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "account_balance"
+                      "QuickBooks"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "sync_alt"
+                      "IBS"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Finance"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "payments"
+                      "Payment Methods"
+                    <a [color:#2276da; text-decoration:none]>
+                      <span.material-icons-outlined [width:16px]>
+                        "schedule"
+                      "Credit Terms"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Imports"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "call"
+                      "Contacts"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "local_shipping"
+                      "Assets"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "store"
+                      "Vendors"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "inventory_2"
+                      "Inventory"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "receipt_long"
+                      "Invoices"
+                <main.sv-content.sv-content--list.ct-page>
+                  <div.sv-page-head>
+                    <h1>
+                      "Credit Terms"
+                    <div.sv-page-head__spacer>
+                    <div>
+                      <button.sv-btn.sv-btn--secondary aria-label="More actions" [width:36px]>
+                        <svg >
+                    <button.sv-btn.sv-btn--primary>
+                      <svg >
+                      "New Credit Term"
+                  <div.sv-tabs-row [border-bottom:1px solid var(--sv-border-default)]>
+                    <div>
+                      <button [border:0; border-bottom:2px solid var(--sv-accent); background:transparent; font-weight:var(--sv-body-semibold-weight); color:var(--sv-accent-text)]>
+                        "Active"
+                        <span.sv-badge.sv-badge--flat.sv-badge--info [font-weight:var(--sv-body-bold-weight)]>
+                          "13"
+                      <button [border:0; border-bottom:2px solid transparent; background:transparent; font-weight:var(--sv-body-semibold-weight); color:var(--sv-text-secondary)]>
+                        "Inactive"
+                        <span.sv-badge.sv-badge--flat.sv-badge--neutral [font-weight:var(--sv-body-semibold-weight); color:var(--sv-text-secondary)]>
+                          "2"
+                  <table.sv-table [border-left:0; border-right:0; border-top:0; border-radius:0]>
+                    <colgroup>
+                      <col [width:30%]>
+                      <col [width:36%]>
+                      <col [width:12%]>
+                      <col [width:12%]>
+                      <col [width:10%]>
+                    <thead>
+                      <tr>
+                        <th>
+                          "Name"
+                        <th>
+                          "Due"
+                        <th.sv-num>
+                          "Customers"
+                        <th.sv-num>
+                          "Vendors"
+                        <th>
+                          <span [width:1px]>
+                            "Actions"
+                    <tbody>
+                      <tr>
+                        <td>
+                          <span>
+                            "COD"
+                          <span aria-label="Cash on delivery. COD customers can't charge to account, so payment is taken when the invoice is created." [color:var(--sv-text-muted)]>
+                            <svg >
+                          <span aria-label="Always available" [color:var(--sv-text-muted)]>
+                            <svg >
+                        <td>
+                          "Paid when the invoice is created"
+                        <td.sv-num>
+                          "214"
+                        <td.sv-num>
+                          "41"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for COD" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Due on Receipt"
+                          <span aria-label="Payment is due on the invoice date, but you can create the invoice without taking payment." [color:var(--sv-text-muted)]>
+                            <svg >
+                          <span aria-label="Always available" [color:var(--sv-text-muted)]>
+                            <svg >
+                          <span.sv-badge.sv-badge--info>
+                            "Default"
+                        <td>
+                          "Due on the invoice date"
+                        <td.sv-num>
+                          "38"
+                        <td.sv-num>
+                          "2"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Due on Receipt" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 7"
+                        <td>
+                          "7 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 7" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 10"
+                        <td>
+                          "10 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 10" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 15"
+                        <td>
+                          "15 days after the invoice date"
+                        <td.sv-num>
+                          "12"
+                        <td.sv-num>
+                          "1"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 15" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 20"
+                        <td>
+                          "20 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 20" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 30"
+                        <td>
+                          "30 days after the invoice date"
+                        <td.sv-num>
+                          "96"
+                        <td.sv-num>
+                          "3"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 30" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 45"
+                        <td>
+                          "45 days after the invoice date"
+                        <td.sv-num>
+                          "4"
+                        <td.sv-num>
+                          "1"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 45" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 60"
+                        <td>
+                          "60 days after the invoice date"
+                        <td.sv-num>
+                          "3"
+                        <td.sv-num>
+                          "2"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 60" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 90"
+                        <td>
+                          "90 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 90" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 120"
+                        <td>
+                          "120 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 120" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "10th of next month"
+                        <td>
+                          "10th of the following month"
+                        <td.sv-num>
+                          "12"
+                        <td.sv-num>
+                          "1"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for 10th of next month" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Credit Hold"
+                          <span aria-label="No invoices can be created for a customer on Credit Hold until their credit term is changed." [color:var(--sv-text-muted)]>
+                            <svg >
+                          <span aria-label="Always available" [color:var(--sv-text-muted)]>
+                            <svg >
+                        <td>
+                          "Invoicing is blocked"
+                        <td.sv-num>
+                          "2"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Credit Hold" [width:32px]>
+                              <svg >
+              <div.sv-scrim [background:var(--sv-scrim)]>
+                <div.sv-modal [width:640px]>
+                  <div.sv-modal__header>
+                    <span.sv-modal__title>
+                      "Move Customers from COD"
+                    <button.sv-modal__close aria-label="Close">
+                      <svg >
+                  <div.sv-modal__body>
+                    <div>
+                      <span [color:var(--sv-text-secondary)]>
+                        <svg >
+                      <div.sv-field>
+                        <input placeholder="Search customers">
+                    <div>
+                      <button.sv-btn.sv-btn--link.sv-btn--sm>
+                        "Select All"
+                      <button.sv-btn.sv-btn--link.sv-btn--sm>
+                        "Select None"
+                      <span>
+                      <span.sv-filter-row__count>
+                        "214 selected"
+                    <div [border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "4 Star Truck Repair"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "7 Star Truck Repair"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "A & J Truck & Trailer Repair"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "Aberdeen Diesel Services LLC"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "Aberdeen Truck Repair"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "Abilene Mechanical Services"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "Abode Trucking & Repair"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "Accokeek Heavy Truck Repair Inc"
+                      <label.sv-control-row [border-bottom:1px solid var(--sv-border-default); width:100%]>
+                        <span.sv-check.is-checked>
+                          <svg >
+                        <span>
+                          "Ada Truck Service & Repair"
+                    <div>
+                      <div>
+                        <div.sv-field.sv-field--select>
+                          <input placeholder=" " value="Due on Receipt" [border-color:var(--sv-border-focus)]>
+                          <label>
+                            "Move To"
+                          <span.sv-field__chevron>
+                            <svg >
+                      <div>
+                        <div.sv-menu [width:300px]>
+                          <button.sv-menu__row.is-active>
+                            <span>
+                              "Due on Receipt"
+                          <button.sv-menu__row>
+                            <span>
+                              "Net 7"
+                          <button.sv-menu__row>
+                            <span>
+                              "Net 10"
+                          <button.sv-menu__row>
+                            <span>
+                              "Net 15"
+                          <button.sv-menu__row>
+                            <span>
+                              "Net 20"
+                          <button.sv-menu__row>
+                            <span>
+                              "Net 30"
+                          <button.sv-menu__row>
+                            <span>
+                              "Net 45"
+                          <button.sv-menu__row>
+                            <span>
+                              "Net 60"
+                          <button.sv-menu__row>
+                            <span>
+                              "Net 90"
+                  <div.sv-modal__footer>
+                    <button.sv-btn.sv-btn--secondary>
+                      "Cancel"
+                    <button.sv-btn.sv-btn--primary>
+                      "Move 214 Customers"
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "Any active term can be picked. COD is not offered because the customers are already on it."
+                <li>
+                  "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--info>
+                "This design"
+              <span [font-weight:600]>
+                "Moved"
+            <div [width:1440px; background:var(--sv-surface); border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+              <header.sv-header [background:var(--sv-surface); border-bottom:1px solid var(--sv-border-default)]>
+                <a.sv-header__logo aria-label="ShopView">
+                  <svg >
+                <span [font-weight:600; border-right:1px solid var(--sv-border-default)]>
+                  "ShopHub"
+                  <svg >
+                <nav.sv-header__nav>
+                  <a>
+                    "Work Orders"
+                  <a>
+                    "Schedule"
+                  <a>
+                    "Customers"
+                  <a>
+                    "Parts"
+                  <a>
+                    "Reports"
+                  <a>
+                    "Dashboard"
+                <div.sv-header__spacer>
+                <div.sv-header__right>
+                  <div [width:150px; border-radius:var(--sv-header-control-radius); background:var(--sv-surface-sunken); border:1px solid var(--sv-border-default); font-weight:500; color:var(--sv-text-secondary)]>
+                    <svg >
+                    <span>
+                      "Searc..."
+                    <span.sv-menu__kbd>
+                      "Ctrl K"
+                  <span [font-weight:600; color:var(--sv-text-secondary)]>
+                    <span.material-icons-outlined>
+                      "timer"
+                    "Clock In"
+                  <span.material-icons-outlined [color:var(--sv-text-primary)]>
+                    "notifications_none"
+                  <span [border-radius:var(--sv-radius-md); background:var(--sv-surface-sunken); font-weight:500]>
+                    "Staging Heavy Duty - 9919"
+                    <span.sv-avatar>
+                      "AS"
+              <div.sv-main>
+                <aside [width:220px; background:var(--sv-surface); border-right:1px solid var(--sv-border-default)]>
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Settings"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "info"
+                      "Settings"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "supervisor_account"
+                      "Staff"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "verified_user"
+                      "Roles & Permissions"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "location_on"
+                      "Locations"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "apartment"
+                      "Departments"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "attach_money"
+                      "Taxes"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Service"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "groups_3"
+                      "Labor Rates"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "checklist_rtl"
+                      "Canned Lines"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "sell"
+                      "Fees & Discounts"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "groups_3"
+                      "Asset Types"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "fact_check"
+                      "Inspection Templates"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Parts"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "sell"
+                      "Pricing"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "inventory_2"
+                      "Bin Locations"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "category"
+                      "Categories"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Integrations"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "account_balance"
+                      "QuickBooks"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "sync_alt"
+                      "IBS"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Finance"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "payments"
+                      "Payment Methods"
+                    <a [color:#2276da; text-decoration:none]>
+                      <span.material-icons-outlined [width:16px]>
+                        "schedule"
+                      "Credit Terms"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Imports"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "call"
+                      "Contacts"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "local_shipping"
+                      "Assets"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "store"
+                      "Vendors"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "inventory_2"
+                      "Inventory"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "receipt_long"
+                      "Invoices"
+                <main.sv-content.sv-content--list.ct-page>
+                  <div.sv-page-head>
+                    <h1>
+                      "Credit Terms"
+                    <div.sv-page-head__spacer>
+                    <div>
+                      <button.sv-btn.sv-btn--secondary aria-label="More actions" [width:36px]>
+                        <svg >
+                    <button.sv-btn.sv-btn--primary>
+                      <svg >
+                      "New Credit Term"
+                  <div.sv-tabs-row [border-bottom:1px solid var(--sv-border-default)]>
+                    <div>
+                      <button [border:0; border-bottom:2px solid var(--sv-accent); background:transparent; font-weight:var(--sv-body-semibold-weight); color:var(--sv-accent-text)]>
+                        "Active"
+                        <span.sv-badge.sv-badge--flat.sv-badge--info [font-weight:var(--sv-body-bold-weight)]>
+                          "13"
+                      <button [border:0; border-bottom:2px solid transparent; background:transparent; font-weight:var(--sv-body-semibold-weight); color:var(--sv-text-secondary)]>
+                        "Inactive"
+                        <span.sv-badge.sv-badge--flat.sv-badge--neutral [font-weight:var(--sv-body-semibold-weight); color:var(--sv-text-secondary)]>
+                          "2"
+                  <table.sv-table [border-left:0; border-right:0; border-top:0; border-radius:0]>
+                    <colgroup>
+                      <col [width:30%]>
+                      <col [width:36%]>
+                      <col [width:12%]>
+                      <col [width:12%]>
+                      <col [width:10%]>
+                    <thead>
+                      <tr>
+                        <th>
+                          "Name"
+                        <th>
+                          "Due"
+                        <th.sv-num>
+                          "Customers"
+                        <th.sv-num>
+                          "Vendors"
+                        <th>
+                          <span [width:1px]>
+                            "Actions"
+                    <tbody>
+                      <tr>
+                        <td>
+                          <span>
+                            "COD"
+                          <span aria-label="Cash on delivery. COD customers can't charge to account, so payment is taken when the invoice is created." [color:var(--sv-text-muted)]>
+                            <svg >
+                          <span aria-label="Always available" [color:var(--sv-text-muted)]>
+                            <svg >
+                        <td>
+                          "Paid when the invoice is created"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "41"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for COD" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Due on Receipt"
+                          <span aria-label="Payment is due on the invoice date, but you can create the invoice without taking payment." [color:var(--sv-text-muted)]>
+                            <svg >
+                          <span aria-label="Always available" [color:var(--sv-text-muted)]>
+                            <svg >
+                          <span.sv-badge.sv-badge--info>
+                            "Default"
+                        <td>
+                          "Due on the invoice date"
+                        <td.sv-num>
+                          "252"
+                        <td.sv-num>
+                          "2"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Due on Receipt" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 7"
+                        <td>
+                          "7 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 7" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 10"
+                        <td>
+                          "10 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 10" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 15"
+                        <td>
+                          "15 days after the invoice date"
+                        <td.sv-num>
+                          "12"
+                        <td.sv-num>
+                          "1"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 15" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 20"
+                        <td>
+                          "20 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 20" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 30"
+                        <td>
+                          "30 days after the invoice date"
+                        <td.sv-num>
+                          "96"
+                        <td.sv-num>
+                          "3"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 30" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 45"
+                        <td>
+                          "45 days after the invoice date"
+                        <td.sv-num>
+                          "4"
+                        <td.sv-num>
+                          "1"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 45" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 60"
+                        <td>
+                          "60 days after the invoice date"
+                        <td.sv-num>
+                          "3"
+                        <td.sv-num>
+                          "2"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 60" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 90"
+                        <td>
+                          "90 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 90" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 120"
+                        <td>
+                          "120 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 120" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "10th of next month"
+                        <td>
+                          "10th of the following month"
+                        <td.sv-num>
+                          "12"
+                        <td.sv-num>
+                          "1"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for 10th of next month" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Credit Hold"
+                          <span aria-label="No invoices can be created for a customer on Credit Hold until their credit term is changed." [color:var(--sv-text-muted)]>
+                            <svg >
+                          <span aria-label="Always available" [color:var(--sv-text-muted)]>
+                            <svg >
+                        <td>
+                          "Invoicing is blocked"
+                        <td.sv-num>
+                          "2"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Credit Hold" [width:32px]>
+                              <svg >
+              <div [width:400px; background:#21ba45; color:#fff; border-radius:4px]>
+                <span.material-icons>
+                  "check_circle"
+                <span>
+                  <span>
+                    "214 customers moved to Due on Receipt."
+                <span [font-weight:500]>
+                  "Close"
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "Toast: "214 customers moved to Due on Receipt." COD drops to 0 customers (the Counter Sale customer stays on COD but is never counted); Due on Receipt rises from 38 to 252."
+                <li>
+                  "Each moved customer gets a note on its Notes, by the user who moved it: "Credit term changed from {old term} to {new term} by {user name} (Move Customers)." When its limit went from above $0 to $0, the note ends with "Credit limit {old limit} → $0." (S4-R11, S4-R20)."
+                <li>
+                  "Invoices already created keep their term and due date. ShopView only: QuickBooks customer records are not changed, as after any customer edit today."
+                <li>
+                  "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--success>
+                "Build (local, 59e0f577)"
+              <span [font-weight:600]>
+                "Move To COD: the $0 line"
+            <img alt="Move window with Move To COD" src="shots/r15-move-cod.png" [width:1440px; border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "Rendered from the local build: moving from Net 7 with Move To COD (the default in this shop). Below Move To: "Prefilled with your default for new customers." and "Their credit limit will be set to $0." (S4-R7, S4-R10)."
+                <li>
+                  "One customer is unticked, so the button reads "Move 14 Customers"."
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--success>
+                "Build (local, 59e0f577)"
+              <span [font-weight:600]>
+                "Confirm the $0 limits"
+            <img alt="Set credit limit to $0 confirmation" src="shots/r15-limit-confirm.png" [width:1440px; border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "Rendered from the local build. Title "Set 14 customers' credit limit to $0?", message "This can't be undone. Their current limits are kept in each customer's note, and the Credit Terms Log records the move.", buttons Cancel and a red "Set Limits To $0 And Move" (S4-R14)."
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--success>
+                "Build (local, 59e0f577)"
+              <span [font-weight:600]>
+                "Cancel keeps the choices"
+            <img alt="Move window after Cancel" src="shots/r15-limit-cancel.png" [width:1440px; border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "Rendered from the local build after Cancel: back in the Move Customers window with the search, ticks (14 selected) and Move To kept (S4-R15). Nothing is moved or logged."
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--info>
+                "This design"
+              <span [font-weight:600]>
+                "Without the customer permissions"
+            <div [width:1440px; background:var(--sv-surface); border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+              <header.sv-header [background:var(--sv-surface); border-bottom:1px solid var(--sv-border-default)]>
+                <a.sv-header__logo aria-label="ShopView">
+                  <svg >
+                <span [font-weight:600; border-right:1px solid var(--sv-border-default)]>
+                  "ShopHub"
+                  <svg >
+                <nav.sv-header__nav>
+                  <a>
+                    "Work Orders"
+                  <a>
+                    "Schedule"
+                  <a>
+                    "Customers"
+                  <a>
+                    "Parts"
+                  <a>
+                    "Reports"
+                  <a>
+                    "Dashboard"
+                <div.sv-header__spacer>
+                <div.sv-header__right>
+                  <div [width:150px; border-radius:var(--sv-header-control-radius); background:var(--sv-surface-sunken); border:1px solid var(--sv-border-default); font-weight:500; color:var(--sv-text-secondary)]>
+                    <svg >
+                    <span>
+                      "Searc..."
+                    <span.sv-menu__kbd>
+                      "Ctrl K"
+                  <span [font-weight:600; color:var(--sv-text-secondary)]>
+                    <span.material-icons-outlined>
+                      "timer"
+                    "Clock In"
+                  <span.material-icons-outlined [color:var(--sv-text-primary)]>
+                    "notifications_none"
+                  <span [border-radius:var(--sv-radius-md); background:var(--sv-surface-sunken); font-weight:500]>
+                    "Staging Heavy Duty - 9919"
+                    <span.sv-avatar>
+                      "AS"
+              <div.sv-main>
+                <aside [width:220px; background:var(--sv-surface); border-right:1px solid var(--sv-border-default)]>
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Settings"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "info"
+                      "Settings"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "supervisor_account"
+                      "Staff"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "verified_user"
+                      "Roles & Permissions"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "location_on"
+                      "Locations"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "apartment"
+                      "Departments"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "attach_money"
+                      "Taxes"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Service"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "groups_3"
+                      "Labor Rates"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "checklist_rtl"
+                      "Canned Lines"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "sell"
+                      "Fees & Discounts"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "groups_3"
+                      "Asset Types"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "fact_check"
+                      "Inspection Templates"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Parts"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "sell"
+                      "Pricing"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "inventory_2"
+                      "Bin Locations"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "category"
+                      "Categories"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Integrations"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "account_balance"
+                      "QuickBooks"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "sync_alt"
+                      "IBS"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Finance"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "payments"
+                      "Payment Methods"
+                    <a [color:#2276da; text-decoration:none]>
+                      <span.material-icons-outlined [width:16px]>
+                        "schedule"
+                      "Credit Terms"
+                  <div>
+                    <div [font-weight:600; color:#616161]>
+                      "Imports"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "call"
+                      "Contacts"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "local_shipping"
+                      "Assets"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "store"
+                      "Vendors"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "inventory_2"
+                      "Inventory"
+                    <a [color:#212121; text-decoration:none]>
+                      <span.material-icons [width:16px]>
+                        "receipt_long"
+                      "Invoices"
+                <main.sv-content.sv-content--list.ct-page>
+                  <div.sv-page-head>
+                    <h1>
+                      "Credit Terms"
+                    <div.sv-page-head__spacer>
+                    <div>
+                      <button.sv-btn.sv-btn--secondary aria-label="More actions" [width:36px]>
+                        <svg >
+                    <button.sv-btn.sv-btn--primary>
+                      <svg >
+                      "New Credit Term"
+                  <div.sv-tabs-row [border-bottom:1px solid var(--sv-border-default)]>
+                    <div>
+                      <button [border:0; border-bottom:2px solid var(--sv-accent); background:transparent; font-weight:var(--sv-body-semibold-weight); color:var(--sv-accent-text)]>
+                        "Active"
+                        <span.sv-badge.sv-badge--flat.sv-badge--info [font-weight:var(--sv-body-bold-weight)]>
+                          "13"
+                      <button [border:0; border-bottom:2px solid transparent; background:transparent; font-weight:var(--sv-body-semibold-weight); color:var(--sv-text-secondary)]>
+                        "Inactive"
+                        <span.sv-badge.sv-badge--flat.sv-badge--neutral [font-weight:var(--sv-body-semibold-weight); color:var(--sv-text-secondary)]>
+                          "2"
+                  <table.sv-table [border-left:0; border-right:0; border-top:0; border-radius:0]>
+                    <colgroup>
+                      <col [width:30%]>
+                      <col [width:36%]>
+                      <col [width:12%]>
+                      <col [width:12%]>
+                      <col [width:10%]>
+                    <thead>
+                      <tr>
+                        <th>
+                          "Name"
+                        <th>
+                          "Due"
+                        <th.sv-num>
+                          "Customers"
+                        <th.sv-num>
+                          "Vendors"
+                        <th>
+                          <span [width:1px]>
+                            "Actions"
+                    <tbody>
+                      <tr [background:var(--sv-surface-hover)]>
+                        <td>
+                          <span>
+                            "COD"
+                          <span aria-label="Cash on delivery. COD customers can't charge to account, so payment is taken when the invoice is created." [color:var(--sv-text-muted)]>
+                            <svg >
+                          <span aria-label="Always available" [color:var(--sv-text-muted)]>
+                            <svg >
+                        <td>
+                          "Paid when the invoice is created"
+                        <td.sv-num>
+                          "214"
+                        <td.sv-num>
+                          "41"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for COD" [width:32px; background:var(--sv-surface-hover)]>
+                              <svg >
+                            <div>
+                              <div.sv-menu [width:max-content]>
+                                <div>
+                                  <button.sv-menu__row>
+                                    <svg >
+                                    <span.sv-menu__label>
+                                      "Make Default for New Customers"
+                                <div>
+                                  <button.sv-menu__row.is-disabled>
+                                    <svg >
+                                    <span.sv-menu__label>
+                                      "Move Customers"
+                                  <div>
+                                    <div [background:rgba(97,97,97,0.92); color:#fafafa; font-weight:400; border-radius:4px]>
+                                      "You need Customers → Create & Edit and View and Manage AP/AR Data to move customers."
+                      <tr>
+                        <td>
+                          <span>
+                            "Due on Receipt"
+                          <span aria-label="Payment is due on the invoice date, but you can create the invoice without taking payment." [color:var(--sv-text-muted)]>
+                            <svg >
+                          <span aria-label="Always available" [color:var(--sv-text-muted)]>
+                            <svg >
+                          <span.sv-badge.sv-badge--info>
+                            "Default"
+                        <td>
+                          "Due on the invoice date"
+                        <td.sv-num>
+                          "38"
+                        <td.sv-num>
+                          "2"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Due on Receipt" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 7"
+                        <td>
+                          "7 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 7" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 10"
+                        <td>
+                          "10 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 10" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 15"
+                        <td>
+                          "15 days after the invoice date"
+                        <td.sv-num>
+                          "12"
+                        <td.sv-num>
+                          "1"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 15" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 20"
+                        <td>
+                          "20 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 20" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 30"
+                        <td>
+                          "30 days after the invoice date"
+                        <td.sv-num>
+                          "96"
+                        <td.sv-num>
+                          "3"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 30" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 45"
+                        <td>
+                          "45 days after the invoice date"
+                        <td.sv-num>
+                          "4"
+                        <td.sv-num>
+                          "1"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 45" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 60"
+                        <td>
+                          "60 days after the invoice date"
+                        <td.sv-num>
+                          "3"
+                        <td.sv-num>
+                          "2"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 60" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 90"
+                        <td>
+                          "90 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 90" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Net 120"
+                        <td>
+                          "120 days after the invoice date"
+                        <td.sv-num>
+                          "0"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Net 120" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "10th of next month"
+                        <td>
+                          "10th of the following month"
+                        <td.sv-num>
+                          "12"
+                        <td.sv-num>
+                          "1"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for 10th of next month" [width:32px]>
+                              <svg >
+                      <tr>
+                        <td>
+                          <span>
+                            "Credit Hold"
+                          <span aria-label="No invoices can be created for a customer on Credit Hold until their credit term is changed." [color:var(--sv-text-muted)]>
+                            <svg >
+                          <span aria-label="Always available" [color:var(--sv-text-muted)]>
+                            <svg >
+                        <td>
+                          "Invoicing is blocked"
+                        <td.sv-num>
+                          "2"
+                        <td.sv-num>
+                          "0"
+                        <td>
+                          <div>
+                            <button.sv-btn.sv-btn--tertiary.sv-btn--sm aria-label="Actions for Credit Hold" [width:32px]>
+                              <svg >
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "A user with Settings → Finance but without Customers → Create & Edit or View and Manage AP/AR Data sees Move Customers greyed in every row menu, with the hover text "You need Customers → Create & Edit and View and Manage AP/AR Data to move customers." (S4-N1). They can still make a default."
+                <li>
+                  "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."

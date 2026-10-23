@@ -1,0 +1,7166 @@
+{
+ "board": "Vendor.dc.html",
+ "title": "7. Vendors",
+ "h2": "7. Vendors",
+ "note": "New Vendor, Edit Vendor, a vendor on a deactivated term, and vendor invoice due dates for the shop's own terms. Before: the branch build where the screen is unchanged from production. Light theme.",
+ "helmet_css": "\n<style>\nbody{margin:0}\n/* build geometry (r6-01 / r8): 14px table text, one-line rows, 48px rows */\nfigure .sv-table { font-size: var(--sv-body-size); }\nfigure .sv-table td, figure .sv-table th { white-space: nowrap; overflow: visible; }\nfigure .sv-table td { height: 48px; padding-top: 0; padding-bottom: 0; }\nfigure .sv-table th { height: 56px; padding-top: 0; padding-bottom: 0; }\n.ct-page > .sv-page-head, .ct-page > .sv-tabs-row { margin-left: 0; margin-right: 0; }\n.ct-page > .sv-page-head { padding-top: 20px; margin-bottom: 12px; }\n</style>\n",
+ "figures": [
+  {
+   "n": 1,
+   "line": 31,
+   "badge": "Unchanged from production (before)",
+   "heading": "New Vendor today",
+   "captions": [
+    "Captured on the branch build at localhost:8080; the dialog layout is unchanged from production. In production the picker lists the 12 standard terms only."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-new-vendor.png",
+     "alt": "New Vendor dialog",
+     "line": 33
+    }
+   ],
+   "texts": [
+    {
+     "text": "Unchanged from production (before)",
+     "line": 32,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 1
+    },
+    {
+     "text": "New Vendor today",
+     "line": 32,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "New Vendor dialog",
+     "line": 33,
+     "kind": "attr:alt",
+     "ctx": ""
+    },
+    {
+     "text": "Captured on the branch build at localhost:8080; the dialog layout is unchanged from production. In production the picker lists the 12 standard terms only.",
+     "line": 34,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 1
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "line": 36,
+   "badge": "This design",
+   "heading": "New Vendor: starts on COD, picker with your terms",
+   "captions": [
+    "A new vendor starts on COD, as today: the shop default applies to new customers only (VendorDialog.vue keeps COD).",
+    "One term list for customers and vendors: the picker offers the active terms in the S1-R5 order, Credit Hold last. Deactivated terms are not offered.",
+    "Credit Limit: vendors have a required Credit Limit field. The build does not apply the COD / Credit Hold $0 lock to vendors, so it stays editable on every term.",
+    "Source: VendorDialog.vue field layout, drawn with DS Text field, Select and Menus.",
+    "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+   ],
+   "imgs": [],
+   "texts": [
+    {
+     "text": "This design",
+     "line": 37,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 2
+    },
+    {
+     "text": "New Vendor: starts on COD, picker with your terms",
+     "line": 37,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "ShopView",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": "sv-header__logo"
+    },
+    {
+     "text": "ShopHub",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Work Orders",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Schedule",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Customers",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Parts",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Reports",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Dashboard",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Searc...",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Ctrl K",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-menu__kbd",
+     "fig": 2
+    },
+    {
+     "text": "timer",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 2
+    },
+    {
+     "text": "Clock In",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "notifications_none",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 2
+    },
+    {
+     "text": "Staging Heavy Duty - 9919",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "AS",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-avatar",
+     "fig": 2
+    },
+    {
+     "text": "New Vendor",
+     "line": 39,
+     "kind": "text",
+     "ctx": "sv-modal__title",
+     "fig": 2
+    },
+    {
+     "text": "Close",
+     "line": 39,
+     "kind": "attr:aria-label",
+     "ctx": "sv-modal__close"
+    },
+    {
+     "text": " ",
+     "line": 40,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Name *",
+     "line": 40,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 41,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Address 1",
+     "line": 41,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 42,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Address 2",
+     "line": 42,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 43,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "City",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 43,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "ZIP/Postal Code",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 44,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Telephone",
+     "line": 44,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 44,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Email",
+     "line": 44,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 45,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "State/Province",
+     "line": 45,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 45,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Canada",
+     "line": 45,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Country",
+     "line": 45,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 46,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "COD",
+     "line": 46,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Credit Terms",
+     "line": 46,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "check",
+     "line": 46,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 2
+    },
+    {
+     "text": "COD",
+     "line": 46,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Due on Receipt",
+     "line": 46,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Net 7",
+     "line": 46,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Net 10",
+     "line": 46,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Net 15",
+     "line": 46,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Net 20",
+     "line": 46,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Net 30",
+     "line": 46,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Net 45",
+     "line": 46,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Net 60",
+     "line": 46,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 46,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "$ 0.00",
+     "line": 46,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Credit Limit",
+     "line": 46,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 47,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Taxes",
+     "line": 47,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 48,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Notes",
+     "line": 48,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 49,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Website",
+     "line": 49,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Save & Close",
+     "line": 50,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 2
+    },
+    {
+     "text": "A new vendor starts on COD, as today: the shop default applies to new customers only (VendorDialog.vue keeps COD).",
+     "line": 52,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "One term list for customers and vendors: the picker offers the active terms in the S1-R5 order, Credit Hold last. Deactivated terms are not offered.",
+     "line": 52,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Credit Limit: vendors have a required Credit Limit field. The build does not apply the COD / Credit Hold $0 lock to vendors, so it stays editable on every term.",
+     "line": 52,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Source: VendorDialog.vue field layout, drawn with DS Text field, Select and Menus.",
+     "line": 52,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+     "line": 52,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "line": 54,
+   "badge": "Unchanged from production (before)",
+   "heading": "Edit Vendor today",
+   "captions": [
+    "Captured on the branch build with the picker closed: layout unchanged from production."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-vendor.png",
+     "alt": "Edit Vendor dialog",
+     "line": 56
+    }
+   ],
+   "texts": [
+    {
+     "text": "Unchanged from production (before)",
+     "line": 55,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 3
+    },
+    {
+     "text": "Edit Vendor today",
+     "line": 55,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Edit Vendor dialog",
+     "line": 56,
+     "kind": "attr:alt",
+     "ctx": ""
+    },
+    {
+     "text": "Captured on the branch build with the picker closed: layout unchanged from production.",
+     "line": 57,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "line": 59,
+   "badge": "This design",
+   "heading": "Edit Vendor: the picker with your terms",
+   "captions": [
+    "The same list and order as New Vendor and the customer pickers (S6-R1).",
+    "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+   ],
+   "imgs": [],
+   "texts": [
+    {
+     "text": "This design",
+     "line": 60,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 4
+    },
+    {
+     "text": "Edit Vendor: the picker with your terms",
+     "line": 60,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "ShopView",
+     "line": 61,
+     "kind": "attr:aria-label",
+     "ctx": "sv-header__logo"
+    },
+    {
+     "text": "ShopHub",
+     "line": 61,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Work Orders",
+     "line": 61,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Schedule",
+     "line": 61,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Customers",
+     "line": 61,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Parts",
+     "line": 61,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Reports",
+     "line": 61,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Dashboard",
+     "line": 61,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Searc...",
+     "line": 61,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Ctrl K",
+     "line": 61,
+     "kind": "text",
+     "ctx": "sv-menu__kbd",
+     "fig": 4
+    },
+    {
+     "text": "timer",
+     "line": 61,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 4
+    },
+    {
+     "text": "Clock In",
+     "line": 61,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "notifications_none",
+     "line": 61,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 4
+    },
+    {
+     "text": "Staging Heavy Duty - 9919",
+     "line": 61,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "AS",
+     "line": 61,
+     "kind": "text",
+     "ctx": "sv-avatar",
+     "fig": 4
+    },
+    {
+     "text": "Edit Vendor",
+     "line": 62,
+     "kind": "text",
+     "ctx": "sv-modal__title",
+     "fig": 4
+    },
+    {
+     "text": "Close",
+     "line": 62,
+     "kind": "attr:aria-label",
+     "ctx": "sv-modal__close"
+    },
+    {
+     "text": " ",
+     "line": 63,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Venice Gardens Truck Repair",
+     "line": 63,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Name *",
+     "line": 63,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 64,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "89680 Harper Mountain",
+     "line": 64,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Address 1",
+     "line": 64,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 65,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Address 2",
+     "line": 65,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 66,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Lake Theresa",
+     "line": 66,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "City",
+     "line": 66,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 66,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "N5M9V7",
+     "line": 66,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "ZIP/Postal Code",
+     "line": 66,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 67,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "(489) 420 - 2491",
+     "line": 67,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Telephone",
+     "line": 67,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 67,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "wendy.jenkins@staging.shopview.local",
+     "line": 67,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Email",
+     "line": 67,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 68,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Nova Scotia",
+     "line": 68,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "State/Province",
+     "line": 68,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 68,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Canada",
+     "line": 68,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Country",
+     "line": 68,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 69,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Net 30",
+     "line": 69,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Credit Terms",
+     "line": 69,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "COD",
+     "line": 69,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Due on Receipt",
+     "line": 69,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Net 7",
+     "line": 69,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Net 10",
+     "line": 69,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Net 15",
+     "line": 69,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Net 20",
+     "line": 69,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "check",
+     "line": 69,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 4
+    },
+    {
+     "text": "Net 30",
+     "line": 69,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Net 45",
+     "line": 69,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Net 60",
+     "line": 69,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 69,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "$ 0.00",
+     "line": 69,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Credit Limit",
+     "line": 69,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 70,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "GST",
+     "line": 70,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Taxes",
+     "line": 70,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 71,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Notes",
+     "line": 71,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 72,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Website",
+     "line": 72,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Save & Close",
+     "line": 73,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 4
+    },
+    {
+     "text": "The same list and order as New Vendor and the customer pickers (S6-R1).",
+     "line": 75,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+     "line": 75,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 4
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "line": 77,
+   "badge": "Unchanged from production (before)",
+   "heading": "Vendor page today",
+   "captions": [
+    "Email overflow is pre-existing (SV-11684), not part of this feature.",
+    "Captured on the branch build: layout unchanged from production. The card shows the credit term by name."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-vendor-page.png",
+     "alt": "Vendor page",
+     "line": 79
+    }
+   ],
+   "texts": [
+    {
+     "text": "Unchanged from production (before)",
+     "line": 78,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 5
+    },
+    {
+     "text": "Vendor page today",
+     "line": 78,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Vendor page",
+     "line": 79,
+     "kind": "attr:alt",
+     "ctx": ""
+    },
+    {
+     "text": "Email overflow is pre-existing (SV-11684), not part of this feature.",
+     "line": 80,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Captured on the branch build: layout unchanged from production. The card shows the credit term by name.",
+     "line": 80,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 5
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "line": 82,
+   "badge": "This design",
+   "heading": "Vendor on a deactivated term",
+   "captions": [
+    "Email overflow is pre-existing (SV-11684), not part of this feature.",
+    "The shop deactivated Net 10. This vendor keeps it, and the card reads \"Net 10 (Inactive)\". Vendor bills still get their due date from it.",
+    "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+   ],
+   "imgs": [],
+   "texts": [
+    {
+     "text": "This design",
+     "line": 83,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 6
+    },
+    {
+     "text": "Vendor on a deactivated term",
+     "line": 83,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "ShopView",
+     "line": 84,
+     "kind": "attr:aria-label",
+     "ctx": "sv-header__logo"
+    },
+    {
+     "text": "ShopHub",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Work Orders",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Schedule",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Customers",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Parts",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Reports",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Dashboard",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Searc...",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Ctrl K",
+     "line": 84,
+     "kind": "text",
+     "ctx": "sv-menu__kbd",
+     "fig": 6
+    },
+    {
+     "text": "timer",
+     "line": 84,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 6
+    },
+    {
+     "text": "Clock In",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "notifications_none",
+     "line": 84,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 6
+    },
+    {
+     "text": "Staging Heavy Duty - 9919",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "AS",
+     "line": 84,
+     "kind": "text",
+     "ctx": "sv-avatar",
+     "fig": 6
+    },
+    {
+     "text": "Venice Gardens ..",
+     "line": 84,
+     "kind": "text",
+     "ctx": "sv-h4",
+     "fig": 6
+    },
+    {
+     "text": "Edit vendor",
+     "line": 84,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary"
+    },
+    {
+     "text": "Email",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "wendy.jenkins@staging.shopview.local",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Telephone",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "489-420-2491",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Address",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "89680 Harper Mountain",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "State/Province",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Nova Scotia",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "City",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Lake Theresa",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Postal code",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "N5M9V7",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Website",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "N/A",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Credit term",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Net 10 (Inactive)",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Credit limit",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "$0.00",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Taxes",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "GST",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Contacts",
+     "line": 84,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 6
+    },
+    {
+     "text": "1",
+     "line": 84,
+     "kind": "text",
+     "ctx": "sv-tab__count",
+     "fig": 6
+    },
+    {
+     "text": "Unpaid Invoices",
+     "line": 84,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 6
+    },
+    {
+     "text": "Payments",
+     "line": 84,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 6
+    },
+    {
+     "text": "More actions",
+     "line": 84,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--secondary"
+    },
+    {
+     "text": "Add Contact",
+     "line": 84,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 6
+    },
+    {
+     "text": "First Name",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Last Name",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Title",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Email",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Telephone",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Department",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Steven",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Hester",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "victoria.burgess@staging.shopview.local",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "312-109-2131",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Preferred",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Email overflow is pre-existing (SV-11684), not part of this feature.",
+     "line": 85,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "The shop deactivated Net 10. This vendor keeps it, and the card reads \"Net 10 (Inactive)\". Vendor bills still get their due date from it.",
+     "line": 85,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 6
+    },
+    {
+     "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+     "line": 85,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 6
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "line": 87,
+   "badge": "This design",
+   "heading": "Edit Vendor keeps the inactive term",
+   "captions": [
+    "Email overflow is pre-existing (SV-11684), not part of this feature.",
+    "Credit Terms stays on \"Net 10 (Inactive)\" until someone picks another. The picker lists the active terms, then this vendor's own \"Net 10 (Inactive)\" at the end, selected.",
+    "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+   ],
+   "imgs": [],
+   "texts": [
+    {
+     "text": "This design",
+     "line": 88,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 7
+    },
+    {
+     "text": "Edit Vendor keeps the inactive term",
+     "line": 88,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "ShopView",
+     "line": 89,
+     "kind": "attr:aria-label",
+     "ctx": "sv-header__logo"
+    },
+    {
+     "text": "ShopHub",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Work Orders",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Schedule",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Customers",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Parts",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Reports",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Dashboard",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Searc...",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Ctrl K",
+     "line": 89,
+     "kind": "text",
+     "ctx": "sv-menu__kbd",
+     "fig": 7
+    },
+    {
+     "text": "timer",
+     "line": 89,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 7
+    },
+    {
+     "text": "Clock In",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "notifications_none",
+     "line": 89,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 7
+    },
+    {
+     "text": "Staging Heavy Duty - 9919",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "AS",
+     "line": 89,
+     "kind": "text",
+     "ctx": "sv-avatar",
+     "fig": 7
+    },
+    {
+     "text": "Venice Gardens ..",
+     "line": 89,
+     "kind": "text",
+     "ctx": "sv-h4",
+     "fig": 7
+    },
+    {
+     "text": "Edit vendor",
+     "line": 89,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary"
+    },
+    {
+     "text": "Email",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "wendy.jenkins@staging.shopview.local",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Telephone",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "489-420-2491",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Address",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "89680 Harper Mountain",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "State/Province",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Nova Scotia",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "City",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Lake Theresa",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Postal code",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "N5M9V7",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Website",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "N/A",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Credit term",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Net 10 (Inactive)",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Credit limit",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "$0.00",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Taxes",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "GST",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Contacts",
+     "line": 89,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 7
+    },
+    {
+     "text": "1",
+     "line": 89,
+     "kind": "text",
+     "ctx": "sv-tab__count",
+     "fig": 7
+    },
+    {
+     "text": "Unpaid Invoices",
+     "line": 89,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 7
+    },
+    {
+     "text": "Payments",
+     "line": 89,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 7
+    },
+    {
+     "text": "More actions",
+     "line": 89,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--secondary"
+    },
+    {
+     "text": "Add Contact",
+     "line": 89,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 7
+    },
+    {
+     "text": "First Name",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Last Name",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Title",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Email",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Telephone",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Department",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Steven",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Hester",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "victoria.burgess@staging.shopview.local",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "312-109-2131",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Preferred",
+     "line": 89,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Edit Vendor",
+     "line": 90,
+     "kind": "text",
+     "ctx": "sv-modal__title",
+     "fig": 7
+    },
+    {
+     "text": "Close",
+     "line": 90,
+     "kind": "attr:aria-label",
+     "ctx": "sv-modal__close"
+    },
+    {
+     "text": " ",
+     "line": 91,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Venice Gardens Truck Repair",
+     "line": 91,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Name *",
+     "line": 91,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": " ",
+     "line": 92,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "89680 Harper Mountain",
+     "line": 92,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Address 1",
+     "line": 92,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": " ",
+     "line": 93,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Address 2",
+     "line": 93,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": " ",
+     "line": 94,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Lake Theresa",
+     "line": 94,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "City",
+     "line": 94,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": " ",
+     "line": 94,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "N5M9V7",
+     "line": 94,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "ZIP/Postal Code",
+     "line": 94,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": " ",
+     "line": 95,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "(489) 420 - 2491",
+     "line": 95,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Telephone",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": " ",
+     "line": 95,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "wendy.jenkins@staging.shopview.local",
+     "line": 95,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Email",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": " ",
+     "line": 96,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Nova Scotia",
+     "line": 96,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "State/Province",
+     "line": 96,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": " ",
+     "line": 96,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Canada",
+     "line": 96,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Country",
+     "line": 96,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": " ",
+     "line": 97,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Net 10 (Inactive)",
+     "line": 97,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Credit Terms",
+     "line": 97,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Net 20",
+     "line": 97,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Net 30",
+     "line": 97,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Net 45",
+     "line": 97,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Net 60",
+     "line": 97,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Net 90",
+     "line": 97,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Net 120",
+     "line": 97,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "10th of next month",
+     "line": 97,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Credit Hold",
+     "line": 97,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "check",
+     "line": 97,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 7
+    },
+    {
+     "text": "Net 10 (Inactive)",
+     "line": 97,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": " ",
+     "line": 97,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "$ 0.00",
+     "line": 97,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Credit Limit",
+     "line": 97,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": " ",
+     "line": 98,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "GST",
+     "line": 98,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Taxes",
+     "line": 98,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": " ",
+     "line": 99,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Notes",
+     "line": 99,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": " ",
+     "line": 100,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Website",
+     "line": 100,
+     "kind": "text",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Save & Close",
+     "line": 101,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 7
+    },
+    {
+     "text": "Email overflow is pre-existing (SV-11684), not part of this feature.",
+     "line": 103,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Credit Terms stays on \"Net 10 (Inactive)\" until someone picks another. The picker lists the active terms, then this vendor's own \"Net 10 (Inactive)\" at the end, selected.",
+     "line": 103,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 7
+    },
+    {
+     "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+     "line": 103,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 7
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "line": 105,
+   "badge": "This design",
+   "heading": "Any other vendor's picker",
+   "captions": [
+    "Email overflow is pre-existing (SV-11684), not part of this feature.",
+    "A vendor not on Net 10 is never offered it.",
+    "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+   ],
+   "imgs": [],
+   "texts": [
+    {
+     "text": "This design",
+     "line": 106,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 8
+    },
+    {
+     "text": "Any other vendor's picker",
+     "line": 106,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "ShopView",
+     "line": 107,
+     "kind": "attr:aria-label",
+     "ctx": "sv-header__logo"
+    },
+    {
+     "text": "ShopHub",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Work Orders",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Schedule",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Customers",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Parts",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Reports",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Dashboard",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Searc...",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Ctrl K",
+     "line": 107,
+     "kind": "text",
+     "ctx": "sv-menu__kbd",
+     "fig": 8
+    },
+    {
+     "text": "timer",
+     "line": 107,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 8
+    },
+    {
+     "text": "Clock In",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "notifications_none",
+     "line": 107,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 8
+    },
+    {
+     "text": "Staging Heavy Duty - 9919",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "AS",
+     "line": 107,
+     "kind": "text",
+     "ctx": "sv-avatar",
+     "fig": 8
+    },
+    {
+     "text": "Venice Gardens ..",
+     "line": 107,
+     "kind": "text",
+     "ctx": "sv-h4",
+     "fig": 8
+    },
+    {
+     "text": "Edit vendor",
+     "line": 107,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary"
+    },
+    {
+     "text": "Email",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "wendy.jenkins@staging.shopview.local",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Telephone",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "489-420-2491",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Address",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "89680 Harper Mountain",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "State/Province",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Nova Scotia",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "City",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Lake Theresa",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Postal code",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "N5M9V7",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Website",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "N/A",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Credit term",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Net 30",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Credit limit",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "$0.00",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Taxes",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "GST",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Contacts",
+     "line": 107,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 8
+    },
+    {
+     "text": "1",
+     "line": 107,
+     "kind": "text",
+     "ctx": "sv-tab__count",
+     "fig": 8
+    },
+    {
+     "text": "Unpaid Invoices",
+     "line": 107,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 8
+    },
+    {
+     "text": "Payments",
+     "line": 107,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 8
+    },
+    {
+     "text": "More actions",
+     "line": 107,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--secondary"
+    },
+    {
+     "text": "Add Contact",
+     "line": 107,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 8
+    },
+    {
+     "text": "First Name",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Last Name",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Title",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Email",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Telephone",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Department",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Steven",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Hester",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "victoria.burgess@staging.shopview.local",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "312-109-2131",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Preferred",
+     "line": 107,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Edit Vendor",
+     "line": 108,
+     "kind": "text",
+     "ctx": "sv-modal__title",
+     "fig": 8
+    },
+    {
+     "text": "Close",
+     "line": 108,
+     "kind": "attr:aria-label",
+     "ctx": "sv-modal__close"
+    },
+    {
+     "text": " ",
+     "line": 109,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Venice Gardens Truck Repair",
+     "line": 109,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Name *",
+     "line": 109,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": " ",
+     "line": 110,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "89680 Harper Mountain",
+     "line": 110,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Address 1",
+     "line": 110,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": " ",
+     "line": 111,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Address 2",
+     "line": 111,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": " ",
+     "line": 112,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Lake Theresa",
+     "line": 112,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "City",
+     "line": 112,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": " ",
+     "line": 112,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "N5M9V7",
+     "line": 112,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "ZIP/Postal Code",
+     "line": 112,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": " ",
+     "line": 113,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "(489) 420 - 2491",
+     "line": 113,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Telephone",
+     "line": 113,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": " ",
+     "line": 113,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "wendy.jenkins@staging.shopview.local",
+     "line": 113,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Email",
+     "line": 113,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": " ",
+     "line": 114,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Nova Scotia",
+     "line": 114,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "State/Province",
+     "line": 114,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": " ",
+     "line": 114,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Canada",
+     "line": 114,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Country",
+     "line": 114,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": " ",
+     "line": 115,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Net 30",
+     "line": 115,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Credit Terms",
+     "line": 115,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "COD",
+     "line": 115,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Due on Receipt",
+     "line": 115,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Net 7",
+     "line": 115,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Net 15",
+     "line": 115,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Net 20",
+     "line": 115,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "check",
+     "line": 115,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 8
+    },
+    {
+     "text": "Net 30",
+     "line": 115,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Net 45",
+     "line": 115,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Net 60",
+     "line": 115,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Net 90",
+     "line": 115,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": " ",
+     "line": 115,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "$ 0.00",
+     "line": 115,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Credit Limit",
+     "line": 115,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": " ",
+     "line": 116,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "GST",
+     "line": 116,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Taxes",
+     "line": 116,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": " ",
+     "line": 117,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Notes",
+     "line": 117,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": " ",
+     "line": 118,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Website",
+     "line": 118,
+     "kind": "text",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Save & Close",
+     "line": 119,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 8
+    },
+    {
+     "text": "Email overflow is pre-existing (SV-11684), not part of this feature.",
+     "line": 121,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "A vendor not on Net 10 is never offered it.",
+     "line": 121,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 8
+    },
+    {
+     "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+     "line": 121,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 8
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "line": 123,
+   "badge": "Unchanged from production (before)",
+   "heading": "A vendor invoice today (Net 60)",
+   "captions": [
+    "Captured on the branch build: layout unchanged from production. Invoice Aug 31, Net 60, due Oct 30. The due date is worked out from the vendor's credit term when the vendor invoice is created, and recalculated when its invoice date or its vendor changes (S7-R9)."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-vendor-bill.png",
+     "alt": "Vendor invoice delivery page",
+     "line": 125
+    }
+   ],
+   "texts": [
+    {
+     "text": "Unchanged from production (before)",
+     "line": 124,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 9
+    },
+    {
+     "text": "A vendor invoice today (Net 60)",
+     "line": 124,
+     "kind": "text",
+     "ctx": "",
+     "fig": 9
+    },
+    {
+     "text": "Vendor invoice delivery page",
+     "line": 125,
+     "kind": "attr:alt",
+     "ctx": ""
+    },
+    {
+     "text": "Captured on the branch build: layout unchanged from production. Invoice Aug 31, Net 60, due Oct 30. The due date is worked out from the vendor's credit term when the vendor invoice is created, and recalculated when its invoice date or its vendor changes (S7-R9).",
+     "line": 126,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 9
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "line": 128,
+   "badge": "This design",
+   "heading": "Vendor on 10th of next month: Oct 5, due Nov 10",
+   "captions": [
+    "Same date rule as customer invoices: always the 10th of the next month; a shorter month uses its last day.",
+    "The highlight marks what to check; it is not part of the screen.",
+    "Source: Delivery.vue layout (Vendor Invoice card, Delivery Details, Delivery items), drawn with DS Card and Table.",
+    "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+   ],
+   "imgs": [],
+   "texts": [
+    {
+     "text": "This design",
+     "line": 129,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 10
+    },
+    {
+     "text": "Vendor on 10th of next month: Oct 5, due Nov 10",
+     "line": 129,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "ShopView",
+     "line": 130,
+     "kind": "attr:aria-label",
+     "ctx": "sv-header__logo"
+    },
+    {
+     "text": "ShopHub",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Work Orders",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Schedule",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Customers",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Parts",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Reports",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Dashboard",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Searc...",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Ctrl K",
+     "line": 130,
+     "kind": "text",
+     "ctx": "sv-menu__kbd",
+     "fig": 10
+    },
+    {
+     "text": "timer",
+     "line": 130,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 10
+    },
+    {
+     "text": "Clock In",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "notifications_none",
+     "line": 130,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 10
+    },
+    {
+     "text": "Staging Heavy Duty - 9919",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "AS",
+     "line": 130,
+     "kind": "text",
+     "ctx": "sv-avatar",
+     "fig": 10
+    },
+    {
+     "text": "Vendor Invoice",
+     "line": 130,
+     "kind": "text",
+     "ctx": "sv-h4",
+     "fig": 10
+    },
+    {
+     "text": "Edit vendor invoice",
+     "line": 130,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary"
+    },
+    {
+     "text": "156901",
+     "line": 130,
+     "kind": "text",
+     "ctx": "sv-h4",
+     "fig": 10
+    },
+    {
+     "text": "Invoice date",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Oct 5, 2026",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Due date",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Nov 10, 2026",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Vendor",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Jefferson Truck Center - Roanoke",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Delivery Details",
+     "line": 130,
+     "kind": "text",
+     "ctx": "sv-h4",
+     "fig": 10
+    },
+    {
+     "text": "I-1393",
+     "line": 130,
+     "kind": "text",
+     "ctx": "sv-h4",
+     "fig": 10
+    },
+    {
+     "text": "Date received",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Oct 5, 2026",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Ordered by",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Jeffrey Jordan",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Received by",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Carrie Johnson",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Delivery items",
+     "line": 130,
+     "kind": "text",
+     "ctx": "sv-h3",
+     "fig": 10
+    },
+    {
+     "text": "Description",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Part Number",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Category",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Cost",
+     "line": 130,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 10
+    },
+    {
+     "text": "Quantity Delivered",
+     "line": 130,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 10
+    },
+    {
+     "text": "Total Cost",
+     "line": 130,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 10
+    },
+    {
+     "text": "Cummins 12.91\" V-Band Clamp, ATD",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "CL1340",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "HD-Exhaust",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "$93.72000",
+     "line": 130,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 10
+    },
+    {
+     "text": "4.00",
+     "line": 130,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 10
+    },
+    {
+     "text": "$374.88",
+     "line": 130,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 10
+    },
+    {
+     "text": "Cummins 12.5\" ID X 13.25\" OD DPF Gasket - ISX",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "GSK1050",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "HD-Emissions",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "$18.80000",
+     "line": 130,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 10
+    },
+    {
+     "text": "4.00",
+     "line": 130,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 10
+    },
+    {
+     "text": "$75.20",
+     "line": 130,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 10
+    },
+    {
+     "text": "Cummins 13.5\" V-Band Clamp",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "CL1030",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "HD-Exhaust",
+     "line": 130,
+     "kind": "text",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "$72.23500",
+     "line": 130,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 10
+    },
+    {
+     "text": "2.00",
+     "line": 130,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 10
+    },
+    {
+     "text": "$144.47",
+     "line": 130,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 10
+    },
+    {
+     "text": "Total:",
+     "line": 130,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 10
+    },
+    {
+     "text": "$594.55",
+     "line": 130,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 10
+    },
+    {
+     "text": "Same date rule as customer invoices: always the 10th of the next month; a shorter month uses its last day.",
+     "line": 131,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "The highlight marks what to check; it is not part of the screen.",
+     "line": 131,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Source: Delivery.vue layout (Vendor Invoice card, Delivery Details, Delivery items), drawn with DS Card and Table.",
+     "line": 131,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 10
+    },
+    {
+     "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+     "line": 131,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 10
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "line": 133,
+   "badge": "This design",
+   "heading": "Vendor on Net 10: Oct 5, due Oct 15",
+   "captions": [
+    "A shop's own Net X term adds X days, like the standard Net terms.",
+    "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+   ],
+   "imgs": [],
+   "texts": [
+    {
+     "text": "This design",
+     "line": 134,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 11
+    },
+    {
+     "text": "Vendor on Net 10: Oct 5, due Oct 15",
+     "line": 134,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "ShopView",
+     "line": 135,
+     "kind": "attr:aria-label",
+     "ctx": "sv-header__logo"
+    },
+    {
+     "text": "ShopHub",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Work Orders",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Schedule",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Customers",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Parts",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Reports",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Dashboard",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Searc...",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Ctrl K",
+     "line": 135,
+     "kind": "text",
+     "ctx": "sv-menu__kbd",
+     "fig": 11
+    },
+    {
+     "text": "timer",
+     "line": 135,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 11
+    },
+    {
+     "text": "Clock In",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "notifications_none",
+     "line": 135,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 11
+    },
+    {
+     "text": "Staging Heavy Duty - 9919",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "AS",
+     "line": 135,
+     "kind": "text",
+     "ctx": "sv-avatar",
+     "fig": 11
+    },
+    {
+     "text": "Vendor Invoice",
+     "line": 135,
+     "kind": "text",
+     "ctx": "sv-h4",
+     "fig": 11
+    },
+    {
+     "text": "Edit vendor invoice",
+     "line": 135,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary"
+    },
+    {
+     "text": "156902",
+     "line": 135,
+     "kind": "text",
+     "ctx": "sv-h4",
+     "fig": 11
+    },
+    {
+     "text": "Invoice date",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Oct 5, 2026",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Due date",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Oct 15, 2026",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Vendor",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Venice Gardens Truck Repair",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Delivery Details",
+     "line": 135,
+     "kind": "text",
+     "ctx": "sv-h4",
+     "fig": 11
+    },
+    {
+     "text": "I-1393",
+     "line": 135,
+     "kind": "text",
+     "ctx": "sv-h4",
+     "fig": 11
+    },
+    {
+     "text": "Date received",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Oct 5, 2026",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Ordered by",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Jeffrey Jordan",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Received by",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Carrie Johnson",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Delivery items",
+     "line": 135,
+     "kind": "text",
+     "ctx": "sv-h3",
+     "fig": 11
+    },
+    {
+     "text": "Description",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Part Number",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Category",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Cost",
+     "line": 135,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 11
+    },
+    {
+     "text": "Quantity Delivered",
+     "line": 135,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 11
+    },
+    {
+     "text": "Total Cost",
+     "line": 135,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 11
+    },
+    {
+     "text": "Cummins 12.91\" V-Band Clamp, ATD",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "CL1340",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "HD-Exhaust",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "$93.72000",
+     "line": 135,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 11
+    },
+    {
+     "text": "4.00",
+     "line": 135,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 11
+    },
+    {
+     "text": "$374.88",
+     "line": 135,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 11
+    },
+    {
+     "text": "Cummins 12.5\" ID X 13.25\" OD DPF Gasket - ISX",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "GSK1050",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "HD-Emissions",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "$18.80000",
+     "line": 135,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 11
+    },
+    {
+     "text": "4.00",
+     "line": 135,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 11
+    },
+    {
+     "text": "$75.20",
+     "line": 135,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 11
+    },
+    {
+     "text": "Cummins 13.5\" V-Band Clamp",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "CL1030",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "HD-Exhaust",
+     "line": 135,
+     "kind": "text",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "$72.23500",
+     "line": 135,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 11
+    },
+    {
+     "text": "2.00",
+     "line": 135,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 11
+    },
+    {
+     "text": "$144.47",
+     "line": 135,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 11
+    },
+    {
+     "text": "Total:",
+     "line": 135,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 11
+    },
+    {
+     "text": "$594.55",
+     "line": 135,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 11
+    },
+    {
+     "text": "A shop's own Net X term adds X days, like the standard Net terms.",
+     "line": 136,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 11
+    },
+    {
+     "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+     "line": 136,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 11
+    }
+   ]
+  }
+ ],
+ "texts": [
+  {
+   "text": "7. Vendors",
+   "line": 5,
+   "kind": "text",
+   "ctx": "",
+   "fig": 0
+  },
+  {
+   "text": "7. Vendors",
+   "line": 27,
+   "kind": "text",
+   "ctx": "sv-h2",
+   "fig": 0
+  },
+  {
+   "text": "New Vendor, Edit Vendor, a vendor on a deactivated term, and vendor invoice due dates for the shop's own terms. Before: the branch build where the screen is unchanged from production. Light theme.",
+   "line": 28,
+   "kind": "text",
+   "ctx": "",
+   "fig": 0
+  },
+  {
+   "text": "Unchanged from production (before)",
+   "line": 32,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 1
+  },
+  {
+   "text": "New Vendor today",
+   "line": 32,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Captured on the branch build at localhost:8080; the dialog layout is unchanged from production. In production the picker lists the 12 standard terms only.",
+   "line": 34,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "This design",
+   "line": 37,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 2
+  },
+  {
+   "text": "New Vendor: starts on COD, picker with your terms",
+   "line": 37,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "ShopHub",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Work Orders",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Schedule",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Customers",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Parts",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Reports",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Dashboard",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Searc...",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Ctrl K",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-menu__kbd",
+   "fig": 2
+  },
+  {
+   "text": "timer",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 2
+  },
+  {
+   "text": "Clock In",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "notifications_none",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 2
+  },
+  {
+   "text": "Staging Heavy Duty - 9919",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "AS",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-avatar",
+   "fig": 2
+  },
+  {
+   "text": "New Vendor",
+   "line": 39,
+   "kind": "text",
+   "ctx": "sv-modal__title",
+   "fig": 2
+  },
+  {
+   "text": "Name *",
+   "line": 40,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Address 1",
+   "line": 41,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Address 2",
+   "line": 42,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "City",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "ZIP/Postal Code",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Telephone",
+   "line": 44,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Email",
+   "line": 44,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "State/Province",
+   "line": 45,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Country",
+   "line": 45,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Credit Terms",
+   "line": 46,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "check",
+   "line": 46,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 2
+  },
+  {
+   "text": "COD",
+   "line": 46,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Due on Receipt",
+   "line": 46,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Net 7",
+   "line": 46,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Net 10",
+   "line": 46,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Net 15",
+   "line": 46,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Net 20",
+   "line": 46,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Net 30",
+   "line": 46,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Net 45",
+   "line": 46,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Net 60",
+   "line": 46,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Credit Limit",
+   "line": 46,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Taxes",
+   "line": 47,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Notes",
+   "line": 48,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Website",
+   "line": 49,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Save & Close",
+   "line": 50,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 2
+  },
+  {
+   "text": "A new vendor starts on COD, as today: the shop default applies to new customers only (VendorDialog.vue keeps COD).",
+   "line": 52,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "One term list for customers and vendors: the picker offers the active terms in the S1-R5 order, Credit Hold last. Deactivated terms are not offered.",
+   "line": 52,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Credit Limit: vendors have a required Credit Limit field. The build does not apply the COD / Credit Hold $0 lock to vendors, so it stays editable on every term.",
+   "line": 52,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Source: VendorDialog.vue field layout, drawn with DS Text field, Select and Menus.",
+   "line": 52,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+   "line": 52,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Unchanged from production (before)",
+   "line": 55,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 3
+  },
+  {
+   "text": "Edit Vendor today",
+   "line": 55,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Captured on the branch build with the picker closed: layout unchanged from production.",
+   "line": 57,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "This design",
+   "line": 60,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 4
+  },
+  {
+   "text": "Edit Vendor: the picker with your terms",
+   "line": 60,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "ShopHub",
+   "line": 61,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Work Orders",
+   "line": 61,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Schedule",
+   "line": 61,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Customers",
+   "line": 61,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Parts",
+   "line": 61,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Reports",
+   "line": 61,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Dashboard",
+   "line": 61,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Searc...",
+   "line": 61,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Ctrl K",
+   "line": 61,
+   "kind": "text",
+   "ctx": "sv-menu__kbd",
+   "fig": 4
+  },
+  {
+   "text": "timer",
+   "line": 61,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 4
+  },
+  {
+   "text": "Clock In",
+   "line": 61,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "notifications_none",
+   "line": 61,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 4
+  },
+  {
+   "text": "Staging Heavy Duty - 9919",
+   "line": 61,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "AS",
+   "line": 61,
+   "kind": "text",
+   "ctx": "sv-avatar",
+   "fig": 4
+  },
+  {
+   "text": "Edit Vendor",
+   "line": 62,
+   "kind": "text",
+   "ctx": "sv-modal__title",
+   "fig": 4
+  },
+  {
+   "text": "Name *",
+   "line": 63,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Address 1",
+   "line": 64,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Address 2",
+   "line": 65,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "City",
+   "line": 66,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "ZIP/Postal Code",
+   "line": 66,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Telephone",
+   "line": 67,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Email",
+   "line": 67,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "State/Province",
+   "line": 68,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Country",
+   "line": 68,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Credit Terms",
+   "line": 69,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "COD",
+   "line": 69,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Due on Receipt",
+   "line": 69,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Net 7",
+   "line": 69,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Net 10",
+   "line": 69,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Net 15",
+   "line": 69,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Net 20",
+   "line": 69,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "check",
+   "line": 69,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 4
+  },
+  {
+   "text": "Net 30",
+   "line": 69,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Net 45",
+   "line": 69,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Net 60",
+   "line": 69,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Credit Limit",
+   "line": 69,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Taxes",
+   "line": 70,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Notes",
+   "line": 71,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Website",
+   "line": 72,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Save & Close",
+   "line": 73,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 4
+  },
+  {
+   "text": "The same list and order as New Vendor and the customer pickers (S6-R1).",
+   "line": 75,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+   "line": 75,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Unchanged from production (before)",
+   "line": 78,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 5
+  },
+  {
+   "text": "Vendor page today",
+   "line": 78,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Email overflow is pre-existing (SV-11684), not part of this feature.",
+   "line": 80,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Captured on the branch build: layout unchanged from production. The card shows the credit term by name.",
+   "line": 80,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "This design",
+   "line": 83,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 6
+  },
+  {
+   "text": "Vendor on a deactivated term",
+   "line": 83,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "ShopHub",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Work Orders",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Schedule",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Customers",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Parts",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Reports",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Dashboard",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Searc...",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Ctrl K",
+   "line": 84,
+   "kind": "text",
+   "ctx": "sv-menu__kbd",
+   "fig": 6
+  },
+  {
+   "text": "timer",
+   "line": 84,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 6
+  },
+  {
+   "text": "Clock In",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "notifications_none",
+   "line": 84,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 6
+  },
+  {
+   "text": "Staging Heavy Duty - 9919",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "AS",
+   "line": 84,
+   "kind": "text",
+   "ctx": "sv-avatar",
+   "fig": 6
+  },
+  {
+   "text": "Venice Gardens ..",
+   "line": 84,
+   "kind": "text",
+   "ctx": "sv-h4",
+   "fig": 6
+  },
+  {
+   "text": "Email",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "wendy.jenkins@staging.shopview.local",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Telephone",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "489-420-2491",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Address",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "89680 Harper Mountain",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "State/Province",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Nova Scotia",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "City",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Lake Theresa",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Postal code",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "N5M9V7",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Website",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "N/A",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Credit term",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Net 10 (Inactive)",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Credit limit",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "$0.00",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Taxes",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "GST",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Contacts",
+   "line": 84,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 6
+  },
+  {
+   "text": "1",
+   "line": 84,
+   "kind": "text",
+   "ctx": "sv-tab__count",
+   "fig": 6
+  },
+  {
+   "text": "Unpaid Invoices",
+   "line": 84,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 6
+  },
+  {
+   "text": "Payments",
+   "line": 84,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 6
+  },
+  {
+   "text": "Add Contact",
+   "line": 84,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 6
+  },
+  {
+   "text": "First Name",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Last Name",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Title",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Email",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Telephone",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Department",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Steven",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Hester",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "victoria.burgess@staging.shopview.local",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "312-109-2131",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Preferred",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Email overflow is pre-existing (SV-11684), not part of this feature.",
+   "line": 85,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "The shop deactivated Net 10. This vendor keeps it, and the card reads \"Net 10 (Inactive)\". Vendor bills still get their due date from it.",
+   "line": 85,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+   "line": 85,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 6
+  },
+  {
+   "text": "This design",
+   "line": 88,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 7
+  },
+  {
+   "text": "Edit Vendor keeps the inactive term",
+   "line": 88,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "ShopHub",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Work Orders",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Schedule",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Customers",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Parts",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Reports",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Dashboard",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Searc...",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Ctrl K",
+   "line": 89,
+   "kind": "text",
+   "ctx": "sv-menu__kbd",
+   "fig": 7
+  },
+  {
+   "text": "timer",
+   "line": 89,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 7
+  },
+  {
+   "text": "Clock In",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "notifications_none",
+   "line": 89,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 7
+  },
+  {
+   "text": "Staging Heavy Duty - 9919",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "AS",
+   "line": 89,
+   "kind": "text",
+   "ctx": "sv-avatar",
+   "fig": 7
+  },
+  {
+   "text": "Venice Gardens ..",
+   "line": 89,
+   "kind": "text",
+   "ctx": "sv-h4",
+   "fig": 7
+  },
+  {
+   "text": "Email",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "wendy.jenkins@staging.shopview.local",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Telephone",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "489-420-2491",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Address",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "89680 Harper Mountain",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "State/Province",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Nova Scotia",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "City",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Lake Theresa",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Postal code",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "N5M9V7",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Website",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "N/A",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Credit term",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Net 10 (Inactive)",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Credit limit",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "$0.00",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Taxes",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "GST",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Contacts",
+   "line": 89,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 7
+  },
+  {
+   "text": "1",
+   "line": 89,
+   "kind": "text",
+   "ctx": "sv-tab__count",
+   "fig": 7
+  },
+  {
+   "text": "Unpaid Invoices",
+   "line": 89,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 7
+  },
+  {
+   "text": "Payments",
+   "line": 89,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 7
+  },
+  {
+   "text": "Add Contact",
+   "line": 89,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 7
+  },
+  {
+   "text": "First Name",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Last Name",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Title",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Email",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Telephone",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Department",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Steven",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Hester",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "victoria.burgess@staging.shopview.local",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "312-109-2131",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Preferred",
+   "line": 89,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Edit Vendor",
+   "line": 90,
+   "kind": "text",
+   "ctx": "sv-modal__title",
+   "fig": 7
+  },
+  {
+   "text": "Name *",
+   "line": 91,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Address 1",
+   "line": 92,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Address 2",
+   "line": 93,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "City",
+   "line": 94,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "ZIP/Postal Code",
+   "line": 94,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Telephone",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Email",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "State/Province",
+   "line": 96,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Country",
+   "line": 96,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Credit Terms",
+   "line": 97,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Net 20",
+   "line": 97,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Net 30",
+   "line": 97,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Net 45",
+   "line": 97,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Net 60",
+   "line": 97,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Net 90",
+   "line": 97,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Net 120",
+   "line": 97,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "10th of next month",
+   "line": 97,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Credit Hold",
+   "line": 97,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "check",
+   "line": 97,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 7
+  },
+  {
+   "text": "Net 10 (Inactive)",
+   "line": 97,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Credit Limit",
+   "line": 97,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Taxes",
+   "line": 98,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Notes",
+   "line": 99,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Website",
+   "line": 100,
+   "kind": "text",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Save & Close",
+   "line": 101,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 7
+  },
+  {
+   "text": "Email overflow is pre-existing (SV-11684), not part of this feature.",
+   "line": 103,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Credit Terms stays on \"Net 10 (Inactive)\" until someone picks another. The picker lists the active terms, then this vendor's own \"Net 10 (Inactive)\" at the end, selected.",
+   "line": 103,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+   "line": 103,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 7
+  },
+  {
+   "text": "This design",
+   "line": 106,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 8
+  },
+  {
+   "text": "Any other vendor's picker",
+   "line": 106,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "ShopHub",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Work Orders",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Schedule",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Customers",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Parts",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Reports",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Dashboard",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Searc...",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Ctrl K",
+   "line": 107,
+   "kind": "text",
+   "ctx": "sv-menu__kbd",
+   "fig": 8
+  },
+  {
+   "text": "timer",
+   "line": 107,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 8
+  },
+  {
+   "text": "Clock In",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "notifications_none",
+   "line": 107,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 8
+  },
+  {
+   "text": "Staging Heavy Duty - 9919",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "AS",
+   "line": 107,
+   "kind": "text",
+   "ctx": "sv-avatar",
+   "fig": 8
+  },
+  {
+   "text": "Venice Gardens ..",
+   "line": 107,
+   "kind": "text",
+   "ctx": "sv-h4",
+   "fig": 8
+  },
+  {
+   "text": "Email",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "wendy.jenkins@staging.shopview.local",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Telephone",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "489-420-2491",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Address",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "89680 Harper Mountain",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "State/Province",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Nova Scotia",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "City",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Lake Theresa",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Postal code",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "N5M9V7",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Website",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "N/A",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Credit term",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Net 30",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Credit limit",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "$0.00",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Taxes",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "GST",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Contacts",
+   "line": 107,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 8
+  },
+  {
+   "text": "1",
+   "line": 107,
+   "kind": "text",
+   "ctx": "sv-tab__count",
+   "fig": 8
+  },
+  {
+   "text": "Unpaid Invoices",
+   "line": 107,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 8
+  },
+  {
+   "text": "Payments",
+   "line": 107,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 8
+  },
+  {
+   "text": "Add Contact",
+   "line": 107,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 8
+  },
+  {
+   "text": "First Name",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Last Name",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Title",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Email",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Telephone",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Department",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Steven",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Hester",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "victoria.burgess@staging.shopview.local",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "312-109-2131",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Preferred",
+   "line": 107,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Edit Vendor",
+   "line": 108,
+   "kind": "text",
+   "ctx": "sv-modal__title",
+   "fig": 8
+  },
+  {
+   "text": "Name *",
+   "line": 109,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Address 1",
+   "line": 110,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Address 2",
+   "line": 111,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "City",
+   "line": 112,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "ZIP/Postal Code",
+   "line": 112,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Telephone",
+   "line": 113,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Email",
+   "line": 113,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "State/Province",
+   "line": 114,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Country",
+   "line": 114,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Credit Terms",
+   "line": 115,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "COD",
+   "line": 115,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Due on Receipt",
+   "line": 115,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Net 7",
+   "line": 115,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Net 15",
+   "line": 115,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Net 20",
+   "line": 115,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "check",
+   "line": 115,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 8
+  },
+  {
+   "text": "Net 30",
+   "line": 115,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Net 45",
+   "line": 115,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Net 60",
+   "line": 115,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Net 90",
+   "line": 115,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Credit Limit",
+   "line": 115,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Taxes",
+   "line": 116,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Notes",
+   "line": 117,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Website",
+   "line": 118,
+   "kind": "text",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Save & Close",
+   "line": 119,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 8
+  },
+  {
+   "text": "Email overflow is pre-existing (SV-11684), not part of this feature.",
+   "line": 121,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "A vendor not on Net 10 is never offered it.",
+   "line": 121,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+   "line": 121,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 8
+  },
+  {
+   "text": "Unchanged from production (before)",
+   "line": 124,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 9
+  },
+  {
+   "text": "A vendor invoice today (Net 60)",
+   "line": 124,
+   "kind": "text",
+   "ctx": "",
+   "fig": 9
+  },
+  {
+   "text": "Captured on the branch build: layout unchanged from production. Invoice Aug 31, Net 60, due Oct 30. The due date is worked out from the vendor's credit term when the vendor invoice is created, and recalculated when its invoice date or its vendor changes (S7-R9).",
+   "line": 126,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 9
+  },
+  {
+   "text": "This design",
+   "line": 129,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 10
+  },
+  {
+   "text": "Vendor on 10th of next month: Oct 5, due Nov 10",
+   "line": 129,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "ShopHub",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Work Orders",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Schedule",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Customers",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Parts",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Reports",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Dashboard",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Searc...",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Ctrl K",
+   "line": 130,
+   "kind": "text",
+   "ctx": "sv-menu__kbd",
+   "fig": 10
+  },
+  {
+   "text": "timer",
+   "line": 130,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 10
+  },
+  {
+   "text": "Clock In",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "notifications_none",
+   "line": 130,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 10
+  },
+  {
+   "text": "Staging Heavy Duty - 9919",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "AS",
+   "line": 130,
+   "kind": "text",
+   "ctx": "sv-avatar",
+   "fig": 10
+  },
+  {
+   "text": "Vendor Invoice",
+   "line": 130,
+   "kind": "text",
+   "ctx": "sv-h4",
+   "fig": 10
+  },
+  {
+   "text": "156901",
+   "line": 130,
+   "kind": "text",
+   "ctx": "sv-h4",
+   "fig": 10
+  },
+  {
+   "text": "Invoice date",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Oct 5, 2026",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Due date",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Nov 10, 2026",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Vendor",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Jefferson Truck Center - Roanoke",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Delivery Details",
+   "line": 130,
+   "kind": "text",
+   "ctx": "sv-h4",
+   "fig": 10
+  },
+  {
+   "text": "I-1393",
+   "line": 130,
+   "kind": "text",
+   "ctx": "sv-h4",
+   "fig": 10
+  },
+  {
+   "text": "Date received",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Oct 5, 2026",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Ordered by",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Jeffrey Jordan",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Received by",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Carrie Johnson",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Delivery items",
+   "line": 130,
+   "kind": "text",
+   "ctx": "sv-h3",
+   "fig": 10
+  },
+  {
+   "text": "Description",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Part Number",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Category",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Cost",
+   "line": 130,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 10
+  },
+  {
+   "text": "Quantity Delivered",
+   "line": 130,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 10
+  },
+  {
+   "text": "Total Cost",
+   "line": 130,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 10
+  },
+  {
+   "text": "Cummins 12.91\" V-Band Clamp, ATD",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "CL1340",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "HD-Exhaust",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "$93.72000",
+   "line": 130,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 10
+  },
+  {
+   "text": "4.00",
+   "line": 130,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 10
+  },
+  {
+   "text": "$374.88",
+   "line": 130,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 10
+  },
+  {
+   "text": "Cummins 12.5\" ID X 13.25\" OD DPF Gasket - ISX",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "GSK1050",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "HD-Emissions",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "$18.80000",
+   "line": 130,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 10
+  },
+  {
+   "text": "4.00",
+   "line": 130,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 10
+  },
+  {
+   "text": "$75.20",
+   "line": 130,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 10
+  },
+  {
+   "text": "Cummins 13.5\" V-Band Clamp",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "CL1030",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "HD-Exhaust",
+   "line": 130,
+   "kind": "text",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "$72.23500",
+   "line": 130,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 10
+  },
+  {
+   "text": "2.00",
+   "line": 130,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 10
+  },
+  {
+   "text": "$144.47",
+   "line": 130,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 10
+  },
+  {
+   "text": "Total:",
+   "line": 130,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 10
+  },
+  {
+   "text": "$594.55",
+   "line": 130,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 10
+  },
+  {
+   "text": "Same date rule as customer invoices: always the 10th of the next month; a shorter month uses its last day.",
+   "line": 131,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "The highlight marks what to check; it is not part of the screen.",
+   "line": 131,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Source: Delivery.vue layout (Vendor Invoice card, Delivery Details, Delivery items), drawn with DS Card and Table.",
+   "line": 131,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+   "line": 131,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 10
+  },
+  {
+   "text": "This design",
+   "line": 134,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 11
+  },
+  {
+   "text": "Vendor on Net 10: Oct 5, due Oct 15",
+   "line": 134,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "ShopHub",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Work Orders",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Schedule",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Customers",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Parts",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Reports",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Dashboard",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Searc...",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Ctrl K",
+   "line": 135,
+   "kind": "text",
+   "ctx": "sv-menu__kbd",
+   "fig": 11
+  },
+  {
+   "text": "timer",
+   "line": 135,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 11
+  },
+  {
+   "text": "Clock In",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "notifications_none",
+   "line": 135,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 11
+  },
+  {
+   "text": "Staging Heavy Duty - 9919",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "AS",
+   "line": 135,
+   "kind": "text",
+   "ctx": "sv-avatar",
+   "fig": 11
+  },
+  {
+   "text": "Vendor Invoice",
+   "line": 135,
+   "kind": "text",
+   "ctx": "sv-h4",
+   "fig": 11
+  },
+  {
+   "text": "156902",
+   "line": 135,
+   "kind": "text",
+   "ctx": "sv-h4",
+   "fig": 11
+  },
+  {
+   "text": "Invoice date",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Oct 5, 2026",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Due date",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Oct 15, 2026",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Vendor",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Venice Gardens Truck Repair",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Delivery Details",
+   "line": 135,
+   "kind": "text",
+   "ctx": "sv-h4",
+   "fig": 11
+  },
+  {
+   "text": "I-1393",
+   "line": 135,
+   "kind": "text",
+   "ctx": "sv-h4",
+   "fig": 11
+  },
+  {
+   "text": "Date received",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Oct 5, 2026",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Ordered by",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Jeffrey Jordan",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Received by",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Carrie Johnson",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Delivery items",
+   "line": 135,
+   "kind": "text",
+   "ctx": "sv-h3",
+   "fig": 11
+  },
+  {
+   "text": "Description",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Part Number",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Category",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Cost",
+   "line": 135,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 11
+  },
+  {
+   "text": "Quantity Delivered",
+   "line": 135,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 11
+  },
+  {
+   "text": "Total Cost",
+   "line": 135,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 11
+  },
+  {
+   "text": "Cummins 12.91\" V-Band Clamp, ATD",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "CL1340",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "HD-Exhaust",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "$93.72000",
+   "line": 135,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 11
+  },
+  {
+   "text": "4.00",
+   "line": 135,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 11
+  },
+  {
+   "text": "$374.88",
+   "line": 135,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 11
+  },
+  {
+   "text": "Cummins 12.5\" ID X 13.25\" OD DPF Gasket - ISX",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "GSK1050",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "HD-Emissions",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "$18.80000",
+   "line": 135,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 11
+  },
+  {
+   "text": "4.00",
+   "line": 135,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 11
+  },
+  {
+   "text": "$75.20",
+   "line": 135,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 11
+  },
+  {
+   "text": "Cummins 13.5\" V-Band Clamp",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "CL1030",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "HD-Exhaust",
+   "line": 135,
+   "kind": "text",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "$72.23500",
+   "line": 135,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 11
+  },
+  {
+   "text": "2.00",
+   "line": 135,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 11
+  },
+  {
+   "text": "$144.47",
+   "line": 135,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 11
+  },
+  {
+   "text": "Total:",
+   "line": 135,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 11
+  },
+  {
+   "text": "$594.55",
+   "line": 135,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 11
+  },
+  {
+   "text": "A shop's own Net X term adds X days, like the standard Net terms.",
+   "line": 136,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 11
+  },
+  {
+   "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+   "line": 136,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 11
+  }
+ ]
+}

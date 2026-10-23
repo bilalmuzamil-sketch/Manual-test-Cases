@@ -1,0 +1,455 @@
+<html>
+  <head>
+    <meta>
+    <title>
+      "9. Invoice due date for a day-of-month term"
+    <link>
+    <link>
+    <link>
+  <body>
+    <x-dc>
+      <helmet>
+      <div data-theme="light" [width:4512px; background:var(--sv-surface-canvas); color:var(--sv-text-primary)]>
+        <div>
+          <h2.sv-h2>
+            "9. Invoice due date for a day-of-month term"
+          <p [color:var(--sv-text-secondary)]>
+            "Before: an invoice today. After: a "10th of next month" invoice dated Oct 5 and Oct 28, both due Nov 10. Light theme."
+        <div>
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--neutral>
+                "Unchanged from production (before)"
+              <span [font-weight:600]>
+                "An invoice today (Net 30)"
+            <img alt="Invoice screen for a Net 30 customer" src="shots/before-invoice.png" [width:1440px; border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "Captured on the branch build: the invoice layout is unchanged from production. Net 30, invoice Aug 31, due Sep 30. Terms prints as an order reference chip; Due date sits under Invoice date."
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--info>
+                "This design"
+              <span [font-weight:600]>
+                "10th of next month: invoice Oct 5, due Nov 10"
+            <div [width:1440px; background:var(--sv-surface); border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+              <header.sv-header [background:var(--sv-surface); border-bottom:1px solid var(--sv-border-default)]>
+                <a.sv-header__logo aria-label="ShopView">
+                  <svg >
+                <span [font-weight:600; border-right:1px solid var(--sv-border-default)]>
+                  "ShopHub"
+                  <svg >
+                <nav.sv-header__nav>
+                  <a>
+                    "Work Orders"
+                  <a>
+                    "Schedule"
+                  <a>
+                    "Customers"
+                  <a>
+                    "Parts"
+                  <a>
+                    "Reports"
+                  <a>
+                    "Dashboard"
+                <div.sv-header__spacer>
+                <div.sv-header__right>
+                  <div [width:150px; border-radius:var(--sv-header-control-radius); background:var(--sv-surface-sunken); border:1px solid var(--sv-border-default); font-weight:500; color:var(--sv-text-secondary)]>
+                    <svg >
+                    <span>
+                      "Searc..."
+                    <span.sv-menu__kbd>
+                      "Ctrl K"
+                  <span [font-weight:600; color:var(--sv-text-secondary)]>
+                    <span.material-icons-outlined>
+                      "timer"
+                    "Clock In"
+                  <span.material-icons-outlined [color:var(--sv-text-primary)]>
+                    "notifications_none"
+                  <span [border-radius:var(--sv-radius-md); background:var(--sv-surface-sunken); font-weight:500]>
+                    "Staging Heavy Duty - 9919"
+                    <span.sv-avatar>
+                      "AS"
+              <div [background:var(--sv-surface-canvas)]>
+                <div [width:232px]>
+                  <div.sv-card>
+                    <div.sv-h3 [font-weight:600]>
+                      "S2-17610"
+                    <div>
+                      <span.sv-badge.sv-badge--success>
+                        "Invoiced"
+                    <div>
+                      <div [color:var(--sv-text-secondary)]>
+                        "Started"
+                      <div>
+                        "Oct 3, 2026"
+                    <div>
+                      <div [color:var(--sv-text-secondary)]>
+                        "Lead technician"
+                      <div>
+                        "Cameron Johnston"
+                    <div>
+                      <div [color:var(--sv-text-secondary)]>
+                        "Service advisor"
+                      <div>
+                        "Becky Gonzales"
+                    <div>
+                      <div [color:var(--sv-text-secondary)]>
+                        "Sales representative"
+                      <div>
+                        "Unassigned"
+                  <div.sv-card>
+                    <span.sv-h4>
+                      "CT Smoke Picked"
+                    <div>
+                      <div [color:var(--sv-text-secondary)]>
+                        "Contact"
+                      <div>
+                        "Ashley Bell"
+                    <div>
+                      <div [color:var(--sv-text-secondary)]>
+                        "Phone"
+                      <div>
+                        "711-981-8584"
+                <div>
+                  <div.sv-tabs>
+                    <button.sv-tab>
+                      "Lines"
+                      <span.sv-tab__count>
+                        "4"
+                    <button.sv-tab>
+                      "Parts"
+                      <span.sv-tab__count>
+                        "2"
+                    <button.sv-tab>
+                      "Notes"
+                    <button.sv-tab>
+                      "Stats"
+                    <button.sv-tab>
+                      "Finance"
+                  <div>
+                    <div [width:140px]>
+                      <div>
+                        <div.sv-field>
+                          <input placeholder=" " value="Tim">
+                          <label>
+                            "Customer PO"
+                    <button.sv-btn.sv-btn--secondary>
+                      "New Payment"
+                    <button.sv-btn.sv-btn--primary>
+                      "Request IBS Approval"
+                  <div [border-top:1px solid var(--sv-border-default)]>
+                  <div [width:760px; background:var(--sv-surface); border:1px solid var(--sv-border-default)]>
+                    <div [border-bottom:2px solid var(--sv-text-primary)]>
+                      <div>
+                        <div.sv-h3 [font-weight:600]>
+                          "Heavy Duty - 9919"
+                        <div [color:var(--sv-text-secondary)]>
+                          "9919 Shepard Road SE"
+                          <br>
+                          "Calgary, Alberta"
+                          <br>
+                          "T2C 4M5"
+                          <br>
+                          "(403) 523 - 0488"
+                      <div>
+                        <div.sv-h3 [font-weight:600]>
+                          "Invoice: INV-S2-17610"
+                        <div [color:var(--sv-text-secondary)]>
+                          "Invoice date:"
+                          <b [color:var(--sv-text-primary)]>
+                            "Oct 5, 2026"
+                          <br>
+                          "Due date:"
+                          <b [color:var(--sv-text-primary); background:var(--sv-warning-fill); border-radius:var(--sv-radius-xs)]>
+                            "Nov 10, 2026"
+                    <div.sv-side__title>
+                      "Addresses"
+                    <div [border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+                      <div [border-right:1px solid var(--sv-border-default)]>
+                        <div.sv-side__title>
+                          "Bill to"
+                        <b>
+                          "CT Smoke Picked"
+                        <br>
+                        "2247 Spencer Roads"
+                        <br>
+                        "South Kennethside, Yukon Territory"
+                      <div>
+                        <div.sv-side__title>
+                          "Remit payment to"
+                        <b>
+                          "Heavy Duty - 9919"
+                        <br>
+                        "9919 Shepard Road SE"
+                        <br>
+                        "Calgary, Alberta"
+                    <div [border-top:1px solid var(--sv-border-default); border-bottom:1px solid var(--sv-border-default)]>
+                      <div>
+                        <div.sv-side__title>
+                          "Asset"
+                        <div>
+                          "2019 Kenworth T880"
+                      <div>
+                        <div.sv-side__title>
+                          "Plate"
+                        <div>
+                          "ONR-3722"
+                      <div>
+                        <div.sv-side__title>
+                          "Mileage"
+                        <div>
+                          "363,551"
+                      <div>
+                        <div.sv-side__title>
+                          "Eng Hrs"
+                        <div>
+                          "10,210"
+                      <div>
+                        <div.sv-side__title>
+                          "VIN / Serial"
+                        <div>
+                          "1XKZD49X9KJ123456"
+                    <div>
+                      <span [border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-sm)]>
+                        "Work Order"
+                        <b>
+                          "S2-17610"
+                      <span [border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-sm)]>
+                        "Customer PO"
+                        <b>
+                          "Tim"
+                      <span [border-radius:var(--sv-radius-sm)]>
+                        <span [border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-sm)]>
+                          "Terms"
+                          <b>
+                            "10th of next month"
+                    <div.sv-side__title [border-bottom:2px solid var(--sv-text-primary)]>
+                      "Work performed"
+                    <div [color:var(--sv-text-secondary)]>
+                      "01 Service - Perform LOF and inspection"
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "No build shot for the day-of-month invoice inside the work order screen: drawn from the build's layout, not checked against a capture."
+                <li>
+                  "A customer on "10th of next month". Terms prints the term's name; the due date is the 10th of the next month."
+                <li>
+                  "The screen shows the same document the PDF prints (the invoice preview is the PDF render), so screen and PDF match. Highlights on the board mark what to check; they are not part of the document."
+                <li>
+                  "Layout and labels unchanged; only the value of Due date and Terms differ."
+                <li>
+                  "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--info>
+                "This design"
+              <span [font-weight:600]>
+                "Invoice Oct 28: still due Nov 10"
+            <div [width:1440px; background:var(--sv-surface); border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+              <header.sv-header [background:var(--sv-surface); border-bottom:1px solid var(--sv-border-default)]>
+                <a.sv-header__logo aria-label="ShopView">
+                  <svg >
+                <span [font-weight:600; border-right:1px solid var(--sv-border-default)]>
+                  "ShopHub"
+                  <svg >
+                <nav.sv-header__nav>
+                  <a>
+                    "Work Orders"
+                  <a>
+                    "Schedule"
+                  <a>
+                    "Customers"
+                  <a>
+                    "Parts"
+                  <a>
+                    "Reports"
+                  <a>
+                    "Dashboard"
+                <div.sv-header__spacer>
+                <div.sv-header__right>
+                  <div [width:150px; border-radius:var(--sv-header-control-radius); background:var(--sv-surface-sunken); border:1px solid var(--sv-border-default); font-weight:500; color:var(--sv-text-secondary)]>
+                    <svg >
+                    <span>
+                      "Searc..."
+                    <span.sv-menu__kbd>
+                      "Ctrl K"
+                  <span [font-weight:600; color:var(--sv-text-secondary)]>
+                    <span.material-icons-outlined>
+                      "timer"
+                    "Clock In"
+                  <span.material-icons-outlined [color:var(--sv-text-primary)]>
+                    "notifications_none"
+                  <span [border-radius:var(--sv-radius-md); background:var(--sv-surface-sunken); font-weight:500]>
+                    "Staging Heavy Duty - 9919"
+                    <span.sv-avatar>
+                      "AS"
+              <div [background:var(--sv-surface-canvas)]>
+                <div [width:232px]>
+                  <div.sv-card>
+                    <div.sv-h3 [font-weight:600]>
+                      "S2-17655"
+                    <div>
+                      <span.sv-badge.sv-badge--success>
+                        "Invoiced"
+                    <div>
+                      <div [color:var(--sv-text-secondary)]>
+                        "Started"
+                      <div>
+                        "Oct 3, 2026"
+                    <div>
+                      <div [color:var(--sv-text-secondary)]>
+                        "Lead technician"
+                      <div>
+                        "Cameron Johnston"
+                    <div>
+                      <div [color:var(--sv-text-secondary)]>
+                        "Service advisor"
+                      <div>
+                        "Becky Gonzales"
+                    <div>
+                      <div [color:var(--sv-text-secondary)]>
+                        "Sales representative"
+                      <div>
+                        "Unassigned"
+                  <div.sv-card>
+                    <span.sv-h4>
+                      "CT Smoke Picked"
+                    <div>
+                      <div [color:var(--sv-text-secondary)]>
+                        "Contact"
+                      <div>
+                        "Ashley Bell"
+                    <div>
+                      <div [color:var(--sv-text-secondary)]>
+                        "Phone"
+                      <div>
+                        "711-981-8584"
+                <div>
+                  <div.sv-tabs>
+                    <button.sv-tab>
+                      "Lines"
+                      <span.sv-tab__count>
+                        "4"
+                    <button.sv-tab>
+                      "Parts"
+                      <span.sv-tab__count>
+                        "2"
+                    <button.sv-tab>
+                      "Notes"
+                    <button.sv-tab>
+                      "Stats"
+                    <button.sv-tab>
+                      "Finance"
+                  <div>
+                    <div [width:140px]>
+                      <div>
+                        <div.sv-field>
+                          <input placeholder=" " value="Tim">
+                          <label>
+                            "Customer PO"
+                    <button.sv-btn.sv-btn--secondary>
+                      "New Payment"
+                    <button.sv-btn.sv-btn--primary>
+                      "Request IBS Approval"
+                  <div [border-top:1px solid var(--sv-border-default)]>
+                  <div [width:760px; background:var(--sv-surface); border:1px solid var(--sv-border-default)]>
+                    <div [border-bottom:2px solid var(--sv-text-primary)]>
+                      <div>
+                        <div.sv-h3 [font-weight:600]>
+                          "Heavy Duty - 9919"
+                        <div [color:var(--sv-text-secondary)]>
+                          "9919 Shepard Road SE"
+                          <br>
+                          "Calgary, Alberta"
+                          <br>
+                          "T2C 4M5"
+                          <br>
+                          "(403) 523 - 0488"
+                      <div>
+                        <div.sv-h3 [font-weight:600]>
+                          "Invoice: INV-S2-17655"
+                        <div [color:var(--sv-text-secondary)]>
+                          "Invoice date:"
+                          <b [color:var(--sv-text-primary)]>
+                            "Oct 28, 2026"
+                          <br>
+                          "Due date:"
+                          <b [color:var(--sv-text-primary); background:var(--sv-warning-fill); border-radius:var(--sv-radius-xs)]>
+                            "Nov 10, 2026"
+                    <div.sv-side__title>
+                      "Addresses"
+                    <div [border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+                      <div [border-right:1px solid var(--sv-border-default)]>
+                        <div.sv-side__title>
+                          "Bill to"
+                        <b>
+                          "CT Smoke Picked"
+                        <br>
+                        "2247 Spencer Roads"
+                        <br>
+                        "South Kennethside, Yukon Territory"
+                      <div>
+                        <div.sv-side__title>
+                          "Remit payment to"
+                        <b>
+                          "Heavy Duty - 9919"
+                        <br>
+                        "9919 Shepard Road SE"
+                        <br>
+                        "Calgary, Alberta"
+                    <div [border-top:1px solid var(--sv-border-default); border-bottom:1px solid var(--sv-border-default)]>
+                      <div>
+                        <div.sv-side__title>
+                          "Asset"
+                        <div>
+                          "2019 Kenworth T880"
+                      <div>
+                        <div.sv-side__title>
+                          "Plate"
+                        <div>
+                          "ONR-3722"
+                      <div>
+                        <div.sv-side__title>
+                          "Mileage"
+                        <div>
+                          "363,551"
+                      <div>
+                        <div.sv-side__title>
+                          "Eng Hrs"
+                        <div>
+                          "10,210"
+                      <div>
+                        <div.sv-side__title>
+                          "VIN / Serial"
+                        <div>
+                          "1XKZD49X9KJ123456"
+                    <div>
+                      <span [border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-sm)]>
+                        "Work Order"
+                        <b>
+                          "S2-17655"
+                      <span [border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-sm)]>
+                        "Customer PO"
+                        <b>
+                          "Tim"
+                      <span [border-radius:var(--sv-radius-sm)]>
+                        <span [border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-sm)]>
+                          "Terms"
+                          <b>
+                            "10th of next month"
+                    <div.sv-side__title [border-bottom:2px solid var(--sv-text-primary)]>
+                      "Work performed"
+                    <div [color:var(--sv-text-secondary)]>
+                      "01 Service - Perform LOF and inspection"
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "No build shot: drawn from the build's layout, not checked against a capture."
+                <li>
+                  "Always the next month, even when the 10th of this month is still ahead or nearly here. Day 31 in a 30-day month uses its last day (Nov 30)."
+                <li>
+                  "A paid invoice shows "Paid date" in place of Due date, as today."
+                <li>
+                  "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."

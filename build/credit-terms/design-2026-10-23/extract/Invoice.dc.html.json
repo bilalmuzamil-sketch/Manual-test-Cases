@@ -1,0 +1,2475 @@
+{
+ "board": "Invoice.dc.html",
+ "title": "9. Invoice due date for a day-of-month term",
+ "h2": "9. Invoice due date for a day-of-month term",
+ "note": "Before: an invoice today. After: a \"10th of next month\" invoice dated Oct 5 and Oct 28, both due Nov 10. Light theme.",
+ "helmet_css": "\n<style>\nbody{margin:0}\n/* build geometry (r6-01 / r8): 14px table text, one-line rows, 48px rows */\nfigure .sv-table { font-size: var(--sv-body-size); }\nfigure .sv-table td, figure .sv-table th { white-space: nowrap; overflow: visible; }\nfigure .sv-table td { height: 48px; padding-top: 0; padding-bottom: 0; }\nfigure .sv-table th { height: 56px; padding-top: 0; padding-bottom: 0; }\n.ct-page > .sv-page-head, .ct-page > .sv-tabs-row { margin-left: 0; margin-right: 0; }\n.ct-page > .sv-page-head { padding-top: 20px; margin-bottom: 12px; }\n</style>\n",
+ "figures": [
+  {
+   "n": 1,
+   "line": 31,
+   "badge": "Unchanged from production (before)",
+   "heading": "An invoice today (Net 30)",
+   "captions": [
+    "Captured on the branch build: the invoice layout is unchanged from production. Net 30, invoice Aug 31, due Sep 30. Terms prints as an order reference chip; Due date sits under Invoice date."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-invoice.png",
+     "alt": "Invoice screen for a Net 30 customer",
+     "line": 33
+    }
+   ],
+   "texts": [
+    {
+     "text": "Unchanged from production (before)",
+     "line": 32,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 1
+    },
+    {
+     "text": "An invoice today (Net 30)",
+     "line": 32,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Invoice screen for a Net 30 customer",
+     "line": 33,
+     "kind": "attr:alt",
+     "ctx": ""
+    },
+    {
+     "text": "Captured on the branch build: the invoice layout is unchanged from production. Net 30, invoice Aug 31, due Sep 30. Terms prints as an order reference chip; Due date sits under Invoice date.",
+     "line": 34,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 1
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "line": 36,
+   "badge": "This design",
+   "heading": "10th of next month: invoice Oct 5, due Nov 10",
+   "captions": [
+    "No build shot for the day-of-month invoice inside the work order screen: drawn from the build's layout, not checked against a capture.",
+    "A customer on \"10th of next month\". Terms prints the term's name; the due date is the 10th of the next month.",
+    "The screen shows the same document the PDF prints (the invoice preview is the PDF render), so screen and PDF match. Highlights on the board mark what to check; they are not part of the document.",
+    "Layout and labels unchanged; only the value of Due date and Terms differ.",
+    "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+   ],
+   "imgs": [],
+   "texts": [
+    {
+     "text": "This design",
+     "line": 37,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 2
+    },
+    {
+     "text": "10th of next month: invoice Oct 5, due Nov 10",
+     "line": 37,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "ShopView",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": "sv-header__logo"
+    },
+    {
+     "text": "ShopHub",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Work Orders",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Schedule",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Customers",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Parts",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Reports",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Dashboard",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Searc...",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Ctrl K",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-menu__kbd",
+     "fig": 2
+    },
+    {
+     "text": "timer",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 2
+    },
+    {
+     "text": "Clock In",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "notifications_none",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 2
+    },
+    {
+     "text": "Staging Heavy Duty - 9919",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "AS",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-avatar",
+     "fig": 2
+    },
+    {
+     "text": "S2-17610",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-h3",
+     "fig": 2
+    },
+    {
+     "text": "Invoiced",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--success",
+     "fig": 2
+    },
+    {
+     "text": "Started",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Oct 3, 2026",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Lead technician",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Cameron Johnston",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Service advisor",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Becky Gonzales",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Sales representative",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Unassigned",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "CT Smoke Picked",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-h4",
+     "fig": 2
+    },
+    {
+     "text": "Contact",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Ashley Bell",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Phone",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "711-981-8584",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Lines",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 2
+    },
+    {
+     "text": "4",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-tab__count",
+     "fig": 2
+    },
+    {
+     "text": "Parts",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 2
+    },
+    {
+     "text": "2",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-tab__count",
+     "fig": 2
+    },
+    {
+     "text": "Notes",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 2
+    },
+    {
+     "text": "Stats",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 2
+    },
+    {
+     "text": "Finance",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 38,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Tim",
+     "line": 38,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Customer PO",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "New Payment",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--secondary",
+     "fig": 2
+    },
+    {
+     "text": "Request IBS Approval",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 2
+    },
+    {
+     "text": "Heavy Duty - 9919",
+     "line": 40,
+     "kind": "text",
+     "ctx": "sv-h3",
+     "fig": 2
+    },
+    {
+     "text": "9919 Shepard Road SE",
+     "line": 40,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Calgary, Alberta",
+     "line": 40,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "T2C 4M5",
+     "line": 40,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "(403) 523 - 0488",
+     "line": 40,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Invoice: INV-S2-17610",
+     "line": 41,
+     "kind": "text",
+     "ctx": "sv-h3",
+     "fig": 2
+    },
+    {
+     "text": "Invoice date:",
+     "line": 41,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Oct 5, 2026",
+     "line": 41,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Due date:",
+     "line": 41,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Nov 10, 2026",
+     "line": 41,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Addresses",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-side__title",
+     "fig": 2
+    },
+    {
+     "text": "Bill to",
+     "line": 44,
+     "kind": "text",
+     "ctx": "sv-side__title",
+     "fig": 2
+    },
+    {
+     "text": "CT Smoke Picked",
+     "line": 44,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "2247 Spencer Roads",
+     "line": 44,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "South Kennethside, Yukon Territory",
+     "line": 44,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Remit payment to",
+     "line": 44,
+     "kind": "text",
+     "ctx": "sv-side__title",
+     "fig": 2
+    },
+    {
+     "text": "Heavy Duty - 9919",
+     "line": 44,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "9919 Shepard Road SE",
+     "line": 44,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Calgary, Alberta",
+     "line": 44,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Asset",
+     "line": 45,
+     "kind": "text",
+     "ctx": "sv-side__title",
+     "fig": 2
+    },
+    {
+     "text": "2019 Kenworth T880",
+     "line": 45,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Plate",
+     "line": 45,
+     "kind": "text",
+     "ctx": "sv-side__title",
+     "fig": 2
+    },
+    {
+     "text": "ONR-3722",
+     "line": 45,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Mileage",
+     "line": 45,
+     "kind": "text",
+     "ctx": "sv-side__title",
+     "fig": 2
+    },
+    {
+     "text": "363,551",
+     "line": 45,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Eng Hrs",
+     "line": 45,
+     "kind": "text",
+     "ctx": "sv-side__title",
+     "fig": 2
+    },
+    {
+     "text": "10,210",
+     "line": 45,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "VIN / Serial",
+     "line": 45,
+     "kind": "text",
+     "ctx": "sv-side__title",
+     "fig": 2
+    },
+    {
+     "text": "1XKZD49X9KJ123456",
+     "line": 45,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Work Order",
+     "line": 46,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "S2-17610",
+     "line": 46,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Customer PO",
+     "line": 46,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Tim",
+     "line": 46,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Terms",
+     "line": 46,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "10th of next month",
+     "line": 46,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Work performed",
+     "line": 47,
+     "kind": "text",
+     "ctx": "sv-side__title",
+     "fig": 2
+    },
+    {
+     "text": "01 Service - Perform LOF and inspection",
+     "line": 48,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "No build shot for the day-of-month invoice inside the work order screen: drawn from the build's layout, not checked against a capture.",
+     "line": 50,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "A customer on \"10th of next month\". Terms prints the term's name; the due date is the 10th of the next month.",
+     "line": 50,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "The screen shows the same document the PDF prints (the invoice preview is the PDF render), so screen and PDF match. Highlights on the board mark what to check; they are not part of the document.",
+     "line": 50,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Layout and labels unchanged; only the value of Due date and Terms differ.",
+     "line": 50,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+     "line": 50,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "line": 52,
+   "badge": "This design",
+   "heading": "Invoice Oct 28: still due Nov 10",
+   "captions": [
+    "No build shot: drawn from the build's layout, not checked against a capture.",
+    "Always the next month, even when the 10th of this month is still ahead or nearly here. Day 31 in a 30-day month uses its last day (Nov 30).",
+    "A paid invoice shows \"Paid date\" in place of Due date, as today.",
+    "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+   ],
+   "imgs": [],
+   "texts": [
+    {
+     "text": "This design",
+     "line": 53,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 3
+    },
+    {
+     "text": "Invoice Oct 28: still due Nov 10",
+     "line": 53,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "ShopView",
+     "line": 54,
+     "kind": "attr:aria-label",
+     "ctx": "sv-header__logo"
+    },
+    {
+     "text": "ShopHub",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Work Orders",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Schedule",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Customers",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Parts",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Reports",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Dashboard",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Searc...",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Ctrl K",
+     "line": 54,
+     "kind": "text",
+     "ctx": "sv-menu__kbd",
+     "fig": 3
+    },
+    {
+     "text": "timer",
+     "line": 54,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 3
+    },
+    {
+     "text": "Clock In",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "notifications_none",
+     "line": 54,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 3
+    },
+    {
+     "text": "Staging Heavy Duty - 9919",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "AS",
+     "line": 54,
+     "kind": "text",
+     "ctx": "sv-avatar",
+     "fig": 3
+    },
+    {
+     "text": "S2-17655",
+     "line": 54,
+     "kind": "text",
+     "ctx": "sv-h3",
+     "fig": 3
+    },
+    {
+     "text": "Invoiced",
+     "line": 54,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--success",
+     "fig": 3
+    },
+    {
+     "text": "Started",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Oct 3, 2026",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Lead technician",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Cameron Johnston",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Service advisor",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Becky Gonzales",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Sales representative",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Unassigned",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "CT Smoke Picked",
+     "line": 54,
+     "kind": "text",
+     "ctx": "sv-h4",
+     "fig": 3
+    },
+    {
+     "text": "Contact",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Ashley Bell",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Phone",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "711-981-8584",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Lines",
+     "line": 54,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 3
+    },
+    {
+     "text": "4",
+     "line": 54,
+     "kind": "text",
+     "ctx": "sv-tab__count",
+     "fig": 3
+    },
+    {
+     "text": "Parts",
+     "line": 54,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 3
+    },
+    {
+     "text": "2",
+     "line": 54,
+     "kind": "text",
+     "ctx": "sv-tab__count",
+     "fig": 3
+    },
+    {
+     "text": "Notes",
+     "line": 54,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 3
+    },
+    {
+     "text": "Stats",
+     "line": 54,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 3
+    },
+    {
+     "text": "Finance",
+     "line": 54,
+     "kind": "text",
+     "ctx": "sv-tab",
+     "fig": 3
+    },
+    {
+     "text": " ",
+     "line": 54,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Tim",
+     "line": 54,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Customer PO",
+     "line": 54,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "New Payment",
+     "line": 54,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--secondary",
+     "fig": 3
+    },
+    {
+     "text": "Request IBS Approval",
+     "line": 54,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 3
+    },
+    {
+     "text": "Heavy Duty - 9919",
+     "line": 56,
+     "kind": "text",
+     "ctx": "sv-h3",
+     "fig": 3
+    },
+    {
+     "text": "9919 Shepard Road SE",
+     "line": 56,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Calgary, Alberta",
+     "line": 56,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "T2C 4M5",
+     "line": 56,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "(403) 523 - 0488",
+     "line": 56,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Invoice: INV-S2-17655",
+     "line": 57,
+     "kind": "text",
+     "ctx": "sv-h3",
+     "fig": 3
+    },
+    {
+     "text": "Invoice date:",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Oct 28, 2026",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Due date:",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Nov 10, 2026",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Addresses",
+     "line": 59,
+     "kind": "text",
+     "ctx": "sv-side__title",
+     "fig": 3
+    },
+    {
+     "text": "Bill to",
+     "line": 60,
+     "kind": "text",
+     "ctx": "sv-side__title",
+     "fig": 3
+    },
+    {
+     "text": "CT Smoke Picked",
+     "line": 60,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "2247 Spencer Roads",
+     "line": 60,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "South Kennethside, Yukon Territory",
+     "line": 60,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Remit payment to",
+     "line": 60,
+     "kind": "text",
+     "ctx": "sv-side__title",
+     "fig": 3
+    },
+    {
+     "text": "Heavy Duty - 9919",
+     "line": 60,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "9919 Shepard Road SE",
+     "line": 60,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Calgary, Alberta",
+     "line": 60,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Asset",
+     "line": 61,
+     "kind": "text",
+     "ctx": "sv-side__title",
+     "fig": 3
+    },
+    {
+     "text": "2019 Kenworth T880",
+     "line": 61,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Plate",
+     "line": 61,
+     "kind": "text",
+     "ctx": "sv-side__title",
+     "fig": 3
+    },
+    {
+     "text": "ONR-3722",
+     "line": 61,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Mileage",
+     "line": 61,
+     "kind": "text",
+     "ctx": "sv-side__title",
+     "fig": 3
+    },
+    {
+     "text": "363,551",
+     "line": 61,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Eng Hrs",
+     "line": 61,
+     "kind": "text",
+     "ctx": "sv-side__title",
+     "fig": 3
+    },
+    {
+     "text": "10,210",
+     "line": 61,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "VIN / Serial",
+     "line": 61,
+     "kind": "text",
+     "ctx": "sv-side__title",
+     "fig": 3
+    },
+    {
+     "text": "1XKZD49X9KJ123456",
+     "line": 61,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Work Order",
+     "line": 62,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "S2-17655",
+     "line": 62,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Customer PO",
+     "line": 62,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Tim",
+     "line": 62,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Terms",
+     "line": 62,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "10th of next month",
+     "line": 62,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Work performed",
+     "line": 63,
+     "kind": "text",
+     "ctx": "sv-side__title",
+     "fig": 3
+    },
+    {
+     "text": "01 Service - Perform LOF and inspection",
+     "line": 64,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "No build shot: drawn from the build's layout, not checked against a capture.",
+     "line": 66,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Always the next month, even when the 10th of this month is still ahead or nearly here. Day 31 in a 30-day month uses its last day (Nov 30).",
+     "line": 66,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "A paid invoice shows \"Paid date\" in place of Due date, as today.",
+     "line": 66,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+     "line": 66,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    }
+   ]
+  }
+ ],
+ "texts": [
+  {
+   "text": "9. Invoice due date for a day-of-month term",
+   "line": 5,
+   "kind": "text",
+   "ctx": "",
+   "fig": 0
+  },
+  {
+   "text": "9. Invoice due date for a day-of-month term",
+   "line": 27,
+   "kind": "text",
+   "ctx": "sv-h2",
+   "fig": 0
+  },
+  {
+   "text": "Before: an invoice today. After: a \"10th of next month\" invoice dated Oct 5 and Oct 28, both due Nov 10. Light theme.",
+   "line": 28,
+   "kind": "text",
+   "ctx": "",
+   "fig": 0
+  },
+  {
+   "text": "Unchanged from production (before)",
+   "line": 32,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 1
+  },
+  {
+   "text": "An invoice today (Net 30)",
+   "line": 32,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Captured on the branch build: the invoice layout is unchanged from production. Net 30, invoice Aug 31, due Sep 30. Terms prints as an order reference chip; Due date sits under Invoice date.",
+   "line": 34,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "This design",
+   "line": 37,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 2
+  },
+  {
+   "text": "10th of next month: invoice Oct 5, due Nov 10",
+   "line": 37,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "ShopHub",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Work Orders",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Schedule",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Customers",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Parts",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Reports",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Dashboard",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Searc...",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Ctrl K",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-menu__kbd",
+   "fig": 2
+  },
+  {
+   "text": "timer",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 2
+  },
+  {
+   "text": "Clock In",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "notifications_none",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 2
+  },
+  {
+   "text": "Staging Heavy Duty - 9919",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "AS",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-avatar",
+   "fig": 2
+  },
+  {
+   "text": "S2-17610",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-h3",
+   "fig": 2
+  },
+  {
+   "text": "Invoiced",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--success",
+   "fig": 2
+  },
+  {
+   "text": "Started",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Oct 3, 2026",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Lead technician",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Cameron Johnston",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Service advisor",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Becky Gonzales",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Sales representative",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Unassigned",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "CT Smoke Picked",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-h4",
+   "fig": 2
+  },
+  {
+   "text": "Contact",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Ashley Bell",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Phone",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "711-981-8584",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Lines",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 2
+  },
+  {
+   "text": "4",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-tab__count",
+   "fig": 2
+  },
+  {
+   "text": "Parts",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 2
+  },
+  {
+   "text": "2",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-tab__count",
+   "fig": 2
+  },
+  {
+   "text": "Notes",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 2
+  },
+  {
+   "text": "Stats",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 2
+  },
+  {
+   "text": "Finance",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 2
+  },
+  {
+   "text": "Customer PO",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "New Payment",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--secondary",
+   "fig": 2
+  },
+  {
+   "text": "Request IBS Approval",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 2
+  },
+  {
+   "text": "Heavy Duty - 9919",
+   "line": 40,
+   "kind": "text",
+   "ctx": "sv-h3",
+   "fig": 2
+  },
+  {
+   "text": "9919 Shepard Road SE",
+   "line": 40,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Calgary, Alberta",
+   "line": 40,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "T2C 4M5",
+   "line": 40,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "(403) 523 - 0488",
+   "line": 40,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Invoice: INV-S2-17610",
+   "line": 41,
+   "kind": "text",
+   "ctx": "sv-h3",
+   "fig": 2
+  },
+  {
+   "text": "Invoice date:",
+   "line": 41,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Oct 5, 2026",
+   "line": 41,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Due date:",
+   "line": 41,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Nov 10, 2026",
+   "line": 41,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Addresses",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-side__title",
+   "fig": 2
+  },
+  {
+   "text": "Bill to",
+   "line": 44,
+   "kind": "text",
+   "ctx": "sv-side__title",
+   "fig": 2
+  },
+  {
+   "text": "CT Smoke Picked",
+   "line": 44,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "2247 Spencer Roads",
+   "line": 44,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "South Kennethside, Yukon Territory",
+   "line": 44,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Remit payment to",
+   "line": 44,
+   "kind": "text",
+   "ctx": "sv-side__title",
+   "fig": 2
+  },
+  {
+   "text": "Heavy Duty - 9919",
+   "line": 44,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "9919 Shepard Road SE",
+   "line": 44,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Calgary, Alberta",
+   "line": 44,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Asset",
+   "line": 45,
+   "kind": "text",
+   "ctx": "sv-side__title",
+   "fig": 2
+  },
+  {
+   "text": "2019 Kenworth T880",
+   "line": 45,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Plate",
+   "line": 45,
+   "kind": "text",
+   "ctx": "sv-side__title",
+   "fig": 2
+  },
+  {
+   "text": "ONR-3722",
+   "line": 45,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Mileage",
+   "line": 45,
+   "kind": "text",
+   "ctx": "sv-side__title",
+   "fig": 2
+  },
+  {
+   "text": "363,551",
+   "line": 45,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Eng Hrs",
+   "line": 45,
+   "kind": "text",
+   "ctx": "sv-side__title",
+   "fig": 2
+  },
+  {
+   "text": "10,210",
+   "line": 45,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "VIN / Serial",
+   "line": 45,
+   "kind": "text",
+   "ctx": "sv-side__title",
+   "fig": 2
+  },
+  {
+   "text": "1XKZD49X9KJ123456",
+   "line": 45,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Work Order",
+   "line": 46,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "S2-17610",
+   "line": 46,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Customer PO",
+   "line": 46,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Tim",
+   "line": 46,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Terms",
+   "line": 46,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "10th of next month",
+   "line": 46,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Work performed",
+   "line": 47,
+   "kind": "text",
+   "ctx": "sv-side__title",
+   "fig": 2
+  },
+  {
+   "text": "01 Service - Perform LOF and inspection",
+   "line": 48,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "No build shot for the day-of-month invoice inside the work order screen: drawn from the build's layout, not checked against a capture.",
+   "line": 50,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "A customer on \"10th of next month\". Terms prints the term's name; the due date is the 10th of the next month.",
+   "line": 50,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "The screen shows the same document the PDF prints (the invoice preview is the PDF render), so screen and PDF match. Highlights on the board mark what to check; they are not part of the document.",
+   "line": 50,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Layout and labels unchanged; only the value of Due date and Terms differ.",
+   "line": 50,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+   "line": 50,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "This design",
+   "line": 53,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 3
+  },
+  {
+   "text": "Invoice Oct 28: still due Nov 10",
+   "line": 53,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "ShopHub",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Work Orders",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Schedule",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Customers",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Parts",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Reports",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Dashboard",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Searc...",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Ctrl K",
+   "line": 54,
+   "kind": "text",
+   "ctx": "sv-menu__kbd",
+   "fig": 3
+  },
+  {
+   "text": "timer",
+   "line": 54,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 3
+  },
+  {
+   "text": "Clock In",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "notifications_none",
+   "line": 54,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 3
+  },
+  {
+   "text": "Staging Heavy Duty - 9919",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "AS",
+   "line": 54,
+   "kind": "text",
+   "ctx": "sv-avatar",
+   "fig": 3
+  },
+  {
+   "text": "S2-17655",
+   "line": 54,
+   "kind": "text",
+   "ctx": "sv-h3",
+   "fig": 3
+  },
+  {
+   "text": "Invoiced",
+   "line": 54,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--success",
+   "fig": 3
+  },
+  {
+   "text": "Started",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Oct 3, 2026",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Lead technician",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Cameron Johnston",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Service advisor",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Becky Gonzales",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Sales representative",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Unassigned",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "CT Smoke Picked",
+   "line": 54,
+   "kind": "text",
+   "ctx": "sv-h4",
+   "fig": 3
+  },
+  {
+   "text": "Contact",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Ashley Bell",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Phone",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "711-981-8584",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Lines",
+   "line": 54,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 3
+  },
+  {
+   "text": "4",
+   "line": 54,
+   "kind": "text",
+   "ctx": "sv-tab__count",
+   "fig": 3
+  },
+  {
+   "text": "Parts",
+   "line": 54,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 3
+  },
+  {
+   "text": "2",
+   "line": 54,
+   "kind": "text",
+   "ctx": "sv-tab__count",
+   "fig": 3
+  },
+  {
+   "text": "Notes",
+   "line": 54,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 3
+  },
+  {
+   "text": "Stats",
+   "line": 54,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 3
+  },
+  {
+   "text": "Finance",
+   "line": 54,
+   "kind": "text",
+   "ctx": "sv-tab",
+   "fig": 3
+  },
+  {
+   "text": "Customer PO",
+   "line": 54,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "New Payment",
+   "line": 54,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--secondary",
+   "fig": 3
+  },
+  {
+   "text": "Request IBS Approval",
+   "line": 54,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 3
+  },
+  {
+   "text": "Heavy Duty - 9919",
+   "line": 56,
+   "kind": "text",
+   "ctx": "sv-h3",
+   "fig": 3
+  },
+  {
+   "text": "9919 Shepard Road SE",
+   "line": 56,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Calgary, Alberta",
+   "line": 56,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "T2C 4M5",
+   "line": 56,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "(403) 523 - 0488",
+   "line": 56,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Invoice: INV-S2-17655",
+   "line": 57,
+   "kind": "text",
+   "ctx": "sv-h3",
+   "fig": 3
+  },
+  {
+   "text": "Invoice date:",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Oct 28, 2026",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Due date:",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Nov 10, 2026",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Addresses",
+   "line": 59,
+   "kind": "text",
+   "ctx": "sv-side__title",
+   "fig": 3
+  },
+  {
+   "text": "Bill to",
+   "line": 60,
+   "kind": "text",
+   "ctx": "sv-side__title",
+   "fig": 3
+  },
+  {
+   "text": "CT Smoke Picked",
+   "line": 60,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "2247 Spencer Roads",
+   "line": 60,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "South Kennethside, Yukon Territory",
+   "line": 60,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Remit payment to",
+   "line": 60,
+   "kind": "text",
+   "ctx": "sv-side__title",
+   "fig": 3
+  },
+  {
+   "text": "Heavy Duty - 9919",
+   "line": 60,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "9919 Shepard Road SE",
+   "line": 60,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Calgary, Alberta",
+   "line": 60,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Asset",
+   "line": 61,
+   "kind": "text",
+   "ctx": "sv-side__title",
+   "fig": 3
+  },
+  {
+   "text": "2019 Kenworth T880",
+   "line": 61,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Plate",
+   "line": 61,
+   "kind": "text",
+   "ctx": "sv-side__title",
+   "fig": 3
+  },
+  {
+   "text": "ONR-3722",
+   "line": 61,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Mileage",
+   "line": 61,
+   "kind": "text",
+   "ctx": "sv-side__title",
+   "fig": 3
+  },
+  {
+   "text": "363,551",
+   "line": 61,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Eng Hrs",
+   "line": 61,
+   "kind": "text",
+   "ctx": "sv-side__title",
+   "fig": 3
+  },
+  {
+   "text": "10,210",
+   "line": 61,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "VIN / Serial",
+   "line": 61,
+   "kind": "text",
+   "ctx": "sv-side__title",
+   "fig": 3
+  },
+  {
+   "text": "1XKZD49X9KJ123456",
+   "line": 61,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Work Order",
+   "line": 62,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "S2-17655",
+   "line": 62,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Customer PO",
+   "line": 62,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Tim",
+   "line": 62,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Terms",
+   "line": 62,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "10th of next month",
+   "line": 62,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Work performed",
+   "line": 63,
+   "kind": "text",
+   "ctx": "sv-side__title",
+   "fig": 3
+  },
+  {
+   "text": "01 Service - Perform LOF and inspection",
+   "line": 64,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "No build shot: drawn from the build's layout, not checked against a capture.",
+   "line": 66,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Always the next month, even when the 10th of this month is still ahead or nearly here. Day 31 in a 30-day month uses its last day (Nov 30).",
+   "line": 66,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "A paid invoice shows \"Paid date\" in place of Due date, as today.",
+   "line": 66,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+   "line": 66,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  }
+ ]
+}

@@ -1,0 +1,6733 @@
+{
+ "board": "NewCustomer.dc.html",
+ "title": "5. New Customer",
+ "h2": "5. New Customer",
+ "note": "Before: production. After: Credit Terms prefilled with the shop default, the picker, and the same dialog for a user without AP/AR access. Shown with the Splitting Sales Representatives field. Light theme.",
+ "helmet_css": "\n<style>\nbody{margin:0}\n/* build geometry (r6-01 / r8): 14px table text, one-line rows, 48px rows */\nfigure .sv-table { font-size: var(--sv-body-size); }\nfigure .sv-table td, figure .sv-table th { white-space: nowrap; overflow: visible; }\nfigure .sv-table td { height: 48px; padding-top: 0; padding-bottom: 0; }\nfigure .sv-table th { height: 56px; padding-top: 0; padding-bottom: 0; }\n.ct-page > .sv-page-head, .ct-page > .sv-tabs-row { margin-left: 0; margin-right: 0; }\n.ct-page > .sv-page-head { padding-top: 20px; margin-bottom: 12px; }\n</style>\n",
+ "figures": [
+  {
+   "n": 1,
+   "line": 31,
+   "badge": "Production (before)",
+   "heading": "New Customer today",
+   "captions": [
+    "Production, captured for Splitting Sales Representatives (its canvas board 2.2). No Credit Terms field on New Customer: every new customer starts on COD."
+   ],
+   "imgs": [
+    {
+     "src": "shots/before-new-customer.png",
+     "alt": "Production New Customer dialog",
+     "line": 33
+    }
+   ],
+   "texts": [
+    {
+     "text": "Production (before)",
+     "line": 32,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--neutral",
+     "fig": 1
+    },
+    {
+     "text": "New Customer today",
+     "line": 32,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Production New Customer dialog",
+     "line": 33,
+     "kind": "attr:alt",
+     "ctx": ""
+    },
+    {
+     "text": "Production, captured for Splitting Sales Representatives (its canvas board 2.2). No Credit Terms field on New Customer: every new customer starts on COD.",
+     "line": 34,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 1
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "line": 36,
+   "badge": "This design",
+   "heading": "New Customer: Credit Terms prefilled with the default",
+   "captions": [
+    "For a user with View and Manage AP/AR Data. Credit Terms is filled in with the shop default (here Due on Receipt) and can be changed before saving.",
+    "Credit Limit now sits beside it, as on Edit Customer, and starts blank (blank means no limit). Same gate as Credit Terms: View and Manage AP/AR Data.",
+    "Field order from CustomerDialog.vue on both branches: State/Province and Country, then Credit Terms (with Credit Limit beside it on Edit), then the Sales Representative field(s).",
+    "The Sales Representative field(s) come from Splitting Sales Representatives (SV-10890): labels, + and x buttons and spacing from its design canvas (page 2, boards 2.12 and 2.16) and its build (SalesRepAssignment.vue).",
+    "Source: CustomerDialog.vue field layout, drawn with DS Text field and Select.",
+    "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+   ],
+   "imgs": [],
+   "texts": [
+    {
+     "text": "This design",
+     "line": 37,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 2
+    },
+    {
+     "text": "New Customer: Credit Terms prefilled with the default",
+     "line": 37,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "ShopView",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": "sv-header__logo"
+    },
+    {
+     "text": "ShopHub",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Work Orders",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Schedule",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Customers",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Parts",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Reports",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Dashboard",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Searc...",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Ctrl K",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-menu__kbd",
+     "fig": 2
+    },
+    {
+     "text": "timer",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 2
+    },
+    {
+     "text": "Clock In",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "notifications_none",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 2
+    },
+    {
+     "text": "Staging Heavy Duty - 9919",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "AS",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-avatar",
+     "fig": 2
+    },
+    {
+     "text": "Customers",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "New Customer",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 2
+    },
+    {
+     "text": "Customer Name",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Telephone",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "State/Province",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Assets",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "4 Star Truck Repair",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "730-246-8895",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "British Columbia",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "0",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "7 Star Truck Repair",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "609-461-6502",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Nunavut",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "7",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "A & J Truck & Trailer Repair",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "885-670-3999",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Ontario",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "1",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Aberdeen Diesel Services LLC",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "958-590-3025",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Nova Scotia",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "8",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Aberdeen Truck Repair",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "730-246-8895",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "British Columbia",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "2",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Abilene Mechanical Services",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "609-461-6502",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Nunavut",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "9",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Abode Trucking & Repair",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "885-670-3999",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Ontario",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "3",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Accokeek Heavy Truck Repair Inc",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "958-590-3025",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Nova Scotia",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "10",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Ada Truck Service & Repair",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "730-246-8895",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "British Columbia",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "4",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Adeel's Mobile Diesel Repair",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "609-461-6502",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Nunavut",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "11",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Ado Truck Center - Oasis",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "885-670-3999",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Ontario",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "5",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Adrian's Truck & Trailer Repair LLC",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "958-590-3025",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Nova Scotia",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "12",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Affordable Diesel Performance",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "730-246-8895",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "British Columbia",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "6",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Affordable Fleet Services",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "609-461-6502",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Nunavut",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "0",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Afzal's Truck & Trailer Repair",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "885-670-3999",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Ontario",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "7",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Aguiar Truck Center",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "958-590-3025",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Nova Scotia",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "1",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "New Customer",
+     "line": 39,
+     "kind": "text",
+     "ctx": "sv-modal__title",
+     "fig": 2
+    },
+    {
+     "text": "Close",
+     "line": 39,
+     "kind": "attr:aria-label",
+     "ctx": "sv-modal__close"
+    },
+    {
+     "text": " ",
+     "line": 40,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Name *",
+     "line": 40,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 41,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Phone",
+     "line": 41,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 42,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Address 1",
+     "line": 42,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 43,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Address 2",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 44,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "City",
+     "line": 44,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 44,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "ZIP/Postal Code",
+     "line": 44,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 45,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "State/Province",
+     "line": 45,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 45,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Canada",
+     "line": 45,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Country",
+     "line": 45,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 46,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Due on Receipt",
+     "line": 46,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Credit Terms",
+     "line": 46,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 46,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Credit Limit",
+     "line": 46,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 47,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Unassigned",
+     "line": 47,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Sales Representative",
+     "line": 47,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Add representative",
+     "line": 47,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary"
+    },
+    {
+     "text": " ",
+     "line": 48,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Notes",
+     "line": 48,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 49,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Website",
+     "line": 49,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 50,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "IBS",
+     "line": 50,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Save",
+     "line": 51,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 2
+    },
+    {
+     "text": "For a user with View and Manage AP/AR Data. Credit Terms is filled in with the shop default (here Due on Receipt) and can be changed before saving.",
+     "line": 53,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Credit Limit now sits beside it, as on Edit Customer, and starts blank (blank means no limit). Same gate as Credit Terms: View and Manage AP/AR Data.",
+     "line": 53,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Field order from CustomerDialog.vue on both branches: State/Province and Country, then Credit Terms (with Credit Limit beside it on Edit), then the Sales Representative field(s).",
+     "line": 53,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "The Sales Representative field(s) come from Splitting Sales Representatives (SV-10890): labels, + and x buttons and spacing from its design canvas (page 2, boards 2.12 and 2.16) and its build (SalesRepAssignment.vue).",
+     "line": 53,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Source: CustomerDialog.vue field layout, drawn with DS Text field and Select.",
+     "line": 53,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+     "line": 53,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "line": 55,
+   "badge": "This design",
+   "heading": "New Customer: the Credit Terms picker",
+   "captions": [
+    "The picker lists the active terms in the S1-R5 order: COD, Due on Receipt, Net terms by days (the shop's own Net 10 between Net 7 and Net 15), day-of-month terms by day, any other term A to Z, Credit Hold last. Deactivated terms are not offered.",
+    "No hover hints on the options, as in the build (r11-01).",
+    "The shop default (Due on Receipt) carries the same \"Default\" tag as the Credit Terms table. Vendor pickers show no tag: the default applies to new customers only.",
+    "Source: DS Menus, text-only rows, selected row tinted; DS Badge for the tag.",
+    "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+   ],
+   "imgs": [],
+   "texts": [
+    {
+     "text": "This design",
+     "line": 56,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 3
+    },
+    {
+     "text": "New Customer: the Credit Terms picker",
+     "line": 56,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "ShopView",
+     "line": 57,
+     "kind": "attr:aria-label",
+     "ctx": "sv-header__logo"
+    },
+    {
+     "text": "ShopHub",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Work Orders",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Schedule",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Customers",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Parts",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Reports",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Dashboard",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Searc...",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Ctrl K",
+     "line": 57,
+     "kind": "text",
+     "ctx": "sv-menu__kbd",
+     "fig": 3
+    },
+    {
+     "text": "timer",
+     "line": 57,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 3
+    },
+    {
+     "text": "Clock In",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "notifications_none",
+     "line": 57,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 3
+    },
+    {
+     "text": "Staging Heavy Duty - 9919",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "AS",
+     "line": 57,
+     "kind": "text",
+     "ctx": "sv-avatar",
+     "fig": 3
+    },
+    {
+     "text": "Customers",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "New Customer",
+     "line": 57,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 3
+    },
+    {
+     "text": "Customer Name",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Telephone",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "State/Province",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Assets",
+     "line": 57,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "4 Star Truck Repair",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "730-246-8895",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "British Columbia",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "0",
+     "line": 57,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "7 Star Truck Repair",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "609-461-6502",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Nunavut",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "7",
+     "line": 57,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "A & J Truck & Trailer Repair",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "885-670-3999",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Ontario",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "1",
+     "line": 57,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Aberdeen Diesel Services LLC",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "958-590-3025",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Nova Scotia",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "8",
+     "line": 57,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Aberdeen Truck Repair",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "730-246-8895",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "British Columbia",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "2",
+     "line": 57,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Abilene Mechanical Services",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "609-461-6502",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Nunavut",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "9",
+     "line": 57,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Abode Trucking & Repair",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "885-670-3999",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Ontario",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "3",
+     "line": 57,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Accokeek Heavy Truck Repair Inc",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "958-590-3025",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Nova Scotia",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "10",
+     "line": 57,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Ada Truck Service & Repair",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "730-246-8895",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "British Columbia",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "4",
+     "line": 57,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Adeel's Mobile Diesel Repair",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "609-461-6502",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Nunavut",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "11",
+     "line": 57,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Ado Truck Center - Oasis",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "885-670-3999",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Ontario",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "5",
+     "line": 57,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Adrian's Truck & Trailer Repair LLC",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "958-590-3025",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Nova Scotia",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "12",
+     "line": 57,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Affordable Diesel Performance",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "730-246-8895",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "British Columbia",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "6",
+     "line": 57,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Affordable Fleet Services",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "609-461-6502",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Nunavut",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "0",
+     "line": 57,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Afzal's Truck & Trailer Repair",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "885-670-3999",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Ontario",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "7",
+     "line": 57,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Aguiar Truck Center",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "958-590-3025",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Nova Scotia",
+     "line": 57,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "1",
+     "line": 57,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "New Customer",
+     "line": 58,
+     "kind": "text",
+     "ctx": "sv-modal__title",
+     "fig": 3
+    },
+    {
+     "text": "Close",
+     "line": 58,
+     "kind": "attr:aria-label",
+     "ctx": "sv-modal__close"
+    },
+    {
+     "text": " ",
+     "line": 59,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Name *",
+     "line": 59,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": " ",
+     "line": 60,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Phone",
+     "line": 60,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": " ",
+     "line": 61,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Address 1",
+     "line": 61,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": " ",
+     "line": 62,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Address 2",
+     "line": 62,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": " ",
+     "line": 63,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "City",
+     "line": 63,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": " ",
+     "line": 63,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "ZIP/Postal Code",
+     "line": 63,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": " ",
+     "line": 64,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "State/Province",
+     "line": 64,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": " ",
+     "line": 64,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Canada",
+     "line": 64,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Country",
+     "line": 64,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": " ",
+     "line": 65,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Due on Receipt",
+     "line": 65,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Credit Terms",
+     "line": 65,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "COD",
+     "line": 65,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Due on Receipt",
+     "line": 65,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Default",
+     "line": 65,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 3
+    },
+    {
+     "text": "Net 7",
+     "line": 65,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Net 10",
+     "line": 65,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Net 15",
+     "line": 65,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Net 20",
+     "line": 65,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Net 30",
+     "line": 65,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Net 45",
+     "line": 65,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Net 60",
+     "line": 65,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": " ",
+     "line": 65,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Credit Limit",
+     "line": 65,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": " ",
+     "line": 66,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Unassigned",
+     "line": 66,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Sales Representative",
+     "line": 66,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Add representative",
+     "line": 66,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary"
+    },
+    {
+     "text": " ",
+     "line": 67,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Notes",
+     "line": 67,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": " ",
+     "line": 68,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Website",
+     "line": 68,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": " ",
+     "line": 69,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "IBS",
+     "line": 69,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Save",
+     "line": 70,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 3
+    },
+    {
+     "text": "The picker lists the active terms in the S1-R5 order: COD, Due on Receipt, Net terms by days (the shop's own Net 10 between Net 7 and Net 15), day-of-month terms by day, any other term A to Z, Credit Hold last. Deactivated terms are not offered.",
+     "line": 72,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "No hover hints on the options, as in the build (r11-01).",
+     "line": 72,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "The shop default (Due on Receipt) carries the same \"Default\" tag as the Credit Terms table. Vendor pickers show no tag: the default applies to new customers only.",
+     "line": 72,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Source: DS Menus, text-only rows, selected row tinted; DS Badge for the tag.",
+     "line": 72,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+     "line": 72,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "line": 74,
+   "badge": "This design",
+   "heading": "New Customer: COD picked, limit locked at $0",
+   "captions": [
+    "Picking COD or Credit Hold sets Credit Limit to $0 and disables it (DS disabled input). Hover: \"COD and Credit Hold customers can't charge to account, so they have no credit limit.\"",
+    "Picking any other term makes the field editable again; blank means no limit.",
+    "On touch screens a tap on the locked Credit Limit shows the same explanation as text under the field (r14-03).",
+    "The same rule applies on Edit Customer (page 6).",
+    "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+   ],
+   "imgs": [],
+   "texts": [
+    {
+     "text": "This design",
+     "line": 75,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 4
+    },
+    {
+     "text": "New Customer: COD picked, limit locked at $0",
+     "line": 75,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "ShopView",
+     "line": 76,
+     "kind": "attr:aria-label",
+     "ctx": "sv-header__logo"
+    },
+    {
+     "text": "ShopHub",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Work Orders",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Schedule",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Customers",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Parts",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Reports",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Dashboard",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Searc...",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Ctrl K",
+     "line": 76,
+     "kind": "text",
+     "ctx": "sv-menu__kbd",
+     "fig": 4
+    },
+    {
+     "text": "timer",
+     "line": 76,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 4
+    },
+    {
+     "text": "Clock In",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "notifications_none",
+     "line": 76,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 4
+    },
+    {
+     "text": "Staging Heavy Duty - 9919",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "AS",
+     "line": 76,
+     "kind": "text",
+     "ctx": "sv-avatar",
+     "fig": 4
+    },
+    {
+     "text": "Customers",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "New Customer",
+     "line": 76,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 4
+    },
+    {
+     "text": "Customer Name",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Telephone",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "State/Province",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Assets",
+     "line": 76,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 4
+    },
+    {
+     "text": "4 Star Truck Repair",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "730-246-8895",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "British Columbia",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "0",
+     "line": 76,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 4
+    },
+    {
+     "text": "7 Star Truck Repair",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "609-461-6502",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Nunavut",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "7",
+     "line": 76,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 4
+    },
+    {
+     "text": "A & J Truck & Trailer Repair",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "885-670-3999",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Ontario",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "1",
+     "line": 76,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 4
+    },
+    {
+     "text": "Aberdeen Diesel Services LLC",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "958-590-3025",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Nova Scotia",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "8",
+     "line": 76,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 4
+    },
+    {
+     "text": "Aberdeen Truck Repair",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "730-246-8895",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "British Columbia",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "2",
+     "line": 76,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 4
+    },
+    {
+     "text": "Abilene Mechanical Services",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "609-461-6502",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Nunavut",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "9",
+     "line": 76,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 4
+    },
+    {
+     "text": "Abode Trucking & Repair",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "885-670-3999",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Ontario",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "3",
+     "line": 76,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 4
+    },
+    {
+     "text": "Accokeek Heavy Truck Repair Inc",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "958-590-3025",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Nova Scotia",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "10",
+     "line": 76,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 4
+    },
+    {
+     "text": "Ada Truck Service & Repair",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "730-246-8895",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "British Columbia",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "4",
+     "line": 76,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 4
+    },
+    {
+     "text": "Adeel's Mobile Diesel Repair",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "609-461-6502",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Nunavut",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "11",
+     "line": 76,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 4
+    },
+    {
+     "text": "Ado Truck Center - Oasis",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "885-670-3999",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Ontario",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "5",
+     "line": 76,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 4
+    },
+    {
+     "text": "Adrian's Truck & Trailer Repair LLC",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "958-590-3025",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Nova Scotia",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "12",
+     "line": 76,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 4
+    },
+    {
+     "text": "Affordable Diesel Performance",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "730-246-8895",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "British Columbia",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "6",
+     "line": 76,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 4
+    },
+    {
+     "text": "Affordable Fleet Services",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "609-461-6502",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Nunavut",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "0",
+     "line": 76,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 4
+    },
+    {
+     "text": "Afzal's Truck & Trailer Repair",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "885-670-3999",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Ontario",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "7",
+     "line": 76,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 4
+    },
+    {
+     "text": "Aguiar Truck Center",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "958-590-3025",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Nova Scotia",
+     "line": 76,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "1",
+     "line": 76,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 4
+    },
+    {
+     "text": "New Customer",
+     "line": 77,
+     "kind": "text",
+     "ctx": "sv-modal__title",
+     "fig": 4
+    },
+    {
+     "text": "Close",
+     "line": 77,
+     "kind": "attr:aria-label",
+     "ctx": "sv-modal__close"
+    },
+    {
+     "text": " ",
+     "line": 78,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Name *",
+     "line": 78,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 79,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Phone",
+     "line": 79,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 80,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Address 1",
+     "line": 80,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 81,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Address 2",
+     "line": 81,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 82,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "City",
+     "line": 82,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 82,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "ZIP/Postal Code",
+     "line": 82,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 83,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "State/Province",
+     "line": 83,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 83,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Canada",
+     "line": 83,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Country",
+     "line": 83,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 84,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "COD",
+     "line": 84,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Credit Terms",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 84,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "$ 0.00",
+     "line": 84,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Credit Limit",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "COD and Credit Hold customers can't charge to account, so they have no credit limit.",
+     "line": 84,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 85,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Unassigned",
+     "line": 85,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Sales Representative",
+     "line": 85,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Add representative",
+     "line": 85,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary"
+    },
+    {
+     "text": " ",
+     "line": 86,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Notes",
+     "line": 86,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 87,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Website",
+     "line": 87,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": " ",
+     "line": 88,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "IBS",
+     "line": 88,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Save",
+     "line": 89,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 4
+    },
+    {
+     "text": "Picking COD or Credit Hold sets Credit Limit to $0 and disables it (DS disabled input). Hover: \"COD and Credit Hold customers can't charge to account, so they have no credit limit.\"",
+     "line": 91,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Picking any other term makes the field editable again; blank means no limit.",
+     "line": 91,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "On touch screens a tap on the locked Credit Limit shows the same explanation as text under the field (r14-03).",
+     "line": 91,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "The same rule applies on Edit Customer (page 6).",
+     "line": 91,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+     "line": 91,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 4
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "line": 93,
+   "badge": "This design",
+   "heading": "New Customer without View and Manage AP/AR Data",
+   "captions": [
+    "No Credit Terms and no Credit Limit field. The customer is saved on the shop default without the user seeing it.",
+    "The Sales Representative field(s) come from Splitting Sales Representatives (SV-10890): labels, + and x buttons and spacing from its design canvas (page 2, boards 2.12 and 2.16) and its build (SalesRepAssignment.vue).",
+    "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+   ],
+   "imgs": [],
+   "texts": [
+    {
+     "text": "This design",
+     "line": 94,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 5
+    },
+    {
+     "text": "New Customer without View and Manage AP/AR Data",
+     "line": 94,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "ShopView",
+     "line": 95,
+     "kind": "attr:aria-label",
+     "ctx": "sv-header__logo"
+    },
+    {
+     "text": "ShopHub",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Work Orders",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Schedule",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Customers",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Parts",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Reports",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Dashboard",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Searc...",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Ctrl K",
+     "line": 95,
+     "kind": "text",
+     "ctx": "sv-menu__kbd",
+     "fig": 5
+    },
+    {
+     "text": "timer",
+     "line": 95,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 5
+    },
+    {
+     "text": "Clock In",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "notifications_none",
+     "line": 95,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 5
+    },
+    {
+     "text": "Staging Heavy Duty - 9919",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "AS",
+     "line": 95,
+     "kind": "text",
+     "ctx": "sv-avatar",
+     "fig": 5
+    },
+    {
+     "text": "Customers",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "New Customer",
+     "line": 95,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 5
+    },
+    {
+     "text": "Customer Name",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Telephone",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "State/Province",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Assets",
+     "line": 95,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 5
+    },
+    {
+     "text": "4 Star Truck Repair",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "730-246-8895",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "British Columbia",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "0",
+     "line": 95,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 5
+    },
+    {
+     "text": "7 Star Truck Repair",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "609-461-6502",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Nunavut",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "7",
+     "line": 95,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 5
+    },
+    {
+     "text": "A & J Truck & Trailer Repair",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "885-670-3999",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Ontario",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "1",
+     "line": 95,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 5
+    },
+    {
+     "text": "Aberdeen Diesel Services LLC",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "958-590-3025",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Nova Scotia",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "8",
+     "line": 95,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 5
+    },
+    {
+     "text": "Aberdeen Truck Repair",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "730-246-8895",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "British Columbia",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "2",
+     "line": 95,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 5
+    },
+    {
+     "text": "Abilene Mechanical Services",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "609-461-6502",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Nunavut",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "9",
+     "line": 95,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 5
+    },
+    {
+     "text": "Abode Trucking & Repair",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "885-670-3999",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Ontario",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "3",
+     "line": 95,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 5
+    },
+    {
+     "text": "Accokeek Heavy Truck Repair Inc",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "958-590-3025",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Nova Scotia",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "10",
+     "line": 95,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 5
+    },
+    {
+     "text": "Ada Truck Service & Repair",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "730-246-8895",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "British Columbia",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "4",
+     "line": 95,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 5
+    },
+    {
+     "text": "Adeel's Mobile Diesel Repair",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "609-461-6502",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Nunavut",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "11",
+     "line": 95,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 5
+    },
+    {
+     "text": "Ado Truck Center - Oasis",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "885-670-3999",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Ontario",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "5",
+     "line": 95,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 5
+    },
+    {
+     "text": "Adrian's Truck & Trailer Repair LLC",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "958-590-3025",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Nova Scotia",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "12",
+     "line": 95,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 5
+    },
+    {
+     "text": "Affordable Diesel Performance",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "730-246-8895",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "British Columbia",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "6",
+     "line": 95,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 5
+    },
+    {
+     "text": "Affordable Fleet Services",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "609-461-6502",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Nunavut",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "0",
+     "line": 95,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 5
+    },
+    {
+     "text": "Afzal's Truck & Trailer Repair",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "885-670-3999",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Ontario",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "7",
+     "line": 95,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 5
+    },
+    {
+     "text": "Aguiar Truck Center",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "958-590-3025",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Nova Scotia",
+     "line": 95,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "1",
+     "line": 95,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 5
+    },
+    {
+     "text": "New Customer",
+     "line": 96,
+     "kind": "text",
+     "ctx": "sv-modal__title",
+     "fig": 5
+    },
+    {
+     "text": "Close",
+     "line": 96,
+     "kind": "attr:aria-label",
+     "ctx": "sv-modal__close"
+    },
+    {
+     "text": " ",
+     "line": 97,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Name *",
+     "line": 97,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": " ",
+     "line": 98,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Phone",
+     "line": 98,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": " ",
+     "line": 99,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Address 1",
+     "line": 99,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": " ",
+     "line": 100,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Address 2",
+     "line": 100,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": " ",
+     "line": 101,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "City",
+     "line": 101,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": " ",
+     "line": 101,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "ZIP/Postal Code",
+     "line": 101,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": " ",
+     "line": 102,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "State/Province",
+     "line": 102,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": " ",
+     "line": 102,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Canada",
+     "line": 102,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Country",
+     "line": 102,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": " ",
+     "line": 103,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Unassigned",
+     "line": 103,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Sales Representative",
+     "line": 103,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Add representative",
+     "line": 103,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary"
+    },
+    {
+     "text": " ",
+     "line": 104,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Notes",
+     "line": 104,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": " ",
+     "line": 105,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Website",
+     "line": 105,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": " ",
+     "line": 106,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "IBS",
+     "line": 106,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Save",
+     "line": 107,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 5
+    },
+    {
+     "text": "No Credit Terms and no Credit Limit field. The customer is saved on the shop default without the user seeing it.",
+     "line": 109,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "The Sales Representative field(s) come from Splitting Sales Representatives (SV-10890): labels, + and x buttons and spacing from its design canvas (page 2, boards 2.12 and 2.16) and its build (SalesRepAssignment.vue).",
+     "line": 109,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+     "line": 109,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 5
+    }
+   ]
+  }
+ ],
+ "texts": [
+  {
+   "text": "5. New Customer",
+   "line": 5,
+   "kind": "text",
+   "ctx": "",
+   "fig": 0
+  },
+  {
+   "text": "5. New Customer",
+   "line": 27,
+   "kind": "text",
+   "ctx": "sv-h2",
+   "fig": 0
+  },
+  {
+   "text": "Before: production. After: Credit Terms prefilled with the shop default, the picker, and the same dialog for a user without AP/AR access. Shown with the Splitting Sales Representatives field. Light theme.",
+   "line": 28,
+   "kind": "text",
+   "ctx": "",
+   "fig": 0
+  },
+  {
+   "text": "Production (before)",
+   "line": 32,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--neutral",
+   "fig": 1
+  },
+  {
+   "text": "New Customer today",
+   "line": 32,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Production, captured for Splitting Sales Representatives (its canvas board 2.2). No Credit Terms field on New Customer: every new customer starts on COD.",
+   "line": 34,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "This design",
+   "line": 37,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 2
+  },
+  {
+   "text": "New Customer: Credit Terms prefilled with the default",
+   "line": 37,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "ShopHub",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Work Orders",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Schedule",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Customers",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Parts",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Reports",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Dashboard",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Searc...",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Ctrl K",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-menu__kbd",
+   "fig": 2
+  },
+  {
+   "text": "timer",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 2
+  },
+  {
+   "text": "Clock In",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "notifications_none",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 2
+  },
+  {
+   "text": "Staging Heavy Duty - 9919",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "AS",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-avatar",
+   "fig": 2
+  },
+  {
+   "text": "Customers",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "New Customer",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 2
+  },
+  {
+   "text": "Customer Name",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Telephone",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "State/Province",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Assets",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "4 Star Truck Repair",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "730-246-8895",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "British Columbia",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "0",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "7 Star Truck Repair",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "609-461-6502",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Nunavut",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "7",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "A & J Truck & Trailer Repair",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "885-670-3999",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Ontario",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "1",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Aberdeen Diesel Services LLC",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "958-590-3025",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Nova Scotia",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "8",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Aberdeen Truck Repair",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "730-246-8895",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "British Columbia",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "2",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Abilene Mechanical Services",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "609-461-6502",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Nunavut",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "9",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Abode Trucking & Repair",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "885-670-3999",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Ontario",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "3",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Accokeek Heavy Truck Repair Inc",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "958-590-3025",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Nova Scotia",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "10",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Ada Truck Service & Repair",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "730-246-8895",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "British Columbia",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "4",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Adeel's Mobile Diesel Repair",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "609-461-6502",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Nunavut",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "11",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Ado Truck Center - Oasis",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "885-670-3999",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Ontario",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "5",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Adrian's Truck & Trailer Repair LLC",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "958-590-3025",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Nova Scotia",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "12",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Affordable Diesel Performance",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "730-246-8895",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "British Columbia",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "6",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Affordable Fleet Services",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "609-461-6502",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Nunavut",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "0",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Afzal's Truck & Trailer Repair",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "885-670-3999",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Ontario",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "7",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Aguiar Truck Center",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "958-590-3025",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Nova Scotia",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "1",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "New Customer",
+   "line": 39,
+   "kind": "text",
+   "ctx": "sv-modal__title",
+   "fig": 2
+  },
+  {
+   "text": "Name *",
+   "line": 40,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Phone",
+   "line": 41,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Address 1",
+   "line": 42,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Address 2",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "City",
+   "line": 44,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "ZIP/Postal Code",
+   "line": 44,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "State/Province",
+   "line": 45,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Country",
+   "line": 45,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Credit Terms",
+   "line": 46,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Credit Limit",
+   "line": 46,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Sales Representative",
+   "line": 47,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Notes",
+   "line": 48,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Website",
+   "line": 49,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "IBS",
+   "line": 50,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Save",
+   "line": 51,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 2
+  },
+  {
+   "text": "For a user with View and Manage AP/AR Data. Credit Terms is filled in with the shop default (here Due on Receipt) and can be changed before saving.",
+   "line": 53,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Credit Limit now sits beside it, as on Edit Customer, and starts blank (blank means no limit). Same gate as Credit Terms: View and Manage AP/AR Data.",
+   "line": 53,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Field order from CustomerDialog.vue on both branches: State/Province and Country, then Credit Terms (with Credit Limit beside it on Edit), then the Sales Representative field(s).",
+   "line": 53,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "The Sales Representative field(s) come from Splitting Sales Representatives (SV-10890): labels, + and x buttons and spacing from its design canvas (page 2, boards 2.12 and 2.16) and its build (SalesRepAssignment.vue).",
+   "line": 53,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Source: CustomerDialog.vue field layout, drawn with DS Text field and Select.",
+   "line": 53,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+   "line": 53,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "This design",
+   "line": 56,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 3
+  },
+  {
+   "text": "New Customer: the Credit Terms picker",
+   "line": 56,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "ShopHub",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Work Orders",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Schedule",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Customers",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Parts",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Reports",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Dashboard",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Searc...",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Ctrl K",
+   "line": 57,
+   "kind": "text",
+   "ctx": "sv-menu__kbd",
+   "fig": 3
+  },
+  {
+   "text": "timer",
+   "line": 57,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 3
+  },
+  {
+   "text": "Clock In",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "notifications_none",
+   "line": 57,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 3
+  },
+  {
+   "text": "Staging Heavy Duty - 9919",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "AS",
+   "line": 57,
+   "kind": "text",
+   "ctx": "sv-avatar",
+   "fig": 3
+  },
+  {
+   "text": "Customers",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "New Customer",
+   "line": 57,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 3
+  },
+  {
+   "text": "Customer Name",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Telephone",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "State/Province",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Assets",
+   "line": 57,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "4 Star Truck Repair",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "730-246-8895",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "British Columbia",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "0",
+   "line": 57,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "7 Star Truck Repair",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "609-461-6502",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Nunavut",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "7",
+   "line": 57,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "A & J Truck & Trailer Repair",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "885-670-3999",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Ontario",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "1",
+   "line": 57,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Aberdeen Diesel Services LLC",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "958-590-3025",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Nova Scotia",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "8",
+   "line": 57,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Aberdeen Truck Repair",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "730-246-8895",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "British Columbia",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "2",
+   "line": 57,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Abilene Mechanical Services",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "609-461-6502",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Nunavut",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "9",
+   "line": 57,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Abode Trucking & Repair",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "885-670-3999",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Ontario",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "3",
+   "line": 57,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Accokeek Heavy Truck Repair Inc",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "958-590-3025",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Nova Scotia",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "10",
+   "line": 57,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Ada Truck Service & Repair",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "730-246-8895",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "British Columbia",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "4",
+   "line": 57,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Adeel's Mobile Diesel Repair",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "609-461-6502",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Nunavut",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "11",
+   "line": 57,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Ado Truck Center - Oasis",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "885-670-3999",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Ontario",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "5",
+   "line": 57,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Adrian's Truck & Trailer Repair LLC",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "958-590-3025",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Nova Scotia",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "12",
+   "line": 57,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Affordable Diesel Performance",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "730-246-8895",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "British Columbia",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "6",
+   "line": 57,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Affordable Fleet Services",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "609-461-6502",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Nunavut",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "0",
+   "line": 57,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Afzal's Truck & Trailer Repair",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "885-670-3999",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Ontario",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "7",
+   "line": 57,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Aguiar Truck Center",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "958-590-3025",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Nova Scotia",
+   "line": 57,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "1",
+   "line": 57,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "New Customer",
+   "line": 58,
+   "kind": "text",
+   "ctx": "sv-modal__title",
+   "fig": 3
+  },
+  {
+   "text": "Name *",
+   "line": 59,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Phone",
+   "line": 60,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Address 1",
+   "line": 61,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Address 2",
+   "line": 62,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "City",
+   "line": 63,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "ZIP/Postal Code",
+   "line": 63,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "State/Province",
+   "line": 64,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Country",
+   "line": 64,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Credit Terms",
+   "line": 65,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "COD",
+   "line": 65,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Due on Receipt",
+   "line": 65,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Default",
+   "line": 65,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 3
+  },
+  {
+   "text": "Net 7",
+   "line": 65,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Net 10",
+   "line": 65,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Net 15",
+   "line": 65,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Net 20",
+   "line": 65,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Net 30",
+   "line": 65,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Net 45",
+   "line": 65,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Net 60",
+   "line": 65,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Credit Limit",
+   "line": 65,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Sales Representative",
+   "line": 66,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Notes",
+   "line": 67,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Website",
+   "line": 68,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "IBS",
+   "line": 69,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Save",
+   "line": 70,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 3
+  },
+  {
+   "text": "The picker lists the active terms in the S1-R5 order: COD, Due on Receipt, Net terms by days (the shop's own Net 10 between Net 7 and Net 15), day-of-month terms by day, any other term A to Z, Credit Hold last. Deactivated terms are not offered.",
+   "line": 72,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "No hover hints on the options, as in the build (r11-01).",
+   "line": 72,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "The shop default (Due on Receipt) carries the same \"Default\" tag as the Credit Terms table. Vendor pickers show no tag: the default applies to new customers only.",
+   "line": 72,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Source: DS Menus, text-only rows, selected row tinted; DS Badge for the tag.",
+   "line": 72,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+   "line": 72,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "This design",
+   "line": 75,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 4
+  },
+  {
+   "text": "New Customer: COD picked, limit locked at $0",
+   "line": 75,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "ShopHub",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Work Orders",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Schedule",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Customers",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Parts",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Reports",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Dashboard",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Searc...",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Ctrl K",
+   "line": 76,
+   "kind": "text",
+   "ctx": "sv-menu__kbd",
+   "fig": 4
+  },
+  {
+   "text": "timer",
+   "line": 76,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 4
+  },
+  {
+   "text": "Clock In",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "notifications_none",
+   "line": 76,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 4
+  },
+  {
+   "text": "Staging Heavy Duty - 9919",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "AS",
+   "line": 76,
+   "kind": "text",
+   "ctx": "sv-avatar",
+   "fig": 4
+  },
+  {
+   "text": "Customers",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "New Customer",
+   "line": 76,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 4
+  },
+  {
+   "text": "Customer Name",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Telephone",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "State/Province",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Assets",
+   "line": 76,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 4
+  },
+  {
+   "text": "4 Star Truck Repair",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "730-246-8895",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "British Columbia",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "0",
+   "line": 76,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 4
+  },
+  {
+   "text": "7 Star Truck Repair",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "609-461-6502",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Nunavut",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "7",
+   "line": 76,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 4
+  },
+  {
+   "text": "A & J Truck & Trailer Repair",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "885-670-3999",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Ontario",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "1",
+   "line": 76,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 4
+  },
+  {
+   "text": "Aberdeen Diesel Services LLC",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "958-590-3025",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Nova Scotia",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "8",
+   "line": 76,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 4
+  },
+  {
+   "text": "Aberdeen Truck Repair",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "730-246-8895",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "British Columbia",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "2",
+   "line": 76,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 4
+  },
+  {
+   "text": "Abilene Mechanical Services",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "609-461-6502",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Nunavut",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "9",
+   "line": 76,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 4
+  },
+  {
+   "text": "Abode Trucking & Repair",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "885-670-3999",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Ontario",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "3",
+   "line": 76,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 4
+  },
+  {
+   "text": "Accokeek Heavy Truck Repair Inc",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "958-590-3025",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Nova Scotia",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "10",
+   "line": 76,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 4
+  },
+  {
+   "text": "Ada Truck Service & Repair",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "730-246-8895",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "British Columbia",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "4",
+   "line": 76,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 4
+  },
+  {
+   "text": "Adeel's Mobile Diesel Repair",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "609-461-6502",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Nunavut",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "11",
+   "line": 76,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 4
+  },
+  {
+   "text": "Ado Truck Center - Oasis",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "885-670-3999",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Ontario",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "5",
+   "line": 76,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 4
+  },
+  {
+   "text": "Adrian's Truck & Trailer Repair LLC",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "958-590-3025",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Nova Scotia",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "12",
+   "line": 76,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 4
+  },
+  {
+   "text": "Affordable Diesel Performance",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "730-246-8895",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "British Columbia",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "6",
+   "line": 76,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 4
+  },
+  {
+   "text": "Affordable Fleet Services",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "609-461-6502",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Nunavut",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "0",
+   "line": 76,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 4
+  },
+  {
+   "text": "Afzal's Truck & Trailer Repair",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "885-670-3999",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Ontario",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "7",
+   "line": 76,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 4
+  },
+  {
+   "text": "Aguiar Truck Center",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "958-590-3025",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Nova Scotia",
+   "line": 76,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "1",
+   "line": 76,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 4
+  },
+  {
+   "text": "New Customer",
+   "line": 77,
+   "kind": "text",
+   "ctx": "sv-modal__title",
+   "fig": 4
+  },
+  {
+   "text": "Name *",
+   "line": 78,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Phone",
+   "line": 79,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Address 1",
+   "line": 80,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Address 2",
+   "line": 81,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "City",
+   "line": 82,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "ZIP/Postal Code",
+   "line": 82,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "State/Province",
+   "line": 83,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Country",
+   "line": 83,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Credit Terms",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Credit Limit",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "COD and Credit Hold customers can't charge to account, so they have no credit limit.",
+   "line": 84,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Sales Representative",
+   "line": 85,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Notes",
+   "line": 86,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Website",
+   "line": 87,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "IBS",
+   "line": 88,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Save",
+   "line": 89,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 4
+  },
+  {
+   "text": "Picking COD or Credit Hold sets Credit Limit to $0 and disables it (DS disabled input). Hover: \"COD and Credit Hold customers can't charge to account, so they have no credit limit.\"",
+   "line": 91,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Picking any other term makes the field editable again; blank means no limit.",
+   "line": 91,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "On touch screens a tap on the locked Credit Limit shows the same explanation as text under the field (r14-03).",
+   "line": 91,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "The same rule applies on Edit Customer (page 6).",
+   "line": 91,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+   "line": 91,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "This design",
+   "line": 94,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 5
+  },
+  {
+   "text": "New Customer without View and Manage AP/AR Data",
+   "line": 94,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "ShopHub",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Work Orders",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Schedule",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Customers",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Parts",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Reports",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Dashboard",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Searc...",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Ctrl K",
+   "line": 95,
+   "kind": "text",
+   "ctx": "sv-menu__kbd",
+   "fig": 5
+  },
+  {
+   "text": "timer",
+   "line": 95,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 5
+  },
+  {
+   "text": "Clock In",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "notifications_none",
+   "line": 95,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 5
+  },
+  {
+   "text": "Staging Heavy Duty - 9919",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "AS",
+   "line": 95,
+   "kind": "text",
+   "ctx": "sv-avatar",
+   "fig": 5
+  },
+  {
+   "text": "Customers",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "New Customer",
+   "line": 95,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 5
+  },
+  {
+   "text": "Customer Name",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Telephone",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "State/Province",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Assets",
+   "line": 95,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 5
+  },
+  {
+   "text": "4 Star Truck Repair",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "730-246-8895",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "British Columbia",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "0",
+   "line": 95,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 5
+  },
+  {
+   "text": "7 Star Truck Repair",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "609-461-6502",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Nunavut",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "7",
+   "line": 95,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 5
+  },
+  {
+   "text": "A & J Truck & Trailer Repair",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "885-670-3999",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Ontario",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "1",
+   "line": 95,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 5
+  },
+  {
+   "text": "Aberdeen Diesel Services LLC",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "958-590-3025",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Nova Scotia",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "8",
+   "line": 95,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 5
+  },
+  {
+   "text": "Aberdeen Truck Repair",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "730-246-8895",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "British Columbia",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "2",
+   "line": 95,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 5
+  },
+  {
+   "text": "Abilene Mechanical Services",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "609-461-6502",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Nunavut",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "9",
+   "line": 95,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 5
+  },
+  {
+   "text": "Abode Trucking & Repair",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "885-670-3999",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Ontario",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "3",
+   "line": 95,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 5
+  },
+  {
+   "text": "Accokeek Heavy Truck Repair Inc",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "958-590-3025",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Nova Scotia",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "10",
+   "line": 95,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 5
+  },
+  {
+   "text": "Ada Truck Service & Repair",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "730-246-8895",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "British Columbia",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "4",
+   "line": 95,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 5
+  },
+  {
+   "text": "Adeel's Mobile Diesel Repair",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "609-461-6502",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Nunavut",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "11",
+   "line": 95,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 5
+  },
+  {
+   "text": "Ado Truck Center - Oasis",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "885-670-3999",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Ontario",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "5",
+   "line": 95,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 5
+  },
+  {
+   "text": "Adrian's Truck & Trailer Repair LLC",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "958-590-3025",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Nova Scotia",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "12",
+   "line": 95,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 5
+  },
+  {
+   "text": "Affordable Diesel Performance",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "730-246-8895",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "British Columbia",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "6",
+   "line": 95,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 5
+  },
+  {
+   "text": "Affordable Fleet Services",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "609-461-6502",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Nunavut",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "0",
+   "line": 95,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 5
+  },
+  {
+   "text": "Afzal's Truck & Trailer Repair",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "885-670-3999",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Ontario",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "7",
+   "line": 95,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 5
+  },
+  {
+   "text": "Aguiar Truck Center",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "958-590-3025",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Nova Scotia",
+   "line": 95,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "1",
+   "line": 95,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 5
+  },
+  {
+   "text": "New Customer",
+   "line": 96,
+   "kind": "text",
+   "ctx": "sv-modal__title",
+   "fig": 5
+  },
+  {
+   "text": "Name *",
+   "line": 97,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Phone",
+   "line": 98,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Address 1",
+   "line": 99,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Address 2",
+   "line": 100,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "City",
+   "line": 101,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "ZIP/Postal Code",
+   "line": 101,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "State/Province",
+   "line": 102,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Country",
+   "line": 102,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Sales Representative",
+   "line": 103,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Notes",
+   "line": 104,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Website",
+   "line": 105,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "IBS",
+   "line": 106,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Save",
+   "line": 107,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 5
+  },
+  {
+   "text": "No Credit Terms and no Credit Limit field. The customer is saved on the shop default without the user seeing it.",
+   "line": 109,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "The Sales Representative field(s) come from Splitting Sales Representatives (SV-10890): labels, + and x buttons and spacing from its design canvas (page 2, boards 2.12 and 2.16) and its build (SalesRepAssignment.vue).",
+   "line": 109,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+   "line": 109,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 5
+  }
+ ]
+}

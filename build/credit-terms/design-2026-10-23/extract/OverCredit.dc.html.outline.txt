@@ -1,0 +1,572 @@
+<html>
+  <head>
+    <meta>
+    <title>
+      "8. Over Credit warning"
+    <link>
+    <link>
+    <link>
+  <body>
+    <x-dc>
+      <helmet>
+      <div data-theme="light" [width:4512px; background:var(--sv-surface-canvas); color:var(--sv-text-primary)]>
+        <div>
+          <h2.sv-h2>
+            "8. Over Credit warning"
+          <p [color:var(--sv-text-secondary)]>
+            "Before: today's warning. After: no warning for COD, Due on Receipt and no-limit customers, and the case that still warns, wording unchanged. Light theme."
+        <div>
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--neutral>
+                "Unchanged from production (before)"
+              <span [font-weight:600]>
+                "The Over Credit warning today"
+            <img alt="Over credit limit confirmation" src="shots/before-over-credit.png" [width:1440px; border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "The dialog itself does not change. Captured on the branch build for a Net 45 customer $369,747 over a $50,000 limit, the case that still warns."
+                <li>
+                  "In production this same dialog also opens for a customer on COD or Due on Receipt, or with a blank or $0 limit, as soon as they owe anything."
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--info>
+                "This design"
+              <span [font-weight:600]>
+                "COD customer, $0 limit, owes $1,200: no warning"
+            <div [width:1440px; background:var(--sv-surface); border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+              <header.sv-header [background:var(--sv-surface); border-bottom:1px solid var(--sv-border-default)]>
+                <a.sv-header__logo aria-label="ShopView">
+                  <svg >
+                <span [font-weight:600; border-right:1px solid var(--sv-border-default)]>
+                  "ShopHub"
+                  <svg >
+                <nav.sv-header__nav>
+                  <a>
+                    "Work Orders"
+                  <a>
+                    "Schedule"
+                  <a>
+                    "Customers"
+                  <a>
+                    "Parts"
+                  <a>
+                    "Reports"
+                  <a>
+                    "Dashboard"
+                <div.sv-header__spacer>
+                <div.sv-header__right>
+                  <div [width:150px; border-radius:var(--sv-header-control-radius); background:var(--sv-surface-sunken); border:1px solid var(--sv-border-default); font-weight:500; color:var(--sv-text-secondary)]>
+                    <svg >
+                    <span>
+                      "Searc..."
+                    <span.sv-menu__kbd>
+                      "Ctrl K"
+                  <span [font-weight:600; color:var(--sv-text-secondary)]>
+                    <span.material-icons-outlined>
+                      "timer"
+                    "Clock In"
+                  <span.material-icons-outlined [color:var(--sv-text-primary)]>
+                    "notifications_none"
+                  <span [border-radius:var(--sv-radius-md); background:var(--sv-surface-sunken); font-weight:500]>
+                    "Staging Heavy Duty - 9919"
+                    <span.sv-avatar>
+                      "AS"
+              <div [background:var(--sv-surface-canvas)]>
+                <div.sv-card [width:256px]>
+                  <div>
+                    <span.sv-h4>
+                      "Gonsoulin Diesel Services Inc"
+                    <button.sv-btn.sv-btn--tertiary aria-label="Edit customer" [width:36px]>
+                      <svg >
+                  <div>
+                    <div [font-weight:600]>
+                      "Address"
+                    <div [color:var(--sv-text-primary)]>
+                      "62981 Kim Port"
+                      <br>
+                      "New Julieshire, British Columbia"
+                      <br>
+                      "R9S 3N3"
+                  <div>
+                    <div [font-weight:600]>
+                      "Phone"
+                    <div [color:var(--sv-text-primary)]>
+                      "029-938-2141"
+                  <div>
+                    <div [font-weight:600]>
+                      "Credit term"
+                    <div [color:var(--sv-text-primary); font-weight:600]>
+                      "COD"
+                  <div>
+                    <div [font-weight:600]>
+                      "Credit limit"
+                    <div [color:var(--sv-text-primary)]>
+                      "$0.00"
+                  <div>
+                    <div [font-weight:600]>
+                      "Sales Representative"
+                    <div [color:var(--sv-text-primary)]>
+                      "Unassigned"
+                  <div>
+                    <div [font-weight:600]>
+                      "Website"
+                    <div [color:var(--sv-text-primary)]>
+                      "www.lamberttrucking.com"
+                  <div>
+                    <div [font-weight:600]>
+                      "IBS"
+                    <div [color:var(--sv-text-primary)]>
+                      "N/A"
+                  <div [border-top:1px solid var(--sv-border-subtle)]>
+                    <div>
+                      <div.sv-body2>
+                        "Contacts"
+                      <div.sv-h3>
+                        "4"
+                    <div>
+                      <div.sv-body2>
+                        "Assets"
+                      <div.sv-h3>
+                        "17"
+                <div>
+                  <div>
+                    <div.sv-tabs>
+                      <button.sv-tab>
+                        "Work Orders"
+                        <span.sv-tab__count>
+                          "27"
+                      <button.sv-tab>
+                        "Part Sales"
+                      <button.sv-tab>
+                        "Contacts"
+                        <span.sv-tab__count>
+                          "4"
+                      <button.sv-tab>
+                        "Assets"
+                        <span.sv-tab__count>
+                          "17"
+                      <button.sv-tab>
+                        "Invoices"
+                      <button.sv-tab>
+                        "Payments"
+                    <button.sv-btn.sv-btn--primary>
+                      "New Work Order"
+                  <table.sv-table>
+                    <thead>
+                      <tr>
+                        <th>
+                          "Status"
+                        <th>
+                          "Number"
+                        <th.sv-num>
+                          "Total Price"
+                        <th.sv-num>
+                          "Created On"
+                    <tbody>
+                      <tr>
+                        <td>
+                          <span.sv-badge.sv-badge--info>
+                            "In Progress"
+                        <td>
+                          "S2-17528"
+                        <td.sv-num>
+                          "$1,000.00"
+                        <td.sv-num>
+                          "Aug 27, 2026"
+                      <tr>
+                        <td>
+                          <span.sv-badge.sv-badge--success>
+                            "Paid"
+                        <td>
+                          "S2-17504"
+                        <td.sv-num>
+                          "$1,731.00"
+                        <td.sv-num>
+                          "Aug 26, 2026"
+                      <tr>
+                        <td>
+                          <span.sv-badge.sv-badge--success>
+                            "Paid"
+                        <td>
+                          "S2-17350"
+                        <td.sv-num>
+                          "$2,462.00"
+                        <td.sv-num>
+                          "Aug 25, 2026"
+                      <tr>
+                        <td>
+                          <span.sv-badge.sv-badge--success>
+                            "Paid"
+                        <td>
+                          "S2-16862"
+                        <td.sv-num>
+                          "$3,193.00"
+                        <td.sv-num>
+                          "Aug 24, 2026"
+                      <tr>
+                        <td>
+                          <span.sv-badge.sv-badge--success>
+                            "Paid"
+                        <td>
+                          "S2-13759"
+                        <td.sv-num>
+                          "$3,924.00"
+                        <td.sv-num>
+                          "Aug 23, 2026"
+                      <tr>
+                        <td>
+                          <span.sv-badge.sv-badge--success>
+                            "Paid"
+                        <td>
+                          "S2-13499"
+                        <td.sv-num>
+                          "$4,655.00"
+                        <td.sv-num>
+                          "Aug 22, 2026"
+                      <tr>
+                        <td>
+                          <span.sv-badge.sv-badge--success>
+                            "Paid"
+                        <td>
+                          "S2-13309"
+                        <td.sv-num>
+                          "$5,386.00"
+                        <td.sv-num>
+                          "Aug 21, 2026"
+                      <tr>
+                        <td>
+                          <span.sv-badge.sv-badge--success>
+                            "Paid"
+                        <td>
+                          "S2-12011"
+                        <td.sv-num>
+                          "$6,117.00"
+                        <td.sv-num>
+                          "Aug 20, 2026"
+              <div.sv-scrim [background:var(--sv-scrim)]>
+                <div.sv-modal [width:608px]>
+                  <div.sv-modal__header>
+                    <span.sv-modal__title>
+                      "New Work Order"
+                    <button.sv-modal__close aria-label="Close">
+                      <svg >
+                  <div.sv-modal__body>
+                    <div>
+                      <div>
+                        <div>
+                          <div.sv-field.sv-field--select>
+                            <input placeholder=" " value="Gonsoulin Diesel Services Inc">
+                            <label>
+                              "Customer"
+                            <span.sv-field__chevron>
+                              <svg >
+                      <button.sv-btn.sv-btn--link>
+                        "Add"
+                    <div>
+                      <div>
+                        <div>
+                          <div.sv-field.sv-field--select>
+                            <input placeholder=" " value="2019 Kenworth T880">
+                            <label>
+                              "Asset"
+                            <span.sv-field__chevron>
+                              <svg >
+                      <button.sv-btn.sv-btn--link>
+                        "Add"
+                    <label.sv-control-row>
+                      <span.sv-check>
+                      <span>
+                        "Asset Here?"
+                  <div.sv-modal__footer>
+                    <button.sv-btn.sv-btn--primary>
+                      "Save"
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "Save opens the work order. No Confirmation for a customer on COD, Due on Receipt or Credit Hold, or with a blank or $0 credit limit."
+                <li>
+                  "Credit Hold keeps its own, separate warning ("This customer is on credit hold and the work order will not be able to be invoiced."), unchanged."
+                <li>
+                  "Source: WorkOrderDialog.vue (the new rule) drawn with DS Modals and Select."
+                <li>
+                  "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--info>
+                "This design"
+              <span [font-weight:600]>
+                "Still warns: limit above $0 exceeded"
+            <div [width:1440px; background:var(--sv-surface); border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+              <header.sv-header [background:var(--sv-surface); border-bottom:1px solid var(--sv-border-default)]>
+                <a.sv-header__logo aria-label="ShopView">
+                  <svg >
+                <span [font-weight:600; border-right:1px solid var(--sv-border-default)]>
+                  "ShopHub"
+                  <svg >
+                <nav.sv-header__nav>
+                  <a>
+                    "Work Orders"
+                  <a>
+                    "Schedule"
+                  <a>
+                    "Customers"
+                  <a>
+                    "Parts"
+                  <a>
+                    "Reports"
+                  <a>
+                    "Dashboard"
+                <div.sv-header__spacer>
+                <div.sv-header__right>
+                  <div [width:150px; border-radius:var(--sv-header-control-radius); background:var(--sv-surface-sunken); border:1px solid var(--sv-border-default); font-weight:500; color:var(--sv-text-secondary)]>
+                    <svg >
+                    <span>
+                      "Searc..."
+                    <span.sv-menu__kbd>
+                      "Ctrl K"
+                  <span [font-weight:600; color:var(--sv-text-secondary)]>
+                    <span.material-icons-outlined>
+                      "timer"
+                    "Clock In"
+                  <span.material-icons-outlined [color:var(--sv-text-primary)]>
+                    "notifications_none"
+                  <span [border-radius:var(--sv-radius-md); background:var(--sv-surface-sunken); font-weight:500]>
+                    "Staging Heavy Duty - 9919"
+                    <span.sv-avatar>
+                      "AS"
+              <div [background:var(--sv-surface-canvas)]>
+                <div.sv-card [width:256px]>
+                  <div>
+                    <span.sv-h4>
+                      "Gonsoulin Diesel Services Inc"
+                    <button.sv-btn.sv-btn--tertiary aria-label="Edit customer" [width:36px]>
+                      <svg >
+                  <div>
+                    <div [font-weight:600]>
+                      "Address"
+                    <div [color:var(--sv-text-primary)]>
+                      "62981 Kim Port"
+                      <br>
+                      "New Julieshire, British Columbia"
+                      <br>
+                      "R9S 3N3"
+                  <div>
+                    <div [font-weight:600]>
+                      "Phone"
+                    <div [color:var(--sv-text-primary)]>
+                      "029-938-2141"
+                  <div>
+                    <div [font-weight:600]>
+                      "Credit term"
+                    <div [color:var(--sv-text-primary); font-weight:600]>
+                      "Net 45"
+                  <div>
+                    <div [font-weight:600]>
+                      "Credit limit"
+                    <div [color:var(--sv-text-primary)]>
+                      "$0.00"
+                  <div>
+                    <div [font-weight:600]>
+                      "Sales Representative"
+                    <div [color:var(--sv-text-primary)]>
+                      "Unassigned"
+                  <div>
+                    <div [font-weight:600]>
+                      "Website"
+                    <div [color:var(--sv-text-primary)]>
+                      "www.lamberttrucking.com"
+                  <div>
+                    <div [font-weight:600]>
+                      "IBS"
+                    <div [color:var(--sv-text-primary)]>
+                      "N/A"
+                  <div [border-top:1px solid var(--sv-border-subtle)]>
+                    <div>
+                      <div.sv-body2>
+                        "Contacts"
+                      <div.sv-h3>
+                        "4"
+                    <div>
+                      <div.sv-body2>
+                        "Assets"
+                      <div.sv-h3>
+                        "17"
+                <div>
+                  <div>
+                    <div.sv-tabs>
+                      <button.sv-tab>
+                        "Work Orders"
+                        <span.sv-tab__count>
+                          "27"
+                      <button.sv-tab>
+                        "Part Sales"
+                      <button.sv-tab>
+                        "Contacts"
+                        <span.sv-tab__count>
+                          "4"
+                      <button.sv-tab>
+                        "Assets"
+                        <span.sv-tab__count>
+                          "17"
+                      <button.sv-tab>
+                        "Invoices"
+                      <button.sv-tab>
+                        "Payments"
+                    <button.sv-btn.sv-btn--primary>
+                      "New Work Order"
+                  <table.sv-table>
+                    <thead>
+                      <tr>
+                        <th>
+                          "Status"
+                        <th>
+                          "Number"
+                        <th.sv-num>
+                          "Total Price"
+                        <th.sv-num>
+                          "Created On"
+                    <tbody>
+                      <tr>
+                        <td>
+                          <span.sv-badge.sv-badge--info>
+                            "In Progress"
+                        <td>
+                          "S2-17528"
+                        <td.sv-num>
+                          "$1,000.00"
+                        <td.sv-num>
+                          "Aug 27, 2026"
+                      <tr>
+                        <td>
+                          <span.sv-badge.sv-badge--success>
+                            "Paid"
+                        <td>
+                          "S2-17504"
+                        <td.sv-num>
+                          "$1,731.00"
+                        <td.sv-num>
+                          "Aug 26, 2026"
+                      <tr>
+                        <td>
+                          <span.sv-badge.sv-badge--success>
+                            "Paid"
+                        <td>
+                          "S2-17350"
+                        <td.sv-num>
+                          "$2,462.00"
+                        <td.sv-num>
+                          "Aug 25, 2026"
+                      <tr>
+                        <td>
+                          <span.sv-badge.sv-badge--success>
+                            "Paid"
+                        <td>
+                          "S2-16862"
+                        <td.sv-num>
+                          "$3,193.00"
+                        <td.sv-num>
+                          "Aug 24, 2026"
+                      <tr>
+                        <td>
+                          <span.sv-badge.sv-badge--success>
+                            "Paid"
+                        <td>
+                          "S2-13759"
+                        <td.sv-num>
+                          "$3,924.00"
+                        <td.sv-num>
+                          "Aug 23, 2026"
+                      <tr>
+                        <td>
+                          <span.sv-badge.sv-badge--success>
+                            "Paid"
+                        <td>
+                          "S2-13499"
+                        <td.sv-num>
+                          "$4,655.00"
+                        <td.sv-num>
+                          "Aug 22, 2026"
+                      <tr>
+                        <td>
+                          <span.sv-badge.sv-badge--success>
+                            "Paid"
+                        <td>
+                          "S2-13309"
+                        <td.sv-num>
+                          "$5,386.00"
+                        <td.sv-num>
+                          "Aug 21, 2026"
+                      <tr>
+                        <td>
+                          <span.sv-badge.sv-badge--success>
+                            "Paid"
+                        <td>
+                          "S2-12011"
+                        <td.sv-num>
+                          "$6,117.00"
+                        <td.sv-num>
+                          "Aug 20, 2026"
+              <div.sv-scrim [background:var(--sv-scrim)]>
+                <div.sv-modal [width:608px]>
+                  <div.sv-modal__header>
+                    <span.sv-modal__title>
+                      "New Work Order"
+                    <button.sv-modal__close aria-label="Close">
+                      <svg >
+                  <div.sv-modal__body>
+                    <div>
+                      <div>
+                        <div>
+                          <div.sv-field.sv-field--select>
+                            <input placeholder=" " value="Gonsoulin Diesel Services Inc">
+                            <label>
+                              "Customer"
+                            <span.sv-field__chevron>
+                              <svg >
+                      <button.sv-btn.sv-btn--link>
+                        "Add"
+                    <div>
+                      <div>
+                        <div>
+                          <div.sv-field.sv-field--select>
+                            <input placeholder=" " value="2019 Kenworth T880">
+                            <label>
+                              "Asset"
+                            <span.sv-field__chevron>
+                              <svg >
+                      <button.sv-btn.sv-btn--link>
+                        "Add"
+                    <label.sv-control-row>
+                      <span.sv-check>
+                      <span>
+                        "Asset Here?"
+                  <div.sv-modal__footer>
+                    <button.sv-btn.sv-btn--primary>
+                      "Save"
+              <div.sv-scrim [background:var(--sv-scrim)]>
+                <div.sv-modal.sv-modal--confirm [width:608px]>
+                  <div.sv-modal__header>
+                    <span.sv-modal__title>
+                      "Confirmation"
+                    <button.sv-modal__close aria-label="Close">
+                      <svg >
+                  <div.sv-modal__body>
+                    <p>
+                      "Are you sure you want to open a new work order? This customer is over their credit limit."
+                  <div.sv-modal__footer>
+                    <button.sv-btn.sv-btn--danger>
+                      "Create"
+                    <button.sv-btn.sv-btn--secondary>
+                      "Cancel"
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "Only when a credit limit above $0 is set and the balance is over it. Wording unchanged: "Are you sure you want to open a new work order? This customer is over their credit limit.""
+                <li>
+                  "Part sales show no over-credit confirmation (S9-R4); for part sales only the "Over limit" badge follows this rule."
+                <li>
+                  "Source: CustomerWarningDialog.vue text, DS confirm modal; Create keeps its red (destructive) style."
+                <li>
+                  "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."

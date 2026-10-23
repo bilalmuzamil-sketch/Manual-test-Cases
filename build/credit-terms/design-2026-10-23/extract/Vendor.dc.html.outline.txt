@@ -1,0 +1,1451 @@
+<html>
+  <head>
+    <meta>
+    <title>
+      "7. Vendors"
+    <link>
+    <link>
+    <link>
+  <body>
+    <x-dc>
+      <helmet>
+      <div data-theme="light" [width:7488px; background:var(--sv-surface-canvas); color:var(--sv-text-primary)]>
+        <div>
+          <h2.sv-h2>
+            "7. Vendors"
+          <p [color:var(--sv-text-secondary)]>
+            "New Vendor, Edit Vendor, a vendor on a deactivated term, and vendor invoice due dates for the shop's own terms. Before: the branch build where the screen is unchanged from production. Light theme."
+        <div>
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--neutral>
+                "Unchanged from production (before)"
+              <span [font-weight:600]>
+                "New Vendor today"
+            <img alt="New Vendor dialog" src="shots/before-new-vendor.png" [width:1440px; border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "Captured on the branch build at localhost:8080; the dialog layout is unchanged from production. In production the picker lists the 12 standard terms only."
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--info>
+                "This design"
+              <span [font-weight:600]>
+                "New Vendor: starts on COD, picker with your terms"
+            <div [width:1440px; background:var(--sv-surface); border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+              <header.sv-header [background:var(--sv-surface); border-bottom:1px solid var(--sv-border-default)]>
+                <a.sv-header__logo aria-label="ShopView">
+                  <svg >
+                <span [font-weight:600; border-right:1px solid var(--sv-border-default)]>
+                  "ShopHub"
+                  <svg >
+                <nav.sv-header__nav>
+                  <a>
+                    "Work Orders"
+                  <a>
+                    "Schedule"
+                  <a>
+                    "Customers"
+                  <a>
+                    "Parts"
+                  <a>
+                    "Reports"
+                  <a>
+                    "Dashboard"
+                <div.sv-header__spacer>
+                <div.sv-header__right>
+                  <div [width:150px; border-radius:var(--sv-header-control-radius); background:var(--sv-surface-sunken); border:1px solid var(--sv-border-default); font-weight:500; color:var(--sv-text-secondary)]>
+                    <svg >
+                    <span>
+                      "Searc..."
+                    <span.sv-menu__kbd>
+                      "Ctrl K"
+                  <span [font-weight:600; color:var(--sv-text-secondary)]>
+                    <span.material-icons-outlined>
+                      "timer"
+                    "Clock In"
+                  <span.material-icons-outlined [color:var(--sv-text-primary)]>
+                    "notifications_none"
+                  <span [border-radius:var(--sv-radius-md); background:var(--sv-surface-sunken); font-weight:500]>
+                    "Staging Heavy Duty - 9919"
+                    <span.sv-avatar>
+                      "AS"
+              <div [background:var(--sv-surface-canvas)]>
+              <div.sv-scrim [background:var(--sv-scrim)]>
+                <div.sv-modal [width:800px]>
+                  <div.sv-modal__header>
+                    <span.sv-modal__title>
+                      "New Vendor"
+                    <button.sv-modal__close aria-label="Close">
+                      <svg >
+                  <div.sv-modal__body>
+                    <div>
+                      <div.sv-field>
+                        <input placeholder=" " value="">
+                        <label>
+                          "Name *"
+                    <div>
+                      <div.sv-field>
+                        <input placeholder=" " value="">
+                        <label>
+                          "Address 1"
+                    <div>
+                      <div.sv-field>
+                        <input placeholder=" " value="">
+                        <label>
+                          "Address 2"
+                    <div>
+                      <div>
+                        <div.sv-field>
+                          <input placeholder=" " value="">
+                          <label>
+                            "City"
+                      <div>
+                        <div.sv-field>
+                          <input placeholder=" " value="">
+                          <label>
+                            "ZIP/Postal Code"
+                    <div>
+                      <div>
+                        <div.sv-field>
+                          <input placeholder=" " value="">
+                          <label>
+                            "Telephone"
+                      <div>
+                        <div.sv-field>
+                          <input placeholder=" " value="">
+                          <label>
+                            "Email"
+                    <div>
+                      <div>
+                        <div.sv-field.sv-field--select>
+                          <input placeholder=" " value="">
+                          <label>
+                            "State/Province"
+                          <span.sv-field__chevron>
+                            <svg >
+                      <div>
+                        <div.sv-field.sv-field--select>
+                          <input placeholder=" " value="Canada">
+                          <label>
+                            "Country"
+                          <span.sv-field__chevron>
+                            <svg >
+                    <div>
+                      <div>
+                        <div>
+                          <div.sv-field.sv-field--select>
+                            <input placeholder=" " value="COD" [border-color:var(--sv-border-focus)]>
+                            <label>
+                              "Credit Terms"
+                            <span.sv-field__chevron>
+                              <svg >
+                        <div>
+                          <div.sv-menu [width:367px]>
+                            <button.sv-menu__row.is-active>
+                              <span.material-icons>
+                                "check"
+                              <span>
+                                "COD"
+                            <button.sv-menu__row>
+                              <span>
+                                "Due on Receipt"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 7"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 10"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 15"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 20"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 30"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 45"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 60"
+                      <div>
+                        <div.sv-field>
+                          <input placeholder=" " value="$ 0.00">
+                          <label>
+                            "Credit Limit"
+                    <div>
+                      <div.sv-field.sv-field--select>
+                        <input placeholder=" " value="">
+                        <label>
+                          "Taxes"
+                        <span.sv-field__chevron>
+                          <svg >
+                    <div>
+                      <div.sv-field>
+                        <textarea placeholder=" ">
+                        <label>
+                          "Notes"
+                    <div>
+                      <div.sv-field>
+                        <input placeholder=" " value="">
+                        <label>
+                          "Website"
+                  <div.sv-modal__footer>
+                    <button.sv-btn.sv-btn--primary>
+                      "Save & Close"
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "A new vendor starts on COD, as today: the shop default applies to new customers only (VendorDialog.vue keeps COD)."
+                <li>
+                  "One term list for customers and vendors: the picker offers the active terms in the S1-R5 order, Credit Hold last. Deactivated terms are not offered."
+                <li>
+                  "Credit Limit: vendors have a required Credit Limit field. The build does not apply the COD / Credit Hold $0 lock to vendors, so it stays editable on every term."
+                <li>
+                  "Source: VendorDialog.vue field layout, drawn with DS Text field, Select and Menus."
+                <li>
+                  "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--neutral>
+                "Unchanged from production (before)"
+              <span [font-weight:600]>
+                "Edit Vendor today"
+            <img alt="Edit Vendor dialog" src="shots/before-vendor.png" [width:1440px; border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "Captured on the branch build with the picker closed: layout unchanged from production."
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--info>
+                "This design"
+              <span [font-weight:600]>
+                "Edit Vendor: the picker with your terms"
+            <div [width:1440px; background:var(--sv-surface); border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+              <header.sv-header [background:var(--sv-surface); border-bottom:1px solid var(--sv-border-default)]>
+                <a.sv-header__logo aria-label="ShopView">
+                  <svg >
+                <span [font-weight:600; border-right:1px solid var(--sv-border-default)]>
+                  "ShopHub"
+                  <svg >
+                <nav.sv-header__nav>
+                  <a>
+                    "Work Orders"
+                  <a>
+                    "Schedule"
+                  <a>
+                    "Customers"
+                  <a>
+                    "Parts"
+                  <a>
+                    "Reports"
+                  <a>
+                    "Dashboard"
+                <div.sv-header__spacer>
+                <div.sv-header__right>
+                  <div [width:150px; border-radius:var(--sv-header-control-radius); background:var(--sv-surface-sunken); border:1px solid var(--sv-border-default); font-weight:500; color:var(--sv-text-secondary)]>
+                    <svg >
+                    <span>
+                      "Searc..."
+                    <span.sv-menu__kbd>
+                      "Ctrl K"
+                  <span [font-weight:600; color:var(--sv-text-secondary)]>
+                    <span.material-icons-outlined>
+                      "timer"
+                    "Clock In"
+                  <span.material-icons-outlined [color:var(--sv-text-primary)]>
+                    "notifications_none"
+                  <span [border-radius:var(--sv-radius-md); background:var(--sv-surface-sunken); font-weight:500]>
+                    "Staging Heavy Duty - 9919"
+                    <span.sv-avatar>
+                      "AS"
+              <div [background:var(--sv-surface-canvas)]>
+              <div.sv-scrim [background:var(--sv-scrim)]>
+                <div.sv-modal [width:800px]>
+                  <div.sv-modal__header>
+                    <span.sv-modal__title>
+                      "Edit Vendor"
+                    <button.sv-modal__close aria-label="Close">
+                      <svg >
+                  <div.sv-modal__body>
+                    <div>
+                      <div.sv-field>
+                        <input placeholder=" " value="Venice Gardens Truck Repair">
+                        <label>
+                          "Name *"
+                    <div>
+                      <div.sv-field>
+                        <input placeholder=" " value="89680 Harper Mountain">
+                        <label>
+                          "Address 1"
+                    <div>
+                      <div.sv-field>
+                        <input placeholder=" " value="">
+                        <label>
+                          "Address 2"
+                    <div>
+                      <div>
+                        <div.sv-field>
+                          <input placeholder=" " value="Lake Theresa">
+                          <label>
+                            "City"
+                      <div>
+                        <div.sv-field>
+                          <input placeholder=" " value="N5M9V7">
+                          <label>
+                            "ZIP/Postal Code"
+                    <div>
+                      <div>
+                        <div.sv-field>
+                          <input placeholder=" " value="(489) 420 - 2491">
+                          <label>
+                            "Telephone"
+                      <div>
+                        <div.sv-field>
+                          <input placeholder=" " value="wendy.jenkins@staging.shopview.local">
+                          <label>
+                            "Email"
+                    <div>
+                      <div>
+                        <div.sv-field.sv-field--select>
+                          <input placeholder=" " value="Nova Scotia">
+                          <label>
+                            "State/Province"
+                          <span.sv-field__chevron>
+                            <svg >
+                      <div>
+                        <div.sv-field.sv-field--select>
+                          <input placeholder=" " value="Canada">
+                          <label>
+                            "Country"
+                          <span.sv-field__chevron>
+                            <svg >
+                    <div>
+                      <div>
+                        <div>
+                          <div.sv-field.sv-field--select>
+                            <input placeholder=" " value="Net 30" [border-color:var(--sv-border-focus)]>
+                            <label>
+                              "Credit Terms"
+                            <span.sv-field__chevron>
+                              <svg >
+                        <div>
+                          <div.sv-menu [width:367px]>
+                            <button.sv-menu__row>
+                              <span>
+                                "COD"
+                            <button.sv-menu__row>
+                              <span>
+                                "Due on Receipt"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 7"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 10"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 15"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 20"
+                            <button.sv-menu__row.is-active>
+                              <span.material-icons>
+                                "check"
+                              <span>
+                                "Net 30"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 45"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 60"
+                      <div>
+                        <div.sv-field>
+                          <input placeholder=" " value="$ 0.00">
+                          <label>
+                            "Credit Limit"
+                    <div>
+                      <div.sv-field.sv-field--select>
+                        <input placeholder=" " value="GST">
+                        <label>
+                          "Taxes"
+                        <span.sv-field__chevron>
+                          <svg >
+                    <div>
+                      <div.sv-field>
+                        <textarea placeholder=" ">
+                        <label>
+                          "Notes"
+                    <div>
+                      <div.sv-field>
+                        <input placeholder=" " value="">
+                        <label>
+                          "Website"
+                  <div.sv-modal__footer>
+                    <button.sv-btn.sv-btn--primary>
+                      "Save & Close"
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "The same list and order as New Vendor and the customer pickers (S6-R1)."
+                <li>
+                  "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--neutral>
+                "Unchanged from production (before)"
+              <span [font-weight:600]>
+                "Vendor page today"
+            <img alt="Vendor page" src="shots/before-vendor-page.png" [width:1440px; border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "Email overflow is pre-existing (SV-11684), not part of this feature."
+                <li>
+                  "Captured on the branch build: layout unchanged from production. The card shows the credit term by name."
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--info>
+                "This design"
+              <span [font-weight:600]>
+                "Vendor on a deactivated term"
+            <div [width:1440px; background:var(--sv-surface); border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+              <header.sv-header [background:var(--sv-surface); border-bottom:1px solid var(--sv-border-default)]>
+                <a.sv-header__logo aria-label="ShopView">
+                  <svg >
+                <span [font-weight:600; border-right:1px solid var(--sv-border-default)]>
+                  "ShopHub"
+                  <svg >
+                <nav.sv-header__nav>
+                  <a>
+                    "Work Orders"
+                  <a>
+                    "Schedule"
+                  <a>
+                    "Customers"
+                  <a>
+                    "Parts"
+                  <a>
+                    "Reports"
+                  <a>
+                    "Dashboard"
+                <div.sv-header__spacer>
+                <div.sv-header__right>
+                  <div [width:150px; border-radius:var(--sv-header-control-radius); background:var(--sv-surface-sunken); border:1px solid var(--sv-border-default); font-weight:500; color:var(--sv-text-secondary)]>
+                    <svg >
+                    <span>
+                      "Searc..."
+                    <span.sv-menu__kbd>
+                      "Ctrl K"
+                  <span [font-weight:600; color:var(--sv-text-secondary)]>
+                    <span.material-icons-outlined>
+                      "timer"
+                    "Clock In"
+                  <span.material-icons-outlined [color:var(--sv-text-primary)]>
+                    "notifications_none"
+                  <span [border-radius:var(--sv-radius-md); background:var(--sv-surface-sunken); font-weight:500]>
+                    "Staging Heavy Duty - 9919"
+                    <span.sv-avatar>
+                      "AS"
+              <div [background:var(--sv-surface-canvas)]>
+                <div.sv-card [width:230px]>
+                  <div>
+                    <span.sv-h4>
+                      "Venice Gardens .."
+                    <button.sv-btn.sv-btn--tertiary aria-label="Edit vendor" [width:36px]>
+                      <svg >
+                  <div>
+                    <div [font-weight:600]>
+                      "Email"
+                    <div>
+                      "wendy.jenkins@staging.shopview.local"
+                  <div>
+                    <div [font-weight:600]>
+                      "Telephone"
+                    <div>
+                      "489-420-2491"
+                  <div>
+                    <div [font-weight:600]>
+                      "Address"
+                    <div>
+                      "89680 Harper Mountain"
+                  <div>
+                    <div [font-weight:600]>
+                      "State/Province"
+                    <div>
+                      "Nova Scotia"
+                  <div>
+                    <div [font-weight:600]>
+                      "City"
+                    <div>
+                      "Lake Theresa"
+                  <div>
+                    <div [font-weight:600]>
+                      "Postal code"
+                    <div>
+                      "N5M9V7"
+                  <div>
+                    <div [font-weight:600]>
+                      "Website"
+                    <div>
+                      "N/A"
+                  <div>
+                    <div [font-weight:600]>
+                      "Credit term"
+                    <div [font-weight:600]>
+                      "Net 10 (Inactive)"
+                  <div>
+                    <div [font-weight:600]>
+                      "Credit limit"
+                    <div>
+                      "$0.00"
+                  <div>
+                    <div [font-weight:600]>
+                      "Taxes"
+                    <div>
+                      "GST"
+                <div>
+                  <div>
+                    <div.sv-tabs>
+                      <button.sv-tab>
+                        "Contacts"
+                        <span.sv-tab__count>
+                          "1"
+                      <button.sv-tab>
+                        "Unpaid Invoices"
+                      <button.sv-tab>
+                        "Payments"
+                    <div>
+                      <button.sv-btn.sv-btn--secondary aria-label="More actions" [width:36px]>
+                        <svg >
+                      <button.sv-btn.sv-btn--primary>
+                        "Add Contact"
+                  <table.sv-table>
+                    <thead>
+                      <tr>
+                        <th>
+                          "First Name"
+                        <th>
+                          "Last Name"
+                        <th>
+                          "Title"
+                        <th>
+                          "Email"
+                        <th>
+                          "Telephone"
+                        <th>
+                          "Department"
+                    <tbody>
+                      <tr>
+                        <td>
+                          "Steven"
+                        <td>
+                          "Hester"
+                        <td>
+                        <td>
+                          "victoria.burgess@staging.shopview.local"
+                        <td>
+                          "312-109-2131"
+                        <td>
+                          "Preferred"
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "Email overflow is pre-existing (SV-11684), not part of this feature."
+                <li>
+                  "The shop deactivated Net 10. This vendor keeps it, and the card reads "Net 10 (Inactive)". Vendor bills still get their due date from it."
+                <li>
+                  "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--info>
+                "This design"
+              <span [font-weight:600]>
+                "Edit Vendor keeps the inactive term"
+            <div [width:1440px; background:var(--sv-surface); border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+              <header.sv-header [background:var(--sv-surface); border-bottom:1px solid var(--sv-border-default)]>
+                <a.sv-header__logo aria-label="ShopView">
+                  <svg >
+                <span [font-weight:600; border-right:1px solid var(--sv-border-default)]>
+                  "ShopHub"
+                  <svg >
+                <nav.sv-header__nav>
+                  <a>
+                    "Work Orders"
+                  <a>
+                    "Schedule"
+                  <a>
+                    "Customers"
+                  <a>
+                    "Parts"
+                  <a>
+                    "Reports"
+                  <a>
+                    "Dashboard"
+                <div.sv-header__spacer>
+                <div.sv-header__right>
+                  <div [width:150px; border-radius:var(--sv-header-control-radius); background:var(--sv-surface-sunken); border:1px solid var(--sv-border-default); font-weight:500; color:var(--sv-text-secondary)]>
+                    <svg >
+                    <span>
+                      "Searc..."
+                    <span.sv-menu__kbd>
+                      "Ctrl K"
+                  <span [font-weight:600; color:var(--sv-text-secondary)]>
+                    <span.material-icons-outlined>
+                      "timer"
+                    "Clock In"
+                  <span.material-icons-outlined [color:var(--sv-text-primary)]>
+                    "notifications_none"
+                  <span [border-radius:var(--sv-radius-md); background:var(--sv-surface-sunken); font-weight:500]>
+                    "Staging Heavy Duty - 9919"
+                    <span.sv-avatar>
+                      "AS"
+              <div [background:var(--sv-surface-canvas)]>
+                <div.sv-card [width:230px]>
+                  <div>
+                    <span.sv-h4>
+                      "Venice Gardens .."
+                    <button.sv-btn.sv-btn--tertiary aria-label="Edit vendor" [width:36px]>
+                      <svg >
+                  <div>
+                    <div [font-weight:600]>
+                      "Email"
+                    <div>
+                      "wendy.jenkins@staging.shopview.local"
+                  <div>
+                    <div [font-weight:600]>
+                      "Telephone"
+                    <div>
+                      "489-420-2491"
+                  <div>
+                    <div [font-weight:600]>
+                      "Address"
+                    <div>
+                      "89680 Harper Mountain"
+                  <div>
+                    <div [font-weight:600]>
+                      "State/Province"
+                    <div>
+                      "Nova Scotia"
+                  <div>
+                    <div [font-weight:600]>
+                      "City"
+                    <div>
+                      "Lake Theresa"
+                  <div>
+                    <div [font-weight:600]>
+                      "Postal code"
+                    <div>
+                      "N5M9V7"
+                  <div>
+                    <div [font-weight:600]>
+                      "Website"
+                    <div>
+                      "N/A"
+                  <div>
+                    <div [font-weight:600]>
+                      "Credit term"
+                    <div [font-weight:600]>
+                      "Net 10 (Inactive)"
+                  <div>
+                    <div [font-weight:600]>
+                      "Credit limit"
+                    <div>
+                      "$0.00"
+                  <div>
+                    <div [font-weight:600]>
+                      "Taxes"
+                    <div>
+                      "GST"
+                <div>
+                  <div>
+                    <div.sv-tabs>
+                      <button.sv-tab>
+                        "Contacts"
+                        <span.sv-tab__count>
+                          "1"
+                      <button.sv-tab>
+                        "Unpaid Invoices"
+                      <button.sv-tab>
+                        "Payments"
+                    <div>
+                      <button.sv-btn.sv-btn--secondary aria-label="More actions" [width:36px]>
+                        <svg >
+                      <button.sv-btn.sv-btn--primary>
+                        "Add Contact"
+                  <table.sv-table>
+                    <thead>
+                      <tr>
+                        <th>
+                          "First Name"
+                        <th>
+                          "Last Name"
+                        <th>
+                          "Title"
+                        <th>
+                          "Email"
+                        <th>
+                          "Telephone"
+                        <th>
+                          "Department"
+                    <tbody>
+                      <tr>
+                        <td>
+                          "Steven"
+                        <td>
+                          "Hester"
+                        <td>
+                        <td>
+                          "victoria.burgess@staging.shopview.local"
+                        <td>
+                          "312-109-2131"
+                        <td>
+                          "Preferred"
+              <div.sv-scrim [background:var(--sv-scrim)]>
+                <div.sv-modal [width:800px]>
+                  <div.sv-modal__header>
+                    <span.sv-modal__title>
+                      "Edit Vendor"
+                    <button.sv-modal__close aria-label="Close">
+                      <svg >
+                  <div.sv-modal__body>
+                    <div>
+                      <div.sv-field>
+                        <input placeholder=" " value="Venice Gardens Truck Repair">
+                        <label>
+                          "Name *"
+                    <div>
+                      <div.sv-field>
+                        <input placeholder=" " value="89680 Harper Mountain">
+                        <label>
+                          "Address 1"
+                    <div>
+                      <div.sv-field>
+                        <input placeholder=" " value="">
+                        <label>
+                          "Address 2"
+                    <div>
+                      <div>
+                        <div.sv-field>
+                          <input placeholder=" " value="Lake Theresa">
+                          <label>
+                            "City"
+                      <div>
+                        <div.sv-field>
+                          <input placeholder=" " value="N5M9V7">
+                          <label>
+                            "ZIP/Postal Code"
+                    <div>
+                      <div>
+                        <div.sv-field>
+                          <input placeholder=" " value="(489) 420 - 2491">
+                          <label>
+                            "Telephone"
+                      <div>
+                        <div.sv-field>
+                          <input placeholder=" " value="wendy.jenkins@staging.shopview.local">
+                          <label>
+                            "Email"
+                    <div>
+                      <div>
+                        <div.sv-field.sv-field--select>
+                          <input placeholder=" " value="Nova Scotia">
+                          <label>
+                            "State/Province"
+                          <span.sv-field__chevron>
+                            <svg >
+                      <div>
+                        <div.sv-field.sv-field--select>
+                          <input placeholder=" " value="Canada">
+                          <label>
+                            "Country"
+                          <span.sv-field__chevron>
+                            <svg >
+                    <div>
+                      <div>
+                        <div>
+                          <div.sv-field.sv-field--select>
+                            <input placeholder=" " value="Net 10 (Inactive)" [border-color:var(--sv-border-focus)]>
+                            <label>
+                              "Credit Terms"
+                            <span.sv-field__chevron>
+                              <svg >
+                        <div>
+                          <div.sv-menu [width:367px]>
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 20"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 30"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 45"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 60"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 90"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 120"
+                            <button.sv-menu__row>
+                              <span>
+                                "10th of next month"
+                            <button.sv-menu__row>
+                              <span>
+                                "Credit Hold"
+                            <button.sv-menu__row.is-active>
+                              <span.material-icons>
+                                "check"
+                              <span>
+                                "Net 10 (Inactive)"
+                      <div>
+                        <div.sv-field>
+                          <input placeholder=" " value="$ 0.00">
+                          <label>
+                            "Credit Limit"
+                    <div>
+                      <div.sv-field.sv-field--select>
+                        <input placeholder=" " value="GST">
+                        <label>
+                          "Taxes"
+                        <span.sv-field__chevron>
+                          <svg >
+                    <div>
+                      <div.sv-field>
+                        <textarea placeholder=" ">
+                        <label>
+                          "Notes"
+                    <div>
+                      <div.sv-field>
+                        <input placeholder=" " value="">
+                        <label>
+                          "Website"
+                  <div.sv-modal__footer>
+                    <button.sv-btn.sv-btn--primary>
+                      "Save & Close"
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "Email overflow is pre-existing (SV-11684), not part of this feature."
+                <li>
+                  "Credit Terms stays on "Net 10 (Inactive)" until someone picks another. The picker lists the active terms, then this vendor's own "Net 10 (Inactive)" at the end, selected."
+                <li>
+                  "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--info>
+                "This design"
+              <span [font-weight:600]>
+                "Any other vendor's picker"
+            <div [width:1440px; background:var(--sv-surface); border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+              <header.sv-header [background:var(--sv-surface); border-bottom:1px solid var(--sv-border-default)]>
+                <a.sv-header__logo aria-label="ShopView">
+                  <svg >
+                <span [font-weight:600; border-right:1px solid var(--sv-border-default)]>
+                  "ShopHub"
+                  <svg >
+                <nav.sv-header__nav>
+                  <a>
+                    "Work Orders"
+                  <a>
+                    "Schedule"
+                  <a>
+                    "Customers"
+                  <a>
+                    "Parts"
+                  <a>
+                    "Reports"
+                  <a>
+                    "Dashboard"
+                <div.sv-header__spacer>
+                <div.sv-header__right>
+                  <div [width:150px; border-radius:var(--sv-header-control-radius); background:var(--sv-surface-sunken); border:1px solid var(--sv-border-default); font-weight:500; color:var(--sv-text-secondary)]>
+                    <svg >
+                    <span>
+                      "Searc..."
+                    <span.sv-menu__kbd>
+                      "Ctrl K"
+                  <span [font-weight:600; color:var(--sv-text-secondary)]>
+                    <span.material-icons-outlined>
+                      "timer"
+                    "Clock In"
+                  <span.material-icons-outlined [color:var(--sv-text-primary)]>
+                    "notifications_none"
+                  <span [border-radius:var(--sv-radius-md); background:var(--sv-surface-sunken); font-weight:500]>
+                    "Staging Heavy Duty - 9919"
+                    <span.sv-avatar>
+                      "AS"
+              <div [background:var(--sv-surface-canvas)]>
+                <div.sv-card [width:230px]>
+                  <div>
+                    <span.sv-h4>
+                      "Venice Gardens .."
+                    <button.sv-btn.sv-btn--tertiary aria-label="Edit vendor" [width:36px]>
+                      <svg >
+                  <div>
+                    <div [font-weight:600]>
+                      "Email"
+                    <div>
+                      "wendy.jenkins@staging.shopview.local"
+                  <div>
+                    <div [font-weight:600]>
+                      "Telephone"
+                    <div>
+                      "489-420-2491"
+                  <div>
+                    <div [font-weight:600]>
+                      "Address"
+                    <div>
+                      "89680 Harper Mountain"
+                  <div>
+                    <div [font-weight:600]>
+                      "State/Province"
+                    <div>
+                      "Nova Scotia"
+                  <div>
+                    <div [font-weight:600]>
+                      "City"
+                    <div>
+                      "Lake Theresa"
+                  <div>
+                    <div [font-weight:600]>
+                      "Postal code"
+                    <div>
+                      "N5M9V7"
+                  <div>
+                    <div [font-weight:600]>
+                      "Website"
+                    <div>
+                      "N/A"
+                  <div>
+                    <div [font-weight:600]>
+                      "Credit term"
+                    <div [font-weight:600]>
+                      "Net 30"
+                  <div>
+                    <div [font-weight:600]>
+                      "Credit limit"
+                    <div>
+                      "$0.00"
+                  <div>
+                    <div [font-weight:600]>
+                      "Taxes"
+                    <div>
+                      "GST"
+                <div>
+                  <div>
+                    <div.sv-tabs>
+                      <button.sv-tab>
+                        "Contacts"
+                        <span.sv-tab__count>
+                          "1"
+                      <button.sv-tab>
+                        "Unpaid Invoices"
+                      <button.sv-tab>
+                        "Payments"
+                    <div>
+                      <button.sv-btn.sv-btn--secondary aria-label="More actions" [width:36px]>
+                        <svg >
+                      <button.sv-btn.sv-btn--primary>
+                        "Add Contact"
+                  <table.sv-table>
+                    <thead>
+                      <tr>
+                        <th>
+                          "First Name"
+                        <th>
+                          "Last Name"
+                        <th>
+                          "Title"
+                        <th>
+                          "Email"
+                        <th>
+                          "Telephone"
+                        <th>
+                          "Department"
+                    <tbody>
+                      <tr>
+                        <td>
+                          "Steven"
+                        <td>
+                          "Hester"
+                        <td>
+                        <td>
+                          "victoria.burgess@staging.shopview.local"
+                        <td>
+                          "312-109-2131"
+                        <td>
+                          "Preferred"
+              <div.sv-scrim [background:var(--sv-scrim)]>
+                <div.sv-modal [width:800px]>
+                  <div.sv-modal__header>
+                    <span.sv-modal__title>
+                      "Edit Vendor"
+                    <button.sv-modal__close aria-label="Close">
+                      <svg >
+                  <div.sv-modal__body>
+                    <div>
+                      <div.sv-field>
+                        <input placeholder=" " value="Venice Gardens Truck Repair">
+                        <label>
+                          "Name *"
+                    <div>
+                      <div.sv-field>
+                        <input placeholder=" " value="89680 Harper Mountain">
+                        <label>
+                          "Address 1"
+                    <div>
+                      <div.sv-field>
+                        <input placeholder=" " value="">
+                        <label>
+                          "Address 2"
+                    <div>
+                      <div>
+                        <div.sv-field>
+                          <input placeholder=" " value="Lake Theresa">
+                          <label>
+                            "City"
+                      <div>
+                        <div.sv-field>
+                          <input placeholder=" " value="N5M9V7">
+                          <label>
+                            "ZIP/Postal Code"
+                    <div>
+                      <div>
+                        <div.sv-field>
+                          <input placeholder=" " value="(489) 420 - 2491">
+                          <label>
+                            "Telephone"
+                      <div>
+                        <div.sv-field>
+                          <input placeholder=" " value="wendy.jenkins@staging.shopview.local">
+                          <label>
+                            "Email"
+                    <div>
+                      <div>
+                        <div.sv-field.sv-field--select>
+                          <input placeholder=" " value="Nova Scotia">
+                          <label>
+                            "State/Province"
+                          <span.sv-field__chevron>
+                            <svg >
+                      <div>
+                        <div.sv-field.sv-field--select>
+                          <input placeholder=" " value="Canada">
+                          <label>
+                            "Country"
+                          <span.sv-field__chevron>
+                            <svg >
+                    <div>
+                      <div>
+                        <div>
+                          <div.sv-field.sv-field--select>
+                            <input placeholder=" " value="Net 30" [border-color:var(--sv-border-focus)]>
+                            <label>
+                              "Credit Terms"
+                            <span.sv-field__chevron>
+                              <svg >
+                        <div>
+                          <div.sv-menu [width:367px]>
+                            <button.sv-menu__row>
+                              <span>
+                                "COD"
+                            <button.sv-menu__row>
+                              <span>
+                                "Due on Receipt"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 7"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 15"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 20"
+                            <button.sv-menu__row.is-active>
+                              <span.material-icons>
+                                "check"
+                              <span>
+                                "Net 30"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 45"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 60"
+                            <button.sv-menu__row>
+                              <span>
+                                "Net 90"
+                      <div>
+                        <div.sv-field>
+                          <input placeholder=" " value="$ 0.00">
+                          <label>
+                            "Credit Limit"
+                    <div>
+                      <div.sv-field.sv-field--select>
+                        <input placeholder=" " value="GST">
+                        <label>
+                          "Taxes"
+                        <span.sv-field__chevron>
+                          <svg >
+                    <div>
+                      <div.sv-field>
+                        <textarea placeholder=" ">
+                        <label>
+                          "Notes"
+                    <div>
+                      <div.sv-field>
+                        <input placeholder=" " value="">
+                        <label>
+                          "Website"
+                  <div.sv-modal__footer>
+                    <button.sv-btn.sv-btn--primary>
+                      "Save & Close"
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "Email overflow is pre-existing (SV-11684), not part of this feature."
+                <li>
+                  "A vendor not on Net 10 is never offered it."
+                <li>
+                  "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--neutral>
+                "Unchanged from production (before)"
+              <span [font-weight:600]>
+                "A vendor invoice today (Net 60)"
+            <img alt="Vendor invoice delivery page" src="shots/before-vendor-bill.png" [width:1440px; border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "Captured on the branch build: layout unchanged from production. Invoice Aug 31, Net 60, due Oct 30. The due date is worked out from the vendor's credit term when the vendor invoice is created, and recalculated when its invoice date or its vendor changes (S7-R9)."
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--info>
+                "This design"
+              <span [font-weight:600]>
+                "Vendor on 10th of next month: Oct 5, due Nov 10"
+            <div [width:1440px; background:var(--sv-surface); border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+              <header.sv-header [background:var(--sv-surface); border-bottom:1px solid var(--sv-border-default)]>
+                <a.sv-header__logo aria-label="ShopView">
+                  <svg >
+                <span [font-weight:600; border-right:1px solid var(--sv-border-default)]>
+                  "ShopHub"
+                  <svg >
+                <nav.sv-header__nav>
+                  <a>
+                    "Work Orders"
+                  <a>
+                    "Schedule"
+                  <a>
+                    "Customers"
+                  <a>
+                    "Parts"
+                  <a>
+                    "Reports"
+                  <a>
+                    "Dashboard"
+                <div.sv-header__spacer>
+                <div.sv-header__right>
+                  <div [width:150px; border-radius:var(--sv-header-control-radius); background:var(--sv-surface-sunken); border:1px solid var(--sv-border-default); font-weight:500; color:var(--sv-text-secondary)]>
+                    <svg >
+                    <span>
+                      "Searc..."
+                    <span.sv-menu__kbd>
+                      "Ctrl K"
+                  <span [font-weight:600; color:var(--sv-text-secondary)]>
+                    <span.material-icons-outlined>
+                      "timer"
+                    "Clock In"
+                  <span.material-icons-outlined [color:var(--sv-text-primary)]>
+                    "notifications_none"
+                  <span [border-radius:var(--sv-radius-md); background:var(--sv-surface-sunken); font-weight:500]>
+                    "Staging Heavy Duty - 9919"
+                    <span.sv-avatar>
+                      "AS"
+              <div [background:var(--sv-surface-canvas)]>
+                <div [width:230px]>
+                  <div.sv-card>
+                    <div>
+                      <span.sv-h4>
+                        "Vendor Invoice"
+                      <button.sv-btn.sv-btn--tertiary aria-label="Edit vendor invoice" [width:36px]>
+                        <svg >
+                    <div.sv-h4>
+                      "156901"
+                    <div>
+                      <div [font-weight:600]>
+                        "Invoice date"
+                      <div>
+                        "Oct 5, 2026"
+                    <div>
+                      <div [font-weight:600]>
+                        "Due date"
+                      <div [font-weight:600; background:var(--sv-warning-fill); border-radius:var(--sv-radius-xs)]>
+                        "Nov 10, 2026"
+                    <div>
+                      <div [font-weight:600]>
+                        "Vendor"
+                      <div>
+                        "Jefferson Truck Center - Roanoke"
+                  <div.sv-card>
+                    <span.sv-h4>
+                      "Delivery Details"
+                    <div.sv-h4>
+                      "I-1393"
+                    <div>
+                      <div [font-weight:600]>
+                        "Date received"
+                      <div>
+                        "Oct 5, 2026"
+                    <div>
+                      <div [font-weight:600]>
+                        "Ordered by"
+                      <div>
+                        "Jeffrey Jordan"
+                    <div>
+                      <div [font-weight:600]>
+                        "Received by"
+                      <div>
+                        "Carrie Johnson"
+                <div>
+                  <span.sv-h3>
+                    "Delivery items"
+                  <table.sv-table>
+                    <thead>
+                      <tr>
+                        <th>
+                          "Description"
+                        <th>
+                          "Part Number"
+                        <th>
+                          "Category"
+                        <th.sv-num>
+                          "Cost"
+                        <th.sv-num>
+                          "Quantity Delivered"
+                        <th.sv-num>
+                          "Total Cost"
+                    <tbody>
+                      <tr>
+                        <td>
+                          "Cummins 12.91" V-Band Clamp, ATD"
+                        <td>
+                          "CL1340"
+                        <td>
+                          "HD-Exhaust"
+                        <td.sv-num>
+                          "$93.72000"
+                        <td.sv-num>
+                          "4.00"
+                        <td.sv-num>
+                          "$374.88"
+                      <tr>
+                        <td>
+                          "Cummins 12.5" ID X 13.25" OD DPF Gasket - ISX"
+                        <td>
+                          "GSK1050"
+                        <td>
+                          "HD-Emissions"
+                        <td.sv-num>
+                          "$18.80000"
+                        <td.sv-num>
+                          "4.00"
+                        <td.sv-num>
+                          "$75.20"
+                      <tr>
+                        <td>
+                          "Cummins 13.5" V-Band Clamp"
+                        <td>
+                          "CL1030"
+                        <td>
+                          "HD-Exhaust"
+                        <td.sv-num>
+                          "$72.23500"
+                        <td.sv-num>
+                          "2.00"
+                        <td.sv-num>
+                          "$144.47"
+                      <tr>
+                        <td.sv-num>
+                          "Total:"
+                        <td.sv-num [font-weight:600]>
+                          "$594.55"
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "Same date rule as customer invoices: always the 10th of the next month; a shorter month uses its last day."
+                <li>
+                  "The highlight marks what to check; it is not part of the screen."
+                <li>
+                  "Source: Delivery.vue layout (Vendor Invoice card, Delivery Details, Delivery items), drawn with DS Card and Table."
+                <li>
+                  "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+          <figure [width:1440px]>
+            <div>
+              <span.sv-badge.sv-badge--info>
+                "This design"
+              <span [font-weight:600]>
+                "Vendor on Net 10: Oct 5, due Oct 15"
+            <div [width:1440px; background:var(--sv-surface); border:1px solid var(--sv-border-default); border-radius:var(--sv-radius-md)]>
+              <header.sv-header [background:var(--sv-surface); border-bottom:1px solid var(--sv-border-default)]>
+                <a.sv-header__logo aria-label="ShopView">
+                  <svg >
+                <span [font-weight:600; border-right:1px solid var(--sv-border-default)]>
+                  "ShopHub"
+                  <svg >
+                <nav.sv-header__nav>
+                  <a>
+                    "Work Orders"
+                  <a>
+                    "Schedule"
+                  <a>
+                    "Customers"
+                  <a>
+                    "Parts"
+                  <a>
+                    "Reports"
+                  <a>
+                    "Dashboard"
+                <div.sv-header__spacer>
+                <div.sv-header__right>
+                  <div [width:150px; border-radius:var(--sv-header-control-radius); background:var(--sv-surface-sunken); border:1px solid var(--sv-border-default); font-weight:500; color:var(--sv-text-secondary)]>
+                    <svg >
+                    <span>
+                      "Searc..."
+                    <span.sv-menu__kbd>
+                      "Ctrl K"
+                  <span [font-weight:600; color:var(--sv-text-secondary)]>
+                    <span.material-icons-outlined>
+                      "timer"
+                    "Clock In"
+                  <span.material-icons-outlined [color:var(--sv-text-primary)]>
+                    "notifications_none"
+                  <span [border-radius:var(--sv-radius-md); background:var(--sv-surface-sunken); font-weight:500]>
+                    "Staging Heavy Duty - 9919"
+                    <span.sv-avatar>
+                      "AS"
+              <div [background:var(--sv-surface-canvas)]>
+                <div [width:230px]>
+                  <div.sv-card>
+                    <div>
+                      <span.sv-h4>
+                        "Vendor Invoice"
+                      <button.sv-btn.sv-btn--tertiary aria-label="Edit vendor invoice" [width:36px]>
+                        <svg >
+                    <div.sv-h4>
+                      "156902"
+                    <div>
+                      <div [font-weight:600]>
+                        "Invoice date"
+                      <div>
+                        "Oct 5, 2026"
+                    <div>
+                      <div [font-weight:600]>
+                        "Due date"
+                      <div [font-weight:600; background:var(--sv-warning-fill); border-radius:var(--sv-radius-xs)]>
+                        "Oct 15, 2026"
+                    <div>
+                      <div [font-weight:600]>
+                        "Vendor"
+                      <div>
+                        "Venice Gardens Truck Repair"
+                  <div.sv-card>
+                    <span.sv-h4>
+                      "Delivery Details"
+                    <div.sv-h4>
+                      "I-1393"
+                    <div>
+                      <div [font-weight:600]>
+                        "Date received"
+                      <div>
+                        "Oct 5, 2026"
+                    <div>
+                      <div [font-weight:600]>
+                        "Ordered by"
+                      <div>
+                        "Jeffrey Jordan"
+                    <div>
+                      <div [font-weight:600]>
+                        "Received by"
+                      <div>
+                        "Carrie Johnson"
+                <div>
+                  <span.sv-h3>
+                    "Delivery items"
+                  <table.sv-table>
+                    <thead>
+                      <tr>
+                        <th>
+                          "Description"
+                        <th>
+                          "Part Number"
+                        <th>
+                          "Category"
+                        <th.sv-num>
+                          "Cost"
+                        <th.sv-num>
+                          "Quantity Delivered"
+                        <th.sv-num>
+                          "Total Cost"
+                    <tbody>
+                      <tr>
+                        <td>
+                          "Cummins 12.91" V-Band Clamp, ATD"
+                        <td>
+                          "CL1340"
+                        <td>
+                          "HD-Exhaust"
+                        <td.sv-num>
+                          "$93.72000"
+                        <td.sv-num>
+                          "4.00"
+                        <td.sv-num>
+                          "$374.88"
+                      <tr>
+                        <td>
+                          "Cummins 12.5" ID X 13.25" OD DPF Gasket - ISX"
+                        <td>
+                          "GSK1050"
+                        <td>
+                          "HD-Emissions"
+                        <td.sv-num>
+                          "$18.80000"
+                        <td.sv-num>
+                          "4.00"
+                        <td.sv-num>
+                          "$75.20"
+                      <tr>
+                        <td>
+                          "Cummins 13.5" V-Band Clamp"
+                        <td>
+                          "CL1030"
+                        <td>
+                          "HD-Exhaust"
+                        <td.sv-num>
+                          "$72.23500"
+                        <td.sv-num>
+                          "2.00"
+                        <td.sv-num>
+                          "$144.47"
+                      <tr>
+                        <td.sv-num>
+                          "Total:"
+                        <td.sv-num [font-weight:600]>
+                          "$594.55"
+            <figcaption [color:var(--sv-text-secondary)]>
+              <ul>
+                <li>
+                  "A shop's own Net X term adds X days, like the standard Net terms."
+                <li>
+                  "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."

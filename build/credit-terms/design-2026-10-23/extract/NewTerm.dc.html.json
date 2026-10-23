@@ -1,0 +1,6911 @@
+{
+ "board": "NewTerm.dc.html",
+ "title": "3. New credit term and the Inactive tab",
+ "h2": "3. New credit term and the Inactive tab",
+ "note": "The New Credit Term window for both kinds with its live sentence, its validation, and reactivating a term. Light theme.",
+ "helmet_css": "\n<style>\nbody{margin:0}\n/* build geometry (r6-01 / r8): 14px table text, one-line rows, 48px rows */\nfigure .sv-table { font-size: var(--sv-body-size); }\nfigure .sv-table td, figure .sv-table th { white-space: nowrap; overflow: visible; }\nfigure .sv-table td { height: 48px; padding-top: 0; padding-bottom: 0; }\nfigure .sv-table th { height: 56px; padding-top: 0; padding-bottom: 0; }\n.ct-page > .sv-page-head, .ct-page > .sv-tabs-row { margin-left: 0; margin-right: 0; }\n.ct-page > .sv-page-head { padding-top: 20px; margin-bottom: 12px; }\n</style>\n",
+ "figures": [
+  {
+   "n": 1,
+   "line": 31,
+   "badge": "This design",
+   "heading": "New credit term: Net X days",
+   "captions": [
+    "New Credit Term opens this window. Two kinds only: \"Due Net X days\" (1 to 365) or \"Due day of the following month\" (1 to 31). No separate Due label above them. The Name field opens without any error.",
+    "The sentence under the fields updates as the shop types, so it sees what the term does before saving.",
+    "Only the selected option's box is active (Days, with 14). The other option's box is greyed out (DS disabled field) and empty. Clicking a greyed box selects its option; switching clears the box you left.",
+    "Source: DS Modals (form body), DS Text field, DS Radio, DS Alert (info).",
+    "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+   ],
+   "imgs": [],
+   "texts": [
+    {
+     "text": "This design",
+     "line": 32,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 1
+    },
+    {
+     "text": "New credit term: Net X days",
+     "line": 32,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "ShopView",
+     "line": 33,
+     "kind": "attr:aria-label",
+     "ctx": "sv-header__logo"
+    },
+    {
+     "text": "ShopHub",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Work Orders",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Schedule",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Customers",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Parts",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Reports",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Dashboard",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Searc...",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Ctrl K",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-menu__kbd",
+     "fig": 1
+    },
+    {
+     "text": "timer",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 1
+    },
+    {
+     "text": "Clock In",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "notifications_none",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 1
+    },
+    {
+     "text": "Staging Heavy Duty - 9919",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "AS",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-avatar",
+     "fig": 1
+    },
+    {
+     "text": "Settings",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "info",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 1
+    },
+    {
+     "text": "Settings",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "supervisor_account",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 1
+    },
+    {
+     "text": "Staff",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "verified_user",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 1
+    },
+    {
+     "text": "Roles & Permissions",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "location_on",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 1
+    },
+    {
+     "text": "Locations",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "apartment",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 1
+    },
+    {
+     "text": "Departments",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "attach_money",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 1
+    },
+    {
+     "text": "Taxes",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Service",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "groups_3",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 1
+    },
+    {
+     "text": "Labor Rates",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "checklist_rtl",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 1
+    },
+    {
+     "text": "Canned Lines",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "sell",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 1
+    },
+    {
+     "text": "Fees & Discounts",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "groups_3",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 1
+    },
+    {
+     "text": "Asset Types",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "fact_check",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 1
+    },
+    {
+     "text": "Inspection Templates",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Parts",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "sell",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 1
+    },
+    {
+     "text": "Pricing",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "inventory_2",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 1
+    },
+    {
+     "text": "Bin Locations",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "category",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 1
+    },
+    {
+     "text": "Categories",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Integrations",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "account_balance",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 1
+    },
+    {
+     "text": "QuickBooks",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "sync_alt",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 1
+    },
+    {
+     "text": "IBS",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Finance",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "payments",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 1
+    },
+    {
+     "text": "Payment Methods",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "schedule",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 1
+    },
+    {
+     "text": "Credit Terms",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Imports",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "call",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 1
+    },
+    {
+     "text": "Contacts",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "local_shipping",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 1
+    },
+    {
+     "text": "Assets",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "store",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 1
+    },
+    {
+     "text": "Vendors",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "inventory_2",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 1
+    },
+    {
+     "text": "Inventory",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "receipt_long",
+     "line": 33,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 1
+    },
+    {
+     "text": "Invoices",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Credit Terms",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "More actions",
+     "line": 33,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--secondary"
+    },
+    {
+     "text": "New Credit Term",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 1
+    },
+    {
+     "text": "Active",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "13",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--flat sv-badge--info",
+     "fig": 1
+    },
+    {
+     "text": "Inactive",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "2",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--flat sv-badge--neutral",
+     "fig": 1
+    },
+    {
+     "text": "Name",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Due",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Customers",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "Vendors",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "Actions",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "COD",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Cash on delivery. COD customers can't charge to account, so payment is taken when the invoice is created.",
+     "line": 33,
+     "kind": "attr:aria-label",
+     "ctx": ""
+    },
+    {
+     "text": "Always available",
+     "line": 33,
+     "kind": "attr:aria-label",
+     "ctx": ""
+    },
+    {
+     "text": "Paid when the invoice is created",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "214",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "41",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "Actions for COD",
+     "line": 33,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Due on Receipt",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Payment is due on the invoice date, but you can create the invoice without taking payment.",
+     "line": 33,
+     "kind": "attr:aria-label",
+     "ctx": ""
+    },
+    {
+     "text": "Always available",
+     "line": 33,
+     "kind": "attr:aria-label",
+     "ctx": ""
+    },
+    {
+     "text": "Default",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 1
+    },
+    {
+     "text": "Due on the invoice date",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "38",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "2",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "Actions for Due on Receipt",
+     "line": 33,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 7",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "7 days after the invoice date",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "0",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "0",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "Actions for Net 7",
+     "line": 33,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 10",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "10 days after the invoice date",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "0",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "0",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "Actions for Net 10",
+     "line": 33,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 15",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "15 days after the invoice date",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "12",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "1",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "Actions for Net 15",
+     "line": 33,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 20",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "20 days after the invoice date",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "0",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "0",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "Actions for Net 20",
+     "line": 33,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 30",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "30 days after the invoice date",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "96",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "3",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "Actions for Net 30",
+     "line": 33,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 45",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "45 days after the invoice date",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "4",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "1",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "Actions for Net 45",
+     "line": 33,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 60",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "60 days after the invoice date",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "3",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "2",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "Actions for Net 60",
+     "line": 33,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 90",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "90 days after the invoice date",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "0",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "0",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "Actions for Net 90",
+     "line": 33,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 120",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "120 days after the invoice date",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "0",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "0",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "Actions for Net 120",
+     "line": 33,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "10th of next month",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "10th of the following month",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "12",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "1",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "Actions for 10th of next month",
+     "line": 33,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Credit Hold",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "No invoices can be created for a customer on Credit Hold until their credit term is changed.",
+     "line": 33,
+     "kind": "attr:aria-label",
+     "ctx": ""
+    },
+    {
+     "text": "Always available",
+     "line": 33,
+     "kind": "attr:aria-label",
+     "ctx": ""
+    },
+    {
+     "text": "Invoicing is blocked",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "2",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "0",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 1
+    },
+    {
+     "text": "Actions for Credit Hold",
+     "line": 33,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "New Credit Term",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-modal__title",
+     "fig": 1
+    },
+    {
+     "text": "Close",
+     "line": 33,
+     "kind": "attr:aria-label",
+     "ctx": "sv-modal__close"
+    },
+    {
+     "text": " ",
+     "line": 33,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Net 14 Days",
+     "line": 33,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Name",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Up to 31 characters. Prints on invoices and goes to QuickBooks.",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-hint",
+     "fig": 1
+    },
+    {
+     "text": "Due Net X days",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": " ",
+     "line": 33,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "14",
+     "line": 33,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Days",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "days after the invoice date",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Due day of the following month",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": " ",
+     "line": 33,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Day",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "of the following month",
+     "line": 33,
+     "kind": "text",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Net 14 Days means payment is due 14 days after the invoice date. An invoice dated Oct 21 is due Nov 4.",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-alert__support",
+     "fig": 1
+    },
+    {
+     "text": "Cancel",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--secondary",
+     "fig": 1
+    },
+    {
+     "text": "Create Credit Term",
+     "line": 33,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 1
+    },
+    {
+     "text": "New Credit Term opens this window. Two kinds only: \"Due Net X days\" (1 to 365) or \"Due day of the following month\" (1 to 31). No separate Due label above them. The Name field opens without any error.",
+     "line": 34,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "The sentence under the fields updates as the shop types, so it sees what the term does before saving.",
+     "line": 34,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Only the selected option's box is active (Days, with 14). The other option's box is greyed out (DS disabled field) and empty. Clicking a greyed box selects its option; switching clears the box you left.",
+     "line": 34,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Source: DS Modals (form body), DS Text field, DS Radio, DS Alert (info).",
+     "line": 34,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 1
+    },
+    {
+     "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+     "line": 34,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 1
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "line": 36,
+   "badge": "This design",
+   "heading": "New credit term: day of the following month",
+   "captions": [
+    "Day is active with 10; the Days box is greyed out (disabled) and empty, cleared when the option switched.",
+    "The day field reads \"of the following month\" beside it. Always the next month, whatever the invoice day; a shorter month uses its last day.",
+    "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+   ],
+   "imgs": [],
+   "texts": [
+    {
+     "text": "This design",
+     "line": 37,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 2
+    },
+    {
+     "text": "New credit term: day of the following month",
+     "line": 37,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "ShopView",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": "sv-header__logo"
+    },
+    {
+     "text": "ShopHub",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Work Orders",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Schedule",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Customers",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Parts",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Reports",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Dashboard",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Searc...",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Ctrl K",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-menu__kbd",
+     "fig": 2
+    },
+    {
+     "text": "timer",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 2
+    },
+    {
+     "text": "Clock In",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "notifications_none",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 2
+    },
+    {
+     "text": "Staging Heavy Duty - 9919",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "AS",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-avatar",
+     "fig": 2
+    },
+    {
+     "text": "Settings",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "info",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 2
+    },
+    {
+     "text": "Settings",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "supervisor_account",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 2
+    },
+    {
+     "text": "Staff",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "verified_user",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 2
+    },
+    {
+     "text": "Roles & Permissions",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "location_on",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 2
+    },
+    {
+     "text": "Locations",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "apartment",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 2
+    },
+    {
+     "text": "Departments",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "attach_money",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 2
+    },
+    {
+     "text": "Taxes",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Service",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "groups_3",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 2
+    },
+    {
+     "text": "Labor Rates",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "checklist_rtl",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 2
+    },
+    {
+     "text": "Canned Lines",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "sell",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 2
+    },
+    {
+     "text": "Fees & Discounts",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "groups_3",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 2
+    },
+    {
+     "text": "Asset Types",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "fact_check",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 2
+    },
+    {
+     "text": "Inspection Templates",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Parts",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "sell",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 2
+    },
+    {
+     "text": "Pricing",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "inventory_2",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 2
+    },
+    {
+     "text": "Bin Locations",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "category",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 2
+    },
+    {
+     "text": "Categories",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Integrations",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "account_balance",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 2
+    },
+    {
+     "text": "QuickBooks",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "sync_alt",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 2
+    },
+    {
+     "text": "IBS",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Finance",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "payments",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 2
+    },
+    {
+     "text": "Payment Methods",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "schedule",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 2
+    },
+    {
+     "text": "Credit Terms",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Imports",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "call",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 2
+    },
+    {
+     "text": "Contacts",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "local_shipping",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 2
+    },
+    {
+     "text": "Assets",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "store",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 2
+    },
+    {
+     "text": "Vendors",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "inventory_2",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 2
+    },
+    {
+     "text": "Inventory",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "receipt_long",
+     "line": 38,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 2
+    },
+    {
+     "text": "Invoices",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Credit Terms",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "More actions",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--secondary"
+    },
+    {
+     "text": "New Credit Term",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 2
+    },
+    {
+     "text": "Active",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "13",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--flat sv-badge--info",
+     "fig": 2
+    },
+    {
+     "text": "Inactive",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "2",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--flat sv-badge--neutral",
+     "fig": 2
+    },
+    {
+     "text": "Name",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Due",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Customers",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Vendors",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Actions",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "COD",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Cash on delivery. COD customers can't charge to account, so payment is taken when the invoice is created.",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": ""
+    },
+    {
+     "text": "Always available",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": ""
+    },
+    {
+     "text": "Paid when the invoice is created",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "214",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "41",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Actions for COD",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Due on Receipt",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Payment is due on the invoice date, but you can create the invoice without taking payment.",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": ""
+    },
+    {
+     "text": "Always available",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": ""
+    },
+    {
+     "text": "Default",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 2
+    },
+    {
+     "text": "Due on the invoice date",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "38",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "2",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Actions for Due on Receipt",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 7",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "7 days after the invoice date",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "0",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "0",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Actions for Net 7",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 10",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "10 days after the invoice date",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "0",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "0",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Actions for Net 10",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 15",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "15 days after the invoice date",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "12",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "1",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Actions for Net 15",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 20",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "20 days after the invoice date",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "0",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "0",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Actions for Net 20",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 30",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "30 days after the invoice date",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "96",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "3",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Actions for Net 30",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 45",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "45 days after the invoice date",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "4",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "1",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Actions for Net 45",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 60",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "60 days after the invoice date",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "3",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "2",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Actions for Net 60",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 90",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "90 days after the invoice date",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "0",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "0",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Actions for Net 90",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 120",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "120 days after the invoice date",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "0",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "0",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Actions for Net 120",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "10th of next month",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "10th of the following month",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "12",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "1",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Actions for 10th of next month",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Credit Hold",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "No invoices can be created for a customer on Credit Hold until their credit term is changed.",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": ""
+    },
+    {
+     "text": "Always available",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": ""
+    },
+    {
+     "text": "Invoicing is blocked",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "2",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "0",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 2
+    },
+    {
+     "text": "Actions for Credit Hold",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "New Credit Term",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-modal__title",
+     "fig": 2
+    },
+    {
+     "text": "Close",
+     "line": 38,
+     "kind": "attr:aria-label",
+     "ctx": "sv-modal__close"
+    },
+    {
+     "text": " ",
+     "line": 38,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "10th of next month",
+     "line": 38,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Name",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Up to 31 characters. Prints on invoices and goes to QuickBooks.",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-hint",
+     "fig": 2
+    },
+    {
+     "text": "Due Net X days",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 38,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Days",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "days after the invoice date",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Due day of the following month",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": " ",
+     "line": 38,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "10",
+     "line": 38,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Day",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "of the following month",
+     "line": 38,
+     "kind": "text",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "10th of next month means payment is due on the 10th of the following month. An invoice dated Oct 21 is due Nov 10.",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-alert__support",
+     "fig": 2
+    },
+    {
+     "text": "Cancel",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--secondary",
+     "fig": 2
+    },
+    {
+     "text": "Create Credit Term",
+     "line": 38,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 2
+    },
+    {
+     "text": "Day is active with 10; the Days box is greyed out (disabled) and empty, cleared when the option switched.",
+     "line": 39,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "The day field reads \"of the following month\" beside it. Always the next month, whatever the invoice day; a shorter month uses its last day.",
+     "line": 39,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    },
+    {
+     "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+     "line": 39,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 2
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "line": 41,
+   "badge": "This design",
+   "heading": "Validation errors",
+   "captions": [
+    "Names are compared ignoring capitals and spaces, against standard terms and the shop's own (\"A term called Net 10 already exists.\").",
+    "Other messages: \"Enter a name.\" and \"Use 31 characters or fewer.\" Day: \"Enter a day from 1 to 31.\" No sentence shows while a field is invalid.",
+    "Create Credit Term stays disabled until every field is valid. Errors show only after a field is touched or Create is pressed; the Name field is never red when the window opens.",
+    "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check)."
+   ],
+   "imgs": [],
+   "texts": [
+    {
+     "text": "This design",
+     "line": 42,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 3
+    },
+    {
+     "text": "Validation errors",
+     "line": 42,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "ShopView",
+     "line": 43,
+     "kind": "attr:aria-label",
+     "ctx": "sv-header__logo"
+    },
+    {
+     "text": "ShopHub",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Work Orders",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Schedule",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Customers",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Parts",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Reports",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Dashboard",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Searc...",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Ctrl K",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-menu__kbd",
+     "fig": 3
+    },
+    {
+     "text": "timer",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 3
+    },
+    {
+     "text": "Clock In",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "notifications_none",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 3
+    },
+    {
+     "text": "Staging Heavy Duty - 9919",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "AS",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-avatar",
+     "fig": 3
+    },
+    {
+     "text": "Settings",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "info",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 3
+    },
+    {
+     "text": "Settings",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "supervisor_account",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 3
+    },
+    {
+     "text": "Staff",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "verified_user",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 3
+    },
+    {
+     "text": "Roles & Permissions",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "location_on",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 3
+    },
+    {
+     "text": "Locations",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "apartment",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 3
+    },
+    {
+     "text": "Departments",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "attach_money",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 3
+    },
+    {
+     "text": "Taxes",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Service",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "groups_3",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 3
+    },
+    {
+     "text": "Labor Rates",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "checklist_rtl",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 3
+    },
+    {
+     "text": "Canned Lines",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "sell",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 3
+    },
+    {
+     "text": "Fees & Discounts",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "groups_3",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 3
+    },
+    {
+     "text": "Asset Types",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "fact_check",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 3
+    },
+    {
+     "text": "Inspection Templates",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Parts",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "sell",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 3
+    },
+    {
+     "text": "Pricing",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "inventory_2",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 3
+    },
+    {
+     "text": "Bin Locations",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "category",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 3
+    },
+    {
+     "text": "Categories",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Integrations",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "account_balance",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 3
+    },
+    {
+     "text": "QuickBooks",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "sync_alt",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 3
+    },
+    {
+     "text": "IBS",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Finance",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "payments",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 3
+    },
+    {
+     "text": "Payment Methods",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "schedule",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons-outlined",
+     "fig": 3
+    },
+    {
+     "text": "Credit Terms",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Imports",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "call",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 3
+    },
+    {
+     "text": "Contacts",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "local_shipping",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 3
+    },
+    {
+     "text": "Assets",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "store",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 3
+    },
+    {
+     "text": "Vendors",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "inventory_2",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 3
+    },
+    {
+     "text": "Inventory",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "receipt_long",
+     "line": 43,
+     "kind": "text",
+     "ctx": "material-icons",
+     "fig": 3
+    },
+    {
+     "text": "Invoices",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Credit Terms",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "More actions",
+     "line": 43,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--secondary"
+    },
+    {
+     "text": "New Credit Term",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 3
+    },
+    {
+     "text": "Active",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "13",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--flat sv-badge--info",
+     "fig": 3
+    },
+    {
+     "text": "Inactive",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "2",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--flat sv-badge--neutral",
+     "fig": 3
+    },
+    {
+     "text": "Name",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Due",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Customers",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Vendors",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Actions",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "COD",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Cash on delivery. COD customers can't charge to account, so payment is taken when the invoice is created.",
+     "line": 43,
+     "kind": "attr:aria-label",
+     "ctx": ""
+    },
+    {
+     "text": "Always available",
+     "line": 43,
+     "kind": "attr:aria-label",
+     "ctx": ""
+    },
+    {
+     "text": "Paid when the invoice is created",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "214",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "41",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Actions for COD",
+     "line": 43,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Due on Receipt",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Payment is due on the invoice date, but you can create the invoice without taking payment.",
+     "line": 43,
+     "kind": "attr:aria-label",
+     "ctx": ""
+    },
+    {
+     "text": "Always available",
+     "line": 43,
+     "kind": "attr:aria-label",
+     "ctx": ""
+    },
+    {
+     "text": "Default",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--info",
+     "fig": 3
+    },
+    {
+     "text": "Due on the invoice date",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "38",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "2",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Actions for Due on Receipt",
+     "line": 43,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 7",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "7 days after the invoice date",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "0",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "0",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Actions for Net 7",
+     "line": 43,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 10",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "10 days after the invoice date",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "0",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "0",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Actions for Net 10",
+     "line": 43,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 15",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "15 days after the invoice date",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "12",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "1",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Actions for Net 15",
+     "line": 43,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 20",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "20 days after the invoice date",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "0",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "0",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Actions for Net 20",
+     "line": 43,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 30",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "30 days after the invoice date",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "96",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "3",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Actions for Net 30",
+     "line": 43,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 45",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "45 days after the invoice date",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "4",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "1",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Actions for Net 45",
+     "line": 43,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 60",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "60 days after the invoice date",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "3",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "2",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Actions for Net 60",
+     "line": 43,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 90",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "90 days after the invoice date",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "0",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "0",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Actions for Net 90",
+     "line": 43,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Net 120",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "120 days after the invoice date",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "0",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "0",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Actions for Net 120",
+     "line": 43,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "10th of next month",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "10th of the following month",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "12",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "1",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Actions for 10th of next month",
+     "line": 43,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "Credit Hold",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "No invoices can be created for a customer on Credit Hold until their credit term is changed.",
+     "line": 43,
+     "kind": "attr:aria-label",
+     "ctx": ""
+    },
+    {
+     "text": "Always available",
+     "line": 43,
+     "kind": "attr:aria-label",
+     "ctx": ""
+    },
+    {
+     "text": "Invoicing is blocked",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "2",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "0",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-num",
+     "fig": 3
+    },
+    {
+     "text": "Actions for Credit Hold",
+     "line": 43,
+     "kind": "attr:aria-label",
+     "ctx": "sv-btn sv-btn--tertiary sv-btn--sm"
+    },
+    {
+     "text": "New Credit Term",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-modal__title",
+     "fig": 3
+    },
+    {
+     "text": "Close",
+     "line": 43,
+     "kind": "attr:aria-label",
+     "ctx": "sv-modal__close"
+    },
+    {
+     "text": " ",
+     "line": 43,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "net 30",
+     "line": 43,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Name",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Net 30 is already a standard term. Pick another name.",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-hint sv-hint--error",
+     "fig": 3
+    },
+    {
+     "text": "Due Net X days",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": " ",
+     "line": 43,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "400",
+     "line": 43,
+     "kind": "attr:value",
+     "ctx": ""
+    },
+    {
+     "text": "Days",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Enter 1 to 365 days.",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-hint sv-hint--error",
+     "fig": 3
+    },
+    {
+     "text": "days after the invoice date",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Due day of the following month",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": " ",
+     "line": 43,
+     "kind": "attr:placeholder",
+     "ctx": ""
+    },
+    {
+     "text": "Day",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "of the following month",
+     "line": 43,
+     "kind": "text",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Cancel",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--secondary",
+     "fig": 3
+    },
+    {
+     "text": "Create Credit Term",
+     "line": 43,
+     "kind": "text",
+     "ctx": "sv-btn sv-btn--primary",
+     "fig": 3
+    },
+    {
+     "text": "Names are compared ignoring capitals and spaces, against standard terms and the shop's own (\"A term called Net 10 already exists.\").",
+     "line": 44,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Other messages: \"Enter a name.\" and \"Use 31 characters or fewer.\" Day: \"Enter a day from 1 to 31.\" No sentence shows while a field is invalid.",
+     "line": 44,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Create Credit Term stays disabled until every field is valid. Errors show only after a field is touched or Create is pressed; the Name field is never red when the window opens.",
+     "line": 44,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    },
+    {
+     "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+     "line": 44,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 3
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "line": 46,
+   "badge": "Build (local, 59e0f577)",
+   "heading": "Edit Credit Term",
+   "captions": [
+    "Rendered from the local build: Edit on an unused term of the shop's own opens \"Edit Credit Term\" filled with its name, kind and days, buttons Cancel and Save Changes (S2-R4, S3-R1)."
+   ],
+   "imgs": [
+    {
+     "src": "shots/r15-edit.png",
+     "alt": "Edit Credit Term window",
+     "line": 48
+    }
+   ],
+   "texts": [
+    {
+     "text": "Build (local, 59e0f577)",
+     "line": 47,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--success",
+     "fig": 4
+    },
+    {
+     "text": "Edit Credit Term",
+     "line": 47,
+     "kind": "text",
+     "ctx": "",
+     "fig": 4
+    },
+    {
+     "text": "Edit Credit Term window",
+     "line": 48,
+     "kind": "attr:alt",
+     "ctx": ""
+    },
+    {
+     "text": "Rendered from the local build: Edit on an unused term of the shop's own opens \"Edit Credit Term\" filled with its name, kind and days, buttons Cancel and Save Changes (S2-R4, S3-R1).",
+     "line": 49,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 4
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "line": 51,
+   "badge": "Build (local, abc42db)",
+   "heading": "Inactive tab: Reactivate",
+   "captions": [
+    "Rendered from the local build: Inactive tab, Net 7. Reactivate hovered: \"Show in pickers again\"; Move Customers below it."
+   ],
+   "imgs": [
+    {
+     "src": "shots/r16-m-inactive.png",
+     "alt": "Inactive tab row menu",
+     "line": 53
+    }
+   ],
+   "texts": [
+    {
+     "text": "Build (local, abc42db)",
+     "line": 52,
+     "kind": "text",
+     "ctx": "sv-badge sv-badge--success",
+     "fig": 5
+    },
+    {
+     "text": "Inactive tab: Reactivate",
+     "line": 52,
+     "kind": "text",
+     "ctx": "",
+     "fig": 5
+    },
+    {
+     "text": "Inactive tab row menu",
+     "line": 53,
+     "kind": "attr:alt",
+     "ctx": ""
+    },
+    {
+     "text": "Rendered from the local build: Inactive tab, Net 7. Reactivate hovered: \"Show in pickers again\"; Move Customers below it.",
+     "line": 54,
+     "kind": "caption",
+     "ctx": "",
+     "fig": 5
+    }
+   ]
+  }
+ ],
+ "texts": [
+  {
+   "text": "3. New credit term and the Inactive tab",
+   "line": 5,
+   "kind": "text",
+   "ctx": "",
+   "fig": 0
+  },
+  {
+   "text": "3. New credit term and the Inactive tab",
+   "line": 27,
+   "kind": "text",
+   "ctx": "sv-h2",
+   "fig": 0
+  },
+  {
+   "text": "The New Credit Term window for both kinds with its live sentence, its validation, and reactivating a term. Light theme.",
+   "line": 28,
+   "kind": "text",
+   "ctx": "",
+   "fig": 0
+  },
+  {
+   "text": "This design",
+   "line": 32,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 1
+  },
+  {
+   "text": "New credit term: Net X days",
+   "line": 32,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "ShopHub",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Work Orders",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Schedule",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Customers",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Parts",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Reports",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Dashboard",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Searc...",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Ctrl K",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-menu__kbd",
+   "fig": 1
+  },
+  {
+   "text": "timer",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 1
+  },
+  {
+   "text": "Clock In",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "notifications_none",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 1
+  },
+  {
+   "text": "Staging Heavy Duty - 9919",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "AS",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-avatar",
+   "fig": 1
+  },
+  {
+   "text": "Settings",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "info",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 1
+  },
+  {
+   "text": "Settings",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "supervisor_account",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 1
+  },
+  {
+   "text": "Staff",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "verified_user",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 1
+  },
+  {
+   "text": "Roles & Permissions",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "location_on",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 1
+  },
+  {
+   "text": "Locations",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "apartment",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 1
+  },
+  {
+   "text": "Departments",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "attach_money",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 1
+  },
+  {
+   "text": "Taxes",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Service",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "groups_3",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 1
+  },
+  {
+   "text": "Labor Rates",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "checklist_rtl",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 1
+  },
+  {
+   "text": "Canned Lines",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "sell",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 1
+  },
+  {
+   "text": "Fees & Discounts",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "groups_3",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 1
+  },
+  {
+   "text": "Asset Types",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "fact_check",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 1
+  },
+  {
+   "text": "Inspection Templates",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Parts",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "sell",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 1
+  },
+  {
+   "text": "Pricing",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "inventory_2",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 1
+  },
+  {
+   "text": "Bin Locations",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "category",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 1
+  },
+  {
+   "text": "Categories",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Integrations",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "account_balance",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 1
+  },
+  {
+   "text": "QuickBooks",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "sync_alt",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 1
+  },
+  {
+   "text": "IBS",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Finance",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "payments",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 1
+  },
+  {
+   "text": "Payment Methods",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "schedule",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 1
+  },
+  {
+   "text": "Credit Terms",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Imports",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "call",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 1
+  },
+  {
+   "text": "Contacts",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "local_shipping",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 1
+  },
+  {
+   "text": "Assets",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "store",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 1
+  },
+  {
+   "text": "Vendors",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "inventory_2",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 1
+  },
+  {
+   "text": "Inventory",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "receipt_long",
+   "line": 33,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 1
+  },
+  {
+   "text": "Invoices",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Credit Terms",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "New Credit Term",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 1
+  },
+  {
+   "text": "Active",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "13",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--flat sv-badge--info",
+   "fig": 1
+  },
+  {
+   "text": "Inactive",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "2",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--flat sv-badge--neutral",
+   "fig": 1
+  },
+  {
+   "text": "Name",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Due",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Customers",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "Vendors",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "Actions",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "COD",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Paid when the invoice is created",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "214",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "41",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "Due on Receipt",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Default",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 1
+  },
+  {
+   "text": "Due on the invoice date",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "38",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "2",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "Net 7",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "7 days after the invoice date",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "0",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "0",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "Net 10",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "10 days after the invoice date",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "0",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "0",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "Net 15",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "15 days after the invoice date",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "12",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "1",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "Net 20",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "20 days after the invoice date",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "0",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "0",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "Net 30",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "30 days after the invoice date",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "96",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "3",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "Net 45",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "45 days after the invoice date",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "4",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "1",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "Net 60",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "60 days after the invoice date",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "3",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "2",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "Net 90",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "90 days after the invoice date",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "0",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "0",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "Net 120",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "120 days after the invoice date",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "0",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "0",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "10th of next month",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "10th of the following month",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "12",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "1",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "Credit Hold",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Invoicing is blocked",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "2",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "0",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 1
+  },
+  {
+   "text": "New Credit Term",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-modal__title",
+   "fig": 1
+  },
+  {
+   "text": "Name",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Up to 31 characters. Prints on invoices and goes to QuickBooks.",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-hint",
+   "fig": 1
+  },
+  {
+   "text": "Due Net X days",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Days",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "days after the invoice date",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Due day of the following month",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Day",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "of the following month",
+   "line": 33,
+   "kind": "text",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Net 14 Days means payment is due 14 days after the invoice date. An invoice dated Oct 21 is due Nov 4.",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-alert__support",
+   "fig": 1
+  },
+  {
+   "text": "Cancel",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--secondary",
+   "fig": 1
+  },
+  {
+   "text": "Create Credit Term",
+   "line": 33,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 1
+  },
+  {
+   "text": "New Credit Term opens this window. Two kinds only: \"Due Net X days\" (1 to 365) or \"Due day of the following month\" (1 to 31). No separate Due label above them. The Name field opens without any error.",
+   "line": 34,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "The sentence under the fields updates as the shop types, so it sees what the term does before saving.",
+   "line": 34,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Only the selected option's box is active (Days, with 14). The other option's box is greyed out (DS disabled field) and empty. Clicking a greyed box selects its option; switching clears the box you left.",
+   "line": 34,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Source: DS Modals (form body), DS Text field, DS Radio, DS Alert (info).",
+   "line": 34,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+   "line": 34,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 1
+  },
+  {
+   "text": "This design",
+   "line": 37,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 2
+  },
+  {
+   "text": "New credit term: day of the following month",
+   "line": 37,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "ShopHub",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Work Orders",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Schedule",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Customers",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Parts",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Reports",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Dashboard",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Searc...",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Ctrl K",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-menu__kbd",
+   "fig": 2
+  },
+  {
+   "text": "timer",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 2
+  },
+  {
+   "text": "Clock In",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "notifications_none",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 2
+  },
+  {
+   "text": "Staging Heavy Duty - 9919",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "AS",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-avatar",
+   "fig": 2
+  },
+  {
+   "text": "Settings",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "info",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 2
+  },
+  {
+   "text": "Settings",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "supervisor_account",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 2
+  },
+  {
+   "text": "Staff",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "verified_user",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 2
+  },
+  {
+   "text": "Roles & Permissions",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "location_on",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 2
+  },
+  {
+   "text": "Locations",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "apartment",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 2
+  },
+  {
+   "text": "Departments",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "attach_money",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 2
+  },
+  {
+   "text": "Taxes",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Service",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "groups_3",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 2
+  },
+  {
+   "text": "Labor Rates",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "checklist_rtl",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 2
+  },
+  {
+   "text": "Canned Lines",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "sell",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 2
+  },
+  {
+   "text": "Fees & Discounts",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "groups_3",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 2
+  },
+  {
+   "text": "Asset Types",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "fact_check",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 2
+  },
+  {
+   "text": "Inspection Templates",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Parts",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "sell",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 2
+  },
+  {
+   "text": "Pricing",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "inventory_2",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 2
+  },
+  {
+   "text": "Bin Locations",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "category",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 2
+  },
+  {
+   "text": "Categories",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Integrations",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "account_balance",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 2
+  },
+  {
+   "text": "QuickBooks",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "sync_alt",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 2
+  },
+  {
+   "text": "IBS",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Finance",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "payments",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 2
+  },
+  {
+   "text": "Payment Methods",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "schedule",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 2
+  },
+  {
+   "text": "Credit Terms",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Imports",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "call",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 2
+  },
+  {
+   "text": "Contacts",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "local_shipping",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 2
+  },
+  {
+   "text": "Assets",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "store",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 2
+  },
+  {
+   "text": "Vendors",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "inventory_2",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 2
+  },
+  {
+   "text": "Inventory",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "receipt_long",
+   "line": 38,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 2
+  },
+  {
+   "text": "Invoices",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Credit Terms",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "New Credit Term",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 2
+  },
+  {
+   "text": "Active",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "13",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--flat sv-badge--info",
+   "fig": 2
+  },
+  {
+   "text": "Inactive",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "2",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--flat sv-badge--neutral",
+   "fig": 2
+  },
+  {
+   "text": "Name",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Due",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Customers",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Vendors",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Actions",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "COD",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Paid when the invoice is created",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "214",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "41",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Due on Receipt",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Default",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 2
+  },
+  {
+   "text": "Due on the invoice date",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "38",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "2",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Net 7",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "7 days after the invoice date",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "0",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "0",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Net 10",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "10 days after the invoice date",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "0",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "0",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Net 15",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "15 days after the invoice date",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "12",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "1",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Net 20",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "20 days after the invoice date",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "0",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "0",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Net 30",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "30 days after the invoice date",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "96",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "3",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Net 45",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "45 days after the invoice date",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "4",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "1",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Net 60",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "60 days after the invoice date",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "3",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "2",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Net 90",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "90 days after the invoice date",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "0",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "0",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Net 120",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "120 days after the invoice date",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "0",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "0",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "10th of next month",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "10th of the following month",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "12",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "1",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "Credit Hold",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Invoicing is blocked",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "2",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "0",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 2
+  },
+  {
+   "text": "New Credit Term",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-modal__title",
+   "fig": 2
+  },
+  {
+   "text": "Name",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Up to 31 characters. Prints on invoices and goes to QuickBooks.",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-hint",
+   "fig": 2
+  },
+  {
+   "text": "Due Net X days",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Days",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "days after the invoice date",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Due day of the following month",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Day",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "of the following month",
+   "line": 38,
+   "kind": "text",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "10th of next month means payment is due on the 10th of the following month. An invoice dated Oct 21 is due Nov 10.",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-alert__support",
+   "fig": 2
+  },
+  {
+   "text": "Cancel",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--secondary",
+   "fig": 2
+  },
+  {
+   "text": "Create Credit Term",
+   "line": 38,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 2
+  },
+  {
+   "text": "Day is active with 10; the Days box is greyed out (disabled) and empty, cleared when the option switched.",
+   "line": 39,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "The day field reads \"of the following month\" beside it. Always the next month, whatever the invoice day; a shorter month uses its last day.",
+   "line": 39,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+   "line": 39,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 2
+  },
+  {
+   "text": "This design",
+   "line": 42,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 3
+  },
+  {
+   "text": "Validation errors",
+   "line": 42,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "ShopHub",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Work Orders",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Schedule",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Customers",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Parts",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Reports",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Dashboard",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Searc...",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Ctrl K",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-menu__kbd",
+   "fig": 3
+  },
+  {
+   "text": "timer",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 3
+  },
+  {
+   "text": "Clock In",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "notifications_none",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 3
+  },
+  {
+   "text": "Staging Heavy Duty - 9919",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "AS",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-avatar",
+   "fig": 3
+  },
+  {
+   "text": "Settings",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "info",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 3
+  },
+  {
+   "text": "Settings",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "supervisor_account",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 3
+  },
+  {
+   "text": "Staff",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "verified_user",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 3
+  },
+  {
+   "text": "Roles & Permissions",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "location_on",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 3
+  },
+  {
+   "text": "Locations",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "apartment",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 3
+  },
+  {
+   "text": "Departments",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "attach_money",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 3
+  },
+  {
+   "text": "Taxes",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Service",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "groups_3",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 3
+  },
+  {
+   "text": "Labor Rates",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "checklist_rtl",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 3
+  },
+  {
+   "text": "Canned Lines",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "sell",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 3
+  },
+  {
+   "text": "Fees & Discounts",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "groups_3",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 3
+  },
+  {
+   "text": "Asset Types",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "fact_check",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 3
+  },
+  {
+   "text": "Inspection Templates",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Parts",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "sell",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 3
+  },
+  {
+   "text": "Pricing",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "inventory_2",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 3
+  },
+  {
+   "text": "Bin Locations",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "category",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 3
+  },
+  {
+   "text": "Categories",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Integrations",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "account_balance",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 3
+  },
+  {
+   "text": "QuickBooks",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "sync_alt",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 3
+  },
+  {
+   "text": "IBS",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Finance",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "payments",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 3
+  },
+  {
+   "text": "Payment Methods",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "schedule",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons-outlined",
+   "fig": 3
+  },
+  {
+   "text": "Credit Terms",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Imports",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "call",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 3
+  },
+  {
+   "text": "Contacts",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "local_shipping",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 3
+  },
+  {
+   "text": "Assets",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "store",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 3
+  },
+  {
+   "text": "Vendors",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "inventory_2",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 3
+  },
+  {
+   "text": "Inventory",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "receipt_long",
+   "line": 43,
+   "kind": "text",
+   "ctx": "material-icons",
+   "fig": 3
+  },
+  {
+   "text": "Invoices",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Credit Terms",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "New Credit Term",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 3
+  },
+  {
+   "text": "Active",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "13",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--flat sv-badge--info",
+   "fig": 3
+  },
+  {
+   "text": "Inactive",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "2",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--flat sv-badge--neutral",
+   "fig": 3
+  },
+  {
+   "text": "Name",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Due",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Customers",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Vendors",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Actions",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "COD",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Paid when the invoice is created",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "214",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "41",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Due on Receipt",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Default",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--info",
+   "fig": 3
+  },
+  {
+   "text": "Due on the invoice date",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "38",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "2",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Net 7",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "7 days after the invoice date",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "0",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "0",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Net 10",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "10 days after the invoice date",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "0",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "0",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Net 15",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "15 days after the invoice date",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "12",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "1",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Net 20",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "20 days after the invoice date",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "0",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "0",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Net 30",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "30 days after the invoice date",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "96",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "3",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Net 45",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "45 days after the invoice date",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "4",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "1",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Net 60",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "60 days after the invoice date",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "3",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "2",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Net 90",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "90 days after the invoice date",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "0",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "0",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Net 120",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "120 days after the invoice date",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "0",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "0",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "10th of next month",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "10th of the following month",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "12",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "1",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "Credit Hold",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Invoicing is blocked",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "2",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "0",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-num",
+   "fig": 3
+  },
+  {
+   "text": "New Credit Term",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-modal__title",
+   "fig": 3
+  },
+  {
+   "text": "Name",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Net 30 is already a standard term. Pick another name.",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-hint sv-hint--error",
+   "fig": 3
+  },
+  {
+   "text": "Due Net X days",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Days",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Enter 1 to 365 days.",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-hint sv-hint--error",
+   "fig": 3
+  },
+  {
+   "text": "days after the invoice date",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Due day of the following month",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Day",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "of the following month",
+   "line": 43,
+   "kind": "text",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Cancel",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--secondary",
+   "fig": 3
+  },
+  {
+   "text": "Create Credit Term",
+   "line": 43,
+   "kind": "text",
+   "ctx": "sv-btn sv-btn--primary",
+   "fig": 3
+  },
+  {
+   "text": "Names are compared ignoring capitals and spaces, against standard terms and the shop's own (\"A term called Net 10 already exists.\").",
+   "line": 44,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Other messages: \"Enter a name.\" and \"Use 31 characters or fewer.\" Day: \"Enter a day from 1 to 31.\" No sentence shows while a field is invalid.",
+   "line": 44,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Create Credit Term stays disabled until every field is valid. Errors show only after a field is touched or Create is pressed; the Name field is never red when the window opens.",
+   "line": 44,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).",
+   "line": 44,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 3
+  },
+  {
+   "text": "Build (local, 59e0f577)",
+   "line": 47,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--success",
+   "fig": 4
+  },
+  {
+   "text": "Edit Credit Term",
+   "line": 47,
+   "kind": "text",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Rendered from the local build: Edit on an unused term of the shop's own opens \"Edit Credit Term\" filled with its name, kind and days, buttons Cancel and Save Changes (S2-R4, S3-R1).",
+   "line": 49,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 4
+  },
+  {
+   "text": "Build (local, abc42db)",
+   "line": 52,
+   "kind": "text",
+   "ctx": "sv-badge sv-badge--success",
+   "fig": 5
+  },
+  {
+   "text": "Inactive tab: Reactivate",
+   "line": 52,
+   "kind": "text",
+   "ctx": "",
+   "fig": 5
+  },
+  {
+   "text": "Rendered from the local build: Inactive tab, Net 7. Reactivate hovered: \"Show in pickers again\"; Move Customers below it.",
+   "line": 54,
+   "kind": "caption",
+   "ctx": "",
+   "fig": 5
+  }
+ ]
+}

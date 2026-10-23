@@ -1,0 +1,29 @@
+#### Invoice.dc.html  title='9. Invoice due date for a day-of-month term'
+h2: 9. Invoice due date for a day-of-month term
+note: Before: an invoice today. After: a "10th of next month" invoice dated Oct 5 and Oct 28, both due Nov 10. Light theme.
+helmet css:
+<style>
+body{margin:0}
+/* build geometry (r6-01 / r8): 14px table text, one-line rows, 48px rows */
+figure .sv-table { font-size: var(--sv-body-size); }
+figure .sv-table td, figure .sv-table th { white-space: nowrap; overflow: visible; }
+figure .sv-table td { height: 48px; padding-top: 0; padding-bottom: 0; }
+figure .sv-table th { height: 56px; padding-top: 0; padding-bottom: 0; }
+.ct-page > .sv-page-head, .ct-page > .sv-tabs-row { margin-left: 0; margin-right: 0; }
+.ct-page > .sv-page-head { padding-top: 20px; margin-bottom: 12px; }
+</style>
+
+
+== fig 1 (line 31) badge='Unchanged from production (before)' heading='An invoice today (Net 30)' imgs=[('shots/before-invoice.png', 'Invoice screen for a Net 30 customer')]
+  Unchanged from production (before){sv-badge} | An invoice today (Net 30) | Invoice screen for a Net 30 customer
+  caption: Captured on the branch build: the invoice layout is unchanged from production. Net 30, invoice Aug 31, due Sep 30. Terms prints as an order reference chip; Due date sits under Invoice date.
+
+== fig 2 (line 36) badge='This design' heading='10th of next month: invoice Oct 5, due Nov 10' imgs=[]
+  [app chrome] ShopView
+  This design{sv-badge} | 10th of next month: invoice Oct 5, due Nov 10 | ShopHub | Work Orders | Schedule | Customers | Parts | Reports | Dashboard | Searc... | Ctrl K{sv-menu__kbd} | timer{material-icons-outlined} | Clock In | notifications_none{material-icons-outlined} | Staging Heavy Duty - 9919 | AS{sv-avatar} | S2-17610{sv-h3} | Invoiced{sv-badge} | Started | Oct 3, 2026 | Lead technician | Cameron Johnston | Service advisor | Becky Gonzales | Sales representative | Unassigned | CT Smoke Picked{sv-h4} | Contact | Ashley Bell | Phone | 711-981-8584 | Lines{sv-tab} | 4{sv-tab__count} | Parts{sv-tab} | 2{sv-tab__count} | Notes{sv-tab} | Stats | Finance |   | Tim | Customer PO | New Payment{sv-btn} | Request IBS Approval | Heavy Duty - 9919{sv-h3} | 9919 Shepard Road SE | Calgary, Alberta | T2C 4M5 | (403) 523 - 0488 | Invoice: INV-S2-17610{sv-h3} | Invoice date: | Oct 5, 2026 | Due date: | Nov 10, 2026 | Addresses{sv-side__title} | Bill to | CT Smoke Picked | 2247 Spencer Roads | South Kennethside, Yukon Territory | Remit payment to{sv-side__title} | Heavy Duty - 9919 | 9919 Shepard Road SE | Calgary, Alberta | Asset{sv-side__title} | 2019 Kenworth T880 | Plate{sv-side__title} | ONR-3722 | Mileage{sv-side__title} | 363,551 | Eng Hrs{sv-side__title} | 10,210 | VIN / Serial{sv-side__title} | 1XKZD49X9KJ123456 | Work Order | S2-17610 | Customer PO | Tim | Terms | 10th of next month | Work performed{sv-side__title} | 01 Service - Perform LOF and inspection
+  caption: No build shot for the day-of-month invoice inside the work order screen: drawn from the build's layout, not checked against a capture. // A customer on "10th of next month". Terms prints the term's name; the due date is the 10th of the next month. // The screen shows the same document the PDF prints (the invoice preview is the PDF render), so screen and PDF match. Highlights on the board mark what to check; they are not part of the document. // Layout and labels unchanged; only the value of Due date and Terms differ. // Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).
+
+== fig 3 (line 52) badge='This design' heading='Invoice Oct 28: still due Nov 10' imgs=[]
+  [app chrome: same as first figure]
+  This design{sv-badge} | Invoice Oct 28: still due Nov 10 | ShopHub | Work Orders | Schedule | Customers | Parts | Reports | Dashboard | Searc... | Ctrl K{sv-menu__kbd} | timer{material-icons-outlined} | Clock In | notifications_none{material-icons-outlined} | Staging Heavy Duty - 9919 | AS{sv-avatar} | S2-17655{sv-h3} | Invoiced{sv-badge} | Started | Oct 3, 2026 | Lead technician | Cameron Johnston | Service advisor | Becky Gonzales | Sales representative | Unassigned | CT Smoke Picked{sv-h4} | Contact | Ashley Bell | Phone | 711-981-8584 | Lines{sv-tab} | 4{sv-tab__count} | Parts{sv-tab} | 2{sv-tab__count} | Notes{sv-tab} | Stats | Finance |   | Tim | Customer PO | New Payment{sv-btn} | Request IBS Approval | Heavy Duty - 9919{sv-h3} | 9919 Shepard Road SE | Calgary, Alberta | T2C 4M5 | (403) 523 - 0488 | Invoice: INV-S2-17655{sv-h3} | Invoice date: | Oct 28, 2026 | Due date: | Nov 10, 2026 | Addresses{sv-side__title} | Bill to | CT Smoke Picked | 2247 Spencer Roads | South Kennethside, Yukon Territory | Remit payment to{sv-side__title} | Heavy Duty - 9919 | 9919 Shepard Road SE | Calgary, Alberta | Asset{sv-side__title} | 2019 Kenworth T880 | Plate{sv-side__title} | ONR-3722 | Mileage{sv-side__title} | 363,551 | Eng Hrs{sv-side__title} | 10,210 | VIN / Serial{sv-side__title} | 1XKZD49X9KJ123456 | Work Order | S2-17655 | Customer PO | Tim | Terms | 10th of next month | Work performed{sv-side__title} | 01 Service - Perform LOF and inspection
+  caption: No build shot: drawn from the build's layout, not checked against a capture. // Always the next month, even when the 10th of this month is still ahead or nearly here. Day 31 in a 30-day month uses its last day (Nov 30). // A paid invoice shows "Paid date" in place of Due date, as today. // Names and counts are demo data and differ from the build screenshots; layout, wording and states match the build (canvas-check sheets in local-check).
