@@ -222,7 +222,7 @@ await run('C97025', async () => { const o: any = {}; const u = await fresh('Chan
 
 await run('C97027', async () => { const o: any = {}; const s = await mkSet('ZZAUTOTEST Bravo GA', [{ co: 'Bravo Co', lead: ANA }]); const w = s.w['Bravo Co'];
   const vin = ((await workOrders(a, s.q))[0] as any)?.vin ?? null;
-  await withUser(await fresh('Privacy'), async (pg, ev) => { await openWO(pg); await search(pg, s.q); await pg.waitForTimeout(2500); await display(pg, 'Tech View'); await settle(pg, 4000); await display(pg, 'Board View'); await settle(pg, 4000);
+  await withUser(await fresh('Privacy'), async (pg, ev) => { await openWO(pg); await search(pg, s.q); await pg.waitForTimeout(2500); await display(pg, 'Tech View'); await settle(pg, 4000); o.searchBox = await pg.locator('[data-test-id="page_search_input"]').boundingBox().catch(() => null); await pg.screenshot({ path: path.join(EV, 'C97027-search-tech-view.png') }).catch(() => {}); /* 23 Oct: picture for the ticket */ await display(pg, 'Board View'); await settle(pg, 4000);
     await pg.locator('[data-test-id="button_board_fields_selection"]').click(); await pg.waitForTimeout(900); await pg.locator('[data-test-id="toggle_board_field_vin"]').click(); await pg.waitForTimeout(1500); await pg.keyboard.press('Escape');
     await display(pg, 'Tech View'); await settle(pg, 3000); // 22 Oct 2026 (QA lead, case rewritten): density in Tech View
     await pg.locator('[data-test-id="button_density"]').click(); await pg.waitForTimeout(800); await pg.locator('[data-test-id="option_density_comfortable"]').click(); await settle(pg);
@@ -232,6 +232,7 @@ await run('C97027', async () => { const o: any = {}; const s = await mkSet('ZZAU
     // 23 Oct 2026: also the page address (dl), title (dt) and referrer (dr) every record carries — the address holds the search text
     o.pageValues = [...new Set(wo.flatMap((e: any) => [e.page?.dl, e.page?.dt, e.page?.dr].filter(Boolean).map((v: string) => decodeURIComponent(String(v).replace(/\+/g, ' ')))))];
     o.pageHits = o.pageValues.filter((x: string) => banned.some((b) => x.includes(b)));
+    o.recordsWithSearch = wo.filter((e: any) => banned.some((b) => decodeURIComponent(String(e.page?.dl || '').replace(/\+/g, ' ')).includes(b))).map((e: any) => ({ event: e.en, where: e.ep['ep.element_location'] ?? null, what: e.ep['ep.element_label'] ?? null, page_location: decodeURIComponent(String(e.page?.dl || '').replace(/\+/g, ' ')), page_title: e.page?.dt })).slice(0, 12);
     o.pagePositiveControl = { searchTextShownInBrowserAddress: decodeURIComponent(pg.url().replace(/\+/g, ' ')).includes(s.q), browserAddress: pg.url().slice(0, 160) };
     o.positiveControl = 'the banned list was matched against every parameter value of every Work Orders event'; });
   R.C97027 = o; });

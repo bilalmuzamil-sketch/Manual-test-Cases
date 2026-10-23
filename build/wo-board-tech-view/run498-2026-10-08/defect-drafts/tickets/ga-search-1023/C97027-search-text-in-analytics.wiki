@@ -1,0 +1,52 @@
+TITLE: Work Orders Analytics – Search Text Is Sent to Google Analytics, Although the PRD Forbids It
+STATUS: FILING APPROVED by the QA lead 23 Oct 2026 ("Then file with clear statement from where it is going against the PRD ... And tag Chris ward in that and ask him if that needs to be obsoleted or fast followed."). Owning story SV-10593 (Usage analytics) is Done.
+Fields: Bug · parent SV-11593 (Board/Tech View Fast Follow) · Medium · Product Area Work Orders · label board-tech-view · relates to SV-10593
+
+h2. Description
+
+*What the PRD requires:* the usage records that Work Orders sends to Google Analytics may hold only field names and setting values — never search text, names, numbers or amounts (PRD *S12-R5*: "Analytics may contain predefined field keys and setting values, but no displayed record values, names, identifiers, search text, or dollar amounts.").
+
+*What happens instead:* every Work Orders usage record also carries the address of the page. After someone types in the Work Orders *Search* box, that address contains what they typed (for example a customer name), so the search text is sent to Google Analytics with every record.
+
+*Why it happens:*
+
+* the Work Orders page keeps the search in its address ({{/workorders?search=...}})
+* Google Analytics sends the page address ({{page_location}}) with every event by default, so each Work Orders record (display shown, fields loaded, density loaded) carries it
+* the records' own settings are clean — only the page address leaks the search text
+
+h2. Steps to Reproduce
+
+# Sign in to production and open *Work Orders* from the top menu.
+# Open the browser's developer tools (F12) and click the *Network* tab; type {{collect}} in its filter box.
+# In the Work Orders *Search* box, type a customer name, for example {{ZZAUTOTEST Bravo GA}}.
+#* The page address changes to {{.../workorders?search=ZZAUTOTEST+Bravo+GA}}.
+# Click *Tech View* in the display switcher.
+#* New *collect* requests to Google Analytics appear in the Network tab.
+# Click one of them and look at its *dl* (page location) value.
+#* It reads {{https://app.shopview.com/workorders?search=ZZAUTOTEST Bravo GA}} — the search text.
+
+*Actual Result:*
+
+* Each Work Orders usage record sent to Google Analytics carries the search text inside the page address.
+
+*Expected Result:*
+
+* As the PRD requires (S12-R5), no usage record contains search text (nor names, numbers or amounts); the page address sent with Work Orders records leaves the search out.
+
+h2. Screenshots
+
+!C97027-search-text-sent-to-google.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.43.0-ffea43c}} on [production|https://app.shopview.com/workorders] · *Location:* Truck Hill 1 · *User:* a new test user (Admin) · seen on 23 Oct 2026
+
+h2. Sources
+
+* PRD "Work Orders — Board View & Tech View Display Options", [Confluence 845185030|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030], version 74 (22 Oct 2026, Chris Ward; read 23 Oct 2026), *S12-R5*: "Analytics may contain predefined field keys and setting values, but no displayed record values, names, identifiers, search text, or dollar amounts."
+* Story SV-10593 (Usage analytics for displays, fields and density) — Done.
+
+h2. Test case
+
+* [C97027|https://shopview.testrail.io/index.php?/cases/view/97027] — Analytics events carry no work order details, names or amounts
+* Test in run 498: [T3481965|https://shopview.testrail.io/index.php?/tests/view/3481965] ([run 498|https://shopview.testrail.io/index.php?/runs/view/498])
