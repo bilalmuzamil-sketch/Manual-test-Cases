@@ -298,15 +298,36 @@ def story_nums(c):
 
 e = lambda s: html.escape(s, quote=False)
 
+DESIGN_IMAGES = f"{P}/design-2026-10-23/images"
+try:
+    from design_refs import DREFS            # written by the design worker: key -> {"pages": [...], "pictures": [...], "words": [...]}
+except ImportError:
+    DREFS = {}
+
 def design_block(c):
-    """Rule 117 tenth amendment hook: the block exists; the design pass (design-2026-10-23/) adds the pictures and the design's own words."""
+    """Rule 117 tenth amendment: design references in their own block below the quotes. With a DREFS entry (design pass): the pages used,
+    the pictures attached to this case (readable file names in design-2026-10-23/images/) and the design's own words, quoted. Without one:
+    the canvas pages the PRD names for the story, and a note that the design pass adds the pictures."""
+    d = DREFS.get(c["key"])
+    h = "<p></p><p><strong>References from Design</strong></p>"
+    if d:
+        pages = d.get("pages") or []
+        t = (f'Design canvas "Default Credit Terms" ({DESIGN_URL}), read 23 Oct 2026: ' + (", ".join(pages) if pages else "no page") +
+             ". Compare the screen with the pictures below; the expected results above come from the PRD quotes" +
+             (", except where this held design case follows the design." if c["sec"] == "DESIGN" else "."))
+        h += "<p>" + e(t) + "</p>"
+        if d.get("pictures"):
+            h += "<p>Design pictures attached to this case:</p><ul>" + "".join(f"<li>{e(x)}</li>" for x in d["pictures"]) + "</ul>"
+        if d.get("words"):
+            h += "<p>The design's own words:</p><ul>" + "".join(f"<li>&ldquo;{e(w)}&rdquo;</li>" for w in d["words"]) + "</ul>"
+        return h + "<p></p>"
     pages = []
     for n in story_nums(c): pages += [p for p in DESIGN_PAGES[n] if p not in pages]
     where = ("canvas pages " + ", ".join(pages) + " (the pages the PRD names for this story)") if pages else \
             "no canvas page (the PRD says this story has no new screens)"
     t = (f'Design canvas "Default Credit Terms" ({DESIGN_URL}): {where}. The pictures to compare against and the design\'s own '
          "words for this case are added by the design pass (design read in parallel, 23 Oct 2026); the expected results above come from the PRD.")
-    return "<p></p><p><strong>References from Design</strong></p><p>" + e(t) + "</p><p></p>"
+    return h + "<p>" + e(t) + "</p><p></p>"
 
 def quotes_block(c):
     prd, jira = [], []

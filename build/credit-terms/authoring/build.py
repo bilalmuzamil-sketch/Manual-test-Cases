@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ct_lib as L
 from po_questions import QUESTIONS
 MODS = ["cases_s1", "cases_s2", "cases_s3", "cases_s4", "cases_s5", "cases_s6", "cases_s7", "cases_s8", "cases_s9", "cases_s10",
-        "cases_s11", "cases_s12", "cases_data"]
+        "cases_s11", "cases_s12", "cases_data", "cases_design"]
 MODS = [m for m in MODS if os.path.exists(f"{L.D}/{m}.py")]
 for m in MODS: importlib.import_module(m)
 SECS = json.load(open(f"{L.P}/sections.json"))
@@ -21,8 +21,8 @@ keys = [c["key"] for c in L.CASES]
 dups = {k for k in keys if keys.count(k) > 1}
 if dups: probs.append(f"duplicate keys {sorted(dups)}")
 for c in L.CASES:
-    if c["sec"] not in SECS or c["sec"] == "DESIGN": probs.append(f"{c['key']}: section {c['sec']} unknown or reserved for the design pass")
-    if not re.match(c["sec"] + r"-\d\d[b-e]?$", c["key"]): probs.append(f"{c['key']}: key does not match section {c['sec']}")
+    if c["sec"] not in SECS: probs.append(f"{c['key']}: section {c['sec']} unknown")
+    if not re.match({"DESIGN": r"D-\d\d[b-e]?$"}.get(c["sec"], c["sec"] + r"-\d\d[b-e]?$"), c["key"]): probs.append(f"{c['key']}: key does not match section {c['sec']}")
     for t in c["res"] + [c["note"]]:
         for n in re.findall(r"\bSteps? (\d+)", t):
             if int(n) > len(c["steps"]): probs.append(f"{c['key']}: text points at step {n}, the case has {len(c['steps'])} steps")
@@ -64,6 +64,17 @@ for c in L.CASES:
     if "<p></p><p><strong>References from Design</strong></p>" not in h: probs.append(f"{c['key']}: no References from Design block")
     if not f["custom_preconds"].startswith('<p><strong><a href="'): probs.append(f"{c['key']}: setup-file link not first")
     if not c["pre"][-1][0] == L.BLOCKED: probs.append(f"{c['key']}: the Blocked line is not last")
+# ---- design references (design pass): DREFS keys exist, every picture named exists in design-2026-10-23/images/, design cases have refs
+for k, d in L.DREFS.items():
+    if k not in keys: probs.append(f"DREFS names case {k}, which does not exist")
+    if set(d) - {"pages", "pictures", "words"}: probs.append(f"DREFS {k}: unknown fields {sorted(set(d) - {'pages', 'pictures', 'words'})}")
+    for pic in d.get("pictures", []):
+        if not os.path.isfile(os.path.join(L.DESIGN_IMAGES, pic)): probs.append(f"DREFS {k}: picture {pic} not in design-2026-10-23/images/")
+for c in L.CASES:
+    if c["sec"] == "DESIGN":
+        if not c["title"].startswith("Design: "): probs.append(f"{c['key']}: design case title must start 'Design: '")
+        if not L.DREFS.get(c["key"], {}).get("pictures"): probs.append(f"{c['key']}: design case without a picture in DREFS")
+print("design refs", len(L.DREFS), "| design cases", sum(1 for c in L.CASES if c["sec"] == "DESIGN"))
 markers = Counter(c["marker"] for c in L.CASES)
 print("markers", dict(markers))
 over = [(c["key"], len(c["steps"])) for c in L.CASES if len(c["steps"]) > 10]
