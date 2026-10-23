@@ -71,7 +71,7 @@ win("S3-11", "Opening the window or clicking an option never shows a name error"
     [NEWWIN, ("Click the Day box.", "no message shows under Name."), ("Click the Days box.", "still no message under Name."), ('Click the "Due day of the following month" option.', "still no message under Name.")],
     ["S3-R10"])
 
-win("S3-12", "The Name field stops at 31 characters", [("A 32-character text, {Text-A}.", "For example: {Text-A} is ZZAUTOTEST S3-12 Thirty Two Chars (32 characters).")],
+win("S3-12", "The Name field stops at 31 characters", [("A 32-character text, {Text-A}.", "For example: {Text-A} is ZZAUTOTEST S3-12 Thirty Two Char (32 characters).")],
     [NEWWIN, ("Type {Text-A} in Name.", "the Name holds only the first 31 characters; the 32nd is not accepted, and no error shows.")],
     ["S3-R9 LONG", "S3-R2 NAME", "KD-RANGE"])
 

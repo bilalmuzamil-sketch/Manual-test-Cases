@@ -89,7 +89,7 @@ for key, design in [("S5-13", "modern"), ("S5-14", "legacy")]:
     cu(key, f"A 31-character term prints in full on {design} invoices and estimates",
        [(f"The organization uses the {design} invoice design.", None),
         ("Customer {Customer-A} holds the shop's own term {Term-A}, which has a 31-character name. Work order {Work-order-1} for {Customer-A} has an estimate and an invoice.",
-         f"For example: {{Term-A}} is ZZAUTOTEST {key} Thirty One Chars, {{Customer-A}} is ZZAUTOTEST {key} Customer and {{Work-order-1}} is S2-15440.")],
+         f"For example: {{Term-A}} is ZZAUTOTEST {key} Long Term Name, {{Customer-A}} is ZZAUTOTEST {key} Customer and {{Work-order-1}} is S2-15440.")],
        [("Open the printed estimate of {Work-order-1}.", "the terms show every character of {Term-A}, without clipping or \"...\"."),
         ("Open the printed invoice of {Work-order-1}.", "the terms show every character of {Term-A}, without clipping."),
         ("Open the work order print of {Work-order-1}.", "the work order print does not show the credit term at all.")],
@@ -97,7 +97,7 @@ for key, design in [("S5-13", "modern"), ("S5-14", "legacy")]:
 
 cu("S5-15", "Long term names wrap in the dropdown and on the customer card",
    [("The shop's own term {Term-A} has a 31-character name and is the default; its own term {Term-B} also has a 31-character name, is deactivated and is held by customer {Customer-A}.",
-     "For example: {Term-A} is ZZAUTOTEST S5-15 Long Default AAA, {Term-B} is ZZAUTOTEST S5-15 Long Inactive BB and {Customer-A} is ZZAUTOTEST S5-15 Customer.")],
+     "For example: {Term-A} is ZZAUTOTEST S5-15 Long Default A, {Term-B} is ZZAUTOTEST S5-15 Long Inactv BB and {Customer-A} is ZZAUTOTEST S5-15 Customer.")],
    [("Open {Customer-A}'s customer page.", 'the card shows the whole of "{Term-B} (Inactive)", wrapping if needed; nothing is cut off.'), ("Open Edit Customer.", "the selected value shows the whole name and \"(Inactive)\"."),
     ("Open the Credit Terms dropdown.", '{Term-A} shows in full followed by its "Default" tag, and "{Term-B} (Inactive)" shows in full; long names wrap.')],
    ["S5-R14"], start=None)

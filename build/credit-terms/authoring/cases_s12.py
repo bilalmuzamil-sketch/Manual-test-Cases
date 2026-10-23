@@ -106,7 +106,7 @@ lg("S12-14", "A refused action writes no row",
    ["S12-R7"], start=None)
 
 lg("S12-15", "Long names in the log wrap and are never cut off",
-   [("The shop's own term {Term-A} has a 31-character name.", "For example: {Term-A} is ZZAUTOTEST S12-15 Long Name 0123."), ("A new name {Term-B}, also 31 characters.", "For example: {Term-B} is ZZAUTOTEST S12-15 Long Name 4567.")],
+   [("The shop's own term {Term-A} has a 31-character name.", "For example: {Term-A} is ZZAUTOTEST S12-15 Long Name 012."), ("A new name {Term-B}, also 31 characters.", "For example: {Term-B} is ZZAUTOTEST S12-15 Long Name 456.")],
    [row_menu("{Term-A}"), ('Click "Edit".', "the window opens."), ("Replace the Name with {Term-B}.", "the name is typed."), ('Click "Save Changes".', "the toast shows.")]
    + log_then('the Details "Name: {Term-A} → {Term-B}" shows both names in full, wrapping onto more lines; nothing is cut off.'),
    ["S12-R8"])

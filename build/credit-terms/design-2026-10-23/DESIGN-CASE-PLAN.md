@@ -1,5 +1,7 @@
 # Design-case plan — Credit terms (round 2, no cases written yet)
 
+**Written 23 Oct 2026 as case keys:** DL-01 … DL-49 = `D-01` … `D-49`; DV-01 … DV-04 = `D-50` … `D-53`, in `authoring/cases_design.py`. Checklist with ticks: `DESIGN-CASE-CHECKLIST-2026-10-23.md`.
+
 For TestRail section **"Design — how it looks"** (DESIGN 91468, group 91454), local sources `build/credit-terms/cases/design/`. Every case
 title starts **"Design: "** (Rule 117, twelfth amendment), at most 80 characters, plain words. Each case: Rule 117 shape (preconditions as
 {placeholders} with "For example:", one action per step, one "Step N:" result per step), the picture attached and named in the

@@ -156,7 +156,7 @@ mv("S4-20", "Escape or a click outside keeps the Move window, Cancel closes it",
 
 mv("S4-21", "Long customer and term names wrap in the Move window",
    [DEFAULT_COD, ("The shop's own term {Term-A} has a 31-character name and is held by customer {Customer-A}, whose name is more than 60 characters long. Its other own term {Term-B} also has a 31-character name.",
-                  "For example: {Term-A} is ZZAUTOTEST S4-21 Long Name Term A, {Term-B} is ZZAUTOTEST S4-21 Long Name Term B and {Customer-A} is ZZAUTOTEST S4-21 A Very Long Customer Name For Wrapping Checks Ltd.")],
+                  "For example: {Term-A} is ZZAUTOTEST S4-21 Long Name TrmA, {Term-B} is ZZAUTOTEST S4-21 Long Name TrmB and {Customer-A} is ZZAUTOTEST S4-21 A Very Long Customer Name For Wrapping Checks Ltd.")],
    open_move("{Term-A}") + [("Look at the window title and the customer row.", "the title shows the whole of {Term-A} and the row shows the whole of {Customer-A}, wrapping onto more lines; nothing is cut off or ends in \"...\"."),
      ('Choose {Term-B} in "Move To".', "the whole of {Term-B} shows in the dropdown, wrapping if needed.")],
    ["S4-R23"])

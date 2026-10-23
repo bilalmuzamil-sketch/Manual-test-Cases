@@ -47,7 +47,7 @@ vd("S6-06", "Edit Vendor checks the name only after typing or on Save & Close",
 
 vd("S6-07", "Long term names wrap in the vendor dropdown and card",
    [("The shop's own term {Term-A} has a 31-character name, is deactivated and is held by vendor {Vendor-A}; its own term {Term-B} also has a 31-character name and is active.",
-     "For example: {Term-A} is ZZAUTOTEST S6-07 Long Inactive AA, {Term-B} is ZZAUTOTEST S6-07 Long Active BBBB and {Vendor-A} is ZZAUTOTEST S6-07 Vendor.")],
+     "For example: {Term-A} is ZZAUTOTEST S6-07 Long Inactv AA, {Term-B} is ZZAUTOTEST S6-07 Long Active BB and {Vendor-A} is ZZAUTOTEST S6-07 Vendor.")],
    [("Open {Vendor-A}'s vendor page.", 'the card shows the whole of "{Term-A} (Inactive)", wrapping if needed.'), ("Open Edit Vendor.", "the selected value shows the whole name and \"(Inactive)\"."),
     ("Open the Credit Terms dropdown.", "{Term-B} and \"{Term-A} (Inactive)\" show in full; long names wrap, nothing is cut off.")],
    ["S6-R6"], start=None)

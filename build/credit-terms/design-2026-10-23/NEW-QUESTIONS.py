@@ -38,7 +38,7 @@ ROWS = [
   "wording, and uses the same words on every page of the design. The COD and Credit Hold tooltips match the spec word for word.",
   "Spec: Story 1 (SV-11670), the info-icon tooltip texts; summary table row \"Hover the info icon on Due on Receipt\". " + DESIGN +
   ", page 1 \"List and row menus\", picture \"Info tooltip: Due on Receipt\".",
-  "to be filled"],
+  'Held design version D-50 (Due on Receipt info tooltip reads as designed); PRD case S1-13 (The info icon on Due on Receipt explains the term on hover).'],
  [2, T + "the Inactive tab when it is empty",
   "When a shop has no deactivated terms, the Inactive tab shows the line \"No inactive terms\" and its count reads 0. The design keeps the "
   "table's column headings (Name, Due, Customers, Vendors) and shows the line as one row inside the table. The spec says the line shows "
@@ -50,7 +50,7 @@ ROWS = [
   "not checked against the build\".",
   "Spec: Story 1 (SV-11670), the empty Inactive tab; summary table row \"Inactive tab is empty\" (\"Inline line in place of the table\"). "
   + DESIGN + ", page 4 \"Everything deactivated and an empty tab\", picture \"A new shop: Inactive tab empty\".",
-  "to be filled"],
+  'Held design version D-51 (Empty Inactive tab keeps the column headings); PRD case S1-23 (An empty Inactive tab says "No inactive terms"); look case D-10 (Empty Inactive tab shows No inactive terms).'],
  [3, T + "the blue explanation line in the New Credit Term window when the name is wrong",
   "In the New Credit Term window, a blue line under the options explains the term while the number is valid (for example \"Net 14 Days "
   "means payment is due 14 days after the invoice date. An invoice dated Oct 21 is due Nov 4.\"). Suppose the user types a valid number "
@@ -63,7 +63,7 @@ ROWS = [
   "wrong in it.",
   "Spec: Story 3 (SV-11672), the blue information line. " + DESIGN + ", page 3 \"New credit term and Inactive tab\", picture \"Validation "
   "errors\" and its note.",
-  "to be filled"],
+  'Held design version D-52 (No blue line while the name is not allowed); PRD cases S3-03 and S3-04 (the blue line for a Net term and for a day-of-the-following-month term); look cases D-13 and D-15 (New Credit Term window and its errors).'],
  [4, T + "when the \"Enter a name.\" error first shows in the New Credit Term window",
   "The user opens New Credit Term, clicks into the Name box, types nothing, and clicks somewhere else in the window. Should the error "
   "\"Enter a name.\" show?\n"
@@ -75,7 +75,7 @@ ROWS = [
   "says errors show after a field is \"touched\", which could include clicking in and out without typing. Both agree the window opens "
   "with no error.",
   "Spec: Story 3 (SV-11672), when the Name is checked. " + DESIGN + ", page 3, picture \"Validation errors\" and its note.",
-  "to be filled"],
+  'Held design version D-53 (Name error shows after clicking in and out); PRD cases S3-10 and S3-11 (when "Enter a name." shows); look case D-15 (New Credit Term errors).'],
  [5, T + "which pictures to follow for the look of the new screens",
   "The design has two kinds of pictures of the same new screens: pictures drawn for the design (marked \"This design\") and pictures taken "
   "from the build (marked \"Build (local …)\"). They look different in a few places: the font; the table headings (small grey in the "
@@ -89,7 +89,7 @@ ROWS = [
   "tint, not solid blue. Nothing about what the screens do is different, only the look.",
   DESIGN + ", page 1 pictures \"Active tab: one table\" and \"Row menu: a standard term\"; page 2 pictures \"Move Customers from COD\" and "
   "\"Move To COD: the $0 line\"; page 1 \"Make Net 30 the default\" and \"Delete Credit Term confirmation\".",
-  "to be filled"],
+  'Look cases whose look attributes depend on this answer (each names the picture compared with for now): D-01 (table headings, font), D-11 (Cancel, close ×), D-12 (Cancel, close ×), D-13 (Cancel), D-16 (Cancel, close ×), D-17 (ticked boxes, Move To box, Cancel), D-19 (Cancel). No case is held on it.'],
 ]
 if __name__ == "__main__":
     for r in ROWS: print(r[0], r[1])

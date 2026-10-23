@@ -176,7 +176,7 @@ C("S2-27", "S2", "A double click on Delete Credit Term deletes once",
 
 C("S2-28", "S2", "A long term name shows in full in the toast",
   [ADMIN(), DEFAULT_COD, ("The shop's own term {Term-A} has a 31-character name, due 14 days after the invoice date, and is unused.",
-                          "For example: {Term-A} is ZZAUTOTEST S2-28 Long Name 01234 (31 characters)."), PAGE],
+                          "For example: {Term-A} is ZZAUTOTEST S2-28 Long Name 0123 (31 characters)."), PAGE],
   ['Click the "⋯" at the right of the {Term-A} row.', 'Click "Deactivate".'],
   ["Step 1: the menu opens.", 'Step 2: the toast reads "{Term-A} deactivated" with every character of the name; a long line wraps and nothing is cut off or replaced by "...".'],
   ["S2-R12"])

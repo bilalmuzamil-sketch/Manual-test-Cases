@@ -17,7 +17,8 @@ M, DF, NT, EM, NC, IN, VE, OC, IV = "Main", "Default", "NewTerm", "Empty", "NewC
 
 def PICS(figs):
     names = R(figs)["pictures"]
-    return ("The design pictures named below are attached to this case; open each at 100% zoom beside the screen: " + ", ".join(names) + ".", None)
+    if len(names) == 1: return ("The design picture " + names[0] + " is attached to this case; open it at 100% zoom beside the screen.", None)
+    return ("The design pictures " + ", ".join(names) + " are attached to this case; open each at 100% zoom beside the screen.", None)
 
 def dz(key, title, pre, pairs, q, figs, words=(), note="", marker=None, who=None, width=True):
     """pairs: [(step, what the tester sees)]. A final 1536-px step is added unless width=False."""
@@ -34,9 +35,7 @@ def page_pre(extra=()):
 dz("D-01", "Design: Credit Terms page and table look as designed",
    page_pre([STD_ACTIVE]),
    [('In the Settings menu, click "Credit Terms".',
-     'the page matches the attached picture ct-p1-01-active-tab-one-table.png: in the side menu the Finance group shows "Payment Methods" and, directly below it, "Credit Terms" with a clock icon, in blue because it is open. The title "Credit Terms" is at the top left; at the top right are a square outlined "⋯" button and, right of it, the only blue button on the page, "+ New Credit Term". Below are the "Active" and "Inactive" tabs, then one table (no sections, no card around it) with the headings Name, Due, Customers and Vendors and a last column with no heading. Customers and Vendors counts are right aligned and 0 shows as 0. Every row is one line and ends with a grey "⋯". Only COD, Due on Receipt and Credit Hold show an info (i) icon and a lock icon after the name.'),
-    ("Compare the table headings with the build picture ct-p1-05-row-menu-a-standard-term.png.",
-     "the heading style and the font match the attached picture named for them: " + Q5 + " (ct-p1-01-active-tab-one-table.png shows small grey headings, ct-p1-05-row-menu-a-standard-term.png bold black ones)."),],
+     'the page matches the attached picture ct-p1-01-active-tab-one-table.png: in the side menu the Finance group shows "Payment Methods" and, directly below it, "Credit Terms" with a clock icon, in blue because it is open. The title "Credit Terms" is at the top left; at the top right are a square outlined "⋯" button and, right of it, the only blue button on the page, "+ New Credit Term". Below are the "Active" and "Inactive" tabs, then one table (no sections, no card around it) with the headings Name, Due, Customers and Vendors and a last column with no heading. Customers and Vendors counts are right aligned and 0 shows as 0. Every row is one line and ends with a grey "⋯". Only COD, Due on Receipt and Credit Hold show an info (i) icon and a lock icon after the name. The heading style and the font: ' + Q5 + ' (ct-p1-01-active-tab-one-table.png draws small grey headings, the build picture ct-p1-05-row-menu-a-standard-term.png bold black ones).')],
    ["S1-R1", "S1-R2", "S1-R3", "S1-R4", "S1-R10", "S1-R12", "S1-R13", "S1-N3"],
    [(1, 1), (1, 5)], [cap(M, 1, "One table per tab"), cap(M, 1, "The default row carries"), cap(M, 1, "Source: Payment Methods puts its one add button")])
 
@@ -59,34 +58,32 @@ dz("D-03", "Design: Green success toast looks as designed",
    ["S2-R6", "UFS-12"], [(1, 10), (2, 5)], [cap(M, 10, "Source: DS Toast, success.")])
 
 dz("D-04", "Design: Active and Inactive tabs show counts as designed",
-   [("At least one term is deactivated.", None), ("Starting screen: the Credit Terms page, Active tab.", None)],
-   [("Look at the tab row.", ""),
-    ('Click the "Inactive" tab.',
-     'each tab shows its label followed by a rounded count pill. The selected tab has blue text, a blue line under it and a light-blue pill; the other tab has grey text and a light-grey pill (compare ct-p1-01-active-tab-one-table.png and ct-p4-02-inactive-tab-the-rest.png). After the click the blue text, line and pill move to "Inactive".')],
+   [("At least one term is deactivated.", None), ("Starting screen: the Settings page.", None)],
+   [(OPEN_PAGE[0], 'the page opens on "Active". Each tab shows its label followed by a rounded count pill. The selected tab, "Active", has blue text, a blue line under it and a light-blue pill; "Inactive" has grey text and a light-grey pill (as in ct-p1-01-active-tab-one-table.png).'),
+    ('Click the "Inactive" tab.', 'the blue text, blue line and light-blue pill move to "Inactive", and "Active" turns grey with a light-grey pill (as in ct-p4-02-inactive-tab-the-rest.png).')],
    ["S1-R3"], [(1, 1), (4, 2)], [cap(M, 1, "Source: Payment Methods uses native tabs")])
 
 dz("D-05", "Design: A 31-character term name fits on one row",
    [("The shop has its own active term {Term-A} whose name is 31 characters long, due 45 days after the invoice date.",
-     "For example: {Term-A} is Net 45 Fleet Accounts Payable X (on a test shop name it ZZAUTOTEST Net45 Fleet Acct Payble)."),
-    ("Starting screen: the Credit Terms page, Active tab.", None)],
-   [("Find the {Term-A} row.", ""),
-    ("Look at the {Term-A} row.",
-     "{Term-A} reads in full on one line, nothing cut off and no dots at the end, in its place among the 45-day terms (as in ct-p1-12-a-31-character-term-name.png).")],
+     "For example: {Term-A} is ZZAUTOTEST D-05 Net45 Fleet Acc (31 characters, as long as the design's Net 45 Fleet Accounts Payable X)."),
+   ("Starting screen: the Settings page.", None)],
+   [(OPEN_PAGE[0],
+     "in the {Term-A} row, {Term-A} reads in full on one line, nothing cut off and no dots at the end, in its place among the 45-day terms (as in ct-p1-12-a-31-character-term-name.png).")],
    ["S1-R15", "S3-R2 NAME"], [(1, 12)], [cap(M, 12, "Rendered from the local build with")],
    note="A narrower window than 1440 px may wrap the name onto a second line; it must never be cut off (the design draws only 1440 px).")
 
 dz("D-06", "Design: Default tag shows after the term name",
-   [("Due on Receipt is the default for new customers.", None), ("Starting screen: the Credit Terms page, Active tab.", None)],
-   [("Look at the Due on Receipt row.",
-     'a light-blue "Default" pill with blue text follows the name, after the info icon and the lock icon, and no other row has the pill (as in ct-p1-01-active-tab-one-table.png).'),
+   [("Due on Receipt is the default for new customers.", None), ("Starting screen: the Settings page.", None)],
+   [(OPEN_PAGE[0],
+     'on the Due on Receipt row a light-blue "Default" pill with blue text follows the name, after the info icon and the lock icon, and no other row has the pill (as in ct-p1-01-active-tab-one-table.png).'),
     ('Click "⋯" on the Net 30 row.', "the row menu opens."),
     ('Click "Make Default for New Customers".', "the confirmation opens."),
     ('Click "Make Default".', 'the "Default" pill now follows "Net 30" directly (Net 30 has no icons) and has left Due on Receipt (as in ct-p1-10-saved.png).')],
    ["S1-R11", "S2-R6"], [(1, 1), (1, 10), (4, 1)], [cap(M, 1, "Source: DS Badge, info tone")])
 
 dz("D-09", "Design: Active and Inactive tabs after deactivating every term",
-   [("Every term that can be deactivated is deactivated, and Net 30 is the default.", None), ("Starting screen: the Credit Terms page, Active tab.", None)],
-   [("Look at the Active tab.", 'it lists only COD, Due on Receipt, Net 30 (with the "Default" pill) and Credit Hold, in that order (as in ct-p4-01-active-tab-after-deactivating-everything-it-can.png).'),
+   [("Every term that can be deactivated is deactivated, and Net 30 is the default.", None), ("Starting screen: the Settings page.", None)],
+   [(OPEN_PAGE[0], 'the Active tab lists only COD, Due on Receipt, Net 30 (with the "Default" pill) and Credit Hold, in that order (as in ct-p4-01-active-tab-after-deactivating-everything-it-can.png).'),
     ('Click the "Inactive" tab.', "the Inactive tab lists every other term in the same order as the Active tab uses, in the same columns with the same widths (the headings do not move), with no info icon, lock icon or Default pill (as in ct-p4-02-inactive-tab-the-rest.png).")],
    ["S1-E1", "S1-R4", "S1-R14"], [(4, 1), (4, 2)], [cap(EM, 1, "What stays:"), cap(EM, 2, "Every deactivated term")])
 
@@ -118,8 +115,8 @@ dz("D-45", "Design: COD row menu with no customers shows one greyed item",
    ["S1-N3", "S2-N2", "S4-N2", "UFS-9"], [(1, 6)], [cap(M, 6, "COD, Due on Receipt and Credit Hold never show Deactivate")])
 
 dz("D-46", "Design: Row menu of an own term in use greys Edit and Delete",
-   [own("{Term-A}", "day 10", ", held by 1 customer, {Customer-A}, and 2 vendors, {Vendor-A} and {Vendor-B}", "10th of next month"),
-    ("For example: {Customer-A} is ZZAUTOTEST D-46 Customer, {Vendor-A} and {Vendor-B} are ZZAUTOTEST D-46 Vendor A and B.", None),
+   [("The shop has its own active term {Term-A}, due on day 10 of the following month, held by 1 customer, {Customer-A}, and 2 vendors, {Vendor-A} and {Vendor-B}.",
+     "For example: {Term-A} is 10th of next month, {Customer-A} is ZZAUTOTEST D-46 Customer, {Vendor-A} and {Vendor-B} are ZZAUTOTEST D-46 Vendor A and ZZAUTOTEST D-46 Vendor B."),
     ("Starting screen: the Credit Terms page, Active tab.", None)],
    [('Click "⋯" on the {Term-A} row.', '"Edit" is greyed (pale grey text and icon); "Make Default for New Customers", "Move Customers" and "Deactivate" are normal; under the divider "Delete Credit Term" is greyed too (pale grey, no longer red).'),
     ('Hover "Delete Credit Term".', 'a dark grey box opens to the left of the menu, on two lines: "Used by 1 customer and 2 vendors" and "Deactivate it instead to take it out of the pickers." (as in ct-p1-07-row-menu-your-term-in-use.png).')],
@@ -132,11 +129,11 @@ dz("D-47", "Design: Row menu of the default term greys Deactivate",
    ["S2-N4", "S2-R1", "UFS-8"], [(1, 8)], [cap(M, 8, "Here Net 30 is the default.")])
 
 dz("D-48", "Design: Move Customers greyed without the customer permissions",
-   [("You are signed in as {User-A}, whose role has Settings → Finance but not Customers → Create & Edit.", "For example: {User-A} is ZZAUTOTEST D-48 Finance only."),
-    ("Due on Receipt is the default for new customers.", None), ("Starting screen: the Credit Terms page, Active tab.", None)],
-   [('Click "⋯" on the COD row.', '"Make Default for New Customers" is normal and "Move Customers" is greyed.'),
+   [("Due on Receipt is the default for new customers.", None), ("Starting screen: the Credit Terms page, Active tab.", None)],
+   [('Click "⋯" on the COD row.', 'the row menu opens: "Make Default for New Customers" is normal and "Move Customers" is greyed.'),
     ('Hover "Move Customers".', 'a dark grey box opens to the left of the menu on one line: "You need Customers → Create & Edit and View and Manage AP/AR Data to move customers." (as in ct-p2-09-without-the-customer-permissions.png).')],
-   ["S4-N1", "UFS-37"], [(2, 9)], [cap(DF, 9, "A user with Settings")], who=("You are signed in in {Location-A}.", "For example: {Location-A} is Staging Heavy Duty - 9919."))
+   ["S4-N1", "UFS-37"], [(2, 9)], [cap(DF, 9, "A user with Settings")], who=("You are signed in as {User-A}, working in {Location-A}, and the role of {User-A} has Settings → Finance but not Customers → Create & Edit.",
+        "For example: {User-A} is ZZAUTOTEST D-48 Finance only and {Location-A} is Staging Heavy Duty - 9919."))
 
 dz("D-49", "Design: Inactive term menu shows Reactivate first",
    [("Net 7 is deactivated and held by at least one customer.", None), PAGE_INACTIVE],
@@ -165,29 +162,31 @@ dz("D-12", "Design: Delete Credit Term confirmation looks as designed",
    ["S2-R9", "UFS-15"], [(1, 11)], [cap(M, 11, "Rendered from the local build. Title")])
 
 dz("D-13", "Design: New Credit Term window with Net days looks as designed",
-   [("Starting screen: the Credit Terms page, Active tab.", None)],
+   [("Today on the calendar of the location you work in is {Date-A}, and {Date-B} is the date 14 days later.", "For example: {Date-A} is Oct 21 and {Date-B} is Nov 4."),
+    ("Starting screen: the Credit Terms page, Active tab.", None)],
    [('Click "New Credit Term".', 'a window titled "New Credit Term" opens with a close × at the right.'),
-    ('Type "Net 14 Days" in Name.', ''),
+    ('Type "Net 14 Days" in Name.', 'Name reads "Net 14 Days".'),
     ("Type 14 in the Days box.",
      'the window matches ct-p3-01-new-credit-term-net-x-days.png: the Name box with its floating label and the grey hint "Up to 31 characters. Prints on invoices and goes to QuickBooks." under it; below, two rows with round option buttons: "Due Net X days" (chosen) with the Days box and "days after the invoice date" after it, and "Due day of the following month" with a greyed, empty Day box and pale "of the following month"; under them a light-blue box with an info icon and blue text "Net 14 Days means payment is due 14 days after the invoice date. An invoice dated {Date-A} is due {Date-B}."; at the bottom right "Cancel" (white) and "Create Credit Term" (blue). The Cancel style: ' + Q5 + ".")],
    ["S3-R1", "S3-R2", "S3-R2 NAME", "S3-R2 OPTS", "S3-R3", "S3-R5", "S3-R5 NET", "UFS-19", "UFS-27"], [(3, 1)],
    [cap(NT, 1, "New Credit Term opens this window."), cap(NT, 1, "Only the selected option's box is active"), cap(NT, 1, "Source: DS Modals")],
-   note="{Date-A} is today on the calendar of the location you work in (shown as a short month and day, for example Oct 21) and {Date-B} is 14 days later (for example Nov 4).")
+   note="The two dates show as a short month and day.")
 
 dz("D-14", "Design: New Credit Term window with day of month looks as designed",
-   [("Starting screen: the Credit Terms page, Active tab.", None)],
+   [("Today on the calendar of the location you work in is {Date-A}, and {Date-B} is the 10th of the following month.", "For example: {Date-A} is Oct 21 and {Date-B} is Nov 10."),
+    ("Starting screen: the Credit Terms page, Active tab.", None)],
    [('Click "New Credit Term".', 'the "New Credit Term" window opens.'),
-    ('Type "10th of next month" in Name.', ''),
+    ('Type "10th of next month" in Name.', 'Name reads "10th of next month".'),
     ("Click the greyed Day box.", 'the option "Due day of the following month" becomes chosen, the cursor is in the Day box, and the Days box turns greyed and empty with pale "days after the invoice date".'),
     ("Type 10 in the Day box.",
      'the blue box reads "10th of next month means payment is due on the 10th of the following month. An invoice dated {Date-A} is due {Date-B}." (as in ct-p3-02-new-credit-term-day-of-the-following-month.png).')],
    ["S3-R3", "S3-R4", "S3-R5", "S3-R5 DAY", "UFS-28"], [(3, 2)], [cap(NT, 2, "Day is active with 10;"), cap(NT, 2, "The day field reads")],
-   note="{Date-A} is today on your location's calendar (for example Oct 21) and {Date-B} is the 10th of the following month (for example Nov 10).")
+   note="The two dates show as a short month and day.")
 
 dz("D-15", "Design: New Credit Term errors show in red under the field",
    [("Starting screen: the Credit Terms page, Active tab.", None)],
    [('Click "New Credit Term".', 'the "New Credit Term" window opens with no error showing.'),
-    ('Type "net 30" in Name.', ''),
+    ('Type "net 30" in Name.', 'Name reads "net 30".'),
     ("Type 400 in the Days box.",
      'both the Name box and the Days box have a red border and a red label; under Name the red message "Net 30 is already a standard term. Pick another name." and under Days the red message "Enter 1 to 365 days."; "Create Credit Term" is pale blue (disabled) (as in ct-p3-03-validation-errors.png).')],
    ["S3-R9", "S3-R9 STD", "S3-R9 DAYS", "S3-R6", "UFS-22", "UFS-24"], [(3, 3)], [cap(NT, 3, "Names are compared ignoring capitals"), cap(NT, 3, "Create Credit Term stays disabled")],
@@ -205,7 +204,7 @@ dz("D-17", "Design: Move Customers window looks as designed",
     ("Starting screen: the Credit Terms page, Active tab.", None)],
    [('Click "⋯" on the COD row.', "the row menu opens."),
     ('Click "Move Customers".',
-     'a window titled "Move Customers from COD" opens (as in ct-p2-02-move-customers-from-cod.png). Top to bottom: a "Search customers" box with a magnifier; blue "Select All" and "Select None" at the left and "{n} selected" in grey at the right; a bordered scrolling list, one customer per row with a line between rows, A to Z, every box ticked; the "Move To" box reading "Due on Receipt" with the grey line "Prefilled with your default for new customers." under it; at the bottom right "Cancel" and a blue "Move {n} Customers". The ticked-box style (light blue with a blue tick in the drawn picture, solid blue in the build picture ct-p2-06-move-to-cod-the-0-line.png): ' + Q5 + "."),
+     'a window titled "Move Customers from COD" opens (as in ct-p2-02-move-customers-from-cod.png). Top to bottom: a "Search customers" box with a magnifier; blue "Select All" and "Select None" at the left and "{n} selected" in grey at the right; a bordered scrolling list, one customer per row with a line between rows, A to Z, every box ticked; the "Move To" box reading "Due on Receipt" with the grey line "Prefilled with your default for new customers." under it; at the bottom right "Cancel" and a blue "Move {n} Customers". The ticked-box style (light blue with a blue tick in the drawn picture, solid blue with a white tick in the build picture ct-p2-06-move-to-cod-the-0-line.png), the Move To box style (outlined with a small arrow, or filled with a solid arrow) and the Cancel style: ' + Q5 + "."),
     ("Untick {Customer-A}.", 'the box of {Customer-A} is empty, the count reads one less and the button reads "Move" with the lower number (as in ct-p2-03-some-customers-unticked.png).')],
    ["S4-R1", "S4-R2", "S4-R4", "S4-R7", "UFS-34", "UFS-49"], [(2, 2), (2, 3), (2, 6)],
    [cap(DF, 2, "Title uses the 18px form-dialog title"), cap(DF, 2, "Source: DS Modals (form body)")],
@@ -283,9 +282,10 @@ dz("D-24", "Design: Credit Limit locks at $0.00 for COD on New Customer",
    ["S5-R4", "UFS-44"], [(5, 4)], [cap(NC, 4, "Picking COD or Credit Hold sets")])
 
 dz("D-39", "Design: New Customer without AP/AR access has no credit fields",
-   [("You are signed in as {User-A}, whose role can create customers but does not have View and Manage AP/AR Data.", "For example: {User-A} is ZZAUTOTEST D-39 No AP."), CUS],
+   [CUS],
    [('Click "New Customer".', 'the window has no Credit Terms and no Credit Limit; the Sales Representative field follows State/Province and Country directly, with no gap left (as in ct-p5-05-new-customer-without-view-and-manage-ap-ar-data.png).')],
-   ["S5-N1"], [(5, 5)], [cap(NC, 5, "No Credit Terms and no Credit Limit field.")], who=("You are signed in in {Location-A}.", "For example: {Location-A} is Staging Heavy Duty - 9919."))
+   ["S5-N1"], [(5, 5)], [cap(NC, 5, "No Credit Terms and no Credit Limit field.")], who=("You are signed in as {User-A}, working in {Location-A}, and the role of {User-A} can create customers but does not have View and Manage AP/AR Data.",
+        "For example: {User-A} is ZZAUTOTEST D-39 No AP and {Location-A} is Staging Heavy Duty - 9919."))
 
 dz("D-26", "Design: Customer card shows a deactivated term as Inactive",
    [("{Customer-A} is on Net 50, and Net 50 is deactivated.", "For example: {Customer-A} is ZZAUTOTEST D-26 Customer."), ("Starting screen: the Customers page.", None)],
@@ -345,28 +345,30 @@ dz("D-42", "Design: Vendor card shows a deactivated term as Inactive",
 
 dz("D-32", "Design: Vendor invoice due date for a day-of-month term",
    [own("{Term-A}", "day 10", example="ZZAUTOTEST D-32 Tenth"), ("{Vendor-A} is on {Term-A}.", "For example: {Vendor-A} is ZZAUTOTEST D-32 Vendor."),
-    ("A delivery from {Vendor-A} was received with a vendor invoice dated Oct 5, 2026.", None), ("Starting screen: the delivery page of that vendor invoice.", None)],
-   [("Look at the Vendor Invoice card.", 'the card shows "Invoice date" Oct 5, 2026 and under it "Due date" Nov 10, 2026, in the same layout as today\'s card (compare ct-p7-10-vendor-on-10th-of-next-month-oct-5-due-nov-10.png and today\'s ct-p7-09-a-vendor-invoice-today-net-60.png; the yellow highlight on the picture is not part of the screen).')],
+    ("{Vendor-A} has a saved vendor invoice, {Vendor-invoice-A}, dated Oct 5, 2026.", "For example: {Vendor-invoice-A} is a vendor invoice for one part."),
+    ("Starting screen: the vendor invoices list (Parts, Vendors, Vendor Invoices).", None)],
+   [("Open {Vendor-invoice-A}.", 'the Vendor Invoice card shows "Invoice date" Oct 5, 2026 and under it "Due date" Nov 10, 2026, in the same layout as today\'s card (compare ct-p7-10-vendor-on-10th-of-next-month-oct-5-due-nov-10.png and today\'s ct-p7-09-a-vendor-invoice-today-net-60.png; the yellow highlight on the picture is not part of the screen).')],
    ["S7-R2", "S7-R9"], [(7, 9), (7, 10)], [cap(VE, 10, "Same date rule"), cap(VE, 10, "The highlight marks what to check")])
 
 dz("D-43", "Design: Vendor invoice due date for a shop's Net term",
    [own("{Term-A}", "net 10", example="ZZAUTOTEST D-43 Ten"), ("{Vendor-A} is on {Term-A}.", "For example: {Vendor-A} is ZZAUTOTEST D-43 Vendor."),
-    ("A delivery from {Vendor-A} was received with a vendor invoice dated Oct 5, 2026.", None), ("Starting screen: the delivery page of that vendor invoice.", None)],
-   [("Look at the Vendor Invoice card.", 'the card shows "Invoice date" Oct 5, 2026 and "Due date" Oct 15, 2026 (as in ct-p7-11-vendor-on-net-10-oct-5-due-oct-15.png).')],
+    ("{Vendor-A} has a saved vendor invoice, {Vendor-invoice-A}, dated Oct 5, 2026.", "For example: {Vendor-invoice-A} is a vendor invoice for one part."),
+    ("Starting screen: the vendor invoices list (Parts, Vendors, Vendor Invoices).", None)],
+   [("Open {Vendor-invoice-A}.", 'the Vendor Invoice card shows "Invoice date" Oct 5, 2026 and "Due date" Oct 15, 2026 (as in ct-p7-11-vendor-on-net-10-oct-5-due-oct-15.png).')],
    ["S7-R1", "S7-R9"], [(7, 11)], [cap(VE, 11, "A shop's own Net X term")])
 
 dz("D-33", "Design: Invoice shows the day-of-month term and due date",
    [own("{Term-A}", "day 10", example="10th of next month (on a test shop name it ZZAUTOTEST D-33 Tenth)"), ("{Customer-A} is on {Term-A}.", "For example: {Customer-A} is ZZAUTOTEST D-33 Customer."),
     ("Work order {Work-order-1} for {Customer-A} was invoiced with the invoice date Oct 5, 2026.", "For example: {Work-order-1} is S2-17610."),
-    ("Starting screen: work order {Work-order-1}, Finance tab.", None)],
-   [("Look at the invoice.", 'under "Invoice: INV-{Work-order-1}" the lines read "Invoice date: Oct 5, 2026" and "Due date: Nov 10, 2026"; the reference chips read "Work Order {Work-order-1}", "Customer PO …" and "Terms {Term-A}", the term name whole; the layout is today\'s (compare ct-p9-02-10th-of-next-month-invoice-oct-5-due-nov-10.png and today\'s ct-p9-01-an-invoice-today-net-30.png; the orange outline on the picture is not part of the screen).')],
+    ("Starting screen: work order {Work-order-1}.", None)],
+   [('Click the "Finance" tab.', 'under "Invoice: INV-{Work-order-1}" the lines read "Invoice date: Oct 5, 2026" and "Due date: Nov 10, 2026"; the reference chips read "Work Order {Work-order-1}", "Customer PO …" and "Terms {Term-A}", the term name whole; the layout is today\'s (compare ct-p9-02-10th-of-next-month-invoice-oct-5-due-nov-10.png and today\'s ct-p9-01-an-invoice-today-net-30.png; the orange outline on the picture is not part of the screen).')],
    ["S7-R2", "S5-R8", "S5-R11"], [(9, 1), (9, 2)], [cap(IV, 2, "Layout and labels unchanged;"), cap(IV, 2, "The screen shows the same document the PDF prints")])
 
 dz("D-44", "Design: Late-month invoice is still due the next month",
    [own("{Term-A}", "day 10", example="ZZAUTOTEST D-44 Tenth"), ("{Customer-A} is on {Term-A}.", "For example: {Customer-A} is ZZAUTOTEST D-44 Customer."),
     ("Work order {Work-order-1} for {Customer-A} was invoiced with the invoice date Oct 28, 2026.", "For example: {Work-order-1} is S2-17655."),
-    ("Starting screen: work order {Work-order-1}, Finance tab.", None)],
-   [("Look at the invoice.", 'the lines read "Invoice date: Oct 28, 2026" and "Due date: Nov 10, 2026" (as in ct-p9-03-invoice-oct-28-still-due-nov-10.png).')],
+    ("Starting screen: work order {Work-order-1}.", None)],
+   [('Click the "Finance" tab.', 'the invoice lines read "Invoice date: Oct 28, 2026" and "Due date: Nov 10, 2026" (as in ct-p9-03-invoice-oct-28-still-due-nov-10.png).')],
    ["S7-R2"], [(9, 3)], [cap(IV, 3, "Always the next month,")])
 
 dz("D-34", "Design: New Work Order for a COD customer shows no warning",
@@ -379,8 +381,8 @@ dz("D-34", "Design: New Work Order for a COD customer shows no warning",
 
 dz("D-36", "Design: Over limit badge looks as it does today",
    [("{Customer-A} is on Net 30 with a credit limit of {Amount-A} and a balance above it.", "For example: {Customer-A} is ZZAUTOTEST D-36 Over, {Amount-A} is $500.00."),
-    ("Work order {Work-order-1} is open for {Customer-A}.", "For example: {Work-order-1} is S2-17322."), ("Starting screen: work order {Work-order-1}.", None)],
-   [("Look at the badges under the work order number.", 'a red "Over Limit" pill shows beside the status badge, the same as today\'s picture ct-p9-01-an-invoice-today-net-30.png.')],
+    ("Work order {Work-order-1} is open for {Customer-A}.", "For example: {Work-order-1} is S2-17322."), ("Starting screen: the Work Orders page.", None)],
+   [("Open work order {Work-order-1}.", 'under the work order number a red "Over Limit" pill shows beside the status badge, the same as today\'s picture ct-p9-01-an-invoice-today-net-30.png.')],
    ["S9-R2", ("Story 9, Form factor", prd_line("Form factor: Mobile-optimized: no new screen; the existing confirmation"))], [(9, 1)],
    [cap(OC, 3, "Part sales show no over-credit confirmation")],
    note='The PRD writes "Over limit"; today\'s badge reads "Over Limit" and the PRD keeps the existing badge (register CT-D07, settled).')
@@ -402,7 +404,7 @@ dz("D-51", "Design: Empty Inactive tab keeps the column headings",
 dz("D-52", "Design: No blue line while the name is not allowed",
    [("Starting screen: the Credit Terms page, Active tab.", None)],
    [('Click "New Credit Term".', 'the "New Credit Term" window opens.'),
-    ('Type "net 30" in Name.', ''),
+    ('Type "net 30" in Name.', 'Name reads "net 30".'),
     ("Type 14 in the Days box.", 'under Name the red message "Net 30 is already a standard term. Pick another name." shows, the Days box has no error, and no blue explanation line shows (design note: "No sentence shows while a field is invalid.").')],
    ["S3-R5"], [(3, 3)], [cap(NT, 3, "Other messages:")],
    note="Held: the design's behaviour; under the PRD the blue line shows because the number is valid (cases S3-03, D-13). Released or deleted when design question 3 is answered (register CT-D03).", marker=held(3))

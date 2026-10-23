@@ -361,8 +361,8 @@ def design_block(c):
     for n in story_nums(c): pages += [p for p in DESIGN_PAGES[n] if p not in pages]
     where = ("canvas pages " + ", ".join(pages) + " (the pages the PRD names for this story)") if pages else \
             "no canvas page (the PRD says this story has no new screens)"
-    t = (f'Design canvas "Default Credit Terms" ({DESIGN_URL}): {where}. The pictures to compare against and the design\'s own '
-         "words for this case are added by the design pass (design read in parallel, 23 Oct 2026); the expected results above come from the PRD.")
+    t = (f'Design canvas "Default Credit Terms" ({DESIGN_URL}): {where}. The design (read in full on 23 Oct 2026) does not draw '
+         "this case\'s screen or state, so no design picture is attached; the expected results above come from the PRD.")
     return h + "<p>" + e(t) + "</p><p></p>"
 
 def quotes_block(c):

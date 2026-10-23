@@ -38,8 +38,8 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 | OTHER-S11-04 | see the case | This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows. | S11-04 |
 | OTHER-S12-16 | see the case | This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows. | S12-16 |
 | OTHER-S12-18 | see the case | You are signed in as {User-A}, whose role has no Settings → Finance. | S12-18 |
-| OTHER-D-48 | see the case | You are signed in in {Location-A}. | D-48 |
-| OTHER-D-39 | see the case | You are signed in in {Location-A}. | D-39 |
+| OTHER-D-48 | see the case | You are signed in as {User-A}, working in {Location-A}, and the role of {User-A} has Settings → Finance but not Customers → Create & Edit. | D-48 |
+| OTHER-D-39 | see the case | You are signed in as {User-A}, working in {Location-A}, and the role of {User-A} can create customers but does not have View and Manage AP/AR Data. | D-39 |
 | ADMIN-B | Admin (second user, second browser) | the two-browser cases | S2-30, S2-31, S2-32, S2-33, S2-34, S2-36, S3-25, S3-26, S4-31, S4-32, S4-33, S5-21, S5-24, S7-04, S12-14 |
 
 ## 3. Flags and settings
@@ -806,7 +806,7 @@ Section: Story 2 — Row menu actions (TestRail section 91456). Marker: `AUTOMAT
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop's own term {Term-A} has a 31-character name, due 14 days after the invoice date, and is unused. For example: {Term-A} is ZZAUTOTEST S2-28 Long Name 01234 (31 characters).
+- The shop's own term {Term-A} has a 31-character name, due 14 days after the invoice date, and is unused. For example: {Term-A} is ZZAUTOTEST S2-28 Long Name 0123 (31 characters).
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group) is open on the Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
@@ -1042,7 +1042,7 @@ Sources (verbatim text in section 9): S3-R10.
 Section: Story 3 — Create or edit a credit term (TestRail section 91457). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- A 32-character text, {Text-A}. For example: {Text-A} is ZZAUTOTEST S3-12 Thirty Two Chars (32 characters).
+- A 32-character text, {Text-A}. For example: {Text-A} is ZZAUTOTEST S3-12 Thirty Two Char (32 characters).
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group) is open on the Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}, {Text-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
@@ -1474,7 +1474,7 @@ Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATIO
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop's own term {Term-A} has a 31-character name and is held by customer {Customer-A}, whose name is more than 60 characters long. Its other own term {Term-B} also has a 31-character name. For example: {Term-A} is ZZAUTOTEST S4-21 Long Name Term A, {Term-B} is ZZAUTOTEST S4-21 Long Name Term B and {Customer-A} is ZZAUTOTEST S4-21 A Very Long Customer Name For Wrapping Checks Ltd.
+- The shop's own term {Term-A} has a 31-character name and is held by customer {Customer-A}, whose name is more than 60 characters long. Its other own term {Term-B} also has a 31-character name. For example: {Term-A} is ZZAUTOTEST S4-21 Long Name TrmA, {Term-B} is ZZAUTOTEST S4-21 Long Name TrmB and {Customer-A} is ZZAUTOTEST S4-21 A Very Long Customer Name For Wrapping Checks Ltd.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group) is open on the Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Term-B}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
@@ -1801,7 +1801,7 @@ Section: Story 5 — New Customer and Edit Customer (TestRail section 91459). Ma
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization uses the modern invoice design.
-- Customer {Customer-A} holds the shop's own term {Term-A}, which has a 31-character name. Work order {Work-order-1} for {Customer-A} has an estimate and an invoice. For example: {Term-A} is ZZAUTOTEST S5-13 Thirty One Chars, {Customer-A} is ZZAUTOTEST S5-13 Customer and {Work-order-1} is S2-15440.
+- Customer {Customer-A} holds the shop's own term {Term-A}, which has a 31-character name. Work order {Work-order-1} for {Customer-A} has an estimate and an invoice. For example: {Term-A} is ZZAUTOTEST S5-13 Long Term Name, {Customer-A} is ZZAUTOTEST S5-13 Customer and {Work-order-1} is S2-15440.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-CUST, P-WO, P-INV.
@@ -1812,7 +1812,7 @@ Section: Story 5 — New Customer and Edit Customer (TestRail section 91459). Ma
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization uses the legacy invoice design.
-- Customer {Customer-A} holds the shop's own term {Term-A}, which has a 31-character name. Work order {Work-order-1} for {Customer-A} has an estimate and an invoice. For example: {Term-A} is ZZAUTOTEST S5-14 Thirty One Chars, {Customer-A} is ZZAUTOTEST S5-14 Customer and {Work-order-1} is S2-15440.
+- Customer {Customer-A} holds the shop's own term {Term-A}, which has a 31-character name. Work order {Work-order-1} for {Customer-A} has an estimate and an invoice. For example: {Term-A} is ZZAUTOTEST S5-14 Long Term Name, {Customer-A} is ZZAUTOTEST S5-14 Customer and {Work-order-1} is S2-15440.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-CUST, P-WO, P-INV.
@@ -1822,7 +1822,7 @@ Sources (verbatim text in section 9): S5-R11.
 Section: Story 5 — New Customer and Edit Customer (TestRail section 91459). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop's own term {Term-A} has a 31-character name and is the default; its own term {Term-B} also has a 31-character name, is deactivated and is held by customer {Customer-A}. For example: {Term-A} is ZZAUTOTEST S5-15 Long Default AAA, {Term-B} is ZZAUTOTEST S5-15 Long Inactive BB and {Customer-A} is ZZAUTOTEST S5-15 Customer.
+- The shop's own term {Term-A} has a 31-character name and is the default; its own term {Term-B} also has a 31-character name, is deactivated and is held by customer {Customer-A}. For example: {Term-A} is ZZAUTOTEST S5-15 Long Default A, {Term-B} is ZZAUTOTEST S5-15 Long Inactv BB and {Customer-A} is ZZAUTOTEST S5-15 Customer.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Term-B}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-STD, P-CUST.
@@ -2023,7 +2023,7 @@ Sources (verbatim text in section 9): S11-R7, S6-R5.
 Section: Story 6 — Vendors (TestRail section 91460). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop's own term {Term-A} has a 31-character name, is deactivated and is held by vendor {Vendor-A}; its own term {Term-B} also has a 31-character name and is active. For example: {Term-A} is ZZAUTOTEST S6-07 Long Inactive AA, {Term-B} is ZZAUTOTEST S6-07 Long Active BBBB and {Vendor-A} is ZZAUTOTEST S6-07 Vendor.
+- The shop's own term {Term-A} has a 31-character name, is deactivated and is held by vendor {Vendor-A}; its own term {Term-B} also has a 31-character name and is active. For example: {Term-A} is ZZAUTOTEST S6-07 Long Inactv AA, {Term-B} is ZZAUTOTEST S6-07 Long Active BB and {Vendor-A} is ZZAUTOTEST S6-07 Vendor.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}, {Term-A}, {Term-B}, {Vendor-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-STD, P-VENDOR.
@@ -3010,8 +3010,8 @@ Sources (verbatim text in section 9): S12-R7.
 Section: Story 12 — Credit Terms audit log (TestRail section 91466). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop's own term {Term-A} has a 31-character name. For example: {Term-A} is ZZAUTOTEST S12-15 Long Name 0123.
-- A new name {Term-B}, also 31 characters. For example: {Term-B} is ZZAUTOTEST S12-15 Long Name 4567.
+- The shop's own term {Term-A} has a 31-character name. For example: {Term-A} is ZZAUTOTEST S12-15 Long Name 012.
+- A new name {Term-B}, also 31 characters. For example: {Term-B} is ZZAUTOTEST S12-15 Long Name 456.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group) is open on the Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}, {Term-A}, {Term-B}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
@@ -3394,7 +3394,7 @@ Preconditions, exactly as the case states them:
 - All twelve standard terms are active and COD is the default for new customers.
 - Starting screen: the Settings page.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p1-01-active-tab-one-table.png, ct-p1-05-row-menu-a-standard-term.png.
+- The design pictures ct-p1-01-active-tab-one-table.png, ct-p1-05-row-menu-a-standard-term.png are attached to this case; open each at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD.
@@ -3407,7 +3407,7 @@ Preconditions, exactly as the case states them:
 - All twelve standard terms are active and COD is the default for new customers.
 - Starting screen: the Settings page.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p1-01-active-tab-one-table.png, ct-p1-03-info-tooltip-cod.png.
+- The design pictures ct-p1-01-active-tab-one-table.png, ct-p1-03-info-tooltip-cod.png are attached to this case; open each at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD.
@@ -3420,7 +3420,7 @@ Preconditions, exactly as the case states them:
 - Net 30 is active and is not the default for new customers.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p1-10-saved.png, ct-p2-05-moved.png.
+- The design pictures ct-p1-10-saved.png, ct-p2-05-moved.png are attached to this case; open each at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD.
@@ -3431,9 +3431,9 @@ Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: 
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - At least one term is deactivated.
-- Starting screen: the Credit Terms page, Active tab.
+- Starting screen: the Settings page.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p1-01-active-tab-one-table.png, ct-p4-02-inactive-tab-the-rest.png.
+- The design pictures ct-p1-01-active-tab-one-table.png, ct-p4-02-inactive-tab-the-rest.png are attached to this case; open each at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD.
@@ -3443,10 +3443,10 @@ Sources (verbatim text in section 9): S1-R3.
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop has its own active term {Term-A} whose name is 31 characters long, due 45 days after the invoice date. For example: {Term-A} is Net 45 Fleet Accounts Payable X (on a test shop name it ZZAUTOTEST Net45 Fleet Acct Payble).
-- Starting screen: the Credit Terms page, Active tab.
+- The shop has its own active term {Term-A} whose name is 31 characters long, due 45 days after the invoice date. For example: {Term-A} is ZZAUTOTEST D-05 Net45 Fleet Acc (31 characters, as long as the design's Net 45 Fleet Accounts Payable X).
+- Starting screen: the Settings page.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p1-12-a-31-character-term-name.png.
+- The design picture ct-p1-12-a-31-character-term-name.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-INV.
@@ -3457,9 +3457,9 @@ Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: 
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Due on Receipt is the default for new customers.
-- Starting screen: the Credit Terms page, Active tab.
+- Starting screen: the Settings page.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p1-01-active-tab-one-table.png, ct-p1-10-saved.png, ct-p4-01-active-tab-after-deactivating-everything-it-can.png.
+- The design pictures ct-p1-01-active-tab-one-table.png, ct-p1-10-saved.png, ct-p4-01-active-tab-after-deactivating-everything-it-can.png are attached to this case; open each at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD.
@@ -3470,9 +3470,9 @@ Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: 
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Every term that can be deactivated is deactivated, and Net 30 is the default.
-- Starting screen: the Credit Terms page, Active tab.
+- Starting screen: the Settings page.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p4-01-active-tab-after-deactivating-everything-it-can.png, ct-p4-02-inactive-tab-the-rest.png.
+- The design pictures ct-p4-01-active-tab-after-deactivating-everything-it-can.png, ct-p4-02-inactive-tab-the-rest.png are attached to this case; open each at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD.
@@ -3485,7 +3485,7 @@ Preconditions, exactly as the case states them:
 - No term is deactivated.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p4-03-a-new-shop-inactive-tab-empty.png.
+- The design picture ct-p4-03-a-new-shop-inactive-tab-empty.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD.
@@ -3498,7 +3498,7 @@ Preconditions, exactly as the case states them:
 - The shop has its own active term {Term-A}, due on day 25 of the following month, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST D-07 Six.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p1-04-row-menu-your-term-not-used-yet.png.
+- The design picture ct-p1-04-row-menu-your-term-not-used-yet.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-INV.
@@ -3511,7 +3511,7 @@ Preconditions, exactly as the case states them:
 - Net 15 is active, is not the default and is held by at least one customer.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p1-05-row-menu-a-standard-term.png, ct-p2-01-choose-move-customers.png.
+- The design pictures ct-p1-05-row-menu-a-standard-term.png, ct-p2-01-choose-move-customers.png are attached to this case; open each at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: none.
@@ -3525,7 +3525,7 @@ Preconditions, exactly as the case states them:
 - No customer other than the Counter Sale customer is on COD.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p1-06-row-menu-cod-the-default.png.
+- The design picture ct-p1-06-row-menu-cod-the-default.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD.
@@ -3535,11 +3535,10 @@ Sources (verbatim text in section 9): S1-N3, S2-N2, S4-N2, UFS-9.
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop has its own active term {Term-A}, due on day 10 of the following month, held by 1 customer, {Customer-A}, and 2 vendors, {Vendor-A} and {Vendor-B}. For example: {Term-A} is 10th of next month.
-- For example: {Customer-A} is ZZAUTOTEST D-46 Customer, {Vendor-A} and {Vendor-B} are ZZAUTOTEST D-46 Vendor A and B.
+- The shop has its own active term {Term-A}, due on day 10 of the following month, held by 1 customer, {Customer-A}, and 2 vendors, {Vendor-A} and {Vendor-B}. For example: {Term-A} is 10th of next month, {Customer-A} is ZZAUTOTEST D-46 Customer, {Vendor-A} and {Vendor-B} are ZZAUTOTEST D-46 Vendor A and ZZAUTOTEST D-46 Vendor B.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p1-07-row-menu-your-term-in-use.png.
+- The design picture ct-p1-07-row-menu-your-term-in-use.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Vendor-A}, {Vendor-B}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-CUST, P-VENDOR.
@@ -3552,7 +3551,7 @@ Preconditions, exactly as the case states them:
 - Net 30 is the default for new customers and is held by at least one customer.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p1-08-row-menu-the-current-default.png.
+- The design picture ct-p1-08-row-menu-the-current-default.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD.
@@ -3561,12 +3560,11 @@ Sources (verbatim text in section 9): S2-N4, S2-R1, UFS-8.
 ### SETUP-D-48 — Design: Move Customers greyed without the customer permissions
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- You are signed in as {User-A}, whose role has Settings → Finance but not Customers → Create & Edit. For example: {User-A} is ZZAUTOTEST D-48 Finance only.
+- You are signed in as {User-A}, working in {Location-A}, and the role of {User-A} has Settings → Finance but not Customers → Create & Edit. For example: {User-A} is ZZAUTOTEST D-48 Finance only and {Location-A} is Staging Heavy Duty - 9919.
 - Due on Receipt is the default for new customers.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p2-09-without-the-customer-permissions.png.
+- The design picture ct-p2-09-without-the-customer-permissions.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}, {User-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD.
@@ -3579,7 +3577,7 @@ Preconditions, exactly as the case states them:
 - Net 7 is deactivated and held by at least one customer.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group) is open on the Inactive tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p3-05-inactive-tab-reactivate.png.
+- The design picture ct-p3-05-inactive-tab-reactivate.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD.
@@ -3591,7 +3589,7 @@ Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p1-13-page-menu-audit-log.png.
+- The design picture ct-p1-13-page-menu-audit-log.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: none.
@@ -3604,7 +3602,7 @@ Preconditions, exactly as the case states them:
 - Net 30 is active and is not the default.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p1-09-make-net-30-the-default.png.
+- The design picture ct-p1-09-make-net-30-the-default.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: none.
@@ -3617,7 +3615,7 @@ Preconditions, exactly as the case states them:
 - The shop has its own active term {Term-A}, due 9 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST D-12 Nine.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p1-11-delete-credit-term-confirmation.png.
+- The design picture ct-p1-11-delete-credit-term-confirmation.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-INV.
@@ -3627,11 +3625,12 @@ Sources (verbatim text in section 9): S2-R9, UFS-15.
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Today on the calendar of the location you work in is {Date-A}, and {Date-B} is the date 14 days later. For example: {Date-A} is Oct 21 and {Date-B} is Nov 4.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p3-01-new-credit-term-net-x-days.png.
+- The design picture ct-p3-01-new-credit-term-net-x-days.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Placeholders: {Date-A}, {Date-B}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: none.
 Sources (verbatim text in section 9): S3-R1, S3-R2, S3-R2 NAME, S3-R2 OPTS, S3-R3, S3-R5, S3-R5 NET, UFS-19, UFS-27.
 
@@ -3639,11 +3638,12 @@ Sources (verbatim text in section 9): S3-R1, S3-R2, S3-R2 NAME, S3-R2 OPTS, S3-R
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Today on the calendar of the location you work in is {Date-A}, and {Date-B} is the 10th of the following month. For example: {Date-A} is Oct 21 and {Date-B} is Nov 10.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p3-02-new-credit-term-day-of-the-following-month.png.
+- The design picture ct-p3-02-new-credit-term-day-of-the-following-month.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Placeholders: {Date-A}, {Date-B}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: none.
 Sources (verbatim text in section 9): S3-R3, S3-R4, S3-R5, S3-R5 DAY, UFS-28.
 
@@ -3653,7 +3653,7 @@ Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p3-03-validation-errors.png.
+- The design picture ct-p3-03-validation-errors.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: none.
@@ -3666,7 +3666,7 @@ Preconditions, exactly as the case states them:
 - The shop has its own active term {Term-A}, due 45 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST D-16 FortyFive.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p3-04-edit-credit-term.png.
+- The design picture ct-p3-04-edit-credit-term.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-INV.
@@ -3681,7 +3681,7 @@ Preconditions, exactly as the case states them:
 - At least ten customers are on COD, among them {Customer-A} and {Customer-B}. For example: {Customer-A} is ZZAUTOTEST D-17 Alpha and {Customer-B} is ZZAUTOTEST D-17 Bravo.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p2-02-move-customers-from-cod.png, ct-p2-03-some-customers-unticked.png, ct-p2-06-move-to-cod-the-0-line.png.
+- The design pictures ct-p2-02-move-customers-from-cod.png, ct-p2-03-some-customers-unticked.png, ct-p2-06-move-to-cod-the-0-line.png are attached to this case; open each at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Customer-A}, {Customer-B}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD, P-CUST.
@@ -3695,7 +3695,7 @@ Preconditions, exactly as the case states them:
 - At least one customer is on COD.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p2-04-pick-another-term.png.
+- The design picture ct-p2-04-pick-another-term.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD.
@@ -3709,7 +3709,7 @@ Preconditions, exactly as the case states them:
 - At least two customers are on Net 7.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p2-06-move-to-cod-the-0-line.png.
+- The design picture ct-p2-06-move-to-cod-the-0-line.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD.
@@ -3723,7 +3723,7 @@ Preconditions, exactly as the case states them:
 - At least two customers are on Net 7.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p2-07-confirm-the-0-limits.png, ct-p2-08-cancel-keeps-the-choices.png.
+- The design pictures ct-p2-07-confirm-the-0-limits.png, ct-p2-08-cancel-keeps-the-choices.png are attached to this case; open each at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD.
@@ -3736,7 +3736,7 @@ Preconditions, exactly as the case states them:
 - At least three changes were saved on the Credit Terms page, one of them an edit that changed both the name and the days of a term.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p1-14-credit-terms-log.png.
+- The design picture ct-p1-14-credit-terms-log.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: none.
@@ -3749,7 +3749,7 @@ Preconditions, exactly as the case states them:
 - No change has been saved on the Credit Terms page since release.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p1-15-credit-terms-log-empty.png.
+- The design picture ct-p1-15-credit-terms-log-empty.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: none.
@@ -3762,7 +3762,7 @@ Preconditions, exactly as the case states them:
 - The log cannot be loaded (the setup file says how to make it fail on the test shop).
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p1-16-credit-terms-log-could-not-load.png.
+- The design picture ct-p1-16-credit-terms-log-could-not-load.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: none.
@@ -3775,7 +3775,7 @@ Preconditions, exactly as the case states them:
 - {Customer-A} is on Net 45 with a credit limit of {Amount-A} and a balance above it. For example: {Customer-A} is ZZAUTOTEST D-25 Over, {Amount-A} is $500.00 and the balance is $600.00.
 - Starting screen: the customer page of {Customer-A}.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p8-01-the-over-credit-warning-today.png, ct-p8-03-still-warns-limit-above-0-exceeded.png.
+- The design pictures ct-p8-01-the-over-credit-warning-today.png, ct-p8-03-still-warns-limit-above-0-exceeded.png are attached to this case; open each at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Amount-A}, {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-CUST.
@@ -3788,7 +3788,7 @@ Preconditions, exactly as the case states them:
 - Due on Receipt is the default for new customers.
 - Starting screen: the Customers page.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p5-01-new-customer-today.png, ct-p5-02-new-customer-credit-terms-prefilled-with-the-def.png.
+- The design pictures ct-p5-01-new-customer-today.png, ct-p5-02-new-customer-credit-terms-prefilled-with-the-def.png are attached to this case; open each at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD.
@@ -3801,7 +3801,7 @@ Preconditions, exactly as the case states them:
 - Due on Receipt is the default for new customers.
 - Starting screen: the Customers page.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p5-03-new-customer-the-credit-terms-picker.png.
+- The design picture ct-p5-03-new-customer-the-credit-terms-picker.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD.
@@ -3814,7 +3814,7 @@ Preconditions, exactly as the case states them:
 - Net 30 is the default for new customers.
 - Starting screen: the Customers page.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p5-04-new-customer-cod-picked-limit-locked-at-0.png.
+- The design picture ct-p5-04-new-customer-cod-picked-limit-locked-at-0.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD.
@@ -3823,11 +3823,10 @@ Sources (verbatim text in section 9): S5-R4, UFS-44.
 ### SETUP-D-39 — Design: New Customer without AP/AR access has no credit fields
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- You are signed in as {User-A}, whose role can create customers but does not have View and Manage AP/AR Data. For example: {User-A} is ZZAUTOTEST D-39 No AP.
+- You are signed in as {User-A}, working in {Location-A}, and the role of {User-A} can create customers but does not have View and Manage AP/AR Data. For example: {User-A} is ZZAUTOTEST D-39 No AP and {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: the Customers page.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p5-05-new-customer-without-view-and-manage-ap-ar-data.png.
+- The design picture ct-p5-05-new-customer-without-view-and-manage-ap-ar-data.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}, {User-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: none.
@@ -3840,7 +3839,7 @@ Preconditions, exactly as the case states them:
 - {Customer-A} is on Net 50, and Net 50 is deactivated. For example: {Customer-A} is ZZAUTOTEST D-26 Customer.
 - Starting screen: the Customers page.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p6-01-customer-page-today.png, ct-p6-02-customer-on-a-deactivated-term.png.
+- The design pictures ct-p6-01-customer-page-today.png, ct-p6-02-customer-on-a-deactivated-term.png are attached to this case; open each at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD, P-CUST.
@@ -3853,7 +3852,7 @@ Preconditions, exactly as the case states them:
 - {Customer-A} is on Net 50 with a credit limit of {Amount-A}, and Net 50 is deactivated. For example: {Customer-A} is ZZAUTOTEST D-27 Customer and {Amount-A} is $5,000.00.
 - Starting screen: the customer page of {Customer-A}.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p6-03-edit-customer-today.png, ct-p6-04-edit-customer-keeps-the-inactive-term.png.
+- The design pictures ct-p6-03-edit-customer-today.png, ct-p6-04-edit-customer-keeps-the-inactive-term.png are attached to this case; open each at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Amount-A}, {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD, P-CUST.
@@ -3866,7 +3865,7 @@ Preconditions, exactly as the case states them:
 - {Customer-A} is on Net 30 with a credit limit of {Amount-A}. For example: {Customer-A} is ZZAUTOTEST D-40 Customer and {Amount-A} is $5,000.00.
 - Starting screen: the customer page of {Customer-A}.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p6-06-edit-customer-cod-or-credit-hold-locks-the-limit.png.
+- The design picture ct-p6-06-edit-customer-cod-or-credit-hold-locks-the-limit.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Amount-A}, {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-CUST.
@@ -3879,7 +3878,7 @@ Preconditions, exactly as the case states them:
 - {Customer-A} is on Net 50, and Net 50 is deactivated. For example: {Customer-A} is ZZAUTOTEST D-28 Customer.
 - Starting screen: the customer page of {Customer-A}.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p6-05-this-customer-s-picker.png, ct-p7-07-edit-vendor-keeps-the-inactive-term.png.
+- The design pictures ct-p6-05-this-customer-s-picker.png, ct-p7-07-edit-vendor-keeps-the-inactive-term.png are attached to this case; open each at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD, P-CUST.
@@ -3892,7 +3891,7 @@ Preconditions, exactly as the case states them:
 - {Customer-A} is on Net 30, and Net 50 is deactivated. For example: {Customer-A} is ZZAUTOTEST D-41 Customer.
 - Starting screen: the customer page of {Customer-A}.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p6-07-any-other-customer-s-picker.png.
+- The design picture ct-p6-07-any-other-customer-s-picker.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD, P-CUST.
@@ -3906,7 +3905,7 @@ Preconditions, exactly as the case states them:
 - Due on Receipt is the default for new customers.
 - Starting screen: the Vendors page.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p7-01-new-vendor-today.png, ct-p7-02-new-vendor-starts-on-cod-picker-with-your-terms.png.
+- The design pictures ct-p7-01-new-vendor-today.png, ct-p7-02-new-vendor-starts-on-cod-picker-with-your-terms.png are attached to this case; open each at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-STD, P-INV.
@@ -3919,7 +3918,7 @@ Preconditions, exactly as the case states them:
 - {Vendor-A} is on Net 30. For example: {Vendor-A} is ZZAUTOTEST D-30 Vendor.
 - Starting screen: the vendor page of {Vendor-A}.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p7-03-edit-vendor-today.png, ct-p7-04-edit-vendor-the-picker-with-your-terms.png, ct-p7-08-any-other-vendor-s-picker.png.
+- The design pictures ct-p7-03-edit-vendor-today.png, ct-p7-04-edit-vendor-the-picker-with-your-terms.png, ct-p7-08-any-other-vendor-s-picker.png are attached to this case; open each at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}, {Vendor-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-VENDOR.
@@ -3932,7 +3931,7 @@ Preconditions, exactly as the case states them:
 - {Vendor-A} is on Net 50, and Net 50 is deactivated. For example: {Vendor-A} is ZZAUTOTEST D-31 Vendor.
 - Starting screen: the vendor page of {Vendor-A}.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p7-07-edit-vendor-keeps-the-inactive-term.png.
+- The design picture ct-p7-07-edit-vendor-keeps-the-inactive-term.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}, {Vendor-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD, P-VENDOR.
@@ -3945,7 +3944,7 @@ Preconditions, exactly as the case states them:
 - {Vendor-A} is on Net 50, and Net 50 is deactivated. For example: {Vendor-A} is ZZAUTOTEST D-42 Vendor.
 - Starting screen: the Vendors page.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p7-05-vendor-page-today.png, ct-p7-06-vendor-on-a-deactivated-term.png.
+- The design pictures ct-p7-05-vendor-page-today.png, ct-p7-06-vendor-on-a-deactivated-term.png are attached to this case; open each at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}, {Vendor-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD, P-VENDOR.
@@ -3957,12 +3956,12 @@ Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The shop has its own active term {Term-A}, due on day 10 of the following month. For example: {Term-A} is ZZAUTOTEST D-32 Tenth.
 - {Vendor-A} is on {Term-A}. For example: {Vendor-A} is ZZAUTOTEST D-32 Vendor.
-- A delivery from {Vendor-A} was received with a vendor invoice dated Oct 5, 2026.
-- Starting screen: the delivery page of that vendor invoice.
+- {Vendor-A} has a saved vendor invoice, {Vendor-invoice-A}, dated Oct 5, 2026. For example: {Vendor-invoice-A} is a vendor invoice for one part.
+- Starting screen: the vendor invoices list (Parts, Vendors, Vendor Invoices).
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p7-09-a-vendor-invoice-today-net-60.png, ct-p7-10-vendor-on-10th-of-next-month-oct-5-due-nov-10.png.
+- The design pictures ct-p7-09-a-vendor-invoice-today-net-60.png, ct-p7-10-vendor-on-10th-of-next-month-oct-5-due-nov-10.png are attached to this case; open each at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders: {Location-A}, {Term-A}, {Vendor-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Placeholders: {Location-A}, {Term-A}, {Vendor-A}, {Vendor-invoice-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-VENDOR, P-INV, P-VINV.
 Sources (verbatim text in section 9): S7-R2, S7-R9.
 
@@ -3972,12 +3971,12 @@ Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The shop has its own active term {Term-A}, due 10 days after the invoice date. For example: {Term-A} is ZZAUTOTEST D-43 Ten.
 - {Vendor-A} is on {Term-A}. For example: {Vendor-A} is ZZAUTOTEST D-43 Vendor.
-- A delivery from {Vendor-A} was received with a vendor invoice dated Oct 5, 2026.
-- Starting screen: the delivery page of that vendor invoice.
+- {Vendor-A} has a saved vendor invoice, {Vendor-invoice-A}, dated Oct 5, 2026. For example: {Vendor-invoice-A} is a vendor invoice for one part.
+- Starting screen: the vendor invoices list (Parts, Vendors, Vendor Invoices).
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p7-11-vendor-on-net-10-oct-5-due-oct-15.png.
+- The design picture ct-p7-11-vendor-on-net-10-oct-5-due-oct-15.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders: {Location-A}, {Term-A}, {Vendor-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Placeholders: {Location-A}, {Term-A}, {Vendor-A}, {Vendor-invoice-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-VENDOR, P-INV, P-VINV.
 Sources (verbatim text in section 9): S7-R1, S7-R9.
 
@@ -3988,9 +3987,9 @@ Preconditions, exactly as the case states them:
 - The shop has its own active term {Term-A}, due on day 10 of the following month. For example: {Term-A} is 10th of next month (on a test shop name it ZZAUTOTEST D-33 Tenth).
 - {Customer-A} is on {Term-A}. For example: {Customer-A} is ZZAUTOTEST D-33 Customer.
 - Work order {Work-order-1} for {Customer-A} was invoiced with the invoice date Oct 5, 2026. For example: {Work-order-1} is S2-17610.
-- Starting screen: work order {Work-order-1}, Finance tab.
+- Starting screen: work order {Work-order-1}.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p9-01-an-invoice-today-net-30.png, ct-p9-02-10th-of-next-month-invoice-oct-5-due-nov-10.png.
+- The design pictures ct-p9-01-an-invoice-today-net-30.png, ct-p9-02-10th-of-next-month-invoice-oct-5-due-nov-10.png are attached to this case; open each at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-CUST, P-WO, P-INV.
@@ -4003,9 +4002,9 @@ Preconditions, exactly as the case states them:
 - The shop has its own active term {Term-A}, due on day 10 of the following month. For example: {Term-A} is ZZAUTOTEST D-44 Tenth.
 - {Customer-A} is on {Term-A}. For example: {Customer-A} is ZZAUTOTEST D-44 Customer.
 - Work order {Work-order-1} for {Customer-A} was invoiced with the invoice date Oct 28, 2026. For example: {Work-order-1} is S2-17655.
-- Starting screen: work order {Work-order-1}, Finance tab.
+- Starting screen: work order {Work-order-1}.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p9-03-invoice-oct-28-still-due-nov-10.png.
+- The design picture ct-p9-03-invoice-oct-28-still-due-nov-10.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-CUST, P-WO, P-INV.
@@ -4019,7 +4018,7 @@ Preconditions, exactly as the case states them:
 - {Customer-A} has an asset, {Asset-A}. For example: {Asset-A} is 2019 Kenworth T880.
 - Starting screen: the customer page of {Customer-A}.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p8-02-cod-customer-0-limit-owes-1-200-no-warning.png.
+- The design picture ct-p8-02-cod-customer-0-limit-owes-1-200-no-warning.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Asset-A}, {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-CUST.
@@ -4031,9 +4030,9 @@ Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - {Customer-A} is on Net 30 with a credit limit of {Amount-A} and a balance above it. For example: {Customer-A} is ZZAUTOTEST D-36 Over, {Amount-A} is $500.00.
 - Work order {Work-order-1} is open for {Customer-A}. For example: {Work-order-1} is S2-17322.
-- Starting screen: work order {Work-order-1}.
+- Starting screen: the Work Orders page.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p9-01-an-invoice-today-net-30.png.
+- The design picture ct-p9-01-an-invoice-today-net-30.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Amount-A}, {Customer-A}, {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-CUST, P-WO, P-INV.
@@ -4045,7 +4044,7 @@ Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p1-02-info-tooltip-due-on-receipt.png.
+- The design picture ct-p1-02-info-tooltip-due-on-receipt.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: none.
@@ -4058,7 +4057,7 @@ Preconditions, exactly as the case states them:
 - No term is deactivated.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p4-03-a-new-shop-inactive-tab-empty.png.
+- The design picture ct-p4-03-a-new-shop-inactive-tab-empty.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD.
@@ -4070,7 +4069,7 @@ Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p3-03-validation-errors.png.
+- The design picture ct-p3-03-validation-errors.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: none.
@@ -4082,7 +4081,7 @@ Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: the Credit Terms page, Active tab.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
-- The design pictures named below are attached to this case; open each at 100% zoom beside the screen: ct-p3-03-validation-errors.png.
+- The design picture ct-p3-03-validation-errors.png is attached to this case; open it at 100% zoom beside the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: none.
