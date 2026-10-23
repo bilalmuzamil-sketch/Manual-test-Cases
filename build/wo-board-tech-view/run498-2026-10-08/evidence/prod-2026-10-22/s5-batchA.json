@@ -43,5 +43,99 @@
    "field_total_price": "Total price $0.00"
   },
   "error": "page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://app.shopview.com/workorders?tab=all\nCall log:\n  - navigating to \"https://app.shopview.com/workorders?tab=all\", waiting until \"domcontentloaded\"\n"
- }
+ },
+ "C96983": {
+  "normalBoard": [
+   "vehicle",
+   "vin",
+   "progress",
+   "lines_count",
+   "total_price"
+  ],
+  "normalTech": [
+   "Status",
+   "Waiting On Parts",
+   "Number",
+   "Customer",
+   "Unit",
+   "Asset",
+   "Progress",
+   "Service Advisor",
+   "Clocked In",
+   "Lines",
+   "Created On",
+   "Total Price"
+  ],
+  "normalSave": "ok",
+  "afterReload": [
+   "vehicle",
+   "vin",
+   "progress",
+   "lines_count",
+   "total_price",
+   "start_date"
+  ],
+  "failBoard": {
+   "on": [
+    "technician",
+    "company_name",
+    "vehicle",
+    "progress",
+    "total_price"
+   ],
+   "reads": 2
+  },
+  "failTech": {
+   "heads": [
+    "Status",
+    "Waiting On Parts",
+    "Number",
+    "Customer",
+    "Unit",
+    "Asset",
+    "Progress",
+    "Service Advisor",
+    "Clocked In",
+    "Lines",
+    "Assigned Techs",
+    "Created On",
+    "Total Price"
+   ],
+   "on": [
+    "unreceived_part_requests_count",
+    "unit",
+    "vehicle",
+    "progress",
+    "service_advisor",
+    "clocked_in_technicians",
+    "lines_count",
+    "assigned_techs",
+    "start_date",
+    "total_price"
+   ]
+  },
+  "changeDuringFailure": "ok",
+  "afterFailureRemoved": [
+   "vehicle",
+   "vin",
+   "progress",
+   "lines_count",
+   "total_price",
+   "vehicle_here",
+   "start_date"
+  ],
+  "savedNow": {
+   "vin": true,
+   "vehicle": true,
+   "progress": true,
+   "startDate": true,
+   "linesCount": true,
+   "technician": false,
+   "totalPrice": true,
+   "companyName": false,
+   "vehicleHere": true,
+   "lineTechnicians": false
+  }
+ },
+ "restored": true
 }
