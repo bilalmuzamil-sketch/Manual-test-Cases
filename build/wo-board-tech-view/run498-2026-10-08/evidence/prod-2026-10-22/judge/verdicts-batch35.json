@@ -1,0 +1,20 @@
+{
+ "C682419": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step(s) 7: the location was never changed to one with only a few technicians, so the handle on a small board was not seen.",
+  "bold_steps": [7],
+  "observed": [
+   "Result: Unsure on production (v26.40.0-ffea43c is not this build; see below) — production build v26.43.0-ffea43c, Truck Hill 1, signed in as \"Service Advisor No Reports (Admin)\".",
+   "Step 7: the narrower windows were checked (handle about 150 px wide at every size, a column is about 286 px), but the \"few technicians\" part was never done: the page stayed on Truck Hill 1, the same big board, and the picture taken for it shows the same columns (Ayesha Khan, Aaron Baker, Aaron Zed, Admin ShopView).",
+   "So the sentence \"On a location with only a few technicians the handle is longer than on a big board\" was not seen on production.",
+   "Everything else looked as the test expects: the bottom bar is 16 px against about 10 px inside a column, dragging reaches \"Deleted technician\" on the right and comes back to the start with \"Unassigned\" staying on the left, the bar is easy to see in Dark, and \"Tech View\" and \"List\" keep their thin bars."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C682419-s7-1280.png",
+   "evidence/prod-2026-10-22/C682419-s7-1024.png",
+   "evidence/prod-2026-10-22/C682419-s7-dvi.png"
+  ],
+  "reason_for_reviewer": "s7_loc and s7_back both 'Truck Hill 1 S(' and s7_few.geo.scrollW = 27056 (identical to s2) -> the location switch to a small location never happened (script looked for a staging-only location such as 'DVI Test'). C682419-s7-dvi.png visually identical to the big board. All other readings match Expected: barH 16 vs colBar 10; handleCss 150 >= halfColumn 143 at 1600/1280/1024; s6 reachedEnd/backToStart/unassignedStayed true; s8 dark track lum 17 vs thumb 84 (visible); s9 tech/list bars 8 px = control_listBars 8. Firefox not checked (Chromium only) - Expected sentence is conditional on Firefox, not a step. NOTE: first observed bullet text has a slip; corrected below in 'observed_fix'? -- see fixed version.",
+  "todo": "What needs to be done: on production, switch to a location with only a few technicians (or make one), look at the handle under Board View at a wide and a narrow window, and confirm it is longer than on Truck Hill 1 and never shorter than about half a column."
+ }
+}
