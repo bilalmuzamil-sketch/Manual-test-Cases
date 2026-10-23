@@ -8,7 +8,8 @@ h2. Description
 
 For example,
 
-* the board is drawn a little taller than the window (56 px at a 1600 × 1000 window), so the page has room to move
+* at a 1600 px wide window the row of tabs, *Search* and filters no longer fits since the *Technician* filter was added (SV-11326, Done 20 Oct 2026), so *Create Work Order* drops to a second line
+* that pushes the board 56 px lower, so the page (1056 px) is taller than the window (1000 px) and has room to move
 * the wheel over an empty area under a short column scrolls that extra space, taking the tabs, *Search*, the filters and the view switcher out of sight
 * scrolling inside a column with many cards works correctly — only that column moves
 
@@ -17,6 +18,7 @@ h2. Steps to Reproduce
 # Sign in to production and check the top bar shows *Truck Hill 1*; use a browser window about 1600 × 1000.
 # Open *Work Orders*, click the *All* tab, type {{ZZAUTOTEST F2 Column Scroll}} in *Search* and click *Board View*.
 #* *Unassigned* holds many cards; the technician columns next to it are short or empty.
+#* *Create Work Order* sits on its own line under the row of tabs and filters.
 # Put the mouse over the empty area below a short column (e.g. under *Ayesha Khan*) and turn the wheel down.
 #* The whole page moves up: the *All / Estimates / Work Orders / Completed* tabs, *Search*, the filters and the view switcher go off the top.
 
@@ -30,12 +32,12 @@ h2. Steps to Reproduce
 
 h2. Screenshots
 
-!C96953-board-before-wheel.png|width=1000!
-!C96953-page-scrolled-after-wheel.png|width=1000!
+!C96953-1-before-wheel.png|width=1000!
+!C96953-2-after-wheel.png|width=1000!
 
 h2. Environment
 
-* *Build:* {{v26.43.0-ffea43c}} on [production|https://app.shopview.com/workorders] · *Location:* Truck Hill 1 · *User:* Admin test account · seen twice on 22 Oct 2026 (17:5x and 23:11 UTC) · same steps passed on staging 19 Oct 2026
+* *Build:* {{v26.43.0-ffea43c}} on [production|https://app.shopview.com/workorders] · *Location:* Truck Hill 1 · *User:* Admin test account · seen on 22 Oct 2026 (17:5x and 23:11 UTC) and 23 Oct 2026 (02:51 UTC) · same steps passed on staging 19 Oct 2026, before the Technician filter was added
 
 h2. Sources
 
