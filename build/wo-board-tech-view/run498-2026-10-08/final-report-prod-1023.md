@@ -63,7 +63,7 @@ Every test in the run was tried on the live site, and every result I could stand
 | Every held test has a written reason and the step that needs a hand check | Yes |
 | Every script change and learning saved in the repository | Yes |
 | No problem report filed without your go-ahead | Yes |
-| Every test in the run has a production result | No — about 120 are held or not run, as listed above. Those still show their earlier STAGING result in the run (mostly Passed), so the run's totals (271 Passed) are not all production |
+| Every test in the run has a production result | No — 115 are held or not run, as listed above. Those still show their earlier STAGING result in the run (mostly Passed), so the run's totals (271 Passed) are not all production |
 | **Ready to hand over as finished** | **NO** |
 
 ---
