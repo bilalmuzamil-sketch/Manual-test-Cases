@@ -34,6 +34,24 @@ or a database field name. Feed it a small JSON spec; a worked example is
 **Unchanged:** Rule 55 (the project and feature are named, and a non-technical person can answer every
 row) and Rule 66 (the sheet is the LAST thing sent, once everything answerable without him is done).
 
+## 🛑 §0-a — DISCREPANCIES FOUND IN BUILD VERIFICATION GO INTO THE FEATURE'S EXISTING SHEET (Rule 116, QA lead 2026-10-23)
+
+When a build-verification pass finds a **design vs build** discrepancy (or a **build vs PRD / other sources** one):
+
+1. **Ask first:** "Do you have the Product Owner questions spreadsheet for <feature>?" If yes, ask for the link. Don't hunt
+   for one or start a new one without asking. The questions still go in at the end of the pass (§1, Rule 66).
+2. **Design vs build → its own tab named "Design vs Build discrepancy"** (create it, or add to it if it exists). Each row says
+   whether **the PRD and other sources are silent** on the point or **say something else** (and what, briefly).
+3. **Build vs PRD / sources → the sheet's existing question tab** (continue its numbering and colours), or a separate tab if
+   the sheet has none that fits.
+4. **Short and plain:** what you see on screen · what the design or document says · options (a)/(b) each saying what would
+   follow. A product owner, a non-technical reader or a manual tester answers it without opening anything. No case ids,
+   requirement codes, API/HTTP terms or field names in the question; put those in "Where we found it".
+5. **Copy the sheet's own shape.** Example (WO Board and Tech View, for Chris Ward,
+   https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU): title row · one-paragraph note to the
+   reader with a colour guide · columns **# · Topic · Question for you · What we know today · Your answer · Where we found it** ·
+   new rows in a dated colour, and the intro row says what was added when.
+
 ## PURPOSE, IN PLAIN ENGLISH
 
 **Ask a product owner only the things we genuinely cannot settle ourselves — once, at the end, on one

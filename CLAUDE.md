@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **115 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **116 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -343,7 +343,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
 
 ---
 
-## 2 · THE RULE INDEX — all 115 rules, and where each one lives
+## 2 · THE RULE INDEX — all 116 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -483,6 +483,7 @@ rule. Generated from the split files' own headers.
 | **113** | VERIFY AGAINST THE **REAL CASE TEXT**, NEVER AGAINST A SUMMARY OF IT — a handoff is a map, not the territory (QA lead, 2026-09-17) |
 | **114** | THE EXPECTED RESULT IS THE **VERBATIM QUOTE FROM THE SOURCE, AND IS NEVER CHANGED** — quoted in the source's own words with page/section/version cited (54), never paraphrased/softened/sharpened or edited to match the build; a build that differs is a deviation (62-b), and the only permitted edit is correcting it BACK to the source quote (106). Hardens Rule 57 (QA lead, 2026-09-21) |
 | **115** | A BUILD-VERIFIED CASE IS **FULLY RUNNABLE AND FULLY UNDERSTANDABLE BY THE MANUAL TESTER** — this lane's definition of done is all three together (build-verified + layman-understandable + hand-runnable), never just stamp+marker. FORBIDDEN in a READY case: developer jargon in tester-facing text (codes/endpoint/API/p95/circuit-breaker/ms/req-ids → provenance only, 110) · a check not doable by hand marked READY (→ keep only the manual part, else HOLD "not manually testable") · PRECONDITIONS that don't let the tester reach the start state by hand — name the exact role+permissions, every gating setting, and concrete UI-buildable data (verify settings on the build, never guess), never a vague role or a bare state assertion (amendment 2026-10-05, 2nd tester complaint). Expected substance still the source's (57/114). Enforced by `check_tester_runnable.py`. A manual tester must NEVER again report a build-verified case as unclear/unrunnable. Amends 102/84 (QA lead, 2026-10-05) |
+| **116** | A DESIGN-vs-BUILD (or BUILD-vs-SOURCE) DISCREPANCY FOUND IN BUILD VERIFICATION → ASK whether a Product Owner question sheet exists for the feature and ask for it · design-vs-build questions in their own tab "Design vs Build discrepancy", each saying whether the PRD/sources are SILENT or SAY SOMETHING ELSE · build-vs-source questions in the sheet's existing tab (or a separate one) · every question short, plain and answerable by a layman or manual tester (QA lead, 2026-10-23) |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
 `build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`

@@ -4171,3 +4171,39 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     finding it would need more (creating data, walking a process, clocking time, anything past opening and reading screens), ASK him — what
     is missing, what you would do, and how long it would take — and proceed ONLY on his YES. No answer or NO ⇒ stay in the lane: keep the
     case's wording and report that item plainly as not seen on the build. (A refine pass he asked for is different — skill 21.)
+
+116. **A DISCREPANCY FOUND DURING BUILD VERIFICATION GOES INTO THE FEATURE'S PRODUCT OWNER QUESTION SHEET — ASK FOR THE
+    SHEET FIRST, PUT DESIGN-vs-BUILD IN ITS OWN TAB, AND WRITE EVERY QUESTION SHORT AND PLAIN (build-verification lane,
+    all projects, permanent; QA lead 2026-10-23).**
+    USER DIRECTIVE (2026-10-23, verbatim, his typing preserved): *"when doing the build verification if you find a design vs
+    build discrepency, you must always ask if you have the Questions spread sheet for the PO for the feature you are build
+    verifying. If I say YES then you will ask me for it and I will provide you. Then for the design vs buil discrepency you will
+    create a separate tab in the sheet and ask questions in that sheet and call the call design vs build discrepency and do
+    mention if the PRD and other sources are silent on it or PRD and other sources say something else and for the Build vs
+    PRD/Sources discrepencies use eithe rcreate a separate tab or use the existing tab of the sheet if the sheet pre exists, make
+    sure that your QUestions are in the siplest form and not very long but contain the information for a lay man or a non
+    technical person or for amanual tester they are understandable to answer them."* Recorded on his "Yes record it as a
+    standing rule" (Rule 72), with the example sheet he named: *WO Board and Tech View Feature Squad – Questions on the spec and
+    design – for Chris Ward* (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU).
+    **THE RULE, AS STEPS:**
+    **(1) ASK FOR THE SHEET.** The moment a build-verification pass finds a discrepancy between the design and the build, ask
+    him: *"Do you have the Product Owner questions spreadsheet for <feature>?"* If YES, ask him for it (the link); he provides
+    it. Do not hunt for one on your own or start a new one without asking. (Asking for the sheet is not sending it: the
+    questions still go in at the END of the pass, Rule 66.)
+    **(2) DESIGN vs BUILD → ITS OWN TAB, NAMED "Design vs Build discrepancy".** Create that tab in his sheet (or add to it if it
+    already exists) and put each design-vs-build question there. Every question says which of the two it is:
+    **the PRD and the other sources are SILENT on it**, or **the PRD / other sources SAY SOMETHING ELSE** (and what, in a few
+    words).
+    **(3) BUILD vs PRD / SOURCES → the sheet's EXISTING question tab** if the sheet already has one (continue its numbering and
+    shape), otherwise a separate tab.
+    **(4) EVERY QUESTION IS SHORT AND PLAIN** — understandable by the product owner, a non-technical reader or a manual tester
+    without opening anything else: what you see on screen, what the design or document says, then options (a)/(b)/… each saying
+    what would follow. No case ids, requirement codes, API or HTTP terms, field names or tool names in the question itself
+    (7/9, 55, 103, 110); those may go in a "Where we found it" column. Long is a defect: one topic per row, a few sentences.
+    **(5) FOLLOW THE SHEET'S OWN SHAPE.** In the example sheet that is a title row, a one-paragraph note to the reader with a
+    colour guide, then columns **# · Topic · Question for you · What we know today · Your answer · Where we found it**, new rows
+    marked with a dated colour. Copy the formatting of the existing rows (Rule 16), and say in the intro row what was added and when.
+    **WHAT THIS DOES NOT CHANGE:** the Expected Result still comes from the documents, never the build (57, 114); a
+    discrepancy is still never a Jira ticket (62); the lane limit of Rule 115 stands; the sheet is still sent last (66) and is
+    still a spreadsheet, never a markdown table (QUESTION SHEET bullet in CLAUDE.md §1). Operator form:
+    `build/skills/07-PO-QUESTIONS.md` §0.

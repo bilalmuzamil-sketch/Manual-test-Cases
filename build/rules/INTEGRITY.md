@@ -464,3 +464,13 @@ It deliberately does NOT touch the standing holds — Jira/external artefacts (6
 Vladimir's cases (38), Automated cases (71), secrets (82), production. Unblocking concerns reaching a
 test STATE, never widening what may be published or written. Indexed in `CLAUDE.md` §2 and folded into
 the existing §1 blocker bullet as an amendment per the §1 admission gate. Rule count 106 → **107**.
+
+## Rule 116 added 2026-10-23
+
+**116 — A DISCREPANCY FOUND DURING BUILD VERIFICATION GOES INTO THE FEATURE'S PRODUCT OWNER QUESTION SHEET.** Ordered by the
+QA lead on 2026-10-23 (verbatim in the rule body) and recorded on his "Yes record it as a standing rule" (Rule 72). Ask whether
+the feature's PO question spreadsheet exists and ask for it; design-vs-build questions in their own tab "Design vs Build
+discrepancy", each saying whether the PRD/sources are silent or say something else; build-vs-source questions in the sheet's
+existing tab or a separate one; every question short and plain. Operator form: `build/skills/07-PO-QUESTIONS.md` §0-a.
+Indexed in `CLAUDE.md` §2. **Not added to §1:** §1 already measures 31,167 bytes against its 20,000-byte cap, so a new §1
+admission would first need something demoted (the gate's rule) — left for the QA lead to decide. Rule count 115 → **116**.
