@@ -112,7 +112,7 @@ await run('C96988', async () => {
   await a.post('/api/work-orders/change-status', { id: w, status: 'approved' }); await a.post('/api/work-orders/change-lead-technician', { work_order_id: w, tech_assigned_id: ES.staff_id });
   // 22 Oct 2026: the case is Tech View only (PRD v73 S6-R1; Board View has no density control, S3-R11). Lead Technician turned on,
   // start at Regular (step 1 = the reference), then Compact (steps 2-3) and Comfortable (steps 4-5): headings + the row's text each time.
-  await go('Tech View', n); R.C96988 = { leadSwitch: await setSwitch('Tech View', 'lead_technician', true), totalSwitch: await setSwitch('Tech View', 'total_price', true), tech: {} };
+  await go('Tech View', n); R.C96988 = { leadSwitch: await setSwitch('Tech View', 'technician', true), totalSwitch: await setSwitch('Tech View', 'total_price', true), tech: {} }; // 23 Oct: the Lead Technician switch is toggle_tech_view_column_technician
   await expandSmallGroups(p);
   for (const d of ['regular', 'compact', 'comfortable']) { await setDensity(d); await expandSmallGroups(p); R.C96988.tech[d] = { heads: await heads(), size: await sizes(p, rowSel(w)) }; await shot(p, `C96988-tech-${d}`); }
   R.C96988.order = ['regular', 'compact', 'comfortable'];

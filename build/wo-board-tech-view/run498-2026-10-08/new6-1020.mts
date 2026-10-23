@@ -9,7 +9,7 @@ import type { Page } from 'playwright';
 import { open, done, APP } from './session.mts';
 import { asRunner } from './runner.mts';
 import { api, customer, workOrder, workOrders } from './data.mts';
-import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, switchLocUI } from './wob.mts';
+import { EV, t, shot, display, tab, search, drag, boardCols, allBoardCols, toColumn, groups, openReassign, toasts, shiftPrompt, expandSmallGroups, switchLocUI, ensureLocation } from './wob.mts';
 import { staffRows, person, roleIds, HEAVY } from './staff.mts';
 import { viewAs } from './viewas.mts';
 import { candidates } from './data.mts';
@@ -114,17 +114,15 @@ const tips = (pg: Page) => pg.evaluate(`[...document.querySelectorAll('.q-toolti
 
 // 20 Oct 2026 (first run): C682436 left the runner at "ZZAUTOTEST Location Empty" (the on-screen switch back did not take), so the
 // next four tests ran in the wrong location. Every block now starts here: switch on screen, read the header back, fall back to the API.
-const toHeavy = async () => { let h = await switchLocUI(p, LOC1_NAME).catch(() => '');
-  if (!/Heavy Duty/.test(String(h))) { await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'Asia/Karachi' }); await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000);
-    h = (await p.locator('[data-test-id="profile_menu_button"]').innerText().catch(() => '')).replace(/\s+/g, ' ').trim(); }
-  if (!String(h).includes(LOC1_NAME)) throw new Error('could not get back to ' + LOC1_NAME + ': header reads ' + h); return h; };
+const toHeavy = async () => { process.env.WOB_LOC_TRIES = '3';   // 23 Oct: production — the location name is read from profile.mts, never "Heavy Duty"
+  await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await p.waitForTimeout(5000);
+  return await ensureLocation(p, a, HEAVY); };
 
 // ───── C682421: first Tab lands on S2-16688, the whole row / card seen
 await run('C682421', async (o) => { o.location = await toHeavy();
-  await p.setViewportSize({ width: 1440, height: 900 }); const N = 'S2-16688';
-  await p.goto(APP + '/workorders?tab=all&search=' + N, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000);
+  await p.setViewportSize({ width: 1440, height: 900 }); const N = (await mkSet('ZZAUTOTEST C682421 Unassigned', [{ co: 'One' }])).w.One.number; o.seeded = N;   // 23 Oct: seeded, no technician (staging used S2-16688)
+  await go('Tech View', N); await p.waitForTimeout(2500);   // 23 Oct: the List-page route the other production scripts use (a ?search= link left no Tech View button)
   o.s1 = { search: await p.locator('[data-test-id="page_search_input"]').inputValue().catch(() => null) };
-  await display(p, 'Tech View'); await p.waitForTimeout(2500);
   const tog = p.locator('[data-test-id^="button_tech_view_expand_all"], [data-test-id="button_tech_view_toggle_all"], th .q-icon, [aria-label*="xpand all"]').first();
   await tog.hover().catch(() => {}); await p.waitForTimeout(700); o.s3_tip = await tips(p); if (o.s3_tip.some((x: string) => /Expand all/i.test(x))) { await tog.click().catch(() => {}); await p.waitForTimeout(1500); }
   await expandSmallGroups(p);
