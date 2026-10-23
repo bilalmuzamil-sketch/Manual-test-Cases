@@ -682,3 +682,6 @@ A Failed / Blocked / Retest test whose ticket carries the Jira label `fast-follo
 (QA lead 23 Oct 2026, L0562):** read the PRD live, diff the rules the test relies on against the version it quotes, update
 preconditions/steps that no longer match (Rule 114(b)), and list any Expected change for his per-case yes (114(c)); Automated →
 his go-ahead, then tell the automation engineer. A tester must never fail a test on its OLD text.
+**QA lead 23 Oct 2026 (L0565):** (1) a test fails only for the app's function/usability, harm to the client, or a PRD/source rule
+(name which, quote it) — nothing else ever fails a test. (2) Never update a test's wording to a behaviour whose ticket is not yet on
+PRODUCTION; check the production build first.
