@@ -9,66 +9,16 @@
  "enrol": {
   "service": false
  },
- "lineKeys": "line_id,description,time_estimate,tech_time,is_diagnosis,is_warranty,is_authorized_to_repair,is_parts_required_are_authorized,line_name,work_order_number,work_order_display_number,work_order_status,tech_story,line_tech_assigned_id,labour_type_id,labour_type,labour_rate,labour_type_cost,tasks,task_records,tech_times,status_display,status,part_requests,parts,part_return_requests,deletable,editable,deletable_reason,total_labour_time,total_labour_time_decimal,cost_by_minute,total_parts_sell_price,total_parts_sell_price_float,total_labour_cost,is_in_progress,line_order,fixed_price,fixed_line_total,created_from_canned_line,assigned_techs,logged_techs,labor_margin,adjustments,total_cost,progress,can_decline",
- "C368167": {
-  "wo": "S1-1650",
-  "creditBefore": 0,
-  "creditSave": "200",
-  "creditAfter": 9999999,
-  "setup": [
-   "mileage 201",
-   "remove part request 200",
-   "story 201",
-   "line complete 200",
-   "lines now complete",
-   "wo in_progress 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
-   "wo ready_for_review 400 [{\"error\":\"Complete work order cannot change its status again.\"}]",
-   "wo complete 400 [{\"error\":\"Complete work order cannot change its status again.\"}]"
-  ],
+ "C368166": {
+  "wo": "S1-1734",
+  "route": {
+   "rowShown": 1,
+   "opened": true
+  },
   "before": "Esther Howard",
-  "tab2": {
-   "button": 1,
-   "disabled": false,
-   "how": "Create Invoice pressed in tab 2",
-   "paymentWindow": "New Customer Payment close event Payment Date Payment Method arrow_drop_down Reference Number Memo No. Datearrow_drop_up",
-   "paymentWindowLeftOpen": true
-  },
-  "statusAfterInvoice": "Invoiced",
-  "serverAfterInvoice": {
-   "status": "Invoiced",
-   "keys": [
-    "invoice_status",
-    "invoice_id",
-    "is_invoice_created",
-    "invoice_balance",
-    "invoiceCredits",
-    "invoice_shop_supplies_charge",
-    "invoice_tax",
-    "invoice_shop_id"
-   ],
-   "invoiceId": "1224b67b-79d6-407c-8b49-9321effc583b"
-  },
-  "step3": {
-   "disabled": false,
-   "field": "Esther Howard"
-  },
-  "serverRightBeforeChange": {
-   "status": "Invoiced",
-   "keys": [
-    "invoice_status",
-    "invoice_id",
-    "is_invoice_created",
-    "invoice_balance",
-    "invoiceCredits",
-    "invoice_shop_supplies_charge",
-    "invoice_tax",
-    "invoice_shop_id"
-   ],
-   "invoiceId": "1224b67b-79d6-407c-8b49-9321effc583b"
-  },
   "techB": {
    "list": {
-    "count": 78,
+    "count": 83,
     "first": "Unassigned",
     "last": "ZZAUTOTEST S6 Pia Pills",
     "offered": {
@@ -85,9 +35,9 @@
      "Branko Cicovic": true,
      "Brenda Martinez": true,
      "Cameron Williamson": true,
+     "Carol Neal": true,
      "Chris Lee": true,
      "Dana Ortiz": true,
-     "David Sparks": true,
      "Esther Howard": true,
      "Floyd Miles": true,
      "Kristin Watson": true,
@@ -103,6 +53,8 @@
      "ZZAUTOTEST Ben Bravo": true,
      "ZZAUTOTEST C614719 Ana": true,
      "ZZAUTOTEST C614719 Ben": true,
+     "ZZAUTOTEST C614719 Cal": true,
+     "ZZAUTOTEST C614719 Dan": true,
      "ZZAUTOTEST Cal Charlie": true,
      "ZZAUTOTEST Dan Delta": true,
      "ZZAUTOTEST DC01 Ana Icons": true,
@@ -146,6 +98,9 @@
      "ZZAUTOTEST N4 Dee": true,
      "ZZAUTOTEST N4 Eve": true,
      "ZZAUTOTEST N4 Fay": true,
+     "ZZAUTOTEST NT1 Ana Brooks": true,
+     "ZZAUTOTEST NT1 Ana Carter": true,
+     "ZZAUTOTEST NT1 Ben Adams": true,
      "ZZAUTOTEST Photo Tech 277231": true,
      "ZZAUTOTEST S6 Pia Pills": true
     },
@@ -156,8 +111,8 @@
     "readingValid": true,
     "names": [
      "Unassigned",
-     "Aaron Zed",
      "Aaron Baker",
+     "Aaron Zed",
      "Admin ShopView",
      "Ahtasham Amjad",
      "Ahtesham ABCPROD",
@@ -168,9 +123,9 @@
      "Branko Cicovic",
      "Brenda Martinez",
      "Cameron Williamson",
+     "Carol Neal",
      "Chris Lee",
      "Dana Ortiz",
-     "David Sparks",
      "Esther Howard",
      "Floyd Miles",
      "Jenny Wilson",
@@ -186,8 +141,10 @@
      "ZZAUTOTEST Aaron Able 932906",
      "ZZAUTOTEST Ana Alpha",
      "ZZAUTOTEST Ben Bravo",
-     "ZZAUTOTEST C614719 Ana",
+     "ZZAUTOTEST C614719 Dan",
      "ZZAUTOTEST C614719 Ben",
+     "ZZAUTOTEST C614719 Ana",
+     "ZZAUTOTEST C614719 Cal",
      "ZZAUTOTEST Cal Charlie",
      "ZZAUTOTEST Dan Delta",
      "ZZAUTOTEST DC01 Ana Icons",
@@ -199,10 +156,10 @@
      "ZZAUTOTEST DC07 Hana Grip",
      "ZZAUTOTEST DC08 Ines Header",
      "ZZAUTOTEST DC09 Kai Board",
-     "ZZAUTOTEST DC10 Max Pin",
-     "ZZAUTOTEST DC10 Oli Pin",
      "ZZAUTOTEST DC10 Lea Pin",
      "ZZAUTOTEST DC10 Nia Pin",
+     "ZZAUTOTEST DC10 Oli Pin",
+     "ZZAUTOTEST DC10 Max Pin",
      "ZZAUTOTEST DC11-65540 Quinn Card",
      "ZZAUTOTEST DC11-65540 Pia Card",
      "ZZAUTOTEST DC11-88821 Pia Card",
@@ -225,12 +182,15 @@
      "ZZAUTOTEST Ezra Echo 932906",
      "ZZAUTOTEST F3 Count Ben Bravo",
      "ZZAUTOTEST N3 Tia",
-     "ZZAUTOTEST N4 Eve",
      "ZZAUTOTEST N4 Ben",
+     "ZZAUTOTEST N4 Eve",
      "ZZAUTOTEST N4 Fay",
      "ZZAUTOTEST N4 Dee",
      "ZZAUTOTEST N4 Ana",
      "ZZAUTOTEST N4 Cal",
+     "ZZAUTOTEST NT1 Ana Brooks",
+     "ZZAUTOTEST NT1 Ana Carter",
+     "ZZAUTOTEST NT1 Ben Adams",
      "ZZAUTOTEST Photo Tech 277231",
      "ZZAUTOTEST S6 Pia Pills"
     ]
@@ -240,46 +200,13 @@
    "clicked": true
   },
   "used": "Ralph Edwards",
-  "serverRightAfterChange": {
-   "status": "Invoiced",
-   "keys": [
-    "invoice_status",
-    "invoice_id",
-    "is_invoice_created",
-    "invoice_balance",
-    "invoiceCredits",
-    "invoice_shop_supplies_charge",
-    "invoice_tax",
-    "invoice_shop_id"
-   ],
-   "invoiceId": "1224b67b-79d6-407c-8b49-9321effc583b"
-  },
-  "toasts": [
-   "The lead technician can't be changed once a work order is Invoiced or Paid. Please try to resolve this."
-  ],
-  "fieldNow": "",
-  "afterReload": "Esther Howard",
-  "apiLead": "Esther Howard",
-  "serverAfterReload": {
-   "status": "Invoiced",
-   "keys": [
-    "invoice_status",
-    "invoice_id",
-    "is_invoice_created",
-    "invoice_balance",
-    "invoiceCredits",
-    "invoice_shop_supplies_charge",
-    "invoice_tax",
-    "invoice_shop_id"
-   ],
-   "invoiceId": "1224b67b-79d6-407c-8b49-9321effc583b"
-  },
-  "badgesAfterReload": [
-   "Invoiced",
-   "1 more_vert",
-   "Complete"
-  ],
-  "createInvoiceOfferedAfterReload": 0
- },
- "restored": true
+  "after": "Ralph Edwards",
+  "toasts": [],
+  "afterReload": "Ralph Edwards",
+  "apiLead": "Ralph Edwards",
+  "readBack": {
+   "screen": true,
+   "server": true
+  }
+ }
 }
