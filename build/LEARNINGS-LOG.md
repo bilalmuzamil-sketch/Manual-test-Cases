@@ -986,7 +986,7 @@ case they already changed (Rules 83/86).
 
 **L0057 (2026-10-09) — IN BUILD VERIFICATION, ASK BEFORE GOING PAST THE LANE, AND ONLY PROCEED ON YES (QA lead, permanent).** During the Dashboard refine pass I created and invoiced a test work order and clocked time to see buttons that only appear mid-process, without asking. QA lead: refine passes may do that (skill 21), but *"when you are build verifying something and you are unable to find something and finding that requires you to go beyond your limits ASK ME with the time it would take to complete if I say YES only then proceed other wise stay in limit and lane."* Also: *"Need not to clean any data ever."* Recorded in Rule 115 (amendment 2, 2026-10-09 addition) and the CLAUDE.md §1 lane-limit bullet.
 
-## L0057 — 2026-10-23 — A cap that is written down but never measured will be breached silently; enforce it at commit
+## L0042 — 2026-10-23 — A cap that is written down but never measured will be breached silently; enforce it at commit
 
 §1 of CLAUDE.md reached 31,167 bytes against a 20,000-byte cap because the size check existed (`check_section1_size.py`) but
 nothing ran it, so every ruling was appended "just one bullet" at a time. Found out only when a new ruling (Rule 116) had nowhere
