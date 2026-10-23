@@ -1,0 +1,25 @@
+[~accountid:712020:aa00b8d6-a71f-4259-8919-82a304227c20] [~accountid:712020:655c2bc0-ee59-46d8-9da3-f61e54739e55] two things I need from you to finish this ticket. If neither is needed for testing, please move the ticket to QA Complete.
+
+h3. 1. A line with its own fee or discount
+*What I need:* a fee and a discount added to one line on work order *S11685-17580* (or QuickBooks turned off for this branch so I can add them myself).
+*Why:* the ticket says the adjustment rows (↳) under a line stay unchanged, and I can't add a fee or discount on this branch. None of the 800 work orders on the branch has one either.
+
+*Steps to see it:*
+# Open [https://sv11685.qa.shopview.com/workorders] and open work order *S2-17435*.
+# On line 1, on the *Labor* row, click the three dots to the right of the technician names.
+# Click *Add Labor Fee / Discount*.
+# The window says "Map a Fee item in Settings → QuickBooks before adding a fee." and the *Add Fee* button stays greyed out.
+
+!SV-11685_2-line-fee-blocked.png|width=460,height=998!
+
+h3. 2. The Labor row when all labor figures are hidden
+*Question:* when labor hours, rate and price are all switched off, the *LABOR* heading now sits over a completely empty row. Is that how it should look, or should the Labor section be hidden in that case?
+*Why I ask:* the ticket says "only the description text goes, so the cell is blank", which is what happens. With nothing else in the row, the customer sees a Labor heading with nothing under it.
+
+*Steps to see it:*
+# Open work order *S11685-17580* and click the *Finance* tab.
+# In the row of icons at the top right, click the blue gear (*Settings*).
+# Switch off *Labor rate*, *Labor hours* and *Labor price*.
+# Under line 01, *LABOR* now has an empty row under it.
+
+!SV-11685_3-empty-labor-row.png|width=700,height=281!

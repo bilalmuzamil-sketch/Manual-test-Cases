@@ -1,0 +1,5 @@
+import pw from '/opt/node22/lib/node_modules/playwright/index.js'; import fs from 'fs'; const {chromium}=pw;
+const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium'}); const p=await b.newPage({viewport:{width:900,height:1200},deviceScaleFactor:2});
+await p.setContent(fs.readFileSync('/tmp/qa11685/w/var-branch/modern-S2-decl0.html','utf8'),{waitUntil:'load'}); await p.waitForTimeout(1500);
+const i=await p.evaluate(()=>{const R=e=>{const r=e.getBoundingClientRect();return [r.x,r.y,r.width,r.height]}; const j=document.querySelector('.job'); const c=[...j.querySelectorAll('.chargesec')].find(c=>/labor/i.test(c.querySelector('.csec-head').innerText)); return {job:R(j),row:R(c.querySelector('tr')),head:R(c.querySelector('.csec-head')),title:R(j.querySelector('.job-ttl'))}});
+const clip={x:i.job[0]-12,y:i.job[1]+2,width:i.job[2]+24,height:i.job[3]-6}; await p.screenshot({path:'/tmp/qa11685/w/empty-row.png',clip}); fs.writeFileSync('/tmp/qa11685/w/empty-row.json',JSON.stringify({clip,...i})); await b.close();

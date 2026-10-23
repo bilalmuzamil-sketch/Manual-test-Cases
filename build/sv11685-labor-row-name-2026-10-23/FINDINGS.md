@@ -58,3 +58,15 @@ on both environments. Branch org layout left on Modern (its original).
 Not posted yet — waiting on the QA lead (email yes, fee/discount route, empty-row question).
 Learning: the production layout switch must be restored in a `finally`, and a second session on production must reuse the same
 bridge dir (`/tmp/qa21`); `switch-user` on production needs a Technician at the work order's own location.
+
+## Update 23 Oct 2026 — QA lead answers: email yes, ask Milomir, ask Milomir; then "first comment = what passed with QA status, second = ask Chris and Milomir; if not needed, move to QA Complete"
+- **Email:** sent from the branch Finance tab → Send dialog (William Parker was pre-ticked and was unticked; only
+  `bilal.muzamil+sv11685@shopview.com` received it). Toast "Successfully sent invoice to email."; request
+  `POST /api/work-order/invoice/send-email`. Gmail: "Invoice for order number: S11685-17580" from reply@shopview.com at 08:54:59Z,
+  one attachment `invoice-for-order-S11685-17580.pdf`. The mail connector returns attachment name/type, not content, so the
+  PDF's Labor rows are NOT read by me — asked the QA lead to open it (row 12 shows "DELIVERED, PDF content being confirmed").
+- **Posted** comment **79376** (yellow panel "OVERALL QA STATUS: PARTIALLY PASSED", 13 rows, picture 1) and **79377** (@Chris Ward,
+  @Milomir Kotlajic: line fee/discount blocked on the branch + empty Labor row question; "if neither is needed, move to QA Complete";
+  pictures 2 and 3). Both read back: panel type warning + text, media counts/order, list lengths.
+- Gate: branch marker v26.43.0-aa5be60 (unchanged), ticket TESTING QA with 1 earlier comment, wording scan clean, no technical
+  section, no recording (API mode). Print Work Order (WO ⋮ menu) prints the work order, not the estimate/invoice — outside the ticket.

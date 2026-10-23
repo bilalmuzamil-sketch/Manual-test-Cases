@@ -1,0 +1,35 @@
+{panel:bgColor=#fffae6}
+*OVERALL QA STATUS: PARTIALLY PASSED*
+{panel}
+Everything I tested passed and nothing failed. One check can't be run on this branch and one point needs an answer; both are in the next comment.
+
+I tested this on the QA branch ([sv11685.qa.shopview.com|https://sv11685.qa.shopview.com/workorders], build v26.43.0-aa5be60) on 23 October 2026, as Admin, and compared it with production ([app.shopview.com|https://app.shopview.com], build v26.43.0-ffea43c) using a work order of the same shape on each.
+
+*What changed:* on the Modern estimate and invoice, each line's name now prints once, as its title. The Labor row under it keeps its hours, rate and amount, and its text is blank.
+
+!SV-11685_1-before-after-labor-row.png|width=700,height=1001!
+_Picture 1: the same kind of work order on production (before) and on the QA branch (after), with the same display settings. Before, the Labor row repeats the line name. After, it is blank and the figures are unchanged._
+
+h3. What I checked
+||#||Check||Status||
+|1|Modern estimate: each line name appears once, as the title (5 of 5 lines, on screen and in the PDF)|PASSED|
+|2|Modern invoice: the same (on screen and in the PDF)|PASSED|
+|3|Labor hours, rate and amount print exactly as before, with the display settings at their defaults, all switched on, all switched off, and with "Summarize labor total" on|PASSED|
+|4|Pricing hidden by permission (a Technician, who has no "See Financial Data"): hours still show, rate and amount stay hidden, same as production. A Technician has no screen that opens these documents, so I requested them directly as that user, for comparison only (this is not something a user can do in ShopView)|PASSED|
+|5|Declined lines: shown under "Declined Work" with no Labor row, same as production|PASSED|
+|6|Line title, "why" text, Scope of work, Parts rows and Line total are unchanged|PASSED|
+|7|Totals: Labor, Parts, Shop supplies, Subtotal, tax and Total match the Legacy document for the same work order, on every setting|PASSED|
+|8|Legacy layout unchanged (it still shows the name and "why" in its Labor row, once)|PASSED|
+|9|Print: the Print button opens the same invoice PDF|PASSED|
+|10|On-screen preview on the Finance tab: Labor rows blank on all 4 lines (production repeats the name on all 4)|PASSED|
+|11|Existing work orders on the branch: 84 estimates and invoices, 403 Labor rows, none repeats the line name|PASSED|
+|12|Email: the invoice email was sent and delivered with the PDF attached (invoice-for-order-S11685-17580.pdf)|DELIVERED, PDF content being confirmed|
+|13|Lines that carry their own fee or discount (the ↳ rows)|NOT TESTED, see next comment|
+
+h3. How to see it
+# Open [https://sv11685.qa.shopview.com/workorders] and sign in as Admin.
+# In the top menu, click the search box ({{Search… Ctrl K}}), type *S11685-17580* and open the work order.
+# At the top of the work order, click the *Finance* tab.
+# Look at any line: its name appears once, as the title, and the row under *LABOR* has no text, only the amount.
+
+Test data: work order S11685-17580 on the QA branch (four lines plus a declined line, invoiced); work order S2-1760 on production (same shape).
