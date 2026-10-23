@@ -28,3 +28,21 @@
 - 23 Oct: PRD draft done by worker — 291 cases (S1 36, S2 36, S3 28, S4 36, S5 26, S6 8, S7 12, S8 13, S9 10, S10 16, S11 20, S12 21,
   DATA 29), build gate 0 PROBLEM lines, 211/211 PRD codes covered; 7 PO questions drafted (PO-QUESTIONS-DRAFT.md). Design drive done:
   62 figures, 962-row text inventory (0 unclassified), 10 differences (CT-D01..D10), 5 design questions, 53 planned design cases.
+
+## 23 Oct 2026 — suite created in TestRail (QA lead: "Get Done with all the test cases creation")
+- 344 cases created under group 91454 (291 from PRD v3 + 53 design cases), every read-back equal; 218 design pictures attached
+  and read back (170 cases). Map: `testrail-id-map.csv`; log: `applied/create-log.jsonl`. C723856…C724209.
+- A container restart stopped the first creation run after 283 cases; C724148 (DATA-21) had been created but not logged — found by
+  the section check, compared field by field with the proposal (equal) and adopted, so no duplicate was made.
+- Run 551 "Credit terms - Execution" (milestone 5, assigned to Bilal): 335 tests = every case except the 9 held on Chris Ward's
+  answers (C723936, C723999, C724000, C724046, C724105, C724206–C724209). https://shopview.testrail.io/index.php?/runs/view/551
+- Question sheet for Chris (Editor): https://docs.google.com/spreadsheets/d/15S4Giqs10rQZ69CSK4RgqoYalryaSqxHM0iWBv7fdVw —
+  questions 1–7 PRD, 8–12 design (design questions 1–5 renumbered; held markers say "question 8"…"question 11").
+- Independent checks before creation: 887 PRD quotes and 237 design quotes verbatim; every term-name example ≤ 31 characters (11
+  were 32–35 and were shortened); every picture present; one AUTOMATION line, last, on every case.
+- Sweep 23 Oct (after creation): epic SV-11638 has the same 12 stories, nothing new; PRD still v3.
+- Waiting on the QA lead: tech plan (then a full Rule 134 pass); a test organization holding only ZZAUTOTEST records (S1-23, S1-25,
+  S11-04, S12-16); a post-release organization (S11-10) and a way to recognise one with no settings record (S11-11); Public API
+  documentation (S10-11…S10-16); AccountingHub/IBS access (S8-11, S8-12); records captured before release (S7-05, S11-02, S11-07,
+  S11-14); a QA branch for SV-11638.
+- Rule 128 ticket footers were not added to the 12 stories (as with the A/R and A/P suite); offered to the QA lead.

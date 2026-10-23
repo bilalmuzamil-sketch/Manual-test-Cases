@@ -3257,3 +3257,9 @@ Done: 42 updates + C598326 new, run 498 = 272 (record `wo-board-tech-view/answer
   Export-limit data: no developer request needed (see ar-ap-report-sorting/PROJECT-STATE.md, 22 Oct).
 - 23 Oct 2026 (state saved): A/R and A/P — 355 cases, run 549 = 345; questions 1-16 unanswered (sheet 11_3z…). Splitting Sales Reps —
   178 cases, run 547 = 178; question 41 unanswered (sheet 17Ry1Bt…, the QA lead sends it). New suite started: Credit terms (SV-11638).
+
+## Credit terms (SV-11638) — 23 Oct 2026
+- DONE: 344 cases in group 91454, run 551 (335 tests; 9 held on Chris Ward), question sheet 15S4Giqs… shared with Chris (Editor).
+- WAITING ON THE QA LEAD: tech plan; a ZZAUTOTEST-only test organization (4 cases); a post-release organization (2 cases); Public API
+  documentation (6 cases); AccountingHub/IBS access (2 cases); a QA branch; whether to add Rule 128 footers to the 12 stories.
+- WAITING ON THE PO: Credit terms questions 1-12 (sheet 15S4Giqs…).
