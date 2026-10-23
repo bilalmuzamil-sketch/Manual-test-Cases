@@ -1,0 +1,200 @@
+{
+ "C96990": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: work order S1-1567 for \"ZZAUTOTEST F1 Compact Text\", led by Esther Howard, at Truck Hill 1; Tech View on the All tab with the customer's name in Search.",
+   "Step 1: Regular was chosen from the density button; the row is 48 px tall, the same as a List row.",
+   "Step 2: at Regular the row text (S1-1567, the customer, unit, service advisor, lines, created on, total price) is 14 px; the column header labels and the 0% beside the progress bar are 12 px.",
+   "Step 3: Compact was chosen; the row became tighter (48 px down to 36 px).",
+   "Step 4: at Compact the row text is still 14 px, and the header labels and the percentage stay 12 px, the same as at Regular.",
+   "Step 5: Comfortable was chosen; the row became roomier (64 px).",
+   "Step 6: at Comfortable every text is the same size as at Regular (14 px row text, 12 px header labels and percentage).",
+   "Note: the small Approved status pill is 11 px at every density, the same at all three; it is a status label, not row text, and was also 11 px in the staging pass."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96990-tech-regular.png",
+   "evidence/prod-2026-10-22/C96990-tech-compact.png",
+   "evidence/prod-2026-10-22/C96990-tech-comfortable.png"
+  ],
+  "reason_for_reviewer": "s6-batch.mts C96990, re-run 23:26-23:27 UTC (redo4 #3), runner ZZ WOB Runner. Density chosen ON SCREEN with button_density > option_density_<d> in Tech View; readings tech_regular/compact/comfortable: every row text 14px except the status pill 11.008px (same at all densities), headers all 12px, percentage 12px; row height 48/36/64. 'In use' is shown by the row height changing with each choice (no separate read of the ticked option). The error 'button_density' timeout is AFTER the case's steps (an extra Regular reset in Board View, which has no density on production, PRD v73) and is ignored. Pictures 23:27 (regular/compact/comfortable) agree."
+ },
+ "C368215": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 2: after clicking Parts > Part Sales and typing the part sale's number (P1-83) in the list's Search, its row was not found, so the part sale was opened by its address instead of by clicking its row. Everything read on the part sale page matched.",
+  "bold_steps": [
+   2
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Step 1 and step 3 were followed and matched; step 2 (click the part sale's row in the list) was not done: the row was not found and the page was opened by its address.",
+   "Set-up: customer \"ZZAUTOTEST Part Sale Card 44992\" with contact ZZAUTOTEST Contact; part sale P1-83 with one part (a stock part, not \"Brake Pads\"), at Truck Hill 1.",
+   "Step 1: Parts in the top menu and then Part Sales were clicked; the Part Sales list opened.",
+   "Step 2 (NOT DONE AS WRITTEN): P1-83 was typed in the list's Search but no row for it was found, so the part sale was opened by its address.",
+   "Step 3: the status card shows P1-83 at the top, the status Estimate, \"Started: Today\" and Sales Representative \"Unassigned\". Sales Representative opens as a dropdown offering Unassigned and Ayesha Khan. There is no Lead technician, no Service advisor and no progress bar, and no empty box or error message."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368215-part-sale.png",
+   "evidence/prod-2026-10-22/C368215-sales-rep-open.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. ps-counts.mts C368215, re-run 23:28-23:29 UTC (redo4 #4). Steps 1 on screen (button_desktop_nav_link Parts > 'Part Sales'; listUrl /parts/part-sales?status=estimate&status=approved&status=complete). Number typed in page_search_input, rowFound 0, openedFromList false, fallback 'NOT FROM THE LIST: opened by address'. No picture of the list was taken (only taken when the row is found), so why the row was missing (search box, list filter, or the list itself) is not known - more than a route problem. Card 'P1-83 | Estimate | Started: Today | Sales Representative | Unassigned'; repOptions Unassigned, Ayesha Khan; errors []. Part added was a stock part ('test Special Part...'), not the typed Brake Pads - set-up only.",
+  "todo": "By hand: Parts > Part Sales, type P1-83 (or a new part sale's number) in Search and click its row. If the row shows and opens, read the status card (it already matched: P1-83, Estimate, Started Today, Sales Representative dropdown, no lead technician/service advisor/progress bar) and pass. If the part sale does not show in the list, report that."
+ },
+ "C368217": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1 to 3: the screen could not be brought back to Truck Hill 1 after making the second location's part sale, so the Part Sales list was opened by its address and read at Trucks Hill 2, where P1-84 does not show (\"No part sales match these filters\"). Its Parts and Returns counts were never read.",
+  "bold_steps": [
+   1,
+   2,
+   3
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The set-up was made, but steps 1 to 3 were done at the wrong location (Trucks Hill 2), so P1-84's counts were never read.",
+   "Set-up: part sale P1-84 for \"ZZAUTOTEST Part Sale Counts 44992\" at Truck Hill 1 with two Brake Pads parts (Uncategorized, vendor Delete Test, cost 100); authorized, one part ordered and received (\"Parts received.\"), then returned; the part sale page then reads Parts (1) with the other part showing Order. A part sale with two Brake Pads parts was made at Trucks Hill 2.",
+   "Step 1 (NOT DONE AS WRITTEN): the Part Sales list was opened by its address, not with Parts > Part Sales, and the top bar read Trucks Hill 2.",
+   "Step 2: P1-84 was typed in the list's Search; at Trucks Hill 2 the list shows \"No part sales match these filters\".",
+   "Step 3 (NOT DONE): no row, so the Parts and Returns columns of P1-84 were not read."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368217-setup-check.png",
+   "evidence/prod-2026-10-22/C368217-list.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. ps-counts.mts C368217, re-run 23:29-23:34 UTC (redo4 #4). Switch back to Truck Hill 1 failed on every route (menu, storage restore + reload, ensureLocation): backTopBar/backTopBarAfterReload 'Trucks Hill 2'. The third-location detour was SKIPPED because the guard tests String(o.backEnsure).includes('Truck Hill 1') and backEnsure is the error text 'failed: Error: not at Truck Hill 1: ...', which contains the name - so the 'did not come back' throw also never fired and the list was read at Trucks Hill 2 (topBar ...Trucks Hill 2; rowText ['','']). Script bug to fix: test the header, not the error string. Set-up otherwise as written (Sell Price box not found, left 0 - not part of the counts).",
+  "todo": "Make sure the top bar reads Truck Hill 1, then Parts > Part Sales, type P1-84 in Search and read Parts and Returns (expected 2 and 1). The set-up on P1-84 and the Trucks Hill 2 part sale already exist."
+ },
+ "C97032": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 7: Ben's Estimate work order (S1-1688) was not found as a row in the List, so it was not opened and approved on screen; it was approved behind the screen. Steps 5 and 6 matched (4 open, still 4 open with the Estimate filter), and after the approval Ben shows 5 open.",
+  "bold_steps": [
+   7
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 to 6 were followed and matched; step 1 opened Work Orders by its address, and step 7's approval was done behind the screen.",
+   "Set-up: technician \"ZZAUTOTEST F3 Count Ben Bravo\" leads one work order in each status (Approved, In Progress, Ready for Review, Complete, Estimate, Invoiced, Paid, Declined) at Truck Hill 1, is the technician on one line of the Line Only Co work order (led by Ana), and leads one Approved work order (S2-1694) at Trucks Hill 2. Spare Co (S1-1693) is led by Ana.",
+   "Step 1 (NOT DONE AS WRITTEN): Work Orders was opened by its address, not from the top menu; the All tab was clicked.",
+   "Steps 2 to 4: \"ZZAUTOTEST F3 Open Count\" typed in Search, Board View clicked, and Reassign lead technician opened from the Spare Co card.",
+   "Step 5: Ben shows \"4 open\".",
+   "Step 6: with Status ticked to Estimate only, the dialog opened from the Estimate Co card (S1-1688) shows Ben as \"Current · 4 open\". The filter was not cleared afterwards (the next step reopens Work Orders).",
+   "Step 7 (NOT DONE AS WRITTEN): S1-1688 was not found as a row in the List, so it was approved behind the screen; reopening the dialog from Spare Co then shows Ben with \"5 open\".",
+   "Note: an older technician with the same name from an earlier run also shows in the dialog (5 open); this run's Ben is the one read."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C97032-step5-dialog-open-close.png",
+   "evidence/prod-2026-10-22/C97032-step6-dialog-open.png",
+   "evidence/prod-2026-10-22/C97032-step7-dialog-open-close.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. s11-fix3.mts C97032, re-run 23:34-23:37 UTC (redo4 #5). Counts read by this run's staff id (text_lead_technician_open_count_<id>): step5 '4 open', step6 '4 open' (from Estimate Co, picture shows 'Current · 4 open'), step7 '5 open'. Step 7 on-screen route: row for S1-1688 not found after Work Orders > All > Search (rowShown 0, opened false), fallback 'NOT ON SCREEN: authorized line added behind the screen'. statusOnly(null) to clear the filter sits inside a comment, so step 6's 'clear the filter' was not done. Duplicate 'ZZAUTOTEST F3 Count Ben Bravo' from an earlier run appears in the dialog; the picture order is consistent with the reading (our Ben 4 -> 5).",
+  "todo": "By hand: open S1-1688 (Estimate Co) from Work Orders > All > Search, approve it on screen (or use a fresh Estimate led by Ben), come back, open Reassign lead technician from Spare Co and read Ben's count: it should be one more than before (5). Steps 5 and 6 already matched."
+ },
+ "C368157": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 3 to 5: the readings say Cal moved to just after Unassigned when pinned and went back to the same place (34th) when unpinned, in Board View and Tech View, but no picture shows Cal at all (the step 3 picture shows another part of the board), the places of Ana, Ben and Dan were never read, and Work Orders was opened by its address.",
+  "bold_steps": [
+   3,
+   4,
+   5
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Pin and unpin were done with the pin icon on screen and the readings match, but the pictures do not show Cal, and step 1 opened Work Orders by its address.",
+   "Set-up: no technician pinned; \"ZZAUTOTEST Cal Charlie\" is the 34th column after Unassigned in Board View (81 columns at Truck Hill 1). The starting order of Ana, Ben, Cal and Dan was not read.",
+   "Step 1 (NOT DONE AS WRITTEN): Work Orders was opened by its address, not from the top menu; the All tab was clicked.",
+   "Step 2: Board View was clicked.",
+   "Step 3: Cal's pin icon was clicked; Cal is read as the first column after Unassigned. The picture shows Unassigned and other columns, not Cal's.",
+   "Step 4: the same pin icon was clicked again; Cal is read back at place 34, between the same two technicians, and the whole column order is the same as before pinning. The picture shows the start of the board, not Cal.",
+   "Step 5: in Tech View Cal is at the same place 34 between the same two technicians; Tech View lists 80 technicians in the same order as Board View's first 80 (Board View has 81)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368157-s3-pinned.png",
+   "evidence/prod-2026-10-22/C368157-s4-unpinned.png",
+   "evidence/prod-2026-10-22/C368157-tech.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. s11-fix3.mts C368157, re-run 23:38-23:40 UTC (redo4 #5). Pin/unpin by clicking button_board_pin_<Cal> (pinClick/unpinClick found 1, no toasts). calIndexBefore 34, pinned.calIndex 1 (first3 named only 'Unassigned','Cal' - slot 3 is not Ana/Ben/Dan), unpinned.calIndex 34 sameAsBefore true; neighbours identical board before/after and Tech View; Tech View 80 groups vs board 81, firstDiff -1 (one fewer at the end, not explained). Pictures: s3-pinned is scrolled to another part of the board (no Cal header; pin icons grey), s4-unpinned shows the board start, tech.png shows the end of Tech View - none shows Cal, so the two-picture bar for the step outcomes is not met.",
+  "todo": "By hand: Work Orders (top menu) > All > Board View, note Cal's place and his neighbours, pin him (pin icon) and check he sits right after Unassigned, unpin and check he is back between the same neighbours, then Tech View and check the same order; take a picture at each step."
+ },
+ "C368209": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 1: Work Orders was opened by its address instead of being opened from the menu. Everything else matched: after the reload Customer A-Z is still ticked and the cards run A to Z.",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 to 5 were followed and matched; step 1 opened Work Orders by its address.",
+   "Set-up: window 390 px wide at Truck Hill 1; the sort was set to Newest First on screen and the page reloaded; the sort list then showed the tick on Newest First.",
+   "Step 1 (NOT DONE AS WRITTEN): Work Orders was opened by its address.",
+   "Steps 2 and 3: the sort button was tapped (Newest First, Oldest First, Customer A-Z, Customer Z-A) and Customer A-Z picked.",
+   "Step 4: the page was reloaded.",
+   "Step 5: the sort list shows the tick on Customer A-Z, and the cards run in customer order A to Z: Ahsan, Ali Raza Hamid, Alpha Freight ZZ96929, aqeel transport 56 (30 cards read)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368209-start-newest-first.png",
+   "evidence/prod-2026-10-22/C368209-phone.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. high2-batch.mts C368209, re-run 23:41-23:42 UTC (redo4 #6). p.goto('/workorders') at 390x844; start sort Newest First set on screen + reload (tickedBefore 'Newest First check', picture). Customer A-Z clicked on screen, reload, ticked ['Customer A-Z']; customersInOrder Ahsan, Ali Raza Hamid, Alpha Freight ZZ96929, aqeel transport 56, aToZ true (case-insensitive). C368209-phone-customer-4.png did not scroll (same top screen), so the further-down cards are readings only.",
+  "todo": "On a phone-width window open Work Orders from the menu, then do steps 2-5 by hand. Every reading already matched, so it should pass."
+ },
+ "C368214": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 1: the run worked on the Work Orders tab, where there is no Status filter, so \"Approved\" was never ticked; the test (QA lead, 19 Oct) uses the All tab. Steps 3 to 6 then ran without the filter, and there is only one picture.",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The run used the Work Orders tab instead of All, so step 1 (Status > Approved) was not done; only one picture.",
+   "Set-up: customer \"ZZAUTOTEST Back Forward 15339\" with one Approved work order, S1-1695, led by ZZAUTOTEST Ana Alpha, at Truck Hill 1 (top bar read back).",
+   "Step 1 (NOT DONE): Work Orders was opened by its address and the Work Orders tab clicked; that tab has no Status filter, so Approved was not ticked.",
+   "Step 2: the customer's name typed in Search; S1-1695's row shows.",
+   "Step 3: clicking the row opened S1-1695's work order page.",
+   "Step 4: Back returned to the List on the Work Orders tab with the same search and the same row (no Status filter to check).",
+   "Step 5: Forward opened S1-1695's work order page again.",
+   "Step 6: Back again showed the same tab, search and row as at step 4 (picture)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368214-end.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. high2-batch.mts C368214, re-run 23:42-23:43 UTC (redo4 #6). Location back at Truck Hill 1 (startLocation.ensure). Script does tab(p,'Work Orders') - the case and the QA lead's 19 Oct decision say All - so filter_chip_status count 0 and Approved never ticked. step3/5/7 readings: tab 'Work Orders', search 'ZZAUTOTEST Back Forward 15339', rows ['S1-1695']; opened/step6 '/workorders/9ba7d488.../lines'. Only one re-run picture (C368214-end.png 23:43); C368214-error.png is from 19:05 and not used.",
+  "todo": "Fix the script to use the All tab, or by hand: Work Orders > All tab, Status > Approved, type the customer's name, click S1-1695, Back, Forward, Back, checking the All tab, \"Status: Approved\" and the row each time, with a picture at steps 4 and 6."
+ },
+ "C368130": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 1: Work Orders was opened by its address instead of being opened from the top menu. Everything else matched: Tech View and Board View show only Unassigned with both work orders and the \"No technicians yet\" message.",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 to 5 were followed and matched; step 1 opened Work Orders by its address.",
+   "Set-up: new location \"ZZAUTOTEST F2 No Tech Shop\" made in Settings > Locations (Country United States, Timezone Asia/Karachi) with no technicians; two Approved work orders with no lead, S-1697 and S-1696, for \"ZZAUTOTEST F2 No Tech Location\"; the location was chosen with your initials > Change Location and the top bar read \"ZZAUTOTEST F2 No Tech Sho..\".",
+   "Step 1 (NOT DONE AS WRITTEN): Work Orders was opened by its address; the All tab was clicked.",
+   "Steps 2 and 3: Tech View shows only the Unassigned group (2) holding S-1697 and S-1696, no technician groups, and the panel \"No technicians yet\" / \"Add technicians to assign work orders. Until then, every work order stays in Unassigned.\"",
+   "Steps 4 and 5: Board View shows only the Unassigned column (2) holding S-1697 and S-1696, no technician columns, and a panel with the same two lines."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368130-stg4-tech.png",
+   "evidence/prod-2026-10-22/C368130-stg4-board.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. notech-stg4.mts C368130, re-run 23:44-23:46 UTC (redo4 #7). Location made on screen (Country now picked, saveClicked true); techniciansThere [] before and after the switch; switch on screen via the profile menu (switched true, headerOnWorkOrders 'ZZAUTOTEST F2 No Tech Sho..'). pg.goto('/workorders?tab=all') then tab All, display Tech View / Board View clicked. tech: one group 'unassigned' count 2 rows S-1697, S-1696; boardText Unassigned 2 with both cards + 'No technicians yet' text. Back at Truck Hill 1 afterwards.",
+  "todo": "At ZZAUTOTEST F2 No Tech Shop click Work Orders in the top menu, then do steps 1-5 by hand. Every reading already matched, so it should pass."
+ },
+ "C368156": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 5: picking Truck Hill 1 in Change Location did not change the location (the menu's Change Location field still read Truck Hill 1 while the screen was at Trucks Hill 2); the run only got back by going through a third location (SANKAN) first. Back at Truck Hill 1, Ana, Ben and Cal are still pinned. Steps 1 to 4 matched; Work Orders was opened by its address.",
+  "bold_steps": [
+   5
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 to 4 matched; step 5's Change Location back did not work as written and needed a detour through a third location; Work Orders was opened by its address each time.",
+   "Set-up: signed in as Service Advisor No Reports (Admin); Ana, Ben, Cal and Dan only at Truck Hill 1, Xia, Yan and Zoe only at Trucks Hill 2; no pins at either location.",
+   "Step 1: already at Truck Hill 1 (top bar); Work Orders opened by its address, Board View clicked, and Ana, Ben and Cal pinned with the pin icon in each header; they sit first after Unassigned with the pinned icon.",
+   "Step 2: Dan's pin icon is disabled and shows \"You can pin up to 3 technicians.\"",
+   "Step 3: your initials > Change Location > Trucks Hill 2, then Board View: none of the Truck Hill 1 pins shows and no column is pinned.",
+   "Step 4: Xia, Yan and Zoe were pinned with no message; all three sit first after Unassigned with the pinned icon.",
+   "Step 5 (NOT DONE AS WRITTEN): Change Location > Truck Hill 1 left the screen at Trucks Hill 2 (twice, the second time on a freshly loaded page); the run changed to SANKAN and then to Truck Hill 1. There, Board View shows Ana, Ben and Cal still pinned first after Unassigned."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368156-b40-s2-fourth-pin.png",
+   "evidence/prod-2026-10-22/C368156-b40-s3-loc2-board.png",
+   "evidence/prod-2026-10-22/C368156-b40-s4-loc2-pinned.png",
+   "evidence/prod-2026-10-22/C368156-b40-s5-heavy-board.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. C368156-pins-loc-stg.mts, re-run 23:48-23:53 UTC (redo4w). board() = goto /workorders?tab=all + All + Board View. s1_left Ana/Ben/Cal pinned; s2 disabled true, tip 'You can pin up to 3 technicians.'; s3_top 'Trucks Hill 2', s3_left no pinned; s4 Xia/Yan/Zoe pinned, no toasts; s5_fieldBefore 'Truck Hill 1' while s5_topBefore 'Trucks Hill 2', switch1 and retry stayed on Trucks Hill 2, s5_detourTo SANKAN, then switch2 'Truck Hill 1'; s5_left Ana/Ben/Cal pinned. pinnedCount() reads 0 even when pinned (class check does not match production) - ignored; the pin state is read per header and seen in the pictures. The stale Change Location field (L0400) may be a product problem of its own outside this case's Expected.",
+  "todo": "By hand after step 4: your initials > Change Location > Truck Hill 1. If the location changes, open Work Orders (top menu) > Board View and check Ana, Ben and Cal are still pinned - the run already saw them pinned, so it should pass. If picking Truck Hill 1 does nothing (the menu shows Truck Hill 1 as current while the top bar reads Trucks Hill 2), raise it with the QA lead as a separate finding."
+ }
+}
