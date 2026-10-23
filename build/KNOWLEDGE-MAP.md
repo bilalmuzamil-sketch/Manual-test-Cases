@@ -72,6 +72,7 @@ How the stores divide (each fact lives in ONE place; this map and `recall.py` fi
 | I am about to … | Look here first |
 |---|---|
 | write results into a TestRail run | `python3 build/testing-tools/push_results_to_run.py` (playbook §W); Rules 113, 122, 123, 124 |
+| move tests waiting on a fast-follow ticket out of a run | `python3 build/testing-tools/fast_follow_sweep.py --run N --suite-root <id>` (dry run, then `--write`); L0561 (QA lead 21 + 23 Oct 2026) |
 | attach annotated screenshots | `build/testing-tools/annotate_v2.py SRC OUT --scale 2 --mark "x,y,w,h:good|bad:text"` (coordinates in 2x pixels); Rule 116; `size_pics.py` for Jira |
 | edit ONE TestRail case safely | `python3 build/testing-tools/safe_case_edit.py <id> <fields.json>` then `served_page_scan.mjs` (make `<OUT>/evidence/` first; needs `ensure_bridge.sh`); playbook §J |
 | rewrite a test that passed on a ruling | Rule 114(d) as amended 2026-10-13 (the QA lead's ruling = one dated line, never our chat; anyone else's = word for word); worked set `build/wo-board-tech-view/run498-2026-10-08/ruling-rewrites-2026-10-12/` |

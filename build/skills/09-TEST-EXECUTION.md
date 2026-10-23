@@ -673,3 +673,8 @@ attached). Then the ticket line and "what to do next". `push_results_to_run.py` 
 **Rule 135(8), same day:** right under the bold failing-step line, "Fails against:" + the source's rule in its own words (document,
 version, rule id) — pass it as `source` in the RESULTS json (the push tool refuses a Failed result without it). The ticket's
 Description opens "What the PRD (or design …) requires:" with the quote, then "What happens instead:".
+
+## Fast-follow tickets (QA lead 21 Oct, restated 23 Oct 2026) — the test leaves the run
+A Failed / Blocked / Retest test whose ticket carries the Jira label `fast-follow` is not kept in the run: correct its comment
+(Rule 135(8) shape), then move the case to its suite's "Fast-follow" folder (create it if missing) and take it out of the run.
+`build/testing-tools/fast_follow_sweep.py --run N --suite-root <id>` finds and moves them (dry run first). Learning L0561.
