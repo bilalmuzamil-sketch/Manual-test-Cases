@@ -1,0 +1,20 @@
+{
+ "C96953": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps; step 7 passed on the QA lead's decision (last point).",
+   "Set-up: \"ZZAUTOTEST F2 Column Scroll\" work orders in Unassigned at Truck Hill 1; window 1600 x 1000.",
+   "Steps 1-4: Work Orders, All tab, the customer in Search, Board View.",
+   "Steps 5-6: scrolling inside Unassigned moved only its cards; the other columns and every header stayed put.",
+   "Step 7: with the mouse over the empty area below a short column, the wheel moved the whole page up 56 px (the toolbar row is taller since the Technician filter was added).",
+   "Step 8: Esther Howard's column scrolls on its own.",
+   "Steps 9-10: sideways scrolling reaches every technician: 78 columns for 78 eligible technicians.",
+   "QA lead decision, 23 Oct 2026: the whole page moving when the wheel is turned over empty board space (SV-11720) is expected behaviour, so it does not fail this test."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96953-columns.png",
+   "evidence/prod-2026-10-22/layout-1023-production-after-wheel.png"
+  ],
+  "reason_for_reviewer": "23 Oct: QA lead ruled SV-11720 behaviour expected ('Any test which is failed due to this issue ... Please ignore that part as this is an expected behavior'). Readings: s3-batchA.redo3-51 + layout-1023. Rule 114(d) case rewrite to be proposed to him one at a time."
+ }
+}

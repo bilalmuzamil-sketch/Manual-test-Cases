@@ -484,3 +484,8 @@
 - `invoice-fail-1023.mts` (records `requestfailed` + responses ≥ 400): **no ShopView request failed (0 responses ≥ 400)**; the only failures are third-party hosts the session's proxy blocks — `maps.googleapis.com` (places), `googletagmanager`, `google-analytics`, `sentry`, `widget.intercom.io`, `mercure`. A lazily loaded part of the payment window most likely needs one of them. Treat as an ENVIRONMENT limit of this container (Rule 104 open gap), never a product finding; the step is a 2-minute hand check.
 - C707077 name scan (`names-scan-1023.mts`, read only): at Truck Hill 1, 31 staff join to the technicians list and none has a different staff-record name — no ready-made person for the test either.
 #production #invoice #environment #rule104 → L0554
+
+## L0558 — 2026-10-23 — QA lead ruling: the SV-11720 page scroll is EXPECTED behaviour
+- QA lead, 23 Oct 2026: "Any test which is failed due to this issue https://shopview.atlassian.net/browse/SV-11720 Please ignore that part as this is an expected behavior". Searched run 498's results for SV-11720 (defects field + comments): only C96953 (test 3481897). Re-posted Passed on the same production readings with a dated QA-lead decision line; push tool removed the "SV-11720 - " title prefix (Rule 133).
+- Rule 114(d) applies (passed on a ruling, the case as written would fail): propose the C96953 rewrite to him ONE case at a time and edit only after his yes. SV-11720 itself stays Open; nothing is done to the ticket without his word.
+#run498 #ruling #sv-11720 → L0555
