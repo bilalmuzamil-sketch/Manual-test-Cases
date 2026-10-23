@@ -540,3 +540,10 @@
 ## L0566 — 2026-10-23 — "Changed after being automated" = NET text difference, not any edit in the history
 - Counting every history entry after the automation date lists cases whose edits were later put back (82 SV-11524 edits reverted the same day). The right measure: the text of each field when the case was marked Automated (the `old_value` of the first later change of that field in `get_history_for_case`) compared with the text now; only a real difference counts. Result 23 Oct: 36 of 95 Automated WO Board cases (25 in run 498, 11 in Fast-follow). Script pattern: scratchpad `auto_net.py`; list `build/wo-board-tech-view/AUTOMATED-TESTS-CHANGED-2026-10-23.md` (same list in the Ahtasham note).
 #automation #testrail #history → L0563, L0565
+
+## L0567 — 2026-10-23 — Filing a bug that has nothing to show on screen (analytics) — the composed "page + record" picture; tagging the PO
+- C97027 / SV-11722: the fault is in a background request, so the picture is composed landscape (Rule 116): LEFT the real production page with the search typed (red box on the Search box), RIGHT a card of the record sent to Google (event, where, page_title, page_location with the search text boxed in red), the PRD rule in red under it; scaled to 2000 px. GA requests appear only for a FRESH user's session in the harness (`analytics-batch.mts` `withUser(fresh(...))`); the runner's own page sends none.
+- Steps to reproduce for a layman: browser F12 > Network > filter `collect` > type in Search > click Tech View > open a request > read `dl`.
+- Tagging the product owner in Jira wiki: `[~accountid:<id>]`; Chris Ward = `712020:aa00b8d6-a71f-4259-8919-82a304227c20` (confirmed as the author of his Fast Follow comments; a second "Chris" exists — Chris Amani). Asked "fast-follow or obsolete?" on SV-11722 at his request.
+- Filed under the Fast Follow epic WITHOUT the `fast-follow` label (the decision is with Chris), so C97027 stays in run 498 as Failed; if Chris labels it fast-follow, `fast_follow_sweep.py` moves it.
+#jira #analytics #pictures #run498 → L0560, L0561, L0564
