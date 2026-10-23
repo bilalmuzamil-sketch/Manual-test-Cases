@@ -31,7 +31,7 @@
 
 ## 23 Oct 2026 — suite created in TestRail (QA lead: "Get Done with all the test cases creation")
 - 344 cases created under group 91454 (291 from PRD v3 + 53 design cases), every read-back equal; 218 design pictures attached
-  and read back (170 cases). Map: `testrail-id-map.csv`; log: `applied/create-log.jsonl`. C723856…C724209.
+  and read back (170 cases). Map: `testrail-id-map.csv`; log: `applied/create-log.jsonl`. C723865…C724209.
 - A container restart stopped the first creation run after 283 cases; C724148 (DATA-21) had been created but not logged — found by
   the section check, compared field by field with the proposal (equal) and adopted, so no duplicate was made.
 - Run 551 "Credit terms - Execution" (milestone 5, assigned to Bilal): 335 tests = every case except the 9 held on Chris Ward's
