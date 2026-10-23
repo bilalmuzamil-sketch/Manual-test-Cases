@@ -70,3 +70,11 @@ bridge dir (`/tmp/qa21`); `switch-user` on production needs a Technician at the 
   pictures 2 and 3). Both read back: panel type warning + text, media counts/order, list lengths.
 - Gate: branch marker v26.43.0-aa5be60 (unchanged), ticket TESTING QA with 1 earlier comment, wording scan clean, no technical
   section, no recording (API mode). Print Work Order (WO ⋮ menu) prints the work order, not the estimate/invoice — outside the ticket.
+
+## Update 23 Oct 2026 04:14 CDT — email attachment content checked
+The QA lead downloaded the emailed `invoice-for-order-S11685-17580.pdf` and uploaded it here. Read with pymupdf: 2 pages, Inter
+font (Modern), each of the 4 line names appears once, and its text is IDENTICAL to the directly rendered invoice PDF
+(`var-branch/INV-modern-decl0.pdf`, whose Labor rows are blank); money figures identical (Labor $594.89 … Total $690.22).
+Comment 79376 row 12 changed to PASSED with a dated note (text before the edit kept in comment-79376-before-email-edit.txt);
+read back: panel still PARTIALLY PASSED, 14 table lines, picture still a real attachment.
+Remaining: only the line fee/discount (↳) rows — with Chris and Milomir in comment 79377.
