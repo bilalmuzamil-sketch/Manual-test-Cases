@@ -1,0 +1,17 @@
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+prod S0 modern html [3, 2, 2, 2, 1] pdf [3, 2, 2, 2, 1] | legacy html [2, 1, 1, 1, 1] pdf [2, 1, 1, 1, 1]
+prod S1 modern html [3, 2, 2, 2, 1] pdf [3, 2, 2, 2, 1] | legacy html [2, 1, 1, 1, 1] pdf [2, 1, 1, 1, 1]
+prod S2 modern html [3, 2, 2, 2, 1] pdf [3, 2, 2, 2, 1] | legacy html [2, 1, 1, 1, 1] pdf [2, 1, 1, 1, 1]
+prod S3 modern html [3, 2, 2, 2, 1] pdf [3, 2, 2, 2, 1] | legacy html [2, 1, 1, 1, 1] pdf [2, 1, 1, 1, 1]
+  prod S0 summary modern {'invoice-summary-labor': 'Labor $603.95', 'invoice-summary-parts': 'Parts $814.00', 'invoice-summary-shop-supplies': 'Shop supplies (10.5% of labor) $63.41', 'invoice-summary-subtotal': 'Subtotal $1,481.36', 'invoice-summary-tax-row': '3% VAT (3%) $44.44', 'invoice-summary-total': 'Total $1,555.43'}
+   summary legacy {}
+  prod S1 summary modern {'invoice-summary-labor': 'Labor $603.95', 'invoice-summary-parts': 'Parts $814.00', 'invoice-summary-shop-supplies': 'Shop supplies (10.5% of labor) $63.41', 'invoice-summary-subtotal': 'Subtotal $1,481.36', 'invoice-summary-tax-row': '3% VAT (3%) $44.44', 'invoice-summary-total': 'Total $1,555.43'}
+   summary legacy {}
+branch S0 modern html [1, 1, 1, 1, 1] pdf [1, 1, 1, 1, 1] | legacy html [1, 1, 1, 1, 1] pdf [1, 1, 1, 1, 1]
+branch S1 modern html [1, 1, 1, 1, 1] pdf [1, 1, 1, 1, 1] | legacy html [1, 1, 1, 1, 1] pdf [1, 1, 1, 1, 1]
+branch S2 modern html [1, 1, 1, 1, 1] pdf [1, 1, 1, 1, 1] | legacy html [1, 1, 1, 1, 1] pdf [1, 1, 1, 1, 1]
+branch S3 modern html [1, 1, 1, 1, 1] pdf [1, 1, 1, 1, 1] | legacy html [1, 1, 1, 1, 1] pdf [1, 1, 1, 1, 1]
+  branch S0 summary modern {'invoice-summary-labor': 'Labor $594.89', 'invoice-summary-parts': 'Parts $0.00', 'invoice-summary-shop-supplies': 'Shop supplies $62.46', 'invoice-summary-subtotal': 'Subtotal $657.35', 'invoice-summary-tax-row': 'GST (5%) $32.87', 'invoice-summary-total': 'Total $690.22'}
+   summary legacy {}
+  branch S1 summary modern {'invoice-summary-labor': 'Labor $594.89', 'invoice-summary-parts': 'Parts $0.00', 'invoice-summary-shop-supplies': 'Shop supplies $62.46', 'invoice-summary-subtotal': 'Subtotal $657.35', 'invoice-summary-tax-row': 'GST (5%) $32.87', 'invoice-summary-total': 'Total $690.22'}
+   summary legacy {}

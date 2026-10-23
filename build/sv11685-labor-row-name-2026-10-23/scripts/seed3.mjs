@@ -1,0 +1,16 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const s=await open({env:'branch',ticket:'11685',cookies:JSON.parse(fs.readFileSync('/tmp/qa11685/cookies.json')),quick:'admin',dir:'/tmp/qa21',vp:{width:1440,height:900}});
+const wo=fs.readFileSync('/tmp/qa11685/w/seed-wo.txt','utf8').trim();
+const P=async(p,b)=>{const r=await s.api(p,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)}); console.log('POST',p,r.status,JSON.stringify(r.json||r.text).slice(0,200)); return r;};
+const os=(await s.api('/api/organizations/settings')).json; const org=os?.data?.id||os?.data?.organization_id||os?.data?.organization?.id; console.log('org',org);
+const ff=(await s.api('/api/organization/feature-flags?organization_id='+org)).json?.data?.features||[]; fs.writeFileSync('/tmp/qa11685/w/features-before.json',JSON.stringify(ff));
+const all=ff.map(f=>f.featureFlagId); const qb=ff.find(f=>/^quick ?books$/i.test(f.name)); console.log('features',ff.length,'qb',JSON.stringify(qb));
+await P('/api/organization/feature-flags',{organization_id:org,feature_flag_ids:all.filter(x=>x!==qb.featureFlagId)});
+const L1='7c528c58-6b91-4f77-a468-ade15d64afec';
+await P('/api/work-orders/adjustments/add',{workOrderId:wo,kind:'fee',name:'ZZAUTOTEST Shop fee',calculationType:'pct_labor',amount:10,scope:'labor_line',targetId:L1,taxable:false,templateId:null});
+await P('/api/work-orders/adjustments/add',{workOrderId:wo,kind:'discount',name:'ZZAUTOTEST Loyalty discount',calculationType:'flat',amount:5,scope:'labor_line',targetId:L1,taxable:false,templateId:null});
+await P('/api/organization/feature-flags',{organization_id:org,feature_flag_ids:all});
+const ff2=(await s.api('/api/organization/feature-flags?organization_id='+org)).json?.data?.features||[];
+console.log('features restored same set:', JSON.stringify(ff2.map(f=>f.featureFlagId).sort())===JSON.stringify(all.slice().sort()));
+const v=(await s.api('/api/work-orders/view/'+wo)).json?.data?.work_order; console.log('adjustments',JSON.stringify((v.adjustments||[]).map(a=>[a.kind,a.scope,a.name,a.amount])));
+process.exit(0);
