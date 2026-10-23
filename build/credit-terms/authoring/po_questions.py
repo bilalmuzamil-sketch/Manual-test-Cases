@@ -1,0 +1,57 @@
+"""Questions for Chris Ward (PO and design authority, Credit terms) — points PRD v3 does not settle. DRAFT ONLY: nothing is sent.
+Each: (slug, the question in plain words, what the PRD says (basis), options, what it holds). Rendered into PO-QUESTIONS-DRAFT.md.
+Skill 07 §6 was applied before a row was kept: DROPPED lists the points our own sources answer, with the source."""
+QUESTIONS = [
+ ("s11-r15", "Story 11 (release day) jumps from requirement 14 to requirement 16. Is a requirement missing there?",
+  "Story 11 lists S11-R14 and then S11-R16; there is no S11-R15 in the PRD or in story SV-11680.",
+  ["A) Nothing is missing; the number was simply skipped", "B) A requirement was removed by mistake (please add it back)",
+   "C) Not sure — please check with the engineers"],
+  "Nothing is held. The release-day cases cover every requirement that is there."),
+ ("other-term-order", "The Credit Terms list puts \"any other term A to Z\" between the day-of-the-following-month terms and Credit Hold. Which terms are these, when a shop can only create Net terms and day-of-the-following-month terms?",
+  'S1-R5: "every \\"day of the following month\\" term by day, lowest first; any other term A to Z; Credit Hold last."',
+  ["A) None today; the place is kept for term kinds added later", "B) Text stored on customers from old imports that matches no term, when it shows in a Credit Terms dropdown",
+   "C) Something else (please say what)"],
+  "Nothing is held. The order cases check every kind that exists; this group is checked once answered."),
+ ("changed-meanwhile-msg", "If another user RENAMES a term (or changes its days) after my Credit Terms page loaded, and I then use that term's menu (for example Make Default or Delete), what should I see?",
+  'S2-E2: "If a term becomes in use, becomes the default, or is changed by another user after the page loaded, the save is refused with the reason in S2 Error Handling" — but the Error Handling texts cover in use, default, the three locked terms, inactive or Credit Hold, and deleted; none covers a rename or a change of days.',
+  ["A) The action is refused with a new message (please give the exact words)", "B) The action goes ahead on the renamed term (only in-use, default and deleted changes refuse it)",
+   "C) Not sure — please check with the engineers"],
+  "Held: one case waits on this answer."),
+ ("inactive-elsewhere", "Where else a customer's credit term is shown (the A/R Collection call list \"Credit term:\", the customer on a work order or part sale), should a deactivated term read \"Net 30 (Inactive)\" or just \"Net 30\"?",
+  'S5-R8: "The customer card\'s \\"Credit term\\" shows \\"{name} (Inactive)\\" for a deactivated term. Invoices and printed documents show the plain name." Other screens are not named.',
+  ["A) \"(Inactive)\" only on the customer card, the vendor card and the Edit windows; every other screen shows the plain name",
+   "B) \"(Inactive)\" on every screen that shows the term except invoices and printed documents", "C) Something else (please say which screens)"],
+  "Held: one must-not-change case waits on this answer."),
+ ("move-note-inactive", "When customers are moved off a deactivated term, does the note on each customer and the Credit Terms Log name the old term plainly (\"from Net 60\") or with \"(Inactive)\" (\"from Net 60 (Inactive)\")?",
+  'S4-R11: "Credit term changed from {old term} to {new term} by {user name} (Move Customers)."; S12-R3: "{n} customers from {from} to {to}". S4-N3 makes a deactivated term a valid source but does not say how it is named.',
+  ["A) The plain name, as on invoices", "B) The name with \"(Inactive)\", as on the customer card", "C) Not sure — please check with the engineers"],
+  "Held: one case waits on this answer."),
+ ("move-note-spelling", "A customer stored with an old spelling such as \"NET 30\" is moved off Net 30. Does its note say \"from NET 30\" (what was stored) or \"from Net 30\" (the term's spelling)?",
+  'S4-R11: "Credit term changed from {old term} to {new term}"; S11-E2: customers with an odd spelling "keep that stored text" and "show their stored text on the card".',
+  ["A) \"from Net 30\" (the term's spelling)", "B) \"from NET 30\" (the text that was stored)", "C) Not sure — please check with the engineers"],
+  "Held: one case waits on this answer."),
+ ("date-change-term", "An invoice was created when the customer was on Net 30. Later the customer is moved to Net 60, and then someone changes that invoice's date. Is the new due date counted with Net 30 (the invoice's own term) or Net 60 (the customer's term now)?",
+  'S7-R7: "An invoice keeps the term and due date it was created with. Changing the customer\'s term later ... never changes an existing invoice." S7-R8: "When a user changes the invoice date on an invoice (existing behavior), the due date is recalculated from the customer\'s term by the rules above".',
+  ["A) Net 30, the term the invoice was created with (the invoice keeps its term)", "B) Net 60, the customer's term now (and the invoice's term changes to Net 60)",
+   "C) Net 60 for the due date, but the invoice still prints Net 30", "D) Not sure — please check with the engineers"],
+  "Held: one case waits on this answer."),
+]
+# Skill 07 §6: points that looked like questions but our own sources answer them, so they are not asked (23 Oct 2026).
+DROPPED = {
+ "ufs-name-placeholder": ('The User Feedback Summary writes "{name} is already a standard term" and "A term called {name} already exists", while S3-R9 '
+                          'writes "{Standard name}" and "{existing name}". S3-R9 is the requirement and gives the worked example "Net 30 is already a '
+                          'standard term. Pick another name." for the typed "net 30", so the message names the existing term in its own spelling. Answered by S3-R9.'),
+ "note-limit-format": ('S4-R20 writes "Credit limit {old limit} → $0." without saying how the old limit is written. Story SV-11673\'s acceptance '
+                       'criterion gives it: "Credit limit $500.00 → $0." Answered by the story.'),
+ "over-limit-boundary": ('Whether a balance exactly equal to the limit warns: S9-R1 says "a customer whose balance exceeds a credit limit above $0"; '
+                         'equal does not exceed. Answered by S9-R1 (the boundary case checks both sides).'),
+ "cod-switch-back": ('Whether switching from COD back to Net 30 restores the old limit: S5-R5 "Switching from COD or Credit Hold to another term leaves '
+                     'the limit at $0.00 until the user enters one." Answered by S5-R5.'),
+ "new-organization": ("How a tester gets an organization created after release (S11-R12) is a test-environment question for the QA lead, not a product "
+                      "decision; it is in REPORT.md OUTSTANDING, and the case is held with that reason."),
+ "accountinghub-visibility": ("What AccountingHub and IBS receive cannot be seen in ShopView; that is a test-access question for the QA lead, not a product "
+                              "decision (REPORT.md OUTSTANDING)."),
+ "every-status": ('Whether archived or inactive customers count: Terminology "Customers and vendors count and are listed whatever their status." Answered.'),
+ "duplicate-inactive": ('Whether a new name may match a deactivated term of the shop: S3-R9 "Name matches another of the shop\'s terms, active or inactive". Answered.'),
+}
+QN = {s: i for i, (s, *_) in enumerate(QUESTIONS, 1)}
