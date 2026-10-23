@@ -1,0 +1,63 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - b35"
+ },
+ "results": {
+  "C368126": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), Truck Hill 1, signed in as the fresh test user \"ZZAUTOTEST WOB User B\" (Admin, no pins at the start).",
+    "Set-up: customer \"ZZAUTOTEST F2 Tech Pin Order\" with five Approved work orders, one led by each of four technicians and one with no lead. Production stand-ins for the four technicians, in name order: Ayesha Khan, Bilal Muzamil, Cameron Williamson, Dana Ortiz.",
+    "Steps 1 to 3: \"Work Orders\", \"All\" tab, the customer's name typed in \"Search\".",
+    "Steps 4 and 5: in \"Tech View\" the order was Unassigned, Ayesha Khan, Bilal Muzamil, Cameron Williamson, Dana Ortiz.",
+    "Steps 6 and 7: after pinning Cameron Williamson (the test's third technician) the order was Unassigned, Cameron Williamson, Ayesha Khan, Bilal Muzamil, Dana Ortiz - the pinned one sits right after Unassigned.",
+    "Steps 8 and 9: after pinning Ayesha Khan the order was Unassigned, Cameron Williamson, Ayesha Khan, Bilal Muzamil, Dana Ortiz - the new pin goes after the existing pin, not by name.",
+    "Steps 10 and 11: \"Board View\" shows the same order: Unassigned, Cameron Williamson (pinned), Ayesha Khan (pinned), then Bilal Muzamil and Dana Ortiz further right."
+   ],
+   "pictures": [
+    "pictures-prod/C368126-1-prod-1022.png",
+    "pictures-prod/C368126-2-prod-1022.png"
+   ]
+  },
+  "C96988": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), Truck Hill 1, signed in with the Admin role.",
+    "Set-up: customer \"ZZAUTOTEST F1 Density Content\" with one Approved work order, S1-1756, led by Esther Howard; \"Lead Technician\" and \"Total Price\" turned on in \"Column Selection\"; \"Tech View\" shown, the customer's name in \"Search\", density \"Regular\".",
+    "Step 1: 13 column headings (Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Created On, Total Price); the row shows Esther Howard under \"Lead Technician\", a progress bar at 0% under \"Progress\" and $404.73 under \"Total Price\".",
+    "Step 2: at \"Compact\" the row is shorter (36 px against 48 px at Regular).",
+    "Step 3: the same 13 headings in the same order and the same values in the row as at step 1.",
+    "Step 4: at \"Comfortable\" the row is taller (64 px).",
+    "Step 5: the same 13 headings in the same order and the same values as at step 1."
+   ],
+   "pictures": [
+    "pictures-prod/C96988-1-prod-1022.png",
+    "pictures-prod/C96988-2-prod-1022.png",
+    "pictures-prod/C96988-3-prod-1022.png"
+   ]
+  },
+  "C682445": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), Truck Hill 1 - outcome 3 of the test: browser 2's move is kept, so the fix for the known problem is on production.",
+    "Set-up: customer \"ZZAUTOTEST C682445 Two People\" with three Approved work orders led by one technician, in the order S1-1752, S1-1753, S1-1754; two separate browsers, both on \"Work Orders\" > \"All\" > \"Board View\".",
+    "Step 1: browser 1's column reads S1-1752, S1-1753, S1-1754.",
+    "Step 2: browser 2 shows the same order.",
+    "Step 3: browser 1, S1-1754 dragged to the top: S1-1754, S1-1752, S1-1753. No message.",
+    "Step 4: browser 2 (not refreshed), S1-1753 dragged to the top: S1-1753, S1-1752, S1-1754. No message in either browser.",
+    "Step 5: after refreshing browser 1: S1-1753, S1-1754, S1-1752, no warning.",
+    "Step 6: after refreshing browser 2: the same order, S1-1753, S1-1754, S1-1752, no warning.",
+    "Step 7: in \"Tech View\" the technician's group lists S1-1753, S1-1754, S1-1752."
+   ],
+   "pictures": [
+    "pictures-prod/C682445-1-prod-1022.png",
+    "pictures-prod/C682445-2-prod-1022.png",
+    "pictures-prod/C682445-3-prod-1022.png",
+    "pictures-prod/C682445-4-prod-1022.png"
+   ]
+  }
+ }
+}

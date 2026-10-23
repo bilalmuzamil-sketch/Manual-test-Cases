@@ -1,0 +1,7 @@
+{
+ "535247": {
+  "test": 4101036,
+  "case": 707077,
+  "new": "<p><strong>Blocked at step 1 (set-up): on production a technician's sign-in name and staff record name cannot be made different, so the set-up this test needs cannot exist there.</strong></p><p>Tested on production, build v26.43.0-ffea43c, on 22 and 23 October 2026.</p><ul><li>Set-up needed: a technician whose staff record name differs from the name on their sign-in account.</li><li>Tried three ways with technician Carol Neal at Truck Hill 1, reading both names after each: (1) signed in as her, Profile &gt; Edit Profile, name changed to \"David Sparks\", \"Change Name\" pressed; (2) the same change made behind the screen; (3) her name changed back in Settings &gt; Staff.</li><li>Each time both names changed together: her sign-in name and her staff record name always read the same (picture: Edit Profile just after \"Change Name\").</li><li>How it passed on staging on 21 October: staging, on an older build, already had a technician whose two names differed (sign-in \"Carol Neal\", staff record \"David Sparks\"), and every place showed the staff record name.</li></ul><hr /><p>What needs to be done: nothing to fix in the product; the QA lead decides whether this test stays staging-only.</p>"
+ }
+}
