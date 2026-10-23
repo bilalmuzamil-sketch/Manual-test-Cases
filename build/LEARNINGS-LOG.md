@@ -568,3 +568,8 @@
 - Edit Line on v26.43.1 has NO "Cancel" button (X, Delete, Save & Close). Close with the X (`c707077-stg-close-1023.mts`: closed, Labor unchanged). Step 5 reworded accordingly (steps are fixable; Expected untouched). Board View cards show no technician name — only the column header does; say so in the result rather than claim "the card reads …".
 - `get_attachments_for_test` lists each attached picture twice (also on older results) — a listing quirk, not a double upload; match `entity_id` = the result id.
 #run498 #staging #c707077 #edit-line #pictures → L0568, L0569
+
+## L0571 — 2026-10-23 — Finding a section's tests for a list of tickets: read each ticket, then whole-word match, then the run
+- QA lead gave SV-11691 / SV-11690 / SV-11711 / SV-11688 and the Dashboard section 12166. `build/dashboard-lookup-2026-10-23/find_related.py` pages every sub-section (15 sections, 126 cases) and matches ticket words; a first pass with bare regexes was useless ("aging" matched "staging/changing", "credit limit" matched a set-up line). Use whole words (`\baging\b`) and read the matching sentence before calling a case related; also match the PRD rule ids the ticket cites (S3-R2, S3-E3, S4-R11).
+- Result: only SV-11688 (Technician Utilization, open timesheets) touches the Dashboard; its 9 cases are all Passed in run 525 "Dashboards" because none sets up a never-clocked-out technician — a coverage gap. The Dashboard has no A/R or credit-limit tile, so SV-11690 / SV-11691 / SV-11711 have no Dashboard test (SV-11711 only appears as a set-up side note in 6 cases). Runs: 525 "Dashboards" (open, active), 500 "Dashboard v1 (SV-490) — Automation + Manual" (untested).
+#dashboard #lookup #testrail #tickets → L0493
