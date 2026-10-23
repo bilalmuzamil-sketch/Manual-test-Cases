@@ -1,1 +1,16 @@
 00:16:35 POST /api/login -> 502; driving the login form instead
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+locator.fill: Timeout 90000ms exceeded.
+Call log:
+  - waiting for locator('input[type=email], input[autocomplete=username]').first()
+
+    at bootProdLogin (/home/user/Manual-test-Cases/build/testing-tools/prod-login-boot.mjs:59:83)
+    at async open (/home/user/Manual-test-Cases/build/wo-board-tech-view/run498-2026-10-08/session.mts:51:15)
+    at async <anonymous> (/home/user/Manual-test-Cases/build/wo-board-tech-view/run498-2026-10-08/ensure-loc.mts:7:30) {
+  name: 'TimeoutError'
+}
+
+Node.js v22.22.0
