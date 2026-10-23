@@ -36,6 +36,18 @@ for line in PRD_TXT.split("\n"):
     # 22 Oct 2026, Rule 136 pass: the first line is the requirement itself; a later cell of the PRD's change-log table can start with
     # the same code (PRD v11: "S4-R21: the Deactivate window line reads ... v10.") and must not replace it.
     if m and m.group(1) not in CODE: CODE[m.group(1)] = m.group(2).strip()
+# 23 Oct 2026: Chris Ward answered question 41 and the PRD moved to version 13 (only S4-R7 and S4-R8 changed). The QA lead chose the
+# named set: only the cases in V13 quote version 13 (and Chris Ward's answer 41); every other case keeps its version 11 quotes, which
+# are word for word the same in version 13.
+PRD13_TXT = md_to_text(open(f"{P}/prd-v13-2026-10-23/CONFLUENCE-919928833-v13-2026-10-23.md").read())
+PRDW13 = ws(PRD13_TXT)
+CODE13 = {}
+for line in PRD13_TXT.split("\n"):
+    m = re.match(r"^-?\s*(S\d+-[RNE]\d+[a-z]?):\s*(.*)$", line)
+    if m and m.group(1) not in CODE13: CODE13[m.group(1)] = m.group(2).strip()
+PRD13_NAME = 'PRD "Splitting Sales Representatives", Confluence 919928833, version 13 (23 Oct 2026, Chris Ward)'
+ANS13_NAME = "Chris Ward's answers to the Splitting Sales Representatives question sheet (answers 1 to 38, 19 Oct 2026; answers 39 and 40, 21 Oct 2026; answer 41, 23 Oct 2026)"
+V13 = {"S3-03", "S4-03", "S4-03b", "S4-04", "S4-04c", "D-11", "D-13"}
 def prd_line(start):
     for line in PRD_TXT.split("\n"):
         t = re.sub(r"^-\s*", "", line).strip()
@@ -72,7 +84,7 @@ def quotes(c):
     out = []
     for x in c["q"]:
         if isinstance(x, tuple): out.append(x)
-        else: out.append((x, CODE[x]))
+        else: out.append((x, (CODE13 if c["key"] in V13 else CODE)[x]))
     return out
 
 def story_nums(c):
@@ -141,7 +153,10 @@ def quotes_block(c):
     first = True
     for k, name in DOCS:
         if k not in groups: continue
-        h += f"<p>From: {e(name or PRD_NAME)}, {READ.get(k, 'read 19 Oct 2026')}" + (f" &middot; {e(tickets)}" if first else "") + "</p>"
+        if c["key"] in V13 and k in ("PRD", "Chris Ward's answer"):
+            name, rd = (PRD13_NAME if k == "PRD" else ANS13_NAME), "read 23 Oct 2026"
+        else: rd = READ.get(k, 'read 19 Oct 2026')
+        h += f"<p>From: {e(name or PRD_NAME)}, {rd}" + (f" &middot; {e(tickets)}" if first else "") + "</p>"
         h += "<ul>" + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in groups[k]) + "</ul>"
         first = False
     return h + f"<p>{e(NOBUILD)}</p>"
@@ -179,7 +194,7 @@ def check(c, extra_sources=None):
             n = int(l.split()[-1])
             if ws(t) not in ws(ANS[n]): p.append(f"{k}: quote {l} not verbatim")
             continue
-        src = DESW if l.startswith("Design — board") else TPW if l.startswith("Tech plan") else SBRW if l.startswith("Sales By Representative spec") else SBCW if l.startswith("Sales By Customer spec") else (PRDW if not (extra_sources and l in extra_sources) else ws(extra_sources[l]))
+        src = DESW if l.startswith("Design — board") else TPW if l.startswith("Tech plan") else SBRW if l.startswith("Sales By Representative spec") else SBCW if l.startswith("Sales By Customer spec") else ((PRDW13 if k in V13 else PRDW) if not (extra_sources and l in extra_sources) else ws(extra_sources[l]))
         if ws(t) not in src: p.append(f"{k}: quote {l} not verbatim")
     if len(c["pre"]) > 7: p.append(f"{k}: {len(c['pre'])} preconditions")
     if len(c["steps"]) > 10: p.append(f"{k}: {len(c['steps'])} steps (over 10: split it, or record in SPLITS.json why it stays whole, Rule 136)")

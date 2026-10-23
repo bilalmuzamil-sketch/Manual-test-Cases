@@ -103,6 +103,36 @@ C("S4-04b", "S4", "Changing Service Parts never changes an added Part Sales fiel
    "Step 2: the customer saves, and its page lists, in this order, \"Sales Representative - Service Labor\" {Sales-rep-A}, \"Sales Representative - Service Parts\" {Sales-rep-C}, \"Sales Representative - Part Sales\" {Sales-rep-B}."],
   ["S4-R14", "S4-E2", "S4-R19", "S4-R9"])
 
+# 23 Oct 2026: Chris Ward's answer 41 (PRD v13 S4-R7 and S4-R8): an added field never copies a person whose Sales Representative
+# switch is off; it starts "Unassigned" and the field they hold keeps them as "(Inactive)". Two cases, one per added field (Rule 136).
+# The "account deactivated" half of the rule has no customer case: deactivating an account removes the person from every customer
+# field first (S4-R20), so no customer field can hold them when a field is added.
+SWITCHED_OFF = ('Staff member {Staff-member-D} is active at {Location-A} with the "Sales Representative" switch turned off after being picked on the customer.',
+                "For example: {Staff-member-D} is ZZAUTOTEST Dan Noswitch.")
+C("S4-03b", "S4", "Adding Service Parts starts Unassigned when the rep's switch is off",
+  [ADMIN, SWITCHED_OFF,
+   ('Customer {Customer-A} has {Staff-member-D} as its one sales representative, shown as "{Staff-member-D} (Inactive)".', "For example: {Customer-A} is ZZAUTOTEST SSR Switch Off."),
+   CEDIT],
+  ["Click the + beside Sales Representative.",
+   "Click \"Sales Representative - Service Parts\".",
+   "Save the customer."],
+  ["Step 1: the menu opens.",
+   "Step 2: the first field is renamed \"Sales Representative - Service Labor\" and still reads \"{Staff-member-D} (Inactive)\"; \"Sales Representative - Service Parts\" shows under it reading \"Unassigned\".",
+   "Step 3: the customer saves, and its page lists \"Sales Representative - Service Labor\" {Staff-member-D} (Inactive) and \"Sales Representative - Service Parts\" Unassigned."],
+  ["S4-R7", "S4-N2", "S4-R27", AQ(41)])
+
+C("S4-04c", "S4", "Adding Part Sales starts Unassigned when the person it copies is switched off",
+  [ADMIN, ('Staff member {Sales-rep-A} is active at {Location-A} with the "Sales Representative" switch on.', "For example: {Sales-rep-A} is ZZAUTOTEST Ann Able."), SWITCHED_OFF,
+   ('Customer {Customer-A} shows "Sales Representative - Service Labor" {Sales-rep-A} and "Sales Representative - Service Parts" "{Staff-member-D} (Inactive)", with no Part Sales field.', "For example: {Customer-A} is ZZAUTOTEST SSR Switch Off PS."),
+   CEDIT],
+  ["Click the +.",
+   "Click \"Sales Representative - Part Sales\".",
+   "Save the customer."],
+  ["Step 1: the menu opens.",
+   "Step 2: \"Sales Representative - Part Sales\" shows last and reads \"Unassigned\"; Service Parts still reads \"{Staff-member-D} (Inactive)\" and Service Labor {Sales-rep-A}.",
+   "Step 3: the customer saves, and its page lists Service Labor {Sales-rep-A}, Service Parts {Staff-member-D} (Inactive) and \"Sales Representative - Part Sales\" Unassigned, in that order."],
+  ["S4-R8", "S4-R26", "S4-R27", "S4-N2", AQ(41)])
+
 C("S4-05", "S4", "Removing Service Parts makes the Service Labor person the one rep",
   [ADMIN, REPS3,
    ('Customer {Customer-A} shows "Sales Representative - Service Labor" {Sales-rep-A}, "Sales Representative - Service Parts" {Sales-rep-B} and "Sales Representative - Part Sales" {Sales-rep-C}.', "For example: {Customer-A} is ZZAUTOTEST SSR Fleet."),

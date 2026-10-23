@@ -84,3 +84,16 @@ Intake: INTAKE-2026-10-19.md. Worker brief: WORKER-BRIEF.md.
   542; invoice-row cases now expand the rep's row first (SBR spec v28 Story 6); S4-18/S4-19 now quote the S4-R21 requirement, not a
   change-log cell. 79 + 3 updated, 34 added, all read back OK (C665967's read-back recovered after a rate-limit stop: live equals the new
   version); 15 pictures uploaded. Run 547: 144 → 178, none lost.
+
+## 23 Oct 2026 — Chris Ward answered question 41; PRD v13; named-set update (QA lead chose "Named set only")
+- Answer 41 (sheet 17Ry1Bt, E49): "(b) "Unassigned", and the same for an added "Sales Representative - Service Parts" field ... PRD v13,
+  S4-R7 and S4-R8." Saved in design-recheck-2026-10-20/chris-answers.json.
+- PRD v13 (23 Oct 2026 15:33 UTC) saved in prd-v13-2026-10-23/. Script diff against v11: of 143 requirement codes only S4-R7 and S4-R8
+  changed (sentences added); otherwise only the status line ("Ready for development - 2026-10-22") and a change-log row.
+- Updated top to bottom (quotes from v13 + answer 41, From line v13): S3-03 C665939, S4-03 C665942, S4-04 C665943, D-11 C666027,
+  D-13 C666029 (their tester-facing parts use active reps and stay valid). New: S4-03b C724219 (Service Parts starts Unassigned),
+  S4-04c C724220 (Part Sales starts Unassigned). Run 547: 178 → 180 (union). Log: applied/apply5-v13-log.jsonl.
+- The other 173 cases keep their v11 quotes (word for word identical in v13); the QA lead chose not to restamp them.
+- Not testable as a customer case: the "account deactivated" half of S4-R7/S4-R8 — deactivating an account removes the person from
+  every customer field first (S4-R20), so no field can hold them when a field is added.
+- The tech plan copies the person into the added field; the PRD now says "Unassigned" — expect the build to differ until changed.
