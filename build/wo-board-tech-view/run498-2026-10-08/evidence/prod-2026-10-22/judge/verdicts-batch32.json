@@ -1,0 +1,188 @@
+{
+ "C96976": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 5, 7, 8 and 9: the starting choice (Customer on, VIN/serial off) was never set, so Customer was already off before step 5 and the card could not be seen to stop showing the customer; steps 7 (log out and back in), 8 (second browser) and 9 (second location) were never reached because the second browser failed to open the page.",
+  "bold_steps": [
+   5,
+   7,
+   8,
+   9
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1 to 4 and 6 matched; the start state for step 5 was never set, and steps 7, 8 and 9 were not done.",
+   "Set-up: work order S1-1730 for \"ZZAUTOTEST F2 Board Fields Saved\", led by Esther Howard, at Truck Hill 1, with VIN ZZWOB179271689380. Board View's Column Selection was NOT first set to Customer on and VIN/serial off: before any change the fields that were on were Asset, Progress, Line count and Total price (Customer already off).",
+   "Step 1: Tech View's Column Selection button was found in the toolbar, just left of the display switcher.",
+   "Steps 2 and 3: Work Orders was opened by its address, then All, Board View and the customer's name in Search were used on screen.",
+   "Step 4: Board View's Column Selection button sits in the same toolbar spot (just left of the display switcher; Tech View has an extra density button before it) and opens a list of fields, each with a switch, like Tech View's.",
+   "Step 5 (START STATE NOT SET): Customer was already off, so only the VIN/serial switch changed (turned on).",
+   "Step 6: the S1-1730 card shows \"VIN ZZWOB179271689380\" and no customer name. Because the customer was not on the card before, the card was never seen to stop showing it.",
+   "Step 7 (NOT DONE): no log-out and log-in.",
+   "Step 8 (NOT DONE): the second browser could not open the Work Orders page (a certificate error on the test machine), so nothing was read there.",
+   "Step 9 (NOT DONE): the second location was not visited.",
+   "Usage recording not checked by hand."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96976-card-after.png",
+   "evidence/prod-2026-10-22/C96976-error.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. s5-batchA.mts C96976, re-run 00:54-00:56 UTC 23 Oct (redo5 #3). start (onKeys) = vehicle, progress, lines_count, total_price - company_name already OFF, so the case's start state (Customer on, VIN off) was never set and setSwitch(company_name,false) changed nothing; setSwitch(vin,true) ok. cardStart has no customer field, cardAfter adds field_vin 'VIN/serial VIN ZZWOB179271689380'. Buttons: Tech View column selection at x1200/y86, Board at x1350/y82 (offset = density button, Board View has none on production). second() context: page.goto ERR_CERT_AUTHORITY_INVALID - secondBrowser, saved and the loc2 block never ran; there is no logout/login block in the script at all. No picture of either menu open; the error picture is the same board as card-after. Work Orders opened by goto (route) as well.",
+  "todo": "By hand on production: Work Orders > All > Board View, search ZZAUTOTEST F2 Board Fields Saved. Open Column Selection and first make sure Customer is ON and VIN/serial is OFF (card shows the customer, no VIN). Then turn Customer off and VIN/serial on: the card must drop the customer and show the VIN. Log out and back in, open Board View in a second browser, and switch to Trucks Hill 2: Customer must still be off and VIN/serial on each time. Write 'usage recording not checked by hand'."
+ },
+ "C96983": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 9: during the load failure the run turned On-site on instead of Created date as the step says (Created date was already saved as on from step 3). Every other step matched; Work Orders was also opened by its address in steps 1, 6 and 10 instead of from the menu.",
+  "bold_steps": [
+   9
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1 to 8 and 10 to 11 matched, but step 9 turned on a different field (On-site) instead of Created date.",
+   "Set-up: work order S1-1731 for \"ZZAUTOTEST F2 Saved Choice Failure\" at Truck Hill 1 with no lead technician. The load failure was made on the test machine by making the page's read of the saved field choices fail (in place of a developer-made failure); the page showed \"Oooops! An error occurred\".",
+   "Step 1: Work Orders was opened by its address; All and Board View were then clicked.",
+   "Step 2: the fields on were Asset, VIN/serial, Progress, Line count and Total price.",
+   "Steps 3 to 5: Created date was turned on; after reloading the page Created date was still on.",
+   "Steps 6 and 7: with the load failure in place, Board View's Column Selection showed exactly Lead technician, Customer, Asset, Progress and Total price on; the card shows its number S1-1731, its unit ZZF2SF and its status Approved, which are always shown.",
+   "Step 8: Tech View showed the columns Status, Waiting On Parts, Number, Customer, Unit, Asset, Progress, Service Advisor, Clocked In, Lines, Assigned Techs, Created On, Total Price, in that order.",
+   "Step 9 (NOT DONE AS WRITTEN): back in Board View, On-site was turned on instead of Created date.",
+   "Steps 10 and 11: after the failure was removed and the page opened again, Created date (and On-site) were on; the card shows \"Today\" as its created date. Created date had already been saved as on in step 3, so this does not show the choice made during the failure was the one kept."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96983-fail-board.png",
+   "evidence/prod-2026-10-22/C96983-end.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. s5-batchA.mts C96983, re-run 00:56 UTC 23 Oct (redo5 #3). normalBoard vehicle,vin,progress,lines_count,total_price; setSwitch start_date true + reload -> afterReload includes start_date. Failure = page.route on preferences/work-orders-list GET answering 500 (reads 2, error toast in picture). failBoard on technician, company_name, vehicle, progress, total_price (matches S5-R13; number/unit/status are not switches). failTech heads = the 13 S5-R4 columns in order. changeDuringFailure = setSwitch('vehicle_here', true) - NOT start_date as step 9 says (a deliberate stand-in because start_date was already saved; staging accepted On-site too). After unroute, go() (page.goto) - afterFailureRemoved includes vehicle_here and start_date; savedNow startDate true, vehicleHere true. Steps 1/6/10 page opened by goto (route) in addition.",
+  "todo": "By hand with the developer's load failure (or the same forced failure): after steps 1-8, make sure Created date is OFF in the saved choice before the failure if you want the check to mean something, then in step 9 click Column Selection in Board View and turn Created date on. When the failure is removed, reload and open Column Selection: Created date must be on. Everything else (default fields during the failure and Tech View's 13 starting columns) already matched."
+ },
+ "C368217": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1 to 3: the run made the set-up but stopped with an error after making the second location's part sale, without coming back to Truck Hill 1, so the Part Sales list was never opened and P1-86's Parts and Returns counts were never read.",
+  "bold_steps": [
+   1,
+   2,
+   3
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The set-up was made, but steps 1 to 3 were never done because the run stopped first.",
+   "Set-up: part sale P1-86 for \"ZZAUTOTEST Part Sale Counts 87838\" at Truck Hill 1 with two Brake Pads parts (Uncategorized, vendor Delete Test, cost 100); authorized, one part ordered and received (\"Parts received.\"); the return window opened but no message confirmed the return was saved. The part sale page then shows Parts (1) with one Brake Pads part still showing Order. Part sale P2-87 with two Brake Pads parts was made at Trucks Hill 2.",
+   "Step 1 (NOT DONE): the screen stayed at Trucks Hill 2 (the switch back to Truck Hill 1 failed) and the run stopped with an error before opening Parts > Part Sales.",
+   "Step 2 (NOT DONE): P1-86 was not searched for.",
+   "Step 3 (NOT DONE): the Parts and Returns columns were not read."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368217-setup-check.png",
+   "evidence/prod-2026-10-22/C368217-error.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. ps-counts.mts C368217, re-run 00:57-01:02 UTC 23 Oct (redo5 #4) - the newest run, after the 00:4x slot. Set-up: psCreate 200, p1/p2 Brake Pads (Sell Price box not found, left 0), receiveToasts ['Parts received.'], returnToasts [] (return window 'Add new part return request ... Save & Close' opened, no confirmation), setupCheck tab 'Parts (1)'. Trucks Hill 2 part sale P2-87 with two parts (picture). backTopBar/backTopBarAfterReload 'Trucks Hill 2', backEnsure 'failed: not at Truck Hill 1', then error 'np is not defined' (a script fault) - no list block ran. C368217-list.png and -end.png are from the 23:34 run, not this one. Return not proven saved - check by hand.",
+  "todo": "By hand: make sure the top bar reads Truck Hill 1. Open P1-86 and check it has 2 part requests and 1 part return (if the return is missing, make it: open the received part's menu > return, Return Reason and Quantity 1 > Save & Close). Then Parts > Part Sales, type P1-86 in Search and read Parts and Returns (expected 2 and 1). The Trucks Hill 2 part sale P2-87 already exists."
+ },
+ "C368151": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps with the keyboard (mouse only for set-up and for switching to Tech View in step 5, as the test allows).",
+   "Set-up: work order S1-1698 for \"ZZAUTOTEST F3 Keyboard Controls One\", Approved, led by ZZAUTOTEST Ana Alpha, who is also on its line; Ana unpinned at the start; All tab, Board View, the customer's name in Search, at Truck Hill 1, window 1600 px wide.",
+   "Step 1: Tab from Search went through the toolbar and landed on S1-1698's card (no column header on the way); the card shows a blue focus ring and its More actions (…) button shows with the mouse moved away.",
+   "Step 2: Tab reached More actions; Enter opened the menu (Reassign lead technician, Unassign) and Escape closed it with focus back on More actions; Space opened it again and Escape closed it, focus back on More actions.",
+   "Step 3: from the card, the Up arrow reached Ana's column header; Tab reached its pin button; Enter pinned Ana (pin shown pressed, Ana's column moved first).",
+   "Step 4: with focus kept on the pin, Space unpinned Ana.",
+   "Step 5: Tech View was clicked (and Assigned Techs turned on as set-up); Tab from Search landed on S1-1698's row, the Up arrow reached Ana's group header, Tab reached its collapse arrow, and Enter collapsed the group (its row hidden).",
+   "Step 6: with focus kept on the arrow, Space expanded the group again (the row is back).",
+   "Step 7: the Down arrow reached S1-1698's row and Tab reached the avatar in Assigned Techs; it shows the name \"ZZAUTOTEST Ana Alpha\".",
+   "Step 8: Shift+Tab reached Column Selection; Enter opened its options, Tab moved into them (On Site switch), and Escape closed them with focus back on Column Selection.",
+   "Step 9: Tab reached Status; Enter opened it, Tab reached Estimate then Approved, Enter ticked Approved (chip \"Status: Approved\"); Escape closed the options with focus on the chip; Tab reached its x and Enter cleared the filter (chip back to \"Status\").",
+   "Step 10: Shift+Tab reached the Board View switcher button and Enter changed the display to Board View."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368151-s1-card-focus.png",
+   "evidence/prod-2026-10-22/C368151-s5-after-enter-collapse.png",
+   "evidence/prod-2026-10-22/C368151-s7-avatar-focus.png",
+   "evidence/prod-2026-10-22/C368151-s9-approved-ticked.png"
+  ],
+  "reason_for_reviewer": "kbd-fix4.mts C368151, re-run 23:55-23:57 UTC 22 Oct (redo4 #9). Fixes confirmed: s5.toHeader keys ['ArrowUp -> tech_view_group_Ana'] (Up first), assignedTechs toggled on by toggle_tech_view_column_assigned_techs (false -> true), s7 avatar reached (tooltip 'ZZAUTOTEST Ana Alpha'). s3 pinnedSaved true / aria-pressed true; s4 pinnedSaved false. s5 collapsed true rows 0; s6 collapsed false rows 1. s8 afterEscape menusOpen 0, back on Column Selection. s9 chip 'Status: Approved' -> 'Status' after Enter on x (ArrowDown did not move inside the Status options; Tab did - not part of the Expected). s10 active 'Board View'. Note: escape1/escape2 read menusOpen 1 only 250 ms after Escape (fade-out); the after-escape picture shows the menu fading with focus on More actions, and the next Space opened a fresh menu - accepted as closed. Work Orders opened by address only in the precondition set-up (allowed)."
+ },
+ "C614714": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 2 and 8: Time Clock was switched off on screen, but clicking Save & Close sent no save and the Staff window stayed open, so the change was made behind the screen (a possible product problem, not proven - the click may not have reached the button); on the work order page Lead technician shows as plain text with nothing to choose, so Unassigned was set behind the screen. Work Orders was also opened by its address in steps 3 and 9.",
+  "bold_steps": [
+   2,
+   8
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1, 4 to 7, 9 and 10 matched; steps 2 and 8 were finished behind the screen.",
+   "Set-up: technician ZZAUTOTEST N1 Tim 65732 (Technician role, Time Clock on) at Truck Hill 1; customer ZZAUTOTEST N1 Time Clock Off 65732 with S1-1699 led by Tim and S1-1700 with no lead technician; starting on Settings > Staff.",
+   "Step 1: the pencil on Tim's row opened the \"Edit Staff Member\" window for ZZAUTOTEST N1 Tim 65732.",
+   "Step 2 (NOT DONE THROUGH THE SCREEN): Time Clock was switched off in the window, but after Save & Close was clicked no save was sent, no message showed and the window stayed open; Time Clock was then turned off behind the screen and read back as off.",
+   "Step 3: Work Orders was opened by its address; All and Board View were then clicked.",
+   "Step 4: with the customer's name in Search, Tim's own column (\"ZZAUTOTEST N1 Tim 65732\") holds S1-1699.",
+   "Step 5: S1-1700 dragged from Unassigned onto Tim's column stayed in Unassigned and Tim's column still holds only S1-1699 (no message showed). A drop on another technician's column in the same run was accepted (\"Lead technician updated\"), so the drag itself worked.",
+   "Step 6: Tech View shows S1-1699 in a group headed ZZAUTOTEST N1 Tim 65732.",
+   "Step 7: clicking S1-1699's row opened its work order page (lead technician ZZAUTOTEST N1 Tim 65732 on the status card).",
+   "Step 8 (NOT DONE THROUGH THE SCREEN): no Lead Technician field to choose from was found on the page (it shows as plain text), so the lead was cleared behind the screen; the page then reads Lead technician \"Unassigned\".",
+   "Step 9: Board View shows no column for Tim.",
+   "Step 10: Tech View shows no group for Tim; S1-1699 is now under Unassigned with S1-1700."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C614714-stg-s2-after-save.png",
+   "evidence/prod-2026-10-22/C614714-stg-s4-column.png",
+   "evidence/prod-2026-10-22/C614714-stg-s7-wo-page.png",
+   "evidence/prod-2026-10-22/C614714-stg-s10-tech.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. C614714-stg.mts, re-run 23:57-00:01 UTC (redo4; redo4w file 00:08 identical). s2_toggle 1, before true, afterClick false; s2_saveCalls [] (every Staff-window save recorded: none sent), s2_messages [], windowAfterSave open 1, no field errors -> s2_api 201, clockableAfter false. Possible product problem (Save & Close does nothing) but NOT proven - the click may not have reached the button. s5: drag done, wo2 lead null, column after [S1-1699], no toast; control drop accepted. s7: row td clicked, opened true. s8_field 0, page shows lead_technician_readonly=Unassigned after the API clear (s8_api 201). s9/s10 false; Work Orders opened by goto in steps 3 and 9 (route). Picture s2-after-save shows the window still open with Time Clock off.",
+  "todo": "One-minute hand check: Settings > Staff, pencil on ZZAUTOTEST N1 Tim 65732 (or any test technician), switch Time Clock off and click Save & Close. If the window closes and Time Clock reads off, step 2 is fine; if it stays open with nothing saved, report it. Then on a work order led by that technician, set Lead Technician to Unassigned on the work order page (find where the page lets you change it) and check Board View shows no column and Tech View no group for the technician once they lead nothing."
+ },
+ "C614715": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 2: Work Orders was opened by its address instead of from the top menu. Everything else matched: Tech View and Board View show the \"No work orders yet\" first-run state, its button opens the same New Work Order window, and List shows \"No work orders found.\"",
+  "bold_steps": [
+   2
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Every step matched, but in step 2 Work Orders was opened by its address instead of from the top menu.",
+   "Set-up: a new location \"ZZAUTOTEST C614715 Empty Location\" with no work orders at all (made on screen, Country picked); the signed-in admin is enrolled there.",
+   "Step 1: your initials > Change Location > ZZAUTOTEST C614715 Empty Location; the top bar shows \"ZZAUTOTEST C614715 Empty ..\".",
+   "Step 2 (ROUTE): Work Orders was opened by its address, then All and Tech View were clicked. Instead of groups the page shows a clipboard icon in a grey circle, \"No work orders yet\", \"Create a work order and assign a technician to see it here.\" and a \"Create Work Order\" button.",
+   "Step 3: Board View shows the same first-run state instead of columns.",
+   "Step 4: the empty state's Create Work Order button opened the \"New Work Order\" window (Customer, Asset, Save), the same window the page's own Create Work Order button opens.",
+   "Step 5: closing it asked \"Are you sure you want to close this dialog?\"; after Close the window is gone and the first-run state shows again.",
+   "Step 6: List shows its usual empty page, \"No work orders found.\", without \"No work orders yet\"."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C614715-stg-s2-tech-view.png",
+   "evidence/prod-2026-10-22/C614715-stg-s3-board-view.png",
+   "evidence/prod-2026-10-22/C614715-stg-s4-window.png",
+   "evidence/prod-2026-10-22/C614715-stg-s6-list.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. C614715-stg.mts, re-run 00:03-00:04 UTC 23 Oct (redo4; redo4w identical). Location made on screen with Country picked (made c43fe73d...), control count rows 0; s1_top via switchLocUI (profile menu). Step 2 = p.goto('/workorders?tab=all') + All + Tech View (route by address). s2/s3 empty state text + button; s4_sameWindow true (same labels/buttons from the empty-state button and the toolbar button); s5 confirmation then dialogs 0 and empty state again; s6 List 'No work orders found.', firstRun false. Housekeeping: 'back' stayed at the empty location, and the C614719 run that followed made S-1701..S-1703 there - the location is no longer empty for a future run.",
+  "todo": "By hand: switch to ZZAUTOTEST C614715 Empty Location (first make sure it has no work orders - the later C614719 run created three there; use a fresh empty location if so), click Work Orders in the top menu > All > Tech View and confirm the \"No work orders yet\" state shows. The other steps already matched."
+ },
+ "C614719": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 9: the test contradicts itself. Its set-up asks for three work orders for Customer-C (WO-4 to WO-6), but step 9's expected result says only WO-4 shows; the board shows all three of Customer-C's work orders (S1-1704, S1-1705, S1-1706) in Technician-C's column. Every other step matched.",
+  "bold_steps": [
+   9
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1 to 8 and 10 to 13 matched; step 9 cannot be judged as written because the test's own set-up gives Customer-C three work orders while step 9 expects only one.",
+   "Set-up: technicians ZZAUTOTEST C614719 Ana (pinned first) and Ben (pinned second) at Truck Hill 1; Customer-A \"ZZAUTOTEST C614719 Keyboard A\" with S1-1622 led by Ana and S1-1623 led by Ben; S1-1624 with no lead for Customer-B; search \"ZZAUTOTEST C614719 Keyboard\"; All tab, Tech View, every group open. Customer-C \"ZZAUTOTEST C614719 Third Customer\" with S1-1704, S1-1705, S1-1706 led by ZZAUTOTEST C614719 Cal (not pinned).",
+   "Step 1: Unassigned collapsed; its header stays and S1-1624 is hidden; Ana's group follows, then Ben's.",
+   "Step 2: the cursor is in Search and nothing in the table has a focus ring.",
+   "Step 3: Tab went through the toolbar and landed the focus ring on S1-1622, the first row of Ana's group, not on a header.",
+   "Step 4: Board View shows Unassigned first, then Ana's and Ben's columns.",
+   "Step 5: with Customer-A's name in Search, S1-1622 is in Ana's column and S1-1623 in Ben's; Unassigned has no cards.",
+   "Step 6: the cursor is in Search and nothing on the board has a focus ring.",
+   "Step 7: Tab landed the focus ring on S1-1622's card, the first card in Ana's column, not on a column header.",
+   "Step 8: the window was made 1024 px wide; Board View is still shown.",
+   "Step 9 (CANNOT BE JUDGED AS WRITTEN): with Customer-C's name in Search, Unassigned has no cards and Cal's column is off to the right, out of sight; it holds all three of Customer-C's work orders (S1-1704, S1-1705, S1-1706), not only one.",
+   "Step 10: Tab scrolled the board sideways to Cal's column and landed the focus ring on S1-1704's card, fully on the screen; not on the Unassigned header.",
+   "Step 11: Tech View was clicked and the window made short (about two and a half group headings); it shows Unassigned (no work orders) and Ana's group; Cal's group is further down, out of sight.",
+   "Step 12: the cursor is in Search, still showing Customer-C's name.",
+   "Step 13: Tab moved the list down to Cal's group; S1-1704's row sits just below Cal's heading with the blue focus ring, the whole row and ring visible and not covered by the heading; the ring is on no heading."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C614719-stg-s3-first-tab.png",
+   "evidence/prod-2026-10-22/C614719-stg-s7-first-tab-board.png",
+   "evidence/prod-2026-10-22/C614719-stg-s10-first-tab-customer-c.png",
+   "evidence/prod-2026-10-22/C614719-stg-s13-first-tab-tech-short.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. C614719-stg.mts, re-run 00:06-00:07 UTC 23 Oct (redo4; redo4w identical), now covering steps 8-13. Case text conflict, not a product fault: preconditions 'Customer-C ... has three Approved work orders led by C (WO-4 to WO-6)' vs step 9 Expected 'only {Work-order-4} shows'; s10 picture shows S1-1704/1705/1706 in Cal's column. s9 cols (in view) Unassigned 0 cards, calColumn null (off screen), scrollLeft 0. s10 isWo4Card true, fullyOn true, scrollLeft 18144. s13 isWo4Row true, rowFullyInScroller true, headingCoversRow false. NOTE s3_isWo1Row/s7_isWo1Card read false only because the script's fresh records S-1701..S-1703 were made at the C614715 empty location (startFound location 'ZZAUTOTEST C614715 Empty ..' before the switch); on screen at Truck Hill 1 the ring is on S1-1622 (Customer-A 'ZZAUTOTEST C614719 Keyboard A', led by Ana, first row of Ana's group) - pictures confirm. Steps 8/11 window resized by the test machine (viewport), equivalent to the step. Script fix: create the records after the location switch.",
+  "todo": "For the QA lead: the test's set-up (three work orders for Customer-C) and step 9's expected result (only WO-4 shows) do not agree; on production Customer-C's three work orders show in Technician-C's column, off screen, and Unassigned has no cards. Decide whether step 9 passes as observed or the test text needs correcting (the expected result itself is left unchanged)."
+ }
+}

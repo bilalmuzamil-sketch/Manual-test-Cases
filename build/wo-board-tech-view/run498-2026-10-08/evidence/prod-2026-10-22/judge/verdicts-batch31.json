@@ -1,0 +1,280 @@
+{
+ "C96965": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 8 to 12: the Schedule was never opened and no shift was read on screen; the shifts after the change were only read behind the screen. Steps 1 to 7 matched.",
+  "bold_steps": [
+   8,
+   9,
+   10,
+   11,
+   12
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 3 to 7 were followed and matched; steps 8 to 12 (read the shifts on the Schedule) were not done on screen, and step 1 opened the Work Orders page by its address.",
+   "Set-up: customer \"ZZAUTOTEST F1 Clear Shifts Scope 10230040\" at Truck Hill 1 with S1-1714 (Work order 1), S1-1715 (Work order 2) and S1-1716 (Work order 3), each led by Esther Howard with two approved lines. Shifts made before step 1: S1-1714 Esther 8:00-12:00 whole work order, Esther 13:00-15:00 on one line, Dana Ortiz 8:00-10:00 whole work order (all 24 Oct); S1-1715 Esther 8:00-12:00 whole and 13:00-15:00 on one line (24 Oct); S1-1716 Esther 8:00-12:00 whole (25 Oct). Esther and Ralph Edwards pinned.",
+   "Step 1 (NOT DONE AS WRITTEN): the Work Orders page was opened by its address, then All and Board View were clicked.",
+   "Step 2: the customer's name was typed in Search; Esther's column shows the three work orders.",
+   "Steps 3 and 4: dragging S1-1714 from Esther's column to Ralph's opened \"Clear Esther Howard's scheduled shifts?\" with the text \"Esther Howard has shifts scheduled for this whole work order. Clearing removes shifts that haven't started and ends one that's under way now. Shifts on individual lines and recorded time don't change.\" and the buttons Cancel, Keep Shifts and Clear Shifts.",
+   "Step 5: Clear Shifts was clicked; S1-1714 moved to Ralph's column.",
+   "Steps 6 and 7: dragging S1-1715 to Ralph's column opened the same question \"Clear Esther Howard's scheduled shifts?\"; Keep Shifts was clicked and S1-1715 is in Ralph's column. S1-1716 stayed with Esther.",
+   "Steps 8 to 12 (NOT DONE): the Schedule was not opened on screen. Read behind the screen after the change: S1-1714 kept Dana's 8:00-10:00 and Esther's 13:00-15:00 line shift, and Esther's 8:00-12:00 whole-work-order shift is gone; S1-1715 kept both of Esther's shifts; S1-1716 kept Esther's 8:00-12:00 shift on 25 Oct. This agrees with the expected results but was not seen on the Schedule.",
+   "Also: the expected results for steps 10 and 12 name clock times and days, and production's Schedule draws times in UTC while the location is Karachi time, so those steps are not judged on production until the time-zone question is settled."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96965-step4-question.png",
+   "evidence/prod-2026-10-22/C96965-step7-board-after.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. stg6.mts C96965, re-run 00:44-00:45 UTC 23 Oct (redo5 #1). boardOpen = cleanPage goto /workorders?tab=all + All + Board View + search. step4 opened true, full prompt text as quoted; step5 inB true, toast 'Lead technician updated'; step7 opened true, title as expected, inB true. The script clicks Schedule but its read of steps 8-12 is commented out ('read on the Schedule screen by stg6-sched2.mts', not run on production); 'after' is shiftsOn() from the shifts store, matching the Expected (WO-1 Esther whole gone, Dana + Esther lines kept; WO-2 both kept; WO-3 kept). Time-of-day rule also applies to steps 10/12. Leads after: S1-1714/1715 Ralph, S1-1716 Esther. Note the expected for step 5 has no message wording, so the 'Lead technician updated' toast (SV-11524) does not bite here.",
+  "todo": "By hand: after the two drags, click Schedule in the top menu, use the arrow next to Today to go to 24 Oct and read every shift on S1-1714 and S1-1715, then go to 25 Oct and read S1-1716 (or make a fresh set). Expected: S1-1714 has no Esther 8:00-12:00 whole-work-order shift but still Dana 8:00-10:00 and Esther 13:00-15:00 on one line; S1-1715 has both Esther shifts; S1-1716 still has Esther 8:00-12:00. Hold the time-of-day reading until the time-zone question is settled."
+ },
+ "C154648": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 3, 5 and 7: production has no imported work order at Truck Hill 1, so the List with Imported ticked shows \"No work orders match these filters\" and the imported work order could not be seen; step 1 also opened the page by its address. Every greyed-out button and tooltip matched.",
+  "bold_steps": [
+   3,
+   5,
+   7
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The greyed-out buttons and tooltips (steps 4, 6, 9, 11, 12, 15, 16) were followed and matched; steps 3, 5 and 7 could not be judged because no imported work order exists on production, and step 1 opened the page by its address.",
+   "Set-up: no imported work order and no test customer for this case exist on production (they were made on staging only). Status was cleared, Asset on Site showed no choice and Assigned to me was off at Truck Hill 1.",
+   "Step 1 (NOT DONE AS WRITTEN): the Work Orders page was opened by its address and the All tab clicked.",
+   "Steps 2 and 3: List was shown and \"Imported\" ticked in Status; the chip reads \"Status: Imported\" but the page shows \"No work orders match these filters\" - there is no imported work order to see.",
+   "Step 4: hovering the Tech View button shows \"Not available while Imported is selected.\" and the button is greyed out.",
+   "Step 5: clicking Tech View did not open it; the page stayed on List (still empty).",
+   "Step 6: hovering Board View shows \"Not available while Imported is selected.\" and it is greyed out.",
+   "Step 7: clicking Board View did not open it; the page stayed on List.",
+   "Step 8: Clear selection was clicked in Status.",
+   "Step 9: Tech View opened.",
+   "Steps 10 to 12: in Tech View, \"Imported\" in Status is greyed out with the tooltip \"Imported work orders open in List.\" and clicking it did not tick it (chip still reads \"Status\").",
+   "Step 13: Board View opened.",
+   "Steps 14 to 16: in Board View, \"Imported\" is greyed out with the same tooltip \"Imported work orders open in List.\" and could not be ticked."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C154648-step3-list-imported.png",
+   "evidence/prod-2026-10-22/C154648-step4-TechView-hover.png",
+   "evidence/prod-2026-10-22/C154648-step11-TechView-imported-hover.png",
+   "evidence/prod-2026-10-22/C154648-step15-BoardView-imported-hover.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. stg6.mts C154648, re-run 00:40-00:41 UTC 23 Oct (redo5 #1). cleanPage = goto /workorders?tab=all + All + List. step3 rows [] count 0 (empty state, picture); step4/6 disabled true, tooltip 'Not available while Imported is selected.'; step5/7 display List, firstRowStill null (nothing to keep showing); step9 Tech View, step13 Board View; step11/15 disabled true ticked false tooltip 'Imported work orders open in List.'; step12/16 afterClick ticked false, chip 'Status'. Same cause as C581896 (batch6, judged Blocked for the missing imported work order); here Unsure because the rest ran and the record is a staging-only record, plus step 1 by address.",
+  "todo": "On production, get an imported work order at Truck Hill 1 (from an invoice import) or run steps 3, 5 and 7 on staging where one exists: with Imported ticked the List must show it, and after clicking Tech View and Board View the List must still show it. The other steps already matched."
+ },
+ "C368133": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 6 to 10: the message after each lead change read \"Lead technician updated\" instead of \"... assigned to Ralph Edwards\" with an Undo button (the known problem in SV-11524), but this was only read, never pictured; step 1 also opened the page by its address. The question opened for Work order 1 only, as expected.",
+  "bold_steps": [
+   6,
+   7,
+   8,
+   9,
+   10
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 3 to 10 were done by dragging on screen; the question matched, but the message wording (the known problem) has no picture, and step 1 opened the page by its address.",
+   "Set-up: customer \"ZZAUTOTEST F1 Prompt Only Unfinished 10230040\" at Truck Hill 1 with S1-1707 to S1-1712 (Work orders 1 to 6) led by Esther Howard, each with two approved lines, and S1-1713 (Work order 7) led by Ralph Edwards. Shifts made before step 1: S1-1707 Esther 8:00-12:00 whole work order on 24 Oct; S1-1708 none; S1-1709 Esther 8:00-12:00 on one line only; S1-1710 Esther whole work order on 22 Oct (already ended); S1-1711 Dana Ortiz 8:00-12:00 whole; S1-1712 none, with Esther's 13:00-15:00 shift on S1-1713. Esther and Ralph pinned.",
+   "Step 1 (NOT DONE AS WRITTEN): the page was opened by its address, then All and Board View clicked.",
+   "Step 2: the customer's name was typed in Search; Esther's column shows 6 work orders and Ralph's 1.",
+   "Steps 3 and 4: dragging S1-1707 to Ralph's column opened \"Clear Esther Howard's scheduled shifts?\".",
+   "Step 5: Keep Shifts was clicked; S1-1707 moved to Ralph.",
+   "Steps 6 to 10: S1-1708, S1-1709, S1-1710, S1-1711 and S1-1712 were each dragged to Ralph's column; each moved straight away with no question. The message read each time was \"Lead technician updated\" - not \"S1-17xx assigned to Ralph Edwards\" and no Undo was read - but no picture of the message was taken.",
+   "Steps 3 to 10 overall: the question opened for 1 of the 6 work orders (S1-1707) and for none of the other 5; Esther's column ends empty and Ralph's holds all 7.",
+   "Known problem: https://shopview.atlassian.net/browse/SV-11524 (Code Review, read 23 Oct 2026). Its outcome (1) says mark Failed when exactly that is seen; the reading matches it but there is no picture to show it."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368133-board-before.png",
+   "evidence/prod-2026-10-22/C368133-step4-question.png",
+   "evidence/prod-2026-10-22/C368133-after.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. stg6.mts C368133, re-run 00:42-00:44 UTC 23 Oct (redo5 #1). boardOpen = goto + All + Board View + search. WO-1 prompt true, title 'Clear Esther Howard's scheduled shifts?', toasts ['Lead technician updated'], inB true; WO-2..6 prompt false, toasts ['Lead technician updated'] (WO-2 also 'Lead technician updated Close 2' = a second toast with its Close button), inB true; promptCount 1; leadsAfter all Ralph. No picture captures a toast, so the SV-11524 Failed outcome has a reading but no picture. The 'ended' shift on S1-1710 is a whole day back (22 Oct 08:00-12:00 Karachi) and the others are on 24 Oct, so the time-zone question does not change which shifts have ended. ADMIN NOTE: judge_pack.py reports C368133 is not in run 498 on 23 Oct (no test row; get_test 3761654 returns nothing), so its case text was read straight from the case (PRD v68 wording). Case is flagged Automated (Rule 71/65).",
+  "todo": "By hand, in Board View with a fresh set: drag Work order 2 (no shift) from Esther's to Ralph's column and take a picture of the message. If it reads \"Lead technician updated\" with Close and no Undo, mark Failed per the known problem SV-11524 (raise nothing new); if it reads \"S1-xxxx assigned to Ralph Edwards\" with Undo, the fix has shipped. Also confirm which run this case now belongs to."
+ },
+ "C581889": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1 to 14: nothing was tested. Before step 1 the script tried to switch to the staging location \"QB Location\", which does not exist on production (the list offers Truck Hill 1, Trucks Hill 2, a ZZAUTOTEST location and SANKAN), and stopped.",
+  "bold_steps": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). None of the test's steps were done.",
+   "Set-up: the run tried to change the location to \"QB Location\" (a staging location). On production the location list offers Truck Hill 1, Trucks Hill 2, \"ZZAUTOTEST C614715 Empty ...\" and SANKAN, so the switch failed and the test stopped before the customer, work order and empty status were set up.",
+   "Steps 1 to 14 (NOT DONE): no board, Tech View or List reading was taken."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C581889-error.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. stg6.mts C581889, 00:41-00:42 UTC 23 Oct (redo5 #1): switchLoc('QB Location') timed out waiting for the menu item; only an error picture (location menu open). The script hard-codes the staging location instead of finding a status with no work orders at a production location (it already has that search logic). Only one picture exists.",
+  "todo": "Re-run on production at Truck Hill 1 (or by hand): make an Approved work order for a new customer, find a status other than Imported and Approved with no work orders at the location (tick it alone in List), then follow steps 1 to 14 as written."
+ },
+ "C581890": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 1: the Work Orders page was opened by its address rather than from the top menu. Every reading after that matched: Board View, Tech View and List each show the no-match message with the typed text and no button.",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 to 8 were followed and matched; step 1 opened the Work Orders page by its address.",
+   "Set-up: no work order at Truck Hill 1 matches \"ZZAUTOTEST-NOMATCH-A02\" (checked before step 1); Status cleared, Asset on Site no choice, Assigned to me off, Search empty.",
+   "Step 1 (NOT DONE AS WRITTEN): the page was opened by its address and the All tab clicked.",
+   "Steps 2 to 4: Board View was clicked and ZZAUTOTEST-NOMATCH-A02 typed in Search; the board shows \"No work orders match the search \"ZZAUTOTEST-NOMATCH-A02\".\" with no button and no cards.",
+   "Steps 5 and 6: Tech View shows the same message with the typed text and no button.",
+   "Steps 7 and 8: List shows the same message and no button."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C581890-step4-board.png",
+   "evidence/prod-2026-10-22/C581890-step6-tech.png",
+   "evidence/prod-2026-10-22/C581890-step8-list.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. stg6.mts C581890, 00:42 UTC 23 Oct (redo5 #1). cleanPage = goto /workorders?tab=all + All + List; precondNoMatch 0; step4/6/8 lines ['No work orders match the search \"ZZAUTOTEST-NOMATCH-A02\".'], buttons [], cards 0, rows 0. Pictures agree (the only button in view is the page's own Create Work Order, not part of the empty state).",
+  "todo": "By hand: click Work Orders in the top menu, then the All tab, and repeat steps 2 to 8 with ZZAUTOTEST-NOMATCH-A02. If the three displays show the same message with no button (as recorded), pass it."
+ },
+ "C581891": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 4 and 8 to 13: Edit Line was never opened (the first click landed on the Notes tab, the second timed out), so neither line's Technicians field was read; the message after the lead change was only read, never pictured. Step 7 matched.",
+  "bold_steps": [
+   4,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 3 to 7 were followed; steps 8 to 13 (open Edit Line and read its Technicians) were not done, and step 1 opened the page by its address.",
+   "Set-up: customer \"ZZAUTOTEST NT3 Shift Line Follows 10230040\" at Truck Hill 1 with S1-1717 led by Esther Howard, two approved lines: line 1 \"Body work of a car...\" with no technician of its own, line 2 with Dana Ortiz as its technician; Ralph Edwards has a shift on 24 Oct 9:00-11:00 on line 1 only; Esther has no shift on it. Esther and Jenny Wilson pinned.",
+   "Step 1 (NOT DONE AS WRITTEN): the page was opened by its address, then All and Board View clicked.",
+   "Step 2: the customer's name was typed in Search.",
+   "Step 3: More actions (...) on S1-1717's card, then Reassign lead technician.",
+   "Step 4: Jenny Wilson was clicked in the list and then the dialog's Reassign button (an extra click the step does not mention). No \"Clear ... scheduled shifts?\" question opened and the card moved to Jenny Wilson's column. The message read was \"Lead technician updated\" (not \"S1-1717 assigned to Jenny Wilson\" with Undo), but no picture of it was taken.",
+   "Steps 5 and 6: the card was clicked and the work order opened on its Lines tab.",
+   "Step 7: line 1's Labor row shows Jenny Wilson; line 2's Labor row shows Dana Ortiz. The lead technician on the left reads Jenny Wilson.",
+   "Steps 8 to 13 (NOT DONE): clicking line 1's name opened the Notes tab instead of Edit Line, and the click on line 2's name timed out, so neither Technicians field was read. Whether Ralph is still listed on line 1 was not seen on screen.",
+   "Known problems: https://shopview.atlassian.net/browse/SV-11524 (Code Review, read 23 Oct 2026) and https://shopview.atlassian.net/browse/SV-11522 (OBSOLETE, read 23 Oct 2026)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C581891-step4-board.png",
+   "evidence/prod-2026-10-22/C581891-step7-lines.png",
+   "evidence/prod-2026-10-22/C581891-step9-edit-line.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. stg6.mts C581891, 00:46-00:49 UTC 23 Oct (redo5 #1). Line 2 technician set before step 1 by PUT (200). step4 prompt false, toasts ['Lead technician updated'], inD true, lead Jenny Wilson; step7 ['Labor Jenny Wilson', 'Labor Dana Ortiz']. step9: getByText(cannedLines[0]='Test') clicked the Notes tab (picture C581891-step9-edit-line.png = Notes page, 'No Work Order Notes Yet'); dialog '' roster null; step12 timeout looking for 'Canned 2' (production's line names are 'Body work of a car...' and 'Line 1', not the canned names). step9/step12 pictures are byte-identical. Behind-the-screen line-technicians read: line 1 [Ralph Edwards] followsLead false both before and after, line 2 [Dana Ortiz] - this does not show Jenny on line 1, while the screen's Labor row does, so the evidence is contradictory and needs the Edit Line read. The toast reading would be SV-11524 outcome (1), but there is no picture of it. ADMIN NOTE: judge_pack.py reports C581891 is not in run 498 on 23 Oct (get_test 3973197 returns nothing); case text read straight from the case (PRD v68).",
+  "todo": "By hand on S1-1717 (or a fresh set): after reassigning the lead to Jenny Wilson, picture the message (SV-11524 outcome), then on the Lines tab click line 1's name to open Edit Line and read its Technicians field (expect Jenny Wilson and Ralph Edwards), close without saving, then open line 2's Edit Line (expect Dana Ortiz only, not Jenny). Also confirm which run this case now belongs to."
+ },
+ "C581915": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 2, 3, 4, 6, 7, 8 and 9: the script followed an older version of this test. No deactivated technician who still leads a work order was made, so the inactive part of steps 2 and 9 and all of step 3 could not be checked; \"Search technician\" was never typed in or cleared (steps 3 and 4); Clear selection and Escape (steps 6 and 7) were never done, so Board View (step 8) was read with two technicians still chosen. Steps 1, 5, 10 and 11 matched.",
+  "bold_steps": [
+   2,
+   3,
+   4,
+   6,
+   7,
+   8,
+   9
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). The run followed an older version of the test's steps; steps 1, 5, 10 and 11 matched.",
+   "Set-up: three new technicians at Truck Hill 1, added in this order: \"ZZAUTOTEST NT1 Ana Carter\" (Technician A), \"ZZAUTOTEST NT1 Ana Brooks\" (Technician B), \"ZZAUTOTEST NT1 Ben Adams\" (Technician C); one Approved work order S1-1718 led by Ana Carter. No deactivated technician who still leads a work order (Technician D) was made, so the case's own set-up is incomplete. Signed in as ZZ WOB Runner; All tab, Tech View, nothing chosen.",
+   "Step 1: the filter bar reads Search, Status, Assigned to me, Technician, Asset on Site - Technician sits right after Assigned to me, and there is no Department, Customer or Service Advisor filter.",
+   "Step 2: the Technician list starts with Unassigned, then active technicians by first name; the three test technicians appear in the order Ana Brooks, Ana Carter, Ben Adams (B, A, C), although they were added A, B, C. No deactivated technician with the grey \"Inactive\" label was seen in the list (none was set up).",
+   "Steps 3 and 4 (NOT DONE): nothing was typed in \"Search technician\" and nothing was cleared.",
+   "Step 5: Ana Carter and Ana Brooks were ticked; both show ticked at the same time and Tech View shows only their two groups (Ana Brooks with no work orders, Ana Carter with S1-1718).",
+   "Steps 6 and 7 (NOT DONE AS WRITTEN): Clear selection was not clicked and Escape was not pressed; the list was closed by clicking outside it, with both technicians still chosen.",
+   "Step 8 (NOT AS WRITTEN): Board View was opened with the two technicians still chosen, so it shows only their two columns, not every group.",
+   "Step 9: in Board View, Technician sits after Assigned to me and its list has the same 83 options in the same order as in Tech View (no inactive technician among them to check).",
+   "Step 10: the list was closed by clicking outside it (Escape was not the route used).",
+   "Step 11: List shows Search, Status, Assigned to me and Asset on Site - no Technician filter.",
+   "Known problem: https://shopview.atlassian.net/browse/SV-11575 (Done, read 23 Oct 2026) - not judged here because no deactivated technician was set up. Tech View on production also has a \"Deleted technician\" group that the Technician list does not offer; this case's expected results do not cover it."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C581915-s4-filter-bar.png",
+   "evidence/prod-2026-10-22/C581915-s6-technician-list.png",
+   "evidence/prod-2026-10-22/C581915-s9-two-ticked.png",
+   "evidence/prod-2026-10-22/C581915-s14-list-filter-bar.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. tech-filter-stg6.mts C581915, 00:50-00:51 UTC 23 Oct (redo5 #2). The script's block (s3..s14) is the 15 Oct staging version; the live case (PRD v71, 11 steps) adds Technician-D (deactivated lead, 'Inactive'), typing/clearing 'Search technician', Clear selection, Escape, and reading Board View after clearing. s4_filterBar [status, assigned_to_me, lead_technician, vehicleHere]; s6_options count 83, positions Brooks 78 / Carter 79 / Adams 80, groupsNotInOptions ['Deleted technician']; s9_tickedInList both; s12_boardOptions sameAsTechView true; s14 List chips without Technician. The case's preconditions say 'If any record above is missing, mark this test Blocked: setup not done' - Technician-D is missing because the script did not make one (production has none); Blocked is an alternative if the reviewer prefers the case's own instruction. SV-11575 now Done, so outcome (3) may apply once Technician-D exists.",
+  "todo": "Make a technician at Truck Hill 1, give them a work order as lead, then deactivate them. Then by hand follow steps 1 to 11 as written: read the list order (Unassigned, Ana Brooks, Ana Carter, Ben Adams, then the deactivated one with \"Inactive\"), type the deactivated name in Search technician, clear it, tick A and B, click Clear selection, press Escape, open Board View (all columns), open Technician (same list, deactivated one with Inactive), Escape, then List (no Technician filter)."
+ },
+ "C581916": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at steps 1 and 4: step 1 (all five work orders in their lead's groups before filtering) was never read, and after clearing the Technician choice in step 4 the readings and pictures do not show Work order 2 (Ralph's). Steps 2 and 3 matched.",
+  "bold_steps": [
+   1,
+   4
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 2 and 3 were followed and matched; step 1 was not read and step 4 was only partly seen.",
+   "Set-up: customer \"ZZAUTOTEST NT2 Technician Filter Groups 18358\" at Truck Hill 1 with five Approved work orders: S1-1719 (WO1, lead Esther Howard), S1-1720 (WO2, lead Ralph Edwards), S1-1721 (WO3, lead Dana Ortiz), S1-1722 (WO4, no lead), S1-1723 (WO5, lead Dana Ortiz, with Esther on its line). Dana's column pinned; no filters, Assigned to me off, All tab.",
+   "Step 1 (NOT READ): Tech View was opened and the customer's name typed in Search, but the groups were not read before the filter was applied.",
+   "Step 2: Unassigned and Esther Howard were ticked in Technician and the list closed; Tech View shows only Unassigned (S1-1722) and Esther Howard (S1-1719). Ralph and Dana are hidden, and S1-1723 does not show even though Esther is on its line.",
+   "Step 3: in Board View the choice stays (\"Technician: Unassigned, +1\"); only Unassigned (S1-1722) and Esther Howard (S1-1719) show, and the pinned Dana column is hidden.",
+   "Step 4: Unassigned and Esther were unticked; the chip reads \"Technician\" again and every column is back, with Dana Ortiz still pinned (first after Unassigned) holding S1-1721 and S1-1723, and Unassigned holding S1-1722. Ralph's column with S1-1720 was not captured in the picture or the reading."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C581916-s8-tech.png",
+   "evidence/prod-2026-10-22/C581916-s10-board.png",
+   "evidence/prod-2026-10-22/C581916-s12-board-cleared.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. tech-filter-stg6.mts C581916, 00:51-00:52 UTC 23 Oct (redo5 #2). prep() = goto /workorders?tab=all (step 1 only says 'Open Tech View', clicked on screen). No group read before toggleOption (step 1 Expected has no evidence). s8_groups ['Unassigned (1): WO-4', 'Esther Howard (1): WO-1']; s10_columns same; s11 ticked [] chip 'Technician'; s12_columns count 89, first 6 names only, danaPinned 'true' - card contents of Ralph's column not read. Picture s12 shows Unassigned S1-1722 and Dana S1-1721 + S1-1723 only. 'Clear only the Technician selection' was done by unticking both options rather than 'Clear selection' - acceptable for the step as written.",
+  "todo": "By hand (or with this set): open Tech View, type \"ZZAUTOTEST NT2 Technician Filter Groups 18358\" in Search and confirm S1-1719 under Esther, S1-1720 under Ralph, S1-1721 and S1-1723 under Dana, S1-1722 under Unassigned; then after step 4 confirm Ralph's column shows S1-1720 again. Steps 2 and 3 already matched."
+ },
+ "C581917": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 1: the Work Orders page and its All tab were opened by the page's address rather than clicked. Every reading after that matched.",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1 to 5 matched; the only gap is that step 1 opened Work Orders and All by the page's address.",
+   "Set-up: customer A \"ZZAUTOTEST NT3 Technician Filter Mix 18358\" with S1-1724 (WO1, lead Esther Howard) and S1-1725 (WO2, lead Ralph Edwards); customer B \"ZZAUTOTEST NT3 Other Customer 18358\" with S1-1726 (WO3, lead Esther). The service advisor on all three was changed to Esther Howard, so none is assigned to the signed-in ZZ WOB Runner. No filters, Assigned to me off.",
+   "Step 1 (route by address): Tech View was clicked, customer A typed in Search and Esther Howard ticked in Technician; only S1-1724 shows, under Esther Howard. S1-1725 and S1-1726 are not shown.",
+   "Step 2: Assigned to me was turned on; no work orders show, with \"No work orders match these filters\", \"Try removing a filter to widen your results.\" and a Clear all filters button.",
+   "Step 3: Assigned to me was turned off; S1-1724 is back, and the search text and \"Technician: Esther Howard\" are still there.",
+   "Step 4: Status Paid was ticked; no work orders show, with the same message, the same supporting text and Clear all filters. Search and \"Technician: Esther Howard\" are still on.",
+   "Step 5: Clear all filters was clicked; Status and Technician both read plain again (nothing chosen), the search text stays, and the groups read are Esther Howard with S1-1724 and Ralph Edwards with S1-1725 (Ralph's group is further down the page than the picture shows)."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C581917-s6.png",
+   "evidence/prod-2026-10-22/C581917-s8-assigned-to-me.png",
+   "evidence/prod-2026-10-22/C581917-s13-paid.png",
+   "evidence/prod-2026-10-22/C581917-s15-after-clear.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. tech-filter-stg6.mts C581917, 00:52 UTC 23 Oct (redo5 #2). prep() = goto /workorders?tab=all (the tab('All') click is inside a comment on that line, so All was set by the address); Tech View, search and Technician on screen. advisor changes 201 (set-up). s6 chip 'Technician: Esther Howard', groups ['Esther Howard: WO-1']; s8 empty state message+hint+clearAll; s10 ['Esther Howard: WO-1'] (picture shows chip and search kept); s13 empty with chips Status: Paid + Technician: Esther Howard; s14 clear button 1; s15 technician chip 'Technician', status chip 'Status', search kept, groups ['Esther Howard: WO-1', 'Ralph Edwards: WO-2']. WO2 under Ralph is in the reading only; the picture shows the top of the page (Unassigned, Aaron Baker...).",
+  "todo": "By hand: click Work Orders in the top menu, then All, then Tech View, and repeat steps 1 to 5 with customer A (\"ZZAUTOTEST NT3 Technician Filter Mix 18358\"). If the results match what is recorded (and S1-1725 shows under Ralph after Clear all filters), pass it."
+ },
+ "C581918": {
+  "verdict": "Unsure",
+  "failed_steps": "Unsure at step 1: the Work Orders page and its All tab were opened by the page's address rather than clicked. Every reading after that matched.",
+  "bold_steps": [
+   1
+  ],
+  "observed": [
+   "Result: Unsure on production (v26.43.0-ffea43c). Steps 1 to 4 matched; the only gap is that step 1 opened Work Orders and All by the page's address.",
+   "Set-up: customer \"ZZAUTOTEST NT4 Technician Filter Memory 18358\" with exactly three Approved work orders: S1-1727 (WO1, lead Esther Howard), S1-1728 (WO2, lead Ralph Edwards), S1-1729 (WO3, no lead); none has its asset on site. No filters, Assigned to me off.",
+   "Step 1 (route by address): Tech View was clicked, the customer typed in Search and Esther Howard ticked in Technician; only S1-1727 shows, under Esther Howard.",
+   "Step 2: List was clicked; all three work orders (S1-1727, S1-1728, S1-1729) show and the List has no Technician filter.",
+   "Step 3: Tech View was clicked again; \"Technician: Esther Howard\" is chosen again and only S1-1727 shows.",
+   "Step 4: Asset on Site was set to No and the page reloaded; after the reload both \"Asset on Site: No\" and \"Technician: Esther Howard\" are still chosen, the page is still Tech View, and S1-1727 shows. Behaviour recorded: both filters survive a reload."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C581918-s6.png",
+   "evidence/prod-2026-10-22/C581918-s8-list.png",
+   "evidence/prod-2026-10-22/C581918-s10-tech-again.png",
+   "evidence/prod-2026-10-22/C581918-s14-after-reload.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. tech-filter-stg6.mts C581918, 00:53 UTC 23 Oct (redo5 #2). prep() = goto /workorders?tab=all (All by address, see C581917). s6 chip 'Technician: Esther Howard', groups ['Esther Howard: WO-1']; s8 rows WO-1..3, chips without lead_technician, search kept; s10 same as s6; s12 chips incl. 'Asset on Site: No'; s14 after reload technicianChip and assetOnSiteChip both kept, display Tech View, saved filters {vehicleHere:['0'], lead_technician:[Esther]}. Precondition 'WO1 has Asset on Site = No' holds (pink, not-on-site pins in List).",
+  "todo": "By hand: click Work Orders in the top menu, then All, then Tech View, and repeat steps 1 to 4 with \"ZZAUTOTEST NT4 Technician Filter Memory 18358\". If the results match what is recorded (both choices survive the reload), pass it."
+ }
+}
