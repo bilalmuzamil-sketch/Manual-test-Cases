@@ -1,17 +1,37 @@
-# Dashboard tests related to SV-11691, SV-11690, SV-11711, SV-11688 — 23 Oct 2026
+# Dashboard tests related to SV-11691, SV-11690, SV-11711, SV-11688 — 23 Oct 2026 (FULL READ)
 
-Read live: the four tickets (Jira, 23 Oct 2026) and every case in TestRail section 12166 "Dashboard (Sep 2026)" and its 14 sub-sections
-(126 cases). Script: `find_related.py` (matches.json); whole-word checks done afterwards (the first pass matched "aging" inside "staging").
-Dashboard tiles: Revenue, Billing Efficiency, Technician Efficiency, Technician Utilization, Sales by Customer, At Risk Customers — there is
-no receivables / A/R tile and no credit-limit tile.
+QA lead: "Read the full test case not just the title". Every one of the 126 cases in TestRail section 12166 "Dashboard (Sep 2026)" and
+its 14 sub-sections was read in full (preconditions, steps, expected) — `cases-full.json`. Tickets read live 23 Oct 2026 (all four
+Ready to Fix, filed 22 Oct 2026 by Mudassir Qamar). Run statuses read live from run 525 "Dashboards".
 
-| Ticket | Status (live) | Related Dashboard tests |
-|---|---|---|
-| SV-11688 Technician Utilization counts open timesheets as 24 h/day; idle days 33.33 % instead of "-" | Ready to Fix | C88641, C88605, C88602, C88603, C88646, C351706, C351707, C88650, C88647 — all **Passed** in run 525 "Dashboards"; none sets up a technician who never clocked out, which is why they pass |
-| SV-11690 A/R Aging counts held deposits | Ready to Fix | none — no Dashboard test covers receivables, aging or deposits |
-| SV-11691 Invoices marked Paid with $0 payments | Ready to Fix | none directly — Dashboard figures count invoiced sales; payment status is never read |
-| SV-11711 "Over Limit" uses a stale balance | Ready to Fix | none test it; C88594, C88607, C88608, C88617, C88623, C88624 only meet it in their set-up ("if a Confirmation says the customer is over their credit limit, click Create") |
+## SV-11688 — Technician Utilization counts open (never clocked-out) timesheets as 24 h/day; idle days 33.33 % instead of "-"
+Directly checks what the ticket breaks:
+| Case | What it checks | Where | Run 525 |
+|---|---|---|---|
+| C88647 | step 9: on a day with no clocked time the Technician Utilization line leaves a gap (no point, no drop to zero) | Staging Heavy Duty - 9919 (example) — the location with the 4 open timesheets since 31 Aug | Passed 10 Oct |
+| C88641 | TU exact % by hand (2.00 / 3.00 = 66.67 %), "2.00 WO Hrs / 3.00 Clocked", equals report | fresh location | Passed 12 Oct |
+| C88602 | TU 100.00 % then 87.50 % with known records | Dash Shop | Passed 12 Oct |
+| C88605 | TU headline 87.50 %, "3.50 WO Hrs / 4.00 Clocked" | Dash Shop | Passed 9 Oct |
+| C88646 | no hours → grey "-"; 1 h internal only → 0.00 % | fresh location | Passed 12 Oct |
+| C88603, C351706, C581906 | no clocked time → grey "-" (S3-E3) | empty location | Passed 12 / 12 / 15 Oct |
+| C351707 | hours on one day only → empty chart outline, TU 100.00 % | Dash Shop | Passed 12 Oct |
+| C581900 | TU 100 % every day → flat line along the bottom | flat-shop location | Untested |
+| C88650 | TU table: WO + Internal = Total; Total sum = Clocked | busy location this month | Passed 12 Oct |
+| C88652 | step 8: TU straight after a clock-out | fresh location | Passed 12 Oct |
+| C581905 | expanded TU chart with no clocked time → "No data for selected date range" | empty location | Untested |
+Compare tile with report only (the ticket says tile and report are wrong TOGETHER, so these cannot catch it): C88601, C88648, C88649.
+Why none caught it: every TU case either builds a clean location where everyone clocks out, or compares tile to report. No case has a
+technician who clocked in and never clocked out. C88647 is the one that would now show it at Staging Heavy Duty - 9919, and it passed on
+10 Oct, before the ticket (22 Oct). The ticket's "cap at shift end / 24 h or exclude on past days" is the reporter's proposal; the PRD
+rules it cites are S3-R2, S3-E3, S4-R11 — check the PRD has a sentence for open entries before writing a new case (Rule 114/64).
 
-Run 525 tests: C88602 3698719 · C88603 3698720 · C88605 3698722 · C351706 3742892 · C351707 3742893 · C88641 3698758 · C88646 3698763 ·
-C88647 3698764 · C88650 3698767 (all Passed). Run 500 "Dashboard v1 (SV-490) — Automation + Manual" holds the same cases untested.
-Gap: no case covers a forgotten clock-out (PRD Dashboard v1 S3-R2, S3-E3, S4-R11 as cited by SV-11688).
+## SV-11690 — A/R Aging counts held deposits — no related Dashboard test
+No case mentions deposits, A/R, aging or a customer balance; the Dashboard has no receivables tile.
+
+## SV-11691 — Invoices marked Paid with $0 payments — no related Dashboard test
+Dashboard figures count invoices (subtotals, customers, last invoice date) whatever their payment status; every case creates invoices
+"not sent, not paid" on purpose. Reversal and void (C88635, C88642, C351705, C88632, C88643, C88645) are a different thing.
+
+## SV-11711 — "Over Limit" uses a stale balance — set-up only
+C88594, C88607, C88608, C88617, C88623, C88624 tell the tester, while making data, "if a Confirmation says the customer is over their
+credit limit, click Create" — they step past the false warning; none tests it.
