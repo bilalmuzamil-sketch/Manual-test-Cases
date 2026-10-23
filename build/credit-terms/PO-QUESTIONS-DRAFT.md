@@ -17,10 +17,10 @@ Every row: project Credit terms. Plain words for the PO; the QA mapping is in th
 
 | # | Cases held | What changes when answered |
 |---|---|---|
-| 1 | D-50 | Nothing is held. The release-day cases cover every requirement that is there. |
-| 2 | D-51 | Nothing is held. The order cases check every kind that exists; this group is checked once answered. |
-| 3 | S2-36, D-52 | Held: one case waits on this answer. |
-| 4 | S11-20, D-53 | Held: one must-not-change case waits on this answer. |
+| 1 | none | Nothing is held. The release-day cases cover every requirement that is there. |
+| 2 | none | Nothing is held. The order cases check every kind that exists; this group is checked once answered. |
+| 3 | S2-36 | Held: one case waits on this answer. |
+| 4 | S11-20 | Held: one must-not-change case waits on this answer. |
 | 5 | S4-35 | Held: one case waits on this answer. |
 | 6 | S4-36 | Held: one case waits on this answer. |
 | 7 | S7-10 | Held: one case waits on this answer. |

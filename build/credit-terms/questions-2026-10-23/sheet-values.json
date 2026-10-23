@@ -1,0 +1,138 @@
+[
+ [
+  "Credit terms – questions for Chris Ward (23 Oct 2026)",
+  "",
+  "",
+  "",
+  "",
+  ""
+ ],
+ [
+  "Hi Chris, we are writing the Credit terms test cases from the feature spec (version 3, 22 Oct), its Jira stories (SV-11670 to SV-11681) and the design canvas \"Default Credit Terms\", and found the points below that only you can decide. Please write your answer in the yellow column (a letter such as (a) is enough).",
+  "",
+  "",
+  "",
+  "",
+  ""
+ ],
+ [
+  "Colour guide:",
+  "Yellow = please write your answer here",
+  "Blue = the topic",
+  "Grey = where we found it",
+  "",
+  ""
+ ],
+ [
+  "",
+  "",
+  "",
+  "",
+  "",
+  ""
+ ],
+ [
+  "#",
+  "Topic",
+  "Question for you",
+  "What we know today",
+  "Your answer",
+  "Where we found it"
+ ],
+ [
+  "1",
+  "Credit terms: release day: a missing requirement number",
+  "Story 11 (release day) jumps from requirement 14 to requirement 16. Is a requirement missing there?\n(a) Nothing is missing; the number was simply skipped\n(b) A requirement was removed by mistake (please add it back)\n(c) Not sure — please check with the engineers",
+  "Story 11 lists S11-R14 and then S11-R16; there is no S11-R15 in the PRD or in story SV-11680.",
+  "",
+  "PRD v3 (22 Oct 2026) Story 11, S11-R14 and S11-R16; Jira SV-11680 (Story 11)"
+ ],
+ [
+  "2",
+  "Credit terms: the order of \"any other term\" in the list",
+  "The Credit Terms list puts \"any other term A to Z\" between the day-of-the-following-month terms and Credit Hold. Which terms are these, when a shop can only create Net terms and day-of-the-following-month terms?\n(a) None today; the place is kept for term kinds added later\n(b) Text stored on customers from old imports that matches no term, when it shows in a Credit Terms dropdown\n(c) Something else (please say what)",
+  "S1-R5: \"every \"day of the following month\" term by day, lowest first; any other term A to Z; Credit Hold last.\"",
+  "",
+  "PRD v3 S1-R5; Jira SV-11670 (Story 1)"
+ ],
+ [
+  "3",
+  "Credit terms: a term renamed by someone else while my page is open",
+  "If another user RENAMES a term (or changes its days) after my Credit Terms page loaded, and I then use that term's menu (for example Make Default or Delete), what should I see?\n(a) The action is refused with a new message (please give the exact words)\n(b) The action goes ahead on the renamed term (only in-use, default and deleted changes refuse it)\n(c) Not sure — please check with the engineers",
+  "S2-E2: \"If a term becomes in use, becomes the default, or is changed by another user after the page loaded, the save is refused with the reason in S2 Error Handling\" — but the Error Handling texts cover in use, default, the three locked terms, inactive or Credit Hold, and deleted; none covers a rename or a change of days.",
+  "",
+  "PRD v3 S2-E2 and Story 2 Error Handling; Jira SV-11671 (Story 2)"
+ ],
+ [
+  "4",
+  "Credit terms: \"(Inactive)\" on other screens",
+  "Where else a customer's credit term is shown (the A/R Collection call list \"Credit term:\", the customer on a work order or part sale), should a deactivated term read \"Net 30 (Inactive)\" or just \"Net 30\"?\n(a) \"(Inactive)\" only on the customer card, the vendor card and the Edit windows; every other screen shows the plain name\n(b) \"(Inactive)\" on every screen that shows the term except invoices and printed documents\n(c) Something else (please say which screens)",
+  "S5-R8: \"The customer card's \"Credit term\" shows \"{name} (Inactive)\" for a deactivated term. Invoices and printed documents show the plain name.\" Other screens are not named.",
+  "",
+  "PRD v3 S5-R8; Jira SV-11674 (Story 5)"
+ ],
+ [
+  "5",
+  "Credit terms: Move Customers note for a deactivated term",
+  "When customers are moved off a deactivated term, does the note on each customer and the Credit Terms Log name the old term plainly (\"from Net 60\") or with \"(Inactive)\" (\"from Net 60 (Inactive)\")?\n(a) The plain name, as on invoices\n(b) The name with \"(Inactive)\", as on the customer card\n(c) Not sure — please check with the engineers",
+  "S4-R11: \"Credit term changed from {old term} to {new term} by {user name} (Move Customers).\"; S12-R3: \"{n} customers from {from} to {to}\". S4-N3 makes a deactivated term a valid source but does not say how it is named.",
+  "",
+  "PRD v3 S4-R11, S4-N3, S12-R3; Jira SV-11673 (Story 4), SV-11681 (Story 12)"
+ ],
+ [
+  "6",
+  "Credit terms: Move Customers note for an old spelling such as \"NET 30\"",
+  "A customer stored with an old spelling such as \"NET 30\" is moved off Net 30. Does its note say \"from NET 30\" (what was stored) or \"from Net 30\" (the term's spelling)?\n(a) \"from Net 30\" (the term's spelling)\n(b) \"from NET 30\" (the text that was stored)\n(c) Not sure — please check with the engineers",
+  "S4-R11: \"Credit term changed from {old term} to {new term}\"; S11-E2: customers with an odd spelling \"keep that stored text\" and \"show their stored text on the card\".",
+  "",
+  "PRD v3 S4-R11, S11-E2; Jira SV-11673 (Story 4), SV-11680 (Story 11)"
+ ],
+ [
+  "7",
+  "Credit terms: which term a changed invoice date uses",
+  "An invoice was created when the customer was on Net 30. Later the customer is moved to Net 60, and then someone changes that invoice's date. Is the new due date counted with Net 30 (the invoice's own term) or Net 60 (the customer's term now)?\n(a) Net 30, the term the invoice was created with (the invoice keeps its term)\n(b) Net 60, the customer's term now (and the invoice's term changes to Net 60)\n(c) Net 60 for the due date, but the invoice still prints Net 30\n(d) Not sure — please check with the engineers",
+  "S7-R7: \"An invoice keeps the term and due date it was created with. Changing the customer's term later ... never changes an existing invoice.\" S7-R8: \"When a user changes the invoice date on an invoice (existing behavior), the due date is recalculated from the customer's term by the rules above\".",
+  "",
+  "PRD v3 S7-R7, S7-R8; Jira SV-11676 (Story 7)"
+ ],
+ [
+  "8",
+  "Credit terms: the words in the Due on Receipt info tooltip",
+  "On the Credit Terms page, Due on Receipt has an info (i) icon. Hovering it shows a sentence. The design and the spec use different words for the second half of that sentence. Which words should the tooltip show?\n(a) As the spec: \"Payment is due on the invoice date. You can charge the invoice to the customer's account instead of taking payment.\"\n(b) As the design: \"Payment is due on the invoice date, but you can create the invoice without taking payment.\"\n(c) Something else (please give the exact words).",
+  "The spec gives the first wording for this tooltip (and in its summary table). The design draws the tooltip open with the second wording, and uses the same words on every page of the design. The COD and Credit Hold tooltips match the spec word for word.",
+  "",
+  "Spec: Story 1 (SV-11670), the info-icon tooltip texts; summary table row \"Hover the info icon on Due on Receipt\". the design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), page 1 \"List and row menus\", picture \"Info tooltip: Due on Receipt\"."
+ ],
+ [
+  "9",
+  "Credit terms: the Inactive tab when it is empty",
+  "When a shop has no deactivated terms, the Inactive tab shows the line \"No inactive terms\" and its count reads 0. The design keeps the table's column headings (Name, Due, Customers, Vendors) and shows the line as one row inside the table. The spec says the line shows \"in place of the table\". Which is right?\n(a) As the design: the column headings stay and the line sits under them, inside the table.\n(b) As the spec: no table at all, only the line \"No inactive terms\".\n(c) Something else (please say).",
+  "The words agree. Only whether the column headings stay is different. The design notes say this picture was \"drawn from the rule, not checked against the build\".",
+  "",
+  "Spec: Story 1 (SV-11670), the empty Inactive tab; summary table row \"Inactive tab is empty\" (\"Inline line in place of the table\"). the design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), page 4 \"Everything deactivated and an empty tab\", picture \"A new shop: Inactive tab empty\"."
+ ],
+ [
+  "10",
+  "Credit terms: the blue explanation line in the New Credit Term window when the name is wrong",
+  "In the New Credit Term window, a blue line under the options explains the term while the number is valid (for example \"Net 14 Days means payment is due 14 days after the invoice date. An invoice dated Oct 21 is due Nov 4.\"). Suppose the user types a valid number but a name that is not allowed, for example \"net 30\" (already a standard term). Should the blue line show?\n(a) Yes, as the spec: the line depends only on the number; the name error shows under the Name at the same time.\n(b) No, as the design note says: \"No sentence shows while a field is invalid.\"\n(c) Something else (please say).",
+  "The spec says the line shows while the chosen box holds a valid number and disappears while the number is invalid. The design's note says no sentence shows while any field is invalid. The design's picture cannot decide it, because both the name and the number are wrong in it.",
+  "",
+  "Spec: Story 3 (SV-11672), the blue information line. the design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), page 3 \"New credit term and Inactive tab\", picture \"Validation errors\" and its note."
+ ],
+ [
+  "11",
+  "Credit terms: when the \"Enter a name.\" error first shows in the New Credit Term window",
+  "The user opens New Credit Term, clicks into the Name box, types nothing, and clicks somewhere else in the window. Should the error \"Enter a name.\" show?\n(a) No, as the spec: the name is checked only once the user has typed in it (then each time they leave it) or presses Create.\n(b) Yes, as the design note can be read: \"Errors show only after a field is touched or Create is pressed\" (clicking in and out counts as touching).\n(c) Something else (please say).",
+  "The spec says opening the window, or clicking an option or a box before typing a name, never shows a Name error. The design note says errors show after a field is \"touched\", which could include clicking in and out without typing. Both agree the window opens with no error.",
+  "",
+  "Spec: Story 3 (SV-11672), when the Name is checked. the design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), page 3, picture \"Validation errors\" and its note."
+ ],
+ [
+  "12",
+  "Credit terms: which pictures to follow for the look of the new screens",
+  "The design has two kinds of pictures of the same new screens: pictures drawn for the design (marked \"This design\") and pictures taken from the build (marked \"Build (local …)\"). They look different in a few places: the font; the table headings (small grey in the drawn pictures, bold black in the build); the Cancel button (white with a grey border, or grey filled); the close × (grey or blue); the Move To box (outlined with a small arrow, or filled with a solid arrow); ticked boxes in Move Customers (light blue with a blue tick, or solid blue with a white tick). Testers compare the screen with the pictures, so which should they follow?\n(a) The drawn \"This design\" pictures, for all of these.\n(b) The build pictures, for all of these.\n(c) It differs per item (please say which for each).",
+  "Every design note says \"layout, wording and states match the build\". The design system the drawings use says ticked boxes use a light tint, not solid blue. Nothing about what the screens do is different, only the look.",
+  "",
+  "the design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), page 1 pictures \"Active tab: one table\" and \"Row menu: a standard term\"; page 2 pictures \"Move Customers from COD\" and \"Move To COD: the $0 line\"; page 1 \"Make Net 30 the default\" and \"Delete Credit Term confirmation\"."
+ ]
+]

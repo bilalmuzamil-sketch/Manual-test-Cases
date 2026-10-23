@@ -4039,7 +4039,7 @@ Procedures: P-CUST, P-WO, P-INV.
 Sources (verbatim text in section 9): S9-R2.
 
 ### SETUP-D-50 — Design: Due on Receipt info tooltip reads as designed
-Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (design question 1)`.
+Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 8)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: the Credit Terms page, Active tab.
@@ -4051,7 +4051,7 @@ Procedures: none.
 Sources (verbatim text in section 9): S1-R8, S1-R8 DOR.
 
 ### SETUP-D-51 — Design: Empty Inactive tab keeps the column headings
-Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (design question 2)`.
+Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 9)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - No term is deactivated.
@@ -4064,7 +4064,7 @@ Procedures: P-STD.
 Sources (verbatim text in section 9): S1-N2.
 
 ### SETUP-D-52 — Design: No blue line while the name is not allowed
-Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (design question 3)`.
+Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 10)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: the Credit Terms page, Active tab.
@@ -4076,7 +4076,7 @@ Procedures: none.
 Sources (verbatim text in section 9): S3-R5.
 
 ### SETUP-D-53 — Design: Name error shows after clicking in and out
-Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (design question 4)`.
+Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 11)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: the Credit Terms page, Active tab.
@@ -4498,10 +4498,10 @@ Sources (verbatim text in section 9): S3-R10.
 - Every case and recipe: UNVERIFIED — no build of this epic is available. Source-verified against PRD v3 and the 12 stories on 23 Oct 2026.
 
 ## 11. Open questions (Chris Ward, drafted 23 Oct 2026, NOT sent)
-- Q1: Story 11 (release day) jumps from requirement 14 to requirement 16. Is a requirement missing there? — held cases: D-50
-- Q2: The Credit Terms list puts "any other term A to Z" between the day-of-the-following-month terms and Credit Hold. Which terms are these, when a shop can only create Net terms and day-of-the-following-month terms? — held cases: D-51
-- Q3: If another user RENAMES a term (or changes its days) after my Credit Terms page loaded, and I then use that term's menu (for example Make Default or Delete), what should I see? — held cases: S2-36, D-52
-- Q4: Where else a customer's credit term is shown (the A/R Collection call list "Credit term:", the customer on a work order or part sale), should a deactivated term read "Net 30 (Inactive)" or just "Net 30"? — held cases: S11-20, D-53
+- Q1: Story 11 (release day) jumps from requirement 14 to requirement 16. Is a requirement missing there? — held cases: none
+- Q2: The Credit Terms list puts "any other term A to Z" between the day-of-the-following-month terms and Credit Hold. Which terms are these, when a shop can only create Net terms and day-of-the-following-month terms? — held cases: none
+- Q3: If another user RENAMES a term (or changes its days) after my Credit Terms page loaded, and I then use that term's menu (for example Make Default or Delete), what should I see? — held cases: S2-36
+- Q4: Where else a customer's credit term is shown (the A/R Collection call list "Credit term:", the customer on a work order or part sale), should a deactivated term read "Net 30 (Inactive)" or just "Net 30"? — held cases: S11-20
 - Q5: When customers are moved off a deactivated term, does the note on each customer and the Credit Terms Log name the old term plainly ("from Net 60") or with "(Inactive)" ("from Net 60 (Inactive)")? — held cases: S4-35
 - Q6: A customer stored with an old spelling such as "NET 30" is moved off Net 30. Does its note say "from NET 30" (what was stored) or "from Net 30" (the term's spelling)? — held cases: S4-36
 - Q7: An invoice was created when the customer was on Net 30. Later the customer is moved to Net 60, and then someone changes that invoice's date. Is the new due date counted with Net 30 (the invoice's own term) or Net 60 (the customer's term now)? — held cases: S7-10

@@ -2,8 +2,8 @@
 design-version cases (D-50 … D-53 = plan DV-01 … DV-04), from build/credit-terms/design-2026-10-23/DESIGN-CASE-PLAN.md (23 Oct 2026).
 Each case attaches its design pictures (DREFS, set here through design_refs.R) and compares the screen with them at 1440 px, then checks
 nothing overlaps or is cut off at 1536 px. The expected look comes from the PRD where it speaks (quoted) and from the design where it is
-silent (the design's own words under References from Design). Where the drawn pictures and the build pictures differ (design question 5,
-register CT-D05), the case says which picture the attribute is compared with for now and that the attribute depends on question 5.
+silent (the design's own words under References from Design). Where the drawn pictures and the build pictures differ (question 12,
+register CT-D05), the case says which picture the attribute is compared with for now and that the attribute depends on question 12.
 Written and owned by the design worker."""
 from ct_lib import C, prd_line, DESIGN_HOLD
 from common import *
@@ -12,7 +12,7 @@ from design_refs import DREFS, R, cap, txt
 W1440 = ("The browser window is 1440 px wide, at 100% zoom.", "For example: a maximised window on a 1440 x 900 screen.")
 TO1536 = ("Resize the browser window to 1536 px wide (for example, maximise it on a 1536 x 864 screen at 100% zoom).",
           "at 1536 px nothing overlaps, nothing is cut off and nothing needs a sideways scroll; the layout described above is unchanged, only wider.")
-Q5 = "this attribute depends on design question 5 (drawn pictures or build pictures, not answered yet): for now compare it with the picture named here"
+Q5 = "this attribute depends on question 12 (drawn pictures or build pictures, not answered yet): for now compare it with the picture named here"
 M, DF, NT, EM, NC, IN, VE, OC, IV = "Main", "Default", "NewTerm", "Empty", "NewCustomer", "Inactive", "Vendor", "OverCredit", "Invoice"
 
 def PICS(figs):
@@ -91,7 +91,7 @@ dz("D-10", "Design: Empty Inactive tab shows No inactive terms",
    [("No term is deactivated.", None), ("Starting screen: the Credit Terms page, Active tab.", None)],
    [('Click the "Inactive" tab.', 'the tab\'s count pill reads 0 and the tab shows the grey line "No inactive terms" in place of the table, centred (compare ct-p4-03-a-new-shop-inactive-tab-empty.png).')],
    ["S1-N2", "UFS-2"], [(4, 3)], [cap(EM, 3, "With nothing inactive the table shows one line:"), cap(EM, 3, "No build shot:")],
-   note="The design keeps the column headings above the line (design question 2, register CT-D02); this case follows the PRD. The design's version is D-51 (held).")
+   note="The design keeps the column headings above the line (question 9, register CT-D02); this case follows the PRD. The design's version is D-51 (held).")
 
 # ============================ B · Row menus and the page menu ============================
 dz("D-07", "Design: Row menu of an unused own term looks as designed",
@@ -190,7 +190,7 @@ dz("D-15", "Design: New Credit Term errors show in red under the field",
     ("Type 400 in the Days box.",
      'both the Name box and the Days box have a red border and a red label; under Name the red message "Net 30 is already a standard term. Pick another name." and under Days the red message "Enter 1 to 365 days."; "Create Credit Term" is pale blue (disabled) (as in ct-p3-03-validation-errors.png).')],
    ["S3-R9", "S3-R9 STD", "S3-R9 DAYS", "S3-R6", "UFS-22", "UFS-24"], [(3, 3)], [cap(NT, 3, "Names are compared ignoring capitals"), cap(NT, 3, "Create Credit Term stays disabled")],
-   note="Whether the blue line shows while only the Name is wrong is design question 3 (CT-D03, D-52 held); this case types two wrong values, where design and PRD agree that no blue line shows.")
+   note="Whether the blue line shows while only the Name is wrong is question 10 (CT-D03, D-52 held); this case types two wrong values, where design and PRD agree that no blue line shows.")
 
 dz("D-16", "Design: Edit Credit Term window looks as designed",
    [own("{Term-A}", "net 45", ", held by no customer, vendor or invoice", "ZZAUTOTEST D-16 FortyFive"), ("Starting screen: the Credit Terms page, Active tab.", None)],
@@ -388,18 +388,18 @@ dz("D-36", "Design: Over limit badge looks as it does today",
    note='The PRD writes "Over limit"; today\'s badge reads "Over Limit" and the PRD keeps the existing badge (register CT-D07, settled).')
 
 # ============================ E · Held design-version cases (Rule 130.5) ============================
-def held(n): return f"{DESIGN_HOLD} (design question {n})"
+def held(n): return f"{DESIGN_HOLD} (question {n + 7})"
 dz("D-50", "Design: Due on Receipt info tooltip reads as designed",
    [("Starting screen: the Credit Terms page, Active tab.", None)],
    [("Hover the info icon on the Due on Receipt row.", 'a dark grey box opens to the right of the icon reading "Payment is due on the invoice date, but you can create the invoice without taking payment." (as in ct-p1-02-info-tooltip-due-on-receipt.png).')],
    ["S1-R8 DOR"], [(1, 2)], [txt(M, 2, "Payment is due on the invoice date, but you can create the invoice without taking payment."), cap(M, 2, "\"Payment is due on the invoice date, but")],
-   note="Held: this is the design's wording; the PRD case S1-13 checks the PRD's wording. Released or deleted the day Chris Ward answers design question 1 (register CT-D01).", marker=held(1))
+   note="Held: this is the design's wording; the PRD case S1-13 checks the PRD's wording. Released or deleted the day Chris Ward answers question 8 (register CT-D01).", marker=held(1))
 
 dz("D-51", "Design: Empty Inactive tab keeps the column headings",
    [("No term is deactivated.", None), ("Starting screen: the Credit Terms page, Active tab.", None)],
    [('Click the "Inactive" tab.', 'the count pill reads 0; the column headings Name, Due, Customers and Vendors stay, and one centred grey row under them reads "No inactive terms", with a line under it (as in ct-p4-03-a-new-shop-inactive-tab-empty.png).')],
    ["S1-N2"], [(4, 3)], [cap(EM, 3, "With nothing inactive the table shows one line:")],
-   note="Held: the design's version; D-10 and S1-23 follow the PRD (\"in place of the table\"). Released or deleted when design question 2 is answered (register CT-D02).", marker=held(2))
+   note="Held: the design's version; D-10 and S1-23 follow the PRD (\"in place of the table\"). Released or deleted when question 9 is answered (register CT-D02).", marker=held(2))
 
 dz("D-52", "Design: No blue line while the name is not allowed",
    [("Starting screen: the Credit Terms page, Active tab.", None)],
@@ -407,7 +407,7 @@ dz("D-52", "Design: No blue line while the name is not allowed",
     ('Type "net 30" in Name.', 'Name reads "net 30".'),
     ("Type 14 in the Days box.", 'under Name the red message "Net 30 is already a standard term. Pick another name." shows, the Days box has no error, and no blue explanation line shows (design note: "No sentence shows while a field is invalid.").')],
    ["S3-R5"], [(3, 3)], [cap(NT, 3, "Other messages:")],
-   note="Held: the design's behaviour; under the PRD the blue line shows because the number is valid (cases S3-03, D-13). Released or deleted when design question 3 is answered (register CT-D03).", marker=held(3))
+   note="Held: the design's behaviour; under the PRD the blue line shows because the number is valid (cases S3-03, D-13). Released or deleted when question 10 is answered (register CT-D03).", marker=held(3))
 
 dz("D-53", "Design: Name error shows after clicking in and out",
    [("Starting screen: the Credit Terms page, Active tab.", None)],
@@ -415,4 +415,4 @@ dz("D-53", "Design: Name error shows after clicking in and out",
     ("Click in the Name box.", "the cursor is in the Name box and no error shows."),
     ('Click the "Due day of the following month" option.', 'the Name box turns red with the red message "Enter a name." under it (design note: "Errors show only after a field is touched or Create is pressed").')],
    ["S3-R10"], [(3, 3)], [cap(NT, 3, "Create Credit Term stays disabled")],
-   note="Held: one reading of the design's note; the PRD (case S3-11) shows no Name error until the user has typed in it. Released or deleted when design question 4 is answered (register CT-D04).", marker=held(4))
+   note="Held: one reading of the design's note; the PRD (case S3-11) shows no Name error until the user has typed in it. Released or deleted when question 11 is answered (register CT-D04).", marker=held(4))
