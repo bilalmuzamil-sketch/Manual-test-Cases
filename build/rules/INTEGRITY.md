@@ -474,3 +474,26 @@ discrepancy", each saying whether the PRD/sources are silent or say something el
 existing tab or a separate one; every question short and plain. Operator form: `build/skills/07-PO-QUESTIONS.md` §0-a.
 Indexed in `CLAUDE.md` §2. **Not added to §1:** §1 already measures 31,167 bytes against its 20,000-byte cap, so a new §1
 admission would first need something demoted (the gate's rule) — left for the QA lead to decide. Rule count 115 → **116**.
+
+## §1 CRITICAL CORE consolidated 2026-10-23 — 31,167 B → 19,289 B, and the cap is now enforced at commit
+
+QA lead 2026-10-23: *"You need to find a way to never be trapped in situations like this. See if any other session has found
+the solution to the similar problem"* — said when Rule 116 could not enter §1 because §1 stood at 31,167 bytes against its
+20,000-byte cap. **Fact found in the other sessions' copies (facts only, Rule 97 amendment 2026-10-06):** the
+test-writing session's §1 measures 17,299 B and the canonical copy 8,731 B; both keep it under the cap the way this gate's own
+clauses 2/3/5 already require — evidence (verbatim quotes, worked examples, incident histories) lives in the rule or skill,
+§1 keeps the imperative plus a pointer — and both carry `build/testing-tools/check_section1_size.py`, which this branch also
+had but nothing ran, so §1 grew silently.
+**What was done (gate clauses 2/3/5):** (1) the whole §1 as it stood was saved byte-for-byte to
+`build/rules/CRITICAL-CORE-VERBATIM-2026-10-23.md` BEFORE anything was shortened, so no ruling can be lost; (2) 22 bullets were
+rewritten to imperatives + pointers (the 62/106 bullet, 57/114, 97/104/107, 79/105, 101, 102, 115, 98/99/103, the question-sheet
+bullet now also carrying Rule 116 as part (b), skill 18, 38, and the label/V2/charter/route/source-gate/disk/record/two-files/
+quick-login/design-reference bullets); (3) a reference sweep compared every tool, file, rule number and C-id in the old §1
+with the new one, and three instructions that had been thinned too far were restored (the question sheet's column shape and
+QA-internal tab; why the lane's own output never carries EXPECT FAIL; what `probe_guard.mjs` enforces). Result 19,289 B,
+711 B headroom (measured with the recorded pipeline).
+**Enforcement so this cannot recur:** `build/git-hooks/pre-commit` runs the secret scanner on every commit and
+`check_section1_size.py` whenever CLAUDE.md is staged, refusing the commit if §1 is over the cap; `.claude/settings.json`
+SessionStart sets `git config core.hooksPath build/git-hooks` in every session (a container's `.git/hooks` does not survive a
+restart, a committed setting does). Proved: with 1,500 bytes of test bulk added the hook exited 1 and printed the REMEDY; on the
+real file it exited 0.

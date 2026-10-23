@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Committed pre-commit hook for this repository (activated each session by .claude/settings.json:
+# SessionStart runs `git config core.hooksPath build/git-hooks`). Two gates that used to depend on
+# a session remembering to run them:
+#   1. the real secret scanner on the staged diff (Rule 82) — this repo is public;
+#   2. the CLAUDE.md §1 CRITICAL CORE size cap (§1 admission gate clause 4) whenever CLAUDE.md is
+#      staged — §1 grew to 31,167 bytes unnoticed before 2026-10-23 because nothing ran the check.
+# Over the cap ⇒ demote EVIDENCE to the owning rule/skill (never an imperative), then commit again.
+set -u
+root=$(git rev-parse --show-toplevel) || exit 1
+cd "$root" || exit 1
+python3 build/testing-tools/scan_secrets.py --staged || { echo "pre-commit: secret scan refused the commit (Rule 82)." >&2; exit 1; }
+if git diff --cached --name-only | grep -qx 'CLAUDE.md'; then
+  if ! out=$(python3 build/testing-tools/check_section1_size.py 2>&1); then
+    echo "$out" >&2; echo "pre-commit: CLAUDE.md §1 is over its 20,000-byte cap — demote evidence first (see REMEDY above)." >&2; exit 1
+  fi
+  echo "$out" | grep -E 'size :|head :' >&2
+fi
+exit 0

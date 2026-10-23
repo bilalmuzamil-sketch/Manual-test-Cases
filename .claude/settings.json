@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && [ -x build/git-hooks/pre-commit ] && git config core.hooksPath build/git-hooks 2>/dev/null || true",
+            "statusMessage": "Activating the repo's pre-commit checks (secret scan, CLAUDE.md §1 size cap)"
+          }
+        ]
+      }
+    ]
+  }
+}
