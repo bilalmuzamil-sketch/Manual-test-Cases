@@ -472,3 +472,9 @@
 - TestRail `custom_atmstatus`: 1 Not Automated · 2 Cannot be automated · **3 Automated** · 4 Pending. The 22 Oct density changes (C97024/25/27/35, C96944, C368154, C590120) were all atm 1; C614719 (atm 3) changed 23 Oct on his named go-ahead → tell the automation engineer (Ahtasham).
 - The local bridge can die between steps (`ERR_PROXY_CONNECTION_FAILED` in Playwright): `source build/testing-tools/ensure_bridge.sh` and retry.
 #jira #fast-follow #testrail #automation → L0499, L0500
+
+## L0556 — 2026-10-23 — "Which tests did you change for X?" must come from the CASE HISTORY, never from my own update folders
+- QA lead asked for the density-change tests; I answered from `case-updates-2026-10-22/` only (7 tests) and missed the 20 Oct Board-View-density rewrite (C96987–C96992, C590110, C590128 — three of them Automated). A history scan over every case in the run + the Fast-follow section (`get_history_for_case`, user 3, since a date, old vs new text containing the topic word) found 16. Script: scratchpad `density_scan.py` pattern (≈10 min for ~290 cases; run it in the background).
+- Same for "which Automated tests did you update": filter `custom_atmstatus == 3`, then history by user 3 after the date the scripts were written (here 9 Oct): 36 tests, 11 of them in the Fast-follow section 87347 (not in run 498). List: `build/wo-board-tech-view/AUTOMATION-UPDATES-for-Ahtasham-2026-10-23.md` (Ahtasham = the automation QA engineer).
+- C97029 (usage tracking) with the saved display on Board View: no `work_orders_density_load` fires on page open (Board View has no density); the saved density loads when Tech View first shows — read it at step 3.
+#testrail #history #automation #density #run498 → L0555
