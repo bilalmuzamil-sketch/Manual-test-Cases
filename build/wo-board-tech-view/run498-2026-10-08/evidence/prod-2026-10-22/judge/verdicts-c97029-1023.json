@@ -1,0 +1,19 @@
+{
+ "C97029": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps, judged by the events the browser sent to Google Analytics.",
+   "Set-up (as changed by the QA lead on 23 Oct 2026): the dispatcher's saved display is Board View, with 7 saved field choices, and the density Comfortable picked in Tech View.",
+   "Step 1, a brand-new user: display view list with source default and 13 field events with source default (then one more display view when Board View was clicked).",
+   "Step 2, the dispatcher: display view board_view with source saved; the field events read source saved for the fields the dispatcher saved and default for the ones never changed. Board View has no density, so the saved density loads when Tech View first shows: density load comfortable, source saved (read at step 3).",
+   "Step 3: Tech View, then the Estimates tab = 2 display views.",
+   "Step 4: VIN/Serial turned on in Board View = exactly 1 field change event (vin on).",
+   "Step 5, the user without See financial data: 12 field events and none for total price.",
+   "Fallback and failed save: not checked by hand."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C97029-end.png"
+  ],
+  "reason_for_reviewer": "analytics-batch.mts C97029 re-run 03:48-03:51 UTC 23 Oct after the QA lead's set-up change (Q7). step3density = [work_orders_density_load tech_view comfortable saved]. Same judgement shape as the 17 Oct staging Passed."
+ }
+}
