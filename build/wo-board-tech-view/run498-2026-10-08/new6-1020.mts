@@ -2,6 +2,7 @@
  *  C682421 first Tab off-screen (S2-16688), C682436 no-technician / empty location states, C682437 header released over a row,
  *  C682438 focused avatar name, C682445 two people reorder one column, C682446 timesheet entry moved to another line.
  *  Helpers: c6824-held.mts lines 8-108 (runner, data, pins). Every reading is from the screen; pictures EV/<id>-n-*.png. Records only. */
+import { LOC1_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Page } from 'playwright';
@@ -113,10 +114,10 @@ const tips = (pg: Page) => pg.evaluate(`[...document.querySelectorAll('.q-toolti
 
 // 20 Oct 2026 (first run): C682436 left the runner at "ZZAUTOTEST Location Empty" (the on-screen switch back did not take), so the
 // next four tests ran in the wrong location. Every block now starts here: switch on screen, read the header back, fall back to the API.
-const toHeavy = async () => { let h = await switchLocUI(p, 'Staging Heavy Duty - 9919').catch(() => '');
+const toHeavy = async () => { let h = await switchLocUI(p, LOC1_NAME).catch(() => '');
   if (!/Heavy Duty/.test(String(h))) { await a.post('/api/iam/change-location', { workplace_id: HEAVY, workplace_timezone: 'Asia/Karachi' }); await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000);
     h = (await p.locator('[data-test-id="profile_menu_button"]').innerText().catch(() => '')).replace(/\s+/g, ' ').trim(); }
-  if (!/Heavy Duty/.test(String(h))) throw new Error('could not get back to Staging Heavy Duty: header reads ' + h); return h; };
+  if (!String(h).includes(LOC1_NAME)) throw new Error('could not get back to ' + LOC1_NAME + ': header reads ' + h); return h; };
 
 // ───── C682421: first Tab lands on S2-16688, the whole row / card seen
 await run('C682421', async (o) => { o.location = await toHeavy();

@@ -8,6 +8,7 @@
  *  measure, back to Light. Step 9: Tech View and List bar thickness. Firefox is not on this machine (Chromium only) — that expected line is
  *  reported as not checked. Output EV/c682419-bar.json; pictures EV/C682419-*.png. Records only; location and theme put back.
  *  Scrollbars: launched WITHOUT --hide-scrollbars (Playwright's headless default hides every scrollbar; L0464). */
+import { LOC1_NAME } from './profile.mts';
 import fs from 'node:fs';
 import path from 'node:path';
 import { open, done } from './session.mts';
@@ -29,7 +30,7 @@ const W = (ms: number) => p.waitForTimeout(ms);
 const o: any = { scale };
 const SC = `[data-test-id="board_view_scroller"], .board-view__scroller`;
 const shot = (n: string) => p.screenshot({ path: path.join(EV, `C682419-${n}.png`) }).catch(() => {});
-const HOME = 'Staging Heavy Duty - 9919';
+const HOME = LOC1_NAME;
 
 const geo = () => p.evaluate(`(() => { const h = document.querySelector('${SC}'); if (!h) return null; const r = h.getBoundingClientRect(); const cs = getComputedStyle(h);
   const bt = parseFloat(cs.borderTopWidth) || 0, bb = parseFloat(cs.borderBottomWidth) || 0;

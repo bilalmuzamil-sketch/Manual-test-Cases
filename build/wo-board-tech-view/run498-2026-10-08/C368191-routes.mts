@@ -9,6 +9,7 @@
  *  If a Labor row reads "Deleted user": steps 1-5 on that line (Line 1's Estimated Time 2h; Schedule, next working day, Esther Howard's row,
  *  drop on the 9 AM line, Choose lines > that line only, 2h, Create; the shift read; the Labor row read again).
  *  json EV/C368191-b40.json, pictures C368191-b40-*. */
+import { ME_NAME } from './profile.mts';
 import fs from 'node:fs'; import path from 'node:path';
 import type { Page } from 'playwright';
 import { open, done, APP, API } from './session.mts';
@@ -22,7 +23,7 @@ const shot = (n: string, pg: Page = p) => pg.screenshot({ path: path.join(EV, `C
 const say = (r: any) => `${r.status} ${JSON.stringify(r.body?.message ?? r.body?.errors ?? r.body ?? '').slice(0, 160)}`;
 const del = async (staffId: string) => p.evaluate(async ([api0, id]) => { const r = await fetch(`${api0}/api/staff/${id}`, { method: 'DELETE', credentials: 'include', headers: { Accept: 'application/json' } }); return `${r.status} ${(await r.text()).slice(0, 160)}`; }, [API, staffId]);
 const RI = await roleIds(a); const TECH = RI['Technician']; const D = '@staging.shopview.local';
-const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = dd.find((d: any) => (d.name ?? d.label) === 'Service');
+const dd = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get('/api/departments')).body?.data); const svc = dd.find((d: any) => (d.name ?? d.label) === 'Service') ?? dd[0];
 const mk = async (first: string, tag: string) => { const r = (await person(a, `ZZAUTOTEST ${first}`, `Tech ${RUNNO}`, { role: TECH, email: `zz.wob.${tag}.${RUNNO}${D}`, clockable: true })).row; if (r) await a.post('/api/staff/enrollment/create', { staffId: r.staff_id, workplaceId: HEAVY, departmentId: svc?.id }); return r; };
 const rowOf = async (r: any) => (await staffRows(a, r.email)).find((x) => x.staff_id === r.staff_id);
 const canned: any[] = []; { const c = (await a.get('/api/work-orders/canned-lines')).body?.data; canned.push(...(Array.isArray(c) ? c : c?.collection ?? [])); }
@@ -42,7 +43,7 @@ try {
   o.R1.delete = await del(GA.staff_id); await woPage(wo); o.R1.laborAfter = await laborRows(); o.R1.stillListed = (await staffRows(a, GA.email)).length; await shot('R1-after');
   // R2: person B logs labor on Line 2 from B's own window (Start, ~65 s, Stop > Clock Out)
   const GB = await mk('Gone B', 'goneb'); o.R2 = { lineTech: say(await a.put(`/api/work-orders/lines/${ls[1]}/technicians`, { staffIds: [GB.staff_id] })) };
-  const me = (await candidates(a)).find((x) => x.name === 'Admin ShopView');
+  const me = (await candidates(a)).find((x) => x.name === ME_NAME);
   const v = await viewAs(browser, p, a, GB.id, me?.id ?? ''); try { const pg = v.page; await pg.goto(`${APP}/workorders/${wo}/lines`, { waitUntil: 'domcontentloaded' }); await W(7000, pg);
     const tg = pg.locator(`[data-test-id="button_clock_toggle_task_${ls[1]}"]`).first(); o.R2.startFound = await tg.count(); if (!o.R2.startFound) { o.R2.toggles = await pg.evaluate(`[...document.querySelectorAll('[data-test-id^="button_clock_toggle_task_"]')].map(e => e.getAttribute('data-test-id').slice(-12))`); }
     const t2 = o.R2.startFound ? tg : pg.locator('[data-test-id^="button_clock_toggle_task_"]').last(); await t2.click({ force: true }).catch(() => {}); await W(2500, pg);
