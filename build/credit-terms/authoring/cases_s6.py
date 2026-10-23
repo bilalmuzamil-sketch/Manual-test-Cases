@@ -8,10 +8,10 @@ def vd(key, title, pre, pairs, q, note="", marker=None, start=("Starting screen:
 
 NEWV = ('Click "New Vendor".', 'the "New Vendor" window opens.')
 vd("S6-01", "The vendor Credit Terms dropdown lists active terms, with no Default tag",
-   [("The shop's own term {Term-A}, due 10 days after the invoice date, is the default for new customers; its own term {Term-B}, due on day 5 of the following month, is active; Net 50 is deactivated.",
+   [("The shop's own term {Term-A}, due 10 days after the invoice date, is the default for new customers. Its own term {Term-B}, due on day 5 of the following month, is active. Net 50 is deactivated and every other standard term is active. Other shop terms (from other tests) may also be offered.",
      "For example: {Term-A} is ZZAUTOTEST S6-01 Ten and {Term-B} is ZZAUTOTEST S6-01 Fifth.")],
    [NEWV, ("Open the Credit Terms dropdown.",
-     'it lists, in this order: COD, Due on Receipt, Net 7, {Term-A}, Net 15, Net 20, Net 30, Net 45, Net 60, Net 90, Net 120, {Term-B}, Credit Hold. No item carries a "Default" tag (not even {Term-A}); Net 50 is not offered.')],
+     'it lists the active terms in the page order: COD first, Due on Receipt second, then the Net terms by days with {Term-A} after Net 7 and before Net 15, then Net 15 to Net 120 (Net 50 missing), then the day-of-the-following-month terms with {Term-B} among them, and Credit Hold last. No item carries a "Default" tag (not even {Term-A}).')],
    ["S6-R1", "S6-R2", "S6-N2", "S1-R5", "KD-ONELIST", "FO-VENDOR-COD"])
 
 vd("S6-02", "New Vendor starts on COD whatever the customer default is",

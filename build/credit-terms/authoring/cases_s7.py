@@ -21,11 +21,11 @@ dd("S7-01b", "An invoice keeps its term and due date when the term is deactivate
     ("Open {Invoice-A}.", "it still shows Terms Net 30 (the plain name) and Due date Nov 4, 2026.")],
    ["S7-R7"])
 dd("S7-01c", "An invoice keeps its term and due date when the customer is moved",
-   [("Customer {Customer-A} is the only customer on Net 20 and has an invoice {Invoice-A} dated Oct 5, 2026, due Oct 25, 2026, showing Terms Net 20.",
-     "For example: {Customer-A} is ZZAUTOTEST S7-01c Customer and {Invoice-A} is the invoice of work order S2-15448."), PAGE],
-   [('Click the "⋯" at the right of the "Net 20" row.', "the menu opens."), ('Click "Move Customers".', "the window opens with {Customer-A} ticked."),
+   [("The shop's own term {Term-A}, due 20 days after the invoice date, is held only by customer {Customer-A}, who has an invoice {Invoice-A} dated Oct 5, 2026, due Oct 25, 2026, showing Terms {Term-A}.",
+     "For example: {Term-A} is ZZAUTOTEST S7-01c N20, {Customer-A} is ZZAUTOTEST S7-01c Customer and {Invoice-A} is the invoice of work order S2-15448."), PAGE],
+   [('Click the "⋯" at the right of the {Term-A} row.', "the menu opens."), ('Click "Move Customers".', "the window opens with {Customer-A} ticked."),
     ('Choose "Net 60" in "Move To".', "Net 60 is chosen."), ('Click "Move 1 Customer".', 'the toast "1 customer moved to Net 60." shows.'),
-    ("Open {Invoice-A}.", "it still shows Terms Net 20 and Due date Oct 25, 2026 (Oct 5 + 20 days).")],
+    ("Open {Invoice-A}.", "it still shows Terms {Term-A} and Due date Oct 25, 2026 (Oct 5 + 20 days).")],
    ["S7-R7"])
 dd("S7-02", "A vendor invoice is due by the vendor's term and recalculated on change",
    [("Vendor {Vendor-A} holds the shop's own term {Term-A}, due 14 days after the invoice date, and vendor {Vendor-B} holds Net 30.",
@@ -67,7 +67,7 @@ dd("S7-06", "A deactivated term still dates new invoices for customers who keep 
      "For example: {Customer-A} is ZZAUTOTEST S7-06 Customer and {Term-A} is ZZAUTOTEST S7-06 Fourteen."),
     (wo_invoice("{Work-order-1}", "{Customer-A}"), "For example: {Work-order-1} is S2-15442.")],
    [("Open {Work-order-1}'s Finance tab.", "the invoice preview shows."), ("Set Invoice Date to Oct 5, 2026.", "the due date reads Oct 19, 2026 (Oct 5 + 14 days)."),
-    ("Click Create Invoice.", "the invoice is created; it prints the plain name {Term-A} and the due date Oct 19, 2026.")],
+    ("Click Create Invoice.", "the invoice is created."), ("Open the printed invoice.", "it shows the plain name {Term-A} (no \"(Inactive)\") and the due date Oct 19, 2026.")],
    ["S7-E1", "S5-R8"])
 
 dd("S7-07", "An invoice made after a reversal takes the customer's term at that moment",

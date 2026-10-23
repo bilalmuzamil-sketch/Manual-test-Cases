@@ -1,6 +1,6 @@
 """Story 11 — Release day and what must not change (S11-R1 to S11-R17, S11-N1, S11-N2, S11-E1, S11-E2), plus the must-not-change cases
 for every "as today" / "unchanged" sentence and the Out of Scope items a tester can see (Rule 96, brief point 4)."""
-from ct_lib import C, HOLD, PO_HOLD
+from ct_lib import C, HOLD, CLEAN_HOLD, PO_HOLD
 from common import *
 from po_questions import QN
 
@@ -11,10 +11,12 @@ def rl(key, title, pre, pairs, q, note="", marker=None, who=None):
 EXIST = ("The organization existed before the release, and nobody has used the Credit Terms page since.", None)
 
 rl("S11-01", "An existing shop keeps COD as its default after the release",
-   [EXIST, ("A name for a new customer, {Customer-A}.", "For example: {Customer-A} is ZZAUTOTEST S11-01 Customer."), ("Starting screen: the Settings page.", None)],
+   [("The organization existed before the release, and its default has never been changed: the Credit Terms Log holds no \"Default changed\" row.", None),
+    ("A name for a new customer, {Customer-A}.", "For example: {Customer-A} is ZZAUTOTEST S11-01 Customer."), ("Starting screen: the Settings page.", None)],
    [('Click "Credit Terms" in the Finance group.', 'the page opens (no feature setting had to be switched on); COD carries the "Default" tag.'),
-    ("Open the Customers page.", "the page opens."), ('Click "New Customer".', "Credit Terms is prefilled with COD (Default)."), ("Type {Customer-A} in Customer Name.", "the name is typed."),
-    ("Click Save.", 'the customer is created on COD, as before the release.')],
+    ('Click the "⋯" page menu beside "New Credit Term".', "the menu opens."), ('Click "Audit Log".', 'there is no "Default changed" row, so the default has been COD since the release.'),
+    ("Open the Customers page.", "the page opens."), ('Click "New Customer".', "Credit Terms is prefilled with COD (Default)."), ("Type {Customer-A} in Customer Name.", "the field shows {Customer-A}."),
+    ("Click Save.", "the customer is created on COD, as before the release.")],
    ["S11-R1", "S11-R5", "KD-EXIST", "KD-NOFLAG", "GOAL-6", "S11-R4"])
 
 rl("S11-02", "No existing customer, vendor or invoice changes at release",
@@ -35,7 +37,7 @@ rl("S11-04", "At release all twelve standard terms are active and the shop has n
    [EXIST, PAGE],
    [("Read the Active tab.", "it lists exactly the twelve standard terms: COD, Due on Receipt, Net 7, Net 15, Net 20, Net 30, Net 45, Net 50, Net 60, Net 90, Net 120, Credit Hold, and its count reads 12."),
     ('Click the "Inactive" tab.', 'it reads "No inactive terms" with a count of 0.')],
-   ["S11-R3", "T-STANDARD", "GOAL-6"])
+   ["S11-R3", "T-STANDARD", "GOAL-6"], marker=CLEAN_HOLD)
 
 rl("S11-05", "COD at invoicing works as before, with no Charge Account",
    [("Customer {Customer-A} holds COD and work order {Work-order-1} for it is complete and ready to invoice.", "For example: {Customer-A} is ZZAUTOTEST S11-05 Cash and {Work-order-1} is S2-15440.")],
@@ -60,13 +62,16 @@ rl("S11-08", "The first edit of an old COD customer shows and saves $0",
    [("Open Edit Customer for {Customer-A}.", "Credit Limit shows $0.00, disabled."), ("Click Save.", "the customer saves."), ("Open {Customer-A}'s customer page.", "the credit limit now reads $0.00.")],
    ["S11-R16", "S5-R9", "KD-ZERO2", ("Jira SV-11674 acceptance criterion", "Given a COD customer with a pre-release limit of $1,000, when Edit Customer opens, then the limit shows $0.00, disabled, and saving saves $0 (S5-R9).")])
 
-rl("S11-09", "An old Net customer moved to COD gets $0, its limit kept in the note",
-   [("Net 20 is held by exactly one customer, {Customer-A}, with a credit limit of $1,000.00 from before the release.", "For example: {Customer-A} is ZZAUTOTEST S11-09 Customer."),
-    ("Your user name is {User-A}.", "For example: {User-A} is ZZAUTOTEST S11-09 Admin."), PAGE],
-   [('Click the "⋯" at the right of the "Net 20" row.', "the menu opens."), ('Click "Move Customers".', "the window opens."), ('Choose "COD" in "Move To".', "the $0 line shows."),
-    ('Click "Move 1 Customer".', 'the confirmation "Set 1 customer\'s credit limit to $0?" opens.'), ('Click "Set Limits To $0 And Move".', "the toast shows."),
-    ("Open {Customer-A}'s Notes tab.", 'the note reads "Credit term changed from Net 20 to COD by {User-A} (Move Customers). Credit limit $1,000.00 → $0." and the limit is $0.00.')],
-   ["S11-R17", "S4-R20"])
+rl("S11-09", "An old COD customer moved to Credit Hold gets $0, its limit kept in the note",
+   [("Customer {Customer-A} holds COD and keeps a credit limit of $1,000.00 stored from before the release.", "For example: {Customer-A} is ZZAUTOTEST S11-09 Cash."),
+    ("Your user name is {User-A}.", "For example: {User-A} is ZZAUTOTEST S11-09 Admin."), DEFAULT_COD, PAGE],
+   [('Click the "⋯" at the right of the "COD" row.', "the menu opens."), ('Click "Move Customers".', "the window opens with every COD customer ticked."),
+    ('Click "Select None".', '"0 selected".'), ("Type {Customer-A}'s name in \"Search customers\".", "only {Customer-A} is listed."), ("Tick {Customer-A}.", '"1 selected".'),
+    ('Choose "Credit Hold" in "Move To".', 'the line "Their credit limit will be set to $0." shows.'),
+    ('Click "Move 1 Customer".', 'the confirmation "Set 1 customer\'s credit limit to $0?" opens.'), ('Click "Set Limits To $0 And Move".', 'the toast "1 customer moved to Credit Hold." shows.'),
+    ("Open {Customer-A}'s customer page.", 'the "Credit term" reads Credit Hold and the credit limit reads $0.00.'),
+    ('Click the "Notes" tab.', 'the note reads "Credit term changed from COD to Credit Hold by {User-A} (Move Customers). Credit limit $1,000.00 → $0."')],
+   ["S11-R17", "S4-R20", "S4-R14"])
 
 rl("S11-10", "A new organization created after the release starts on Due on Receipt",
    [("An organization {Organization-A} created after the release, never changed on the Credit Terms page, and you are its Admin.", "For example: {Organization-A} is ZZAUTOTEST S11-10 Shop."), PAGE],

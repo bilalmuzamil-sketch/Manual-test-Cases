@@ -12,7 +12,7 @@ SEC = json.load(open(f"{L.P}/sections.json"))
 NAMES = {"S1": "Story 1 — Credit Terms page and list", "S2": "Story 2 — Row menu actions", "S3": "Story 3 — Create or edit a credit term",
          "S4": "Story 4 — Move Customers", "S5": "Story 5 — New Customer and Edit Customer", "S6": "Story 6 — Vendors", "S7": "Story 7 — Due dates",
          "S8": "Story 8 — QuickBooks sync - credit terms", "S9": "Story 9 — Over Credit warning", "S10": "Story 10 — Imports and Public API",
-         "S11": "Release day and what must not change", "S12": "Story 12 — Credit Terms audit log", "DATA": "Counts and due dates — exact numbers"}
+         "S11": "Release day and what must not change", "S12": "Story 12 — Credit Terms audit log", "DATA": "Counts and due dates — exact numbers", "DESIGN": "Design — how it looks"}
 PROC = [
  ("P-TERM", "One of the shop's own terms", "Settings > Credit Terms > New Credit Term: the example name, the option and the number the case gives > Create Credit Term. Deactivate it from its row menu where the case says deactivated; make it the default with Make Default for New Customers where the case says default.", "The row shows on the right tab with the Due text the case gives."),
  ("P-STD", "Standard term state", "Settings > Credit Terms: deactivate the named standard term from its row menu (or reactivate it from the Inactive tab). Make Default for New Customers on the term the case names as default (COD unless stated).", "The tabs and the Default tag match the case."),
@@ -29,6 +29,7 @@ PROC = [
  ("P-LOC", "Locations and time zones", "Settings > Locations: {Location-A} (Edmonton time unless the case says otherwise), {Location-B} in another time zone the case names; a location with no time zone where the case asks (UNVERIFIED: the time zone may be required).", "The location switcher lists both."),
  ("P-QBO", "QuickBooks Online sandbox", "Connect the test organization to the QuickBooks Online sandbox (playbook; build/sv9087-credit-term-2026-08-27/FINDINGS.md Check G: the qb1 environment, sync paused items, US tax codes). Sign in to the sandbox in another tab; Terms are under Settings > All lists > Terms.", "Invoices sync and appear in the sandbox."),
  ("P-API", "Public API", "A Public API key for the test organization and a request tool. The request addresses and field names are not in our sources yet (no tech plan): ask the QA lead for the API documentation.", "UNVERIFIED until the documentation is shared."),
+ ("P-CLEAN", "Organization holding only this suite's records", "Cases marked `needs a test organization holding only ZZAUTOTEST records` need an organization with no other session's terms, customers or log rows (a fresh test organization set aside for this suite, or the shared one once every foreign term is reactivated and no foreign log row exists). Ask the QA lead which organization to use; never reactivate or delete another session's terms on the shared site.", "The Inactive tab and the Credit Terms Log hold only this suite's rows."),
  ("P-VOLUME", "Large term", "2,000 or 2,500 customers on one term: contacts import with that many rows on the term (P-IMPORT), or Move Customers into it.", "The term's Customers count equals the number."),
 ]
 def procs_for(c):
@@ -50,6 +51,7 @@ def procs_for(c):
     if "QuickBooks" in t: out.append("P-QBO")
     if c["api"]: out.append("P-API")
     if re.search(r"2,000|2,500", t): out.append("P-VOLUME")
+    if c["marker"] == L.CLEAN_HOLD: out.append("P-CLEAN")
     return out or ["none"]
 
 Lines = []; A = Lines.append
@@ -89,6 +91,7 @@ A("## 3. Flags and settings")
 A("- No feature flag (PRD Key Decisions: \"No feature flag.\"). The page is Settings > Finance > Credit Terms, below Payment Methods.")
 A("- Desktop browser, 1440 px wide unless the case names another width or a phone; light theme.")
 A("- Every case owns its records: example names carry ZZAUTOTEST and the case key, and term names stay within 31 characters.")
+A("- Shared test site: standard terms hold real customers (PRD §6: 1,528 on Due on Receipt), so a case that needs a term holding exactly N customers uses a fresh shop term made in its setup ({Term-A}); a case that must use a standard term states counts relatively ({Count-A} + 3) or reaches its customers in Move Customers with Select None, the search and a tick.")
 A("- Dates: the due-date cases set the Invoice Date on the Finance tab's invoice preview (existing behaviour, S7-R8); a case that needs \"today\" names it as {Date-A}.")
 A("")
 A("## 4. Shared procedures (UNVERIFIED click paths; no build yet)")

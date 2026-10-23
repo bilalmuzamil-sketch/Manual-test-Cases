@@ -28,8 +28,8 @@ menu("S2-02", "COD that is not the default can be made the default",
      [("Due on Receipt is the shop's default for new customers.", None), ("At least one customer holds COD.", None)], '"COD"',
      [("Make Default for New Customers", False), ("Move Customers", False)], [], ["S2-R1", "S2-R1 MD", "S2-N1", "S2-N2"])
 menu("S2-03", "Due on Receipt shows Make Default and Move Customers only",
-     [DEFAULT_COD, ("No customer holds Due on Receipt.", None)], '"Due on Receipt"',
-     [("Make Default for New Customers", False), ("Move Customers", True)], [NOCUST], ["S2-R1", "S2-N1", "S2-N2", "S4-N2", "UFS-9"])
+     [DEFAULT_COD, ("At least one customer holds Due on Receipt.", None)], '"Due on Receipt"',
+     [("Make Default for New Customers", False), ("Move Customers", False)], [], ["S2-R1", "S2-N1", "S2-N2"])
 menu("S2-04", "Due on Receipt as the default shows only Move Customers",
      [("Due on Receipt is the shop's default for new customers.", None), ("At least one customer holds Due on Receipt.", None)], '"Due on Receipt"',
      [("Move Customers", False)], [], ["S2-R1", "S2-N2", "S2-N4"])
@@ -41,8 +41,8 @@ menu("S2-06", "An active standard Net term can be made default, moved or deactiv
      [("Make Default for New Customers", False), ("Move Customers", False), ("Deactivate", False)], [HIDE],
      ["S2-R1", "S2-R1 DEACT", "S2-R3", "S2-N1", "KD-NETDEACT", "UFS-10"])
 menu("S2-07", "An inactive standard Net term shows Reactivate before Move Customers",
-     [DEFAULT_COD, ("Net 50 is deactivated and no customer holds it.", None)], '"Net 50"',
-     [("Reactivate", False), ("Move Customers", True)], [SHOW, NOCUST], ["S2-R1", "S2-R1 REACT", "S2-R3", "S2-R10", "S2-N1"],
+     [DEFAULT_COD, ("Net 50 is deactivated and at least one customer holds it.", None)], '"Net 50"',
+     [("Reactivate", False), ("Move Customers", False)], [SHOW], ["S2-R1", "S2-R1 REACT", "S2-R3", "S2-R10", "S2-N1"],
      start=PAGE, tab_click=True)
 menu("S2-08", "A standard Net term that is the default cannot be deactivated",
      [("Net 30 is the shop's default for new customers and is held by at least one customer.", None)], '"Net 30"',
@@ -51,7 +51,7 @@ menu("S2-08", "A standard Net term that is the default cannot be deactivated",
 menu("S2-09", "An unused term of the shop's own shows every item, Delete last in red",
      [DEFAULT_COD, own("{Term-A}", "net 14", ", held by no customer, vendor or invoice", "ZZAUTOTEST S2-09 Fourteen")], "{Term-A}",
      [("Edit", False), ("Make Default for New Customers", False), ("Move Customers", True), ("Deactivate", False), ("Delete Credit Term", False)],
-     [NOCUST, HIDE], ["S2-R1", "S2-R1 HEAD", "S2-R1 EDIT", "S2-R1 DEL", "S4-N2", "KD-LOCK"])
+     [NOCUST, HIDE], ["S2-R1", "S2-R1 HEAD", "S2-R1 EDIT", "S2-R1 DEL", "S4-N2", "KD-LOCK", "UFS-9"])
 menu("S2-10", "A shop term held by a customer blocks Edit and Delete",
      [DEFAULT_COD, own("{Term-A}", "net 14", ", held by one customer, {Customer-A}, and by no vendor or invoice", "ZZAUTOTEST S2-10 Fourteen and {Customer-A} is ZZAUTOTEST S2-10 Customer")],
      "{Term-A}",
@@ -124,10 +124,10 @@ C("S2-21", "S2", "Make Default moves the tag and changes no existing customer",
   ["S2-R6", "UFS-12", "T-MDVSMC", "T-DEFAULT", "KD-NEWONLY", "KD-ANYACTIVE", "GOAL-1"])
 
 C("S2-22", "S2", "Deactivate acts at once and moves the term to the Inactive tab",
-  [ADMIN(), DEFAULT_COD, ("Net 45 is active and held by no customer or vendor.", None), ("Write down the counts on the Active and Inactive tabs.", None), PAGE],
+  [ADMIN(), DEFAULT_COD, ("Net 45 is active (customers and vendors may hold it).", None), ("Before you start, the Active tab's count reads {Count-A} and the Inactive tab's {Count-B} (write them down).", "For example: {Count-A} is 14 and {Count-B} is 2."), PAGE],
   ['Click the "⋯" at the right of the "Net 45" row.', 'Click "Deactivate".', 'Click the "Inactive" tab.'],
   ["Step 1: the menu opens.",
-   'Step 2: no confirmation opens. The Net 45 row leaves the Active tab, the Active count goes down by 1, the Inactive count goes up by 1, and a green toast shows "Net 45 deactivated".',
+   'Step 2: no confirmation opens. The Net 45 row leaves the Active tab, the Active count reads {Count-A} − 1 and the Inactive count {Count-B} + 1 (for example 13 and 3), and a green toast shows "Net 45 deactivated".',
    "Step 3: Net 45 is listed on the Inactive tab in its usual place."],
   ["S2-R7", "UFS-13", "KD-CONFIRM", "KD-NETDEACT"])
 

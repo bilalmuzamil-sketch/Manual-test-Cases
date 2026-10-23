@@ -19,10 +19,10 @@ cu("S5-01", "New Customer shows Credit Terms and Credit Limit, prefilled with th
    ["S5-R1", "S5-R2", "S5-R3", "S11-R5", "PERM-FIELDS", "GOAL-3"])
 
 cu("S5-02", "The Credit Terms dropdown lists active terms in page order",
-   [DEFAULT_COD, ("Net 50 is deactivated. The shop's own active terms are {Term-A} (due 10 days after the invoice date) and {Term-B} (due on day 5 of the following month); its own term {Term-C} is deactivated.",
+   [DEFAULT_COD, ("Net 50 is deactivated and every other standard term is active. The shop's own active terms include {Term-A} (due 10 days after the invoice date) and {Term-B} (due on day 5 of the following month), and its own term {Term-C} is deactivated. Other shop terms (from other tests) may also be offered.",
                   "For example: {Term-A} is ZZAUTOTEST S5-02 Ten, {Term-B} is ZZAUTOTEST S5-02 Fifth and {Term-C} is ZZAUTOTEST S5-02 Old.")],
    [NEWC, ("Open the Credit Terms dropdown.",
-     'it lists, in this order: COD (with a "Default" tag), Due on Receipt, Net 7, {Term-A}, Net 15, Net 20, Net 30, Net 45, Net 60, Net 90, Net 120, {Term-B}, Credit Hold. Credit Hold has no "Default" tag. Net 50 and {Term-C} (inactive) are not offered.')],
+     'it lists the active terms in the page order: COD first (with a "Default" tag), Due on Receipt second, then the Net terms by days with {Term-A} after Net 7 and before Net 15, then Net 15 to Net 120 (Net 50 missing), then the day-of-the-following-month terms with {Term-B} among them, and Credit Hold last, with no "Default" tag. Net 50 and {Term-C} (inactive) are not offered.')],
    ["S5-R3", "S5-N2", "S5-N3", "S1-R5", "KD-ONELIST"])
 
 cu("S5-03", "Choosing COD locks Credit Limit at $0.00 with the reason on hover", [("Net 30 is the shop's default for new customers.", None)],
@@ -49,13 +49,13 @@ cu("S5-06", "Saving New Customer creates the customer with the chosen term and l
 cu("S5-07", "New Customer from New Work Order has Credit Terms prefilled too",
    [("Net 30 is the shop's default for new customers.", None), ("A name for the new customer, {Customer-A}.", "For example: {Customer-A} is ZZAUTOTEST S5-07 Customer.")],
    [('Click "New Work Order".', "the New Work Order window opens."), ("Choose to add a new customer from the customer picker.", 'the same "New Customer" window opens, with Credit Terms reading Net 30 (Default) and Credit Limit beside it.'),
-    ("Type {Customer-A} in Customer Name.", "the name is typed."), ("Click Save.", "the customer is created and picked on the work order; on its customer page the \"Credit term\" reads Net 30.")],
+    ("Type {Customer-A} in Customer Name.", "the name is typed."), ("Click Save.", "the window closes and {Customer-A} is picked as the work order's customer."), ("Open {Customer-A}'s customer page.", 'the "Credit term" reads Net 30.')],
    ["S5-R15", "S5-R2"], start=("Starting screen: the Work Orders page.", None))
 
 cu("S5-08", "New Customer from New Part Sale has Credit Terms prefilled too",
    [("Due on Receipt is the shop's default for new customers.", None), ("A name for the new customer, {Customer-A}.", "For example: {Customer-A} is ZZAUTOTEST S5-08 Customer.")],
    [('Click "New Part Sale".', "the New Part Sale window opens."), ("Choose to add a new customer from the customer picker.", 'the same "New Customer" window opens, with Credit Terms reading Due on Receipt (Default).'),
-    ("Type {Customer-A} in Customer Name.", "the name is typed."), ("Click Save.", "the customer is created; on its customer page the \"Credit term\" reads Due on Receipt.")],
+    ("Type {Customer-A} in Customer Name.", "the name is typed."), ("Click Save.", "the window closes and {Customer-A} is picked as the part sale's customer."), ("Open {Customer-A}'s customer page.", 'the "Credit term" reads Due on Receipt.')],
    ["S5-R15", "S5-R2"], start=("Starting screen: Parts, Part Sales.", None))
 
 cu("S5-09", "A deactivated term shows as inactive on the customer, plain on invoices",

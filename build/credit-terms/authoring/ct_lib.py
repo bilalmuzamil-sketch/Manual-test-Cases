@@ -43,6 +43,8 @@ SETUP_URL = ("https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/clau
 NOBUILD = "The build is not yet available to check this case against."
 MARKER = "AUTOMATION: HOLD - not yet build-verified (no build yet)"
 BLOCKED = 'If any record above is missing, mark this test Blocked: "setup not done".'
+DESIGN_HOLD = "AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO"
+CLEAN_HOLD = "AUTOMATION: HOLD - needs a test organization holding only ZZAUTOTEST records (the shared test site holds other terms and customers)"
 def PO_HOLD(n): return f"AUTOMATION: HOLD - waiting on the PO (question {n}, not sent yet)"
 def HOLD(reason): return "AUTOMATION: HOLD - " + reason
 
@@ -253,8 +255,42 @@ def C(key, sec, title, pre, steps, res, q, stories=None, note="", marker=None, a
     api: True for a case whose steps send a Public API request (Rule 4: placed in a section titled with 'API')."""
     pre = [p if isinstance(p, tuple) else (p, None) for p in pre]
     steps, res = fold_reads(steps, res)
+    res = [visible(r, steps[i] if i < len(steps) else "") for i, r in enumerate(res)]
+    if marker == CLEAN_HOLD:
+        pre = [("This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows.", None)] + pre
     CASES.append(dict(key=key, sec=sec, title=title, pre=pre + [(BLOCKED, None)], steps=steps, res=res, q=q, stories=stories,
                       note=note, marker=marker or MARKER, api=api))
+
+TRIVIAL = [
+ (r"^the name is typed\.$", "the field shows the name as typed."),
+ (r"^the customer is picked\.$", "the window shows {Customer-A} as the customer."),
+ (r"^the toast shows\.$", "a green success toast shows."),
+ (r"^the customer is created\.$", "the window closes and the new customer is saved."),
+ (r"^it has synced\.$", "the invoice is no longer on the QB Unexported report."),
+ (r"^both have synced\.$", "neither invoice is on the QB Unexported report."),
+ (r"^the invoice has synced\.$", "the invoice is no longer on the QB Unexported report."),
+ (r"^the request succeeds\.$", "the request is accepted (no error comes back)."),
+ (r"^the request succeeds \(it is not refused\)\.$", "the request is accepted (it is not refused)."),
+ (r"^the blue line shows\.$", "the blue information line shows below the options."),
+ (r"^the name is empty\.$", "the Name field is empty."),
+ (r"^the invoice stays\.$", "the invoice is still listed on the Finance tab."),
+ (r"^it closes\.$", "the confirmation closes."),
+ (r"^the day option is chosen\.$", 'the "Due day of the following month" option is selected.'),
+ (r"^(Net \d+|\{Term-[A-Z]\}|COD|Credit Hold) is chosen\.$", r"the dropdown shows \1."),
+ (r"^(Net \d+|\{Term-[A-Z]\}) is selected\.$", r"the dropdown shows \1."),
+ (r"^the vendor is on (Net \d+|Credit Hold)\.$", r"the window closes and the vendor is saved on \1."),
+ (r"^the customer is on (Net \d+|\{Term-[A-Z]\})\.$", r"the window closes and the customer is saved on \1."),
+]
+def visible(r, step):
+    """Replace a result that only restates the action with what the tester sees (coordinator review, 23 Oct 2026)."""
+    m = re.match(r"^(Step \d+: )(.*)$", r)
+    if not m: return r
+    body = m.group(2)
+    for pat, rep in TRIVIAL:
+        if re.match(pat, body):
+            if "{Customer-A}" in rep and "{Customer-A}" not in step: rep = "the window shows the picked customer."
+            body = re.sub(pat, rep, body); break
+    return m.group(1) + body
 
 READ_ONLY = re.compile(r"^(Look at|Read|Find|Without clicking)\b(?!.*\b(export|file)\b)")
 def fold_reads(steps, res):

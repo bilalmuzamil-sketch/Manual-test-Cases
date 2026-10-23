@@ -19,10 +19,14 @@ oc("S9-02", "The Over limit badge shows on the over-limit customer's work order 
    "Customer {Customer-A} holds Net 30, has a credit limit of $500.00, unpaid invoices totalling $600.00, an open work order {Work-order-1} and an open part sale {Part-sale-A}.",
    ", {Work-order-1} is S2-15440 and {Part-sale-A} is P-1345",
    [("Open {Work-order-1}.", 'the "Over limit" badge shows.'), ("Open {Part-sale-A}.", 'the "Over limit" badge shows.')], ["S9-R2", "S9-R4"])
-oc("S9-03", "Opening a part sale never asks the over-credit question",
-   "Customer {Customer-A} holds Net 30, has a credit limit of $500.00 and unpaid invoices totalling $600.00.", "",
-   [('On Parts, Part Sales, click "New Part Sale".', "the New Part Sale window opens."), ("Pick {Customer-A} as the customer.", "the customer is picked."),
-    ("Confirm the window.", 'no over-credit confirmation opens (as before the release); the new part sale shows the "Over limit" badge.')], ["S9-R4", "S9-R2"])
+C("S9-03", "S9", "Opening a part sale never asks the over-credit question",
+  [ADMIN(), ("Customer {Customer-A} holds Net 30, has a credit limit of $500.00 and unpaid invoices totalling $600.00.", "For example: {Customer-A} is ZZAUTOTEST S9-03 Customer."),
+   ("Starting screen: Parts, Part Sales.", None)],
+  ['Click "New Part Sale".', "Pick {Customer-A} as the customer.", "Confirm the New Part Sale window."],
+  ["Step 1: the New Part Sale window opens.", "Step 2: the window shows {Customer-A} as the customer.",
+   'Step 3: no over-credit confirmation opens (as before the release); the new part sale opens and shows the "Over limit" badge.'],
+  ["S9-R4", "S9-R2"])
+
 oc("S9-04", "A customer with a $0 or blank limit never gets the warning or badge",
    "Customer {Customer-A} holds Net 30 with a credit limit of $0.00, and customer {Customer-B} holds Net 30 with a blank limit; each has unpaid invoices totalling $600.00 and an open work order, {Work-order-1} and {Work-order-2}.",
    ", {Customer-B} is ZZAUTOTEST S9-04 Blank Limit, {Work-order-1} is S2-15441 and {Work-order-2} is S2-15442",

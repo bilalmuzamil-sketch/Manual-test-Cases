@@ -1,6 +1,6 @@
 """Story 1 — Credit Terms page and list (S1-R1 to S1-R16, S1-N1 to S1-N3, S1-E1 to S1-E3, Error Handling), plus page access by role
 (Key Decisions, Permissions). Counts (S1-R12, S1-R13) with exact numbers are in cases_data.py."""
-from ct_lib import C, HOLD, prd_sentence
+from ct_lib import C, HOLD, CLEAN_HOLD, prd_sentence
 from common import *
 from po_questions import QN
 
@@ -22,50 +22,49 @@ C("S1-03", "S1", "The Active tab lists terms in the fixed order, Credit Hold las
   [ADMIN(), STD_ACTIVE,
    ("The shop has five active terms of its own: {Term-A} due 10 days after the invoice date, {Term-B} due 30 days after the invoice date, {Term-C} due on day 1 of the following month, {Term-D} due on day 22 of the following month, and {Term-E} due on day 1 of the following month. {Term-E}'s name comes after {Term-C}'s in A to Z order.",
     "For example: {Term-A} is ZZAUTOTEST S1-03 Ten, {Term-B} is ZZAUTOTEST S1-03 Thirty, {Term-C} is ZZAUTOTEST S1-03 First A, {Term-D} is ZZAUTOTEST S1-03 Twentysecond and {Term-E} is ZZAUTOTEST S1-03 First B."),
-   PAGE],
+   ("Other terms of the shop (from other tests) may also be listed; the checks below are about the order of the named rows.", None), PAGE],
   ["Without clicking any column heading, read the Name column from top to bottom."],
-  ["Step 1: the rows read, top to bottom: COD, Due on Receipt, Net 7, {Term-A}, Net 15, Net 20, Net 30, {Term-B}, Net 45, Net 50, Net 60, Net 90, Net 120, {Term-C}, {Term-E}, {Term-D}, Credit Hold. Net terms (standard and the shop's own) go by number of days, lowest first; Net 30 and {Term-B} both run 30 days, so they sort A to Z by name; day-of-the-following-month terms follow by day, and the two day-1 terms sort A to Z by name; Credit Hold is last."],
+  ["Step 1: COD is the first row, Due on Receipt the second and Credit Hold the last. In between, the Net terms (standard and the shop's own) run by number of days, lowest first: Net 7, then {Term-A} (10 days), then Net 15, Net 20, Net 30, then {Term-B} (30 days, after Net 30 because ties sort A to Z by name), then Net 45, Net 50, Net 60, Net 90, Net 120. After every Net term come the day-of-the-following-month terms by day: {Term-C}, then {Term-E} (both day 1, A to Z by name), then {Term-D} (day 22)."],
   ["S1-R5", "S1-R14"],
   note=f"The order also has a place for \"any other term A to Z\" before Credit Hold; question {QN['other-term-order']} on Chris Ward's sheet (not sent yet) asks which terms those are. This case checks every kind a shop can create.")
 
 C("S1-04", "S1", "The Inactive tab uses the same order as the Active tab",
-  [ADMIN(), ("Three terms are deactivated: Net 60, Net 7 and the shop's own {Term-A}, due on day 5 of the following month.",
-              "For example: {Term-A} is ZZAUTOTEST S1-04 Fifth."), PAGE],
+  [ADMIN(), ("Net 60, Net 7 and the shop's own {Term-A}, due on day 5 of the following month, are deactivated.", "For example: {Term-A} is ZZAUTOTEST S1-04 Fifth."),
+   ("Other terms of the shop (from other tests) may also be listed; the checks below are about the order of the named rows.", None), PAGE],
   ['Click the "Inactive" tab.'],
-  ["Step 1: the Inactive tab lists, top to bottom: Net 7, Net 60, {Term-A}. The tab's count reads 3."],
+  ["Step 1: reading down the Inactive tab, Net 7 comes before Net 60, which comes before {Term-A}; the tab's count equals the number of rows on it."],
   ["S1-R5", "S1-R14", "S1-R3"])
 
 C("S1-05", "S1", "Clicking Name sorts A to Z, and again Z to A",
-  [ADMIN(), STD_ACTIVE, ("The shop has its own active term {Term-A}, due 14 days after the invoice date, whose name starts with a letter after N.",
-                         "For example: {Term-A} is ZZAUTOTEST S1-05 Fourteen."), PAGE],
+  [ADMIN(), STD_ACTIVE, PAGE],
   ['Click the "Name" column heading.', 'Click the "Name" column heading again.'],
-  ["Step 1: the rows sort by name A to Z: COD, Credit Hold and Due on Receipt come before the Net terms, and {Term-A} is last.",
-   "Step 2: the order reverses: {Term-A} first and COD last."],
+  ["Step 1: the Name column reads A to Z from top to bottom: COD, Credit Hold and Due on Receipt come before the Net terms, and every name is at or after the one above it in the alphabet.",
+   "Step 2: the order reverses, Z to A: the Net terms (and any later names) come first, and Due on Receipt, Credit Hold and COD are the last three rows in that order."],
   ["S1-R6"])
 
 C("S1-06", "S1", "Clicking Customers sorts lowest count first, and again highest first",
-  [ADMIN(), ("Net 15 is held by 3 customers, Net 20 by 1 customer and Net 45 by 2 customers; no other term has between 1 and 3 customers.",
-             "For example: the six customers are ZZAUTOTEST S1-06 Alpha to ZZAUTOTEST S1-06 Foxtrot."), PAGE],
+  [ADMIN(), ("The shop's own terms {Term-A}, {Term-B} and {Term-C} are held by exactly 1, 2 and 3 customers (new terms hold only this case's customers).",
+             "For example: {Term-A} is ZZAUTOTEST S1-06 One, {Term-B} is ZZAUTOTEST S1-06 Two and {Term-C} is ZZAUTOTEST S1-06 Three, each due 14 days after the invoice date."), PAGE],
   ['Click the "Customers" column heading.', 'Click the "Customers" column heading again.'],
-  ["Step 1: the rows sort by the Customers count, lowest first: every term showing 0 comes first, then Net 20 (1), Net 45 (2), Net 15 (3), then any term with more.",
-   "Step 2: the order reverses: the highest count first, and Net 15 (3) above Net 45 (2) above Net 20 (1)."],
+  ["Step 1: the Customers column reads from top to bottom in rising order (every number is the same as or higher than the one above it), so {Term-A} (1) is above {Term-B} (2), which is above {Term-C} (3).",
+   "Step 2: the order reverses: every number is the same as or lower than the one above it, and {Term-C} (3) is above {Term-B} (2), which is above {Term-A} (1)."],
   ["S1-R6"])
 
 C("S1-07", "S1", "Clicking Vendors sorts lowest count first, and again highest first",
-  [ADMIN(), ("Net 60 is held by 2 vendors and Net 90 by 1 vendor; no other term has 1 or 2 vendors.",
-             "For example: the three vendors are ZZAUTOTEST S1-07 Vendor A to ZZAUTOTEST S1-07 Vendor C."), PAGE],
+  [ADMIN(), ("The shop's own terms {Term-A} and {Term-B} are held by exactly 1 and 2 vendors (new terms hold only this case's vendors).",
+             "For example: {Term-A} is ZZAUTOTEST S1-07 One and {Term-B} is ZZAUTOTEST S1-07 Two, each due 14 days after the invoice date."), PAGE],
   ['Click the "Vendors" column heading.', 'Click the "Vendors" column heading again.'],
-  ["Step 1: the rows sort by the Vendors count, lowest first: every term showing 0 first, then Net 90 (1), then Net 60 (2), then any term with more.",
-   "Step 2: the order reverses: the highest count first, and Net 60 (2) above Net 90 (1)."],
+  ["Step 1: the Vendors column reads from top to bottom in rising order (each number the same as or higher than the one above), with {Term-A} (1) above {Term-B} (2).",
+   "Step 2: the order reverses (each number the same as or lower than the one above), with {Term-B} (2) above {Term-A} (1)."],
   ["S1-R6"])
 
 C("S1-08", "S1", "Clicking Due sorts in the page's usual order, and again in reverse",
-  [ADMIN(), STD_ACTIVE, ("The shop has its own active term {Term-A}, due on day 10 of the following month.",
-                         "For example: {Term-A} is ZZAUTOTEST S1-08 Tenth."), PAGE],
+  [ADMIN(), STD_ACTIVE, ("The shop has its own active term {Term-A}, due on day 10 of the following month.", "For example: {Term-A} is ZZAUTOTEST S1-08 Tenth."),
+   ("Other terms of the shop (from other tests) may also be listed; the checks below are about the order of the named rows.", None), PAGE],
   ['Click the "Name" column heading.', 'Click the "Due" column heading.', 'Click the "Due" column heading again.'],
   ["Step 1: the rows are sorted by name A to Z.",
-   "Step 2: the rows return to the page's usual order: COD, Due on Receipt, the Net terms by number of days, {Term-A}, Credit Hold last.",
-   "Step 3: the order reverses: Credit Hold first, then {Term-A}, then the Net terms from Net 120 down to Net 7, then Due on Receipt, then COD."],
+   "Step 2: the rows return to the page's usual order: COD first, Due on Receipt second, the Net terms by number of days, then the day-of-the-following-month terms with {Term-A} among them, Credit Hold last.",
+   "Step 3: the order reverses: Credit Hold first, then the day-of-the-following-month terms (highest day first, {Term-A} among them), then the Net terms from the longest down to Net 7, then Due on Receipt, then COD last."],
   ["S1-R6", "S1-R5"])
 
 C("S1-09", "S1", "A column sort is not kept after leaving the page",
@@ -131,10 +130,11 @@ C("S1-18", "S1", "The Default tag follows the shop's own term when it is the def
   ["S1-R11", "S1-R10"])
 
 C("S1-19", "S1", "Customers and Vendors counts are right aligned and show 0 when none",
-  [ADMIN(), ("No customer and no vendor holds Net 50.", None), ("At least one customer holds Net 30.", None), PAGE],
-  ['Look at the Customers and Vendors cells of the "Net 50" row.', 'Look at the Customers cell of the "Net 30" row.'],
+  [ADMIN(), ("The shop's own term {Term-A}, due 14 days after the invoice date, is held by no customer and no vendor (it is new).", "For example: {Term-A} is ZZAUTOTEST S1-19 Empty."),
+   ("At least one customer holds Net 30.", None), PAGE],
+  ["Look at the Customers and Vendors cells of the {Term-A} row.", 'Look at the Customers cell of the "Net 30" row.'],
   ['Step 1: both cells read "0" (not blank, not a dash), right aligned in their columns.',
-   "Step 2: the count is right aligned, its last digit lined up with the 0 above it."],
+   "Step 2: the count is right aligned, its last digit lined up with the 0 of the {Term-A} row."],
   ["S1-R12", "S1-R13"])
 
 C("S1-20", "S1", "A long term name wraps onto a second line and is never cut off",
@@ -168,7 +168,7 @@ C("S1-23", "S1", "An empty Inactive tab says \"No inactive terms\"",
   [ADMIN(), STD_ACTIVE, ("No term is deactivated (every standard term is active and the shop has no inactive term of its own).", None), PAGE],
   ['Click the "Inactive" tab.'],
   ['Step 1: the tab label shows a count of 0, and in place of the table the line "No inactive terms" shows.'],
-  ["S1-N2", "UFS-2", "S1-R3"])
+  ["S1-N2", "UFS-2", "S1-R3"], marker=CLEAN_HOLD)
 
 C("S1-24", "S1", "Every row has a menu, even Credit Hold and the default COD",
   [ADMIN(), STD_ACTIVE, PAGE],
@@ -185,7 +185,7 @@ C("S1-25", "S1", "With every term deactivated, Active keeps the three fixed term
   ["Read the rows on the Active tab.", 'Click the "Inactive" tab.'],
   ["Step 1: Active lists exactly COD, Due on Receipt, {Term-A} (with the Default tag) and Credit Hold, in that order, and its count reads 4.",
    "Step 2: Inactive lists Net 7, Net 15, Net 20, Net 30, Net 45, Net 50, Net 60, Net 90, Net 120 and {Term-B}, in that order, and its count reads 10."],
-  ["S1-E1", "S1-R3"])
+  ["S1-E1", "S1-R3"], marker=CLEAN_HOLD)
 
 C("S1-26", "S1", "A term held only by an invoice shows 0 and 0 but is still in use",
   [ADMIN(), ("The shop's own term {Term-A}, due 14 days after the invoice date, is held by no customer and no vendor today, but one invoice, {Invoice-A}, was created with it (its customer was later moved to another term).",

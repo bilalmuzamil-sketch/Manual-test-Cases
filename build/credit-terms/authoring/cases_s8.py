@@ -51,9 +51,9 @@ qb("S8-05", "Changing a customer's term in Edit Customer does not change QuickBo
    ["S8-R6", "OOS-5"])
 
 qb("S8-06", "Move Customers does not change the customer in QuickBooks",
-   [("Customer {Customer-A} is the only customer on Net 20 and is in QuickBooks with terms Net 20.", "For example: {Customer-A} is ZZAUTOTEST S8-06 Customer."), PAGE],
-   [('Click the "⋯" at the right of the "Net 20" row.', "the menu opens."), ('Click "Move Customers".', "the window opens."), ('Choose "Net 45" in "Move To".', "Net 45 is chosen."),
-    ('Click "Move 1 Customer".', 'the toast "1 customer moved to Net 45." shows.'), ("In QuickBooks, open the customer {Customer-A}.", "its terms still read Net 20: no customer update was sent.")],
+   [("The shop's own term {Term-A}, due 20 days after the invoice date, is held only by customer {Customer-A}, who is in QuickBooks with terms {Term-A}.", "For example: {Term-A} is ZZAUTOTEST S8-06 N20, {Customer-A} is ZZAUTOTEST S8-06 Customer."), PAGE],
+   [('Click the "⋯" at the right of the {Term-A} row.', "the menu opens."), ('Click "Move Customers".', "the window opens."), ('Choose "Net 45" in "Move To".', "Net 45 is chosen."),
+    ('Click "Move 1 Customer".', 'the toast "1 customer moved to Net 45." shows.'), ("In QuickBooks, open the customer {Customer-A}.", "its terms still read {Term-A}: no customer update was sent.")],
    ["S8-R6", "S4-R12"])
 
 qb("S8-07", "Deactivating or reactivating a term sends nothing to QuickBooks",
@@ -79,7 +79,7 @@ qb("S8-09", "A QuickBooks refusal lands on the QB Unexported report with the rea
      "For example: {Customer-A} is ZZAUTOTEST S8-09 Customer with a tax code the sandbox does not accept, {Term-A} is ZZAUTOTEST S8-09 Fourteen and {Work-order-1} is S2-15445.")],
    [("On {Work-order-1}'s Finance tab, click Create Invoice.", "the invoice is created; ShopView work goes on (nothing is blocked)."),
     ("Open the QB Unexported report.", "the invoice is listed with the reason QuickBooks gave."), ("Fix the cause in the sandbox.", "the cause is fixed."),
-    ("Resend the invoice from the QB Unexported report.", "it syncs; it leaves the report and appears in QuickBooks with terms {Term-A}.")],
+    ("Resend the invoice from the QB Unexported report.", "it syncs and leaves the report."), ("In QuickBooks, open the invoice.", "it shows terms {Term-A}.")],
    ["EH-S8"])
 
 C("S8-10", "S8", "Without QuickBooks connected, nothing is sent and terms work the same",
@@ -98,8 +98,8 @@ C("S8-11", "S8", "AccountingHub and IBS receive the due date only, never the ter
 
 C("S8-12", "S8", "Move Customers sends AccountingHub the same update as Edit Customer",
   [ADMIN(), ("The organization is connected to AccountingHub, and you can see the customer updates it receives.", None),
-   ("Net 20 is held by exactly one customer, {Customer-A}.", "For example: {Customer-A} is ZZAUTOTEST S8-12 Customer."), PAGE],
-  ['Click the "⋯" at the right of the "Net 20" row.', 'Click "Move Customers".', 'Choose "Net 45" in "Move To".', 'Click "Move 1 Customer".', "Open the customer update AccountingHub received."],
+   ("The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly one customer, {Customer-A}.", "For example: {Term-A} is ZZAUTOTEST S8-12 N20, {Customer-A} is ZZAUTOTEST S8-12 Customer."), PAGE],
+  ['Click the "⋯" at the right of the {Term-A} row.', 'Click "Move Customers".', 'Choose "Net 45" in "Move To".', 'Click "Move 1 Customer".', "Open the customer update AccountingHub received."],
   ["Step 1: the menu opens.", "Step 2: the window opens.", "Step 3: Net 45 is chosen.", 'Step 4: the toast "1 customer moved to Net 45." shows.',
    "Step 5: AccountingHub received one customer update for {Customer-A}, the same kind an Edit Customer save sends."],
   ["S4-R12"], marker=HOLD("what AccountingHub receives cannot be seen in ShopView; needs access to AccountingHub"))

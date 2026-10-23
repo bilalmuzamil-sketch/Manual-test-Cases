@@ -1,6 +1,6 @@
 """Story 12 — Credit Terms audit log (S12-R1 to S12-R8, S12-N1 to S12-N3, S12-E1 to S12-E3, Error Handling): one case per event type
 with the exact Event and Details text (brief point 10)."""
-from ct_lib import C, HOLD
+from ct_lib import C, HOLD, CLEAN_HOLD
 from common import *
 
 def lg(key, title, pre, pairs, q, note="", marker=None, who=None, start=PAGE):
@@ -61,9 +61,9 @@ lg("S12-08", "Changing the default writes a \"Default changed\" row",
    ["S12-R3 DEF", ("Jira SV-11681 acceptance criterion", "Given the default changes from COD to Net 14, then a row reads \"Default changed\" / \"COD → Net 14\" (S12-R3).")])
 
 lg("S12-09", "Moving customers to a Net term writes a row with no limit line",
-   [("Net 20 is held by exactly three customers.", "For example: ZZAUTOTEST S12-09 Alpha, Bravo and Charlie.")],
-   [row_menu('"Net 20"'), ('Click "Move Customers".', "the window opens with 3 selected."), ('Choose "Net 45" in "Move To".', "Net 45 is chosen."), ('Click "Move 3 Customers".', "the toast shows.")]
-   + log_then('the newest row reads Event "Customers moved" and Details "3 customers from Net 20 to Net 45", with no credit-limit line.'),
+   [("The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly three customers.", "For example: {Term-A} is ZZAUTOTEST S12-09 N20, ZZAUTOTEST S12-09 Alpha, Bravo and Charlie.")],
+   [row_menu('{Term-A}'), ('Click "Move Customers".', "the window opens with 3 selected."), ('Choose "Net 45" in "Move To".', "Net 45 is chosen."), ('Click "Move 3 Customers".', "the toast shows.")]
+   + log_then('the newest row reads Event "Customers moved" and Details "3 customers from {Term-A} to Net 45", with no credit-limit line.'),
    ["S12-R3 MOVED", "KD-LOG"])
 
 lg("S12-10", "Log rows show the user, and date and time in your location's calendar",
@@ -113,7 +113,7 @@ lg("S12-15", "Long names in the log wrap and are never cut off",
 
 lg("S12-16", "An untouched log on release day shows its empty state", [("The organization existed before the release and nobody has used the Credit Terms page since.", None)],
    LOG[:1] + [(LOG[1][0], 'the table has no rows and shows "No history here. Yet." (changes from before the release are not in the log).')],
-   ["S12-E1", "S12-N2", "UFS-50"])
+   ["S12-E1", "S12-N2", "UFS-50"], marker=CLEAN_HOLD)
 
 lg("S12-17", "Changing a vendor's term in Edit Vendor writes nothing to the log",
    [("Vendor {Vendor-A} holds Net 30.", "For example: {Vendor-A} is ZZAUTOTEST S12-17 Vendor."), ("Write down the newest row of the log before you start.", None)],
