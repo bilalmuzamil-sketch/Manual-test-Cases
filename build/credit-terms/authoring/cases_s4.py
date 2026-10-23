@@ -254,7 +254,7 @@ mv("S4-35", "Moving off a deactivated term: how the note names the old term",
     ('Choose "Net 30" in "Move To".', "the dropdown shows Net 30."), ('Click "Move 1 Customer".', 'the toast "1 customer moved to Net 30." shows.'),
     ("Open {Customer-A}'s customer page.", "the page opens."), ('Click the "Notes" tab.', 'the note reads "Credit term changed from {Term-A} to Net 30 by {User-A} (Move Customers)." — or with "{Term-A} (Inactive)", as the PO answers (see the note).')],
    ["S4-R11", "S4-N3"], marker=PO_HOLD(QN["move-note-inactive"]),
-   note=f"The PRD does not say whether a deactivated term is named plainly or with \"(Inactive)\" in the note and the log. Question {QN['move-note-inactive']} on Chris Ward's sheet (not sent yet) asks; this case is held until he answers.")
+   note=f"The PRD does not say whether a deactivated term is named plainly or with \"(Inactive)\" in the note and the log. Question {QN['move-note-inactive']} on Chris Ward's sheet (shared with him 23 Oct 2026) asks; this case is held until he answers.")
 
 mv("S4-36", "Moving a customer stored as \"NET 30\": how the note names the old term",
    [DEFAULT_COD, ("Customer {Customer-A} is stored with the text \"NET 30\" (from an old import).", "For example: {Customer-A} is ZZAUTOTEST S4-36 Upper."),
@@ -263,4 +263,4 @@ mv("S4-36", "Moving a customer stored as \"NET 30\": how the note names the old 
      ('Click "Move 1 Customer".', 'the toast "1 customer moved to Net 45." shows.'), ("Open {Customer-A}'s customer page.", "the page opens."),
      ('Click the "Notes" tab.', 'the note reads "Credit term changed from Net 30 to Net 45 …" or "from NET 30 …", as the PO answers.')],
    ["S4-R11", "S11-E2"], marker=PO_HOLD(QN["move-note-spelling"]),
-   note=f"Question {QN['move-note-spelling']} on Chris Ward's sheet (not sent yet) asks which spelling the note uses; held until he answers.")
+   note=f"Question {QN['move-note-spelling']} on Chris Ward's sheet (shared with him 23 Oct 2026) asks which spelling the note uses; held until he answers.")

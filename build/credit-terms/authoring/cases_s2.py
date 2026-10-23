@@ -253,4 +253,4 @@ C("S2-36", "S2", "Acting on a term another user renamed after the page loaded",
   [ADMIN()] + TWO + [DEFAULT_COD, own("{Term-A}", "net 14", ", held by no customer, vendor or invoice", "ZZAUTOTEST S2-36 Fourteen"),
    ("A new name, {Term-B}, that no term has.", "For example: {Term-B} is ZZAUTOTEST S2-36 Renamed."), BOTH],
   st, rs, ["S2-E2"], marker=PO_HOLD(QN["changed-meanwhile-msg"]),
-  note=f"The PRD says a change by another user is refused \"with the reason in S2 Error Handling\", but none of those texts covers a rename. Question {QN['changed-meanwhile-msg']} on Chris Ward's sheet (not sent yet) asks; this case is held until he answers.")
+  note=f"The PRD says a change by another user is refused \"with the reason in S2 Error Handling\", but none of those texts covers a rename. Question {QN['changed-meanwhile-msg']} on Chris Ward's sheet (shared with him 23 Oct 2026) asks; this case is held until he answers.")

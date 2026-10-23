@@ -902,7 +902,7 @@ Procedures: none.
 Sources (verbatim text in section 9): EH-S2, KD-THREE, UFS-31.
 
 ### SETUP-S2-36 — Acting on a term another user renamed after the page loaded
-Section: Story 2 — Row menu actions (TestRail section 91456). Marker: `AUTOMATION: HOLD - waiting on the PO (question 3, not sent yet)`.
+Section: Story 2 — Row menu actions (TestRail section 91456). Marker: `AUTOMATION: HOLD - waiting on the PO (question 3)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - You and a second user, {User-B}, are both signed in with the "Admin" role, in two separate browsers. For example: {User-B} is ZZAUTOTEST S2 Second Admin.
@@ -1636,7 +1636,7 @@ Procedures: P-TERM, P-STD, P-CUST, P-INV.
 Sources (verbatim text in section 9): EH-S4c, UFS-38.
 
 ### SETUP-S4-35 — Moving off a deactivated term: how the note names the old term
-Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATION: HOLD - waiting on the PO (question 5, not sent yet)`.
+Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATION: HOLD - waiting on the PO (question 5)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
@@ -1649,7 +1649,7 @@ Procedures: P-TERM, P-STD, P-CUST, P-INV.
 Sources (verbatim text in section 9): S4-N3, S4-R11.
 
 ### SETUP-S4-36 — Moving a customer stored as "NET 30": how the note names the old term
-Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATION: HOLD - waiting on the PO (question 6, not sent yet)`.
+Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATION: HOLD - waiting on the PO (question 6)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
@@ -2161,7 +2161,7 @@ Procedures: P-TERM, P-CUST, P-WO, P-INV.
 Sources (verbatim text in section 9): GOAL-2, KD-OWNNET, S11-R10.
 
 ### SETUP-S7-10 — Changing the invoice date after the customer changed term
-Section: Story 7 — Due dates (TestRail section 91461). Marker: `AUTOMATION: HOLD - waiting on the PO (question 7, not sent yet)`.
+Section: Story 7 — Due dates (TestRail section 91461). Marker: `AUTOMATION: HOLD - waiting on the PO (question 7)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has invoice {Invoice-A} created on Net 30, dated Oct 5, 2026 (due Nov 4, 2026); the customer has since been moved to Net 60. For example: {Customer-A} is ZZAUTOTEST S7-10 Customer and {Invoice-A} is the invoice of work order S2-15446.
@@ -2811,7 +2811,7 @@ Procedures: P-STD.
 Sources (verbatim text in section 9): OOS-7, S2-N1.
 
 ### SETUP-S11-20 — Other screens showing a customer's term: plain name or (Inactive)
-Section: Release day and what must not change (TestRail section 91465). Marker: `AUTOMATION: HOLD - waiting on the PO (question 4, not sent yet)`.
+Section: Release day and what must not change (TestRail section 91465). Marker: `AUTOMATION: HOLD - waiting on the PO (question 4)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} holds Net 60, which is deactivated, and has an open invoice and an open work order {Work-order-1}. For example: {Customer-A} is ZZAUTOTEST S11-20 Customer and {Work-order-1} is S2-15447.

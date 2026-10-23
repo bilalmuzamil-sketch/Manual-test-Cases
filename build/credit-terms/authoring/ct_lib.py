@@ -45,7 +45,7 @@ MARKER = "AUTOMATION: HOLD - not yet build-verified (no build yet)"
 BLOCKED = 'If any record above is missing, mark this test Blocked: "setup not done".'
 DESIGN_HOLD = "AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO"
 CLEAN_HOLD = "AUTOMATION: HOLD - needs a test organization holding only ZZAUTOTEST records (the shared test site holds other terms and customers)"
-def PO_HOLD(n): return f"AUTOMATION: HOLD - waiting on the PO (question {n}, not sent yet)"
+def PO_HOLD(n): return f"AUTOMATION: HOLD - waiting on the PO (question {n})"
 def HOLD(reason): return "AUTOMATION: HOLD - " + reason
 
 # ---- requirement codes (S1-R1 ... S12-E3): the requirement line itself, the FIRST line carrying the code -----------------------

@@ -97,4 +97,4 @@ dd("S7-10", "Changing the invoice date after the customer changed term",
      "For example: {Customer-A} is ZZAUTOTEST S7-10 Customer and {Invoice-A} is the invoice of work order S2-15446.")],
    [("Open {Invoice-A}.", "it shows Terms Net 30, due Nov 4, 2026."), ("Change its invoice date to Oct 10, 2026.", "the due date becomes Nov 9, 2026 (Net 30) or Dec 9, 2026 (Net 60), as the PO answers.")],
    ["S7-R8", "S7-R7"], marker=PO_HOLD(QN["date-change-term"]),
-   note=f"S7-R7 says the invoice keeps its term; S7-R8 says a changed date is recalculated from the customer's term. Question {QN['date-change-term']} on Chris Ward's sheet (not sent yet) asks which wins; held until he answers.")
+   note=f"S7-R7 says the invoice keeps its term; S7-R8 says a changed date is recalculated from the customer's term. Question {QN['date-change-term']} on Chris Ward's sheet (shared with him 23 Oct 2026) asks which wins; held until he answers.")

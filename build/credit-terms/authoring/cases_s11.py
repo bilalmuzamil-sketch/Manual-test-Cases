@@ -137,4 +137,4 @@ rl("S11-20", "Other screens showing a customer's term: plain name or (Inactive)"
    [("Open Reports, A/R Aging Collection.", "the report opens."), ("Find {Customer-A}'s row.", 'its "Credit term:" reads "Net 60" or "Net 60 (Inactive)", as the PO answers.'),
     ("Open {Work-order-1}.", "where the customer's term shows on the work order, it reads as the PO answers.")],
    ["S5-R8"], marker=PO_HOLD(QN["inactive-elsewhere"]),
-   note=f"The PRD names only the customer card, the Edit windows and the printed documents. Question {QN['inactive-elsewhere']} on Chris Ward's sheet (not sent yet) asks about the other screens; held until he answers.")
+   note=f"The PRD names only the customer card, the Edit windows and the printed documents. Question {QN['inactive-elsewhere']} on Chris Ward's sheet (shared with him 23 Oct 2026) asks about the other screens; held until he answers.")

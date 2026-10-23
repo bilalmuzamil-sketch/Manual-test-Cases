@@ -26,7 +26,7 @@ C("S1-03", "S1", "The Active tab lists terms in the fixed order, Credit Hold las
   ["Without clicking any column heading, read the Name column from top to bottom."],
   ["Step 1: COD is the first row, Due on Receipt the second and Credit Hold the last. In between, the Net terms (standard and the shop's own) run by number of days, lowest first: Net 7, then {Term-A} (10 days), then Net 15, Net 20, Net 30, then {Term-B} (30 days, after Net 30 because ties sort A to Z by name), then Net 45, Net 50, Net 60, Net 90, Net 120. After every Net term come the day-of-the-following-month terms by day: {Term-C}, then {Term-E} (both day 1, A to Z by name), then {Term-D} (day 22)."],
   ["S1-R5", "S1-R14"],
-  note=f"The order also has a place for \"any other term A to Z\" before Credit Hold; question {QN['other-term-order']} on Chris Ward's sheet (not sent yet) asks which terms those are. This case checks every kind a shop can create.")
+  note=f"The order also has a place for \"any other term A to Z\" before Credit Hold; question {QN['other-term-order']} on Chris Ward's sheet (shared with him 23 Oct 2026) asks which terms those are. This case checks every kind a shop can create.")
 
 C("S1-04", "S1", "The Inactive tab uses the same order as the Active tab",
   [ADMIN(), ("Net 60, Net 7 and the shop's own {Term-A}, due on day 5 of the following month, are deactivated.", "For example: {Term-A} is ZZAUTOTEST S1-04 Fifth."),
