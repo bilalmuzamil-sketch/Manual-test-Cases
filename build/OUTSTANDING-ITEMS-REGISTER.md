@@ -3255,3 +3255,5 @@ Done: 42 updates + C598326 new, run 498 = 272 (record `wo-board-tech-view/answer
 - 22 Oct 2026: A/R and A/P question sheet (10 questions) created and shared with Chris Ward as Editor:
   https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA — waiting on his answers (4 cases held out of run 549).
   Export-limit data: no developer request needed (see ar-ap-report-sorting/PROJECT-STATE.md, 22 Oct).
+- 23 Oct 2026 (state saved): A/R and A/P — 355 cases, run 549 = 345; questions 1-16 unanswered (sheet 11_3z…). Splitting Sales Reps —
+  178 cases, run 547 = 178; question 41 unanswered (sheet 17Ry1Bt…, the QA lead sends it). New suite started: Credit terms (SV-11638).
