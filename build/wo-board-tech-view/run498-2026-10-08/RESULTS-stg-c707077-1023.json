@@ -1,0 +1,17 @@
+{
+ "pass_meta": {"env": "staging", "build": "v26.43.1-f2d183d", "date": "23 October 2026", "note": "run 498 - C707077 staging-only (QA lead 23 Oct), re-run on today's staging build"},
+ "results": {
+  "C707077": {"verdict": "Passed",
+   "observed": [
+    "Result: Passed on staging, outcome (3) of this test: every place shows the staff record name, so the fix for SV-11577 is in place.",
+    "This test is staging-only (QA lead, 23 Oct): production keeps each person's two names the same, so the set-up cannot exist there.",
+    "Set-up on staging: technician whose staff record name is David Sparks and whose sign-in name is Carol Neal. Checked on screen: viewing the app as Carol Neal, her Assigned to me list shows work orders led by David Sparks.",
+    "Work order S2-38093 at Staging Heavy Duty - 9919, Approved, led by her, one approved line Service - Full grease service with her as its technician.",
+    "Step 1: the line's Labor text reads David Sparks.",
+    "Step 2: the line shows David Sparks; the sign-in name Carol Neal appears nowhere on the page.",
+    "Steps 3-4: Edit Line opens; Technicians shows David Sparks.",
+    "Step 5: Edit Line has no Cancel button on this build, so it was closed with the X at its top right; it closed and nothing changed (Labor still David Sparks).",
+    "Steps 6-7: Board View shows S2-38093 in the column headed David Sparks. The card itself shows no technician name."],
+   "pictures": ["evidence/staging-2026-10-23/ann-4-assigned-to-me.png", "evidence/staging-2026-10-23/C707077-stg-p1-lines.png", "evidence/staging-2026-10-23/C707077-stg-p2-edit-line.png", "evidence/staging-2026-10-23/C707077-stg-p3-closed.png", "evidence/staging-2026-10-23/C707077-stg-p4-board.png"]}
+ }
+}
