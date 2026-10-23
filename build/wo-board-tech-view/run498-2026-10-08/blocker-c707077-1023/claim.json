@@ -1,0 +1,34 @@
+{
+ "claim": "C707077: on production a technician's staff record name cannot be made to differ from their sign-in name",
+ "_note": "fill each proof with: passed true/false, and 'evidence' naming a file, a log line or a measurement. 'passed': true with empty evidence is rejected.",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "The same two-list method (sign-in name from Settings > Staff, staff record name from the technicians list, joined by user id) is proven to see a split: on staging it read Carol Neal (sign-in) vs David Sparks (staff record) on 21 Oct (L0497, C707077 staging pass). On production it joined Carol Neal both ways in build/wo-board-tech-view/run498-2026-10-08/evidence/prod-2026-10-22/names-all-loc2-1023.json (control row) and saw every rename take effect in build/wo-board-tech-view/run498-2026-10-08/evidence/prod-2026-10-22/split-deact-1023.json."
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "Signed in as Carol, Profile > Edit Profile > \"Change Name\" to David Sparks: build/wo-board-tech-view/run498-2026-10-08/evidence/prod-2026-10-22/names-screen-1-profile-menu.png, names-screen-2-edit-profile-before.png, names-screen-3-edit-profile-saved.png and names-prod-screen-1023.json - both names changed together."
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "Seven separate attempts on 22-23 Oct, each read back after the write settled: account access rename (seed-carol-prod-1022.json), Settings > Staff rename (L0543), own-profile screen rename (names-prod-screen-1023.json), new staff with the same email at a second location (seed-split-1023.json: 400 \"There is already a user with that email\"), second-location enrolment (one staff record per person, staff-fields-1023.json), rename while deactivated (split-deact-1023.json), full data scan of 13 locations / 130 technicians (names-all-loc2-1023.json: 130 same, 0 different)."
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "Not an action-with-no-effect claim: every write answered 200/201 and its effect was read back (both names changed). The Edit Profile save stayed on the profile page and showed the new name (names-screen-3-edit-profile-saved.png)."
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "Before/after of both names read back for every attempt: build/wo-board-tech-view/run498-2026-10-08/evidence/prod-2026-10-22/split-deact-1023.json (before, deactivated, renamed_while_inactive, after, restored), seed-split-1023.json (home/second before+after). Carol restored to Carol Neal and active, read back."
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "recall.py \"staff record name sign-in name differ technician\" -> L0349 (staging also keeps one name per technician), L0497, L0539, L0543, L0554; playbook 055 staff routes; git grep \"/register|invitation\" -> confirm-invitation sets password only (L0454). App code scanned for every name-writing call (chunks-import-1023.json): only iam/change-name, staff/{id}/change, iam/create exist - no import, no staff-only rename."
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "Most likely own fault: reading the sign-in list twice (the 22 Oct mistake, L0554) or a broken join. Ruled out: the staff record name is read from /api/technicians and the sign-in name from /api/staff, different lists, joined by user id, and the join is proved on a known row (Carol). Second possible fault: missing an existing split row because of paging (first scan saw 54 of 177 staff) - fixed with rowsPerPage=1000 + per-name search, 0 unread rows. Staging splits come from scrambled staging data (playbook 055 line 407), which production does not have."
+  }
+ }
+}
