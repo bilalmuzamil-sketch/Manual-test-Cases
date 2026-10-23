@@ -518,3 +518,9 @@
 - PRD 845185030: v68 (19 Oct) → v74 (22 Oct) changed S1-R9a, S1-R15, S3-R11, S4-R12, S4-E5, S5-R2, S6-R1, S6-R3, S6-E1, S11-E1 and added S1-R15c. Historical version body: `GET /wiki/rest/api/content/<id>?status=historical&version=<n>&expand=body.storage,version` via `jira.sh`.
 - 23 Oct: the 45 cases in the WO Board Fast-follow folder (87347) were checked this way (review `ff_review.json` → proposals to the QA lead).
 #fast-follow #prd #rule114 #run498 → L0561, L0495
+
+## L0563 — 2026-10-23 — QA lead allows changes to Automated tests; "changed after being automated" is dated from the atmstatus change
+- QA lead, 23 Oct 2026: "Yes you are allowed to make changess to the automated tests too" (in the PRD-v74 update pass). Applied to C96969, C97008 (Assign lead technician line). Still tell the automation engineer (Ahtasham) — list of Automated tests changed after being automated.
+- "Changed after being automated" = in `get_history_for_case`, the entry where `custom_atmstatus` became 3 marks the automation date; any later change to title / preconds / steps / expected counts. A case created already at 3 is dated from its creation. Script: scratchpad `auto_after.py` pattern (≈10 min, background).
+- A scratchpad script that imports `tr_client` must put `build/testing-tools` on `sys.path` itself (it failed with ModuleNotFoundError when started from another folder).
+#automation #testrail #history → L0556, L0555
