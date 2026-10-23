@@ -478,3 +478,9 @@
 - Same for "which Automated tests did you update": filter `custom_atmstatus == 3`, then history by user 3 after the date the scripts were written (here 9 Oct): 36 tests, 11 of them in the Fast-follow section 87347 (not in run 498). List: `build/wo-board-tech-view/AUTOMATION-UPDATES-for-Ahtasham-2026-10-23.md` (Ahtasham = the automation QA engineer).
 - C97029 (usage tracking) with the saved display on Board View: no `work_orders_density_load` fires on page open (Board View has no density); the saved density loads when Tech View first shows — read it at step 3.
 #testrail #history #automation #density #run498 → L0555
+
+## L0557 — 2026-10-23 — Production "Create Invoice" → "Part of the page failed to load" in the test browser: third-party hosts blocked, not the product
+- C368170 step 2 twice (03:44, 03:56 UTC 23 Oct, S1-1757/S1-1758): Create Invoice showed the red "Part of the page failed to load. Your connection may have dropped." and no New Customer Payment window; the work order stayed Complete. Same build as 22 Oct (v26.43.0-ffea43c), when the window DID open.
+- `invoice-fail-1023.mts` (records `requestfailed` + responses ≥ 400): **no ShopView request failed (0 responses ≥ 400)**; the only failures are third-party hosts the session's proxy blocks — `maps.googleapis.com` (places), `googletagmanager`, `google-analytics`, `sentry`, `widget.intercom.io`, `mercure`. A lazily loaded part of the payment window most likely needs one of them. Treat as an ENVIRONMENT limit of this container (Rule 104 open gap), never a product finding; the step is a 2-minute hand check.
+- C707077 name scan (`names-scan-1023.mts`, read only): at Truck Hill 1, 31 staff join to the technicians list and none has a different staff-record name — no ready-made person for the test either.
+#production #invoice #environment #rule104 → L0554
