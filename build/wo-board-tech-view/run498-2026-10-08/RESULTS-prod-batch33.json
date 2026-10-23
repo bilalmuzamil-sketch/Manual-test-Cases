@@ -1,0 +1,64 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - batch33"
+ },
+ "results": {
+  "C368168": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: work order S1-1735 for \"ZZAUTOTEST Lead Moves Lines 64587\", Approved, Lead Technician Esther Howard, two approved lines. Line 1 (\"Line 1\") has no technician of its own, so its Labor row shows Esther Howard; Line 2 (titled \"New York State Inspection\" on the page) was given Dana Ortiz in Edit Line (Esther removed, Dana added, saved).",
+    "Step 1: S1-1735 was opened from the Work Orders list (searched by its number and its row clicked), then the Lines tab was clicked. Line 1's Labor row reads Esther Howard, Line 2's reads Dana Ortiz.",
+    "Step 2: on the status card Lead Technician was changed from Esther Howard to Ralph Edwards. No clear-shifts question appeared and no message showed.",
+    "Step 3: the page was reloaded and the Lines tab clicked.",
+    "Step 4: Line 1's Labor row now reads \"Ralph Edwards\"; Line 2's still reads \"Dana Ortiz\". So 1 of 2 lines moved."
+   ],
+   "pictures": [
+    "pictures-prod/C368168-1-prod-1022.png",
+    "pictures-prod/C368168-2-prod-1022.png"
+   ]
+  },
+  "C682440": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps. The known problem (counts covering the word \"Review\" at Compact) was not seen, so by the test's own outcome (3) this is Passed.",
+    "Set-up: production has no S2-33351, so work order S1-1733 (\"ZZAUTOTEST C682440 Pill 70228\") was made for this test at Truck Hill 1: Ready For Review, with one line waiting for authorization (red count 1) and a part request (blue count 3). Starting screen: Work Orders, All tab, List, S1-1733 in Search, window 1440 px wide.",
+    "Step 1: in List the pill reads \"Ready For Review\"; the red 1 and the blue 3 sit on its top-right corner, only touching the top of the letters of \"Review\"; the whole name is readable.",
+    "Step 2: clicking Tech View shows Tech View.",
+    "Step 3: the density button was clicked and Compact chosen; the rows got tighter (S1-1733's row sits 14 px higher than at Regular).",
+    "Step 4: S1-1733's row shows in the Unassigned group (it was already open).",
+    "Step 5: at Compact the red 1 and blue 3 sit on the pill's top-right corner exactly as on the List's pill (same reach into the top of the letters); \"Ready For Review\" stays fully readable and no count covers a word.",
+    "Step 6: at Regular and at Comfortable the counts sit in the same place on the corner and the name stays readable (the pill is 16 px tall at Compact and Regular, 22 px at Comfortable)."
+   ],
+   "pictures": [
+    "pictures-prod/C682440-1-prod-1022.png",
+    "pictures-prod/C682440-2-prod-1022.png",
+    "pictures-prod/C682440-3-prod-1022.png",
+    "pictures-prod/C682440-4-prod-1022.png"
+   ]
+  },
+  "C682420": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: production has no S2-33351, so work order S1-1733 (\"ZZAUTOTEST C682440 Pill 70228\") was made at Truck Hill 1: Ready For Review, with one line waiting for authorization (red count 1) and a part request (blue count 3). Window 1440 px wide.",
+    "Step 1: Work Orders was opened on the All tab and S1-1733 typed into Search (the link was opened without its search part and the number typed in, which gives the same screen).",
+    "Step 2: List was clicked. The pill reads \"Ready For Review\"; the red 1 and the blue 3 sit on its top-right corner and only touch the top of the letters, so the word is easy to read.",
+    "Step 3: Tech View was clicked; S1-1733 is in the Unassigned group, which was already open.",
+    "Step 4: density button > Compact: the red and blue numbers sit on the pill's top-right corner exactly as in List, only touching the top of the letters; they do not cover the word.",
+    "Step 5: density button > Regular: the same.",
+    "Step 6: density button > Comfortable: the same.",
+    "The pill is lower at Compact and Regular (16 px) than at Comfortable (22 px), as expected."
+   ],
+   "pictures": [
+    "pictures-prod/C682420-1-prod-1022.png",
+    "pictures-prod/C682420-2-prod-1022.png",
+    "pictures-prod/C682420-3-prod-1022.png",
+    "pictures-prod/C682420-4-prod-1022.png"
+   ]
+  }
+ }
+}
