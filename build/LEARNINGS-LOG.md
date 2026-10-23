@@ -429,3 +429,7 @@
 - `tz-source-probe-1022.mts` (read only): location Truck Hill 1 = Asia/Karachi, the user's workplaces = Asia/Karachi, browser = Asia/Karachi; organisation/user settings reads 404; Settings > Organization has no time-zone field. Yet at 04:24 Karachi (Fri 23 Oct) the Schedule read "Thu, Oct 22" with the now-line near 11 PM = UTC. Staging matched the location's zone (Rule 125 positive control). So on production every time-of-day verdict stays unjudged until the QA lead decides on this finding.
 - `role-access-probe-1022.mts` (read only): the production test admin's role IS "Admin" (Admin template, 45 permissions, identical to the built-in Admin; no permission code mentions account access). The missing account-access item on Settings > Staff is not fixable by a role change — next route is the QA lead's own sign-in or staging-only.
 #production #timezone #account-access → L0542, Rule 125
+
+## L0548 — 2026-10-23 — Never test a helper's success by looking for the target's NAME in its return text
+- `ensureLocation()` returns the top bar on success but `'failed: Error: not at Truck Hill 1: header reads …'` on failure. `ps-counts.mts` and `high2-batch.mts backHome()` checked `String(result).includes(LOC1_NAME)` — true for the failure text too — so the fallback routes never ran and C368217 read its list at the wrong location (batch 30). Check `startsWith('failed')` first (now done), or better, read the top bar again after the helper.
+#tooling #location #trap → L0531, L0533
