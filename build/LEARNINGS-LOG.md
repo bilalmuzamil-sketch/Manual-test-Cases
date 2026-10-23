@@ -495,3 +495,12 @@
 - Now Rule 135(8): result = bold failing step → "Fails against:" + quoted source rule (doc, version, id) → what happens instead; ticket Description = "What the PRD requires:" + quote → "What happens instead:" → why. `push_results_to_run.py` takes `source` (post_verdicts.py passes it through) and refuses a Failed result without it.
 - A ruling can be reversed the same day; keep the evidence and drafts so the Failed result and ticket can be restored quickly (the held draft and pictures were reused as-is).
 #rule135 #tickets #results #run498 → L0558
+
+## L0560 — 2026-10-23 — The QA lead's verdict on the Rule 135(8) shape: "PERFECT" — this is THE standard for every bug and every failed test
+- QA lead, 23 Oct 2026, verbatim: *"PERFECT this is the best way of keeping the defect/bug well understandable and the failed test to be easily understood by a common lay man. Say this in your learning for future too."* — said of SV-11720 and C96953 as reworded that morning.
+- The shape he approved, to copy every time:
+  - **Failed result:** bold line "Failed at step N: <what fails, in one plain sentence that names the rule broken>" → **"Fails against:"** + the source's own sentence with document, version and rule id → set-up needed to see it → the failing step(s) only: what to do, what you see (picture numbers) → one bullet "why it fails now" when the cause is known → ticket link + status → what to do next. Annotated pictures of the failure only.
+  - **Ticket:** title names the contradiction ("The Whole Page Scrolls, Although the PRD Lets Only the Columns Scroll") → Description: **"What the PRD requires:"** + quote → **"What happens instead:"** → "Why …" bullets → Steps to Reproduce → Actual / Expected (Expected quoting the PRD rule) → Screenshots → Environment → Sources → Test case.
+- Worked example to copy: `build/wo-board-tech-view/run498-2026-10-08/defect-drafts/tickets/held-1022/C96953-page-scrolls-HELD.wiki` and run-498 result 537635.
+- Moving a failed test to the Fast-follow folder (on his order, same day): snapshot its results → `move_cases_to_section/87347` {suite_id: 1, case_ids} (path = TARGET section) → `update_run/498` {include_all: false, case_ids: all others} → read back (others' test ids unchanged). Then fix the ticket's last line: the test's run link dies when the test leaves the run, so say where the case went instead (`fast-follow-2026-10-23/audit.json`).
+#rule135 #tickets #results #ruling #fast-follow #run498 → L0559, L0499
