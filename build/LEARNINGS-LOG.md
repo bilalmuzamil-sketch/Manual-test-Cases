@@ -524,3 +524,10 @@
 - "Changed after being automated" = in `get_history_for_case`, the entry where `custom_atmstatus` became 3 marks the automation date; any later change to title / preconds / steps / expected counts. A case created already at 3 is dated from its creation. Script: scratchpad `auto_after.py` pattern (≈10 min, background).
 - A scratchpad script that imports `tr_client` must put `build/testing-tools` on `sys.path` itself (it failed with ModuleNotFoundError when started from another folder).
 #automation #testrail #history → L0556, L0555
+
+## L0564 — 2026-10-23 — GA "page_location" carries the Work Orders search text; and set-up lines must stay runnable before a fix ships
+- C97027 (analytics privacy): the event parameters (ep.*) were clean, but every GA4 request also carries `dl` (page_location), `dt` (title) and `dr` (referrer). On Work Orders, `dl` = `/workorders?search=<search text>`, so the search text reaches Google Analytics with every Work Orders event — against PRD S12-R5 ("no … search text"). Read `dl/dt/dr` (analytics-batch.mts `tap()` now stores `e.page`) whenever a test says "no event contains X".
+- C97035 step 7 ("scroll a long column so more cards load"): prove it with the column's card count before/after scrolling its own body (78 → 130 on production) — no extra list request was made (cards render from data already loaded).
+- When the PRD changes a UI the build has not shipped yet (SV-11524: "Assign lead technician", one-click assign), a SET-UP line in tests that run now must work on both: "Assign lead technician (an older screen shows Reassign lead technician) > click the technician (if the window still shows a Reassign button, click it)". Tests that wait in Fast-follow can use the PRD wording alone.
+- Bulk TestRail edits: wrap every get/update in a retry (rate limits return a dict without the fields) and make the edit idempotent (replace-only), so a crashed pass is simply re-run.
+#analytics #privacy #run498 #prd #testrail → L0562, L0563

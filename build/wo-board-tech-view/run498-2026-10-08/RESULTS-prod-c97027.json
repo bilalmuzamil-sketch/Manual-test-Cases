@@ -1,0 +1,24 @@
+{
+ "results": {
+  "C97027": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at step 3: the PRD allows no search text in the usage data sent to Google Analytics, but every Work Orders usage record carries the page address, and that address contains the search text.",
+   "bold_steps": [
+    3
+   ],
+   "source": "PRD \"Work Orders \u2014 Board View & Tech View Display Options\" (Confluence 845185030, version 74, 22 Oct 2026), S12-R5: \"Analytics may contain predefined field keys and setting values, but no displayed record values, names, identifiers, search text, or dollar amounts.\"",
+   "observed": [
+    "Result: Failed on production (v26.43.0-ffea43c), following the test's steps, read from the usage records the browser sent to Google Analytics.",
+    "Set-up: at Truck Hill 1, one Approved work order for \"ZZAUTOTEST Bravo GA 82354 Bravo Co\".",
+    "Step 3: open each Work Orders usage record from this session (37 of them, from steps 1 and 2) and read every parameter. Their own settings are clean (only names such as board_view, total_price, on, comfortable, default), but each record also carries the page address \"https://app.shopview.com/workorders?search=ZZAUTOTEST Bravo GA 82354\" - the search text typed in step 1 (picture 1).",
+    "The test expects: no record contains the search text \"ZZAUTOTEST Bravo\" (nor a customer name, technician name, work order number, VIN or dollar amount)."
+   ],
+   "pictures": [
+    "pictures-prod-1023/C97027-1-search-text-in-analytics.png"
+   ],
+   "ticket": "Report prepared and held - it is with the QA lead (story SV-10593 is Done), no ticket number yet.",
+   "ticket_held": true,
+   "todo": "What needs to be done: waiting for the QA lead to decide where the report goes; run this test again after a fix."
+  }
+ }
+}
