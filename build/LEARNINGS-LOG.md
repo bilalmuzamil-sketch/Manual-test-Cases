@@ -433,3 +433,7 @@
 ## L0548 — 2026-10-23 — Never test a helper's success by looking for the target's NAME in its return text
 - `ensureLocation()` returns the top bar on success but `'failed: Error: not at Truck Hill 1: header reads …'` on failure. `ps-counts.mts` and `high2-batch.mts backHome()` checked `String(result).includes(LOC1_NAME)` — true for the failure text too — so the fallback routes never ran and C368217 read its list at the wrong location (batch 30). Check `startsWith('failed')` first (now done), or better, read the top bar again after the helper.
 #tooling #location #trap → L0531, L0533
+
+## L0549 — 2026-10-23 — A container restart kills a step's sign-in but not the queue: check the step that was running
+- At ~00:07 UTC the session container restarted. `run_queue.sh`, the running browser script and the autosave loop survived (they were started with nohup), but the step that was signing in at that moment (`stg6`, list 4 entry 13) failed with `TimeoutError` inside `bootProdLogin` and wrote no readings; the queue then carried on. Only the Monitor watcher was lost. After any restart: `ps -eo pid,etime,args | grep -E "run_queue|wob-run"`, re-arm the watcher, and re-queue the step whose log ends in a sign-in timeout (and anything that depends on its seed — here `tech-filter-stg6`).
+#restart #queue #production → L0546
