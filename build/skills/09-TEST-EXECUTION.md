@@ -662,3 +662,11 @@ Edit link; ~2–3 day window, L0475), never by adding a new one. Full text: `bui
 - Never Vladimir's cases (38). Automated cases (`custom_atmstatus 3`) are HELD and listed — ask him, then `--include-automated`, then tell Vlad (71/65).
 - Full text: `build/rules/RULES-61-ONWARD.md` rule 133.
 - **Amended 2026-10-20: when the test PASSES, the prefix comes off** (both tools do it; same guards).
+
+## Rule 135 (QA lead 2026-10-23) — a Failed result's comment tells only the failure
+After the bold failing-step line (Rule 132): 4–7 plain bullets for the failing step(s) only — what to set up (only what the
+failure needs: record, window size, place) · what to do · what you see · what the test says you should see · what changed, if
+it passed before. No bullet about a step that passed. Annotated pictures of the failure only (Rule 130 decides whether they are
+attached). Then the ticket line and "what to do next". `push_results_to_run.py` refuses a Failed result whose `observed` has a
+"Step N" bullet outside `bold_steps`. Old comments are corrected by editing them in TestRail's screen (L0475,
+`comment-edits-1020/apply_edits.mjs`). Full text: `build/rules/RULES-61-ONWARD.md` rule 135.

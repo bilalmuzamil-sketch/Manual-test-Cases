@@ -126,6 +126,20 @@ def main(quick=False):
         check('results: a non-Passed result opens with its failing step(s) in bold and is refused without them (Rule 132)', ok and 'no "failed_steps"' in src132)
     except Exception as e:
         check('results: Rule 132 bold failing steps', False, repr(e)[:160])
+    # 7c2b · Rule 135 (2026-10-23): a Failed comment says only what failed — a "Step N" bullet outside bold_steps is refused
+    try:
+        base = {'verdict': 'Failed', 'failed_steps': 'Failed at step 7: x', 'bold_steps': [7], 'ticket': 'with the QA lead', 'ticket_held': True, 'todo': 'What needs to be done: wait.', 'pictures': []}
+        outs = {}
+        for k, obs in (('bad', ['Steps 1-4: fine.', 'Step 7: wrong.']), ('good', ['Set-up: window 1600 x 1000.', 'Step 7: wrong.'])):
+            fp = tempfile.NamedTemporaryFile('w', suffix='.json', delete=False); json.dump({'results': {'C1': dict(base, observed=obs)}}, fp); fp.close()
+            outs[k] = run([sys.executable, f'{T}/push_results_to_run.py', '--run', '0', '--results', fp.name, '--build-marker', 'x', '--date', 'x',
+                           '--no-sync', '--screenshots', 'no', '--allow-non-passed', '--dry-run'])
+            os.unlink(fp.name)
+        o = {k: v[1] for k, v in outs.items()}
+        check('results: a Failed comment that talks about a passed step is refused; one about the failure only is not (Rule 135)',
+              'REFUSING (Rule 135)' in o['bad'] and 'Rule 135' not in o['good'], o['bad'][-160:])
+    except Exception as e:
+        check('results: Rule 135 failed-only comment', False, repr(e)[:160])
     # 7c3 · Rule 133 (2026-10-20): Failed/Retest/Blocked cases with a ticket carry "SV-n - " in their title; one prefix, kept current
     try:
         sp3 = importlib.util.spec_from_file_location('ptt', f'{T}/prefix_ticket_titles.py'); ptt = importlib.util.module_from_spec(sp3); sp3.loader.exec_module(ptt)

@@ -298,6 +298,21 @@ def main():
         sys.exit('REFUSING: no "failed_steps" on %s (Rule 132: every Failed/Blocked/Retest result opens with the '
                  'failing step number(s) in bold, e.g. "Failed at steps 6 and 10: ..."; list those steps in '
                  '"bold_steps" so their bullets are bold too).' % ', '.join(no_steps))
+    # Rule 135 (QA lead 2026-10-23): a Failed comment tells ONLY what failed — no bullet about a step that passed.
+    # Every "Step N"/"Steps N to M" bullet of a Failed result must name at least one step listed in bold_steps.
+    passed_talk = {}
+    for c, r in res.items():
+        if r['verdict'] != 'Failed' or not isinstance(r.get('observed'), list):
+            continue
+        fs = {str(x) for x in (r.get('bold_steps') or [])}
+        for x in r['observed']:
+            m = re.match(r'\s*Steps? ([0-9][0-9 ,\-toand]*)', str(x))
+            if m and not (set(re.findall(r'[0-9]+', m.group(1))) & fs):
+                passed_talk.setdefault(c, []).append(str(x)[:60])
+    if passed_talk:
+        sys.exit('REFUSING (Rule 135): a Failed comment says only what failed, but these bullets describe steps outside '
+                 '"bold_steps": %s. Remove them (or add the step to bold_steps if it is part of the failure).'
+                 % '; '.join('%s: %s' % (c, ' | '.join(v)) for c, v in sorted(passed_talk.items())))
     if no_ticket:
         sys.exit('REFUSING: Failed with no ticket link for %s '
                  '(QA lead 2026-09-15: every failed case carries its ticket). If the finding is new '
