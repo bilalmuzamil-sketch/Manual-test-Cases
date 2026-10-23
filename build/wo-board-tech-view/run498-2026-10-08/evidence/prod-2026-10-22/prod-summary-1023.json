@@ -2275,7 +2275,7 @@
   "todo": "Re-run this test once the fix in SV-11524 reaches production; nothing else to do now.",
   "in_run": true,
   "test_id": 3761673,
-  "posted_prod": null,
+  "posted_prod": "Failed",
   "run_status": "Failed",
   "title": "SV-11524 - Reassign and Unassign work from the keyboard through the More actions menu"
  },
@@ -2927,6 +2927,114 @@
   "run_status": "Passed",
   "title": "Design- Tech View count bubbles sit on the status label as in List, any density"
  },
+ "C682419": {
+  "verdict": "Unsure",
+  "file": "verdicts-batch35.json",
+  "route_only": false,
+  "failed_steps": "Unsure at step(s) 7: the location was never changed to one with only a few technicians, so the handle on a small board was not seen.",
+  "todo": "What needs to be done: on production, switch to a location with only a few technicians (or set one up), look at the grey handle under Board View at a wide and a narrow window, and confirm it is longer than on Truck Hill 1 and never shorter than about half a column.",
+  "in_run": true,
+  "test_id": 4053764,
+  "posted_prod": null,
+  "run_status": "Passed",
+  "title": "Board View's sideways scroll bar is thick and its handle is never tiny"
+ },
+ "C368191": {
+  "verdict": "Unsure",
+  "file": "verdicts-batch35.json",
+  "route_only": false,
+  "failed_steps": "Unsure at step(s) 1: no work order line whose Labor row reads \"Deleted user\" exists on production and the attempt to make one did not succeed, so steps 1 to 5 were not run.",
+  "todo": "What needs to be done: find (or ask for) a production work order line whose Labor row already reads \"Deleted user\" - production refuses to delete a staff member who has logged time - then run steps 1 to 5 on it; until then this cannot be judged on production.",
+  "in_run": true,
+  "test_id": 3792512,
+  "posted_prod": null,
+  "run_status": "Passed",
+  "title": "A line with labor by a deleted staff member still reads Deleted user"
+ },
+ "C368126": {
+  "verdict": "Passed",
+  "file": "verdicts-batch35.json",
+  "route_only": false,
+  "failed_steps": null,
+  "todo": null,
+  "in_run": true,
+  "test_id": 3761647,
+  "posted_prod": "Passed",
+  "run_status": "Passed",
+  "title": "Pinned groups sit after Unassigned in Tech View, newest pin last"
+ },
+ "C96988": {
+  "verdict": "Passed",
+  "file": "verdicts-batch35.json",
+  "route_only": false,
+  "failed_steps": null,
+  "todo": null,
+  "in_run": true,
+  "test_id": 3481932,
+  "posted_prod": "Passed",
+  "run_status": "Passed",
+  "title": "Density changes spacing and size only, never what is shown"
+ },
+ "C682421": {
+  "verdict": "Unsure",
+  "file": "verdicts-batch35.json",
+  "route_only": false,
+  "failed_steps": "Unsure at step(s) 4, 5 and 7: the work order set up for production had no lead technician, so it sat at the top under \"Unassigned\" instead of far down the page, and the situation the test checks never happened.",
+  "todo": "What needs to be done: on Truck Hill 1, make (or pick) a work order led by a technician whose group is well below the first screen in \"Tech View\", search for it, and re-run steps 4 to 7.",
+  "in_run": true,
+  "test_id": 4054408,
+  "posted_prod": null,
+  "run_status": "Passed",
+  "title": "First Tab goes to the work order even when it is far down or off to the side"
+ },
+ "C682437": {
+  "verdict": "Unsure",
+  "file": "verdicts-batch35.json",
+  "route_only": false,
+  "failed_steps": "Unsure at step(s) 3, 4 and 5: the third technician's group could not be found on the page, so the second drag and the final click were never done.",
+  "todo": "What needs to be done: make sure the third technician is active at Truck Hill 1 with Time Clock on and leads S1-1750 (or a new work order), find his group in \"Tech View\", then do steps 3 to 5 by hand.",
+  "in_run": true,
+  "test_id": 4060515,
+  "posted_prod": null,
+  "run_status": "Passed",
+  "title": "Releasing a dragged technician header over a row opens no work order"
+ },
+ "C682438": {
+  "verdict": "Unsure",
+  "file": "verdicts-batch35.json",
+  "route_only": false,
+  "failed_steps": "Unsure at step(s) 4 and 5: the set-up failed - the second technician could not be put on the work order's line and \"Line technicians\" was off - so the card had no avatars to Tab to.",
+  "todo": "What needs to be done: open S1-1751 > Lines, add the second technician to the line by hand (Edit Line), turn on \"Line technicians\" (and the lead technician) in Board View's \"Fields to display\", then re-run steps 4 and 5.",
+  "in_run": true,
+  "test_id": 4060516,
+  "posted_prod": null,
+  "run_status": "Passed",
+  "title": "On a Board View card, a focused avatar shows the technician's name"
+ },
+ "C682445": {
+  "verdict": "Passed",
+  "file": "verdicts-batch35.json",
+  "route_only": false,
+  "failed_steps": null,
+  "todo": null,
+  "in_run": true,
+  "test_id": 4062446,
+  "posted_prod": "Passed",
+  "run_status": "Passed",
+  "title": "Two people reorder one column at once and each moved card keeps its place"
+ },
+ "C682446": {
+  "verdict": "Unsure",
+  "file": "verdicts-batch35.json",
+  "route_only": false,
+  "failed_steps": "Unsure at step(s) 1: the set-up did not finish - the technician could not be put on the second line - and no \"Start\" button was found under Labor, so none of the steps were done.",
+  "todo": "What needs to be done: on S1-1755 (or a new work order) put the technician on both lines by hand with Edit Line, make sure the signed-in user has Time Clock on so \"Start\" shows under Labor, then run steps 1 to 9.",
+  "in_run": true,
+  "test_id": 4062447,
+  "posted_prod": null,
+  "run_status": "Passed",
+  "title": "Moving a timesheet entry to another line takes you off the old line"
+ },
  "C590113": {
   "verdict": "Passed",
   "file": "verdicts-design-redo.json",
@@ -2951,14 +3059,6 @@
   "run_status": "Passed",
   "title": "Design: Board View column headings show handle, avatar, name, pin and count"
  },
- "C368126": {
-  "verdict": null,
-  "in_run": true,
-  "test_id": 3761647,
-  "posted_prod": null,
-  "run_status": "Passed",
-  "title": "Pinned groups sit after Unassigned in Tech View, newest pin last"
- },
  "C674226": {
   "verdict": null,
   "in_run": true,
@@ -2966,14 +3066,6 @@
   "posted_prod": null,
   "run_status": "Passed",
   "title": "A group's work orders made with their lead follow List's default order"
- },
- "C682419": {
-  "verdict": null,
-  "in_run": true,
-  "test_id": 4053764,
-  "posted_prod": null,
-  "run_status": "Passed",
-  "title": "Board View's sideways scroll bar is thick and its handle is never tiny"
  },
  "C682422": {
   "verdict": null,
@@ -3055,14 +3147,6 @@
   "run_status": "Passed",
   "title": "An Entire work order shift stops counting after a new line is approved (release)"
  },
- "C96988": {
-  "verdict": null,
-  "in_run": true,
-  "test_id": 3481932,
-  "posted_prod": null,
-  "run_status": "Passed",
-  "title": "Density changes spacing and size only, never what is shown"
- },
  "C97012": {
   "verdict": null,
   "in_run": true,
@@ -3070,22 +3154,6 @@
   "posted_prod": null,
   "run_status": "Passed",
   "title": "A drop is refused if the status or permission changed after the board loaded"
- },
- "C682437": {
-  "verdict": null,
-  "in_run": true,
-  "test_id": 4060515,
-  "posted_prod": null,
-  "run_status": "Passed",
-  "title": "Releasing a dragged technician header over a row opens no work order"
- },
- "C682445": {
-  "verdict": null,
-  "in_run": true,
-  "test_id": 4062446,
-  "posted_prod": null,
-  "run_status": "Passed",
-  "title": "Two people reorder one column at once and each moved card keeps its place"
  },
  "C690644": {
   "verdict": null,
@@ -3118,22 +3186,6 @@
   "posted_prod": null,
   "run_status": "Passed",
   "title": "Unassigning puts the work order in its normal place in Unassigned (release)"
- },
- "C682421": {
-  "verdict": null,
-  "in_run": true,
-  "test_id": 4054408,
-  "posted_prod": null,
-  "run_status": "Passed",
-  "title": "First Tab goes to the work order even when it is far down or off to the side"
- },
- "C682438": {
-  "verdict": null,
-  "in_run": true,
-  "test_id": 4060516,
-  "posted_prod": null,
-  "run_status": "Passed",
-  "title": "On a Board View card, a focused avatar shows the technician's name"
  },
  "C97026": {
   "verdict": null,
@@ -3175,14 +3227,6 @@
   "run_status": "Passed",
   "title": "Tech View and Board View show only this organization and location"
  },
- "C368191": {
-  "verdict": null,
-  "in_run": true,
-  "test_id": 3792512,
-  "posted_prod": null,
-  "run_status": "Passed",
-  "title": "A line with labor by a deleted staff member still reads Deleted user"
- },
  "C368175": {
   "verdict": null,
   "in_run": true,
@@ -3190,14 +3234,6 @@
   "posted_prod": null,
   "run_status": "Passed",
   "title": "Line technician lists offer no staff from another organization"
- },
- "C682446": {
-  "verdict": null,
-  "in_run": true,
-  "test_id": 4062447,
-  "posted_prod": null,
-  "run_status": "Passed",
-  "title": "Moving a timesheet entry to another line takes you off the old line"
  },
  "C368240": {
   "verdict": null,
