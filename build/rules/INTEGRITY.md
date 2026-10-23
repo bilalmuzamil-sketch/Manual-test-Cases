@@ -497,3 +497,11 @@ QA-internal tab; why the lane's own output never carries EXPECT FAIL; what `prob
 SessionStart sets `git config core.hooksPath build/git-hooks` in every session (a container's `.git/hooks` does not survive a
 restart, a committed setting does). Proved: with 1,500 bytes of test bulk added the hook exited 1 and printed the REMEDY; on the
 real file it exited 0.
+
+## Rule 117 added 2026-10-23
+
+**117 — EVERY BUILD VERIFICATION CLONES THE PRODUCT CODE OF THE BUILD UNDER TEST, ONLY THAT BUILD, AS A FINDING AID.** QA lead
+2026-10-23 (both statements verbatim in the rule), recorded on his "Yeah but note it should ONLY be Staging Or the QA branch"
+(Rule 72). Fact measured the same day: staging build markers are `develop` commits (1493c63, edc8195, 72f4f3b, a5c4210); no
+branch named staging exists. Indexed in `CLAUDE.md` §2 and admitted to §1 as one bullet (the pre-commit hook measures §1).
+Rule count 116 → **117**.

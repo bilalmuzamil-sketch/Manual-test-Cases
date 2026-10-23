@@ -1465,3 +1465,14 @@ change the logged-in quick-login session** (verified: role reopens as its saved 
 before calling a Full-View-only label absent** — and to test Full-View features you need a login whose
 role is genuinely **Full View + See Financial Data**, not a role-screen toggle on a Tech-View session.
 Probe: `build/inline-add-edit-parts/build-verify-2026-09-08/probe_perms.mjs`.
+
+## §10 — Read the product code of the build under test (Rule 117, QA lead 2026-10-23)
+
+At the start of every build verification: attach `ShopView/shopview` (`add_repo`), clone it shallow into `/home/user/shopview`,
+read the build marker on the page under test (`<meta name="app-version">`, e.g. `v26.40.19-1493c63`) and check out that commit:
+staging → `git -C /home/user/shopview fetch --depth=400 origin develop && git -C /home/user/shopview checkout 1493c63`;
+a QA site → its feature branch (`git ls-remote --heads origin | grep -i <ticket>`) at its marker commit. Not found, or the build
+is unavailable ⇒ do NOT read main, a release branch or another feature: work from the screen alone and say so. Use the code to
+find labels, routes, conditions that make an element appear, gating settings, and to prove something is not built; still
+confirm every label on screen before it enters `OBSERVED-UI-LABELS-<env>.md`; never take an Expected result from the code.
+Record branch + commit in the pass README.

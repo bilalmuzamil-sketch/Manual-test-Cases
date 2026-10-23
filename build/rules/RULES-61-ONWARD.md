@@ -4207,3 +4207,33 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     discrepancy is still never a Jira ticket (62); the lane limit of Rule 115 stands; the sheet is still sent last (66) and is
     still a spreadsheet, never a markdown table (QUESTION SHEET bullet in CLAUDE.md §1). Operator form:
     `build/skills/07-PO-QUESTIONS.md` §0.
+
+117. **EVERY BUILD VERIFICATION CLONES THE PRODUCT CODE OF THE BUILD UNDER TEST — AND ONLY THAT BUILD — AS A FINDING AID,
+    NEVER AS THE EXPECTATION (build-verification lane, all projects, permanent; QA lead 2026-10-23).**
+    USER DIRECTIVES (2026-10-23, verbatim, his typing preserved): *"I would suggest clonning everytime when running a Build
+    verification for a testing suite."* — then, on recording it: *"Yeah but note it should ONLY be Staging Or the QA branch for
+    that feature you are testing. If I ask you to test on QA then it should be the repo of that QA branch and If I ask you to
+    test on STaging then it should be the repor of Staging and when QA and staging are not available be smart to NOT mess with
+    the build verification by learning something wrong from any other/production branch. ALso do not forget the rule that
+    Expected behavior is not what is there in the build."*
+    **THE RULE:**
+    **(1) CLONE AT THE START OF EVERY BUILD VERIFICATION** — `ShopView/shopview` via `add_repo`, shallow, into
+    `/home/user/shopview`, read-only (never commit or push there).
+    **(2) ONLY THE CODE OF THE BUILD BEING VERIFIED.** Read the build marker on the page being tested
+    (`<meta name="app-version">`, e.g. `v26.40.19-1493c63`) and check out THAT commit:
+    · **Staging** = the `develop` branch at the marker's commit (measured 2026-10-23: staging markers 1493c63, edc8195,
+      72f4f3b, a5c4210 are all `develop` commits; there is no branch named "staging") —
+      `git -C /home/user/shopview fetch --depth=400 origin develop` then `git checkout <hash>`.
+    · **A QA site** = that feature's own branch at the QA build's marker commit (find the branch with
+      `git ls-remote --heads origin | grep -i <ticket>`; confirm the marker commit is on it).
+    · **If the marker commit cannot be found on the right branch, or the build under test is unavailable:** do NOT read any other
+      branch (not `main`, not a release branch, not a different feature or production) to learn how the screen behaves —
+      that code is not what the tester will see. Say so plainly and work from the screen alone; a wrong lesson from the
+      wrong branch is worse than no help.
+    **(3) WHAT THE CODE IS FOR:** finding labels, buttons, messages, routes, the conditions that make an element appear, the
+    settings that gate a screen, and proving an element is not built (a strong positive control for Rule 104). **Every label
+    still enters `OBSERVED-UI-LABELS-<env>.md` only from the screen** (skill 18 (b)); the code says where to look.
+    **(4) WHAT THE CODE IS NEVER FOR:** the Expected result. Expected behaviour comes from the documents, never from the build
+    and never from its code (57, 114, 109: "V2's code does it" is never a standard). Code that differs from the documents is
+    a discrepancy for the PO sheet (116) or a three-outcomes deviation (62-b), never an edit to the Expected.
+    **(5)** Record the commit checked out (branch + hash) in the pass's README beside the build marker.
