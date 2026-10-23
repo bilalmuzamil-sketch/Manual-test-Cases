@@ -1,0 +1,29 @@
+{
+ "C614719": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: technicians ZZAUTOTEST C614719 Ana (pinned first) and Ben (pinned second) at Truck Hill 1; Customer-A \"ZZAUTOTEST C614719 Keyboard A\" with S1-1622 led by Ana and S1-1623 led by Ben; S1-1624 with no lead for Customer-B; search \"ZZAUTOTEST C614719 Keyboard\"; All tab, Tech View, every group open. Customer-C \"ZZAUTOTEST C614719 Third Customer\" with S1-1704, S1-1705, S1-1706 led by ZZAUTOTEST C614719 Cal (not pinned).",
+   "Step 1: Unassigned collapsed; its header stays and S1-1624 is hidden; Ana's group follows, then Ben's.",
+   "Step 2: the cursor is in Search and nothing in the table has a focus ring.",
+   "Step 3: Tab went through the toolbar and landed the focus ring on S1-1622, the first row of Ana's group, not on a header.",
+   "Step 4: Board View shows Unassigned first, then Ana's and Ben's columns.",
+   "Step 5: with Customer-A's name in Search, S1-1622 is in Ana's column and S1-1623 in Ben's; Unassigned has no cards.",
+   "Step 6: the cursor is in Search and nothing on the board has a focus ring.",
+   "Step 7: Tab landed the focus ring on S1-1622's card, the first card in Ana's column, not on a column header.",
+   "Step 8: the window was made 1024 px wide; Board View is still shown.",
+   "Step 9: with Customer-C's name in Search, Unassigned has no cards and Cal's column is off to the right, out of sight; it holds Customer-C's three work orders (S1-1704, S1-1705, S1-1706), as step 9 now expects (QA lead decision 23 Oct 2026).",
+   "Step 10: Tab scrolled the board sideways to Cal's column and landed the focus ring on S1-1704's card, fully on the screen; not on the Unassigned header.",
+   "Step 11: Tech View was clicked and the window made short (about two and a half group headings); it shows Unassigned (no work orders) and Ana's group; Cal's group is further down, out of sight.",
+   "Step 12: the cursor is in Search, still showing Customer-C's name.",
+   "Step 13: Tab moved the list down to Cal's group; S1-1704's row sits just below Cal's heading with the blue focus ring, the whole row and ring visible and not covered by the heading; the ring is on no heading."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C614719-stg-s3-first-tab.png",
+   "evidence/prod-2026-10-22/C614719-stg-s7-first-tab-board.png",
+   "evidence/prod-2026-10-22/C614719-stg-s10-first-tab-customer-c.png",
+   "evidence/prod-2026-10-22/C614719-stg-s13-first-tab-tech-short.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: no. C614719-stg.mts, re-run 00:06-00:07 UTC 23 Oct (redo4; redo4w identical), now covering steps 8-13. Case text conflict, not a product fault: preconditions 'Customer-C ... has three Approved work orders led by C (WO-4 to WO-6)' vs step 9 Expected 'only {Work-order-4} shows'; s10 picture shows S1-1704/1705/1706 in Cal's column. s9 cols (in view) Unassigned 0 cards, calColumn null (off screen), scrollLeft 0. s10 isWo4Card true, fullyOn true, scrollLeft 18144. s13 isWo4Row true, rowFullyInScroller true, headingCoversRow false. NOTE s3_isWo1Row/s7_isWo1Card read false only because the script's fresh records S-1701..S-1703 were made at the C614715 empty location (startFound location 'ZZAUTOTEST C614715 Empty ..' before the switch); on screen at Truck Hill 1 the ring is on S1-1622 (Customer-A 'ZZAUTOTEST C614719 Keyboard A', led by Ana, first row of Ana's group) - pictures confirm. Steps 8/11 window resized by the test machine (viewport), equivalent to the step. Script fix: create the records after the location switch. | 23 Oct: step 9 Expected changed by the QA lead (Q9 \"Go ahead\", Rule 114(c)); re-judged Passed on the same readings."
+ }
+}

@@ -465,3 +465,10 @@
 - How C707077 passed on staging (21 Oct, v26.40.20): staging already had a person whose names differed (sign-in "Carol Neal", staff record "David Sparks", made earlier by an account-name change that did not reach the staff record there).
 - Rule 104 lesson: when a negative rests on "the other name also changed", name WHICH list each name was read from; two reads from one list prove nothing.
 #production #names #staff-record #rule104 #run498 → L0497, L0539
+
+## L0555 — 2026-10-23 — Filing a Bug straight into the Fast Follow epic; and Automation status 3 = Automated
+- **A Bug can be CREATED under the Fast Follow epic in one `POST /rest/api/2/issue`**: `issuetype {id: 10008}` + `parent SV-11593` + **`customfield_10153` (Product Area) = `{id: 10120}` "Work Orders" — REQUIRED for Bug** (createmeta), labels `board-tech-view`, `fast-follow`, Medium. No bulk move needed (that was only for converting an existing Story Defect, L0500). Script: `run498-2026-10-08/file-scroll-1023.py` (SV-11720, C96953).
+- QA lead 23 Oct: the ticket ends with the test case link AND the test's run link (`/tests/view/<id>`) — his explicit ask for this ticket, beyond Rule 120's case-only link. After filing: EDIT the held result comment to carry the ticket (UI), add the separate "Follow the status here" result with `defects`, prefix the title (only that case — `prefix_ticket_titles.py` sweeps the whole run).
+- TestRail `custom_atmstatus`: 1 Not Automated · 2 Cannot be automated · **3 Automated** · 4 Pending. The 22 Oct density changes (C97024/25/27/35, C96944, C368154, C590120) were all atm 1; C614719 (atm 3) changed 23 Oct on his named go-ahead → tell the automation engineer (Ahtasham).
+- The local bridge can die between steps (`ERR_PROXY_CONNECTION_FAILED` in Playwright): `source build/testing-tools/ensure_bridge.sh` and retry.
+#jira #fast-follow #testrail #automation → L0499, L0500

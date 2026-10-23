@@ -241,14 +241,15 @@ async function uiOpen(w: any) { const r: any = {}; await p.goto(`${APP}/workorde
   if (r.rowShown) { await row.locator('td').nth(2).click().catch(() => row.click()); for (let i = 0; i < 12 && !/\/workorders\/[0-9a-f-]{36}/.test(p.url()); i++) await p.waitForTimeout(800); }
   r.opened = /\/workorders\/[0-9a-f-]{36}/.test(p.url()); if (!r.opened) { r.fallbackGoto = true; await page(w.id); } else await p.waitForTimeout(6000);
   return r; }
-/** C368170 steps 1-3 as written: open the work order through the list, Finance > Create Invoice, close the New Customer Payment window
- *  with its X (this case says so), reload, read the status on screen and from the server. */
+/** C368170 steps 1-3 as written: open the work order through the list, Finance > Create Invoice, leave the New Customer Payment window
+ *  open (step 2 as changed 23 Oct 2026), reload, read the status on screen and from the server. */
 async function uiInvoice(w: any) { const r: any = { open: await uiOpen(w) };
   await p.locator('.q-tab, [role=tab]').filter({ hasText: /^\s*Finance/ }).first().click().catch((e) => { r.financeTab = String(e).slice(0, 80); }); await p.waitForTimeout(3000);
   await p.locator('button').filter({ hasText: /^\s*Create Invoice\s*$/ }).first().click().catch((e) => { r.createClick = String(e).slice(0, 80); }); await p.waitForTimeout(6000);
   const pay = p.locator('.q-dialog').filter({ hasText: /Payment/i }).last(); r.paymentWindow = (await pay.innerText().catch(() => '')).replace(/\s+/g, ' ').slice(0, 120);
   r.invoiceTextBeforeClose = ((await p.evaluate('document.body.innerText')) as string).match(/INV-[\w-]+/)?.[0] ?? null; await shot(p, 'C368170-s2-after-create-invoice');
-  if (r.paymentWindow) { await pay.locator('[data-test-id="button_close_dialog"], button:has(i:text-is("close"))').first().click({ timeout: 6000 }).catch(async () => { await p.keyboard.press('Escape'); }); await p.waitForTimeout(3000); }
+  // 23 Oct 2026: step 2 now says leave the payment window OPEN (QA lead; on production its X takes the invoice back off) — no close here
+  r.windowLeftOpen = !!r.paymentWindow; await p.waitForTimeout(3000);
   r.statusAfterClose = (await view(w.id)).work_order?.status ?? null; await p.reload({ waitUntil: 'domcontentloaded' }); await p.waitForTimeout(7000);
   r.statusAfterReload = (await view(w.id)).work_order?.status ?? null; r.cardStatus = ((await p.evaluate('document.body.innerText')) as string).match(/\b(Invoiced|Complete|Completed|Approved|Paid)\b/)?.[0] ?? null;
   await shot(p, 'C368170-s3-after-reload'); return r; }

@@ -1,0 +1,36 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.0-ffea43c",
+  "date": "22 October 2026",
+  "note": "run 498 on production - c614719"
+ },
+ "results": {
+  "C614719": {
+   "verdict": "Passed",
+   "observed": [
+    "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+    "Set-up: technicians ZZAUTOTEST C614719 Ana (pinned first) and Ben (pinned second) at Truck Hill 1; Customer-A \"ZZAUTOTEST C614719 Keyboard A\" with S1-1622 led by Ana and S1-1623 led by Ben; S1-1624 with no lead for Customer-B; search \"ZZAUTOTEST C614719 Keyboard\"; All tab, Tech View, every group open. Customer-C \"ZZAUTOTEST C614719 Third Customer\" with S1-1704, S1-1705, S1-1706 led by ZZAUTOTEST C614719 Cal (not pinned).",
+    "Step 1: Unassigned collapsed; its header stays and S1-1624 is hidden; Ana's group follows, then Ben's.",
+    "Step 2: the cursor is in Search and nothing in the table has a focus ring.",
+    "Step 3: Tab went through the toolbar and landed the focus ring on S1-1622, the first row of Ana's group, not on a header.",
+    "Step 4: Board View shows Unassigned first, then Ana's and Ben's columns.",
+    "Step 5: with Customer-A's name in Search, S1-1622 is in Ana's column and S1-1623 in Ben's; Unassigned has no cards.",
+    "Step 6: the cursor is in Search and nothing on the board has a focus ring.",
+    "Step 7: Tab landed the focus ring on S1-1622's card, the first card in Ana's column, not on a column header.",
+    "Step 8: the window was made 1024 px wide; Board View is still shown.",
+    "Step 9: with Customer-C's name in Search, Unassigned has no cards and Cal's column is off to the right, out of sight; it holds Customer-C's three work orders (S1-1704, S1-1705, S1-1706), as step 9 now expects (QA lead decision 23 Oct 2026).",
+    "Step 10: Tab scrolled the board sideways to Cal's column and landed the focus ring on S1-1704's card, fully on the screen; not on the Unassigned header.",
+    "Step 11: Tech View was clicked and the window made short (about two and a half group headings); it shows Unassigned (no work orders) and Ana's group; Cal's group is further down, out of sight.",
+    "Step 12: the cursor is in Search, still showing Customer-C's name.",
+    "Step 13: Tab moved the list down to Cal's group; S1-1704's row sits just below Cal's heading with the blue focus ring, the whole row and ring visible and not covered by the heading; the ring is on no heading."
+   ],
+   "pictures": [
+    "pictures-prod/C614719-1-prod-1022.png",
+    "pictures-prod/C614719-2-prod-1022.png",
+    "pictures-prod/C614719-3-prod-1022.png",
+    "pictures-prod/C614719-4-prod-1022.png"
+   ]
+  }
+ }
+}

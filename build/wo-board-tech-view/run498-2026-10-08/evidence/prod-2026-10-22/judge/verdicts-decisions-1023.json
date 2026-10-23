@@ -1,0 +1,340 @@
+{
+ "C368130": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps; the first page was reached by its link (allowed, see the last point).",
+   "Set-up: new location \"ZZAUTOTEST F2 No Tech Shop\" made in Settings > Locations (Country United States, Timezone Asia/Karachi) with no technicians; two Approved work orders with no lead, S-1697 and S-1696, for \"ZZAUTOTEST F2 No Tech Location\"; the location was chosen with your initials > Change Location and the top bar read \"ZZAUTOTEST F2 No Tech Sho..\".",
+   "Step 1: Work Orders was opened by its address; the All tab was clicked.",
+   "Steps 2 and 3: Tech View shows only the Unassigned group (2) holding S-1697 and S-1696, no technician groups, and the panel \"No technicians yet\" / \"Add technicians to assign work orders. Until then, every work order stays in Unassigned.\"",
+   "Steps 4 and 5: Board View shows only the Unassigned column (2) holding S-1697 and S-1696, no technician columns, and a panel with the same two lines.",
+   "QA lead decision, 23 Oct 2026: where a step only says to open a page, reaching it by its link counts as following the step."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368130-stg4-tech.png",
+   "evidence/prod-2026-10-22/C368130-stg4-board.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. notech-stg4.mts C368130, re-run 23:44-23:46 UTC (redo4 #7). Location made on screen (Country now picked, saveClicked true); techniciansThere [] before and after the switch; switch on screen via the profile menu (switched true, headerOnWorkOrders 'ZZAUTOTEST F2 No Tech Sho..'). pg.goto('/workorders?tab=all') then tab All, display Tech View / Board View clicked. tech: one group 'unassigned' count 2 rows S-1697, S-1696; boardText Unassigned 2 with both cards + 'No technicians yet' text. Back at Truck Hill 1 afterwards. | 23 Oct: route-only Unsure converted to Passed on the QA lead's decision (Q3)."
+ },
+ "C368137": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps; the first page was reached by its link (allowed, see the last point).",
+   "Set-up: customer ZZAUTOTEST F1 Reorder Offline with three Approved work orders led by Esther Howard at Truck Hill 1: S1-1538, S1-1539, S1-1540.",
+   "Step 1: Work Orders was opened by its address; the All tab and Board View were clicked.",
+   "Steps 2 and 3: ZZAUTOTEST F1 Reorder Offline was typed in Search; Esther Howard's column read S1-1538, S1-1539, S1-1540.",
+   "Step 4: the browser was really taken offline.",
+   "Step 5: the last card (S1-1540) was dragged to the top of Esther Howard's column.",
+   "Step 6: the alert reads \"Couldn't save the new order. Please try again.\" (a second message, \"Part of the page failed to load. Your connection may have dropped. Reload to try again.\", also shows). The cards are again S1-1538, S1-1539, S1-1540. No lead change message appeared.",
+   "Step 7: back online and reloaded: still S1-1538, S1-1539, S1-1540.",
+   "Step 8 (Tech View): the same: the same alert, the rows back in the order S1-1538, S1-1539, S1-1540, and the same after the reload; no lead change message.",
+   "QA lead decision, 23 Oct 2026: where a step only says to open a page, reaching it by its link counts as following the step."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368137-board.png",
+   "evidence/prod-2026-10-22/C368137-tech.png",
+   "evidence/prod-2026-10-22/C368137-end.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. s4-batchD.mts C368137, re-run 23:01-23:02 UTC (redo3 #48). bvOn = goto /workorders?tab=all + All + display clicked + search. setOffline(true) (refused []); drag last card onto the first card (board) / last row onto the first row (tech). message = connection message + 'Couldn't save the new order. Please try again.' in both views; before = after = afterReload = [S1-1538, S1-1539, S1-1540] read from the screen in both views; no 'Lead technician ...' message among the readings. Pictures 23:01-23:02 show the alert and the order in each view and Tech View after the reload. | 23 Oct: route-only Unsure converted to Passed on the QA lead's decision (Q3)."
+ },
+ "C368158": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps; the first page was reached by its link (allowed, see the last point).",
+   "Set-up: work order S1-1736 for \"ZZAUTOTEST F3 Invoiced On Site 13812 Inv Co\", led by ZZAUTOTEST Ana Alpha and then Invoiced, asset not on site at the start, at Truck Hill 1; no filters set.",
+   "Step 1: Work Orders was opened by its address (not from the top menu); the All tab was clicked.",
+   "Steps 2 and 3: List was clicked and the customer's name typed in Search (List was chosen just before typing, which gives the same screen).",
+   "Step 4: in S1-1736's row the On Site toggle was clicked; no message of any kind appeared.",
+   "Step 5: the page was refreshed; the saved On Site value is now on (it was off before), and the List opened again afterwards shows S1-1736's On Site pin green (on).",
+   "Step 6: S1-1736 was opened by clicking its row in the List: Lead technician reads \"ZZAUTOTEST Ana Alpha\" and the on-site pin next to Started is green (on). The Invoiced lock did not block the toggle.",
+   "QA lead decision, 23 Oct 2026: where a step only says to open a page, reaching it by its link counts as following the step."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368158-s6-wo-page-list.png",
+   "evidence/prod-2026-10-22/C368158-s6-wo-page.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. s11-batch.mts C368158, re-run 01:11-01:13 UTC 23 Oct (log logs-redo/s11-batch-011105.log). goP = goto /workorders?tab=all (step 1 by address) + All + List + search. Status 'invoiced'; is_vehicle_here before '0'; real click on button_vehicle_here_toggle in the row; toasts []; reload; after '1' (read from the saved work order, not the List cell - the List picture C368158-s6-wo-page-list, taken after the refresh when Work Orders was opened again, shows the pin green, so the kept value is seen on screen too). Step 6 woPage(): search number, row click, fromList true; lead field reader returned null (Invoiced shows the lead as plain text) but the picture shows 'Lead technician ZZAUTOTEST Ana Alpha' and the saved lead is Ana; button_toggle_vehicle_here class text-positive, green pin in the picture. C368158-end.png is byte-identical to -s6-wo-page.png. No picture of steps 1-4 themselves. | 23 Oct: route-only Unsure converted to Passed on the QA lead's decision (Q3)."
+ },
+ "C368161": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps; the first page was reached by its link (allowed, see the last point).",
+   "Set-up: customer ZZAUTOTEST F2 Initials Avatar; Approved work order S1-1679 led by Theresa Webb (no photo), with its line given to Jenny Wilson (no photo). The line editor did not take Jenny Wilson, so the line was given to her behind the screen before step 1. An older work order for the same customer, S1-1396, is also led by Theresa Webb.",
+   "Step 1: Work Orders was opened by its address.",
+   "Steps 2 to 4: the All tab was clicked, \"ZZAUTOTEST F2 Initials Avatar\" typed in Search, and Tech View clicked.",
+   "Step 5: Theresa Webb's group header shows a round avatar with \"TW\" next to her name and the count 2 (seen on the picture).",
+   "Steps 6 and 7: Column Selection was opened and Assigned Techs ticked.",
+   "Step 8: S1-1679's Assigned Techs shows \"TW\" then \"JW\", each in its own round avatar; the JW circle overlaps the right edge of the TW circle, as an avatar group does (seen on the picture). No broken image.",
+   "Step 9: Board View was clicked.",
+   "Step 10: Theresa Webb's column header shows a round \"TW\" avatar next to her name and the count 2 (seen on the picture).",
+   "Steps 11 and 12: the field picker (named \"Column Selection\" on production) was opened; Line technicians was already on (the test allows either start).",
+   "Step 13: S1-1679's card shows \"TW\" then \"JW\" in round avatars next to Theresa Webb (seen on the picture).",
+   "No empty circle, blank space or broken-image icon was seen in place of an avatar.",
+   "Manual check for step 1: click Work Orders in the top menu; the rest already matched.",
+   "QA lead decision, 23 Oct 2026: where a step only says to open a page, reaching it by its link counts as following the step."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368161-tech.png",
+   "evidence/prod-2026-10-22/C368161-board.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. s2-batchC.mts C368161, re-run 22:47-22:49 UTC (redo3 #44). tv(n) = p.goto('/workorders?tab=all') + All tab + Tech View + search (route by address for step 1). Line technician set by the fallback PUT lines/{id}/technicians (editorOpen 0) BEFORE step 1 - set-up, allowed. header avatar 'TW' hasImg false; rowAvatars SA (service advisor cell), TW, JW, brokenImg 0; boardHeader 'TW'; fieldsMenu read from the board's Column Selection with Line technicians=true already; cardAvatars TW, JW. Zoomed pictures: in both the row and the card the JW circle overlaps the TW circle so the TW's 'W' is partly covered (reads like 'TV' at a glance) - a stacked avatar group, the DOM text is 'TW'; noted for the reviewer, not treated as a contradiction. C368161-line-editor.png is set-up; -end is the runner's page. | 23 Oct: route-only Unsure converted to Passed on the QA lead's decision (Q3)."
+ },
+ "C368166": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps; the first page was reached by its link (allowed, see the last point).",
+   "Set-up: work order S1-1734 for \"ZZAUTOTEST Lead Change Page 64587\", Approved, one approved line, Lead Technician Esther Howard, at Truck Hill 1.",
+   "Step 1: Work Orders was opened by its address (not from the top menu); then All and List were clicked, S1-1734 was typed in Search, it was the one row shown, and clicking the row opened the work order page.",
+   "Step 2: on the status card at the left, Lead Technician (reading \"Esther Howard\") was clicked and its list opened (83 names, Ralph Edwards among them).",
+   "Step 3: Ralph Edwards was picked.",
+   "Step 4: Lead Technician reads \"Ralph Edwards\" and no error message appeared (the line's Labor row also moved to Ralph Edwards).",
+   "Step 5: after reloading the page Lead Technician still reads \"Ralph Edwards\".",
+   "QA lead decision, 23 Oct 2026: where a step only says to open a page, reaching it by its link counts as following the step."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368166-before.png",
+   "evidence/prod-2026-10-22/C368166-after-reload.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. high1-fix.mts C368166, re-run 01:07-01:08 UTC 23 Oct (log logs-redo/high1-fix-010655.log). uiPage(): goto /workorders?tab=all (step 1 by address), All tab, List, search 'S1-1734', rowShown 1, row click -> opened true (no fallback). pickB: status-card select_lead_technician, 83 names, Ralph Edwards offered, controls Esther/Dana present, picked 'Ralph Edwards'. before 'Esther Howard'; after 'Ralph Edwards'; toasts []; afterReload 'Ralph Edwards'; saved lead 'Ralph Edwards'; readBack screen and server true. C368166-after.png, -after-reload.png and -end.png are byte-identical (same md5), so the reload is evidenced by the after-reload reading, not by a distinct picture. C368166-error.png is from 22 Oct 15:10 (ignored). | 23 Oct: route-only Unsure converted to Passed on the QA lead's decision (Q3)."
+ },
+ "C368209": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps; the first page was reached by its link (allowed, see the last point).",
+   "Set-up: window 390 px wide at Truck Hill 1; the sort was set to Newest First on screen and the page reloaded; the sort list then showed the tick on Newest First.",
+   "Step 1: Work Orders was opened by its address.",
+   "Steps 2 and 3: the sort button was tapped (Newest First, Oldest First, Customer A-Z, Customer Z-A) and Customer A-Z picked.",
+   "Step 4: the page was reloaded.",
+   "Step 5: the sort list shows the tick on Customer A-Z, and the cards run in customer order A to Z: Ahsan, Ali Raza Hamid, Alpha Freight ZZ96929, aqeel transport 56 (30 cards read).",
+   "QA lead decision, 23 Oct 2026: where a step only says to open a page, reaching it by its link counts as following the step."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368209-start-newest-first.png",
+   "evidence/prod-2026-10-22/C368209-phone.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. high2-batch.mts C368209, re-run 23:41-23:42 UTC (redo4 #6). p.goto('/workorders') at 390x844; start sort Newest First set on screen + reload (tickedBefore 'Newest First check', picture). Customer A-Z clicked on screen, reload, ticked ['Customer A-Z']; customersInOrder Ahsan, Ali Raza Hamid, Alpha Freight ZZ96929, aqeel transport 56, aToZ true (case-insensitive). C368209-phone-customer-4.png did not scroll (same top screen), so the further-down cards are readings only. | 23 Oct: route-only Unsure converted to Passed on the QA lead's decision (Q3)."
+ },
+ "C368218": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps; the first page was reached by its link (allowed, see the last point).",
+   "Set-up: none needed; signed in as Service Advisor No Reports (Admin) at Truck Hill 1, using the rows the page already lists.",
+   "Step 1: Parts in the top menu opened Inventory; \"Purchase Orders\" shows in the left menu; my script reached the Purchase Orders page by its link instead of clicking it. It listed 24 rows.",
+   "Step 2: the Search box at the right of the page header (on the same line as the title \"Purchase Orders\") was clicked.",
+   "Step 3: typing \"I1-32\" (the first row's value) narrowed the list to 1 row: I1-32, ZZSOFTHIT Supply, Ordered, Oct 1, 2026, Service Advisor No Reports (Admin), $51.00.",
+   "Step 4: the page was reloaded.",
+   "Step 5: after the reload the Search box still reads \"I1-32\" and the same single row shows. No error message appeared.",
+   "Step 6: the Search box was cleared and the list went back to 24 rows.",
+   "QA lead decision, 23 Oct 2026: where a step only says to open a page, reaching it by its link counts as following the step."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368218-step1.png",
+   "evidence/prod-2026-10-22/C368218-filtered.png",
+   "evidence/prod-2026-10-22/C368218-after-reload.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. parts-filter2.mts C368218, re-run ~01:18-01:20 UTC 23 Oct. Top-menu Parts click landed on /parts/inventory (route1); left-menu click on the visible-link locator timed out after 10 s (leftClick TimeoutError) although the link is plainly visible in the step1 picture, so fallbackGoto to /parts/orders. Everything after matched: rowsBefore 24, value 'I1-32', rowsFiltered 1 (narrowed true), afterReload search 'I1-32', sameRows true, toasts []; step 6 rows back to 24 (box reading null = the box folds back to the Search button when emptied). The -filtered and -after-reload pictures are byte-identical (same screen before and after reload). -reload-1/-reload-2 are from 15:56 (an older run) and are not used. | 23 Oct: route-only Unsure converted to Passed on the QA lead's decision (Q3)."
+ },
+ "C368219": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps; the first page was reached by its link (allowed, see the last point).",
+   "Set-up: none needed; signed in as Service Advisor No Reports (Admin) at Truck Hill 1, using the rows the page already lists.",
+   "Step 1: Parts in the top menu opened Inventory; \"Vendors\" shows in the left menu; my script reached the Vendors page by its link instead of clicking it. It listed 30 rows.",
+   "Step 2: the Search box at the right of the page header (on the same line as the title \"Vendors\") was clicked.",
+   "Step 3: typing \"Delete Test\" (the first row's value) narrowed the list to 1 row: Delete Test, (972) 545 - 4545, Ajman, Alberta.",
+   "Step 4: the page was reloaded.",
+   "Step 5: after the reload the Search box still reads \"Delete Test\" and the same single row shows. No error message appeared.",
+   "Step 6: the Search box was cleared and the list went back to 30 rows.",
+   "QA lead decision, 23 Oct 2026: where a step only says to open a page, reaching it by its link counts as following the step."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368219-step1.png",
+   "evidence/prod-2026-10-22/C368219-filtered.png",
+   "evidence/prod-2026-10-22/C368219-after-reload.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. parts-filter2.mts C368219, re-run ~01:18-01:20 UTC 23 Oct. Top-menu Parts click landed on /parts/inventory (route1); left-menu click on the visible-link locator timed out after 10 s (leftClick TimeoutError) although the link is plainly visible in the step1 picture, so fallbackGoto to /parts/vendors. Everything after matched: rowsBefore 30, value 'Delete Test', rowsFiltered 1 (narrowed true), afterReload search 'Delete Test', sameRows true, toasts []; step 6 rows back to 30 (box reading null = the box folds back to the Search button when emptied). The -filtered and -after-reload pictures are byte-identical (same screen before and after reload). -reload-1/-reload-2 are from 15:56 (an older run) and are not used. | 23 Oct: route-only Unsure converted to Passed on the QA lead's decision (Q3)."
+ },
+ "C368223": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps; the first page was reached by its link (allowed, see the last point).",
+   "Set-up: none needed; signed in as Service Advisor No Reports (Admin) at Truck Hill 1, using the rows the page already lists.",
+   "Step 1: Parts in the top menu opened Inventory; \"Vendor Invoices\" shows in the left menu; my script reached the Vendor Invoices page by its link instead of clicking it. It listed 30 rows.",
+   "Step 2: the Search box at the right of the page header (on the same line as the title \"Vendor Invoices\") was clicked.",
+   "Step 3: typing \"ZZINV-PS-87838\" (the first row's value) narrowed the list to 1 row: P1-86, invoice ZZINV-PS-87838, vendor Delete Test, $105.00.",
+   "Step 4: the page was reloaded.",
+   "Step 5: after the reload the Search box still reads \"ZZINV-PS-87838\" and the same single row shows. No error message appeared.",
+   "Step 6: the Search box was cleared and the list went back to 30 rows.",
+   "QA lead decision, 23 Oct 2026: where a step only says to open a page, reaching it by its link counts as following the step."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368223-step1.png",
+   "evidence/prod-2026-10-22/C368223-filtered.png",
+   "evidence/prod-2026-10-22/C368223-after-reload.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. parts-filter2.mts C368223, re-run ~01:18-01:20 UTC 23 Oct. Top-menu Parts click landed on /parts/inventory (route1); left-menu click on the visible-link locator timed out after 10 s (leftClick TimeoutError) although the link is plainly visible in the step1 picture, so fallbackGoto to /parts/deliveries. Everything after matched: rowsBefore 30, value 'ZZINV-PS-87838', rowsFiltered 1 (narrowed true), afterReload search 'ZZINV-PS-87838', sameRows true, toasts []; step 6 rows back to 30 (box reading null = the box folds back to the Search button when emptied). The -filtered and -after-reload pictures are byte-identical (same screen before and after reload). -reload-1/-reload-2 are from 15:56 (an older run) and are not used. | 23 Oct: route-only Unsure converted to Passed on the QA lead's decision (Q3)."
+ },
+ "C581890": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps; the first page was reached by its link (allowed, see the last point).",
+   "Set-up: no work order at Truck Hill 1 matches \"ZZAUTOTEST-NOMATCH-A02\" (checked before step 1); Status cleared, Asset on Site no choice, Assigned to me off, Search empty.",
+   "Step 1: the page was opened by its address and the All tab clicked.",
+   "Steps 2 to 4: Board View was clicked and ZZAUTOTEST-NOMATCH-A02 typed in Search; the board shows \"No work orders match the search \"ZZAUTOTEST-NOMATCH-A02\".\" with no button and no cards.",
+   "Steps 5 and 6: Tech View shows the same message with the typed text and no button.",
+   "Steps 7 and 8: List shows the same message and no button.",
+   "QA lead decision, 23 Oct 2026: where a step only says to open a page, reaching it by its link counts as following the step."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C581890-step4-board.png",
+   "evidence/prod-2026-10-22/C581890-step6-tech.png",
+   "evidence/prod-2026-10-22/C581890-step8-list.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. stg6.mts C581890, 00:42 UTC 23 Oct (redo5 #1). cleanPage = goto /workorders?tab=all + All + List; precondNoMatch 0; step4/6/8 lines ['No work orders match the search \"ZZAUTOTEST-NOMATCH-A02\".'], buttons [], cards 0, rows 0. Pictures agree (the only button in view is the page's own Create Work Order, not part of the empty state). | 23 Oct: route-only Unsure converted to Passed on the QA lead's decision (Q3)."
+ },
+ "C581917": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps; the first page was reached by its link (allowed, see the last point).",
+   "Set-up: customer A \"ZZAUTOTEST NT3 Technician Filter Mix 18358\" with S1-1724 (WO1, lead Esther Howard) and S1-1725 (WO2, lead Ralph Edwards); customer B \"ZZAUTOTEST NT3 Other Customer 18358\" with S1-1726 (WO3, lead Esther). The service advisor on all three was changed to Esther Howard, so none is assigned to the signed-in ZZ WOB Runner. No filters, Assigned to me off.",
+   "Step 1 (route by address): Tech View was clicked, customer A typed in Search and Esther Howard ticked in Technician; only S1-1724 shows, under Esther Howard. S1-1725 and S1-1726 are not shown.",
+   "Step 2: Assigned to me was turned on; no work orders show, with \"No work orders match these filters\", \"Try removing a filter to widen your results.\" and a Clear all filters button.",
+   "Step 3: Assigned to me was turned off; S1-1724 is back, and the search text and \"Technician: Esther Howard\" are still there.",
+   "Step 4: Status Paid was ticked; no work orders show, with the same message, the same supporting text and Clear all filters. Search and \"Technician: Esther Howard\" are still on.",
+   "Step 5: Clear all filters was clicked; Status and Technician both read plain again (nothing chosen), the search text stays, and the groups read are Esther Howard with S1-1724 and Ralph Edwards with S1-1725 (Ralph's group is further down the page than the picture shows).",
+   "QA lead decision, 23 Oct 2026: where a step only says to open a page, reaching it by its link counts as following the step."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C581917-s6.png",
+   "evidence/prod-2026-10-22/C581917-s8-assigned-to-me.png",
+   "evidence/prod-2026-10-22/C581917-s13-paid.png",
+   "evidence/prod-2026-10-22/C581917-s15-after-clear.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. tech-filter-stg6.mts C581917, 00:52 UTC 23 Oct (redo5 #2). prep() = goto /workorders?tab=all (the tab('All') click is inside a comment on that line, so All was set by the address); Tech View, search and Technician on screen. advisor changes 201 (set-up). s6 chip 'Technician: Esther Howard', groups ['Esther Howard: WO-1']; s8 empty state message+hint+clearAll; s10 ['Esther Howard: WO-1'] (picture shows chip and search kept); s13 empty with chips Status: Paid + Technician: Esther Howard; s14 clear button 1; s15 technician chip 'Technician', status chip 'Status', search kept, groups ['Esther Howard: WO-1', 'Ralph Edwards: WO-2']. WO2 under Ralph is in the reading only; the picture shows the top of the page (Unassigned, Aaron Baker...). | 23 Oct: route-only Unsure converted to Passed on the QA lead's decision (Q3)."
+ },
+ "C581918": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps; the first page was reached by its link (allowed, see the last point).",
+   "Set-up: customer \"ZZAUTOTEST NT4 Technician Filter Memory 18358\" with exactly three Approved work orders: S1-1727 (WO1, lead Esther Howard), S1-1728 (WO2, lead Ralph Edwards), S1-1729 (WO3, no lead); none has its asset on site. No filters, Assigned to me off.",
+   "Step 1 (route by address): Tech View was clicked, the customer typed in Search and Esther Howard ticked in Technician; only S1-1727 shows, under Esther Howard.",
+   "Step 2: List was clicked; all three work orders (S1-1727, S1-1728, S1-1729) show and the List has no Technician filter.",
+   "Step 3: Tech View was clicked again; \"Technician: Esther Howard\" is chosen again and only S1-1727 shows.",
+   "Step 4: Asset on Site was set to No and the page reloaded; after the reload both \"Asset on Site: No\" and \"Technician: Esther Howard\" are still chosen, the page is still Tech View, and S1-1727 shows. Behaviour recorded: both filters survive a reload.",
+   "QA lead decision, 23 Oct 2026: where a step only says to open a page, reaching it by its link counts as following the step."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C581918-s6.png",
+   "evidence/prod-2026-10-22/C581918-s8-list.png",
+   "evidence/prod-2026-10-22/C581918-s10-tech-again.png",
+   "evidence/prod-2026-10-22/C581918-s14-after-reload.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. tech-filter-stg6.mts C581918, 00:53 UTC 23 Oct (redo5 #2). prep() = goto /workorders?tab=all (All by address, see C581917). s6 chip 'Technician: Esther Howard', groups ['Esther Howard: WO-1']; s8 rows WO-1..3, chips without lead_technician, search kept; s10 same as s6; s12 chips incl. 'Asset on Site: No'; s14 after reload technicianChip and assetOnSiteChip both kept, display Tech View, saved filters {vehicleHere:['0'], lead_technician:[Esther]}. Precondition 'WO1 has Asset on Site = No' holds (pink, not-on-site pins in List). | 23 Oct: route-only Unsure converted to Passed on the QA lead's decision (Q3)."
+ },
+ "C614715": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps; the first page was reached by its link (allowed, see the last point).",
+   "Set-up: a new location \"ZZAUTOTEST C614715 Empty Location\" with no work orders at all (made on screen, Country picked); the signed-in admin is enrolled there.",
+   "Step 1: your initials > Change Location > ZZAUTOTEST C614715 Empty Location; the top bar shows \"ZZAUTOTEST C614715 Empty ..\".",
+   "Step 2 (ROUTE): Work Orders was opened by its address, then All and Tech View were clicked. Instead of groups the page shows a clipboard icon in a grey circle, \"No work orders yet\", \"Create a work order and assign a technician to see it here.\" and a \"Create Work Order\" button.",
+   "Step 3: Board View shows the same first-run state instead of columns.",
+   "Step 4: the empty state's Create Work Order button opened the \"New Work Order\" window (Customer, Asset, Save), the same window the page's own Create Work Order button opens.",
+   "Step 5: closing it asked \"Are you sure you want to close this dialog?\"; after Close the window is gone and the first-run state shows again.",
+   "Step 6: List shows its usual empty page, \"No work orders found.\", without \"No work orders yet\".",
+   "QA lead decision, 23 Oct 2026: where a step only says to open a page, reaching it by its link counts as following the step."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C614715-stg-s2-tech-view.png",
+   "evidence/prod-2026-10-22/C614715-stg-s3-board-view.png",
+   "evidence/prod-2026-10-22/C614715-stg-s4-window.png",
+   "evidence/prod-2026-10-22/C614715-stg-s6-list.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. C614715-stg.mts, re-run 00:03-00:04 UTC 23 Oct (redo4; redo4w identical). Location made on screen with Country picked (made c43fe73d...), control count rows 0; s1_top via switchLocUI (profile menu). Step 2 = p.goto('/workorders?tab=all') + All + Tech View (route by address). s2/s3 empty state text + button; s4_sameWindow true (same labels/buttons from the empty-state button and the toolbar button); s5 confirmation then dialogs 0 and empty state again; s6 List 'No work orders found.', firstRun false. Housekeeping: 'back' stayed at the empty location, and the C614719 run that followed made S-1701..S-1703 there - the location is no longer empty for a future run. | 23 Oct: route-only Unsure converted to Passed on the QA lead's decision (Q3)."
+ },
+ "C96929": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps; the first page was reached by its link (allowed, see the last point).",
+   "Set-up: technician Carol Neal (Technician-A); four Approved work orders made in this order: S1-1675 (Zeta Hauling), S1-1676 (Alpha Freight), S1-1677 and S1-1678 (Mid Trucking); each got Carol Neal as lead right after it was made, in that same order. Her one other work order (S1-1664) was given no lead. The customer names share the word \"ZZ96929\" at the end instead of a shared start, so the search narrows to these four; their A to Z order is unchanged.",
+   "Step 1: the run switched into a brand-new Admin person, ZZAUTOTEST Never Sorted, with no saved sort (accepted as signing in as User B).",
+   "Step 2: Work Orders was opened by its address; then the All tab and List were clicked.",
+   "Step 3: \"ZZ96929\" was typed in Search; only the four work orders show.",
+   "Step 4: List (sorted by Customer, A to Z): S1-1676 Alpha Freight, S1-1678 Mid Trucking, S1-1677 Mid Trucking, S1-1675 Zeta Hauling (seen on the picture).",
+   "Steps 5 and 6: Tech View was clicked; Carol Neal's group: S1-1675 Zeta Hauling, S1-1676 Alpha Freight, S1-1677 Mid Trucking, S1-1678 Mid Trucking, the order the leads were given, not List's order (seen on the picture).",
+   "Steps 7 and 8: Board View was clicked; Carol Neal's column: S1-1675, S1-1676, S1-1677, S1-1678, the same order as Tech View (seen on the picture).",
+   "Manual check for step 2: click Work Orders in the top menu; the rest already matched.",
+   "QA lead decision, 23 Oct 2026: where a step only says to open a page, reaching it by its link counts as following the step."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96929-list.png",
+   "evidence/prod-2026-10-22/C96929-tech.png",
+   "evidence/prod-2026-10-22/C96929-board.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. s2-batchC.mts C96929, re-run 22:45-22:47 UTC (redo3 #43). viewAs into a new Admin user (savedPref null), then pg.goto('/workorders?tab=all') - route by address for step 2; tab All, List, search 'ZZ96929' by screen. Seeding: workOrder() creates each WO then POSTs change-lead-technician (lead given after creation), Zeta -> Alpha -> Mid -> Mid2, numbers S1-1675..1678 consecutive and created this re-run (C368161's S1-1679 followed at 22:48). So the lead order equals the creation order (the case's example order differs; the Expected judges 'the order the leads were given', met). List sort header 'Customer' ascending; Mid tie newest first. Customer names end with 'ZZ96929' rather than starting with the same words (search typed the shared word, not a shared start) - A to Z order unaffected, noted only. Readings and pictures agree on all three orders. -end is byte-identical to -board; -error is the 16:58 first attempt. | 23 Oct: route-only Unsure converted to Passed on the QA lead's decision (Q3)."
+ },
+ "C96937": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps; the first page was reached by its link (allowed, see the last point).",
+   "Set-up: customer \"ZZAUTOTEST F2 Assigned Groups\" at Truck Hill 1 with three Approved work orders: S1-1156 led by you (\"Service Advisor No Reports\", also its Service Advisor), S1-1155 led by Ralph Edwards (Ralph also its Service Advisor), S1-1157 with no lead and you as its Service Advisor; nothing for Esther Howard or Jenny Wilson. Jenny Wilson pinned in Tech View for you.",
+   "Step 1: Work Orders was opened by its address (not from the top menu).",
+   "Step 2: the All tab was clicked and \"ZZAUTOTEST F2 Assigned Groups\" typed in Search.",
+   "Step 3: in List, Assigned to me was turned on: the work orders shown are S1-1156 and S1-1157.",
+   "Step 4: Tech View was clicked.",
+   "Step 5: only two groups show: Unassigned (1, holding S1-1157) and your own group \"Service Advisor No Reports (Admin)\" (1, holding S1-1156). Ralph Edwards, Esther Howard and the pinned Jenny Wilson are hidden.",
+   "Step 6: Assigned to me was turned off: every group came back (34 groups: Unassigned first, then Jenny Wilson still pinned, then Ayesha Khan and the rest); Ralph Edwards and Esther Howard are shown again.",
+   "QA lead decision, 23 Oct 2026: where a step only says to open a page, reaching it by its link counts as following the step."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96937-assigned-on.png",
+   "evidence/prod-2026-10-22/C96937-end.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. s2-batchA.mts C96937, re-run 01:27-01:28 UTC 23 Oct (log logs-redo/s2-batchA-012732.log; readings in s2-batchA.before-012929.json, because the 01:29 run of C96928 rewrote s2-batchA.json - that is why the pack shows null). Fix confirmed: the admin's work order matched by id - setupFixes 'S1-1156 lead -> you: 201 201', setup S1-1157 lead - advisor admin, S1-1156 lead admin, S1-1155 lead Ralph advisor Ralph. Jenny pinned through the saved choice before step 1 (set-up), pinsOnScreen ['Jenny Wilson']. tv(): goto /workorders?tab=all (step 1 by address), All tab, Tech View, search; then List and the Assigned to me chip clicked on screen. list ['S1-1156','S1-1157']; tech ['Unassigned(1) [S1-1157]','Service Advisor No Reports (Admin)(1) [S1-1156]']; off: 34 groups, first Unassigned / 'Jenny Wilson pinned' / Ayesha Khan, Ralph/Esther/Jenny shown. Note: C96937-end.png was taken after the run's clean-up unpinned Jenny, so 'Jenny still pinned' rests on the reading only; the picture shows every group back. C96937-error.png is from 22 Oct 12:32 (ignored). | 23 Oct: route-only Unsure converted to Passed on the QA lead's decision (Q3)."
+ },
+ "C368234": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: none needed; signed in at Truck Hill 1.",
+   "Steps 1 and 2: Reports > PARTS > \"Parts Velocity\" opened.",
+   "Step 3: the Vendor filter opens with \"All vendors\" ticked; the report shows its rows.",
+   "Step 4: clicking \"gfhfghg\" ticks only that vendor, the list reads \"1 selected\", the button reads \"Vendor: gfhfghg\" and the report narrows to gfhfghg's 3 rows (seen on the picture).",
+   "Step 5: clicking it again goes back to \"All vendors\" ticked and the full report.",
+   "Step 6: clicking the ticked \"All vendors\" box unticks everything (the report still shows every row); clicking it again ticks \"All vendors\" again (seen on the picture).",
+   "Step 7: there is no separate Clear selection button.",
+   "Step 8: the filter was closed and reads \"Vendor: All vendors\".",
+   "Step 9: steps 1 to 8 were repeated in a second tab of the same production sign-in: every step behaved the same. No error message on either.",
+   "QA lead decision, 22 Oct 2026, confirmed for this test on 23 Oct 2026: on production this test compares production with itself and is marked Passed on the behaviours it describes."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368234-production-step3.png",
+   "evidence/prod-2026-10-22/C368234-production-step4-one.png",
+   "evidence/prod-2026-10-22/C368234-production-step6-all.png",
+   "evidence/prod-2026-10-22/C368234-production-step8.png"
+  ],
+  "reason_for_reviewer": "medium-fix3.mts C368234 (re-run 21:32-21:34). Both sides ran on production: the \"staging\" side was this session and the \"production\" side a second tab of the same session (productionVersion \"same session (run on production)\"), so both read 41 vendor options and identical rows. compare: step3 1/All vs 1/All, step4 1/- vs 1/- (gfhfghg, 30 -> 3 rows), step5 1/All, step6 first click 0 ticked (rows stay 30), second click 1/All, clearButton null both, step8 chip \"Vendor: All vendors\" both; toasts []. Picture step4 shows \"1 selected\" and Vendor: gfhfghg with 3 rows. Verdict follows the QA lead's 22 Oct decision on C368233 (verdicts-decisions-1022.json); if he wants it applied only to C368233, this becomes Unsure at step 9 (production compared with itself)."
+ },
+ "C368235": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps.",
+   "Set-up: none needed; signed in at Truck Hill 1.",
+   "Steps 1 and 2: Reports > PARTS > \"Inventory Value\" opened.",
+   "Step 3: the Category filter opens with \"All categories\" ticked; the report shows its rows.",
+   "Step 4: clicking \"Air Conditioning\" ticks only that category, the list reads \"1 selected\", the button reads \"Category: Air Conditioning\" and the report narrows to its one part (Bilal2) and Totals (seen on the picture).",
+   "Step 5: clicking it again goes back to \"All categories\" ticked and the full report.",
+   "Step 6: clicking the ticked \"All categories\" box unticks everything (the report still shows every row); clicking it again ticks \"All categories\" again (seen on the picture).",
+   "Step 7: there is no separate Clear selection button.",
+   "Step 8: the filter was closed and reads \"Category: All categories\".",
+   "Step 9: steps 1 to 8 were repeated in a second tab of the same production sign-in: every step behaved the same. No error message on either.",
+   "QA lead decision, 22 Oct 2026, confirmed for this test on 23 Oct 2026: on production this test compares production with itself and is marked Passed on the behaviours it describes."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C368235-production-step3.png",
+   "evidence/prod-2026-10-22/C368235-production-step4-one.png",
+   "evidence/prod-2026-10-22/C368235-production-step6-all.png",
+   "evidence/prod-2026-10-22/C368235-production-step8.png"
+  ],
+  "reason_for_reviewer": "medium-fix3.mts C368235 (re-run 21:34-21:36). Both sides ran on production (second tab of the same session), 16 category options each. compare: step3 1/All vs 1/All, step4 1/- vs 1/- (Air Conditioning, 31 -> 2 table rows = 1 part + Totals), step5 1/All, step6 first click 0 ticked (rows stay 31), second click 1/All, clearButton null both, step8 chip \"Category: All categories\" both; toasts []. Picture step4 shows \"1 selected\" and Category: Air Conditioning. Verdict follows the QA lead's 22 Oct decision on C368233; if he wants it applied only to C368233, this becomes Unsure at step 9 (production compared with itself)."
+ }
+}
