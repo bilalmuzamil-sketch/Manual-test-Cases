@@ -446,3 +446,8 @@
 - Run 498 reads "271 Passed / 2 Failed / 4 Blocked" after the production pass, but only 153 of those Passed are production results: every test I held (Unsure, ~85) or could not run (~35) still shows its earlier staging result. A final report must say so in plain words and must count production results from the results' own comments ("Tested on production…"), not from the run's totals (`prod-summary-1023.py` does this; note its detector misses Failed results whose newest comment is the follow-the-status line).
 - Old production Blocked entries (posted before a QA-lead decision changed the case) stay on the run until a clean re-run replaces them — list them as "out of date" rather than as current blockers.
 #reporting #testrail #production → L0535
+
+## L0552 — 2026-10-23 — Tech View's "Lead Technician" switch is `toggle_tech_view_column_technician`; staging-made scripts hide three production traps
+- In Tech View's Column Selection the "Lead Technician" switch has the id `toggle_tech_view_column_technician` (not `…_lead_technician`); asking for the wrong id silently leaves the column off and the case reads Unsure (C96988, 23 Oct).
+- A script written on staging carries hidden staging facts: a regex on the location's NAME (`/Heavy Duty/`), a fixed work-order number (`S2-16688`), and a `?search=` link that on production leaves no Tech View button (30 s timeout). Before queueing any staging-born script on production grep it for `S[0-9]-[0-9]`, `Heavy|Lethbridge|Staging`, and `?search=`; use `ensureLocation(p, a, HEAVY)` (name from `profile.mts`), seed the record (`mkSet`), and open via `go(<display>, <query>)`.
+#production #tech-view #tooling → L0544, L0548
