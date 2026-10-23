@@ -1,0 +1,20 @@
+{
+ "C96944": {
+  "verdict": "Passed",
+  "observed": [
+   "Result: Passed on production (v26.43.0-ffea43c), following the test's steps; the first page was reached by its link (allowed, see the last point).",
+   "Set-up: three work orders led by Esther Howard at Truck Hill 1: S1-1433 Approved for ZZAUTOTEST F2 Badge Spot Commercial Transport Services (long name), S1-1434 an Estimate for ZZAUTOTEST F2 Badge Spot, and S1-1435 Approved for ZZAUTOTEST F2 Badge Spot on the asset with no unit (the card shows no unit line).",
+   "Step 1: Work Orders was opened by its address, not from the top menu.",
+   "Steps 2 to 4: the All tab was clicked, ZZAUTOTEST F2 Badge Spot typed in Search and Board View clicked.",
+   "Step 5: on all three cards the status badge (Approved, Estimate, Approved) is at the top-right of the card, level with the work order number, the same distance from the card's right and top edges on every card, whatever the name length or missing unit.",
+   "Step 6: each card was hovered in turn: the more-actions button (three dots) appears next to the badge as an overlay and the badge stays in exactly the same spot on all three cards.",
+   "QA lead decision, 23 Oct 2026: where a step only says to open a page, reaching it by its link counts as following the step."
+  ],
+  "pictures": [
+   "evidence/prod-2026-10-22/C96944-s5-cards.png",
+   "evidence/prod-2026-10-22/C96944-s6-hover-2.png",
+   "evidence/prod-2026-10-22/C96944-s6-hover-3.png"
+  ],
+  "reason_for_reviewer": "ROUTE-ONLY: yes. s3-batchA.mts C96944, re-run 22:56-22:59 UTC (redo3 #47), case rewritten today (no density step). bv() = goto /workorders?tab=all, then All, Board View and search clicked/typed on screen. spot(): badge right inset 13 px, top inset 13 px, level with the number (within 6 px) on S1-1433/1434/1435 at the start and with each of the three cards hovered (3 x 3 readings, all identical). Pictures 22:57: s5-cards (no hover), hover-2 and hover-3 show the '...' button appearing left of the badge without moving it. C96944-error.png (17:07) is from the first attempt and is ignored."
+ }
+}

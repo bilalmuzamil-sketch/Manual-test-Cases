@@ -1,0 +1,496 @@
+[
+ {
+  "case": 368152,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 96953,
+  "automated": false,
+  "verdict": "needs_update",
+  "steps_preconds_changes": [
+   {
+    "field": "preconds",
+    "current": "(While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.)",
+    "proposed": "(While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Assign lead technician > click the technician; it is assigned at once.)",
+    "prd_rule": "S3-R14; S4-R13",
+    "prd_v74_quote": "S3-R14: Include the lead technician action in the card’s more-actions menu: “Assign lead technician” on a work order with no lead technician, “Reassign lead technician” on one that has a lead technician. | S4-R13: Clicking a technician in the dialog assigns them at once; there is no confirm button, and the dialog’s only button is Cancel."
+   }
+  ],
+  "expected_changes": [],
+  "note": "Setup line still gives an Estimate (no lead) its lead via 'Reassign lead technician > … > Reassign'; v74 menu item is 'Assign lead technician' and a click assigns at once (no Reassign button). Steps and expected are current."
+ },
+ {
+  "case": 707079,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 96967,
+  "automated": true,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 368147,
+  "automated": true,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 614711,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 96964,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 690642,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 690647,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 97020,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 97022,
+  "automated": false,
+  "verdict": "needs_update",
+  "steps_preconds_changes": [
+   {
+    "field": "steps",
+    "current": "In the window, choose {Technician-B} with the keyboard and confirm with the keyboard.",
+    "proposed": "In the window, choose {Technician-B} with the arrow keys and press Enter.",
+    "prd_rule": "S4-R13",
+    "prd_v74_quote": "S4-R13: Clicking a technician in the dialog assigns them at once; there is no confirm button, and the dialog’s only button is Cancel."
+   }
+  ],
+  "expected_changes": [],
+  "note": "Steps 10 and 12 (same sentence twice) ask to 'confirm' the choice; v74 has no confirm button, choosing the technician assigns at once. Expected and quotes match v74 (case already at v71, S11-E1 v74 text)."
+ },
+ {
+  "case": 590121,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Matches v74; the 'density is Regular' precondition refers to Tech View, which still has density."
+ },
+ {
+  "case": 590114,
+  "automated": false,
+  "verdict": "needs_update",
+  "steps_preconds_changes": [],
+  "expected_changes": [
+   {
+    "current_quote_or_sentence": "S2-R23 (v61): … group and column header names are 14px, weight 600, in the design’s slate text color (#364152), with the design’s smaller, lighter initials; …",
+    "prd_rule": "S2-R23",
+    "prd_v74_quote": "group and column header names are 14px, weight 600, in the design’s slate text color (#364152), with the design’s smaller initials, in the same --sv-grey-600 (#4B5565) as every other avatar’s initials;",
+    "what_would_change": "Quote only. Old text gave headers 'smaller, lighter initials'; v74 gives them the same #4B5565 as every other avatar. This case checks row avatars, not header initials, so no asserted result changes; only the quoted sentence needs the v74 wording."
+   },
+   {
+    "current_quote_or_sentence": "S1-R9a (v61): … In Tech View and Board View these icons are the design’s: density (`row-height` in Tech View, `card-height` in Board View, custom icons in the design system’s icon set) …",
+    "prd_rule": "S1-R9a",
+    "prd_v74_quote": "In Tech View and Board View these icons are the design’s: density in Tech View ( row-height , a custom icon in the design system’s icon set; Board View has no density control in this release, S3-R11)",
+    "what_would_change": "Quote only. v74 moves the density icon to Tech View only (Board View has no density control, S3-R11). No step of this case checks the density icon, so no asserted result changes; only the quoted sentence needs the v74 wording."
+   }
+  ],
+  "note": "Steps and preconditions match v74 (density is used in Tech View only); two quoted source sentences (S2-R23, S1-R9a, v61) changed wording in v74 but the asserted results do not change."
+ },
+ {
+  "case": 590117,
+  "automated": false,
+  "verdict": "needs_update",
+  "steps_preconds_changes": [],
+  "expected_changes": [
+   {
+    "current_quote_or_sentence": "S2-R23 (v61): … group and column header names are 14px, weight 600, in the design’s slate text color (#364152), with the design’s smaller, lighter initials; …",
+    "prd_rule": "S2-R23",
+    "prd_v74_quote": "group and column header names are 14px, weight 600, in the design’s slate text color (#364152), with the design’s smaller initials, in the same --sv-grey-600 (#4B5565) as every other avatar’s initials;",
+    "what_would_change": "Quote only. Old text gave headers 'smaller, lighter initials'; v74 gives them the same #4B5565 as every other avatar. Step 2 already expects dark-grey initials a little darker than the design picture, so the asserted result stays the same; only the quoted sentence needs the v74 wording."
+   },
+   {
+    "current_quote_or_sentence": "S1-R9a (v61): … In Tech View and Board View these icons are the design’s: density (`row-height` in Tech View, `card-height` in Board View, custom icons in the design system’s icon set) …",
+    "prd_rule": "S1-R9a",
+    "prd_v74_quote": "In Tech View and Board View these icons are the design’s: density in Tech View ( row-height , a custom icon in the design system’s icon set; Board View has no density control in this release, S3-R11)",
+    "what_would_change": "Quote only. v74 moves the density icon to Tech View only (Board View has no density control, S3-R11). No step of this case checks the density icon, so no asserted result changes; only the quoted sentence needs the v74 wording."
+   }
+  ],
+  "note": "Steps and preconditions match v74 (density is used in Tech View only); two quoted source sentences (S2-R23, S1-R9a, v61) changed wording in v74 but the asserted results do not change."
+ },
+ {
+  "case": 665914,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 682436,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 96954,
+  "automated": false,
+  "verdict": "needs_update",
+  "steps_preconds_changes": [
+   {
+    "field": "preconds",
+    "current": "(While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.)",
+    "proposed": "(While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Assign lead technician > click the technician; it is assigned at once.)",
+    "prd_rule": "S3-R14; S4-R13",
+    "prd_v74_quote": "S3-R14: Include the lead technician action in the card’s more-actions menu: “Assign lead technician” on a work order with no lead technician, “Reassign lead technician” on one that has a lead technician. | S4-R13: Clicking a technician in the dialog assigns them at once; there is no confirm button, and the dialog’s only button is Cancel."
+   }
+  ],
+  "expected_changes": [],
+  "note": "Setup line still gives an Estimate (no lead) its lead via 'Reassign lead technician > … > Reassign'; v74 menu item is 'Assign lead technician' and a click assigns at once (no Reassign button). Steps and expected are current."
+ },
+ {
+  "case": 96955,
+  "automated": false,
+  "verdict": "needs_update",
+  "steps_preconds_changes": [
+   {
+    "field": "preconds",
+    "current": "(While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.)",
+    "proposed": "(While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Assign lead technician > click the technician; it is assigned at once.)",
+    "prd_rule": "S3-R14; S4-R13",
+    "prd_v74_quote": "S3-R14: Include the lead technician action in the card’s more-actions menu: “Assign lead technician” on a work order with no lead technician, “Reassign lead technician” on one that has a lead technician. | S4-R13: Clicking a technician in the dialog assigns them at once; there is no confirm button, and the dialog’s only button is Cancel."
+   }
+  ],
+  "expected_changes": [],
+  "note": "Setup line still gives an Estimate (no lead) its lead via 'Reassign lead technician > … > Reassign'; v74 menu item is 'Assign lead technician' and a click assigns at once (no Reassign button). Steps and expected are current."
+ },
+ {
+  "case": 96956,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Matches v74. S4-R12 gained a sentence in v74 (“No technicians to assign.” when none is eligible); this case does not test that state and its quoted sentences are unchanged."
+ },
+ {
+  "case": 96957,
+  "automated": false,
+  "verdict": "needs_update",
+  "steps_preconds_changes": [
+   {
+    "field": "preconds",
+    "current": "(While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.)",
+    "proposed": "(While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Assign lead technician > click the technician; it is assigned at once.)",
+    "prd_rule": "S3-R14; S4-R13",
+    "prd_v74_quote": "S3-R14: Include the lead technician action in the card’s more-actions menu: “Assign lead technician” on a work order with no lead technician, “Reassign lead technician” on one that has a lead technician. | S4-R13: Clicking a technician in the dialog assigns them at once; there is no confirm button, and the dialog’s only button is Cancel."
+   }
+  ],
+  "expected_changes": [],
+  "note": "Setup line still gives an Estimate (no lead) its lead via 'Reassign lead technician > … > Reassign'; v74 menu item is 'Assign lead technician' and a click assigns at once (no Reassign button). Steps and expected are current."
+ },
+ {
+  "case": 96963,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 96969,
+  "automated": true,
+  "verdict": "needs_update",
+  "steps_preconds_changes": [
+   {
+    "field": "preconds",
+    "current": "(While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.)",
+    "proposed": "(While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Assign lead technician > click the technician; it is assigned at once.)",
+    "prd_rule": "S3-R14; S4-R13",
+    "prd_v74_quote": "S3-R14: Include the lead technician action in the card’s more-actions menu: “Assign lead technician” on a work order with no lead technician, “Reassign lead technician” on one that has a lead technician. | S4-R13: Clicking a technician in the dialog assigns them at once; there is no confirm button, and the dialog’s only button is Cancel."
+   }
+  ],
+  "expected_changes": [],
+  "note": "Setup line still gives an Estimate (no lead) its lead via 'Reassign lead technician > … > Reassign'; v74 menu item is 'Assign lead technician' and a click assigns at once (no Reassign button). Steps and expected are current."
+ },
+ {
+  "case": 96973,
+  "automated": true,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 154889,
+  "automated": false,
+  "verdict": "needs_update",
+  "steps_preconds_changes": [
+   {
+    "field": "preconds",
+    "current": "(While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.)",
+    "proposed": "(While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Assign lead technician > click the technician; it is assigned at once.)",
+    "prd_rule": "S3-R14; S4-R13",
+    "prd_v74_quote": "S3-R14: Include the lead technician action in the card’s more-actions menu: “Assign lead technician” on a work order with no lead technician, “Reassign lead technician” on one that has a lead technician. | S4-R13: Clicking a technician in the dialog assigns them at once; there is no confirm button, and the dialog’s only button is Cancel."
+   }
+  ],
+  "expected_changes": [],
+  "note": "Setup line still gives an Estimate (no lead) its lead via 'Reassign lead technician > … > Reassign'; v74 menu item is 'Assign lead technician' and a click assigns at once (no Reassign button). Steps and expected are current. S4-R12 gained a no-eligible-technician sentence in v74; not tested here."
+ },
+ {
+  "case": 368133,
+  "automated": true,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 368135,
+  "automated": true,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 368136,
+  "automated": true,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 368140,
+  "automated": true,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 581891,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 581892,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 581893,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 682423,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Matches v74 (Reassign on a work order with a lead, one-click assign, no Unassigned). S4-R12 gained the no-eligible sentence in v74; not tested here, quoted sentences unchanged."
+ },
+ {
+  "case": 682424,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 682425,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 682426,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 682427,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 682428,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 97002,
+  "automated": false,
+  "verdict": "needs_update",
+  "steps_preconds_changes": [
+   {
+    "field": "preconds",
+    "current": "(While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.)",
+    "proposed": "(While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Assign lead technician > click the technician; it is assigned at once.)",
+    "prd_rule": "S3-R14; S4-R13",
+    "prd_v74_quote": "S3-R14: Include the lead technician action in the card’s more-actions menu: “Assign lead technician” on a work order with no lead technician, “Reassign lead technician” on one that has a lead technician. | S4-R13: Clicking a technician in the dialog assigns them at once; there is no confirm button, and the dialog’s only button is Cancel."
+   }
+  ],
+  "expected_changes": [],
+  "note": "Setup line still gives an Estimate (no lead) its lead via 'Reassign lead technician > … > Reassign'; v74 menu item is 'Assign lead technician' and a click assigns at once (no Reassign button). Steps and expected are current."
+ },
+ {
+  "case": 97007,
+  "automated": true,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 97008,
+  "automated": true,
+  "verdict": "needs_update",
+  "steps_preconds_changes": [
+   {
+    "field": "preconds",
+    "current": "(While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.)",
+    "proposed": "(While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Assign lead technician > click the technician; it is assigned at once.)",
+    "prd_rule": "S3-R14; S4-R13",
+    "prd_v74_quote": "S3-R14: Include the lead technician action in the card’s more-actions menu: “Assign lead technician” on a work order with no lead technician, “Reassign lead technician” on one that has a lead technician. | S4-R13: Clicking a technician in the dialog assigns them at once; there is no confirm button, and the dialog’s only button is Cancel."
+   }
+  ],
+  "expected_changes": [],
+  "note": "Setup line still gives an Estimate (no lead) its lead via 'Reassign lead technician > … > Reassign'; v74 menu item is 'Assign lead technician' and a click assigns at once (no Reassign button). Steps and expected are current."
+ },
+ {
+  "case": 97009,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 368144,
+  "automated": true,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ },
+ {
+  "case": 97028,
+  "automated": false,
+  "verdict": "needs_update",
+  "steps_preconds_changes": [
+   {
+    "field": "preconds",
+    "current": "Board View starting values: VIN/Serial off in Fields to display, Density not Compact.",
+    "proposed": "Board View starting values: VIN/Serial off in Column Selection. Tech View starting value: Density not Compact.",
+    "prd_rule": "S5-R2; S6-R1",
+    "prd_v74_quote": "S5-R2: Board View offers a separate Column Selection picker in the same toolbar position and with the same interaction as the column chooser. | S6-R1: Offer Compact, Regular, and Comfortable density in Tech View. Board View has no Density control in this release (S3-R11)."
+   },
+   {
+    "field": "preconds",
+    "current": "In Board View, VIN/Serial is off and Density is not Compact (change them back if not).",
+    "proposed": "In Board View, VIN/Serial is off in Column Selection, and in Tech View Density is not Compact (change them back if not).",
+    "prd_rule": "S3-R11; S5-R2",
+    "prd_v74_quote": "S3-R11: Board View shows no Density control in this release (SV-11580). | S5-R2: Board View offers a separate Column Selection picker in the same toolbar position and with the same interaction as the column chooser."
+   },
+   {
+    "field": "steps",
+    "current": "Open Fields to display and turn VIN/Serial on, then pick Compact density.",
+    "proposed": "Open Column Selection and turn VIN/Serial on, then click Tech View, pick Compact density and click Board View.",
+    "prd_rule": "S5-R2; S3-R11; S6-R1",
+    "prd_v74_quote": "S5-R2: Board View offers a separate Column Selection picker in the same toolbar position and with the same interaction as the column chooser. | S3-R11: Board View shows no Density control in this release (SV-11580). | S6-R1: Offer Compact, Regular, and Comfortable density in Tech View. Board View has no Density control in this release (S3-R11)."
+   },
+   {
+    "field": "preconds",
+    "current": "(While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Reassign lead technician > pick the technician > Reassign.)",
+    "proposed": "(While a work order is an Estimate its Lead technician is read-only on the work order page; give an Estimate its lead from Board View instead: the card's More actions (…) > Assign lead technician > click the technician; it is assigned at once.)",
+    "prd_rule": "S3-R14; S4-R13",
+    "prd_v74_quote": "S3-R14: Include the lead technician action in the card’s more-actions menu: “Assign lead technician” on a work order with no lead technician, “Reassign lead technician” on one that has a lead technician. | S4-R13: Clicking a technician in the dialog assigns them at once; there is no confirm button, and the dialog’s only button is Cancel."
+   }
+  ],
+  "expected_changes": [
+   {
+    "current_quote_or_sentence": "Step 2: the field and density changes apply at once. … Step 4: after the refresh, Board View, VIN/Serial, Compact and Ben as lead are all still there. Analytics being blocked made no difference.",
+    "prd_rule": "S6-R3; S6-E1 (with S3-R11)",
+    "prd_v74_quote": "S6-R3: Density belongs to Tech View only. Board View’s fast-follow Card size (SV-11581) is saved separately. | S6-E1: Density applies to Tech View rows on Work Orders; Board View cards keep their current spacing in this release.",
+    "what_would_change": "Its quoted sources (S12-N1, S4-R5) are unchanged, but Steps 2 and 4 assume a Density setting on Board View. Under v74 density exists only in Tech View and Board cards keep their spacing, so 'Compact … still there' can only be seen in Tech View: Step 2's density change applies to Tech View rows, and Step 4 would read that Tech View is still Compact (Board View keeps VIN/Serial and Ben as lead). Field is held (Rule 114): report only."
+   }
+  ],
+  "note": "Board View has no Density control (S3-R11) and the picker is now 'Column Selection' (S5-R2); setup also still uses the old Reassign path for an Estimate. Expected step 2/4 assume Board View density."
+ },
+ {
+  "case": 590130,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Matches v74. Precondition 'density is Regular (the default)' is harmless: density now exists only in Tech View and Board cards ignore it (S6-E1)."
+ },
+ {
+  "case": 707078,
+  "automated": false,
+  "verdict": "up_to_date",
+  "steps_preconds_changes": [],
+  "expected_changes": [],
+  "note": "Preconditions, steps, expected and every quoted PRD sentence agree with v74."
+ }
+]

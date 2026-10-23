@@ -163,7 +163,7 @@ await p.context().route((u) => /maps\.googleapis|intercom|sentry\.io|mercure\.qa
 type Ev = { en: string; ep: Record<string, string>; uid: string | null; t: number };
 function tap(pg: Page) { const ev: Ev[] = []; (pg as any).__ev = ev;  // 15 Oct 2026: settle() waits on this list (L0339)
   const grab = (url: string, body: string | null) => { if (!/\/g\/collect|google-analytics\.com\/.*collect/.test(url)) return;
-    for (const l of (body ? body.split('\n') : [''])) { const q = new URLSearchParams((url.split('?')[1] ?? '') + '&' + l); const en = q.get('en'); if (en) ev.push({ en, ep: Object.fromEntries([...q.entries()].filter(([k]) => /^(ep|epn|up|upn)\./.test(k))), uid: q.get('uid'), t: Date.now() }); } };
+    for (const l of (body ? body.split('\n') : [''])) { const q = new URLSearchParams((url.split('?')[1] ?? '') + '&' + l); const en = q.get('en'); if (en) ev.push({ en, ep: Object.fromEntries([...q.entries()].filter(([k]) => /^(ep|epn|up|upn)\./.test(k))), uid: q.get('uid'), t: Date.now(), page: { dl: q.get('dl'), dt: q.get('dt'), dr: q.get('dr') } } as any); } };   /* 23 Oct: the page address/title each record carries (C97027) */
   // playbook: a sendBeacon body is not always exposed to a request listener, so intercept the collect route and read
   // postDataBuffer(); a post whose body cannot be read is COUNTED (unread), never reported as "no such event"
   (ev as any).unread = 0;
@@ -229,6 +229,10 @@ await run('C97027', async () => { const o: any = {}; const s = await mkSet('ZZAU
     const wo = ev.filter(WO); o.events = wo.length; o.values = [...new Set(wo.flatMap((e) => Object.entries(e.ep).map(([k, v]) => `${k}=${v}`)))].sort();
     const banned = ['Bravo', 'Ana', 'Alpha', w.number, s.q, 'ZZAUTOTEST', '$', String(vin ?? '#none#')].filter(Boolean);
     o.hits = o.values.filter((x: string) => banned.some((b) => x.includes(b)));
+    // 23 Oct 2026: also the page address (dl), title (dt) and referrer (dr) every record carries — the address holds the search text
+    o.pageValues = [...new Set(wo.flatMap((e: any) => [e.page?.dl, e.page?.dt, e.page?.dr].filter(Boolean).map((v: string) => decodeURIComponent(String(v).replace(/\+/g, ' ')))))];
+    o.pageHits = o.pageValues.filter((x: string) => banned.some((b) => x.includes(b)));
+    o.pagePositiveControl = { searchTextShownInBrowserAddress: decodeURIComponent(pg.url().replace(/\+/g, ' ')).includes(s.q), browserAddress: pg.url().slice(0, 160) };
     o.positiveControl = 'the banned list was matched against every parameter value of every Work Orders event'; });
   R.C97027 = o; });
 
@@ -257,7 +261,13 @@ await run('C97035', async () => { const o: any = {};
     await display(pg, 'Board View'); await settle(pg, 3000); await pg.locator('[data-test-id="button_board_fields_selection"]').click(); await pg.waitForTimeout(900);
     for (const f of ['service_advisor', 'lines_count', 'start_date']) { const l = pg.locator(`[data-test-id="toggle_board_field_${f}"]`); o[`has ${f}`] = await l.count(); await l.click().catch(() => {}); await pg.waitForTimeout(250); }
     await pg.keyboard.press('Escape'); await pg.waitForTimeout(1500); const n6 = ev.length;
-    await pg.mouse.move(800, 600); for (let i = 0; i < 6; i++) { await pg.mouse.wheel(0, 900); await pg.waitForTimeout(400); } await settle(pg);
+    // 23 Oct 2026: step 7 must really load more cards — scroll inside the longest column and count its cards before/after, with the list requests
+    const colCards = () => pg.evaluate(`[...document.querySelectorAll('[data-test-id^="board_column_"] .board-column__body')].map(b => ({ id: (b.closest('[data-test-id^="board_column_"]') || {}).getAttribute?.('data-test-id'), n: b.querySelectorAll('[data-test-id^="board_card_"]').length })).sort((x, y) => y.n - x.n)[0] || null`);
+    const reqs: string[] = []; const onReq = (r: any) => { if (/\/api\/work-orders/.test(r.url()) && r.method() === 'GET') reqs.push(r.url().replace(/^https?:\/\/[^/]+/, '').slice(0, 140)); }; pg.on('request', onReq);
+    o.step7before = await colCards();
+    for (let i = 0; i < 8; i++) { await pg.evaluate(`(() => { const col = [...document.querySelectorAll('[data-test-id^="board_column_"] .board-column__body')].sort((x, y) => y.querySelectorAll('[data-test-id^="board_card_"]').length - x.querySelectorAll('[data-test-id^="board_card_"]').length)[0]; if (col) col.scrollTop = col.scrollHeight; })()`); await pg.waitForTimeout(900); }
+    await settle(pg); o.step7after = await colCards(); o.step7requests = reqs.slice(0, 12); pg.off('request', onReq);
+    o.step7loadedMore = !!(o.step7before && o.step7after && o.step7after.n > o.step7before.n);
     const names = ['work_orders_display_view', 'work_orders_field_load', 'work_orders_density_load', 'work_orders_field_toggle', 'work_orders_density_change'];
     o.counts = Object.fromEntries(names.map((n) => [n, evs(ev, n).length])); o.total = names.reduce((s, n) => s + evs(ev, n).length, 0); o.step7new = ev.slice(n6).filter(WO).map(brief); o.toggles = evs(ev, 'work_orders_field_toggle').map(brief); o.otherWOEvents = [...new Set(ev.filter(WO).map((e) => e.en))]; });
   R.C97035 = o; });
