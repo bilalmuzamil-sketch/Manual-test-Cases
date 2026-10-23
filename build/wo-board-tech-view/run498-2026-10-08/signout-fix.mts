@@ -10,7 +10,7 @@ import { open, done, APP } from './session.mts';
 import { EV, t, shot } from './wob.mts';
 const { browser, page: p } = await open('/workorders?tab=all'); p.setDefaultTimeout(30_000);
 const o: any = {};
-const toasts = async (pg: typeof p, ms: number) => { const seen = new Set<string>(); const end = Date.now() + ms; while (Date.now() < end) { (await pg.evaluate(`[...document.querySelectorAll('.q-notification')].map(e => (e.className.match(/bg-([a-z-]+)/) || ['', '?'])[1] + ': ' + e.innerText.replace(/\\s+/g, ' ').trim())`).catch(() => []) as string[]).forEach((x) => seen.add(x)); await pg.waitForTimeout(250); } return [...seen]; };
+const toasts = async (pg: typeof p, ms: number) => { const seen = new Set<string>(); const end = Date.now() + ms; while (Date.now() < end) { (await Promise.race([pg.evaluate(`[...document.querySelectorAll('.q-notification')].map(e => (e.className.match(/bg-([a-z-]+)/) || ['', '?'])[1] + ': ' + e.innerText.replace(/\\s+/g, ' ').trim())`).catch(() => []), new Promise((r) => setTimeout(() => r(['(page did not answer within 3 s)']), 3000))]) as string[]).forEach((x) => seen.add(x)); await pg.waitForTimeout(250); } return [...seen]; };
 const report = async (pg: typeof p) => { await pg.locator('[data-test-id="button_desktop_nav_link"]').filter({ hasText: 'Reports' }).first().click(); await pg.waitForTimeout(2500); await pg.getByText('Inventory Value', { exact: true }).last().click(); };
 try {
   await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(5000); o.tab1Rows = await p.locator('tbody tr').count();
@@ -19,7 +19,7 @@ try {
   const so = t2.locator('.q-menu').getByText('Logout', { exact: true }).last(); o.signOutFound = await so.count(); console.log(t(), 'C368240 progress: sign-out item', o.signOutFound);
   if (o.signOutFound) { await so.click(); await t2.waitForTimeout(6000); } o.tab2 = t2.url().replace(APP, '').slice(0, 80); await shot(t2, 'C368240-tab2-signed-out');
   console.log(t(), 'C368240 progress: tab 2 at', o.tab2); await p.bringToFront(); await report(p).catch((e) => { o.reportClick = String(e).slice(0, 120); });
-  console.log(t(), 'C368240 progress: report clicked'); o.toasts = await toasts(p, 10_000); await p.waitForTimeout(2000);
+  console.log(t(), 'C368240 progress: report clicked'); fs.writeFileSync(path.join(EV, 'signout-fix.json'), JSON.stringify({ C368240: { ...o, partial: 'after report click' } }, null, 1)); o.toasts = await toasts(p, 10_000); await p.waitForTimeout(2000);
   o.tab1 = p.url().replace(APP, '').slice(0, 80); o.signInShown = /login|sign-?in/i.test(p.url()) || (await p.locator('input[type=password], button:has-text("Sign in"), button:has-text("Google")').count()) > 0;
   o.rowsLeft = await p.locator('tbody tr').count(); o.cardsLeft = await p.locator('[data-test-id^="board_card_"], [data-test-id^="tech_view_row_"]').count(); await shot(p, 'C368240-tab1');
   // sign in again through the sign-in page (DEV MODE quick-login on QA branches)
