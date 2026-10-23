@@ -678,3 +678,7 @@ Description opens "What the PRD (or design …) requires:" with the quote, then 
 A Failed / Blocked / Retest test whose ticket carries the Jira label `fast-follow` is not kept in the run: correct its comment
 (Rule 135(8) shape), then move the case to its suite's "Fast-follow" folder (create it if missing) and take it out of the run.
 `build/testing-tools/fast_follow_sweep.py --run N --suite-root <id>` finds and moves them (dry run first). Learning L0561.
+**Before moving a test to Fast-follow, and when a test flips Failed → Passed because the build changed to follow a newer PRD
+(QA lead 23 Oct 2026, L0562):** read the PRD live, diff the rules the test relies on against the version it quotes, update
+preconditions/steps that no longer match (Rule 114(b)), and list any Expected change for his per-case yes (114(c)); Automated →
+his go-ahead, then tell the automation engineer. A tester must never fail a test on its OLD text.
