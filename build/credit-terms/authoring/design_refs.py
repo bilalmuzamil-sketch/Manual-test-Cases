@@ -180,4 +180,3 @@ D("S12-02", [(1, 14)], [cap(M, 14, "Columns Event, User, Details")])
 for k in ("S12-03", "S12-04", "S12-05", "S12-06", "S12-07", "S12-10", "S12-15"):
     D(k, [(1, 14)], [cap(M, 14, "Columns Event, User, Details")])
 D("S12-16", [(1, 15)], [cap(M, 15, "Rendered from the local build with no log rows")])
-D("S12-19", [(1, 16)], [cap(M, 16, "Rendered from the local build with the log request failing."), cap(M, 16, "Differs from the PRD:")])   # CT-D08 (caption older than PRD v3)

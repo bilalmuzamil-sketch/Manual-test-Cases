@@ -73,7 +73,7 @@ for nm, key in (("Inventory Value", k), ("Sales By Customer", k + "b"), ("Work I
       [f"Step 1: {nm} opens with the same filter ticked as before.", "Step 2: the PDF downloads.", "Step 3: the same rows, amounts and layout as the saved PDF.",
        "Step 4: the CSV downloads.", "Step 5: the same rows, amounts and layout as the saved CSV."],
       ["KD-REUSE", J597], stories=[5, 3], marker=PRE_REL,
-      note="Why: the reports reuse the native chips, totals row and export of these three reports, so a change made for the aging reports could reach them (Rule 96, shared component).")
+      note="Why: the six aging reports reuse the filter chips, totals row and export of Inventory Value, Sales By Customer and Work In Progress, so a change made for the aging reports could reach those three.")
 
 k = nk()
 C(k, "REL", "Other reports keep their own export error message",
@@ -150,7 +150,7 @@ for nm, key in (("Sales By Customer", k), ("Inventory Value", k + "b"), ("Work I
       [f"Step 1: {nm} narrows to {{Location-A}}.", "Step 2: A/R Summary opens.",
        f"Step 3: {nm} opens again, and its Location filter is kept, or forgotten, exactly as you noted before the release."],
       ["KD-REUSE", J597] + TP.q("REGR"), stories=[5], marker=PRE_REL,
-      note="Why: the six reports must not remember filters (they reuse the shared filter parts with that switched off); the other reports must keep doing whatever they did before (Rule 96, shared component).")
+      note="Why: the six reports must not remember filters (they reuse the shared filter parts with that switched off); the other reports, which share those parts, must keep doing whatever they did before.")
 
 k = nk()
 C(k, "REL", "Sales By Customer's filter menus behave as before the release",

@@ -124,7 +124,7 @@ C(k, "DATA", "A/R Summary: the Totals row leaves out overpaid invoices, as the r
   ["Step 1: the row counts only {Invoice-B}: Total $500.00; the overpaid invoice is not in the row.",
    "Step 2: the Totals row's Total reads $500.00, and every column of the Totals row equals {Customer-A}'s row: the Totals row adds up exactly the rows above it."],
   ["WC-5", "S5-R18"],
-  note="To set this up, record a payment of $120.00 on the $100.00 invoice. If the test site does not accept a payment larger than the invoice, mark this test Blocked: \"setup not done\" and tell the QA lead.")
+  note="To set this up, record a payment of $120.00 on the $100.00 invoice.")
 
 # ---------------- Summary and Detail parity (PRD v9 S5-R18a, from Chris Ward's answer 9; released 26 Oct 2026, Rule 116) ----------------
 PAR_AR = ("{Customer-A} has an invoice of $1,000.00 at {Location-A} that is not yet due, an invoice of $400.00 at {Location-A} 45 days past due and an invoice of $300.00 at {Location-B} 15 days past due; "
@@ -209,17 +209,13 @@ C(k, "DATA", "A/P Detail: a PDF of exactly 2,000 lines downloads, 2,001 is refus
   ["S3-R9", "S3-N1", "S3-N3", "S3-R10", "S5-R13"] + TP.q("PDF30", "PDFENV"),
   note=("The QA organization has far more than 2,000 open A/P lines, so the exact boundary is reached by ticking vendors whose lines add up to 2,000; the setup file lists them for the day of the test. "
         "If step 4 shows \"We couldn't export this report. Please try again.\" while the CSV in step 2 worked, the test site may not have its PDF generator set up (tech plan): mark this test "
-        "Blocked: \"PDF generator not available on this site\" and tell the QA lead."))
+        "Blocked: \"PDF generator not available on this site\", not Failed."))
 
-k = nk()
-C(k, "DATA", "A/P Detail: a CSV of 50,000 rows downloads, 50,001 is refused",
-  [ADMIN(), ("On {Date-A} A/P Detail has exactly 50,000 open lines, and on {Date-B} exactly 50,001.", "For example: a prepared test organization (see the note)."),
-   START("APD")],
-  ["Set the as-of date to {Date-A}.", "Choose \"Download (CSV)\" from the ⋯ menu.", "Set the as-of date to {Date-B}.", "Choose \"Download (CSV)\" from the ⋯ menu."],
-  ["Step 1: 50,000 document rows.", "Step 2: the CSV downloads with the \"Success\" message.", "Step 3: 50,001 document rows.",
-   "Step 4: \"This report is too large to export. Choose an earlier as-of date, then try again.\": exactly one message, and nothing downloaded; there is no offer to email the export or prepare it in the background (that comes in a later phase)."],
-  ["S3-N2", "S3-N3", "UFS-2", "S3-R9", "OOS-1"], marker=LIMIT_HOLD,
-  note="No test site has 50,000 open A/P lines (the QA organization has 13,540), so a manual tester cannot reach this limit; the developers check it in their own check task (SV-11598).")
+# DATA-21 ("A/P Detail: a CSV of 50,000 rows downloads, 50,001 is refused", C715470) was DELETED from TestRail on 26 Oct 2026 on the
+# QA lead's order ("2. Delete these test cases": a manual tester cannot set it up; snapshot in
+# build/tester-readthrough-2026-10-26/deleted/). The counter still steps past it so DATA-22 onwards keep their keys; the requirements it
+# alone covered are recorded in ar_lib.DELETED and left to the developers' own checks. Never re-create it.
+nk()
 
 # ---------------- freshness: a payment shows on reload (Rule 116; PRD v9 S5-R18b, from Chris Ward's answer 9) ----------------
 k = nk()

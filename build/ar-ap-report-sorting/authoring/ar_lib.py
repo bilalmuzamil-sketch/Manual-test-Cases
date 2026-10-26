@@ -67,7 +67,18 @@ SETUP_URL = ("https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/clau
 NOBUILD = "The build is not yet available to check this case against."
 MARKER = "AUTOMATION: HOLD - not yet build-verified (no build yet)"
 PRE_REL = "AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site"
-BLOCKED = 'If any record above is missing, mark this test Blocked: "setup not done".'
+# 26 Oct 2026, Rule 117 FIFTEENTH amendment (QA lead: "B -> and never add that line in the future test cases too"): no case carries
+# the closing "mark this test Blocked: "setup not done"" line or any variant of it; build.py fails on any of these patterns anywhere in
+# a case (tester fields and notes) or in the setup file for Claude sessions.
+BLOCKED_LINE = re.compile(r'If any record above is missing|If you cannot set up any of the above|Blocked:? (?:\\?&quot;|\\?")setup not done', re.I)
+# 26 Oct 2026: cases DELETED from TestRail on the QA lead's order ("2. Delete these test cases": a manual tester cannot set them up;
+# snapshots in build/tester-readthrough-2026-10-26/deleted/). Their keys must never be re-created by an apply script. A requirement
+# only a deleted case covered is accepted by the coverage gates with DELETED_NOTE; one another case still covers names that case.
+DELETED_NOTE = ("No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' "
+                "own checks")
+DELETED = {"DATA-21": dict(case="C715470", title="A/P Detail: a CSV of 50,000 rows downloads, 50,001 is refused",
+                           codes=["S3-N2", "S3-N3", "UFS-2", "S3-R9", "OOS-1"],
+                           messages=["This report is too large to export. Choose an earlier as-of date, then try again."])}
 SCEN_PREFIX = "Scenario: "
 DESIGN_HOLD = "AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO"
 
@@ -213,16 +224,16 @@ def ui_res(s):
     return s.replace("marked as the sorted column", "marked as the sorted column (a small arrow beside its heading)", 1) if "small arrow" not in s else s
 
 CASES = []
-def C(key, sec, title, pre, steps, res, q, stories=None, note="", marker=None, known="", reports=None, design=None, scenario=None):
+def C(key, sec, title, pre, steps, res, q, stories=None, note="", marker=None, known="", reports=None, design=None, scenario=None, design_codes=None):
     """pre: list of str or (state, example). res: one 'Step N:' line per step. q: PRD codes, NAMED keys, SUB keys or ('label', 'verbatim').
     design: None (pictures chosen from the codes the case quotes) or a dict: figs (I-ids), boards (for a picture used twice), why, words.
     scenario: the case's "Scenario:" sentence (Rule 117 thirteenth amendment); by default taken from scenarios.SCENARIO by key and
     rendered as the first Preconditions bullet."""
     pre = [p if isinstance(p, tuple) else (p, None) for p in pre]
     CASES.append(dict(key=key, sec=sec, title=title, scenario=scenario if scenario is not None else SCENARIO.get(key, ""),
-                      pre=[(ui(a), ui(b) if b else b) for a, b in pre] + [(BLOCKED, None)],
+                      pre=[(ui(a), ui(b) if b else b) for a, b in pre],
                       steps=[ui(x) for x in steps], res=[ui_res(x) for x in res], q=q, stories=stories, note=note, marker=marker or MARKER,
-                      known=known, reports=reports, design=design))
+                      known=known, reports=reports, design=design, design_codes=design_codes))
 
 def quotes(c):
     out = []
@@ -267,7 +278,8 @@ def design_block(c):
     the board and page, the pictures to compare against, the design's own words (board title, figure heading, caption), every
     design-vs-PRD difference that touches the case (Rule 130 item 3), rulings, and what the design does not draw."""
     d = c["design"] if isinstance(c["design"], dict) else {}
-    codes = codes_of(c); reps = reports_of(c)
+    # 26 Oct 2026 (tester read-through): a case that gained a quote as a visible control keeps the pictures its own codes chose before
+    codes = set(c["design_codes"]) if c.get("design_codes") else codes_of(c); reps = reports_of(c)
     boards = d.get("boards", {})
     figs = [DD.fig(i, boards.get(i)) for i in d.get("figs", [])] or DD.relevant(codes, reps)
     figs = figs + [f for f in DD.before_for(codes, reps) if f not in figs]
@@ -348,7 +360,8 @@ def tail(c):
 
 def render(c):
     """Rule 117 fourteenth amendment (26 Oct 2026, the QA lead's own pattern, "Yes, permanent, all suites"): Preconditions as plain
-    bullets in setup order (no Scenario line, placeholder, "For example:" line or setup-file link; the Blocked line last); Steps;
+    bullets in setup order (no Scenario line, placeholder, "For example:" line or setup-file link; since the fifteenth amendment
+    of 26 Oct 2026 no "mark this test Blocked" line); Steps;
     "Expected Result" with a "Step N:" heading and one bullet per fact for each step; one blank paragraph; then tail(c) unchanged.
     The case model (C() above, with placeholders and examples) stays the source; pattern.pattern(c) writes the tester's words."""
     import pattern as PT
@@ -380,7 +393,7 @@ def check(c):
         if x not in defined: p.append(f"{k}: example line names {{{x}}} that no precondition defines")
     for a, b in c["pre"]:
         if b and not b.startswith("For example:"): p.append(f"{k}: example line must start 'For example:'")
-        if PH.search(a) and not b and a != BLOCKED and not a.startswith("Starting screen") and "{Location-" not in a and "{Role-" not in a:
+        if PH.search(a) and not b and not a.startswith("Starting screen") and "{Location-" not in a and "{Role-" not in a:
             pass
     tester = " ".join([c["scenario"]] + [a for a, _ in c["pre"]] + c["steps"] + c["res"])
     if "ZZAUTOTEST" in tester: p.append(f"{k}: hard-coded record in tester text (examples go on the For example line)")

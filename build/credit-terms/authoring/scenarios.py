@@ -31,8 +31,6 @@ SCEN = {
 "S1-24": "Your shop has every standard term switched on, and you open the row menu of the locked terms.",
 "S1-25": "Your shop uses only two credit terms of its own and has switched off every other term it can.",
 "S1-26": "Your shop's own term was used on an invoice, and that customer has since been moved to another term.",
-"S1-27": "Your shop has switched off at least one term, and you open the Inactive tab before the list has loaded.",
-"S1-28": "The credit term list cannot be loaded for a moment when you open the Credit Terms page.",
 "S1-29": "You check that the Admin role always keeps access to Finance settings.",
 "S1-30": "A Parts Manager, on the role as it comes out of the box, works with credit terms while Net 30 is in use.",
 "S1-31": "An Office User, on the role as it comes out of the box, works with credit terms while Net 30 is in use.",
@@ -76,7 +74,6 @@ SCEN = {
 "S2-32": "Two Admins work at once; one deletes an unused term while the other makes it the default.",
 "S2-33": "Two Admins work at once; one makes a term the default while the other switches it off.",
 "S2-34": "Two Admins work at once, and both delete the same unused term.",
-"S2-35": "Someone tries to switch off COD without using the Credit Terms page.",
 "S2-36": "Two Admins work at once; one renames an unused term while the other's page still shows the old name.",
 # ---- Story 3: create or edit a credit term
 "S3-01": "Your shop has every standard term switched on, and you start a new credit term.",
@@ -105,8 +102,6 @@ SCEN = {
 "S3-24": "Your shop wants terms named like Net terms whose due rule differs from the name.",
 "S3-25": "Two Admins work at once and both create a new term with the same name.",
 "S3-26": "Two Admins work at once; one edits an unused term while the other puts a customer on it.",
-"S3-27": "Someone tries to create a term with a 32-character name without using the New Credit Term window.",
-"S3-28": "Someone tries to create a term with no due option chosen, without using the New Credit Term window.",
 # ---- Story 4: Move Customers
 "S4-01": "Your shop's own term is held by three customers with different credit limits, and you open Move Customers for it.",
 "S4-02": "Your shop has customers on COD, one with no credit term at all, and the Counter Sale customer.",
@@ -137,11 +132,9 @@ SCEN = {
 "S4-27": "A user whose custom role can edit customers but has no AP/AR Data access opens Move Customers.",
 "S4-28": "A user whose custom role has AP/AR Data access but cannot edit customers opens Move Customers.",
 "S4-29": "A user whose custom role has Finance settings, customer editing and AP/AR Data access moves a customer.",
-"S4-30": "A user without AP/AR Data access tries to move Net 20's customers without using the Credit Terms page.",
 "S4-31": "Two Admins work at once; one moves two customers while the other puts one of them on Net 60.",
 "S4-32": "Two Admins work at once; one moves a term's only customer while the other has already changed its term.",
 "S4-33": "Two Admins work at once; one moves a customer to Net 45 while the other switches Net 45 off.",
-"S4-34": "Your shop moves three customers to Net 45, but the move cannot complete.",
 "S4-35": "Your shop switched off a term of its own and moves its last customer to Net 30.",
 "S4-36": "Your shop moves an older customer stored as \"NET 30\" in capitals to Net 45.",
 # ---- Story 5: New Customer and Edit Customer
@@ -167,9 +160,7 @@ SCEN = {
 "S5-20": "A Service Manager, who cannot open Finance settings, adds a customer while a term of the shop's own is the default.",
 "S5-21": "Two Admins work at once; one is adding a customer while the other changes the default term.",
 "S5-22": "Your shop has an older customer whose credit term text, such as Prepaid, is not a term ShopView knows.",
-"S5-23": "Your shop's own term is the default, and you open the term dropdown before the list has loaded.",
 "S5-24": "Two Admins work at once; one is adding a customer on a term of the shop's own while the other switches that term off.",
-"S5-25": "Someone tries to save a COD customer with a $500 credit limit without using the customer window.",
 "S5-26": "You add a new COD customer from a phone.",
 # ---- Story 6: vendors
 "S6-01": "Your shop has its own default term for customers, has switched off Net 50, and you pick a term for a new vendor.",
@@ -277,7 +268,6 @@ SCEN = {
 "S12-16": "Your shop existed before the release and nobody has used the Credit Terms page since.",
 "S12-17": "You change a Net 30 vendor's term to Net 45 in Edit Vendor, and then check the history.",
 "S12-18": "A user without Finance settings tries to read the credit terms history without using the page.",
-"S12-19": "The credit terms history cannot be loaded for a moment when you open it.",
 # ---- Counts and due dates: exact numbers
 "DATA-01": "A Net 30 customer has a work order ready to invoice, dated Oct 5, 2026.",
 "DATA-02": "A customer on the shop's own term due 10 days after the invoice date has a work order ready to invoice.",

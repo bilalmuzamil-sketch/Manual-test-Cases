@@ -146,12 +146,6 @@ cu("S5-22", "A customer stored with unknown term text shows that text in Edit Cu
    [("Open Edit Customer for {Customer-A}.", "Credit Terms shows {Text-A} selected, without \"(Inactive)\"."), ("Open the Credit Terms dropdown.", "{Text-A} is listed after the active terms.")],
    ["S5-E2"], start=None)
 
-cu("S5-23", "Before the term list loads, the dropdown shows the twelve standard terms",
-   [("The shop's own term {Term-A} is the default.", "For example: {Term-A} is ZZAUTOTEST S5-23 Fourteen.")],
-   [NEWC, ("Open the Credit Terms dropdown before the term list has loaded.", "it shows the twelve standard terms; as soon as the list arrives, {Term-A} is filled in as the default.")],
-   ["S5-E3"], marker=HOLD("a manual tester cannot hold the term list in its loading state (it needs a slowed network)"),
-   note="On a normal connection the list loads before the window opens, so a manual tester cannot see this state; it is for an automated check with a slowed network.")
-
 cu("S5-24", "Saving New Customer on a term deactivated meanwhile is refused",
    [("You and a second user, {User-B}, are both signed in with the \"Admin\" role, in two separate browsers.", "For example: {User-B} is ZZAUTOTEST S5-24 Second Admin."),
     DEFAULT_COD, OWN14("S5-24"), ("A name for the new customer, {Customer-A}.", "For example: {Customer-A} is ZZAUTOTEST S5-24 Customer."),
@@ -160,12 +154,6 @@ cu("S5-24", "Saving New Customer on a term deactivated meanwhile is refused",
     ('In {User-B}\'s browser, click the "⋯" at the right of the {Term-A} row.', "the menu opens."), ('In {User-B}\'s browser, click "Deactivate".', '{User-B} sees "{Term-A} deactivated".'),
     ("In your browser, click Save.", 'the app\'s error alert shows "Pick an active credit term." The New Customer window stays open and the customer is not created.')],
    ["EH-S5a", "UFS-46"], start=None)
-
-cu("S5-25", "A limit above $0 sent for a COD customer is refused by the server", [],
-   [("Send a save for a COD customer with a credit limit of 500 by a means other than the window (the window locks the limit at $0.00).",
-     f'the save is refused with "{LOCKTXT}" and the form stays open.')],
-   ["EH-S5b", "UFS-45"], marker=HOLD("the window locks Credit Limit at $0.00 for COD and Credit Hold, so only a save sent outside the window can reach this refusal"),
-   note="A manual tester cannot reach this (S5-03 and S5-04 check the lock). It is for an automated check.", start=None)
 
 cu("S5-26", "On a phone, Credit Terms and Credit Limit stay side by side",
    [DEFAULT_COD, ("You use a phone (or a browser window 390 pixels wide with touch input).", None)],

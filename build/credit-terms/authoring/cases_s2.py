@@ -236,14 +236,6 @@ st, rs = seq(mine('In your browser, click the "⋯" at the right of the {Term-A}
 C("S2-34", "S2", "Deleting a term another user already deleted says it was not found",
   [ADMIN()] + TWO + [DEFAULT_COD, own("{Term-A}", "net 14", ", held by no customer, vendor or invoice", "ZZAUTOTEST S2-34 Fourteen"), BOTH], st, rs, ["EH-S2", "UFS-33"])
 
-C("S2-35", "S2", "Deactivating COD, Due on Receipt or Credit Hold is refused by the server",
-  [ADMIN(), PAGE],
-  ["Send a deactivate request for COD by a means other than the page (the page never offers it)."],
-  ['Step 1: the request is refused and the app\'s error alert reads "Always available. COD, Due on Receipt and Credit Hold can\'t be deactivated." COD stays active.'],
-  ["EH-S2", "UFS-31", "KD-THREE"],
-  marker=HOLD("the page never offers Deactivate on these three terms, so only a request sent outside the page can reach this refusal"),
-  note="A manual tester cannot reach this: the menu never offers Deactivate on COD, Due on Receipt or Credit Hold (cases S2-01 to S2-05 check that). It is for an automated check.")
-
 st, rs = seq(([f'In {{User-B}}\'s browser, click the "⋯" at the right of the {{Term-A}} row.', 'In {User-B}\'s browser, click "Edit".', "In {User-B}'s browser, replace the Name with {Term-B}.", 'In {User-B}\'s browser, click "Save Changes".'],
                ["{User-B}'s menu opens.", '{User-B}\'s "Edit Credit Term" window opens.', "the Name reads {Term-B}.", '{User-B} sees the toast "{Term-B} saved".']),
              mine('In your browser, without reloading, click the "⋯" at the right of the {Term-A} row.', "your menu opens."),

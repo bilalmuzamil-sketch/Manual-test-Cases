@@ -76,7 +76,7 @@ st("TP-04", "§1 NFR-001, line 69; Clarifications intake 1, line 84; §3 D1, lin
 st("TP-05", "§1 NFR-002, line 70", "every list read SQL-paginated with a total ORDER BY ending in a unique key",
    "CONFIRM", ["DATA-01", "DATA-02", "DATA-03", "DATA-04", "DATA-05", "DATA-06"], "Paging never repeats or skips (PRD S1-R8) in any sort.")
 st("TP-06", "§1 NFR-003, line 71", "export refused on a lean COUNT before any projection; CSV streamed row by row.",
-   "CONFIRM", ["DATA-18", "DATA-19", "DATA-20", "DATA-21"], "Refused straight away, before anything is generated (PRD S3-N1).")
+   "CONFIRM", ["DATA-18", "DATA-19", "DATA-20"], "Refused straight away, before anything is generated (PRD S3-N1).")
 st("TP-07", "§1 NFR-004, line 72; §9 Security", "every id list validated against the organization.",
    "CONFIRM", ["S5-21", "S5-35", "S5-36"], "Tenant isolation is a developer test; what a tester sees is that an id the organization does not hold, in a link, is ignored (D29).")
 st("TP-08", "§1 NFR-005, line 73; §3 D5, line 134; §6 Phase 1 unit tests", "FE sends one request per settled filter change: chip→query path debounced (~400 ms), superseded requests aborted, opening fetch gated until URL state is reconciled.",
@@ -84,7 +84,7 @@ st("TP-08", "§1 NFR-005, line 73; §3 D5, line 134; §6 Phase 1 unit tests", "F
 st("TP-09", "§1 NFR-006, NFR-007, NFR-008 (lines 74-76); §3 D12, D24; §4; §9 statement budgets", "NFR-007 (analysis) — per-endpoint statement budget pinned by a query-budget test that also asserts the writer saw zero aging statements.",
    "EXCLUDED", [], "Query plans, indexes, statement budgets and the 1.5 s EXPLAIN gate are measured by the developers on a staging clone; none is a limit the user sees on screen.")
 st("TP-10", "§1 NFR-009, line 77; Clarifications Q1", "background exports: moved by Product to a later phase of this epic (SV-11445), designed and specified before it is planned. Not part of this plan.",
-   "CONFIRM", ["DATA-21"], "Step 6 of DATA-21: no offer to email the export or prepare it in the background (PRD Out of Scope).")
+   "CONFIRM", [], "Was step 4 of the CSV 50,000-row case (no offer to email the export or prepare it in the background, PRD Out of Scope); that case was deleted on 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up), so this is left to the developers' own checks.")
 st("TP-11", "§1 Clarifications, Q2 (line 89); §3 D13 (line 142)", "A vendor account is per (vendor, location) on every write path (delivery, manual credit, return credit), so vendor_account.workplace_id already is the document's location.",
    "CHANGE", ["S5-16", "S5-17"], "A vendor has no single \"own location\": each bill or credit belongs to the location it was written at. S5-16 and S5-17 now say where each document was entered, not \"the vendor's own location\".")
 st("TP-12", "§1 Clarifications, Q3 (line 90)", "Removed from S5-R19 (never shipped). S5-N3 stands.",
@@ -154,7 +154,7 @@ st("TP-43", "§3 D32, line 156", "Phone shown only when non-blank: NULLIF(TRIM(c
 st("TP-44", "§5 API, line 186; §9 Security, line 564", "Every endpoint #[IsGranted(ROLE_REPORT_VIEW)] (S1-N1, PRD Permissions). No new permission.",
    "CONFIRM", ["S1-14", "REL-04", "REL-04b"], "Same as PRD S1-N1 and Key Decisions, Permissions.")
 st("TP-45", "§5 API, line 190", "export 400 ReportExportTooLargeError with the exact S3-N1 / S3-N2 text",
-   "CONFIRM", ["DATA-18", "DATA-19", "DATA-20", "DATA-21", "D-55"], "The messages are the PRD's, word for word.")
+   "CONFIRM", ["DATA-18", "DATA-19", "DATA-20", "D-55"], "The messages are the PRD's, word for word.")
 st("TP-46", "§5 API, lines 194-200", "ar-aging/customers/resolve, ap-aging/vendors/resolve (customers= / vendors=) | collection[{id, name}] in request (tick) order",
    "CONFIRM", ["S5-24", "S3-09", "DATA-01", "S4-07"], "Paging sizes (30 rows, 30 groups, 100 lines per bucket) and the tick-order resolve are the PRD's.")
 st("TP-47", "§5 API, line 205", "link is null for credit memos, deposits and vendor credits not from a vendor return.",

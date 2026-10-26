@@ -3,7 +3,7 @@
 flags and settings, shared procedures, one recipe per case with every placeholder's example value, the mapping table, dependencies,
 reset and cleanup, traceability (each case's verbatim source sentences), VIU status and open questions.
 Holds no environment address, credentials, cookies or session data. python3 render_setup.py"""
-import os, sys, re, json, importlib
+import os, sys, re, json, importlib, html
 D = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, D)
 import ct_lib as L
 import pattern as PAT
@@ -105,6 +105,9 @@ for c in L.CASES:
     A(f"Section: {NAMES[c['sec']]} (TestRail section {SEC[c['sec']]}). Marker: `{c['marker']}`.")
     A("Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):")
     for a, b in c["pre"]: A(f"- {a}" + (f" {b}" if b else ""))
+    _f = L.render(c)   # 26 Oct 2026 tester read-through: the plain preconditions exactly as the TestRail case states them
+    A("Preconditions as the TestRail case states them (tester read-through, 26 Oct 2026):")
+    for _b in re.findall(r"<li>(.*?)</li>", _f["custom_preconds"], re.S): A("  - " + html.unescape(_b))
     nm = PAT.names_for(c)
     if nm: A("Names in the TestRail case (Rule 117 fourteenth amendment): " + ", ".join(f"{p} = {v}" for p, v in nm.items()) + ".")
     phs = sorted(set(re.findall(r"\{([A-Z][^{}]*)\}", " ".join(a for a, _ in c["pre"]))))
@@ -143,5 +146,9 @@ for c in L.CASES:
     if m: held.setdefault(int(m.group(1)), []).append(c["key"])
 for i, (slug, q, basis, opts, holds) in enumerate(QUESTIONS, 1):
     A(f"- Q{i}: {q} — held cases: {', '.join(held.get(i, [])) or 'none'}")
-open(f"{L.P}/CREDIT-TERMS-SETUP-FILE.md", "w").write("\n".join(Lines) + "\n")
+_out = "\n".join(Lines) + "\n"
+# Rule 117 fifteenth amendment (26 Oct 2026): the setup file never carries the "mark this test Blocked" line or a variant
+if re.search(r"mark this test Blocked|If you cannot set up any of the above|If any record above is missing", _out, re.I):
+    raise SystemExit("setup file would carry a 'mark this test Blocked' line: refused")
+open(f"{L.P}/CREDIT-TERMS-SETUP-FILE.md", "w").write(_out)
 print("setup file:", len(Lines), "lines")

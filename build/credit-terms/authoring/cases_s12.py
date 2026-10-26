@@ -126,9 +126,3 @@ lg("S12-18", "The log is refused by the server without Settings Finance", [],
    ["S12-N1"], marker=HOLD("without Settings Finance the page and its menu cannot be reached, so only a request sent outside the page can reach this refusal"),
    note="Case S1-22 checks that such a user cannot reach the page or its menu. This part is for an automated check.", start=None,
    who=("You are signed in as {User-A}, whose role has no Settings → Finance.", "For example: {User-A} is ZZAUTOTEST S12-18 User."))
-
-lg("S12-19", "If the log cannot load, it says so and the page is unaffected", [],
-   [LOG[0], ('Click "Audit Log" while the log cannot be loaded.', 'the app\'s error alert shows "Something went wrong loading the Credit Terms Log. Please try again."; the table shows no rows and the same sentence in place of "No history here. Yet."'),
-    ("Close the log.", "the Credit Terms page is still there and works as before.")],
-   ["EH-S12", "UFS-51"], marker=HOLD("a manual tester cannot make the log fail to load on demand"),
-   note="A manual tester cannot force the log to fail (switching the network off may show the app's offline message instead); this is for an automated check or a developer-made failure.")

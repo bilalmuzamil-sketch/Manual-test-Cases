@@ -171,17 +171,3 @@ win("S3-26", "Saving an edit after another user put a customer on the term is re
      ("In {User-B}'s browser, click Save.", "the customer is saved on {Term-A}."),
      ('In your browser, click "Save Changes".', 'the app\'s error alert shows "Used by 1 customer. Deactivate it instead to take it out of the pickers." The window stays open with 21 still typed, and the row still reads 14 days.')],
     ["EH-S3a", "KD-LOCK", "OOS-6"], start=None)
-
-win("S3-27", "A name longer than 31 characters is refused by the server", [],
-    [("Send a create request with a 32-character name by a means other than the window (the window stops at 31).",
-      'the request is refused with "Use 31 characters or fewer." and no term is created.')],
-    ["S3-R9 LONG", "UFS-21", "EH-S3a"],
-    marker=HOLD("the Name field stops at 31 characters, so only a request sent outside the window can reach this refusal"),
-    note="A manual tester cannot reach this (case S3-12 checks the field stops at 31). It is for an automated check.")
-
-win("S3-28", "A create request with no option chosen is refused", [],
-    [("Send a create request with a name and no option by a means other than the window (the window always has one chosen).",
-      'the request is refused with "Pick Due Net X days or Due day of the following month." and no term is created.')],
-    ["UFS-26", "EH-S3a"],
-    marker=HOLD("the window always has one option chosen, so only a request sent outside the window can reach this refusal"),
-    note="A manual tester cannot reach this. It is for an automated check.")

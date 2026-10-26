@@ -1,7 +1,7 @@
 """The QA lead's own case pattern (Rule 117 fourteenth amendment, 26 Oct 2026, "Yes, permanent, all suites").
 Turns each case's authoring data (which keeps its {placeholders} and "For example:" lines for the setup file) into the TestRail form:
 plain precondition bullets in setup order ("Sign in as …", "Have …", "Make sure …", "Use a desktop browser …", "Start on …"), the
-Blocked line last; steps with plain record names; "Step N:" followed by one bullet per sentence of the result. Records keep a plain
+no Blocked line (fifteenth amendment, 26 Oct 2026); steps with plain record names; "Step N:" followed by one bullet per sentence of the result. Records keep a plain
 name that is the same in the preconditions, steps and results ("term A", "customer B", "work order 1", "the test location"). A value the
 result depends on (an amount, an unknown term text) becomes a plain fact (VALUES); a value read at setup time is a named number or date
 ("number A", "date B"). Example names (ZZAUTOTEST …, S2-15440, Staging Heavy Duty - 9919) are dropped: they were only examples and stay in
@@ -180,7 +180,7 @@ def pattern_pre(c, names, blocked):
         bullets = ov if ov else [pre_rule(a)]
         out += [_cap(sub(b, names)) for b in bullets]
     out = sorted(out, key=order_key)  # stable: setup order, the starting screen last
-    return out + [BLOCKED_P]
+    return out   # 26 Oct 2026, Rule 117 fifteenth amendment: no Blocked line (BLOCKED_P kept only as the text the gate rejects)
 
 # ---------------------------------------------------------------- steps and results
 STEP_OVR = {}   # (key, step number) -> plain step

@@ -58,8 +58,6 @@ REPL = {
                "For example: {Term-A} is ZZAUTOTEST S4-18 N20, {Customer-A} is ZZAUTOTEST S4-18 Alpha and the other is ZZAUTOTEST S4-18 Bravo.")]},
  "S4-20": {THREE: [("The shop's own term {Term-A}, due 15 days after the invoice date, is held by exactly three customers made for this test (a new term holds only this case's customers), one of them {Customer-B}.",
                     "For example: {Term-A} is ZZAUTOTEST S4-20 N15 and the customers are ZZAUTOTEST S4-20 Alpha, ZZAUTOTEST S4-20 Bravo ({Customer-B}) and ZZAUTOTEST S4-20 Charlie.")]},
- "S4-34": {THREE: [("The shop's own term {Term-A}, due 15 days after the invoice date, is held by exactly three customers made for this test (a new term holds only this case's customers).",
-                    "For example: {Term-A} is ZZAUTOTEST S4-34 N15, held by ZZAUTOTEST S4-34 Alpha, Bravo and Charlie.")]},
  "S4-36": {"Your user name is {User-A}.": []},
  "S5-13": {"Customer {Customer-A} holds the shop's own term {Term-A}, which has a 31-character name. Work order {Work-order-1} for {Customer-A} has an estimate and an invoice.":
              [("Work order {Work-order-1} has an estimate and an invoice, for a customer who holds the shop's own term {Term-A}, which has a 31-character name.",
@@ -273,10 +271,6 @@ REPL["D-44"]["Work order {Work-order-1} for {Customer-A} was invoiced with the i
 REPL["D-44"]["Starting screen: work order {Work-order-1}."] = [("Starting screen: that work order.", None)]
 
 NOTE_REPL = {
- "S2-35": "A manual tester cannot reach this: the menu never offers Deactivate on COD, Due on Receipt or Credit Hold. It is for an automated check.",
- "S3-27": "A manual tester cannot reach this (the Name field stops at 31 characters). It is for an automated check.",
- "S4-30": "A manual tester cannot reach this: the page greys the item for such a user, and an old open window does not help, because changing the user's role signs them out. It is for an automated check.",
- "S5-25": "A manual tester cannot reach this (the window locks the limit at $0.00). It is for an automated check.",
  "S12-18": "Such a user cannot reach the page or its menu. This part is for an automated check.",
  "D-10": "The design keeps the column headings above the line (question 9, register CT-D02); this case follows the PRD. The design's version is held separately until the PO answers.",
  "D-15": "Whether the blue line shows while only the Name is wrong is question 10 (CT-D03), held separately; this case types two wrong values, where design and PRD agree that no blue line shows.",

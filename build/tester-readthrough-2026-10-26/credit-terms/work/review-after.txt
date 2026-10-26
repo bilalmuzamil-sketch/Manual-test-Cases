@@ -1,0 +1,495 @@
+=== S1-02 C723866 [S1] Both tabs show the same columns at the same widths
+  + PRE: Sign in as an Admin at the test location. | Make sure at least one term is deactivated; call it term A. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S1-06 C723870 [S1] Clicking Customers sorts lowest count first, and again highest first
+  + PRE: Sign in as an Admin at the test location. | Create three new terms of the shop's own for this test: term A held by exactly 1 customer, term B by 2 and term C by 3. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S1-07 C723871 [S1] Clicking Vendors sorts lowest count first, and again highest first
+  + PRE: Sign in as an Admin at the test location. | Create two new terms of the shop's own for this test: term A held by exactly 1 vendor and term B by 2. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S1-18 C723882 [S1] The Default tag follows the shop's own term when it is the default
+  + PRE: Sign in as an Admin at the test location. | Have the shop's own active term A, due 14 days after the invoice date, set as the default for new customers. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 1: It reads term A's name followed directly by a "Default" tag (no info or lock icon). / COD shows its info and lock icons and no "Default" tag. / Term A is the only row with the tag.
+=== S1-19 C723883 [S1] Customers and Vendors counts are right aligned and show 0 when none
+  + PRE: Sign in as an Admin at the test location. | Create a new term of the shop's own for this test, term A, due 14 days after the invoice date, held by no customer and no vendor. | Make sure at least one customer holds Net 30. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 1: Both cells read "0" (not blank, not a dash), right aligned in their columns. / Net 30's Customers count is right aligned, its last digit lined up with the 0 of the term A row.
+=== S1-20 C723884 [S1] A long term name wraps onto a second line and is never cut off
+  + PRE: Sign in as an Admin at the test location. | Have the shop's own active term A with a 31-character name, due 14 days after the invoice date, set as the default for new customers. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S1-21 C723885 [S1] Switching location reloads the page with the same terms and counts
+  + PRE: Sign in as an Admin at the test location. | Make sure you are also enrolled at a second location, location B. | Have the shop's own active term A, due 14 days after the invoice date, held by 2 customers and set as the default for new customers. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S1-22 C723886 [S1] Without Settings Finance a user cannot see or open Credit Terms
+  + PRE: Sign in as a user whose role has every Settings page except Finance. | Have the web addresses of the Credit Terms page and of the Payment Methods page, copied earlier from an Admin's browser. | Start on the Settings page.
+  +   4. Paste the Payment Methods page's web address into the browser's address bar.
+  +   5. Press Enter.
+  +   Step 3: The Credit Terms page does not show. / No "New Credit Term" button is reachable.
+  +   Step 4: The address is in the address bar.
+  +   Step 5: The app behaves exactly as in step 3 (the same redirect or not-found page): this user is kept out of Payment Methods the same way as out of Credit Terms.
+=== S1-25 C723889 [S1] With every term deactivated, Active keeps the three fixed terms and the default
+  + PRE: Sign in as an Admin at the test location. | Have exactly two terms of the shop's own and no others: term A, due 14 days after the invoice date, and term B, due on the 10th of the following month. | Make sure term A is the default for new customers. | Make sure every term that can be switched off is deactivated: Net 7, Net 15, Net 20, Net 30, Net 45, Net 50, Net 60, Net 90, Net 120 and term B. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S1-26 C723890 [S1] A term held only by an invoice shows 0 and 0 but is still in use
+  + PRE: Sign in as an Admin at the test location. | Create a new term of the shop's own for this test, term A, due 14 days after the invoice date. | Create a customer for this test on term A, and create one invoice for that customer. | Then change that customer's credit term to Net 30, so term A is held by no customer or vendor but is still in use by the invoice. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S1-32 C723896 [S1] The out-of-the-box Service Manager role cannot open Credit Terms
+  + PRE: Sign in as a user on the out-of-the-box "Service Manager" role, reset to its template. | Start on the Settings page.
+  +   1. Look at the Finance group of the Settings menu.
+  +   2. Open the Customers page.
+  +   3. Click "New Customer".
+  +   Step 2: The Customers page opens.
+  +   Step 3: New Customer shows the "Credit Terms" and "Credit Limit" fields (the role has View and Manage AP/AR Data).
+=== S1-33 C723897 [S1] The out-of-the-box Senior Service Advisor role cannot open Credit Terms
+  + PRE: Sign in as a user on the out-of-the-box "Senior Service Advisor" role, reset to its template. | Start on the Settings page.
+  +   1. Look at the Finance group of the Settings menu.
+  +   2. Open the Customers page.
+  +   3. Click "New Customer".
+  +   Step 2: The Customers page opens.
+  +   Step 3: New Customer shows the "Credit Terms" and "Credit Limit" fields (the role has View and Manage AP/AR Data).
+=== S1-34 C723898 [S1] The out-of-the-box Sales Representative role cannot open Credit Terms
+  + PRE: Sign in as a user on the out-of-the-box "Sales Representative" role, reset to its template. | Start on the Settings page.
+  +   1. Look at the Finance group of the Settings menu.
+  +   2. Open the Customers page.
+  +   3. Click "New Customer".
+  +   Step 2: The Customers page opens.
+  +   Step 3: New Customer shows the "Credit Terms" and "Credit Limit" fields (the role has View and Manage AP/AR Data).
+=== S2-07 C723907 [S2] An inactive standard Net term shows Reactivate before Move Customers
+  +   Step 1: The Inactive tab shows Net 50.
+=== S2-12 C723912 [S2] A shop term held only by invoices says how many invoices
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Create a new term of the shop's own for this test, term A, due 14 days after the invoice date. | Create a customer for this test on term A, and create five invoices for that customer. | Then change that customer's credit term to Net 30, so term A is held by no customer or vendor, only by the five invoices. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S2-17 C723917 [S2] An inactive unused shop term can be reactivated or deleted
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Create a new term of the shop's own for this test, term A, due 14 days after the invoice date, held by no customer, vendor or invoice, and then deactivate it. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 1: The Inactive tab shows term A.
+=== S2-18 C723918 [S2] An inactive shop term still held by a customer blocks Delete
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Create a new term of the shop's own for this test, term A, due on day 10 of the following month, put one customer on it, and then deactivate it. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 1: The Inactive tab shows term A.
+=== S2-21 C723921 [S2] Make Default moves the tag and changes no existing customer
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Have the shop's own active term A (made for this test), due 14 days after the invoice date. | Create customer A for this test, on COD with a credit limit of $0.00. | Write down the COD row's Customers count before you start. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S2-23 C723923 [S2] Deactivating Net 30 keeps every customer on it, shown as inactive
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Create customer A and vendor A for this test, both on Net 30. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S2-24 C723924 [S2] Reactivate brings a term back to Active and to the pickers
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Make sure Net 50 is deactivated. | Create customer A for this test, on COD. | Make sure Net 45 and Net 60 are active. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Inactive tab.
+=== S2-28 C723928 [S2] A long term name shows in full in the toast
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Create a new term of the shop's own for this test, term A, with a 31-character name, due 14 days after the invoice date, held by no customer, vendor or invoice. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S2-29 C723929 [S2] Renaming the unused default term keeps it the default
+  + PRE: Sign in as an Admin at the test location. | Have the shop's own active term A (made for this test), due 14 days after the invoice date, the shop's default for new customers and held by no customer, vendor or invoice. | Choose a new name for term A that no term has; call the new name term B. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S2-31 C723931 [S2] Deleting a term another user just put a customer on is refused
+  + PRE: Sign in as an Admin at the test location. | Have a second user, user B, signed in with the "Admin" role in a second browser (you are signed in as an Admin in the first). | Make sure COD is the shop's default for new customers. | Have the shop's own active term A (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice. | Create customer A for this test, on COD. | Start with your browser showing the Credit Terms page and user B's browser showing Edit Customer for customer A.
+  +   Step 4: Customer A is saved on term A.
+=== S2-36 C723936 [S2] Acting on a term another user renamed after the page loaded
+  + PRE: Sign in as an Admin at the test location. | Have a second user, user B, signed in with the "Admin" role in a second browser (you are signed in as an Admin in the first). | Make sure COD is the shop's default for new customers. | Have the shop's own active term A (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice. | Choose a new name for term A that no term has; call the new name term B. | Start with the Credit Terms page open on the Active tab in both browsers.
+=== S3-03 C723939 [S3] The blue line explains a Net term with today's date as the example
+  +   Step 5: The blue line comes back and now reads "… An invoice dated date A is due" followed by the date 15 days after date A (for example Nov 5).
+=== S3-08 C723944 [S3] Creating a Net term shows a toast and puts it in every picker
+  + PRE: Sign in as an Admin at the test location. | Make sure all twelve standard terms are active and COD is the default for new customers. | Choose a name that no term has for the new term, term A. | Create customer A and vendor A for this test. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S3-09 C723945 [S3] Creating a day-of-the-following-month term lists it after the Net terms
+  + PRE: Sign in as an Admin at the test location. | Make sure all twelve standard terms are active and COD is the default for new customers. | Choose a name that no term has for the new term, term A. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S3-14 C723950 [S3] A name matching another of the shop's terms is refused, even inactive
+  + PRE: Sign in as an Admin at the test location. | Have the shop's own active term A, due 14 days after the invoice date. | Have the shop's own term B, due on day 5 of the following month, deactivated. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S3-20 C723956 [S3] Saving an edit shows the new name and Due text in the row
+  + PRE: Sign in as an Admin at the test location. | Have the shop's own active term A (made for this test), due 10 days after the invoice date, held by no customer, vendor or invoice. | Choose a new name for term A that no term has; call the new name term B. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S3-21 C723957 [S3] A double click on Create Credit Term creates one term
+  + PRE: Sign in as an Admin at the test location. | Choose a name that no term has for the new term, term A. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S3-23 C723959 [S3] Cancel or the close icon discards the window's contents
+  +   Step 4: The "New Credit Term" window opens with Name and both boxes empty.
+  +   Step 7: The "New Credit Term" window opens empty again.
+=== S3-24 C723960 [S3] A name that reads like a Net term may carry a different rule
+  + PRE: Sign in as an Admin at the test location. | Choose names for term A and term B that no term has and that start with "Net" and a number but are not a standard term (not Net 7, Net 15, Net 20, Net 30, Net 45, Net 50, Net 60, Net 90 or Net 120). | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 5: Term A is created. / Its Due column reads "25th of the following month" (the rule, not the name).
+=== S3-25 C723961 [S3] Creating a name another user just created is refused, window stays
+  + PRE: Sign in as an Admin at the test location. | Have a second user, user B, signed in with the "Admin" role in a second browser (you are signed in as an Admin in the first). | Choose a name that no term has for the new term, term A. | Start with the Credit Terms page open in both browsers.
+  +   Step 1: The "New Credit Term" window opens.
+=== S3-26 C723962 [S3] Saving an edit after another user put a customer on the term is refused
+  + PRE: Sign in as an Admin at the test location. | Have a second user, user B, signed in with the "Admin" role in a second browser (you are signed in as an Admin in the first). | Have the shop's own active term A (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice. | Create customer A for this test, on COD. | Start with your browser showing the Credit Terms page and user B's browser showing Edit Customer for customer A.
+  +   Step 5: Customer A is saved on term A.
+=== S4-01 C723965 [S4] Move Customers lists the term's customers A to Z, all ticked
+  + PRE: Sign in as an Admin at the test location. | Make sure Net 30 is the shop's default for new customers. | Create a new term of the shop's own for this test, term A, due 15 days after the invoice date. | Create customer A, customer B and customer C for this test on term A, with names in that A to Z order and credit limits of $500.00, $0.00 and $1,000.00. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S4-02 C723966 [S4] Moving from COD lists blank-term customers but never Counter Sale
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Have customer B, from before the release, whose credit term is blank. | Create customer A for this test, on COD, with a name that starts with the same word as customer B's name. | Use the organization's built-in Counter Sale customer (customer C), which is on COD. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   3. Type the first word of customer A's and customer B's names in "Search customers".
+  +   4. Replace the search text with customer C's name.
+  +   Step 2: A window titled "Move Customers from COD" opens. / "Move To" starts empty because COD is the default, and no hint shows.
+  +   Step 3: The list shows customer A and customer B (the blank-term customer is listed under COD).
+  +   Step 4: Customer C (the Counter Sale customer) is not listed.
+=== S4-03 C723967 [S4] Moving from Net 30 also lists a customer stored as "NET 30"
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Have customer B, from before the release, stored with the credit term text "NET 30" (from an old import). | Create customer A for this test, on Net 30, with a name that starts with the same word as customer B's name. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   3. Type the first word of customer A's and customer B's names in "Search customers".
+=== S4-04 C723968 [S4] Searching narrows the list, Enter moves nobody, no match says so
+  + PRE: Sign in as an Admin at the test location. | Make sure Net 30 is the shop's default for new customers. | Create a new term of the shop's own for this test, term A, due 15 days after the invoice date. | Create three customers for this test on term A; one of them is customer B, and the last word of customer B's name is in neither of the other two names. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S4-05 C723969 [S4] Select None and Select All act only on the customers the search shows
+  + PRE: Sign in as an Admin at the test location. | Make sure Net 30 is the shop's default for new customers. | Create a new term of the shop's own for this test, term A, due 15 days after the invoice date. | Create customer A, customer B and customer C for this test on term A, with names in that A to Z order and credit limits of $500.00, $0.00 and $1,000.00. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S4-06 C723970 [S4] Move To offers every active term except the source, in page order
+  + PRE: Sign in as an Admin at the test location. | Make sure Net 30 is the shop's default for new customers. | Make sure at least one customer holds Net 15. | Make sure Net 50 is deactivated and every other standard term is active. | Have the shop's own term A, deactivated. | Have the shop's own active term B, due 10 days after the invoice date. | Other terms of the shop may also be offered; check only the order of the named terms. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S4-08 C723972 [S4] Moving three customers to Net 30 keeps their limits and shows a toast
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Create a new term of the shop's own for this test, term A, due 15 days after the invoice date. | Create three customers for this test on term A: customer A with a credit limit of $500.00, customer C with a credit limit of $1,000.00, and one more. | Before you start, write down Net 30's Customers count (number A). | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S4-09 C723973 [S4] Moving one customer says "1 customer moved"
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Create a new term of the shop's own for this test, term A, due 20 days after the invoice date. | Create one customer for this test on term A. | Make sure Net 45 is active. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S4-10 C723974 [S4] Each moved customer gets a note naming the old term, new term and user
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Create a new term of the shop's own for this test, term A, due 20 days after the invoice date. | Create customer A for this test on term A, with a credit limit of $0.00. | Note your user name. | Make sure Net 45 is active. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 5: Customer A's customer page opens.
+=== S4-11 C723975 [S4] A customer moved from a blank term reads "from COD" in its note
+  + PRE: Sign in as an Admin at the test location. | Make sure Due on Receipt is the shop's default for new customers. | Have customer A, from before the release, whose credit term is blank (it counts under COD). | Note your user name. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 7: Customer A's customer page opens.
+=== S4-12 C723976 [S4] Moving to COD warns about limits and asks first, Cancel keeps choices
+  + PRE: Sign in as an Admin at the test location. | Make sure Net 30 is the shop's default for new customers. | Create a new term of the shop's own for this test, term A, due 15 days after the invoice date. | Create three customers for this test on term A, with credit limits of $500.00, $0.00 and $1,000.00. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S4-13 C723977 [S4] Moving to COD sets limits to $0 and keeps the old limit in the note
+  + PRE: Sign in as an Admin at the test location. | Make sure Net 30 is the shop's default for new customers. | Create a new term of the shop's own for this test, term A, due 15 days after the invoice date. | Create customer A, customer B and customer C for this test on term A, with names in that A to Z order and credit limits of $500.00, $0.00 and $1,000.00. | Note your user name. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S4-14 C723978 [S4] Customers moved to Credit Hold get a $0 limit and cannot be invoiced
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Create a new term of the shop's own for this test, term A, due 20 days after the invoice date. | Create customer A for this test on term A, with a credit limit of $500.00. | Create work order 1 for customer A, complete and ready to invoice. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S4-15 C723979 [S4] Moving customers off COD leaves their $0 limit as it is
+  + PRE: Sign in as an Admin at the test location. | Make sure Due on Receipt is the shop's default for new customers. | Create customer A for this test, on COD with a credit limit of $0.00. | Make sure Net 30 is active. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S4-16 C723980 [S4] A move changes only the term, and only for ticked customers
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Create a new term of the shop's own for this test, term A, due 15 days after the invoice date. | Create three customers for this test on term A: customer A, customer C and one more. | Give customer A a phone number, an address and a sales representative. | Create customer D for this test, on Net 20. | Make sure Net 45 is active. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 6: Customer A's "Credit term" reads Net 45. / Its phone number, address, sales representative and credit limit are the ones set up for it.
+=== S4-17 C723981 [S4] A customer with incomplete details still moves
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Create a new term of the shop's own for this test, term A, due 20 days after the invoice date. | Create customer A for this test on term A, with no address on its record (a detail Edit Customer requires). | Make sure Net 45 is active. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S4-18 C723982 [S4] A double click on Move moves the customers once
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Create a new term of the shop's own for this test, term A, due 20 days after the invoice date. | Create two customers for this test on term A, one of them customer A. | Make sure Net 45 is active. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S4-19 C723983 [S4] A double click on Set Limits To $0 And Move moves once
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Create a new term of the shop's own for this test, term A, due 20 days after the invoice date. | Create customer A for this test on term A, with a credit limit of $500.00. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S4-20 C723984 [S4] Escape or a click outside keeps the Move window, Cancel closes it
+  + PRE: Sign in as an Admin at the test location. | Make sure Net 30 is the shop's default for new customers. | Create a new term of the shop's own for this test, term A, due 15 days after the invoice date. | Create three customers for this test on term A, one of them customer B. | Make sure Net 45 is active. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 9: The "Move Customers from term A" window opens with all three ticked again.
+=== S4-21 C723985 [S4] Long customer and term names wrap in the Move window
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Have the shop's own active term A with a 31-character name. | Have the shop's own active term B, also with a 31-character name. | Create customer A for this test on term A, with a name more than 60 characters long. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S4-23 C723987 [S4] A term with more than 2,000 customers still lists them all
+  +   Step 5: The toast reports 2500 (or 2,500) customers moved to Net 30 and term A's Customers count reads 0. / All of them moved in this one move (a move has no limit on the number of customers).
+=== S4-24 C723988 [S4] Emptying a deactivated term with Move lets it be deleted
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Create a new term of the shop's own for this test, term A, due 14 days after the invoice date. | Create customer A for this test on term A (no vendor or invoice uses term A). | Then deactivate term A. | Make sure Net 30 is active. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S4-25 C723989 [S4] Credit Hold customers can be moved off Credit Hold
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Create customer A for this test, on Credit Hold with a credit limit of $0.00 (other customers may hold Credit Hold too). | Make sure Net 30 is active. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S4-26 C723990 [S4] With only Settings Finance, Move Customers is greyed with the reason
+  + PRE: Sign in as a user whose custom role has the Settings page with "Finance" on, the "Customers" row's "Create & Edit" off and the "View and Manage AP/AR Data" toggle off. | Make sure at least one customer holds Net 30. | Have the shop's own active term A, held by no customer. | Make sure Net 30 is active and is not the shop's default for new customers. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S4-27 C723991 [S4] Without AP/AR Data access, Move Customers is greyed
+  + PRE: Sign in as a user whose custom role has the Settings page with "Finance" on, the "Customers" row's "Create & Edit" on and the "View and Manage AP/AR Data" toggle off. | Make sure at least one customer holds Net 30. | Have the shop's own active term A, held by no customer. | Make sure Net 30 is active and is not the shop's default for new customers. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S4-28 C723992 [S4] Without Customers Create & Edit, Move Customers is greyed
+  + PRE: Sign in as a user whose custom role has the Settings page with "Finance" on, the "View and Manage AP/AR Data" toggle on and the "Customers" row's "Create & Edit" off. | Make sure at least one customer holds Net 30. | Have the shop's own active term A, held by no customer. | Make sure Net 30 is active and is not the shop's default for new customers. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S4-29 C723993 [S4] With all three permissions a custom role can move customers
+  + PRE: Sign in as a user whose custom role has the Settings page with "Finance" on, the "Customers" row's "Create & Edit" on and the "View and Manage AP/AR Data" toggle on. | Create a new term of the shop's own for this test, term A, due 20 days after the invoice date. | Create one customer for this test on term A. | Make sure Net 45 is active. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S4-31 C723995 [S4] A ticked customer another user moved meanwhile is left alone
+  + PRE: Sign in as an Admin at the test location. | Have a second user, user B, signed in with the "Admin" role in a second browser (you are signed in as an Admin in the first). | Make sure COD is the shop's default for new customers. | Create a new term of the shop's own for this test, term A, due 20 days after the invoice date. | Create customer A and customer B for this test on term A. | Make sure Net 45 and Net 60 are active. | Start with your browser showing the Credit Terms page and user B's browser showing Edit Customer for customer B.
+=== S4-32 C723996 [S4] If every ticked customer left the term meanwhile, the move is refused
+  + PRE: Sign in as an Admin at the test location. | Have a second user, user B, signed in with the "Admin" role in a second browser (you are signed in as an Admin in the first). | Make sure COD is the shop's default for new customers. | Create a new term of the shop's own for this test, term A, due 20 days after the invoice date. | Create customer A for this test on term A. | Make sure Net 45 and Net 60 are active. | Start with your browser showing the Credit Terms page and user B's browser showing Edit Customer for customer A.
+=== S4-33 C723997 [S4] If the Move To term was deactivated meanwhile, the move is refused
+  + PRE: Sign in as an Admin at the test location. | Have a second user, user B, signed in with the "Admin" role in a second browser (you are signed in as an Admin in the first). | Make sure COD is the shop's default for new customers. | Create a new term of the shop's own for this test, term A, due 20 days after the invoice date. | Create customer A for this test on term A. | Make sure Net 45 is active. | Start with the Credit Terms page open in both browsers.
+=== S4-35 C723999 [S4] Moving off a deactivated term: how the note names the old term
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Create a new term of the shop's own for this test, term A, due 60 days after the invoice date. | Create customer A for this test on term A. | Then deactivate term A. | Note your user name. | Make sure Net 30 is active. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 6: Customer A's customer page opens.
+=== S4-36 C724000 [S4] Moving a customer stored as "NET 30": how the note names the old term
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Have customer A, from before the release, stored with the credit term text "NET 30" (from an old import). | Make sure Net 30 and Net 45 are active. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 8: Customer A's customer page opens.
+=== S5-01 C724001 [S5] New Customer shows Credit Terms and Credit Limit, prefilled with the default
+  + PRE: Sign in as an Admin at the test location. | Have the shop's own active term A, due 14 days after the invoice date, set as the default for new customers. | Start on the Customers page.
+=== S5-02 C724002 [S5] The Credit Terms dropdown lists active terms in page order
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Make sure Net 50 is deactivated and every other standard term is active. | Have the shop's own active terms A (due 10 days after the invoice date) and B (due on day 5 of the following month). | Have the shop's own term C, deactivated. | Other terms of the shop may also be offered; check only the order of the named terms. | Start on the Customers page.
+=== S5-09 C724009 [S5] A deactivated term shows as inactive on the customer, plain on invoices
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Create customer A for this test, on Net 60. | Then make sure Net 60 is deactivated. | Create invoice A for customer A (invoice one of customer A's complete work orders) after Net 60 was deactivated.
+=== S5-10 C724010 [S5] Once another term is saved, the inactive term is no longer offered
+  + PRE: Sign in as an Admin at the test location. | Make sure COD is the shop's default for new customers. | Create customer A for this test, on Net 60. | Then make sure Net 60 is deactivated. | Make sure Net 30 is active.
+=== S5-12 C724012 [S5] Edit Customer checks the name only after typing or on Save
+  +   Step 1: The Edit Customer window for customer A opens.
+=== S5-13 C724013 [S5] A 31-character term prints in full on modern invoices and estimates
+  + PRE: Sign in as an Admin at the test location. | Make sure the organization uses the modern invoice design. | Have the shop's own term A with a 31-character name. | Have work order 1, with an estimate and an invoice, for a customer who holds term A.
+=== S5-14 C724014 [S5] A 31-character term prints in full on legacy invoices and estimates
+  + PRE: Sign in as an Admin at the test location. | Make sure the organization uses the legacy invoice design. | Have the shop's own term A with a 31-character name. | Have work order 1, with an estimate and an invoice, for a customer who holds term A.
+=== S5-15 C724015 [S5] Long term names wrap in the dropdown and on the customer card
+  + PRE: Sign in as an Admin at the test location. | Have the shop's own active term A with a 31-character name, set as the default for new customers. | Have the shop's own term B, also with a 31-character name, held by customer A. | Then make sure term B is deactivated.
+=== S5-19 C724019 [S5] Editing a customer without AP/AR access keeps its term and limit
+  + PRE: Sign in as a user on a custom role that has Customers → Create & Edit but not View and Manage AP/AR Data. | Create customer A for this test, on Net 45 with a credit limit of $900.00. | Have an Admin signed in to a second browser, to check the result.
+  +   Step 1: The Edit Customer window for customer A opens without Credit Terms or Credit Limit.
+=== S5-20 C724020 [S5] A user without Settings Finance still gets the default and the shop's terms
+  + PRE: Sign in as a user on the out-of-the-box "Service Manager" role (Customers → Create & Edit and View and Manage AP/AR Data, no Settings → Finance). | Have the shop's own active term A, due 14 days after the invoice date, set as the default for new customers. | Start on the Customers page.
+=== S6-01 C724027 [S6] The vendor Credit Terms dropdown lists active terms, with no Default tag
+  + PRE: Sign in as an Admin at the test location. | Have the shop's own active term A, due 10 days after the invoice date, set as the default for new customers. | Have the shop's own active term B, due on day 5 of the following month. | Make sure Net 50 is deactivated and every other standard term is active. | Other terms of the shop may also be offered; check only the order of the named terms. | Start on Parts, Vendors.
+=== S6-02 C724028 [S6] New Vendor starts on COD whatever the customer default is
+  +   Step 1: The "New Vendor" window opens. / Credit Terms reads COD (not Net 30).
+=== S6-03 C724029 [S6] A vendor on a deactivated term shows it as inactive until another is picked
+  + PRE: Sign in as an Admin at the test location. | Create vendor A for this test, on Net 60. | Then make sure Net 60 is deactivated. | Create vendor B for this test, on Net 30. | Make sure Net 45 is active.
+  +   Step 6: Credit Terms reads Net 30.
+=== S6-04 C724030 [S6] Vendor credit limits stay editable on COD and Credit Hold
+  + PRE: Sign in as an Admin at the test location. | Create vendor A for this test, on COD with a credit limit of $2,000.00.
+=== S6-06 C724032 [S6] Edit Vendor checks the name only after typing or on Save & Close
+  +   Step 1: The Edit Vendor window for vendor A opens.
+=== S6-07 C724033 [S6] Long term names wrap in the vendor dropdown and card
+  + PRE: Sign in as an Admin at the test location. | Have the shop's own term A with a 31-character name, held by vendor A. | Then make sure term A is deactivated. | Have the shop's own active term B, also with a 31-character name.
+=== S7-01 C724035 [S7] An invoice keeps its term and due date when the customer is edited
+  + PRE: Sign in as an Admin at the test location. | Create customer A for this test, on Net 30. | Create invoice A for customer A, dated Oct 5, 2026 (due Nov 4, 2026, Terms Net 30). | Make sure Net 60 is active.
+  +   Step 1: The Edit Customer window for customer A opens.
+  +   Step 4: Invoice A still shows Terms Net 30 and Due date Nov 4, 2026.
+=== S7-01b C724036 [S7] An invoice keeps its term and due date when the term is deactivated
+  + PRE: Sign in as an Admin at the test location. | Create a customer for this test on Net 30, with invoice A dated Oct 5, 2026 (due Nov 4, 2026, Terms Net 30). | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 3: Invoice A still shows Terms Net 30 (the plain name) and Due date Nov 4, 2026.
+=== S7-01c C724037 [S7] An invoice keeps its term and due date when the customer is moved
+  + PRE: Sign in as an Admin at the test location. | Create a new term of the shop's own for this test, term A, due 20 days after the invoice date. | Create customer A for this test on term A, with invoice A dated Oct 5, 2026 (due Oct 25, 2026, Terms term A). | Make sure Net 60 is active. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 2: The "Move Customers from term A" window opens with customer A ticked.
+  +   Step 5: Invoice A still shows Terms term A and Due date Oct 25, 2026 (Oct 5 + 20 days).
+=== S7-02 C724038 [S7] A vendor invoice is due by the vendor's term and recalculated on change
+  + PRE: Sign in as an Admin at the test location. | Create a new term of the shop's own for this test, term A, due 14 days after the invoice date, so a vendor on it has vendor invoices due 14 days after their date. | Create vendor A for this test, on term A, so the new vendor invoice starts on term A. | Create vendor B for this test, on Net 30. | Start with a new vendor invoice for vendor A open in Parts, Vendors, Vendor Invoices, not yet saved, so its due date follows vendor A's term.
+  +   Step 2: The vendor invoice is saved with due date Oct 19, 2026.
+  +   Step 4: The vendor invoice is saved with due date Nov 3, 2026.
+=== S7-03 C724039 [S7] The Vendor Bill Export shows the stored due date, not the vendor's new term
+  + PRE: Sign in as an Admin at the test location. | Create vendor A for this test, on Net 30, with vendor invoice A dated Oct 5, 2026 (stored due date Nov 4, 2026). | Make sure vendor invoice B, for another vendor, has no stored due date (from before the release). | Make sure Net 60 is active.
+  +   Step 1: The Edit Vendor window for vendor A opens.
+=== S7-04 C724040 [S7] The same invoice shows the same due date to users in other locations
+  + PRE: Sign in as an Admin at the test location. | Make sure you are also enrolled at location B, which is in another time zone. | Have invoice A, dated Oct 5, 2026, at the test location, for a customer who holds one of the shop's own terms, due on day 10 of the following month. | Have a second user, user B, whose role has no Settings → Finance, signed in at location B in a second browser.
+=== S7-06 C724042 [S7] A deactivated term still dates new invoices for customers who keep it
+  + PRE: Sign in as an Admin at the test location. | Create a new term of the shop's own for this test, term A, due 14 days after the invoice date. | Create work order 1 for this test, complete and ready to invoice (every part received, review done), for a customer on term A. | Then deactivate term A.
+  +   Step 4: The printed invoice shows term A's plain name (no "(Inactive)") and the due date Oct 19, 2026.
+=== S7-07 C724043 [S7] An invoice made after a reversal takes the customer's term at that moment
+  + PRE: Sign in as an Admin at the test location. | Create a customer for this test, on Net 30. | Create work order 1 for that customer and invoice it with the invoice date Oct 5, 2026 (due Nov 4, 2026, Terms Net 30). | Then change that customer's credit term to Net 60, so the customer's term now differs from the invoice's.
+=== S7-08 C724044 [S7] Changing the customer on an open work order takes the new customer's term
+  + PRE: Sign in as an Admin at the test location. | Create a new term of the shop's own for this test, term A, due on day 10 of the following month. | Create customer B for this test, on term A. | Create work order 1 for this test, complete and ready to invoice (every part received, review done), for a customer who holds Net 30.
+=== S7-09 C724045 [S7] A customer on the shop's own term can charge an invoice to account
+  + PRE: Sign in as an Admin at the test location. | Create work order 1 for this test, complete and ready to invoice (every part received, review done), for a customer who holds one of the shop's own terms, due 14 days after the invoice date, with a credit limit of $5,000.00.
+=== S8-01 C724047 [S8] A shop's Net term reaches QuickBooks as a standard term on first use
+  + PRE: Sign in as an Admin at the test location. | Make sure the test organization is connected to a QuickBooks Online sandbox company, and you can sign in to that company in another tab. | Create a new term of the shop's own for this test, term A, due 14 days after the invoice date (it is not yet in QuickBooks' Terms list). | Create work order 1 for this test, complete, for a customer who holds term A.
+=== S8-02 C724048 [S8] A day-of-the-following-month term reaches QuickBooks as date-driven
+  + PRE: Sign in as an Admin at the test location. | Make sure the test organization is connected to a QuickBooks Online sandbox company, and you can sign in to that company in another tab. | Create a new term of the shop's own for this test, term A, due on day 10 of the following month (it is not yet in QuickBooks). | Create work order 1 and work order 2 for this test, both complete, for one customer who holds term A.
+  +   7. In QuickBooks, open work order 1's invoice.
+  +   8. In QuickBooks, open work order 2's invoice.
+  +   Step 7: It reads terms term A and due Nov 10, 2026, matching ShopView.
+  +   Step 8: It reads terms term A and due Nov 10, 2026, matching ShopView.
+=== S8-03 C724049 [S8] A term QuickBooks already has under the same name is used and never changed
+  + PRE: Sign in as an Admin at the test location. | Make sure the test organization is connected to a QuickBooks Online sandbox company, and you can sign in to that company in another tab. | Create a new term of the shop's own for this test, term A, due 14 days after the invoice date. | In QuickBooks, create a term with exactly term A's name, as a standard term due in 20 days. | Create work order 1 for this test, complete, for a customer who holds term A.
+=== S8-04 C724050 [S8] A vendor invoice goes to QuickBooks as a bill with its stored due date
+  + PRE: Sign in as an Admin at the test location. | Make sure the test organization is connected to a QuickBooks Online sandbox company, and you can sign in to that company in another tab. | Create a new term of the shop's own for this test, term A, due 14 days after the invoice date (it is not yet in QuickBooks). | Create vendor A for this test, on term A. | Create vendor invoice A for vendor A, dated Oct 5, 2026 (stored due date Oct 19, 2026), and do not send it to QuickBooks yet.
+  +   Step 1: Vendor invoice A is sent.
+  +   Step 2: The bill is for vendor A, due Oct 19, 2026, with terms term A.
+=== S8-05 C724051 [S8] Changing a customer's term in Edit Customer does not change QuickBooks
+  + PRE: Sign in as an Admin at the test location. | Make sure the test organization is connected to a QuickBooks Online sandbox company, and you can sign in to that company in another tab. | Create customer A for this test, on Net 30, and make sure it is in QuickBooks with terms Net 30. | Create work order 1 for customer A, complete. | Make sure Net 45 is active.
+  +   4. In QuickBooks, open customer A.
+  +   Step 1: The Edit Customer window for customer A opens.
+  +   Step 4: Customer A's terms still read Net 30.
+=== S8-06 C724052 [S8] Move Customers does not change the customer in QuickBooks
+  + PRE: Sign in as an Admin at the test location. | Make sure the test organization is connected to a QuickBooks Online sandbox company, and you can sign in to that company in another tab. | Make sure the shop's own term A (made for this test), due 20 days after the invoice date, is held only by customer A (made for this test), who is in QuickBooks with terms term A. | Make sure Net 45 is active. | Create work order 1 for customer A, complete and ready to invoice, so an invoice for customer A can sync after the move. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   5. On work order 1's Finance tab, click Create Invoice.
+  +   6. Wait until the invoice has synced to QuickBooks (it is no longer on the QB Unexported report).
+  +   7. In QuickBooks, open customer A.
+  +   Step 2: The "Move Customers from term A" window opens.
+  +   Step 5: The invoice is created on Net 45.
+  +   Step 6: The invoice is no longer on the QB Unexported report.
+  +   Step 7: Customer A's terms still read term A: no customer update was sent, although a newer invoice of customer A has synced.
+=== S8-07 C724053 [S8] Deactivating or reactivating a term sends nothing to QuickBooks
+  + PRE: Sign in as an Admin at the test location. | Make sure the test organization is connected to a QuickBooks Online sandbox company, and you can sign in to that company in another tab. | Have the shop's own active term A (made for this test), already in QuickBooks' Terms list because an invoice with term A has synced. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   4. Click the "Inactive" tab.
+  +   5. Click the "⋯" at the right of the term A row.
+  +   6. Click "Reactivate".
+  +   7. In QuickBooks, refresh the Terms list.
+  +   Step 4: Term A is listed.
+  +   Step 5: The menu opens.
+  +   Step 6: The term is active again.
+  +   Step 7: Term A is unchanged.
+=== S8-07b C724054 [S8] Editing or deleting an unused term sends nothing to QuickBooks
+  + PRE: Sign in as an Admin at the test location. | Make sure the test organization is connected to a QuickBooks Online sandbox company, and you can sign in to that company in another tab. | Create a new term of the shop's own for this test, term B, due 14 days after the invoice date, held by nobody (so it is not in QuickBooks). | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 2: The "Edit Credit Term" window opens.
+=== S8-08 C724055 [S8] A shop term nobody has used on a synced record is never sent
+  + PRE: Sign in as an Admin at the test location. | Make sure the test organization is connected to a QuickBooks Online sandbox company, and you can sign in to that company in another tab. | Create a new term of the shop's own for this test, term A, due 14 days after the invoice date, and give it to no customer, vendor or invoice. | Create a second new term of the shop's own for this test, term B, due 20 days after the invoice date (it is not yet in QuickBooks). | Create work order 1 for this test, complete and ready to invoice, for a customer on term B.
+  +   1. On work order 1's Finance tab, click Create Invoice.
+  +   2. Wait until the invoice has synced to QuickBooks (it is no longer on the QB Unexported report).
+  +   3. In QuickBooks, open the Terms list (Settings, All lists, Terms).
+  +   Step 1: The invoice is created with terms term B.
+  +   Step 2: The invoice is no longer on the QB Unexported report.
+  +   Step 3: Term B is listed (the sync ran and created the term the invoice used). / There is no term A.
+=== S8-09 C724056 [S8] A QuickBooks refusal lands on the QB Unexported report with the reason
+  + PRE: Sign in as an Admin at the test location. | Make sure the test organization is connected to a QuickBooks Online sandbox company, and you can sign in to that company in another tab. | Create work order 1 for this test, complete, for a customer who holds the shop's own term A (made for this test) and whose invoice QuickBooks will refuse for a reason the sandbox gives today.
+=== S8-10 C724057 [S8] Without QuickBooks connected, nothing is sent and terms work the same
+  + PRE: Sign in as an Admin at the test location. | Make sure the test organization is not connected to QuickBooks. | Create work order 1 for this test, complete, for a customer who holds one of the shop's own terms, due 14 days after the invoice date.
+=== S8-11 C724058 [S8] AccountingHub and IBS receive the due date only, never the term name
+  + PRE: Sign in as an Admin at the test location. | Make sure the organization sends invoices to AccountingHub and IBS, and you have access to both so you can see what each received. | Have invoice A, already sent, for a customer who holds the shop's own term A.
+  +   Step 1: AccountingHub's copy of invoice A holds the invoice's due date and not term A's name.
+  +   Step 2: IBS's copy of invoice A holds the due date and not term A's name.
+=== S8-12 C724059 [S8] Move Customers sends AccountingHub the same update as Edit Customer
+  + PRE: Sign in as an Admin at the test location. | Make sure the organization is connected to AccountingHub, and you have access to it so you can see the customer updates it receives. | Create a new term of the shop's own for this test, term A, due 20 days after the invoice date. | Create customer A for this test on term A. | Make sure Net 45 is active. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 2: The "Move Customers from term A" window opens.
+=== S9-01 C724060 [S9] A Net 30 customer over a $500 limit still gets the unchanged warning
+  + PRE: Sign in as an Admin at the test location. | Have customer A on Net 30, with a credit limit of $500.00 and unpaid invoices totalling $600.00. | Start on the Work Orders page.
+=== S9-02 C724061 [S9] The Over limit badge shows on the over-limit customer's work order and part sale
+  + PRE: Sign in as an Admin at the test location. | Have a customer on Net 30, with a credit limit of $500.00, unpaid invoices totalling $600.00, an open work order 1 and an open part sale A. | Start on the Work Orders page.
+=== S9-03 C724062 [S9] Opening a part sale never asks the over-credit question
+  + PRE: Sign in as an Admin at the test location. | Have customer A on Net 30, with a credit limit of $500.00 and unpaid invoices totalling $600.00. | Start on Parts, Part Sales.
+=== S9-04 C724063 [S9] A customer with a $0 or blank limit never gets the warning or badge
+  + PRE: Sign in as an Admin at the test location. | Have customer A on Net 30, with a credit limit of $0.00, unpaid invoices totalling $600.00 and an open work order 1. | Have customer B on Net 30, with a blank credit limit, unpaid invoices totalling $600.00 and an open work order 2. | Start on the Work Orders page.
+=== S9-05 C724064 [S9] A COD customer with an old limit and a balance gets no warning or badge
+  + PRE: Sign in as an Admin at the test location. | Have customer A on COD, still holding a credit limit of $1,000.00 stored from before the release, with unpaid invoices totalling $1,500.00 and an open work order 1. | Start on the Work Orders page.
+=== S9-06 C724065 [S9] A Due on Receipt customer over its limit gets no warning or badge
+  + PRE: Sign in as an Admin at the test location. | Have customer A on Due on Receipt, with a credit limit of $500.00, unpaid invoices totalling $600.00 and an open work order 1. | Start on the Work Orders page.
+=== S9-07 C724066 [S9] A Credit Hold customer gets no warning but is still blocked from invoicing
+  + PRE: Sign in as an Admin at the test location. | Have customer A on Credit Hold, still holding a credit limit of $1,000.00 from before the release, with unpaid invoices totalling $1,500.00 and a complete work order 1. | Start on the Work Orders page.
+=== S9-08 C724067 [S9] A customer with a blank term counts as COD and gets no warning
+  + PRE: Sign in as an Admin at the test location. | Have customer A, from before the release, with a blank credit term, a credit limit of $500.00 and unpaid invoices totalling $600.00. | Start on the Work Orders page.
+=== S9-09 C724068 [S9] A customer on the shop's own term over its limit gets the warning and badge
+  + PRE: Sign in as an Admin at the test location. | Have customer A on one of the shop's own terms, due 14 days after the invoice date, with a credit limit of $500.00, unpaid invoices totalling $600.00 and an open work order 1. | Start on the Work Orders page.
+=== S9-10 C724069 [S9] A balance equal to the limit does not warn, one cent over does
+  + PRE: Sign in as an Admin at the test location. | Have customer A on Net 30, with a credit limit of $500.00 and unpaid invoices totalling exactly $500.00. | Have customer B on Net 30, with a credit limit of $500.00 and unpaid invoices totalling $500.01. | Start on the Work Orders page.
+  +   Step 5: The window shows customer B as the customer.
+=== S10-01 C724070 [S10] A customer imported with a blank credit term gets the shop's default
+  + PRE: Sign in as an Admin at the test location. | Create a new term of the shop's own for this test, term A, due 14 days after the invoice date, and make it the default for new customers. | Have a contacts import file with one new customer, customer A, whose credit term cell is empty.
+=== S10-02 C724071 [S10] Imported term text in any capitals or spacing saves in the term's spelling
+  +   Step 3: Customer B's "Credit term" reads "Net 10".
+  +   Step 4: Customer C's "Credit term" reads "Net 10".
+=== S10-03 C724072 [S10] Imported term text that matches no term is saved as sent
+  +   Step 1: The import finishes. / No row is refused because of its credit term. / The import shows no new error message.
+  +   Step 4: Nothing changes.
+=== S10-08 C724077 [S10] An import update of an old COD customer clears its stored limit
+  + PRE: Sign in as an Admin at the test location. | Have customer A, from before the release, on COD with a credit limit of $1,000.00 still stored. | Have a contacts import file that updates customer A with a new phone number, the credit term "COD" and an empty credit limit cell.
+=== S10-11 C724080 [S10] A customer created through the API without a term gets the default
+  + PRE: Sign in as an Admin at the test location. | Have a valid Public API key for the test organization, the Public API documentation from the developers (it gives the request to create, update and read a customer), and a request tool. | Create a new term of the shop's own for this test, term A, due 14 days after the invoice date, and make it the default for new customers. | Choose names for two new customers, customer A and customer B.
+  +   Step 1: The request is accepted and customer A is created.
+  +   Step 2: The request is accepted and customer B is created.
+=== S10-12 C724081 [S10] An API term in other capitals saves and reads back in the term's spelling
+  +   Step 1: The request is accepted and customer A is created.
+=== S10-15 C724084 [S10] An API update with neither term nor limit keeps the stored limit
+  + PRE: Sign in as an Admin at the test location. | Have a valid Public API key for the test organization, the Public API documentation from the developers (it gives the request to create, update and read a customer), and a request tool. | Have customer A, from before the release, on COD with a credit limit of $1,000.00 still stored.
+=== S10-16 C724085 [S10] The Public API has no way to list terms or the default
+  + PRE: Sign in as an Admin at the test location. | Have the Public API documentation from the developers for the test organization open (the requests to create, update and read a customer).
+  +   Step 1: There is none: an integrator sends a term name and reads back the saved spelling. / The customer requests are unchanged from before the release (no new credit term fields or rules).
+  + NOTE: The tester reads the Public API documentation in this case and sends no request. Until the documentation is shared the case is held.
+=== S11-01 C724086 [S11] An existing shop keeps COD as its default after the release
+  + PRE: Sign in as an Admin at the test location. | Use an organization that existed before the release and whose default for new customers nobody has changed since. | Choose a name for a new customer, customer A. | Start on the Settings page.
+  +   Step 4: The Customers page opens.
+=== S11-03 C724088 [S11] The Counter Sale customer stays on COD whatever the default
+  + PRE: Sign in as an Admin at the test location. | Make sure Net 30 is the shop's default for new customers. | Use the organization's built-in Counter Sale customer; this test calls it customer A. | Make sure at least one other customer holds COD, so Move Customers can open. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   1. Click the "⋯" at the right of the "COD" row.
+  +   2. Click "Move Customers".
+  +   3. Type customer A's name in "Search customers".
+  +   4. Open customer A's customer page.
+  +   Step 1: The menu opens.
+  +   Step 2: A window titled "Move Customers from COD" opens.
+  +   Step 3: "No customers match your search." shows: the Counter Sale customer is never listed, so it can never be moved.
+  +   Step 4: The "Credit term" reads COD, although the default is Net 30.
+=== S11-05 C724090 [S11] COD at invoicing works as before, with no Charge Account
+  + PRE: Sign in as an Admin at the test location. | Create work order 1 for this test, complete and ready to invoice (every part received, review done), for a customer who holds COD.
+=== S11-06 C724091 [S11] Every other term still opens the payment window with Charge Account
+  + PRE: Sign in as an Admin at the test location. | Create work order 1 for this test, complete, for a customer on Due on Receipt. | Create work order 2 for this test, complete, for a customer on Net 30.
+=== S11-08 C724093 [S11] The first edit of an old COD customer shows and saves $0
+  + PRE: Sign in as an Admin at the test location. | Have customer A, from before the release, on COD with a credit limit of $1,000.00 still stored.
+=== S11-09 C724094 [S11] An old COD customer moved to Credit Hold gets $0, its limit kept in the note
+  + PRE: Sign in as an Admin at the test location. | Have customer A, from before the release, on COD with a credit limit of $1,000.00 still stored. | Note your user name. | Make sure COD is the shop's default for new customers. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 2: The "Move Customers from COD" window opens with every COD customer ticked.
+=== S11-10 C724095 [S11] A new organization created after the release starts on Due on Receipt
+  +   Step 2: The Customers page opens.
+=== S11-12 C724097 [S11] A credit memo's due date on a statement counts on the location's calendar
+  + PRE: Sign in as an Admin at the test location. | Make sure the test location's time zone has daylight saving time. | Have customer A on Net 30 at the test location, with a credit memo dated Oct 20, 2026.
+  +   Step 1: The credit memo's due date reads Nov 19, 2026 (Oct 20 + 30 days; the Nov 1 clock change does not move it).
+  + NOTE: Before the release this screen could show one day less; the later date is the correct one.
+=== S11-13 C724098 [S11] Customers stored as "NET 30" keep that text and count under Net 30
+  + PRE: Sign in as an Admin at the test location. | Have customer A, from before the release, stored with the credit term text "NET 30". | Make sure Net 30 is active. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S11-15 C724100 [S11] Statements, the portal and A/R aging show no credit term screens
+  +   Step 1: The statement has no new screen and shows no credit term name.
+=== S11-16 C724101 [S11] AccountingHub's own Payment Terms list is untouched
+  + PRE: Sign in as an Admin at the test location. | Make sure the organization uses AccountingHub. | Before you start, write down AccountingHub's Payment Terms list (Accounting Settings, Payment Terms). | Choose a name that no term has for the new term, term A. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 1: The "New Credit Term" window opens.
+=== S11-18 C724103 [S11] Changing one customer's term leaves no note and no log row
+  + PRE: Sign in as an Admin at the test location. | Create customer A for this test, on Net 30. | Make sure Net 45 is active. | Write down the newest row of the Credit Terms Log before you start.
+  +   Step 1: The Edit Customer window for customer A opens.
+  +   Step 5: The Credit Terms page opens.
+  +   Step 7: The newest row is still the one you wrote down: no row was written for this change.
+=== S11-20 C724105 [S11] Other screens showing a customer's term: plain name or (Inactive)
+  + PRE: Sign in as an Admin at the test location. | Have customer A on Net 60, with an open invoice and an open work order 1, so customer A is on the report. | Then make sure Net 60 is deactivated.
+=== S12-02 C724107 [S12] Creating a term writes a "Credit term created" row
+  + PRE: Sign in as an Admin at the test location. | Note your user name. | Choose a name that no term has for the new term, term A. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 1: The "New Credit Term" window opens.
+=== S12-03 C724108 [S12] Renaming a term logs only the name change
+  + PRE: Sign in as an Admin at the test location. | Have the shop's own active term A (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice. | Choose a new name for term A that no term has; call the new name term B. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 2: The "Edit Credit Term" window opens.
+=== S12-04 C724109 [S12] Changing a term's days logs only the Due change
+  +   Step 2: The "Edit Credit Term" window opens.
+=== S12-05 C724110 [S12] Changing both name and rule logs both parts
+  + PRE: Sign in as an Admin at the test location. | Have the shop's own active term A (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice. | Choose a new name for term A that no term has; call the new name term B. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 2: The "Edit Credit Term" window opens.
+=== S12-07 C724112 [S12] Deleting a term writes a row and its earlier rows stay
+  + PRE: Sign in as an Admin at the test location. | Choose a name that no term has for the new term, term A. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 1: The "New Credit Term" window opens.
+=== S12-09 C724114 [S12] Moving customers to a Net term writes a row with no limit line
+  + PRE: Sign in as an Admin at the test location. | Create a new term of the shop's own for this test, term A, due 20 days after the invoice date. | Create three customers for this test on term A. | Make sure Net 45 is active. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 2: The "Move Customers from term A" window opens with 3 selected.
+=== S12-10 C724115 [S12] Log rows show the user, and date and time in your location's calendar
+  +   Step 8: The same row now shows the time later by the difference in hours (as clocks at location B read it). / The date changes too if that shift crosses midnight.
+=== S12-11 C724116 [S12] Searching the log matches Event, User or Details, ignoring capitals
+  + PRE: Sign in as an Admin at the test location. | Note your user name. | Make sure the log holds at least one "Default changed" row (if it does not, make another term the default and then make the earlier default the default again). | Make sure the log holds at least one row you made whose Details mention Net 45 (if it does not, deactivate Net 45 and then reactivate it). | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== S12-13c C724120 [S12] Saving an edit with no change writes no log row
+  +   Step 2: The "Edit Credit Term" window opens.
+=== S12-14 C724121 [S12] A refused action writes no row
+  +   Step 4: User B's confirmation opens.
+=== S12-15 C724122 [S12] Long names in the log wrap and are never cut off
+  + PRE: Sign in as an Admin at the test location. | Create a new term of the shop's own for this test, term A, with a 31-character name, held by no customer, vendor or invoice. | Choose a new 31-character name for term A that no term has; call the new name term B. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 2: The "Edit Credit Term" window opens.
+=== S12-17 C724124 [S12] Changing a vendor's term in Edit Vendor writes nothing to the log
+  + PRE: Sign in as an Admin at the test location. | Create vendor A for this test, on Net 30. | Write down the newest row of the log before you start. | Make sure Net 45 is active.
+  +   Step 1: The Edit Vendor window for vendor A opens.
+  +   Step 4: The Credit Terms page opens.
+=== DATA-01 C724127 [DATA] Net 30 is due 30 days after the invoice date
+  + PRE: Sign in as an Admin at the test location. | Have work order 1, complete and ready to invoice (every part received, review done), for a customer who holds Net 30.
+=== DATA-02 C724128 [DATA] The shop's own Net 10 term is due 10 days after the invoice date
+  + PRE: Sign in as an Admin at the test location. | Have work order 1, complete and ready to invoice (every part received, review done), for a customer who holds the shop's own term due 10 days after the invoice date.
+=== DATA-03 C724129 [DATA] Day 10 of the following month: early and late invoice dates
+  + PRE: Sign in as an Admin at the test location. | Have work order 1, complete and ready to invoice (every part received, review done), for a customer who holds the shop's own term due on day 10 of the following month.
+=== DATA-04 C724130 [DATA] Day 31 in a 30-day month uses the month's last day
+  + PRE: Sign in as an Admin at the test location. | Have work order 1, complete and ready to invoice (every part received, review done), for a customer who holds the shop's own term due on day 31 of the following month.
+=== DATA-05 C724131 [DATA] Days 29 to 31 invoiced in January fall on Feb 28 in 2027
+  + PRE: Sign in as an Admin at the test location. | Have work order 1, complete and ready to invoice, for a customer on the shop's own term due on day 31 of the following month. | Have work order 2, complete and ready to invoice, for a customer on the shop's own term due on day 30 of the following month. | Have work order 3, complete and ready to invoice, for a customer on the shop's own term due on day 29 of the following month.
+=== DATA-06 C724132 [DATA] Day 30 or 31 invoiced in January 2028 falls on Feb 29
+  + PRE: Sign in as an Admin at the test location. | Have work order 1, complete and ready to invoice (every part received, review done), for a customer who holds the shop's own term due on day 31 of the following month.
+=== DATA-06b C724133 [DATA] Day 28 and day 29 terms in February, leap year and not
+  + PRE: Sign in as an Admin at the test location. | Have work order 1, complete and ready to invoice, for a customer on the shop's own term due on day 28 of the following month. | Have work order 2, complete and ready to invoice, for a customer on the shop's own term due on day 29 of the following month.
+=== DATA-07 C724134 [DATA] A December invoice is due in January of the next year
+  + PRE: Sign in as an Admin at the test location. | Have work order 1, complete and ready to invoice (every part received, review done), for a customer who holds the shop's own term due on day 10 of the following month.
+=== DATA-08 C724135 [DATA] Invoices on the first and the last day of a month
+  + PRE: Sign in as an Admin at the test location. | Have work order 1, complete and ready to invoice (every part received, review done), for a customer who holds the shop's own term due on day 1 of the following month.
+=== DATA-09 C724136 [DATA] Net 30 from the last day of January crosses a short February
+  + PRE: Sign in as an Admin at the test location. | Have work order 1, complete and ready to invoice (every part received, review done), for a customer who holds Net 30.
+=== DATA-10 C724137 [DATA] Net 1 and Net 365 are exact to the day
+  + PRE: Sign in as an Admin at the test location. | Have work order 1, complete and ready to invoice, for a customer on the shop's own term due 1 day after the invoice date. | Have work order 2, complete and ready to invoice, for a customer on the shop's own term due 365 days after the invoice date.
+=== DATA-11 C724138 [DATA] Net 30 across the March clock change is due on the 30th day
+  + PRE: Sign in as an Admin at the test location. | Make sure the test location's time zone has daylight saving time. | Have work order 1, complete and ready to invoice (every part received, review done), for a customer who holds Net 30.
+=== DATA-12 C724139 [DATA] Net 30 across the November clock change is due on the 30th day
+  + PRE: Sign in as an Admin at the test location. | Make sure the test location's time zone has daylight saving time. | Have work order 1, complete and ready to invoice (every part received, review done), for a customer who holds Net 30.
+=== DATA-13 C724140 [DATA] An Edmonton invoice on day 10 of the following month is due Nov 10
+  + PRE: Sign in as an Admin at a location in another time zone than Edmonton's. | Have work order 1 at a location in Edmonton's time zone, complete and ready to invoice (every part received, review done), for a customer who holds the shop's own term due on day 10 of the following month.
+=== DATA-14 C724141 [DATA] A location with no time zone counts due dates on UTC
+  + PRE: Sign in as an Admin at the test location. | Make sure the test location has no time zone set. | Have work order 1, complete and ready to invoice (every part received, review done), for a customer who holds Net 30.
+=== DATA-15 C724142 [DATA] Changing the invoice date recalculates the shop's own term
+  + PRE: Sign in as an Admin at the test location. | Have work order 1, complete and ready to invoice (every part received, review done), for a customer who holds the shop's own term due on day 10 of the following month.
+=== DATA-16 C724143 [DATA] COD and Due on Receipt are due on the invoice date
+  + PRE: Sign in as an Admin at the test location. | Have work order 1, complete and ready to invoice, for a customer on COD. | Have work order 2, complete and ready to invoice, for a customer on Due on Receipt.
+=== DATA-17 C724144 [DATA] A vendor on Credit Hold has vendor invoices due on the invoice date
+  + PRE: Sign in as an Admin at the test location. | Create vendor A for this test, on Credit Hold, so the new vendor invoice starts on Credit Hold. | Create vendor B for this test, on Net 45. | Start with a new vendor invoice for vendor A open in Parts, Vendors, Vendor Invoices, not yet saved, so its due date follows vendor A's term.
+=== DATA-18 C724145 [DATA] A vendor invoice from a delivery uses the delivery's location calendar
+  + PRE: Sign in as an Admin at the test location. | Create vendor A for this test, on Net 30. | Have a delivery for vendor A, not yet received, at location B, a location whose time zone is already one day later than where you work. | Run the case at a time of day when the two dates differ. | Note today's date at location B (date A). | Work out date B: date A plus 30 days.
+=== DATA-19 C724146 [DATA] The blue line's due date is exact for Net 365 and day 31
+  +   Step 1: The "New Credit Term" window opens.
+=== DATA-20 C724147 [DATA] Customers counts include odd spellings and every status, never Counter Sale
+  + PRE: Sign in as an Admin at the test location. | Create a new term of the shop's own for this test, term A, held by no customer. | Before you start, write down how many customers hold Net 30 (number B; the Counter Sale customer is never counted). | Have a contacts import file with three new customers: customer B with the credit term text "NET 30", one with "net30" and one with term A written in capital letters. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 3: Customer B is inactive.
+=== DATA-21 C724148 [DATA] A customer and a vendor stored with a blank term count under COD
+  + PRE: Sign in as an Admin at the test location. | Make sure customer A and a vendor were stored with a blank credit term before the release. | Before you start, write down COD's Customers count (number A) and Vendors count (number B); they include customer A and that vendor. | Make sure the organization's Counter Sale customer is on COD. | Make sure Net 30 is active. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 2: The Edit Customer window for customer A opens.
+=== DATA-22 C724150 [DATA] Vendors counts follow the same rules as customers
+  + PRE: Sign in as an Admin at the test location. | Have vendor A, from before the release, stored with the credit term text "NET 45". | Make sure another vendor holds Net 45 and is inactive. | Before you start, write down how many vendors hold Net 45 (number A, which includes vendor A and the inactive vendor). | Make sure Net 60 is active. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+  +   Step 1: The Net 45 row's Vendors cell reads number A (for example 5): "NET 45" counts as Net 45 and the inactive vendor counts.
+  +   Step 2: The Edit Vendor window for vendor A opens.
+=== DATA-23 C724151 [DATA] Customers counts update straight after a move
+  + PRE: Sign in as an Admin at the test location. | Create customer A, customer B and customer C for this test, all on Net 15. | Before you start, write down how many customers hold Net 15 (number A) and how many hold Net 20 (number B). | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== DATA-24 C724152 [DATA] Tab counts change by one on each deactivate, reactivate, create and delete
+  +   Step 1: The "New Credit Term" window opens.
+=== DATA-25 C724153 [DATA] The selected count follows search, Select All and Select None
+  + PRE: Sign in as an Admin at the test location. | Create a new term of the shop's own for this test, term A, due 20 days after the invoice date. | Create five customers for this test on term A: customer A, customer B, customer D and two more; only customer B and customer D have "Fleet" in their names. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== DATA-26 C724154 [DATA] Toast and log count customers moved to COD
+  + PRE: Sign in as an Admin at the test location. | Create a new term of the shop's own for this test, term A, due 20 days after the invoice date. | Create two customers for this test on term A. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== DATA-26b C724155 [DATA] Toast and log use the singular for one customer moved
+  + PRE: Sign in as an Admin at the test location. | Create a new term of the shop's own for this test, term A, due 45 days after the invoice date. | Create one customer for this test on term A. | Make sure Net 30 is active. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== DATA-27 C724156 [DATA] Reversed and paid invoices count toward a term's holders, estimates never
+  + PRE: Sign in as an Admin at the test location. | Create a new term of the shop's own for this test, term A, due 14 days after the invoice date. | Create a customer for this test on term A, with three invoices on term A (pay one, reverse one, leave one open) and an estimate that is never invoiced. | Then change that customer's credit term to Net 30, so term A is held by no customer or vendor. | Start on the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
+=== D-18 C724181 [DESIGN] Design: Move To COD shows the $0 line under the hint
+  +   3. Resize the browser window to 1536 px wide (for example, maximise it on a 1536 x 864 screen at 100% zoom).
+  +   Step 2: The "Move Customers from Net 7" window opens with "Move To" reading COD. / Two grey lines show under it: "Prefilled with your default for new customers." and "Their credit limit will be set to $0." (as in ct-p2-06-move-to-cod-the-0-line.png).
+  +   Step 3: At 1536 px nothing overlaps, nothing is cut off and nothing needs a sideways scroll. / The layout described above is unchanged, only wider.
+=== D-25 C724186 [DESIGN] Design: Over Credit confirmation looks as it does today
+  + PRE: Sign in as an Admin at the test location. | Have a customer on Net 45, with a credit limit of $500.00 and unpaid invoices totalling more than $500.00. | Use a desktop browser window 1440 pixels wide, at 100% zoom. | Open the attached design pictures ct-p8-01-the-over-credit-warning-today.png, ct-p8-03-still-warns-limit-above-0-exceeded.png at 100% zoom beside the screen. | Start on the customer page of that customer.
+=== D-26 C724191 [DESIGN] Design: Customer card shows a deactivated term as Inactive
+  + PRE: Sign in as an Admin at the test location. | Have customer A on Net 50. | Then make sure Net 50 is deactivated. | Use a desktop browser window 1440 pixels wide, at 100% zoom. | Open the attached design pictures ct-p6-01-customer-page-today.png, ct-p6-02-customer-on-a-deactivated-term.png at 100% zoom beside the screen. | Start on the Customers page.
+=== D-40 C724193 [DESIGN] Design: Credit Limit locks at $0.00 for COD on Edit Customer
+  + PRE: Sign in as an Admin at the test location. | Create a customer for this test, on Net 30 with a credit limit of $5,000.00. | Use a desktop browser window 1440 pixels wide, at 100% zoom. | Open the attached design picture ct-p6-06-edit-customer-cod-or-credit-hold-locks-the-limit.png at 100% zoom beside the screen. | Start on the customer page of that customer.
+=== D-42 C724199 [DESIGN] Design: Vendor card shows a deactivated term as Inactive
+  + PRE: Sign in as an Admin at the test location. | Have vendor A on Net 50. | Then make sure Net 50 is deactivated. | Use a desktop browser window 1440 pixels wide, at 100% zoom. | Open the attached design pictures ct-p7-05-vendor-page-today.png, ct-p7-06-vendor-on-a-deactivated-term.png at 100% zoom beside the screen. | Start on the Vendors page.
+=== D-33 C724202 [DESIGN] Design: Invoice shows the day-of-month term and due date
+  + PRE: Sign in as an Admin at the test location. | Have the shop's own active term A, due on day 10 of the following month. | Have work order 1, invoiced with the invoice date Oct 5, 2026, for a customer who holds term A. | Use a desktop browser window 1440 pixels wide, at 100% zoom. | Open the attached design pictures ct-p9-01-an-invoice-today-net-30.png, ct-p9-02-10th-of-next-month-invoice-oct-5-due-nov-10.png at 100% zoom beside the screen. | Start on work order 1.
+=== D-44 C724203 [DESIGN] Design: Late-month invoice is still due the next month
+  + PRE: Sign in as an Admin at the test location. | Have a work order, invoiced with the invoice date Oct 28, 2026, for a customer who holds the shop's own term due on day 10 of the following month. | Use a desktop browser window 1440 pixels wide, at 100% zoom. | Open the attached design picture ct-p9-03-invoice-oct-28-still-due-nov-10.png at 100% zoom beside the screen. | Start on that work order.
+=== D-34 C724204 [DESIGN] Design: New Work Order for a COD customer shows no warning
+  + PRE: Sign in as an Admin at the test location. | Create customer A for this test, on COD with a $0.00 credit limit and an unpaid balance. | Make sure customer A has an asset, asset A (made for this test). | Use a desktop browser window 1440 pixels wide, at 100% zoom. | Open the attached design picture ct-p8-02-cod-customer-0-limit-owes-1-200-no-warning.png at 100% zoom beside the screen. | Start on the customer page of customer A.
+=== D-36 C724205 [DESIGN] Design: Over limit badge looks as it does today
+  + PRE: Sign in as an Admin at the test location. | Have an open (not yet invoiced) work order 1 for a customer on Net 30, with a credit limit of $500.00 and unpaid invoices totalling more than $500.00. | Use a desktop browser window 1440 pixels wide, at 100% zoom. | Open the attached design picture ct-p9-01-an-invoice-today-net-30.png at 100% zoom beside the screen. | Start on the Work Orders page.

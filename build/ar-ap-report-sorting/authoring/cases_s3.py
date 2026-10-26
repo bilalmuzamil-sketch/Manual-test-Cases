@@ -167,10 +167,10 @@ for code, kind in (("ARD", "CSV"), ("APS", "PDF")):
       [ADMIN(), (f"The report has open documents on today's date.", None),
        ("You can switch this computer's network connection off and on (for example Wi-Fi).", None), START(code)],
       ["Switch the computer's network connection off.", "Click the ⋯ button.", f"Click \"Download ({kind})\".",
-       "Switch the network connection back on."],
+       "Switch the network connection back on.", f"Choose \"Download ({kind})\" from the ⋯ menu."],
       ["Step 1: the computer is offline; the report stays on screen.", "Step 2: the menu opens.",
        "Step 3: the error message \"We couldn't export this report. Please try again.\" shows: exactly one message, no second generic error, and nothing is downloaded (no new file in the browser's downloads).",
-       "Step 4: the connection is back; a new export works again."],
+       "Step 4: the connection is back.", f"Step 5: the {kind} downloads: a new export works again."],
       ["EH", "UFS-8"],
       note="The server-error half of the same sentence cannot be caused by hand; the developers' automated tests cover it. This case covers the lost connection.")
 

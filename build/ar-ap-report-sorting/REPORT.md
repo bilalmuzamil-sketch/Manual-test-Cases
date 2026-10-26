@@ -3,7 +3,7 @@
 ## What I did
 
 - 26 Oct 2026: full pass (QA lead's choice) against PRD version 9 (23 Oct 2026) and Chris Ward's answers 1 to 16: every case checked, verdict and per-part record in `v9-pass-2026-10-26/PASS-REPORT.md`. Drafted only: nothing written to TestRail, Jira, Slack or Google in that pass.
-- Drafted the whole suite as authoring files: **357 cases** in 12 sections, every one in the Rule 117 shape (all twelve amendments). `python3 authoring/build.py` passes with **0 PROBLEM lines**; it wrote `authoring/proposals.json` (one entry per case: section, title, refs, the three HTML fields).
+- Drafted the whole suite as authoring files: **356 cases** in 12 sections, every one in the Rule 117 shape (all twelve amendments). `python3 authoring/build.py` passes with **0 PROBLEM lines**; it wrote `authoring/proposals.json` (one entry per case: section, title, refs, the three HTML fields).
 - Nothing was written to TestRail, Jira, Slack or Google, and nothing was committed.
 - Saved PRD v5 (Confluence 947650561, 21 Oct 2026, Chris Ward) and checked the saved copy word for word against the page's HTML (352 text blocks, 0 missing apart from the epic link's display form).
 - Read every ticket under the epic (25) and listed every sentence that differs from the PRD.
@@ -21,10 +21,10 @@
 | Story 7 | 90425 | 21 |
 | Story 8 | 90426 | 14 |
 | Story 9 | 90427 | 4 |
-| Totals and counts — exact amounts | 90428 | 28 |
+| Totals and counts — exact amounts | 90428 | 27 |
 | Release day and what must not change | 90429 | 18 |
 | Design — how it looks | 90430 | 94 |
-| **Total** | group 90418 | **357** |
+| **Total** | group 90418 | **356** |
 
 ## Automation markers (read back from the cases)
 
@@ -32,7 +32,7 @@
 |---|---|
 | `AUTOMATION: HOLD - not yet build-verified (no build yet)` | 342 |
 | `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site` | 13 |
-| `AUTOMATION: HOLD - needs more rows than any test site holds; the developers check this limit in their own check tasks (SV-11595, SV-11598)` | 2 |
+| `AUTOMATION: HOLD - needs more rows than any test site holds; the developers check this limit in their own check tasks (SV-11595, SV-11598)` | 1 |
 
 Every case is HOLD today because no build exists (Rule 85: source-verified only). READY + EXPECT-FAIL = 0 = total − HOLD.
 
@@ -41,7 +41,6 @@ Every case is HOLD today because no build exists (Rule 85: source-verified only)
 | Case | Title | Why held |
 |---|---|---|
 | DATA-19 | A/R Summary: a PDF of exactly 2,000 customers downloads, 2,001 is refused | needs more rows than any test site holds; the developers check this limit in their own check tasks (SV-11595, SV-11598) |
-| DATA-21 | A/P Detail: a CSV of 50,000 rows downloads, 50,001 is refused | needs more rows than any test site holds; the developers check this limit in their own check tasks (SV-11595, SV-11598) |
 | REL-01 | On release day an untouched A/R report shows the same rows and amounts | needs records and screenshots captured before the release is installed on the test site |
 | REL-02 | On release day an untouched A/P report shows the same rows and amounts | needs records and screenshots captured before the release is installed on the test site |
 | REL-05 | Inventory Value link, PDF and CSV work as before the release | needs records and screenshots captured before the release is installed on the test site |
@@ -84,7 +83,7 @@ Every case is HOLD today because no build exists (Rule 85: source-verified only)
 | S2-E1 | S2-39 | A/R Collection |
 | S3-R1 | S3-01, S3-01b, S3-01c, S3-02, S3-02b, S3-02c, D-35, D-36, D-53, D-54 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S3-R2 | S1-05, S1-06, S3-03, S3-04, S3-05, S3-06, S3-07, S3-08 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
-| S3-R3 | S3-03, S3-04, S3-05, S3-06, S3-07, S3-08, S3-28, S3-29, S3-30, DATA-01b, DATA-02b, DATA-03b, DATA-04b, REL-03 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
+| S3-R3 | S3-03, S3-04, S3-05, S3-06, S3-07, S3-08, S3-28, S3-29, S3-30, S8-07, S8-07b, DATA-01b, DATA-02b, DATA-03b, DATA-04b, REL-03 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S3-R4 | S3-09, S3-10, S3-11, S3-12, S3-13, S3-14, REL-03, D-46 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S3-R5 | S3-09, S3-10, S3-11, S3-12, S3-13, S3-14, S3-15, S3-16, S3-17, D-46 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S3-R6 | S3-03, S3-04, S3-05, S3-06, S3-07, S3-08, S3-09, S3-10, S3-11, S3-12, S3-13, S3-14 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
@@ -92,11 +91,11 @@ Every case is HOLD today because no build exists (Rule 85: source-verified only)
 | S3-R8 | S3-09, S3-10, S3-11, S3-12, S3-13, S3-14, S3-15, S3-16, S3-18, S3-19, S3-20, S3-21, S3-22, S3-23 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S3-R8a | S9-03, S9-04 | A/R Collection |
 | S3-R8b | S2-40, S2-41, S2-42, S3-18, S3-19, S3-20, S3-21, S3-22, S3-23 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
-| S3-R9 | DATA-18, DATA-19, DATA-20, DATA-21 | A/R Summary, A/P Detail |
+| S3-R9 | DATA-18, DATA-19, DATA-20 | A/R Summary, A/P Detail |
 | S3-R10 | S3-03, S3-04, S3-05, S3-06, S3-07, S3-08, S3-24, S3-25, S3-28, S3-29, DATA-20, D-37 | A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices |
 | S3-N1 | DATA-18, DATA-19, DATA-20, D-38, D-55 | A/R Summary, A/P Detail |
-| S3-N2 | DATA-21 | A/P Detail |
-| S3-N3 | DATA-18, DATA-19, DATA-20, DATA-21, D-55 | A/R Summary, A/P Detail |
+| S3-N2 | No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks |  |
+| S3-N3 | DATA-18, DATA-19, DATA-20, D-55 | A/R Summary, A/P Detail |
 | S4-R1 | S4-01, S4-02, S4-03, S4-04, S4-05, S4-06, D-25, D-26, D-27, D-28, D-52, D-56, D-59 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
 | S4-R2 | S4-05, S4-06 | A/R Collection, A/P Unpaid Invoices |
 | S4-R3 | S4-01, S4-02, S4-03, S4-04 | A/R Detail, A/R Collection, A/P Detail, A/P Unpaid Invoices |
@@ -174,7 +173,7 @@ Every case is HOLD today because no build exists (Rule 85: source-verified only)
 |---|---|---|
 | EH | Story 3, Error Handling: If an export fails for any other reason (a server error or a lost connection), nothing dow… | S3-26, S3-27, REL-06, D-38 |
 | UFS-1 | User Feedback Summary: PDF export over 2,000 rows | "This report is too large for PDF. Export it as CSV, or narro… | DATA-18, D-38, D-55 |
-| UFS-2 | User Feedback Summary: CSV export over 50,000 rows | "This report is too large to export. Choose an earlier as-of… | DATA-21 |
+| UFS-2 | User Feedback Summary: CSV export over 50,000 rows | "This report is too large to export. Choose an earlier as-of… | No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks |
 | UFS-3 | User Feedback Summary: Click an invoice at another enrolled location | Title "Switch location?", message "This wo… | S7-03, S7-05, D-39, D-64 |
 | UFS-4 | User Feedback Summary: Click a part sale at another enrolled location | "This part sale is in {location}. Switch … | S7-04, D-40 |
 | UFS-5 | User Feedback Summary: Collapse all / Expand all button | "Collapse all" / "Expand all" | Tooltip above the butto… | S4-01, S4-02, S4-03, S4-04, D-25, D-26, D-27, D-28 |
@@ -194,7 +193,7 @@ Every case is HOLD today because no build exists (Rule 85: source-verified only)
 | WC-9 | What changes for existing users: The A/R column "Location full name" and the A/P column "Location Name" are renamed "Locati… | S6-01, S6-02 |
 | WC-10 | What changes for existing users: Which rows and amounts each user can see is unchanged: an untouched report shows exactly t… | REL-01, REL-02, D-50 |
 | WC-11 | What changes for existing users: The A/R column headings change to Title Case, as on the A/P reports and the other reports:… | S2-40, S2-41, D-81 |
-| OOS-1 | Out of Scope: Background exports for very large reports ("we'll email you when it's ready"), as Sage Int… | DATA-21 |
+| OOS-1 | Out of Scope: Background exports for very large reports ("we'll email you when it's ready"), as Sage Int… | No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks |
 | OOS-2 | Out of Scope: Restricting these reports by the user's location enrollment. The reports stay organization… | S5-10, S5-11 |
 | OOS-3 | Out of Scope: Renaming columns other than Location. Only the capitals change (S2-R4a): A/R keeps "ID" an… | S6-01, S6-02, D-81 |
 | OOS-4 | Out of Scope: Other improvements found in research, each a separate ticket on SV-11315: a credit dated o… | REL-08, REL-09 |
@@ -211,6 +210,16 @@ Every case is HOLD today because no build exists (Rule 85: source-verified only)
 | GOAL-ACCESS | Goals: Nobody gains or loses access to any data, and no setup is needed. | S5-10, S5-11, REL-04, REL-04b |
 | ASSUME-13540 | Assumptions: A shop's A/P Detail can carry well over 10,000 open lines (the QA organization has 13,540 … | DATA-18 |
 | FORM | Form factor: Form factor: Desktop only by rule: these are detailed reports. | D-49 |
+
+## Cases deleted on the QA lead's order (26 Oct 2026) and the requirements they covered
+
+| Deleted case | Requirement | Now |
+|---|---|---|
+| DATA-21 C715470 (A/P Detail: a CSV of 50,000 rows downloads, 50,001 is refused) | S3-N2 | No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks |
+| DATA-21 C715470 (A/P Detail: a CSV of 50,000 rows downloads, 50,001 is refused) | S3-N3 | still covered by DATA-18, DATA-19, DATA-20, D-55 |
+| DATA-21 C715470 (A/P Detail: a CSV of 50,000 rows downloads, 50,001 is refused) | UFS-2 | No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks |
+| DATA-21 C715470 (A/P Detail: a CSV of 50,000 rows downloads, 50,001 is refused) | S3-R9 | still covered by DATA-18, DATA-19, DATA-20 |
+| DATA-21 C715470 (A/P Detail: a CSV of 50,000 rows downloads, 50,001 is refused) | OOS-1 | No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks |
 
 Not testable as written: none (every PRD line has a case).
 
@@ -286,7 +295,7 @@ Every testable statement of the tech plan has a verdict in `tech-plan-pass-2026-
 | What | Who | What it blocks | Since |
 |---|---|---|---|
 | Permission to write the 26 Oct 2026 full pass to TestRail (changed and new cases) and to add the new and released cases to run 549 (Rules 6, 123) | QA lead | the v9 pass stays a draft | 26 Oct 2026 |
-| A test data set with exactly 2,000/2,001 and 50,000/50,001 rows, or a lower test limit | developers | 3 held export-limit cases | 22 Oct 2026 |
+| A test data set with exactly 2,000/2,001 customers, or a lower test limit | developers | 1 held export-limit case (DATA-19; DATA-21 was deleted 26 Oct 2026) | 22 Oct 2026 |
 | A build of the feature | developers | every case is HOLD (no build yet) | 22 Oct 2026 |
 
 ### Waiting on the PO

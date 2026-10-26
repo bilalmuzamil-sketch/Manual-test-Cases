@@ -208,13 +208,6 @@ mv("S4-29", "With all three permissions a custom role can move customers",
    open_move("{Term-A}") + [('Choose "Net 45" in "Move To".', "the button is enabled."), ('Click "Move 1 Customer".', 'the toast "1 customer moved to Net 45." shows.')],
    ["PERM-MOVE", "KD-MOVEGATE", "S4-R9"], who=role("S4-29", "Settings → Finance, Customers → Create & Edit and View and Manage AP/AR Data"))
 
-mv("S4-30", "A move sent without all three permissions is refused by the server",
-   [("Net 20 is held by at least one customer.", None)],
-   [("Send a move request for Net 20's customers by a means other than the page, as a user who has Settings → Finance but not View and Manage AP/AR Data.", "the request is refused and no customer changes term.")],
-   ["S4-N1"], who=role("S4-30", "Settings → Finance and Customers → Create & Edit, but not View and Manage AP/AR Data"),
-   marker=HOLD("the page greys Move Customers for this user, and changing a role signs the user out, so only a request sent outside the page can reach this refusal"),
-   note="A manual tester cannot reach this: S4-26 to S4-28 check the page greys the item; an old open window does not help, because changing the user's role signs them out. It is for an automated check.")
-
 TWO = ("You and a second user, {User-B}, are both signed in with the \"Admin\" role, in two separate browsers.", "For example: {User-B} is ZZAUTOTEST S4 Second Admin.")
 mv("S4-31", "A ticked customer another user moved meanwhile is left alone",
    [TWO, DEFAULT_COD, ("The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly two customers, {Customer-A} and {Customer-B}.", "For example: {Term-A} is ZZAUTOTEST S4-31 N20, {Customer-A} is ZZAUTOTEST S4-31 Alpha and {Customer-B} is ZZAUTOTEST S4-31 Bravo."),
@@ -239,13 +232,6 @@ mv("S4-33", "If the Move To term was deactivated meanwhile, the move is refused"
      ('In {User-B}\'s browser, click "Deactivate".', '{User-B} sees "Net 45 deactivated".'),
      ('In your browser, click "Move 1 Customer".', 'the app\'s error alert shows "Pick an active term other than {Term-A}." and the window stays open; {Customer-A} is still on {Term-A}.')],
    ["EH-S4b", "UFS-43"], start=None)
-
-mv("S4-34", "If a move fails partway, nobody is changed",
-   [DEFAULT_COD, three("S4-34")],
-   open_move("{Term-A}") + [('Choose "Net 45" in "Move To".', "Net 45 is chosen."),
-     ('Click "Move 3 Customers" while the move cannot complete.', 'the app\'s error alert shows "Couldn\'t move the customers. Nothing was changed. Please try again." The window stays open and all three customers are still on {Term-A} with no note.')],
-   ["EH-S4c", "UFS-38"],
-   marker=HOLD("a manual tester cannot make a move fail partway"), note="A manual tester cannot force a failure in the middle of a move; this is for an automated check or a developer-made failure.")
 
 mv("S4-35", "Moving off a deactivated term: how the note names the old term",
    [DEFAULT_COD, ("The shop's own term {Term-A}, due 60 days after the invoice date, is deactivated and held only by customer {Customer-A}.", "For example: {Term-A} is ZZAUTOTEST S4-35 N60 and {Customer-A} is ZZAUTOTEST S4-35 Solo."),

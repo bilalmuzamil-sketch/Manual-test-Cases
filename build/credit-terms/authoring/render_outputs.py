@@ -64,13 +64,18 @@ A(f"| | | **Total** | **{len(CASES)}** |")
 mk = Counter(c["marker"] for c in CASES)
 A(""); A("Markers: " + "; ".join(f"`{m}` × {n}" for m, n in mk.most_common()))
 A(""); A("## 2. Coverage of the 211 requirement codes"); A("| Code | Cases |"); A("|---|---|")
-for k in L.CODE: A(f"| {k} | {', '.join(quoting(k))} |")
-A(""); A("No code is listed as not testable: every one of the 211 is quoted by at least one case (codes with no runnable trigger are held, see §4). Story 11 has no S11-R15 (question 1).")
+def _cov(k):
+    cs = quoting(k)
+    if k in L.NO_MANUAL:
+        return (", ".join(cs) + "; " if cs else "") + f"{L.DELETED_MSG} (was {L.NO_MANUAL[k]}, {L.DELETED_CASES[L.NO_MANUAL[k]]})"
+    return ", ".join(cs)
+for k in L.CODE: A(f"| {k} | {_cov(k)} |")
+A(""); A("No code is listed as not testable. 26 Oct 2026: 10 cases were deleted on the QA lead's order because a manual tester cannot set them up (" + ", ".join(f"{k} {c}" for k, c in L.DELETED_CASES.items()) + "); each requirement only they covered reads \"" + L.DELETED_MSG + "\"; every other requirement they quoted is still covered by the remaining cases named in its row. Story 11 has no S11-R15 (question 1).")
 A(""); A("### Named PRD items (no code): Error Handling, User Feedback Summary, Key Decisions, Permissions, Terminology, Assumptions, Goals, Out of Scope")
 A("| Item | Where | Cases or reason |"); A("|---|---|---|")
 for k, (lab, t) in L.NAMED.items():
     cs = quoting(k)
-    A(f"| {k} | {lab} | {', '.join(cs) if cs else 'NOT TESTABLE: ' + L.NOT_TESTABLE[k]} |")
+    A(f"| {k} | {lab} | {_cov(k) if (cs or k in L.NO_MANUAL) else 'NOT TESTABLE: ' + L.NOT_TESTABLE[k]} |")
 A(""); A("Sub-items (rows of the S2-R1 and S12-R3 tables, the S1-R7/S1-R8/S3-R2/S3-R5/S3-R9 bullets): every one is quoted by a case (gate in build.py).")
 A(""); A("## 3. Must not change (Rule 96)")
 A("Project type: V2 / upgrade, confirmed by the QA lead on 23 Oct 2026 (\"It is an updgrade\"; twelve fixed terms exist today). Code baseline: NOT AVAILABLE (no product repository in this session); the baseline rests on PRD v3 and the facts in `build/sv9087-credit-term-2026-08-27/FINDINGS.md`. Every PRD sentence that says a behaviour stays as today, and the case that protects it:")
@@ -96,7 +101,7 @@ A(""); A("## 6. Rule 4 (API placement)")
 api = [c["key"] for c in CASES if c["api"]]
 A(f"The {len(api)} Public API cases ({', '.join(api)}) are in S10. TestRail section 91464 is titled \"S10 — Imports and Public API\" (coordinator, 23 Oct 2026), so Rule 4 is satisfied and they stay there.")
 A(""); A("## 7. Gates (`python3 authoring/build.py`)")
-A("The QA lead's case pattern (Rule 117 fourteenth amendment, 26 Oct 2026): plain precondition bullets only (no Scenario line, no {placeholder}, no \"For example\", no setup-file link), the Blocked line last; \"Expected Result\" with a \"Step N:\" heading and a bullet list per step, a blank paragraph, then the quotes, From lines, References from Design and AUTOMATION line identical to before the pattern. "
+A("The QA lead's case pattern (Rule 117 fourteenth amendment, 26 Oct 2026): plain precondition bullets only (no Scenario line, no {placeholder}, no \"For example\", no setup-file link), no \"mark this test Blocked\" line (fifteenth amendment, 26 Oct 2026); \"Expected Result\" with a \"Step N:\" heading and a bullet list per step, a blank paragraph, then the quotes, From lines, References from Design and AUTOMATION line identical to before the pattern. "
   "Title ≤ 80 and no semicolon; steps = results, each \"Step N:\"; no step with two UI actions (heuristic, plus each step read by hand); placeholders defined and named name-hyphen-letter/number; every quote verbatim in PRD v3 or the saved stories; every code and named item covered or not testable with a reason; every User Feedback Summary message used word for word in a step or result; one AUTOMATION line, last; From: line per document, build line, References from Design block. Result: 0 PROBLEM lines. Over the ~10-step target: DATA-24 (14 steps; kept whole: each count depends on the action before it, Rule 136).")
 A(""); A("## 8. Reading coverage (Rule 119)")
 A("| File | Size | Lines read | Coverage |"); A("|---|---|---|---|")
@@ -108,7 +113,7 @@ A("| build/APP-ACTIONS-PLAYBOOK.md | 279,203 bytes | §G, §H, Navigation Map, I
 A("| Rules and skills (brief list) | — | LESSONS-REGISTER L-01–L-09; Rule 4; Rules 96, 113, 114, 116, 117 (all amendments), 122, 129, 130, 132, 134, 135, 136; IDEAL-TEST-CASE-STANDARD; skills 17 and 07; TOKEN-DISCIPLINE-CHARTER | 100% |")
 A(""); A("## 9. Fix round, 23 Oct 2026 (coordinator review)")
 FIX = [
- ("Item 1 (a), fresh shop term per case", "S4-01, S4-04, S4-05, S4-08, S4-12, S4-13, S4-16, S4-20, S4-34 (three customers on {Term-A}, 15 days); S4-09, S4-10, S4-14, S4-17, S4-18, S4-19, S4-29, S4-31, S4-32, S4-33, S7-01c, S8-06, S8-12, S12-09, DATA-25, DATA-26 ({Term-A}, 20 days); DATA-26b ({Term-A}, 45 days); S4-35 (deactivated {Term-A}, 60 days); S1-06, S1-07, S1-19 (new terms with 1/2/3 holders or none)",
+ ("Item 1 (a), fresh shop term per case", "S4-01, S4-04, S4-05, S4-08, S4-12, S4-13, S4-16, S4-20 (three customers on {Term-A}, 15 days); S4-09, S4-10, S4-14, S4-17, S4-18, S4-19, S4-29, S4-31, S4-32, S4-33, S7-01c, S8-06, S8-12, S12-09, DATA-25, DATA-26 ({Term-A}, 20 days); DATA-26b ({Term-A}, 45 days); S4-35 (deactivated {Term-A}, 60 days); S1-06, S1-07, S1-19 (new terms with 1/2/3 holders or none)",
   "a standard term on the shared site holds other people's customers, so \"exactly N on Net 15/20/45\" could not be reached; the behaviour does not depend on the term being standard"),
  ("Item 1 (b), standard term kept, relative counts or Select None + search", "S2-03, S2-07 (\"at least one customer\", Move Customers available), S2-22 and DATA-24 ({Count-A}/{Count-B} tab counts), S4-08 (Net 30 {Count-A} + 3), S4-25 (Credit Hold: Select None, search, tick), S11-09 (COD → Credit Hold with Select None, search, tick)",
   "the case must use that standard term; counts and selections are stated so a tester can reach them"),

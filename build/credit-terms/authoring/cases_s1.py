@@ -197,24 +197,6 @@ C("S1-26", "S1", "A term held only by an invoice shows 0 and 0 but is still in u
    'Step 3: the hover reads "Used by 1 invoice" with "Deactivate it instead to take it out of the pickers." below it.'],
   ["S1-E2", "T-INUSE", "S2-R2"])
 
-C("S1-27", "S1", "While the list loads, the Inactive tab never says \"No inactive terms\"",
-  [ADMIN(), ("At least one term is deactivated.", None), ("Starting screen: the Settings page.", None)],
-  ['Click "Credit Terms".', 'Click the "Inactive" tab as soon as it can be clicked, before the rows appear.'],
-  ["Step 1: the page starts loading.",
-   'Step 2: while the rows are still loading, the line "No inactive terms" does not show at any moment; once loaded, the inactive terms appear.'],
-  ["S1-E3"],
-  marker=HOLD("a manual tester cannot hold the list in its loading state long enough to look (it needs a slowed network)"),
-  note="A manual tester can try step 2, but on a fast connection the loading moment is too short to judge; this part needs an automated check with a slowed network.")
-
-C("S1-28", "S1", "If the list cannot load, the page says so above the tabs",
-  [ADMIN(), ("Starting screen: the Settings page.", None)],
-  ['Click "Credit Terms" while the list cannot be loaded.', "Reload the page once the list can be loaded again."],
-  ['Step 1: the line "Something went wrong loading credit terms. Please try again." shows above the tabs, and it stays there.',
-   "Step 2: the line is gone and the terms show."],
-  ["EH-S1", "UFS-1"],
-  marker=HOLD("a manual tester cannot make the term list fail to load on demand"),
-  note="A manual tester cannot force the list to fail (switching the network off shows the browser's or the app's offline message instead); this case is for an automated check or a developer-made failure.")
-
 # ---- page access by role (Key Decisions, Permissions) ---------------------------------------------------------------------------
 C("S1-29", "S1", "The Admin role has Settings Finance on and it cannot be turned off",
   [ADMIN(), ("Starting screen: Settings, Roles & Permissions.", None)],

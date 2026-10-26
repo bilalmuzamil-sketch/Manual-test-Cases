@@ -140,9 +140,14 @@ for c in CASES:
 R += ["", "## PRD version 9 coverage — every requirement code", "", "| Code | Cases | Reports covered |", "|---|---|---|"]
 for k in sorted(L.CODE, key=lambda s: (int(s.split('-')[0][1:]), {"R": 0, "N": 1, "E": 2}[s.split('-')[1][0]], int(re.sub(r'\D', '', s.split('-')[1])), s)):
     reps = sorted({r for ck in cov[k] for r in L.reports_of(BY[ck])}, key=list(L.REPORTS).index)
-    R.append(f"| {k} | {', '.join(cov[k])} | {', '.join(L.REPORTS[r] for r in reps)} |")
+    R.append(f"| {k} | {', '.join(cov[k]) or L.DELETED_NOTE} | {', '.join(L.REPORTS[r] for r in reps)} |")
 R += ["", "## Named PRD items without a code — every one covered", "", "| Item | What it is | Cases |", "|---|---|---|"]
-for k, (lab, t) in L.NAMED.items(): R.append(f"| {k} | {lab}: {t[:90]}{'…' if len(t) > 90 else ''} | {', '.join(cov[k])} |")
+for k, (lab, t) in L.NAMED.items(): R.append(f"| {k} | {lab}: {t[:90]}{'…' if len(t) > 90 else ''} | {', '.join(cov[k]) or L.DELETED_NOTE} |")
+R += ["", "## Cases deleted on the QA lead's order (26 Oct 2026) and the requirements they covered", "",
+      "| Deleted case | Requirement | Now |", "|---|---|---|"]
+for dk, d in L.DELETED.items():
+    for x in d["codes"]:
+        R.append(f"| {dk} {d['case']} ({d['title']}) | {x} | {', '.join(cov[x]) and 'still covered by ' + ', '.join(cov[x]) or L.DELETED_NOTE} |")
 R += ["", f"Not testable as written: {', '.join(L.NOT_TESTABLE) or 'none'} (every PRD line has a case).", "",
       "Gates `build.py` runs on every build: title ≤ 80 and no semicolon · design titles start \"Design: \" · one \"Step N:\" result per step · every {placeholder} defined in the preconditions · "
       "every quote word for word in PRD version 9 (or Chris Ward's answers, the Jira reading record or the tech plan) · every PRD code and named item covered · every report a requirement names covered · every column of every report clicked "
@@ -191,7 +196,7 @@ R += ["| Stories SV-11531 to SV-11539 (description, requirements, acceptance cri
       "## OUTSTANDING — what I need from you", "",
       "| What | Who | What it blocks | Since |", "|---|---|---|---|",
       "| Permission to write the 26 Oct 2026 full pass to TestRail (changed and new cases) and to add the new and released cases to run 549 (Rules 6, 123) | QA lead | the v9 pass stays a draft | 26 Oct 2026 |",
-      "| A test data set with exactly 2,000/2,001 and 50,000/50,001 rows, or a lower test limit | developers | 3 held export-limit cases | 22 Oct 2026 |",
+      "| A test data set with exactly 2,000/2,001 customers, or a lower test limit | developers | 1 held export-limit case (DATA-19; DATA-21 was deleted 26 Oct 2026) | 22 Oct 2026 |",
       "| A build of the feature | developers | every case is HOLD (no build yet) | 22 Oct 2026 |", "",
       "### Waiting on the PO", "",
       "Sheet https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA: questions 1 to 16 all answered by Chris Ward on 23 Oct 2026 (read 26 Oct 2026). Nothing is waiting on the PO; cases held on a PO question: "

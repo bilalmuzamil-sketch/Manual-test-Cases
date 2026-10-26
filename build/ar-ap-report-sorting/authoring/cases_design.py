@@ -24,6 +24,7 @@ def DREF(pages):
 CAPL = ("Where the build is expected to differ: Chris Ward (answer 11, 23 Oct 2026) says the current build writes the button \"Switch Location\" with a "
         "capital L, a build bug to fix; the PRD's \"Switch location\" stands. No ticket number is known yet. If the button reads \"Switch Location\", mark this test Failed.")
 SBC2 = "Reports > Finance > Sales By Customer is open in a second tab of the same window, for comparison."
+WIP2 = "Reports > Work In Progress is open in a second tab of the same window, so its links can be compared."   # 26 Oct 2026 read-through
 
 def headings(code):
     r = R[code]
@@ -46,7 +47,7 @@ for code in ALL6:
     LOOKPRE = [ADMIN(), TWO_LOC, long_pre(code, k),
                START(code, " in light theme at 100% zoom" + ("" if summ else ", with every group expanded (Expand all)"))]
     CASE_NOTE = ""   # 26 Oct 2026: question 4 answered (Title Case on all six reports, PRD v9 S2-R4a); the A/R letter-case note is gone
-    C(k, "DESIGN", f"Design: {r['n']} at 1440 px in light theme looks as described",
+    C(k, "DESIGN", f"Design: {r['n']} at 1440 px in light theme shows every column",
       LOOKPRE + [SBC2],
       ["Look at the title row.",
        "Look at where the filter row sits, and compare with Sales By Customer.",
@@ -65,25 +66,24 @@ for code in ALL6:
       ["S8-R2", "S8-R3", f"S2-R1 {code}", "S2-R4a", "S6-R3", "KD-REUSE"],
       note=("The first column keeps today's heading: only the Location column is renamed in this release." if summ else CASE_NOTE),
       design=DREF("page 6 (Descriptions and pinned column) and page 1 (Opening order and header sorting)"))
-    hl = f"Design: {r['n']} {r['headline']} column and Totals row look native"
-    C(k + "b", "DESIGN", hl if len(hl) <= 80 else f"Design: {r['n']} {r['headline']} column and Totals row style",
+    C(k + "b", "DESIGN", f"Design: {r['n']} {r['headline']} and Totals row match Sales By Customer",
       LOOKPRE + [SBC2],
       [f"Look at the \"{r['headline']}\" column on the header, the rows and the Totals row, and compare with Sales By Customer.",
        "Compare the Totals row with Sales By Customer's Totals row."],
       [f"Step 1: \"{r['headline']}\" is pinned to the right edge and bold on the header, every row" + ("" if summ else ", every expanded row") + " and the Totals row, as on Sales By Customer.",
-       "Step 2: the same native totals row style."],
+       "Step 2: side by side, the Totals row looks the same as Sales By Customer's Totals row: the same background colour, text size and weight."],
       ["S8-R3", "S8-R4", "KD-REUSE"], note=CASE_NOTE,
       design=DREF("page 6 (Descriptions and pinned column)"))
-    C(k + "c", "DESIGN", f"Design: {r['n']} links use the native report link style",
-      LOOKPRE,
-      [f"Look at {link}.", "Press Tab until a link has keyboard focus."],
-      ["Step 1: they use the native report link style: the same blue as Work In Progress, semi-bold, no underline.",
+    C(k + "c", "DESIGN", f"Design: {r['n']} links are blue, semi-bold and not underlined",
+      LOOKPRE + [WIP2],
+      [f"Look at {link} and compare them with the links on Work In Progress.", "Press Tab until a link has keyboard focus."],
+      ["Step 1: they are blue, the same blue as the links on Work In Progress, semi-bold and not underlined.",
        "Step 2: the focused link is underlined; links are underlined only on keyboard focus."],
       ["S7-R7"],
       design=DREF("page 5 (Document links and Switch location)"))
 
     k = nk()
-    C(k, "DESIGN", f"Design: {r['n']} in dark theme looks as described",
+    C(k, "DESIGN", f"Design: {r['n']} in dark theme: chips, links and Totals row readable",
       [ADMIN(), TWO_LOC, long_pre(code, k),
        START(code, " in dark theme at 100% zoom" + ("" if summ else ", with every group expanded (Expand all)")),
        "Reports > Finance > Sales By Customer is open in a second tab, also in dark theme, for comparison."],
@@ -92,21 +92,21 @@ for code in ALL6:
        "Press Tab until a link has keyboard focus.", "Look across the whole page for any text that overlaps, is cut off, or is hard to read on the dark background."],
       ["Step 1: the title, info icon and ⋯ on one line, the filter row below, as in light theme.",
        f"Step 2: \"{P}: All {r['parties']}\" and \"Past due: Any\" show in the resting (grey) style and are readable.",
-       "Step 3: the native report link style, readable in dark theme.",
-       f"Step 4: \"{r['headline']}\" pinned right and bold on the header, rows and Totals row; the Totals row has the same native style as Sales By Customer's in dark theme.",
+       "Step 3: they are blue, semi-bold and not underlined, and readable on the dark background.",
+       f"Step 4: \"{r['headline']}\" pinned right and bold on the header, rows and Totals row; side by side, the Totals row looks the same as Sales By Customer's in dark theme: the same background colour, text size and weight.",
        "Step 5: the focused link is underlined.", "Step 6: nothing overlaps, is cut off or is hard to read."],
       ["S7-R7", "S8-R3", "S8-R4", "S5-R13", "S5-R15"],
       design=DREF("page 6 (Descriptions and pinned column)"))
 
     k = nk()
-    C(k, "DESIGN", f"Design: {r['n']} at 1536 px looks as described in both themes",
+    C(k, "DESIGN", f"Design: {r['n']} at 1536 px: no overlap or clipping, light and dark",
       [ADMIN(), TWO_LOC, long_pre(code, k),
-       START(code, " in light theme at 100% zoom", width="1536 px")],
+       START(code, " in light theme at 100% zoom", width="1536 px"), SBC2],
       ["Look at the title row and the filter row.", "Read the column headings.", "Look for a sideways scroll bar under the table.",
-       f"Look at the \"{r['headline']}\" column and the Totals row.", "Look across the page for overlap or clipping.",
+       f"Look at the \"{r['headline']}\" column and the Totals row, and compare the Totals row with Sales By Customer's.", "Look across the page for overlap or clipping.",
        "Switch ShopView to dark theme."],
       ["Step 1: title, info icon and ⋯ on one line; the filter row below.", "Step 2: every heading on one line.", "Step 3: there is none.",
-       f"Step 4: \"{r['headline']}\" pinned to the right edge and bold, the Totals row in the native style.",
+       f"Step 4: \"{r['headline']}\" pinned to the right edge and bold; side by side, the Totals row looks the same as Sales By Customer's: the same background colour, text size and weight.",
        "Step 5: nothing overlaps, is cut off or clipped.",
        "Step 6: the page switches to dark theme with the same layout; links readable; nothing overlaps or is clipped."],
       ["S8-R2", "S8-R3", "S8-R4", "S7-R7"],
@@ -116,21 +116,21 @@ for code in ALL6:
 # Rule 136 (22 Oct 2026): the load error (S8-R6) is its own case ("b"); the loading bar and the empty state (S8-R5) keep the C-id.
 for code in ALL6:
     r = R[code]; k = nk(); P = r["Party"]
-    C(k, "DESIGN", f"Design: {r['n']} loading and empty states look as described",
+    C(k, "DESIGN", f"Design: {r['n']} loading bar and empty state match Sales By Customer",
       [ADMIN(), TWO_LOC, (f"{P} {{{P}-A}} has open {r['doc']}s only at {{Location-B}}.", f"For example: {{{P}-A}} is {ex(k, 'States')[0]}."),
        START(code), SBC2],
       ["Change the as-of date to yesterday and watch the table straight away.",
        "Change the as-of date back to today.", "In the Location menu, untick {Location-B}.", f"In the {P} filter, tick {{{P}-A}}.",
        "Read the empty state, letter for letter, and compare it with Sales By Customer's empty state.",
        "Click \"Clear all filters\"."],
-      ["Step 1: the native table progress bar shows while the report loads.",
+      ["Step 1: a progress bar shows on the table while the report loads, the same loading bar Sales By Customer shows.",
        "Step 2: the report shows today again.", "Step 3: the report narrows to {Location-A}.",
        f"Step 4: the report has no rows: {{{P}-A}} has nothing open at {{Location-A}}.",
-       "Step 5: \"No record matches these filters\" and \"Try changing filters to widen your results.\", with a \"Clear all filters\" button, in the native empty-state look of Sales By Customer; no Totals row.",
+       "Step 5: \"No record matches these filters\" and \"Try changing filters to widen your results.\", with a \"Clear all filters\" button, laid out the same as Sales By Customer's empty state when the two tabs are compared; no Totals row.",
        "Step 6: the filters return to their defaults and rows show."],
       ["S8-R5", "UFS-9"],
       design=DREF("page 6 (Descriptions and pinned column)"))
-    C(k + "b", "DESIGN", f"Design: {r['n']} load error looks as described",
+    C(k + "b", "DESIGN", f"Design: {r['n']} load error message shows in place of the rows",
       [ADMIN(), ("The report has open documents on today's date.", None),
        ("You can switch this computer's network connection off and on (for example Wi-Fi).", None), START(code)],
       ["Switch the network connection off.", "Change the as-of date to yesterday.", "Switch the network back on."],
@@ -143,7 +143,7 @@ for code in ALL6:
 # ---------------- grouped reports: chevrons, tooltip, pinned group row ----------------
 for code in GROUPED:
     r = R[code]; k = nk(); g = "bucket" if r["group"] == "aging bucket" else f"{r['party']} group"
-    C(k, "DESIGN", f"Design: {r['n']} chevrons and pinned group row look as described",
+    C(k, "DESIGN", f"Design: {r['n']} chevron button, tooltips and pinned group row",
       [ADMIN(), (f"The report has open documents in several {g}s on today's date, one with more lines than fit on the screen.", None),
        START(code, " in light theme at 100% zoom, with every group collapsed")],
       ["Look at the table's top-left header cell.", f"Look at each {g} row's own chevron.", "Hover over the top-left chevron button.",
@@ -197,19 +197,19 @@ C(k, "DESIGN", "Design: A/P Vendor chip and menu match Inventory Value's",
 
 for fam, code in (("A/R", "ARS"), ("A/P", "APD")):
     k = nk()
-    C(k, "DESIGN", f"Design: {fam} Past due chip and menu look as described",
+    C(k, "DESIGN", f"Design: {fam} Past due chip and its tick-box menu",
       [ADMIN(), START(code, " in light theme at 100% zoom")],
       ["Look at the Past due chip.", "Click it and read the menu, row by row, letter for letter.", "Tick \"91+ days\".",
        "Click the Location chip next to it and compare its menu with the Past due menu."],
       ["Step 1: \"Past due: Any\" with an hourglass icon, in the resting (grey) style.",
        "Step 2: in this order: \"Any\", the line \"All ranges are included. Pick one or more to narrow.\", \"1-30 days\", \"31-60 days\", \"61-90 days\", \"91+ days\".",
        "Step 3: the chip reads \"Past due: 91+ days\", no longer in the resting style.",
-       "Step 4: the Location menu opens; the Past due menu is the same native checkbox dropdown as Customer and Location: same tick boxes, spacing and position."],
+       "Step 4: the Location menu opens; the Past due menu is the same kind of tick-box menu as the Location menu: the same tick boxes, spacing and position under its chip."],
       ["S5-R15", "KD-REUSE"], design=DREF("page 7 (Filters and call list)"))
 
 for fam, code in (("A/R", "ARC"), ("A/P", "APS")):
     k = nk()
-    C(k, "DESIGN", f"Design: {fam} Export menu matches the native report Export menu",
+    C(k, "DESIGN", f"Design: {fam} Export menu matches Sales By Customer's ⋯ menu",
       [ADMIN(), START(code, " in light theme at 100% zoom"), SBC2],
       ["Hover over the ⋯ button at the right of the title row.", "Click it and read the menu, letter for letter.", "Compare with Sales By Customer's ⋯ menu."],
       ["Step 1: the ⋯ button is at the right of the title row and is labelled \"Export report\".",
@@ -218,13 +218,13 @@ for fam, code in (("A/R", "ARC"), ("A/P", "APS")):
 
 # ---------------- messages (toasts), dialog, tooltips ----------------
 k = nk()
-C(k, "DESIGN", "Design: the export Success and Empty export messages look native",
+C(k, "DESIGN", "Design: export Success and Empty export messages match Sales By Customer",
   [ADMIN(), TWO_LOC, START("ARS", " in light theme at 100% zoom"), SBC2],
   ["Download the CSV from the ⋯ menu and read the message, letter for letter.", "Compare it with the message Sales By Customer shows after a CSV download.",
    "In the Location menu, click \"Clear selection\".", "Download the PDF from the ⋯ menu and read the message.", "Compare it with Sales By Customer's warning for an empty export."],
   ["Step 1: \"Success\", \"Data exported successfully.\"", "Step 2: the same success message, look and position.",
    "Step 3: no location is ticked.",
-   "Step 4: \"Empty export\", \"Export didn't yield any results\"; nothing downloads.", "Step 5: the same native warning look and position."],
+   "Step 4: \"Empty export\", \"Export didn't yield any results\"; nothing downloads.", "Step 5: the warning looks the same and appears in the same place as Sales By Customer's empty-export warning."],
   ["UFS-6", "UFS-7", "S3-R10"], design=DREF("page 2 (Export)"))
 
 k = nk()
@@ -239,13 +239,14 @@ C(k, "DESIGN", "Design: the export error messages look like the other reports' e
 
 for kind, code, word in (("work order", "ARD", "This work order is in"), ("part sale", "ARC", "This part sale is in")):
     k = nk()
-    C(k, "DESIGN", f"Design: the switch-location dialog for a {kind} looks as described",
+    C(k, "DESIGN", f"Design: the Switch location? dialog for a {kind} at another location",
       [ADMIN(), TWO_LOC, (f"Customer {{Customer-A}} has an open {kind} invoice {{Invoice-A}} made at {{Location-B}}.", f"For example: {{Customer-A}} is {ex(k, 'Dialog')[0]}."),
-       START(code, " in light theme at 100% zoom, with {Customer-A} ticked and its rows showing")],
+       START(code, " in light theme at 100% zoom, with {Customer-A} ticked and its rows showing"),
+       "A link to a work order made at {Location-B}, copied from the address bar, is open in a second tab, so the existing location-switch prompt shows there for comparison."],
       ["Click {Invoice-A}'s number.",
-       "Compare the dialog with the one a work order link from another location shows today.", "Click \"Cancel\".", "Switch ShopView to dark theme.", "Click {Invoice-A}'s number again."],
+       "Compare the dialog with the location-switch prompt open in the second tab.", "On the report's tab, click \"Cancel\".", "Switch ShopView to dark theme.", "Click {Invoice-A}'s number again."],
       [f"Step 1: a dialog opens over the report; read letter for letter, in order: title \"Switch location?\", message \"{word} \" then {{Location-B}}'s name and \"Switch your active location to view it?\", then the button \"Cancel\" on the left and the button \"Switch location\" (small l) on the right, and a close \"×\" at the top right.",
-       "Step 2: it is the existing location-switch prompt: same look, buttons and position.", "Step 3: the dialog closes.", "Step 4: the page switches to dark theme.",
+       "Step 2: it is the existing location-switch prompt: the same look, buttons and position as the prompt in the second tab.", "Step 3: the dialog closes.", "Step 4: the page switches to dark theme.",
        "Step 5: the dialog opens again and is readable in dark theme."],
       ["S7-R3", "UFS-3" if kind == "work order" else "UFS-4", "KD-REUSE"], design=DREF("page 5 (Document links and Switch location)"), note=CAPL)
 
@@ -255,13 +256,13 @@ for fam, code in (("A/R", "ARD"), ("A/P", "APS")):
       [ADMIN(), START(code, " in light theme at 100% zoom"), "Reports > Work In Progress is open in a second tab of the same window, for comparison."],
       ["Look at the info icon and compare with Work In Progress's.", "Hover over it and look at the tooltip's position and style.",
        "Compare with Work In Progress's tooltip.", "Switch ShopView to dark theme.", "Hover over the info icon again."],
-      ["Step 1: the same native report info icon, directly right of the title.",
+      ["Step 1: the same info icon as Work In Progress's, directly right of the title.",
        "Step 2: the description shows in a tooltip.",
-       "Step 3: the same tooltip look.", "Step 4: the page switches to dark theme.", "Step 5: the tooltip shows, readable in dark theme."],
+       "Step 3: the tooltip looks the same as Work In Progress's tooltip: the same colours, text size and position next to the icon.", "Step 4: the page switches to dark theme.", "Step 5: the tooltip shows, readable in dark theme."],
       ["S8-R1", "KD-REUSE"], design=DREF("page 6 (Descriptions and pinned column)"))
 
 k = nk()
-C(k, "DESIGN", "Design: A/R Collection call list on the customer row looks as described",
+C(k, "DESIGN", "Design: A/R Collection customer row shows Phone and Credit term",
   [ADMIN(), ("Customer {Customer-A} has an overdue invoice, a phone number and a credit term; customer {Customer-B} has an overdue invoice and no phone.",
              f"For example: {{Customer-A}} is {ex(k, 'Phone Row')[0]} with phone (403) 555-0103 and credit term Net 30; {{Customer-B}} is {ex(k, 'No Phone Row')[0]}."),
    START("ARC", " in light theme at 100% zoom")],
@@ -304,7 +305,7 @@ k = nk()
 C(k, "DESIGN", "Design: narrower than 1024 px the reports show the mobile filter row",
   [ADMIN(), START("ARS", width="900 px")],
   ["Look at the filter row.", "Look at the table.", "Open A/P Unpaid Invoices at the same width and look again."],
-  ["Step 1: the native mobile filter row shows instead of the desktop chips.", "Step 2: the table scrolls sideways; nothing else is laid out for small screens.",
+  ["Step 1: the mobile filter row shows instead of the four desktop chips.", "Step 2: the table scrolls sideways; nothing else is laid out for small screens.",
    "Step 3: the same: the mobile filter row and a table that scrolls sideways."],
   ["OOS-9", "FORM"], reports=["ARS", "APU"], design=DREF("page 6 (Descriptions and pinned column)"))
 

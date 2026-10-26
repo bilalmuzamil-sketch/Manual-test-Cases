@@ -244,7 +244,6 @@ SCENARIO = {
     "DATA-18": "Your shop has more than 2,000 open vendor lines, and you export A/P Detail as a PDF and as a spreadsheet file.",
     "DATA-19": "A/R Summary lists exactly 2,000 customers on one date and 2,001 on another, and you export each as a PDF.",
     "DATA-20": "You pick vendors whose open lines add up to exactly 2,000, then add one more line, and export A/P Detail as a PDF.",
-    "DATA-21": "A/P Detail has exactly 50,000 open lines on one date and 50,001 on another, and you export each as a spreadsheet file.",
     "DATA-22": "A customer pays an open invoice while you have A/R Summary open in another tab.",
     "DATA-23": "Two customers owe you known amounts, and you compare the Summary and Detail totals with a Past due filter set.",
     "DATA-24": "You owe two vendors known amounts, and you compare the Summary and Detail totals with a Past due filter set.",

@@ -100,7 +100,7 @@ C(k, "S5", "A/R Summary: the Location chip reads all, a count, one name or none"
    "Step 3: the chip reads \"Location: \" and {Location-C}'s name, shortened with \"...\" because it is long.",
    "Step 4: \"Location: No locations\"."],
   ["S5-R6"],
-  note="The Location chip is the native one, exactly as on Sales By Customer: with one location ticked, and for a long name, it reads as that chip does.")
+  note="The Location chip is the one Sales By Customer uses: with one location ticked it reads \"Location: \" and that location's name, shortened with \"...\" when the name is long.")
 
 k = nk()
 C(k, "S5", "A/P Detail: with no location ticked the report is empty",
@@ -198,7 +198,7 @@ C(k, "S5", "A/P Summary: a link naming several locations or every location",
    "Step 7: the address bar shows the three codes separated by commas.",
    "Step 8: a link naming every location opens as \"Location: All locations\"."],
   ["S5-R10"] + TP.q("D30-keys"),
-  note="The tester edits only the location part of the page address. Shortened 22 Oct 2026 (Rule 136): the address is edited in the same tab, which opens it as a link; a link opened in a new tab is checked in the reload, Back and shared-link case of A/R Collection.")
+  note="The tester edits only the location part of the page address, in the same tab; pressing Enter opens the edited address as a link.")
 
 k = nk()
 C(k, "S5", "A/R Detail: a link with an unknown location ignores it",
@@ -294,7 +294,7 @@ for code in ("ARD", "APD"):
        f"Step 6: only the two {Ps}' rows remain.",
        f"Step 7: no {P.lower()} is ticked, and the chip reads \"{P}: All {Ps}\" in the resting (grey) style."],
       ["S5-R13"],
-      note=f"The {P} chip is the native one (as on " + ("Sales By Customer" if P == "Customer" else "Inventory Value") + "): with one name ticked, and for a long name, it reads as that chip does.")
+      note=f"The {P} chip is the one " + ("Sales By Customer" if P == "Customer" else "Inventory Value") + f" uses: with one name ticked it reads \"{P}: \" and that name, shortened with \"...\" when the name is long.")
 
 # ---- the Past due menu
 for code in ("ARC", "APS"):

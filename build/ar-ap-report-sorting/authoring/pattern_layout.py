@@ -94,14 +94,14 @@ LAYOUT = {
     "S7-02": dict(res_step={1: ["The pointer does not turn into a hand.", "The row's text is not blue: only the number is a link."]}),
     "S7-03": dict(res_step={1: dialog("work order")}),
     "S7-04": dict(res_step={1: dialog("part sale")}),
-    "S7-05": dict(res_step={4: ["The dialog closes.", "No message pops up.",
+    "S7-05": dict(res_step={3: ["The dialog closes.", "No message pops up.",
                                 "You stay on the report exactly where you were: the same Past due filter, the Amount sort, customer A's "
                                 "group still expanded and the same rows at the top and bottom of the screen (the same scroll position)."]}),
     "S7-10": dict(res_step={1: ["Credit memo A's number is plain text, not a link."], 3: ["Deposit A's number is plain text, not a link."]}),
     "S7-11": dict(res_step={1: ["The row is listed (the report stays organization-wide).", "Its number is plain text."]}),
-    "S7-12": dict(res_step={2: ['Invoice B\'s number is plain text: the role lacks "Part Sales → View".']}),
+    "S7-12": dict(res_step={1: ['Invoice B\'s number is plain text: the role lacks "Part Sales → View".']}),
     "S7-14": dict(res_step={1: ['Invoice A\'s number is plain text: the role lacks "Work Orders → View".']}),
-    "S7-20": dict(res_step={4: ["The dialog closes.", "No message pops up.",
+    "S7-20": dict(res_step={3: ["The dialog closes.", "No message pops up.",
                                 "You stay on the report exactly where you were: customer A still ticked, the Amount sort, every bucket "
                                 "still expanded and the same rows at the top and bottom of the screen (the same scroll position).",
                                 "The location switcher in the top right still shows location A."]}),
@@ -124,8 +124,6 @@ LAYOUT = {
                  ("Make sure vendor B is not one of", [
                      "Have a vendor, vendor B, that is not one of the chosen vendors and has exactly one open A/P line today."])],
         step_sub=[("tick every vendor in vendor set A", "tick every one of the chosen vendors")]),
-    "DATA-21": dict(pre_set=[("Make sure that on date A", [
-        "Pick two as-of dates: date A, on which A/P Detail has exactly 50,000 open lines, and date B, on which it has exactly 50,001."])]),
     "DATA-22": dict(pre_set=[("Make sure invoice A's page is open in a second browser tab", [
         "Open invoice A's page in a second browser tab, ready to record a payment."])]),
     "REL-01": dict(
@@ -188,7 +186,7 @@ RES_SPLIT['Then "Cancel" on the left and "Switch location" (small l) on the righ
 # block; otherwise the bullet becomes "Have open documents in these reports at two locations, so <reason>."
 _COL, _CHIP, _FILTER = "the Location column shows", "the Location chip shows", "the Location filter shows and can be cleared"
 _PIC = "the Location column and the Location chip show, as in the design picture"
-_LOOK = "the Location column shows, as in the layout being checked"
+_LOOK = "the Location column shows"   # 26 Oct 2026 read-through: "as in the layout being checked" said nothing a tester can check
 TWO_LOC = {}
 for _k in ["S2-40", "S2-41", "S2-42", "S6-01", "S6-02", "D-01", "D-04", "D-07", "D-10", "D-13", "D-16", "D-81", "D-47", "D-48"]: TWO_LOC[_k] = (_COL, False)
 for _k in ["S3-03", "S3-04", "S3-05", "S3-06", "S3-07", "S3-08"]: TWO_LOC[_k] = ("the Location column shows on screen and in the exports", False)

@@ -43,6 +43,8 @@ SETUP_URL = ("https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/clau
 NOBUILD = "The build is not yet available to check this case against."
 MARKER = "AUTOMATION: HOLD - not yet build-verified (no build yet)"
 BLOCKED = 'If any record above is missing, mark this test Blocked: "setup not done".'
+# 26 Oct 2026, Rule 117 fifteenth amendment (QA lead: "B -> and never add that line in the future test cases too"): no case carries
+# the Blocked line or any variant. BLOCKED stays defined only so older pass reports can name it; C() no longer appends it.
 DESIGN_HOLD = "AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO"
 CLEAN_HOLD = "AUTOMATION: HOLD - needs a test organization holding only ZZAUTOTEST records (the shared test site holds other terms and customers)"
 def PO_HOLD(n): return f"AUTOMATION: HOLD - waiting on the PO (question {n})"
@@ -234,6 +236,16 @@ NOT_TESTABLE = {
  "T-CREDIT": "Defines the word; the AccountingHub Payment Terms list check is OOS-2's case.",
 }
 
+# 26 Oct 2026 (QA lead's order): 10 cases deleted from TestRail because a manual tester cannot set them up (snapshots in
+# build/tester-readthrough-2026-10-26/deleted/). The requirement each covered: another remaining case, or this exclusion (the coverage gate
+# in build.py accepts it; render_outputs.py prints it in REPORT.md).
+DELETED_CASES = {"S1-27": "C723891", "S1-28": "C723892", "S2-35": "C723935", "S3-27": "C723963", "S3-28": "C723964", "S4-30": "C723994",
+                 "S4-34": "C723998", "S5-23": "C724023", "S5-25": "C724025", "S12-19": "C724126"}
+DELETED_MSG = ("No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); "
+               "left to the developers' own checks")
+NO_MANUAL = {"S1-E3": "S1-27", "EH-S1": "S1-28", "UFS-1": "S1-28", "UFS-31": "S2-35", "UFS-21": "S3-27", "UFS-26": "S3-28",
+             "EH-S4c": "S4-34", "UFS-38": "S4-34", "S5-E3": "S5-23", "EH-S5b": "S5-25", "UFS-45": "S5-25", "EH-S12": "S12-19"}
+
 STORY = {1: ("SV-11670", "Story 1, Credit Terms page and list"), 2: ("SV-11671", "Story 2, Row menu actions"),
          3: ("SV-11672", "Story 3, Create or edit a credit term"), 4: ("SV-11673", "Story 4, Move Customers"),
          5: ("SV-11674", "Story 5, New Customer and Edit Customer"), 6: ("SV-11675", "Story 6, Vendors"),
@@ -252,6 +264,7 @@ NAMED_STORY = {"EH-S1": 1, "EH-S2": 2, "EH-S3a": 3, "EH-S3b": 3, "EH-S4a": 4, "E
 # Rule 117 thirteenth amendment (QA lead, 26 Oct 2026): every case's Preconditions open with one "Scenario:" line (scenarios.py)
 from scenarios import SCEN
 import relevance as RELEVANCE
+import readthrough as READTHROUGH   # 26 Oct 2026 tester read-through (build/tester-readthrough-2026-10-26/)
 SCENARIO = "Scenario: "
 CASES = []
 def C(key, sec, title, pre, steps, res, q, stories=None, note="", marker=None, api=False):
@@ -259,12 +272,13 @@ def C(key, sec, title, pre, steps, res, q, stories=None, note="", marker=None, a
     api: True for a case whose steps send a Public API request (Rule 4: placed in a section titled with 'API')."""
     pre = [p if isinstance(p, tuple) else (p, None) for p in pre]
     pre, note = RELEVANCE.apply(key, pre, note, steps, res)   # 26 Oct 2026 relevance and independence pass (relevance.py)
+    q = list(q) + READTHROUGH.ADD_Q.get(key, [])   # 26 Oct 2026 tester read-through: a control backed by a PRD sentence (check 3)
     steps, res = fold_reads(steps, res)
     res = [visible(r, steps[i] if i < len(steps) else "") for i, r in enumerate(res)]
     clean = marker == CLEAN_HOLD  # the setup file's P-CLEAN recipe applies (the case needs a shop holding only its own records)
     if marker == CLEAN_HOLD:  # 26 Oct 2026 (QA lead): the set-aside organization is the tester's precondition, not a hold
         marker = None  # 26 Oct 2026 (QA lead): "Simply say what is needed" — each case's own preconditions state the state it needs
-    CASES.append(dict(key=key, sec=sec, title=title, scen=SCEN.get(key, ""), pre=pre + [(BLOCKED, None)], steps=steps, res=res, q=q,
+    CASES.append(dict(key=key, sec=sec, title=title, scen=SCEN.get(key, ""), pre=pre, steps=steps, res=res, q=q,
                       stories=stories, note=note, marker=marker or MARKER, api=api, clean=clean))
 
 TRIVIAL = [
@@ -398,10 +412,10 @@ def render_scenario(c):
 
 import pattern as PAT
 def render(c):
-    """The QA lead's pattern (Rule 117 fourteenth amendment, 26 Oct 2026): plain precondition bullets (Blocked line last), plain steps,
+    """The QA lead's pattern (Rule 117 fourteenth amendment, 26 Oct 2026): plain precondition bullets (no Blocked line, fifteenth amendment), plain steps,
     "Expected Result" with "Step N:" and one bullet per fact, a blank paragraph, then the note, the exact quotes with their From lines,
     References from Design and the AUTOMATION line, exactly as before."""
-    p = PAT.pattern_case(c, BLOCKED)
+    p = READTHROUGH.apply(c, PAT.pattern_case(c, BLOCKED))   # tester read-through fixes, 26 Oct 2026 (readthrough.py)
     pre = "<p><strong>Preconditions</strong></p><ul>" + "".join(f"<li>{e(x)}</li>" for x in p["pre"]) + "</ul>"
     exp = ("<p><strong>Expected Result</strong></p>"
            + "".join(f"<p>Step {i}:</p><ul>" + "".join(f"<li>{e(x)}</li>" for x in r) + "</ul>" for i, r in enumerate(p["results"], 1))

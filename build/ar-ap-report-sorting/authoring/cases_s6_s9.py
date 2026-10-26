@@ -84,12 +84,13 @@ for code, kind, word in (("ARD", "work order", "This work order is in"), ("ARC",
 k = nk("S7")
 C(k, "S7", "A/R Collection: Cancel on the switch prompt leaves the report as it was",
   [ADMIN(), TWO_LOC, ("Customer {Customer-A} has overdue invoices at {Location-A} and one, {Invoice-A}, at {Location-B}; more than 20 other customers have overdue invoices.", f"For example: {{Customer-A}} is {ex(k, 'Stay Put')[0]}."),
-   START("ARC", ", with \"Past due: 1-30 days\" ticked, the \"Amount\" header clicked once, {Customer-A}'s group expanded and the page scrolled so {Invoice-A} is in the middle of the screen")],
-  ["Copy the page address.", "Note which rows are at the top and bottom of the screen.", "Click {Invoice-A}'s number.", "Click \"Cancel\".",
+   START("ARC", ", with \"Past due: 1-30 days\" ticked, the \"Amount\" header clicked once, {Customer-A}'s group expanded and the page scrolled so {Invoice-A} is in the middle of the screen"),
+   "You have noted which rows are at the top and bottom of the screen."],
+  ["Copy the page address.", "Click {Invoice-A}'s number.", "Click \"Cancel\".",
    "Compare the page address with the copied one."],
-  ["Step 1: the address is copied.", "Step 2: noted.", "Step 3: the \"Switch location?\" dialog opens.",
-   "Step 4: the dialog closes, no message pops up, and you stay on the report exactly where you were: the same Past due filter, the Amount sort, {Customer-A}'s group still expanded and the same rows at the top and bottom of the screen (the same scroll position).",
-   "Step 5: the address is the same."],
+  ["Step 1: the address is copied.", "Step 2: the \"Switch location?\" dialog opens.",
+   "Step 3: the dialog closes, no message pops up, and you stay on the report exactly where you were: the same Past due filter, the Amount sort, {Customer-A}'s group still expanded and the same rows at the top and bottom of the screen (the same scroll position).",
+   "Step 4: the address is the same."],
   ["S7-R5", "UFS-3"] + TP.q("STAY"))
 
 k = nk("S7")
@@ -144,8 +145,8 @@ C(k, "S7", "With Invoicing and Work Orders View, a work order invoice is a link"
   [role("User-B", k, ["Invoicing & Payments → View", "Work Orders → View"], ["Part Sales → View"]),
    ("Customer {Customer-A} has an open work order invoice {Invoice-A} and an open part sale invoice {Invoice-B}, both made at {Location-A}.", f"For example: {{Customer-A}} is {ex(k, 'Permissions')[0]}."),
    START("ARD", ", with {Customer-A} ticked and every bucket expanded")],
-  ["Click {Invoice-A}'s number.", "Go back to the report and look at {Invoice-B}'s number."],
-  ["Step 1: the work order's finance page opens.", "Step 2: plain text: the role lacks \"Part Sales → View\"."],
+  ["Look at {Invoice-B}'s number.", "Click {Invoice-A}'s number."],
+  ["Step 1: plain text: the role lacks \"Part Sales → View\".", "Step 2: the work order's finance page opens."],
   ["S7-R1", "S7-N2", ("Story 7 Prerequisites", "An invoice or part sale opens for a user with 'Invoicing & Payments → View' and 'Work Orders → View' (work orders) or 'Part Sales → View' (part sales).")])
 
 k = nk("S7")
@@ -230,11 +231,17 @@ for code in ALL6:
 # starting screen.
 k = nk("S8")
 for code, key, words in (("ARS", k, "unpaid balance"), ("APU", k + "b", "grouped by vendor")):
+    # 26 Oct 2026 (tester read-through, check 3): a visible control first: the party's name IS found, so a "not found" is not a search
+    # that cannot read the file. Backed by PRD v9 S3-R3 (the files hold exactly the rows on screen), added as a quote; the design
+    # pictures stay those its own codes chose (design_codes).
+    P_ = R[code]["Party"]; doc = "an open invoice" if code == "ARS" else "an unpaid bill"
     C(key, "S8", f"{R[code]['n']}: the description is not in the PDF or CSV",
-      [ADMIN(), ("The report has open documents on today's date.", None), START(code)],
-      ["Choose \"Download (PDF)\" from the ⋯ menu.", "Choose \"Download (CSV)\" from the ⋯ menu.", f"Search both files for the words \"{words}\"."],
-      ["Step 1: the PDF downloads.", "Step 2: the CSV downloads.", "Step 3: the words are not found: the description is not in the PDF or CSV."],
-      ["S8-N1", "S8-R1"], reports=[code])
+      [ADMIN(), (f"{P_} {{{P_}-A}} has {doc} on today's date.", f"For example: {{{P_}-A}} is {ex(key, 'Search Control')[0]}."), START(code)],
+      ["Choose \"Download (PDF)\" from the ⋯ menu.", "Choose \"Download (CSV)\" from the ⋯ menu.", f"Search both files for {{{P_}-A}}'s name.",
+       f"Search both files for the words \"{words}\"."],
+      ["Step 1: the PDF downloads.", "Step 2: the CSV downloads.", f"Step 3: {{{P_}-A}}'s name is found in both files: they hold the report's rows.",
+       "Step 4: the words are not found: the description is not in the PDF or CSV."],
+      ["S8-N1", "S8-R1", "S3-R3"], reports=[code], design_codes=["S8-N1", "S8-R1"])
 
 for code in ("ARD", "APD"):
     r = R[code]; k = nk("S8"); P = r["Party"]
@@ -324,11 +331,12 @@ k = nk("S7")
 C(k, "S7", "A/R Detail: the × on the switch prompt leaves the report as it was",
   [ADMIN(), TWO_LOC, ("Customer {Customer-A} has open invoices at {Location-A} and one open work order invoice, {Invoice-A}, made at {Location-B}.",
                       f"For example: {{Customer-A}} is {ex(k, 'Close Box')[0]}."),
-   START("ARD", ", with {Customer-A} ticked, the \"Amount\" header clicked once, every bucket expanded and the page scrolled so {Invoice-A} is in the middle of the screen")],
-  ["Copy the page address.", "Note which rows are at the top and bottom of the screen.", "Click {Invoice-A}'s number.",
+   START("ARD", ", with {Customer-A} ticked, the \"Amount\" header clicked once, every bucket expanded and the page scrolled so {Invoice-A} is in the middle of the screen"),
+   "You have noted which rows are at the top and bottom of the screen."],
+  ["Copy the page address.", "Click {Invoice-A}'s number.",
    "Click the \"×\" at the dialog's top right.", "Compare the page address with the copied one."],
-  ["Step 1: the address is copied.", "Step 2: noted.",
-   "Step 3: the \"Switch location?\" dialog opens, with a close \"×\" at its top right.",
-   "Step 4: the dialog closes, no message pops up, and you stay on the report exactly where you were: {Customer-A} still ticked, the Amount sort, every bucket still expanded and the same rows at the top and bottom of the screen (the same scroll position); the location switcher in the top right still shows {Location-A}.",
-   "Step 5: the address is the same."],
+  ["Step 1: the address is copied.",
+   "Step 2: the \"Switch location?\" dialog opens, with a close \"×\" at its top right.",
+   "Step 3: the dialog closes, no message pops up, and you stay on the report exactly where you were: {Customer-A} still ticked, the Amount sort, every bucket still expanded and the same rows at the top and bottom of the screen (the same scroll position); the location switcher in the top right still shows {Location-A}.",
+   "Step 4: the address is the same."],
   ["S7-R5", "S7-R3"])

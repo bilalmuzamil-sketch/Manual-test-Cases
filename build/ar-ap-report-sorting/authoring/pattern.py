@@ -5,7 +5,8 @@ Model: C665915 (Splitting Sales Representatives S1-01; build/splitting-sales-rep
   Preconditions    short plain bullets telling the tester what to set up, in setup order ("Sign in as ...", "Have ...",
                    "Use a desktop browser ...", "Open ..."); no "Scenario:" line, no {placeholders}, no "For example:" lines,
                    no setup-file link, no who-to-ask; two records of one kind are named plainly ("customer A", "customer B")
-                   and the same names are used in the steps and results; the Blocked line last
+                   and the same names are used in the steps and results; no "mark this test Blocked" line
+                   (fifteenth amendment, 26 Oct 2026)
   Steps            numbered, plain, the build's own labels
   Expected Result  "Step N:" then bullets, one observable fact per bullet; then one blank paragraph
   below it         unchanged: the build-difference note, the exact quotes with their From: lines, References from Design, AUTOMATION
@@ -18,7 +19,6 @@ plain enough, or where an example value is a fact the result depends on (it then
 The setup file for Claude sessions keeps the {placeholders} and examples; it names the plain name each placeholder has in the case."""
 import re
 
-BLOCKED_NEW = 'If you cannot set up any of the above, mark this test Blocked: "setup not done".'
 KIND = {"Location": "location", "Customer": "customer", "Vendor": "vendor", "Invoice": "invoice", "Bill": "bill",
         "Document": "document", "Bucket": "bucket", "Date": "date", "Credit-memo": "credit memo", "Deposit": "deposit",
         "Vendor-credit": "vendor credit", "User": "user", "Role": "role", "Vendors": "vendor set", "Work-order": "work order"}
@@ -62,7 +62,6 @@ NUMW = "One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten"
 
 def pre_one(a):
     """One precondition of the case model -> one or more plain instructions (placeholders still in; plain() runs after)."""
-    if a.startswith("If any record above is missing"): return [BLOCKED_NEW]
     m = ADMIN_RE.match(a)
     if m: return [f'Sign in as an Admin user (the "Admin" role), with {{Location-{m.group(1)}}} as your current location.']
     if a == TWO_LOC:
@@ -322,5 +321,6 @@ def unrelated(p):
 
 def pattern(c):
     """The case in the QA lead's pattern: dict(title, pre, steps, results)."""
-    import pattern_layout as PL
-    return relate(c, apply_layout(c, convert(c), PL.LAYOUT.get(c["key"]), PL.RES_SPLIT), PL)
+    import pattern_layout as PL, readthrough_layout as RTL, ar_lib as L
+    # 26 Oct 2026: the tester read-through's corrections (readthrough_layout.py) come last
+    return RTL.readthrough(c, relate(c, apply_layout(c, convert(c), PL.LAYOUT.get(c["key"]), PL.RES_SPLIT), PL), L)

@@ -1,27 +1,27 @@
 # Credit terms — draft suite report (23 Oct 2026)
 
-Drafted from PRD v3 (Confluence 963346440, 22 Oct 2026) and the 12 stories of epic SV-11638. 344 cases, not written to TestRail. No tech plan yet; no build; the design is driven in parallel by another worker and its pass fills "References from Design" and the DESIGN section.
+Drafted from PRD v3 (Confluence 963346440, 22 Oct 2026) and the 12 stories of epic SV-11638. 334 cases, not written to TestRail. No tech plan yet; no build; the design is driven in parallel by another worker and its pass fills "References from Design" and the DESIGN section.
 
 ## 1. Counts per section
 | Key | TestRail section | Name | Cases |
 |---|---|---|---|
-| S1 | 91455 | Story 1 — Credit Terms page and list | 36 |
-| S2 | 91456 | Story 2 — Row menu actions | 36 |
-| S3 | 91457 | Story 3 — Create or edit a credit term | 28 |
-| S4 | 91458 | Story 4 — Move Customers | 36 |
-| S5 | 91459 | Story 5 — New Customer and Edit Customer | 26 |
+| S1 | 91455 | Story 1 — Credit Terms page and list | 34 |
+| S2 | 91456 | Story 2 — Row menu actions | 35 |
+| S3 | 91457 | Story 3 — Create or edit a credit term | 26 |
+| S4 | 91458 | Story 4 — Move Customers | 34 |
+| S5 | 91459 | Story 5 — New Customer and Edit Customer | 24 |
 | S6 | 91460 | Story 6 — Vendors | 8 |
 | S7 | 91461 | Story 7 — Due dates | 12 |
 | S8 | 91462 | Story 8 — QuickBooks sync | 13 |
 | S9 | 91463 | Story 9 — Over Credit warning | 10 |
 | S10 | 91464 | Story 10 — Imports and Public API | 16 |
 | S11 | 91465 | Release day and what must not change | 20 |
-| S12 | 91466 | Story 12 — Credit Terms audit log | 21 |
+| S12 | 91466 | Story 12 — Credit Terms audit log | 20 |
 | DATA | 91467 | Counts and due dates — exact numbers | 29 |
 | DESIGN | 91468 | Design — how it looks (written by the design worker, cases_design.py) | 53 |
-| | | **Total** | **344** |
+| | | **Total** | **334** |
 
-Markers: `AUTOMATION: HOLD - not yet build-verified (no build yet)` × 319; `AUTOMATION: HOLD - needs the before values taken on production shortly before the release reaches production; run on production after the release` × 3; `AUTOMATION: HOLD - a manual tester cannot hold the list in its loading state long enough to look (it needs a slowed network)` × 1; `AUTOMATION: HOLD - a manual tester cannot make the term list fail to load on demand` × 1; `AUTOMATION: HOLD - the page never offers Deactivate on these three terms, so only a request sent outside the page can reach this refusal` × 1; `AUTOMATION: HOLD - waiting on the PO (question 3)` × 1; `AUTOMATION: HOLD - the Name field stops at 31 characters, so only a request sent outside the window can reach this refusal` × 1; `AUTOMATION: HOLD - the window always has one option chosen, so only a request sent outside the window can reach this refusal` × 1; `AUTOMATION: HOLD - the page greys Move Customers for this user, and changing a role signs the user out, so only a request sent outside the page can reach this refusal` × 1; `AUTOMATION: HOLD - a manual tester cannot make a move fail partway` × 1; `AUTOMATION: HOLD - waiting on the PO (question 5)` × 1; `AUTOMATION: HOLD - waiting on the PO (question 6)` × 1; `AUTOMATION: HOLD - a manual tester cannot hold the term list in its loading state (it needs a slowed network)` × 1; `AUTOMATION: HOLD - the window locks Credit Limit at $0.00 for COD and Credit Hold, so only a save sent outside the window can reach this refusal` × 1; `AUTOMATION: HOLD - needs the before due date taken on production shortly before the release reaches production; run on production after the release` × 1; `AUTOMATION: HOLD - waiting on the PO (question 7)` × 1; `AUTOMATION: HOLD - a tester cannot make or recognise an organization with no settings record` × 1; `AUTOMATION: HOLD - waiting on the PO (question 4)` × 1; `AUTOMATION: HOLD - without Settings Finance the page and its menu cannot be reached, so only a request sent outside the page can reach this refusal` × 1; `AUTOMATION: HOLD - a manual tester cannot make the log fail to load on demand` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 8)` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 9)` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 10)` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 11)` × 1
+Markers: `AUTOMATION: HOLD - not yet build-verified (no build yet)` × 319; `AUTOMATION: HOLD - needs the before values taken on production shortly before the release reaches production; run on production after the release` × 3; `AUTOMATION: HOLD - waiting on the PO (question 3)` × 1; `AUTOMATION: HOLD - waiting on the PO (question 5)` × 1; `AUTOMATION: HOLD - waiting on the PO (question 6)` × 1; `AUTOMATION: HOLD - needs the before due date taken on production shortly before the release reaches production; run on production after the release` × 1; `AUTOMATION: HOLD - waiting on the PO (question 7)` × 1; `AUTOMATION: HOLD - a tester cannot make or recognise an organization with no settings record` × 1; `AUTOMATION: HOLD - waiting on the PO (question 4)` × 1; `AUTOMATION: HOLD - without Settings Finance the page and its menu cannot be reached, so only a request sent outside the page can reach this refusal` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 8)` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 9)` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 10)` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 11)` × 1
 
 ## 2. Coverage of the 211 requirement codes
 | Code | Cases |
@@ -47,7 +47,7 @@ Markers: `AUTOMATION: HOLD - not yet build-verified (no build yet)` × 319; `AUT
 | S1-N3 | S1-24, D-01, D-45 |
 | S1-E1 | S1-25, D-09 |
 | S1-E2 | S1-26, S2-12 |
-| S1-E3 | S1-27 |
+| S1-E3 | No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks (was S1-27, C723891) |
 | S2-R1 | S2-01, S2-02, S2-03, S2-04, S2-05, S2-06, S2-07, S2-08, S2-09, S2-10, S2-13, S2-14, S2-16, S2-17, S2-18, S2-19, S4-01, S4-26, S4-27, S4-28, D-07, D-35, D-46, D-47, D-49 |
 | S2-R2 | S1-26, S2-10, S2-11, S2-12, S2-13, S2-14, S2-15, DATA-27, D-46 |
 | S2-R3 | S2-06, S2-07, D-35, D-49 |
@@ -77,7 +77,7 @@ Markers: `AUTOMATION: HOLD - not yet build-verified (no build yet)` × 319; `AUT
 | S3-R6 | S3-01, S3-07, D-15 |
 | S3-R7 | S3-08, S3-09, DATA-24 |
 | S3-R8 | S3-20 |
-| S3-R9 | S3-10, S3-12, S3-13, S3-14, S3-15, S3-16, S3-27, D-15 |
+| S3-R9 | S3-10, S3-12, S3-13, S3-14, S3-15, S3-16, D-15 |
 | S3-R10 | S3-05, S3-10, S3-11, D-53 |
 | S3-R11 | S3-17 |
 | S3-R12 | S3-18 |
@@ -114,7 +114,7 @@ Markers: `AUTOMATION: HOLD - not yet build-verified (no build yet)` × 319; `AUT
 | S4-R22 | S4-20 |
 | S4-R23 | S4-21 |
 | S4-R24 | S4-23 |
-| S4-N1 | S4-26, S4-27, S4-28, S4-30, D-48 |
+| S4-N1 | S4-26, S4-27, S4-28, D-48 |
 | S4-N2 | S2-09, D-07, D-45 |
 | S4-N3 | S2-05, S2-18, S4-06, S4-24, S4-25, S4-35, D-37 |
 | S4-E1 | S4-31 |
@@ -142,7 +142,7 @@ Markers: `AUTOMATION: HOLD - not yet build-verified (no build yet)` × 319; `AUT
 | S5-N4 | S5-17, S5-18, S5-19 |
 | S5-E1 | S5-21 |
 | S5-E2 | S5-22, S10-03 |
-| S5-E3 | S5-23 |
+| S5-E3 | No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks (was S5-23, C724023) |
 | S6-R1 | S6-01, D-29, D-30 |
 | S6-R2 | S6-01, S6-02, D-29, D-30 |
 | S6-R3 | S6-03, D-31, D-42 |
@@ -171,7 +171,7 @@ Markers: `AUTOMATION: HOLD - not yet build-verified (no build yet)` × 319; `AUT
 | S7-E2 | S11-02, S11-12 |
 | S7-E3 | S7-07 |
 | S7-E4 | S7-08 |
-| S8-R1 | S8-01, S8-02, S8-04 |
+| S8-R1 | S8-01, S8-02, S8-04, S8-08 |
 | S8-R2 | S8-01, S8-04 |
 | S8-R3 | S8-02 |
 | S8-R4 | S8-03 |
@@ -238,28 +238,28 @@ Markers: `AUTOMATION: HOLD - not yet build-verified (no build yet)` × 319; `AUT
 | S12-E2 | S12-07 |
 | S12-E3 | S4-31 |
 
-No code is listed as not testable: every one of the 211 is quoted by at least one case (codes with no runnable trigger are held, see §4). Story 11 has no S11-R15 (question 1).
+No code is listed as not testable. 26 Oct 2026: 10 cases were deleted on the QA lead's order because a manual tester cannot set them up (S1-27 C723891, S1-28 C723892, S2-35 C723935, S3-27 C723963, S3-28 C723964, S4-30 C723994, S4-34 C723998, S5-23 C724023, S5-25 C724025, S12-19 C724126); each requirement only they covered reads "No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks"; every other requirement they quoted is still covered by the remaining cases named in its row. Story 11 has no S11-R15 (question 1).
 
 ### Named PRD items (no code): Error Handling, User Feedback Summary, Key Decisions, Permissions, Terminology, Assumptions, Goals, Out of Scope
 | Item | Where | Cases or reason |
 |---|---|---|
-| EH-S1 | Story 1, Error Handling | S1-28 |
-| EH-S2 | Story 2, Error Handling | S2-30, S2-31, S2-32, S2-33, S2-34, S2-35 |
-| EH-S3a | Story 3, Error Handling | S3-25, S3-26, S3-27, S3-28 |
+| EH-S1 | Story 1, Error Handling | No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks (was S1-28, C723892) |
+| EH-S2 | Story 2, Error Handling | S2-30, S2-31, S2-32, S2-33, S2-34 |
+| EH-S3a | Story 3, Error Handling | S3-25, S3-26 |
 | EH-S3b | Story 3, Error Handling | S3-08, S3-20 |
 | EH-S4a | Story 4, Error Handling | S4-32 |
 | EH-S4b | Story 4, Error Handling | S4-33 |
-| EH-S4c | Story 4, Error Handling | S4-34 |
+| EH-S4c | Story 4, Error Handling | No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks (was S4-34, C723998) |
 | EH-S5a | Story 5, Error Handling | S5-24 |
-| EH-S5b | Story 5, Error Handling | S5-25 |
+| EH-S5b | Story 5, Error Handling | No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks (was S5-25, C724025) |
 | EH-S6 | Story 6, Error Handling | S6-05 |
 | EH-S7 | Story 7, Error Handling | NOT TESTABLE: States that due-date calculation has no failure path; there is nothing to trigger. The due-date cases (S7, DATA) cover the behaviour. |
 | EH-S8 | Story 8, Error Handling | S8-09 |
 | EH-S9 | Story 9, Error Handling | S9-01 |
 | EH-S10 | Story 10, Error Handling | S10-03 |
 | EH-S11 | Story 11, Error Handling | NOT TESTABLE: States that release has no failure path; nothing to trigger. The release-day cases (S11) cover the behaviour. |
-| EH-S12 | Story 12, Error Handling | S12-19 |
-| UFS-1 | User Feedback Summary | S1-28 |
+| EH-S12 | Story 12, Error Handling | No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks (was S12-19, C724126) |
+| UFS-1 | User Feedback Summary | No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks (was S1-28, C723892) |
 | UFS-2 | User Feedback Summary | S1-23, D-10 |
 | UFS-3 | User Feedback Summary | S1-15, D-02 |
 | UFS-4 | User Feedback Summary | S1-12, D-02 |
@@ -279,37 +279,37 @@ No code is listed as not testable: every one of the 211 is quoted by at least on
 | UFS-18 | User Feedback Summary | S3-20 |
 | UFS-19 | User Feedback Summary | S3-01, D-13 |
 | UFS-20 | User Feedback Summary | S3-10 |
-| UFS-21 | User Feedback Summary | S3-27 |
+| UFS-21 | User Feedback Summary | No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks (was S3-27, C723963) |
 | UFS-22 | User Feedback Summary | S3-13, D-15 |
 | UFS-23 | User Feedback Summary | S3-14 |
 | UFS-24 | User Feedback Summary | S3-15, D-15 |
 | UFS-25 | User Feedback Summary | S3-16 |
-| UFS-26 | User Feedback Summary | S3-28 |
+| UFS-26 | User Feedback Summary | No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks (was S3-28, C723964) |
 | UFS-27 | User Feedback Summary | S3-03, D-13 |
 | UFS-28 | User Feedback Summary | S3-04, D-14 |
 | UFS-29 | User Feedback Summary | S2-31 |
 | UFS-30 | User Feedback Summary | S2-30, S2-32 |
-| UFS-31 | User Feedback Summary | S2-35 |
+| UFS-31 | User Feedback Summary | No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks (was S2-35, C723935) |
 | UFS-32 | User Feedback Summary | S2-33 |
 | UFS-33 | User Feedback Summary | S2-34 |
 | UFS-34 | User Feedback Summary | S4-01, D-17, D-18 |
 | UFS-35 | User Feedback Summary | S4-12, D-18 |
 | UFS-36 | User Feedback Summary | S4-12, D-19 |
 | UFS-37 | User Feedback Summary | S4-26, S4-27, S4-28, D-48 |
-| UFS-38 | User Feedback Summary | S4-34 |
+| UFS-38 | User Feedback Summary | No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks (was S4-34, C723998) |
 | UFS-39 | User Feedback Summary | S4-04 |
 | UFS-40 | User Feedback Summary | S4-08, S4-09, DATA-26 |
 | UFS-41 | User Feedback Summary | S4-10, S4-13 |
 | UFS-42 | User Feedback Summary | S4-32 |
 | UFS-43 | User Feedback Summary | S4-33 |
 | UFS-44 | User Feedback Summary | S5-03, D-24, D-40 |
-| UFS-45 | User Feedback Summary | S5-25 |
+| UFS-45 | User Feedback Summary | No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks (was S5-25, C724025) |
 | UFS-46 | User Feedback Summary | S5-24 |
 | UFS-47 | User Feedback Summary | S12-01, D-08 |
 | UFS-48 | User Feedback Summary | S12-02, DATA-26 |
 | UFS-49 | User Feedback Summary | S12-02, DATA-26, D-17 |
 | UFS-50 | User Feedback Summary | S12-16, D-21 |
-| UFS-51 | User Feedback Summary | S12-19, D-38 |
+| UFS-51 | User Feedback Summary | D-38 |
 | UFS-52 | User Feedback Summary | S9-01, D-25 |
 | KD-EXIST | Key Decisions | S11-01, S11-02, S11-10 |
 | KD-NEWONLY | Key Decisions | S2-21 |
@@ -323,7 +323,7 @@ No code is listed as not testable: every one of the 211 is quoted by at least on
 | KD-NAMES | Key Decisions | S3-24 |
 | KD-RANGE | Key Decisions | S1-11, S3-12, S3-15, S3-16, DATA-10 |
 | KD-TABLE | Key Decisions | S1-02 |
-| KD-THREE | Key Decisions | S1-15, S2-35 |
+| KD-THREE | Key Decisions | S1-15 |
 | KD-INLINE | Key Decisions | S1-10, S1-12, S1-13, S1-14, S1-16 |
 | KD-CONFIRM | Key Decisions | S2-20, S2-22, S2-25 |
 | KD-LOG | Key Decisions | S4-10, S12-02, S12-09 |
@@ -433,18 +433,9 @@ Honest limit (skill 17 §7): undocumented, untested, code-invisible behaviours c
 ## 4. Held cases and why
 | Case | Title | Marker |
 |---|---|---|
-| S1-27 | While the list loads, the Inactive tab never says "No inactive terms" | `AUTOMATION: HOLD - a manual tester cannot hold the list in its loading state long enough to look (it needs a slowed network)` |
-| S1-28 | If the list cannot load, the page says so above the tabs | `AUTOMATION: HOLD - a manual tester cannot make the term list fail to load on demand` |
-| S2-35 | Deactivating COD, Due on Receipt or Credit Hold is refused by the server | `AUTOMATION: HOLD - the page never offers Deactivate on these three terms, so only a request sent outside the page can reach this refusal` |
 | S2-36 | Acting on a term another user renamed after the page loaded | `AUTOMATION: HOLD - waiting on the PO (question 3)` |
-| S3-27 | A name longer than 31 characters is refused by the server | `AUTOMATION: HOLD - the Name field stops at 31 characters, so only a request sent outside the window can reach this refusal` |
-| S3-28 | A create request with no option chosen is refused | `AUTOMATION: HOLD - the window always has one option chosen, so only a request sent outside the window can reach this refusal` |
-| S4-30 | A move sent without all three permissions is refused by the server | `AUTOMATION: HOLD - the page greys Move Customers for this user, and changing a role signs the user out, so only a request sent outside the page can reach this refusal` |
-| S4-34 | If a move fails partway, nobody is changed | `AUTOMATION: HOLD - a manual tester cannot make a move fail partway` |
 | S4-35 | Moving off a deactivated term: how the note names the old term | `AUTOMATION: HOLD - waiting on the PO (question 5)` |
 | S4-36 | Moving a customer stored as "NET 30": how the note names the old term | `AUTOMATION: HOLD - waiting on the PO (question 6)` |
-| S5-23 | Before the term list loads, the dropdown shows the twelve standard terms | `AUTOMATION: HOLD - a manual tester cannot hold the term list in its loading state (it needs a slowed network)` |
-| S5-25 | A limit above $0 sent for a COD customer is refused by the server | `AUTOMATION: HOLD - the window locks Credit Limit at $0.00 for COD and Credit Hold, so only a save sent outside the window can reach this refusal` |
 | S7-05 | A term the app does not recognise is dated exactly as before the release | `AUTOMATION: HOLD - needs the before due date taken on production shortly before the release reaches production; run on production after the release` |
 | S7-10 | Changing the invoice date after the customer changed term | `AUTOMATION: HOLD - waiting on the PO (question 7)` |
 | S11-02 | No existing customer, vendor or invoice changes at release | `AUTOMATION: HOLD - needs the before values taken on production shortly before the release reaches production; run on production after the release` |
@@ -453,7 +444,6 @@ Honest limit (skill 17 §7): undocumented, untested, code-invisible behaviours c
 | S11-14 | Nothing is re-sent to QuickBooks at release | `AUTOMATION: HOLD - needs the before values taken on production shortly before the release reaches production; run on production after the release` |
 | S11-20 | Other screens showing a customer's term: plain name or (Inactive) | `AUTOMATION: HOLD - waiting on the PO (question 4)` |
 | S12-18 | The log is refused by the server without Settings Finance | `AUTOMATION: HOLD - without Settings Finance the page and its menu cannot be reached, so only a request sent outside the page can reach this refusal` |
-| S12-19 | If the log cannot load, it says so and the page is unaffected | `AUTOMATION: HOLD - a manual tester cannot make the log fail to load on demand` |
 | D-50 | Design: Due on Receipt info tooltip reads as designed | `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 8)` |
 | D-51 | Design: Empty Inactive tab keeps the column headings | `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 9)` |
 | D-52 | Design: No blue line while the name is not allowed | `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 10)` |
@@ -469,7 +459,7 @@ Every other case carries `AUTOMATION: HOLD - not yet build-verified (no build ye
 The 6 Public API cases (S10-11, S10-12, S10-13, S10-14, S10-15, S10-16) are in S10. TestRail section 91464 is titled "S10 — Imports and Public API" (coordinator, 23 Oct 2026), so Rule 4 is satisfied and they stay there.
 
 ## 7. Gates (`python3 authoring/build.py`)
-The QA lead's case pattern (Rule 117 fourteenth amendment, 26 Oct 2026): plain precondition bullets only (no Scenario line, no {placeholder}, no "For example", no setup-file link), the Blocked line last; "Expected Result" with a "Step N:" heading and a bullet list per step, a blank paragraph, then the quotes, From lines, References from Design and AUTOMATION line identical to before the pattern. Title ≤ 80 and no semicolon; steps = results, each "Step N:"; no step with two UI actions (heuristic, plus each step read by hand); placeholders defined and named name-hyphen-letter/number; every quote verbatim in PRD v3 or the saved stories; every code and named item covered or not testable with a reason; every User Feedback Summary message used word for word in a step or result; one AUTOMATION line, last; From: line per document, build line, References from Design block. Result: 0 PROBLEM lines. Over the ~10-step target: DATA-24 (14 steps; kept whole: each count depends on the action before it, Rule 136).
+The QA lead's case pattern (Rule 117 fourteenth amendment, 26 Oct 2026): plain precondition bullets only (no Scenario line, no {placeholder}, no "For example", no setup-file link), no "mark this test Blocked" line (fifteenth amendment, 26 Oct 2026); "Expected Result" with a "Step N:" heading and a bullet list per step, a blank paragraph, then the quotes, From lines, References from Design and AUTOMATION line identical to before the pattern. Title ≤ 80 and no semicolon; steps = results, each "Step N:"; no step with two UI actions (heuristic, plus each step read by hand); placeholders defined and named name-hyphen-letter/number; every quote verbatim in PRD v3 or the saved stories; every code and named item covered or not testable with a reason; every User Feedback Summary message used word for word in a step or result; one AUTOMATION line, last; From: line per document, build line, References from Design block. Result: 0 PROBLEM lines. Over the ~10-step target: DATA-24 (14 steps; kept whole: each count depends on the action before it, Rule 136).
 
 ## 8. Reading coverage (Rule 119)
 | File | Size | Lines read | Coverage |
@@ -484,7 +474,7 @@ The QA lead's case pattern (Rule 117 fourteenth amendment, 26 Oct 2026): plain p
 ## 9. Fix round, 23 Oct 2026 (coordinator review)
 | Change | Cases | Why |
 |---|---|---|
-| Item 1 (a), fresh shop term per case | S4-01, S4-04, S4-05, S4-08, S4-12, S4-13, S4-16, S4-20, S4-34 (three customers on {Term-A}, 15 days); S4-09, S4-10, S4-14, S4-17, S4-18, S4-19, S4-29, S4-31, S4-32, S4-33, S7-01c, S8-06, S8-12, S12-09, DATA-25, DATA-26 ({Term-A}, 20 days); DATA-26b ({Term-A}, 45 days); S4-35 (deactivated {Term-A}, 60 days); S1-06, S1-07, S1-19 (new terms with 1/2/3 holders or none) | a standard term on the shared site holds other people's customers, so "exactly N on Net 15/20/45" could not be reached; the behaviour does not depend on the term being standard |
+| Item 1 (a), fresh shop term per case | S4-01, S4-04, S4-05, S4-08, S4-12, S4-13, S4-16, S4-20 (three customers on {Term-A}, 15 days); S4-09, S4-10, S4-14, S4-17, S4-18, S4-19, S4-29, S4-31, S4-32, S4-33, S7-01c, S8-06, S8-12, S12-09, DATA-25, DATA-26 ({Term-A}, 20 days); DATA-26b ({Term-A}, 45 days); S4-35 (deactivated {Term-A}, 60 days); S1-06, S1-07, S1-19 (new terms with 1/2/3 holders or none) | a standard term on the shared site holds other people's customers, so "exactly N on Net 15/20/45" could not be reached; the behaviour does not depend on the term being standard |
 | Item 1 (b), standard term kept, relative counts or Select None + search | S2-03, S2-07 ("at least one customer", Move Customers available), S2-22 and DATA-24 ({Count-A}/{Count-B} tab counts), S4-08 (Net 30 {Count-A} + 3), S4-25 (Credit Hold: Select None, search, tick), S11-09 (COD → Credit Hold with Select None, search, tick) | the case must use that standard term; counts and selections are stated so a tester can reach them |
 | Item 1 (c), clean organization | S1-23, S1-25, S11-04, S12-16 (`AUTOMATION: HOLD - needs a test organization holding only ZZAUTOTEST records ...`; setup recipe P-CLEAN) | an empty Inactive tab, every term deactivated, exactly the twelve standard terms, an empty log: none can be reached on a shared site without touching other sessions' data |
 | Item 2, shared site lists | S1-03, S1-04, S1-05, S1-08, S4-06, S5-02, S6-01 | other sessions' shop terms also appear in lists, so the results now check the order of the named rows rather than an exact full list |

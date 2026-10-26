@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build and check every Credit terms case. python3 build.py   (exit 1 on any PROBLEM line)
 Gates: the QA lead's pattern (Rule 117 fourteenth amendment, 26 Oct 2026; replaces the Scenario gate): plain precondition bullets only, no
-"{", no "For example", no "Scenario:", no setup-file link, Blocked line last; "Expected Result", a "Step N:" heading and bullet list per step,
+"{", no "For example", no "Scenario:", no setup-file link, no "mark this test Blocked" line (fifteenth amendment); "Expected Result", a "Step N:" heading and bullet list per step,
 "<p></p>", then the quotes block, which with the From lines, References from Design and AUTOMATION line is identical to before; title <= 80 and no semicolon; steps = results, each "Step N:"; no step with two UI actions (Rule 135); placeholders defined and
 named name-hyphen-letter/number; quotes verbatim in PRD v3 (or the saved Jira stories); every PRD code and every named PRD item (error
 handling, User Feedback Summary rows, Key Decisions, Permissions, Terminology, Assumptions, Goals, Out of Scope) covered or listed as not
@@ -19,6 +19,8 @@ MODS = ["cases_s1", "cases_s2", "cases_s3", "cases_s4", "cases_s5", "cases_s6", 
 MODS = [m for m in MODS if os.path.exists(f"{L.D}/{m}.py")]
 for m in MODS: importlib.import_module(m)
 SECS = json.load(open(f"{L.P}/sections.json"))
+# Rule 117 fifteenth amendment (QA lead, 26 Oct 2026, permanent): no case carries the "mark this test Blocked" line or any variant.
+BLOCKED_RX = re.compile(r"mark this test Blocked|If you cannot set up any of the above|If any record above is missing", re.I)
 probs = [p for c in L.CASES for p in L.check(c)]
 keys = [c["key"] for c in L.CASES]
 dups = {k for k in keys if keys.count(k) > 1}
@@ -36,10 +38,16 @@ print("cases", len(L.CASES), dict(Counter(c["sec"] for c in L.CASES)))
 # ---- coverage of PRD codes and named items
 used = Counter(x for c in L.CASES for x in L.codes_of(c))
 allitems = set(L.CODE) | set(L.NAMED)
-missing = sorted(allitems - set(used) - set(L.NOT_TESTABLE), key=str)
+missing = sorted(allitems - set(used) - set(L.NOT_TESTABLE) - set(L.NO_MANUAL), key=str)
+for k in sorted(set(L.NO_MANUAL) & set(used)): probs.append(f"PRD item {k} is marked No manual case (deleted 26 Oct 2026) but a case quotes it")
+for k, dk in L.NO_MANUAL.items():
+    if k not in allitems: probs.append(f"NO_MANUAL names {k}, which is not a PRD item")
+    if dk not in L.DELETED_CASES: probs.append(f"NO_MANUAL {k} names {dk}, which is not a deleted case")
+for dk in L.DELETED_CASES:
+    if dk in keys: probs.append(f"deleted case {dk} is back in the library")
 nt_used = sorted(set(L.NOT_TESTABLE) & set(used))
 print("PRD codes", len(L.CODE), "covered", len(set(L.CODE) & set(used)), "| named items", len(L.NAMED), "covered",
-      len(set(L.NAMED) & set(used)), "| not testable", len(L.NOT_TESTABLE), sorted(L.NOT_TESTABLE))
+      len(set(L.NAMED) & set(used)), "| not testable", len(L.NOT_TESTABLE), sorted(L.NOT_TESTABLE), "| no manual case (deleted 26 Oct)", len(L.NO_MANUAL), sorted(L.NO_MANUAL))
 for m in missing: probs.append(f"PRD item {m} covered by no case and not listed as not testable")
 for m in nt_used: probs.append(f"PRD item {m} is listed as not testable but a case quotes it")
 for k in L.NOT_TESTABLE:
@@ -52,7 +60,7 @@ def msgs(row):
     cell = row.split(" | ")[1]
     return [m for m in re.findall(r'"([^"]+)"', cell) if "{" not in m]
 for k, (lab, row) in L.NAMED.items():
-    if not k.startswith("UFS-"): continue
+    if not k.startswith("UFS-") or k in L.NO_MANUAL: continue
     for m in msgs(row):
         if m not in tester_all and m.replace("$", "$") not in tester_all: probs.append(f"{k}: message not used word for word in any step or result: {m!r}")
 # ---- rendered layout gates (Rule 117 tenth and eleventh amendments; one AUTOMATION line, last)
@@ -66,17 +74,30 @@ for c in L.CASES:
     if f"Epic {L.EPIC}" not in q or L.NOBUILD not in q or "version 3" not in q: probs.append(f"{c['key']}: epic, version or build line missing")
     if "claude.ai/artifact" in h.split("References from Design")[0]: probs.append(f"{c['key']}: design reference above the References from Design block")
     if "<p></p><p><strong>References from Design</strong></p>" not in h: probs.append(f"{c['key']}: no References from Design block")
-    if not c["pre"][-1][0] == L.BLOCKED: probs.append(f"{c['key']}: the Blocked line is not last in the authoring data")
+    if any(BLOCKED_RX.search(a) for a, _ in c["pre"]): probs.append(f"{c['key']}: a 'mark this test Blocked' line in the authoring data (it feeds the setup file; fifteenth amendment)")
 # ---- PATTERN GATE (Rule 117 fourteenth amendment, QA lead 26 Oct 2026: "Yes, permanent, all suites"). Replaces the Scenario gate.
 # Preconditions: a "Preconditions" heading and plain bullets only, no "{", no "For example", no "Scenario:", no setup-file link, no
-# who-to-ask or generic line, the Blocked line last. Steps: plain, no placeholder. Expected: "Expected Result", then a "Step N:" heading per
+# who-to-ask or generic line, no Blocked line (fifteenth amendment, 26 Oct 2026). Steps: plain, no placeholder. Expected: "Expected Result", then a "Step N:" heading per
 # step each followed by a bullet list, then "<p></p>", then the note (if any) and the quotes block; the quotes block, From lines,
 # References from Design and AUTOMATION line identical to the version before the pattern (before/proposals.json).
 import html as _html
-from pattern import BLOCKED_P
-BEFORE_F = f"{L.P}/pattern-format-2026-10-26/before/proposals.json"
-BEFORE = json.load(open(BEFORE_F)) if os.path.exists(BEFORE_F) else {}
-if not BEFORE: probs.append("pattern gate: before/proposals.json missing, so the quotes/design/AUTOMATION identity cannot be checked")
+# 26 Oct 2026 (tester read-through): the identity baseline is the live read-back of every case (applied/C<id>-after.json), not the
+# pre-pattern snapshot; a case whose quote list grew by a control (readthrough.ADD_Q) must equal the read-back once those quotes are taken out.
+import csv as _csv
+IDS = {r["key"]: r["case_id"] for r in _csv.DictReader(open(f"{L.P}/testrail-id-map.csv"))}
+BEFORE = {}
+for _k, _cid in IDS.items():
+    _f = f"{L.P}/applied/C{_cid}-after.json"
+    if os.path.exists(_f): _a = json.load(open(_f)); BEFORE[_k] = {"title": _a["title"], "fields": {"custom_expected": _a["custom_expected"]}}
+if not BEFORE: probs.append("pattern gate: applied/C<id>-after.json read-backs missing, so the quotes/design/AUTOMATION identity cannot be checked")
+import readthrough as _RT
+def _drop_added(k, t):
+    for code in _RT.ADD_Q.get(k, []):
+        lab, txt = (code, L.CODE[code]) if code in L.CODE else L.NAMED[code]
+        li = f"<li><strong>{L.e(lab)}:</strong> &ldquo;{L.e(txt)}&rdquo;</li>"
+        if li not in t: probs.append(f"{k}: added quote {code} not found in the quotes block")
+        t = t.replace(li, "", 1)
+    return t
 def _tail(h): return h[h.index("<p><strong>Exact quotes from the source"):]
 pat_text = []
 for c in L.CASES:
@@ -86,7 +107,9 @@ for c in L.CASES:
     items = re.findall(r"<li>(.*?)</li>", pre[len(H):-5], re.S)
     if pre[len(H):-5] != "".join(f"<li>{x}</li>" for x in items): probs.append(f"{k}: Preconditions hold something other than plain bullets")
     plain = [_html.unescape(x) for x in items]
-    if not plain or plain[-1] != BLOCKED_P: probs.append(f"{k}: the Blocked line is not the last precondition")
+    if not plain: probs.append(f"{k}: no preconditions")
+    for _fld in (pre, st, ex):
+        if BLOCKED_RX.search(_html.unescape(_fld)): probs.append(f"{k}: the 'mark this test Blocked' line (or a variant) is in the case (Rule 117 fifteenth amendment)")
     for x in plain:
         if re.search(r"[{}]", x): probs.append(f"{k}: a placeholder brace in the preconditions: {x[:80]!r}")
         if re.search(r"for example", x, re.I): probs.append(f"{k}: a 'For example' in the preconditions: {x[:80]!r}")
@@ -96,39 +119,44 @@ for c in L.CASES:
         if "ZZAUTOTEST" in x: probs.append(f"{k}: an example record name in the preconditions")
         if re.search(r"<(?!/?(strong)>)", x): probs.append(f"{k}: markup inside a precondition bullet")
     steps = [_html.unescape(x) for x in re.findall(r"<li>(.*?)</li>", st, re.S)]
-    if len(steps) != len(c["steps"]): probs.append(f"{k}: {len(steps)} steps rendered for {len(c['steps'])}")
+    _p = _RT.apply(c, L.PAT.pattern_case(c, L.BLOCKED))
+    if len(steps) != len(_p["steps"]): probs.append(f"{k}: {len(steps)} steps rendered for {len(_p['steps'])}")
+    for _i, _s in enumerate(steps, 1):
+        if L.two_actions(_s): probs.append(f"{k}: rendered step {_i} has two UI actions: {_s!r}")
     for x in steps:
         if re.search(r"[{}]", x): probs.append(f"{k}: a placeholder brace in a step: {x[:80]!r}")
         if "ZZAUTOTEST" in x: probs.append(f"{k}: an example record name in a step")
     E = "<p><strong>Expected Result</strong></p>"
     if not ex.startswith(E): probs.append(f"{k}: Expected does not start with the 'Expected Result' heading"); continue
     rest = ex[len(E):]; nres = []
-    for n in range(1, len(c["steps"]) + 1):
+    for n in range(1, len(steps) + 1):
         m = re.match(rf"<p>Step {n}:</p><ul>((?:<li>.*?</li>)+)</ul>", rest, re.S)
         if not m: probs.append(f"{k}: no 'Step {n}:' heading followed by a bullet list"); break
         nres.append([_html.unescape(x) for x in re.findall(r"<li>(.*?)</li>", m.group(1), re.S)]); rest = rest[m.end():]
     else:
         if not rest.startswith("<p></p>"): probs.append(f"{k}: no blank paragraph after the last result")
         rest = rest[len("<p></p>"):]
-        if c["note"]:
+        if _p["note"]:
             if not rest.startswith("<p>"): probs.append(f"{k}: the note is not right after the blank paragraph")
             rest = rest[rest.index("</p>") + 4:]
         if not rest.startswith("<p><strong>Exact quotes from the source"): probs.append(f"{k}: the quotes block does not follow the blank line")
     for r in nres:
         for x in r:
+            for _n in re.findall(r"\bsteps? (\d+)", x):
+                if int(_n) > len(steps): probs.append(f"{k}: a result points at step {_n}, the case has {len(steps)} steps")
             if re.search(r"[{}]", x): probs.append(f"{k}: a placeholder brace in a result: {x[:80]!r}")
             if "ZZAUTOTEST" in x: probs.append(f"{k}: an example record name in a result")
             if not x or not (x[0].isupper() or x[0] in '"“$(0123456789⋯'): probs.append(f"{k}: a result bullet does not start a sentence: {x[:60]!r}")
     if BEFORE:
         b = BEFORE.get(k)
         if not b: probs.append(f"{k}: not in before/proposals.json")
-        elif _tail(b["fields"]["custom_expected"]) != _tail(ex): probs.append(f"{k}: quotes / From lines / References from Design / AUTOMATION line changed")
+        elif _tail(b["fields"]["custom_expected"]) != _drop_added(k, _tail(ex)): probs.append(f"{k}: quotes / From lines / References from Design / AUTOMATION line changed")
         elif b["title"] != c["title"]: probs.append(f"{k}: title changed")
     pat_text.append(" ".join(steps + [x for r in nres for x in r]))
 # every User Feedback Summary message is still used word for word in the pattern steps and results
 pat_all = " ".join(pat_text)
 for k_, (lab, row) in L.NAMED.items():
-    if not k_.startswith("UFS-"): continue
+    if not k_.startswith("UFS-") or k_ in L.NO_MANUAL: continue
     for m in msgs(row):
         if m not in pat_all: probs.append(f"{k_}: message not used word for word in any pattern step or result: {m!r}")
 print("pattern gate: cases", len(L.CASES), "| before snapshot", len(BEFORE))
@@ -149,7 +177,7 @@ def _named(b):
 rel_named = rel_so = 0
 for c in L.CASES:
     k = c["key"]; f = L.render(c)
-    pre = [_html.unescape(x) for x in re.findall(r"<li>(.*?)</li>", f["custom_preconds"], re.S)][:-1]
+    pre = [_html.unescape(x) for x in re.findall(r"<li>(.*?)</li>", f["custom_preconds"], re.S)]   # no Blocked line to drop (fifteenth amendment)
     head = f["custom_expected"].split("<p></p>", 1)[0]
     later = " ".join([_html.unescape(x) for x in re.findall(r"<li>(.*?)</li>", f["custom_steps"] + head, re.S)]).lower()
     for b in pre:

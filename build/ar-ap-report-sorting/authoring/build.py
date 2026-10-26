@@ -5,8 +5,10 @@ quotes verbatim in PRD v9 (or Chris Ward's answers, the Jira reading record, or 
 Summary rows, What changes, Out of Scope, key decisions) covered or listed as not testable with the reason; every report a
 requirement names covered; one AUTOMATION line, last; the "From:" / build line / "References from Design" layout; the PATTERN GATE
 (Rule 117 fourteenth amendment, 26 Oct 2026, the QA lead's own pattern; it replaced the thirteenth amendment's Scenario gate): the
-Preconditions are plain bullets only, with no "{", no "For example", no "Scenario:", no setup-file link and no who-to-ask, the Blocked
-line last; the Expected Result opens "Expected Result", has a "Step N:" heading per step with a bullet list under it, then one blank
+Preconditions are plain bullets only, with no "{", no "For example", no "Scenario:", no setup-file link and no who-to-ask; the BLOCKED-LINE
+GATE (Rule 117 fifteenth amendment, 26 Oct 2026): no "mark this test Blocked: "setup not done"" line or variant anywhere in a case or in the
+setup file; the DELETED gate: no case deleted on the QA lead's order is in the library, and a requirement only it covered is reported with
+L.DELETED_NOTE instead of failing; the Expected Result opens "Expected Result", has a "Step N:" heading per step with a bullet list under it, then one blank
 paragraph, then the quotes block, the design block and the AUTOMATION line exactly as ar_lib.tail() writes them."""
 import sys, json, os, importlib, re
 from collections import Counter, defaultdict
@@ -37,7 +39,13 @@ print("cases", len(L.CASES), dict(Counter(c["sec"] for c in L.CASES)))
 # ---- coverage of PRD codes and named items
 used = Counter(x for c in L.CASES for x in L.codes_of(c))
 allitems = set(L.CODE) | set(L.NAMED)
-missing = sorted(allitems - set(used) - set(L.NOT_TESTABLE), key=str)
+# 26 Oct 2026: a requirement that only a deleted case covered (L.DELETED, QA lead's order) is accepted with L.DELETED_NOTE
+DEV_ONLY = {x for d in L.DELETED.values() for x in d["codes"]} - set(used)
+for dk, d in L.DELETED.items():
+    if dk in keys: probs.append(f"{dk}: deleted on the QA lead's order 26 Oct 2026 ({d['case']}) but still in the library")
+    for x in d["codes"]:
+        print(f"deleted {dk} {d['case']} covered {x}: " + (L.DELETED_NOTE if x in DEV_ONLY else "still covered by " + ", ".join(sorted(c["key"] for c in L.CASES if x in L.codes_of(c)))))
+missing = sorted(allitems - set(used) - set(L.NOT_TESTABLE) - DEV_ONLY, key=str)
 print("PRD codes", len(L.CODE), "covered", len(set(L.CODE) & set(used)), "| named items", len(L.NAMED), "covered",
       len(set(L.NAMED) & set(used)), "| not testable", sorted(L.NOT_TESTABLE))
 for m in missing: probs.append(f"PRD item {m} covered by no case and not listed as not testable")
@@ -46,6 +54,7 @@ cov = defaultdict(set)
 for c in L.CASES:
     for x in L.codes_of(c): cov[x] |= set(L.reports_of(c))
 for code, need in L.NEEDS.items():
+    if code in DEV_ONLY: continue
     gap = [L.REPORTS[r] for r in need if r not in cov[code]]
     if gap: probs.append(f"{code}: no case covers {', '.join(gap)}")
 # ---- every PRD message is quoted word for word in some case's expected results or steps (brief point 6)
@@ -61,7 +70,9 @@ MSGS = ["This report is too large for PDF. Export it as CSV, or narrow the filte
         "Past due: Any", "Past due: 4 ranges", "91 And Over", "Locations: All locations", "As of Oct 15, 2026", "As of: Oct 15, 2026"]
 PAT = {c["key"]: PT.pattern(c) for c in L.CASES}
 tester_all = " ".join(" ".join(PAT[c["key"]]["steps"] + sum(PAT[c["key"]]["results"], [])) for c in L.CASES)
+DEL_MSGS = {m for d in L.DELETED.values() for m in d.get("messages", [])}
 for m in MSGS:
+    if m not in tester_all and m in DEL_MSGS: print(f"message only a deleted case used ({L.DELETED_NOTE}): {m!r}"); continue
     if m not in tester_all: probs.append(f"PRD message not used word for word in any case: {m!r}")
 for code in ["S8-R1 " + r for r in L.ALL6]:
     t = L.SUB[code][1].split(": ", 1)[1].strip('"')
@@ -87,7 +98,9 @@ for c in L.CASES:
     pc = f["custom_preconds"]
     if not re.fullmatch(r"<p><strong>Preconditions</strong></p><ul>(?:" + LI + r")+</ul>", pc): probs.append(f"{k}: Preconditions are not plain bullets only")
     if BAD_PRE.search(pc): probs.append(f"{k}: Preconditions hold {BAD_PRE.search(pc).group(0)!r}")
-    if p["pre"][-1] != PT.BLOCKED_NEW: probs.append(f"{k}: the Blocked line is not last")
+    # Rule 117 FIFTEENTH amendment (26 Oct 2026, permanent): no "mark this test Blocked" setup line, nor any variant, anywhere in the case
+    _all = " ".join([f["title"], pc, f["custom_steps"], f["custom_expected"], c["note"], c["known"]] + [a for a, _ in c["pre"]])
+    if L.BLOCKED_LINE.search(_all): probs.append(f"{k}: carries the Blocked setup line: {L.BLOCKED_LINE.search(_all).group(0)!r}")
     if len(p["title"]) > 80 or ";" in p["title"]: probs.append(f"{k}: title over 80 characters or has a semicolon")
     if c["sec"] == "DESIGN" and not p["title"].startswith("Design: "): probs.append(f"{k}: design title lost 'Design: '")
     if not re.fullmatch(r"<ol>(?:" + LI + r")+</ol>", f["custom_steps"]) or f["custom_steps"].count("<li>") != len(c["steps"]): probs.append(f"{k}: steps")
@@ -157,6 +170,33 @@ for st in TP.S:
     if st["verdict"] == "EXCLUDED" and st["cases"]: probs.append(f"{st['id']}: EXCLUDED but names cases")
 print("tech plan statements", len(TP.S), dict(Counter(st["verdict"] for st in TP.S)),
       "| cases quoting the tech plan", sum(1 for c in L.CASES if any(isinstance(x, tuple) and x[0].startswith("Tech plan") for x in c["q"])))
+# ---- TESTER READ-THROUGH GATES (26 Oct 2026, QA lead "GO"; build/tester-readthrough-2026-10-26/WORKER-BRIEF.md checks 2 and 8):
+# (a) no vague word a tester cannot check, anywhere the tester reads (title, preconditions, steps, results, notes);
+# (b) enrolment: PRD v9 makes the reports organization-wide, so "enrolled" appears only in the cases readthrough_layout.ENROL_KEEP
+#     names (a document at another location is clicked or must link, the location switcher or another report's own filter is used,
+#     or the case is about a location the user is not enrolled in), and every case that clicks a document at another location has it.
+import readthrough_layout as RTL
+VAGUE = re.compile(r"\bnative\b|as described|layout being checked|looks? right|same style|\bRule \d", re.I)
+for c in L.CASES:
+    k = c["key"]; p = PAT[k]
+    said = " ".join([p["title"]] + p["pre"] + p["steps"] + sum(p["results"], []) + [PT.plain(c["note"]), c["known"]])
+    said = re.sub(r'"[^"]*" \(ar-ap-p[^)]*\)', "", said)   # a design picture's own heading is its name, not a claim
+    if VAGUE.search(said): probs.append(f"{k}: vague words a tester cannot check: {VAGUE.search(said).group(0)!r}")
+    pre = " ".join(p["pre"])
+    if k not in RTL.ENROL_KEEP and "enrolled" in pre: probs.append(f"{k}: enrolment line where no step or result needs it")
+    if k in RTL.SWITCH | set(RTL.ENROL_REASON) and "enrolled at both locations" not in pre: probs.append(f"{k}: needs the enrolment line")
+    for x in p["steps"]:
+        m = re.match(r"^Click (?:the )?((?:invoice|bill|vendor credit|credit memo|deposit) [A-F])'s number", x)
+        if m and re.search(re.escape(m.group(1)) + r"[^;,.]*?\b(?:at|made at|received at|received on a delivery at|made at) (?:location B|your other location|another location)", pre) \
+                and k not in RTL.ENROL_KEEP:
+            probs.append(f"{k}: clicks {m.group(1)} at another location but has no enrolment line")
+print("read-through gates: enrolment kept in", sum(1 for c in L.CASES if "enrolled" in " ".join(PAT[c["key"]]["pre"])), "cases:",
+      sorted(c["key"] for c in L.CASES if "enrolled" in " ".join(PAT[c["key"]]["pre"])))
+# the setup file for Claude sessions must not carry the Blocked line either (fifteenth amendment); render_setup.py refuses to write it
+_sf = f"{L.P}/AR-AP-SETUP-FILE.md"
+if os.path.exists(_sf) and L.BLOCKED_LINE.search(open(_sf).read()): probs.append("AR-AP-SETUP-FILE.md carries the Blocked setup line (run render_setup.py)")
+for dk in L.DELETED:
+    if os.path.exists(_sf) and f"SETUP-{dk} " in open(_sf).read(): probs.append(f"AR-AP-SETUP-FILE.md still has a recipe for deleted case {dk} (run render_setup.py)")
 markers = Counter(c["marker"] for c in L.CASES)
 print("markers", dict(markers))
 over = [(c["key"], len(c["steps"])) for c in L.CASES if len(c["steps"]) > 10]
