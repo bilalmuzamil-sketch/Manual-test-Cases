@@ -1,0 +1,12 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const s=await open({env:'prod',user:'bilal.muzamil@shopview.com',dir:'/tmp/qa21',vp:{width:1440,height:900},dpr:2});
+const A=s.page; const V='f9618e14-2255-470d-afc7-b20c8e7fc33d'; const out={};
+await s.go(`/parts/vendor/${V}/unpaid-invoices`); await A.waitForTimeout(6000); await A.mouse.move(5,890);
+out.list=await A.evaluate(()=>{const g=t=>{const r=[...document.querySelectorAll('[data-test-id="table-unpaid-transactions"] tr')].find(r=>r.innerText.includes(t)); const rb=r.getBoundingClientRect(); const c=r.querySelectorAll('td')[3].getBoundingClientRect(); const a=r.querySelector('a[href]'); return {row:[rb.x,rb.y,rb.width,rb.height],no:[c.x,c.y,c.width,c.height],href:a?a.getAttribute('href'):null}}; return {manual:g('SV-10874'),ret:g('ZZAUTOTEST-CM-10408'),inv:g('ZZ10841-P5')};});
+await A.screenshot({path:'v8-list.png'});
+await s.go('/parts/return/57bd03b4-2a48-46f0-af39-ebf8e1583281'); await A.waitForTimeout(5000); await A.screenshot({path:'v8-return-details.png'});
+await s.go('/reports/unexported-items'); await A.waitForTimeout(6000);
+out.unexp=await A.evaluate(()=>document.body.innerText.replace(/\s+/g,' ').slice(0,600)); await A.screenshot({path:'v8-unexported.png'});
+out.vendorsTab=await A.evaluate(()=>[...document.querySelectorAll('[data-test-id]')].map(e=>e.getAttribute('data-test-id')).filter(t=>/tab/.test(t)));
+fs.writeFileSync('v8.json',JSON.stringify(out)); console.log(JSON.stringify(out).slice(0,1500));
+process.exit(0);

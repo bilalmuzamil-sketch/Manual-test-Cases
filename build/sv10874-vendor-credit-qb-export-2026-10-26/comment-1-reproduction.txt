@@ -1,0 +1,32 @@
+{panel:bgColor=#fffae6}
+*REPRODUCTION ON PRODUCTION: PARTLY REPRODUCED*
+{panel}
+[~accountid:712020:1f21c3b6-c183-4d46-9561-7b79f0e197ab] [~accountid:5bd6d7573aa82432ce72b8d3] I checked this on production ([app.shopview.com|https://app.shopview.com], build v26.43.1-9af7270) on 26 October 2026. The customer's third point reproduces: a credit entered with *New Credit* can't be opened. The export to QuickBooks could not be tested, because QuickBooks isn't connected on the production test organisation.
+
+h3. What I checked
+||#||Check||Result||
+|1|A credit made by hand: Parts > Vendors > a vendor > {{New Credit}} ($12.34)|Listed on {{Unpaid Invoices}} with no link; clicking it does nothing (picture 1). *Reproduced.*|
+|2|A credit made from a part return (Parts > Returns > {{Receive Credit}})|Clicking it opens its {{Return Details}} page (picture 2)|
+|3|A vendor invoice on the same list|Opens its {{Vendor Invoice}} page|
+|4|Reports > {{QB Unexported}}, tabs Customers, Vendors and Journal Entries|All three empty. QuickBooks isn't connected here, so nothing is ever queued and the export can't be tested|
+
+!SV-10874_1-manual-credit-not-clickable.png|width=700,height=489!
+_Picture 1: the credit entered with New Credit (red) has no link; the invoice and the part-return credit (green) do._
+
+!SV-10874_2-return-credit-opens.png|width=700,height=303!
+_Picture 2: a credit made from a part return opens its Return Details page._
+
+h3. How to see it
+# On production, go to {{Parts}} > {{Vendors}} and open any vendor.
+# Open the {{Unpaid Invoices}} tab and click {{New Credit}} (top right).
+# Enter an amount and a memo, then click {{Save}}.
+# The new row shows {{Credit}} in the Type column. Click its number in the {{No.}} column: nothing opens.
+# For comparison, click a {{Delivery}} row or a credit that came from a part return: each opens its own page.
+
+h3. A possible explanation (not confirmed)
+The customer wrote "when you *enter* a credit you cannot click on it". On screen, a credit is entered by hand with *New Credit*. Parth's comment says credits made that way are not sent to QuickBooks. If XA107024577:01 was made with New Credit, that would explain all three of the customer's points: it isn't in QuickBooks, it isn't in QB Unexported, and it can't be opened. Could you check in J4 Mechanical's data whether that credit was entered with New Credit or came from a part return? If it was New Credit, whether hand-entered credits should go to QuickBooks is a product decision.
+
+h3. What I could not test
+* The QuickBooks export itself: there is no QuickBooks company connected on the production test organisation.
+
+Test data left on production: a $12.34 credit "ZZAUTOTEST SV-10874 manual credit" on vendor Delete Test.
