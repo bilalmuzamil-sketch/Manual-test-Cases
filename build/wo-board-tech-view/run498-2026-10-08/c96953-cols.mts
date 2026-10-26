@@ -10,12 +10,16 @@ import path from 'node:path';
 import { open, done } from './session.mts';
 import { api, candidates, customer, workOrder, workOrders } from './data.mts';
 import { EV, t, display, tab, search, boardCols, toColumn, allBoardCols } from './wob.mts';
+import { person, roleIds } from './staff.mts';
 
 const { browser, page: p } = await open('/workorders?tab=all');
 const a = api(p); const W = (ms: number) => p.waitForTimeout(ms);
 const shot = (n: string) => p.screenshot({ path: path.join(EV, `C96953-c-${n}.png`) }).catch(() => {});
 const o: any = {};
-const techs = await candidates(a); const ES = techs.find((x) => x.name === 'Esther Howard'); const others = techs.filter((x) => !/Esther Howard|Admin ShopView|^ZZ/.test(x.name)).slice(0, 2);
+let techs = await candidates(a);
+// 26 Oct 2026 (sv11720): a fresh QA branch may not have Esther Howard — create her as an eligible technician (Rule 107), then re-read
+if (!techs.find((x) => x.name === 'Esther Howard')) { o.estherCreated = (await person(a, 'Esther', 'Howard', { role: (await roleIds(a))['Technician'], email: 'zz.esther.howard@staging.shopview.local', clockable: true })).row?.staff_id ?? null; techs = await candidates(a); }
+const ES = techs.find((x) => x.name === 'Esther Howard'); const others = techs.filter((x) => !/Esther Howard|Admin ShopView|^ZZ/.test(x.name)).slice(0, 2);
 if (!ES) throw new Error('Esther Howard is not an eligible technician here');
 const n = 'ZZAUTOTEST F2 Column Scroll';
 // data: count what exists by lead, add what is missing
