@@ -209,3 +209,64 @@ PRE_ADD = {
     "D-56": [(_ADMIN, ["Have open documents in this report at two locations, so the Location column shows."])],
     "D-59": [(_ADMIN, ["Have open documents in this report at two locations, so the Location chip shows."])],
 }
+# EXACT: cases that add up, or change, their own records: the customers and vendors are "new (created for this test)", so no other
+# case's data or failure can change the figures (QA lead, 26 Oct 2026: one failing case must not block another)
+EXACT = {"S2-02", "S2-03", "S2-05", "S2-06", "S3-18", "S3-19", "S3-20", "S3-21", "S3-22", "S3-23", "S5-15", "S5-38",
+         "DATA-07", "DATA-08", "DATA-09", "DATA-10", "DATA-11", "DATA-12", "DATA-13", "DATA-14", "DATA-15", "DATA-16", "DATA-17",
+         "DATA-22", "DATA-23", "DATA-24"}
+
+# ---- hand corrections from the relevance pass (26 Oct 2026) ------------------------------------------------------------------------
+def _add(k, **kw):
+    d = LAYOUT.setdefault(k, {})
+    for f, v in kw.items():
+        if isinstance(v, list): d.setdefault(f, []).extend(v)
+        elif isinstance(v, dict): d.setdefault(f, {}).update(v)
+        else: d[f] = v
+_LONG_C = "Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo."
+_LONG_V = ("Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a "
+           "vendor credit (its Transaction Type is the longest).")
+_WHY_C = ", so the page shows a long name and a credit memo row, which must not overlap or be cut off."
+_WHY = ", so the page shows a long name and a long Transaction Type, which must not overlap or be cut off."
+for _k in ["D-02", "D-03", "D-05", "D-06", "D-08", "D-09"]: _add(_k, pre_set=[(_LONG_C, [_LONG_C[:-1] + _WHY_C])])
+for _k in ["D-11", "D-12", "D-14", "D-15", "D-17", "D-18"]: _add(_k, pre_set=[(_LONG_V, [_LONG_V[:-1] + _WHY])])
+for _k in ["D-01b", "D-01c", "D-04b", "D-04c", "D-07b", "D-07c"]: _add(_k, pre_set=[(_LONG_C, ["Make sure the report has open documents on today's date."])])
+for _k in ["D-10b", "D-10c", "D-13b", "D-13c", "D-16b", "D-16c"]: _add(_k, pre_set=[(_LONG_V, ["Make sure the report has open documents on today's date."])])
+_add("D-32", pre_set=[("Have a vendor, vendor A, with unpaid bills on today's date.", ["Make sure the report has unpaid bills on today's date."])])
+_add("REL-03", pre_set=[("Have a customer, customer A, with open invoices on today's date.",
+                         ["Make sure the report has open invoices on today's date, so the PDF has rows."])])
+for _k, _b in (("S4-09b", "bucket"), ("S4-11b", "bucket")):
+    _add(_k, pre_set=[("Make sure that on today's date the report has two buckets", ["Make sure that on today's date the report has a bucket, bucket A, with more lines than fit on the screen."]),
+                      ("Leave the report with the groups of bucket A and bucket B expanded.", ["Leave the report with bucket A's group expanded."])])
+_add("S4-10b", pre_set=[("Make sure that on today's date the report has two customers", [
+        "Make sure that on today's date the report has a customer, customer A, with more overdue invoices than fit on the screen and with a phone number and a credit term on its customer card."]),
+                        ("Leave the report with the groups of customer A and customer B expanded.", ["Leave the report with customer A's group expanded."])])
+_add("S4-12b", pre_set=[("Make sure that on today's date the report has two vendors", [
+        "Make sure that on today's date the report has a vendor, vendor A, with more overdue bills than fit on the screen."]),
+                        ("Leave the report with the groups of vendor A and vendor B expanded.", ["Leave the report with vendor A's group expanded."])])
+for _k, _p in (("S2-07", "customer"), ("S2-15", "vendor")):
+    _add(_k, pre_set=[('Make sure that in the "1-30 days past due" bucket there are three open documents', [
+        'Make sure that in the "1-30 days past due" bucket there are three open documents: one at location B and two at location A; one of the three is a different transaction type from the others.'])])
+for _k, _p in (("S2-11", "customer"), ("S2-19", "vendor")):
+    _add(_k, pre_set=[(f"Make sure that in {_p} A's group there are three open documents", [
+        f"Make sure that in {_p} A's group there are three open documents: one at location B and two at location A; one of the three is a different transaction type from the others."])])
+for _k, _p, _d in (("S2-08", "customer", "invoices"), ("S2-09", "customer", "invoices"), ("S2-16", "vendor", "bills"), ("S2-17", "vendor", "bills")):
+    _add(_k, pre_set=[('Make sure that in the "1-30 days past due" bucket there are three open', [
+        f'Make sure that in the "1-30 days past due" bucket there are three open {_d}, document A, document B and document C, each for a different {_p}, so the rows sort across {_p}s:'])])
+_add("DATA-13", pre_sub=[("with an invoice A of $100.00 paid $120.00 (overpaid)", "with an invoice of $100.00 paid $120.00 (overpaid)")])
+for _k, _what in (("REL-01", "A/R"), ("REL-02", "A/P")):
+    _add(_k, pre_sub=[("for an as-of date before the release (date A), untouched", "for one as-of date before the release, untouched")],
+         pre_set=[("On each report, as you open it, choose date A as the as-of date.", ["On each report, as you open it, choose the as-of date the screenshots show."])])
+for _k in ("REL-05", "REL-05b", "REL-05c"):
+    LAYOUT[_k]["pre_sub"] = [("for date A with one location ticked", "for an as-of date before the release with one location ticked")]
+_add("REL-08", pre_set=[("Have a customer, customer A, with an unused credit memo A dated a day before the release (date A).", [
+        "Have a customer with an unused credit memo, credit memo A, dated a day before the release."]),
+                        ("Make sure that before the release was installed, you noted which A/R Detail bucket", [
+        "Make sure that before the release was installed, you noted which A/R Detail bucket credit memo A was in with its own date as the as-of date."]),
+                        ("Leave the report with date A as the as-of date and customer A ticked.", [
+        "Leave the report with credit memo A's date as the as-of date and its customer ticked."])])
+_add("S2-19b", pre_set=[("Have a vendor, vendor A, with overdue bills on today's date.", [
+        "Have a vendor, vendor A, with overdue bills on today's date, at least two of them with different dates."]),
+                        ("Make sure vendor A has at least two open documents with different dates.", [])])
+_add("S7-11", pre_set=[('Sign in as user B, an "Admin" user enrolled only at location A', ['Sign in as an "Admin" user enrolled at one location only.']),
+                       ("Have a customer, customer A, with an open invoice A made at location B", [
+        "Have a customer, customer A, with an open invoice A made at another location, one this user is not enrolled in."])])

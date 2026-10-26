@@ -250,14 +250,21 @@ SO = re.compile(r"\bso (?:that )?\w")
 TWO_LOC_NEW = "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order."
 ENROLLED = "Make sure you are enrolled at both locations."
 
+NUMW_RE = r"(?:a|an|two|three|four|five|six|eight)"
 def relate(c, out, PL):
-    """Preconditions relate to the steps and results (QA lead, 26 Oct 2026: "they must make sense and relate to the steps and expected
-    results below"): a record a precondition names is used in the steps or results, or the bullet says why it is needed ("so ...").
-    Applied after the hand corrections: (1) the two-locations block follows PL.TWO_LOC (removed, or kept with its reason) where the
-    case never names location A or B again; (2) a signed-in user the case never names again is not given a name; (3) "location A as
-    your current location" is dropped where nothing else in the case names location A; (4) PL.PRE_ADD bullets are inserted."""
+    """Preconditions relate to the steps and results, and every case stands alone (QA lead, 26 Oct 2026: "they must make sense and
+    relate to the steps and expected results below"; "if one test case fails that does not block the other test case").
+    Applied after the hand corrections, in this order:
+    (1) the two-locations block follows PL.TWO_LOC (removed, or kept with its reason) where the case never names a location again;
+    (2) a signed-in user the steps and results never name is not given a name;
+    (3) a customer or vendor the steps and results never name is not given a name ("Have a customer with ...", then "that customer");
+    (4) a location the steps and results never name is described, not named: "your current location", "your other location",
+        "a third location"; "location A as your current location" is dropped, and the A to Z clause is kept only when both are named;
+    (5) in PL.EXACT (cases that add up or change their own records) the customers and vendors are "new (created for this test)";
+    (6) PL.PRE_ADD bullets are inserted (data a result needs that no precondition created)."""
     k = c["key"]
     later = " ".join(out["steps"] + sum(out["results"], []))
+    used = records(later)
     pre = list(out["pre"])
     if k in PL.TWO_LOC:
         if TWO_LOC_NEW not in pre: raise KeyError(f"{k}: PL.TWO_LOC names a case without the two-locations bullet")
@@ -265,16 +272,42 @@ def relate(c, out, PL):
         pre[i:i + 1] = [] if reason is None else [f"Have open documents in these reports at two locations, so {reason}."]
         if not keep_enrolled and ENROLLED in pre: pre.remove(ENROLLED)
     for u in ("B", "C"):
-        if f"user {u}" not in later:
+        if ("user", u) not in used:
             pre = [x.replace(f"Sign in as user {u}, whose ", "Sign in as a user whose ").replace(f"Sign in as user {u}, an ", "Sign in as an ")
                     .replace(f"a location user {u} is not enrolled in", "a location this user is not enrolled in") for x in pre]
-    rest = " ".join(pre) + " " + later
-    if rest.count("location A") == sum(x.count("location A") for x in pre if "as your current location" in x):
-        pre = [x.replace(", with location A as your current location.", ".") for x in pre]
-    for after, new in PL.PRE_ADD.get(k, []):
+    for kind in ("customer", "vendor"):
+        unused = [x for x in "ABCDEF" if (kind, x) not in used and any(f"{kind} {x}" in y or f"{kind.capitalize()} {x}" in y for y in pre)]
+        if len(unused) != 1: continue          # several unnamed parties of one kind are written by hand (PL.LAYOUT)
+        x = unused[0]; nm = f"{kind} {x}"
+        d = [i for i, y in enumerate(pre) if y.startswith(f"Have a {kind}, {nm}, with ") or y.startswith(f"Make sure {nm} has")]
+        if len(d) != 1: continue
+        i = d[0]
+        pre[i] = pre[i].replace(f"Have a {kind}, {nm}, with ", f"Have a {kind} with ").replace(f"Make sure {nm} has", f"Make sure a {kind} has")
+        pre = [y if j == i else y.replace(f"{nm}'s", f"that {kind}'s").replace(nm, f"that {kind}") for j, y in enumerate(pre)]
+    both = ("location", "A") in used and ("location", "B") in used
+    if not both:
+        pre = [y.replace(", with location A's name first in A to Z order.", ".") for y in pre]
+    if ("location", "A") not in used:
+        pre = [y.replace(", with location A as your current location.", ".") for y in pre]
+        pre = [y.replace("location A's", "your current location's").replace("location A", "your current location") for y in pre]
+    if ("location", "B") not in used:
+        pre = [y.replace("location B's", "your other location's").replace("location B", "your other location") for y in pre]
+    if ("location", "C") not in used:
+        pre = [y.replace("location C's", "the third location's").replace("location C", "a third location") for y in pre]
+    pre = [y.replace("Have open documents in these reports at two locations, your current location and your other location.",
+                     "Have open documents in these reports at two locations: your current location and your other location.") for y in pre]
+    if k in PL.EXACT:
+        def new(y):
+            m = re.match(rf"^Have ({NUMW_RE}) (customers?|vendors?)\b(.*)$", y)
+            if m: return f"Have {m.group(1)} new {m.group(2)} (created for this test){m.group(3)}"
+            m = re.match(r"^Make sure a (customer|vendor) has(.*)$", y)
+            if m: return f"Have a new {m.group(1)} (created for this test) that has{m.group(2)}"
+            return y
+        pre = [new(y) for y in pre]
+    for after, add in PL.PRE_ADD.get(k, []):
         hit = [i for i, x in enumerate(pre) if x.startswith(after)]
         if len(hit) != 1: raise KeyError(f"{k}: PRE_ADD anchor {after!r} matches {len(hit)} preconditions")
-        pre[hit[0] + 1:hit[0] + 1] = new
+        pre[hit[0] + 1:hit[0] + 1] = add
     out["pre"] = pre
     return out
 

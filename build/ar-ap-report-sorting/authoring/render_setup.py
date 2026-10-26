@@ -110,7 +110,7 @@ for c in L.CASES:
     A("The same preconditions with their placeholders and example values (for a Claude session):")
     for a, b in c["pre"]: A(f"- {a}" + (f" {b}" if b else ""))
     phs = sorted(set(re.findall(r"\{([A-Z][^{}]*)\}", " ".join(a for a, _ in c["pre"]))))
-    A("Placeholders and their plain names in the case: " + (", ".join("{" + p + "} = \"" + PT.plain("{" + p + "}") + "\"" for p in phs) or "none")
+    A("Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: \"a customer\" / \"that customer\", \"your current location\", \"your other location\"): " + (", ".join("{" + p + "} = \"" + PT.plain("{" + p + "}") + "\"" for p in phs) or "none")
       + ". Values: the \"For example\" lines above; write the real document numbers here after setup.")
     A("Procedures: " + ", ".join(procs_for(c)) + ".")
     tpl = [x[0] for x in c["q"] if isinstance(x, tuple) and x[0].startswith("Tech plan")]

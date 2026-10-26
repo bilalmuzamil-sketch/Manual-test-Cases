@@ -103,6 +103,28 @@ for c in L.CASES:
     if not h.startswith(head): probs.append(f"{k}: Expected Result does not open with the Step N: blocks and the blank paragraph")
     elif h[len(head):] != L.tail(c): probs.append(f"{k}: below the blank paragraph differs from the quotes / design / AUTOMATION block")
     elif not h[len(head):].startswith(("<p>", )) or "<p><strong>Exact quotes from the source" not in h[len(head):]: probs.append(f"{k}: no quotes block after the blank paragraph")
+# ---- RELEVANCE AND INDEPENDENCE GATE (QA lead, 26 Oct 2026, permanent): (1) every record a precondition names (customer, vendor,
+# invoice, bill, document, location, bucket, date, user, credit memo, deposit, vendor credit, role, work order + letter or number, or
+# "the second ...") appears in the steps or expected results, or that bullet says why it is needed with a "so ..." clause; (2) no case
+# key or C-id in the tester's words; (3) a step that changes a record (record, create, edit, delete, save, pay, void, receive) and a
+# result that adds amounts up ("+" or "−" between amounts) need their records "created for this test" in the preconditions.
+KEY_RE = re.compile(r"\b(?:S\d-\d\d|DATA-\d\d|REL-\d\d|D-\d\d)[b-e]?\b|\bC\d{5,7}\b")
+CHANGE_RE = re.compile(r"\b(?:Record|Create|Edit|Delete|Save|Pay|Void|Receive)\b")
+SUM_RE = re.compile(r"\d\.\d\d \+ |\d\.\d\d − |\+ \$?\d[\d,]*\.\d\d")
+for c in L.CASES:
+    k = c["key"]; p = PAT[k]
+    for x, miss in PT.unrelated(p):
+        probs.append(f"{k}: precondition names {', '.join(' '.join(m) for m in miss)}, which no step or result uses, and gives no 'so ...' reason: {x[:90]}")
+    words = " ".join(p["pre"] + p["steps"] + sum(p["results"], []))
+    if KEY_RE.search(words): probs.append(f"{k}: another case is named in the tester's words: {KEY_RE.search(words).group(0)}")
+    pre = " ".join(p["pre"])
+    for x in p["steps"]:
+        if CHANGE_RE.search(x) and "created for this test" not in pre: probs.append(f"{k}: step changes a record not created for this test: {x[:80]}")
+    if SUM_RE.search(" ".join(sum(p["results"], []))) and "created for this test" not in pre:
+        probs.append(f"{k}: a result adds up amounts of records not created for this test")
+print("relevance gate: precondition bullets", sum(len(p["pre"]) for p in PAT.values()), "| naming records",
+      sum(1 for p in PAT.values() for x in p["pre"] if PT.records(x)), "| with a 'so' reason", sum(1 for p in PAT.values() for x in p["pre"] if PT.SO.search(x)),
+      "| cases with records created for this test", sum(1 for p in PAT.values() if "created for this test" in " ".join(p["pre"])))
 import pattern_layout as PLY
 _conv = {b for c in L.CASES for r in PT.convert(c)["results"] for b in r}
 for kk in PLY.RES_SPLIT:

@@ -11,7 +11,17 @@ python3 make_pass_report.py   (exit 1 on any failed check)"""
 import json, os, re, html, sys
 H = os.path.dirname(os.path.abspath(__file__)); P = os.path.dirname(H)
 sys.path.insert(0, f"{P}/authoring")
-import pattern as PT
+import pattern as PT, importlib, difflib
+import ar_lib as L
+for _m in ["cases_s1", "cases_s2", "cases_s3", "cases_s4", "cases_s5", "cases_s6_s9", "cases_data", "cases_rel", "cases_design"]: importlib.import_module(_m)
+CASE = {c["key"]: c for c in L.CASES}
+def eh(t): return html.escape(t, quote=False)
+# preconditions as they stood after the first pattern pass and before the relevance and independence pass (same day)
+BEFORE_REL = {}
+_k = None
+for _l in open(f"{H}/pattern-before-relevance.txt").read().split("\n"):
+    if _l.startswith("### "): _k = _l[4:].split(" |")[0]; BEFORE_REL[_k] = []
+    elif _l.startswith("  P: "): BEFORE_REL[_k].append(_l[5:])
 B = json.load(open(f"{H}/proposals-before.json")); A = json.load(open(f"{P}/authoring/proposals.json"))
 U = lambda s: html.unescape(re.sub(r"<[^>]+>", "", s))
 def li(h): return [U(x) for x in re.findall(r"<li>(.*?)</li>", h, re.S)]
@@ -47,7 +57,7 @@ def facts(items):
         out |= set(NUM.findall(t)) | set(DATE.findall(t)) | {'"' + q + '"' for q in QUOTE.findall(t) if len(q) <= 80} | set(TERM.findall(t))
     return out
 def norm(s): return re.sub(r"\s+", " ", s)
-probs, rows, lost_all, kept_examples, scen_lost, inline_eg = [], [], {}, {}, {}, {}
+probs, rows, lost_all, kept_examples, scen_lost, inline_eg, note_changed, removed_pre, rel_changes = [], [], {}, {}, {}, {}, [], {}, {}
 same_title = 0
 for k in A:
     b, a = B[k]["fields"], A[k]["fields"]
@@ -57,7 +67,10 @@ for k in A:
     if B[k]["title"] == A[k]["title"]: same_title += 1
     ot = old_tail(b["custom_expected"]); blocks, nt = new_blocks(a["custom_expected"])
     if not a["custom_expected"].startswith("<p><strong>Expected Result</strong></p><p>Step 1:</p>"): probs.append(f"{k}: new expected does not open with Expected Result / Step 1:")
-    if nt != ot: probs.append(f"{k}: the part below the blank line is not byte-identical")
+    note = CASE[k]["note"]
+    ot_expected = ot.replace(f"<p>{eh(note)}</p>", f"<p>{eh(PT.plain(note))}</p>", 1) if note else ot
+    if ot_expected != ot: note_changed.append(k)
+    if nt != ot_expected: probs.append(f"{k}: the part below the blank line is not byte-identical (apart from the note's plain names)")
     try:
         for name, x, y in zip(("quotes block", "design block", "AUTOMATION line"), parts(ot), parts(nt)):
             if x != y: probs.append(f"{k}: {name} differs")
@@ -69,7 +82,20 @@ for k in A:
     old_items = [m for m, _ in op if not m.startswith("Scenario: ")] + os_ + [re.sub(r"^Step \d+: ", "", x) for x in orr]
     new_text = norm(" ".join(np_ + ns + nr))
     lost = sorted(x for x in facts(old_items) if norm(x) not in new_text and norm(x.replace('"', "")) not in new_text)
+    # a fact found only in a precondition the relevance pass removed as unneeded is listed, not failed
+    from_sr = facts(os_ + [re.sub(r"^Step \\d+: ", "", x) for x in orr])
+    pre_only = [x for x in lost if x not in from_sr]
+    if pre_only: removed_pre[k] = pre_only
+    lost = [x for x in lost if x in from_sr]
     if lost: lost_all[k] = lost
+    b4, now = BEFORE_REL[k], np_
+    if b4 != now:
+        gone = [x for x in b4 if x not in now]; new_ = [x for x in now if x not in b4]
+        pairs = []
+        for g in gone:
+            best = max(new_, key=lambda n: difflib.SequenceMatcher(None, g, n).ratio(), default=None)
+            if best and difflib.SequenceMatcher(None, g, best).ratio() >= 0.6: pairs.append((g, best)); new_.remove(best)
+        rel_changes[k] = (pairs, [g for g in gone if g not in [a for a, _ in pairs]], new_)
     ex_vals = set()
     for _, ex in op:
         if ex: ex_vals |= {v.strip() for v in re.findall(r"ZZAUTOTEST \S+ ([^,;.]+?)(?:,| and |;|\.|$)", ex)}
@@ -113,6 +139,16 @@ w("- The \"Scenario:\" line (thirteenth amendment) is removed, as the brief says
 w("- Kept on purpose: three build-difference notes below the blank line (S1-16, S3-17, S5-18) name records by their old placeholders ({Customer-B}, {Location-C}, {Location-B}); they are kept byte for byte as the brief requires.")
 w(f"- Kept on purpose: {sum(1 for v in inline_eg.values() if v)} cases keep an inline \"(for example ...)\" inside a result, unchanged from before, showing a format or a typical count (the As of chip date format, a CSV date format, a note-the-count hint, a credit's minus sign, a location name wrapping): "
   + ", ".join(k for k, v in inline_eg.items() if v) + ". They are not \"For example:\" lines and carry no record value.")
+w("")
+w("## Relevance and independence pass (26 Oct 2026, coordinator notes)")
+w("QA lead: preconditions *\"must make sense and relate to the steps and expected results below\"*; *\"if one test case fails that does not block the other test case\"*. "
+  "Gate in `authoring/build.py` (permanent): every record a precondition names appears in the steps or results, or its bullet gives a \"so ...\" reason; no case key or C-id in the tester's words; "
+  "a step that changes a record, or a result that adds amounts up, needs its records \"created for this test\".")
+w(f"- Notes below the blank line changed only in their placeholder words (now the plain names the case uses): {', '.join(note_changed) or 'none'}. Quotes, From: lines, design block and AUTOMATION line byte-identical.")
+w(f"- Facts that left with a precondition removed as unneeded (not in any step or result): " + ("; ".join(f"{k}: {', '.join(v)}" for k, v in removed_pre.items()) or "none") + ".")
+w(f"- Cases whose preconditions changed in this pass: {len(rel_changes)}. One line each (R = removed, A = added, W = reworded):")
+for k, (pairs, gone, new_) in rel_changes.items():
+    w(f"  - {k}: " + "; ".join([f"R \"{g}\"" for g in gone] + [f"A \"{n}\"" for n in new_] + [f"W \"{a}\" → \"{b}\"" for a, b in pairs]))
 w("")
 w("## Problems")
 w("- none" if not probs else "")

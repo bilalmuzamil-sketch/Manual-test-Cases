@@ -8,7 +8,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
 - Steps: the same actions, in the same order, with the placeholders replaced by the plain names.
 - Expected Result: "Expected Result", then "Step N:" and one bullet per fact for every step, then one blank paragraph (`<p></p>`).
 - Below the blank paragraph: byte-identical to before (script check below).
-- How: `authoring/pattern.py` converts each case model mechanically; every converted case was then read in full and 47 cases were corrected by hand in `authoring/pattern_layout.py` (example values that results depend on written as plain facts, sentences that held several facts split, "date A" style values defined).
+- How: `authoring/pattern.py` converts each case model mechanically; every converted case was then read in full and 86 cases were corrected by hand in `authoring/pattern_layout.py` (example values that results depend on written as plain facts, sentences that held several facts split, "date A" style values defined).
 
 ## Script checks
 - Byte identity of the part below the blank line (note, quotes block with its From: lines, References from Design, AUTOMATION line), and of every other field (refs, type, priority, template, automation fields): PASS for all 357 cases.
@@ -17,6 +17,337 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
 - The "Scenario:" line (thirteenth amendment) is removed, as the brief says. Facts of a Scenario line not found word for word in the new case: D-47: 1440; D-48: 1440; D-49: 1024 (each read by hand: the Scenario line said "narrower than 1440 px" / "narrower than 1024 px"; the case keeps it in its title and sets the exact width, 1280 px or 900 px, in its preconditions).
 - Kept on purpose: three build-difference notes below the blank line (S1-16, S3-17, S5-18) name records by their old placeholders ({Customer-B}, {Location-C}, {Location-B}); they are kept byte for byte as the brief requires.
 - Kept on purpose: 20 cases keep an inline "(for example ...)" inside a result, unchanged from before, showing a format or a typical count (the As of chip date format, a CSV date format, a note-the-count hint, a credit's minus sign, a location name wrapping): S3-20, S3-21, S3-22, S3-23, S5-01, S5-02, S5-03, S5-04, S5-05, S5-06, DATA-01, DATA-02, DATA-03, DATA-04, DATA-05, DATA-06, DATA-18, REL-03, D-50, D-61. They are not "For example:" lines and carry no record value.
+
+## Relevance and independence pass (26 Oct 2026, coordinator notes)
+QA lead: preconditions *"must make sense and relate to the steps and expected results below"*; *"if one test case fails that does not block the other test case"*. Gate in `authoring/build.py` (permanent): every record a precondition names appears in the steps or results, or its bullet gives a "so ..." reason; no case key or C-id in the tester's words; a step that changes a record, or a result that adds amounts up, needs its records "created for this test".
+- Notes below the blank line changed only in their placeholder words (now the plain names the case uses): S1-16, S3-17, S5-18. Quotes, From: lines, design block and AUTOMATION line byte-identical.
+- Facts that left with a precondition removed as unneeded (not in any step or result): none.
+- Cases whose preconditions changed in this pass: 325. One line each (R = removed, A = added, W = reworded):
+  - S1-01: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S1-02: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S1-03: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S1-04: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S1-05: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S1-06: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S1-07: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S1-08: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S1-09: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S1-10: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S1-11: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S1-12: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S1-13: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S1-14: W "Sign in as user B, whose custom role has every permission except "Reports → Page Access"." → "Sign in as a user whose custom role has every permission except "Reports → Page Access"."
+  - S1-15: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S1-16: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S2-01: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S2-02: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have three customers, customer A, customer B and customer C, with open invoices on today's date with these open amounts per column:" → "Have three new customers (created for this test), customer A, customer B and customer C, with open invoices on today's date with these open amounts per column:"
+  - S2-03: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have three customers, customer A, customer B and customer C, with open invoices on today's date with these open amounts per column:" → "Have three new customers (created for this test), customer A, customer B and customer C, with open invoices on today's date with these open amounts per column:"
+  - S2-04: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S2-05: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have three vendors, vendor A, vendor B and vendor C, with open bills on today's date with these open amounts per column:" → "Have three new vendors (created for this test), vendor A, vendor B and vendor C, with open bills on today's date with these open amounts per column:"
+  - S2-06: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have three vendors, vendor A, vendor B and vendor C, with open bills on today's date with these open amounts per column:" → "Have three new vendors (created for this test), vendor A, vendor B and vendor C, with open bills on today's date with these open amounts per column:"
+  - S2-07: W "Make sure that in the "1-30 days past due" bucket there are three open documents: document A for customer C at location B, and document B for customer A and document C for customer B at location A; one of the three is a different transaction type from the others." → "Make sure that in the "1-30 days past due" bucket there are three open documents: one at location B and two at location A; one of the three is a different transaction type from the others."
+  - S2-07b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S2-08: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Make sure that in the "1-30 days past due" bucket there are three open invoices, document A, document B and document C for customer C, customer A and customer B in that order (in name order these customers read A, B, C):" → "Make sure that in the "1-30 days past due" bucket there are three open invoices, document A, document B and document C, each for a different customer, so the rows sort across customers:"
+  - S2-09: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Make sure that in the "1-30 days past due" bucket there are three open invoices, document A, document B and document C for customer C, customer A and customer B in that order (in name order these customers read A, B, C):" → "Make sure that in the "1-30 days past due" bucket there are three open invoices, document A, document B and document C, each for a different customer, so the rows sort across customers:"
+  - S2-10: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S2-11: W "Make sure that in customer A's group there are three open documents: document A at location B, and document B and document C at location A; one of the three is a different transaction type from the others." → "Make sure that in customer A's group there are three open documents: one at location B and two at location A; one of the three is a different transaction type from the others."
+  - S2-12: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a customer, customer A, with overdue invoices on today's date." → "Have a customer with overdue invoices on today's date."; W "Make sure that in customer A's group there are three open invoices, document A, document B and document C:" → "Make sure that in that customer's group there are three open invoices, document A, document B and document C:"; W "Leave the report with customer A's group expanded." → "Leave the report with that customer's group expanded."
+  - S2-12b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a customer, customer A, with overdue invoices on today's date." → "Have a customer with overdue invoices on today's date."; W "Make sure that in customer A's group there are three open invoices, document A, document B and document C:" → "Make sure that in that customer's group there are three open invoices, document A, document B and document C:"; W "Leave the report with customer A's group expanded." → "Leave the report with that customer's group expanded."
+  - S2-13: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a customer, customer A, with overdue invoices on today's date." → "Have a customer with overdue invoices on today's date."; W "Make sure that in customer A's group there are three open invoices, document A, document B and document C:" → "Make sure that in that customer's group there are three open invoices, document A, document B and document C:"; W "Leave the report with customer A's group expanded." → "Leave the report with that customer's group expanded."
+  - S2-14: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a customer, customer A, with overdue invoices on today's date." → "Have a customer with overdue invoices on today's date."; W "Make sure that in customer A's group there are three open invoices with the same due date, document A, document B and document C, whose numbers have different digit counts, so that in number order they read document A, document B, document C but in letter-by-letter order document B, document C, document A." → "Make sure that in that customer's group there are three open invoices with the same due date, document A, document B and document C, whose numbers have different digit counts, so that in number order they read document A, document B, document C but in letter-by-letter order document B, document C, document A."; W "Leave the report with customer A's group expanded." → "Leave the report with that customer's group expanded."
+  - S2-15: W "Make sure that in the "1-30 days past due" bucket there are three open documents: document A for vendor C at location B, and document B for vendor A and document C for vendor B at location A; one of the three is a different transaction type from the others." → "Make sure that in the "1-30 days past due" bucket there are three open documents: one at location B and two at location A; one of the three is a different transaction type from the others."
+  - S2-15b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S2-16: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Make sure that in the "1-30 days past due" bucket there are three open bills, document A, document B and document C for vendor C, vendor A and vendor B in that order (in name order these vendors read A, B, C):" → "Make sure that in the "1-30 days past due" bucket there are three open bills, document A, document B and document C, each for a different vendor, so the rows sort across vendors:"
+  - S2-17: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Make sure that in the "1-30 days past due" bucket there are three open bills, document A, document B and document C for vendor C, vendor A and vendor B in that order (in name order these vendors read A, B, C):" → "Make sure that in the "1-30 days past due" bucket there are three open bills, document A, document B and document C, each for a different vendor, so the rows sort across vendors:"
+  - S2-18: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S2-19: W "Make sure that in vendor A's group there are three open documents: document A at location B, and document B and document C at location A; one of the three is a different transaction type from the others." → "Make sure that in vendor A's group there are three open documents: one at location B and two at location A; one of the three is a different transaction type from the others."
+  - S2-19b: R "Make sure vendor A has at least two open documents with different dates."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a vendor, vendor A, with overdue bills on today's date." → "Have a vendor with overdue bills on today's date, at least two of them with different dates."; W "Leave the report with vendor A's group expanded." → "Leave the report with that vendor's group expanded."
+  - S2-20: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a vendor, vendor A, with overdue bills on today's date." → "Have a vendor with overdue bills on today's date."; W "Make sure that in vendor A's group there are three open bills, document A, document B and document C:" → "Make sure that in that vendor's group there are three open bills, document A, document B and document C:"; W "Leave the report with vendor A's group expanded." → "Leave the report with that vendor's group expanded."
+  - S2-20b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a vendor, vendor A, with overdue bills on today's date." → "Have a vendor with overdue bills on today's date."; W "Make sure that in vendor A's group there are three open bills, document A, document B and document C:" → "Make sure that in that vendor's group there are three open bills, document A, document B and document C:"; W "Leave the report with vendor A's group expanded." → "Leave the report with that vendor's group expanded."
+  - S2-21: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a vendor, vendor A, with overdue bills on today's date." → "Have a vendor with overdue bills on today's date."; W "Make sure that in vendor A's group there are three open bills, document A, document B and document C:" → "Make sure that in that vendor's group there are three open bills, document A, document B and document C:"; W "Leave the report with vendor A's group expanded." → "Leave the report with that vendor's group expanded."
+  - S2-22: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a vendor, vendor A, with overdue bills on today's date." → "Have a vendor with overdue bills on today's date."; W "Make sure that in vendor A's group there are three open bills with the same due date, document A, document B and document C, whose numbers have different digit counts, so that in number order they read document A, document B, document C but in letter-by-letter order document B, document C, document A." → "Make sure that in that vendor's group there are three open bills with the same due date, document A, document B and document C, whose numbers have different digit counts, so that in number order they read document A, document B, document C but in letter-by-letter order document B, document C, document A."; W "Leave the report with vendor A's group expanded." → "Leave the report with that vendor's group expanded."
+  - S2-23: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S2-24: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a vendor, vendor A, with one unused vendor credit, vendor credit A, on today's date." → "Have a vendor with one unused vendor credit, vendor credit A, on today's date."
+  - S2-25: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S2-26: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S2-27: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S2-28: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S2-35: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S2-36: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S2-36b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S2-37: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S2-37b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S2-38: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S2-38b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S2-39: W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, location A and your other location."
+  - S2-40: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows."
+  - S2-41: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows."
+  - S2-42: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows."
+  - S3-01: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S3-01b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S3-01c: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S3-02: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S3-02b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S3-02c: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S3-03: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows on screen and in the exports."
+  - S3-04: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows on screen and in the exports."
+  - S3-05: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows on screen and in the exports."
+  - S3-06: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows on screen and in the exports."
+  - S3-07: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows on screen and in the exports."
+  - S3-08: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows on screen and in the exports."
+  - S3-09: W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, location A and your other location."
+  - S3-10: W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, location A and your other location."
+  - S3-11: W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, location A and your other location."
+  - S3-12: W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, location A and your other location."
+  - S3-13: W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, location A and your other location."
+  - S3-14: W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, location A and your other location."
+  - S3-15: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the exports cover more than one location ("Locations: All locations")."
+  - S3-16: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the exports cover more than one location ("Locations: All locations")."
+  - S3-18: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a customer, customer A, with open invoices on today's date of $1,250.50 that is 1 to 30 days past due and $99.00 that is more than 90 days past due, and nothing in the other buckets." → "Have a new customer (created for this test), customer A, with open invoices on today's date of $1,250.50 that is 1 to 30 days past due and $99.00 that is more than 90 days past due, and nothing in the other buckets."
+  - S3-19: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a vendor, vendor A, with open bills on today's date of $1,250.50 that is 1 to 30 days past due and $99.00 that is more than 90 days past due, and nothing in the other buckets." → "Have a new vendor (created for this test), vendor A, with open bills on today's date of $1,250.50 that is 1 to 30 days past due and $99.00 that is more than 90 days past due, and nothing in the other buckets."
+  - S3-20: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a customer, customer A, with two overdue invoices on today's date: invoice A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and invoice B, amount $75.00, 1 to 30 days past due." → "Have a new customer (created for this test), customer A, with two overdue invoices on today's date: invoice A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and invoice B, amount $75.00, 1 to 30 days past due."
+  - S3-21: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a customer, customer A, with two overdue invoices on today's date: invoice A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and invoice B, amount $75.00, 1 to 30 days past due." → "Have a new customer (created for this test), customer A, with two overdue invoices on today's date: invoice A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and invoice B, amount $75.00, 1 to 30 days past due."
+  - S3-22: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a vendor, vendor A, with two overdue bills on today's date: bill A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and bill B, amount $75.00, 1 to 30 days past due." → "Have a new vendor (created for this test), vendor A, with two overdue bills on today's date: bill A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and bill B, amount $75.00, 1 to 30 days past due."
+  - S3-23: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a vendor, vendor A, with two overdue bills on today's date: bill A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and bill B, amount $75.00, 1 to 30 days past due." → "Have a new vendor (created for this test), vendor A, with two overdue bills on today's date: bill A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and bill B, amount $75.00, 1 to 30 days past due."
+  - S3-24: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location filter shows and can be cleared."
+  - S3-25: W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, location A and your other location."; W "Have a vendor, vendor A, with open bills only at location B." → "Have a vendor, vendor A, with open bills only at your other location."
+  - S3-26: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S3-27: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S3-28: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S3-29: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S3-30: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S4-01: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S4-02: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S4-03: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S4-04: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S4-05: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S4-06: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S4-07: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S4-08: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S4-09: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S4-09b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Make sure that on today's date the report has two buckets, bucket A and the next bucket below it, bucket B, each with more lines than fit on the screen." → "Make sure that on today's date the report has a bucket, bucket A, with more lines than fit on the screen."; W "Leave the report with the groups of bucket A and bucket B expanded." → "Leave the report with bucket A's group expanded."
+  - S4-10: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S4-10b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Make sure that on today's date the report has two customers next to each other in name order, customer A then customer B, each with more overdue invoices than fit on the screen and with a phone number and a credit term on its customer card." → "Make sure that on today's date the report has a customer, customer A, with more overdue invoices than fit on the screen and with a phone number and a credit term on its customer card."; W "Leave the report with the groups of customer A and customer B expanded." → "Leave the report with customer A's group expanded."
+  - S4-11: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S4-11b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Make sure that on today's date the report has two buckets, bucket A and the next bucket below it, bucket B, each with more lines than fit on the screen." → "Make sure that on today's date the report has a bucket, bucket A, with more lines than fit on the screen."; W "Leave the report with the groups of bucket A and bucket B expanded." → "Leave the report with bucket A's group expanded."
+  - S4-12: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S4-12b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Make sure that on today's date the report has two vendors next to each other in name order, vendor A then vendor B, each with more overdue bills than fit on the screen." → "Make sure that on today's date the report has a vendor, vendor A, with more overdue bills than fit on the screen."; W "Leave the report with the groups of vendor A and vendor B expanded." → "Leave the report with vendor A's group expanded."
+  - S4-13: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S4-14: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S4-15: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S4-15b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S4-16: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S4-16b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S4-17: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, your current location and location B."
+  - S4-18: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, your current location and location B."
+  - S4-19: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, your current location and location B."
+  - S4-20: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, your current location and location B."
+  - S4-21: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S4-21b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S5-01: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location chip shows."
+  - S5-02: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location chip shows."
+  - S5-03: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location chip shows."
+  - S5-04: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location chip shows."
+  - S5-05: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location chip shows."
+  - S5-06: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location chip shows."
+  - S5-10: W "Sign in as user B, an "Admin" user enrolled only at location A, with location A as your current location." → "Sign in as an "Admin" user enrolled only at location A, with location A as your current location."
+  - S5-10b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, your current location and location B."; W "Have a customer, customer A, with open documents only at location A." → "Have a customer, customer A, with open documents only at your current location."
+  - S5-10c: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Make sure the organization has open documents in this report at location A and location B on today's date." → "Make sure the organization has open documents in this report at your current location and location B on today's date."
+  - S5-11: W "Sign in as user B, an "Admin" user enrolled only at location A, with location A as your current location." → "Sign in as an "Admin" user enrolled only at location A, with location A as your current location."
+  - S5-11b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, your current location and location B."; W "Have a vendor, vendor A, with open documents only at location A." → "Have a vendor, vendor A, with open documents only at your current location."
+  - S5-11c: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Make sure the organization has open documents in this report at location A and location B on today's date." → "Make sure the organization has open documents in this report at your current location and location B on today's date."
+  - S5-14: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location filter shows and can be cleared."
+  - S5-15: W "Make sure customer A has, on today's date, an invoice A made at location A for $500.00 and partly paid ($200.00) by a payment taken at location B, a credit memo A made at location B and a deposit A taken at location B." → "Have a new customer (created for this test) that has, on today's date, an invoice A made at location A for $500.00 and partly paid ($200.00) by a payment taken at location B, a credit memo A made at location B and a deposit A taken at location B."; W "Leave the report with the Customer filter showing customer A ticked and every bucket expanded." → "Leave the report with the Customer filter showing that customer ticked and every bucket expanded."
+  - S5-16: W "Have a vendor, vendor A, with two unpaid bills: bill A, received on a delivery at location A, and bill B, received on a delivery at location B." → "Have a vendor with two unpaid bills: bill A, received on a delivery at location A, and bill B, received on a delivery at location B."; W "Leave the report with the Vendor filter showing vendor A ticked and every bucket expanded." → "Leave the report with the Vendor filter showing that vendor ticked and every bucket expanded."
+  - S5-22: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S5-23: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S5-24: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S5-25: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations: your current location and your other location."; W "Have a vendor, vendor A, with unpaid bills on yesterday's date." → "Have a vendor with unpaid bills on yesterday's date."; W "Leave the report with the as-of date set to yesterday, only vendor A ticked in the Vendor filter, "61-90 days" ticked in the Past due filter and only location A ticked in the Location filter." → "Leave the report with the as-of date set to yesterday, only that vendor ticked in the Vendor filter, "61-90 days" ticked in the Past due filter and only your current location ticked in the Location filter."
+  - S5-26: W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, location A and your other location."
+  - S5-27: W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, location A and your other location."
+  - S5-28: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S5-29: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S5-30: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S5-31: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S5-32: W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, location A and your other location."; W "Have a customer, customer A, with open invoices only at location B." → "Have a customer, customer A, with open invoices only at your other location."
+  - S5-33: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, your current location and location B."; W "Have a customer, customer A, with an overdue invoice A at location B and others at location A." → "Have a customer, customer A, with an overdue invoice A at location B and others at your current location."
+  - S5-34: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, your current location and location B."; W "Have a vendor, vendor A, with an overdue bill A at location B and others at location A." → "Have a vendor, vendor A, with an overdue bill A at location B and others at your current location."
+  - S5-35: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S5-36: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S5-37: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S5-38: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have five customers, customer A, customer B, customer C, customer D and customer E, each with one open invoice on today's date and nothing else open: customer A's invoice is $100.00, customer B's $200.00, customer C's $300.00, customer D's $400.00 and customer E's $500.00." → "Have five new customers (created for this test), customer A, customer B, customer C, customer D and customer E, each with one open invoice on today's date and nothing else open: customer A's invoice is $100.00, customer B's $200.00, customer C's $300.00, customer D's $400.00 and customer E's $500.00."
+  - S5-39: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S6-01: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows."
+  - S6-02: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows."
+  - S6-03: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Make sure the organization has open A/R documents at three locations, location A, location B and location C." → "Make sure the organization has open A/R documents at three locations, your current location, location B and location C."
+  - S7-01: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a customer, customer A, with an open work order invoice A made at location A." → "Have a customer with an open work order invoice A made at your current location."; W "Leave the report with the Customer filter showing customer A ticked and every bucket expanded." → "Leave the report with the Customer filter showing that customer ticked and every bucket expanded."
+  - S7-02: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a customer, customer A, with an overdue part sale invoice A made at location A." → "Have a customer with an overdue part sale invoice A made at your current location."; W "Leave the report with customer A's group expanded." → "Leave the report with that customer's group expanded."
+  - S7-03: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, your current location and location B."; W "Have a customer, customer A, with an open work order invoice A made at location B." → "Have a customer with an open work order invoice A made at location B."; W "Leave the report with customer A ticked and its rows showing." → "Leave the report with that customer ticked and its rows showing."
+  - S7-04: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, your current location and location B."; W "Have a customer, customer A, with an open part sale invoice A made at location B." → "Have a customer with an open part sale invoice A made at location B."; W "Leave the report with customer A ticked and its rows showing." → "Leave the report with that customer ticked and its rows showing."
+  - S7-05: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations: your current location and your other location."; W "Have a customer, customer A, with overdue invoices at location A and one, invoice A, at location B; more than 20 other customers have overdue invoices." → "Have a customer, customer A, with overdue invoices at your current location and one, invoice A, at your other location; more than 20 other customers have overdue invoices."
+  - S7-06: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations: your current location and your other location."; W "Have a vendor, vendor A, with an unpaid bill A received at location A and an unpaid bill B received at location B." → "Have a vendor with an unpaid bill A received at your current location and an unpaid bill B received at your other location."; W "Leave the report with vendor A ticked and every bucket expanded." → "Leave the report with that vendor ticked and every bucket expanded."
+  - S7-07: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations: your current location and your other location."; W "Have a vendor, vendor A, with three unused vendor credits: vendor credit A from a vendor return made at location A, vendor credit B from a vendor return made at location B, and vendor credit C not from a vendor return." → "Have a vendor with three unused vendor credits: vendor credit A from a vendor return made at your current location, vendor credit B from a vendor return made at your other location, and vendor credit C not from a vendor return."; W "Leave the report with vendor A ticked and its rows showing." → "Leave the report with that vendor ticked and its rows showing."
+  - S7-08: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations: your current location and your other location."; W "Have a vendor, vendor A, with three unused vendor credits: vendor credit A from a vendor return made at location A, vendor credit B from a vendor return made at location B, and vendor credit C not from a vendor return." → "Have a vendor with three unused vendor credits: vendor credit A from a vendor return made at your current location, vendor credit B from a vendor return made at your other location, and vendor credit C not from a vendor return."; W "Leave the report with vendor A ticked and its rows showing." → "Leave the report with that vendor ticked and its rows showing."
+  - S7-09: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations: your current location and your other location."; W "Have a customer, customer A, with an open work order invoice A made at location B." → "Have a customer with an open work order invoice A made at your other location."; W "Leave the report with customer A ticked and every bucket expanded." → "Leave the report with that customer ticked and every bucket expanded."
+  - S7-10: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a customer, customer A, with an unused credit memo A and an unused deposit A at location A." → "Have a customer with an unused credit memo A and an unused deposit A at your current location."; W "Leave the report with customer A ticked and every bucket expanded." → "Leave the report with that customer ticked and every bucket expanded."
+  - S7-11: W "Sign in as user B, an "Admin" user enrolled only at location A, with location A as your current location." → "Sign in as an "Admin" user enrolled at one location only."; W "Have a customer, customer A, with an open invoice A made at location B, a location user B is not enrolled in." → "Have a customer with an open invoice A made at another location, one this user is not enrolled in."; W "Leave the report with customer A ticked and every bucket expanded." → "Leave the report with that customer ticked and every bucket expanded."
+  - S7-12: W "Sign in as user B, whose custom role has "Reports → Page Access", "Invoicing & Payments → View", "Work Orders → View" but not "Part Sales → View", with location A as your current location." → "Sign in as a user whose custom role has "Reports → Page Access", "Invoicing & Payments → View", "Work Orders → View" but not "Part Sales → View"."; W "Have a customer, customer A, with an open work order invoice A and an open part sale invoice B, both made at location A." → "Have a customer with an open work order invoice A and an open part sale invoice B, both made at your current location."; W "Leave the report with customer A ticked and every bucket expanded." → "Leave the report with that customer ticked and every bucket expanded."
+  - S7-13: W "Sign in as user B, whose custom role has "Reports → Page Access", "Work Orders → View", "Part Sales → View" but not "Invoicing & Payments → View", with location A as your current location." → "Sign in as a user whose custom role has "Reports → Page Access", "Work Orders → View", "Part Sales → View" but not "Invoicing & Payments → View"."; W "Have a customer, customer A, with an overdue work order invoice A and an overdue part sale invoice B, both made at location A." → "Have a customer with an overdue work order invoice A and an overdue part sale invoice B, both made at your current location."; W "Leave the report with customer A's group expanded." → "Leave the report with that customer's group expanded."
+  - S7-14: W "Sign in as user B, whose custom role has "Reports → Page Access", "Invoicing & Payments → View", "Part Sales → View" but not "Work Orders → View", with location A as your current location." → "Sign in as a user whose custom role has "Reports → Page Access", "Invoicing & Payments → View", "Part Sales → View" but not "Work Orders → View"."; W "Have a customer, customer A, with an overdue work order invoice A and an overdue part sale invoice B, both made at location A." → "Have a customer with an overdue work order invoice A and an overdue part sale invoice B, both made at your current location."; W "Leave the report with customer A's group expanded." → "Leave the report with that customer's group expanded."
+  - S7-15: W "Sign in as user B, whose custom role has "Reports → Page Access", "Vendor Order Management → View" but not "Vendor Order Management → Create & Edit", with location A as your current location." → "Sign in as a user whose custom role has "Reports → Page Access", "Vendor Order Management → View" but not "Vendor Order Management → Create & Edit"."; W "Have a vendor, vendor A, with an unpaid bill A received at location A." → "Have a vendor with an unpaid bill A received at your current location."; W "Leave the report with vendor A's group expanded." → "Leave the report with that vendor's group expanded."
+  - S7-16: W "Sign in as user B, whose custom role has "Reports → Page Access", "Vendor Order Management → Create & Edit" but not "Vendor Order Management → View", with location A as your current location." → "Sign in as a user whose custom role has "Reports → Page Access", "Vendor Order Management → Create & Edit" but not "Vendor Order Management → View"."; W "Have a vendor, vendor A, with an unpaid bill A received at location A." → "Have a vendor with an unpaid bill A received at your current location."; W "Leave the report with vendor A's group expanded." → "Leave the report with that vendor's group expanded."
+  - S7-17: W "Sign in as user B, whose custom role has "Reports → Page Access" but not "Vendor Order Management → View" or "Vendor Order Management → Create & Edit", with location A as your current location." → "Sign in as a user whose custom role has "Reports → Page Access" but not "Vendor Order Management → View" or "Vendor Order Management → Create & Edit"."; W "Have a vendor, vendor A, with an unpaid bill A received at location A and an unused vendor credit A from a vendor return made at location A." → "Have a vendor with an unpaid bill A received at your current location and an unused vendor credit A from a vendor return made at your current location."; W "Leave the report with vendor A ticked and every bucket expanded." → "Leave the report with that vendor ticked and every bucket expanded."
+  - S7-18: W "Sign in as user B, whose custom role has "Reports → Page Access" and "Customers → View"." → "Sign in as a user whose custom role has "Reports → Page Access" and "Customers → View"."
+  - S7-18b: W "Sign in as user C, whose custom role has "Reports → Page Access" but not "Customers → View"." → "Sign in as a user whose custom role has "Reports → Page Access" but not "Customers → View"."
+  - S7-19: W "Sign in as user B, whose custom role has "Reports → Page Access" but not "Vendor Order Management → View" or "Vendor Order Management → Create & Edit", with location A as your current location." → "Sign in as a user whose custom role has "Reports → Page Access" but not "Vendor Order Management → View" or "Vendor Order Management → Create & Edit"."
+  - S8-01: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S8-02: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S8-03: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S8-04: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S8-05: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S8-06: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S8-07: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S8-07b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S8-08: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations: your current location and your other location."; W "Have a customer, customer A, with open invoices only at location B, none 61 to 90 days past due, on yesterday's date." → "Have a customer with open invoices only at your other location, none 61 to 90 days past due, on yesterday's date."; W "Leave the report with the as-of date set to yesterday, only customer A ticked in the Customer filter, "61-90 days" ticked in the Past due filter and only location A ticked in the Location filter." → "Leave the report with the as-of date set to yesterday, only that customer ticked in the Customer filter, "61-90 days" ticked in the Past due filter and only your current location ticked in the Location filter."
+  - S8-09: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations: your current location and your other location."; W "Have a vendor, vendor A, with open bills only at location B, none 61 to 90 days past due, on yesterday's date." → "Have a vendor with open bills only at your other location, none 61 to 90 days past due, on yesterday's date."; W "Leave the report with the as-of date set to yesterday, only vendor A ticked in the Vendor filter, "61-90 days" ticked in the Past due filter and only location A ticked in the Location filter." → "Leave the report with the as-of date set to yesterday, only that vendor ticked in the Vendor filter, "61-90 days" ticked in the Past due filter and only your current location ticked in the Location filter."
+  - S8-10: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S8-11: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S8-12: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S9-01: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S9-02: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S9-03: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S9-04: W "Sign in as user B, whose custom role has "Reports → Page Access" and the "View and Manage AP/AR Data" switch off." → "Sign in as a user whose custom role has "Reports → Page Access" and the "View and Manage AP/AR Data" switch off."
+  - S8-13: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - S7-20: W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, location A and your other location."; W "Have a customer, customer A, with open invoices at location A and one open work order invoice, invoice A, made at location B." → "Have a customer, customer A, with open invoices at location A and one open work order invoice, invoice A, made at your other location."
+  - DATA-01: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - DATA-01b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - DATA-02: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - DATA-02b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - DATA-03: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - DATA-03b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - DATA-04: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - DATA-04b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - DATA-05: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - DATA-06: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - DATA-07: W "Have three customers with only these open documents on today's date:" → "Have three new customers (created for this test) with only these open documents on today's date:"
+  - DATA-08: W "Have three vendors with only these open documents on today's date:" → "Have three new vendors (created for this test) with only these open documents on today's date:"
+  - DATA-09: W "Have three customers with only these open documents on today's date:" → "Have three new customers (created for this test) with only these open documents on today's date:"
+  - DATA-10: W "Have three customers with only these open documents on today's date:" → "Have three new customers (created for this test) with only these open documents on today's date:"
+  - DATA-11: W "Have three vendors with only these open documents on today's date:" → "Have three new vendors (created for this test) with only these open documents on today's date:"
+  - DATA-12: W "Have three vendors with only these open documents on today's date:" → "Have three new vendors (created for this test) with only these open documents on today's date:"
+  - DATA-13: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a customer, customer A, with an invoice A of $100.00 paid $120.00 (overpaid), and an open invoice B of $500.00 on today's date." → "Have a new customer (created for this test), customer A, with an invoice of $100.00 paid $120.00 (overpaid), and an open invoice B of $500.00 on today's date."
+  - DATA-14: W "Have two customers with only these open documents on today's date:" → "Have two new customers (created for this test) with only these open documents on today's date:"
+  - DATA-15: W "Have two vendors with only these open documents on today's date:" → "Have two new vendors (created for this test) with only these open documents on today's date:"
+  - DATA-16: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a customer, customer A, with eight open invoices on today's date: one of $10.00 not yet due, and one each 1, 30, 31, 60, 61, 90 and 91 days past its due date, of $1.00, $30.00, $31.00, $60.00, $61.00, $90.00 and $91.00 in that order." → "Have a new customer (created for this test) with eight open invoices on today's date: one of $10.00 not yet due, and one each 1, 30, 31, 60, 61, 90 and 91 days past its due date, of $1.00, $30.00, $31.00, $60.00, $61.00, $90.00 and $91.00 in that order."; W "Leave the report with only customer A ticked in the Customer filter and every group expanded." → "Leave the report with only that customer ticked in the Customer filter and every group expanded."
+  - DATA-17: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a vendor, vendor A, with eight open bills on today's date: one of $10.00 not yet due, and one each 1, 30, 31, 60, 61, 90 and 91 days past its due date, of $1.00, $30.00, $31.00, $60.00, $61.00, $90.00 and $91.00 in that order." → "Have a new vendor (created for this test) with eight open bills on today's date: one of $10.00 not yet due, and one each 1, 30, 31, 60, 61, 90 and 91 days past its due date, of $1.00, $30.00, $31.00, $60.00, $61.00, $90.00 and $91.00 in that order."; W "Leave the report with only vendor A ticked in the Vendor filter and every group expanded." → "Leave the report with only that vendor ticked in the Vendor filter and every group expanded."
+  - DATA-18: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - DATA-19: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - DATA-20: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - DATA-21: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - DATA-22: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a customer, customer A, with one open invoice, invoice A, of $500.00 on today's date, and nothing else open." → "Have a new customer (created for this test), customer A, with one open invoice, invoice A, of $500.00 on today's date, and nothing else open."
+  - DATA-23: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have two customers with only these open documents on today's date:" → "Have two new customers (created for this test) with only these open documents on today's date:"
+  - DATA-24: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have two vendors with only these open documents on today's date:" → "Have two new vendors (created for this test) with only these open documents on today's date:"
+  - REL-01: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location chip shows."; W "Make sure that before the release was installed, you took screenshots (and, for A/R, any print or export there was) of the three A/R reports for an as-of date before the release (date A), untouched." → "Make sure that before the release was installed, you took screenshots (and, for A/R, any print or export there was) of the three A/R reports for one as-of date before the release, untouched."; W "On each report, as you open it, choose date A as the as-of date." → "On each report, as you open it, choose the as-of date the screenshots show."
+  - REL-02: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location chip shows."; W "Make sure that before the release was installed, you took screenshots (and, for A/P, any print or export there was) of the three A/P reports for an as-of date before the release (date A), untouched." → "Make sure that before the release was installed, you took screenshots (and, for A/P, any print or export there was) of the three A/P reports for one as-of date before the release, untouched."; W "On each report, as you open it, choose date A as the as-of date." → "On each report, as you open it, choose the as-of date the screenshots show."
+  - REL-03: R "Have a customer, customer A, with open invoices on today's date."; A "Make sure the report has open invoices on today's date, so the PDF has rows."
+  - REL-04: W "Sign in as user B, whose custom role has "Reports → Page Access" and nothing else, with "See Financial Data" off." → "Sign in as a user whose custom role has "Reports → Page Access" and nothing else, with "See Financial Data" off."
+  - REL-04b: W "Sign in as user B, whose custom role has "Reports → Page Access" and nothing else, with "See Financial Data" off." → "Sign in as a user whose custom role has "Reports → Page Access" and nothing else, with "See Financial Data" off."
+  - REL-05: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so one location can be ticked in the filter."; W "Make sure that before the release was installed, you saved Inventory Value's PDF and CSV for an as-of date before the release (date A) with one location ticked, and copied a link to Inventory Value with that filter." → "Make sure that before the release was installed, you saved Inventory Value's PDF and CSV for an as-of date before the release with one location ticked, and copied a link to Inventory Value with that filter."
+  - REL-05b: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so one location can be ticked in the filter."; W "Make sure that before the release was installed, you saved Sales By Customer's PDF and CSV for an as-of date before the release (date A) with one location ticked, and copied a link to Sales By Customer with that filter." → "Make sure that before the release was installed, you saved Sales By Customer's PDF and CSV for an as-of date before the release with one location ticked, and copied a link to Sales By Customer with that filter."
+  - REL-05c: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so one location can be ticked in the filter."; W "Make sure that before the release was installed, you saved Work In Progress's PDF and CSV for an as-of date before the release (date A) with one location ticked, and copied a link to Work In Progress with that filter." → "Make sure that before the release was installed, you saved Work In Progress's PDF and CSV for an as-of date before the release with one location ticked, and copied a link to Work In Progress with that filter."
+  - REL-06: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - REL-07: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, your current location and location B."; W "After the release is installed, open Work Orders at location A." → "After the release is installed, open Work Orders at your current location."
+  - REL-08: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a customer, customer A, with an unused credit memo A dated a day before the release (date A)." → "Have a customer with an unused credit memo, credit memo A, dated a day before the release."; W "Make sure that before the release was installed, you noted which A/R Detail bucket credit memo A was in with date A as the as-of date." → "Make sure that before the release was installed, you noted which A/R Detail bucket credit memo A was in with its own date as the as-of date."; W "Leave the report with date A as the as-of date and customer A ticked." → "Leave the report with credit memo A's date as the as-of date and its customer ticked."
+  - REL-09: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - REL-10: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, your current location and location B."
+  - REL-11: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - REL-13: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location filter shows and can be cleared."
+  - D-01: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows."
+  - D-01b: R "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order."; R "Make sure you are enrolled at both locations."; R "Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo."; A "Make sure the report has open documents on today's date."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-01c: R "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order."; R "Make sure you are enrolled at both locations."; R "Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo."; A "Make sure the report has open documents on today's date."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-02: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked."; W "Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo." → "Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a credit memo row, which must not overlap or be cut off."
+  - D-03: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked."; W "Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo." → "Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a credit memo row, which must not overlap or be cut off."
+  - D-04: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows."
+  - D-04b: R "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order."; R "Make sure you are enrolled at both locations."; R "Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo."; A "Make sure the report has open documents on today's date."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-04c: R "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order."; R "Make sure you are enrolled at both locations."; R "Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo."; A "Make sure the report has open documents on today's date."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-05: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked."; W "Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo." → "Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a credit memo row, which must not overlap or be cut off."
+  - D-06: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked."; W "Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo." → "Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a credit memo row, which must not overlap or be cut off."
+  - D-07: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows."
+  - D-07b: R "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order."; R "Make sure you are enrolled at both locations."; R "Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo."; A "Make sure the report has open documents on today's date."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-07c: R "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order."; R "Make sure you are enrolled at both locations."; R "Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo."; A "Make sure the report has open documents on today's date."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-08: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked."; W "Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo." → "Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a credit memo row, which must not overlap or be cut off."
+  - D-09: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked."; W "Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo." → "Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a credit memo row, which must not overlap or be cut off."
+  - D-10: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows."
+  - D-10b: R "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order."; R "Make sure you are enrolled at both locations."; R "Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest)."; A "Make sure the report has open documents on today's date."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-10c: R "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order."; R "Make sure you are enrolled at both locations."; R "Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest)."; A "Make sure the report has open documents on today's date."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-11: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked."; W "Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest)." → "Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, which must not overlap or be cut off."
+  - D-12: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked."; W "Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest)." → "Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, which must not overlap or be cut off."
+  - D-13: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows."
+  - D-13b: R "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order."; R "Make sure you are enrolled at both locations."; R "Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest)."; A "Make sure the report has open documents on today's date."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-13c: R "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order."; R "Make sure you are enrolled at both locations."; R "Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest)."; A "Make sure the report has open documents on today's date."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-14: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked."; W "Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest)." → "Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, which must not overlap or be cut off."
+  - D-15: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked."; W "Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest)." → "Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, which must not overlap or be cut off."
+  - D-16: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows."
+  - D-16b: R "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order."; R "Make sure you are enrolled at both locations."; R "Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest)."; A "Make sure the report has open documents on today's date."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-16c: R "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order."; R "Make sure you are enrolled at both locations."; R "Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest)."; A "Make sure the report has open documents on today's date."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-17: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked."; W "Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest)." → "Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, which must not overlap or be cut off."
+  - D-18: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked."; W "Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest)." → "Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, which must not overlap or be cut off."
+  - D-19b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-20b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-21b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-22b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-23b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-24b: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-25: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-26: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-27: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-28: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-29: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location menu lists two locations ("2 selected")."
+  - D-30: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location menu lists two locations ("2 selected")."
+  - D-31: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-32: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have a vendor, vendor A, with unpaid bills on today's date." → "Make sure the report has unpaid bills on today's date."
+  - D-33: A "Have open documents in this report at two locations, so the Location chip shows."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-34: A "Have open documents in this report at two locations, so the Location chip shows."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-35: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-36: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-37: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location filter shows and can be cleared."
+  - D-38: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-39: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, your current location and location B."; W "Have a customer, customer A, with an open work order invoice A made at location B." → "Have a customer with an open work order invoice A made at location B."; W "Leave the report with customer A ticked and its rows showing." → "Leave the report with that customer ticked and its rows showing."
+  - D-40: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, your current location and location B."; W "Have a customer, customer A, with an open part sale invoice A made at location B." → "Have a customer with an open part sale invoice A made at location B."; W "Leave the report with customer A ticked and its rows showing." → "Leave the report with that customer ticked and its rows showing."
+  - D-41: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-42: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-43: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-44: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-45: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-46: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-47: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows."
+  - D-48: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows."
+  - D-49: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-50: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture."
+  - D-51: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture."
+  - D-52: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture."
+  - D-53: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-54: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture."
+  - D-55: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-56: A "Have open documents in this report at two locations, so the Location column shows."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-57: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-58: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-59: A "Have open documents in this report at two locations, so the Location chip shows."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-60: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-61: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations: your current location and your other location."
+  - D-62: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations: your current location and your other location."; W "Have a vendor, vendor A, with an unpaid bill at location B." → "Have a vendor, vendor A, with an unpaid bill at your other location."; W "Have a vendor, vendor B, with unpaid bills at location A." → "Have a vendor, vendor B, with unpaid bills at your current location."
+  - D-63: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations: your current location and your other location."; W "Have a customer, customer A, with an open invoice made at location B, more than 90 days past due." → "Have a customer, customer A, with an open invoice made at your other location, more than 90 days past due."; W "Have a customer, customer B, with an unused credit memo at location A, more than 90 days past due." → "Have a customer, customer B, with an unused credit memo at your current location, more than 90 days past due."; W "Have a customer, customer C, with an open invoice at location A, more than 90 days past due." → "Have a customer, customer C, with an open invoice at your current location, more than 90 days past due."
+  - D-64: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, your current location and location B."; W "Have a customer, customer A, with an open work order invoice A made at location B." → "Have a customer with an open work order invoice A made at location B."; W "Leave the report with customer A ticked and every bucket expanded." → "Leave the report with that customer ticked and every bucket expanded."
+  - D-65: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture, and the location switcher names both."
+  - D-68: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture."
+  - D-69: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture."
+  - D-70: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-71: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-72: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture."
+  - D-73: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-74: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-75: W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."
+  - D-81: R "Make sure you are enrolled at both locations."; W "Sign in as an Admin user (the "Admin" role), with location A as your current location." → "Sign in as an Admin user (the "Admin" role)."; W "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order." → "Have open documents in these reports at two locations, so the Location column shows."
 
 ## Problems
 - none
@@ -31,7 +362,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have four customers with open invoices on today's date, named "10 Trucking" (customer A), "2 Trucking" (customer B), "A-1 Towing" (customer C) and "a1 towing" (customer D). Their names differ by a number, a dash or capitals.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -52,7 +383,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have four vendors with open bills on today's date, named "10 Trucking" (vendor A), "2 Trucking" (vendor B), "A-1 Towing" (vendor C) and "a1 towing" (vendor D). Their names differ by a number, a dash or capitals.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -73,7 +404,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have six customers with open invoices on today's date, named "Eagle" (customer A), "Émile's" (customer B), "Emma" (customer C), "Fargo" (customer D), "Øster" (customer E) and "Ozone" (customer F). Customer B and customer E start with a capital accented letter.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -93,7 +424,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have six vendors with open bills on today's date, named "Ackley" (vendor A), "æble" (vendor B), "Afton" (vendor C), "Strand" (vendor D), "Straße" (vendor E) and "Strasser" (vendor F). Vendor B has "æ" and vendor E has "ß" in its name.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -113,7 +444,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have two customers with open invoices on today's date, whose names differ only in capitals: customer A and customer B.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -138,7 +469,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have two vendors with open bills on today's date, whose names differ only in capitals: vendor A and vendor B.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -163,7 +494,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have two customers with open invoices on today's date whose names differ only by an accent: customer A, named "Emile's Towing", without it, and customer B, named "Émile's Towing", with it.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -184,7 +515,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents in all five aging buckets on today's date.
   - Make sure that in the "1-30 days past due" bucket, customer A has one open invoice, invoice A, and customer B has two, invoice B and invoice C. Customer B's name comes first alphabetically, and invoice B's number is smaller than invoice C's but has fewer digits.
   - Use a desktop browser window 1440 px wide.
@@ -208,7 +539,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents in all five aging buckets on today's date.
   - Make sure that in the "1-30 days past due" bucket, vendor A has one open bill, bill A, and vendor B has two, bill B and bill C. Vendor B's name comes first alphabetically, and bill B's number is smaller than bill C's but has fewer digits.
   - Use a desktop browser window 1440 px wide.
@@ -232,7 +563,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have two customers with overdue invoices on today's date: customer A and customer B; customer B's name comes first alphabetically.
   - Make sure customer B has three overdue invoices: invoice A with the oldest date, and invoice B and invoice C with the same later date. Invoice B's number is smaller than invoice C's but has fewer digits, and invoice C was invoiced earlier that day than invoice B.
   - Use a desktop browser window 1440 px wide.
@@ -256,7 +587,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have two vendors with overdue bills on today's date: vendor A and vendor B; vendor B's name comes first alphabetically.
   - Make sure vendor B has three overdue bills: bill A with the oldest date, and bill B and bill C with the same later date. Bill B's number is smaller than bill C's but has fewer digits, and bill C was entered earlier that day than bill B.
   - Use a desktop browser window 1440 px wide.
@@ -279,7 +610,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) is open in a desktop browser window 1440 px wide.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure each of the three A/R reports has open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE).
@@ -301,7 +632,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) is open in a desktop browser window 1440 px wide.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure each of the three A/P reports has open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE).
@@ -323,7 +654,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: the ShopView home page in a desktop browser window 1440 px wide.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as user B, whose custom role has every permission except "Reports → Page Access".
+  - Sign in as a user whose custom role has every permission except "Reports → Page Access".
   - Make sure you have a link to A/R Summary and a link to A/P Detail, copied earlier from the address bar by an Admin user.
   - Use a desktop browser window 1440 px wide.
   - Open the ShopView home page.
@@ -348,7 +679,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have a customer, customer A, with no open documents: its only invoice is paid in full.
   - Have a customer, customer B, with one open invoice, created today, and nothing before today.
   - Use a desktop browser window 1440 px wide.
@@ -370,7 +701,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have four customers with open invoices on today's date: customer A, customer B, customer C and customer D. After the same first words, customer A's name goes on with "#", customer B's with "-", customer C's with a digit and customer D's with "@".
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -390,7 +721,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have three customers with open invoices on today's date: customer A, customer B and customer C; in name order they read customer A, customer B, customer C.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -436,8 +767,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have three customers, customer A, customer B and customer C, with open invoices on today's date with these open amounts per column:
+  - Sign in as an Admin user (the "Admin" role).
+  - Have three new customers (created for this test), customer A, customer B and customer C, with open invoices on today's date with these open amounts per column:
   - Customer A: Current $100.00, 1-30 Days $200.00, 31-60 Days $300.00, 61-90 Days $250.00, 91 And Over $350.00, Total $1,200.00.
   - Customer B: Current $300.00, 1-30 Days $100.00, 31-60 Days $200.00, 61-90 Days $350.00, 91 And Over $150.00, Total $1,100.00.
   - Customer C: Current $200.00, 1-30 Days $300.00, 31-60 Days $100.00, 61-90 Days $150.00, 91 And Over $250.00, Total $1,000.00.
@@ -467,8 +798,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have three customers, customer A, customer B and customer C, with open invoices on today's date with these open amounts per column:
+  - Sign in as an Admin user (the "Admin" role).
+  - Have three new customers (created for this test), customer A, customer B and customer C, with open invoices on today's date with these open amounts per column:
   - Customer A: Current $100.00, 1-30 Days $200.00, 31-60 Days $300.00, 61-90 Days $250.00, 91 And Over $350.00, Total $1,200.00.
   - Customer B: Current $300.00, 1-30 Days $100.00, 31-60 Days $200.00, 61-90 Days $350.00, 91 And Over $150.00, Total $1,100.00.
   - Customer C: Current $200.00, 1-30 Days $300.00, 31-60 Days $100.00, 61-90 Days $150.00, 91 And Over $250.00, Total $1,000.00.
@@ -498,7 +829,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have three vendors with open bills on today's date: vendor A, vendor B and vendor C; in name order they read vendor A, vendor B, vendor C.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -544,8 +875,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have three vendors, vendor A, vendor B and vendor C, with open bills on today's date with these open amounts per column:
+  - Sign in as an Admin user (the "Admin" role).
+  - Have three new vendors (created for this test), vendor A, vendor B and vendor C, with open bills on today's date with these open amounts per column:
   - Vendor A: Current $100.00, 1-30 Days $200.00, 31-60 Days $300.00, 61-90 Days $250.00, 91 And Over $350.00, Total $1,200.00.
   - Vendor B: Current $300.00, 1-30 Days $100.00, 31-60 Days $200.00, 61-90 Days $350.00, 91 And Over $150.00, Total $1,100.00.
   - Vendor C: Current $200.00, 1-30 Days $300.00, 31-60 Days $100.00, 61-90 Days $150.00, 91 And Over $250.00, Total $1,000.00.
@@ -575,8 +906,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have three vendors, vendor A, vendor B and vendor C, with open bills on today's date with these open amounts per column:
+  - Sign in as an Admin user (the "Admin" role).
+  - Have three new vendors (created for this test), vendor A, vendor B and vendor C, with open bills on today's date with these open amounts per column:
   - Vendor A: Current $100.00, 1-30 Days $200.00, 31-60 Days $300.00, 61-90 Days $250.00, 91 And Over $350.00, Total $1,200.00.
   - Vendor B: Current $300.00, 1-30 Days $100.00, 31-60 Days $200.00, 61-90 Days $350.00, 91 And Over $150.00, Total $1,100.00.
   - Vendor C: Current $200.00, 1-30 Days $300.00, 31-60 Days $100.00, 61-90 Days $150.00, 91 And Over $250.00, Total $1,000.00.
@@ -610,7 +941,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
   - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
   - Make sure you are enrolled at both locations.
-  - Make sure that in the "1-30 days past due" bucket there are three open documents: document A for customer C at location B, and document B for customer A and document C for customer B at location A; one of the three is a different transaction type from the others.
+  - Make sure that in the "1-30 days past due" bucket there are three open documents: one at location B and two at location A; one of the three is a different transaction type from the others.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
   - Leave the report with the "1-30 days past due" bucket expanded.
@@ -634,7 +965,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure that in the "1-30 days past due" bucket there are three open documents: document A for customer C, document B for customer A and document C for customer B; in name order the customers read customer A, customer B, customer C.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -656,8 +987,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Make sure that in the "1-30 days past due" bucket there are three open invoices, document A, document B and document C for customer C, customer A and customer B in that order (in name order these customers read A, B, C):
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure that in the "1-30 days past due" bucket there are three open invoices, document A, document B and document C, each for a different customer, so the rows sort across customers:
   - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
   - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
   - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
@@ -684,8 +1015,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Make sure that in the "1-30 days past due" bucket there are three open invoices, document A, document B and document C for customer C, customer A and customer B in that order (in name order these customers read A, B, C):
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure that in the "1-30 days past due" bucket there are three open invoices, document A, document B and document C, each for a different customer, so the rows sort across customers:
   - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
   - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
   - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
@@ -712,7 +1043,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure that in the "1-30 days past due" bucket there are three open invoices with the same due date, document A, document B and document C, whose numbers have different digit counts, so that in number order they read document A, document B, document C but in letter-by-letter order document B, document C, document A.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -742,7 +1073,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
   - Make sure you are enrolled at both locations.
   - Have a customer, customer A, with overdue invoices on today's date.
-  - Make sure that in customer A's group there are three open documents: document A at location B, and document B and document C at location A; one of the three is a different transaction type from the others.
+  - Make sure that in customer A's group there are three open documents: one at location B and two at location A; one of the three is a different transaction type from the others.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
   - Leave the report with customer A's group expanded.
@@ -767,15 +1098,15 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a customer, customer A, with overdue invoices on today's date.
-  - Make sure that in customer A's group there are three open invoices, document A, document B and document C:
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a customer with overdue invoices on today's date.
+  - Make sure that in that customer's group there are three open invoices, document A, document B and document C:
   - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
   - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
   - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
-  - Leave the report with customer A's group expanded.
+  - Leave the report with that customer's group expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Steps: unchanged wording
 - New steps: 1. Click the "Date" header. | 2. Click the "Date" header again.
@@ -794,15 +1125,15 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a customer, customer A, with overdue invoices on today's date.
-  - Make sure that in customer A's group there are three open invoices, document A, document B and document C:
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a customer with overdue invoices on today's date.
+  - Make sure that in that customer's group there are three open invoices, document A, document B and document C:
   - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
   - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
   - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
-  - Leave the report with customer A's group expanded.
+  - Leave the report with that customer's group expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Steps: unchanged wording
 - New steps: 1. Click the "Due Date" header. | 2. Click the "Due Date" header again. | 3. Click the "Due Date" header a third time.
@@ -822,15 +1153,15 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a customer, customer A, with overdue invoices on today's date.
-  - Make sure that in customer A's group there are three open invoices, document A, document B and document C:
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a customer with overdue invoices on today's date.
+  - Make sure that in that customer's group there are three open invoices, document A, document B and document C:
   - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
   - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
   - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
-  - Leave the report with customer A's group expanded.
+  - Leave the report with that customer's group expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Steps: unchanged wording
 - New steps: 1. Click the "Past Due" header. | 2. Click the "Past Due" header again. | 3. Click the "Amount" header. | 4. Click the "Amount" header again. | 5. Click the "Open Balance" header. | 6. Click the "Open Balance" header again. | 7. Click the "Open Balance" header a third time.
@@ -854,12 +1185,12 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a customer, customer A, with overdue invoices on today's date.
-  - Make sure that in customer A's group there are three open invoices with the same due date, document A, document B and document C, whose numbers have different digit counts, so that in number order they read document A, document B, document C but in letter-by-letter order document B, document C, document A.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a customer with overdue invoices on today's date.
+  - Make sure that in that customer's group there are three open invoices with the same due date, document A, document B and document C, whose numbers have different digit counts, so that in number order they read document A, document B, document C but in letter-by-letter order document B, document C, document A.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
-  - Leave the report with customer A's group expanded.
+  - Leave the report with that customer's group expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Steps: unchanged wording
 - New steps: 1. Click the "ID" header. | 2. Click the "ID" header again. | 3. Click the "Due Date" header. | 4. Click the "Due Date" header again.
@@ -883,7 +1214,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
   - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
   - Make sure you are enrolled at both locations.
-  - Make sure that in the "1-30 days past due" bucket there are three open documents: document A for vendor C at location B, and document B for vendor A and document C for vendor B at location A; one of the three is a different transaction type from the others.
+  - Make sure that in the "1-30 days past due" bucket there are three open documents: one at location B and two at location A; one of the three is a different transaction type from the others.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
   - Leave the report with the "1-30 days past due" bucket expanded.
@@ -907,7 +1238,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure that in the "1-30 days past due" bucket there are three open documents: document A for vendor C, document B for vendor A and document C for vendor B; in name order the vendors read vendor A, vendor B, vendor C.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -929,8 +1260,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Make sure that in the "1-30 days past due" bucket there are three open bills, document A, document B and document C for vendor C, vendor A and vendor B in that order (in name order these vendors read A, B, C):
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure that in the "1-30 days past due" bucket there are three open bills, document A, document B and document C, each for a different vendor, so the rows sort across vendors:
   - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
   - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
   - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
@@ -957,8 +1288,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Make sure that in the "1-30 days past due" bucket there are three open bills, document A, document B and document C for vendor C, vendor A and vendor B in that order (in name order these vendors read A, B, C):
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure that in the "1-30 days past due" bucket there are three open bills, document A, document B and document C, each for a different vendor, so the rows sort across vendors:
   - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
   - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
   - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
@@ -987,7 +1318,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure that in the "1-30 days past due" bucket there are three open bills with the same due date, document A, document B and document C, whose numbers have different digit counts, so that in number order they read document A, document B, document C but in letter-by-letter order document B, document C, document A.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -1017,7 +1348,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
   - Make sure you are enrolled at both locations.
   - Have a vendor, vendor A, with overdue bills on today's date.
-  - Make sure that in vendor A's group there are three open documents: document A at location B, and document B and document C at location A; one of the three is a different transaction type from the others.
+  - Make sure that in vendor A's group there are three open documents: one at location B and two at location A; one of the three is a different transaction type from the others.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
   - Leave the report with vendor A's group expanded.
@@ -1042,12 +1373,11 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A}'s group expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a vendor, vendor A, with overdue bills on today's date.
-  - Make sure vendor A has at least two open documents with different dates.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a vendor with overdue bills on today's date, at least two of them with different dates.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
-  - Leave the report with vendor A's group expanded.
+  - Leave the report with that vendor's group expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Steps: unchanged wording
 - New steps: 1. Click the "Vendor Name" header. | 2. Hover over the "Vendor Name" header.
@@ -1066,15 +1396,15 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A}'s group expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a vendor, vendor A, with overdue bills on today's date.
-  - Make sure that in vendor A's group there are three open bills, document A, document B and document C:
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a vendor with overdue bills on today's date.
+  - Make sure that in that vendor's group there are three open bills, document A, document B and document C:
   - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
   - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
   - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
-  - Leave the report with vendor A's group expanded.
+  - Leave the report with that vendor's group expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Steps: unchanged wording
 - New steps: 1. Click the "Date" header. | 2. Click the "Date" header again.
@@ -1093,15 +1423,15 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A}'s group expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a vendor, vendor A, with overdue bills on today's date.
-  - Make sure that in vendor A's group there are three open bills, document A, document B and document C:
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a vendor with overdue bills on today's date.
+  - Make sure that in that vendor's group there are three open bills, document A, document B and document C:
   - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
   - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
   - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
-  - Leave the report with vendor A's group expanded.
+  - Leave the report with that vendor's group expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Steps: unchanged wording
 - New steps: 1. Click the "Due Date" header. | 2. Click the "Due Date" header again. | 3. Click the "Due Date" header a third time.
@@ -1121,15 +1451,15 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A}'s group expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a vendor, vendor A, with overdue bills on today's date.
-  - Make sure that in vendor A's group there are three open bills, document A, document B and document C:
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a vendor with overdue bills on today's date.
+  - Make sure that in that vendor's group there are three open bills, document A, document B and document C:
   - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
   - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
   - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
-  - Leave the report with vendor A's group expanded.
+  - Leave the report with that vendor's group expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Steps: unchanged wording
 - New steps: 1. Click the "Past Due" header. | 2. Click the "Past Due" header again. | 3. Click the "Amount" header. | 4. Click the "Amount" header again. | 5. Click the "Open Balance" header. | 6. Click the "Open Balance" header again. | 7. Click the "Open Balance" header a third time.
@@ -1153,12 +1483,12 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A}'s group expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a vendor, vendor A, with overdue bills on today's date.
-  - Make sure that in vendor A's group there are three open bills with the same due date, document A, document B and document C, whose numbers have different digit counts, so that in number order they read document A, document B, document C but in letter-by-letter order document B, document C, document A.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a vendor with overdue bills on today's date.
+  - Make sure that in that vendor's group there are three open bills with the same due date, document A, document B and document C, whose numbers have different digit counts, so that in number order they read document A, document B, document C but in letter-by-letter order document B, document C, document A.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
-  - Leave the report with vendor A's group expanded.
+  - Leave the report with that vendor's group expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Steps: unchanged wording
 - New steps: 1. Click the "No." header. | 2. Click the "No." header again. | 3. Click the "Due Date" header. | 4. Click the "Due Date" header again.
@@ -1178,7 +1508,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have a vendor, vendor A, with two overdue bills, bill A (due 10 days ago) and bill B (due 20 days ago), and one unused vendor credit, vendor credit A, on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -1202,8 +1532,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a vendor, vendor A, with one unused vendor credit, vendor credit A, on today's date.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a vendor with one unused vendor credit, vendor credit A, on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -1224,7 +1554,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu; two buckets are expanded: "31-60 days past due" and "1-30 days past due"; the other three are collapsed.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open invoices, credit memos and deposits in several buckets on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1247,7 +1577,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu; {Customer-A}'s and {Customer-C}'s groups are expanded and {Customer-B}'s is collapsed.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have three customers, customer A, customer B and customer C, with overdue invoices on today's date; in name order they read A, B, C.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1270,7 +1600,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu; two buckets are expanded: "31-60 days past due" and "1-30 days past due"; the other three are collapsed.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open bills and vendor credits in several buckets on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -1293,7 +1623,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu; {Vendor-A}'s and {Vendor-C}'s groups are expanded and {Vendor-B}'s is collapsed.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have three vendors, vendor A, vendor B and vendor C, with overdue bills on today's date; in name order they read A, B, C.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -1498,7 +1828,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have a customer, customer A, with overdue invoices on today's date: one 1 to 30 days past due, and two 31 to 60 days past due with different open balances.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1521,7 +1851,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1543,7 +1873,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1565,7 +1895,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1587,7 +1917,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -1609,7 +1939,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -1631,7 +1961,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -1655,7 +1985,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Have open documents in these reports at two locations, location A and your other location.
   - Make sure you are enrolled at both locations.
   - Have a customer, customer A, with three overdue invoices on today's date, invoice A, invoice B and invoice C, all at location A; in number order they read A, B, C.
   - Use a desktop browser window 1440 px wide.
@@ -1678,9 +2008,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group expanded (Expand all).
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
   - Make sure the report has open documents at both locations on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1706,9 +2035,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group expanded (Expand all).
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
   - Make sure the report has open documents at both locations on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1734,9 +2062,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group expanded (Expand all).
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
   - Make sure the report has open documents at both locations on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -1761,7 +2088,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1783,7 +2110,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1805,7 +2132,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1827,7 +2154,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -1849,7 +2176,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -1871,7 +2198,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -1894,9 +2221,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing {Customer-A} and {Customer-B} ticked.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows on screen and in the exports.
   - Have two customers, customer A and customer B, with open documents at both locations on today's date, at least two each, with different amounts.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1925,9 +2251,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing {Customer-A} and {Customer-B} ticked and every group expanded (Expand all).
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows on screen and in the exports.
   - Have two customers, customer A and customer B, with open documents at both locations on today's date, at least two each, with different amounts.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1956,9 +2281,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing {Customer-A} and {Customer-B} ticked and every group expanded (Expand all).
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows on screen and in the exports.
   - Have two customers, customer A and customer B, with open documents at both locations on today's date, at least two each, with different amounts.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1987,9 +2311,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Vendor filter showing {Vendor-A} and {Vendor-B} ticked.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows on screen and in the exports.
   - Have two vendors, vendor A and vendor B, with open documents at both locations on today's date, at least two each, with different amounts.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -2018,9 +2341,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Vendor filter showing {Vendor-A} and {Vendor-B} ticked and every group expanded (Expand all).
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows on screen and in the exports.
   - Have two vendors, vendor A and vendor B, with open documents at both locations on today's date, at least two each, with different amounts.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -2049,9 +2371,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Vendor filter showing {Vendor-A} and {Vendor-B} ticked and every group expanded (Expand all).
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows on screen and in the exports.
   - Have two vendors, vendor A and vendor B, with open documents at both locations on today's date, at least two each, with different amounts.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -2081,7 +2402,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Have open documents in these reports at two locations, location A and your other location.
   - Make sure you are enrolled at both locations.
   - Make sure customer A and customer B each have invoices at location A that were 31 to 60 and more than 90 days past due on Oct 15, 2026.
   - Use a desktop browser window 1440 px wide.
@@ -2110,7 +2431,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Have open documents in these reports at two locations, location A and your other location.
   - Make sure you are enrolled at both locations.
   - Make sure customer A and customer B each have invoices at location A that were 31 to 60 and more than 90 days past due on Oct 15, 2026.
   - Use a desktop browser window 1440 px wide.
@@ -2139,7 +2460,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Have open documents in these reports at two locations, location A and your other location.
   - Make sure you are enrolled at both locations.
   - Make sure customer A and customer B each have invoices at location A that were 31 to 60 and more than 90 days past due on Oct 15, 2026.
   - Use a desktop browser window 1440 px wide.
@@ -2168,7 +2489,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Have open documents in these reports at two locations, location A and your other location.
   - Make sure you are enrolled at both locations.
   - Make sure vendor A and vendor B each have bills at location A that were 31 to 60 and more than 90 days past due on Oct 15, 2026.
   - Use a desktop browser window 1440 px wide.
@@ -2197,7 +2518,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Have open documents in these reports at two locations, location A and your other location.
   - Make sure you are enrolled at both locations.
   - Make sure vendor A and vendor B each have bills at location A that were 31 to 60 and more than 90 days past due on Oct 15, 2026.
   - Use a desktop browser window 1440 px wide.
@@ -2226,7 +2547,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Have open documents in these reports at two locations, location A and your other location.
   - Make sure you are enrolled at both locations.
   - Make sure vendor A and vendor B each have bills at location A that were 31 to 60 and more than 90 days past due on Oct 15, 2026.
   - Use a desktop browser window 1440 px wide.
@@ -2254,9 +2575,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the exports cover more than one location ("Locations: All locations").
   - Have a customer, customer A, with open invoices on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -2281,9 +2601,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the exports cover more than one location ("Locations: All locations").
   - Have a vendor, vendor A, with open bills on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -2333,8 +2652,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a customer, customer A, with open invoices on today's date of $1,250.50 that is 1 to 30 days past due and $99.00 that is more than 90 days past due, and nothing in the other buckets.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a new customer (created for this test), customer A, with open invoices on today's date of $1,250.50 that is 1 to 30 days past due and $99.00 that is more than 90 days past due, and nothing in the other buckets.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -2356,8 +2675,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a vendor, vendor A, with open bills on today's date of $1,250.50 that is 1 to 30 days past due and $99.00 that is more than 90 days past due, and nothing in the other buckets.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a new vendor (created for this test), vendor A, with open bills on today's date of $1,250.50 that is 1 to 30 days past due and $99.00 that is more than 90 days past due, and nothing in the other buckets.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -2379,8 +2698,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing {Customer-A} ticked.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a customer, customer A, with two overdue invoices on today's date: invoice A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and invoice B, amount $75.00, 1 to 30 days past due.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a new customer (created for this test), customer A, with two overdue invoices on today's date: invoice A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and invoice B, amount $75.00, 1 to 30 days past due.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
   - Leave the report with the Customer filter showing customer A ticked.
@@ -2401,8 +2720,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing {Customer-A} ticked.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a customer, customer A, with two overdue invoices on today's date: invoice A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and invoice B, amount $75.00, 1 to 30 days past due.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a new customer (created for this test), customer A, with two overdue invoices on today's date: invoice A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and invoice B, amount $75.00, 1 to 30 days past due.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
   - Leave the report with the Customer filter showing customer A ticked.
@@ -2423,8 +2742,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Vendor filter showing {Vendor-A} ticked.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a vendor, vendor A, with two overdue bills on today's date: bill A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and bill B, amount $75.00, 1 to 30 days past due.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a new vendor (created for this test), vendor A, with two overdue bills on today's date: bill A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and bill B, amount $75.00, 1 to 30 days past due.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
   - Leave the report with the Vendor filter showing vendor A ticked.
@@ -2445,8 +2764,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Vendor filter showing {Vendor-A} ticked.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a vendor, vendor A, with two overdue bills on today's date: bill A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and bill B, amount $75.00, 1 to 30 days past due.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a new vendor (created for this test), vendor A, with two overdue bills on today's date: bill A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and bill B, amount $75.00, 1 to 30 days past due.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
   - Leave the report with the Vendor filter showing vendor A ticked.
@@ -2467,9 +2786,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location filter shows and can be cleared.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -2493,9 +2811,9 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Have open documents in these reports at two locations, location A and your other location.
   - Make sure you are enrolled at both locations.
-  - Have a vendor, vendor A, with open bills only at location B.
+  - Have a vendor, vendor A, with open bills only at your other location.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
   - Leave the report with only location A ticked in the Location filter.
@@ -2518,7 +2836,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
   - Use a desktop browser window 1440 px wide.
@@ -2543,7 +2861,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
   - Use a desktop browser window 1440 px wide.
@@ -2567,7 +2885,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing only {Customer-A} ticked.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have a customer, customer A, with three open invoices on today's date, in two different aging buckets.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -2592,7 +2910,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Vendor filter showing only {Vendor-A} ticked.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have a vendor, vendor A, with three open bills on today's date, in two different aging buckets.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -2618,7 +2936,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing only {Customer-A} ticked.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have a customer, customer A, with an open invoice on today's date, and its name starts with "=" so that it reads like a spreadsheet formula.
   - Make sure a spreadsheet program is installed on the computer.
   - Use a desktop browser window 1440 px wide.
@@ -2642,7 +2960,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group collapsed.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open invoices, credit memos and deposits in at least three aging buckets on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -2667,7 +2985,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group collapsed.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure that at least three customers have overdue invoices on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -2692,7 +3010,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group collapsed.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open bills and vendor credits in at least three aging buckets on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -2717,7 +3035,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group collapsed.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure that at least three vendors have overdue bills on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -2742,7 +3060,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure more than 30 customers have overdue invoices on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -2763,7 +3081,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure more than 30 vendors have overdue bills on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -2784,7 +3102,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every bucket collapsed.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure one aging bucket, bucket A, has more than 150 open lines on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -2811,7 +3129,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every bucket collapsed.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure one aging bucket, bucket A, has more than 150 open lines on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -2838,7 +3156,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Bucket-A} and {Bucket-B} expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure that on today's date the report has two buckets, bucket A and the next bucket below it, bucket B, each with more lines than fit on the screen.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -2864,11 +3182,11 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Bucket-A} and {Bucket-B} expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Make sure that on today's date the report has two buckets, bucket A and the next bucket below it, bucket B, each with more lines than fit on the screen.
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure that on today's date the report has a bucket, bucket A, with more lines than fit on the screen.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-  - Leave the report with the groups of bucket A and bucket B expanded.
+  - Leave the report with bucket A's group expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Steps: unchanged wording
 - New steps: 1. Make the browser window 1200 px wide. | 2. Scroll the table sideways to the right.
@@ -2887,7 +3205,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Customer-A} and {Customer-B} expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure your role has the "View and Manage AP/AR Data" switch on.
   - Make sure that on today's date the report has two customers next to each other in name order, customer A then customer B, each with more overdue invoices than fit on the screen and with a phone number and a credit term on its customer card.
   - Use a desktop browser window 1440 px wide.
@@ -2914,11 +3232,11 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Customer-A} and {Customer-B} expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Make sure that on today's date the report has two customers next to each other in name order, customer A then customer B, each with more overdue invoices than fit on the screen and with a phone number and a credit term on its customer card.
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure that on today's date the report has a customer, customer A, with more overdue invoices than fit on the screen and with a phone number and a credit term on its customer card.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
-  - Leave the report with the groups of customer A and customer B expanded.
+  - Leave the report with customer A's group expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Steps: unchanged wording
 - New steps: 1. Make the browser window 1200 px wide. | 2. Scroll the table sideways to the right.
@@ -2936,7 +3254,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Bucket-A} and {Bucket-B} expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure that on today's date the report has two buckets, bucket A and the next bucket below it, bucket B, each with more lines than fit on the screen.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -2962,11 +3280,11 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Bucket-A} and {Bucket-B} expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Make sure that on today's date the report has two buckets, bucket A and the next bucket below it, bucket B, each with more lines than fit on the screen.
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure that on today's date the report has a bucket, bucket A, with more lines than fit on the screen.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
-  - Leave the report with the groups of bucket A and bucket B expanded.
+  - Leave the report with bucket A's group expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Steps: unchanged wording
 - New steps: 1. Make the browser window 1200 px wide. | 2. Scroll the table sideways to the right.
@@ -2984,7 +3302,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Vendor-A} and {Vendor-B} expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure that on today's date the report has two vendors next to each other in name order, vendor A then vendor B, each with more overdue bills than fit on the screen.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -3010,11 +3328,11 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Vendor-A} and {Vendor-B} expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Make sure that on today's date the report has two vendors next to each other in name order, vendor A then vendor B, each with more overdue bills than fit on the screen.
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure that on today's date the report has a vendor, vendor A, with more overdue bills than fit on the screen.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
-  - Leave the report with the groups of vendor A and vendor B expanded.
+  - Leave the report with vendor A's group expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Steps: unchanged wording
 - New steps: 1. Make the browser window 1200 px wide. | 2. Scroll the table sideways to the right.
@@ -3032,7 +3350,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Customer-A}'s group expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure more than 30 customers have overdue invoices on today's date; customer A is among the first 30 in name order.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -3054,7 +3372,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Vendor-A}'s group expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure more than 30 vendors have overdue bills on today's date; vendor A is among the first 30 in name order.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -3076,7 +3394,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date in several buckets.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -3099,7 +3417,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date in several customer groups.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -3122,7 +3440,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date in several buckets.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -3145,7 +3463,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date in several vendor groups.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -3169,8 +3487,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group expanded (Expand all).
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, your current location and location B.
   - Make sure you are enrolled at both locations.
   - Have a customer, customer A, with open invoices at both locations, some 31 to 60 days past due, on today's and yesterday's date.
   - Use a desktop browser window 1440 px wide.
@@ -3199,8 +3517,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group expanded (Expand all).
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, your current location and location B.
   - Make sure you are enrolled at both locations.
   - Have a customer, customer A, with open invoices at both locations, some 31 to 60 days past due, on today's and yesterday's date.
   - Use a desktop browser window 1440 px wide.
@@ -3229,8 +3547,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group expanded (Expand all).
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, your current location and location B.
   - Make sure you are enrolled at both locations.
   - Have a vendor, vendor A, with open bills at both locations, some 31 to 60 days past due, on today's and yesterday's date.
   - Use a desktop browser window 1440 px wide.
@@ -3259,8 +3577,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group expanded (Expand all).
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, your current location and location B.
   - Make sure you are enrolled at both locations.
   - Have a vendor, vendor A, with open bills at both locations, some 31 to 60 days past due, on today's and yesterday's date.
   - Use a desktop browser window 1440 px wide.
@@ -3288,7 +3606,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -3309,7 +3627,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -3330,9 +3648,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location chip shows.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -3351,9 +3668,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location chip shows.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -3372,9 +3688,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location chip shows.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -3393,9 +3708,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location chip shows.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -3414,9 +3728,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location chip shows.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -3435,9 +3748,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location chip shows.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -3533,7 +3845,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as user B, an "Admin" user enrolled only at location A, with location A as your current location.
+  - Sign in as an "Admin" user enrolled only at location A, with location A as your current location.
   - Make sure the organization has open documents in this report at location A and location B on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -3555,10 +3867,10 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, your current location and location B.
   - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with open documents only at location A.
+  - Have a customer, customer A, with open documents only at your current location.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -3583,8 +3895,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Make sure the organization has open documents in this report at location A and location B on today's date.
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the organization has open documents in this report at your current location and location B on today's date.
   - Pick an earlier date, date A, on which location B had no open documents in this report.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -3605,7 +3917,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as user B, an "Admin" user enrolled only at location A, with location A as your current location.
+  - Sign in as an "Admin" user enrolled only at location A, with location A as your current location.
   - Make sure the organization has open documents in this report at location A and location B on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -3627,10 +3939,10 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, your current location and location B.
   - Make sure you are enrolled at both locations.
-  - Have a vendor, vendor A, with open documents only at location A.
+  - Have a vendor, vendor A, with open documents only at your current location.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -3655,8 +3967,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Make sure the organization has open documents in this report at location A and location B on today's date.
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the organization has open documents in this report at your current location and location B on today's date.
   - Pick an earlier date, date A, on which location B had no open documents in this report.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -3725,9 +4037,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location filter shows and can be cleared.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -3751,10 +4062,10 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
   - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
   - Make sure you are enrolled at both locations.
-  - Make sure customer A has, on today's date, an invoice A made at location A for $500.00 and partly paid ($200.00) by a payment taken at location B, a credit memo A made at location B and a deposit A taken at location B.
+  - Have a new customer (created for this test) that has, on today's date, an invoice A made at location A for $500.00 and partly paid ($200.00) by a payment taken at location B, a credit memo A made at location B and a deposit A taken at location B.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-  - Leave the report with the Customer filter showing customer A ticked and every bucket expanded.
+  - Leave the report with the Customer filter showing that customer ticked and every bucket expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Old steps: 1. Read the Location column of {Invoice-A}, {Credit-memo-A} and {Deposit-A}. | 2. In the Location menu, untick {Location-B}. | 3. Expand every bucket and read the rows. | 4. Open the Location menu. | 5. Tick {Location-B}. | 6. Untick {Location-A}. | 7. Expand every bucket and read the rows.
 - New steps: 1. Read the Location column of invoice A, credit memo A and deposit A. | 2. In the Location menu, untick location B. | 3. Expand every bucket and read the rows. | 4. Open the Location menu. | 5. Tick location B. | 6. Untick location A. | 7. Expand every bucket and read the rows.
@@ -3781,10 +4092,10 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
   - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
   - Make sure you are enrolled at both locations.
-  - Have a vendor, vendor A, with two unpaid bills: bill A, received on a delivery at location A, and bill B, received on a delivery at location B.
+  - Have a vendor with two unpaid bills: bill A, received on a delivery at location A, and bill B, received on a delivery at location B.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
-  - Leave the report with the Vendor filter showing vendor A ticked and every bucket expanded.
+  - Leave the report with the Vendor filter showing that vendor ticked and every bucket expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Old steps: 1. Read the Location of {Bill-A} and {Bill-B}. | 2. In the Location menu, untick {Location-B}. | 3. Expand every bucket and look for {Bill-A} and {Bill-B}.
 - New steps: 1. Read the Location of bill A and bill B. | 2. In the Location menu, untick location B. | 3. Expand every bucket and look for bill A and bill B.
@@ -3933,7 +4244,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -3958,7 +4269,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have two customers, customer A and customer B, with invoices more than 90 days past due on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -3982,7 +4293,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the organization has more than 50 customers (the Customer menu lists at most 50 until you search), and customer A, who has overdue invoices on today's date, comes after the first 50 in name order.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -4009,13 +4320,13 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to yesterday, only {Vendor-A} ticked in the Vendor filter, "61-90 days" ticked in the Past due filter and only {Location-A} ticked in the Location filter.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations: your current location and your other location.
   - Make sure you are enrolled at both locations.
-  - Have a vendor, vendor A, with unpaid bills on yesterday's date.
+  - Have a vendor with unpaid bills on yesterday's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
-  - Leave the report with the as-of date set to yesterday, only vendor A ticked in the Vendor filter, "61-90 days" ticked in the Past due filter and only location A ticked in the Location filter.
+  - Leave the report with the as-of date set to yesterday, only that vendor ticked in the Vendor filter, "61-90 days" ticked in the Past due filter and only your current location ticked in the Location filter.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Steps: unchanged wording
 - New steps: 1. Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu). | 2. Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") from the Reports menu.
@@ -4035,7 +4346,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Have open documents in these reports at two locations, location A and your other location.
   - Make sure you are enrolled at both locations.
   - Have a customer, customer A, with invoices at location A more than 90 days past due on yesterday's date.
   - Use a desktop browser window 1440 px wide.
@@ -4059,7 +4370,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Have open documents in these reports at two locations, location A and your other location.
   - Make sure you are enrolled at both locations.
   - Have a vendor, vendor A, with bills at location A more than 90 days past due on yesterday's date.
   - Use a desktop browser window 1440 px wide.
@@ -4081,7 +4392,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have two customers, customer A and customer B, with open invoices on today's date; customer B's name is longer than the chip can show.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -4108,7 +4419,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have two vendors, vendor A and vendor B, with open bills on today's date; vendor B's name is longer than the chip can show.
   - Make sure the organization has more than 8 vendors (the Vendor menu shows its search box only when there are more than 8 vendors).
   - Use a desktop browser window 1440 px wide.
@@ -4134,7 +4445,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -4156,7 +4467,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Use a desktop browser window 1440 px wide.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -4181,9 +4492,9 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Have open documents in these reports at two locations, location A and your other location.
   - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with open invoices only at location B.
+  - Have a customer, customer A, with open invoices only at your other location.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
   - Leave the report with only location A ticked in the Location filter.
@@ -4205,10 +4516,10 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} ticked, "Past due: 1-30 days" ticked, the "Amount" header clicked once, every group expanded and the page scrolled down.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, your current location and location B.
   - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with an overdue invoice A at location B and others at location A.
+  - Have a customer, customer A, with an overdue invoice A at location B and others at your current location.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
   - Leave the report with customer A ticked, "Past due: 1-30 days" ticked, the "Amount" header clicked once, every group expanded and the page scrolled down.
@@ -4231,10 +4542,10 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A} ticked, "Past due: 1-30 days" ticked, the "Amount" header clicked once, every group expanded and the page scrolled down.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, your current location and location B.
   - Make sure you are enrolled at both locations.
-  - Have a vendor, vendor A, with an overdue bill A at location B and others at location A.
+  - Have a vendor, vendor A, with an overdue bill A at location B and others at your current location.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
   - Leave the report with vendor A ticked, "Past due: 1-30 days" ticked, the "Amount" header clicked once, every group expanded and the page scrolled down.
@@ -4256,7 +4567,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have a customer, customer A, with overdue invoices on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -4280,7 +4591,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have a vendor, vendor A, with overdue bills on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -4303,7 +4614,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -4323,8 +4634,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have five customers, customer A, customer B, customer C, customer D and customer E, each with one open invoice on today's date and nothing else open: customer A's invoice is $100.00, customer B's $200.00, customer C's $300.00, customer D's $400.00 and customer E's $500.00.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have five new customers (created for this test), customer A, customer B, customer C, customer D and customer E, each with one open invoice on today's date and nothing else open: customer A's invoice is $100.00, customer B's $200.00, customer C's $300.00, customer D's $400.00 and customer E's $500.00.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -4348,7 +4659,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure your organization has 8 vendors or fewer in total.
   - Make sure that at least one of those vendors, vendor A, has an unpaid bill on today's date.
   - Use a desktop browser window 1440 px wide.
@@ -4369,9 +4680,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) in a desktop browser window 1440 px wide.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
   - Use a desktop browser window 1440 px wide.
   - Open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -4392,9 +4702,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) in a desktop browser window 1440 px wide.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
   - Use a desktop browser window 1440 px wide.
   - Open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -4415,8 +4724,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Make sure the organization has open A/R documents at three locations, location A, location B and location C.
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the organization has open A/R documents at three locations, your current location, location B and location C.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -4486,11 +4795,11 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing {Customer-A} ticked and every bucket expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a customer, customer A, with an open work order invoice A made at location A.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a customer with an open work order invoice A made at your current location.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-  - Leave the report with the Customer filter showing customer A ticked and every bucket expanded.
+  - Leave the report with the Customer filter showing that customer ticked and every bucket expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Old steps: 1. Click {Invoice-A}'s Amount cell (not its number). | 2. Click {Invoice-A}'s customer name cell. | 3. Click {Invoice-A}'s number.
 - New steps: 1. Click invoice A's Amount cell (not its number). | 2. Click invoice A's customer name cell. | 3. Click invoice A's number.
@@ -4509,11 +4818,11 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a customer, customer A, with an overdue part sale invoice A made at location A.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a customer with an overdue part sale invoice A made at your current location.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
-  - Leave the report with customer A's group expanded.
+  - Leave the report with that customer's group expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Old steps: 1. Hover over {Invoice-A}'s Open Balance cell. | 2. Click {Invoice-A}'s Open Balance cell. | 3. Click {Invoice-A}'s number.
 - New steps: 1. Hover over invoice A's Open Balance cell. | 2. Click invoice A's Open Balance cell. | 3. Click invoice A's number.
@@ -4533,13 +4842,13 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} ticked and its rows showing.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, your current location and location B.
   - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with an open work order invoice A made at location B.
+  - Have a customer with an open work order invoice A made at location B.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-  - Leave the report with customer A ticked and its rows showing.
+  - Leave the report with that customer ticked and its rows showing.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Old steps: 1. Click {Invoice-A}'s number. | 2. Click "Switch location".
 - New steps: 1. Click invoice A's number. | 2. Click "Switch location".
@@ -4558,13 +4867,13 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} ticked and its rows showing.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, your current location and location B.
   - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with an open part sale invoice A made at location B.
+  - Have a customer with an open part sale invoice A made at location B.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
-  - Leave the report with customer A ticked and its rows showing.
+  - Leave the report with that customer ticked and its rows showing.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Old steps: 1. Click {Invoice-A}'s number. | 2. Click "Switch location".
 - New steps: 1. Click invoice A's number. | 2. Click "Switch location".
@@ -4583,10 +4892,10 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with "Past due: 1-30 days" ticked, the "Amount" header clicked once, {Customer-A}'s group expanded and the page scrolled so {Invoice-A} is in the middle of the screen.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations: your current location and your other location.
   - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with overdue invoices at location A and one, invoice A, at location B; more than 20 other customers have overdue invoices.
+  - Have a customer, customer A, with overdue invoices at your current location and one, invoice A, at your other location; more than 20 other customers have overdue invoices.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
   - Leave the report with "Past due: 1-30 days" ticked, the "Amount" header clicked once, customer A's group expanded and the page scrolled so invoice A is in the middle of the screen.
@@ -4611,13 +4920,13 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A} ticked and every bucket expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations: your current location and your other location.
   - Make sure you are enrolled at both locations.
-  - Have a vendor, vendor A, with an unpaid bill A received at location A and an unpaid bill B received at location B.
+  - Have a vendor with an unpaid bill A received at your current location and an unpaid bill B received at your other location.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
-  - Leave the report with vendor A ticked and every bucket expanded.
+  - Leave the report with that vendor ticked and every bucket expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Old steps: 1. Hover over {Bill-B}'s number. | 2. Click {Bill-B}'s number. | 3. Click {Bill-A}'s number.
 - New steps: 1. Hover over bill B's number. | 2. Click bill B's number. | 3. Click bill A's number.
@@ -4637,13 +4946,13 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A} ticked and its rows showing.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations: your current location and your other location.
   - Make sure you are enrolled at both locations.
-  - Have a vendor, vendor A, with three unused vendor credits: vendor credit A from a vendor return made at location A, vendor credit B from a vendor return made at location B, and vendor credit C not from a vendor return.
+  - Have a vendor with three unused vendor credits: vendor credit A from a vendor return made at your current location, vendor credit B from a vendor return made at your other location, and vendor credit C not from a vendor return.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
-  - Leave the report with vendor A ticked and its rows showing.
+  - Leave the report with that vendor ticked and its rows showing.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Old steps: 1. Look at the three vendor credits' numbers. | 2. Click {Vendor-credit-A}'s number.
 - New steps: 1. Look at the three vendor credits' numbers. | 2. Click vendor credit A's number.
@@ -4662,13 +4971,13 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A} ticked and its rows showing.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations: your current location and your other location.
   - Make sure you are enrolled at both locations.
-  - Have a vendor, vendor A, with three unused vendor credits: vendor credit A from a vendor return made at location A, vendor credit B from a vendor return made at location B, and vendor credit C not from a vendor return.
+  - Have a vendor with three unused vendor credits: vendor credit A from a vendor return made at your current location, vendor credit B from a vendor return made at your other location, and vendor credit C not from a vendor return.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
-  - Leave the report with vendor A ticked and its rows showing.
+  - Leave the report with that vendor ticked and its rows showing.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Old steps: 1. Look at the three vendor credits' numbers. | 2. Click {Vendor-credit-A}'s number.
 - New steps: 1. Look at the three vendor credits' numbers. | 2. Click vendor credit A's number.
@@ -4687,13 +4996,13 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} ticked and every bucket expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations: your current location and your other location.
   - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with an open work order invoice A made at location B.
+  - Have a customer with an open work order invoice A made at your other location.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-  - Leave the report with customer A ticked and every bucket expanded.
+  - Leave the report with that customer ticked and every bucket expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Old steps: 1. Right-click {Invoice-A}'s number. | 2. Choose "Open link in new tab". | 3. Switch to the new tab. | 4. Switch back to the report's tab.
 - New steps: 1. Right-click invoice A's number. | 2. Choose "Open link in new tab". | 3. Switch to the new tab. | 4. Switch back to the report's tab.
@@ -4713,11 +5022,11 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} ticked and every bucket expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a customer, customer A, with an unused credit memo A and an unused deposit A at location A.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a customer with an unused credit memo A and an unused deposit A at your current location.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-  - Leave the report with customer A ticked and every bucket expanded.
+  - Leave the report with that customer ticked and every bucket expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Old steps: 1. Hover over {Credit-memo-A}'s number. | 2. Click it. | 3. Hover over {Deposit-A}'s number. | 4. Click it.
 - New steps: 1. Hover over credit memo A's number. | 2. Click it. | 3. Hover over deposit A's number. | 4. Click it.
@@ -4737,11 +5046,11 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} ticked and every bucket expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as user B, an "Admin" user enrolled only at location A, with location A as your current location.
-  - Have a customer, customer A, with an open invoice A made at location B, a location user B is not enrolled in.
+  - Sign in as an "Admin" user enrolled at one location only.
+  - Have a customer with an open invoice A made at another location, one this user is not enrolled in.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-  - Leave the report with customer A ticked and every bucket expanded.
+  - Leave the report with that customer ticked and every bucket expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Old steps: 1. Look at {Invoice-A}'s row. | 2. Click {Invoice-A}'s number.
 - New steps: 1. Look at invoice A's row. | 2. Click invoice A's number.
@@ -4759,11 +5068,11 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} ticked and every bucket expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as user B, whose custom role has "Reports → Page Access", "Invoicing & Payments → View", "Work Orders → View" but not "Part Sales → View", with location A as your current location.
-  - Have a customer, customer A, with an open work order invoice A and an open part sale invoice B, both made at location A.
+  - Sign in as a user whose custom role has "Reports → Page Access", "Invoicing & Payments → View", "Work Orders → View" but not "Part Sales → View".
+  - Have a customer with an open work order invoice A and an open part sale invoice B, both made at your current location.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-  - Leave the report with customer A ticked and every bucket expanded.
+  - Leave the report with that customer ticked and every bucket expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Old steps: 1. Click {Invoice-A}'s number. | 2. Go back to the report and look at {Invoice-B}'s number.
 - New steps: 1. Click invoice A's number. | 2. Go back to the report and look at invoice B's number.
@@ -4781,11 +5090,11 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as user B, whose custom role has "Reports → Page Access", "Work Orders → View", "Part Sales → View" but not "Invoicing & Payments → View", with location A as your current location.
-  - Have a customer, customer A, with an overdue work order invoice A and an overdue part sale invoice B, both made at location A.
+  - Sign in as a user whose custom role has "Reports → Page Access", "Work Orders → View", "Part Sales → View" but not "Invoicing & Payments → View".
+  - Have a customer with an overdue work order invoice A and an overdue part sale invoice B, both made at your current location.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
-  - Leave the report with customer A's group expanded.
+  - Leave the report with that customer's group expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Old steps: 1. Look at {Invoice-A}'s and {Invoice-B}'s numbers. | 2. Click {Invoice-A}'s number.
 - New steps: 1. Look at invoice A's and invoice B's numbers. | 2. Click invoice A's number.
@@ -4803,11 +5112,11 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as user B, whose custom role has "Reports → Page Access", "Invoicing & Payments → View", "Part Sales → View" but not "Work Orders → View", with location A as your current location.
-  - Have a customer, customer A, with an overdue work order invoice A and an overdue part sale invoice B, both made at location A.
+  - Sign in as a user whose custom role has "Reports → Page Access", "Invoicing & Payments → View", "Part Sales → View" but not "Work Orders → View".
+  - Have a customer with an overdue work order invoice A and an overdue part sale invoice B, both made at your current location.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
-  - Leave the report with customer A's group expanded.
+  - Leave the report with that customer's group expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Old steps: 1. Look at {Invoice-A}'s number. | 2. Click {Invoice-B}'s number.
 - New steps: 1. Look at invoice A's number. | 2. Click invoice B's number.
@@ -4825,11 +5134,11 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A}'s group expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as user B, whose custom role has "Reports → Page Access", "Vendor Order Management → View" but not "Vendor Order Management → Create & Edit", with location A as your current location.
-  - Have a vendor, vendor A, with an unpaid bill A received at location A.
+  - Sign in as a user whose custom role has "Reports → Page Access", "Vendor Order Management → View" but not "Vendor Order Management → Create & Edit".
+  - Have a vendor with an unpaid bill A received at your current location.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
-  - Leave the report with vendor A's group expanded.
+  - Leave the report with that vendor's group expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Old steps: 1. Look at {Bill-A}'s number. | 2. Click it.
 - New steps: 1. Look at bill A's number. | 2. Click it.
@@ -4847,11 +5156,11 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A}'s group expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as user B, whose custom role has "Reports → Page Access", "Vendor Order Management → Create & Edit" but not "Vendor Order Management → View", with location A as your current location.
-  - Have a vendor, vendor A, with an unpaid bill A received at location A.
+  - Sign in as a user whose custom role has "Reports → Page Access", "Vendor Order Management → Create & Edit" but not "Vendor Order Management → View".
+  - Have a vendor with an unpaid bill A received at your current location.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
-  - Leave the report with vendor A's group expanded.
+  - Leave the report with that vendor's group expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Old steps: 1. Look at {Bill-A}'s number. | 2. Click it.
 - New steps: 1. Look at bill A's number. | 2. Click it.
@@ -4869,11 +5178,11 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A} ticked and every bucket expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as user B, whose custom role has "Reports → Page Access" but not "Vendor Order Management → View" or "Vendor Order Management → Create & Edit", with location A as your current location.
-  - Have a vendor, vendor A, with an unpaid bill A received at location A and an unused vendor credit A from a vendor return made at location A.
+  - Sign in as a user whose custom role has "Reports → Page Access" but not "Vendor Order Management → View" or "Vendor Order Management → Create & Edit".
+  - Have a vendor with an unpaid bill A received at your current location and an unused vendor credit A from a vendor return made at your current location.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
-  - Leave the report with vendor A ticked and every bucket expanded.
+  - Leave the report with that vendor ticked and every bucket expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Old steps: 1. Look at {Bill-A}'s and {Vendor-credit-A}'s numbers. | 2. Click {Bill-A}'s number.
 - New steps: 1. Look at bill A's and vendor credit A's numbers. | 2. Click bill A's number.
@@ -4891,7 +5200,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as user B, whose custom role has "Reports → Page Access" and "Customers → View".
+  - Sign in as a user whose custom role has "Reports → Page Access" and "Customers → View".
   - Have a customer, customer A, with open invoices on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -4912,7 +5221,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as user C, whose custom role has "Reports → Page Access" but not "Customers → View".
+  - Sign in as a user whose custom role has "Reports → Page Access" but not "Customers → View".
   - Have a customer, customer A, with open invoices on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -4933,7 +5242,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as user B, whose custom role has "Reports → Page Access" but not "Vendor Order Management → View" or "Vendor Order Management → Create & Edit", with location A as your current location.
+  - Sign in as a user whose custom role has "Reports → Page Access" but not "Vendor Order Management → View" or "Vendor Order Management → Create & Edit".
   - Have a vendor, vendor A, with unpaid bills on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -4953,7 +5262,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -4974,7 +5283,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -4995,7 +5304,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -5016,7 +5325,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Use a desktop browser window 1440 px wide.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -5037,7 +5346,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -5058,7 +5367,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -5080,7 +5389,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -5102,7 +5411,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -5125,13 +5434,13 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to yesterday, only {Customer-A} ticked in the Customer filter, "61-90 days" ticked in the Past due filter and only {Location-A} ticked in the Location filter.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations: your current location and your other location.
   - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with open invoices only at location B, none 61 to 90 days past due, on yesterday's date.
+  - Have a customer with open invoices only at your other location, none 61 to 90 days past due, on yesterday's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-  - Leave the report with the as-of date set to yesterday, only customer A ticked in the Customer filter, "61-90 days" ticked in the Past due filter and only location A ticked in the Location filter.
+  - Leave the report with the as-of date set to yesterday, only that customer ticked in the Customer filter, "61-90 days" ticked in the Past due filter and only your current location ticked in the Location filter.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Steps: unchanged wording
 - New steps: 1. Read the table area. | 2. Click "Clear all filters".
@@ -5150,13 +5459,13 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to yesterday, only {Vendor-A} ticked in the Vendor filter, "61-90 days" ticked in the Past due filter and only {Location-A} ticked in the Location filter.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations: your current location and your other location.
   - Make sure you are enrolled at both locations.
-  - Have a vendor, vendor A, with open bills only at location B, none 61 to 90 days past due, on yesterday's date.
+  - Have a vendor with open bills only at your other location, none 61 to 90 days past due, on yesterday's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
-  - Leave the report with the as-of date set to yesterday, only vendor A ticked in the Vendor filter, "61-90 days" ticked in the Past due filter and only location A ticked in the Location filter.
+  - Leave the report with the as-of date set to yesterday, only that vendor ticked in the Vendor filter, "61-90 days" ticked in the Past due filter and only your current location ticked in the Location filter.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Steps: unchanged wording
 - New steps: 1. Read the table area. | 2. Click "Clear all filters".
@@ -5174,7 +5483,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -5197,7 +5506,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
   - Use a desktop browser window 1440 px wide.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -5220,7 +5529,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the organization has many open A/P lines, so the report takes a moment to load.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -5242,7 +5551,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure your role has the "View and Manage AP/AR Data" switch on.
   - Have a customer, customer A, with an overdue invoice, a phone number and a credit term on its customer card.
   - Have a customer, customer B, with an overdue invoice and no credit term.
@@ -5266,7 +5575,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Customer-A} ticked.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have a customer, customer A, with an overdue invoice and no phone number on its customer card.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -5290,7 +5599,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Customer-A} ticked.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure your role has the "View and Manage AP/AR Data" switch on.
   - Have a customer, customer A, with two overdue invoices, a phone number and a credit term.
   - Use a desktop browser window 1440 px wide.
@@ -5315,7 +5624,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Customer-A} ticked.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as user B, whose custom role has "Reports → Page Access" and the "View and Manage AP/AR Data" switch off.
+  - Sign in as a user whose custom role has "Reports → Page Access" and the "View and Manage AP/AR Data" switch off.
   - Have a customer, customer A, with an overdue invoice, a phone number and a credit term.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -5340,7 +5649,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu on that device.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Use a touch-screen device whose screen is at least 1024 px wide, with no mouse.
   - On that device, use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -5363,9 +5672,9 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Have open documents in these reports at two locations, location A and your other location.
   - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with open invoices at location A and one open work order invoice, invoice A, made at location B.
+  - Have a customer, customer A, with open invoices at location A and one open work order invoice, invoice A, made at your other location.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
   - Leave the report with customer A ticked, the "Amount" header clicked once, every bucket expanded and the page scrolled so invoice A is in the middle of the screen.
@@ -5389,7 +5698,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure that between 31 and 90 customers have open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -5418,7 +5727,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure that between 31 and 90 customers have open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -5441,7 +5750,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure that between 31 and 90 vendors have open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -5470,7 +5779,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure that between 31 and 90 vendors have open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -5493,7 +5802,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure that between 31 and 90 customers have overdue invoices on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -5522,7 +5831,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure that between 31 and 90 customers have overdue invoices on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -5545,7 +5854,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure that between 31 and 90 vendors have overdue bills on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -5574,7 +5883,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure that between 31 and 90 vendors have overdue bills on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -5597,7 +5906,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every bucket collapsed.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure one aging bucket, bucket A, has between 101 and 400 open lines on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -5624,7 +5933,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every bucket collapsed.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure one aging bucket, bucket A, has between 101 and 400 open lines on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -5655,7 +5964,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
   - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
   - Make sure you are enrolled at both locations.
-  - Have three customers with only these open documents on today's date:
+  - Have three new customers (created for this test) with only these open documents on today's date:
   - Customer A: an invoice of $1,000.00 at location A 15 days past due, an invoice of $400.00 at location B 45 days past due and an unused credit memo of $150.00 at location A.
   - Customer B: an invoice of $700.00 at location A 45 days past due and an invoice of $250.00 at location B 100 days past due.
   - Customer C: an invoice of $900.00 at location A 5 days past due.
@@ -5688,7 +5997,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
   - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
   - Make sure you are enrolled at both locations.
-  - Have three vendors with only these open documents on today's date:
+  - Have three new vendors (created for this test) with only these open documents on today's date:
   - Vendor A: a bill of $1,000.00 at location A 15 days past due, a bill of $400.00 at location B 45 days past due and an unused vendor credit of $150.00 at location A.
   - Vendor B: a bill of $700.00 at location A 45 days past due and a bill of $250.00 at location B 100 days past due.
   - Vendor C: a bill of $900.00 at location A 5 days past due.
@@ -5721,7 +6030,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
   - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
   - Make sure you are enrolled at both locations.
-  - Have three customers with only these open documents on today's date:
+  - Have three new customers (created for this test) with only these open documents on today's date:
   - Customer A: an invoice of $1,000.00 at location A 15 days past due, an invoice of $400.00 at location B 45 days past due and an unused credit memo of $150.00 at location A.
   - Customer B: an invoice of $700.00 at location A 45 days past due and an invoice of $250.00 at location B 100 days past due.
   - Customer C: an invoice of $900.00 at location A 5 days past due.
@@ -5755,7 +6064,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
   - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
   - Make sure you are enrolled at both locations.
-  - Have three customers with only these open documents on today's date:
+  - Have three new customers (created for this test) with only these open documents on today's date:
   - Customer A: an invoice of $1,000.00 at location A 15 days past due, an invoice of $400.00 at location B 45 days past due and an unused credit memo of $150.00 at location A.
   - Customer B: an invoice of $700.00 at location A 45 days past due and an invoice of $250.00 at location B 100 days past due.
   - Customer C: an invoice of $900.00 at location A 5 days past due.
@@ -5789,7 +6098,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
   - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
   - Make sure you are enrolled at both locations.
-  - Have three vendors with only these open documents on today's date:
+  - Have three new vendors (created for this test) with only these open documents on today's date:
   - Vendor A: a bill of $1,000.00 at location A 15 days past due, a bill of $400.00 at location B 45 days past due and an unused vendor credit of $150.00 at location A.
   - Vendor B: a bill of $700.00 at location A 45 days past due and a bill of $250.00 at location B 100 days past due.
   - Vendor C: a bill of $900.00 at location A 5 days past due.
@@ -5823,7 +6132,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
   - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
   - Make sure you are enrolled at both locations.
-  - Have three vendors with only these open documents on today's date:
+  - Have three new vendors (created for this test) with only these open documents on today's date:
   - Vendor A: a bill of $1,000.00 at location A 15 days past due, a bill of $400.00 at location B 45 days past due and an unused vendor credit of $150.00 at location A.
   - Vendor B: a bill of $700.00 at location A 45 days past due and a bill of $250.00 at location B 100 days past due.
   - Vendor C: a bill of $900.00 at location A 5 days past due.
@@ -5853,8 +6162,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing only {Customer-A} ticked.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a customer, customer A, with an invoice A of $100.00 paid $120.00 (overpaid), and an open invoice B of $500.00 on today's date.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a new customer (created for this test), customer A, with an invoice of $100.00 paid $120.00 (overpaid), and an open invoice B of $500.00 on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
   - Leave the report with the Customer filter showing only customer A ticked.
@@ -5879,7 +6188,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
   - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
   - Make sure you are enrolled at both locations.
-  - Have two customers with only these open documents on today's date:
+  - Have two new customers (created for this test) with only these open documents on today's date:
   - Customer A: an invoice of $1,000.00 at location A that is not yet due, an invoice of $400.00 at location A 45 days past due and an invoice of $300.00 at location B 15 days past due.
   - Customer B: an invoice of $700.00 at location A 45 days past due, partly paid $200.00 (open $500.00), and an invoice of $250.00 at location A 100 days past due.
   - Use a desktop browser window 1440 px wide.
@@ -5911,7 +6220,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
   - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
   - Make sure you are enrolled at both locations.
-  - Have two vendors with only these open documents on today's date:
+  - Have two new vendors (created for this test) with only these open documents on today's date:
   - Vendor A: a bill of $1,000.00 at location A that is not yet due, a bill of $400.00 at location A 45 days past due and a bill of $300.00 at location B 15 days past due.
   - Vendor B: a bill of $700.00 at location A 45 days past due, partly paid $200.00 (open $500.00), and a bill of $250.00 at location A 100 days past due.
   - Use a desktop browser window 1440 px wide.
@@ -5939,11 +6248,11 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Customer-A} ticked in the Customer filter and every group expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a customer, customer A, with eight open invoices on today's date: one of $10.00 not yet due, and one each 1, 30, 31, 60, 61, 90 and 91 days past its due date, of $1.00, $30.00, $31.00, $60.00, $61.00, $90.00 and $91.00 in that order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a new customer (created for this test) with eight open invoices on today's date: one of $10.00 not yet due, and one each 1, 30, 31, 60, 61, 90 and 91 days past its due date, of $1.00, $30.00, $31.00, $60.00, $61.00, $90.00 and $91.00 in that order.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-  - Leave the report with only customer A ticked in the Customer filter and every group expanded.
+  - Leave the report with only that customer ticked in the Customer filter and every group expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Steps: unchanged wording
 - New steps: 1. In the Past due filter, tick "1-30 days" only. | 2. Also tick "31-60 days". | 3. Also tick "61-90 days". | 4. Also tick "91+ days". | 5. In the Past due filter, untick all four.
@@ -5964,11 +6273,11 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Vendor-A} ticked in the Vendor filter and every group expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a vendor, vendor A, with eight open bills on today's date: one of $10.00 not yet due, and one each 1, 30, 31, 60, 61, 90 and 91 days past its due date, of $1.00, $30.00, $31.00, $60.00, $61.00, $90.00 and $91.00 in that order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a new vendor (created for this test) with eight open bills on today's date: one of $10.00 not yet due, and one each 1, 30, 31, 60, 61, 90 and 91 days past its due date, of $1.00, $30.00, $31.00, $60.00, $61.00, $90.00 and $91.00 in that order.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
-  - Leave the report with only vendor A ticked in the Vendor filter and every group expanded.
+  - Leave the report with only that vendor ticked in the Vendor filter and every group expanded.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Steps: unchanged wording
 - New steps: 1. In the Past due filter, tick "1-30 days" only. | 2. Also tick "31-60 days". | 3. Also tick "61-90 days". | 4. Also tick "91+ days". | 5. In the Past due filter, untick all four.
@@ -5989,7 +6298,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the organization has more than 2,000 and fewer than 50,000 open A/P lines on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -6011,7 +6320,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Pick two as-of dates: date A, on which A/R Summary lists exactly 2,000 customers, and date B, on which it lists exactly 2,001.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -6035,7 +6344,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure that today the organization has more than 2,001 open A/P lines.
   - Pick a set of vendors, the chosen vendors, whose open A/P lines today add up to exactly 2,000.
   - Have a vendor, vendor B, that is not one of the chosen vendors and has exactly one open A/P line today.
@@ -6062,7 +6371,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Pick two as-of dates: date A, on which A/P Detail has exactly 50,000 open lines, and date B, on which it has exactly 50,001.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -6086,8 +6395,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing only {Customer-A} ticked.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a customer, customer A, with one open invoice, invoice A, of $500.00 on today's date, and nothing else open.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a new customer (created for this test), customer A, with one open invoice, invoice A, of $500.00 on today's date, and nothing else open.
   - Open invoice A's page in a second browser tab, ready to record a payment.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -6112,8 +6421,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} and {Customer-B} ticked in the Customer filter.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have two customers with only these open documents on today's date:
+  - Sign in as an Admin user (the "Admin" role).
+  - Have two new customers (created for this test) with only these open documents on today's date:
   - Customer A: an invoice of $1,000.00 that is not yet due, an invoice of $400.00 45 days past due, an invoice of $300.00 15 days past due and an unused credit memo of $150.00.
   - Customer B: an invoice of $500.00 45 days past due and an invoice of $250.00 100 days past due.
   - Use a desktop browser window 1440 px wide.
@@ -6140,8 +6449,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A} and {Vendor-B} ticked in the Vendor filter.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have two vendors with only these open documents on today's date:
+  - Sign in as an Admin user (the "Admin" role).
+  - Have two new vendors (created for this test) with only these open documents on today's date:
   - Vendor A: a bill of $1,000.00 that is not yet due, a bill of $400.00 45 days past due, a bill of $300.00 15 days past due and an unused vendor credit of $150.00.
   - Vendor B: a bill of $500.00 45 days past due and a bill of $250.00 100 days past due.
   - Use a desktop browser window 1440 px wide.
@@ -6169,13 +6478,12 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: the release is installed; Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) is open in a desktop browser window 1440 px wide, with {Date-A} chosen as the as-of date on each report as you open it.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Make sure that before the release was installed, you took screenshots (and, for A/R, any print or export there was) of the three A/R reports for an as-of date before the release (date A), untouched.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location chip shows.
+  - Make sure that before the release was installed, you took screenshots (and, for A/R, any print or export there was) of the three A/R reports for one as-of date before the release, untouched.
   - Use a desktop browser window 1440 px wide.
   - After the release is installed, open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE).
-  - On each report, as you open it, choose date A as the as-of date.
+  - On each report, as you open it, choose the as-of date the screenshots show.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Steps: unchanged wording
 - New steps: 1. Open A/R Summary from the Reports menu without touching any filter, and compare its rows, amounts and Totals with the screenshot of A/R Summary taken before the release. | 2. Open A/R Detail from the Reports menu without touching any filter, and compare its rows, amounts and Totals with the screenshot of A/R Detail taken before the release. | 3. Open A/R Collection from the Reports menu without touching any filter, and compare its rows, amounts and Totals with the screenshot of A/R Collection taken before the release.
@@ -6195,13 +6503,12 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: the release is installed; Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) is open in a desktop browser window 1440 px wide, with {Date-A} chosen as the as-of date on each report as you open it.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Make sure that before the release was installed, you took screenshots (and, for A/P, any print or export there was) of the three A/P reports for an as-of date before the release (date A), untouched.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location chip shows.
+  - Make sure that before the release was installed, you took screenshots (and, for A/P, any print or export there was) of the three A/P reports for one as-of date before the release, untouched.
   - Use a desktop browser window 1440 px wide.
   - After the release is installed, open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE).
-  - On each report, as you open it, choose date A as the as-of date.
+  - On each report, as you open it, choose the as-of date the screenshots show.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Steps: unchanged wording
 - New steps: 1. Open A/P Summary from the Reports menu without touching any filter, and compare its rows, amounts and Totals with the screenshot of A/P Summary taken before the release. | 2. Open A/P Detail from the Reports menu without touching any filter, and compare its rows, amounts and Totals with the screenshot of A/P Detail taken before the release. | 3. Open A/P Unpaid Invoices from the Reports menu without touching any filter, and compare its rows, amounts and Totals with the screenshot of A/P Unpaid Invoices taken before the release.
@@ -6222,7 +6529,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
   - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a customer, customer A, with open invoices on today's date.
+  - Make sure the report has open invoices on today's date, so the PDF has rows.
   - Run this test in the evening at location A's local time, when the date in UTC is already tomorrow.
   - Set this computer's clock to location A's time zone.
   - Use a desktop browser window 1440 px wide.
@@ -6245,7 +6552,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: the ShopView home page in a desktop browser window 1440 px wide.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as user B, whose custom role has "Reports → Page Access" and nothing else, with "See Financial Data" off.
+  - Sign in as a user whose custom role has "Reports → Page Access" and nothing else, with "See Financial Data" off.
   - Make sure each of the six reports has open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open the ShopView home page.
@@ -6271,7 +6578,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as user B, whose custom role has "Reports → Page Access" and nothing else, with "See Financial Data" off.
+  - Sign in as a user whose custom role has "Reports → Page Access" and nothing else, with "See Financial Data" off.
   - Make sure A/R Summary and A/P Detail have open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -6294,10 +6601,9 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: the release is installed; Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) is open in a desktop browser window 1440 px wide.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Make sure that before the release was installed, you saved Inventory Value's PDF and CSV for an as-of date before the release (date A) with one location ticked, and copied a link to Inventory Value with that filter.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so one location can be ticked in the filter.
+  - Make sure that before the release was installed, you saved Inventory Value's PDF and CSV for an as-of date before the release with one location ticked, and copied a link to Inventory Value with that filter.
   - Use a desktop browser window 1440 px wide.
   - After the release is installed, open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -6321,10 +6627,9 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: the release is installed; Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) is open in a desktop browser window 1440 px wide.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Make sure that before the release was installed, you saved Sales By Customer's PDF and CSV for an as-of date before the release (date A) with one location ticked, and copied a link to Sales By Customer with that filter.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so one location can be ticked in the filter.
+  - Make sure that before the release was installed, you saved Sales By Customer's PDF and CSV for an as-of date before the release with one location ticked, and copied a link to Sales By Customer with that filter.
   - Use a desktop browser window 1440 px wide.
   - After the release is installed, open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -6348,10 +6653,9 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: the release is installed; Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) is open in a desktop browser window 1440 px wide.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Make sure that before the release was installed, you saved Work In Progress's PDF and CSV for an as-of date before the release (date A) with one location ticked, and copied a link to Work In Progress with that filter.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so one location can be ticked in the filter.
+  - Make sure that before the release was installed, you saved Work In Progress's PDF and CSV for an as-of date before the release with one location ticked, and copied a link to Work In Progress with that filter.
   - Use a desktop browser window 1440 px wide.
   - After the release is installed, open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -6375,7 +6679,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: the release is installed; Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a desktop browser window 1440 px wide.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure that before the release was installed, you noted the message Sales By Customer shows when its CSV export fails because the computer is offline.
   - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
   - Use a desktop browser window 1440 px wide.
@@ -6399,12 +6703,12 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: the release is installed; Work Orders is open at {Location-A} in a desktop browser window 1440 px wide.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, your current location and location B.
   - Make sure you are enrolled at both locations.
   - Have a work order, work order 1, made at location B, and a link to it copied from the address bar.
   - Use a desktop browser window 1440 px wide.
-  - After the release is installed, open Work Orders at location A.
+  - After the release is installed, open Work Orders at your current location.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Old steps: 1. Paste the link to {Work-order-1} into the address bar. | 2. Press Enter. | 3. Click "Cancel".
 - New steps: 1. Paste the link to work order 1 into the address bar. | 2. Press Enter. | 3. Click "Cancel".
@@ -6423,12 +6727,12 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Date-A} as the as-of date and {Customer-A} ticked.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a customer, customer A, with an unused credit memo A dated a day before the release (date A).
-  - Make sure that before the release was installed, you noted which A/R Detail bucket credit memo A was in with date A as the as-of date.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have a customer with an unused credit memo, credit memo A, dated a day before the release.
+  - Make sure that before the release was installed, you noted which A/R Detail bucket credit memo A was in with its own date as the as-of date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-  - Leave the report with date A as the as-of date and customer A ticked.
+  - Leave the report with credit memo A's date as the as-of date and its customer ticked.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Old steps: 1. Expand every bucket and find {Credit-memo-A}.
 - New steps: 1. Expand every bucket and find credit memo A.
@@ -6445,7 +6749,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) in a desktop browser window 1440 px wide.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the three A/R reports have open documents on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE).
@@ -6470,8 +6774,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, your current location and location B.
   - Make sure you are enrolled at both locations.
   - Make sure that before the release was installed, you took a screenshot of the open location switcher.
   - Use a desktop browser window 1440 px wide.
@@ -6494,7 +6798,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: the release is installed; the ShopView home page is open in a desktop browser window 1440 px wide.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure that before the release was installed, you clicked customer A's name on A/R Summary and saved the address of the A/R Collection page it opened, and did the same for vendor A on A/P Summary.
   - Make sure customer A had overdue invoices and vendor A unpaid bills on the day the addresses were saved.
   - Use a desktop browser window 1440 px wide.
@@ -6592,9 +6896,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: the release is installed; Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a desktop browser window 1440 px wide.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location filter shows and can be cleared.
   - Make sure that before the release was installed, you did the steps below on Sales By Customer and noted the Location chip and the page address after "Select all", whether the cursor stayed in the Customer menu's search box while you typed, and how the filter row looked at 900 px.
   - Use a desktop browser window 1440 px wide.
   - After the release is installed, open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu).
@@ -6621,9 +6924,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
   - Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -6651,10 +6953,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
   - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
@@ -6676,10 +6976,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -6701,10 +6999,9 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab, also in dark theme, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+  - Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a credit memo row, which must not overlap or be cut off.
   - Use a desktop browser window 1440 px wide, in dark theme at 100% zoom.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
   - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab, also in dark theme, for comparison.
@@ -6730,10 +7027,9 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1536 px wide, as opened from the Reports menu in light theme at 100% zoom.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+  - Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a credit memo row, which must not overlap or be cut off.
   - Use a desktop browser window 1536 px wide, in light theme at 100% zoom.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -6759,9 +7055,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
   - Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -6790,10 +7085,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
   - Leave the report with every group expanded (Expand all).
@@ -6816,10 +7109,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
   - Leave the report with every group expanded (Expand all).
@@ -6842,10 +7133,9 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab, also in dark theme, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+  - Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a credit memo row, which must not overlap or be cut off.
   - Use a desktop browser window 1440 px wide, in dark theme at 100% zoom.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
   - Leave the report with every group expanded (Expand all).
@@ -6872,10 +7162,9 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1536 px wide, as opened from the Reports menu in light theme at 100% zoom.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+  - Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a credit memo row, which must not overlap or be cut off.
   - Use a desktop browser window 1536 px wide, in light theme at 100% zoom.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -6901,9 +7190,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
   - Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -6932,10 +7220,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
   - Leave the report with every group expanded (Expand all).
@@ -6958,10 +7244,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
   - Leave the report with every group expanded (Expand all).
@@ -6984,10 +7268,9 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab, also in dark theme, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+  - Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a credit memo row, which must not overlap or be cut off.
   - Use a desktop browser window 1440 px wide, in dark theme at 100% zoom.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
   - Leave the report with every group expanded (Expand all).
@@ -7014,10 +7297,9 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1536 px wide, as opened from the Reports menu in light theme at 100% zoom.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+  - Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a credit memo row, which must not overlap or be cut off.
   - Use a desktop browser window 1536 px wide, in light theme at 100% zoom.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -7043,9 +7325,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
   - Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -7073,10 +7354,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
   - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
@@ -7098,10 +7377,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -7123,10 +7400,9 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab, also in dark theme, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+  - Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, which must not overlap or be cut off.
   - Use a desktop browser window 1440 px wide, in dark theme at 100% zoom.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
   - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab, also in dark theme, for comparison.
@@ -7152,10 +7428,9 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1536 px wide, as opened from the Reports menu in light theme at 100% zoom.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+  - Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, which must not overlap or be cut off.
   - Use a desktop browser window 1536 px wide, in light theme at 100% zoom.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -7181,9 +7456,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
   - Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -7212,10 +7486,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
   - Leave the report with every group expanded (Expand all).
@@ -7238,10 +7510,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
   - Leave the report with every group expanded (Expand all).
@@ -7264,10 +7534,9 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab, also in dark theme, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+  - Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, which must not overlap or be cut off.
   - Use a desktop browser window 1440 px wide, in dark theme at 100% zoom.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
   - Leave the report with every group expanded (Expand all).
@@ -7294,10 +7563,9 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1536 px wide, as opened from the Reports menu in light theme at 100% zoom.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+  - Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, which must not overlap or be cut off.
   - Use a desktop browser window 1536 px wide, in light theme at 100% zoom.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -7323,9 +7591,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
   - Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -7354,10 +7621,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
   - Leave the report with every group expanded (Expand all).
@@ -7380,10 +7645,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the report has open documents on today's date.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
   - Leave the report with every group expanded (Expand all).
@@ -7406,10 +7669,9 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab, also in dark theme, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+  - Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, which must not overlap or be cut off.
   - Use a desktop browser window 1440 px wide, in dark theme at 100% zoom.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
   - Leave the report with every group expanded (Expand all).
@@ -7436,10 +7698,9 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1536 px wide, as opened from the Reports menu in light theme at 100% zoom.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
-  - Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+  - Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, which must not overlap or be cut off.
   - Use a desktop browser window 1536 px wide, in light theme at 100% zoom.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -7494,7 +7755,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
   - Use a desktop browser window 1440 px wide.
@@ -7548,7 +7809,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
   - Use a desktop browser window 1440 px wide.
@@ -7602,7 +7863,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
   - Use a desktop browser window 1440 px wide.
@@ -7656,7 +7917,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
   - Use a desktop browser window 1440 px wide.
@@ -7710,7 +7971,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
   - Use a desktop browser window 1440 px wide.
@@ -7764,7 +8025,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents on today's date.
   - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
   - Use a desktop browser window 1440 px wide.
@@ -7787,7 +8048,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group collapsed.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents in several buckets on today's date, one with more lines than fit on the screen.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -7815,7 +8076,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group collapsed.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents in several customer groups on today's date, one with more lines than fit on the screen.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -7843,7 +8104,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group collapsed.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents in several buckets on today's date, one with more lines than fit on the screen.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -7871,7 +8132,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group collapsed.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has open documents in several vendor groups on today's date, one with more lines than fit on the screen.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -7900,9 +8161,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location menu lists two locations ("2 selected").
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
   - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
@@ -7927,9 +8187,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location menu lists two locations ("2 selected").
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
   - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
@@ -7954,7 +8213,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have a customer, customer A, with open invoices on today's date and a long name (more than 40 characters).
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -7980,8 +8239,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Inventory Value (Reports, then "Inventory Value" under PARTS in the left menu) is open in a second tab of the same window, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have a vendor, vendor A, with unpaid bills on today's date.
+  - Sign in as an Admin user (the "Admin" role).
+  - Make sure the report has unpaid bills on today's date.
   - Make sure the organization has more than 8 vendors (the Vendor menu shows its search box only when there are more than 8 vendors).
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -8003,7 +8262,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in this report at two locations, so the Location chip shows.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -8024,7 +8284,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in this report at two locations, so the Location chip shows.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -8046,7 +8307,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
   - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
@@ -8068,7 +8329,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
   - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
@@ -8091,9 +8352,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location filter shows and can be cleared.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
   - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
@@ -8118,7 +8378,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the organization has more than 2,000 open A/P lines.
   - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
@@ -8143,13 +8403,13 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with {Customer-A} ticked and its rows showing.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, your current location and location B.
   - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with an open work order invoice A made at location B.
+  - Have a customer with an open work order invoice A made at location B.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-  - Leave the report with customer A ticked and its rows showing.
+  - Leave the report with that customer ticked and its rows showing.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Old steps: 1. Click {Invoice-A}'s number. | 2. Compare the dialog with the one a work order link from another location shows today. | 3. Click "Cancel". | 4. Switch ShopView to dark theme. | 5. Click {Invoice-A}'s number again.
 - New steps: 1. Click invoice A's number. | 2. Compare the dialog with the one a work order link from another location shows today. | 3. Click "Cancel". | 4. Switch ShopView to dark theme. | 5. Click invoice A's number again.
@@ -8171,13 +8431,13 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with {Customer-A} ticked and its rows showing.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, your current location and location B.
   - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with an open part sale invoice A made at location B.
+  - Have a customer with an open part sale invoice A made at location B.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
-  - Leave the report with customer A ticked and its rows showing.
+  - Leave the report with that customer ticked and its rows showing.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Old steps: 1. Click {Invoice-A}'s number. | 2. Compare the dialog with the one a work order link from another location shows today. | 3. Click "Cancel". | 4. Switch ShopView to dark theme. | 5. Click {Invoice-A}'s number again.
 - New steps: 1. Click invoice A's number. | 2. Compare the dialog with the one a work order link from another location shows today. | 3. Click "Cancel". | 4. Switch ShopView to dark theme. | 5. Click invoice A's number again.
@@ -8198,7 +8458,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Work In Progress (Reports, then "Work In Progress" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
   - Open Work In Progress (Reports, then "Work In Progress" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
@@ -8222,7 +8482,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Work In Progress (Reports, then "Work In Progress" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
   - Open Work In Progress (Reports, then "Work In Progress" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
@@ -8246,7 +8506,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have a customer, customer A, with an overdue invoice, a phone number and a credit term.
   - Have a customer, customer B, with an overdue invoice and no phone.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
@@ -8269,7 +8529,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has customers with amounts in every bucket on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -8290,7 +8550,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the report has vendors with amounts in every bucket on today's date.
   - Use a desktop browser window 1440 px wide.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -8312,7 +8572,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Customer-A} ticked.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure your role has the "View and Manage AP/AR Data" switch on.
   - Have a customer, customer A, with an overdue invoice, a phone number and a credit term.
   - Use a desktop browser window 1440 px wide.
@@ -8335,9 +8595,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1280 px wide, as opened from the Reports menu, with every bucket expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
   - Use a desktop browser window 1280 px wide.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
   - Leave the report with every bucket expanded.
@@ -8358,9 +8617,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1280 px wide, as opened from the Reports menu, with every bucket expanded.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
   - Use a desktop browser window 1280 px wide.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
   - Leave the report with every bucket expanded.
@@ -8380,7 +8638,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 900 px wide, as opened from the Reports menu.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Use a desktop browser window 900 px wide.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -8403,9 +8661,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design picture "A/R Aging Summary opens A to Z" (ar-ap-p1-a-r-aging-summary-opens-a-to-z.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture.
   - Make sure the report lists customers at both locations on today's date, including at least one with a credit balance (a negative Total) and one with a long name.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -8434,9 +8691,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design picture "Click the Total header" (ar-ap-p1-click-the-total-header.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture.
   - Make sure the report lists customers at both locations on today's date, including at least one with a credit balance (a negative Total) and one with a long name.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -8460,9 +8716,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design picture "A/P Aging Detail opens by vendor name" (ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture.
   - Make sure the report has open bills in all five aging buckets on today's date.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -8488,7 +8743,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design picture "Export menu: PDF and CSV" (ar-ap-p2-export-menu-pdf-and-csv.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
   - Open the design picture "Export menu: PDF and CSV" (ar-ap-p2-export-menu-pdf-and-csv.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
@@ -8510,9 +8765,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design picture "A/P gets the same menu" (ar-ap-p2-a-p-gets-the-same-menu.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture.
   - Make sure the report lists vendors at both locations on today's date, one of them with documents at both.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -8538,7 +8792,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design picture "PDF over 2,000 rows is refused" (ar-ap-p2-pdf-over-2-000-rows-is-refused.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the organization has more than 2,000 open A/P lines on today's date.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -8563,7 +8817,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design picture "Expand all from the header" (ar-ap-p3-expand-all-from-the-header.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in this report at two locations, so the Location column shows.
   - Make sure your role has the "View and Manage AP/AR Data" switch on.
   - Make sure customer A, first in name order, has an overdue invoice, an unused credit memo, a phone number and a credit term.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
@@ -8589,7 +8844,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design picture "The customer row stays pinned" (ar-ap-p3-the-customer-row-stays-pinned.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure customer A and customer B are next to each other in name order, and each has more overdue invoices than fit on the screen.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -8614,7 +8869,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design pictures "Same on A/P Unpaid Invoices" (ar-ap-p3-same-on-a-p-unpaid-invoices.png) and "Vendor credits link" (ar-ap-p7-vendor-credits-link.png) are attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have a vendor, vendor A, with more unpaid bills than fit on the screen at your location, a long name, and an unused vendor credit A from a vendor return made at your location.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -8641,7 +8896,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design pictures "Info icon beside the title, light" (ar-ap-p6-info-icon-beside-the-title-light.png) and "Info icon beside the title, dark" (ar-ap-p6-info-icon-beside-the-title-dark.png) are attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in this report at two locations, so the Location chip shows.
   - Make sure your role has the "View and Manage AP/AR Data" switch on.
   - Make sure that at least ten customers have overdue invoices on today's date, each with a phone number and a credit term.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
@@ -8669,7 +8925,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design pictures "Info icon open, light" (ar-ap-p6-info-icon-open-light.png) and "Info icon open, dark" (ar-ap-p6-info-icon-open-dark.png) are attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
   - Open the design pictures "Info icon open, light" (ar-ap-p6-info-icon-open-light.png) and "Info icon open, dark" (ar-ap-p6-info-icon-open-dark.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
@@ -8694,8 +8950,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design pictures "Open Balance pinned, light" (ar-ap-p6-open-balance-pinned-light.png) and "Same, dark" (ar-ap-p6-same-dark-2.png) are attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations: your current location and your other location.
   - Make sure you are enrolled at both locations.
   - Make sure the "91 or more days past due" bucket has more lines than fit on the screen on today's date.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
@@ -8722,11 +8978,11 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design picture "A/P Unpaid Invoices at 1440: every column visible" (ar-ap-p6-a-p-unpaid-invoices-at-1440-every-column-visible.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations: your current location and your other location.
   - Make sure you are enrolled at both locations.
-  - Have a vendor, vendor A, with an unpaid bill at location B.
-  - Have a vendor, vendor B, with unpaid bills at location A.
+  - Have a vendor, vendor A, with an unpaid bill at your other location.
+  - Have a vendor, vendor B, with unpaid bills at your current location.
   - Make sure vendor A and vendor B both have long names.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -8755,12 +9011,12 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design picture "Links only where they can open" (ar-ap-p5-links-only-where-they-can-open.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations: your current location and your other location.
   - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with an open invoice made at location B, more than 90 days past due.
-  - Have a customer, customer B, with an unused credit memo at location A, more than 90 days past due.
-  - Have a customer, customer C, with an open invoice at location A, more than 90 days past due.
+  - Have a customer, customer A, with an open invoice made at your other location, more than 90 days past due.
+  - Have a customer, customer B, with an unused credit memo at your current location, more than 90 days past due.
+  - Have a customer, customer C, with an open invoice at your current location, more than 90 days past due.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
   - Leave the report with the "91 or more days past due" bucket expanded.
@@ -8786,13 +9042,13 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design pictures "Another location asks first" (ar-ap-p5-another-location-asks-first.png) and "Cancel stays on the report" (ar-ap-p5-cancel-stays-on-the-report.png) are attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, your current location and location B.
   - Make sure you are enrolled at both locations.
-  - Have a customer, customer A, with an open work order invoice A made at location B.
+  - Have a customer with an open work order invoice A made at location B.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-  - Leave the report with customer A ticked and every bucket expanded.
+  - Leave the report with that customer ticked and every bucket expanded.
   - Open the design pictures "Another location asks first" (ar-ap-p5-another-location-asks-first.png) and "Cancel stays on the report" (ar-ap-p5-cancel-stays-on-the-report.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 - Old steps: 1. Click {Invoice-A}'s number. | 2. Click "Cancel".
@@ -8812,8 +9068,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design picture "Opens on All locations" (ar-ap-p4-opens-on-all-locations.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture, and the location switcher names both.
   - Make sure you are enrolled at both locations.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -8890,9 +9146,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design picture "Cleared: No locations" (ar-ap-p4-cleared-no-locations.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
   - Open the design picture "Cleared: No locations" (ar-ap-p4-cleared-no-locations.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
@@ -8916,9 +9171,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design picture "Summaries show "Multiple"" (ar-ap-p4-summaries-show-multiple.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture.
   - Have a customer, customer A, with open invoices at both locations on today's date.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -8942,7 +9196,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design picture "Drill-down keeps the as-of date" (ar-ap-p4-drill-down-keeps-the-as-of-date.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure your role has the "Customers → View" permission and the "View and Manage AP/AR Data" switch on.
   - Have a customer, customer A, with open invoices on an earlier date, date A.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
@@ -8965,7 +9219,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design picture "Past due menu" (ar-ap-p7-past-due-menu.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
   - Open the design picture "Past due menu" (ar-ap-p7-past-due-menu.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
@@ -8988,9 +9242,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design picture "Past due ticked" (ar-ap-p7-past-due-ticked.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture.
   - Make sure customers have open invoices in every Past due range on today's date.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -9014,7 +9267,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design picture "The native Vendor menu" (ar-ap-p7-the-native-vendor-menu.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure the organization has more than 8 vendors (the Vendor menu shows its search box only when there are more than 8 vendors).
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -9038,7 +9291,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design picture "Two customers ticked" (ar-ap-p7-two-customers-ticked.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Have a customer, customer A, with open invoices on today's date.
   - Have a customer, customer B, with nothing open.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
@@ -9064,7 +9317,7 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design picture "Call list on A/R Collection" (ar-ap-p7-call-list-on-a-r-collection.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
+  - Sign in as an Admin user (the "Admin" role).
   - Make sure your role has the "View and Manage AP/AR Data" switch on.
   - Have a customer, customer A, with a long name, an overdue invoice, a phone number and a credit term.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
@@ -9087,9 +9340,8 @@ QA lead, 26 Oct 2026: his own pattern for a test case, *"Yes, permanent, all sui
   - The design pictures "Links only where they can open" (ar-ap-p5-links-only-where-they-can-open.png) and "Expand all from the header" (ar-ap-p3-expand-all-from-the-header.png) are attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
   - If any record above is missing, mark this test Blocked: "setup not done".
 - New preconditions:
-  - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-  - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-  - Make sure you are enrolled at both locations.
+  - Sign in as an Admin user (the "Admin" role).
+  - Have open documents in these reports at two locations, so the Location column shows.
   - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
   - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
   - Open the design pictures "Links only where they can open" (ar-ap-p5-links-only-where-they-can-open.png) and "Expand all from the header" (ar-ap-p3-expand-all-from-the-header.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.

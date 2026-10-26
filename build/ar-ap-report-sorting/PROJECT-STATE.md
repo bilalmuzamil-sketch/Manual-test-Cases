@@ -119,3 +119,10 @@
 - Proof: `pattern-format-2026-10-26/PASS-REPORT.md` (make_pass_report.py): byte identity below the blank line PASS 357/357, no fact lost PASS
   357/357; example values kept as facts where a result depends on them (S1-01 to S1-04 and S1-07 names, S2-23 due days, S5-38 and DATA-16/17
   amounts). Before-state: `pattern-format-2026-10-26/proposals-before.json`. Not written to TestRail (needs the QA lead's go-ahead).
+- Same day, relevance and independence pass (coordinator notes; QA lead: preconditions "must make sense and relate to the steps and expected
+  results", "if one test case fails that does not block the other test case"): pattern.relate() + pattern_layout (TWO_LOC reasons, EXACT,
+  PRE_ADD, hand corrections). Records the steps never name are unnamed ("a customer", "your current location"); unneeded two-location blocks,
+  long-name customers, second buckets and enrolment lines removed; reasons ("so ...") added where a record is needed but not named; 26 cases that
+  add up or change their records now create them "for this test"; D-33, D-34, D-56, D-59 gained the two-location data their results need.
+  Notes of S1-16, S3-17, S5-18 now use plain names. Permanent gate in build.py (relevance, no case key or C-id, changed/summed records created
+  for this test): 0 PROBLEM lines. Per-case list in pattern-format-2026-10-26/PASS-REPORT.md.

@@ -61,7 +61,7 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 ### SETUP-S1-01 — A/R Summary opens with customers in name order, A to Z
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have four customers with open invoices on today's date, named "10 Trucking" (customer A), "2 Trucking" (customer B), "A-1 Towing" (customer C) and "a1 towing" (customer D). Their names differ by a number, a dash or capitals.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -71,7 +71,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Four customers have open invoices on today's date: {Customer-A}, {Customer-B}, {Customer-C} and {Customer-D}. Their names start with the same word and then differ by a number, a dash or capitals, as in the example. For example: {Customer-A} is ZZAUTOTEST S1-01 10 Trucking, {Customer-B} is ZZAUTOTEST S1-01 2 Trucking, {Customer-C} is ZZAUTOTEST S1-01 A-1 Towing, {Customer-D} is ZZAUTOTEST S1-01 a1 towing.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Customer-D} = "customer D", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Customer-D} = "customer D", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S1-R1, S1-R2, S1-R7.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Summary: date only"), `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Aging Summary as it opens today"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -79,7 +79,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-S1-02 — A/P Summary opens with vendors in name order, A to Z
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have four vendors with open bills on today's date, named "10 Trucking" (vendor A), "2 Trucking" (vendor B), "A-1 Towing" (vendor C) and "a1 towing" (vendor D). Their names differ by a number, a dash or capitals.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -89,7 +89,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Four vendors have open bills on today's date: {Vendor-A}, {Vendor-B}, {Vendor-C} and {Vendor-D}. Their names start with the same word and then differ by a number, a dash or capitals, as in the example. For example: {Vendor-A} is ZZAUTOTEST S1-02 10 Trucking, {Vendor-B} is ZZAUTOTEST S1-02 2 Trucking, {Vendor-C} is ZZAUTOTEST S1-02 A-1 Towing, {Vendor-D} is ZZAUTOTEST S1-02 a1 towing.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C", {Vendor-D} = "vendor D". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C", {Vendor-D} = "vendor D". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL.
 Sources (verbatim text in section 9): S1-R1, S1-R2, S1-R7.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Summary: date only"), `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Aging Summary as it opens today"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -97,7 +97,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-S1-03 — A/R Summary sorts accented customer names with their base letter
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have six customers with open invoices on today's date, named "Eagle" (customer A), "Émile's" (customer B), "Emma" (customer C), "Fargo" (customer D), "Øster" (customer E) and "Ozone" (customer F). Customer B and customer E start with a capital accented letter.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -107,7 +107,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Six customers have open invoices on today's date: {Customer-A}, {Customer-B}, {Customer-C}, {Customer-D}, {Customer-E} and {Customer-F}. {Customer-B} and {Customer-E} start with a capital accented letter. For example: {Customer-A} is ZZAUTOTEST S1-03 Eagle, {Customer-B} is ZZAUTOTEST S1-03 Émile's, {Customer-C} is ZZAUTOTEST S1-03 Emma, {Customer-D} is ZZAUTOTEST S1-03 Fargo, {Customer-E} is ZZAUTOTEST S1-03 Øster and {Customer-F} is ZZAUTOTEST S1-03 Ozone.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Customer-D} = "customer D", {Customer-E} = "customer E", {Customer-F} = "customer F", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Customer-D} = "customer D", {Customer-E} = "customer E", {Customer-F} = "customer F", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S1-R1, S1-R3.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Summary: date only"), `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Aging Summary as it opens today"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -115,7 +115,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-S1-04 — A/P Summary sorts lower-case accented and joined letters as plain letters
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have six vendors with open bills on today's date, named "Ackley" (vendor A), "æble" (vendor B), "Afton" (vendor C), "Strand" (vendor D), "Straße" (vendor E) and "Strasser" (vendor F). Vendor B has "æ" and vendor E has "ß" in its name.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -125,7 +125,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Six vendors have open bills on today's date: {Vendor-A}, {Vendor-B}, {Vendor-C}, {Vendor-D}, {Vendor-E} and {Vendor-F}. {Vendor-B} has "æ" and {Vendor-E} has "ß" in its name. For example: {Vendor-A} is ZZAUTOTEST S1-04 Ackley, {Vendor-B} is ZZAUTOTEST S1-04 æble, {Vendor-C} is ZZAUTOTEST S1-04 Afton, {Vendor-D} is ZZAUTOTEST S1-04 Strand, {Vendor-E} is ZZAUTOTEST S1-04 Straße and {Vendor-F} is ZZAUTOTEST S1-04 Strasser.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C", {Vendor-D} = "vendor D", {Vendor-E} = "vendor E", {Vendor-F} = "vendor F". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C", {Vendor-D} = "vendor D", {Vendor-E} = "vendor E", {Vendor-F} = "vendor F". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL.
 Sources (verbatim text in section 9): S1-R1, S1-R3.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Summary: date only"), `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Aging Summary as it opens today"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -133,7 +133,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-S1-05 — Two customer names that differ only in capitals keep one order everywhere
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have two customers with open invoices on today's date, whose names differ only in capitals: customer A and customer B.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -143,7 +143,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Two customers have open invoices on today's date and their names differ only in capitals: {Customer-A} and {Customer-B}. For example: {Customer-A} is ZZAUTOTEST S1-05 Ace Towing and {Customer-B} is ZZAUTOTEST S1-05 ACE TOWING.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S1-R2, S1-R4, S3-R2.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -151,7 +151,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S1-06 — Two vendor names that differ only in capitals keep one order everywhere
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have two vendors with open bills on today's date, whose names differ only in capitals: vendor A and vendor B.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -161,7 +161,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Two vendors have open bills on today's date and their names differ only in capitals: {Vendor-A} and {Vendor-B}. For example: {Vendor-A} is ZZAUTOTEST S1-06 Ace Towing and {Vendor-B} is ZZAUTOTEST S1-06 ACE TOWING.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL.
 Sources (verbatim text in section 9): S1-R2, S1-R4, S3-R2.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -169,7 +169,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S1-07 — A/R Summary lists Emile's Towing before Émile's Towing
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have two customers with open invoices on today's date whose names differ only by an accent: customer A, named "Emile's Towing", without it, and customer B, named "Émile's Towing", with it.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -179,7 +179,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Two customers have open invoices on today's date and their names differ only by an accent: {Customer-A} without it and {Customer-B} with it. For example: {Customer-A} is ZZAUTOTEST S1-07 Emile's Towing and {Customer-B} is ZZAUTOTEST S1-07 Émile's Towing.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S1-R3, S1-R4; Tech plan §3 D4.
 Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -187,7 +187,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S1-08 — A/R Detail lists the five buckets in fixed order and rows by name
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents in all five aging buckets on today's date.
 - Make sure that in the "1-30 days past due" bucket, customer A has one open invoice, invoice A, and customer B has two, invoice B and invoice C. Customer B's name comes first alphabetically, and invoice B's number is smaller than invoice C's but has fewer digits.
 - Use a desktop browser window 1440 px wide.
@@ -199,7 +199,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - In the "1-30 days past due" bucket, {Customer-A} has one open invoice, {Invoice-A}, and {Customer-B} has two, {Invoice-B} and {Invoice-C}. {Customer-B}'s name comes first alphabetically, and {Invoice-B}'s number is smaller than {Invoice-C}'s but has fewer digits. For example: {Customer-A} is ZZAUTOTEST S1-08 Baker and {Customer-B} is ZZAUTOTEST S1-08 Abbott; {Invoice-B} is S1-99 and {Invoice-C} is S1-100 (the app assigns the real numbers).
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Invoice-A} = "invoice A", {Invoice-B} = "invoice B", {Invoice-C} = "invoice C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Invoice-A} = "invoice A", {Invoice-B} = "invoice B", {Invoice-C} = "invoice C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-AGE.
 Sources (verbatim text in section 9): S1-R5, S1-R7, S2-R4.
 Design pictures: `design-2026-10-22/ar-ap-p1-a-p-aging-detail-as-it-opens-today.png` (I02, "A/P Aging Detail as it opens today"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -207,7 +207,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-p-aging-detail-as-it-opens-today.
 ### SETUP-S1-09 — A/P Detail lists the five buckets in fixed order and rows by name
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents in all five aging buckets on today's date.
 - Make sure that in the "1-30 days past due" bucket, vendor A has one open bill, bill A, and vendor B has two, bill B and bill C. Vendor B's name comes first alphabetically, and bill B's number is smaller than bill C's but has fewer digits.
 - Use a desktop browser window 1440 px wide.
@@ -219,7 +219,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - In the "1-30 days past due" bucket, {Vendor-A} has one open bill, {Bill-A}, and {Vendor-B} has two, {Bill-B} and {Bill-C}. {Vendor-B}'s name comes first alphabetically, and {Bill-B}'s number is smaller than {Bill-C}'s but has fewer digits. For example: {Vendor-A} is ZZAUTOTEST S1-09 Baker and {Vendor-B} is ZZAUTOTEST S1-09 Abbott; {Bill-B} is S1-99 and {Bill-C} is S1-100 (the app assigns the real numbers).
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Bill-A} = "bill A", {Bill-B} = "bill B", {Bill-C} = "bill C", {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Bill-A} = "bill A", {Bill-B} = "bill B", {Bill-C} = "bill C", {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL, P-AGE.
 Sources (verbatim text in section 9): S1-R5, S1-R7, S2-R4, WC-2.
 Design pictures: `design-2026-10-22/ar-ap-p1-a-p-aging-detail-as-it-opens-today.png` (I02, "A/P Aging Detail as it opens today"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -227,7 +227,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-p-aging-detail-as-it-opens-today.
 ### SETUP-S1-10 — A/R Collection groups customers by name, rows oldest date first
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have two customers with overdue invoices on today's date: customer A and customer B; customer B's name comes first alphabetically.
 - Make sure customer B has three overdue invoices: invoice A with the oldest date, and invoice B and invoice C with the same later date. Invoice B's number is smaller than invoice C's but has fewer digits, and invoice C was invoiced earlier that day than invoice B.
 - Use a desktop browser window 1440 px wide.
@@ -239,7 +239,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - {Customer-B} has three overdue invoices: {Invoice-A} with the oldest date, and {Invoice-B} and {Invoice-C} with the same later date. {Invoice-B}'s number is smaller than {Invoice-C}'s but has fewer digits, and {Invoice-C} was invoiced earlier that day than {Invoice-B}. For example: {Invoice-A} is dated 40 days ago; {Invoice-B} (S1-99) and {Invoice-C} (S1-100) are dated 35 days ago, {Invoice-C} invoiced in the morning and {Invoice-B} in the afternoon.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Invoice-A} = "invoice A", {Invoice-B} = "invoice B", {Invoice-C} = "invoice C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Invoice-A} = "invoice A", {Invoice-B} = "invoice B", {Invoice-C} = "invoice C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-AGE.
 Sources (verbatim text in section 9): S1-R6, S1-R7, S2-R4.
 Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -247,7 +247,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S1-11 — A/P Unpaid Invoices groups vendors by name, rows oldest date first
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have two vendors with overdue bills on today's date: vendor A and vendor B; vendor B's name comes first alphabetically.
 - Make sure vendor B has three overdue bills: bill A with the oldest date, and bill B and bill C with the same later date. Bill B's number is smaller than bill C's but has fewer digits, and bill C was entered earlier that day than bill B.
 - Use a desktop browser window 1440 px wide.
@@ -259,7 +259,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - {Vendor-B} has three overdue bills: {Bill-A} with the oldest date, and {Bill-B} and {Bill-C} with the same later date. {Bill-B}'s number is smaller than {Bill-C}'s but has fewer digits, and {Bill-C} was entered earlier that day than {Bill-B}. For example: {Bill-A} is dated 40 days ago; {Bill-B} (S1-99) and {Bill-C} (S1-100) are dated 35 days ago, {Bill-C} entered in the morning and {Bill-B} in the afternoon.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Bill-A} = "bill A", {Bill-B} = "bill B", {Bill-C} = "bill C", {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Bill-A} = "bill A", {Bill-B} = "bill B", {Bill-C} = "bill C", {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL, P-AGE.
 Sources (verbatim text in section 9): S1-R6, S1-R7, S2-R4.
 Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -267,7 +267,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S1-12 — Each A/R report opens with its opening column marked as sorted
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/R Summary, A/R Detail, A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure each of the three A/R reports has open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE).
@@ -277,7 +277,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Each of the three A/R reports has open documents on today's date.
 - Starting screen: Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) is open in a desktop browser window 1440 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S1-R7.
 Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -285,7 +285,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S1-13 — Each A/P report opens with its opening column marked as sorted
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/P Summary, A/P Detail, A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure each of the three A/P reports has open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE).
@@ -295,7 +295,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Each of the three A/P reports has open documents on today's date.
 - Starting screen: Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) is open in a desktop browser window 1440 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-PAY.
 Sources (verbatim text in section 9): S1-R7.
 Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -303,7 +303,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S1-14 — Without Reports page access the six reports are not available
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as user B, whose custom role has every permission except "Reports → Page Access".
+- Sign in as a user whose custom role has every permission except "Reports → Page Access".
 - Make sure you have a link to A/R Summary and a link to A/P Detail, copied earlier from the address bar by an Admin user.
 - Use a desktop browser window 1440 px wide.
 - Open the ShopView home page.
@@ -313,7 +313,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You have a link to A/R Summary and a link to A/P Detail, copied earlier from the address bar by an Admin user.
 - Starting screen: the ShopView home page in a desktop browser window 1440 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Role-A} = "role A", {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Role-A} = "role A", {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-ROLE.
 Sources (verbatim text in section 9): KD-PERM, S1-N1.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -321,7 +321,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S1-15 — A customer with nothing open on the as-of date is not listed
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have a customer, customer A, with no open documents: its only invoice is paid in full.
 - Have a customer, customer B, with one open invoice, created today, and nothing before today.
 - Use a desktop browser window 1440 px wide.
@@ -333,7 +333,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-B} has one open invoice, created today, and nothing before today. For example: {Customer-B} is ZZAUTOTEST S1-15 New Today.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-PAY.
 Sources (verbatim text in section 9): S1-E1, S1-R1.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Summary: date only"), `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Aging Summary as it opens today"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -341,7 +341,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-S1-16 — A/R Summary sorts names that start with a punctuation mark by character
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have four customers with open invoices on today's date: customer A, customer B, customer C and customer D. After the same first words, customer A's name goes on with "#", customer B's with "-", customer C's with a digit and customer D's with "@".
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -351,7 +351,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Four customers have open invoices on today's date: {Customer-A}, {Customer-B}, {Customer-C} and {Customer-D}. After the same first words, {Customer-A}'s name goes on with "#", {Customer-B}'s with "-", {Customer-C}'s with a digit and {Customer-D}'s with "@". For example: {Customer-A} is ZZAUTOTEST S1-16 #1 Diesel, {Customer-B} is ZZAUTOTEST S1-16 -1 Diesel, {Customer-C} is ZZAUTOTEST S1-16 10 Trucking and {Customer-D} is ZZAUTOTEST S1-16 @Home Towing.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Customer-D} = "customer D", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Customer-D} = "customer D", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S1-R2; Tech plan §9 Performance.
 Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -359,7 +359,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S2-01 — A/R Summary: the customer name header reverses on its first click
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have three customers with open invoices on today's date: customer A, customer B and customer C; in name order they read customer A, customer B, customer C.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -369,7 +369,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Three customers have open invoices on today's date: {Customer-A}, {Customer-B} and {Customer-C}; in name order they read {Customer-A}, {Customer-B}, {Customer-C}. For example: {Customer-A} is ZZAUTOTEST S2-01 Alder, {Customer-B} is ZZAUTOTEST S2-01 Birch and {Customer-C} is ZZAUTOTEST S2-01 Cedar.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S2-R1, S2-R2, S2-R3.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -390,7 +390,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Three customers have open invoices on today's date: {Customer-A} only at {Location-B}, {Customer-B} at both locations and {Customer-C} only at {Location-A}. Both location names come after the word "Multiple" in A to Z order. For example: {Customer-A} is ZZAUTOTEST S2-01 Alder, {Customer-B} is ZZAUTOTEST S2-01 Birch and {Customer-C} is ZZAUTOTEST S2-01 Cedar.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S2-R1, S2-R2, S6-R4, S6-R5.
 Design pictures: `design-2026-10-22/ar-ap-p4-summaries-show-multiple.png` (I36, "Summaries show "Multiple""), `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -398,8 +398,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-summaries-show-multiple.png` (I36, 
 ### SETUP-S2-02 — A/R Summary: Current, 1-30 Days and 31-60 Days sort largest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have three customers, customer A, customer B and customer C, with open invoices on today's date with these open amounts per column:
+- Sign in as an Admin user (the "Admin" role).
+- Have three new customers (created for this test), customer A, customer B and customer C, with open invoices on today's date with these open amounts per column:
 - Customer A: Current $100.00, 1-30 Days $200.00, 31-60 Days $300.00, 61-90 Days $250.00, 91 And Over $350.00, Total $1,200.00.
 - Customer B: Current $300.00, 1-30 Days $100.00, 31-60 Days $200.00, 61-90 Days $350.00, 91 And Over $150.00, Total $1,100.00.
 - Customer C: Current $200.00, 1-30 Days $300.00, 31-60 Days $100.00, 61-90 Days $150.00, 91 And Over $250.00, Total $1,000.00.
@@ -411,7 +411,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Three customers, {Customer-A}, {Customer-B} and {Customer-C}, have open invoices on today's date with these open amounts per column: {Customer-A}: Current $100.00, 1-30 Days $200.00, 31-60 Days $300.00, 61-90 Days $250.00, 91 And Over $350.00, Total $1,200.00; {Customer-B}: Current $300.00, 1-30 Days $100.00, 31-60 Days $200.00, 61-90 Days $350.00, 91 And Over $150.00, Total $1,100.00; {Customer-C}: Current $200.00, 1-30 Days $300.00, 31-60 Days $100.00, 61-90 Days $150.00, 91 And Over $250.00, Total $1,000.00. For example: {Customer-A} is ZZAUTOTEST S2-02 Alder, {Customer-B} is ZZAUTOTEST S2-02 Birch and {Customer-C} is ZZAUTOTEST S2-02 Cedar.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S2-R1, S2-R2.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -419,8 +419,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-03 — A/R Summary: 61-90 Days, 91 And Over and Total sort largest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have three customers, customer A, customer B and customer C, with open invoices on today's date with these open amounts per column:
+- Sign in as an Admin user (the "Admin" role).
+- Have three new customers (created for this test), customer A, customer B and customer C, with open invoices on today's date with these open amounts per column:
 - Customer A: Current $100.00, 1-30 Days $200.00, 31-60 Days $300.00, 61-90 Days $250.00, 91 And Over $350.00, Total $1,200.00.
 - Customer B: Current $300.00, 1-30 Days $100.00, 31-60 Days $200.00, 61-90 Days $350.00, 91 And Over $150.00, Total $1,100.00.
 - Customer C: Current $200.00, 1-30 Days $300.00, 31-60 Days $100.00, 61-90 Days $150.00, 91 And Over $250.00, Total $1,000.00.
@@ -432,7 +432,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Three customers, {Customer-A}, {Customer-B} and {Customer-C}, have open invoices on today's date with these open amounts per column: {Customer-A}: Current $100.00, 1-30 Days $200.00, 31-60 Days $300.00, 61-90 Days $250.00, 91 And Over $350.00, Total $1,200.00; {Customer-B}: Current $300.00, 1-30 Days $100.00, 31-60 Days $200.00, 61-90 Days $350.00, 91 And Over $150.00, Total $1,100.00; {Customer-C}: Current $200.00, 1-30 Days $300.00, 31-60 Days $100.00, 61-90 Days $150.00, 91 And Over $250.00, Total $1,000.00. For example: {Customer-A} is ZZAUTOTEST S2-03 Alder, {Customer-B} is ZZAUTOTEST S2-03 Birch and {Customer-C} is ZZAUTOTEST S2-03 Cedar.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S2-R1, S2-R2.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -440,7 +440,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-04 — A/P Summary: the vendor name header reverses on its first click
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have three vendors with open bills on today's date: vendor A, vendor B and vendor C; in name order they read vendor A, vendor B, vendor C.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -450,7 +450,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Three vendors have open bills on today's date: {Vendor-A}, {Vendor-B} and {Vendor-C}; in name order they read {Vendor-A}, {Vendor-B}, {Vendor-C}. For example: {Vendor-A} is ZZAUTOTEST S2-04 Alder, {Vendor-B} is ZZAUTOTEST S2-04 Birch and {Vendor-C} is ZZAUTOTEST S2-04 Cedar.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL.
 Sources (verbatim text in section 9): S2-R1, S2-R2, S2-R3.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -471,7 +471,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Three vendors have open bills on today's date: {Vendor-A} only at {Location-B}, {Vendor-B} at both locations and {Vendor-C} only at {Location-A}. Both location names come after the word "Multiple" in A to Z order. For example: {Vendor-A} is ZZAUTOTEST S2-04 Alder, {Vendor-B} is ZZAUTOTEST S2-04 Birch and {Vendor-C} is ZZAUTOTEST S2-04 Cedar.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL.
 Sources (verbatim text in section 9): S2-R1, S2-R2, S6-R4, S6-R5.
 Design pictures: `design-2026-10-22/ar-ap-p4-summaries-show-multiple.png` (I36, "Summaries show "Multiple""), `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -479,8 +479,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-summaries-show-multiple.png` (I36, 
 ### SETUP-S2-05 — A/P Summary: Current, 1-30 Days and 31-60 Days sort largest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have three vendors, vendor A, vendor B and vendor C, with open bills on today's date with these open amounts per column:
+- Sign in as an Admin user (the "Admin" role).
+- Have three new vendors (created for this test), vendor A, vendor B and vendor C, with open bills on today's date with these open amounts per column:
 - Vendor A: Current $100.00, 1-30 Days $200.00, 31-60 Days $300.00, 61-90 Days $250.00, 91 And Over $350.00, Total $1,200.00.
 - Vendor B: Current $300.00, 1-30 Days $100.00, 31-60 Days $200.00, 61-90 Days $350.00, 91 And Over $150.00, Total $1,100.00.
 - Vendor C: Current $200.00, 1-30 Days $300.00, 31-60 Days $100.00, 61-90 Days $150.00, 91 And Over $250.00, Total $1,000.00.
@@ -492,7 +492,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Three vendors, {Vendor-A}, {Vendor-B} and {Vendor-C}, have open bills on today's date with these open amounts per column: {Vendor-A}: Current $100.00, 1-30 Days $200.00, 31-60 Days $300.00, 61-90 Days $250.00, 91 And Over $350.00, Total $1,200.00; {Vendor-B}: Current $300.00, 1-30 Days $100.00, 31-60 Days $200.00, 61-90 Days $350.00, 91 And Over $150.00, Total $1,100.00; {Vendor-C}: Current $200.00, 1-30 Days $300.00, 31-60 Days $100.00, 61-90 Days $150.00, 91 And Over $250.00, Total $1,000.00. For example: {Vendor-A} is ZZAUTOTEST S2-05 Alder, {Vendor-B} is ZZAUTOTEST S2-05 Birch and {Vendor-C} is ZZAUTOTEST S2-05 Cedar.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL.
 Sources (verbatim text in section 9): S2-R1, S2-R2.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -500,8 +500,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-06 — A/P Summary: 61-90 Days, 91 And Over and Total sort largest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have three vendors, vendor A, vendor B and vendor C, with open bills on today's date with these open amounts per column:
+- Sign in as an Admin user (the "Admin" role).
+- Have three new vendors (created for this test), vendor A, vendor B and vendor C, with open bills on today's date with these open amounts per column:
 - Vendor A: Current $100.00, 1-30 Days $200.00, 31-60 Days $300.00, 61-90 Days $250.00, 91 And Over $350.00, Total $1,200.00.
 - Vendor B: Current $300.00, 1-30 Days $100.00, 31-60 Days $200.00, 61-90 Days $350.00, 91 And Over $150.00, Total $1,100.00.
 - Vendor C: Current $200.00, 1-30 Days $300.00, 31-60 Days $100.00, 61-90 Days $150.00, 91 And Over $250.00, Total $1,000.00.
@@ -513,7 +513,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Three vendors, {Vendor-A}, {Vendor-B} and {Vendor-C}, have open bills on today's date with these open amounts per column: {Vendor-A}: Current $100.00, 1-30 Days $200.00, 31-60 Days $300.00, 61-90 Days $250.00, 91 And Over $350.00, Total $1,200.00; {Vendor-B}: Current $300.00, 1-30 Days $100.00, 31-60 Days $200.00, 61-90 Days $350.00, 91 And Over $150.00, Total $1,100.00; {Vendor-C}: Current $200.00, 1-30 Days $300.00, 31-60 Days $100.00, 61-90 Days $150.00, 91 And Over $250.00, Total $1,000.00. For example: {Vendor-A} is ZZAUTOTEST S2-06 Alder, {Vendor-B} is ZZAUTOTEST S2-06 Birch and {Vendor-C} is ZZAUTOTEST S2-06 Cedar.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL.
 Sources (verbatim text in section 9): S2-R1, S2-R2.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -524,7 +524,7 @@ Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 20
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
 - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
 - Make sure you are enrolled at both locations.
-- Make sure that in the "1-30 days past due" bucket there are three open documents: document A for customer C at location B, and document B for customer A and document C for customer B at location A; one of the three is a different transaction type from the others.
+- Make sure that in the "1-30 days past due" bucket there are three open documents: one at location B and two at location A; one of the three is a different transaction type from the others.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
 - Leave the report with the "1-30 days past due" bucket expanded.
@@ -535,7 +535,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - In the "1-30 days past due" bucket there are three open documents: {Document-A} for {Customer-C} at {Location-B}, and {Document-B} for {Customer-A} and {Document-C} for {Customer-B} at {Location-A}; one of the three is a different transaction type from the others. For example: {Customer-A} is ZZAUTOTEST S2-07 Alder, {Customer-B} is ZZAUTOTEST S2-07 Birch and {Customer-C} is ZZAUTOTEST S2-07 Cedar; {Document-A} and {Document-B} are invoices and {Document-C} is a credit memo.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-CM, P-AGE.
 Sources (verbatim text in section 9): S2-R1, S2-R2, S2-R5.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -543,7 +543,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-07b — A/R Detail: the Customer Full Name header reverses on its first click
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure that in the "1-30 days past due" bucket there are three open documents: document A for customer C, document B for customer A and document C for customer B; in name order the customers read customer A, customer B, customer C.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -554,7 +554,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - In the "1-30 days past due" bucket there are three open documents: {Document-A} for {Customer-C}, {Document-B} for {Customer-A} and {Document-C} for {Customer-B}; in name order the customers read {Customer-A}, {Customer-B}, {Customer-C}. For example: {Customer-A} is ZZAUTOTEST S2-07 Alder, {Customer-B} is ZZAUTOTEST S2-07 Birch and {Customer-C} is ZZAUTOTEST S2-07 Cedar.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-AGE.
 Sources (verbatim text in section 9): S2-R1, S2-R2, S2-R3, S2-R5.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -562,8 +562,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-08 — A/R Detail: Date and Due Date sort oldest first, then newest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Make sure that in the "1-30 days past due" bucket there are three open invoices, document A, document B and document C for customer C, customer A and customer B in that order (in name order these customers read A, B, C):
+- Sign in as an Admin user (the "Admin" role).
+- Make sure that in the "1-30 days past due" bucket there are three open invoices, document A, document B and document C, each for a different customer, so the rows sort across customers:
 - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
 - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
 - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
@@ -576,7 +576,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - In the "1-30 days past due" bucket there are three open invoices, {Document-A}, {Document-B} and {Document-C} for {Customer-C}, {Customer-A} and {Customer-B} in that order (in name order these customers read A, B, C): {Document-A} is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00; {Document-B} is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00; {Document-C} is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00. For example: {Customer-A} is ZZAUTOTEST S2-08 Alder, {Customer-B} is ZZAUTOTEST S2-08 Birch, {Customer-C} is ZZAUTOTEST S2-08 Cedar; {Document-A} is S1-101, {Document-B} is S1-99 and {Document-C} is S1-100 (the app assigns the real numbers; the dates and amounts are the ones that matter).
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-AGE.
 Sources (verbatim text in section 9): S2-R1, S2-R2, S2-R5.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -584,8 +584,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-09 — A/R Detail: money headers sort largest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Make sure that in the "1-30 days past due" bucket there are three open invoices, document A, document B and document C for customer C, customer A and customer B in that order (in name order these customers read A, B, C):
+- Sign in as an Admin user (the "Admin" role).
+- Make sure that in the "1-30 days past due" bucket there are three open invoices, document A, document B and document C, each for a different customer, so the rows sort across customers:
 - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
 - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
 - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
@@ -598,7 +598,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - In the "1-30 days past due" bucket there are three open invoices, {Document-A}, {Document-B} and {Document-C} for {Customer-C}, {Customer-A} and {Customer-B} in that order (in name order these customers read A, B, C): {Document-A} is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00; {Document-B} is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00; {Document-C} is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00. For example: {Customer-A} is ZZAUTOTEST S2-09 Alder, {Customer-B} is ZZAUTOTEST S2-09 Birch, {Customer-C} is ZZAUTOTEST S2-09 Cedar; {Document-A} is S1-101, {Document-B} is S1-99 and {Document-C} is S1-100 (the app assigns the real numbers; the dates and amounts are the ones that matter).
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-AGE.
 Sources (verbatim text in section 9): S2-R1, S2-R2, S2-R5.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -606,7 +606,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-10 — A/R Detail: ID sorts by number value, and ties go by number
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure that in the "1-30 days past due" bucket there are three open invoices with the same due date, document A, document B and document C, whose numbers have different digit counts, so that in number order they read document A, document B, document C but in letter-by-letter order document B, document C, document A.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -617,7 +617,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - In the "1-30 days past due" bucket there are three open invoices with the same due date, {Document-A}, {Document-B} and {Document-C}, whose numbers have different digit counts, so that in number order they read {Document-A}, {Document-B}, {Document-C} but in letter-by-letter order {Document-B}, {Document-C}, {Document-A}. For example: {Document-A} is S1-99, {Document-B} is S1-100 and {Document-C} is S1-101 (the app assigns the real numbers).
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-AGE.
 Sources (verbatim text in section 9): S2-R1, S2-R2, S2-R4.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -629,7 +629,7 @@ Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 20
 - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
 - Make sure you are enrolled at both locations.
 - Have a customer, customer A, with overdue invoices on today's date.
-- Make sure that in customer A's group there are three open documents: document A at location B, and document B and document C at location A; one of the three is a different transaction type from the others.
+- Make sure that in customer A's group there are three open documents: one at location B and two at location A; one of the three is a different transaction type from the others.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
 - Leave the report with customer A's group expanded.
@@ -641,7 +641,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - In {Customer-A}'s group there are three open documents: {Document-A} at {Location-B}, and {Document-B} and {Document-C} at {Location-A}; one of the three is a different transaction type from the others. For example: {Document-A} and {Document-B} are invoices and {Document-C} is a credit memo.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-CM.
 Sources (verbatim text in section 9): S2-R1, S2-R2, S2-R5.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -649,15 +649,15 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-12 — A/R Collection: the Date header reverses on its first click
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a customer, customer A, with overdue invoices on today's date.
-- Make sure that in customer A's group there are three open invoices, document A, document B and document C:
+- Sign in as an Admin user (the "Admin" role).
+- Have a customer with overdue invoices on today's date.
+- Make sure that in that customer's group there are three open invoices, document A, document B and document C:
 - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
 - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
 - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
-- Leave the report with customer A's group expanded.
+- Leave the report with that customer's group expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -665,7 +665,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - In {Customer-A}'s group there are three open invoices, {Document-A}, {Document-B} and {Document-C}: {Document-A} is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00; {Document-B} is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00; {Document-C} is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00. For example: {Document-A} is S1-101, {Document-B} is S1-99 and {Document-C} is S1-100 (the app assigns the real numbers; the dates and amounts are the ones that matter).
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-AGE.
 Sources (verbatim text in section 9): S1-R6, S2-R1, S2-R2, S2-R3, S2-R5.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -673,15 +673,15 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-12b — A/R Collection: Due Date sorts oldest first, then newest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a customer, customer A, with overdue invoices on today's date.
-- Make sure that in customer A's group there are three open invoices, document A, document B and document C:
+- Sign in as an Admin user (the "Admin" role).
+- Have a customer with overdue invoices on today's date.
+- Make sure that in that customer's group there are three open invoices, document A, document B and document C:
 - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
 - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
 - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
-- Leave the report with customer A's group expanded.
+- Leave the report with that customer's group expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -689,7 +689,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - In {Customer-A}'s group there are three open invoices, {Document-A}, {Document-B} and {Document-C}: {Document-A} is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00; {Document-B} is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00; {Document-C} is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00. For example: {Document-A} is S1-101, {Document-B} is S1-99 and {Document-C} is S1-100 (the app assigns the real numbers; the dates and amounts are the ones that matter).
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-AGE.
 Sources (verbatim text in section 9): S2-R1, S2-R2, S2-R5.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -697,15 +697,15 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-13 — A/R Collection: money and Past Due headers sort largest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a customer, customer A, with overdue invoices on today's date.
-- Make sure that in customer A's group there are three open invoices, document A, document B and document C:
+- Sign in as an Admin user (the "Admin" role).
+- Have a customer with overdue invoices on today's date.
+- Make sure that in that customer's group there are three open invoices, document A, document B and document C:
 - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
 - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
 - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
-- Leave the report with customer A's group expanded.
+- Leave the report with that customer's group expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -713,7 +713,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - In {Customer-A}'s group there are three open invoices, {Document-A}, {Document-B} and {Document-C}: {Document-A} is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00; {Document-B} is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00; {Document-C} is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00. For example: {Document-A} is S1-101, {Document-B} is S1-99 and {Document-C} is S1-100 (the app assigns the real numbers; the dates and amounts are the ones that matter).
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-AGE.
 Sources (verbatim text in section 9): S2-R1, S2-R2, S2-R5.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -721,12 +721,12 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-14 — A/R Collection: ID sorts by number value, and ties go by number
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a customer, customer A, with overdue invoices on today's date.
-- Make sure that in customer A's group there are three open invoices with the same due date, document A, document B and document C, whose numbers have different digit counts, so that in number order they read document A, document B, document C but in letter-by-letter order document B, document C, document A.
+- Sign in as an Admin user (the "Admin" role).
+- Have a customer with overdue invoices on today's date.
+- Make sure that in that customer's group there are three open invoices with the same due date, document A, document B and document C, whose numbers have different digit counts, so that in number order they read document A, document B, document C but in letter-by-letter order document B, document C, document A.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
-- Leave the report with customer A's group expanded.
+- Leave the report with that customer's group expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -734,7 +734,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - In {Customer-A}'s group there are three open invoices with the same due date, {Document-A}, {Document-B} and {Document-C}, whose numbers have different digit counts, so that in number order they read {Document-A}, {Document-B}, {Document-C} but in letter-by-letter order {Document-B}, {Document-C}, {Document-A}. For example: {Document-A} is S1-99, {Document-B} is S1-100 and {Document-C} is S1-101 (the app assigns the real numbers).
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S2-R1, S2-R2, S2-R4.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -745,7 +745,7 @@ Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 20
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
 - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
 - Make sure you are enrolled at both locations.
-- Make sure that in the "1-30 days past due" bucket there are three open documents: document A for vendor C at location B, and document B for vendor A and document C for vendor B at location A; one of the three is a different transaction type from the others.
+- Make sure that in the "1-30 days past due" bucket there are three open documents: one at location B and two at location A; one of the three is a different transaction type from the others.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
 - Leave the report with the "1-30 days past due" bucket expanded.
@@ -756,7 +756,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - In the "1-30 days past due" bucket there are three open documents: {Document-A} for {Vendor-C} at {Location-B}, and {Document-B} for {Vendor-A} and {Document-C} for {Vendor-B} at {Location-A}; one of the three is a different transaction type from the others. For example: {Vendor-A} is ZZAUTOTEST S2-15 Alder, {Vendor-B} is ZZAUTOTEST S2-15 Birch and {Vendor-C} is ZZAUTOTEST S2-15 Cedar; {Document-A} and {Document-B} are bills and {Document-C} is a vendor credit.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL, P-VC, P-AGE.
 Sources (verbatim text in section 9): S2-R1, S2-R2, S2-R5.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -764,7 +764,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-15b — A/P Detail: the Vendor Name header reverses on its first click
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure that in the "1-30 days past due" bucket there are three open documents: document A for vendor C, document B for vendor A and document C for vendor B; in name order the vendors read vendor A, vendor B, vendor C.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -775,7 +775,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - In the "1-30 days past due" bucket there are three open documents: {Document-A} for {Vendor-C}, {Document-B} for {Vendor-A} and {Document-C} for {Vendor-B}; in name order the vendors read {Vendor-A}, {Vendor-B}, {Vendor-C}. For example: {Vendor-A} is ZZAUTOTEST S2-15 Alder, {Vendor-B} is ZZAUTOTEST S2-15 Birch and {Vendor-C} is ZZAUTOTEST S2-15 Cedar.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-AGE.
 Sources (verbatim text in section 9): S2-R1, S2-R2, S2-R3, S2-R5.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -783,8 +783,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-16 — A/P Detail: Date and Due Date sort oldest first, then newest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Make sure that in the "1-30 days past due" bucket there are three open bills, document A, document B and document C for vendor C, vendor A and vendor B in that order (in name order these vendors read A, B, C):
+- Sign in as an Admin user (the "Admin" role).
+- Make sure that in the "1-30 days past due" bucket there are three open bills, document A, document B and document C, each for a different vendor, so the rows sort across vendors:
 - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
 - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
 - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
@@ -797,7 +797,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - In the "1-30 days past due" bucket there are three open bills, {Document-A}, {Document-B} and {Document-C} for {Vendor-C}, {Vendor-A} and {Vendor-B} in that order (in name order these vendors read A, B, C): {Document-A} is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00; {Document-B} is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00; {Document-C} is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00. For example: {Vendor-A} is ZZAUTOTEST S2-16 Alder, {Vendor-B} is ZZAUTOTEST S2-16 Birch, {Vendor-C} is ZZAUTOTEST S2-16 Cedar; {Document-A} is S1-101, {Document-B} is S1-99 and {Document-C} is S1-100 (the app assigns the real numbers; the dates and amounts are the ones that matter).
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL, P-AGE.
 Sources (verbatim text in section 9): S2-R1, S2-R2, S2-R5.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -805,8 +805,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-17 — A/P Detail: money and Past Due headers sort largest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Make sure that in the "1-30 days past due" bucket there are three open bills, document A, document B and document C for vendor C, vendor A and vendor B in that order (in name order these vendors read A, B, C):
+- Sign in as an Admin user (the "Admin" role).
+- Make sure that in the "1-30 days past due" bucket there are three open bills, document A, document B and document C, each for a different vendor, so the rows sort across vendors:
 - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
 - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
 - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
@@ -819,7 +819,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - In the "1-30 days past due" bucket there are three open bills, {Document-A}, {Document-B} and {Document-C} for {Vendor-C}, {Vendor-A} and {Vendor-B} in that order (in name order these vendors read A, B, C): {Document-A} is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00; {Document-B} is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00; {Document-C} is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00. For example: {Vendor-A} is ZZAUTOTEST S2-17 Alder, {Vendor-B} is ZZAUTOTEST S2-17 Birch, {Vendor-C} is ZZAUTOTEST S2-17 Cedar; {Document-A} is S1-101, {Document-B} is S1-99 and {Document-C} is S1-100 (the app assigns the real numbers; the dates and amounts are the ones that matter).
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL, P-AGE.
 Sources (verbatim text in section 9): S2-R1, S2-R2, S2-R5.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -827,7 +827,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-18 — A/P Detail: No. sorts by number value, and ties go by number
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure that in the "1-30 days past due" bucket there are three open bills with the same due date, document A, document B and document C, whose numbers have different digit counts, so that in number order they read document A, document B, document C but in letter-by-letter order document B, document C, document A.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -838,7 +838,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - In the "1-30 days past due" bucket there are three open bills with the same due date, {Document-A}, {Document-B} and {Document-C}, whose numbers have different digit counts, so that in number order they read {Document-A}, {Document-B}, {Document-C} but in letter-by-letter order {Document-B}, {Document-C}, {Document-A}. For example: {Document-A} is S1-99, {Document-B} is S1-100 and {Document-C} is S1-101 (the app assigns the real numbers).
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-BILL, P-AGE.
 Sources (verbatim text in section 9): S2-R1, S2-R2, S2-R4.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -850,7 +850,7 @@ Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 20
 - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
 - Make sure you are enrolled at both locations.
 - Have a vendor, vendor A, with overdue bills on today's date.
-- Make sure that in vendor A's group there are three open documents: document A at location B, and document B and document C at location A; one of the three is a different transaction type from the others.
+- Make sure that in vendor A's group there are three open documents: one at location B and two at location A; one of the three is a different transaction type from the others.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
 - Leave the report with vendor A's group expanded.
@@ -862,7 +862,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - In {Vendor-A}'s group there are three open documents: {Document-A} at {Location-B}, and {Document-B} and {Document-C} at {Location-A}; one of the three is a different transaction type from the others. For example: {Document-A} and {Document-B} are bills and {Document-C} is a vendor credit.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A}'s group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL, P-VC.
 Sources (verbatim text in section 9): S2-R1, S2-R2, S2-R5.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -870,12 +870,11 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-19b — A/P Unpaid Invoices: the Vendor Name header cannot be clicked
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a vendor, vendor A, with overdue bills on today's date.
-- Make sure vendor A has at least two open documents with different dates.
+- Sign in as an Admin user (the "Admin" role).
+- Have a vendor with overdue bills on today's date, at least two of them with different dates.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
-- Leave the report with vendor A's group expanded.
+- Leave the report with that vendor's group expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -883,7 +882,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - {Vendor-A} has at least two open documents with different dates.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A}'s group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL.
 Sources (verbatim text in section 9): S1-R6, S2-N1, S2-R1.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -891,15 +890,15 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-20 — A/P Unpaid Invoices: the Date header reverses on its first click
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a vendor, vendor A, with overdue bills on today's date.
-- Make sure that in vendor A's group there are three open bills, document A, document B and document C:
+- Sign in as an Admin user (the "Admin" role).
+- Have a vendor with overdue bills on today's date.
+- Make sure that in that vendor's group there are three open bills, document A, document B and document C:
 - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
 - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
 - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
-- Leave the report with vendor A's group expanded.
+- Leave the report with that vendor's group expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -907,7 +906,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - In {Vendor-A}'s group there are three open bills, {Document-A}, {Document-B} and {Document-C}: {Document-A} is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00; {Document-B} is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00; {Document-C} is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00. For example: {Document-A} is S1-101, {Document-B} is S1-99 and {Document-C} is S1-100 (the app assigns the real numbers; the dates and amounts are the ones that matter).
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A}'s group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL, P-AGE.
 Sources (verbatim text in section 9): S1-R6, S2-R1, S2-R2, S2-R3, S2-R5.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -915,15 +914,15 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-20b — A/P Unpaid Invoices: Due Date sorts oldest first, then newest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a vendor, vendor A, with overdue bills on today's date.
-- Make sure that in vendor A's group there are three open bills, document A, document B and document C:
+- Sign in as an Admin user (the "Admin" role).
+- Have a vendor with overdue bills on today's date.
+- Make sure that in that vendor's group there are three open bills, document A, document B and document C:
 - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
 - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
 - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
-- Leave the report with vendor A's group expanded.
+- Leave the report with that vendor's group expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -931,7 +930,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - In {Vendor-A}'s group there are three open bills, {Document-A}, {Document-B} and {Document-C}: {Document-A} is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00; {Document-B} is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00; {Document-C} is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00. For example: {Document-A} is S1-101, {Document-B} is S1-99 and {Document-C} is S1-100 (the app assigns the real numbers; the dates and amounts are the ones that matter).
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A}'s group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL, P-AGE.
 Sources (verbatim text in section 9): S2-R1, S2-R2, S2-R5.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -939,15 +938,15 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-21 — A/P Unpaid Invoices: money and Past Due headers sort largest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a vendor, vendor A, with overdue bills on today's date.
-- Make sure that in vendor A's group there are three open bills, document A, document B and document C:
+- Sign in as an Admin user (the "Admin" role).
+- Have a vendor with overdue bills on today's date.
+- Make sure that in that vendor's group there are three open bills, document A, document B and document C:
 - Document A is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00.
 - Document B is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00.
 - Document C is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
-- Leave the report with vendor A's group expanded.
+- Leave the report with that vendor's group expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -955,7 +954,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - In {Vendor-A}'s group there are three open bills, {Document-A}, {Document-B} and {Document-C}: {Document-A} is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00; {Document-B} is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00; {Document-C} is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00. For example: {Document-A} is S1-101, {Document-B} is S1-99 and {Document-C} is S1-100 (the app assigns the real numbers; the dates and amounts are the ones that matter).
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A}'s group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL, P-AGE.
 Sources (verbatim text in section 9): S2-R1, S2-R2, S2-R5.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -963,12 +962,12 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-22 — A/P Unpaid Invoices: No. sorts by number value, and ties go by number
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a vendor, vendor A, with overdue bills on today's date.
-- Make sure that in vendor A's group there are three open bills with the same due date, document A, document B and document C, whose numbers have different digit counts, so that in number order they read document A, document B, document C but in letter-by-letter order document B, document C, document A.
+- Sign in as an Admin user (the "Admin" role).
+- Have a vendor with overdue bills on today's date.
+- Make sure that in that vendor's group there are three open bills with the same due date, document A, document B and document C, whose numbers have different digit counts, so that in number order they read document A, document B, document C but in letter-by-letter order document B, document C, document A.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
-- Leave the report with vendor A's group expanded.
+- Leave the report with that vendor's group expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -976,7 +975,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - In {Vendor-A}'s group there are three open bills with the same due date, {Document-A}, {Document-B} and {Document-C}, whose numbers have different digit counts, so that in number order they read {Document-A}, {Document-B}, {Document-C} but in letter-by-letter order {Document-B}, {Document-C}, {Document-A}. For example: {Document-A} is S1-99, {Document-B} is S1-100 and {Document-C} is S1-101 (the app assigns the real numbers).
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A}'s group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Document-A} = "document A", {Document-B} = "document B", {Document-C} = "document C", {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL.
 Sources (verbatim text in section 9): S2-R1, S2-R2, S2-R4.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -984,7 +983,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-23 — A/P Unpaid Invoices: a vendor credit stays at the bottom when Due Date is sorted
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have a vendor, vendor A, with two overdue bills, bill A (due 10 days ago) and bill B (due 20 days ago), and one unused vendor credit, vendor credit A, on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -994,7 +993,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has two overdue bills, {Bill-A} and {Bill-B}, and one unused vendor credit, {Vendor-credit-A}, on today's date. For example: {Vendor-A} is ZZAUTOTEST S2-23 Parts Co; {Bill-A} is due 10 days ago and {Bill-B} 20 days ago.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Bill-A} = "bill A", {Bill-B} = "bill B", {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-credit-A} = "vendor credit A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Bill-A} = "bill A", {Bill-B} = "bill B", {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-credit-A} = "vendor credit A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL, P-VC, P-AGE.
 Sources (verbatim text in section 9): S2-R2, S2-R6.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -1002,8 +1001,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-24 — A/P Detail: a vendor credit shows its own date as its Due Date
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a vendor, vendor A, with one unused vendor credit, vendor credit A, on today's date.
+- Sign in as an Admin user (the "Admin" role).
+- Have a vendor with one unused vendor credit, vendor credit A, on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -1012,7 +1011,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has one unused vendor credit, {Vendor-credit-A}, on today's date. For example: {Vendor-A} is ZZAUTOTEST S2-24 Parts Co; {Vendor-credit-A} is dated 12 days ago.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-credit-A} = "vendor credit A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-credit-A} = "vendor credit A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-VC, P-AGE.
 Sources (verbatim text in section 9): S2-R6.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -1020,7 +1019,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S2-25 — A/R Detail: sorting moves rows, never groups, and keeps groups open
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open invoices, credit memos and deposits in several buckets on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1031,7 +1030,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open invoices, credit memos and deposits in several buckets on today's date.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu; two buckets are expanded: "31-60 days past due" and "1-30 days past due"; the other three are collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-CM, P-AGE.
 Sources (verbatim text in section 9): S2-R5, S2-R9, S4-R8.
 Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header"), `design-2026-10-22/ar-ap-p3-same-on-a-p-unpaid-invoices.png` (I16, "Same on A/P Unpaid Invoices"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -1039,7 +1038,7 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-S2-26 — A/R Collection: sorting moves rows, never groups, and keeps groups open
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have three customers, customer A, customer B and customer C, with overdue invoices on today's date; in name order they read A, B, C.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1050,7 +1049,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Three customers, {Customer-A}, {Customer-B} and {Customer-C}, have overdue invoices on today's date; in name order they read A, B, C. For example: {Customer-A} is ZZAUTOTEST S2-26 Alder, {Customer-B} is ZZAUTOTEST S2-26 Birch and {Customer-C} is ZZAUTOTEST S2-26 Cedar.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu; {Customer-A}'s and {Customer-C}'s groups are expanded and {Customer-B}'s is collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S2-R5, S2-R9, S4-R8, WC-8.
 Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header"), `design-2026-10-22/ar-ap-p3-same-on-a-p-unpaid-invoices.png` (I16, "Same on A/P Unpaid Invoices"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -1058,7 +1057,7 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-S2-27 — A/P Detail: sorting moves rows, never groups, and keeps groups open
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open bills and vendor credits in several buckets on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -1069,7 +1068,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open bills and vendor credits in several buckets on today's date.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu; two buckets are expanded: "31-60 days past due" and "1-30 days past due"; the other three are collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-BILL, P-VC, P-AGE.
 Sources (verbatim text in section 9): S2-R5, S2-R9, S4-R8.
 Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header"), `design-2026-10-22/ar-ap-p3-same-on-a-p-unpaid-invoices.png` (I16, "Same on A/P Unpaid Invoices"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -1077,7 +1076,7 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-S2-28 — A/P Unpaid Invoices: sorting moves rows, never groups, and keeps groups open
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have three vendors, vendor A, vendor B and vendor C, with overdue bills on today's date; in name order they read A, B, C.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -1088,7 +1087,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Three vendors, {Vendor-A}, {Vendor-B} and {Vendor-C}, have overdue bills on today's date; in name order they read A, B, C. For example: {Vendor-A} is ZZAUTOTEST S2-28 Alder, {Vendor-B} is ZZAUTOTEST S2-28 Birch and {Vendor-C} is ZZAUTOTEST S2-28 Cedar.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu; {Vendor-A}'s and {Vendor-C}'s groups are expanded and {Vendor-B}'s is collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL.
 Sources (verbatim text in section 9): S2-R5, S2-R9, S4-R8, WC-8.
 Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header"), `design-2026-10-22/ar-ap-p3-same-on-a-p-unpaid-invoices.png` (I16, "Same on A/P Unpaid Invoices"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -1111,7 +1110,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has open documents at both locations. For example: {Customer-A} is ZZAUTOTEST S2-29 Kept Sort.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST.
 Sources (verbatim text in section 9): S1-R8, S2-R2, S2-R7.
 Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z"), `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -1134,7 +1133,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has open documents at both locations. For example: {Customer-A} is ZZAUTOTEST S2-30 Kept Sort.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-VOLUME.
 Sources (verbatim text in section 9): S2-R2, S2-R7.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -1157,7 +1156,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has open documents at both locations. For example: {Customer-A} is ZZAUTOTEST S2-31 Kept Sort.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST.
 Sources (verbatim text in section 9): S1-R8, S2-R2, S2-R7; Tech plan §6 Phase 3, verification.
 Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z"), `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -1180,7 +1179,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has open documents at both locations. For example: {Vendor-A} is ZZAUTOTEST S2-32 Kept Sort.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR.
 Sources (verbatim text in section 9): S1-R8, S2-R2, S2-R7.
 Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z"), `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -1203,7 +1202,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has open documents at both locations. For example: {Vendor-A} is ZZAUTOTEST S2-33 Kept Sort.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-VOLUME.
 Sources (verbatim text in section 9): S2-R2, S2-R7.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -1226,7 +1225,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has open documents at both locations. For example: {Vendor-A} is ZZAUTOTEST S2-34 Kept Sort.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY.
 Sources (verbatim text in section 9): S1-R8, S2-R2, S2-R7; Tech plan §6 Phase 3, verification.
 Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z"), `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -1234,7 +1233,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S2-35 — A/R Collection: changing the Past due filter keeps the sort
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have a customer, customer A, with overdue invoices on today's date: one 1 to 30 days past due, and two 31 to 60 days past due with different open balances.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1245,7 +1244,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has overdue invoices on today's date: one 1 to 30 days past due, and two 31 to 60 days past due with different open balances. For example: {Customer-A} is ZZAUTOTEST S2-35 Past Due Sort.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-AGE.
 Sources (verbatim text in section 9): S2-R7, S4-N1, S5-R16.
 Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -1253,7 +1252,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-S2-36 — A/R Summary forgets the sort between visits
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1263,7 +1262,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents on today's date.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST.
 Sources (verbatim text in section 9): S1-R7, S2-R8.
 Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -1271,7 +1270,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S2-36b — A/R Detail forgets the sort between visits
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1281,7 +1280,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents on today's date.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST.
 Sources (verbatim text in section 9): S1-R7, S2-R8.
 Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -1289,7 +1288,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S2-37 — A/R Collection forgets the sort between visits
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1299,7 +1298,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents on today's date.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST.
 Sources (verbatim text in section 9): S1-R7, S2-R8.
 Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -1307,7 +1306,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S2-37b — A/P Summary forgets the sort between visits
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -1317,7 +1316,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents on today's date.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST.
 Sources (verbatim text in section 9): S1-R7, S2-R8.
 Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -1325,7 +1324,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S2-38 — A/P Detail forgets the sort between visits
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -1335,7 +1334,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents on today's date.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST.
 Sources (verbatim text in section 9): S1-R7, S2-R8.
 Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -1343,7 +1342,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S2-38b — A/P Unpaid Invoices forgets the sort between visits
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -1353,7 +1352,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents on today's date.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-PAY.
 Sources (verbatim text in section 9): S1-R7, S2-R8.
 Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -1362,7 +1361,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Have open documents in these reports at two locations, location A and your other location.
 - Make sure you are enrolled at both locations.
 - Have a customer, customer A, with three overdue invoices on today's date, invoice A, invoice B and invoice C, all at location A; in number order they read A, B, C.
 - Use a desktop browser window 1440 px wide.
@@ -1374,7 +1373,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has three overdue invoices on today's date, {Invoice-A}, {Invoice-B} and {Invoice-C}, all at {Location-A}; in number order they read A, B, C. For example: {Customer-A} is ZZAUTOTEST S2-39 Same Place; {Invoice-A} is S1-99, {Invoice-B} S1-100 and {Invoice-C} S1-101.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Invoice-B} = "invoice B", {Invoice-C} = "invoice C", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Invoice-B} = "invoice B", {Invoice-C} = "invoice C", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S2-E1, S2-R4.
 Design pictures: `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -1382,9 +1381,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-na
 ### SETUP-S2-40 — A/R Detail: column headings are in Title Case on screen, PDF and CSV
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows.
 - Make sure the report has open documents at both locations on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1396,7 +1394,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents at both locations on today's date.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group expanded (Expand all).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S2-R1, S2-R4a, S3-R8b, WC-11.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -1404,9 +1402,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-41 — A/R Collection: column headings are in Title Case on screen, PDF and CSV
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows.
 - Make sure the report has open documents at both locations on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1418,7 +1415,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents at both locations on today's date.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group expanded (Expand all).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S2-R1, S2-R4a, S3-R8b, WC-11.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -1426,9 +1423,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-42 — A/P Detail: column headings are in Title Case on screen, PDF and CSV
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows.
 - Make sure the report has open documents at both locations on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -1440,7 +1436,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents at both locations on today's date.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group expanded (Expand all).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S2-R1, S2-R4a, S3-R8b.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -1448,7 +1444,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S3-01 — A/R Summary has the Export menu with PDF and CSV
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1458,7 +1454,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents on today's date.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S3-R1, WC-3.
 Design pictures: `design-2026-10-22/ar-ap-p2-a-r-a-print-icon-only.png` (I06, "A/R: a print icon only"), `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p2-a-p-gets-the-same-menu.png` (I10, "A/P gets the same menu").
@@ -1466,7 +1462,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-r-a-print-icon-only.png` (I06, "A
 ### SETUP-S3-01b — A/R Detail has the Export menu with PDF and CSV
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1476,7 +1472,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents on today's date.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S3-R1, WC-3.
 Design pictures: `design-2026-10-22/ar-ap-p2-a-r-a-print-icon-only.png` (I06, "A/R: a print icon only"), `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p2-a-p-gets-the-same-menu.png` (I10, "A/P gets the same menu").
@@ -1484,7 +1480,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-r-a-print-icon-only.png` (I06, "A
 ### SETUP-S3-01c — A/R Collection has the Export menu with PDF and CSV
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1494,7 +1490,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents on today's date.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S3-R1, WC-3.
 Design pictures: `design-2026-10-22/ar-ap-p2-a-r-a-print-icon-only.png` (I06, "A/R: a print icon only"), `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p2-a-p-gets-the-same-menu.png` (I10, "A/P gets the same menu").
@@ -1502,7 +1498,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-r-a-print-icon-only.png` (I06, "A
 ### SETUP-S3-02 — A/P Summary has the Export menu with PDF and CSV
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -1512,7 +1508,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents on today's date.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): OOS-7, S3-R1.
 Design pictures: `design-2026-10-22/ar-ap-p2-a-p-no-export-at-all.png` (I07, "A/P: no export at all"), `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p2-a-p-gets-the-same-menu.png` (I10, "A/P gets the same menu").
@@ -1520,7 +1516,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-p-no-export-at-all.png` (I07, "A/
 ### SETUP-S3-02b — A/P Detail has the Export menu with PDF and CSV
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -1530,7 +1526,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents on today's date.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): OOS-7, S3-R1.
 Design pictures: `design-2026-10-22/ar-ap-p2-a-r-a-print-icon-only.png` (I06, "A/R: a print icon only"), `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p2-a-p-gets-the-same-menu.png` (I10, "A/P gets the same menu").
@@ -1538,7 +1534,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-r-a-print-icon-only.png` (I06, "A
 ### SETUP-S3-02c — A/P Unpaid Invoices has the Export menu with PDF and CSV
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -1548,7 +1544,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents on today's date.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-PAY.
 Sources (verbatim text in section 9): OOS-7, S3-R1.
 Design pictures: `design-2026-10-22/ar-ap-p2-a-r-a-print-icon-only.png` (I06, "A/R: a print icon only"), `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p2-a-p-gets-the-same-menu.png` (I10, "A/P gets the same menu").
@@ -1556,9 +1552,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-r-a-print-icon-only.png` (I06, "A
 ### SETUP-S3-03 — A/R Summary: the PDF and CSV match the rows and order on screen
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows on screen and in the exports.
 - Have two customers, customer A and customer B, with open documents at both locations on today's date, at least two each, with different amounts.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1570,7 +1565,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customers {Customer-A} and {Customer-B} have open documents at both locations on today's date, at least two each, with different amounts. For example: {Customer-A} is ZZAUTOTEST S3-03 Export One and {Customer-B} is ZZAUTOTEST S3-03 Export Two.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing {Customer-A} and {Customer-B} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST.
 Sources (verbatim text in section 9): S3-R10, S3-R2, S3-R3, S3-R6, S6-R2, UFS-6.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations").
@@ -1578,9 +1573,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-04 — A/R Detail: the PDF and CSV match the rows and order on screen
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows on screen and in the exports.
 - Have two customers, customer A and customer B, with open documents at both locations on today's date, at least two each, with different amounts.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1592,7 +1586,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customers {Customer-A} and {Customer-B} have open documents at both locations on today's date, at least two each, with different amounts. For example: {Customer-A} is ZZAUTOTEST S3-04 Export One and {Customer-B} is ZZAUTOTEST S3-04 Export Two.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing {Customer-A} and {Customer-B} ticked and every group expanded (Expand all).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST.
 Sources (verbatim text in section 9): S3-R10, S3-R2, S3-R3, S3-R6, S6-R2, UFS-6.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations").
@@ -1600,9 +1594,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-05 — A/R Collection: the PDF and CSV match the rows and order on screen
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows on screen and in the exports.
 - Have two customers, customer A and customer B, with open documents at both locations on today's date, at least two each, with different amounts.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1614,7 +1607,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customers {Customer-A} and {Customer-B} have open documents at both locations on today's date, at least two each, with different amounts. For example: {Customer-A} is ZZAUTOTEST S3-05 Export One and {Customer-B} is ZZAUTOTEST S3-05 Export Two.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing {Customer-A} and {Customer-B} ticked and every group expanded (Expand all).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST.
 Sources (verbatim text in section 9): S3-R10, S3-R2, S3-R3, S3-R6, S6-R2, UFS-6.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations").
@@ -1622,9 +1615,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-06 — A/P Summary: the PDF and CSV match the rows and order on screen
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows on screen and in the exports.
 - Have two vendors, vendor A and vendor B, with open documents at both locations on today's date, at least two each, with different amounts.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -1636,7 +1628,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendors {Vendor-A} and {Vendor-B} have open documents at both locations on today's date, at least two each, with different amounts. For example: {Vendor-A} is ZZAUTOTEST S3-06 Export One and {Vendor-B} is ZZAUTOTEST S3-06 Export Two.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Vendor filter showing {Vendor-A} and {Vendor-B} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR.
 Sources (verbatim text in section 9): S3-R10, S3-R2, S3-R3, S3-R6, S6-R2, UFS-6.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations").
@@ -1644,9 +1636,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-07 — A/P Detail: the PDF and CSV match the rows and order on screen
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows on screen and in the exports.
 - Have two vendors, vendor A and vendor B, with open documents at both locations on today's date, at least two each, with different amounts.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -1658,7 +1649,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendors {Vendor-A} and {Vendor-B} have open documents at both locations on today's date, at least two each, with different amounts. For example: {Vendor-A} is ZZAUTOTEST S3-07 Export One and {Vendor-B} is ZZAUTOTEST S3-07 Export Two.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Vendor filter showing {Vendor-A} and {Vendor-B} ticked and every group expanded (Expand all).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR.
 Sources (verbatim text in section 9): S3-R10, S3-R2, S3-R3, S3-R6, S6-R2, UFS-6.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations").
@@ -1666,9 +1657,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-08 — A/P Unpaid Invoices: the PDF and CSV match the rows and order on screen
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows on screen and in the exports.
 - Have two vendors, vendor A and vendor B, with open documents at both locations on today's date, at least two each, with different amounts.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -1680,7 +1670,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendors {Vendor-A} and {Vendor-B} have open documents at both locations on today's date, at least two each, with different amounts. For example: {Vendor-A} is ZZAUTOTEST S3-08 Export One and {Vendor-B} is ZZAUTOTEST S3-08 Export Two.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Vendor filter showing {Vendor-A} and {Vendor-B} ticked and every group expanded (Expand all).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY.
 Sources (verbatim text in section 9): S3-R10, S3-R2, S3-R3, S3-R6, S6-R2, UFS-6.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations").
@@ -1689,7 +1679,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Have open documents in these reports at two locations, location A and your other location.
 - Make sure you are enrolled at both locations.
 - Make sure customer A and customer B each have invoices at location A that were 31 to 60 and more than 90 days past due on Oct 15, 2026.
 - Use a desktop browser window 1440 px wide.
@@ -1702,7 +1692,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customers {Customer-A} and {Customer-B} each have invoices at {Location-A} that were 31 to 60 and more than 90 days past due on Oct 15, 2026. For example: {Customer-A} is ZZAUTOTEST S3-09 First Ticked and {Customer-B} is ZZAUTOTEST S3-09 Second Ticked.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to 10/15/2026 and only {Location-A} ticked in the Location filter (the Location column is hidden).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-AGE.
 Sources (verbatim text in section 9): S3-R4, S3-R5, S3-R6, S3-R8, S5-R13, S6-N1.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
@@ -1711,7 +1701,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Have open documents in these reports at two locations, location A and your other location.
 - Make sure you are enrolled at both locations.
 - Make sure customer A and customer B each have invoices at location A that were 31 to 60 and more than 90 days past due on Oct 15, 2026.
 - Use a desktop browser window 1440 px wide.
@@ -1724,7 +1714,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customers {Customer-A} and {Customer-B} each have invoices at {Location-A} that were 31 to 60 and more than 90 days past due on Oct 15, 2026. For example: {Customer-A} is ZZAUTOTEST S3-10 First Ticked and {Customer-B} is ZZAUTOTEST S3-10 Second Ticked.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to 10/15/2026 and only {Location-A} ticked in the Location filter (the Location column is hidden).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-AGE.
 Sources (verbatim text in section 9): S3-R4, S3-R5, S3-R6, S3-R8, S5-R13, S6-N1.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked").
@@ -1733,7 +1723,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Have open documents in these reports at two locations, location A and your other location.
 - Make sure you are enrolled at both locations.
 - Make sure customer A and customer B each have invoices at location A that were 31 to 60 and more than 90 days past due on Oct 15, 2026.
 - Use a desktop browser window 1440 px wide.
@@ -1746,7 +1736,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customers {Customer-A} and {Customer-B} each have invoices at {Location-A} that were 31 to 60 and more than 90 days past due on Oct 15, 2026. For example: {Customer-A} is ZZAUTOTEST S3-11 First Ticked and {Customer-B} is ZZAUTOTEST S3-11 Second Ticked.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to 10/15/2026 and only {Location-A} ticked in the Location filter (the Location column is hidden).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-AGE.
 Sources (verbatim text in section 9): S3-R4, S3-R5, S3-R6, S3-R8, S5-R13, S6-N1.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection").
@@ -1755,7 +1745,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Have open documents in these reports at two locations, location A and your other location.
 - Make sure you are enrolled at both locations.
 - Make sure vendor A and vendor B each have bills at location A that were 31 to 60 and more than 90 days past due on Oct 15, 2026.
 - Use a desktop browser window 1440 px wide.
@@ -1768,7 +1758,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendors {Vendor-A} and {Vendor-B} each have bills at {Location-A} that were 31 to 60 and more than 90 days past due on Oct 15, 2026. For example: {Vendor-A} is ZZAUTOTEST S3-12 First Ticked and {Vendor-B} is ZZAUTOTEST S3-12 Second Ticked.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to 10/15/2026 and only {Location-A} ticked in the Location filter (the Location column is hidden).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL, P-AGE.
 Sources (verbatim text in section 9): S3-R4, S3-R5, S3-R6, S3-R8, S5-R13, S6-N1.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu").
@@ -1777,7 +1767,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Have open documents in these reports at two locations, location A and your other location.
 - Make sure you are enrolled at both locations.
 - Make sure vendor A and vendor B each have bills at location A that were 31 to 60 and more than 90 days past due on Oct 15, 2026.
 - Use a desktop browser window 1440 px wide.
@@ -1790,7 +1780,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendors {Vendor-A} and {Vendor-B} each have bills at {Location-A} that were 31 to 60 and more than 90 days past due on Oct 15, 2026. For example: {Vendor-A} is ZZAUTOTEST S3-13 First Ticked and {Vendor-B} is ZZAUTOTEST S3-13 Second Ticked.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to 10/15/2026 and only {Location-A} ticked in the Location filter (the Location column is hidden).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL, P-AGE.
 Sources (verbatim text in section 9): S3-R4, S3-R5, S3-R6, S3-R8, S5-R13, S6-N1.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu").
@@ -1799,7 +1789,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Have open documents in these reports at two locations, location A and your other location.
 - Make sure you are enrolled at both locations.
 - Make sure vendor A and vendor B each have bills at location A that were 31 to 60 and more than 90 days past due on Oct 15, 2026.
 - Use a desktop browser window 1440 px wide.
@@ -1812,7 +1802,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendors {Vendor-A} and {Vendor-B} each have bills at {Location-A} that were 31 to 60 and more than 90 days past due on Oct 15, 2026. For example: {Vendor-A} is ZZAUTOTEST S3-14 First Ticked and {Vendor-B} is ZZAUTOTEST S3-14 Second Ticked.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to 10/15/2026 and only {Location-A} ticked in the Location filter (the Location column is hidden).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL, P-AGE.
 Sources (verbatim text in section 9): S3-R4, S3-R5, S3-R6, S3-R8, S5-R13, S6-N1.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu").
@@ -1820,9 +1810,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-15 — A/R Summary: exports say All locations and add only the lines that are set
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the exports cover more than one location ("Locations: All locations").
 - Have a customer, customer A, with open invoices on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -1833,7 +1822,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has open invoices on today's date. For example: {Customer-A} is ZZAUTOTEST S3-15 Only One.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S3-R5, S3-R8.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection").
@@ -1841,9 +1830,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-16 — A/P Detail: exports say All locations and add only the lines that are set
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the exports cover more than one location ("Locations: All locations").
 - Have a vendor, vendor A, with open bills on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -1854,7 +1842,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has open bills on today's date. For example: {Vendor-A} is ZZAUTOTEST S3-16 Only One.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL.
 Sources (verbatim text in section 9): S3-R5, S3-R8.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection").
@@ -1873,7 +1861,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open A/R documents at three locations, {Location-A}, {Location-B} and {Location-C}, and you are enrolled at all three; in A to Z order {Location-A}'s name comes before {Location-C}'s. For example: {Location-A} is Staging Heavy Duty - 9919, {Location-B} is Staging Lethbridge - 4310 and {Location-C} is another staging location whose name starts with a later letter.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with no location ticked in the Location filter ("Clear selection" clicked).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Location-C} = "location C". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Location-C} = "location C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S3-R5, S5-R6; Tech plan §3 D30, tick order.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33, "The native Location menu"), `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked").
@@ -1881,8 +1869,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-18 — A/R Summary: the CSV is one flat table with plain two-decimal amounts
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a customer, customer A, with open invoices on today's date of $1,250.50 that is 1 to 30 days past due and $99.00 that is more than 90 days past due, and nothing in the other buckets.
+- Sign in as an Admin user (the "Admin" role).
+- Have a new customer (created for this test), customer A, with open invoices on today's date of $1,250.50 that is 1 to 30 days past due and $99.00 that is more than 90 days past due, and nothing in the other buckets.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -1891,7 +1879,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has open invoices on today's date of $1,250.50 that is 1 to 30 days past due and $99.00 that is more than 90 days past due, and nothing in the other buckets. For example: {Customer-A} is ZZAUTOTEST S3-18 Flat Table.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-AGE.
 Sources (verbatim text in section 9): S3-R7, S3-R8, S3-R8b.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV").
@@ -1899,8 +1887,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-19 — A/P Summary: the CSV is one flat table with plain two-decimal amounts
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a vendor, vendor A, with open bills on today's date of $1,250.50 that is 1 to 30 days past due and $99.00 that is more than 90 days past due, and nothing in the other buckets.
+- Sign in as an Admin user (the "Admin" role).
+- Have a new vendor (created for this test), vendor A, with open bills on today's date of $1,250.50 that is 1 to 30 days past due and $99.00 that is more than 90 days past due, and nothing in the other buckets.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -1909,7 +1897,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has open bills on today's date of $1,250.50 that is 1 to 30 days past due and $99.00 that is more than 90 days past due, and nothing in the other buckets. For example: {Vendor-A} is ZZAUTOTEST S3-19 Flat Table.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL, P-AGE.
 Sources (verbatim text in section 9): S3-R7, S3-R8, S3-R8b.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV").
@@ -1917,8 +1905,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-20 — A/R Detail: the CSV has one row per document and no group rows
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a customer, customer A, with two overdue invoices on today's date: invoice A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and invoice B, amount $75.00, 1 to 30 days past due.
+- Sign in as an Admin user (the "Admin" role).
+- Have a new customer (created for this test), customer A, with two overdue invoices on today's date: invoice A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and invoice B, amount $75.00, 1 to 30 days past due.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
 - Leave the report with the Customer filter showing customer A ticked.
@@ -1928,7 +1916,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has two overdue invoices on today's date: {Invoice-A}, dated {Date-A}, amount $1,250.50, 31 to 60 days past due, and {Invoice-B}, amount $75.00, 1 to 30 days past due. For example: {Customer-A} is ZZAUTOTEST S3-20 Flat Rows; {Date-A} is 2026-09-01.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing {Customer-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Date-A} = "date A", {Invoice-A} = "invoice A", {Invoice-B} = "invoice B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Date-A} = "date A", {Invoice-A} = "invoice A", {Invoice-B} = "invoice B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-AGE.
 Sources (verbatim text in section 9): S2-R4a, S3-R8, S3-R8b.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV").
@@ -1936,8 +1924,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-21 — A/R Collection: the CSV has one row per document and no group rows
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a customer, customer A, with two overdue invoices on today's date: invoice A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and invoice B, amount $75.00, 1 to 30 days past due.
+- Sign in as an Admin user (the "Admin" role).
+- Have a new customer (created for this test), customer A, with two overdue invoices on today's date: invoice A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and invoice B, amount $75.00, 1 to 30 days past due.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
 - Leave the report with the Customer filter showing customer A ticked.
@@ -1947,7 +1935,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has two overdue invoices on today's date: {Invoice-A}, dated {Date-A}, amount $1,250.50, 31 to 60 days past due, and {Invoice-B}, amount $75.00, 1 to 30 days past due. For example: {Customer-A} is ZZAUTOTEST S3-21 Flat Rows; {Date-A} is 2026-09-01.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing {Customer-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Date-A} = "date A", {Invoice-A} = "invoice A", {Invoice-B} = "invoice B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Date-A} = "date A", {Invoice-A} = "invoice A", {Invoice-B} = "invoice B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-AGE.
 Sources (verbatim text in section 9): S2-R4a, S3-R8, S3-R8b.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV").
@@ -1955,8 +1943,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-22 — A/P Detail: the CSV has one row per document and no group rows
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a vendor, vendor A, with two overdue bills on today's date: bill A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and bill B, amount $75.00, 1 to 30 days past due.
+- Sign in as an Admin user (the "Admin" role).
+- Have a new vendor (created for this test), vendor A, with two overdue bills on today's date: bill A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and bill B, amount $75.00, 1 to 30 days past due.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
 - Leave the report with the Vendor filter showing vendor A ticked.
@@ -1966,7 +1954,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has two overdue bills on today's date: {Bill-A}, dated {Date-A}, amount $1,250.50, 31 to 60 days past due, and {Bill-B}, amount $75.00, 1 to 30 days past due. For example: {Vendor-A} is ZZAUTOTEST S3-22 Flat Rows; {Date-A} is 2026-09-01.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Vendor filter showing {Vendor-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Bill-A} = "bill A", {Bill-B} = "bill B", {Date-A} = "date A", {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Bill-A} = "bill A", {Bill-B} = "bill B", {Date-A} = "date A", {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL, P-AGE.
 Sources (verbatim text in section 9): S2-R4a, S3-R8, S3-R8b.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV").
@@ -1974,8 +1962,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-23 — A/P Unpaid Invoices: the CSV has one row per document and no group rows
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a vendor, vendor A, with two overdue bills on today's date: bill A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and bill B, amount $75.00, 1 to 30 days past due.
+- Sign in as an Admin user (the "Admin" role).
+- Have a new vendor (created for this test), vendor A, with two overdue bills on today's date: bill A, dated a day you note as date A, amount $1,250.50, 31 to 60 days past due, and bill B, amount $75.00, 1 to 30 days past due.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
 - Leave the report with the Vendor filter showing vendor A ticked.
@@ -1985,7 +1973,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has two overdue bills on today's date: {Bill-A}, dated {Date-A}, amount $1,250.50, 31 to 60 days past due, and {Bill-B}, amount $75.00, 1 to 30 days past due. For example: {Vendor-A} is ZZAUTOTEST S3-23 Flat Rows; {Date-A} is 2026-09-01.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Vendor filter showing {Vendor-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Bill-A} = "bill A", {Bill-B} = "bill B", {Date-A} = "date A", {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Bill-A} = "bill A", {Bill-B} = "bill B", {Date-A} = "date A", {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL, P-AGE.
 Sources (verbatim text in section 9): S2-R4a, S3-R8, S3-R8b.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV").
@@ -1993,9 +1981,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-24 — A/R Summary: exporting an empty report downloads nothing and warns
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location filter shows and can be cleared.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -2004,7 +1991,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S3-R10, S5-R6a, UFS-7.
 Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cleared: No locations").
@@ -2013,9 +2000,9 @@ Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cl
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Have open documents in these reports at two locations, location A and your other location.
 - Make sure you are enrolled at both locations.
-- Have a vendor, vendor A, with open bills only at location B.
+- Have a vendor, vendor A, with open bills only at your other location.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
 - Leave the report with only location A ticked in the Location filter.
@@ -2026,7 +2013,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has open bills only at {Location-B}. For example: {Vendor-A} is ZZAUTOTEST S3-25 Elsewhere.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Location-A} ticked in the Location filter.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL.
 Sources (verbatim text in section 9): S3-R10, S5-E1, UFS-7.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -2034,7 +2021,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S3-26 — A/R Detail: a CSV export that fails shows one error and downloads nothing
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
 - Use a desktop browser window 1440 px wide.
@@ -2046,7 +2033,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-OFFLINE.
 Sources (verbatim text in section 9): EH, UFS-8.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -2054,7 +2041,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S3-27 — A/P Summary: a PDF export that fails shows one error and downloads nothing
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
 - Use a desktop browser window 1440 px wide.
@@ -2066,7 +2053,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-OFFLINE.
 Sources (verbatim text in section 9): EH, UFS-8.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -2074,7 +2061,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S3-28 — A/R Detail: exporting with every bucket closed still downloads every row
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have a customer, customer A, with three open invoices on today's date, in two different aging buckets.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -2085,7 +2072,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has three open invoices on today's date, in two different aging buckets. For example: {Customer-A} is ZZAUTOTEST S3-28 Closed Buckets.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing only {Customer-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S3-R10, S3-R3; Tech plan §3 D28, rationale; Tech plan §3 D28.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV").
@@ -2093,7 +2080,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-29 — A/P Detail: exporting with every bucket closed still downloads every row
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have a vendor, vendor A, with three open bills on today's date, in two different aging buckets.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -2104,7 +2091,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has three open bills on today's date, in two different aging buckets. For example: {Vendor-A} is ZZAUTOTEST S3-29 Closed Buckets.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Vendor filter showing only {Vendor-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL.
 Sources (verbatim text in section 9): S3-R10, S3-R3; Tech plan §3 D28, rationale; Tech plan §3 D28.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV").
@@ -2112,7 +2099,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-30 — A/R Summary: a name starting with = opens in the CSV as plain text
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have a customer, customer A, with an open invoice on today's date, and its name starts with "=" so that it reads like a spreadsheet formula.
 - Make sure a spreadsheet program is installed on the computer.
 - Use a desktop browser window 1440 px wide.
@@ -2125,7 +2112,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - A spreadsheet program is installed on the computer. For example: Microsoft Excel, Google Sheets or LibreOffice Calc.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing only {Customer-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S3-R3; Tech plan §9 Security.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV").
@@ -2133,7 +2120,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S4-01 — A/R Detail: the top-left chevron collapses and expands every group
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open invoices, credit memos and deposits in at least three aging buckets on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -2144,7 +2131,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open invoices, credit memos and deposits in at least three aging buckets on today's date.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-CM.
 Sources (verbatim text in section 9): S4-R1, S4-R3, S4-R5, UFS-5.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection: date and customer only"), `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection, groups opened one by one"), `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header").
@@ -2152,7 +2139,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-S4-02 — A/R Collection: the top-left chevron collapses and expands every group
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure that at least three customers have overdue invoices on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -2163,7 +2150,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - At least three customers have overdue invoices on today's date. For example: ZZAUTOTEST S4-02 Alder, ZZAUTOTEST S4-02 Birch, ZZAUTOTEST S4-02 Cedar.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO.
 Sources (verbatim text in section 9): S4-R1, S4-R3, S4-R5, UFS-5.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection: date and customer only"), `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection, groups opened one by one"), `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header").
@@ -2171,7 +2158,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-S4-03 — A/P Detail: the top-left chevron collapses and expands every group
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open bills and vendor credits in at least three aging buckets on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -2182,7 +2169,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open bills and vendor credits in at least three aging buckets on today's date.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-BILL, P-VC.
 Sources (verbatim text in section 9): S4-R1, S4-R3, S4-R5, UFS-5.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection: date and customer only"), `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection, groups opened one by one"), `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header").
@@ -2190,7 +2177,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-S4-04 — A/P Unpaid Invoices: the top-left chevron collapses and expands every group
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure that at least three vendors have overdue bills on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -2201,7 +2188,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - At least three vendors have overdue bills on today's date. For example: ZZAUTOTEST S4-04 Alder, ZZAUTOTEST S4-04 Birch, ZZAUTOTEST S4-04 Cedar.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-PAY, P-BILL.
 Sources (verbatim text in section 9): S4-R1, S4-R3, S4-R5, UFS-5.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection: date and customer only"), `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection, groups opened one by one"), `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header").
@@ -2209,7 +2196,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-S4-05 — A/R Collection: after Expand all, groups loaded later arrive expanded
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure more than 30 customers have overdue invoices on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -2219,7 +2206,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - More than 30 customers have overdue invoices on today's date.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-VOLUME.
 Sources (verbatim text in section 9): S1-R8, S4-R1, S4-R2.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection: date and customer only"), `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection, groups opened one by one"), `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -2227,7 +2214,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-S4-06 — A/P Unpaid Invoices: after Expand all, groups loaded later arrive expanded
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure more than 30 vendors have overdue bills on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -2237,7 +2224,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - More than 30 vendors have overdue bills on today's date.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-PAY, P-BILL, P-VOLUME.
 Sources (verbatim text in section 9): S1-R8, S4-R1, S4-R2.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection: date and customer only"), `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection, groups opened one by one"), `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -2245,7 +2232,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-S4-07 — A/R Detail: an expanded bucket shows 100 lines, then loads more on scroll
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure one aging bucket, bucket A, has more than 150 open lines on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -2256,7 +2243,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - One aging bucket, {Bucket-A}, has more than 150 open lines on today's date. For example: {Bucket-A} is "91 or more days past due" on the QA organization.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every bucket collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Bucket-A} = "bucket A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Bucket-A} = "bucket A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-AGE, P-VOLUME.
 Sources (verbatim text in section 9): S1-R8, S4-R4.
 Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -2264,7 +2251,7 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-S4-08 — A/P Detail: an expanded bucket shows 100 lines, then loads more on scroll
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure one aging bucket, bucket A, has more than 150 open lines on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -2275,7 +2262,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - One aging bucket, {Bucket-A}, has more than 150 open lines on today's date. For example: {Bucket-A} is "91 or more days past due" on the QA organization (13,540 open A/P lines).
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every bucket collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Bucket-A} = "bucket A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Bucket-A} = "bucket A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-AGE, P-VOLUME.
 Sources (verbatim text in section 9): S1-R8, S4-R4.
 Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -2283,7 +2270,7 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-S4-09 — A/R Detail: the group row stays pinned under the headings
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure that on today's date the report has two buckets, bucket A and the next bucket below it, bucket B, each with more lines than fit on the screen.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -2294,7 +2281,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - On today's date the report has two buckets, {Bucket-A} and the next bucket below it, {Bucket-B}, each with more lines than fit on the screen. For example: {Bucket-A} is "31-60 days past due" and {Bucket-B} is "1-30 days past due".
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Bucket-A} and {Bucket-B} expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Bucket-A} = "bucket A", {Bucket-B} = "bucket B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Bucket-A} = "bucket A", {Bucket-B} = "bucket B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-AGE.
 Sources (verbatim text in section 9): S4-R6; Tech plan §3 D21; Tech plan §7 Manual testing checklist.
 Design pictures: `design-2026-10-22/ar-ap-p3-scrolling-loses-the-customer-name.png` (I13, "Scrolling loses the customer name"), `design-2026-10-22/ar-ap-p3-the-customer-row-stays-pinned.png` (I15, "The customer row stays pinned"), `design-2026-10-22/ar-ap-p3-same-on-a-p-unpaid-invoices.png` (I16, "Same on A/P Unpaid Invoices").
@@ -2302,18 +2289,18 @@ Design pictures: `design-2026-10-22/ar-ap-p3-scrolling-loses-the-customer-name.p
 ### SETUP-S4-09b — A/R Detail: group labels stay at the left when scrolling sideways
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Make sure that on today's date the report has two buckets, bucket A and the next bucket below it, bucket B, each with more lines than fit on the screen.
+- Sign in as an Admin user (the "Admin" role).
+- Make sure that on today's date the report has a bucket, bucket A, with more lines than fit on the screen.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-- Leave the report with the groups of bucket A and bucket B expanded.
+- Leave the report with bucket A's group expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - On today's date the report has two buckets, {Bucket-A} and the next bucket below it, {Bucket-B}, each with more lines than fit on the screen. For example: {Bucket-A} is "31-60 days past due" and {Bucket-B} is "1-30 days past due".
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Bucket-A} and {Bucket-B} expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Bucket-A} = "bucket A", {Bucket-B} = "bucket B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Bucket-A} = "bucket A", {Bucket-B} = "bucket B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-AGE.
 Sources (verbatim text in section 9): S4-R7, S8-R3.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-open-balance-pinned-light.png` (I23, "Open Balance pinned, light"), `design-2026-10-22/ar-ap-p6-same-dark-2.png` (I24, "Same, dark"), `design-2026-10-22/ar-ap-p6-a-p-unpaid-invoices-at-1440-every-column-visible.png` (I25, "A/P Unpaid Invoices at 1440: every column visible").
@@ -2321,7 +2308,7 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S4-10 — A/R Collection: the group row stays pinned under the headings
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure your role has the "View and Manage AP/AR Data" switch on.
 - Make sure that on today's date the report has two customers next to each other in name order, customer A then customer B, each with more overdue invoices than fit on the screen and with a phone number and a credit term on its customer card.
 - Use a desktop browser window 1440 px wide.
@@ -2334,7 +2321,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - On today's date the report has two customers next to each other in name order, {Customer-A} then {Customer-B}, each with more overdue invoices than fit on the screen and with a phone number and a credit term on its customer card. For example: {Customer-A} is ZZAUTOTEST S4-10 Long List A and {Customer-B} is ZZAUTOTEST S4-10 Long List B, each with 25 overdue invoices.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Customer-A} and {Customer-B} expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S4-R6, S9-R1, S9-R2; Tech plan §3 D21; Tech plan §7 Manual testing checklist.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection: date and customer only"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection"), `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection, groups opened one by one"), `design-2026-10-22/ar-ap-p3-the-customer-row-stays-pinned.png` (I15, "The customer row stays pinned"), `design-2026-10-22/ar-ap-p3-same-on-a-p-unpaid-invoices.png` (I16, "Same on A/P Unpaid Invoices").
@@ -2342,18 +2329,18 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-S4-10b — A/R Collection: group labels stay at the left when scrolling sideways
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Make sure that on today's date the report has two customers next to each other in name order, customer A then customer B, each with more overdue invoices than fit on the screen and with a phone number and a credit term on its customer card.
+- Sign in as an Admin user (the "Admin" role).
+- Make sure that on today's date the report has a customer, customer A, with more overdue invoices than fit on the screen and with a phone number and a credit term on its customer card.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
-- Leave the report with the groups of customer A and customer B expanded.
+- Leave the report with customer A's group expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - On today's date the report has two customers next to each other in name order, {Customer-A} then {Customer-B}, each with more overdue invoices than fit on the screen and with a phone number and a credit term on its customer card. For example: {Customer-A} is ZZAUTOTEST S4-10 Long List A and {Customer-B} is ZZAUTOTEST S4-10 Long List B, each with 25 overdue invoices.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Customer-A} and {Customer-B} expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S4-R7, S8-R3.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-open-balance-pinned-light.png` (I23, "Open Balance pinned, light"), `design-2026-10-22/ar-ap-p6-same-dark-2.png` (I24, "Same, dark"), `design-2026-10-22/ar-ap-p6-a-p-unpaid-invoices-at-1440-every-column-visible.png` (I25, "A/P Unpaid Invoices at 1440: every column visible").
@@ -2361,7 +2348,7 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S4-11 — A/P Detail: the group row stays pinned under the headings
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure that on today's date the report has two buckets, bucket A and the next bucket below it, bucket B, each with more lines than fit on the screen.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -2372,7 +2359,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - On today's date the report has two buckets, {Bucket-A} and the next bucket below it, {Bucket-B}, each with more lines than fit on the screen. For example: {Bucket-A} is "31-60 days past due" and {Bucket-B} is "1-30 days past due".
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Bucket-A} and {Bucket-B} expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Bucket-A} = "bucket A", {Bucket-B} = "bucket B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Bucket-A} = "bucket A", {Bucket-B} = "bucket B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-AGE.
 Sources (verbatim text in section 9): S4-R6; Tech plan §3 D21; Tech plan §7 Manual testing checklist.
 Design pictures: `design-2026-10-22/ar-ap-p3-scrolling-loses-the-customer-name.png` (I13, "Scrolling loses the customer name"), `design-2026-10-22/ar-ap-p3-the-customer-row-stays-pinned.png` (I15, "The customer row stays pinned"), `design-2026-10-22/ar-ap-p3-same-on-a-p-unpaid-invoices.png` (I16, "Same on A/P Unpaid Invoices").
@@ -2380,18 +2367,18 @@ Design pictures: `design-2026-10-22/ar-ap-p3-scrolling-loses-the-customer-name.p
 ### SETUP-S4-11b — A/P Detail: group labels stay at the left when scrolling sideways
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Make sure that on today's date the report has two buckets, bucket A and the next bucket below it, bucket B, each with more lines than fit on the screen.
+- Sign in as an Admin user (the "Admin" role).
+- Make sure that on today's date the report has a bucket, bucket A, with more lines than fit on the screen.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
-- Leave the report with the groups of bucket A and bucket B expanded.
+- Leave the report with bucket A's group expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - On today's date the report has two buckets, {Bucket-A} and the next bucket below it, {Bucket-B}, each with more lines than fit on the screen. For example: {Bucket-A} is "31-60 days past due" and {Bucket-B} is "1-30 days past due".
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Bucket-A} and {Bucket-B} expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Bucket-A} = "bucket A", {Bucket-B} = "bucket B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Bucket-A} = "bucket A", {Bucket-B} = "bucket B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-AGE.
 Sources (verbatim text in section 9): S4-R7, S8-R3.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-open-balance-pinned-light.png` (I23, "Open Balance pinned, light"), `design-2026-10-22/ar-ap-p6-same-dark-2.png` (I24, "Same, dark"), `design-2026-10-22/ar-ap-p6-a-p-unpaid-invoices-at-1440-every-column-visible.png` (I25, "A/P Unpaid Invoices at 1440: every column visible").
@@ -2399,7 +2386,7 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S4-12 — A/P Unpaid Invoices: the group row stays pinned under the headings
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure that on today's date the report has two vendors next to each other in name order, vendor A then vendor B, each with more overdue bills than fit on the screen.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -2410,7 +2397,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - On today's date the report has two vendors next to each other in name order, {Vendor-A} then {Vendor-B}, each with more overdue bills than fit on the screen. For example: {Vendor-A} is ZZAUTOTEST S4-12 Long List A and {Vendor-B} is ZZAUTOTEST S4-12 Long List B, each with 25 overdue bills.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Vendor-A} and {Vendor-B} expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL.
 Sources (verbatim text in section 9): S4-R6; Tech plan §3 D21; Tech plan §7 Manual testing checklist.
 Design pictures: `design-2026-10-22/ar-ap-p3-scrolling-loses-the-customer-name.png` (I13, "Scrolling loses the customer name"), `design-2026-10-22/ar-ap-p3-the-customer-row-stays-pinned.png` (I15, "The customer row stays pinned"), `design-2026-10-22/ar-ap-p3-same-on-a-p-unpaid-invoices.png` (I16, "Same on A/P Unpaid Invoices").
@@ -2418,18 +2405,18 @@ Design pictures: `design-2026-10-22/ar-ap-p3-scrolling-loses-the-customer-name.p
 ### SETUP-S4-12b — A/P Unpaid Invoices: group labels stay at the left when scrolling sideways
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Make sure that on today's date the report has two vendors next to each other in name order, vendor A then vendor B, each with more overdue bills than fit on the screen.
+- Sign in as an Admin user (the "Admin" role).
+- Make sure that on today's date the report has a vendor, vendor A, with more overdue bills than fit on the screen.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
-- Leave the report with the groups of vendor A and vendor B expanded.
+- Leave the report with vendor A's group expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - On today's date the report has two vendors next to each other in name order, {Vendor-A} then {Vendor-B}, each with more overdue bills than fit on the screen. For example: {Vendor-A} is ZZAUTOTEST S4-12 Long List A and {Vendor-B} is ZZAUTOTEST S4-12 Long List B, each with 25 overdue bills.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Vendor-A} and {Vendor-B} expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL.
 Sources (verbatim text in section 9): S4-R7, S8-R3.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-open-balance-pinned-light.png` (I23, "Open Balance pinned, light"), `design-2026-10-22/ar-ap-p6-same-dark-2.png` (I24, "Same, dark"), `design-2026-10-22/ar-ap-p6-a-p-unpaid-invoices-at-1440-every-column-visible.png` (I25, "A/P Unpaid Invoices at 1440: every column visible").
@@ -2437,7 +2424,7 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S4-13 — A/R Collection: loading more by scrolling keeps groups open or closed
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure more than 30 customers have overdue invoices on today's date; customer A is among the first 30 in name order.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -2448,7 +2435,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - More than 30 customers have overdue invoices on today's date; {Customer-A} is among the first 30 in name order. For example: {Customer-A} is ZZAUTOTEST S4-13 First Page.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Customer-A}'s group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-VOLUME.
 Sources (verbatim text in section 9): S1-R8, S4-R8.
 Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -2456,7 +2443,7 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-S4-14 — A/P Unpaid Invoices: loading more by scrolling keeps groups open or closed
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure more than 30 vendors have overdue bills on today's date; vendor A is among the first 30 in name order.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -2467,7 +2454,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - More than 30 vendors have overdue bills on today's date; {Vendor-A} is among the first 30 in name order. For example: {Vendor-A} is ZZAUTOTEST S4-14 First Page.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Vendor-A}'s group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL, P-VOLUME.
 Sources (verbatim text in section 9): S1-R8, S4-R8.
 Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -2475,7 +2462,7 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-S4-15 — A/R Detail does not remember expanded groups
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date in several buckets.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -2485,7 +2472,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents on today's date in several buckets.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST.
 Sources (verbatim text in section 9): S4-R9.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -2493,7 +2480,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S4-15b — A/R Collection does not remember expanded groups
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date in several customer groups.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -2503,7 +2490,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents on today's date in several customer groups.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST.
 Sources (verbatim text in section 9): S4-R9.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -2511,7 +2498,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S4-16 — A/P Detail does not remember expanded groups
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date in several buckets.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -2521,7 +2508,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents on today's date in several buckets.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST.
 Sources (verbatim text in section 9): S4-R9.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -2529,7 +2516,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S4-16b — A/P Unpaid Invoices does not remember expanded groups
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date in several vendor groups.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -2539,7 +2526,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents on today's date in several vendor groups.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-PAY.
 Sources (verbatim text in section 9): S4-R9.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -2547,8 +2534,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S4-17 — A/R Detail: changing the date or a filter collapses every group
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, your current location and location B.
 - Make sure you are enrolled at both locations.
 - Have a customer, customer A, with open invoices at both locations, some 31 to 60 days past due, on today's and yesterday's date.
 - Use a desktop browser window 1440 px wide.
@@ -2561,7 +2548,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has open invoices at both locations, some 31 to 60 days past due, on today's and yesterday's date. For example: {Customer-A} is ZZAUTOTEST S4-17 Collapse Me.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group expanded (Expand all).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-AGE.
 Sources (verbatim text in section 9): S4-N1.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -2569,8 +2556,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S4-18 — A/R Collection: changing the date or a filter collapses every group
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, your current location and location B.
 - Make sure you are enrolled at both locations.
 - Have a customer, customer A, with open invoices at both locations, some 31 to 60 days past due, on today's and yesterday's date.
 - Use a desktop browser window 1440 px wide.
@@ -2583,7 +2570,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has open invoices at both locations, some 31 to 60 days past due, on today's and yesterday's date. For example: {Customer-A} is ZZAUTOTEST S4-18 Collapse Me.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group expanded (Expand all).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-AGE.
 Sources (verbatim text in section 9): S4-N1.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -2591,8 +2578,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S4-19 — A/P Detail: changing the date or a filter collapses every group
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, your current location and location B.
 - Make sure you are enrolled at both locations.
 - Have a vendor, vendor A, with open bills at both locations, some 31 to 60 days past due, on today's and yesterday's date.
 - Use a desktop browser window 1440 px wide.
@@ -2605,7 +2592,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has open bills at both locations, some 31 to 60 days past due, on today's and yesterday's date. For example: {Vendor-A} is ZZAUTOTEST S4-19 Collapse Me.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group expanded (Expand all).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL, P-AGE.
 Sources (verbatim text in section 9): S4-N1.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -2613,8 +2600,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S4-20 — A/P Unpaid Invoices: changing the date or a filter collapses every group
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, your current location and location B.
 - Make sure you are enrolled at both locations.
 - Have a vendor, vendor A, with open bills at both locations, some 31 to 60 days past due, on today's and yesterday's date.
 - Use a desktop browser window 1440 px wide.
@@ -2627,7 +2614,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has open bills at both locations, some 31 to 60 days past due, on today's and yesterday's date. For example: {Vendor-A} is ZZAUTOTEST S4-20 Collapse Me.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group expanded (Expand all).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL, P-AGE.
 Sources (verbatim text in section 9): S4-N1.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -2635,7 +2622,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S4-21 — A/R Summary has no Collapse all button
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -2645,7 +2632,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents on today's date.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S4-N2.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -2653,7 +2640,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S4-21b — A/P Summary has no Collapse all button
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -2663,7 +2650,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents on today's date.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S4-N2.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -2671,9 +2658,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S5-01 — A/R Summary: the filter row reads As of, Customer, Past due, Location
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location chip shows.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -2682,7 +2668,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R1, S5-R10a, S5-R13, S5-R15, S5-R2, S5-R6, WC-7.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Summary: date only"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-past-due-menu.png` (I38, "Past due menu"), `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Aging Summary as it opens today").
@@ -2690,9 +2676,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-S5-02 — A/R Detail: the filter row reads As of, Customer, Past due, Location
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location chip shows.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -2701,7 +2686,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R1, S5-R10a, S5-R13, S5-R15, S5-R2, S5-R6, WC-7.
 Design pictures: `design-2026-10-22/ar-ap-p4-every-location-no-way-to-narrow.png` (I31, "Every location, no way to narrow"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations"), `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33, "The native Location menu"), `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked").
@@ -2709,9 +2694,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-every-location-no-way-to-narrow.png
 ### SETUP-S5-03 — A/R Collection: the filter row reads As of, Customer, Past due, Location
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location chip shows.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -2720,7 +2704,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R1, S5-R10a, S5-R13, S5-R15, S5-R2, S5-R6, WC-7.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection: date and customer only"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection, groups opened one by one"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations"), `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33, "The native Location menu").
@@ -2728,9 +2712,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-S5-04 — A/P Summary: the filter row reads As of, Vendor, Past due, Location
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location chip shows.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -2739,7 +2722,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R1, S5-R10a, S5-R13, S5-R15, S5-R2, S5-R6, WC-7.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Summary: date only"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations"), `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Aging Summary as it opens today").
@@ -2747,9 +2730,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-S5-05 — A/P Detail: the filter row reads As of, Vendor, Past due, Location
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location chip shows.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -2758,7 +2740,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R1, S5-R10a, S5-R13, S5-R15, S5-R2, S5-R6, WC-7.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Summary: date only"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations"), `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33, "The native Location menu"), `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Aging Summary as it opens today").
@@ -2766,9 +2748,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-S5-06 — A/P Unpaid Invoices: the filter row reads As of, Vendor, Past due, Location
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location chip shows.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -2777,7 +2758,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-PAY.
 Sources (verbatim text in section 9): S5-R1, S5-R10a, S5-R13, S5-R15, S5-R2, S5-R6, WC-7.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Summary: date only"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations"), `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33, "The native Location menu"), `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Aging Summary as it opens today").
@@ -2798,7 +2779,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report's Location list has 8 locations or fewer on today's date.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R2, S5-R5, S5-R6.
 Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations"), `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33, "The native Location menu"), `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked").
@@ -2819,7 +2800,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report's Location list has 8 locations or fewer on today's date.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R2, S5-R5, S5-R6.
 Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations"), `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33, "The native Location menu"), `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked").
@@ -2837,7 +2818,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open A/R documents at nine or more locations on today's date, among them {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919; the other eight are staging locations made for this test (ZZAUTOTEST S5-09 Location 1 to ZZAUTOTEST S5-09 Location 8).
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R2.
 Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations"), `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33, "The native Location menu").
@@ -2845,7 +2826,7 @@ Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "
 ### SETUP-S5-10 — A/R Collection: every location is listed, whatever your enrollment
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as user B, an "Admin" user enrolled only at location A, with location A as your current location.
+- Sign in as an "Admin" user enrolled only at location A, with location A as your current location.
 - Make sure the organization has open documents in this report at location A and location B on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -2855,7 +2836,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open documents in this report at {Location-A} and {Location-B} on today's date. For example: {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-ROLE.
 Sources (verbatim text in section 9): GOAL-ACCESS, KD-ORG, OOS-2, S5-R12, S5-R3.
 Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33, "The native Location menu").
@@ -2863,10 +2844,10 @@ Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33,
 ### SETUP-S5-10b — A/R Collection: the filters do not narrow the Location list
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, your current location and location B.
 - Make sure you are enrolled at both locations.
-- Have a customer, customer A, with open documents only at location A.
+- Have a customer, customer A, with open documents only at your current location.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -2876,7 +2857,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has open documents only at {Location-A}. For example: {Customer-A} is ZZAUTOTEST S5-10 Home Only.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST.
 Sources (verbatim text in section 9): S5-R3.
 Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33, "The native Location menu").
@@ -2884,8 +2865,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33,
 ### SETUP-S5-10c — A/R Collection: the Location list changes with the as-of date
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Make sure the organization has open documents in this report at location A and location B on today's date.
+- Sign in as an Admin user (the "Admin" role).
+- Make sure the organization has open documents in this report at your current location and location B on today's date.
 - Pick an earlier date, date A, on which location B had no open documents in this report.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -2895,7 +2876,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open documents in this report at {Location-A} and {Location-B} on today's date; {Location-B} had none on {Date-A}. For example: {Location-B} is Staging Lethbridge - 4310; {Date-A} is a date before {Location-B}'s first open invoice.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Date-A} = "date A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Date-A} = "date A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO.
 Sources (verbatim text in section 9): S5-R3.
 Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33, "The native Location menu").
@@ -2903,7 +2884,7 @@ Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33,
 ### SETUP-S5-11 — A/P Unpaid Invoices: every location is listed, whatever your enrollment
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as user B, an "Admin" user enrolled only at location A, with location A as your current location.
+- Sign in as an "Admin" user enrolled only at location A, with location A as your current location.
 - Make sure the organization has open documents in this report at location A and location B on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -2913,7 +2894,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open documents in this report at {Location-A} and {Location-B} on today's date. For example: {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-PAY, P-ROLE.
 Sources (verbatim text in section 9): GOAL-ACCESS, KD-ORG, OOS-2, S5-R12, S5-R3.
 Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33, "The native Location menu").
@@ -2921,10 +2902,10 @@ Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33,
 ### SETUP-S5-11b — A/P Unpaid Invoices: the filters do not narrow the Location list
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, your current location and location B.
 - Make sure you are enrolled at both locations.
-- Have a vendor, vendor A, with open documents only at location A.
+- Have a vendor, vendor A, with open documents only at your current location.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -2934,7 +2915,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has open documents only at {Location-A}. For example: {Vendor-A} is ZZAUTOTEST S5-11 Home Only.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY.
 Sources (verbatim text in section 9): S5-R3.
 Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33, "The native Location menu").
@@ -2942,8 +2923,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33,
 ### SETUP-S5-11c — A/P Unpaid Invoices: the Location list changes with the as-of date
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Make sure the organization has open documents in this report at location A and location B on today's date.
+- Sign in as an Admin user (the "Admin" role).
+- Make sure the organization has open documents in this report at your current location and location B on today's date.
 - Pick an earlier date, date A, on which location B had no open documents in this report.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -2953,7 +2934,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open documents in this report at {Location-A} and {Location-B} on today's date; {Location-B} had none on {Date-A}. For example: {Location-B} is Staging Lethbridge - 4310; {Date-A} is a date before {Location-B}'s first open bill.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Date-A} = "date A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Date-A} = "date A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-PAY, P-BILL.
 Sources (verbatim text in section 9): S5-R3.
 Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33, "The native Location menu").
@@ -2973,7 +2954,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every bucket expanded (Expand all).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R4.
 Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33, "The native Location menu").
@@ -2991,7 +2972,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open A/R documents at three locations, {Location-A}, {Location-B} and {Location-C}; {Location-C}'s name is longer than the chip can show. For example: {Location-A} is Staging Heavy Duty - 9919, {Location-B} is Staging Lethbridge - 4310 and {Location-C} is ZZAUTOTEST S5-13 Northern Alberta Heavy Equipment Service Centre.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Location-C} = "location C". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Location-C} = "location C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R6.
 Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33, "The native Location menu"), `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked").
@@ -2999,9 +2980,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33,
 ### SETUP-S5-14 — A/P Detail: with no location ticked the report is empty
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location filter shows and can be cleared.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -3010,7 +2990,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R10, S5-R6a, S8-R5, UFS-9.
 Design pictures: `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked"), `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cleared: No locations").
@@ -3021,10 +3001,10 @@ Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 20
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
 - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
 - Make sure you are enrolled at both locations.
-- Make sure customer A has, on today's date, an invoice A made at location A for $500.00 and partly paid ($200.00) by a payment taken at location B, a credit memo A made at location B and a deposit A taken at location B.
+- Have a new customer (created for this test) that has, on today's date, an invoice A made at location A for $500.00 and partly paid ($200.00) by a payment taken at location B, a credit memo A made at location B and a deposit A taken at location B.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-- Leave the report with the Customer filter showing customer A ticked and every bucket expanded.
+- Leave the report with the Customer filter showing that customer ticked and every bucket expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -3032,7 +3012,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has, on today's date, an invoice {Invoice-A} made at {Location-A} for $500.00 and partly paid ($200.00) by a payment taken at {Location-B}, a credit memo {Credit-memo-A} made at {Location-B} and a deposit {Deposit-A} taken at {Location-B}. For example: {Customer-A} is ZZAUTOTEST S5-15 Where It Lives.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing {Customer-A} ticked and every bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Credit-memo-A} = "credit memo A", {Customer-A} = "customer A", {Deposit-A} = "deposit A", {Invoice-A} = "invoice A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Credit-memo-A} = "credit memo A", {Customer-A} = "customer A", {Deposit-A} = "deposit A", {Invoice-A} = "invoice A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-PAY, P-CM.
 Sources (verbatim text in section 9): KD-ROW, S5-R7, S6-R2.
 Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations"), `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked").
@@ -3043,10 +3023,10 @@ Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 20
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
 - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
 - Make sure you are enrolled at both locations.
-- Have a vendor, vendor A, with two unpaid bills: bill A, received on a delivery at location A, and bill B, received on a delivery at location B.
+- Have a vendor with two unpaid bills: bill A, received on a delivery at location A, and bill B, received on a delivery at location B.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
-- Leave the report with the Vendor filter showing vendor A ticked and every bucket expanded.
+- Leave the report with the Vendor filter showing that vendor ticked and every bucket expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -3054,7 +3034,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has two unpaid bills: {Bill-A}, received on a delivery at {Location-A}, and {Bill-B}, received on a delivery at {Location-B}. For example: {Vendor-A} is ZZAUTOTEST S5-16 Delivered Elsewhere; {Bill-A} and {Bill-B} are the bills of two vendor orders, one received at each location.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Vendor filter showing {Vendor-A} ticked and every bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Bill-A} = "bill A", {Bill-B} = "bill B", {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Bill-A} = "bill A", {Bill-B} = "bill B", {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-PAY, P-BILL.
 Sources (verbatim text in section 9): S5-R7; Tech plan §1 Clarifications, Q2 A/P row location.
 Design pictures: `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked").
@@ -3076,7 +3056,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has two unused vendor credits: {Vendor-credit-A}, from a vendor return made at {Location-B}, and {Vendor-credit-B}, entered directly (not from a vendor return) while signed in at {Location-A}. For example: {Vendor-A} is ZZAUTOTEST S5-17 Credit Home.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Vendor filter showing {Vendor-A} ticked and its group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-credit-A} = "vendor credit A", {Vendor-credit-B} = "vendor credit B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-credit-A} = "vendor credit A", {Vendor-credit-B} = "vendor credit B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-VC.
 Sources (verbatim text in section 9): S5-R7; Tech plan §1 Clarifications, Q2 A/P row location; Tech plan §3 D13.
 Design pictures: `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked").
@@ -3097,7 +3077,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - On {Date-A} the organization's open A/R documents were all at {Location-A}. For example: {Date-A} is a date before {Location-B}'s first invoice.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Date-A} = "date A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Date-A} = "date A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO.
 Sources (verbatim text in section 9): S5-N1, S5-R9.
 Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cleared: No locations").
@@ -3116,7 +3096,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R10.
 Design pictures: `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked").
@@ -3134,7 +3114,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open A/P documents at three locations, {Location-A}, {Location-B} and {Location-C}, and you are enrolled at all three. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Location-C} = "location C". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Location-C} = "location C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R10; Tech plan §3 D30.
 Design pictures: `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked").
@@ -3153,7 +3133,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-N2; Tech plan §3 D29; Tech plan §6 Phase 1, unit tests.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -3161,7 +3141,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S5-22 — A/P Unpaid Invoices: a Past due value the chip does not offer reads Any
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -3169,7 +3149,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-PAY.
 Sources (verbatim text in section 9): S5-N3, S5-R15; Tech plan §3 D16; Tech plan §6 Phase 1, unit tests.
 Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-past-due-menu.png` (I38, "Past due menu"), `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked").
@@ -3177,7 +3157,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I0
 ### SETUP-S5-23 — A/R Summary: ticked customers and ranges survive reload and Back
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have two customers, customer A and customer B, with invoices more than 90 days past due on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -3187,7 +3167,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customers {Customer-A} and {Customer-B} have invoices more than 90 days past due on today's date. For example: {Customer-A} is ZZAUTOTEST S5-23 Kept One and {Customer-B} is ZZAUTOTEST S5-23 Kept Two.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-AGE.
 Sources (verbatim text in section 9): S5-R10, S5-R19.
 Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked"), `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked").
@@ -3195,7 +3175,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-S5-24 — A/R Collection: a customer ticked by link is named even if hard to find
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the organization has more than 50 customers (the Customer menu lists at most 50 until you search), and customer A, who has overdue invoices on today's date, comes after the first 50 in name order.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -3205,7 +3185,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has more than 50 customers (the Customer menu lists at most 50 until you search), and {Customer-A}, who has overdue invoices on today's date, comes after the first 50 in name order. For example: {Customer-A} is ZZAUTOTEST S5-24 Late In The List.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-VOLUME.
 Sources (verbatim text in section 9): S5-R14; Tech plan §3 D31; Tech plan §5 API, new endpoints.
 Design pictures: `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu"), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
@@ -3213,13 +3193,13 @@ Design pictures: `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "
 ### SETUP-S5-25 — A/P Unpaid Invoices: opening from the Reports menu starts with no filters
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations: your current location and your other location.
 - Make sure you are enrolled at both locations.
-- Have a vendor, vendor A, with unpaid bills on yesterday's date.
+- Have a vendor with unpaid bills on yesterday's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
-- Leave the report with the as-of date set to yesterday, only vendor A ticked in the Vendor filter, "61-90 days" ticked in the Past due filter and only location A ticked in the Location filter.
+- Leave the report with the as-of date set to yesterday, only that vendor ticked in the Vendor filter, "61-90 days" ticked in the Past due filter and only your current location ticked in the Location filter.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -3227,7 +3207,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has unpaid bills on yesterday's date. For example: {Vendor-A} is ZZAUTOTEST S5-25 Fresh Start.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to yesterday, only {Vendor-A} ticked in the Vendor filter, "61-90 days" ticked in the Past due filter and only {Location-A} ticked in the Location filter.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-VENDOR, P-INV-WO, P-PAY, P-BILL.
 Sources (verbatim text in section 9): S5-R10a.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -3236,7 +3216,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Summary, A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Have open documents in these reports at two locations, location A and your other location.
 - Make sure you are enrolled at both locations.
 - Have a customer, customer A, with invoices at location A more than 90 days past due on yesterday's date.
 - Use a desktop browser window 1440 px wide.
@@ -3249,7 +3229,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has invoices at {Location-A} more than 90 days past due on yesterday's date. For example: {Customer-A} is ZZAUTOTEST S5-26 Drill Down.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to yesterday, "91+ days" ticked in the Past due filter and only {Location-A} ticked in the Location filter.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-AGE.
 Sources (verbatim text in section 9): KD-DRILL, S5-R11, WC-6; Tech plan §6 Phase 3, frontend; Tech plan §6 Phase 2, frontend.
 Design pictures: `design-2026-10-22/ar-ap-p5-clicking-one-dead-ends.png` (I27, "Clicking one dead-ends"), `design-2026-10-22/ar-ap-p4-drill-down-keeps-the-as-of-date.png` (I37, "Drill-down keeps the as-of date").
@@ -3258,7 +3238,7 @@ Design pictures: `design-2026-10-22/ar-ap-p5-clicking-one-dead-ends.png` (I27, "
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Summary, A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Have open documents in these reports at two locations, location A and your other location.
 - Make sure you are enrolled at both locations.
 - Have a vendor, vendor A, with bills at location A more than 90 days past due on yesterday's date.
 - Use a desktop browser window 1440 px wide.
@@ -3271,7 +3251,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has bills at {Location-A} more than 90 days past due on yesterday's date. For example: {Vendor-A} is ZZAUTOTEST S5-27 Drill Down.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to yesterday, "91+ days" ticked in the Past due filter and only {Location-A} ticked in the Location filter.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL, P-AGE.
 Sources (verbatim text in section 9): KD-DRILL, S5-R11, WC-6; Tech plan §6 Phase 3, frontend; Tech plan §6 Phase 2, frontend.
 Design pictures: `design-2026-10-22/ar-ap-p5-clicking-one-dead-ends.png` (I27, "Clicking one dead-ends"), `design-2026-10-22/ar-ap-p4-drill-down-keeps-the-as-of-date.png` (I37, "Drill-down keeps the as-of date").
@@ -3279,7 +3259,7 @@ Design pictures: `design-2026-10-22/ar-ap-p5-clicking-one-dead-ends.png` (I27, "
 ### SETUP-S5-28 — A/R Detail: the Customer menu ticks several customers and the chip counts them
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have two customers, customer A and customer B, with open invoices on today's date; customer B's name is longer than the chip can show.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -3289,7 +3269,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customers {Customer-A} and {Customer-B} have open invoices on today's date; {Customer-B}'s name is longer than the chip can show. For example: {Customer-A} is ZZAUTOTEST S5-28 Short and {Customer-B} is ZZAUTOTEST S5-28 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S5-R13.
 Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu"), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
@@ -3297,7 +3277,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I0
 ### SETUP-S5-29 — A/P Detail: the Vendor menu ticks several vendors and the chip counts them
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have two vendors, vendor A and vendor B, with open bills on today's date; vendor B's name is longer than the chip can show.
 - Make sure the organization has more than 8 vendors (the Vendor menu shows its search box only when there are more than 8 vendors).
 - Use a desktop browser window 1440 px wide.
@@ -3309,7 +3289,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has more than 8 vendors (the Vendor menu shows its search box only when there are more than 8 vendors). For example: the QA organization (437 vendors).
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL, P-VOLUME.
 Sources (verbatim text in section 9): S5-R13.
 Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu"), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
@@ -3317,7 +3297,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I0
 ### SETUP-S5-30 — A/R Collection: the Past due menu offers Any and four ranges in order
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -3325,7 +3305,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R15; Tech plan §6 Phase 1, frontend.
 Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-past-due-menu.png` (I38, "Past due menu"), `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked").
@@ -3333,7 +3313,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I0
 ### SETUP-S5-31 — A/P Summary: the Past due menu offers Any and four ranges in order
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Use a desktop browser window 1440 px wide.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -3341,7 +3321,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R15; Tech plan §6 Phase 1, frontend.
 Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-past-due-menu.png` (I38, "Past due menu"), `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked").
@@ -3350,9 +3330,9 @@ Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I0
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Have open documents in these reports at two locations, location A and your other location.
 - Make sure you are enrolled at both locations.
-- Have a customer, customer A, with open invoices only at location B.
+- Have a customer, customer A, with open invoices only at your other location.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
 - Leave the report with only location A ticked in the Location filter.
@@ -3363,7 +3343,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has open invoices only at {Location-B}. For example: {Customer-A} is ZZAUTOTEST S5-32 Only There.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Location-A} ticked in the Location filter.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S5-E1, S8-R5.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -3371,10 +3351,10 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S5-33 — A/R Collection: switching location in the top right reloads the report
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, your current location and location B.
 - Make sure you are enrolled at both locations.
-- Have a customer, customer A, with an overdue invoice A at location B and others at location A.
+- Have a customer, customer A, with an overdue invoice A at location B and others at your current location.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
 - Leave the report with customer A ticked, "Past due: 1-30 days" ticked, the "Amount" header clicked once, every group expanded and the page scrolled down.
@@ -3385,7 +3365,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has an overdue invoice {Invoice-A} at {Location-B} and others at {Location-A}. For example: {Customer-A} is ZZAUTOTEST S5-33 Switcher.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} ticked, "Past due: 1-30 days" ticked, the "Amount" header clicked once, every group expanded and the page scrolled down.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): OOS-8, S5-E2, S7-E1.
 Design pictures: `design-2026-10-22/ar-ap-p5-cancel-stays-on-the-report.png` (I30, "Cancel stays on the report").
@@ -3393,10 +3373,10 @@ Design pictures: `design-2026-10-22/ar-ap-p5-cancel-stays-on-the-report.png` (I3
 ### SETUP-S5-34 — A/P Detail: switching location in the top right reloads the report
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, your current location and location B.
 - Make sure you are enrolled at both locations.
-- Have a vendor, vendor A, with an overdue bill A at location B and others at location A.
+- Have a vendor, vendor A, with an overdue bill A at location B and others at your current location.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
 - Leave the report with vendor A ticked, "Past due: 1-30 days" ticked, the "Amount" header clicked once, every group expanded and the page scrolled down.
@@ -3407,7 +3387,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has an overdue bill {Bill-A} at {Location-B} and others at {Location-A}. For example: {Vendor-A} is ZZAUTOTEST S5-34 Switcher.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A} ticked, "Past due: 1-30 days" ticked, the "Amount" header clicked once, every group expanded and the page scrolled down.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Bill-A} = "bill A", {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Bill-A} = "bill A", {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL.
 Sources (verbatim text in section 9): OOS-8, S5-E2, S7-E1.
 Design pictures: `design-2026-10-22/ar-ap-p5-cancel-stays-on-the-report.png` (I30, "Cancel stays on the report").
@@ -3415,7 +3395,7 @@ Design pictures: `design-2026-10-22/ar-ap-p5-cancel-stays-on-the-report.png` (I3
 ### SETUP-S5-35 — A/R Collection: a link with an unknown customer ignores it
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have a customer, customer A, with overdue invoices on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -3425,7 +3405,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has overdue invoices on today's date. For example: {Customer-A} is ZZAUTOTEST S5-35 Old Link.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S5-R14, S5-R19; Tech plan §3 D29; Tech plan §3 D29, rationale; Tech plan §3 D30.
 Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu"), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
@@ -3433,7 +3413,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-S5-36 — A/P Unpaid Invoices: a link with an unknown vendor ignores it
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have a vendor, vendor A, with overdue bills on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -3443,7 +3423,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has overdue bills on today's date. For example: {Vendor-A} is ZZAUTOTEST S5-36 Old Link.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL.
 Sources (verbatim text in section 9): S5-R14, S5-R19; Tech plan §3 D29; Tech plan §3 D29, rationale; Tech plan §3 D30.
 Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu"), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
@@ -3451,7 +3431,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-S5-37 — A/R Summary: the As of date cannot be set later than today
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -3459,7 +3439,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): KD-REUSE, S5-R1; Tech plan §3 D20.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Summary: date only"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations"), `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Aging Summary as it opens today").
@@ -3467,8 +3447,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-S5-38 — A/R Summary: ticking several customers quickly shows rows for all of them
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have five customers, customer A, customer B, customer C, customer D and customer E, each with one open invoice on today's date and nothing else open: customer A's invoice is $100.00, customer B's $200.00, customer C's $300.00, customer D's $400.00 and customer E's $500.00.
+- Sign in as an Admin user (the "Admin" role).
+- Have five new customers (created for this test), customer A, customer B, customer C, customer D and customer E, each with one open invoice on today's date and nothing else open: customer A's invoice is $100.00, customer B's $200.00, customer C's $300.00, customer D's $400.00 and customer E's $500.00.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -3477,7 +3457,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Five customers, {Customer-A}, {Customer-B}, {Customer-C}, {Customer-D} and {Customer-E}, each have one open invoice on today's date, of different amounts, and nothing else open. For example: {Customer-A} to {Customer-E} are ZZAUTOTEST S5-38 Quick 1 to ZZAUTOTEST S5-38 Quick 5, with invoices of $100.00, $200.00, $300.00, $400.00 and $500.00.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Customer-D} = "customer D", {Customer-E} = "customer E", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Customer-D} = "customer D", {Customer-E} = "customer E", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S5-R13, S5-R18; Tech plan §1 NFR-005; Tech plan §6 Phase 1, unit tests.
 Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
@@ -3485,7 +3465,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I0
 ### SETUP-S5-39 — A/P Summary: the Vendor menu has no search box with 8 vendors or fewer
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure your organization has 8 vendors or fewer in total.
 - Make sure that at least one of those vendors, vendor A, has an unpaid bill on today's date.
 - Use a desktop browser window 1440 px wide.
@@ -3497,7 +3477,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - At least one of those vendors, {Vendor-A}, has an unpaid bill on today's date. For example: {Vendor-A} is ZZAUTOTEST S5-39 Vendor 1.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-PAY, P-BILL.
 Sources (verbatim text in section 9): S5-R13.
 Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu"), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
@@ -3505,9 +3485,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I0
 ### SETUP-S6-01 — A/R reports: the column is named Location and sits in its place
 Section: Story 6 — Location column (TestRail section 90424). Reports: A/R Summary, A/R Detail, A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows.
 - Use a desktop browser window 1440 px wide.
 - Open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -3516,7 +3495,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) in a desktop browser window 1440 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): OOS-3, S6-R1, S6-R3, WC-9.
 Design pictures: `design-2026-10-22/ar-ap-p4-every-location-no-way-to-narrow.png` (I31, "Every location, no way to narrow"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations").
@@ -3524,9 +3503,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-every-location-no-way-to-narrow.png
 ### SETUP-S6-02 — A/P reports: the column is named Location and sits in its place
 Section: Story 6 — Location column (TestRail section 90424). Reports: A/P Summary, A/P Detail, A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows.
 - Use a desktop browser window 1440 px wide.
 - Open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -3535,7 +3513,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) in a desktop browser window 1440 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-PAY.
 Sources (verbatim text in section 9): OOS-3, S6-R1, S6-R3, WC-9.
 Design pictures: `design-2026-10-22/ar-ap-p4-every-location-no-way-to-narrow.png` (I31, "Every location, no way to narrow"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations").
@@ -3543,8 +3521,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-every-location-no-way-to-narrow.png
 ### SETUP-S6-03 — A/R Collection: the Location column shows with two or more locations
 Section: Story 6 — Location column (TestRail section 90424). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Make sure the organization has open A/R documents at three locations, location A, location B and location C.
+- Sign in as an Admin user (the "Admin" role).
+- Make sure the organization has open A/R documents at three locations, your current location, location B and location C.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -3553,7 +3531,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open A/R documents at three locations, {Location-A}, {Location-B} and {Location-C}. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Location-C} = "location C". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Location-C} = "location C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R6a, S6-N1, S6-R2.
 Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations"), `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked"), `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cleared: No locations").
@@ -3574,7 +3552,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has open invoices only at {Location-A}; Customer {Customer-B} has open invoices at {Location-A} and {Location-B}. For example: {Customer-A} is ZZAUTOTEST S6-04 One Place and {Customer-B} is ZZAUTOTEST S6-04 Two Places.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A", {Location-B} = "location B", {Location-C} = "location C". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A", {Location-B} = "location B", {Location-C} = "location C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S6-R2, S6-R4.
 Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations"), `design-2026-10-22/ar-ap-p4-summaries-show-multiple.png` (I36, "Summaries show "Multiple"").
@@ -3595,7 +3573,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has open bills only at {Location-A}; Vendor {Vendor-B} has open bills at {Location-A} and {Location-B}. For example: {Vendor-A} is ZZAUTOTEST S6-05 One Place and {Vendor-B} is ZZAUTOTEST S6-05 Two Places.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Location-C} = "location C", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Location-C} = "location C", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL.
 Sources (verbatim text in section 9): S6-R2, S6-R4.
 Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations"), `design-2026-10-22/ar-ap-p4-summaries-show-multiple.png` (I36, "Summaries show "Multiple"").
@@ -3603,18 +3581,18 @@ Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "
 ### SETUP-S7-01 — A/R Detail: an invoice at your location opens its finance page
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a customer, customer A, with an open work order invoice A made at location A.
+- Sign in as an Admin user (the "Admin" role).
+- Have a customer with an open work order invoice A made at your current location.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-- Leave the report with the Customer filter showing customer A ticked and every bucket expanded.
+- Leave the report with the Customer filter showing that customer ticked and every bucket expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has an open work order invoice {Invoice-A} made at {Location-A}. For example: {Customer-A} is ZZAUTOTEST S7-01 Opens Here.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing {Customer-A} ticked and every bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S7-R1, S7-R2, WC-6.
 Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
@@ -3622,18 +3600,18 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-S7-02 — A/R Collection: a part sale invoice at your location opens its finance page
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a customer, customer A, with an overdue part sale invoice A made at location A.
+- Sign in as an Admin user (the "Admin" role).
+- Have a customer with an overdue part sale invoice A made at your current location.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
-- Leave the report with customer A's group expanded.
+- Leave the report with that customer's group expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has an overdue part sale invoice {Invoice-A} made at {Location-A}. For example: {Customer-A} is ZZAUTOTEST S7-02 Counter Sale.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-INV-PS.
 Sources (verbatim text in section 9): S7-R1, S7-R2, WC-6; Tech plan §6 Phase 3, frontend.
 Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
@@ -3641,13 +3619,13 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-S7-03 — A/R Detail: a work order invoice at another location asks to switch
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, your current location and location B.
 - Make sure you are enrolled at both locations.
-- Have a customer, customer A, with an open work order invoice A made at location B.
+- Have a customer with an open work order invoice A made at location B.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-- Leave the report with customer A ticked and its rows showing.
+- Leave the report with that customer ticked and its rows showing.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -3655,7 +3633,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has an open work order invoice {Invoice-A} made at {Location-B}. For example: {Customer-A} is ZZAUTOTEST S7-03 Other Place.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} ticked and its rows showing.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S7-R3, S7-R4, UFS-3.
 Design pictures: `design-2026-10-22/ar-ap-p5-another-location-asks-first.png` (I29, "Another location asks first").
@@ -3663,13 +3641,13 @@ Design pictures: `design-2026-10-22/ar-ap-p5-another-location-asks-first.png` (I
 ### SETUP-S7-04 — A/R Collection: a part sale invoice at another location asks to switch
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, your current location and location B.
 - Make sure you are enrolled at both locations.
-- Have a customer, customer A, with an open part sale invoice A made at location B.
+- Have a customer with an open part sale invoice A made at location B.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
-- Leave the report with customer A ticked and its rows showing.
+- Leave the report with that customer ticked and its rows showing.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -3677,7 +3655,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has an open part sale invoice {Invoice-A} made at {Location-B}. For example: {Customer-A} is ZZAUTOTEST S7-04 Other Place.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} ticked and its rows showing.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-INV-PS.
 Sources (verbatim text in section 9): S7-R3, S7-R4, UFS-4.
 Design pictures: `design-2026-10-22/ar-ap-p5-another-location-asks-first.png` (I29, "Another location asks first").
@@ -3685,10 +3663,10 @@ Design pictures: `design-2026-10-22/ar-ap-p5-another-location-asks-first.png` (I
 ### SETUP-S7-05 — A/R Collection: Cancel on the switch prompt leaves the report as it was
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations: your current location and your other location.
 - Make sure you are enrolled at both locations.
-- Have a customer, customer A, with overdue invoices at location A and one, invoice A, at location B; more than 20 other customers have overdue invoices.
+- Have a customer, customer A, with overdue invoices at your current location and one, invoice A, at your other location; more than 20 other customers have overdue invoices.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
 - Leave the report with "Past due: 1-30 days" ticked, the "Amount" header clicked once, customer A's group expanded and the page scrolled so invoice A is in the middle of the screen.
@@ -3699,7 +3677,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has overdue invoices at {Location-A} and one, {Invoice-A}, at {Location-B}; more than 20 other customers have overdue invoices. For example: {Customer-A} is ZZAUTOTEST S7-05 Stay Put.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with "Past due: 1-30 days" ticked, the "Amount" header clicked once, {Customer-A}'s group expanded and the page scrolled so {Invoice-A} is in the middle of the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S7-R5, UFS-3; Tech plan §6 Phase 1, frontend.
 Design pictures: `design-2026-10-22/ar-ap-p5-cancel-stays-on-the-report.png` (I30, "Cancel stays on the report").
@@ -3707,13 +3685,13 @@ Design pictures: `design-2026-10-22/ar-ap-p5-cancel-stays-on-the-report.png` (I3
 ### SETUP-S7-06 — A/P Detail: a bill opens its delivery here and is plain text elsewhere
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations: your current location and your other location.
 - Make sure you are enrolled at both locations.
-- Have a vendor, vendor A, with an unpaid bill A received at location A and an unpaid bill B received at location B.
+- Have a vendor with an unpaid bill A received at your current location and an unpaid bill B received at your other location.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
-- Leave the report with vendor A ticked and every bucket expanded.
+- Leave the report with that vendor ticked and every bucket expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -3721,7 +3699,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has an unpaid bill {Bill-A} received at {Location-A} and an unpaid bill {Bill-B} received at {Location-B}. For example: {Vendor-A} is ZZAUTOTEST S7-06 Two Deliveries.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A} ticked and every bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Bill-A} = "bill A", {Bill-B} = "bill B", {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Bill-A} = "bill A", {Bill-B} = "bill B", {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-PAY, P-BILL.
 Sources (verbatim text in section 9): S7-R1, S7-R6.
 Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
@@ -3729,13 +3707,13 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-S7-07 — A/P Detail: a vendor credit links to the return it came from
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations: your current location and your other location.
 - Make sure you are enrolled at both locations.
-- Have a vendor, vendor A, with three unused vendor credits: vendor credit A from a vendor return made at location A, vendor credit B from a vendor return made at location B, and vendor credit C not from a vendor return.
+- Have a vendor with three unused vendor credits: vendor credit A from a vendor return made at your current location, vendor credit B from a vendor return made at your other location, and vendor credit C not from a vendor return.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
-- Leave the report with vendor A ticked and its rows showing.
+- Leave the report with that vendor ticked and its rows showing.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -3743,7 +3721,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has three unused vendor credits: {Vendor-credit-A} from a vendor return made at {Location-A}, {Vendor-credit-B} from a vendor return made at {Location-B}, and {Vendor-credit-C} not from a vendor return. For example: {Vendor-A} is ZZAUTOTEST S7-07 Returns.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A} ticked and its rows showing.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-credit-A} = "vendor credit A", {Vendor-credit-B} = "vendor credit B", {Vendor-credit-C} = "vendor credit C". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-credit-A} = "vendor credit A", {Vendor-credit-B} = "vendor credit B", {Vendor-credit-C} = "vendor credit C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-VC.
 Sources (verbatim text in section 9): S7-R6, S7-R9.
 Design pictures: `design-2026-10-22/ar-ap-p7-vendor-credits-link.png` (I43, "Vendor credits link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
@@ -3751,13 +3729,13 @@ Design pictures: `design-2026-10-22/ar-ap-p7-vendor-credits-link.png` (I43, "Ven
 ### SETUP-S7-08 — A/P Unpaid Invoices: a vendor credit links to the return it came from
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations: your current location and your other location.
 - Make sure you are enrolled at both locations.
-- Have a vendor, vendor A, with three unused vendor credits: vendor credit A from a vendor return made at location A, vendor credit B from a vendor return made at location B, and vendor credit C not from a vendor return.
+- Have a vendor with three unused vendor credits: vendor credit A from a vendor return made at your current location, vendor credit B from a vendor return made at your other location, and vendor credit C not from a vendor return.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
-- Leave the report with vendor A ticked and its rows showing.
+- Leave the report with that vendor ticked and its rows showing.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -3765,7 +3743,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has three unused vendor credits: {Vendor-credit-A} from a vendor return made at {Location-A}, {Vendor-credit-B} from a vendor return made at {Location-B}, and {Vendor-credit-C} not from a vendor return. For example: {Vendor-A} is ZZAUTOTEST S7-08 Returns.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A} ticked and its rows showing.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-credit-A} = "vendor credit A", {Vendor-credit-B} = "vendor credit B", {Vendor-credit-C} = "vendor credit C". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-credit-A} = "vendor credit A", {Vendor-credit-B} = "vendor credit B", {Vendor-credit-C} = "vendor credit C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-VC.
 Sources (verbatim text in section 9): S7-R6, S7-R9.
 Design pictures: `design-2026-10-22/ar-ap-p7-vendor-credits-link.png` (I43, "Vendor credits link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
@@ -3773,13 +3751,13 @@ Design pictures: `design-2026-10-22/ar-ap-p7-vendor-credits-link.png` (I43, "Ven
 ### SETUP-S7-09 — A/R Detail: opening an invoice link in a new tab asks there
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations: your current location and your other location.
 - Make sure you are enrolled at both locations.
-- Have a customer, customer A, with an open work order invoice A made at location B.
+- Have a customer with an open work order invoice A made at your other location.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-- Leave the report with customer A ticked and every bucket expanded.
+- Leave the report with that customer ticked and every bucket expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -3787,7 +3765,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has an open work order invoice {Invoice-A} made at {Location-B}. For example: {Customer-A} is ZZAUTOTEST S7-09 New Tab.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} ticked and every bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S7-R8.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -3795,18 +3773,18 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S7-10 — A/R Detail: credit memos and deposits are plain text
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a customer, customer A, with an unused credit memo A and an unused deposit A at location A.
+- Sign in as an Admin user (the "Admin" role).
+- Have a customer with an unused credit memo A and an unused deposit A at your current location.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-- Leave the report with customer A ticked and every bucket expanded.
+- Leave the report with that customer ticked and every bucket expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has an unused credit memo {Credit-memo-A} and an unused deposit {Deposit-A} at {Location-A}. For example: {Customer-A} is ZZAUTOTEST S7-10 Credits.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} ticked and every bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Credit-memo-A} = "credit memo A", {Customer-A} = "customer A", {Deposit-A} = "deposit A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Credit-memo-A} = "credit memo A", {Customer-A} = "customer A", {Deposit-A} = "deposit A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-CM.
 Sources (verbatim text in section 9): OOS-6, S7-R10.
 Design pictures: `design-2026-10-22/ar-ap-p7-vendor-credits-link.png` (I43, "Vendor credits link").
@@ -3814,18 +3792,18 @@ Design pictures: `design-2026-10-22/ar-ap-p7-vendor-credits-link.png` (I43, "Ven
 ### SETUP-S7-11 — A/R Detail: a document at a location you are not enrolled in is plain text
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as user B, an "Admin" user enrolled only at location A, with location A as your current location.
-- Have a customer, customer A, with an open invoice A made at location B, a location user B is not enrolled in.
+- Sign in as an "Admin" user enrolled at one location only.
+- Have a customer with an open invoice A made at another location, one this user is not enrolled in.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-- Leave the report with customer A ticked and every bucket expanded.
+- Leave the report with that customer ticked and every bucket expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are signed in as {User-B}, an "Admin" user enrolled only at {Location-A}, with {Location-A} as your current location. For example: {User-B} is ZZAUTOTEST S7-11 Not There; {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has an open invoice {Invoice-A} made at {Location-B}, a location {User-B} is not enrolled in. For example: {Customer-A} is ZZAUTOTEST S7-11 Far Away; {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} ticked and every bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A", {Location-B} = "location B", {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A", {Location-B} = "location B", {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-ROLE.
 Sources (verbatim text in section 9): S5-R12, S7-N1.
 Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
@@ -3833,18 +3811,18 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-S7-12 — With Invoicing and Work Orders View, a work order invoice is a link
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as user B, whose custom role has "Reports → Page Access", "Invoicing & Payments → View", "Work Orders → View" but not "Part Sales → View", with location A as your current location.
-- Have a customer, customer A, with an open work order invoice A and an open part sale invoice B, both made at location A.
+- Sign in as a user whose custom role has "Reports → Page Access", "Invoicing & Payments → View", "Work Orders → View" but not "Part Sales → View".
+- Have a customer with an open work order invoice A and an open part sale invoice B, both made at your current location.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-- Leave the report with customer A ticked and every bucket expanded.
+- Leave the report with that customer ticked and every bucket expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are signed in as {User-B}, whose custom role has "Reports → Page Access", "Invoicing & Payments → View", "Work Orders → View" but not "Part Sales → View", with {Location-A} as your current location. For example: {User-B} is ZZAUTOTEST S7-12 User with the custom role ZZAUTOTEST S7-12 Role; {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has an open work order invoice {Invoice-A} and an open part sale invoice {Invoice-B}, both made at {Location-A}. For example: {Customer-A} is ZZAUTOTEST S7-12 Permissions.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} ticked and every bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Invoice-B} = "invoice B", {Location-A} = "location A", {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Invoice-B} = "invoice B", {Location-A} = "location A", {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-INV-PS, P-ROLE.
 Sources (verbatim text in section 9): S7-N2, S7-R1.
 Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
@@ -3852,18 +3830,18 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-S7-13 — Without Invoicing View, work order and part sale invoices are plain text
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as user B, whose custom role has "Reports → Page Access", "Work Orders → View", "Part Sales → View" but not "Invoicing & Payments → View", with location A as your current location.
-- Have a customer, customer A, with an overdue work order invoice A and an overdue part sale invoice B, both made at location A.
+- Sign in as a user whose custom role has "Reports → Page Access", "Work Orders → View", "Part Sales → View" but not "Invoicing & Payments → View".
+- Have a customer with an overdue work order invoice A and an overdue part sale invoice B, both made at your current location.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
-- Leave the report with customer A's group expanded.
+- Leave the report with that customer's group expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are signed in as {User-B}, whose custom role has "Reports → Page Access", "Work Orders → View", "Part Sales → View" but not "Invoicing & Payments → View", with {Location-A} as your current location. For example: {User-B} is ZZAUTOTEST S7-13 User with the custom role ZZAUTOTEST S7-13 Role; {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has an overdue work order invoice {Invoice-A} and an overdue part sale invoice {Invoice-B}, both made at {Location-A}. For example: {Customer-A} is ZZAUTOTEST S7-13 No Invoicing.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Invoice-B} = "invoice B", {Location-A} = "location A", {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Invoice-B} = "invoice B", {Location-A} = "location A", {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-INV-PS, P-ROLE.
 Sources (verbatim text in section 9): S7-N2, S7-R1.
 Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
@@ -3871,18 +3849,18 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-S7-14 — With Invoicing and Part Sales View only, only part sale invoices link
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as user B, whose custom role has "Reports → Page Access", "Invoicing & Payments → View", "Part Sales → View" but not "Work Orders → View", with location A as your current location.
-- Have a customer, customer A, with an overdue work order invoice A and an overdue part sale invoice B, both made at location A.
+- Sign in as a user whose custom role has "Reports → Page Access", "Invoicing & Payments → View", "Part Sales → View" but not "Work Orders → View".
+- Have a customer with an overdue work order invoice A and an overdue part sale invoice B, both made at your current location.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
-- Leave the report with customer A's group expanded.
+- Leave the report with that customer's group expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are signed in as {User-B}, whose custom role has "Reports → Page Access", "Invoicing & Payments → View", "Part Sales → View" but not "Work Orders → View", with {Location-A} as your current location. For example: {User-B} is ZZAUTOTEST S7-14 User with the custom role ZZAUTOTEST S7-14 Role; {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has an overdue work order invoice {Invoice-A} and an overdue part sale invoice {Invoice-B}, both made at {Location-A}. For example: {Customer-A} is ZZAUTOTEST S7-14 Parts Only.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Invoice-B} = "invoice B", {Location-A} = "location A", {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Invoice-B} = "invoice B", {Location-A} = "location A", {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-INV-PS, P-ROLE.
 Sources (verbatim text in section 9): S7-N2, S7-R2.
 Design pictures: `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
@@ -3890,18 +3868,18 @@ Design pictures: `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png`
 ### SETUP-S7-15 — With Vendor Order Management View, a bill at your location is a link
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as user B, whose custom role has "Reports → Page Access", "Vendor Order Management → View" but not "Vendor Order Management → Create & Edit", with location A as your current location.
-- Have a vendor, vendor A, with an unpaid bill A received at location A.
+- Sign in as a user whose custom role has "Reports → Page Access", "Vendor Order Management → View" but not "Vendor Order Management → Create & Edit".
+- Have a vendor with an unpaid bill A received at your current location.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
-- Leave the report with vendor A's group expanded.
+- Leave the report with that vendor's group expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are signed in as {User-B}, whose custom role has "Reports → Page Access", "Vendor Order Management → View" but not "Vendor Order Management → Create & Edit", with {Location-A} as your current location. For example: {User-B} is ZZAUTOTEST S7-15 User with the custom role ZZAUTOTEST S7-15 Role; {Location-A} is Staging Heavy Duty - 9919.
 - Vendor {Vendor-A} has an unpaid bill {Bill-A} received at {Location-A}. For example: {Vendor-A} is ZZAUTOTEST S7-15 Bills.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A}'s group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Bill-A} = "bill A", {Location-A} = "location A", {User-B} = "user B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Bill-A} = "bill A", {Location-A} = "location A", {User-B} = "user B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL, P-ROLE.
 Sources (verbatim text in section 9): S7-R1, S7-R6.
 Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
@@ -3909,18 +3887,18 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-S7-16 — With Vendor Order Management Create & Edit, a bill at your location is a link
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as user B, whose custom role has "Reports → Page Access", "Vendor Order Management → Create & Edit" but not "Vendor Order Management → View", with location A as your current location.
-- Have a vendor, vendor A, with an unpaid bill A received at location A.
+- Sign in as a user whose custom role has "Reports → Page Access", "Vendor Order Management → Create & Edit" but not "Vendor Order Management → View".
+- Have a vendor with an unpaid bill A received at your current location.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
-- Leave the report with vendor A's group expanded.
+- Leave the report with that vendor's group expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are signed in as {User-B}, whose custom role has "Reports → Page Access", "Vendor Order Management → Create & Edit" but not "Vendor Order Management → View", with {Location-A} as your current location. For example: {User-B} is ZZAUTOTEST S7-16 User with the custom role ZZAUTOTEST S7-16 Role; {Location-A} is Staging Heavy Duty - 9919.
 - Vendor {Vendor-A} has an unpaid bill {Bill-A} received at {Location-A}. For example: {Vendor-A} is ZZAUTOTEST S7-16 Bills.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A}'s group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Bill-A} = "bill A", {Location-A} = "location A", {User-B} = "user B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Bill-A} = "bill A", {Location-A} = "location A", {User-B} = "user B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL, P-ROLE.
 Sources (verbatim text in section 9): S7-R1, S7-R6.
 Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
@@ -3928,18 +3906,18 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-S7-17 — Without Vendor Order Management, bills and vendor credits are plain text
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as user B, whose custom role has "Reports → Page Access" but not "Vendor Order Management → View" or "Vendor Order Management → Create & Edit", with location A as your current location.
-- Have a vendor, vendor A, with an unpaid bill A received at location A and an unused vendor credit A from a vendor return made at location A.
+- Sign in as a user whose custom role has "Reports → Page Access" but not "Vendor Order Management → View" or "Vendor Order Management → Create & Edit".
+- Have a vendor with an unpaid bill A received at your current location and an unused vendor credit A from a vendor return made at your current location.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
-- Leave the report with vendor A ticked and every bucket expanded.
+- Leave the report with that vendor ticked and every bucket expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are signed in as {User-B}, whose custom role has "Reports → Page Access" but not "Vendor Order Management → View" or "Vendor Order Management → Create & Edit", with {Location-A} as your current location. For example: {User-B} is ZZAUTOTEST S7-17 User with the custom role ZZAUTOTEST S7-17 Role; {Location-A} is Staging Heavy Duty - 9919.
 - Vendor {Vendor-A} has an unpaid bill {Bill-A} received at {Location-A} and an unused vendor credit {Vendor-credit-A} from a vendor return made at {Location-A}. For example: {Vendor-A} is ZZAUTOTEST S7-17 No Orders.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A} ticked and every bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Bill-A} = "bill A", {Location-A} = "location A", {User-B} = "user B", {Vendor-A} = "vendor A", {Vendor-credit-A} = "vendor credit A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Bill-A} = "bill A", {Location-A} = "location A", {User-B} = "user B", {Vendor-A} = "vendor A", {Vendor-credit-A} = "vendor credit A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-PAY, P-BILL, P-VC, P-ROLE.
 Sources (verbatim text in section 9): S7-N2, S7-R9.
 Design pictures: `design-2026-10-22/ar-ap-p7-vendor-credits-link.png` (I43, "Vendor credits link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
@@ -3947,7 +3925,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-vendor-credits-link.png` (I43, "Ven
 ### SETUP-S7-18 — A/R Summary: with Customers View, customer names link to A/R Collection
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Summary, A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as user B, whose custom role has "Reports → Page Access" and "Customers → View".
+- Sign in as a user whose custom role has "Reports → Page Access" and "Customers → View".
 - Have a customer, customer A, with open invoices on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -3957,7 +3935,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has open invoices on today's date. For example: {Customer-A} is ZZAUTOTEST S7-18 Name Link.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-ROLE.
 Sources (verbatim text in section 9): S7-R1, WC-6.
 Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
@@ -3965,7 +3943,7 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-S7-18b — A/R Summary: without Customers View, customer names are plain text
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as user C, whose custom role has "Reports → Page Access" but not "Customers → View".
+- Sign in as a user whose custom role has "Reports → Page Access" but not "Customers → View".
 - Have a customer, customer A, with open invoices on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -3975,7 +3953,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has open invoices on today's date. For example: {Customer-A} is ZZAUTOTEST S7-18 Name Link.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {User-C} = "user C". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {User-C} = "user C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-ROLE.
 Sources (verbatim text in section 9): S7-R1, WC-6.
 Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
@@ -3983,7 +3961,7 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-S7-19 — A/P Summary: vendor names link for everyone who can open the report
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/P Summary, A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as user B, whose custom role has "Reports → Page Access" but not "Vendor Order Management → View" or "Vendor Order Management → Create & Edit", with location A as your current location.
+- Sign in as a user whose custom role has "Reports → Page Access" but not "Vendor Order Management → View" or "Vendor Order Management → Create & Edit".
 - Have a vendor, vendor A, with unpaid bills on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -3993,7 +3971,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has unpaid bills on today's date. For example: {Vendor-A} is ZZAUTOTEST S7-19 Name Link.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {User-B} = "user B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {User-B} = "user B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-PAY, P-BILL, P-ROLE.
 Sources (verbatim text in section 9): S7-R1, WC-6.
 Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
@@ -4001,7 +3979,7 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-S8-01 — A/R Summary: the info icon shows the report's description
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -4009,7 +3987,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S8-R1.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-light.png` (I19, "Info icon beside the title, light"), `design-2026-10-22/ar-ap-p6-info-icon-open-light.png` (I20, "Info icon open, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-dark.png` (I21, "Info icon beside the title, dark").
@@ -4017,7 +3995,7 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S8-02 — A/R Detail: the info icon shows the report's description
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -4025,7 +4003,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S8-R1.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-light.png` (I19, "Info icon beside the title, light"), `design-2026-10-22/ar-ap-p6-info-icon-open-light.png` (I20, "Info icon open, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-dark.png` (I21, "Info icon beside the title, dark").
@@ -4033,7 +4011,7 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S8-03 — A/R Collection: the info icon shows the report's description
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -4041,7 +4019,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S8-R1.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-light.png` (I19, "Info icon beside the title, light"), `design-2026-10-22/ar-ap-p6-info-icon-open-light.png` (I20, "Info icon open, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-dark.png` (I21, "Info icon beside the title, dark").
@@ -4049,7 +4027,7 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S8-04 — A/P Summary: the info icon shows the report's description
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Use a desktop browser window 1440 px wide.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -4057,7 +4035,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S8-R1.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-light.png` (I19, "Info icon beside the title, light"), `design-2026-10-22/ar-ap-p6-info-icon-open-light.png` (I20, "Info icon open, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-dark.png` (I21, "Info icon beside the title, dark").
@@ -4065,7 +4043,7 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S8-05 — A/P Detail: the info icon shows the report's description
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -4073,7 +4051,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S8-R1.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-light.png` (I19, "Info icon beside the title, light"), `design-2026-10-22/ar-ap-p6-info-icon-open-light.png` (I20, "Info icon open, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-dark.png` (I21, "Info icon beside the title, dark").
@@ -4081,7 +4059,7 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S8-06 — A/P Unpaid Invoices: the info icon shows the report's description
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -4089,7 +4067,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-PAY.
 Sources (verbatim text in section 9): S8-R1.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-light.png` (I19, "Info icon beside the title, light"), `design-2026-10-22/ar-ap-p6-info-icon-open-light.png` (I20, "Info icon open, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-dark.png` (I21, "Info icon beside the title, dark").
@@ -4097,7 +4075,7 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S8-07 — A/R Summary: the description is not in the PDF or CSV
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -4107,7 +4085,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents on today's date.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-PAY.
 Sources (verbatim text in section 9): S8-N1, S8-R1.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-light.png` (I19, "Info icon beside the title, light"), `design-2026-10-22/ar-ap-p6-info-icon-open-light.png` (I20, "Info icon open, light"), `design-2026-10-22/ar-ap-p6-info-icon-open-dark.png` (I22, "Info icon open, dark").
@@ -4115,7 +4093,7 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S8-07b — A/P Unpaid Invoices: the description is not in the PDF or CSV
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -4125,7 +4103,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents on today's date.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-PAY.
 Sources (verbatim text in section 9): S8-N1, S8-R1.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-light.png` (I19, "Info icon beside the title, light"), `design-2026-10-22/ar-ap-p6-info-icon-open-light.png` (I20, "Info icon open, light"), `design-2026-10-22/ar-ap-p6-info-icon-open-dark.png` (I22, "Info icon open, dark").
@@ -4133,13 +4111,13 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S8-08 — A/R Detail: Clear all filters keeps the date and resets the rest
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations: your current location and your other location.
 - Make sure you are enrolled at both locations.
-- Have a customer, customer A, with open invoices only at location B, none 61 to 90 days past due, on yesterday's date.
+- Have a customer with open invoices only at your other location, none 61 to 90 days past due, on yesterday's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-- Leave the report with the as-of date set to yesterday, only customer A ticked in the Customer filter, "61-90 days" ticked in the Past due filter and only location A ticked in the Location filter.
+- Leave the report with the as-of date set to yesterday, only that customer ticked in the Customer filter, "61-90 days" ticked in the Past due filter and only your current location ticked in the Location filter.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -4147,7 +4125,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has open invoices only at {Location-B}, none 61 to 90 days past due, on yesterday's date. For example: {Customer-A} is ZZAUTOTEST S8-08 Nothing Here.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to yesterday, only {Customer-A} ticked in the Customer filter, "61-90 days" ticked in the Past due filter and only {Location-A} ticked in the Location filter.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-AGE.
 Sources (verbatim text in section 9): S8-R5, UFS-9.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -4155,13 +4133,13 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S8-09 — A/P Detail: Clear all filters keeps the date and resets the rest
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations: your current location and your other location.
 - Make sure you are enrolled at both locations.
-- Have a vendor, vendor A, with open bills only at location B, none 61 to 90 days past due, on yesterday's date.
+- Have a vendor with open bills only at your other location, none 61 to 90 days past due, on yesterday's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
-- Leave the report with the as-of date set to yesterday, only vendor A ticked in the Vendor filter, "61-90 days" ticked in the Past due filter and only location A ticked in the Location filter.
+- Leave the report with the as-of date set to yesterday, only that vendor ticked in the Vendor filter, "61-90 days" ticked in the Past due filter and only your current location ticked in the Location filter.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -4169,7 +4147,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has open bills only at {Location-B}, none 61 to 90 days past due, on yesterday's date. For example: {Vendor-A} is ZZAUTOTEST S8-09 Nothing Here.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to yesterday, only {Vendor-A} ticked in the Vendor filter, "61-90 days" ticked in the Past due filter and only {Location-A} ticked in the Location filter.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL, P-AGE.
 Sources (verbatim text in section 9): S8-R5, UFS-9.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -4177,7 +4155,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S8-10 — A/R Collection: a report that fails to load says so in place of the rows
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -4187,7 +4165,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-OFFLINE.
 Sources (verbatim text in section 9): S8-R6, UFS-10.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -4195,7 +4173,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S8-11 — A/P Summary: a report that fails to load says so in place of the rows
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
 - Use a desktop browser window 1440 px wide.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -4205,7 +4183,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-OFFLINE.
 Sources (verbatim text in section 9): S8-R6, UFS-10.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -4213,7 +4191,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S8-12 — A/P Detail: the progress bar shows while the report loads
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the organization has many open A/P lines, so the report takes a moment to load.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -4223,7 +4201,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has many open A/P lines, so the report takes a moment to load. For example: the QA organization (13,540 open A/P lines).
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VOLUME.
 Sources (verbatim text in section 9): S8-R5.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -4231,7 +4209,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S9-01 — A/R Collection: each customer row shows phone and credit term
 Section: Story 9 — A/R Collection call list (TestRail section 90427). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure your role has the "View and Manage AP/AR Data" switch on.
 - Have a customer, customer A, with an overdue invoice, a phone number and a credit term on its customer card.
 - Have a customer, customer B, with an overdue invoice and no credit term.
@@ -4244,7 +4222,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has an overdue invoice, a phone number and a credit term on its customer card; customer {Customer-B} has an overdue invoice and no credit term. For example: {Customer-A} is ZZAUTOTEST S9-01 Call Me with phone (403) 555-0101 and credit term Net 30; {Customer-B} is ZZAUTOTEST S9-01 No Terms.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): OOS-5, S9-R1, S9-R2.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection: date and customer only"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection"), `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection, groups opened one by one").
@@ -4252,7 +4230,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-S9-02 — A/R Collection: a customer with no phone shows no Phone label
 Section: Story 9 — A/R Collection call list (TestRail section 90427). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have a customer, customer A, with an overdue invoice and no phone number on its customer card.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -4263,7 +4241,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has an overdue invoice and no phone number on its customer card. For example: {Customer-A} is ZZAUTOTEST S9-02 No Phone.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Customer-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S9-N1.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -4271,7 +4249,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S9-03 — A/R Collection: the PDF and CSV carry the phone and credit term
 Section: Story 9 — A/R Collection call list (TestRail section 90427). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure your role has the "View and Manage AP/AR Data" switch on.
 - Have a customer, customer A, with two overdue invoices, a phone number and a credit term.
 - Use a desktop browser window 1440 px wide.
@@ -4284,7 +4262,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has two overdue invoices, a phone number and a credit term. For example: {Customer-A} is ZZAUTOTEST S9-03 Export Call with phone (403) 555-0102 and credit term Net 15.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Customer-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S3-R8a, S9-R3.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection").
@@ -4292,7 +4270,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S9-04 — A/R Collection: without AP/AR Data access there is no credit term
 Section: Story 9 — A/R Collection call list (TestRail section 90427). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as user B, whose custom role has "Reports → Page Access" and the "View and Manage AP/AR Data" switch off.
+- Sign in as a user whose custom role has "Reports → Page Access" and the "View and Manage AP/AR Data" switch off.
 - Have a customer, customer A, with an overdue invoice, a phone number and a credit term.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -4303,7 +4281,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has an overdue invoice, a phone number and a credit term. For example: {Customer-A} is ZZAUTOTEST S9-04 Hidden Term with credit term Net 30.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Customer-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-ROLE.
 Sources (verbatim text in section 9): KD-PERM, S3-R8a, S9-N2.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection").
@@ -4311,7 +4289,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S8-13 — A/R Collection: a tap on the info icon shows the description
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Use a touch-screen device whose screen is at least 1024 px wide, with no mouse.
 - On that device, use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -4321,7 +4299,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You use a touch-screen device whose screen is at least 1024 px wide, with no mouse. For example: a touch-screen laptop or a large tablet in a desktop browser.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu on that device.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S8-R1.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-light.png` (I19, "Info icon beside the title, light"), `design-2026-10-22/ar-ap-p6-info-icon-open-light.png` (I20, "Info icon open, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-dark.png` (I21, "Info icon beside the title, dark").
@@ -4330,9 +4308,9 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Have open documents in these reports at two locations, location A and your other location.
 - Make sure you are enrolled at both locations.
-- Have a customer, customer A, with open invoices at location A and one open work order invoice, invoice A, made at location B.
+- Have a customer, customer A, with open invoices at location A and one open work order invoice, invoice A, made at your other location.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
 - Leave the report with customer A ticked, the "Amount" header clicked once, every bucket expanded and the page scrolled so invoice A is in the middle of the screen.
@@ -4343,7 +4321,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has open invoices at {Location-A} and one open work order invoice, {Invoice-A}, made at {Location-B}. For example: {Customer-A} is ZZAUTOTEST S7-20 Close Box.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} ticked, the "Amount" header clicked once, every bucket expanded and the page scrolled so {Invoice-A} is in the middle of the screen.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S7-R3, S7-R5.
 Design pictures: `design-2026-10-22/ar-ap-p5-another-location-asks-first.png` (I29, "Another location asks first"), `design-2026-10-22/ar-ap-p5-cancel-stays-on-the-report.png` (I30, "Cancel stays on the report").
@@ -4351,7 +4329,7 @@ Design pictures: `design-2026-10-22/ar-ap-p5-another-location-asks-first.png` (I
 ### SETUP-DATA-01 — A/R Summary: 30 customers at a time, none repeated or skipped
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure that between 31 and 90 customers have open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -4361,7 +4339,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Between 31 and 90 customers have open documents on today's date. For example: the QA organization's A/R Summary has 46 customers.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VOLUME.
 Sources (verbatim text in section 9): S1-R8, WC-1.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Summary: date only"), `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Aging Summary as it opens today"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -4369,7 +4347,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-DATA-01b — A/R Summary: the Totals row adds up every customer, not only those loaded
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure that between 31 and 90 customers have open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -4379,7 +4357,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Between 31 and 90 customers have open documents on today's date. For example: the QA organization's A/R Summary has 46 customers.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VOLUME.
 Sources (verbatim text in section 9): S1-R8, S3-R3, S5-R18.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -4387,7 +4365,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-DATA-02 — A/P Summary: 30 vendors at a time, none repeated or skipped
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure that between 31 and 90 vendors have open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -4397,7 +4375,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Between 31 and 90 vendors have open documents on today's date.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VOLUME.
 Sources (verbatim text in section 9): S1-R8.
 Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -4405,7 +4383,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-DATA-02b — A/P Summary: the Totals row adds up every vendor, not only those loaded
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure that between 31 and 90 vendors have open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -4415,7 +4393,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Between 31 and 90 vendors have open documents on today's date.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VOLUME.
 Sources (verbatim text in section 9): S1-R8, S3-R3, S5-R18.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection").
@@ -4423,7 +4401,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-DATA-03 — A/R Collection: 30 customers at a time, none repeated or skipped
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure that between 31 and 90 customers have overdue invoices on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -4433,7 +4411,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Between 31 and 90 customers have overdue invoices on today's date.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-VOLUME.
 Sources (verbatim text in section 9): S1-R8, WC-1.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Summary: date only"), `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Aging Summary as it opens today"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -4441,7 +4419,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-DATA-03b — A/R Collection: the Totals row adds up every customer, not only those loaded
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure that between 31 and 90 customers have overdue invoices on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -4451,7 +4429,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Between 31 and 90 customers have overdue invoices on today's date.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-VOLUME.
 Sources (verbatim text in section 9): S1-R8, S3-R3, S5-R18.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection").
@@ -4459,7 +4437,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-DATA-04 — A/P Unpaid Invoices: 30 vendors at a time, none repeated or skipped
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure that between 31 and 90 vendors have overdue bills on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -4469,7 +4447,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Between 31 and 90 vendors have overdue bills on today's date.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-PAY, P-BILL, P-VOLUME.
 Sources (verbatim text in section 9): S1-R8.
 Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -4477,7 +4455,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-DATA-04b — A/P Unpaid Invoices: the Totals row adds up every vendor, not only those loaded
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure that between 31 and 90 vendors have overdue bills on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -4487,7 +4465,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Between 31 and 90 vendors have overdue bills on today's date.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-PAY, P-BILL, P-VOLUME.
 Sources (verbatim text in section 9): S1-R8, S3-R3, S5-R18.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection").
@@ -4495,7 +4473,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-DATA-05 — A/R Detail: a long bucket loads in 100s with no line repeated or skipped
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure one aging bucket, bucket A, has between 101 and 400 open lines on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -4506,7 +4484,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - One aging bucket, {Bucket-A}, has between 101 and 400 open lines on today's date. For example: {Bucket-A} is "91 or more days past due".
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every bucket collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Bucket-A} = "bucket A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Bucket-A} = "bucket A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-AGE, P-VOLUME.
 Sources (verbatim text in section 9): S1-R8, S4-R4, S4-R8; Tech plan §6 Phase 4, frontend.
 Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -4514,7 +4492,7 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-DATA-06 — A/P Detail: a long bucket loads in 100s with no line repeated or skipped
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure one aging bucket, bucket A, has between 101 and 400 open lines on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -4525,7 +4503,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - One aging bucket, {Bucket-A}, has between 101 and 400 open lines on today's date. For example: {Bucket-A} is "91 or more days past due".
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every bucket collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Bucket-A} = "bucket A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Bucket-A} = "bucket A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-AGE, P-VOLUME.
 Sources (verbatim text in section 9): S1-R8, S4-R4, S4-R8; Tech plan §6 Phase 4, frontend.
 Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -4536,7 +4514,7 @@ Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 20
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
 - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
 - Make sure you are enrolled at both locations.
-- Have three customers with only these open documents on today's date:
+- Have three new customers (created for this test) with only these open documents on today's date:
 - Customer A: an invoice of $1,000.00 at location A 15 days past due, an invoice of $400.00 at location B 45 days past due and an unused credit memo of $150.00 at location A.
 - Customer B: an invoice of $700.00 at location A 45 days past due and an invoice of $250.00 at location B 100 days past due.
 - Customer C: an invoice of $900.00 at location A 5 days past due.
@@ -4549,7 +4527,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - {Customer-A} has an invoice of $1,000.00 at {Location-A} 15 days past due, an invoice of $400.00 at {Location-B} 45 days past due and an unused credit memo of $150.00 at {Location-A}; {Customer-B} has an invoice of $700.00 at {Location-A} 45 days past due and an invoice of $250.00 at {Location-B} 100 days past due; {Customer-C} has an invoice of $900.00 at {Location-A} 5 days past due. Nothing else is open for the three on today's date. For example: {Customer-A} is ZZAUTOTEST DATA-07 Alpha, {Customer-B} is ZZAUTOTEST DATA-07 Bravo and {Customer-C} is ZZAUTOTEST DATA-07 Charlie.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-CM, P-AGE.
 Sources (verbatim text in section 9): KD-ROW, S5-R17, S5-R18, S5-R8, S6-R4.
 Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection"), `design-2026-10-22/ar-ap-p4-summaries-show-multiple.png` (I36, "Summaries show "Multiple"").
@@ -4560,7 +4538,7 @@ Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 20
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
 - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
 - Make sure you are enrolled at both locations.
-- Have three vendors with only these open documents on today's date:
+- Have three new vendors (created for this test) with only these open documents on today's date:
 - Vendor A: a bill of $1,000.00 at location A 15 days past due, a bill of $400.00 at location B 45 days past due and an unused vendor credit of $150.00 at location A.
 - Vendor B: a bill of $700.00 at location A 45 days past due and a bill of $250.00 at location B 100 days past due.
 - Vendor C: a bill of $900.00 at location A 5 days past due.
@@ -4573,7 +4551,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - {Vendor-A} has a bill of $1,000.00 at {Location-A} 15 days past due, a bill of $400.00 at {Location-B} 45 days past due and an unused vendor credit of $150.00 at {Location-A}; {Vendor-B} has a bill of $700.00 at {Location-A} 45 days past due and a bill of $250.00 at {Location-B} 100 days past due; {Vendor-C} has a bill of $900.00 at {Location-A} 5 days past due. Nothing else is open for the three on today's date. For example: {Vendor-A} is ZZAUTOTEST DATA-08 Alpha, {Vendor-B} is ZZAUTOTEST DATA-08 Bravo and {Vendor-C} is ZZAUTOTEST DATA-08 Charlie.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL, P-VC, P-AGE.
 Sources (verbatim text in section 9): KD-ROW, S5-R17, S5-R18, S5-R8, S6-R4.
 Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection"), `design-2026-10-22/ar-ap-p4-summaries-show-multiple.png` (I36, "Summaries show "Multiple"").
@@ -4584,7 +4562,7 @@ Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 20
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
 - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
 - Make sure you are enrolled at both locations.
-- Have three customers with only these open documents on today's date:
+- Have three new customers (created for this test) with only these open documents on today's date:
 - Customer A: an invoice of $1,000.00 at location A 15 days past due, an invoice of $400.00 at location B 45 days past due and an unused credit memo of $150.00 at location A.
 - Customer B: an invoice of $700.00 at location A 45 days past due and an invoice of $250.00 at location B 100 days past due.
 - Customer C: an invoice of $900.00 at location A 5 days past due.
@@ -4597,7 +4575,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - {Customer-A} has an invoice of $1,000.00 at {Location-A} 15 days past due, an invoice of $400.00 at {Location-B} 45 days past due and an unused credit memo of $150.00 at {Location-A}; {Customer-B} has an invoice of $700.00 at {Location-A} 45 days past due and an invoice of $250.00 at {Location-B} 100 days past due; {Customer-C} has an invoice of $900.00 at {Location-A} 5 days past due. Nothing else is open for the three on today's date. For example: {Customer-A} is ZZAUTOTEST DATA-09 Alpha, {Customer-B} is ZZAUTOTEST DATA-09 Bravo and {Customer-C} is ZZAUTOTEST DATA-09 Charlie.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-CM, P-AGE.
 Sources (verbatim text in section 9): S5-R16, S5-R18, S5-R7.
 Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection"), `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked").
@@ -4608,7 +4586,7 @@ Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 20
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
 - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
 - Make sure you are enrolled at both locations.
-- Have three customers with only these open documents on today's date:
+- Have three new customers (created for this test) with only these open documents on today's date:
 - Customer A: an invoice of $1,000.00 at location A 15 days past due, an invoice of $400.00 at location B 45 days past due and an unused credit memo of $150.00 at location A.
 - Customer B: an invoice of $700.00 at location A 45 days past due and an invoice of $250.00 at location B 100 days past due.
 - Customer C: an invoice of $900.00 at location A 5 days past due.
@@ -4621,7 +4599,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - {Customer-A} has an invoice of $1,000.00 at {Location-A} 15 days past due, an invoice of $400.00 at {Location-B} 45 days past due and an unused credit memo of $150.00 at {Location-A}; {Customer-B} has an invoice of $700.00 at {Location-A} 45 days past due and an invoice of $250.00 at {Location-B} 100 days past due; {Customer-C} has an invoice of $900.00 at {Location-A} 5 days past due. Nothing else is open for the three on today's date. For example: {Customer-A} is ZZAUTOTEST DATA-10 Alpha, {Customer-B} is ZZAUTOTEST DATA-10 Bravo and {Customer-C} is ZZAUTOTEST DATA-10 Charlie.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-CM, P-AGE.
 Sources (verbatim text in section 9): S5-R16, S5-R18, S5-R7, WC-4.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection: date and customer only"), `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection"), `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection, groups opened one by one"), `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked").
@@ -4632,7 +4610,7 @@ Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 20
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
 - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
 - Make sure you are enrolled at both locations.
-- Have three vendors with only these open documents on today's date:
+- Have three new vendors (created for this test) with only these open documents on today's date:
 - Vendor A: a bill of $1,000.00 at location A 15 days past due, a bill of $400.00 at location B 45 days past due and an unused vendor credit of $150.00 at location A.
 - Vendor B: a bill of $700.00 at location A 45 days past due and a bill of $250.00 at location B 100 days past due.
 - Vendor C: a bill of $900.00 at location A 5 days past due.
@@ -4645,7 +4623,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - {Vendor-A} has a bill of $1,000.00 at {Location-A} 15 days past due, a bill of $400.00 at {Location-B} 45 days past due and an unused vendor credit of $150.00 at {Location-A}; {Vendor-B} has a bill of $700.00 at {Location-A} 45 days past due and a bill of $250.00 at {Location-B} 100 days past due; {Vendor-C} has a bill of $900.00 at {Location-A} 5 days past due. Nothing else is open for the three on today's date. For example: {Vendor-A} is ZZAUTOTEST DATA-11 Alpha, {Vendor-B} is ZZAUTOTEST DATA-11 Bravo and {Vendor-C} is ZZAUTOTEST DATA-11 Charlie.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL, P-VC, P-AGE.
 Sources (verbatim text in section 9): S5-R16, S5-R18, S5-R7.
 Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection"), `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked").
@@ -4656,7 +4634,7 @@ Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 20
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
 - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
 - Make sure you are enrolled at both locations.
-- Have three vendors with only these open documents on today's date:
+- Have three new vendors (created for this test) with only these open documents on today's date:
 - Vendor A: a bill of $1,000.00 at location A 15 days past due, a bill of $400.00 at location B 45 days past due and an unused vendor credit of $150.00 at location A.
 - Vendor B: a bill of $700.00 at location A 45 days past due and a bill of $250.00 at location B 100 days past due.
 - Vendor C: a bill of $900.00 at location A 5 days past due.
@@ -4669,7 +4647,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - {Vendor-A} has a bill of $1,000.00 at {Location-A} 15 days past due, a bill of $400.00 at {Location-B} 45 days past due and an unused vendor credit of $150.00 at {Location-A}; {Vendor-B} has a bill of $700.00 at {Location-A} 45 days past due and a bill of $250.00 at {Location-B} 100 days past due; {Vendor-C} has a bill of $900.00 at {Location-A} 5 days past due. Nothing else is open for the three on today's date. For example: {Vendor-A} is ZZAUTOTEST DATA-12 Alpha, {Vendor-B} is ZZAUTOTEST DATA-12 Bravo and {Vendor-C} is ZZAUTOTEST DATA-12 Charlie.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B", {Vendor-C} = "vendor C". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL, P-VC, P-AGE.
 Sources (verbatim text in section 9): S5-R16, S5-R18, S5-R7, WC-4.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection: date and customer only"), `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection"), `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection, groups opened one by one"), `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked").
@@ -4677,8 +4655,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-DATA-13 — A/R Summary: the Totals row leaves out overpaid invoices, as the rows do
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a customer, customer A, with an invoice A of $100.00 paid $120.00 (overpaid), and an open invoice B of $500.00 on today's date.
+- Sign in as an Admin user (the "Admin" role).
+- Have a new customer (created for this test), customer A, with an invoice of $100.00 paid $120.00 (overpaid), and an open invoice B of $500.00 on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
 - Leave the report with the Customer filter showing only customer A ticked.
@@ -4688,7 +4666,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has an invoice {Invoice-A} of $100.00 paid $120.00 (overpaid), and an open invoice {Invoice-B} of $500.00 on today's date. For example: {Customer-A} is ZZAUTOTEST DATA-13 Overpaid.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing only {Customer-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Invoice-B} = "invoice B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Invoice-B} = "invoice B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-PAY.
 Sources (verbatim text in section 9): S5-R18, WC-5.
 Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection").
@@ -4699,7 +4677,7 @@ Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 20
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
 - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
 - Make sure you are enrolled at both locations.
-- Have two customers with only these open documents on today's date:
+- Have two new customers (created for this test) with only these open documents on today's date:
 - Customer A: an invoice of $1,000.00 at location A that is not yet due, an invoice of $400.00 at location A 45 days past due and an invoice of $300.00 at location B 15 days past due.
 - Customer B: an invoice of $700.00 at location A 45 days past due, partly paid $200.00 (open $500.00), and an invoice of $250.00 at location A 100 days past due.
 - Use a desktop browser window 1440 px wide.
@@ -4712,7 +4690,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - {Customer-A} has an invoice of $1,000.00 at {Location-A} that is not yet due, an invoice of $400.00 at {Location-A} 45 days past due and an invoice of $300.00 at {Location-B} 15 days past due; {Customer-B} has an invoice of $700.00 at {Location-A} 45 days past due, partly paid $200.00 (open $500.00), and an invoice of $250.00 at {Location-A} 100 days past due. Nothing else is open for the two on today's date. For example: {Customer-A} is ZZAUTOTEST DATA-14 Parity One and {Customer-B} is ZZAUTOTEST DATA-14 Parity Two.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} and {Customer-B} ticked in the Customer filter and Past due on Any.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-PAY, P-AGE.
 Sources (verbatim text in section 9): S1-R5, S5-R18, S5-R18a, S5-R7.
 Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection"), `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-as-it-opens-today.png` (I02, "A/P Aging Detail as it opens today").
@@ -4723,7 +4701,7 @@ Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 20
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
 - Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
 - Make sure you are enrolled at both locations.
-- Have two vendors with only these open documents on today's date:
+- Have two new vendors (created for this test) with only these open documents on today's date:
 - Vendor A: a bill of $1,000.00 at location A that is not yet due, a bill of $400.00 at location A 45 days past due and a bill of $300.00 at location B 15 days past due.
 - Vendor B: a bill of $700.00 at location A 45 days past due, partly paid $200.00 (open $500.00), and a bill of $250.00 at location A 100 days past due.
 - Use a desktop browser window 1440 px wide.
@@ -4736,7 +4714,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - {Vendor-A} has a bill of $1,000.00 at {Location-A} that is not yet due, a bill of $400.00 at {Location-A} 45 days past due and a bill of $300.00 at {Location-B} 15 days past due; {Vendor-B} has a bill of $700.00 at {Location-A} 45 days past due, partly paid $200.00 (open $500.00), and a bill of $250.00 at {Location-A} 100 days past due. Nothing else is open for the two on today's date. For example: {Vendor-A} is ZZAUTOTEST DATA-15 Parity One and {Vendor-B} is ZZAUTOTEST DATA-15 Parity Two.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A} and {Vendor-B} ticked in the Vendor filter and Past due on Any.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-PAY, P-BILL, P-AGE.
 Sources (verbatim text in section 9): S1-R5, S5-R18, S5-R18a, S5-R7.
 Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-as-it-opens-today.png` (I02, "A/P Aging Detail as it opens today"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -4744,18 +4722,18 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-DATA-16 — A/R Detail: the Past due ranges split at 30, 60 and 90 days exactly
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a customer, customer A, with eight open invoices on today's date: one of $10.00 not yet due, and one each 1, 30, 31, 60, 61, 90 and 91 days past its due date, of $1.00, $30.00, $31.00, $60.00, $61.00, $90.00 and $91.00 in that order.
+- Sign in as an Admin user (the "Admin" role).
+- Have a new customer (created for this test) with eight open invoices on today's date: one of $10.00 not yet due, and one each 1, 30, 31, 60, 61, 90 and 91 days past its due date, of $1.00, $30.00, $31.00, $60.00, $61.00, $90.00 and $91.00 in that order.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-- Leave the report with only customer A ticked in the Customer filter and every group expanded.
+- Leave the report with only that customer ticked in the Customer filter and every group expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has eight open invoices on today's date: one not yet due, and one each 1, 30, 31, 60, 61, 90 and 91 days past its due date. For example: {Customer-A} is ZZAUTOTEST DATA-16 Boundaries; the invoices are $10.00, $1.00, $30.00, $31.00, $60.00, $61.00, $90.00 and $91.00 in that order.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Customer-A} ticked in the Customer filter and every group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S5-R15, S5-R16, S5-R18.
 Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-past-due-menu.png` (I38, "Past due menu"), `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked").
@@ -4763,18 +4741,18 @@ Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I0
 ### SETUP-DATA-17 — A/P Unpaid Invoices: the Past due ranges split at 30, 60 and 90 days exactly
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a vendor, vendor A, with eight open bills on today's date: one of $10.00 not yet due, and one each 1, 30, 31, 60, 61, 90 and 91 days past its due date, of $1.00, $30.00, $31.00, $60.00, $61.00, $90.00 and $91.00 in that order.
+- Sign in as an Admin user (the "Admin" role).
+- Have a new vendor (created for this test) with eight open bills on today's date: one of $10.00 not yet due, and one each 1, 30, 31, 60, 61, 90 and 91 days past its due date, of $1.00, $30.00, $31.00, $60.00, $61.00, $90.00 and $91.00 in that order.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
-- Leave the report with only vendor A ticked in the Vendor filter and every group expanded.
+- Leave the report with only that vendor ticked in the Vendor filter and every group expanded.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Vendor {Vendor-A} has eight open bills on today's date: one not yet due, and one each 1, 30, 31, 60, 61, 90 and 91 days past its due date. For example: {Vendor-A} is ZZAUTOTEST DATA-17 Boundaries; the bills are $10.00, $1.00, $30.00, $31.00, $60.00, $61.00, $90.00 and $91.00 in that order.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Vendor-A} ticked in the Vendor filter and every group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL.
 Sources (verbatim text in section 9): S5-R15, S5-R16, S5-R18.
 Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-past-due-menu.png` (I38, "Past due menu"), `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked").
@@ -4782,7 +4760,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I0
 ### SETUP-DATA-18 — A/P Detail: a PDF over 2,000 rows is refused, the CSV downloads
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the organization has more than 2,000 and fewer than 50,000 open A/P lines on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -4792,7 +4770,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has more than 2,000 and fewer than 50,000 open A/P lines on today's date. For example: the QA organization, with 13,540 open A/P lines.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VOLUME.
 Sources (verbatim text in section 9): ASSUME-13540, S3-N1, S3-N3, S3-R9, UFS-1.
 Design pictures: `design-2026-10-22/ar-ap-p2-pdf-over-2-000-rows-is-refused.png` (I11, "PDF over 2,000 rows is refused").
@@ -4800,7 +4778,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-pdf-over-2-000-rows-is-refused.png`
 ### SETUP-DATA-19 — A/R Summary: a PDF of exactly 2,000 customers downloads, 2,001 is refused
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - needs more rows than any test site holds; the developers check this limit in their own check tasks (SV-11595, SV-11598)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Pick two as-of dates: date A, on which A/R Summary lists exactly 2,000 customers, and date B, on which it lists exactly 2,001.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -4810,7 +4788,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - On {Date-A} A/R Summary lists exactly 2,000 customers, and on {Date-B} exactly 2,001. For example: a prepared test organization (see the note).
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Date-A} = "date A", {Date-B} = "date B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Date-A} = "date A", {Date-B} = "date B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VOLUME.
 Sources (verbatim text in section 9): S3-N1, S3-N3, S3-R9.
 Design pictures: `design-2026-10-22/ar-ap-p2-pdf-over-2-000-rows-is-refused.png` (I11, "PDF over 2,000 rows is refused").
@@ -4818,7 +4796,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-pdf-over-2-000-rows-is-refused.png`
 ### SETUP-DATA-20 — A/P Detail: a PDF of exactly 2,000 lines downloads, 2,001 is refused
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure that today the organization has more than 2,001 open A/P lines.
 - Pick a set of vendors, the chosen vendors, whose open A/P lines today add up to exactly 2,000.
 - Have a vendor, vendor B, that is not one of the chosen vendors and has exactly one open A/P line today.
@@ -4831,7 +4809,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-B} is not one of {Vendors-A} and has exactly one open A/P line today. For example: {Vendor-B} is ZZAUTOTEST DATA-20 One Bill, with one open bill.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Vendor-B} = "vendor B", {Vendors-A} = "vendor set A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-B} = "vendor B", {Vendors-A} = "vendor set A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL, P-VOLUME.
 Sources (verbatim text in section 9): S3-N1, S3-N3, S3-R10, S3-R9, S5-R13; Tech plan §9 Known risks; Tech plan §7 E2E backlog.
 Design pictures: `design-2026-10-22/ar-ap-p2-pdf-over-2-000-rows-is-refused.png` (I11, "PDF over 2,000 rows is refused"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu").
@@ -4839,7 +4817,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-pdf-over-2-000-rows-is-refused.png`
 ### SETUP-DATA-21 — A/P Detail: a CSV of 50,000 rows downloads, 50,001 is refused
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - needs more rows than any test site holds; the developers check this limit in their own check tasks (SV-11595, SV-11598)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Pick two as-of dates: date A, on which A/P Detail has exactly 50,000 open lines, and date B, on which it has exactly 50,001.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -4849,7 +4827,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - On {Date-A} A/P Detail has exactly 50,000 open lines, and on {Date-B} exactly 50,001. For example: a prepared test organization (see the note).
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Date-A} = "date A", {Date-B} = "date B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Date-A} = "date A", {Date-B} = "date B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VOLUME.
 Sources (verbatim text in section 9): OOS-1, S3-N2, S3-N3, S3-R9, UFS-2.
 Design pictures: `design-2026-10-22/ar-ap-p2-pdf-over-2-000-rows-is-refused.png` (I11, "PDF over 2,000 rows is refused").
@@ -4857,8 +4835,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-pdf-over-2-000-rows-is-refused.png`
 ### SETUP-DATA-22 — A/R Summary: a payment shows as soon as the report is reloaded
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a customer, customer A, with one open invoice, invoice A, of $500.00 on today's date, and nothing else open.
+- Sign in as an Admin user (the "Admin" role).
+- Have a new customer (created for this test), customer A, with one open invoice, invoice A, of $500.00 on today's date, and nothing else open.
 - Open invoice A's page in a second browser tab, ready to record a payment.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -4870,7 +4848,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - {Invoice-A}'s page is open in a second browser tab, ready to record a payment.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing only {Customer-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-PAY.
 Sources (verbatim text in section 9): S5-R18, S5-R18b.
 Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection").
@@ -4878,8 +4856,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-DATA-23 — A/R Summary and Detail Totals differ by what a Past due filter drops
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Summary, A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have two customers with only these open documents on today's date:
+- Sign in as an Admin user (the "Admin" role).
+- Have two new customers (created for this test) with only these open documents on today's date:
 - Customer A: an invoice of $1,000.00 that is not yet due, an invoice of $400.00 45 days past due, an invoice of $300.00 15 days past due and an unused credit memo of $150.00.
 - Customer B: an invoice of $500.00 45 days past due and an invoice of $250.00 100 days past due.
 - Use a desktop browser window 1440 px wide.
@@ -4891,7 +4869,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - {Customer-A} has an invoice of $1,000.00 that is not yet due, an invoice of $400.00 45 days past due, an invoice of $300.00 15 days past due and an unused credit memo of $150.00; {Customer-B} has an invoice of $500.00 45 days past due and an invoice of $250.00 100 days past due. Nothing else is open for the two on today's date. For example: {Customer-A} is ZZAUTOTEST DATA-23 Filtered One and {Customer-B} is ZZAUTOTEST DATA-23 Filtered Two.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} and {Customer-B} ticked in the Customer filter.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-CM, P-AGE.
 Sources (verbatim text in section 9): S5-R16, S5-R17, S5-R18, S5-R18a.
 Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection").
@@ -4899,8 +4877,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-DATA-24 — A/P Summary and Detail Totals differ by what a Past due filter drops
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Summary, A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have two vendors with only these open documents on today's date:
+- Sign in as an Admin user (the "Admin" role).
+- Have two new vendors (created for this test) with only these open documents on today's date:
 - Vendor A: a bill of $1,000.00 that is not yet due, a bill of $400.00 45 days past due, a bill of $300.00 15 days past due and an unused vendor credit of $150.00.
 - Vendor B: a bill of $500.00 45 days past due and a bill of $250.00 100 days past due.
 - Use a desktop browser window 1440 px wide.
@@ -4912,7 +4890,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - {Vendor-A} has a bill of $1,000.00 that is not yet due, a bill of $400.00 45 days past due, a bill of $300.00 15 days past due and an unused vendor credit of $150.00; {Vendor-B} has a bill of $500.00 45 days past due and a bill of $250.00 100 days past due. Nothing else is open for the two on today's date. For example: {Vendor-A} is ZZAUTOTEST DATA-24 Filtered One and {Vendor-B} is ZZAUTOTEST DATA-24 Filtered Two.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A} and {Vendor-B} ticked in the Vendor filter.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-BILL, P-VC, P-AGE.
 Sources (verbatim text in section 9): S5-R16, S5-R17, S5-R18, S5-R18a.
 Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection").
@@ -4920,13 +4898,12 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-REL-01 — On release day an untouched A/R report shows the same rows and amounts
 Section: Release day and what must not change (TestRail section 90429). Reports: A/R Summary, A/R Detail, A/R Collection. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Make sure that before the release was installed, you took screenshots (and, for A/R, any print or export there was) of the three A/R reports for an as-of date before the release (date A), untouched.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location chip shows.
+- Make sure that before the release was installed, you took screenshots (and, for A/R, any print or export there was) of the three A/R reports for one as-of date before the release, untouched.
 - Use a desktop browser window 1440 px wide.
 - After the release is installed, open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE).
-- On each report, as you open it, choose date A as the as-of date.
+- On each report, as you open it, choose the as-of date the screenshots show.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -4934,7 +4911,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Before the release was installed, you took screenshots (and, for A/R, any print or export there was) of the three A/R reports for {Date-A}, untouched. For example: {Date-A} is the day before the release.
 - Starting screen: the release is installed; Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) is open in a desktop browser window 1440 px wide, with {Date-A} chosen as the as-of date on each report as you open it.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Date-A} = "date A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Date-A} = "date A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-PRE-RELEASE.
 Sources (verbatim text in section 9): KD-ORG, S5-R5, WC-10.
 Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations"), `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33, "The native Location menu").
@@ -4942,13 +4919,12 @@ Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "
 ### SETUP-REL-02 — On release day an untouched A/P report shows the same rows and amounts
 Section: Release day and what must not change (TestRail section 90429). Reports: A/P Summary, A/P Detail, A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Make sure that before the release was installed, you took screenshots (and, for A/P, any print or export there was) of the three A/P reports for an as-of date before the release (date A), untouched.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location chip shows.
+- Make sure that before the release was installed, you took screenshots (and, for A/P, any print or export there was) of the three A/P reports for one as-of date before the release, untouched.
 - Use a desktop browser window 1440 px wide.
 - After the release is installed, open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE).
-- On each report, as you open it, choose date A as the as-of date.
+- On each report, as you open it, choose the as-of date the screenshots show.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -4956,7 +4932,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Before the release was installed, you took screenshots (and, for A/P, any print or export there was) of the three A/P reports for {Date-A}, untouched. For example: {Date-A} is the day before the release.
 - Starting screen: the release is installed; Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) is open in a desktop browser window 1440 px wide, with {Date-A} chosen as the as-of date on each report as you open it.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Date-A} = "date A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Date-A} = "date A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-PAY, P-PRE-RELEASE.
 Sources (verbatim text in section 9): KD-ORG, S5-R5, WC-10.
 Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations"), `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33, "The native Location menu").
@@ -4965,7 +4941,7 @@ Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "
 Section: Release day and what must not change (TestRail section 90429). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
 - Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a customer, customer A, with open invoices on today's date.
+- Make sure the report has open invoices on today's date, so the PDF has rows.
 - Run this test in the evening at location A's local time, when the date in UTC is already tomorrow.
 - Set this computer's clock to location A's time zone.
 - Use a desktop browser window 1440 px wide.
@@ -4977,7 +4953,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The test is run in the evening at {Location-A}'s local time, when the date in UTC is already tomorrow, and this computer's clock is set to {Location-A}'s time zone. For example: after 6 pm at a location on Mountain Time (UTC-6 in summer, UTC-7 in winter).
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S3-R3, S3-R4, WC-3; Tech plan §3 D9; Tech plan §3 D9, rationale.
 Design pictures: `design-2026-10-22/ar-ap-p2-a-r-a-print-icon-only.png` (I06, "A/R: a print icon only"), `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV").
@@ -4985,7 +4961,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-r-a-print-icon-only.png` (I06, "A
 ### SETUP-REL-04 — Reports page access alone opens all six reports with their amounts
 Section: Release day and what must not change (TestRail section 90429). Reports: A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as user B, whose custom role has "Reports → Page Access" and nothing else, with "See Financial Data" off.
+- Sign in as a user whose custom role has "Reports → Page Access" and nothing else, with "See Financial Data" off.
 - Make sure each of the six reports has open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open the ShopView home page.
@@ -4995,7 +4971,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Each of the six reports has open documents on today's date.
 - Starting screen: the ShopView home page in a desktop browser window 1440 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-PAY, P-ROLE.
 Sources (verbatim text in section 9): GOAL-ACCESS, KD-PERM, S1-N1.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -5003,7 +4979,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-REL-04b — Reports page access alone exports the reports
 Section: Release day and what must not change (TestRail section 90429). Reports: A/R Summary, A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as user B, whose custom role has "Reports → Page Access" and nothing else, with "See Financial Data" off.
+- Sign in as a user whose custom role has "Reports → Page Access" and nothing else, with "See Financial Data" off.
 - Make sure A/R Summary and A/P Detail have open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -5013,7 +4989,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - A/R Summary and A/P Detail have open documents on today's date.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {User-B} = "user B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-ROLE.
 Sources (verbatim text in section 9): GOAL-ACCESS, KD-PERM.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -5021,10 +4997,9 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-REL-05 — Inventory Value link, PDF and CSV work as before the release
 Section: Release day and what must not change (TestRail section 90429). Reports: none. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Make sure that before the release was installed, you saved Inventory Value's PDF and CSV for an as-of date before the release (date A) with one location ticked, and copied a link to Inventory Value with that filter.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so one location can be ticked in the filter.
+- Make sure that before the release was installed, you saved Inventory Value's PDF and CSV for an as-of date before the release with one location ticked, and copied a link to Inventory Value with that filter.
 - Use a desktop browser window 1440 px wide.
 - After the release is installed, open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -5034,7 +5009,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Before the release was installed, you saved Inventory Value's PDF and CSV for {Date-A} with one location ticked, and copied a link to Inventory Value with that filter. For example: {Date-A} is the day before the release.
 - Starting screen: the release is installed; Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) is open in a desktop browser window 1440 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Date-A} = "date A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Date-A} = "date A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-PRE-RELEASE.
 Sources (verbatim text in section 9): KD-REUSE.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -5042,10 +5017,9 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-REL-05b — Sales By Customer link, PDF and CSV work as before the release
 Section: Release day and what must not change (TestRail section 90429). Reports: none. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Make sure that before the release was installed, you saved Sales By Customer's PDF and CSV for an as-of date before the release (date A) with one location ticked, and copied a link to Sales By Customer with that filter.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so one location can be ticked in the filter.
+- Make sure that before the release was installed, you saved Sales By Customer's PDF and CSV for an as-of date before the release with one location ticked, and copied a link to Sales By Customer with that filter.
 - Use a desktop browser window 1440 px wide.
 - After the release is installed, open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -5055,7 +5029,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Before the release was installed, you saved Sales By Customer's PDF and CSV for {Date-A} with one location ticked, and copied a link to Sales By Customer with that filter. For example: {Date-A} is the day before the release.
 - Starting screen: the release is installed; Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) is open in a desktop browser window 1440 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Date-A} = "date A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Date-A} = "date A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-PRE-RELEASE.
 Sources (verbatim text in section 9): KD-REUSE.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -5063,10 +5037,9 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-REL-05c — Work In Progress link, PDF and CSV work as before the release
 Section: Release day and what must not change (TestRail section 90429). Reports: none. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Make sure that before the release was installed, you saved Work In Progress's PDF and CSV for an as-of date before the release (date A) with one location ticked, and copied a link to Work In Progress with that filter.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so one location can be ticked in the filter.
+- Make sure that before the release was installed, you saved Work In Progress's PDF and CSV for an as-of date before the release with one location ticked, and copied a link to Work In Progress with that filter.
 - Use a desktop browser window 1440 px wide.
 - After the release is installed, open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -5076,7 +5049,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Before the release was installed, you saved Work In Progress's PDF and CSV for {Date-A} with one location ticked, and copied a link to Work In Progress with that filter. For example: {Date-A} is the day before the release.
 - Starting screen: the release is installed; Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) is open in a desktop browser window 1440 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Date-A} = "date A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Date-A} = "date A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-PRE-RELEASE.
 Sources (verbatim text in section 9): KD-REUSE.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -5084,7 +5057,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-REL-06 — Other reports keep their own export error message
 Section: Release day and what must not change (TestRail section 90429). Reports: none. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure that before the release was installed, you noted the message Sales By Customer shows when its CSV export fails because the computer is offline.
 - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
 - Use a desktop browser window 1440 px wide.
@@ -5096,7 +5069,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: the release is installed; Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a desktop browser window 1440 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-PRE-RELEASE, P-OFFLINE.
 Sources (verbatim text in section 9): EH, UFS-8.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -5104,12 +5077,12 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-REL-07 — A work order link from another location still asks to switch
 Section: Release day and what must not change (TestRail section 90429). Reports: none. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, your current location and location B.
 - Make sure you are enrolled at both locations.
 - Have a work order, work order 1, made at location B, and a link to it copied from the address bar.
 - Use a desktop browser window 1440 px wide.
-- After the release is installed, open Work Orders at location A.
+- After the release is installed, open Work Orders at your current location.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -5117,7 +5090,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Work order {Work-order-1} was made at {Location-B}, and you have a link to it copied from the address bar. For example: {Work-order-1} is S2-41001.
 - Starting screen: the release is installed; Work Orders is open at {Location-A} in a desktop browser window 1440 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Work-order-1} = "work order 1". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Work-order-1} = "work order 1". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): KD-REUSE.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -5125,19 +5098,19 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-REL-08 — A credit dated on the as-of date stays in the same bucket as before
 Section: Release day and what must not change (TestRail section 90429). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a customer, customer A, with an unused credit memo A dated a day before the release (date A).
-- Make sure that before the release was installed, you noted which A/R Detail bucket credit memo A was in with date A as the as-of date.
+- Sign in as an Admin user (the "Admin" role).
+- Have a customer with an unused credit memo, credit memo A, dated a day before the release.
+- Make sure that before the release was installed, you noted which A/R Detail bucket credit memo A was in with its own date as the as-of date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-- Leave the report with date A as the as-of date and customer A ticked.
+- Leave the report with credit memo A's date as the as-of date and its customer ticked.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has an unused credit memo {Credit-memo-A} dated {Date-A}; before the release you noted which A/R Detail bucket it was in with {Date-A} as the as-of date. For example: {Customer-A} is ZZAUTOTEST REL-08 Same Day Credit; {Date-A} is the day before the release.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Date-A} as the as-of date and {Customer-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Credit-memo-A} = "credit memo A", {Customer-A} = "customer A", {Date-A} = "date A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Credit-memo-A} = "credit memo A", {Customer-A} = "customer A", {Date-A} = "date A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-CM, P-AGE, P-PRE-RELEASE.
 Sources (verbatim text in section 9): OOS-4.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -5145,7 +5118,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-REL-09 — The research ideas left out of this release do not appear
 Section: Release day and what must not change (TestRail section 90429). Reports: A/R Summary, A/R Collection, A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the three A/R reports have open documents on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE).
@@ -5155,7 +5128,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The three A/R reports have open documents on today's date.
 - Starting screen: Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) in a desktop browser window 1440 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): OOS-4.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -5163,8 +5136,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-REL-10 — The location switcher in the top right is unchanged
 Section: Release day and what must not change (TestRail section 90429). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, your current location and location B.
 - Make sure you are enrolled at both locations.
 - Make sure that before the release was installed, you took a screenshot of the open location switcher.
 - Use a desktop browser window 1440 px wide.
@@ -5176,7 +5149,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Before the release was installed, you took a screenshot of the open location switcher.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-PRE-RELEASE.
 Sources (verbatim text in section 9): OOS-8, S5-E2, S7-E1.
 Design pictures: `design-2026-10-22/ar-ap-p5-cancel-stays-on-the-report.png` (I30, "Cancel stays on the report").
@@ -5184,7 +5157,7 @@ Design pictures: `design-2026-10-22/ar-ap-p5-cancel-stays-on-the-report.png` (I3
 ### SETUP-REL-11 — A drill-down link saved before the release still opens on its customer
 Section: Release day and what must not change (TestRail section 90429). Reports: A/R Collection, A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure that before the release was installed, you clicked customer A's name on A/R Summary and saved the address of the A/R Collection page it opened, and did the same for vendor A on A/P Summary.
 - Make sure customer A had overdue invoices and vendor A unpaid bills on the day the addresses were saved.
 - Use a desktop browser window 1440 px wide.
@@ -5196,7 +5169,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - {Customer-A} had overdue invoices and {Vendor-A} unpaid bills on the day the addresses were saved.
 - Starting screen: the release is installed; the ShopView home page is open in a desktop browser window 1440 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-VENDOR, P-INV-WO, P-PAY, P-BILL, P-PRE-RELEASE.
 Sources (verbatim text in section 9): KD-DRILL, S5-R14; Tech plan §3 D30; Tech plan §6 Phase 2, frontend.
 Design pictures: `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu"), `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
@@ -5217,7 +5190,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Before the release was installed, you did the steps below on Sales By Customer and noted whether the unticked location was still unticked when you came back.
 - Starting screen: the release is installed; Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a desktop browser window 1440 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-PRE-RELEASE.
 Sources (verbatim text in section 9): KD-REUSE; Tech plan §7 E2E, regression re-runs.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -5238,7 +5211,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Before the release was installed, you did the steps below on Inventory Value and noted whether the unticked location was still unticked when you came back.
 - Starting screen: the release is installed; Inventory Value (Reports, then "Inventory Value" under PARTS in the left menu) is open in a desktop browser window 1440 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-PRE-RELEASE.
 Sources (verbatim text in section 9): KD-REUSE; Tech plan §7 E2E, regression re-runs.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -5259,7 +5232,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Before the release was installed, you did the steps below on Work In Progress and noted whether the unticked location was still unticked when you came back.
 - Starting screen: the release is installed; Work In Progress (Reports, then "Work In Progress" under PERFORMANCE in the left menu) is open in a desktop browser window 1440 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-PRE-RELEASE.
 Sources (verbatim text in section 9): KD-REUSE; Tech plan §7 E2E, regression re-runs.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -5267,9 +5240,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-REL-13 — Sales By Customer's filter menus behave as before the release
 Section: Release day and what must not change (TestRail section 90429). Reports: none. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location filter shows and can be cleared.
 - Make sure that before the release was installed, you did the steps below on Sales By Customer and noted the Location chip and the page address after "Select all", whether the cursor stayed in the Customer menu's search box while you typed, and how the filter row looked at 900 px.
 - Use a desktop browser window 1440 px wide.
 - After the release is installed, open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu).
@@ -5280,7 +5252,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Before the release was installed, you did the steps below on Sales By Customer and noted the Location chip and the page address after "Select all", whether the cursor stayed in the Customer menu's search box while you typed, and how the filter row looked at 900 px.
 - Starting screen: the release is installed; Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a desktop browser window 1440 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-PRE-RELEASE.
 Sources (verbatim text in section 9): KD-REUSE; Tech plan §7 E2E, regression re-runs; Tech plan §6 Phase 1, frontend.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -5288,9 +5260,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-D-01 — Design: A/R Summary at 1440 px in light theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows.
 - Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -5303,7 +5274,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-CM.
 Sources (verbatim text in section 9): KD-REUSE, S2-R1, S2-R4a, S6-R3, S8-R2, S8-R3.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z"), `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -5311,10 +5282,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-01b — Design: A/R Summary Total column and Totals row look native
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+- Sign in as an Admin user (the "Admin" role).
+- Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
 - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
@@ -5326,7 +5295,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-CM.
 Sources (verbatim text in section 9): KD-REUSE, S8-R3, S8-R4.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z"), `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -5334,10 +5303,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-01c — Design: A/R Summary links use the native report link style
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+- Sign in as an Admin user (the "Admin" role).
+- Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -5347,7 +5314,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo. For example: {Customer-A} is ZZAUTOTEST D-01 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-CM.
 Sources (verbatim text in section 9): S7-R7.
 Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z"), `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -5355,10 +5322,9 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-D-02 — Design: A/R Summary in dark theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+- Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a credit memo row, which must not overlap or be cut off.
 - Use a desktop browser window 1440 px wide, in dark theme at 100% zoom.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
 - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab, also in dark theme, for comparison.
@@ -5370,7 +5336,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in dark theme at 100% zoom.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab, also in dark theme, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-CM.
 Sources (verbatim text in section 9): S5-R13, S5-R15, S7-R7, S8-R3, S8-R4.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-dark.png` (I21, "Info icon beside the title, dark").
@@ -5378,10 +5344,9 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-03 — Design: A/R Summary at 1536 px looks as described in both themes
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+- Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a credit memo row, which must not overlap or be cut off.
 - Use a desktop browser window 1536 px wide, in light theme at 100% zoom.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -5391,7 +5356,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo. For example: {Customer-A} is ZZAUTOTEST D-03 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1536 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-CM.
 Sources (verbatim text in section 9): S7-R7, S8-R2, S8-R3, S8-R4.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -5399,9 +5364,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-04 — Design: A/R Detail at 1440 px in light theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows.
 - Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -5415,7 +5379,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-CM.
 Sources (verbatim text in section 9): KD-REUSE, S2-R1, S2-R4a, S6-R3, S8-R2, S8-R3.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations").
@@ -5423,10 +5387,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-04b — Design: A/R Detail Open Balance column and Totals row look native
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+- Sign in as an Admin user (the "Admin" role).
+- Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
 - Leave the report with every group expanded (Expand all).
@@ -5439,7 +5401,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-CM.
 Sources (verbatim text in section 9): KD-REUSE, S8-R3, S8-R4.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations").
@@ -5447,10 +5409,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-04c — Design: A/R Detail links use the native report link style
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+- Sign in as an Admin user (the "Admin" role).
+- Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
 - Leave the report with every group expanded (Expand all).
@@ -5461,7 +5421,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo. For example: {Customer-A} is ZZAUTOTEST D-04 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-CM.
 Sources (verbatim text in section 9): S7-R7.
 Design pictures: `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations").
@@ -5469,10 +5429,9 @@ Design pictures: `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png`
 ### SETUP-D-05 — Design: A/R Detail in dark theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+- Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a credit memo row, which must not overlap or be cut off.
 - Use a desktop browser window 1440 px wide, in dark theme at 100% zoom.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
 - Leave the report with every group expanded (Expand all).
@@ -5485,7 +5444,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in dark theme at 100% zoom, with every group expanded (Expand all).
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab, also in dark theme, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-CM.
 Sources (verbatim text in section 9): S5-R13, S5-R15, S7-R7, S8-R3, S8-R4.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-dark.png` (I21, "Info icon beside the title, dark"), `design-2026-10-22/ar-ap-p6-same-dark-2.png` (I24, "Same, dark").
@@ -5493,10 +5452,9 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-06 — Design: A/R Detail at 1536 px looks as described in both themes
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+- Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a credit memo row, which must not overlap or be cut off.
 - Use a desktop browser window 1536 px wide, in light theme at 100% zoom.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -5506,7 +5464,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo. For example: {Customer-A} is ZZAUTOTEST D-06 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1536 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-CM.
 Sources (verbatim text in section 9): S7-R7, S8-R2, S8-R3, S8-R4.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations").
@@ -5514,9 +5472,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-07 — Design: A/R Collection at 1440 px in light theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows.
 - Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -5530,7 +5487,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-CM.
 Sources (verbatim text in section 9): KD-REUSE, S2-R1, S2-R4a, S6-R3, S8-R2, S8-R3.
 Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header"), `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-light.png` (I19, "Info icon beside the title, light").
@@ -5538,10 +5495,8 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-D-07b — Design: A/R Collection Open Balance column and Totals row look native
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+- Sign in as an Admin user (the "Admin" role).
+- Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
 - Leave the report with every group expanded (Expand all).
@@ -5554,7 +5509,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-CM.
 Sources (verbatim text in section 9): KD-REUSE, S8-R3, S8-R4.
 Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header"), `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-light.png` (I19, "Info icon beside the title, light").
@@ -5562,10 +5517,8 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-D-07c — Design: A/R Collection links use the native report link style
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+- Sign in as an Admin user (the "Admin" role).
+- Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
 - Leave the report with every group expanded (Expand all).
@@ -5576,7 +5529,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo. For example: {Customer-A} is ZZAUTOTEST D-07 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-CM.
 Sources (verbatim text in section 9): S7-R7.
 Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-light.png` (I19, "Info icon beside the title, light").
@@ -5584,10 +5537,9 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-D-08 — Design: A/R Collection in dark theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+- Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a credit memo row, which must not overlap or be cut off.
 - Use a desktop browser window 1440 px wide, in dark theme at 100% zoom.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
 - Leave the report with every group expanded (Expand all).
@@ -5600,7 +5552,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in dark theme at 100% zoom, with every group expanded (Expand all).
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab, also in dark theme, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-CM.
 Sources (verbatim text in section 9): S5-R13, S5-R15, S7-R7, S8-R3, S8-R4.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-dark.png` (I21, "Info icon beside the title, dark"), `design-2026-10-22/ar-ap-p6-info-icon-open-dark.png` (I22, "Info icon open, dark").
@@ -5608,10 +5560,9 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-09 — Design: A/R Collection at 1536 px looks as described in both themes
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a customer, customer A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+- Have a customer with a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo, so the page shows a long name and a credit memo row, which must not overlap or be cut off.
 - Use a desktop browser window 1536 px wide, in light theme at 100% zoom.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -5621,7 +5572,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo. For example: {Customer-A} is ZZAUTOTEST D-09 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1536 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-CM.
 Sources (verbatim text in section 9): S7-R7, S8-R2, S8-R3, S8-R4.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-light.png` (I19, "Info icon beside the title, light").
@@ -5629,9 +5580,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-10 — Design: A/P Summary at 1440 px in light theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows.
 - Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -5644,7 +5594,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-VENDOR, P-VC.
 Sources (verbatim text in section 9): KD-REUSE, S2-R1, S2-R4a, S6-R3, S8-R2, S8-R3.
 Design pictures: `design-2026-10-22/ar-ap-p2-a-p-gets-the-same-menu.png` (I10, "A/P gets the same menu"), `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light").
@@ -5652,10 +5602,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-p-gets-the-same-menu.png` (I10, "
 ### SETUP-D-10b — Design: A/P Summary Total column and Totals row look native
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+- Sign in as an Admin user (the "Admin" role).
+- Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
 - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
@@ -5667,7 +5615,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-VENDOR, P-VC.
 Sources (verbatim text in section 9): KD-REUSE, S8-R3, S8-R4.
 Design pictures: `design-2026-10-22/ar-ap-p2-a-p-gets-the-same-menu.png` (I10, "A/P gets the same menu"), `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light").
@@ -5675,10 +5623,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-p-gets-the-same-menu.png` (I10, "
 ### SETUP-D-10c — Design: A/P Summary links use the native report link style
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+- Sign in as an Admin user (the "Admin" role).
+- Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -5688,7 +5634,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest). For example: {Vendor-A} is ZZAUTOTEST D-10 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-VC.
 Sources (verbatim text in section 9): S7-R7.
 Design pictures: `design-2026-10-22/ar-ap-p2-a-p-gets-the-same-menu.png` (I10, "A/P gets the same menu").
@@ -5696,10 +5642,9 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-p-gets-the-same-menu.png` (I10, "
 ### SETUP-D-11 — Design: A/P Summary in dark theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+- Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, which must not overlap or be cut off.
 - Use a desktop browser window 1440 px wide, in dark theme at 100% zoom.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
 - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab, also in dark theme, for comparison.
@@ -5711,7 +5656,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in dark theme at 100% zoom.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab, also in dark theme, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-VENDOR, P-VC.
 Sources (verbatim text in section 9): S5-R13, S5-R15, S7-R7, S8-R3, S8-R4.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-same-dark-2.png` (I24, "Same, dark").
@@ -5719,10 +5664,9 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-12 — Design: A/P Summary at 1536 px looks as described in both themes
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+- Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, which must not overlap or be cut off.
 - Use a desktop browser window 1536 px wide, in light theme at 100% zoom.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -5732,7 +5676,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest). For example: {Vendor-A} is ZZAUTOTEST D-12 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1536 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-VC.
 Sources (verbatim text in section 9): S7-R7, S8-R2, S8-R3, S8-R4.
 Design pictures: `design-2026-10-22/ar-ap-p2-a-p-gets-the-same-menu.png` (I10, "A/P gets the same menu"), `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light").
@@ -5740,9 +5684,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-p-gets-the-same-menu.png` (I10, "
 ### SETUP-D-13 — Design: A/P Detail at 1440 px in light theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows.
 - Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -5756,7 +5699,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-VENDOR, P-VC.
 Sources (verbatim text in section 9): KD-REUSE, S2-R1, S2-R4a, S6-R3, S8-R2, S8-R3.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-open-balance-pinned-light.png` (I23, "Open Balance pinned, light"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -5764,10 +5707,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-13b — Design: A/P Detail Open Balance column and Totals row look native
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+- Sign in as an Admin user (the "Admin" role).
+- Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
 - Leave the report with every group expanded (Expand all).
@@ -5780,7 +5721,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-VENDOR, P-VC.
 Sources (verbatim text in section 9): KD-REUSE, S8-R3, S8-R4.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-open-balance-pinned-light.png` (I23, "Open Balance pinned, light"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -5788,10 +5729,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-13c — Design: A/P Detail links use the native report link style
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+- Sign in as an Admin user (the "Admin" role).
+- Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
 - Leave the report with every group expanded (Expand all).
@@ -5802,7 +5741,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest). For example: {Vendor-A} is ZZAUTOTEST D-13 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-VC.
 Sources (verbatim text in section 9): S7-R7.
 Design pictures: `design-2026-10-22/ar-ap-p6-open-balance-pinned-light.png` (I23, "Open Balance pinned, light"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -5810,10 +5749,9 @@ Design pictures: `design-2026-10-22/ar-ap-p6-open-balance-pinned-light.png` (I23
 ### SETUP-D-14 — Design: A/P Detail in dark theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+- Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, which must not overlap or be cut off.
 - Use a desktop browser window 1440 px wide, in dark theme at 100% zoom.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
 - Leave the report with every group expanded (Expand all).
@@ -5826,7 +5764,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in dark theme at 100% zoom, with every group expanded (Expand all).
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab, also in dark theme, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-VENDOR, P-VC.
 Sources (verbatim text in section 9): S5-R13, S5-R15, S7-R7, S8-R3, S8-R4.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-same-dark.png` (I18, "Same, dark"), `design-2026-10-22/ar-ap-p6-same-dark-2.png` (I24, "Same, dark").
@@ -5834,10 +5772,9 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-15 — Design: A/P Detail at 1536 px looks as described in both themes
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+- Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, which must not overlap or be cut off.
 - Use a desktop browser window 1536 px wide, in light theme at 100% zoom.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -5847,7 +5784,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest). For example: {Vendor-A} is ZZAUTOTEST D-15 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1536 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-VC.
 Sources (verbatim text in section 9): S7-R7, S8-R2, S8-R3, S8-R4.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-open-balance-pinned-light.png` (I23, "Open Balance pinned, light").
@@ -5855,9 +5792,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-16 — Design: A/P Unpaid Invoices at 1440 px in light theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows.
 - Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -5871,7 +5807,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-VENDOR, P-INV-WO, P-PAY, P-VC.
 Sources (verbatim text in section 9): KD-REUSE, S2-R1, S2-R4a, S6-R3, S8-R2, S8-R3.
 Design pictures: `design-2026-10-22/ar-ap-p3-same-on-a-p-unpaid-invoices.png` (I16, "Same on A/P Unpaid Invoices"), `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-a-p-unpaid-invoices-at-1440-every-column-visible.png` (I25, "A/P Unpaid Invoices at 1440: every column visible").
@@ -5879,10 +5815,8 @@ Design pictures: `design-2026-10-22/ar-ap-p3-same-on-a-p-unpaid-invoices.png` (I
 ### SETUP-D-16b — Design: A/P Unpaid Invoices Open Balance column and Totals row look native
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+- Sign in as an Admin user (the "Admin" role).
+- Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
 - Leave the report with every group expanded (Expand all).
@@ -5895,7 +5829,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-VENDOR, P-INV-WO, P-PAY, P-VC.
 Sources (verbatim text in section 9): KD-REUSE, S8-R3, S8-R4.
 Design pictures: `design-2026-10-22/ar-ap-p3-same-on-a-p-unpaid-invoices.png` (I16, "Same on A/P Unpaid Invoices"), `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-a-p-unpaid-invoices-at-1440-every-column-visible.png` (I25, "A/P Unpaid Invoices at 1440: every column visible").
@@ -5903,10 +5837,8 @@ Design pictures: `design-2026-10-22/ar-ap-p3-same-on-a-p-unpaid-invoices.png` (I
 ### SETUP-D-16c — Design: A/P Unpaid Invoices links use the native report link style
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+- Sign in as an Admin user (the "Admin" role).
+- Make sure the report has open documents on today's date.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
 - Leave the report with every group expanded (Expand all).
@@ -5917,7 +5849,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest). For example: {Vendor-A} is ZZAUTOTEST D-16 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-VC.
 Sources (verbatim text in section 9): S7-R7.
 Design pictures: `design-2026-10-22/ar-ap-p3-same-on-a-p-unpaid-invoices.png` (I16, "Same on A/P Unpaid Invoices"), `design-2026-10-22/ar-ap-p6-a-p-unpaid-invoices-at-1440-every-column-visible.png` (I25, "A/P Unpaid Invoices at 1440: every column visible").
@@ -5925,10 +5857,9 @@ Design pictures: `design-2026-10-22/ar-ap-p3-same-on-a-p-unpaid-invoices.png` (I
 ### SETUP-D-17 — Design: A/P Unpaid Invoices in dark theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+- Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, which must not overlap or be cut off.
 - Use a desktop browser window 1440 px wide, in dark theme at 100% zoom.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
 - Leave the report with every group expanded (Expand all).
@@ -5941,7 +5872,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu in dark theme at 100% zoom, with every group expanded (Expand all).
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab, also in dark theme, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-VENDOR, P-INV-WO, P-PAY, P-VC.
 Sources (verbatim text in section 9): S5-R13, S5-R15, S7-R7, S8-R3, S8-R4.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-same-dark-2.png` (I24, "Same, dark").
@@ -5949,10 +5880,9 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-18 — Design: A/P Unpaid Invoices at 1536 px looks as described in both themes
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
-- Have a vendor, vendor A, with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest).
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows, as in the layout being checked.
+- Have a vendor with a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest), so the page shows a long name and a long Transaction Type, which must not overlap or be cut off.
 - Use a desktop browser window 1536 px wide, in light theme at 100% zoom.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -5962,7 +5892,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Vendor {Vendor-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest). For example: {Vendor-A} is ZZAUTOTEST D-18 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1536 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-VC.
 Sources (verbatim text in section 9): S7-R7, S8-R2, S8-R3, S8-R4.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-a-p-unpaid-invoices-at-1440-every-column-visible.png` (I25, "A/P Unpaid Invoices at 1440: every column visible").
@@ -5985,7 +5915,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S8-R5, UFS-9.
 Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cleared: No locations").
@@ -5993,7 +5923,7 @@ Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cl
 ### SETUP-D-19b — Design: A/R Summary load error looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
 - Use a desktop browser window 1440 px wide.
@@ -6005,7 +5935,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-OFFLINE.
 Sources (verbatim text in section 9): S8-R6, UFS-10.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -6028,7 +5958,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S8-R5, UFS-9.
 Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cleared: No locations").
@@ -6036,7 +5966,7 @@ Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cl
 ### SETUP-D-20b — Design: A/R Detail load error looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
 - Use a desktop browser window 1440 px wide.
@@ -6048,7 +5978,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-OFFLINE.
 Sources (verbatim text in section 9): S8-R6, UFS-10.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -6071,7 +6001,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S8-R5, UFS-9.
 Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cleared: No locations").
@@ -6079,7 +6009,7 @@ Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cl
 ### SETUP-D-21b — Design: A/R Collection load error looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
 - Use a desktop browser window 1440 px wide.
@@ -6091,7 +6021,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-OFFLINE.
 Sources (verbatim text in section 9): S8-R6, UFS-10.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -6114,7 +6044,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-VENDOR, P-BILL.
 Sources (verbatim text in section 9): S8-R5, UFS-9.
 Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cleared: No locations").
@@ -6122,7 +6052,7 @@ Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cl
 ### SETUP-D-22b — Design: A/P Summary load error looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
 - Use a desktop browser window 1440 px wide.
@@ -6134,7 +6064,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-OFFLINE.
 Sources (verbatim text in section 9): S8-R6, UFS-10.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -6157,7 +6087,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-VENDOR, P-BILL.
 Sources (verbatim text in section 9): S8-R5, UFS-9.
 Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cleared: No locations").
@@ -6165,7 +6095,7 @@ Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cl
 ### SETUP-D-23b — Design: A/P Detail load error looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
 - Use a desktop browser window 1440 px wide.
@@ -6177,7 +6107,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-OFFLINE.
 Sources (verbatim text in section 9): S8-R6, UFS-10.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -6200,7 +6130,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-VENDOR, P-INV-WO, P-PAY, P-BILL.
 Sources (verbatim text in section 9): S8-R5, UFS-9.
 Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cleared: No locations").
@@ -6208,7 +6138,7 @@ Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cl
 ### SETUP-D-24b — Design: A/P Unpaid Invoices load error looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents on today's date.
 - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
 - Use a desktop browser window 1440 px wide.
@@ -6220,7 +6150,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-PAY, P-OFFLINE.
 Sources (verbatim text in section 9): S8-R6, UFS-10.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -6228,7 +6158,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-D-25 — Design: A/R Detail chevrons and pinned group row look as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents in several buckets on today's date, one with more lines than fit on the screen.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -6239,7 +6169,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents in several buckets on today's date, one with more lines than fit on the screen.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): KD-REUSE, S4-R1, S4-R5, S4-R6, UFS-5.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection: date and customer only"), `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection, groups opened one by one"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations").
@@ -6247,7 +6177,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-D-26 — Design: A/R Collection chevrons and pinned group row look as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents in several customer groups on today's date, one with more lines than fit on the screen.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -6258,7 +6188,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents in several customer groups on today's date, one with more lines than fit on the screen.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): KD-REUSE, S4-R1, S4-R5, S4-R6, UFS-5.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection: date and customer only"), `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection, groups opened one by one"), `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header"), `design-2026-10-22/ar-ap-p3-the-customer-row-stays-pinned.png` (I15, "The customer row stays pinned"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-light.png` (I19, "Info icon beside the title, light").
@@ -6266,7 +6196,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-D-27 — Design: A/P Detail chevrons and pinned group row look as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents in several buckets on today's date, one with more lines than fit on the screen.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -6277,7 +6207,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents in several buckets on today's date, one with more lines than fit on the screen.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): KD-REUSE, S4-R1, S4-R5, S4-R6, UFS-5.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection: date and customer only"), `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection, groups opened one by one"), `design-2026-10-22/ar-ap-p6-open-balance-pinned-light.png` (I23, "Open Balance pinned, light"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -6285,7 +6215,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-D-28 — Design: A/P Unpaid Invoices chevrons and pinned group row look as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has open documents in several vendor groups on today's date, one with more lines than fit on the screen.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -6296,7 +6226,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has open documents in several vendor groups on today's date, one with more lines than fit on the screen.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-PAY.
 Sources (verbatim text in section 9): KD-REUSE, S4-R1, S4-R5, S4-R6, UFS-5.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection: date and customer only"), `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection, groups opened one by one"), `design-2026-10-22/ar-ap-p3-same-on-a-p-unpaid-invoices.png` (I16, "Same on A/P Unpaid Invoices"), `design-2026-10-22/ar-ap-p6-a-p-unpaid-invoices-at-1440-every-column-visible.png` (I25, "A/P Unpaid Invoices at 1440: every column visible").
@@ -6304,9 +6234,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-D-29 — Design: A/R Location chip and menu match Sales By Customer's
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location menu lists two locations ("2 selected").
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
 - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
@@ -6317,7 +6246,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST.
 Sources (verbatim text in section 9): KD-REUSE, S5-R2.
 Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations"), `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33, "The native Location menu"), `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked").
@@ -6325,9 +6254,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "
 ### SETUP-D-30 — Design: A/P Location chip and menu match Sales By Customer's
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location menu lists two locations ("2 selected").
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
 - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
@@ -6338,7 +6266,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-PAY.
 Sources (verbatim text in section 9): KD-REUSE, S5-R2.
 Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33, "The native Location menu"), `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked").
@@ -6346,7 +6274,7 @@ Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33,
 ### SETUP-D-31 — Design: A/R Customer chip and menu match Sales By Customer's
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have a customer, customer A, with open invoices on today's date and a long name (more than 40 characters).
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -6358,7 +6286,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): KD-REUSE, S5-R13.
 Design pictures: `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection"), `design-2026-10-22/ar-ap-p4-drill-down-keeps-the-as-of-date.png` (I37, "Drill-down keeps the as-of date").
@@ -6366,8 +6294,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Tw
 ### SETUP-D-32 — Design: A/P Vendor chip and menu match Inventory Value's
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have a vendor, vendor A, with unpaid bills on today's date.
+- Sign in as an Admin user (the "Admin" role).
+- Make sure the report has unpaid bills on today's date.
 - Make sure the organization has more than 8 vendors (the Vendor menu shows its search box only when there are more than 8 vendors).
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -6380,7 +6308,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - Inventory Value (Reports, then "Inventory Value" under PARTS in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-PAY, P-BILL, P-VOLUME.
 Sources (verbatim text in section 9): KD-REUSE, S5-R13.
 Design pictures: `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu").
@@ -6388,7 +6316,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "
 ### SETUP-D-33 — Design: A/R Past due chip and menu look as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in this report at two locations, so the Location chip shows.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -6396,7 +6325,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): KD-REUSE, S5-R15.
 Design pictures: `design-2026-10-22/ar-ap-p7-past-due-menu.png` (I38, "Past due menu"), `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked").
@@ -6404,7 +6333,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-menu.png` (I38, "Past due 
 ### SETUP-D-34 — Design: A/P Past due chip and menu look as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in this report at two locations, so the Location chip shows.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -6412,7 +6342,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): KD-REUSE, S5-R15.
 Design pictures: `design-2026-10-22/ar-ap-p7-past-due-menu.png` (I38, "Past due menu"), `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked").
@@ -6420,7 +6350,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-menu.png` (I38, "Past due 
 ### SETUP-D-35 — Design: A/R Export menu matches the native report Export menu
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
 - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
@@ -6430,7 +6360,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST.
 Sources (verbatim text in section 9): KD-REUSE, S3-R1.
 Design pictures: `design-2026-10-22/ar-ap-p2-a-p-no-export-at-all.png` (I07, "A/P: no export at all"), `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV").
@@ -6438,7 +6368,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-p-no-export-at-all.png` (I07, "A/
 ### SETUP-D-36 — Design: A/P Export menu matches the native report Export menu
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
 - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
@@ -6448,7 +6378,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST.
 Sources (verbatim text in section 9): KD-REUSE, S3-R1.
 Design pictures: `design-2026-10-22/ar-ap-p2-a-p-no-export-at-all.png` (I07, "A/P: no export at all"), `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p2-a-p-gets-the-same-menu.png` (I10, "A/P gets the same menu").
@@ -6456,9 +6386,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-p-no-export-at-all.png` (I07, "A/
 ### SETUP-D-37 — Design: the export Success and Empty export messages look native
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location filter shows and can be cleared.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
 - Open Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
@@ -6469,7 +6398,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST.
 Sources (verbatim text in section 9): S3-R10, UFS-6, UFS-7.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -6477,7 +6406,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-D-38 — Design: the export error messages look like the other reports' errors
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the organization has more than 2,000 open A/P lines.
 - Make sure you can switch this computer's network connection off and on (such as Wi-Fi).
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
@@ -6489,7 +6418,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-OFFLINE, P-VOLUME.
 Sources (verbatim text in section 9): EH, S3-N1, UFS-1, UFS-8.
 Design pictures: `design-2026-10-22/ar-ap-p2-pdf-over-2-000-rows-is-refused.png` (I11, "PDF over 2,000 rows is refused").
@@ -6497,13 +6426,13 @@ Design pictures: `design-2026-10-22/ar-ap-p2-pdf-over-2-000-rows-is-refused.png`
 ### SETUP-D-39 — Design: the switch-location dialog for a work order looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, your current location and location B.
 - Make sure you are enrolled at both locations.
-- Have a customer, customer A, with an open work order invoice A made at location B.
+- Have a customer with an open work order invoice A made at location B.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-- Leave the report with customer A ticked and its rows showing.
+- Leave the report with that customer ticked and its rows showing.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -6511,7 +6440,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has an open work order invoice {Invoice-A} made at {Location-B}. For example: {Customer-A} is ZZAUTOTEST D-39 Dialog.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with {Customer-A} ticked and its rows showing.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): KD-REUSE, S7-R3, UFS-3.
 Design pictures: `design-2026-10-22/ar-ap-p5-another-location-asks-first.png` (I29, "Another location asks first"), `design-2026-10-22/ar-ap-p5-cancel-stays-on-the-report.png` (I30, "Cancel stays on the report").
@@ -6519,13 +6448,13 @@ Design pictures: `design-2026-10-22/ar-ap-p5-another-location-asks-first.png` (I
 ### SETUP-D-40 — Design: the switch-location dialog for a part sale looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, your current location and location B.
 - Make sure you are enrolled at both locations.
-- Have a customer, customer A, with an open part sale invoice A made at location B.
+- Have a customer with an open part sale invoice A made at location B.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
-- Leave the report with customer A ticked and its rows showing.
+- Leave the report with that customer ticked and its rows showing.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
@@ -6533,7 +6462,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has an open part sale invoice {Invoice-A} made at {Location-B}. For example: {Customer-A} is ZZAUTOTEST D-40 Dialog.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with {Customer-A} ticked and its rows showing.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-INV-PS.
 Sources (verbatim text in section 9): KD-REUSE, S7-R3, UFS-4.
 Design pictures: `design-2026-10-22/ar-ap-p5-another-location-asks-first.png` (I29, "Another location asks first").
@@ -6541,7 +6470,7 @@ Design pictures: `design-2026-10-22/ar-ap-p5-another-location-asks-first.png` (I
 ### SETUP-D-41 — Design: A/R info icon and tooltip match Work In Progress
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
 - Open Work In Progress (Reports, then "Work In Progress" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
@@ -6551,7 +6480,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - Work In Progress (Reports, then "Work In Progress" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): KD-REUSE, S8-R1.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-light.png` (I19, "Info icon beside the title, light"), `design-2026-10-22/ar-ap-p6-info-icon-open-light.png` (I20, "Info icon open, light").
@@ -6559,7 +6488,7 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-42 — Design: A/P info icon and tooltip match Work In Progress
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
 - Open Work In Progress (Reports, then "Work In Progress" under PERFORMANCE in the left menu) in a second tab of the same window, for comparison.
@@ -6569,7 +6498,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - Work In Progress (Reports, then "Work In Progress" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): KD-REUSE, S8-R1.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-info-icon-open-light.png` (I20, "Info icon open, light"), `design-2026-10-22/ar-ap-p6-info-icon-open-dark.png` (I22, "Info icon open, dark").
@@ -6577,7 +6506,7 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-43 — Design: A/R Collection call list on the customer row looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have a customer, customer A, with an overdue invoice, a phone number and a credit term.
 - Have a customer, customer B, with an overdue invoice and no phone.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
@@ -6588,7 +6517,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has an overdue invoice, a phone number and a credit term; customer {Customer-B} has an overdue invoice and no phone. For example: {Customer-A} is ZZAUTOTEST D-43 Phone Row with phone (403) 555-0103 and credit term Net 30; {Customer-B} is ZZAUTOTEST D-43 No Phone Row.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S9-N1, S9-R1, S9-R2.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection: date and customer only"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection"), `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection, groups opened one by one"), `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-light.png` (I19, "Info icon beside the title, light").
@@ -6596,7 +6525,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-D-44 — Design: A/R Summary PDF heading 91 And Over stays on one line
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has customers with amounts in every bucket on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -6606,7 +6535,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has customers with amounts in every bucket on today's date.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S3-R7.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV").
@@ -6614,7 +6543,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-D-45 — Design: A/P Summary PDF heading 91 And Over stays on one line
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the report has vendors with amounts in every bucket on today's date.
 - Use a desktop browser window 1440 px wide.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -6624,7 +6553,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The report has vendors with amounts in every bucket on today's date.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S3-R7.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV").
@@ -6632,7 +6561,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-D-46 — Design: A/R Collection PDF prints the call list on each customer's line
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure your role has the "View and Manage AP/AR Data" switch on.
 - Have a customer, customer A, with an overdue invoice, a phone number and a credit term.
 - Use a desktop browser window 1440 px wide.
@@ -6645,7 +6574,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Customer {Customer-A} has an overdue invoice, a phone number and a credit term. For example: {Customer-A} is ZZAUTOTEST D-46 PDF Phone.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Customer-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S3-R4, S3-R5, S9-R3.
 Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection").
@@ -6653,9 +6582,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-D-47 — Design: A/R Detail narrower than 1440 px scrolls under the pinned column
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows.
 - Use a desktop browser window 1280 px wide.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
 - Leave the report with every bucket expanded.
@@ -6665,7 +6593,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1280 px wide, as opened from the Reports menu, with every bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S4-R7, S8-R3.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-open-balance-pinned-light.png` (I23, "Open Balance pinned, light").
@@ -6673,9 +6601,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-48 — Design: A/P Detail narrower than 1440 px scrolls under the pinned column
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows.
 - Use a desktop browser window 1280 px wide.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
 - Leave the report with every bucket expanded.
@@ -6685,7 +6612,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1280 px wide, as opened from the Reports menu, with every bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S4-R7, S8-R3.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-open-balance-pinned-light.png` (I23, "Open Balance pinned, light"), `design-2026-10-22/ar-ap-p6-same-dark-2.png` (I24, "Same, dark").
@@ -6693,7 +6620,7 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-49 — Design: narrower than 1024 px the reports show the mobile filter row
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary, A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Use a desktop browser window 900 px wide.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -6701,7 +6628,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 900 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO, P-PAY.
 Sources (verbatim text in section 9): FORM, OOS-9.
 Design pictures: none (the design does not draw this; the case follows the PRD).
@@ -6709,9 +6636,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-D-50 — Design: A/R Summary opening screen matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture.
 - Make sure the report lists customers at both locations on today's date, including at least one with a credit balance (a negative Total) and one with a long name.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -6724,7 +6650,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - The design picture "A/R Aging Summary opens A to Z" (ar-ap-p1-a-r-aging-summary-opens-a-to-z.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): KD-REUSE, S1-R1, S1-R2, S1-R7, S5-R1, S5-R13, S5-R15, S6-R3, S8-R2, S8-R3, S8-R4, WC-10.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Summary: date only"), `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I08, "Four chips on every report"), `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A/R Aging Summary as it opens today"), `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png` (I03, "A/R Aging Summary opens A to Z").
@@ -6732,9 +6658,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-D-51 — Design: A/R Summary sorted by Total matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture.
 - Make sure the report lists customers at both locations on today's date, including at least one with a credit balance (a negative Total) and one with a long name.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -6747,7 +6672,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - The design picture "Click the Total header" (ar-ap-p1-click-the-total-header.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S1-R7, S2-R2, S2-R3, S5-R18.
 Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "Click the Total header").
@@ -6755,9 +6680,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-D-52 — Design: A/P Detail with every bucket closed matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture.
 - Make sure the report has open bills in all five aging buckets on today's date.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -6771,7 +6695,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every bucket collapsed.
 - The design picture "A/P Aging Detail opens by vendor name" (ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-BILL.
 Sources (verbatim text in section 9): S1-R5, S1-R7, S2-R1, S4-R1, S4-R5, S5-R1.
 Design pictures: `design-2026-10-22/ar-ap-p1-a-p-aging-detail-as-it-opens-today.png` (I02, "A/P Aging Detail as it opens today"), `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-name.png` (I05, "A/P Aging Detail opens by vendor name").
@@ -6779,7 +6703,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-p-aging-detail-as-it-opens-today.
 ### SETUP-D-53 — Design: the Export menu matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
 - Open the design picture "Export menu: PDF and CSV" (ar-ap-p2-export-menu-pdf-and-csv.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
@@ -6789,7 +6713,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - The design picture "Export menu: PDF and CSV" (ar-ap-p2-export-menu-pdf-and-csv.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): KD-REUSE, S3-R1.
 Design pictures: `design-2026-10-22/ar-ap-p2-a-p-no-export-at-all.png` (I07, "A/P: no export at all"), `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, "Export menu: PDF and CSV").
@@ -6797,9 +6721,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-p-no-export-at-all.png` (I07, "A/
 ### SETUP-D-54 — Design: A/P Summary title row and ⋯ button match the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture.
 - Make sure the report lists vendors at both locations on today's date, one of them with documents at both.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -6812,7 +6735,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - The design picture "A/P gets the same menu" (ar-ap-p2-a-p-gets-the-same-menu.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): OOS-7, S1-R1, S3-R1, S5-R1, S6-R4.
 Design pictures: `design-2026-10-22/ar-ap-p2-a-p-no-export-at-all.png` (I07, "A/P: no export at all"), `design-2026-10-22/ar-ap-p2-a-p-gets-the-same-menu.png` (I10, "A/P gets the same menu").
@@ -6820,7 +6743,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-p-no-export-at-all.png` (I07, "A/
 ### SETUP-D-55 — Design: the PDF-too-large message matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the organization has more than 2,000 open A/P lines on today's date.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu).
@@ -6833,7 +6756,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every bucket collapsed.
 - The design picture "PDF over 2,000 rows is refused" (ar-ap-p2-pdf-over-2-000-rows-is-refused.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VOLUME.
 Sources (verbatim text in section 9): S3-N1, S3-N3, UFS-1.
 Design pictures: `design-2026-10-22/ar-ap-p2-pdf-over-2-000-rows-is-refused.png` (I11, "PDF over 2,000 rows is refused").
@@ -6841,7 +6764,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-pdf-over-2-000-rows-is-refused.png`
 ### SETUP-D-56 — Design: A/R Collection after Expand all matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in this report at two locations, so the Location column shows.
 - Make sure your role has the "View and Manage AP/AR Data" switch on.
 - Make sure customer A, first in name order, has an overdue invoice, an unused credit memo, a phone number and a credit term.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
@@ -6856,7 +6780,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group collapsed.
 - The design picture "Expand all from the header" (ar-ap-p3-expand-all-from-the-header.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-CM.
 Sources (verbatim text in section 9): S1-R7, S2-R1, S4-R1, S4-R5, S7-R10, S8-R3, S9-R1, S9-R2.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection: date and customer only"), `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection, groups opened one by one"), `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header").
@@ -6864,7 +6788,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-D-57 — Design: the pinned customer row matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure customer A and customer B are next to each other in name order, and each has more overdue invoices than fit on the screen.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
@@ -6877,7 +6801,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded.
 - The design picture "The customer row stays pinned" (ar-ap-p3-the-customer-row-stays-pinned.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S4-R6, S9-R1.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection: date and customer only"), `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection, groups opened one by one"), `design-2026-10-22/ar-ap-p3-the-customer-row-stays-pinned.png` (I15, "The customer row stays pinned").
@@ -6885,7 +6809,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-D-58 — Design: A/P Unpaid Invoices pinned vendor row matches the design pictures
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have a vendor, vendor A, with more unpaid bills than fit on the screen at your location, a long name, and an unused vendor credit A from a vendor return made at your location.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -6898,7 +6822,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded.
 - The design pictures "Same on A/P Unpaid Invoices" (ar-ap-p3-same-on-a-p-unpaid-invoices.png) and "Vendor credits link" (ar-ap-p7-vendor-credits-link.png) are attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-credit-A} = "vendor credit A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Vendor-A} = "vendor A", {Vendor-credit-A} = "vendor credit A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL, P-VC.
 Sources (verbatim text in section 9): S2-R6, S4-R6, S7-R6, S7-R9, S8-R3.
 Design pictures: `design-2026-10-22/ar-ap-p7-vendor-credits-link.png` (I43, "Vendor credits link"), `design-2026-10-22/ar-ap-p3-scrolling-loses-the-customer-name.png` (I13, "Scrolling loses the customer name"), `design-2026-10-22/ar-ap-p3-same-on-a-p-unpaid-invoices.png` (I16, "Same on A/P Unpaid Invoices").
@@ -6906,7 +6830,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-vendor-credits-link.png` (I43, "Ven
 ### SETUP-D-59 — Design: A/R Collection with groups closed matches the pictures in both themes
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in this report at two locations, so the Location chip shows.
 - Make sure your role has the "View and Manage AP/AR Data" switch on.
 - Make sure that at least ten customers have overdue invoices on today's date, each with a phone number and a credit term.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
@@ -6921,7 +6846,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group collapsed.
 - The design pictures "Info icon beside the title, light" (ar-ap-p6-info-icon-beside-the-title-light.png) and "Info icon beside the title, dark" (ar-ap-p6-info-icon-beside-the-title-dark.png) are attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-INV-WO.
 Sources (verbatim text in section 9): S4-R1, S4-R5, S7-R7, S8-R1, S8-R2, S9-R1, S9-R2.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection: date and customer only"), `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection, groups opened one by one"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-light.png` (I19, "Info icon beside the title, light"), `design-2026-10-22/ar-ap-p6-info-icon-beside-the-title-dark.png` (I21, "Info icon beside the title, dark").
@@ -6929,7 +6854,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-D-60 — Design: the description tooltip matches the pictures in both themes
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu).
 - Open the design pictures "Info icon open, light" (ar-ap-p6-info-icon-open-light.png) and "Info icon open, dark" (ar-ap-p6-info-icon-open-dark.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
@@ -6939,7 +6864,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - The design pictures "Info icon open, light" (ar-ap-p6-info-icon-open-light.png) and "Info icon open, dark" (ar-ap-p6-info-icon-open-dark.png) are attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S8-R1.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-info-icon-open-light.png` (I20, "Info icon open, light"), `design-2026-10-22/ar-ap-p6-info-icon-open-dark.png` (I22, "Info icon open, dark").
@@ -6947,8 +6872,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-61 — Design: A/P Detail with a bucket open matches the pictures in both themes
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations: your current location and your other location.
 - Make sure you are enrolled at both locations.
 - Make sure the "91 or more days past due" bucket has more lines than fit on the screen on today's date.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
@@ -6963,7 +6888,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with "91 or more days past due" expanded.
 - The design pictures "Open Balance pinned, light" (ar-ap-p6-open-balance-pinned-light.png) and "Same, dark" (ar-ap-p6-same-dark-2.png) are attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-AGE.
 Sources (verbatim text in section 9): S2-R1, S4-R6, S7-R7, S8-R3, S8-R4.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-open-balance-pinned-light.png` (I23, "Open Balance pinned, light"), `design-2026-10-22/ar-ap-p6-same-dark-2.png` (I24, "Same, dark").
@@ -6971,11 +6896,11 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-62 — Design: A/P Unpaid Invoices at 1440 px shows every column, as pictured
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations: your current location and your other location.
 - Make sure you are enrolled at both locations.
-- Have a vendor, vendor A, with an unpaid bill at location B.
-- Have a vendor, vendor B, with unpaid bills at location A.
+- Have a vendor, vendor A, with an unpaid bill at your other location.
+- Have a vendor, vendor B, with unpaid bills at your current location.
 - Make sure vendor A and vendor B both have long names.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report").
@@ -6989,7 +6914,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded.
 - The design picture "A/P Unpaid Invoices at 1440: every column visible" (ar-ap-p6-a-p-unpaid-invoices-at-1440-every-column-visible.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B", {Vendor-A} = "vendor A", {Vendor-B} = "vendor B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-INV-WO, P-PAY, P-BILL.
 Sources (verbatim text in section 9): S2-N1, S7-R1, S7-R6, S8-R3.
 Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.png` (I17, "A/P Detail scrolled sideways, light"), `design-2026-10-22/ar-ap-p6-a-p-unpaid-invoices-at-1440-every-column-visible.png` (I25, "A/P Unpaid Invoices at 1440: every column visible").
@@ -6997,12 +6922,12 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-63 — Design: A/R Detail links and plain numbers match the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations: your current location and your other location.
 - Make sure you are enrolled at both locations.
-- Have a customer, customer A, with an open invoice made at location B, more than 90 days past due.
-- Have a customer, customer B, with an unused credit memo at location A, more than 90 days past due.
-- Have a customer, customer C, with an open invoice at location A, more than 90 days past due.
+- Have a customer, customer A, with an open invoice made at your other location, more than 90 days past due.
+- Have a customer, customer B, with an unused credit memo at your current location, more than 90 days past due.
+- Have a customer, customer C, with an open invoice at your current location, more than 90 days past due.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
 - Leave the report with the "91 or more days past due" bucket expanded.
@@ -7015,7 +6940,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with the "91 or more days past due" bucket expanded.
 - The design picture "Links only where they can open" (ar-ap-p5-links-only-where-they-can-open.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Customer-C} = "customer C", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO, P-CM, P-AGE.
 Sources (verbatim text in section 9): S1-R5, S2-R1, S7-R1, S7-R10, S7-R3.
 Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png` (I26, "Every invoice number is a link"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").
@@ -7023,13 +6948,13 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-D-64 — Design: the switch-location dialog frame matches the design pictures
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, your current location and location B.
 - Make sure you are enrolled at both locations.
-- Have a customer, customer A, with an open work order invoice A made at location B.
+- Have a customer with an open work order invoice A made at location B.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
-- Leave the report with customer A ticked and every bucket expanded.
+- Leave the report with that customer ticked and every bucket expanded.
 - Open the design pictures "Another location asks first" (ar-ap-p5-another-location-asks-first.png) and "Cancel stays on the report" (ar-ap-p5-cancel-stays-on-the-report.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 The same preconditions with their placeholders and example values (for a Claude session):
@@ -7039,7 +6964,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with {Customer-A} ticked and every bucket expanded.
 - The design pictures "Another location asks first" (ar-ap-p5-another-location-asks-first.png) and "Cancel stays on the report" (ar-ap-p5-cancel-stays-on-the-report.png) are attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Invoice-A} = "invoice A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S7-R3, S7-R5, UFS-3.
 Design pictures: `design-2026-10-22/ar-ap-p5-another-location-asks-first.png` (I29, "Another location asks first"), `design-2026-10-22/ar-ap-p5-cancel-stays-on-the-report.png` (I30, "Cancel stays on the report").
@@ -7047,8 +6972,8 @@ Design pictures: `design-2026-10-22/ar-ap-p5-another-location-asks-first.png` (I
 ### SETUP-D-65 — Design: A/R Detail opens on All locations as in the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture, and the location switcher names both.
 - Make sure you are enrolled at both locations.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
@@ -7061,7 +6986,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with the first bucket expanded.
 - The design picture "Opens on All locations" (ar-ap-p4-opens-on-all-locations.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R1, S5-R4, S5-R5, S6-R1, S6-R2, S6-R3.
 Design pictures: `design-2026-10-22/ar-ap-p4-every-location-no-way-to-narrow.png` (I31, "Every location, no way to narrow"), `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "Opens on All locations").
@@ -7082,7 +7007,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - The design picture "The native Location menu" (ar-ap-p4-the-native-location-menu.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R2, S5-R4, S5-R5.
 Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33, "The native Location menu").
@@ -7104,7 +7029,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every bucket collapsed.
 - The design picture "One location ticked" (ar-ap-p4-one-location-ticked.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R2, S5-R6, S6-N1, S6-R2.
 Design pictures: `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One location ticked").
@@ -7112,9 +7037,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One
 ### SETUP-D-68 — Design: No locations shows the empty state as in the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
 - Open the design picture "Cleared: No locations" (ar-ap-p4-cleared-no-locations.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
@@ -7125,7 +7049,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - The design picture "Cleared: No locations" (ar-ap-p4-cleared-no-locations.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S5-R6, S5-R6a, S5-R9, S8-R5.
 Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cleared: No locations").
@@ -7133,9 +7057,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cl
 ### SETUP-D-69 — Design: A/R Summary sorted by Location matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture.
 - Have a customer, customer A, with open invoices at both locations on today's date.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -7148,7 +7071,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - The design picture "Summaries show "Multiple"" (ar-ap-p4-summaries-show-multiple.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S2-R2, S6-R4, S6-R5.
 Design pictures: `design-2026-10-22/ar-ap-p4-summaries-show-multiple.png` (I36, "Summaries show "Multiple"").
@@ -7156,7 +7079,7 @@ Design pictures: `design-2026-10-22/ar-ap-p4-summaries-show-multiple.png` (I36, 
 ### SETUP-D-70 — Design: clicking a customer on A/R Summary matches the drill-down picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary, A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure your role has the "Customers → View" permission and the "View and Manage AP/AR Data" switch on.
 - Have a customer, customer A, with open invoices on an earlier date, date A.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
@@ -7171,7 +7094,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with the as-of date set to {Date-A}.
 - The design picture "Drill-down keeps the as-of date" (ar-ap-p4-drill-down-keeps-the-as-of-date.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Date-A} = "date A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Date-A} = "date A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): KD-DRILL, S5-R11, S5-R13, S5-R18.
 Design pictures: `design-2026-10-22/ar-ap-p4-drill-down-keeps-the-as-of-date.png` (I37, "Drill-down keeps the as-of date").
@@ -7179,7 +7102,7 @@ Design pictures: `design-2026-10-22/ar-ap-p4-drill-down-keeps-the-as-of-date.png
 ### SETUP-D-71 — Design: the Past due menu matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
 - Open the design picture "Past due menu" (ar-ap-p7-past-due-menu.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
@@ -7189,7 +7112,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - The design picture "Past due menu" (ar-ap-p7-past-due-menu.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): KD-REUSE, S5-R15.
 Design pictures: `design-2026-10-22/ar-ap-p7-past-due-menu.png` (I38, "Past due menu").
@@ -7197,9 +7120,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-menu.png` (I38, "Past due 
 ### SETUP-D-72 — Design: Past due with two ranges ticked matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column and the Location chip show, as in the design picture.
 - Make sure customers have open invoices in every Past due range on today's date.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu).
@@ -7212,7 +7134,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - The design picture "Past due ticked" (ar-ap-p7-past-due-ticked.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S5-R15, S5-R17, S5-R18.
 Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past due ticked").
@@ -7220,7 +7142,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-D-73 — Design: the Vendor menu matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure the organization has more than 8 vendors (the Vendor menu shows its search box only when there are more than 8 vendors).
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu).
@@ -7234,7 +7156,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Inventory Value (Reports, then "Inventory Value" under PARTS in the left menu) is open in a second tab of the same window, for comparison.
 - The design picture "The native Vendor menu" (ar-ap-p7-the-native-vendor-menu.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-VENDOR, P-VOLUME.
 Sources (verbatim text in section 9): KD-REUSE, S5-R13.
 Design pictures: `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "The native Vendor menu").
@@ -7242,7 +7164,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "
 ### SETUP-D-74 — Design: two customers ticked look as in the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Have a customer, customer A, with open invoices on today's date.
 - Have a customer, customer B, with nothing open.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
@@ -7255,7 +7177,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - The design picture "Two customers ticked" (ar-ap-p7-two-customers-ticked.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Customer-B} = "customer B", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S1-E1, S5-R13, S5-R18.
 Design pictures: `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Two customers ticked").
@@ -7263,7 +7185,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Tw
 ### SETUP-D-75 — Design: the call list for one customer matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
+- Sign in as an Admin user (the "Admin" role).
 - Make sure your role has the "View and Manage AP/AR Data" switch on.
 - Have a customer, customer A, with a long name, an overdue invoice, a phone number and a credit term.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
@@ -7277,7 +7199,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - The design picture "Call list on A/R Collection" (ar-ap-p7-call-list-on-a-r-collection.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Customer-A} = "customer A", {Location-A} = "location A". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC, P-CUST, P-INV-WO.
 Sources (verbatim text in section 9): S5-R13, S5-R18, S9-R1, S9-R2.
 Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection: date and customer only"), `design-2026-10-22/ar-ap-p7-call-list-on-a-r-collection.png` (I42, "Call list on A/R Collection"), `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-only.png` (I12, "A/R Collection, groups opened one by one").
@@ -7285,9 +7207,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-D-81 — Design: A/R Detail and Collection headings are in Title Case
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail, A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):
-- Sign in as an Admin user (the "Admin" role), with location A as your current location.
-- Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order.
-- Make sure you are enrolled at both locations.
+- Sign in as an Admin user (the "Admin" role).
+- Have open documents in these reports at two locations, so the Location column shows.
 - Use a desktop browser window 1440 px wide, in light theme at 100% zoom.
 - Open A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu).
 - Open the design pictures "Links only where they can open" (ar-ap-p5-links-only-where-they-can-open.png) and "Expand all from the header" (ar-ap-p3-expand-all-from-the-header.png) (attached to this case) beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
@@ -7298,7 +7219,7 @@ The same preconditions with their placeholders and example values (for a Claude 
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - The design pictures "Links only where they can open" (ar-ap-p5-links-only-where-they-can-open.png) and "Expand all from the header" (ar-ap-p3-expand-all-from-the-header.png) are attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Placeholders and their plain names in the case: {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
+Placeholders and their plain names in the case (a record the steps and results never name is unnamed there: "a customer" / "that customer", "your current location", "your other location"): {Location-A} = "location A", {Location-B} = "location B". Values: the "For example" lines above; write the real document numbers here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): OOS-3, S2-R1, S2-R4a, WC-11.
 Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I14, "Expand all from the header"), `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png` (I28, "Links only where they can open").

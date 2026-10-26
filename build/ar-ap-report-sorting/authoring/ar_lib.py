@@ -340,8 +340,10 @@ def quotes_block(c):
 
 def tail(c):
     """Everything below the blank line that closes the Expected Result: the build-difference or held note, the exact quotes with
-    their From: lines, References from Design and the AUTOMATION line, byte for byte as before the pattern pass (26 Oct 2026)."""
-    return ((f"<p>{e(c['known'])}</p>" if c["known"] else "") + (f"<p>{e(c['note'])}</p>" if c["note"] else "")
+    their From: lines, References from Design and the AUTOMATION line, byte for byte as before the pattern pass (26 Oct 2026), except
+    that a note's {placeholders} are written as the plain names the case uses (S1-16, S3-17, S5-18; coordinator, 26 Oct 2026)."""
+    import pattern as PT   # 26 Oct 2026 (coordinator): the build-difference notes name records by their plain names, as the case does
+    return ((f"<p>{e(c['known'])}</p>" if c["known"] else "") + (f"<p>{e(PT.plain(c['note']))}</p>" if c["note"] else "")
             + quotes_block(c) + design_block(c) + f"<p>{e(c['marker'])}</p>")
 
 def render(c):
