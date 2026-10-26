@@ -93,3 +93,8 @@
   (PRD: "Transaction Type"; PRD wins, answer 10). Saved: sources/JIRA-SV-11315-stories-2026-10-26.md.
 - Expected build differences (no ticket numbers yet): same-day order by time (S1-10, S1-11); "Switch Location" capital L (S7-03, S7-04,
   D-39, D-40, D-64); punctuation name order (S1-16); export Locations tick order (S3-17). S5-39 needs an org with ≤ 8 vendors.
+- 26 Oct 2026, QA lead: ticket numbers for the build differences → ask Chris on his sheet, tagged. Done: question 17 (rows 24-25, light
+  purple, colour guide G3, person chip for chris.w@shopview.com) asks for tickets for (1) same-day order by time (C715282, C715283),
+  (2) "Switch Location" capital L (C715416, C715417, C715519, C715520, C715546), (3) punctuation order (C715573), (4) export
+  Locations tick order (C715343). Jira searched 26 Oct: no ticket for any of the four.
+- 26 Oct 2026, QA lead: the ≤ 8-vendor organization for C797943 (S5-39) — ASK HIM FOR IT WHEN HE GIVES THE QA ENVIRONMENT.

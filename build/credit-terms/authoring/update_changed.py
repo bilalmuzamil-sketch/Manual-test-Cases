@@ -9,17 +9,18 @@ PROP = json.load(open(f"{D}/proposals.json"))
 ids = {r["key"]: int(r["case_id"]) for r in csv.DictReader(open(f"{P}/testrail-id-map.csv"))}
 def diff(prev, f):
     return [x for x, y in f.items() if (((prev.get(x) or "").replace(" ", "") != y.replace(" ", "")) if x == "refs" else prev.get(x) != y)]
+WHY = sys.argv[2] if len(sys.argv) > 2 else "question sheet shared 23 Oct: marker and note no longer say not sent yet"
 upd = [(k, cid) for k, cid in ids.items() if diff(json.load(open(f"{P}/applied/C{cid}-after.json")), PROP[k]["fields"])]
 print("to update", [f"{k} C{c}" for k, c in upd])
 if "--apply" not in sys.argv: sys.exit(0)
-os.makedirs(f"{P}/applied/before-sheet-shared", exist_ok=True)
+os.makedirs(f"{P}/applied/before-update", exist_ok=True)
 log = open(f"{P}/applied/create-log.jsonl", "a"); bad = 0
 for k, cid in upd:
     prev = json.load(open(f"{P}/applied/C{cid}-after.json")); live = api(f"get_case/{cid}")
     if live["updated_on"] != prev["updated_on"]: raise SystemExit(f"C{cid} changed by someone since our read-back: stop")
-    json.dump(live, open(f"{P}/applied/before-sheet-shared/C{cid}.json", "w"), indent=1, ensure_ascii=False)
+    json.dump(live, open(f"{P}/applied/before-update/C{cid}.json", "w"), indent=1, ensure_ascii=False)
     f = PROP[k]["fields"]; api(f"update_case/{cid}", f); st = LAST["status"]
     a = api(f"get_case/{cid}"); d = diff(a, f); bad += bool(d)
     json.dump(a, open(f"{P}/applied/C{cid}-after.json", "w"), indent=1, ensure_ascii=False)
-    log.write(json.dumps({"op": "update_case", "key": k, "case": f"C{cid}", "http": st, "readback_ok": not d, "bad": d, "why": "question sheet shared 23 Oct: marker and note no longer say not sent yet"}) + "\n")
+    log.write(json.dumps({"op": "update_case", "key": k, "case": f"C{cid}", "http": st, "readback_ok": not d, "bad": d, "why": WHY}) + "\n")
 print("problems:", bad)

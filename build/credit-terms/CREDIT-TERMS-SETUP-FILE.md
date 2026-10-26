@@ -15,7 +15,7 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 ## 2. Accounts and roles (slots)
 | Slot | Role as shown in the UI | Used for | Cases |
 |---|---|---|---|
-| ADMIN-A | Admin | every case not listed below | 320 cases |
+| ADMIN-A | Admin | every case not listed below | 316 cases |
 | OTHER-S1-22 | see the case | You are signed in as {User-A}, whose role has every Settings page except Finance. | S1-22 |
 | OTHER-S1-23 | see the case | This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows. | S1-23 |
 | OTHER-S1-25 | see the case | This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows. | S1-25 |
@@ -35,7 +35,11 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 | ROLE-S5-19 | custom role | You are signed in as {User-A}, on a custom role, {Role-A}, that has Customers → Create & Edit but not View and Manage AP/AR Data. | S5-19 |
 | OOTB-S5-20 | out-of-the-box role | You are signed in as {User-A}, on the out-of-the-box "Service Manager" role (Customers → Create & Edit and View and Manage AP/AR Data, no Settings → Finance). | S5-20 |
 | ROLE-S6-08 | custom role | You are signed in as {User-A}, on a custom role, {Role-A}, with the vendor permissions to create and edit vendors but not View and Manage AP/AR Data. | S6-08 |
+| OTHER-S7-05 | see the case | You are signed in to production (the live app, app.shopview.com) as a user with the "Admin" role, working in {Location-A}. | S7-05 |
+| OTHER-S11-02 | see the case | You are signed in to production (the live app, app.shopview.com) as a user with the "Admin" role, working in {Location-A}. | S11-02 |
 | OTHER-S11-04 | see the case | This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows. | S11-04 |
+| OTHER-S11-07 | see the case | You are signed in to production (the live app, app.shopview.com) as a user with the "Admin" role, working in {Location-A}. | S11-07 |
+| OTHER-S11-14 | see the case | You are signed in to production (the live app, app.shopview.com) as a user with the "Admin" role, working in {Location-A}. | S11-14 |
 | OTHER-S12-16 | see the case | This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows. | S12-16 |
 | OTHER-S12-18 | see the case | You are signed in as {User-A}, whose role has no Settings → Finance. | S12-18 |
 | OTHER-D-48 | see the case | You are signed in as {User-A}, working in {Location-A}, and the role of {User-A} has Settings → Finance but not Customers → Create & Edit. | D-48 |
@@ -55,7 +59,7 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 | P-TERM | One of the shop's own terms | Settings > Credit Terms > New Credit Term: the example name, the option and the number the case gives > Create Credit Term. Deactivate it from its row menu where the case says deactivated; make it the default with Make Default for New Customers where the case says default. | The row shows on the right tab with the Due text the case gives. |
 | P-STD | Standard term state | Settings > Credit Terms: deactivate the named standard term from its row menu (or reactivate it from the Inactive tab). Make Default for New Customers on the term the case names as default (COD unless stated). | The tabs and the Default tag match the case. |
 | P-CUST | Customer on a term | Customers > New Customer: the example name, Credit Terms and Credit Limit as the case gives > Save. For a blank or odd spelling ("NET 30", Prepaid), use the contacts import (P-IMPORT): the screen cannot store them. | The customer card's "Credit term" and credit limit match. |
-| P-OLD | Data from before the release | Customers, vendors and invoices the case says are "from before the release" (a COD or Credit Hold customer with a limit above $0, a blank-term customer or vendor, a vendor invoice with no stored due date) must exist on the test site before the release is installed; after the release they cannot be made by hand. Capture the values and screenshots the case asks for at that time. | Values written down with the date. |
+| P-OLD | Data from before the release | Customers, vendors and invoices the case says are "from before the release" (a COD or Credit Hold customer with a limit above $0, a blank-term customer or vendor, a vendor invoice with no stored due date) are taken on production (QA lead, 26 Oct 2026: "This you can take from production environment if you need the BEFORE screenshots."): shortly before the release reaches production, find or make them on the production test account and capture the values and screenshots the case asks for; the case is then run on production after the release. After the release they cannot be made by hand. | Values written down with the date. |
 | P-VENDOR | Vendor on a term | Parts > Vendors > New Vendor: the example name > Save & Close; then Edit Vendor > Credit Terms and Credit Limit as the case gives. | The vendor card's "Credit term" matches. |
 | P-WO | Work order ready to invoice | Work Orders > New Work Order for the customer; add a labor line; approve; complete the Review step; leave it Complete (playbook: every part received with a part number, Review done, the customer has a contact). | Finance tab shows the invoice preview with Invoice Date and Due date, and Create Invoice is enabled. |
 | P-INV | Invoice on a term | P-WO, then on the Finance tab set Invoice Date as the case gives and click Create Invoice; close the payment window unpaid unless the case says paid. For "held only by invoices", move the customer off the term afterwards with Move Customers. | The invoice shows the term and due date. |
@@ -2107,10 +2111,10 @@ Procedures: P-TERM, P-CUST, P-INV, P-TWO, P-LOC.
 Sources (verbatim text in section 9): PERM-LIST, S7-R6, S7-R6a.
 
 ### SETUP-S7-05 — A term the app does not recognise is dated exactly as before the release
-Section: Story 7 — Due dates (TestRail section 91461). Marker: `AUTOMATION: HOLD - needs a due date captured on the test site before the release is installed`.
+Section: Story 7 — Due dates (TestRail section 91461). Marker: `AUTOMATION: HOLD - needs the before due date taken on production shortly before the release reaches production; run on production after the release`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} is stored with a credit term text ShopView does not know, {Text-A}, and an invoice {Invoice-A} for it, dated Oct 5, 2026, was created before the release; its due date then, {Date-A}, was written down. For example: {Customer-A} is ZZAUTOTEST S7-05 Customer, {Text-A} is Prepaid and {Date-A} is Oct 5, 2026.
+- You are signed in to production (the live app, app.shopview.com) as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Trucks Hill 2 on the production test account.
+- On production, customer {Customer-A} is stored with a credit term text ShopView does not know, {Text-A}, and an invoice {Invoice-A} for it, dated Oct 5, 2026, was created before the release reached production; its due date then, {Date-A}, was written down (with a screenshot). For example: {Customer-A} is ZZAUTOTEST S7-05 Customer, {Text-A} is Prepaid and {Date-A} is Oct 5, 2026.
 - Work order {Work-order-1} for {Customer-A} is complete and ready to invoice. For example: {Work-order-1} is S2-15441.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Customer-A}, {Date-A}, {Invoice-A}, {Location-A}, {Text-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
@@ -2618,10 +2622,10 @@ Procedures: P-CUST, P-OLD.
 Sources (verbatim text in section 9): GOAL-6, KD-EXIST, KD-NOFLAG, S11-R1, S11-R4, S11-R5.
 
 ### SETUP-S11-02 — No existing customer, vendor or invoice changes at release
-Section: Release day and what must not change (TestRail section 91465). Marker: `AUTOMATION: HOLD - needs records and screenshots captured on the test site before the release is installed`.
+Section: Release day and what must not change (TestRail section 91465). Marker: `AUTOMATION: HOLD - needs the before values taken on production shortly before the release reaches production; run on production after the release`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Before the release was installed, these were written down (with screenshots): customer {Customer-A}'s term and credit limit, vendor {Vendor-A}'s term and credit limit, and invoice {Invoice-A}'s term and due date, and vendor invoice {Vendor-invoice-A}'s due date. For example: {Customer-A} is ZZAUTOTEST S11-02 Customer on Net 30 with $1,000.00, {Vendor-A} is ZZAUTOTEST S11-02 Vendor on Net 45 with $2,000.00, {Invoice-A} is due Nov 4, 2026 and {Vendor-invoice-A} is due Nov 19, 2026.
+- You are signed in to production (the live app, app.shopview.com) as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Trucks Hill 2 on the production test account.
+- Before the release reached production, these were written down on production (with screenshots): customer {Customer-A}'s term and credit limit, vendor {Vendor-A}'s term and credit limit, and invoice {Invoice-A}'s term and due date, and vendor invoice {Vendor-invoice-A}'s due date. For example: {Customer-A} is ZZAUTOTEST S11-02 Customer on Net 30 with $1,000.00, {Vendor-A} is ZZAUTOTEST S11-02 Vendor on Net 45 with $2,000.00, {Invoice-A} is due Nov 4, 2026 and {Vendor-invoice-A} is due Nov 19, 2026.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Customer-A}, {Invoice-A}, {Location-A}, {Vendor-A}, {Vendor-invoice-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-CUST, P-VENDOR, P-INV, P-VINV, P-VOLUME.
@@ -2672,10 +2676,10 @@ Procedures: P-CUST, P-WO.
 Sources (verbatim text in section 9): S1-R8, S1-R8 DOR, S11-R10.
 
 ### SETUP-S11-07 — An existing COD customer keeps its old limit on release day
-Section: Release day and what must not change (TestRail section 91465). Marker: `AUTOMATION: HOLD - needs records and screenshots captured on the test site before the release is installed`.
+Section: Release day and what must not change (TestRail section 91465). Marker: `AUTOMATION: HOLD - needs the before values taken on production shortly before the release reaches production; run on production after the release`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} held COD with a credit limit of $1,000.00 before the release (written down then). For example: {Customer-A} is ZZAUTOTEST S11-07 Cash.
+- You are signed in to production (the live app, app.shopview.com) as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Trucks Hill 2 on the production test account.
+- On production, customer {Customer-A} held COD with a credit limit of $1,000.00 before the release reached production (written down then, with a screenshot). For example: {Customer-A} is ZZAUTOTEST S11-07 Cash.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-CUST, P-OLD.
@@ -2748,10 +2752,10 @@ Procedures: P-CUST.
 Sources (verbatim text in section 9): A-SPELL, S11-E2, S11-R9.
 
 ### SETUP-S11-14 — Nothing is re-sent to QuickBooks at release
-Section: Release day and what must not change (TestRail section 91465). Marker: `AUTOMATION: HOLD - needs records and screenshots captured on the test site before the release is installed`.
+Section: Release day and what must not change (TestRail section 91465). Marker: `AUTOMATION: HOLD - needs the before values taken on production shortly before the release reaches production; run on production after the release`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The organization is connected to a QuickBooks Online sandbox. Before the release, the QB Unexported report and the sandbox's invoice list were captured.
+- You are signed in to production (the live app, app.shopview.com) as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Trucks Hill 2 on the production test account.
+- The production test organization is connected to QuickBooks Online. Before the release reached production, its QB Unexported report and the QuickBooks invoice list were captured (screenshots).
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-INV, P-QBO.
@@ -4106,7 +4110,7 @@ Sources (verbatim text in section 9): S3-R10.
 | Design — how it looks | D-01, D-02, D-03, D-04, D-05, D-06, D-09, D-10, D-07, D-35, D-45, D-46, D-47, D-48, D-49, D-08, D-11, D-12, D-13, D-14, D-15, D-16, D-17, D-37, D-18, D-19, D-20, D-21, D-38, D-25, D-22, D-23, D-24, D-39, D-26, D-27, D-40, D-28, D-41, D-29, D-30, D-31, D-42, D-32, D-43, D-33, D-44, D-34, D-36, D-50, D-51, D-52, D-53 |
 
 ## 7. Dependencies and shared fixtures
-- Cases marked `AUTOMATION: HOLD - needs records and screenshots captured on the test site before the release is installed` need P-OLD done before the release reaches the test site.
+- Cases marked `AUTOMATION: HOLD - needs the before values taken on production ...` need P-OLD done on production before the release reaches production.
 - Cases that move customers off COD, Net 30 or other busy terms untick everyone first (Select None) and tick only the case's own customers.
 - The QuickBooks cases share one sandbox; each uses its own term names so the Terms list never collides.
 

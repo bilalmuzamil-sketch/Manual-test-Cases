@@ -3263,3 +3263,8 @@ Done: 42 updates + C598326 new, run 498 = 272 (record `wo-board-tech-view/answer
 - WAITING ON THE QA LEAD: tech plan; a ZZAUTOTEST-only test organization (4 cases); a post-release organization (2 cases); Public API
   documentation (6 cases); AccountingHub/IBS access (2 cases); a QA branch; whether to add Rule 128 footers to the 12 stories.
 - WAITING ON THE PO: Credit terms questions 1-12 (sheet 15S4Giqs…).
+
+## Reminders for when the QA lead gives a QA environment (recorded 26 Oct 2026, his instruction)
+- Credit terms (SV-11638): remind him to give a new organization (clean org for C723887, C723889, C724089, C724123; post-release org
+  for C724095, C724096).
+- A/R and A/P: ask him for an organization with 8 or fewer vendors (C797943, S5-39).

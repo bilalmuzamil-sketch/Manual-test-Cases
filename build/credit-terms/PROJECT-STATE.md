@@ -46,3 +46,11 @@
   documentation (S10-11…S10-16); AccountingHub/IBS access (S8-11, S8-12); records captured before release (S7-05, S11-02, S11-07,
   S11-14); a QA branch for SV-11638.
 - Rule 128 ticket footers were not added to the 12 stories (as with the A/R and A/P suite); offered to the QA lead.
+
+## 26 Oct 2026 — QA lead's answers to the outstanding list
+1. Chris's 12 questions: wait for his answers. 2. Tech plan: shared when the QA lead gets it. 3. Test organizations (clean org for
+C723887, C723889, C724089, C724123; post-release org for C724095, C724096): created after the QA environment exists — WHEN THE QA LEAD
+GIVES THE QA ENVIRONMENT, REMIND HIM TO GIVE A NEW ORGANIZATION. 4. Public API docs and 5. AccountingHub/IBS access: shared when he gets
+them. 6. "This you can take from production environment if you need the BEFORE screenshots." — done: C724041, C724087, C724092,
+C724099 now run on production (before values taken there shortly before the release reaches production; run there after);
+P-OLD recipe updated; applied 26 Oct, read back clean. 7. QA branch: given when he gets it. 8. Rule 128 story footers: "NO".

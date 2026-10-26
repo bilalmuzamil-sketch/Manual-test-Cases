@@ -8,6 +8,8 @@ def dd(key, title, pre, pairs, q, note="", marker=None, start=None, who=None):
     st = [a for a, _ in pairs]; rs = [f"Step {i}: {b}" for i, (_, b) in enumerate(pairs, 1)]
     C(key, "S7", title, [who or ADMIN()] + pre + ([start] if start else []), st, rs, q, note=note, marker=marker)
 
+PROD_ADMIN = ('You are signed in to production (the live app, app.shopview.com) as a user with the "Admin" role, working in {Location-A}.',
+              "For example: {Location-A} is Trucks Hill 2 on the production test account.")
 INV701 = ("Customer {Customer-A} holds Net 30 and has an invoice {Invoice-A} dated Oct 5, 2026, due Nov 4, 2026, showing Terms Net 30.",
           "For example: {Customer-A} is ZZAUTOTEST S7-01 Customer and {Invoice-A} is the invoice of work order S2-15440.")
 dd("S7-01", "An invoice keeps its term and due date when the customer is edited",
@@ -55,12 +57,12 @@ dd("S7-04", "The same invoice shows the same due date to users in other location
    ["S7-R6a", "S7-R6", "PERM-LIST"])
 
 dd("S7-05", "A term the app does not recognise is dated exactly as before the release",
-   [("Customer {Customer-A} is stored with a credit term text ShopView does not know, {Text-A}, and an invoice {Invoice-A} for it, dated Oct 5, 2026, was created before the release; its due date then, {Date-A}, was written down.",
+   [("On production, customer {Customer-A} is stored with a credit term text ShopView does not know, {Text-A}, and an invoice {Invoice-A} for it, dated Oct 5, 2026, was created before the release reached production; its due date then, {Date-A}, was written down (with a screenshot).",
      "For example: {Customer-A} is ZZAUTOTEST S7-05 Customer, {Text-A} is Prepaid and {Date-A} is Oct 5, 2026."),
     ("Work order {Work-order-1} for {Customer-A} is complete and ready to invoice.", "For example: {Work-order-1} is S2-15441.")],
    [("Open {Work-order-1}'s Finance tab.", "the invoice preview shows."), ("Set Invoice Date to Oct 5, 2026.", "the due date reads {Date-A}, the same as before the release."),
     ("Click Create Invoice.", "the invoice is created with due date {Date-A}; no error, no blank.")],
-   ["S7-N1", "S10-R4"], marker=HOLD("needs a due date captured on the test site before the release is installed"))
+   ["S7-N1", "S10-R4"], marker=HOLD("needs the before due date taken on production shortly before the release reaches production; run on production after the release"), who=PROD_ADMIN)
 
 dd("S7-06", "A deactivated term still dates new invoices for customers who keep it",
    [("Customer {Customer-A} holds the shop's own term {Term-A}, due 14 days after the invoice date, and {Term-A} is deactivated.",

@@ -4,7 +4,11 @@ from ct_lib import C, HOLD, CLEAN_HOLD, PO_HOLD
 from common import *
 from po_questions import QN
 
-PRE_REL = HOLD("needs records and screenshots captured on the test site before the release is installed")
+# 26 Oct 2026, QA lead: "This you can take from production environment if you need the BEFORE screenshots." These release-day
+# cases run on production: the "before" values are taken there before the release reaches it, and the case is run there after.
+PRE_REL = HOLD("needs the before values taken on production shortly before the release reaches production; run on production after the release")
+PROD_ADMIN = ('You are signed in to production (the live app, app.shopview.com) as a user with the "Admin" role, working in {Location-A}.',
+              "For example: {Location-A} is Trucks Hill 2 on the production test account.")
 def rl(key, title, pre, pairs, q, note="", marker=None, who=None):
     st = [a for a, _ in pairs]; rs = [f"Step {i}: {b}" for i, (_, b) in enumerate(pairs, 1)]
     C(key, "S11", title, [who or ADMIN()] + pre, st, rs, q, note=note, marker=marker)
@@ -20,11 +24,11 @@ rl("S11-01", "An existing shop keeps COD as its default after the release",
    ["S11-R1", "S11-R5", "KD-EXIST", "KD-NOFLAG", "GOAL-6", "S11-R4"])
 
 rl("S11-02", "No existing customer, vendor or invoice changes at release",
-   [("Before the release was installed, these were written down (with screenshots): customer {Customer-A}'s term and credit limit, vendor {Vendor-A}'s term and credit limit, and invoice {Invoice-A}'s term and due date, and vendor invoice {Vendor-invoice-A}'s due date.",
+   [("Before the release reached production, these were written down on production (with screenshots): customer {Customer-A}'s term and credit limit, vendor {Vendor-A}'s term and credit limit, and invoice {Invoice-A}'s term and due date, and vendor invoice {Vendor-invoice-A}'s due date.",
      "For example: {Customer-A} is ZZAUTOTEST S11-02 Customer on Net 30 with $1,000.00, {Vendor-A} is ZZAUTOTEST S11-02 Vendor on Net 45 with $2,000.00, {Invoice-A} is due Nov 4, 2026 and {Vendor-invoice-A} is due Nov 19, 2026.")],
    [("Open {Customer-A}'s customer page.", "the term and credit limit are exactly as written down."), ("Open {Vendor-A}'s vendor page.", "the term and credit limit are exactly as written down."),
     ("Open {Invoice-A}.", "its term and due date are exactly as written down (never re-dated)."), ("Open {Vendor-invoice-A}.", "its due date is exactly as written down.")],
-   ["S11-R2", "S11-N1", "S11-R13", "S7-E2", "KD-EXIST", "KD-NOFLAG"], marker=PRE_REL)
+   ["S11-R2", "S11-N1", "S11-R13", "S7-E2", "KD-EXIST", "KD-NOFLAG"], marker=PRE_REL, who=PROD_ADMIN)
 
 rl("S11-03", "The Counter Sale customer stays on COD whatever the default",
    [("Net 30 is the shop's default for new customers.", None), ("The organization's built-in Counter Sale customer is {Customer-A}.", "For example: {Customer-A} is the customer named Counter Sale."), PAGE],
@@ -53,9 +57,9 @@ rl("S11-06", "Every other term still opens the payment window with Charge Accoun
    ["S11-R10", "S1-R8 DOR"])
 
 rl("S11-07", "An existing COD customer keeps its old limit on release day",
-   [("Customer {Customer-A} held COD with a credit limit of $1,000.00 before the release (written down then).", "For example: {Customer-A} is ZZAUTOTEST S11-07 Cash.")],
+   [("On production, customer {Customer-A} held COD with a credit limit of $1,000.00 before the release reached production (written down then, with a screenshot).", "For example: {Customer-A} is ZZAUTOTEST S11-07 Cash.")],
    [("Open {Customer-A}'s customer page.", "the credit limit still reads $1,000.00 (the release did not change it).")],
-   ["S11-R11", "KD-ZERO2"], marker=PRE_REL)
+   ["S11-R11", "KD-ZERO2"], marker=PRE_REL, who=PROD_ADMIN)
 
 rl("S11-08", "The first edit of an old COD customer shows and saves $0",
    [("Customer {Customer-A} holds COD and keeps a credit limit of $1,000.00 stored from before the release.", "For example: {Customer-A} is ZZAUTOTEST S11-08 Cash.")],
@@ -96,10 +100,10 @@ rl("S11-13", "Customers stored as \"NET 30\" keep that text and count under Net 
    ["S11-E2", "S11-R9", "A-SPELL", ("Jira SV-11680 acceptance criterion", "Given customers stored as \"NET 30\", then the stored text is kept, they count under Net 30 on the page and their card shows \"NET 30\" (S11-E2).")])
 
 rl("S11-14", "Nothing is re-sent to QuickBooks at release",
-   [("The organization is connected to a QuickBooks Online sandbox. Before the release, the QB Unexported report and the sandbox's invoice list were captured.", None)],
+   [("The production test organization is connected to QuickBooks Online. Before the release reached production, its QB Unexported report and the QuickBooks invoice list were captured (screenshots).", None)],
    [("Open the QB Unexported report.", "it holds the same records as before the release, and none was added by the release."),
     ("In QuickBooks, open the invoice list.", "no invoice was re-sent or changed by the release (same count and same last-changed dates as captured).")],
-   ["S11-N1"], marker=PRE_REL)
+   ["S11-N1"], marker=PRE_REL, who=PROD_ADMIN)
 
 rl("S11-15", "Statements, the portal and A/R aging show no credit term screens",
    [("Customer {Customer-A} holds the shop's own term {Term-A} and has an open invoice {Invoice-A}.", "For example: {Customer-A} is ZZAUTOTEST S11-15 Customer and {Term-A} is ZZAUTOTEST S11-15 Fourteen.")],
