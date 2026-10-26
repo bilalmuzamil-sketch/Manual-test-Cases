@@ -251,12 +251,14 @@ NAMED_STORY = {"EH-S1": 1, "EH-S2": 2, "EH-S3a": 3, "EH-S3b": 3, "EH-S4a": 4, "E
 
 # Rule 117 thirteenth amendment (QA lead, 26 Oct 2026): every case's Preconditions open with one "Scenario:" line (scenarios.py)
 from scenarios import SCEN
+import relevance as RELEVANCE
 SCENARIO = "Scenario: "
 CASES = []
 def C(key, sec, title, pre, steps, res, q, stories=None, note="", marker=None, api=False):
     """pre: list of str or (state, example). res: one 'Step N:' line per step. q: PRD codes, NAMED keys, SUB keys or ('label', 'verbatim').
     api: True for a case whose steps send a Public API request (Rule 4: placed in a section titled with 'API')."""
     pre = [p if isinstance(p, tuple) else (p, None) for p in pre]
+    pre, note = RELEVANCE.apply(key, pre, note, steps, res)   # 26 Oct 2026 relevance and independence pass (relevance.py)
     steps, res = fold_reads(steps, res)
     res = [visible(r, steps[i] if i < len(steps) else "") for i, r in enumerate(res)]
     clean = marker == CLEAN_HOLD  # the setup file's P-CLEAN recipe applies (the case needs a shop holding only its own records)

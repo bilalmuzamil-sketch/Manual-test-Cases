@@ -158,6 +158,37 @@ for c in L.CASES:
             if re.search(r"[,(]? so (?:that )?\w", b): rel_so += 1; continue
             probs.append(f"{k}: relevance: the precondition names {n!r}, which no step or result uses, and gives no 'so …' reason: {b[:90]!r}")
 print("relevance gate: named records", rel_named, "| kept by a 'so …' reason", rel_so)
+# ---- INDEPENDENCE GATE (permanent; QA lead 26 Oct 2026: "the test cases need to be created in a way that if one test case fails that does
+# not block the other test case"). (a) No case key or C-id in anything the tester reads (title, preconditions, steps, results, note).
+# (b) In a case whose steps change something (move, deactivate, delete, save, create, invoice, reverse, import, receive, send), every
+# record of a changeable kind the steps or results name (term, customer, vendor, work order, invoice, vendor invoice, credit memo, part
+# sale, estimate, asset) is described in the preconditions as new or made for this test (or as data from before the release, the
+# built-in Counter Sale customer, or a name the steps use to create it).
+KEYREF = re.compile(r"\b(?:S\d{1,2}-\d{2}[b-e]?|DATA-\d{2}[b-e]?|D-\d{2}[b-e]?|C\d{6})\b")
+CHG = re.compile(r'"(?:Deactivate|Reactivate|Delete Credit Term|Make Default|Make Default for New Customers|Move \d+ Customers?|Move N Customers|Set Limits To \$0 And Move|Create Credit Term|Save Changes|Save & Close|Save|Create)"|\bClick (?:Save|Create Invoice)\b|\bCreate Invoice\b|Reverse|Import the file|Receive the delivery|Resend|status to inactive|Save the vendor invoice|Send a (?:Public API request that (?:creates|updates)|save|move request)|\bclick Save\b')
+RECK = re.compile(r"\b(?:vendor invoice|work order|credit memo|part sale|estimate|customer|invoice|vendor|asset|term) [A-Z0-9]\b", re.I)
+FRESHP = re.compile(r"\bnew\b|for this test|before the release|Counter Sale|[Oo]n production|built-in|^Choose\b")
+ind_changing = ind_records = 0
+for c in L.CASES:
+    k = c["key"]; f = L.render(c)
+    pre = [_html.unescape(x) for x in re.findall(r"<li>(.*?)</li>", f["custom_preconds"], re.S)]
+    steps = [_html.unescape(x) for x in re.findall(r"<li>(.*?)</li>", f["custom_steps"], re.S)]
+    head = f["custom_expected"].split("<p></p>", 1)[0]
+    res = [_html.unescape(x) for x in re.findall(r"<li>(.*?)</li>", head, re.S)]
+    note = f["custom_expected"].split("<p></p>", 1)[1].split("<p><strong>Exact quotes")[0]
+    for t in [c["title"]] + pre + steps + res + [_html.unescape(re.sub(r"<[^>]+>", " ", note))]:
+        m = KEYREF.search(t)
+        if m: probs.append(f"{k}: independence: another case is named in tester text ({m.group(0)}): {t[:80]!r}")
+    if not any(CHG.search(s) for s in steps): continue
+    ind_changing += 1
+    for n in sorted({m.lower() for t in steps + res for m in RECK.findall(t)}):
+        ind_records += 1
+        bullets = [b for b in pre if re.search(r"(?<![\w-])" + re.escape(n) + r"(?![\w-])", b, re.I)
+                   or re.search(r"(?<![\w-])" + re.escape(n.rsplit(" ", 1)[0]) + r"s (?:[A-Z0-9], )*(?:[A-Z0-9] and )?" + n[-1].upper() + r"\b", b)]
+        if not bullets: probs.append(f"{k}: independence: {n!r} is used by the steps but no precondition creates it"); continue
+        if not any(FRESHP.search(b) for b in bullets):
+            probs.append(f"{k}: independence: the steps change things but {n!r} is not described as new or made for this test")
+print("independence gate: changing cases", ind_changing, "| records checked", ind_records)
 # ---- design references (design pass): DREFS keys exist, every picture named exists in design-2026-10-23/images/, design cases have refs
 for k, d in L.DREFS.items():
     if k not in keys: probs.append(f"DREFS names case {k}, which does not exist")

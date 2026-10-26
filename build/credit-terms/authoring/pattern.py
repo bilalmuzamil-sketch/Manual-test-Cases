@@ -38,7 +38,7 @@ def names_for(c):
         ph = "{" + k + "-" + x + "}"
         v = VALUES.get(c["key"], {}).get(k + "-" + x)
         if v: out[ph] = v
-        elif k == "Location" and locs == {"A"}: out[ph] = "the test location"
+        elif k == "Location" and x == "A": out[ph] = "the test location"   # the location you sign in at
         elif k == "User" and x == "A" and own_user: out[ph] = "your user name"
         else: out[ph] = f"{KIND[k]} {x}"
     if "{n}" in text: out["{n}"] = "N"
@@ -92,9 +92,7 @@ PRE_OVR = {  # (case key, original bullet) -> plain bullet(s); only where the ru
    ["Before you start, write down Net 30's Customers count (number A)."],
  ("S3-12", "A 32-character text, {Text-A}."): ["Have a name ready that is 32 characters long."],
  ("S12-10", "You are enrolled at {Location-B}, in a time zone {Hours-A} hours apart from {Location-A}."):
-   ["Make sure you are also enrolled at location B, in a time zone a whole number of hours apart from location A, and note that difference in hours."],
- ("S3-06", "You are enrolled at {Location-B}, in a time zone where today's date is already {Date-B} while it is still {Date-A} at {Location-A}. Run the case at a time of day when the two dates differ."):
-   ["Make sure you are also enrolled at location B, in a time zone where today's date is already one day later than at location A. Note location B's date (date B). Run the case at a time of day when the two dates differ."],
+   ["Make sure you are also enrolled at location B, in a time zone a whole number of hours apart from the test location, and note that difference in hours."],
  ("DATA-18", "Today's date at {Location-B} is {Date-A}; {Date-B} is {Date-A} plus 30 days."):
    ["Note today's date at location B (date A).", "Work out date B: date A plus 30 days."],
  ("DATA-19", "Today's date at {Location-A} is {Date-A}; {Date-B} is {Date-A} plus 365 days, and {Date-C} is day 31 of the month after {Date-A}, or that month's last day if it is shorter."):
@@ -122,8 +120,6 @@ PRE_OVR = {  # (case key, original bullet) -> plain bullet(s); only where the ru
    ["Have these written down on production from before the release reached production (with screenshots): customer A's term and credit limit, vendor A's term and credit limit, invoice A's term and due date, and vendor invoice A's due date."],
  ("S4-17", "The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly one customer, {Customer-A}, whose record misses details Edit Customer would ask for (for example no address)."):
    ["Make sure the shop's own term A, due 20 days after the invoice date, is held by exactly one customer, customer A, whose record has no address (a detail Edit Customer requires)."],
- ("S3-08", "A new name {Term-A} that no term has, and a customer {Customer-A} and a vendor {Vendor-A}."):
-   ["Choose a new name for term A that no term has.", "Have a customer, customer A, and a vendor, vendor A."],
  ("D-38", "The log cannot be loaded (the setup file says how to make it fail on the test shop)."):
    ["Make sure the Credit Terms Log cannot be loaded on the test shop."],
 }
@@ -169,7 +165,7 @@ def pre_rule(a):
         return "Choose " + head[0].lower() + head[1:] + m.group(2) + m.group(3)
     if re.match(r"^A (contacts|vendor) import file", a): return "Have " + a[0].lower() + a[1:]
     if a.startswith("An organization "): return "Have an organization, " + a[len("An organization "):].replace("} ", "}, ", 1)
-    if a.startswith("Other ") or a.startswith("Write down") or a.startswith("Before you start, write") or a.startswith("Run "): return a
+    if a.startswith("Create ") or a.startswith("Other ") or a.startswith("Write down") or a.startswith("Before you start, write") or a.startswith("Run "): return a
     if a.startswith("Before you start, "): return "Before you start, make sure " + a[len("Before you start, "):]
     # any other statement of what must exist: "Make sure …"
     first = a.split(" ")[0]
@@ -208,7 +204,7 @@ RES_OVR = {     # (key, step number) -> list of bullets
                "The reference chips read \"Work Order\" with work order 1's number, \"Customer PO …\" and \"Terms\" with term A's name, the term name whole.",
                "The layout is today's (compare ct-p9-02-10th-of-next-month-invoice-oct-5-due-nov-10.png and today's ct-p9-01-an-invoice-today-net-30.png; the orange outline on the picture is not part of the screen)."],
  ("S12-10", 4): ["The newest row shows your user name under User.",
-                 "It shows the date and time of the change as clocks at location A read them."],
+                 "It shows the date and time of the change as clocks at the test location read them."],
  ("S12-10", 8): ["The same row now shows the time later by the difference in hours (as clocks at location B read it).",
                  "The date changes too if the move crosses midnight."],
 }
