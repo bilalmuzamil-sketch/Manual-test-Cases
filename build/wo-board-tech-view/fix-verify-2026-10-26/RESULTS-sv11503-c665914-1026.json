@@ -1,0 +1,19 @@
+{
+ "pass_meta": {"env": "QA branch sv11503", "build": "v26.43.1-a53a4ac", "date": "26 October 2026", "note": "Rule 136: SV-11503 fix verified on its QA branch sv11503 (QA lead 26 Oct)"},
+ "results": {
+  "C665914": {
+   "verdict": "Passed",
+   "observed": [
+    "Passed on the QA branch sv11503 (fix for SV-11503), every step as written.",
+    "Set-up: technician \"ZZAUTOTEST C665914 Ana\" and Approved work order S11503-17580 led by Ana, for customer \"ZZAUTOTEST C665914 Superlongunbrokencustomernamewithoutanyspacesforthedragpreview\".",
+    "Steps 1 and 2 (Board View): holding and moving the card shows a preview box with S11503-17580 and the customer name on one line, cut off with \"…\". The name stays inside the box; nothing is drawn over the next columns (picture 1, left).",
+    "Step 3: Escape cancels the drag; the card stays in Ana's column.",
+    "Step 4: Tech View shows the row in Ana's group.",
+    "Steps 5 and 6 (Tech View): the same preview, the name cut off with \"…\" inside the box, nothing over the neighbouring rows (picture 1, right).",
+    "Step 7: Escape cancels the drag; the row stays in Ana's group and the lead is still Ana.",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11503 (TESTING QA) - passed on its QA branch; QA Passed comment posted on the ticket."
+   ],
+   "pictures": ["/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-26/SV-11503-sv11503-fixed.png"]
+  }
+ }
+}
