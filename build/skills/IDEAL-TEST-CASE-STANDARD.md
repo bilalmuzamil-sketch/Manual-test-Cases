@@ -7,7 +7,7 @@ those conflicts with this, this wins. **The format is LOCKED — see "Change con
 ## 🔴 Current default since 2026-10-16 (Rule 117, ninth amendment, PERMANENT)
 
 Preconditions = what must exist in the account, never how to make it; records as {placeholders}; each example on a second line of
-its bullet, starting "For example:"; last line "If any record above is missing, mark this test Blocked: "setup not done"". The how-to
+its bullet, starting "For example:"; [the closing "mark this test Blocked" line was REMOVED by the fifteenth amendment, 26 Oct 2026 — never write it]. The how-to
 goes into ONE setup file per feature for Claude sessions, linked from every case (it replaces the per-case Google Doc). Steps one
 action each; one "Step N:" result per step; below the results: Source, divergence, exact quotes, AUTOMATION line. Where requirement 2
 below and the 2nd, 4th and 5th amendments say otherwise, this wins. Full text: `build/rules/RULES-61-96.md`, Rule 117 ninth
@@ -171,3 +171,11 @@ starting screen). Only what is needed: no "ask your QA lead", no generic lines, 
 Title in plain words · Preconditions as short plain setup bullets ("Sign in as …", "Use a …", "Have a …"), only what the steps need, no
 Scenario line, no {placeholders}, no "For example:" lines · numbered Steps · Expected Result: "Step N:" then bullets, one fact each ·
 a blank line · then the exact quotes, References from Design and the AUTOMATION line, unchanged. Example C665915.
+
+
+## Fifteenth amendment (QA lead, 26 Oct 2026, PERMANENT): no "mark this test Blocked" line
+
+Verbatim: *"B -> and never add that line in the future test cases too"*. Never write "If you cannot set up any of the above, mark this
+test Blocked: "setup not done"." (or "If any record above is missing, mark this test Blocked …") in a case. The preconditions end with
+the last thing the tester sets up. Every suite's build.py rejects the line. Full text: `build/rules/RULES-61-96.md`, Rule 117 fifteenth
+amendment.

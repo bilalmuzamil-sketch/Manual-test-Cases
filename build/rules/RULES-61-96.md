@@ -2976,6 +2976,20 @@ expect."*; *"you must keep a space after the expected results end."*
    fifth, seventh, eighth and ninth amendments; the setup file for Claude sessions may still hold placeholders and examples.
 7. Example: C665915 (Splitting Sales Representatives S1-01), 26 Oct 2026.
 
+### 117 — FIFTEENTH AMENDMENT, PERMANENT (QA lead, 2026-10-26): no "mark this test Blocked" line in the preconditions
+
+Ordered on 26 Oct 2026. Asked whether C665915 should get the closing precondition line *"If you cannot set up any of the above, mark
+this test Blocked: "setup not done"."* (which every other case then carried) or whether the line should be removed everywhere to match
+his pattern exactly, he answered, verbatim: *"B -> and never add that line in the future test cases too"*.
+
+1. **No case carries that line, or any variant of it** ("If any record above is missing, mark this test Blocked …", "If you cannot set
+   up any of the above …"). The preconditions end with the last thing the tester sets up.
+2. It was removed from every case of Splitting Sales Representatives, A/R and A/P and Credit terms on 26 Oct 2026, in the same pass
+   as the tester read-through (`build/tester-readthrough-2026-10-26/`).
+3. **Every future case, in every suite, is written without it.** Each suite's build.py rejects a case that contains it.
+4. Supersedes the "last line … mark this test Blocked" part of the ninth amendment and item 3 of the precondition shape that used it.
+   The tester's general practice of marking a case Blocked when something is off is unchanged; it simply is not written into each case.
+
 ## 118 · EACH SESSION FOLLOWS ONLY ITS OWN RULE BOOK — FACTS MAY BE SHARED, RULES MAY NOT (all projects, permanent)
 
 Standing instruction from the QA lead, 2026-10-06, recorded with his explicit approval ("This message is my

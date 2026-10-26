@@ -511,6 +511,8 @@ in `build/rules/RULES-61-96.md` before writing a case.
 
 **🔴 Rule 117 FOURTEENTH AMENDMENT, PERMANENT (QA lead, 2026-10-26): his own pattern is the case format — SUPERSEDES the thirteenth.** Title in plain words; Preconditions as short plain setup bullets ("Sign in as …", "Use a …", "Have a …"), only what the steps need, no Scenario line, no {placeholders}, no "For example:"; numbered Steps; Expected Result as "Step N:" then bullets; a blank line; then quotes, design references and the AUTOMATION line unchanged. Example C665915. Read the amendment in `build/rules/RULES-61-96.md`.
 
+**🔴 Rule 117 FIFTEENTH AMENDMENT, PERMANENT (QA lead, 2026-10-26): no "mark this test Blocked" line.** His words: *"B -> and never add that line in the future test cases too"*. No case carries "If you cannot set up any of the above, mark this test Blocked …" or any variant; removed from Splitting Sales Representatives, A/R and A/P and Credit terms on 26 Oct 2026; every suite's build.py rejects it. Read the amendment in `build/rules/RULES-61-96.md`.
+
 **(Superseded by the fourteenth) Rule 117 THIRTEENTH AMENDMENT, PERMANENT (QA lead, 2026-10-26): preconditions read as a scenario.** One "Scenario:" line (a plain story of the situation), then what must exist in the account as plain bullets in the order a tester would set it up; only what is needed (no "ask your QA lead", no generic lines, no holds for things the tester obtains). Read the amendment in `build/rules/RULES-61-96.md`.
 
 **🔴 Rule 118 (each session follows only its own rule book — facts may be shared, rules may not)** was
