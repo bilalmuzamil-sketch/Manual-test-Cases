@@ -2,21 +2,7 @@ from ssr_lib import C, prd_line, AQ
 from common import *
 
 # ---------------- Story 1: one Sales Representative field ----------------
-# 26 Oct 2026, QA lead: "The preconditions should be something like the easiest to understand for a layman or a manual QA tester to
-# setup and they must make sense and relate to the steps and expected results below." Trial case: preconditions hold only what the
-# steps need (no labor line or part; no "reads Unassigned", which is the result being checked); the steps are real actions.
-C("S1-01", "S1", "Sales Representative sits under Service Advisor and reads Unassigned",
-  [('You are signed in as an Admin at {Location-A}.', "For example: {Location-A} is Staging Heavy Duty - 9919."),
-   ('Customer {Customer-A} has no sales representative: in Edit Customer its Sales Representative field reads "Unassigned".',
-    "For example: {Customer-A} is ZZAUTOTEST SSR Fleet."),
-   ("Work order {Work-order-1} was created for {Customer-A} at {Location-A}, is not invoiced, and nobody has picked a sales representative on it.",
-    "For example: {Work-order-1} is S2-40001."),
-   ("Starting screen: the Work Orders page, on a desktop computer with the browser window at least 1024 px wide.", None)],
-  ["Open work order {Work-order-1}.",
-   "Move the mouse pointer off the work order card."],
-  ["Step 1: the work order opens. Its card lists Lead Technician, then Service Advisor, then a field labelled \"Sales Representative\" directly under Service Advisor.",
-   "Step 2: the Sales Representative field shows the label \"Sales Representative\" on the first line and \"Unassigned\" on the second, in the same text style as Lead Technician and Service Advisor. There is no box around it, no dropdown arrow and no button beside it."],
-  ["S1-R1", "S1-R2", "S1-R3", "S1-R7"])
+# S1-01 (C665915) was rebuilt from scratch on 26 Oct 2026 from the PRD, the design and the tech plan: see the end of cases_design.py.
 
 C("S1-02", "S1", "Sales Representative list starts with Unassigned, then reps by first name",
   [ADMIN,

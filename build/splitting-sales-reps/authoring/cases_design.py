@@ -334,3 +334,27 @@ for c in ssr_lib.CASES:
             c["pre"][i] = PIC_PRE(sorted(set(b) | set(re.findall(r'\(board (\d+\.\d+)\)', c["pre"][i][0])), key=lambda x: [int(y) for y in x.split(".")]))
             c["design_src"] = DSRC(sorted(set(b) | set(re.findall(r'board (\d+\.\d+)', " ".join(c["steps"]))), key=lambda x: [int(y) for y in x.split(".")]))
         c["q"] = c["q"] + DQ(b); c["pictures"] = sorted(set(c["pictures"]) | set(PICS(b)))
+
+
+# ---------------- S1-01 (C665915), rebuilt from scratch, 26 Oct 2026 ----------------
+# QA lead: "Read the PRD and create the test case from scratch and ot to copy what is already there" / "PRD+Design+SOurces/Tech plan".
+# Scope (one behaviour): a new work order whose customer has no representative shows the Sales Representative field directly under
+# Service Advisor, reading "Unassigned", as plain text at rest (S1-R1, S1-R2, S1-R3, S1-R7). The look against the design, with the
+# 16px gaps, is D-01. Why the customer must have no representative: S4-R24. Why a mouse: S3-R4 (touch screens always show the arrow).
+# Lead Technician may read blank: design note on board 1.2. Already built (SV-8599): tech plan "Already built".
+C("S1-01", "S1", "New work order shows Sales Representative under Service Advisor as Unassigned",
+  [("You are signed in as a user with the Admin role at {Location-A}.", "For example: {Location-A} is Staging Heavy Duty - 9919."),
+   ("Customer {Customer-A} has no sales representative.", "For example: {Customer-A} is ZZAUTOTEST SSR Fleet."),
+   ("Work order {Work-order-1} was created for {Customer-A} at {Location-A}, is not invoiced or paid, and nobody has picked a sales representative on it.",
+    "For example: {Work-order-1} is S2-40001."),
+   ("Starting screen: the Work Orders page, on a desktop or laptop computer with a mouse.", None)],
+  ["Open work order {Work-order-1} from the Work Orders list.",
+   "Move the mouse pointer to an empty part of the page, away from the work order card."],
+  ["Step 1: the work order opens. On the card, a field labelled \"Sales Representative\" sits directly under Service Advisor. (Lead Technician may read blank; that is today's behaviour and not part of this test.)",
+   "Step 2: the field reads \"Sales Representative\" on the first line and \"Unassigned\" on the second, in the same text style, size and boldness as Service Advisor and starting at the same left edge. There is no box around it, no dropdown arrow and no button beside it, as in the attached picture of board 1.2."],
+  [("Story 1 prerequisite", prd_line("User has 'Work Orders — Create & Edit' enabled.")),
+   ("Story 1 prerequisite", prd_line("The work order is not invoiced or paid, and is not opened from its history.")),
+   "S1-R1", "S1-R2", "S1-R3", "S1-R7", "S4-R24", "S3-R4",
+   ("Tech plan, Already built", "Already built: the work order's single rep field with \"Unassigned\", (Inactive), save-as-you-go and the read-only gate (SV-8599)")]
+  + DQ(["1.2"]),
+  stories=[1, 4], design_src=DSRC(["1.2"]), pictures=PICS(["1.2"]))

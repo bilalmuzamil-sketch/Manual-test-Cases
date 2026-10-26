@@ -6,7 +6,7 @@ outside the library (design-recheck-2026-10-20/applied), whose new preconditions
 scenario-preconditions-2026-10-26/dr_scenarios.py. No requirement codes, no internal names, no placeholders, no "who to ask"."""
 SCENARIO = {
     # Story 1 — one Sales Representative field on the work order
-    "S1-01": "You open a work order whose customer has no sales representative and check where the new Sales Representative field sits on the card.",
+    "S1-01": "You open a new work order for a customer who has no sales representative and look at the card.",
     "S1-02": "Your shop has three sales representatives (two share a first name), a staff member who is not a representative, and an open work order with nobody on it.",
     "S1-03": "Your shop has two sales representatives and an open work order with nobody on it, and you give the work order a representative.",
     "S1-04": "An open work order has a sales representative, and you take them off so nobody is credited.",

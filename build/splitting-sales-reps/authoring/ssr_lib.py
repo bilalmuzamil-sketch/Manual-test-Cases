@@ -47,7 +47,7 @@ for line in PRD13_TXT.split("\n"):
     if m and m.group(1) not in CODE13: CODE13[m.group(1)] = m.group(2).strip()
 PRD13_NAME = 'PRD "Splitting Sales Representatives", Confluence 919928833, version 13 (23 Oct 2026, Chris Ward)'
 ANS13_NAME = "Chris Ward's answers to the Splitting Sales Representatives question sheet (answers 1 to 38, 19 Oct 2026; answers 39 and 40, 21 Oct 2026; answer 41, 23 Oct 2026)"
-V13 = {"S3-03", "S4-03", "S4-03b", "S4-04", "S4-04c", "D-11", "D-13"}
+V13 = {"S3-03", "S4-03", "S4-03b", "S4-04", "S4-04c", "D-11", "D-13", "S1-01"}  # S1-01 rebuilt from v13 on 26 Oct 2026
 def prd_line(start):
     for line in PRD_TXT.split("\n"):
         t = re.sub(r"^-\s*", "", line).strip()
