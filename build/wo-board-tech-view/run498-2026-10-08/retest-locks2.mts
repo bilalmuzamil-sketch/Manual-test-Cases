@@ -152,7 +152,10 @@ async function asViewer(key: string, f: (pg: Page, va: any, o: any) => Promise<v
 const goV = async (pg: Page, d: string, q: string) => { await pg.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await pg.waitForTimeout(4500); await tab(pg, 'All'); await display(pg, d); if (q) await search(pg, q); if (d === 'Tech View') await expandSmallGroups(pg); };
 
 await run('C96967', async (o) => {
-  const techs = await candidates(a); const ES = techs.find((x) => x.name === 'Esther Howard'); const B1 = await T('C96967', 'Ben');
+  let techs = await candidates(a);
+  // 26 Oct 2026 (sv11546): a fresh QA branch may have no Esther Howard — create her as an eligible technician (Rule 107)
+  if (!techs.find((x) => x.name === 'Esther Howard')) { o.estherCreated = !!(await person(a, 'Esther', 'Howard', { role: TECH_ROLE, email: 'zz.esther.howard@staging.shopview.local', clockable: true })).row; techs = await candidates(a); }
+  const ES = techs.find((x) => x.name === 'Esther Howard'); const B1 = await T('C96967', 'Ben');
   if (!ES) throw new Error('Esther Howard not a technician here');
   const set = await mkSet('ZZAUTOTEST F1 View Only No Drag', [{ co: 'One', lead: { staff_id: ES.id } }]); o.data = set.w;
   await asViewer('C96967', async (pg, va, o) => {
