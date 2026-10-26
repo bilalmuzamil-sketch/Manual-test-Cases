@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792686675,
  "updated_by": 3,
- "updated_on": 1793029098,
+ "updated_on": 1793035070,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin user (the \"Admin\" role).</li><li>Have a vendor, vendor A, with three open bills on today's date, in two different aging buckets.</li><li>Use a desktop browser window 1440 px wide.</li><li>Open A/P Detail (Reports, then \"A/P Aging Detail\" under ACCOUNTS PAYABLE in the left menu).</li><li>Leave the report with the Vendor filter showing only vendor A ticked.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin user (the \"Admin\" role).</li><li>Have a vendor, vendor A, with three open bills on today's date, in two different aging buckets.</li><li>Use a desktop browser window 1440 px wide.</li><li>Open A/P Detail (Reports, then \"A/P Aging Detail\" under ACCOUNTS PAYABLE in the left menu).</li><li>Leave the report with the Vendor filter showing only vendor A ticked.</li></ul>",
  "custom_steps": "<ol><li>Click the chevron button in the table's top-left header cell until its tooltip reads \"Expand all\" (every bucket closed).</li><li>Choose \"Download (CSV)\" from the ⋯ menu.</li><li>Open the CSV and read its rows.</li><li>Choose \"Download (PDF)\" from the ⋯ menu.</li><li>Open the PDF and read its rows.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Every bucket is closed: no document row shows on screen.</li></ul><p>Step 2:</p><ul><li>The CSV downloads with the \"Success\" message \"Data exported successfully.\"</li><li>No \"Empty export\" warning shows.</li></ul><p>Step 3:</p><ul><li>One row for each of vendor A's three bills, then the Totals row: the same rows the report has with its buckets open.</li></ul><p>Step 4:</p><ul><li>The PDF downloads with the \"Success\" message.</li></ul><p>Step 5:</p><ul><li>The same three bills and the Totals row.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"A/R and A/P Report Sorting, Export and Location Filter\", Confluence 947650561, version 9 (23 Oct 2026, Chris Ward), read 26 Oct 2026 &middot; Epic SV-11315, story SV-11533 (Story 3, Export to PDF and CSV)</p><ul><li><strong>S3-R3:</strong> &ldquo;The PDF and the CSV contain exactly the rows on screen for the chosen as-of date, customer or vendor and locations, in the on-screen sort, including a sort changed after an earlier export, without refreshing the page.&rdquo;</li><li><strong>S3-R10:</strong> &ldquo;A successful export shows the native \"Success\" message, \"Data exported successfully.\" An export with no rows downloads nothing and shows the native warning \"Empty export\", \"Export didn't yield any results\".&rdquo;</li></ul><p>From: Tech plan \"A/R and A/P Report Sorting, Export and Location Filter — Technical Implementation Plan\" (2026-10-21, uploaded 22 Oct 2026), read 22 Oct 2026</p><ul><li><strong>Tech plan §3 D28, rationale:</strong> &ldquo;On Detail reports with every bucket collapsed no rows are loaded, so a loaded-rows check would wrongly say \"Empty export\" (S3-R10).&rdquo;</li><li><strong>Tech plan §3 D28:</strong> &ldquo;Empty-export detection reads the report's server count, never loaded rows: Summaries pagination.rowsNumber; Collection/Unpaid totals.documentCount; Detail totals.rowsNumber from the groups query&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"A/R and A/P Report Sorting\" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 2 \"Export\" (board Export.dc.html). Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD and tech plan quotes above, the pictures give the look and the on-screen labels.</p><p>Design pictures attached to this case:</p><ul><li>ar-ap-p2-export-menu-pdf-and-csv.png: figure \"Export menu: PDF and CSV\" (This build (after)), board \"2. Export\"</li></ul><p>The design's own words:</p><ul><li>\"The native ⋯ Export menu on all six reports. Files hold exactly the rows on screen, in screen order, with the as-of date and locations, then Past due and the customer or vendor when chosen. S3-R1 to S3-R8, S3-R8a.\" (caption of \"Export menu: PDF and CSV\")</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 4
+ "version": 5
 }

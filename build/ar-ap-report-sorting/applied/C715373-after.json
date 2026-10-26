@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792659666,
  "updated_by": 3,
- "updated_on": 1793029135,
+ "updated_on": 1793035104,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin user (the \"Admin\" role).</li><li>Have open documents in these reports at two locations, your current location and location B.</li><li>Make sure you are enrolled at both locations.</li><li>Have a vendor, vendor A, with open bills at both locations, some 31 to 60 days past due, on today's and yesterday's date.</li><li>Use a desktop browser window 1440 px wide.</li><li>Open A/P Unpaid Invoices (Reports, then \"A/P Unpaid Invoices\" under ACCOUNTS PAYABLE in the left menu; the page title reads \"A/P Unpaid Invoices Report\").</li><li>Leave the report with every group expanded (Expand all).</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin user (the \"Admin\" role).</li><li>Have open documents in these reports at two locations, your current location and location B.</li><li>Have a vendor, vendor A, with open bills at both locations, some 31 to 60 days past due, on today's and yesterday's date.</li><li>Use a desktop browser window 1440 px wide.</li><li>Open A/P Unpaid Invoices (Reports, then \"A/P Unpaid Invoices\" under ACCOUNTS PAYABLE in the left menu; the page title reads \"A/P Unpaid Invoices Report\").</li><li>Leave the report with every group expanded (Expand all).</li></ul>",
  "custom_steps": "<ol><li>Change the as-of date to yesterday.</li><li>Click the top-left chevron button to expand every group.</li><li>In the Vendor filter, tick vendor A.</li><li>Click the top-left chevron button to expand every group.</li><li>In the Past due filter, tick \"31-60 days\".</li><li>Click the top-left chevron button to expand every group.</li><li>In the Location filter, untick location B.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The report reloads for yesterday with every group collapsed.</li></ul><p>Step 2:</p><ul><li>Every group expands.</li></ul><p>Step 3:</p><ul><li>Only vendor A's rows remain.</li><li>Every group is collapsed.</li></ul><p>Step 4:</p><ul><li>Every group expands.</li></ul><p>Step 5:</p><ul><li>Every group collapses.</li></ul><p>Step 6:</p><ul><li>Every group expands.</li></ul><p>Step 7:</p><ul><li>Every group collapses.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"A/R and A/P Report Sorting, Export and Location Filter\", Confluence 947650561, version 9 (23 Oct 2026, Chris Ward), read 26 Oct 2026 &middot; Epic SV-11315, story SV-11534 (Story 4, Collapse all, Expand all and pinned group rows)</p><ul><li><strong>S4-N1:</strong> &ldquo;Changing the as-of date, the customer or vendor filter, the Past due filter or the Location filter collapses every group, as changing the date or filter does today.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"A/R and A/P Report Sorting\" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 3 \"Collapse all and pinned group rows\" (board Grouped.dc.html). The design draws no picture of this behaviour (all 7 boards and 45 figures checked); the case follows the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 5
+ "version": 6
 }

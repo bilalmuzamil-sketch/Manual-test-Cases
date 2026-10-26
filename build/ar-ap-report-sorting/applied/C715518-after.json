@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792659853,
  "updated_by": 3,
- "updated_on": 1793029389,
+ "updated_on": 1793035349,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin user (the \"Admin\" role).</li><li>Make sure the organization has more than 2,000 open A/P lines.</li><li>Make sure you can switch this computer's network connection off and on (such as Wi-Fi).</li><li>Use a desktop browser window 1440 px wide, in light theme at 100% zoom.</li><li>Open A/P Detail (Reports, then \"A/P Aging Detail\" under ACCOUNTS PAYABLE in the left menu).</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin user (the \"Admin\" role).</li><li>Make sure the organization has more than 2,000 open A/P lines.</li><li>Make sure you can switch this computer's network connection off and on (such as Wi-Fi).</li><li>Use a desktop browser window 1440 px wide, in light theme at 100% zoom.</li><li>Open A/P Detail (Reports, then \"A/P Aging Detail\" under ACCOUNTS PAYABLE in the left menu).</li></ul>",
  "custom_steps": "<ol><li>Choose \"Download (PDF)\" from the ⋯ menu and read the message, letter for letter.</li><li>Switch the network connection off.</li><li>Choose \"Download (CSV)\" from the ⋯ menu and read the message, letter for letter.</li><li>Switch the network back on.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>\"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\", in an error toast styled and placed as on the other reports, only one.</li></ul><p>Step 2:</p><ul><li>The computer is offline.</li></ul><p>Step 3:</p><ul><li>\"We couldn't export this report. Please try again.\", an error toast, only one.</li></ul><p>Step 4:</p><ul><li>The connection is back.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"A/R and A/P Report Sorting, Export and Location Filter\", Confluence 947650561, version 9 (23 Oct 2026, Chris Ward), read 26 Oct 2026 &middot; Epic SV-11315, story SV-11533 (Story 3, Export to PDF and CSV)</p><ul><li><strong>User Feedback Summary:</strong> &ldquo;PDF export over 2,000 rows | \"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\" | Error toast, as on the other reports; nothing downloads&rdquo;</li><li><strong>User Feedback Summary:</strong> &ldquo;Export fails for any other reason | \"We couldn't export this report. Please try again.\" | Error toast; nothing downloads; these six reports only&rdquo;</li><li><strong>S3-N1:</strong> &ldquo;Over 2,000 rows, the PDF is refused before anything is generated: no download, and the message \"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\" Exactly 2,000 rows is allowed.&rdquo;</li><li><strong>Story 3, Error Handling:</strong> &ldquo;If an export fails for any other reason (a server error or a lost connection), nothing downloads and one error message shows: \"We couldn't export this report. Please try again.\" This message is on these six reports only; the other reports keep theirs.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"A/R and A/P Report Sorting\" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 2 \"Export\" (board Export.dc.html). Compare the screen with the pictures below at 100% zoom; the expected results still come from the PRD quotes above, the pictures give the look and the on-screen labels.</p><p>Design pictures attached to this case:</p><ul><li>ar-ap-p2-pdf-over-2-000-rows-is-refused.png: figure \"PDF over 2,000 rows is refused\" (This build (after)), board \"2. Export\"</li></ul><p>The design's own words:</p><ul><li>\"\"This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.\" Exactly one message. CSV limit 50,000 rows. S3-N1, S3-N2, S3-N3.\" (caption of \"PDF over 2,000 rows is refused\")</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 6
+ "version": 7
 }

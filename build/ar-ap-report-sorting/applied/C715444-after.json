@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792659758,
  "updated_by": 3,
- "updated_on": 1793029247,
+ "updated_on": 1793035213,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,14 +22,14 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin user (the \"Admin\" role).</li><li>Make sure the organization has many open A/P lines, so the report takes a moment to load.</li><li>Use a desktop browser window 1440 px wide.</li><li>Open A/P Detail (Reports, then \"A/P Aging Detail\" under ACCOUNTS PAYABLE in the left menu).</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin user (the \"Admin\" role).</li><li>Make sure the organization has many open A/P lines, so the report takes a moment to load.</li><li>Use a desktop browser window 1440 px wide.</li><li>Open A/P Detail (Reports, then \"A/P Aging Detail\" under ACCOUNTS PAYABLE in the left menu).</li></ul>",
  "custom_steps": "<ol><li>Change the as-of date to yesterday and watch the table straight away.</li><li>Wait until the rows show.</li></ol>",
  "custom_testrail_bdd_scenario": null,
- "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>While it loads, the native table progress bar shows.</li></ul><p>Step 2:</p><ul><li>The progress bar goes away when the rows show.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"A/R and A/P Report Sorting, Export and Location Filter\", Confluence 947650561, version 9 (23 Oct 2026, Chris Ward), read 26 Oct 2026 &middot; Epic SV-11315, story SV-11538 (Story 8, Report descriptions and layout)</p><ul><li><strong>S8-R5:</strong> &ldquo;While a report loads it shows the native table progress bar. When the filters leave no rows, it shows the native empty state: \"No record matches these filters\" and \"Try changing filters to widen your results.\", with a \"Clear all filters\" button when a customer or vendor, Past due or Location is chosen; that button keeps the as-of date and returns the customer or vendor, Past due and Location to their defaults (every location ticked).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"A/R and A/P Report Sorting\" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 6 \"Descriptions and pinned column\" (board Layout.dc.html). The design draws no picture of this behaviour (all 7 boards and 45 figures checked); the case follows the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
+ "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>While it loads, a progress bar shows on the table.</li></ul><p>Step 2:</p><ul><li>The progress bar goes away when the rows show.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"A/R and A/P Report Sorting, Export and Location Filter\", Confluence 947650561, version 9 (23 Oct 2026, Chris Ward), read 26 Oct 2026 &middot; Epic SV-11315, story SV-11538 (Story 8, Report descriptions and layout)</p><ul><li><strong>S8-R5:</strong> &ldquo;While a report loads it shows the native table progress bar. When the filters leave no rows, it shows the native empty state: \"No record matches these filters\" and \"Try changing filters to widen your results.\", with a \"Clear all filters\" button when a customer or vendor, Past due or Location is chosen; that button keeps the as-of date and returns the customer or vendor, Past due and Location to their defaults (every location ticked).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"A/R and A/P Report Sorting\" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 6 \"Descriptions and pinned column\" (board Layout.dc.html). The design draws no picture of this behaviour (all 7 boards and 45 figures checked); the case follows the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
  "custom_steps_separated": null,
  "custom_mission": null,
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 5
+ "version": 6
 }

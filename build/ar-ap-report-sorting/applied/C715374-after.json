@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792659667,
  "updated_by": 3,
- "updated_on": 1793029136,
+ "updated_on": 1793035106,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin user (the \"Admin\" role).</li><li>Make sure the report has open documents on today's date.</li><li>Use a desktop browser window 1440 px wide.</li><li>Open A/R Summary (Reports, then \"A/R Aging Summary\" under ACCOUNTS RECEIVABLE in the left menu).</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin user (the \"Admin\" role).</li><li>Have a customer with an open invoice on today's date, so the report has rows.</li><li>Use a desktop browser window 1440 px wide.</li><li>Open A/R Summary (Reports, then \"A/R Aging Summary\" under ACCOUNTS RECEIVABLE in the left menu).</li></ul>",
  "custom_steps": "<ol><li>Look at the table's top-left header cell.</li><li>Hover over that cell.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>There is no chevron button: the report has no groups.</li></ul><p>Step 2:</p><ul><li>No \"Collapse all\" or \"Expand all\" tooltip shows.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"A/R and A/P Report Sorting, Export and Location Filter\", Confluence 947650561, version 9 (23 Oct 2026, Chris Ward), read 26 Oct 2026 &middot; Epic SV-11315, story SV-11534 (Story 4, Collapse all, Expand all and pinned group rows)</p><ul><li><strong>S4-N2:</strong> &ldquo;A/R Summary and A/P Summary have no groups, so they have no Collapse all button.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"A/R and A/P Report Sorting\" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 3 \"Collapse all and pinned group rows\" (board Grouped.dc.html). The design draws no picture of this behaviour (all 7 boards and 45 figures checked); the case follows the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 6
+ "version": 7
 }
