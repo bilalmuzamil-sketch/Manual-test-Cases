@@ -192,10 +192,12 @@ def scenario_problems(key, preconds_html):
         if re.search(r"\{[A-Z][^{}]*\}|ZZAUTOTEST", t): p.append(f"{key}: placeholder or record name in the Scenario line")
     return p
 
+SPACE_AFTER_RESULTS = {"S1-01"}  # trial case first (26 Oct 2026); widened once the QA lead approves the style
 def render(c):
     sc = scenario_line(c["key"])
     pre = "<p><strong>Preconditions</strong></p><ul>" + (f"<li>{e(sc)}</li>" if sc else "") + "".join(f"<li>{e(a)}" + (f"<br>{e(b)}" if b else "") + "</li>" for a, b in c["pre"]) + "</ul>"
     exp = ("<p><strong>Expected results</strong></p><ul>" + "".join(f"<li>{e(r)}</li>" for r in c["res"]) + "</ul>"
+           + ("<p></p>" if c["key"] in SPACE_AFTER_RESULTS else "")  # 26 Oct 2026, QA lead: "keep a space after the expected results end"
            + (f"<p>{e(c['known'])}</p>" if c["known"] else "")
            + (f"<p>{e(c['note'])}</p>" if c["note"] and not design_note(c) else "")
            + quotes_block(c)

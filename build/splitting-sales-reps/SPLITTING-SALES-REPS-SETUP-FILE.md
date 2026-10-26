@@ -48,11 +48,11 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 #### SETUP-S1-01 — [C665915](https://shopview.testrail.io/index.php?/cases/view/665915) Sales Representative sits under Service Advisor and reads Unassigned
 Sub folder: Story 1 — One Sales Representative field on the work order (section 84267).
 Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Your shop has an open work order for a customer with no sales representative, so nobody is credited on it yet.
-- You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
-- Work order {Work-order-1} for {Customer-A} is open and not invoiced; it has one approved labor line and one part, and its card shows one "Sales Representative" field reading "Unassigned". For example: {Work-order-1} is S2-40001.
-- Starting screen: {Work-order-1} is open in a desktop browser at least 1024 px wide.
+- Scenario: You open a work order whose customer has no sales representative and check where the new Sales Representative field sits on the card.
+- You are signed in as an Admin at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Customer {Customer-A} has no sales representative: in Edit Customer its Sales Representative field reads "Unassigned". For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
+- Work order {Work-order-1} was created for {Customer-A} at {Location-A}, is not invoiced, and nobody has picked a sales representative on it. For example: {Work-order-1} is S2-40001.
+- Starting screen: the Work Orders page, on a desktop computer with the browser window at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
