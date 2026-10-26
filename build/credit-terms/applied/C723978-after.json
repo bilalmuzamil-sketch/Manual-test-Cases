@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726683,
  "updated_by": 3,
- "updated_on": 1793031075,
+ "updated_on": 1793034612,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure COD is the shop's default for new customers.</li><li>Make sure the shop's own term A (made for this test), due 20 days after the invoice date, is held only by customer A (made for this test), with a $500.00 limit, and work order 1 (made for this test) for customer A is complete and ready to invoice.</li><li>Start on the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure COD is the shop's default for new customers.</li><li>Create a new term of the shop's own for this test, term A, due 20 days after the invoice date.</li><li>Create customer A for this test on term A, with a credit limit of $500.00.</li><li>Create work order 1 for customer A, complete and ready to invoice.</li><li>Start on the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li></ul>",
  "custom_steps": "<ol><li>Click the \"⋯\" at the right of the term A row.</li><li>Click \"Move Customers\".</li><li>Choose \"Credit Hold\" in \"Move To\".</li><li>Click \"Move 1 Customer\".</li><li>Click \"Set Limits To $0 And Move\".</li><li>Open customer A's customer page.</li><li>Open work order 1's Finance tab.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The menu opens.</li></ul><p>Step 2:</p><ul><li>A window titled \"Move Customers from term A\" opens.</li></ul><p>Step 3:</p><ul><li>The line \"Their credit limit will be set to $0.\" shows.</li></ul><p>Step 4:</p><ul><li>A confirmation titled \"Set 1 customer's credit limit to $0?\" opens.</li></ul><p>Step 5:</p><ul><li>The toast \"1 customer moved to Credit Hold.\" shows.</li></ul><p>Step 6:</p><ul><li>The \"Credit term\" reads Credit Hold and the credit limit reads $0.00.</li></ul><p>Step 7:</p><ul><li>No invoice can be created for customer A: the existing Credit Hold notice shows and Create Invoice is disabled.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11673 (Story 4, Move Customers), story SV-11678 (Story 9, Over Credit warning)</p><ul><li><strong>S4-E2:</strong> &ldquo;Moving customers to Credit Hold is allowed; from then on no invoice can be created for them until their term changes (existing Credit Hold behavior).&rdquo;</li><li><strong>S4-R14:</strong> &ldquo;When \"Move To\" is COD or Credit Hold, pressing \"Move {n} Customers\" first opens a confirmation titled \"Set {n} customers' credit limit to $0?\" (\"Set 1 customer's credit limit to $0?\" for one), with the message \"This can't be undone. Their current limits are kept in each customer's note, and the Credit Terms Log records the move.\" and the buttons \"Cancel\" and a red \"Set Limits to $0 and Move\" (displayed as \"Set Limits To $0 And Move\").&rdquo;</li><li><strong>S4-R16:</strong> &ldquo;On \"Set Limits to $0 and Move\", each moved customer's credit limit is set to $0 along with the term.&rdquo;</li><li><strong>S9-E2:</strong> &ldquo;A customer on Credit Hold is still blocked from invoicing as today; only the Over Credit warning is removed for them.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"2 Move customers to another term\", \"8 Over Credit warning\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 4
+ "version": 5
 }

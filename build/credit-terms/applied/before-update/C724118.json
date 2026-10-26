@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726892,
  "updated_by": 3,
- "updated_on": 1793028190,
+ "updated_on": 1793031207,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have the shop's own active term A, due 14 days after the invoice date, held by no customer, vendor or invoice.</li><li>Write down the newest row of the log before you start.</li><li>Start on the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have the shop's own active term A (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice.</li><li>Write down the newest row of the log before you start.</li><li>Start on the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Click the \"⋯\" at the right of the term A row.</li><li>Click \"Delete Credit Term\".</li><li>Click \"Cancel\".</li><li>Click the \"⋯\" page menu beside \"New Credit Term\".</li><li>Click \"Audit Log\".</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The menu opens.</li></ul><p>Step 2:</p><ul><li>The confirmation opens.</li></ul><p>Step 3:</p><ul><li>The confirmation closes.</li></ul><p>Step 4:</p><ul><li>The menu opens.</li></ul><p>Step 5:</p><ul><li>The newest row is still the one you wrote down.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11681 (Story 12, Credit Terms audit log)</p><ul><li><strong>S12-R7:</strong> &ldquo;A row is written only when a change is saved. A refused or canceled action (the error handling of Stories 2, 3 and 4, or Cancel) writes nothing, and neither does an action that changes nothing (for example making the current default the default again).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"1 List and row menus\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 3
+ "version": 4
 }

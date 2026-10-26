@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726596,
  "updated_by": 3,
- "updated_on": 1793031041,
+ "updated_on": 1793034553,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have a second user, user B, signed in with the \"Admin\" role in a second browser (you are signed in as an Admin in the first).</li><li>Make sure COD is the shop's default for new customers.</li><li>Have the shop's own active term A (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice.</li><li>Start with the Credit Terms page open on the Active tab in both browsers.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have a second user, user B, signed in with the \"Admin\" role in a second browser (you are signed in as an Admin in the first).</li><li>Make sure COD is the shop's default for new customers.</li><li>Have the shop's own active term A (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice.</li><li>Start with the Credit Terms page open on the Active tab in both browsers.</li></ul>",
  "custom_steps": "<ol><li>In your browser, click the \"⋯\" at the right of the term A row.</li><li>Click \"Delete Credit Term\".</li><li>In user B's browser, click the \"⋯\" at the right of the term A row.</li><li>In user B's browser, click \"Make Default for New Customers\".</li><li>In user B's browser, click \"Make Default\".</li><li>In your browser, click the red \"Delete Credit Term\" button.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The menu opens.</li></ul><p>Step 2:</p><ul><li>The delete confirmation opens.</li></ul><p>Step 3:</p><ul><li>User B's menu opens.</li></ul><p>Step 4:</p><ul><li>User B's confirmation opens.</li></ul><p>Step 5:</p><ul><li>User B sees the toast \"term A is now the default\".</li></ul><p>Step 6:</p><ul><li>The app's error alert shows \"This is your default for new customers. Pick another default first.\" The confirmation stays open and term A is not deleted.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11671 (Story 2, Row menu actions)</p><ul><li><strong>Story 2, Error Handling:</strong> &ldquo;If a save is refused, the app's standard error alert shows the reason, using these exact texts: \"This is your default for new customers. Pick another default first.\" (deactivating or deleting the default); \"Used by {holders}. Deactivate it instead to take it out of the pickers.\" (editing or deleting a term in use); \"Always available. COD, Due on Receipt and Credit Hold can't be deactivated.\"; \"Pick an active term other than Credit Hold.\" (making an inactive term or Credit Hold the default); \"Credit term not found.\" (the term was deleted meanwhile). The delete confirmation stays open when the delete is refused.&rdquo;</li><li><strong>S2-E2:</strong> &ldquo;If a term becomes in use, becomes the default, or is changed by another user after the page loaded, the save is refused with the reason in S2 Error Handling, and the page keeps its state.&rdquo;</li><li><strong>User Feedback Summary:</strong> &ldquo;Deactivate or delete of the default refused (server) | \"This is your default for new customers. Pick another default first.\" | Standard error alert&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"1 List and row menus\", \"3 New credit term and Inactive tab\", \"4 Everything deactivated and an empty tab\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 4
+ "version": 5
 }

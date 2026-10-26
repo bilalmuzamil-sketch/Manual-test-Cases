@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792737543,
  "updated_by": 3,
- "updated_on": 1793028298,
+ "updated_on": 1793034911,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have the shop's own active term A, due 10 days after the invoice date.</li><li>Make sure Due on Receipt is the default for new customers.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Open the attached design pictures ct-p7-01-new-vendor-today.png, ct-p7-02-new-vendor-starts-on-cod-picker-with-your-terms.png at 100% zoom beside the screen.</li><li>Start on the Vendors page.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have the shop's own active term A, due 10 days after the invoice date.</li><li>Make sure Due on Receipt is the default for new customers.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Open the attached design pictures ct-p7-01-new-vendor-today.png, ct-p7-02-new-vendor-starts-on-cod-picker-with-your-terms.png at 100% zoom beside the screen.</li><li>Start on the Vendors page.</li></ul>",
  "custom_steps": "<ol><li>Click \"New Vendor\".</li><li>Click the \"Credit Terms\" box.</li><li>Resize the browser window to 1536 px wide (for example, maximise it on a 1536 x 864 screen at 100% zoom).</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The \"New Vendor\" window opens with \"Credit Terms\" reading COD and \"Credit Limit\" reading \"$ 0.00\", editable, side by side (as in ct-p7-02-new-vendor-starts-on-cod-picker-with-your-terms.png; compare today's ct-p7-01-new-vendor-today.png).</li></ul><p>Step 2:</p><ul><li>The list shows the active terms in the page's order with term A among the Net terms, and no row has a \"Default\" pill.</li></ul><p>Step 3:</p><ul><li>At 1536 px nothing overlaps, nothing is cut off and nothing needs a sideways scroll.</li><li>The layout described above is unchanged, only wider.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11675 (Story 6, Vendors)</p><ul><li><strong>S6-R1:</strong> &ldquo;The Credit Terms dropdown on New Vendor and Edit Vendor lists the shop's active terms, standard and its own, in the S1-R5 order.&rdquo;</li><li><strong>S6-R2:</strong> &ldquo;New Vendor starts on COD, as today. The shop's default does not apply to vendors, and the vendor dropdown shows no \"Default\" tag.&rdquo;</li><li><strong>S6-R4:</strong> &ldquo;Vendor credit limits behave exactly as today on every term, COD and Credit Hold included: no lock, no $0 rule.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"7 Vendors\" (\"New Vendor today\", \"New Vendor: starts on COD, picker with your terms\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes, except where this held design case follows the design.</p><p>Design pictures attached to this case:</p><ul><li>ct-p7-01-new-vendor-today.png</li><li>ct-p7-02-new-vendor-starts-on-cod-picker-with-your-terms.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;A new vendor starts on COD, as today: the shop default applies to new customers only (VendorDialog.vue keeps COD).&rdquo;</li><li>&ldquo;Credit Limit: vendors have a required Credit Limit field. The build does not apply the COD / Credit Hold $0 lock to vendors, so it stays editable on every term.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 3
+ "version": 4
 }

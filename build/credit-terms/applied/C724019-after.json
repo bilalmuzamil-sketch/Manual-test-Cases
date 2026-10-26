@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726736,
  "updated_by": 3,
- "updated_on": 1793031120,
+ "updated_on": 1793034667,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,14 +22,14 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as a user on a custom role that has Customers → Create &amp; Edit but not View and Manage AP/AR Data.</li><li>Make sure customer A (made for this test) holds Net 45 with a credit limit of $900.00.</li><li>Have an Admin signed in to a second browser, to check the result.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as a user on a custom role that has Customers → Create &amp; Edit but not View and Manage AP/AR Data.</li><li>Create customer A for this test, on Net 45 with a credit limit of $900.00.</li><li>Have an Admin signed in to a second browser, to check the result.</li></ul>",
  "custom_steps": "<ol><li>Open Edit Customer for customer A.</li><li>Change the phone number.</li><li>Click Save.</li><li>In the Admin's browser, open Edit Customer for customer A.</li></ol>",
  "custom_testrail_bdd_scenario": null,
- "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The window opens without Credit Terms or Credit Limit.</li></ul><p>Step 2:</p><ul><li>The new number is typed.</li></ul><p>Step 3:</p><ul><li>The customer is saved.</li></ul><p>Step 4:</p><ul><li>Credit Terms still reads Net 45 and Credit Limit still reads $900.00.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11674 (Story 5, New Customer and Edit Customer)</p><ul><li><strong>S5-N4:</strong> &ldquo;If the user does not have the 'View and Manage AP/AR Data' setting, the server ignores any term or limit sent with their save: a customer they create gets the shop's default term, with a $0 limit when the default is COD and no limit otherwise; a customer they edit keeps its stored term and limit.&rdquo;</li><li><strong>Key Decisions, Permissions:</strong> &ldquo;A user without 'View and Manage AP/AR Data' who creates or edits a customer has any term or limit they send ignored by the server (S5-N4).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"5 New Customer\", \"6 Customer on a deactivated term\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
+ "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Edit Customer window for customer A opens without Credit Terms or Credit Limit.</li></ul><p>Step 2:</p><ul><li>The new number is typed.</li></ul><p>Step 3:</p><ul><li>The customer is saved.</li></ul><p>Step 4:</p><ul><li>Credit Terms still reads Net 45 and Credit Limit still reads $900.00.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11674 (Story 5, New Customer and Edit Customer)</p><ul><li><strong>S5-N4:</strong> &ldquo;If the user does not have the 'View and Manage AP/AR Data' setting, the server ignores any term or limit sent with their save: a customer they create gets the shop's default term, with a $0 limit when the default is COD and no limit otherwise; a customer they edit keeps its stored term and limit.&rdquo;</li><li><strong>Key Decisions, Permissions:</strong> &ldquo;A user without 'View and Manage AP/AR Data' who creates or edits a customer has any term or limit they send ignored by the server (S5-N4).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"5 New Customer\", \"6 Customer on a deactivated term\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
  "custom_steps_separated": null,
  "custom_mission": null,
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 4
+ "version": 5
 }

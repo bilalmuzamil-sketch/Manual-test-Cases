@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726793,
  "updated_by": 3,
- "updated_on": 1793028113,
+ "updated_on": 1793034725,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure customer A holds Net 30 with a credit limit of $0.00, and customer B holds Net 30 with a blank limit; each has unpaid invoices totalling $600.00 and an open work order, work order 1 and work order 2.</li><li>Start on the Work Orders page.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have customer A on Net 30, with a credit limit of $0.00, unpaid invoices totalling $600.00 and an open work order 1.</li><li>Have customer B on Net 30, with a blank credit limit, unpaid invoices totalling $600.00 and an open work order 2.</li><li>Start on the Work Orders page.</li></ul>",
  "custom_steps": "<ol><li>Click \"New Work Order\".</li><li>Pick customer A as the customer.</li><li>Confirm the New Work Order window with its create button.</li><li>Open work order 1.</li><li>Open work order 2.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The New Work Order window opens.</li></ul><p>Step 2:</p><ul><li>The window shows customer A as the customer.</li></ul><p>Step 3:</p><ul><li>No over-credit confirmation opens.</li><li>The New Work Order goes straight on as for any customer.</li></ul><p>Step 4:</p><ul><li>No \"Over limit\" badge shows.</li></ul><p>Step 5:</p><ul><li>No \"Over limit\" badge shows (customer B, blank limit).</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11678 (Story 9, Over Credit warning), story SV-11680 (Story 11, Release day: what changes for existing users)</p><ul><li><strong>S9-N1:</strong> &ldquo;The warning and the badge never show when the customer's credit limit is $0 or blank.&rdquo;</li><li><strong>Goals:</strong> &ldquo;The Over Credit warning never appears for a customer on COD, Due on Receipt or Credit Hold, or with a $0 or blank credit limit.&rdquo;</li><li><strong>S11-R8:</strong> &ldquo;The Over Credit warning and the \"Over limit\" badge stop showing for customers with a $0 or blank credit limit and for customers on COD, Due on Receipt or Credit Hold (Story 9: Over Credit warning).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"8 Over Credit warning\" (\"COD customer, $0 limit, owes $1,200: no warning\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes.</p><p>Design pictures attached to this case:</p><ul><li>ct-p8-02-cod-customer-0-limit-owes-1-200-no-warning.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Save opens the work order. No Confirmation for a customer on COD, Due on Receipt or Credit Hold, or with a blank or $0 credit limit.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 3
+ "version": 4
 }

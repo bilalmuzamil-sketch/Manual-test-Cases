@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726842,
  "updated_by": 3,
- "updated_on": 1793028165,
+ "updated_on": 1793034776,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,14 +22,14 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure customer A holds the shop's own term A and has an open invoice A.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure customer A holds the shop's own term A and has an open invoice A.</li></ul>",
  "custom_steps": "<ol><li>Open customer A's statement.</li><li>Open invoice A in the customer portal.</li><li>Open the invoice document from the portal.</li><li>Open Reports, A/R Aging Summary.</li></ol>",
  "custom_testrail_bdd_scenario": null,
- "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>It has no new screen and shows no credit term name.</li></ul><p>Step 2:</p><ul><li>The portal page shows no credit term name.</li></ul><p>Step 3:</p><ul><li>The printed invoice shows term A, as any printed invoice does.</li></ul><p>Step 4:</p><ul><li>No new credit term screen or column appears.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11680 (Story 11, Release day: what changes for existing users)</p><ul><li><strong>Out of Scope:</strong> &ldquo;Statements, the customer portal and A/R aging gain no new screens and show no credit term name on their own screens (an invoice document opened from the portal prints the term as any printed invoice does); see S11-R14 for the due dates they recalculate. They show stored due dates, except where one is recalculated today: the A/R dashboard for records with no stored due date, and credit memo due dates on statements and the unpaid transactions list. Those recalculated dates are counted on the calendar of the record's own location (S7-R6).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"1 List and row menus\", \"5 New Customer\", \"8 Over Credit warning\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
+ "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The statement has no new screen and shows no credit term name.</li></ul><p>Step 2:</p><ul><li>The portal page shows no credit term name.</li></ul><p>Step 3:</p><ul><li>The printed invoice shows term A, as any printed invoice does.</li></ul><p>Step 4:</p><ul><li>No new credit term screen or column appears.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11680 (Story 11, Release day: what changes for existing users)</p><ul><li><strong>Out of Scope:</strong> &ldquo;Statements, the customer portal and A/R aging gain no new screens and show no credit term name on their own screens (an invoice document opened from the portal prints the term as any printed invoice does); see S11-R14 for the due dates they recalculate. They show stored due dates, except where one is recalculated today: the A/R dashboard for records with no stored due date, and credit memo due dates on statements and the unpaid transactions list. Those recalculated dates are counted on the calendar of the record's own location (S7-R6).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"1 List and row menus\", \"5 New Customer\", \"8 Over Credit warning\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
  "custom_steps_separated": null,
  "custom_mission": null,
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 3
+ "version": 4
 }

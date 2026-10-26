@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792737555,
  "updated_by": 3,
- "updated_on": 1793031283,
+ "updated_on": 1793034925,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Open the attached design picture ct-p1-02-info-tooltip-due-on-receipt.png at 100% zoom beside the screen.</li><li>Start on the Credit Terms page, Active tab.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Open the attached design picture ct-p1-02-info-tooltip-due-on-receipt.png at 100% zoom beside the screen.</li><li>Start on the Credit Terms page, Active tab.</li></ul>",
  "custom_steps": "<ol><li>Hover the info icon on the Due on Receipt row.</li><li>Resize the browser window to 1536 px wide (for example, maximise it on a 1536 x 864 screen at 100% zoom).</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>A dark grey box opens to the right of the icon reading \"Payment is due on the invoice date, but you can create the invoice without taking payment.\" (as in ct-p1-02-info-tooltip-due-on-receipt.png).</li></ul><p>Step 2:</p><ul><li>At 1536 px nothing overlaps, nothing is cut off and nothing needs a sideways scroll.</li><li>The layout described above is unchanged, only wider.</li></ul><p></p><p>Held: this is the design's wording; the PRD's wording differs. Released or deleted the day Chris Ward answers question 8 (register CT-D01).</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11670 (Story 1, Credit Terms page and list)</p><ul><li><strong>S1-R8, Due on Receipt info icon:</strong> &ldquo;Due on Receipt: \"Payment is due on the invoice date. You can charge the invoice to the customer's account instead of taking payment.\"&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"1 List and row menus\" (\"Info tooltip: Due on Receipt\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes, except where this held design case follows the design.</p><p>Design pictures attached to this case:</p><ul><li>ct-p1-02-info-tooltip-due-on-receipt.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Payment is due on the invoice date, but you can create the invoice without taking payment.&rdquo;</li><li>&ldquo;\"Payment is due on the invoice date, but you can create the invoice without taking payment.\"&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 8)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 4
+ "version": 5
 }

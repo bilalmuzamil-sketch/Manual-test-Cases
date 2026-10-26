@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726585,
  "updated_by": 3,
- "updated_on": 1793031030,
+ "updated_on": 1793034543,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure COD is the shop's default for new customers.</li><li>Make sure Net 50 is deactivated.</li><li>Make sure customer A (made for this test) holds COD.</li><li>Make sure Net 45 and Net 60 are active.</li><li>Start on the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Inactive tab.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure COD is the shop's default for new customers.</li><li>Make sure Net 50 is deactivated.</li><li>Create customer A for this test, on COD.</li><li>Make sure Net 45 and Net 60 are active.</li><li>Start on the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Inactive tab.</li></ul>",
  "custom_steps": "<ol><li>Click the \"⋯\" at the right of the \"Net 50\" row.</li><li>Click \"Reactivate\".</li><li>Click the \"Active\" tab.</li><li>Open Edit Customer for customer A in a new tab.</li><li>Open the Credit Terms dropdown.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The menu opens.</li></ul><p>Step 2:</p><ul><li>No confirmation opens.</li><li>Net 50 leaves the Inactive tab, both tab counts update, and a green toast shows \"Net 50 reactivated\".</li></ul><p>Step 3:</p><ul><li>Net 50 is back on the Active tab between Net 45 and Net 60.</li></ul><p>Step 4:</p><ul><li>Edit Customer opens.</li></ul><p>Step 5:</p><ul><li>Net 50 is offered again, between Net 45 and Net 60.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11671 (Story 2, Row menu actions)</p><ul><li><strong>S2-R8:</strong> &ldquo;\"Reactivate\" acts at once: the term moves back to the Active tab, the counts update, it appears in the customer and vendor pickers again, and a success toast shows \"{name} reactivated\".&rdquo;</li><li><strong>User Feedback Summary:</strong> &ldquo;Term reactivated | \"{name} reactivated\" | Success toast&rdquo;</li><li><strong>Key Decisions:</strong> &ldquo;Deactivating a term hides it from the customer and vendor pickers only. Everyone on it keeps it, shown as \"{name} (Inactive)\" on their card and in Edit, until someone picks another term; invoices print the plain name; it can be reactivated at any time.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"3 New credit term and Inactive tab\" (\"Inactive tab: Reactivate\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes.</p><p>Design pictures attached to this case:</p><ul><li>ct-p3-05-inactive-tab-reactivate.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Rendered from the local build: Inactive tab, Net 7. Reactivate hovered: \"Show in pickers again\"; Move Customers below it.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 4
+ "version": 5
 }

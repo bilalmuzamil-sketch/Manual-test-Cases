@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726725,
  "updated_by": 3,
- "updated_on": 1793031110,
+ "updated_on": 1793034654,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure COD is the shop's default for new customers.</li><li>Make sure customer A (made for this test) holds Net 60, which is deactivated.</li><li>Make sure Net 30 is active.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure COD is the shop's default for new customers.</li><li>Create customer A for this test, on Net 60.</li><li>Then make sure Net 60 is deactivated.</li><li>Make sure Net 30 is active.</li></ul>",
  "custom_steps": "<ol><li>Open Edit Customer for customer A.</li><li>Choose \"Net 30\" in Credit Terms.</li><li>Click Save.</li><li>Open Edit Customer again.</li><li>Open the Credit Terms dropdown.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>\"Net 60 (Inactive)\" is selected.</li></ul><p>Step 2:</p><ul><li>The dropdown shows Net 30.</li></ul><p>Step 3:</p><ul><li>The customer saves on Net 30.</li></ul><p>Step 4:</p><ul><li>Credit Terms reads Net 30.</li></ul><p>Step 5:</p><ul><li>\"Net 60\" and \"Net 60 (Inactive)\" are not offered any more.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11674 (Story 5, New Customer and Edit Customer)</p><ul><li><strong>S5-R13:</strong> &ldquo;Once another term is picked and saved, the inactive term is no longer offered to that customer.&rdquo;</li><li><strong>S5-N2:</strong> &ldquo;Inactive terms are never offered to a customer not already on them.&rdquo;</li><li><strong>S5-R12:</strong> &ldquo;The inactive term stays selected until the user picks another term.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"6 Customer on a deactivated term\" (\"This customer's picker\", \"Any other customer's picker\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes.</p><p>Design pictures attached to this case:</p><ul><li>ct-p6-05-this-customer-s-picker.png</li><li>ct-p6-07-any-other-customer-s-picker.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;The active terms, then this customer's own \"Net 10 (Inactive)\" at the end, selected. Once another term is picked and saved, Net 10 is gone from this customer's list.&rdquo;</li><li>&ldquo;A customer not on Net 10 is never offered it. The list matches New Customer's.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 4
+ "version": 5
 }

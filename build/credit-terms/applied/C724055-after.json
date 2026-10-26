@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726783,
  "updated_by": 3,
- "updated_on": 1793031159,
+ "updated_on": 1793034714,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,14 +22,14 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure the test organization is connected to a QuickBooks Online sandbox company, and you can sign in to that company in another tab.</li><li>Make sure the shop's own term A was created today and is held only by one customer, who has no invoice.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
- "custom_steps": "<ol><li>In QuickBooks, open the Terms list (Settings, All lists, Terms).</li></ol>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure the test organization is connected to a QuickBooks Online sandbox company, and you can sign in to that company in another tab.</li><li>Create a new term of the shop's own for this test, term A, due 14 days after the invoice date, and give it to no customer, vendor or invoice.</li><li>Create a second new term of the shop's own for this test, term B, due 20 days after the invoice date (it is not yet in QuickBooks).</li><li>Create work order 1 for this test, complete and ready to invoice, for a customer on term B.</li></ul>",
+ "custom_steps": "<ol><li>On work order 1's Finance tab, click Create Invoice.</li><li>Wait until the invoice has synced to QuickBooks (it is no longer on the QB Unexported report).</li><li>In QuickBooks, open the Terms list (Settings, All lists, Terms).</li></ol>",
  "custom_testrail_bdd_scenario": null,
- "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>There is no term A.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11677 (Story 8, QuickBooks sync - credit terms)</p><ul><li><strong>S8-N2:</strong> &ldquo;A term the shop created but nobody has used on a synced record is never sent to QuickBooks.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): no canvas page (the PRD says this story has no new screens). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
+ "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The invoice is created with terms term B.</li></ul><p>Step 2:</p><ul><li>The invoice is no longer on the QB Unexported report.</li></ul><p>Step 3:</p><ul><li>Term B is listed (the sync ran and created the term the invoice used).</li><li>There is no term A.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11677 (Story 8, QuickBooks sync - credit terms)</p><ul><li><strong>S8-N2:</strong> &ldquo;A term the shop created but nobody has used on a synced record is never sent to QuickBooks.&rdquo;</li><li><strong>S8-R1:</strong> &ldquo;When a record is sent to QuickBooks with a term QuickBooks does not have, ShopView first creates the term in QuickBooks under the same name, then sends the record. This is how the standard terms already work today.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): no canvas page (the PRD says this story has no new screens). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
  "custom_steps_separated": null,
  "custom_mission": null,
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 4
+ "version": 5
 }

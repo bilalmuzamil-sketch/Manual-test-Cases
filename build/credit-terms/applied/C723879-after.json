@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726505,
  "updated_by": 3,
- "updated_on": 1793027848,
+ "updated_on": 1793034487,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure all twelve standard terms are active and COD is the default for new customers.</li><li>Start on the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure all twelve standard terms are active and COD is the default for new customers.</li><li>Start on the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li></ul>",
  "custom_steps": "<ol><li>Hover the lock icon on the \"COD\" row.</li><li>Hover the lock icon on the \"Due on Receipt\" row.</li><li>Hover the lock icon on the \"Credit Hold\" row.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The hover shows \"Always available.\" with the line \"COD, Due on Receipt and Credit Hold can't be deactivated.\" below it.</li></ul><p>Step 2:</p><ul><li>The same two lines show.</li></ul><p>Step 3:</p><ul><li>The same two lines show.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11670 (Story 1, Credit Terms page and list)</p><ul><li><strong>S1-R9:</strong> &ldquo;Hovering the lock icon shows \"Always available.\" with the line \"COD, Due on Receipt and Credit Hold can't be deactivated.\" below it.&rdquo;</li><li><strong>User Feedback Summary:</strong> &ldquo;Hover the lock on COD, Due on Receipt or Credit Hold | \"Always available.\" / \"COD, Due on Receipt and Credit Hold can't be deactivated.\" | Tooltip on hover&rdquo;</li><li><strong>Key Decisions:</strong> &ldquo;COD, Due on Receipt and Credit Hold can never be deactivated.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"1 List and row menus\" (\"Active tab: one table\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes.</p><p>Design pictures attached to this case:</p><ul><li>ct-p1-01-active-tab-one-table.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;COD, Due on Receipt and Credit Hold are followed by the DS info icon (next two boards) and the lock icon; Net and day-of-month terms have neither, the Due column explains them. Lock hover: \"Always available. COD, Due on Receipt and Credit Hold can't be deactivated.\" (open on COD).&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 3
+ "version": 4
 }

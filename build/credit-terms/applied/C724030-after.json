@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726751,
  "updated_by": 3,
- "updated_on": 1793031130,
+ "updated_on": 1793034679,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure vendor A (made for this test) holds COD with a credit limit of $2,000.00.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create vendor A for this test, on COD with a credit limit of $2,000.00.</li></ul>",
  "custom_steps": "<ol><li>Open Edit Vendor for vendor A.</li><li>Replace the limit with 2500.</li><li>Choose \"Credit Hold\" in Credit Terms.</li><li>Click Save &amp; Close.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Credit Limit reads $2,000.00 and is editable (no lock, no $0.00).</li></ul><p>Step 2:</p><ul><li>The limit reads 2500.</li></ul><p>Step 3:</p><ul><li>The limit still reads 2500 and stays editable.</li></ul><p>Step 4:</p><ul><li>The vendor saves on Credit Hold with a $2,500.00 limit, exactly as before the release.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11675 (Story 6, Vendors)</p><ul><li><strong>S6-R4:</strong> &ldquo;Vendor credit limits behave exactly as today on every term, COD and Credit Hold included: no lock, no $0 rule.&rdquo;</li><li><strong>Out of Scope:</strong> &ldquo;Vendor credit limits. Vendor credit limits behave exactly as today on every term, including COD and Credit Hold. A vendor's limit plays no part in invoicing customers or in the Over Credit warning, so the customer $0 rule has no problem to solve there (owning PM, 2026-10-20).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"7 Vendors\" (\"New Vendor: starts on COD, picker with your terms\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes.</p><p>Design pictures attached to this case:</p><ul><li>ct-p7-02-new-vendor-starts-on-cod-picker-with-your-terms.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Credit Limit: vendors have a required Credit Limit field. The build does not apply the COD / Credit Hold $0 lock to vendors, so it stays editable on every term.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 4
+ "version": 5
 }

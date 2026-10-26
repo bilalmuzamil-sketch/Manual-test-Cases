@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726617,
  "updated_by": 3,
- "updated_on": 1793027946,
+ "updated_on": 1793034573,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have a name ready that is 32 characters long.</li><li>Start on the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have a name ready that is 32 characters long.</li><li>Start on the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li></ul>",
  "custom_steps": "<ol><li>Click \"New Credit Term\".</li><li>Type a 32-character name in Name.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The \"New Credit Term\" window opens.</li></ul><p>Step 2:</p><ul><li>The Name holds only the first 31 characters.</li><li>The 32nd is not accepted, and no error shows.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11672 (Story 3, Create or edit a credit term)</p><ul><li><strong>S3-R9, 31 characters:</strong> &ldquo;The Name field stops accepting characters after the 31st. A longer name reaching the server is refused with \"Use 31 characters or fewer.\"&rdquo;</li><li><strong>S3-R2, Name:</strong> &ldquo;Name (required), focused on open, accepting at most 31 characters, with the hint \"Up to 31 characters. Prints on invoices and goes to QuickBooks.\"&rdquo;</li><li><strong>Key Decisions:</strong> &ldquo;Net terms run from 1 to 365 days.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"3 New credit term and Inactive tab\" (\"New credit term: Net X days\"), page \"1 List and row menus\" (\"A 31-character term name\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes.</p><p>Design pictures attached to this case:</p><ul><li>ct-p3-01-new-credit-term-net-x-days.png</li><li>ct-p1-12-a-31-character-term-name.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Up to 31 characters. Prints on invoices and goes to QuickBooks.&rdquo;</li><li>&ldquo;Rendered from the local build with \"Net 45 Fleet Accounts Payable X\" (31 characters, the longest allowed). At 1440px it fits on one line; on a narrower screen the name wraps and is never cut off (S1-R15).&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 3
+ "version": 4
 }

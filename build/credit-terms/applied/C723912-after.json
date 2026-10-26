@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726569,
  "updated_by": 3,
- "updated_on": 1793031017,
+ "updated_on": 1793034527,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure COD is the shop's default for new customers.</li><li>Have the shop's own active term A (made for this test), due 14 days after the invoice date, held by no customer and no vendor today, but by five invoices created while their customer was on it (the customer was then moved to Net 30).</li><li>Start on the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure COD is the shop's default for new customers.</li><li>Create a new term of the shop's own for this test, term A, due 14 days after the invoice date.</li><li>Create a customer for this test on term A, and create five invoices for that customer.</li><li>Then change that customer's credit term to Net 30, so term A is held by no customer or vendor, only by the five invoices.</li><li>Start on the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li></ul>",
  "custom_steps": "<ol><li>Click the \"⋯\" at the right of the term A row.</li><li>Hover \"Edit\".</li><li>Hover \"Move Customers\".</li><li>Hover \"Delete Credit Term\".</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The menu shows exactly these items, in this order: \"Edit\" (pencil, greyed out), \"Make Default for New Customers\" (circle check), \"Move Customers\" (person, greyed out), \"Deactivate\" (archive), \"Delete Credit Term\" (trash, in red, below a divider, greyed out).</li><li>Nothing else shows.</li></ul><p>Step 2:</p><ul><li>The hover reads \"Used by 5 invoices\" with \"Deactivate it instead to take it out of the pickers.\" below it.</li></ul><p>Step 3:</p><ul><li>The hover reads \"No customers are on this term\".</li></ul><p>Step 4:</p><ul><li>The hover reads \"Used by 5 invoices\" with \"Deactivate it instead to take it out of the pickers.\" below it.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11670 (Story 1, Credit Terms page and list), story SV-11671 (Story 2, Row menu actions)</p><ul><li><strong>S2-R2:</strong> &ldquo;\"{holders}\" names only the holder types the term has, each with its count, singular or plural: for example \"Used by 1 customer and 2 vendors\", \"Used by 12 customers, 3 vendors and 40 invoices\", \"Used by 5 invoices\".&rdquo;</li><li><strong>S1-E2:</strong> &ldquo;A term held only by invoices (no customer or vendor on it today) shows 0 in both columns but still counts as in use for Story 2: Row menu actions's locks.&rdquo;</li><li><strong>Terminology:</strong> &ldquo;In use → A term is in use when at least one customer, vendor or invoice (work order or part sale invoice) holds it. Vendor invoices, deliveries and vendor credits store no term, so they never count. The Counter Sale customer is never counted. A customer or vendor with a blank term counts as COD. Every invoice ever created counts, including reversed and paid ones; estimates never count. Customers and vendors count and are listed whatever their status.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"1 List and row menus\", \"3 New credit term and Inactive tab\", \"4 Everything deactivated and an empty tab\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 4
+ "version": 5
 }

@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726808,
  "updated_by": 3,
- "updated_on": 1793031171,
+ "updated_on": 1793034740,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have a contacts import file with three new customers: customer A on COD with a credit limit of 500, customer B on Credit Hold with a credit limit of 750, and customer C (made for this test) on Net 30 with a credit limit of 900.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have a contacts import file with three new customers: customer A on COD with a credit limit of 500, customer B on Credit Hold with a credit limit of 750, and customer C (made for this test) on Net 30 with a credit limit of 900.</li></ul>",
  "custom_steps": "<ol><li>Import the file through Settings, Data Import, Contacts.</li><li>Open Edit Customer for customer A.</li><li>Close it without saving.</li><li>Open Edit Customer for customer B.</li><li>Close it without saving.</li><li>Open Edit Customer for customer C.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The import finishes.</li><li>No row is refused because of its credit term.</li></ul><p>Step 2:</p><ul><li>Credit Limit shows $0.00, disabled (the 500 in the file was not kept).</li></ul><p>Step 3:</p><ul><li>The window closes.</li></ul><p>Step 4:</p><ul><li>Credit Limit shows $0.00, disabled.</li></ul><p>Step 5:</p><ul><li>The window closes.</li></ul><p>Step 6:</p><ul><li>Credit Limit shows $900.00, as sent (a Net term's limit is handled as before the release).</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11679 (Story 10, Imports and Public API)</p><ul><li><strong>S10-R6:</strong> &ldquo;A new customer created by the contacts import on COD or Credit Hold gets a $0 credit limit, whatever limit the file holds.&rdquo;</li><li><strong>S10-E2:</strong> &ldquo;Credit limits sent with an import or API customer are handled as today, except as S10-R6 and S10-R8 state. Both apply only to customers created or updated after release; an existing COD or Credit Hold customer's stored limit is never changed until that customer is next created or updated by one of those paths (S11-R11).&rdquo;</li><li><strong>Key Decisions:</strong> &ldquo;COD and Credit Hold customers have a $0 credit limit that cannot be changed, in New Customer and Edit Customer, and imports and the Public API save them with $0 (S10-R6, S10-R8).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): no canvas page (the PRD says this story has no new screens). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 4
+ "version": 5
 }

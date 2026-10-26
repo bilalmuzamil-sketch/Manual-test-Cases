@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726716,
  "updated_by": 3,
- "updated_on": 1793028026,
+ "updated_on": 1793034645,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure Net 30 is the shop's default for new customers.</li><li>Start on the Customers page.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure Net 30 is the shop's default for new customers.</li><li>Start on the Customers page.</li></ul>",
  "custom_steps": "<ol><li>Click \"New Customer\".</li><li>Type 500 in Credit Limit.</li><li>Choose \"COD\" in Credit Terms.</li><li>Hover Credit Limit.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The \"New Customer\" window opens.</li></ul><p>Step 2:</p><ul><li>Credit Limit reads 500.</li></ul><p>Step 3:</p><ul><li>Credit Limit changes to $0.00 and is disabled.</li></ul><p>Step 4:</p><ul><li>The hover reads \"COD and Credit Hold customers can't charge to account, so they have no credit limit.\"</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11674 (Story 5, New Customer and Edit Customer)</p><ul><li><strong>S5-R4:</strong> &ldquo;When the chosen term is COD or Credit Hold, Credit Limit shows $0.00 and is disabled; hovering it shows \"COD and Credit Hold customers can't charge to account, so they have no credit limit.\" Choosing COD or Credit Hold sets the limit to $0.00.&rdquo;</li><li><strong>User Feedback Summary:</strong> &ldquo;Hover the locked Credit Limit (COD or Credit Hold) | \"COD and Credit Hold customers can't charge to account, so they have no credit limit.\" | Tooltip on hover&rdquo;</li><li><strong>Key Decisions:</strong> &ldquo;COD and Credit Hold customers have a $0 credit limit that cannot be changed, in New Customer and Edit Customer, and imports and the Public API save them with $0 (S10-R6, S10-R8).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"5 New Customer\" (\"New Customer: COD picked, limit locked at $0\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes.</p><p>Design pictures attached to this case:</p><ul><li>ct-p5-04-new-customer-cod-picked-limit-locked-at-0.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;COD and Credit Hold customers can't charge to account, so they have no credit limit.&rdquo;</li><li>&ldquo;Picking COD or Credit Hold sets Credit Limit to $0 and disables it (DS disabled input). Hover: \"COD and Credit Hold customers can't charge to account, so they have no credit limit.\"&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 3
+ "version": 4
 }
