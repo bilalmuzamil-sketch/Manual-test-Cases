@@ -14,9 +14,8 @@
 | **[UI-CODE]** | Read from the TMS front-end JavaScript, **not** confirmed by a live write | assets served on 2026-10-26 (build `index-BLs1hNAZ.js`) |
 | **UNVERIFIED** | Not yet observed. The first session with a key must confirm it and update this file | — |
 
-**Nothing below has been checked with a key yet.** No TMS API key existed in this session (env vars,
-`/tmp/shopview-creds.env` and `/tmp/tms/creds.json` were all checked). So no read or write was made
-as a signed-in user.
+**Keyed READS were made on 2026-10-26 — see §6, which overrides any UNVERIFIED below that it
+covers. No WRITE has been made yet**, so request-body shapes are still UNVERIFIED.
 
 **Live observations (2026-10-26, unauthenticated):**
 - `GET /api/v1/me` with no token → **401** `"JWT Token not found"`.
@@ -122,3 +121,38 @@ automation_type 0 · test_layer 1 · is_deferred false.
 6. **Dropped custom fields** — `custom_status`, `custom_mission`, `custom_goals`, AI fields: needed or not?
 7. **"Foreign" cases (Rule 38)** were identified by TestRail's `created_by = 3`. What is the TMS
    equivalent — the creator on case version 1?
+
+## 6 · [LIVE] Confirmed with a key — 2026-10-26, READ-ONLY (no writes made)
+
+Key holder: the QA lead's own key (TMS user **id 4**, role `user`). Stored only at `/tmp/tms/creds.json`.
+
+- **Project:** `GET /projects` returns one project — **id 1 "ShopView"**, with **7,324 cases** (`meta.total`).
+- **The TestRail estate IS imported, and ids ARE preserved.** The section tree (871 sections) carries
+  TestRail's section numbers: **4110 = "Filters - (2026)"**, **3527 = "Custom Roles - (Revised)"**,
+  **6769 / 6721** = the Global Search V2 sections. Group **4094** (Global Search) was **not** found as an id.
+- **Case fields read back (C43841)** — exactly the §3 names: `title, template, preconditions, steps,
+  steps_separated, expected, priority, type, refs, automation_status, automation_type, test_layer,
+  is_deferred`, plus server fields `id, project_id, section_id, display_order, version_no, created_by,
+  updated_by, created_at, updated_at, deleted_at`. **§3 field names are therefore [LIVE] for reads**;
+  that the same names are accepted on create/patch is still to be confirmed by the first write.
+- **Text is stored as HTML** (`<p>…<br />`, `&#039;`) — the same rendered-text comparison rule as
+  TestRail applies (compare tags-stripped, entities-decoded, whitespace-collapsed).
+- **`refs` came through the import re-split on spaces** (C43841: map `SV-9271 (S6a-R1; S6a-R2; S1-R6) [spec v21 2026-08-14]`
+  → TMS `SV-9271, (S6a-R1;, S6a-R2;, S1-R6), [spec, v21, 2026-08-14]`). **Finding — ask before "fixing" (Rule 41/113 scope).**
+- **Ours vs foreign:** imported cases written by us carry **`created_by: 4`** (our user). Candidate answer to §5 Q7 — confirm with the QA lead.
+- **Cases created natively in TMS get high ids** — `sort=-id` (works; `sort=id` ascending) shows **724220** etc.,
+  created **2026-10-23** by user 4 in section **84270**. **Some session is already writing to TMS** — find out which before writing (Rule 83 lane ownership).
+- **Spot-check of our id-maps (3 cases per map: first, middle, last — a gate check, NOT a full reconciliation):**
+
+| id-map | Result |
+|---|---|
+| filters · inline-add-edit-parts · printer-friendly-wo · report-suite · schedule | 3/3 present, title identical |
+| invoice-ui-refresh | 2/3 identical; C53480 title differs |
+| global-search | 3/3 present, **all 3 titles differ** from our id-map (e.g. C45140 now starts "SV-9167 Obsoleted - …") |
+| simple-flow-v2 | C44549 / C44609 present but titles differ; **C44579 → 404** |
+| digital-inspections-v2 | **all 3 → 404** (C44506, C44527, C44548) |
+| fees-discounts · invoice-design-selection · simple-flow | id-map has no C-ids to check |
+
+  **Not yet explained:** whether the 404s / title differences come from the import, from later TestRail edits
+  our id-maps never picked up, or from deletions. **TestRail could not be read this session (no TestRail
+  credentials present), so the cause is UNVERIFIED** — a full scripted reconciliation per project is the next step.
