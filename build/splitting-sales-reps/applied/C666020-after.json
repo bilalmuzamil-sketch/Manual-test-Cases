@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792398825,
  "updated_by": 3,
- "updated_on": 1793028907,
+ "updated_on": 1793034434,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an active staff member at the test location with the \"Sales Representative\" switch on.</li><li>Use a customer with no Sales Representative assigned.</li><li>Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one \"Sales Representative\" field set to that staff member.</li><li>Set the browser window to 1440 pixels wide with the zoom at 100%.</li><li>Open the design pictures \"card-07-n1-add-tip.png\" (board 1.7) and \"card-08-n1-add-menu.png\" (board 1.8) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.</li><li>Open the work order in that browser window.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an active staff member at the test location with the \"Sales Representative\" switch on.</li><li>Use a customer with no Sales Representative assigned.</li><li>Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one \"Sales Representative\" field set to that staff member.</li><li>Set the browser window to 1440 pixels wide with the zoom at 100%.</li><li>Open the design pictures \"card-07-n1-add-tip.png\" (board 1.7) and \"card-08-n1-add-menu.png\" (board 1.8) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.</li><li>Open the work order in that browser window.</li></ul>",
  "custom_steps": "<ol><li>Hover over the + and compare with the picture of board 1.7.</li><li>Click the + and compare with the picture of board 1.8.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The tooltip \"Add representative\" shows where the picture shows it.</li><li>It does not cover the field.</li></ul><p>Step 2:</p><ul><li>The menu opens below the + with one option, \"Sales Representative - Parts\".</li><li>The + keeps its light fill.</li><li>The tooltip is gone, as in the picture.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Splitting Sales Representatives\", Confluence 919928833, version 11 (21 Oct 2026, Chris Ward), read 22 Oct 2026 &middot; Epic SV-10890, story SV-11266 (Story 2, Give a work order a separate Labor and Parts representative)</p><ul><li><strong>S2-R2:</strong> &ldquo;At rest the icon is grey on no fill. Hovering the button shows a light fill. The light fill stays while its menu is open.&rdquo;</li><li><strong>S2-R3:</strong> &ldquo;Hovering the + shows the tooltip \"Add representative\". The tooltip does not show while the menu is open.&rdquo;</li><li><strong>S2-R4:</strong> &ldquo;Clicking the + opens a menu below it with one option, \"Sales Representative - Parts\". Clicking outside the menu or pressing Escape closes it without a change.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Claude design canvas \"Splitting Sales Representatives\" (https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), export read 19 Oct 2026, boards 1.7 Hover the +; 1.8 The + menu (the attached pictures are these boards).</p><p>Design pictures attached to this case: card-07-n1-add-tip.png, card-08-n1-add-menu.png.</p><ul><li><strong>Design — board 1.7 title:</strong> &ldquo;1.7 Hover the +&rdquo;</li><li><strong>Design — board 1.7 note:</strong> &ldquo;Tooltip: \"Add representative\".&rdquo;</li><li><strong>Design — board 1.8 title:</strong> &ldquo;1.8 The + menu&rdquo;</li><li><strong>Design — board 1.8 note:</strong> &ldquo;The menu lists the one row a work order can add: \"Sales Representative - Parts\".&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 8
+ "version": 9
 }

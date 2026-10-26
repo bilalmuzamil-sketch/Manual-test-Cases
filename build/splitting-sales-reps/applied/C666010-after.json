@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792398812,
  "updated_by": 3,
- "updated_on": 1793028888,
+ "updated_on": 1793034414,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have two active staff members at the test location with their \"Sales Representative\" switch on, so that a work order can have a different Labor and Parts representative.</li><li>Use a customer with no Sales Representative assigned.</li><li>Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and \"Sales Representative - Labor\" set to one of them and \"Sales Representative - Parts\" set to the other.</li><li>Open the work order in a desktop browser at least 1024 pixels wide.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have two active staff members at the test location with their \"Sales Representative\" switch on, so that a work order can have a different Labor and Parts representative.</li><li>Use a customer with no Sales Representative assigned.</li><li>Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and \"Sales Representative - Labor\" set to one of them and \"Sales Representative - Parts\" set to the other.</li><li>Open the work order in a desktop browser at least 1024 pixels wide.</li></ul>",
  "custom_steps": "<ol><li>Open the customer-facing estimate document.</li><li>Invoice the work order.</li><li>Open the customer-facing invoice document.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The estimate shows no sales representative.</li></ul><p>Step 2:</p><ul><li>The invoice is created.</li></ul><p>Step 3:</p><ul><li>The invoice document shows no sales representative.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Splitting Sales Representatives\", Confluence 919928833, version 11 (21 Oct 2026, Chris Ward), read 22 Oct 2026 &middot; Epic SV-10890, story SV-11269 (Story 5, Credit each side on the invoice and in Sales By Representative), story SV-11270 (Story 6, Print both representatives on the work order)</p><ul><li><strong>Out of scope:</strong> &ldquo;The customer-facing invoice and estimate documents. They do not show a sales representative today, and still do not.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Claude design canvas \"Splitting Sales Representatives\" (https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), pages 1 and 4 (cited by the story), export read 19 Oct 2026, used for on-screen labels; the look itself is checked in the \"Design — how it looks\" cases.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 9
+ "version": 10
 }

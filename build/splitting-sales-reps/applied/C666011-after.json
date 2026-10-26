@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792398813,
  "updated_by": 3,
- "updated_on": 1793028889,
+ "updated_on": 1793034415,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have two active staff members at the test location with their \"Sales Representative\" switch on: sales rep A and sales rep B.</li><li>Use a customer with no Sales Representative assigned.</li><li>Have a split work order for that customer (Labor set to sales rep A, Parts set to sales rep B), invoiced today, and a credit memo of $20.00 for that customer today.</li><li>Open Reports &gt; Sales By Representative in a desktop browser at least 1024 pixels wide, with the date range set to today and Show Unassigned on.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have two active staff members at the test location with their \"Sales Representative\" switch on: sales rep A and sales rep B.</li><li>Use a customer with no Sales Representative assigned.</li><li>Have a split work order for that customer (Labor set to sales rep A, Parts set to sales rep B), invoiced today, and a credit memo of $20.00 for that customer today.</li><li>Open Reports &gt; Sales By Representative in a desktop browser at least 1024 pixels wide, with the date range set to today and Show Unassigned on.</li></ul>",
  "custom_steps": "<ol><li>Click the chevron in the Date column header to expand every row.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>For the customer, the work order's Labor row shows under sales rep A and its Parts row under sales rep B.</li><li>The $20.00 credit memo is not in the report.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Splitting Sales Representatives\", Confluence 919928833, version 11 (21 Oct 2026, Chris Ward), read 22 Oct 2026 &middot; Epic SV-10890, story SV-11269 (Story 5, Credit each side on the invoice and in Sales By Representative)</p><ul><li><strong>Out of scope:</strong> &ldquo;Credit memos in Sales By Representative. The report does not include them today, and still does not.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Claude design canvas \"Splitting Sales Representatives\" (https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), page 4 (cited by the story), export read 19 Oct 2026, used for on-screen labels; the look itself is checked in the \"Design — how it looks\" cases.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 9
+ "version": 10
 }
