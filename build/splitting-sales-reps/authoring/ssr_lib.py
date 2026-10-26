@@ -174,6 +174,7 @@ def quotes_block(c):
     return h + f"<p>{e(NOBUILD)}</p>"
 
 from scenarios import SCENARIO
+from trial_layout import LAYOUT_V2
 SCEN_PREFIX = "Scenario: "
 def scenario_line(key):
     return SCEN_PREFIX + SCENARIO[key] if key in SCENARIO else None
@@ -181,6 +182,7 @@ def scenario_problems(key, preconds_html):
     """SCENARIO GATE (Rule 117 thirteenth amendment, 26 Oct 2026): exactly one "Scenario:" line, the first line of the Preconditions,
     at most 40 words, with no requirement code and no "QA lead" / "ask your" / who-to-ask wording."""
     p = []
+    if LAYOUT_V2.get(key, {}).get("pattern"): return p   # the QA lead's own pattern (26 Oct 2026) has no Scenario line
     items = [html.unescape(re.sub(r"<[^>]+>", " ", x)).strip() for x in re.findall(r"<li>(.*?)</li>", preconds_html, re.S)]
     if preconds_html.count("Scenario:") != 1: p.append(f"{key}: Preconditions hold {preconds_html.count('Scenario:')} Scenario lines (must be exactly one)")
     if not items or not items[0].startswith(SCEN_PREFIX): p.append(f"{key}: the first precondition is not the Scenario line")  # in the trial layout the Scenario is the first list item, after the Objective paragraph
@@ -214,6 +216,15 @@ def render_pre_iso(c, L):
             + "<p>If you cannot complete any precondition above, mark this test Blocked: \"setup not done\".</p>")
 def render(c):
     sc = scenario_line(c["key"]); L = LAYOUT_V2.get(c["key"])
+    if L and L.get("pattern"):   # the QA lead's pattern (26 Oct 2026): plain preconditions, steps, "Step N:" with bullet results
+        pre = "<p><strong>Preconditions</strong></p><ul>" + "".join(f"<li>{e(x)}</li>" for x in L["pre"]) + "</ul>"
+        exp = ("<p><strong>Expected Result</strong></p>" + "".join(f"<p>Step {i}:</p><ul>" + "".join(f"<li>{e(x)}</li>" for x in r) + "</ul>"
+                                                                   for i, r in enumerate(L["results"], 1))
+               + "<p></p>" + quotes_block(c) + design_block(c) + f"<p>{e(c['marker'])}</p>")
+        refs = ",".join(dict.fromkeys(STORY[n][0] for n in story_nums(c)))
+        return {"title": c["title"], "template_id": 1, "type_id": 7, "priority_id": 2, "refs": refs, "custom_automation_type": 2,
+                "custom_atmstatus": 1, "custom_preconds": pre, "custom_steps": "<ol>" + "".join(f"<li>{e(x)}</li>" for x in c["steps"]) + "</ol>",
+                "custom_expected": exp}
     pre = (render_pre_iso(c, L) if L.get("iso") else render_pre_v2(c, L)) if L else ("<p><strong>Preconditions</strong></p><ul>" + (f"<li>{e(sc)}</li>" if sc else "") + "".join(f"<li>{e(a)}" + (f"<br>{e(b)}" if b else "") + "</li>" for a, b in c["pre"]) + "</ul>")
     exp = ("<p><strong>Expected results</strong></p><ul>" + "".join(f"<li>{e(r)}</li>" for r in c["res"]) + "</ul>"
            + (f"<p><strong>Pass / fail criteria</strong></p><p>{e(L['passfail'])}</p>" if L and L.get("iso") else (f"<p><strong>{e(L['passfail'])}</strong></p>" if L else ""))

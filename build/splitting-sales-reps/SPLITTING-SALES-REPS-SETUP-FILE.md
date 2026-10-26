@@ -2242,7 +2242,7 @@ Satisfies these precondition lines, exactly as the case states them:
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
 
-#### SETUP-S1-01 — [C665915](https://shopview.testrail.io/index.php?/cases/view/665915) New work order shows Sales Representative under Service Advisor as Unassigned
+#### SETUP-S1-01 — [C665915](https://shopview.testrail.io/index.php?/cases/view/665915) Sales Representative field appears below Service Advisor when unassigned
 Sub folder: Story 1 — One Sales Representative field on the work order (section 84267).
 Satisfies these precondition lines, exactly as the case states them:
 - Scenario: You open a new work order for a customer who has no sales representative and look at the card.
