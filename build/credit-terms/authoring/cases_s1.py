@@ -180,7 +180,7 @@ C("S1-24", "S1", "Every row has a menu, even Credit Hold and the default COD",
 
 C("S1-25", "S1", "With every term deactivated, Active keeps the three fixed terms and the default",
   [ADMIN(), ("The shop's own term {Term-A}, due 14 days after the invoice date, is the default for new customers.", "For example: {Term-A} is ZZAUTOTEST S1-25 Fourteen."),
-   ("The shop also has its own term {Term-B}, due on day 10 of the following month.", "For example: {Term-B} is ZZAUTOTEST S1-25 Tenth."),
+   ("The shop also has its own term {Term-B}, due on day 10 of the following month, and no other terms of its own.", "For example: {Term-B} is ZZAUTOTEST S1-25 Tenth."),
    ("Every term that can be deactivated is deactivated: Net 7, Net 15, Net 20, Net 30, Net 45, Net 50, Net 60, Net 90, Net 120 and {Term-B}.", None), PAGE],
   ["Read the rows on the Active tab.", 'Click the "Inactive" tab.'],
   ["Step 1: Active lists exactly COD, Due on Receipt, {Term-A} (with the Default tag) and Credit Hold, in that order, and its count reads 4.",

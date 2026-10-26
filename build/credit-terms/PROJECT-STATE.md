@@ -63,3 +63,4 @@ P-OLD recipe updated; applied 26 Oct, read back clean. 7. QA branch: given when 
   tester), 10 cases a tester cannot trigger by hand, and the 9 held on Chris's answers.
 - 26 Oct 2026, QA lead: "DOnt say "ask your QA lead" JUst mention what is needed". Removed from the 7 cases that had it (C723887,
   C723889, C724058, C724059, C724089, C724095, C724123); applied and read back. Lesson L-10.
+- 26 Oct 2026, QA lead: "Simply say what is needed." The generic set-aside-organization line was removed from C723887, C723889, C724089, C724123 (each already states the state it needs; C723889 now adds "and no other terms of its own"). Applied, read back.

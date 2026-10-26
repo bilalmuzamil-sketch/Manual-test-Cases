@@ -257,8 +257,7 @@ def C(key, sec, title, pre, steps, res, q, stories=None, note="", marker=None, a
     steps, res = fold_reads(steps, res)
     res = [visible(r, steps[i] if i < len(steps) else "") for i, r in enumerate(res)]
     if marker == CLEAN_HOLD:  # 26 Oct 2026 (QA lead): the set-aside organization is the tester's precondition, not a hold
-        pre = [("This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows.", None)] + pre
-        marker = None
+        marker = None  # 26 Oct 2026 (QA lead): "Simply say what is needed" — each case's own preconditions state the state it needs
     CASES.append(dict(key=key, sec=sec, title=title, pre=pre + [(BLOCKED, None)], steps=steps, res=res, q=q, stories=stories,
                       note=note, marker=marker or MARKER, api=api))
 
