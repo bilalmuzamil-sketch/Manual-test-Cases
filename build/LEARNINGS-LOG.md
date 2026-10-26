@@ -646,3 +646,9 @@
 - `fix-verify-2026-10-26/ff_watch.py` reads `parent = SV-11593` (paged `/rest/api/3/search/jql`), status, QA Branch (`customfield_10318`) and whether a "QA Status: Passed" comment by Bilal Muzamil exists; "testable and new" = a QA-testing status + branch + no such comment. Writes `ff-watch-<UTC>.json`. A ticket verified by us moves to "Ready for Production" within hours (SV-11503/11582/11627/11720 by 15:45), so the QA-passed comment check is only a safety net.
 - Routine `trig_01ChheYVZpn4ngDQUctX7Fue` (create_trigger, cron `0 */2 * * *` anchored to :49) fires the full verify-and-report procedure into this session; it stays quiet when nothing is new. /tmp cookies do not survive a container restart — then ask the QA lead for a fresh SV_SSO_SESSION.
 #watch #routine #fast-follow → L0572, L0581
+
+## L0583 — 2026-10-26 — SV-11546 verified on sv11546; a fresh branch needs the view-only role and Esther Howard first
+- Order for view-only tests on a fresh QA branch: `role-make-1026.mts` (POST /api/roles with `organization`, read back `workOrdersView`) → `retest-locks2.mts ONLY=C96967,C368147` (creates the viewer user with that role, impersonates with viewAs, holds the card over the other technician's column/group and reads overlays while held, then releases). It now creates Esther Howard when missing (same as c96953-cols).
+- On sv11546 (v26.43.1-6bdbed5) the view-only user CAN pick the card up (drag preview shows) — the note "You don't have permission to assign technicians" appears over the target and the drop is refused; that matches S4-N1 ("A user without it who drags a card or row over another technician's column or group sees … and the drop is refused").
+- `retest-locks2` reports the lead as an id (`s9_lead`/`s12_lead`); read names with `probe-leads-1026.mts` (ONLY='<search>|<search>').
+#permissions #fix-verify #fast-follow → L0582, L0580

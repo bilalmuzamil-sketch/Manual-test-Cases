@@ -1,0 +1,30 @@
+{
+ "pass_meta": {"env": "QA branch sv11546", "build": "v26.43.1-6bdbed5", "date": "26 October 2026", "note": "SV-11546 fix verified on its QA branch (fast-follow watch 17:15 UTC)"},
+ "results": {
+  "C96967": {
+   "verdict": "Passed",
+   "observed": [
+    "Passed on the QA branch sv11546 (fix for SV-11546), every step as written, as a user whose role has Work orders: View only.",
+    "Board View: holding the card over the other technician's column shows \"You don't have permission to assign technicians\" at the top of that column (picture 1).",
+    "On release the drop is refused; moving the card within Esther Howard's column is refused too; no More actions button is offered.",
+    "Tech View: the same note shows over the other technician's group and the drop is refused.",
+    "Afterwards the work order's lead is still Esther Howard.",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11546 (TESTING QA) - passed on its QA branch; QA Passed comment posted on the ticket."
+   ],
+   "pictures": ["/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-26/SV-11546-sv11546-fixed.png"]
+  },
+  "C368147": {
+   "verdict": "Passed",
+   "observed": [
+    "Passed on the QA branch sv11546 (fix for SV-11546), every step as written, as a user whose role has Work orders: View only.",
+    "Step 5: Bravo Co cannot be moved above Alpha Co; the order stays Alpha Co, Bravo Co and no message appears.",
+    "Steps 6 and 7: holding Alpha Co over Ben's column shows \"You don't have permission to assign technicians\"; on release the card stays in Ana's column (picture 1, left).",
+    "Step 8: no More actions button is offered.",
+    "Steps 10 and 11: the same note over Ben's group in Tech View; the row stays in Ana's group (picture 1, right).",
+    "Step 12: the order is still Alpha Co, Bravo Co and both still have Lead Technician Ana Alpha.",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11546 (TESTING QA) - passed on its QA branch; QA Passed comment posted on the ticket."
+   ],
+   "pictures": ["/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-26/SV-11546-sv11546-fixed.png"]
+  }
+ }
+}
