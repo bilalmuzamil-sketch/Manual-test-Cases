@@ -641,3 +641,8 @@
 - PRD v77 S1-N1b message is `[data-test-id="text_work_orders_empty"]` with tabindex -1; it gets focus after the move; with nothing after it, the next Tab wraps to "Skip to content" (browser end-of-page behaviour, not a fault).
 - Board/Tech View "Clear all filters" in the empty state is `empty_state_clear_filters`; its focus look is a grey fill, no outline (`:focus-visible` true).
 #keyboard #search #fix-verify #prd → L0580, L0578
+
+## L0582 — 2026-10-26 — Watching an epic for tickets ready to test: `ff_watch.py` + a 2-hour routine into this session
+- `fix-verify-2026-10-26/ff_watch.py` reads `parent = SV-11593` (paged `/rest/api/3/search/jql`), status, QA Branch (`customfield_10318`) and whether a "QA Status: Passed" comment by Bilal Muzamil exists; "testable and new" = a QA-testing status + branch + no such comment. Writes `ff-watch-<UTC>.json`. A ticket verified by us moves to "Ready for Production" within hours (SV-11503/11582/11627/11720 by 15:45), so the QA-passed comment check is only a safety net.
+- Routine `trig_01ChheYVZpn4ngDQUctX7Fue` (create_trigger, cron `0 */2 * * *` anchored to :49) fires the full verify-and-report procedure into this session; it stays quiet when nothing is new. /tmp cookies do not survive a container restart — then ask the QA lead for a fresh SV_SSO_SESSION.
+#watch #routine #fast-follow → L0572, L0581
