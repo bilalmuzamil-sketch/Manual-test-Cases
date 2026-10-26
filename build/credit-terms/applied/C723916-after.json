@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726575,
  "updated_by": 3,
- "updated_on": 1792726575,
+ "updated_on": 1793024793,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with the \"Admin\" role, working in {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>The shop has its own active term {Term-A}, due 14 days after the invoice date, the shop's default for new customers, held by no customer, vendor or invoice.<br>For example: {Term-A} is ZZAUTOTEST S2-16 Fourteen.</li><li>Starting screen: the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group) is open on the Active tab.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>Scenario: Your shop has made an unused term of its own the default for new customers.</li><li>You are an Admin user working at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>The shop has its own active term {Term-A}, due 14 days after the invoice date, the shop's default for new customers, held by no customer, vendor or invoice.<br>For example: {Term-A} is ZZAUTOTEST S2-16 Fourteen.</li><li>Starting screen: the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Click the \"⋯\" at the right of the {Term-A} row.</li><li>Hover \"Deactivate\".</li><li>Hover \"Delete Credit Term\".</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the menu shows exactly these items, in this order: \"Edit\" (pencil), \"Move Customers\" (person, greyed out), \"Deactivate\" (archive, greyed out), \"Delete Credit Term\" (trash, in red, below a divider, greyed out). Nothing else shows.</li><li>Step 2: the hover reads \"This is your default for new customers\" with \"Pick another default first.\" below it.</li><li>Step 3: the hover reads \"This is your default for new customers\" with \"Pick another default first.\" below it.</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11671 (Story 2, Row menu actions)</p><ul><li><strong>S2-R1:</strong> &ldquo;Each row's \"⋯\" menu shows only the items that apply to that term, in this order. An item that applies but is blocked shows greyed out and does nothing when clicked; hovering it shows the reason.&rdquo;</li><li><strong>S2-N4:</strong> &ldquo;The current default never shows \"Make Default for New Customers\"; its \"Deactivate\" and, for a term the shop created, \"Delete Credit Term\" show blocked with the default reason (S2-R1).&rdquo;</li><li><strong>Key Decisions:</strong> &ldquo;The current default cannot be deactivated or deleted; the action is shown disabled with the reason.&rdquo;</li><li><strong>User Feedback Summary:</strong> &ldquo;Hover a blocked Deactivate or Delete Credit Term on the default | \"This is your default for new customers\" / \"Pick another default first.\" | Tooltip on hover, item greyed&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"1 List and row menus\" (\"Row menu: the current default\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes.</p><p>Design pictures attached to this case:</p><ul><li>ct-p1-08-row-menu-the-current-default.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Here Net 30 is the default. Make Default is left out, and Deactivate shows greyed with \"This is your default for new customers. Pick another default first.\"&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 1
+ "version": 2
 }

@@ -97,3 +97,4 @@ Intake: INTAKE-2026-10-19.md. Worker brief: WORKER-BRIEF.md.
 - Not testable as a customer case: the "account deactivated" half of S4-R7/S4-R8 — deactivating an account removes the person from
   every customer field first (S4-R20), so no field can hold them when a field is added.
 - The tech plan copies the person into the added field; the PRD now says "Unassigned" — expect the build to differ until changed.
+- 26 Oct 2026: Rule 117 thirteenth amendment (QA lead: "Preconditions should be like a scenario") applied to every case of this suite: one "Scenario:" line first, then what must exist in setup order; only custom_preconds changed (script-checked), every case updated in TestRail with an edit lock and read back clean.

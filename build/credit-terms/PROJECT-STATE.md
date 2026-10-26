@@ -71,3 +71,4 @@ P-OLD recipe updated; applied 26 Oct, read back clean. 7. QA branch: given when 
   examples fixed in S4-10, S10-11 to S10-16, S12-09, DATA-05/06b/10/16; D-17's contradictory default line made one line. Every other
   field byte-identical; setup file regenerated. Evidence: `scenario-preconditions-2026-10-26/PASS-REPORT.md`. Needs the QA lead's
   go-ahead before any TestRail update (Rule 6).
+- 26 Oct 2026: Rule 117 thirteenth amendment (QA lead: "Preconditions should be like a scenario") applied to every case of this suite: one "Scenario:" line first, then what must exist in setup order; only custom_preconds changed (script-checked), every case updated in TestRail with an edit lock and read back clean.

@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726538,
  "updated_by": 3,
- "updated_on": 1792726538,
+ "updated_on": 1793024780,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with the \"Admin\" role, working in {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>COD is the shop's default for new customers.</li><li>Net 50 is deactivated and at least one customer holds it.</li><li>Starting screen: the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group) is open on the Active tab.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>Scenario: Your shop has switched off Net 50, but at least one customer is still on it.</li><li>You are an Admin user working at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>COD is the shop's default for new customers.</li><li>Net 50 is deactivated and at least one customer holds it.</li><li>Starting screen: the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Click the \"Inactive\" tab.</li><li>Click the \"⋯\" at the right of the \"Net 50\" row.</li><li>Hover \"Reactivate\".</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the Inactive tab shows the term.</li><li>Step 2: the menu shows exactly these items, in this order: \"Reactivate\" (rotate), \"Move Customers\" (person). Nothing else shows.</li><li>Step 3: the hover reads \"Show in pickers again\".</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11671 (Story 2, Row menu actions)</p><ul><li><strong>S2-R1:</strong> &ldquo;Each row's \"⋯\" menu shows only the items that apply to that term, in this order. An item that applies but is blocked shows greyed out and does nothing when clicked; hovering it shows the reason.&rdquo;</li><li><strong>S2-R1 table, Reactivate row:</strong> &ldquo;\"Reactivate\" (rotate) | Inactive terms; on the Inactive tab it comes before \"Move Customers\" | Never&rdquo;</li><li><strong>S2-R3:</strong> &ldquo;Hovering \"Deactivate\" (when not blocked) shows \"Hide from customer and vendor pickers\". Hovering \"Reactivate\" shows \"Show in pickers again\".&rdquo;</li><li><strong>S2-R10:</strong> &ldquo;Make Default is not available on inactive terms (it is absent from their menu).&rdquo;</li><li><strong>S2-N1:</strong> &ldquo;Standard terms never show \"Edit\" or \"Delete Credit Term\".&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"3 New credit term and Inactive tab\" (\"Inactive tab: Reactivate\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes.</p><p>Design pictures attached to this case:</p><ul><li>ct-p3-05-inactive-tab-reactivate.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Rendered from the local build: Inactive tab, Net 7. Reactivate hovered: \"Show in pickers again\"; Move Customers below it.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 1
+ "version": 2
 }

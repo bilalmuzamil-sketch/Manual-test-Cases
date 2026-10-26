@@ -106,3 +106,4 @@
   organization moved into its own bullet ("Your organization has 8 vendors or fewer in total."). No other precondition changed.
 - Every other field byte-identical to before (`scenario-preconditions-2026-10-26/make_pass_report.py`, PASS-REPORT.md). Setup file
   regenerated. Not written to TestRail (needs the QA lead's go-ahead, together with the v9 pass).
+- 26 Oct 2026: Rule 117 thirteenth amendment (QA lead: "Preconditions should be like a scenario") applied to every case of this suite: one "Scenario:" line first, then what must exist in setup order; only custom_preconds changed (script-checked), every case updated in TestRail with an edit lock and read back clean.

@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726648,
  "updated_by": 3,
- "updated_on": 1792726648,
+ "updated_on": 1793024843,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with the \"Admin\" role, working in {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Starting screen: the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group) is open on the Active tab.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>Scenario: You start a new term due on a day of the following month and try days in and out of range.</li><li>You are an Admin user working at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Starting screen: the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Click \"New Credit Term\".</li><li>Type \"Day X\" in Name.</li><li>Click the Day box.</li><li>Type 0 in the Day box.</li><li>Replace it with 32.</li><li>Replace it with 2.5.</li><li>Replace it with 31.</li><li>Replace it with 1.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the \"New Credit Term\" window opens.</li><li>Step 2: the Name reads Day X.</li><li>Step 3: \"Due day of the following month\" is chosen.</li><li>Step 4: the message \"Enter a day from 1 to 31.\" shows under the Day box.</li><li>Step 5: the message \"Enter a day from 1 to 31.\" shows.</li><li>Step 6: the message \"Enter a day from 1 to 31.\" shows.</li><li>Step 7: the message disappears and the blue line shows.</li><li>Step 8: no message, and the blue line shows.</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11672 (Story 3, Create or edit a credit term)</p><ul><li><strong>S3-R9, Day:</strong> &ldquo;Day not a whole number from 1 to 31: \"Enter a day from 1 to 31.\"&rdquo;</li><li><strong>User Feedback Summary:</strong> &ldquo;Day out of range | \"Enter a day from 1 to 31.\" | Inline error, clears as soon as the number is valid&rdquo;</li><li><strong>Key Decisions:</strong> &ldquo;Net terms run from 1 to 365 days.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"3 New credit term and Inactive tab\" (\"Validation errors\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes.</p><p>Design pictures attached to this case:</p><ul><li>ct-p3-03-validation-errors.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Other messages: \"Enter a name.\" and \"Use 31 characters or fewer.\" Day: \"Enter a day from 1 to 31.\" No sentence shows while a field is invalid.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 1
+ "version": 2
 }

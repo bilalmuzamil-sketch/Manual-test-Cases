@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726854,
  "updated_by": 3,
- "updated_on": 1792726854,
+ "updated_on": 1793025062,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with the \"Admin\" role, working in {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>The shop has its own active term {Term-A}, due 14 days after the invoice date, held by no customer, vendor or invoice.<br>For example: {Term-A} is ZZAUTOTEST S12-03 Old.</li><li>A new name {Term-B}.<br>For example: {Term-B} is ZZAUTOTEST S12-03 New.</li><li>Starting screen: the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group) is open on the Active tab.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>Scenario: Your shop renames an unused term of its own, and you check the history.</li><li>You are an Admin user working at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>The shop has its own active term {Term-A}, due 14 days after the invoice date, held by no customer, vendor or invoice.<br>For example: {Term-A} is ZZAUTOTEST S12-03 Old.</li><li>A new name {Term-B}.<br>For example: {Term-B} is ZZAUTOTEST S12-03 New.</li><li>Starting screen: the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Click the \"⋯\" at the right of the {Term-A} row.</li><li>Click \"Edit\".</li><li>Replace the Name with {Term-B}.</li><li>Click \"Save Changes\".</li><li>Click the \"⋯\" page menu beside \"New Credit Term\".</li><li>Click \"Audit Log\".</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the menu opens.</li><li>Step 2: the window opens.</li><li>Step 3: the field shows the name as typed.</li><li>Step 4: the toast \"{Term-B} saved\" shows.</li><li>Step 5: the menu opens.</li><li>Step 6: the newest row reads Event \"Credit term edited\" and Details \"Name: {Term-A} → {Term-B}\", with nothing about Due.</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11681 (Story 12, Credit Terms audit log)</p><ul><li><strong>S12-R3 table, edited:</strong> &ldquo;An unused term is edited (Story 3: Create or edit a credit term) | \"Credit term edited\" | Only what changed: \"Name: {old} → {new}\" and/or \"Due: {old rule} → {new rule}\"&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"1 List and row menus\" (\"Credit Terms Log\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes.</p><p>Design pictures attached to this case:</p><ul><li>ct-p1-14-credit-terms-log.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Columns Event, User, Details, Date, Time, newest first; Details read \"{name}: {rule}\" or \"Field: old → new\", one change per line.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 1
+ "version": 2
 }

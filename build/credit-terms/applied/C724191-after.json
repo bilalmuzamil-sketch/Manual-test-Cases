@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792737537,
  "updated_by": 3,
- "updated_on": 1792737537,
+ "updated_on": 1793025180,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with the \"Admin\" role, working in {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>{Customer-A} is on Net 50, and Net 50 is deactivated.<br>For example: {Customer-A} is ZZAUTOTEST D-26 Customer.</li><li>Starting screen: the Customers page.</li><li>The browser window is 1440 px wide, at 100% zoom.<br>For example: a maximised window on a 1440 x 900 screen.</li><li>The design pictures ct-p6-01-customer-page-today.png, ct-p6-02-customer-on-a-deactivated-term.png are attached to this case; open each at 100% zoom beside the screen.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>Scenario: Your shop switched off Net 50 while a customer is on it, and you compare the customer card with the design.</li><li>You are an Admin user working at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>{Customer-A} is on Net 50, and Net 50 is deactivated.<br>For example: {Customer-A} is ZZAUTOTEST D-26 Customer.</li><li>The browser window is 1440 px wide, at 100% zoom.<br>For example: a maximised window on a 1440 x 900 screen.</li><li>The design pictures ct-p6-01-customer-page-today.png, ct-p6-02-customer-on-a-deactivated-term.png are attached to this case; open each at 100% zoom beside the screen.</li><li>Starting screen: the Customers page.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Open {Customer-A}.</li><li>Resize the browser window to 1536 px wide (for example, maximise it on a 1536 x 864 screen at 100% zoom).</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the card at the left shows \"Credit term\" with \"Net 50 (Inactive)\" under it, whole and not cut off, in the same place and style as today's card (compare ct-p6-02-customer-on-a-deactivated-term.png and today's ct-p6-01-customer-page-today.png).</li><li>Step 2: at 1536 px nothing overlaps, nothing is cut off and nothing needs a sideways scroll; the layout described above is unchanged, only wider.</li></ul><p>Do not compare the credit limit value on the picture: the design's demo card shows $0.00 while its Edit window shows $5,000.00 (register CT-D09).</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11674 (Story 5, New Customer and Edit Customer)</p><ul><li><strong>S5-R8:</strong> &ldquo;The customer card's \"Credit term\" shows \"{name} (Inactive)\" for a deactivated term. Invoices and printed documents show the plain name.&rdquo;</li><li><strong>S5-R14:</strong> &ldquo;Term names are never cut off in the Credit Terms dropdown or on the customer card, including with \"(Inactive)\" or the \"Default\" tag; long names wrap.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"6 Customer on a deactivated term\" (\"Customer page today\", \"Customer on a deactivated term\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes, except where this held design case follows the design.</p><p>Design pictures attached to this case:</p><ul><li>ct-p6-01-customer-page-today.png</li><li>ct-p6-02-customer-on-a-deactivated-term.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;The shop deactivated Net 10. This customer keeps it, and the card reads \"Net 10 (Inactive)\".&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 1
+ "version": 2
 }

@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726504,
  "updated_by": 3,
- "updated_on": 1792726504,
+ "updated_on": 1793024739,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with the \"Admin\" role, working in {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>All twelve standard terms are active and COD is the default for new customers.</li><li>Starting screen: the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group) is open on the Active tab.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>Scenario: Your shop has every standard term switched on, and you want to know what Credit Hold means.</li><li>You are an Admin user working at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>All twelve standard terms are active and COD is the default for new customers.</li><li>Starting screen: the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Hover the info icon after the name \"Credit Hold\".</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: after the name \"Credit Hold\" there is an info icon and then a lock icon. Hovering the info icon shows: \"No invoices can be created for a customer on Credit Hold until their credit term is changed.\"</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11670 (Story 1, Credit Terms page and list)</p><ul><li><strong>S1-R8:</strong> &ldquo;COD, Due on Receipt and Credit Hold each show, after the name, an info icon and a lock icon. Hovering the info icon shows:&rdquo;</li><li><strong>S1-R8, Credit Hold info icon:</strong> &ldquo;Credit Hold: \"No invoices can be created for a customer on Credit Hold until their credit term is changed.\"&rdquo;</li><li><strong>User Feedback Summary:</strong> &ldquo;Hover the info icon on Credit Hold | \"No invoices can be created for a customer on Credit Hold until their credit term is changed.\" | Tooltip on hover&rdquo;</li><li><strong>Key Decisions:</strong> &ldquo;The page explains every term inline in a Due column; only COD, Due on Receipt and Credit Hold carry an info tooltip.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"1 List and row menus\" (\"Info tooltip: Due on Receipt\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes.</p><p>Design pictures attached to this case:</p><ul><li>ct-p1-02-info-tooltip-due-on-receipt.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Credit Hold: \"No invoices can be created for a customer on Credit Hold until their credit term is changed.\"&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 1
+ "version": 2
 }

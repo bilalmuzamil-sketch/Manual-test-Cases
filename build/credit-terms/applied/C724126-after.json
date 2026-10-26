@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726901,
  "updated_by": 3,
- "updated_on": 1792726901,
+ "updated_on": 1793025088,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with the \"Admin\" role, working in {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Starting screen: the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group) is open on the Active tab.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>Scenario: The credit terms history cannot be loaded for a moment when you open it.</li><li>You are an Admin user working at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Starting screen: the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Click the \"⋯\" page menu beside \"New Credit Term\".</li><li>Click \"Audit Log\" while the log cannot be loaded.</li><li>Close the log.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the menu opens.</li><li>Step 2: the app's error alert shows \"Something went wrong loading the Credit Terms Log. Please try again.\"; the table shows no rows and the same sentence in place of \"No history here. Yet.\"</li><li>Step 3: the Credit Terms page is still there and works as before.</li></ul><p>A manual tester cannot force the log to fail (switching the network off may show the app's offline message instead); this is for an automated check or a developer-made failure.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11681 (Story 12, Credit Terms audit log)</p><ul><li><strong>Story 12, Error Handling:</strong> &ldquo;If the log cannot be loaded, the app's standard error alert shows \"Something went wrong loading the Credit Terms Log. Please try again.\", the table shows no rows and the same sentence in place of the \"No history here. Yet.\" line, and the Credit Terms page is unaffected.&rdquo;</li><li><strong>User Feedback Summary:</strong> &ldquo;Credit Terms Log fails to load | \"Something went wrong loading the Credit Terms Log. Please try again.\" | Standard error alert; the table shows no rows and repeats the same sentence in place of the empty-state line&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"1 List and row menus\" (\"Credit Terms Log: could not load\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes.</p><p>Design pictures attached to this case:</p><ul><li>ct-p1-16-credit-terms-log-could-not-load.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Rendered from the local build with the log request failing. The error alert reads \"Something went wrong loading the Credit Terms Log. Please try again.\" and the page is unaffected.&rdquo;</li><li>&ldquo;Differs from the PRD: the build also repeats that sentence inside the table; the PRD says the table shows no rows and no empty-state line.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - a manual tester cannot make the log fail to load on demand</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 1
+ "version": 2
 }

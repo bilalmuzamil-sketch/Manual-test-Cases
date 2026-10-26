@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792692623,
  "updated_by": 3,
- "updated_on": 1792692623,
+ "updated_on": 1793024555,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with the \"Admin\" role at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Staff members {Sales-rep-A} and {Sales-rep-B} are active at {Location-A}. {Sales-rep-A}'s \"Sales Representative\" switch is on; {Sales-rep-B}'s was on and has since been turned off (the staff account is still active).<br>For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.</li><li>Customer {Customer-A} has {Sales-rep-B} as its one sales representative, picked while their switch was on.<br>For example: {Customer-A} is ZZAUTOTEST SSR Fleet.</li><li>Work order {Work-order-1} for {Customer-A} was created after the switch was turned off, so its Sales Representative reads \"Unassigned\"; it has one labor line and one part, and was invoiced today without a representative being picked.<br>For example: {Work-order-1} is S2-40001.</li><li>Starting screen: Reports &gt; Sales By Representative is open for today in a desktop browser at least 1024 px wide.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Scenario: A customer's representative was switched off, and a new work order for that customer was invoiced today with nobody on it.</li><li>You are signed in as a user with the \"Admin\" role at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Staff members {Sales-rep-A} and {Sales-rep-B} are active at {Location-A}. {Sales-rep-A}'s \"Sales Representative\" switch is on; {Sales-rep-B}'s was on and has since been turned off (the staff account is still active).<br>For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.</li><li>Customer {Customer-A} has {Sales-rep-B} as its one sales representative, picked while their switch was on.<br>For example: {Customer-A} is ZZAUTOTEST SSR Fleet.</li><li>Work order {Work-order-1} for {Customer-A} was created after the switch was turned off, so its Sales Representative reads \"Unassigned\"; it has one labor line and one part, and was invoiced today without a representative being picked.<br>For example: {Work-order-1} is S2-40001.</li><li>Starting screen: Reports &gt; Sales By Representative is open for today in a desktop browser at least 1024 px wide.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Expand {Sales-rep-B}.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: {Work-order-1}'s invoice is credited to {Sales-rep-B}, labor and parts.</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Splitting Sales Representatives\", Confluence 919928833, version 11 (21 Oct 2026, Chris Ward), read 22 Oct 2026 &middot; Epic SV-10890, story SV-11268 (Story 4, Give a customer default representatives)</p><ul><li><strong>S4-R17:</strong> &ldquo;A work order invoiced with nobody on either side is credited with the customer's Service Parts person on the parts side and the Service Labor person on the labor side. A customer that is not split gives its one person both sides.&rdquo;</li><li><strong>S4-R27:</strong> &ldquo;Only a staff member whose account is active and whose Sales Representative switch is on is copied (S1-R8). Anyone else leaves that field \"Unassigned\", and S4-R17 and S4-R18 still apply at invoicing.&rdquo;</li><li><strong>Story 4 context note (S4-R27, S4-N2):</strong> &ldquo;* Context note (S4-R27, S4-N2): a person whose Sales Representative switch is off but whose account is active can stay in a customer field (S4-N2). A new work order does not copy them, so its card reads \"Unassigned\", but when it is invoiced with nobody on it, S4-R17 still credits them from the customer. QA should expect both.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Claude design canvas \"Splitting Sales Representatives\" (https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), page 2 (cited by the story), export read 19 Oct 2026, used for on-screen labels; the look itself is checked in the \"Design — how it looks\" cases.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 1
+ "version": 2
 }
