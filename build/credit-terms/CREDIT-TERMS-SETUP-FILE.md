@@ -15,31 +15,33 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 ## 2. Accounts and roles (slots)
 | Slot | Role as shown in the UI | Used for | Cases |
 |---|---|---|---|
-| ADMIN-A | Admin | every case not listed below | 320 cases |
-| OTHER-S1-22 | see the case | You are signed in as {User-A}, whose role has every Settings page except Finance. | S1-22 |
-| OOTB-S1-30 | out-of-the-box role | You are signed in as {User-A}, on the out-of-the-box "Parts Manager" role, reset to its template. | S1-30 |
-| OOTB-S1-31 | out-of-the-box role | You are signed in as {User-A}, on the out-of-the-box "Office User" role, reset to its template. | S1-31 |
-| OOTB-S1-32 | out-of-the-box role | You are signed in as {User-A}, on the out-of-the-box "Service Manager" role, reset to its template. | S1-32 |
-| OOTB-S1-33 | out-of-the-box role | You are signed in as {User-A}, on the out-of-the-box "Senior Service Advisor" role, reset to its template. | S1-33 |
-| OOTB-S1-34 | out-of-the-box role | You are signed in as {User-A}, on the out-of-the-box "Sales Representative" role, reset to its template. | S1-34 |
-| ROLE-S4-26 | custom role | You are signed in as {User-A}, on a custom role, {Role-A}, that has only Settings → Finance (no Customers → Create & Edit, no View and Manage AP/AR Data) (and whatever it needs to reach Settings), and nothing else that matters here. | S4-26 |
-| ROLE-S4-27 | custom role | You are signed in as {User-A}, on a custom role, {Role-A}, that has Settings → Finance and Customers → Create & Edit, but not View and Manage AP/AR Data (and whatever it needs to reach Settings), and nothing else that matters here. | S4-27 |
-| ROLE-S4-28 | custom role | You are signed in as {User-A}, on a custom role, {Role-A}, that has Settings → Finance and View and Manage AP/AR Data, but not Customers → Create & Edit (and whatever it needs to reach Settings), and nothing else that matters here. | S4-28 |
-| ROLE-S4-29 | custom role | You are signed in as {User-A}, on a custom role, {Role-A}, that has Settings → Finance, Customers → Create & Edit and View and Manage AP/AR Data (and whatever it needs to reach Settings), and nothing else that matters here. | S4-29 |
-| ROLE-S4-30 | custom role | You are signed in as {User-A}, on a custom role, {Role-A}, that has Settings → Finance and Customers → Create & Edit, but not View and Manage AP/AR Data (and whatever it needs to reach Settings), and nothing else that matters here. | S4-30 |
-| ROLE-S5-16 | custom role | You are signed in as {User-A}, on a custom role, {Role-A}, that has Customers → Create & Edit but not View and Manage AP/AR Data. | S5-16 |
-| ROLE-S5-17 | custom role | You are signed in as {User-A}, on a custom role, {Role-A}, that has Customers → Create & Edit but not View and Manage AP/AR Data. | S5-17 |
-| ROLE-S5-18 | custom role | You are signed in as {User-A}, on a custom role, {Role-A}, that has Customers → Create & Edit but not View and Manage AP/AR Data. | S5-18 |
-| ROLE-S5-19 | custom role | You are signed in as {User-A}, on a custom role, {Role-A}, that has Customers → Create & Edit but not View and Manage AP/AR Data. | S5-19 |
-| OOTB-S5-20 | out-of-the-box role | You are signed in as {User-A}, on the out-of-the-box "Service Manager" role (Customers → Create & Edit and View and Manage AP/AR Data, no Settings → Finance). | S5-20 |
-| ROLE-S6-08 | custom role | You are signed in as {User-A}, on a custom role, {Role-A}, with the vendor permissions to create and edit vendors but not View and Manage AP/AR Data. | S6-08 |
+| ADMIN-A | Admin | every case not listed below | 318 cases |
+| OTHER-S1-22 | see the case | You are signed in as a user whose role has every Settings page except Finance. | S1-22 |
+| OOTB-S1-30 | out-of-the-box role | You are signed in as a user on the out-of-the-box "Parts Manager" role, reset to its template. | S1-30 |
+| OOTB-S1-31 | out-of-the-box role | You are signed in as a user on the out-of-the-box "Office User" role, reset to its template. | S1-31 |
+| OOTB-S1-32 | out-of-the-box role | You are signed in as a user on the out-of-the-box "Service Manager" role, reset to its template. | S1-32 |
+| OOTB-S1-33 | out-of-the-box role | You are signed in as a user on the out-of-the-box "Senior Service Advisor" role, reset to its template. | S1-33 |
+| OOTB-S1-34 | out-of-the-box role | You are signed in as a user on the out-of-the-box "Sales Representative" role, reset to its template. | S1-34 |
+| ROLE-S4-26 | custom role | You are signed in as a user on a custom role that has only Settings → Finance (no Customers → Create & Edit, no View and Manage AP/AR Data) (and whatever it needs to reach Settings), and nothing else that matters here. | S4-26 |
+| ROLE-S4-27 | custom role | You are signed in as a user on a custom role that has Settings → Finance and Customers → Create & Edit, but not View and Manage AP/AR Data (and whatever it needs to reach Settings), and nothing else that matters here. | S4-27 |
+| ROLE-S4-28 | custom role | You are signed in as a user on a custom role that has Settings → Finance and View and Manage AP/AR Data, but not Customers → Create & Edit (and whatever it needs to reach Settings), and nothing else that matters here. | S4-28 |
+| ROLE-S4-29 | custom role | You are signed in as a user on a custom role that has Settings → Finance, Customers → Create & Edit and View and Manage AP/AR Data (and whatever it needs to reach Settings), and nothing else that matters here. | S4-29 |
+| ROLE-S4-30 | custom role | You are signed in as a user on a custom role that has Settings → Finance and Customers → Create & Edit, but not View and Manage AP/AR Data (and whatever it needs to reach Settings), and nothing else that matters here. | S4-30 |
+| ROLE-S5-16 | custom role | You are signed in as a user on a custom role that has Customers → Create & Edit but not View and Manage AP/AR Data. | S5-16 |
+| ROLE-S5-17 | custom role | You are signed in as a user on a custom role that has Customers → Create & Edit but not View and Manage AP/AR Data. | S5-17 |
+| ROLE-S5-18 | custom role | You are signed in as a user on a custom role that has Customers → Create & Edit but not View and Manage AP/AR Data. | S5-18 |
+| ROLE-S5-19 | custom role | You are signed in as a user on a custom role that has Customers → Create & Edit but not View and Manage AP/AR Data. | S5-19 |
+| OOTB-S5-20 | out-of-the-box role | You are signed in as a user on the out-of-the-box "Service Manager" role (Customers → Create & Edit and View and Manage AP/AR Data, no Settings → Finance). | S5-20 |
+| ROLE-S6-08 | custom role | You are signed in as a user on a custom role with the vendor permissions to create and edit vendors but not View and Manage AP/AR Data. | S6-08 |
 | OTHER-S7-05 | see the case | You are signed in to production (the live app, app.shopview.com) as a user with the "Admin" role, working in {Location-A}. | S7-05 |
 | OTHER-S11-02 | see the case | You are signed in to production (the live app, app.shopview.com) as a user with the "Admin" role, working in {Location-A}. | S11-02 |
 | OTHER-S11-07 | see the case | You are signed in to production (the live app, app.shopview.com) as a user with the "Admin" role, working in {Location-A}. | S11-07 |
+| OTHER-S11-10 | see the case | You are signed in as an Admin of an organization created after the release whose Credit Terms page has never been changed. | S11-10 |
+| OTHER-S11-11 | see the case | You are signed in as an Admin of an organization that has no settings record yet. | S11-11 |
 | OTHER-S11-14 | see the case | You are signed in to production (the live app, app.shopview.com) as a user with the "Admin" role, working in {Location-A}. | S11-14 |
-| OTHER-S12-18 | see the case | You are signed in as {User-A}, whose role has no Settings → Finance. | S12-18 |
-| OTHER-D-48 | see the case | You are signed in as {User-A}, working in {Location-A}, and the role of {User-A} has Settings → Finance but not Customers → Create & Edit. | D-48 |
-| OTHER-D-39 | see the case | You are signed in as {User-A}, working in {Location-A}, and the role of {User-A} can create customers but does not have View and Manage AP/AR Data. | D-39 |
+| OTHER-S12-18 | see the case | You are signed in as a user whose role has no Settings → Finance. | S12-18 |
+| OTHER-D-48 | see the case | You are signed in as a user whose role has Settings → Finance but not Customers → Create & Edit. | D-48 |
+| OTHER-D-39 | see the case | You are signed in as a user whose role can create customers but does not have View and Manage AP/AR Data. | D-39 |
 | ADMIN-B | Admin (second user, second browser) | the two-browser cases | S2-30, S2-31, S2-32, S2-33, S2-34, S2-36, S3-25, S3-26, S4-31, S4-32, S4-33, S5-21, S5-24, S7-04, S12-14 |
 
 ## 3. Flags and settings
@@ -101,7 +103,7 @@ Preconditions with their placeholders and examples (for Claude sessions; the Tes
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - All twelve standard terms are active and COD is the default for new customers.
 - The shop has five active terms of its own: {Term-A} due 10 days after the invoice date, {Term-B} due 30 days after the invoice date, {Term-C} due on day 1 of the following month, {Term-D} due on day 22 of the following month, and {Term-E} due on day 1 of the following month. {Term-E}'s name comes after {Term-C}'s in A to Z order. For example: {Term-A} is ZZAUTOTEST S1-03 Ten, {Term-B} is ZZAUTOTEST S1-03 Thirty, {Term-C} is ZZAUTOTEST S1-03 First A, {Term-D} is ZZAUTOTEST S1-03 Twentysecond and {Term-E} is ZZAUTOTEST S1-03 First B.
-- Other terms of the shop (from other tests) may also be listed; the checks below are about the order of the named rows.
+- Other terms may also be listed; check only the order of the named rows.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {Term-B} = term B, {Term-C} = term C, {Term-D} = term D, {Term-E} = term E.
@@ -114,7 +116,7 @@ Section: Story 1 — Credit Terms page and list (TestRail section 91455). Marker
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Net 60, Net 7 and the shop's own {Term-A}, due on day 5 of the following month, are deactivated. For example: {Term-A} is ZZAUTOTEST S1-04 Fifth.
-- Other terms of the shop (from other tests) may also be listed; the checks below are about the order of the named rows.
+- Other terms may also be listed; check only the order of the named rows.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -164,7 +166,7 @@ Preconditions with their placeholders and examples (for Claude sessions; the Tes
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - All twelve standard terms are active and COD is the default for new customers.
 - The shop has its own active term {Term-A}, due on day 10 of the following month. For example: {Term-A} is ZZAUTOTEST S1-08 Tenth.
-- Other terms of the shop (from other tests) may also be listed; the checks below are about the order of the named rows.
+- Other terms may also be listed; check only the order of the named rows.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -323,11 +325,11 @@ Sources (verbatim text in section 9): S1-R15.
 Section: Story 1 — Credit Terms page and list (TestRail section 91455). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- You are enrolled at two locations, {Location-A} and {Location-B}. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
+- You are also enrolled at a second location, {Location-B}. For example: {Location-B} is Staging Lethbridge - 4310.
 - The shop's own term {Term-A}, due 14 days after the invoice date, is the default and is held by 2 customers. For example: {Term-A} is ZZAUTOTEST S1-21 Fourteen.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = location A, {Location-B} = location B, {Term-A} = term A.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Location-B} = location B, {Term-A} = term A.
 Placeholders: {Location-A}, {Location-B}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-INV, P-LOC.
 Sources (verbatim text in section 9): KD-ONELIST, OOS-4, S1-R16.
@@ -335,12 +337,12 @@ Sources (verbatim text in section 9): KD-ONELIST, OOS-4, S1-R16.
 ### SETUP-S1-22 — Without Settings Finance a user cannot see or open Credit Terms
 Section: Story 1 — Credit Terms page and list (TestRail section 91455). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
-- You are signed in as {User-A}, whose role has every Settings page except Finance. For example: {User-A} is ZZAUTOTEST S1-22 User, on a custom role ZZAUTOTEST S1-22 No Finance.
+- You are signed in as a user whose role has every Settings page except Finance. For example: the user is ZZAUTOTEST S1-22 User, on a custom role ZZAUTOTEST S1-22 No Finance.
 - You have the Credit Terms page's web address, {Address-A}, copied earlier from an Admin's browser. For example: {Address-A} is the address shown in an Admin's browser while the Credit Terms page is open.
 - Starting screen: the Settings page.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Address-A} = the Credit Terms page's web address, {User-A} = user A.
-Placeholders: {Address-A}, {User-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Address-A} = the Credit Terms page's web address.
+Placeholders: {Address-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-ROLE.
 Sources (verbatim text in section 9): PERM-PAGE, S1-N1, S11-N2, S3-N1.
 
@@ -387,11 +389,11 @@ Sources (verbatim text in section 9): S1-E1, S1-R3.
 Section: Story 1 — Credit Terms page and list (TestRail section 91455). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop's own term {Term-A}, due 14 days after the invoice date, is held by no customer and no vendor today, but one invoice, {Invoice-A}, was created with it (its customer was later moved to another term). For example: {Term-A} is ZZAUTOTEST S1-26 Fourteen and {Invoice-A} is the invoice of work order S2-15440.
+- The shop's own term {Term-A}, due 14 days after the invoice date, is held by no customer and no vendor today, but one invoice was created with it (its customer was later moved to another term), so the term is still in use. For example: {Term-A} is ZZAUTOTEST S1-26 Fourteen and the invoice is the invoice of work order S2-15440.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Invoice-A} = invoice A, {Location-A} = the test location, {Term-A} = term A.
-Placeholders: {Invoice-A}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
+Placeholders: {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-INV.
 Sources (verbatim text in section 9): S1-E2, S2-R2, T-INUSE.
 
@@ -432,57 +434,52 @@ Sources (verbatim text in section 9): PERM-DEFAULTS, PERM-SCREEN.
 ### SETUP-S1-30 — The out-of-the-box Parts Manager role can open Credit Terms and move customers
 Section: Story 1 — Credit Terms page and list (TestRail section 91455). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
-- You are signed in as {User-A}, on the out-of-the-box "Parts Manager" role, reset to its template. For example: {User-A} is ZZAUTOTEST S1-30 User.
+- You are signed in as a user on the out-of-the-box "Parts Manager" role, reset to its template. For example: the user is ZZAUTOTEST S1-30 User.
 - At least one customer holds Net 30.
 - Starting screen: the Settings page.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {User-A} = user A.
-Placeholders: {User-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Placeholders: none. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-ROLE.
 Sources (verbatim text in section 9): PERM-DEFAULTS, PERM-OOTB.
 
 ### SETUP-S1-31 — The out-of-the-box Office User role can open Credit Terms and move customers
 Section: Story 1 — Credit Terms page and list (TestRail section 91455). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
-- You are signed in as {User-A}, on the out-of-the-box "Office User" role, reset to its template. For example: {User-A} is ZZAUTOTEST S1-31 User.
+- You are signed in as a user on the out-of-the-box "Office User" role, reset to its template. For example: the user is ZZAUTOTEST S1-31 User.
 - At least one customer holds Net 30.
 - Starting screen: the Settings page.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {User-A} = user A.
-Placeholders: {User-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Placeholders: none. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-ROLE.
 Sources (verbatim text in section 9): PERM-DEFAULTS, PERM-OOTB.
 
 ### SETUP-S1-32 — The out-of-the-box Service Manager role cannot open Credit Terms
 Section: Story 1 — Credit Terms page and list (TestRail section 91455). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
-- You are signed in as {User-A}, on the out-of-the-box "Service Manager" role, reset to its template. For example: {User-A} is ZZAUTOTEST S1-32 User.
+- You are signed in as a user on the out-of-the-box "Service Manager" role, reset to its template. For example: the user is ZZAUTOTEST S1-32 User.
 - Starting screen: the Customers page.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {User-A} = user A.
-Placeholders: {User-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Placeholders: none. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-ROLE.
 Sources (verbatim text in section 9): PERM-DEFAULTS, PERM-OOTB, S5-R1.
 
 ### SETUP-S1-33 — The out-of-the-box Senior Service Advisor role cannot open Credit Terms
 Section: Story 1 — Credit Terms page and list (TestRail section 91455). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
-- You are signed in as {User-A}, on the out-of-the-box "Senior Service Advisor" role, reset to its template. For example: {User-A} is ZZAUTOTEST S1-33 User.
+- You are signed in as a user on the out-of-the-box "Senior Service Advisor" role, reset to its template. For example: the user is ZZAUTOTEST S1-33 User.
 - Starting screen: the Customers page.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {User-A} = user A.
-Placeholders: {User-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Placeholders: none. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-ROLE.
 Sources (verbatim text in section 9): PERM-DEFAULTS, PERM-OOTB, S5-R1.
 
 ### SETUP-S1-34 — The out-of-the-box Sales Representative role cannot open Credit Terms
 Section: Story 1 — Credit Terms page and list (TestRail section 91455). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
-- You are signed in as {User-A}, on the out-of-the-box "Sales Representative" role, reset to its template. For example: {User-A} is ZZAUTOTEST S1-34 User.
+- You are signed in as a user on the out-of-the-box "Sales Representative" role, reset to its template. For example: the user is ZZAUTOTEST S1-34 User.
 - Starting screen: the Customers page.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {User-A} = user A.
-Placeholders: {User-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Placeholders: none. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-ROLE.
 Sources (verbatim text in section 9): PERM-DEFAULTS, PERM-OOTB, S5-R1.
 
@@ -617,7 +614,7 @@ Section: Story 2 — Row menu actions (TestRail section 91456). Marker: `AUTOMAT
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S2-09 Fourteen.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S2-09 Fourteen.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -630,12 +627,12 @@ Section: Story 2 — Row menu actions (TestRail section 91456). Marker: `AUTOMAT
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date, held by one customer, {Customer-A}, and by no vendor or invoice. For example: {Term-A} is ZZAUTOTEST S2-10 Fourteen and {Customer-A} is ZZAUTOTEST S2-10 Customer.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date, held by exactly one customer and by no vendor or invoice. For example: {Term-A} is ZZAUTOTEST S2-10 Fourteen, held by ZZAUTOTEST S2-10 Customer.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-STD, P-CUST, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
+Placeholders: {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-STD, P-INV.
 Sources (verbatim text in section 9): KD-LOCK, S2-N5, S2-R1, S2-R2, UFS-7.
 
 ### SETUP-S2-11 — A shop term held only by vendors blocks Edit and has no customers to move
@@ -643,12 +640,12 @@ Section: Story 2 — Row menu actions (TestRail section 91456). Marker: `AUTOMAT
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop has its own active term {Term-A}, due on day 10 of the following month, held by two vendors, {Vendor-A} and {Vendor-B}, and by no customer or invoice. For example: {Term-A} is ZZAUTOTEST S2-11 Tenth, {Vendor-A} is ZZAUTOTEST S2-11 Vendor A and {Vendor-B} is ZZAUTOTEST S2-11 Vendor B.
+- The shop has its own active term {Term-A} (made for this test), due on day 10 of the following month, held by exactly two vendors and by no customer or invoice. For example: {Term-A} is ZZAUTOTEST S2-11 Tenth, held by ZZAUTOTEST S2-11 Vendor A and ZZAUTOTEST S2-11 Vendor B.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {Vendor-A} = vendor A, {Vendor-B} = vendor B.
-Placeholders: {Location-A}, {Term-A}, {Vendor-A}, {Vendor-B}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-STD, P-VENDOR, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
+Placeholders: {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-STD, P-INV.
 Sources (verbatim text in section 9): S2-N5, S2-R2, S6-E2, T-INUSE.
 
 ### SETUP-S2-12 — A shop term held only by invoices says how many invoices
@@ -656,7 +653,7 @@ Section: Story 2 — Row menu actions (TestRail section 91456). Marker: `AUTOMAT
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date, held by no customer and no vendor today, but by five invoices created while their customer was on it (the customer was then moved to Net 30). For example: {Term-A} is ZZAUTOTEST S2-12 Fourteen.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date, held by no customer and no vendor today, but by five invoices created while their customer was on it (the customer was then moved to Net 30). For example: {Term-A} is ZZAUTOTEST S2-12 Fourteen.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -682,7 +679,7 @@ Section: Story 2 — Row menu actions (TestRail section 91456). Marker: `AUTOMAT
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop has its own active term {Term-A}, due on day 5 of the following month, held by exactly 1 customer, 1 vendor and 1 invoice. For example: {Term-A} is ZZAUTOTEST S2-14 Fifth.
+- The shop has its own active term {Term-A} (made for this test), due on day 5 of the following month, held by exactly 1 customer, 1 vendor and 1 invoice. For example: {Term-A} is ZZAUTOTEST S2-14 Fifth.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -707,7 +704,7 @@ Sources (verbatim text in section 9): S2-R2.
 Section: Story 2 — Row menu actions (TestRail section 91456). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date, the shop's default for new customers, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S2-16 Fourteen.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date, the shop's default for new customers, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S2-16 Fourteen.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -720,7 +717,7 @@ Section: Story 2 — Row menu actions (TestRail section 91456). Marker: `AUTOMAT
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop has its own term {Term-A}, due 14 days after the invoice date, deactivated and held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S2-17 Fourteen.
+- The shop has its own term {Term-A} (made for this test), due 14 days after the invoice date, deactivated and held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S2-17 Fourteen.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -733,7 +730,7 @@ Section: Story 2 — Row menu actions (TestRail section 91456). Marker: `AUTOMAT
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop has its own term {Term-A}, due on day 10 of the following month, deactivated and still held by one customer. For example: {Term-A} is ZZAUTOTEST S2-18 Tenth.
+- The shop has its own term {Term-A} (made for this test), due on day 10 of the following month, deactivated and still held by one customer. For example: {Term-A} is ZZAUTOTEST S2-18 Tenth.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -746,7 +743,7 @@ Section: Story 2 — Row menu actions (TestRail section 91456). Marker: `AUTOMAT
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date, held by one customer. For example: {Term-A} is ZZAUTOTEST S2-19 Fourteen.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date, held by one customer. For example: {Term-A} is ZZAUTOTEST S2-19 Fourteen.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -759,7 +756,7 @@ Section: Story 2 — Row menu actions (TestRail section 91456). Marker: `AUTOMAT
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date. For example: {Term-A} is ZZAUTOTEST S2-20 Fourteen.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date. For example: {Term-A} is ZZAUTOTEST S2-20 Fourteen.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -772,8 +769,8 @@ Section: Story 2 — Row menu actions (TestRail section 91456). Marker: `AUTOMAT
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date. For example: {Term-A} is ZZAUTOTEST S2-21 Fourteen.
-- Customer {Customer-A} holds COD, with a credit limit of $0.00. For example: {Customer-A} is ZZAUTOTEST S2-21 Customer.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date. For example: {Term-A} is ZZAUTOTEST S2-21 Fourteen.
+- Customer {Customer-A} (made for this test) holds COD, with a credit limit of $0.00. For example: {Customer-A} is ZZAUTOTEST S2-21 Customer.
 - Write down the COD row's Customers count before you start.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -801,7 +798,7 @@ Section: Story 2 — Row menu actions (TestRail section 91456). Marker: `AUTOMAT
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- Net 30 is held by customer {Customer-A} and by vendor {Vendor-A}. For example: {Customer-A} is ZZAUTOTEST S2-23 Customer and {Vendor-A} is ZZAUTOTEST S2-23 Vendor.
+- Net 30 is held by customer {Customer-A} (made for this test) and by vendor {Vendor-A} (made for this test). For example: {Customer-A} is ZZAUTOTEST S2-23 Customer and {Vendor-A} is ZZAUTOTEST S2-23 Vendor.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Vendor-A} = vendor A.
@@ -815,7 +812,8 @@ Preconditions with their placeholders and examples (for Claude sessions; the Tes
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
 - Net 50 is deactivated.
-- Customer {Customer-A} holds COD. For example: {Customer-A} is ZZAUTOTEST S2-24 Customer.
+- Customer {Customer-A} (made for this test) holds COD. For example: {Customer-A} is ZZAUTOTEST S2-24 Customer.
+- Net 45 and Net 60 are active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Inactive tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location.
@@ -828,7 +826,7 @@ Section: Story 2 — Row menu actions (TestRail section 91456). Marker: `AUTOMAT
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S2-25 Fourteen.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S2-25 Fourteen.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -841,7 +839,7 @@ Section: Story 2 — Row menu actions (TestRail section 91456). Marker: `AUTOMAT
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date. For example: {Term-A} is ZZAUTOTEST S2-26 Fourteen.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date. For example: {Term-A} is ZZAUTOTEST S2-26 Fourteen.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -854,7 +852,7 @@ Section: Story 2 — Row menu actions (TestRail section 91456). Marker: `AUTOMAT
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S2-27 Fourteen.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S2-27 Fourteen.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -867,7 +865,7 @@ Section: Story 2 — Row menu actions (TestRail section 91456). Marker: `AUTOMAT
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop's own term {Term-A} has a 31-character name, due 14 days after the invoice date, and is unused. For example: {Term-A} is ZZAUTOTEST S2-28 Long Name 0123 (31 characters).
+- The shop's own term {Term-A} (made for this test) has a 31-character name, due 14 days after the invoice date, and is unused. For example: {Term-A} is ZZAUTOTEST S2-28 Long Name 0123 (31 characters).
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -879,8 +877,8 @@ Sources (verbatim text in section 9): S2-R12.
 Section: Story 2 — Row menu actions (TestRail section 91456). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date, the shop's default for new customers and held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S2-29 Fourteen.
-- A new name for it, {Term-B}, that no term has. For example: {Term-B} is ZZAUTOTEST S2-29 Two Weeks.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date, the shop's default for new customers and held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S2-29 Fourteen.
+- A new name for it, {Term-B} (made for this test), that no term has. For example: {Term-B} is ZZAUTOTEST S2-29 Two Weeks.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {Term-B} = term B.
@@ -894,7 +892,7 @@ Preconditions with their placeholders and examples (for Claude sessions; the Tes
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - You and a second user, {User-B}, are both signed in with the "Admin" role, in two separate browsers. For example: {User-B} is ZZAUTOTEST S2 Second Admin.
 - COD is the shop's default for new customers.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date. For example: {Term-A} is ZZAUTOTEST S2-30 Fourteen.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date. For example: {Term-A} is ZZAUTOTEST S2-30 Fourteen.
 - Starting screen: the Credit Terms page is open on the Active tab in both browsers.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {User-B} = user B.
@@ -908,13 +906,12 @@ Preconditions with their placeholders and examples (for Claude sessions; the Tes
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - You and a second user, {User-B}, are both signed in with the "Admin" role, in two separate browsers. For example: {User-B} is ZZAUTOTEST S2 Second Admin.
 - COD is the shop's default for new customers.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S2-31 Fourteen.
-- Customer {Customer-A} holds COD. For example: {Customer-A} is ZZAUTOTEST S2-31 Customer.
-- Starting screen: your browser shows the Credit Terms page; {User-B}'s browser shows Edit Customer for {Customer-A}.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S2-31 Fourteen.
+- Starting screen: your browser shows the Credit Terms page; {User-B}'s browser shows Edit Customer for a customer who holds COD. For example: ZZAUTOTEST S2-31 Customer.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {User-B} = user B.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}, {User-B}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-STD, P-CUST, P-INV, P-TWO.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {User-B} = user B.
+Placeholders: {Location-A}, {Term-A}, {User-B}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-STD, P-INV, P-TWO.
 Sources (verbatim text in section 9): EH-S2, S2-E2, UFS-29.
 
 ### SETUP-S2-32 — Deleting a term another user just made the default is refused
@@ -923,7 +920,7 @@ Preconditions with their placeholders and examples (for Claude sessions; the Tes
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - You and a second user, {User-B}, are both signed in with the "Admin" role, in two separate browsers. For example: {User-B} is ZZAUTOTEST S2 Second Admin.
 - COD is the shop's default for new customers.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S2-32 Fourteen.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S2-32 Fourteen.
 - Starting screen: the Credit Terms page is open on the Active tab in both browsers.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {User-B} = user B.
@@ -937,7 +934,7 @@ Preconditions with their placeholders and examples (for Claude sessions; the Tes
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - You and a second user, {User-B}, are both signed in with the "Admin" role, in two separate browsers. For example: {User-B} is ZZAUTOTEST S2 Second Admin.
 - COD is the shop's default for new customers.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date. For example: {Term-A} is ZZAUTOTEST S2-33 Fourteen.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date. For example: {Term-A} is ZZAUTOTEST S2-33 Fourteen.
 - Starting screen: the Credit Terms page is open on the Active tab in both browsers.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {User-B} = user B.
@@ -951,7 +948,7 @@ Preconditions with their placeholders and examples (for Claude sessions; the Tes
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - You and a second user, {User-B}, are both signed in with the "Admin" role, in two separate browsers. For example: {User-B} is ZZAUTOTEST S2 Second Admin.
 - COD is the shop's default for new customers.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S2-34 Fourteen.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S2-34 Fourteen.
 - Starting screen: the Credit Terms page is open on the Active tab in both browsers.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {User-B} = user B.
@@ -976,8 +973,8 @@ Preconditions with their placeholders and examples (for Claude sessions; the Tes
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - You and a second user, {User-B}, are both signed in with the "Admin" role, in two separate browsers. For example: {User-B} is ZZAUTOTEST S2 Second Admin.
 - COD is the shop's default for new customers.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S2-36 Fourteen.
-- A new name, {Term-B}, that no term has. For example: {Term-B} is ZZAUTOTEST S2-36 Renamed.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S2-36 Fourteen.
+- A new name, {Term-B} (made for this test), that no term has. For example: {Term-B} is ZZAUTOTEST S2-36 Renamed.
 - Starting screen: the Credit Terms page is open on the Active tab in both browsers.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {Term-B} = term B, {User-B} = user B.
@@ -1051,11 +1048,12 @@ Sources (verbatim text in section 9): S3-R10, S3-R5, S3-R5 EMPTY.
 Section: Story 3 — Create or edit a credit term (TestRail section 91457). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- You are enrolled at {Location-B}, in a time zone where today's date is already {Date-B} while it is still {Date-A} at {Location-A}. Run the case at a time of day when the two dates differ. For example: {Location-A} is in Edmonton, {Location-B} is in Auckland, {Date-A} is Oct 21 and {Date-B} is Oct 22.
+- You are also enrolled at {Location-B}, in a time zone where today's date is already one day later than where you work now. Run the case at a time of day when the two dates differ. For example: you work in Edmonton and {Location-B} is in Auckland.
 - Today's date on the calendar of {Location-A} is {Date-A}. For example: {Date-A} is Oct 21.
+- Today's date on the calendar of {Location-B} is {Date-B}. For example: {Date-B} is Oct 22.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Date-A} = date A, {Date-B} = date B, {Location-A} = location A, {Location-B} = location B.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Date-A} = date A, {Date-B} = date B, {Location-A} = the test location, {Location-B} = location B.
 Placeholders: {Date-A}, {Date-B}, {Location-A}, {Location-B}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S3-R16, S3-R5.
@@ -1076,7 +1074,8 @@ Section: Story 3 — Create or edit a credit term (TestRail section 91457). Mark
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - All twelve standard terms are active and COD is the default for new customers.
-- A new name {Term-A} that no term has, and a customer {Customer-A} and a vendor {Vendor-A}. For example: {Term-A} is ZZAUTOTEST S3-08 Fourteen, {Customer-A} is ZZAUTOTEST S3-08 Customer and {Vendor-A} is ZZAUTOTEST S3-08 Vendor.
+- A new name {Term-A} (made for this test) that no term has. For example: {Term-A} is ZZAUTOTEST S3-08 Fourteen.
+- Create {Customer-A} and {Vendor-A} for this test. For example: {Customer-A} is ZZAUTOTEST S3-08 Customer and {Vendor-A} is ZZAUTOTEST S3-08 Vendor.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {Vendor-A} = vendor A.
@@ -1089,7 +1088,7 @@ Section: Story 3 — Create or edit a credit term (TestRail section 91457). Mark
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - All twelve standard terms are active and COD is the default for new customers.
-- A new name {Term-A} that no term has. For example: {Term-A} is ZZAUTOTEST S3-09 Tenth.
+- A new name {Term-A} (made for this test) that no term has. For example: {Term-A} is ZZAUTOTEST S3-09 Tenth.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -1135,6 +1134,7 @@ Sources (verbatim text in section 9): KD-RANGE, S3-R2, S3-R2 NAME, S3-R9, S3-R9 
 Section: Story 3 — Create or edit a credit term (TestRail section 91457). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Net 30 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location.
@@ -1204,7 +1204,7 @@ Sources (verbatim text in section 9): S3-R12.
 Section: Story 3 — Create or edit a credit term (TestRail section 91457). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop has its own active term {Term-A}, due 10 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S3-19 Net 10.
+- The shop has its own active term {Term-A} (made for this test), due 10 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S3-19 Net 10.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -1216,8 +1216,8 @@ Sources (verbatim text in section 9): S2-R4, S3-N2, S3-R1, S3-R13.
 Section: Story 3 — Create or edit a credit term (TestRail section 91457). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop has its own active term {Term-A}, due 10 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S3-20 Ten.
-- A new name {Term-B} that no term has. For example: {Term-B} is ZZAUTOTEST S3-20 Fifteenth.
+- The shop has its own active term {Term-A} (made for this test), due 10 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S3-20 Ten.
+- A new name {Term-B} (made for this test) that no term has. For example: {Term-B} is ZZAUTOTEST S3-20 Fifteenth.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {Term-B} = term B.
@@ -1229,7 +1229,7 @@ Sources (verbatim text in section 9): EH-S3b, S3-R8, UFS-18.
 Section: Story 3 — Create or edit a credit term (TestRail section 91457). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- A new name {Term-A} that no term has. For example: {Term-A} is ZZAUTOTEST S3-21 Fourteen.
+- A new name {Term-A} (made for this test) that no term has. For example: {Term-A} is ZZAUTOTEST S3-21 Fourteen.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -1278,7 +1278,7 @@ Section: Story 3 — Create or edit a credit term (TestRail section 91457). Mark
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - You and a second user, {User-B}, are both signed in with the "Admin" role, in two separate browsers. For example: {User-B} is ZZAUTOTEST S3 Second Admin.
-- A new name {Term-A} that no term has. For example: {Term-A} is ZZAUTOTEST S3-25 Fourteen.
+- A new name {Term-A} (made for this test) that no term has. For example: {Term-A} is ZZAUTOTEST S3-25 Fourteen.
 - Starting screen: the Credit Terms page is open in both browsers.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {User-B} = user B.
@@ -1291,13 +1291,12 @@ Section: Story 3 — Create or edit a credit term (TestRail section 91457). Mark
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - You and a second user, {User-B}, are both signed in with the "Admin" role, in two separate browsers. For example: {User-B} is ZZAUTOTEST S3 Second Admin.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S3-26 Fourteen.
-- Customer {Customer-A} holds COD. For example: {Customer-A} is ZZAUTOTEST S3-26 Customer.
-- Starting screen: your browser shows the Credit Terms page; {User-B}'s browser shows Edit Customer for {Customer-A}.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S3-26 Fourteen.
+- Starting screen: your browser shows the Credit Terms page; {User-B}'s browser shows Edit Customer for a customer who holds COD. For example: ZZAUTOTEST S3-26 Customer.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {User-B} = user B.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}, {User-B}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-INV, P-TWO.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {User-B} = user B.
+Placeholders: {Location-A}, {Term-A}, {User-B}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-INV, P-TWO.
 Sources (verbatim text in section 9): EH-S3a, KD-LOCK, OOS-6.
 
 ### SETUP-S3-27 — A name longer than 31 characters is refused by the server
@@ -1366,11 +1365,11 @@ Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATIO
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Net 30 is the shop's default for new customers.
-- The shop's own term {Term-A}, due 15 days after the invoice date, is held by exactly three customers, {Customer-A}, {Customer-B} and {Customer-C} (a new term holds only this case's customers), whose names are in that A to Z order, with credit limits of $500.00, $0.00 and $1,000.00. For example: {Term-A} is ZZAUTOTEST S4-04 N15, {Customer-A} is ZZAUTOTEST S4-04 Alpha, {Customer-B} is ZZAUTOTEST S4-04 Bravo and {Customer-C} is ZZAUTOTEST S4-04 Charlie.
+- The shop's own term {Term-A}, due 15 days after the invoice date, is held by exactly three customers made for this test (a new term holds only this case's customers); one of them is {Customer-B}, the last word of whose name is in neither of the other two names. For example: {Term-A} is ZZAUTOTEST S4-04 N15 and the customers are ZZAUTOTEST S4-04 Alpha, ZZAUTOTEST S4-04 Bravo ({Customer-B}) and ZZAUTOTEST S4-04 Charlie.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-B} = customer B, {Customer-C} = customer C, {Location-A} = the test location, {Term-A} = term A.
-Placeholders: {Customer-A}, {Customer-B}, {Customer-C}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-B} = customer B, {Location-A} = the test location, {Term-A} = term A.
+Placeholders: {Customer-B}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-STD, P-CUST, P-INV.
 Sources (verbatim text in section 9): S4-R5, UFS-39.
 
@@ -1392,7 +1391,7 @@ Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATIO
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Net 30 is the shop's default for new customers.
-- Net 15 is held by at least one customer. Net 50 and the shop's own term {Term-A} are deactivated, every other standard term is active, and the shop's own term {Term-B}, due 10 days after the invoice date, is active. Other shop terms (from other tests) may also be offered. For example: {Term-A} is ZZAUTOTEST S4-06 Old and {Term-B} is ZZAUTOTEST S4-06 Ten.
+- Net 15 is held by at least one customer. Net 50 and the shop's own term {Term-A} are deactivated, every other standard term is active, and the shop's own term {Term-B}, due 10 days after the invoice date, is active. Other terms of the shop may also be offered. For example: {Term-A} is ZZAUTOTEST S4-06 Old and {Term-B} is ZZAUTOTEST S4-06 Ten.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {Term-B} = term B.
@@ -1406,6 +1405,7 @@ Preconditions with their placeholders and examples (for Claude sessions; the Tes
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
 - Customer {Customer-A} holds COD. For example: {Customer-A} is ZZAUTOTEST S4-07 Alpha.
+- Net 30 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location.
@@ -1418,12 +1418,12 @@ Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATIO
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop's own term {Term-A}, due 15 days after the invoice date, is held by exactly three customers, {Customer-A}, {Customer-B} and {Customer-C} (a new term holds only this case's customers), whose names are in that A to Z order, with credit limits of $500.00, $0.00 and $1,000.00. For example: {Term-A} is ZZAUTOTEST S4-08 N15, {Customer-A} is ZZAUTOTEST S4-08 Alpha, {Customer-B} is ZZAUTOTEST S4-08 Bravo and {Customer-C} is ZZAUTOTEST S4-08 Charlie.
+- The shop's own term {Term-A} (made for this test), due 15 days after the invoice date, is held by exactly three customers made for this test (a new term holds only this case's customers): {Customer-A} with a credit limit of $500.00, {Customer-C} with a credit limit of $1,000.00, and one more customer. For example: {Term-A} is ZZAUTOTEST S4-08 N15, {Customer-A} is ZZAUTOTEST S4-08 Alpha, {Customer-C} is ZZAUTOTEST S4-08 Charlie and the third is ZZAUTOTEST S4-08 Bravo.
 - Before you start, Net 30's Customers count reads {Count-A} (write it down). For example: {Count-A} is 40.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Count-A} = number A, {Customer-A} = customer A, {Customer-B} = customer B, {Customer-C} = customer C, {Location-A} = the test location, {Term-A} = term A.
-Placeholders: {Count-A}, {Customer-A}, {Customer-B}, {Customer-C}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Count-A} = number A, {Customer-A} = customer A, {Customer-C} = customer C, {Location-A} = the test location, {Term-A} = term A.
+Placeholders: {Count-A}, {Customer-A}, {Customer-C}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-STD, P-CUST, P-INV.
 Sources (verbatim text in section 9): GOAL-4, S4-R17, S4-R9, T-MDVSMC, UFS-40.
 
@@ -1432,12 +1432,13 @@ Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATIO
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly one customer, {Customer-A}. For example: {Term-A} is ZZAUTOTEST S4-09 N20, {Customer-A} is ZZAUTOTEST S4-09 Solo.
+- The shop's own term {Term-A} (made for this test), due 20 days after the invoice date, is held by exactly one customer. For example: {Term-A} is ZZAUTOTEST S4-09 N20, held by ZZAUTOTEST S4-09 Solo.
+- Net 45 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-STD, P-CUST, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
+Placeholders: {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-STD, P-INV.
 Sources (verbatim text in section 9): S4-R2, S4-R9, UFS-40.
 
 ### SETUP-S4-10 — Each moved customer gets a note naming the old term, new term and user
@@ -1445,8 +1446,9 @@ Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATIO
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly one customer, {Customer-A}, with a $0.00 limit. For example: {Term-A} is ZZAUTOTEST S4-10 N20 and {Customer-A} is ZZAUTOTEST S4-10 Solo.
+- The shop's own term {Term-A} (made for this test), due 20 days after the invoice date, is held by exactly one customer, {Customer-A} (made for this test), with a $0.00 limit. For example: {Term-A} is ZZAUTOTEST S4-10 N20 and {Customer-A} is ZZAUTOTEST S4-10 Solo.
 - Your user name is {User-A}. For example: {User-A} is ZZAUTOTEST S4-10 Admin.
+- Net 45 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {User-A} = your user name.
@@ -1459,7 +1461,7 @@ Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATIO
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Due on Receipt is the shop's default for new customers.
-- Customer {Customer-A} has a blank credit term (it counts under COD). For example: {Customer-A} is ZZAUTOTEST S4-11 Blank.
+- Customer {Customer-A} (made for this test) has a blank credit term (it counts under COD). For example: {Customer-A} is ZZAUTOTEST S4-11 Blank.
 - Your user name is {User-A}. For example: {User-A} is ZZAUTOTEST S4-11 Admin.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1473,12 +1475,12 @@ Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATIO
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Net 30 is the shop's default for new customers.
-- The shop's own term {Term-A}, due 15 days after the invoice date, is held by exactly three customers, {Customer-A}, {Customer-B} and {Customer-C} (a new term holds only this case's customers), whose names are in that A to Z order, with credit limits of $500.00, $0.00 and $1,000.00. For example: {Term-A} is ZZAUTOTEST S4-12 N15, {Customer-A} is ZZAUTOTEST S4-12 Alpha, {Customer-B} is ZZAUTOTEST S4-12 Bravo and {Customer-C} is ZZAUTOTEST S4-12 Charlie.
+- The shop's own term {Term-A} (made for this test), due 15 days after the invoice date, is held by exactly three customers made for this test (a new term holds only this case's customers), with credit limits of $500.00, $0.00 and $1,000.00. For example: {Term-A} is ZZAUTOTEST S4-12 N15, held by ZZAUTOTEST S4-12 Alpha, Bravo and Charlie.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-B} = customer B, {Customer-C} = customer C, {Location-A} = the test location, {Term-A} = term A.
-Placeholders: {Customer-A}, {Customer-B}, {Customer-C}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-STD, P-CUST, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
+Placeholders: {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-STD, P-INV.
 Sources (verbatim text in section 9): KD-MOVEZERO, S4-R10, S4-R14, S4-R15, UFS-35, UFS-36.
 
 ### SETUP-S4-13 — Moving to COD sets limits to $0 and keeps the old limit in the note
@@ -1486,8 +1488,9 @@ Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATIO
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Net 30 is the shop's default for new customers.
-- The shop's own term {Term-A}, due 15 days after the invoice date, is held by exactly three customers, {Customer-A}, {Customer-B} and {Customer-C} (a new term holds only this case's customers), whose names are in that A to Z order, with credit limits of $500.00, $0.00 and $1,000.00. For example: {Term-A} is ZZAUTOTEST S4-13 N15, {Customer-A} is ZZAUTOTEST S4-13 Alpha, {Customer-B} is ZZAUTOTEST S4-13 Bravo and {Customer-C} is ZZAUTOTEST S4-13 Charlie.
+- The shop's own term {Term-A} (made for this test), due 15 days after the invoice date, is held by exactly three customers, {Customer-A}, {Customer-B} and {Customer-C} (a new term holds only this case's customers), whose names are in that A to Z order, with credit limits of $500.00, $0.00 and $1,000.00. For example: {Term-A} is ZZAUTOTEST S4-13 N15, {Customer-A} is ZZAUTOTEST S4-13 Alpha, {Customer-B} is ZZAUTOTEST S4-13 Bravo and {Customer-C} is ZZAUTOTEST S4-13 Charlie.
 - Your user name is {User-A}. For example: {User-A} is ZZAUTOTEST S4-13 Admin.
+- Create {Customer-A}, {Customer-B} and {Customer-C} just for this test, so no earlier test's changes affect them.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-B} = customer B, {Customer-C} = customer C, {Location-A} = the test location, {Term-A} = term A, {User-A} = your user name.
@@ -1500,7 +1503,7 @@ Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATIO
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop's own term {Term-A}, due 20 days after the invoice date, is held only by customer {Customer-A}, with a $500.00 limit, and work order {Work-order-1} for {Customer-A} is complete and ready to invoice. For example: {Term-A} is ZZAUTOTEST S4-14 N20, {Customer-A} is ZZAUTOTEST S4-14 Hold and {Work-order-1} is S2-15440.
+- The shop's own term {Term-A} (made for this test), due 20 days after the invoice date, is held only by customer {Customer-A} (made for this test), with a $500.00 limit, and work order {Work-order-1} (made for this test) for {Customer-A} is complete and ready to invoice. For example: {Term-A} is ZZAUTOTEST S4-14 N20, {Customer-A} is ZZAUTOTEST S4-14 Hold and {Work-order-1} is S2-15440.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
@@ -1513,7 +1516,8 @@ Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATIO
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Due on Receipt is the shop's default for new customers.
-- COD is held by customer {Customer-A}, with a $0.00 limit. For example: {Customer-A} is ZZAUTOTEST S4-15 Cash.
+- COD is held by customer {Customer-A} (made for this test), with a $0.00 limit. For example: {Customer-A} is ZZAUTOTEST S4-15 Cash.
+- Net 30 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location.
@@ -1526,12 +1530,13 @@ Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATIO
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop's own term {Term-A}, due 15 days after the invoice date, is held by exactly three customers, {Customer-A}, {Customer-B} and {Customer-C} (a new term holds only this case's customers), whose names are in that A to Z order, with credit limits of $500.00, $0.00 and $1,000.00. For example: {Term-A} is ZZAUTOTEST S4-16 N15, {Customer-A} is ZZAUTOTEST S4-16 Alpha, {Customer-B} is ZZAUTOTEST S4-16 Bravo and {Customer-C} is ZZAUTOTEST S4-16 Charlie.
-- {Customer-A} has a phone number, an address and a sales representative set. Customer {Customer-D} holds Net 20. For example: {Customer-D} is ZZAUTOTEST S4-16 Delta.
+- The shop's own term {Term-A} (made for this test), due 15 days after the invoice date, is held by exactly three customers made for this test (a new term holds only this case's customers): {Customer-A}, {Customer-C} and one more customer. For example: {Term-A} is ZZAUTOTEST S4-16 N15, {Customer-A} is ZZAUTOTEST S4-16 Alpha, {Customer-C} is ZZAUTOTEST S4-16 Charlie and the third is ZZAUTOTEST S4-16 Bravo.
+- {Customer-A} has a phone number, an address and a sales representative set. Customer {Customer-D} (made for this test) holds Net 20. For example: {Customer-D} is ZZAUTOTEST S4-16 Delta.
+- Net 45 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-B} = customer B, {Customer-C} = customer C, {Customer-D} = customer D, {Location-A} = the test location, {Term-A} = term A.
-Placeholders: {Customer-A}, {Customer-B}, {Customer-C}, {Customer-D}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-C} = customer C, {Customer-D} = customer D, {Location-A} = the test location, {Term-A} = term A.
+Placeholders: {Customer-A}, {Customer-C}, {Customer-D}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-STD, P-CUST, P-INV.
 Sources (verbatim text in section 9): S4-R18, S4-R19.
 
@@ -1540,7 +1545,8 @@ Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATIO
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly one customer, {Customer-A}, whose record misses details Edit Customer would ask for (for example no address). For example: {Term-A} is ZZAUTOTEST S4-17 N20, {Customer-A} is ZZAUTOTEST S4-17 Sparse.
+- The shop's own term {Term-A} (made for this test), due 20 days after the invoice date, is held by exactly one customer, {Customer-A} (made for this test), whose record has no address (a detail Edit Customer requires). For example: {Term-A} is ZZAUTOTEST S4-17 N20 and {Customer-A} is ZZAUTOTEST S4-17 Incomplete.
+- Net 45 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A.
@@ -1553,11 +1559,12 @@ Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATIO
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly two customers, {Customer-A} and {Customer-B}. For example: {Term-A} is ZZAUTOTEST S4-18 N20, {Customer-A} is ZZAUTOTEST S4-18 Alpha and {Customer-B} is ZZAUTOTEST S4-18 Bravo.
+- The shop's own term {Term-A} (made for this test), due 20 days after the invoice date, is held by exactly two customers made for this test, one of them {Customer-A}. For example: {Term-A} is ZZAUTOTEST S4-18 N20, {Customer-A} is ZZAUTOTEST S4-18 Alpha and the other is ZZAUTOTEST S4-18 Bravo.
+- Net 45 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-B} = customer B, {Location-A} = the test location, {Term-A} = term A.
-Placeholders: {Customer-A}, {Customer-B}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A.
+Placeholders: {Customer-A}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-STD, P-CUST, P-INV.
 Sources (verbatim text in section 9): S12-R3, S12-R3 MOVED, S4-R21.
 
@@ -1566,7 +1573,7 @@ Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATIO
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly one customer, {Customer-A}, with a $500.00 limit. For example: {Term-A} is ZZAUTOTEST S4-19 N20, {Customer-A} is ZZAUTOTEST S4-19 Solo.
+- The shop's own term {Term-A} (made for this test), due 20 days after the invoice date, is held by exactly one customer, {Customer-A} (made for this test), with a $500.00 limit. For example: {Term-A} is ZZAUTOTEST S4-19 N20, {Customer-A} is ZZAUTOTEST S4-19 Solo.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A.
@@ -1579,11 +1586,12 @@ Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATIO
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Net 30 is the shop's default for new customers.
-- The shop's own term {Term-A}, due 15 days after the invoice date, is held by exactly three customers, {Customer-A}, {Customer-B} and {Customer-C} (a new term holds only this case's customers), whose names are in that A to Z order, with credit limits of $500.00, $0.00 and $1,000.00. For example: {Term-A} is ZZAUTOTEST S4-20 N15, {Customer-A} is ZZAUTOTEST S4-20 Alpha, {Customer-B} is ZZAUTOTEST S4-20 Bravo and {Customer-C} is ZZAUTOTEST S4-20 Charlie.
+- The shop's own term {Term-A}, due 15 days after the invoice date, is held by exactly three customers made for this test (a new term holds only this case's customers), one of them {Customer-B}. For example: {Term-A} is ZZAUTOTEST S4-20 N15 and the customers are ZZAUTOTEST S4-20 Alpha, ZZAUTOTEST S4-20 Bravo ({Customer-B}) and ZZAUTOTEST S4-20 Charlie.
+- Net 45 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-B} = customer B, {Customer-C} = customer C, {Location-A} = the test location, {Term-A} = term A.
-Placeholders: {Customer-A}, {Customer-B}, {Customer-C}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-B} = customer B, {Location-A} = the test location, {Term-A} = term A.
+Placeholders: {Customer-B}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-STD, P-CUST, P-INV.
 Sources (verbatim text in section 9): KD-MODAL, S4-R22.
 
@@ -1619,6 +1627,7 @@ Preconditions with their placeholders and examples (for Claude sessions; the Tes
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
 - The shop's own term {Term-A} is held by 2,500 customers. For example: {Term-A} is ZZAUTOTEST S4-23 Bulk and the customers are ZZAUTOTEST S4-23 0001 to ZZAUTOTEST S4-23 2500.
+- Net 30 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -1631,7 +1640,8 @@ Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATIO
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop's own term {Term-A}, due 14 days after the invoice date, is deactivated and held by one customer, {Customer-A}, and by no vendor or invoice. For example: {Term-A} is ZZAUTOTEST S4-24 Old and {Customer-A} is ZZAUTOTEST S4-24 Customer.
+- The shop's own term {Term-A} (made for this test), due 14 days after the invoice date, is deactivated and held by one customer, {Customer-A} (made for this test), and by no vendor or invoice. For example: {Term-A} is ZZAUTOTEST S4-24 Old and {Customer-A} is ZZAUTOTEST S4-24 Customer.
+- Net 30 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A.
@@ -1644,7 +1654,8 @@ Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATIO
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- Customer {Customer-A} holds Credit Hold, with a $0.00 limit (other customers may hold Credit Hold too). For example: {Customer-A} is ZZAUTOTEST S4-25 Held.
+- Customer {Customer-A} (made for this test) holds Credit Hold, with a $0.00 limit (other customers may hold Credit Hold too). For example: {Customer-A} is ZZAUTOTEST S4-25 Held.
+- Net 30 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location.
@@ -1655,60 +1666,63 @@ Sources (verbatim text in section 9): S4-E3, S4-N3.
 ### SETUP-S4-26 — With only Settings Finance, Move Customers is greyed with the reason
 Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
-- You are signed in as {User-A}, on a custom role, {Role-A}, that has only Settings → Finance (no Customers → Create & Edit, no View and Manage AP/AR Data) (and whatever it needs to reach Settings), and nothing else that matters here. For example: {User-A} is ZZAUTOTEST S4-26 User and {Role-A} is ZZAUTOTEST S4-26 Role.
+- You are signed in as a user on a custom role that has only Settings → Finance (no Customers → Create & Edit, no View and Manage AP/AR Data) (and whatever it needs to reach Settings), and nothing else that matters here. For example: the user is ZZAUTOTEST S4-26 User and the role is ZZAUTOTEST S4-26 Role.
 - Net 30 is held by at least one customer, and the shop's own term {Term-A} by none. For example: {Term-A} is ZZAUTOTEST S4-26 Fourteen.
+- Net 30 is active and is not the shop's default for new customers.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Role-A} = role A, {Term-A} = term A, {User-A} = user A.
-Placeholders: {Role-A}, {Term-A}, {User-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-ROLE.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Term-A} = term A.
+Placeholders: {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-STD, P-ROLE.
 Sources (verbatim text in section 9): KD-MOVEGATE, PERM-MOVE, PERM-PAGE, S2-R1, S2-R1 MOVE, S4-N1, UFS-37.
 
 ### SETUP-S4-27 — Without AP/AR Data access, Move Customers is greyed
 Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
-- You are signed in as {User-A}, on a custom role, {Role-A}, that has Settings → Finance and Customers → Create & Edit, but not View and Manage AP/AR Data (and whatever it needs to reach Settings), and nothing else that matters here. For example: {User-A} is ZZAUTOTEST S4-27 User and {Role-A} is ZZAUTOTEST S4-27 Role.
+- You are signed in as a user on a custom role that has Settings → Finance and Customers → Create & Edit, but not View and Manage AP/AR Data (and whatever it needs to reach Settings), and nothing else that matters here. For example: the user is ZZAUTOTEST S4-27 User and the role is ZZAUTOTEST S4-27 Role.
 - Net 30 is held by at least one customer, and the shop's own term {Term-A} by none. For example: {Term-A} is ZZAUTOTEST S4-27 Fourteen.
+- Net 30 is active and is not the shop's default for new customers.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Role-A} = role A, {Term-A} = term A, {User-A} = user A.
-Placeholders: {Role-A}, {Term-A}, {User-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-ROLE.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Term-A} = term A.
+Placeholders: {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-STD, P-ROLE.
 Sources (verbatim text in section 9): KD-MOVEGATE, PERM-MOVE, PERM-PAGE, S2-R1, S2-R1 MOVE, S4-N1, UFS-37.
 
 ### SETUP-S4-28 — Without Customers Create & Edit, Move Customers is greyed
 Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
-- You are signed in as {User-A}, on a custom role, {Role-A}, that has Settings → Finance and View and Manage AP/AR Data, but not Customers → Create & Edit (and whatever it needs to reach Settings), and nothing else that matters here. For example: {User-A} is ZZAUTOTEST S4-28 User and {Role-A} is ZZAUTOTEST S4-28 Role.
+- You are signed in as a user on a custom role that has Settings → Finance and View and Manage AP/AR Data, but not Customers → Create & Edit (and whatever it needs to reach Settings), and nothing else that matters here. For example: the user is ZZAUTOTEST S4-28 User and the role is ZZAUTOTEST S4-28 Role.
 - Net 30 is held by at least one customer, and the shop's own term {Term-A} by none. For example: {Term-A} is ZZAUTOTEST S4-28 Fourteen.
+- Net 30 is active and is not the shop's default for new customers.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Role-A} = role A, {Term-A} = term A, {User-A} = user A.
-Placeholders: {Role-A}, {Term-A}, {User-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-ROLE.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Term-A} = term A.
+Placeholders: {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-STD, P-ROLE.
 Sources (verbatim text in section 9): KD-MOVEGATE, PERM-MOVE, PERM-PAGE, S2-R1, S2-R1 MOVE, S4-N1, UFS-37.
 
 ### SETUP-S4-29 — With all three permissions a custom role can move customers
 Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
-- You are signed in as {User-A}, on a custom role, {Role-A}, that has Settings → Finance, Customers → Create & Edit and View and Manage AP/AR Data (and whatever it needs to reach Settings), and nothing else that matters here. For example: {User-A} is ZZAUTOTEST S4-29 User and {Role-A} is ZZAUTOTEST S4-29 Role.
-- The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly one customer, {Customer-A}. For example: {Term-A} is ZZAUTOTEST S4-29 N20, {Customer-A} is ZZAUTOTEST S4-29 Solo.
+- You are signed in as a user on a custom role that has Settings → Finance, Customers → Create & Edit and View and Manage AP/AR Data (and whatever it needs to reach Settings), and nothing else that matters here. For example: the user is ZZAUTOTEST S4-29 User and the role is ZZAUTOTEST S4-29 Role.
+- The shop's own term {Term-A} (made for this test), due 20 days after the invoice date, is held by exactly one customer made for this test. For example: {Term-A} is ZZAUTOTEST S4-29 N20, held by ZZAUTOTEST S4-29 Solo.
+- Net 45 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Role-A} = role A, {Term-A} = term A, {User-A} = user A.
-Placeholders: {Customer-A}, {Role-A}, {Term-A}, {User-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-INV, P-ROLE.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Term-A} = term A.
+Placeholders: {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-INV, P-ROLE.
 Sources (verbatim text in section 9): KD-MOVEGATE, PERM-MOVE, S4-R9.
 
 ### SETUP-S4-30 — A move sent without all three permissions is refused by the server
 Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATION: HOLD - the page greys Move Customers for this user, and changing a role signs the user out, so only a request sent outside the page can reach this refusal`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
-- You are signed in as {User-A}, on a custom role, {Role-A}, that has Settings → Finance and Customers → Create & Edit, but not View and Manage AP/AR Data (and whatever it needs to reach Settings), and nothing else that matters here. For example: {User-A} is ZZAUTOTEST S4-30 User and {Role-A} is ZZAUTOTEST S4-30 Role.
+- You are signed in as a user on a custom role that has Settings → Finance and Customers → Create & Edit, but not View and Manage AP/AR Data (and whatever it needs to reach Settings), and nothing else that matters here. For example: the user is ZZAUTOTEST S4-30 User and the role is ZZAUTOTEST S4-30 Role.
 - Net 20 is held by at least one customer.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Role-A} = role A, {User-A} = user A.
-Placeholders: {Role-A}, {User-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Placeholders: none. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-ROLE.
 Sources (verbatim text in section 9): S4-N1.
 
@@ -1718,7 +1732,9 @@ Preconditions with their placeholders and examples (for Claude sessions; the Tes
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - You and a second user, {User-B}, are both signed in with the "Admin" role, in two separate browsers. For example: {User-B} is ZZAUTOTEST S4 Second Admin.
 - COD is the shop's default for new customers.
-- The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly two customers, {Customer-A} and {Customer-B}. For example: {Term-A} is ZZAUTOTEST S4-31 N20, {Customer-A} is ZZAUTOTEST S4-31 Alpha and {Customer-B} is ZZAUTOTEST S4-31 Bravo.
+- The shop's own term {Term-A} (made for this test), due 20 days after the invoice date, is held by exactly two customers, {Customer-A} and {Customer-B}. For example: {Term-A} is ZZAUTOTEST S4-31 N20, {Customer-A} is ZZAUTOTEST S4-31 Alpha and {Customer-B} is ZZAUTOTEST S4-31 Bravo.
+- Net 45 and Net 60 are active.
+- Create {Customer-A} and {Customer-B} just for this test, so no earlier test's changes affect them.
 - Starting screen: your browser shows the Credit Terms page; {User-B}'s browser shows Edit Customer for {Customer-B}.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-B} = customer B, {Location-A} = the test location, {Term-A} = term A, {User-B} = user B.
@@ -1732,7 +1748,8 @@ Preconditions with their placeholders and examples (for Claude sessions; the Tes
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - You and a second user, {User-B}, are both signed in with the "Admin" role, in two separate browsers. For example: {User-B} is ZZAUTOTEST S4 Second Admin.
 - COD is the shop's default for new customers.
-- The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly one customer, {Customer-A}. For example: {Term-A} is ZZAUTOTEST S4-32 N20, {Customer-A} is ZZAUTOTEST S4-32 Solo.
+- The shop's own term {Term-A} (made for this test), due 20 days after the invoice date, is held by exactly one customer, {Customer-A} (made for this test). For example: {Term-A} is ZZAUTOTEST S4-32 N20, {Customer-A} is ZZAUTOTEST S4-32 Solo.
+- Net 45 and Net 60 are active.
 - Starting screen: your browser shows the Credit Terms page; {User-B}'s browser shows Edit Customer for {Customer-A}.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {User-B} = user B.
@@ -1746,7 +1763,8 @@ Preconditions with their placeholders and examples (for Claude sessions; the Tes
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - You and a second user, {User-B}, are both signed in with the "Admin" role, in two separate browsers. For example: {User-B} is ZZAUTOTEST S4 Second Admin.
 - COD is the shop's default for new customers.
-- The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly one customer, {Customer-A}. For example: {Term-A} is ZZAUTOTEST S4-33 N20, {Customer-A} is ZZAUTOTEST S4-33 Solo.
+- The shop's own term {Term-A} (made for this test), due 20 days after the invoice date, is held by exactly one customer, {Customer-A} (made for this test). For example: {Term-A} is ZZAUTOTEST S4-33 N20, {Customer-A} is ZZAUTOTEST S4-33 Solo.
+- Net 45 is active.
 - Starting screen: the Credit Terms page is open in both browsers.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {User-B} = user B.
@@ -1759,12 +1777,13 @@ Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATIO
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop's own term {Term-A}, due 15 days after the invoice date, is held by exactly three customers, {Customer-A}, {Customer-B} and {Customer-C} (a new term holds only this case's customers), whose names are in that A to Z order, with credit limits of $500.00, $0.00 and $1,000.00. For example: {Term-A} is ZZAUTOTEST S4-34 N15, {Customer-A} is ZZAUTOTEST S4-34 Alpha, {Customer-B} is ZZAUTOTEST S4-34 Bravo and {Customer-C} is ZZAUTOTEST S4-34 Charlie.
+- The shop's own term {Term-A} (made for this test), due 15 days after the invoice date, is held by exactly three customers made for this test (a new term holds only this case's customers). For example: {Term-A} is ZZAUTOTEST S4-34 N15, held by ZZAUTOTEST S4-34 Alpha, Bravo and Charlie.
+- Net 45 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-B} = customer B, {Customer-C} = customer C, {Location-A} = the test location, {Term-A} = term A.
-Placeholders: {Customer-A}, {Customer-B}, {Customer-C}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-STD, P-CUST, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
+Placeholders: {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-STD, P-INV.
 Sources (verbatim text in section 9): EH-S4c, UFS-38.
 
 ### SETUP-S4-35 — Moving off a deactivated term: how the note names the old term
@@ -1772,8 +1791,9 @@ Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATIO
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop's own term {Term-A}, due 60 days after the invoice date, is deactivated and held only by customer {Customer-A}. For example: {Term-A} is ZZAUTOTEST S4-35 N60 and {Customer-A} is ZZAUTOTEST S4-35 Solo.
+- The shop's own term {Term-A} (made for this test), due 60 days after the invoice date, is deactivated and held only by customer {Customer-A} (made for this test). For example: {Term-A} is ZZAUTOTEST S4-35 N60 and {Customer-A} is ZZAUTOTEST S4-35 Solo.
 - Your user name is {User-A}. For example: {User-A} is ZZAUTOTEST S4-35 Admin.
+- Net 30 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {User-A} = your user name.
@@ -1786,12 +1806,12 @@ Section: Story 4 — Move Customers (TestRail section 91458). Marker: `AUTOMATIO
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- Customer {Customer-A} is stored with the text "NET 30" (from an old import). For example: {Customer-A} is ZZAUTOTEST S4-36 Upper.
-- Your user name is {User-A}. For example: {User-A} is ZZAUTOTEST S4-36 Admin.
+- Customer {Customer-A} (made for this test) is stored with the text "NET 30" (from an old import). For example: {Customer-A} is ZZAUTOTEST S4-36 Upper.
+- Net 30 and Net 45 are active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {User-A} = your user name.
-Placeholders: {Customer-A}, {Location-A}, {User-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location.
+Placeholders: {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD, P-CUST, P-IMPORT.
 Sources (verbatim text in section 9): S11-E2, S4-R11.
 
@@ -1812,7 +1832,7 @@ Section: Story 5 — New Customer and Edit Customer (TestRail section 91459). Ma
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- Net 50 is deactivated and every other standard term is active. The shop's own active terms include {Term-A} (due 10 days after the invoice date) and {Term-B} (due on day 5 of the following month), and its own term {Term-C} is deactivated. Other shop terms (from other tests) may also be offered. For example: {Term-A} is ZZAUTOTEST S5-02 Ten, {Term-B} is ZZAUTOTEST S5-02 Fifth and {Term-C} is ZZAUTOTEST S5-02 Old.
+- Net 50 is deactivated and every other standard term is active. The shop's own active terms include {Term-A} (due 10 days after the invoice date) and {Term-B} (due on day 5 of the following month), and its own term {Term-C} is deactivated. Other terms of the shop may also be offered. For example: {Term-A} is ZZAUTOTEST S5-02 Ten, {Term-B} is ZZAUTOTEST S5-02 Fifth and {Term-C} is ZZAUTOTEST S5-02 Old.
 - Starting screen: the Customers page.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {Term-B} = term B, {Term-C} = term C.
@@ -1849,6 +1869,7 @@ Section: Story 5 — New Customer and Edit Customer (TestRail section 91459). Ma
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
+- Net 30 is active.
 - Starting screen: the Customers page.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location.
@@ -1861,7 +1882,7 @@ Section: Story 5 — New Customer and Edit Customer (TestRail section 91459). Ma
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date. For example: {Term-A} is ZZAUTOTEST S5-06 Fourteen.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date. For example: {Term-A} is ZZAUTOTEST S5-06 Fourteen.
 - A name for the new customer, {Customer-A}. For example: {Customer-A} is ZZAUTOTEST S5-06 Customer.
 - Starting screen: the Customers page.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1901,7 +1922,7 @@ Section: Story 5 — New Customer and Edit Customer (TestRail section 91459). Ma
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- Customer {Customer-A} holds Net 60, which is deactivated, and has an invoice {Invoice-A} created after Net 60 was deactivated. For example: {Customer-A} is ZZAUTOTEST S5-09 Customer and {Invoice-A} is the invoice of work order S2-15440.
+- Customer {Customer-A} (made for this test) holds Net 60, which is deactivated, and has an invoice {Invoice-A} (made for this test) created after Net 60 was deactivated. For example: {Customer-A} is ZZAUTOTEST S5-09 Customer and {Invoice-A} is the invoice of work order S2-15440.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Invoice-A} = invoice A, {Location-A} = the test location.
 Placeholders: {Customer-A}, {Invoice-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
@@ -1913,7 +1934,8 @@ Section: Story 5 — New Customer and Edit Customer (TestRail section 91459). Ma
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- Customer {Customer-A} holds Net 60, which is deactivated. For example: {Customer-A} is ZZAUTOTEST S5-10 Customer.
+- Customer {Customer-A} (made for this test) holds Net 60, which is deactivated. For example: {Customer-A} is ZZAUTOTEST S5-10 Customer.
+- Net 30 is active.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location.
 Placeholders: {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
@@ -1935,7 +1957,7 @@ Sources (verbatim text in section 9): S11-R6, S5-R10.
 Section: Story 5 — New Customer and Edit Customer (TestRail section 91459). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} exists. For example: {Customer-A} is ZZAUTOTEST S5-12 Customer.
+- Create {Customer-A} for this test. For example: {Customer-A} is ZZAUTOTEST S5-12 Customer.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location.
 Placeholders: {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
@@ -1947,11 +1969,11 @@ Section: Story 5 — New Customer and Edit Customer (TestRail section 91459). Ma
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization uses the modern invoice design.
-- Customer {Customer-A} holds the shop's own term {Term-A}, which has a 31-character name. Work order {Work-order-1} for {Customer-A} has an estimate and an invoice. For example: {Term-A} is ZZAUTOTEST S5-13 Long Term Name, {Customer-A} is ZZAUTOTEST S5-13 Customer and {Work-order-1} is S2-15440.
+- Work order {Work-order-1} has an estimate and an invoice, for a customer who holds the shop's own term {Term-A}, which has a 31-character name. For example: {Term-A} is ZZAUTOTEST S5-13 Long Term Name and {Work-order-1} is S2-15440.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-WO, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-WO, P-INV.
 Sources (verbatim text in section 9): S5-R11.
 
 ### SETUP-S5-14 — A 31-character term prints in full on legacy invoices and estimates
@@ -1959,11 +1981,11 @@ Section: Story 5 — New Customer and Edit Customer (TestRail section 91459). Ma
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization uses the legacy invoice design.
-- Customer {Customer-A} holds the shop's own term {Term-A}, which has a 31-character name. Work order {Work-order-1} for {Customer-A} has an estimate and an invoice. For example: {Term-A} is ZZAUTOTEST S5-14 Long Term Name, {Customer-A} is ZZAUTOTEST S5-14 Customer and {Work-order-1} is S2-15440.
+- Work order {Work-order-1} has an estimate and an invoice, for a customer who holds the shop's own term {Term-A}, which has a 31-character name. For example: {Term-A} is ZZAUTOTEST S5-14 Long Term Name and {Work-order-1} is S2-15440.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-WO, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-WO, P-INV.
 Sources (verbatim text in section 9): S5-R11.
 
 ### SETUP-S5-15 — Long term names wrap in the dropdown and on the customer card
@@ -1980,64 +2002,64 @@ Sources (verbatim text in section 9): S5-R14.
 ### SETUP-S5-16 — Without AP/AR Data access, New and Edit Customer show neither field
 Section: Story 5 — New Customer and Edit Customer (TestRail section 91459). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
-- You are signed in as {User-A}, on a custom role, {Role-A}, that has Customers → Create & Edit but not View and Manage AP/AR Data. For example: {User-A} is ZZAUTOTEST S5-16 User and {Role-A} is ZZAUTOTEST S5-16 No APAR.
+- You are signed in as a user on a custom role that has Customers → Create & Edit but not View and Manage AP/AR Data. For example: the user is ZZAUTOTEST S5-16 User and the role is ZZAUTOTEST S5-16 No APAR.
 - Customer {Customer-A} exists. For example: {Customer-A} is ZZAUTOTEST S5-16 Customer.
 - Starting screen: the Customers page.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Role-A} = role A, {User-A} = user A.
-Placeholders: {Customer-A}, {Role-A}, {User-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A.
+Placeholders: {Customer-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-CUST, P-ROLE.
 Sources (verbatim text in section 9): PERM-FIELDS, S11-N2, S11-R5, S5-N1.
 
 ### SETUP-S5-17 — A customer created without AP/AR access gets the default COD and $0
 Section: Story 5 — New Customer and Edit Customer (TestRail section 91459). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
-- You are signed in as {User-A}, on a custom role, {Role-A}, that has Customers → Create & Edit but not View and Manage AP/AR Data. For example: {User-A} is ZZAUTOTEST S5-17 User and {Role-A} is ZZAUTOTEST S5-17 No APAR.
+- You are signed in as a user on a custom role that has Customers → Create & Edit but not View and Manage AP/AR Data. For example: the user is ZZAUTOTEST S5-17 User and the role is ZZAUTOTEST S5-17 No APAR.
 - COD is the shop's default for new customers.
 - A name for the new customer, {Customer-A}. For example: {Customer-A} is ZZAUTOTEST S5-17 Customer.
 - An Admin can check the result in a second browser.
 - Starting screen: the Customers page.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Role-A} = role A, {User-A} = user A.
-Placeholders: {Customer-A}, {Role-A}, {User-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A.
+Placeholders: {Customer-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD, P-CUST, P-ROLE.
 Sources (verbatim text in section 9): PERM-IGNORED, S5-N4.
 
 ### SETUP-S5-18 — A customer created without AP/AR access gets the default Net 30
 Section: Story 5 — New Customer and Edit Customer (TestRail section 91459). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
-- You are signed in as {User-A}, on a custom role, {Role-A}, that has Customers → Create & Edit but not View and Manage AP/AR Data. For example: {User-A} is ZZAUTOTEST S5-18 User and {Role-A} is ZZAUTOTEST S5-18 No APAR.
+- You are signed in as a user on a custom role that has Customers → Create & Edit but not View and Manage AP/AR Data. For example: the user is ZZAUTOTEST S5-18 User and the role is ZZAUTOTEST S5-18 No APAR.
 - Net 30 is the shop's default for new customers.
 - A name for the new customer, {Customer-A}. For example: {Customer-A} is ZZAUTOTEST S5-18 Customer.
 - An Admin can check the result in a second browser.
 - Starting screen: the Customers page.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Role-A} = role A, {User-A} = user A.
-Placeholders: {Customer-A}, {Role-A}, {User-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A.
+Placeholders: {Customer-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD, P-CUST, P-ROLE.
 Sources (verbatim text in section 9): PERM-IGNORED, S5-N4.
 
 ### SETUP-S5-19 — Editing a customer without AP/AR access keeps its term and limit
 Section: Story 5 — New Customer and Edit Customer (TestRail section 91459). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
-- You are signed in as {User-A}, on a custom role, {Role-A}, that has Customers → Create & Edit but not View and Manage AP/AR Data. For example: {User-A} is ZZAUTOTEST S5-19 User and {Role-A} is ZZAUTOTEST S5-19 No APAR.
-- Customer {Customer-A} holds Net 45 with a credit limit of $900.00. For example: {Customer-A} is ZZAUTOTEST S5-19 Customer.
+- You are signed in as a user on a custom role that has Customers → Create & Edit but not View and Manage AP/AR Data. For example: the user is ZZAUTOTEST S5-19 User and the role is ZZAUTOTEST S5-19 No APAR.
+- Customer {Customer-A} (made for this test) holds Net 45 with a credit limit of $900.00. For example: {Customer-A} is ZZAUTOTEST S5-19 Customer.
 - An Admin can check the result in a second browser.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Role-A} = role A, {User-A} = user A.
-Placeholders: {Customer-A}, {Role-A}, {User-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A.
+Placeholders: {Customer-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-CUST, P-ROLE.
 Sources (verbatim text in section 9): PERM-IGNORED, S5-N4.
 
 ### SETUP-S5-20 — A user without Settings Finance still gets the default and the shop's terms
 Section: Story 5 — New Customer and Edit Customer (TestRail section 91459). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
-- You are signed in as {User-A}, on the out-of-the-box "Service Manager" role (Customers → Create & Edit and View and Manage AP/AR Data, no Settings → Finance). For example: {User-A} is ZZAUTOTEST S5-20 User.
+- You are signed in as a user on the out-of-the-box "Service Manager" role (Customers → Create & Edit and View and Manage AP/AR Data, no Settings → Finance). For example: the user is ZZAUTOTEST S5-20 User.
 - The shop's own term {Term-A}, due 14 days after the invoice date, is the default. For example: {Term-A} is ZZAUTOTEST S5-20 Fourteen.
 - Starting screen: the Customers page.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Term-A} = term A, {User-A} = user A.
-Placeholders: {Term-A}, {User-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Term-A} = term A.
+Placeholders: {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-INV, P-ROLE.
 Sources (verbatim text in section 9): PERM-LIST, S5-R2.
 
@@ -2048,6 +2070,7 @@ Preconditions with their placeholders and examples (for Claude sessions; the Tes
 - You and a second user, {User-B}, are both signed in with the "Admin" role, in two separate browsers. For example: {User-B} is ZZAUTOTEST S5-21 Second Admin.
 - COD is the shop's default for new customers.
 - A name for the new customer, {Customer-A}. For example: {Customer-A} is ZZAUTOTEST S5-21 Customer.
+- Net 30 is active.
 - Starting screen: your browser shows the Customers page; {User-B}'s browser shows the Credit Terms page.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {User-B} = user B.
@@ -2084,7 +2107,7 @@ Preconditions with their placeholders and examples (for Claude sessions; the Tes
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - You and a second user, {User-B}, are both signed in with the "Admin" role, in two separate browsers. For example: {User-B} is ZZAUTOTEST S5-24 Second Admin.
 - COD is the shop's default for new customers.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date. For example: {Term-A} is ZZAUTOTEST S5-24 Fourteen.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date. For example: {Term-A} is ZZAUTOTEST S5-24 Fourteen.
 - A name for the new customer, {Customer-A}. For example: {Customer-A} is ZZAUTOTEST S5-24 Customer.
 - Starting screen: your browser shows the Customers page; {User-B}'s browser shows the Credit Terms page.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2120,7 +2143,7 @@ Sources (verbatim text in section 9): S5-R4.
 Section: Story 6 — Vendors (TestRail section 91460). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop's own term {Term-A}, due 10 days after the invoice date, is the default for new customers. Its own term {Term-B}, due on day 5 of the following month, is active. Net 50 is deactivated and every other standard term is active. Other shop terms (from other tests) may also be offered. For example: {Term-A} is ZZAUTOTEST S6-01 Ten and {Term-B} is ZZAUTOTEST S6-01 Fifth.
+- The shop's own term {Term-A}, due 10 days after the invoice date, is the default for new customers. Its own term {Term-B}, due on day 5 of the following month, is active. Net 50 is deactivated and every other standard term is active. Other terms of the shop may also be offered. For example: {Term-A} is ZZAUTOTEST S6-01 Ten and {Term-B} is ZZAUTOTEST S6-01 Fifth.
 - Starting screen: Parts, Vendors.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {Term-B} = term B.
@@ -2145,7 +2168,8 @@ Sources (verbatim text in section 9): FO-VENDOR-COD, OOS-1, S6-R2.
 Section: Story 6 — Vendors (TestRail section 91460). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Vendor {Vendor-A} holds Net 60, which is deactivated. Vendor {Vendor-B} holds Net 30. For example: {Vendor-A} is ZZAUTOTEST S6-03 Vendor A and {Vendor-B} is ZZAUTOTEST S6-03 Vendor B.
+- Vendor {Vendor-A} (made for this test) holds Net 60, which is deactivated. Vendor {Vendor-B} (made for this test) holds Net 30. For example: {Vendor-A} is ZZAUTOTEST S6-03 Vendor A and {Vendor-B} is ZZAUTOTEST S6-03 Vendor B.
+- Net 45 is active.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Vendor-A} = vendor A, {Vendor-B} = vendor B.
 Placeholders: {Location-A}, {Vendor-A}, {Vendor-B}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
@@ -2156,7 +2180,7 @@ Sources (verbatim text in section 9): S6-N2, S6-R3, T-INACTIVE.
 Section: Story 6 — Vendors (TestRail section 91460). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Vendor {Vendor-A} holds COD with a credit limit of $2,000.00. For example: {Vendor-A} is ZZAUTOTEST S6-04 Vendor.
+- Vendor {Vendor-A} (made for this test) holds COD with a credit limit of $2,000.00. For example: {Vendor-A} is ZZAUTOTEST S6-04 Vendor.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Vendor-A} = vendor A.
 Placeholders: {Location-A}, {Vendor-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
@@ -2199,12 +2223,12 @@ Sources (verbatim text in section 9): S6-R6.
 ### SETUP-S6-08 — Without AP/AR Data access the vendor Credit Terms field stays hidden
 Section: Story 6 — Vendors (TestRail section 91460). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
-- You are signed in as {User-A}, on a custom role, {Role-A}, with the vendor permissions to create and edit vendors but not View and Manage AP/AR Data. For example: {User-A} is ZZAUTOTEST S6-08 User and {Role-A} is ZZAUTOTEST S6-08 No APAR.
+- You are signed in as a user on a custom role with the vendor permissions to create and edit vendors but not View and Manage AP/AR Data. For example: the user is ZZAUTOTEST S6-08 User and the role is ZZAUTOTEST S6-08 No APAR.
 - Vendor {Vendor-A} exists. For example: {Vendor-A} is ZZAUTOTEST S6-08 Vendor.
 - Starting screen: Parts, Vendors.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Role-A} = role A, {User-A} = user A, {Vendor-A} = vendor A.
-Placeholders: {Role-A}, {User-A}, {Vendor-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Vendor-A} = vendor A.
+Placeholders: {Vendor-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-VENDOR, P-ROLE.
 Sources (verbatim text in section 9): PERM-FIELDS, S6-N1.
 
@@ -2212,7 +2236,8 @@ Sources (verbatim text in section 9): PERM-FIELDS, S6-N1.
 Section: Story 7 — Due dates (TestRail section 91461). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds Net 30 and has an invoice {Invoice-A} dated Oct 5, 2026, due Nov 4, 2026, showing Terms Net 30. For example: {Customer-A} is ZZAUTOTEST S7-01 Customer and {Invoice-A} is the invoice of work order S2-15440.
+- Customer {Customer-A} (made for this test) holds Net 30 and has an invoice {Invoice-A} (made for this test) dated Oct 5, 2026, due Nov 4, 2026, showing Terms Net 30. For example: {Customer-A} is ZZAUTOTEST S7-01 Customer and {Invoice-A} is the invoice of work order S2-15440.
+- Net 60 is active.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Invoice-A} = invoice A, {Location-A} = the test location.
 Placeholders: {Customer-A}, {Invoice-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
@@ -2223,19 +2248,20 @@ Sources (verbatim text in section 9): KD-LOCK, S7-R7.
 Section: Story 7 — Due dates (TestRail section 91461). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds Net 30 and has an invoice {Invoice-A} dated Oct 5, 2026, due Nov 4, 2026, showing Terms Net 30. For example: {Customer-A} is ZZAUTOTEST S7-01b Customer and {Invoice-A} is the invoice of work order S2-15440.
+- Invoice {Invoice-A} (made for this test), dated Oct 5, 2026, due Nov 4, 2026, showing Terms Net 30, belongs to a customer who holds Net 30. For example: {Invoice-A} is the invoice of work order S2-15440 for ZZAUTOTEST S7-01b Customer.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Invoice-A} = invoice A, {Location-A} = the test location.
-Placeholders: {Customer-A}, {Invoice-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-CUST, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Invoice-A} = invoice A, {Location-A} = the test location.
+Placeholders: {Invoice-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-INV.
 Sources (verbatim text in section 9): S7-R7.
 
 ### SETUP-S7-01c — An invoice keeps its term and due date when the customer is moved
 Section: Story 7 — Due dates (TestRail section 91461). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop's own term {Term-A}, due 20 days after the invoice date, is held only by customer {Customer-A}, who has an invoice {Invoice-A} dated Oct 5, 2026, due Oct 25, 2026, showing Terms {Term-A}. For example: {Term-A} is ZZAUTOTEST S7-01c N20, {Customer-A} is ZZAUTOTEST S7-01c Customer and {Invoice-A} is the invoice of work order S2-15448.
+- The shop's own term {Term-A} (made for this test), due 20 days after the invoice date, is held only by customer {Customer-A} (made for this test), who has an invoice {Invoice-A} (made for this test) dated Oct 5, 2026, due Oct 25, 2026, showing Terms {Term-A}. For example: {Term-A} is ZZAUTOTEST S7-01c N20, {Customer-A} is ZZAUTOTEST S7-01c Customer and {Invoice-A} is the invoice of work order S2-15448.
+- Net 60 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Invoice-A} = invoice A, {Location-A} = the test location, {Term-A} = term A.
@@ -2247,23 +2273,24 @@ Sources (verbatim text in section 9): S7-R7.
 Section: Story 7 — Due dates (TestRail section 91461). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Vendor {Vendor-A} holds the shop's own term {Term-A}, due 14 days after the invoice date, and vendor {Vendor-B} holds Net 30. For example: {Vendor-A} is ZZAUTOTEST S7-02 Vendor A, {Term-A} is ZZAUTOTEST S7-02 Fourteen and {Vendor-B} is ZZAUTOTEST S7-02 Vendor B.
-- A vendor invoice {Vendor-invoice-A} for {Vendor-A}, not yet saved, is open in Parts, Vendors, Vendor Invoices. For example: {Vendor-invoice-A} is a new vendor invoice for one part.
+- Vendor {Vendor-B} (made for this test) holds Net 30. For example: {Vendor-B} is ZZAUTOTEST S7-02 Vendor B.
+- A new vendor invoice, not yet saved, is open in Parts, Vendors, Vendor Invoices, for a vendor who holds one of the shop's own terms, due 14 days after the invoice date. For example: the vendor is ZZAUTOTEST S7-02 Vendor A on ZZAUTOTEST S7-02 Fourteen.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {Vendor-A} = vendor A, {Vendor-B} = vendor B, {Vendor-invoice-A} = vendor invoice A.
-Placeholders: {Location-A}, {Term-A}, {Vendor-A}, {Vendor-B}, {Vendor-invoice-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-VENDOR, P-INV, P-VINV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Vendor-B} = vendor B.
+Placeholders: {Location-A}, {Vendor-B}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-VENDOR, P-INV.
 Sources (verbatim text in section 9): S7-R1, S7-R9.
 
 ### SETUP-S7-03 — The Vendor Bill Export shows the stored due date, not the vendor's new term
 Section: Story 7 — Due dates (TestRail section 91461). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Vendor {Vendor-A} holds Net 30 and has a vendor invoice {Vendor-invoice-A} dated Oct 5, 2026, stored due Nov 4, 2026. For example: {Vendor-A} is ZZAUTOTEST S7-03 Vendor and {Vendor-invoice-A} is ZZAUTOTEST S7-03 Bill 1.
-- Vendor {Vendor-B} has a vendor invoice {Vendor-invoice-B} with no stored due date (from before the release). For example: {Vendor-B} is ZZAUTOTEST S7-03 Old Vendor.
+- Vendor {Vendor-A} (made for this test) holds Net 30 and has a vendor invoice {Vendor-invoice-A} (made for this test) dated Oct 5, 2026, stored due Nov 4, 2026. For example: {Vendor-A} is ZZAUTOTEST S7-03 Vendor and {Vendor-invoice-A} is ZZAUTOTEST S7-03 Bill 1.
+- Vendor invoice {Vendor-invoice-B}, for another vendor, has no stored due date (from before the release). For example: the vendor is ZZAUTOTEST S7-03 Old Vendor.
+- Net 60 is active.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Vendor-A} = vendor A, {Vendor-B} = vendor B, {Vendor-invoice-A} = vendor invoice A, {Vendor-invoice-B} = vendor invoice B.
-Placeholders: {Location-A}, {Vendor-A}, {Vendor-B}, {Vendor-invoice-A}, {Vendor-invoice-B}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Vendor-A} = vendor A, {Vendor-invoice-A} = vendor invoice A, {Vendor-invoice-B} = vendor invoice B.
+Placeholders: {Location-A}, {Vendor-A}, {Vendor-invoice-A}, {Vendor-invoice-B}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-OLD, P-VENDOR, P-INV, P-VINV.
 Sources (verbatim text in section 9): S11-R14, S7-R11.
 
@@ -2271,59 +2298,60 @@ Sources (verbatim text in section 9): S11-R14, S7-R11.
 Section: Story 7 — Due dates (TestRail section 91461). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- You are enrolled at {Location-A} and at {Location-B}, which is in another time zone. For example: {Location-A} is Staging Heavy Duty - 9919 (Edmonton time) and {Location-B} is in Auckland.
-- Customer {Customer-A} holds the shop's own term {Term-A}, due on day 10 of the following month, and has an invoice {Invoice-A} at {Location-A} dated Oct 5, 2026. For example: {Customer-A} is ZZAUTOTEST S7-04 Customer and {Term-A} is ZZAUTOTEST S7-04 Tenth.
+- You are also enrolled at {Location-B}, which is in another time zone. For example: you work in Edmonton and {Location-B} is in Auckland.
+- Invoice {Invoice-A}, dated Oct 5, 2026, at {Location-A}, belongs to a customer who holds one of the shop's own terms, due on day 10 of the following month. For example: the customer is ZZAUTOTEST S7-04 Customer on ZZAUTOTEST S7-04 Tenth.
 - A second user, {User-B}, without Settings → Finance, works in {Location-B}. For example: {User-B} is ZZAUTOTEST S7-04 Writer on the Service Advisor role.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Invoice-A} = invoice A, {Location-A} = location A, {Location-B} = location B, {Term-A} = term A, {User-B} = user B.
-Placeholders: {Customer-A}, {Invoice-A}, {Location-A}, {Location-B}, {Term-A}, {User-B}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-INV, P-TWO, P-LOC.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Invoice-A} = invoice A, {Location-A} = the test location, {Location-B} = location B, {User-B} = user B.
+Placeholders: {Invoice-A}, {Location-A}, {Location-B}, {User-B}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-INV, P-TWO, P-LOC.
 Sources (verbatim text in section 9): PERM-LIST, S7-R6, S7-R6a.
 
 ### SETUP-S7-05 — A term the app does not recognise is dated exactly as before the release
 Section: Story 7 — Due dates (TestRail section 91461). Marker: `AUTOMATION: HOLD - needs the before due date taken on production shortly before the release reaches production; run on production after the release`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are signed in to production (the live app, app.shopview.com) as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Trucks Hill 2 on the production test account.
-- On production, customer {Customer-A} is stored with a credit term text ShopView does not know, {Text-A}, and an invoice {Invoice-A} for it, dated Oct 5, 2026, was created before the release reached production; its due date then, {Date-A}, was written down (with a screenshot). For example: {Customer-A} is ZZAUTOTEST S7-05 Customer, {Text-A} is Prepaid and {Date-A} is Oct 5, 2026.
-- Work order {Work-order-1} for {Customer-A} is complete and ready to invoice. For example: {Work-order-1} is S2-15441.
+- On production, a customer is stored with a credit term text ShopView does not know, {Text-A}, and an invoice for it, dated Oct 5, 2026, was created before the release reached production. For example: the customer is ZZAUTOTEST S7-05 Customer and {Text-A} is Prepaid.
+- You have that invoice's due date from before the release written down ({Date-A}), with a screenshot. For example: {Date-A} is Oct 5, 2026.
+- Work order {Work-order-1} (made for this test), for the same customer, is complete and ready to invoice. For example: {Work-order-1} is S2-15441.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Date-A} = date A, {Invoice-A} = invoice A, {Location-A} = the test location, {Text-A} = "Prepaid", {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Date-A}, {Invoice-A}, {Location-A}, {Text-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-OLD, P-WO, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Date-A} = date A, {Location-A} = the test location, {Text-A} = "Prepaid", {Work-order-1} = work order 1.
+Placeholders: {Date-A}, {Location-A}, {Text-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-OLD, P-WO, P-INV.
 Sources (verbatim text in section 9): S10-R4, S7-N1.
 
 ### SETUP-S7-06 — A deactivated term still dates new invoices for customers who keep it
 Section: Story 7 — Due dates (TestRail section 91461). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds the shop's own term {Term-A}, due 14 days after the invoice date, and {Term-A} is deactivated. For example: {Customer-A} is ZZAUTOTEST S7-06 Customer and {Term-A} is ZZAUTOTEST S7-06 Fourteen.
-- Work order {Work-order-1} for {Customer-A} is complete and ready to invoice (every part received, review done). For example: {Work-order-1} is S2-15442.
+- Work order {Work-order-1} (made for this test) is complete and ready to invoice (every part received, review done), for a customer who holds the shop's own term {Term-A} (made for this test), due 14 days after the invoice date. For example: {Work-order-1} is S2-15442 and {Term-A} is ZZAUTOTEST S7-06 Fourteen.
+- {Term-A} is deactivated.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-STD, P-CUST, P-WO, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-STD, P-WO, P-INV.
 Sources (verbatim text in section 9): S5-R8, S7-E1.
 
 ### SETUP-S7-07 — An invoice made after a reversal takes the customer's term at that moment
 Section: Story 7 — Due dates (TestRail section 91461). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} has invoice {Invoice-A} for work order {Work-order-1}, dated Oct 5, 2026, created on Net 30 (due Nov 4, 2026). The customer has since been moved to Net 60. For example: {Customer-A} is ZZAUTOTEST S7-07 Customer and {Work-order-1} is S2-15443.
+- Work order {Work-order-1} (made for this test) has an invoice dated Oct 5, 2026, created on Net 30 (due Nov 4, 2026); its customer has since been moved to Net 60. For example: {Work-order-1} is S2-15443 for ZZAUTOTEST S7-07 Customer.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Invoice-A} = invoice A, {Location-A} = the test location, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Invoice-A}, {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-CUST, P-WO, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-WO, P-INV.
 Sources (verbatim text in section 9): S7-E3.
 
 ### SETUP-S7-08 — Changing the customer on an open work order takes the new customer's term
 Section: Story 7 — Due dates (TestRail section 91461). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds Net 30 and customer {Customer-B} holds the shop's own term {Term-A}, due on day 10 of the following month. For example: {Customer-A} is ZZAUTOTEST S7-08 First, {Customer-B} is ZZAUTOTEST S7-08 Second and {Term-A} is ZZAUTOTEST S7-08 Tenth.
-- Work order {Work-order-1} for {Customer-A} is complete and ready to invoice (every part received, review done). For example: {Work-order-1} is S2-15444.
+- Customer {Customer-B} (made for this test) holds the shop's own term {Term-A} (made for this test), due on day 10 of the following month. For example: {Customer-B} is ZZAUTOTEST S7-08 Second and {Term-A} is ZZAUTOTEST S7-08 Tenth.
+- Work order {Work-order-1} (made for this test) is complete and ready to invoice (every part received, review done), for a customer who holds Net 30. For example: {Work-order-1} is S2-15444.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-B} = customer B, {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Customer-B}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-B} = customer B, {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
+Placeholders: {Customer-B}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-CUST, P-WO, P-INV.
 Sources (verbatim text in section 9): S7-E4.
 
@@ -2331,23 +2359,23 @@ Sources (verbatim text in section 9): S7-E4.
 Section: Story 7 — Due dates (TestRail section 91461). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds the shop's own term {Term-A}, due 14 days after the invoice date, with a credit limit of $5,000.00. For example: {Customer-A} is ZZAUTOTEST S7-09 Customer and {Term-A} is ZZAUTOTEST S7-09 Fourteen.
-- Work order {Work-order-1} for {Customer-A} is complete and ready to invoice (every part received, review done). For example: {Work-order-1} is S2-15445.
+- Work order {Work-order-1} (made for this test) is complete and ready to invoice (every part received, review done), for a customer who holds one of the shop's own terms, due 14 days after the invoice date, with a credit limit of $5,000.00. For example: {Work-order-1} is S2-15445.
+- Net 30 is active.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-WO, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-WO, P-INV.
 Sources (verbatim text in section 9): GOAL-2, KD-OWNNET, S11-R10.
 
 ### SETUP-S7-10 — Changing the invoice date after the customer changed term
 Section: Story 7 — Due dates (TestRail section 91461). Marker: `AUTOMATION: HOLD - waiting on the PO (question 7)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} has invoice {Invoice-A} created on Net 30, dated Oct 5, 2026 (due Nov 4, 2026); the customer has since been moved to Net 60. For example: {Customer-A} is ZZAUTOTEST S7-10 Customer and {Invoice-A} is the invoice of work order S2-15446.
+- Invoice {Invoice-A} was created on Net 30, dated Oct 5, 2026 (due Nov 4, 2026); its customer has since been moved to Net 60. For example: {Invoice-A} is the invoice of work order S2-15446 for ZZAUTOTEST S7-10 Customer.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Invoice-A} = invoice A, {Location-A} = the test location.
-Placeholders: {Customer-A}, {Invoice-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-CUST, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Invoice-A} = invoice A, {Location-A} = the test location.
+Placeholders: {Invoice-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-INV.
 Sources (verbatim text in section 9): S7-R7, S7-R8.
 
 ### SETUP-S8-01 — A shop's Net term reaches QuickBooks as a standard term on first use
@@ -2355,11 +2383,12 @@ Section: Story 8 — QuickBooks sync - credit terms (TestRail section 91462). Ma
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The test organization is connected to a QuickBooks Online sandbox company, and you can sign in to that company in another tab.
-- The shop's own term {Term-A}, due 14 days after the invoice date, is not in QuickBooks' Terms list. Customer {Customer-A} holds {Term-A} and work order {Work-order-1} for it is complete. For example: {Term-A} is ZZAUTOTEST S8-01 Fourteen, {Customer-A} is ZZAUTOTEST S8-01 Customer and {Work-order-1} is S2-15440.
+- The shop's own term {Term-A} (made for this test), due 14 days after the invoice date, is not in QuickBooks' Terms list. For example: {Term-A} is ZZAUTOTEST S8-01 Fourteen.
+- Work order {Work-order-1} (made for this test) is complete, for a customer who holds {Term-A}. For example: {Work-order-1} is S2-15440.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-WO, P-INV, P-QBO.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-WO, P-INV, P-QBO.
 Sources (verbatim text in section 9): S8-R1, S8-R2, S8-R5.
 
 ### SETUP-S8-02 — A day-of-the-following-month term reaches QuickBooks as date-driven
@@ -2367,11 +2396,13 @@ Section: Story 8 — QuickBooks sync - credit terms (TestRail section 91462). Ma
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The test organization is connected to a QuickBooks Online sandbox company, and you can sign in to that company in another tab.
-- The shop's own term {Term-A}, due on day 10 of the following month, is not in QuickBooks. Customer {Customer-A} holds it and work orders {Work-order-1} and {Work-order-2} for it are complete. For example: {Term-A} is ZZAUTOTEST S8-02 Tenth, {Customer-A} is ZZAUTOTEST S8-02 Customer and the work orders are S2-15441 and S2-15442.
+- The shop's own term {Term-A} (made for this test), due on day 10 of the following month, is not in QuickBooks. For example: {Term-A} is ZZAUTOTEST S8-02 Tenth.
+- Work orders {Work-order-1} and {Work-order-2} are complete, both for one customer who holds {Term-A}. For example: the work orders are S2-15441 and S2-15442.
+- Create {Work-order-1} and {Work-order-2} just for this test, so no earlier test's changes affect them.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1, {Work-order-2} = work order 2.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Work-order-1}, {Work-order-2}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-WO, P-INV, P-QBO.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1, {Work-order-2} = work order 2.
+Placeholders: {Location-A}, {Term-A}, {Work-order-1}, {Work-order-2}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-WO, P-INV, P-QBO.
 Sources (verbatim text in section 9): S8-R1, S8-R3.
 
 ### SETUP-S8-03 — A term QuickBooks already has under the same name is used and never changed
@@ -2379,11 +2410,12 @@ Section: Story 8 — QuickBooks sync - credit terms (TestRail section 91462). Ma
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The test organization is connected to a QuickBooks Online sandbox company, and you can sign in to that company in another tab.
-- QuickBooks already has a term named {Term-A}, set as a standard term due in 20 days. In ShopView, {Term-A} is one of the shop's own terms, due 14 days after the invoice date. Customer {Customer-A} holds it and work order {Work-order-1} for it is complete. For example: {Term-A} is ZZAUTOTEST S8-03 Mixed, {Customer-A} is ZZAUTOTEST S8-03 Customer and {Work-order-1} is S2-15443.
+- QuickBooks already has a term named {Term-A} (made for this test), set as a standard term due in 20 days. In ShopView, {Term-A} is one of the shop's own terms, due 14 days after the invoice date. For example: {Term-A} is ZZAUTOTEST S8-03 Mixed.
+- Work order {Work-order-1} (made for this test) is complete, for a customer who holds {Term-A}. For example: {Work-order-1} is S2-15443.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-WO, P-INV, P-QBO.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-WO, P-INV, P-QBO.
 Sources (verbatim text in section 9): S8-E1, S8-R4.
 
 ### SETUP-S8-04 — A vendor invoice goes to QuickBooks as a bill with its stored due date
@@ -2403,7 +2435,8 @@ Section: Story 8 — QuickBooks sync - credit terms (TestRail section 91462). Ma
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The test organization is connected to a QuickBooks Online sandbox company, and you can sign in to that company in another tab.
-- Customer {Customer-A} holds Net 30 and is already in QuickBooks with terms Net 30; work order {Work-order-1} for it is complete. For example: {Customer-A} is ZZAUTOTEST S8-05 Customer and {Work-order-1} is S2-15444.
+- Customer {Customer-A} (made for this test) holds Net 30 and is already in QuickBooks with terms Net 30; work order {Work-order-1} (made for this test) for it is complete. For example: {Customer-A} is ZZAUTOTEST S8-05 Customer and {Work-order-1} is S2-15444.
+- Net 45 is active.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Work-order-1} = work order 1.
 Placeholders: {Customer-A}, {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
@@ -2415,7 +2448,8 @@ Section: Story 8 — QuickBooks sync - credit terms (TestRail section 91462). Ma
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The test organization is connected to a QuickBooks Online sandbox company, and you can sign in to that company in another tab.
-- The shop's own term {Term-A}, due 20 days after the invoice date, is held only by customer {Customer-A}, who is in QuickBooks with terms {Term-A}. For example: {Term-A} is ZZAUTOTEST S8-06 N20, {Customer-A} is ZZAUTOTEST S8-06 Customer.
+- The shop's own term {Term-A} (made for this test), due 20 days after the invoice date, is held only by customer {Customer-A} (made for this test), who is in QuickBooks with terms {Term-A}. For example: {Term-A} is ZZAUTOTEST S8-06 N20, {Customer-A} is ZZAUTOTEST S8-06 Customer.
+- Net 45 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A.
@@ -2428,7 +2462,7 @@ Section: Story 8 — QuickBooks sync - credit terms (TestRail section 91462). Ma
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The test organization is connected to a QuickBooks Online sandbox company, and you can sign in to that company in another tab.
-- The shop's own term {Term-A} is already in QuickBooks (an invoice used it). For example: {Term-A} is ZZAUTOTEST S8-07 Used.
+- The shop's own term {Term-A} (made for this test) is already in QuickBooks (an invoice used it). For example: {Term-A} is ZZAUTOTEST S8-07 Used.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -2441,7 +2475,7 @@ Section: Story 8 — QuickBooks sync - credit terms (TestRail section 91462). Ma
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The test organization is connected to a QuickBooks Online sandbox company, and you can sign in to that company in another tab.
-- The shop's own term {Term-B}, due 14 days after the invoice date, is held by nobody and is not in QuickBooks. For example: {Term-B} is ZZAUTOTEST S8-07b Unused.
+- The shop's own term {Term-B} (made for this test), due 14 days after the invoice date, is held by nobody and is not in QuickBooks. For example: {Term-B} is ZZAUTOTEST S8-07b Unused.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-B} = term B.
@@ -2454,11 +2488,11 @@ Section: Story 8 — QuickBooks sync - credit terms (TestRail section 91462). Ma
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The test organization is connected to a QuickBooks Online sandbox company, and you can sign in to that company in another tab.
-- The shop's own term {Term-A} was created today and is held only by a customer {Customer-A} who has no invoice. For example: {Term-A} is ZZAUTOTEST S8-08 Fresh and {Customer-A} is ZZAUTOTEST S8-08 Customer (not yet in QuickBooks).
+- The shop's own term {Term-A} was created today and is held only by one customer, who has no invoice. For example: {Term-A} is ZZAUTOTEST S8-08 Fresh.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-INV, P-QBO.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
+Placeholders: {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-INV, P-QBO.
 Sources (verbatim text in section 9): S8-N2.
 
 ### SETUP-S8-09 — A QuickBooks refusal lands on the QB Unexported report with the reason
@@ -2466,11 +2500,11 @@ Section: Story 8 — QuickBooks sync - credit terms (TestRail section 91462). Ma
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The test organization is connected to a QuickBooks Online sandbox company, and you can sign in to that company in another tab.
-- Customer {Customer-A} holds the shop's own term {Term-A}; its invoice will be refused by QuickBooks for a reason the sandbox gives today, and work order {Work-order-1} for it is complete. For example: {Customer-A} is ZZAUTOTEST S8-09 Customer with a tax code the sandbox does not accept, {Term-A} is ZZAUTOTEST S8-09 Fourteen and {Work-order-1} is S2-15445.
+- Work order {Work-order-1} (made for this test) is complete, for a customer who holds the shop's own term {Term-A} (made for this test) and whose invoice QuickBooks will refuse for a reason the sandbox gives today. For example: the customer has a tax code the sandbox does not accept, {Term-A} is ZZAUTOTEST S8-09 Fourteen and {Work-order-1} is S2-15445.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-WO, P-INV, P-QBO.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-WO, P-INV, P-QBO.
 Sources (verbatim text in section 9): EH-S8.
 
 ### SETUP-S8-10 — Without QuickBooks connected, nothing is sent and terms work the same
@@ -2478,11 +2512,11 @@ Section: Story 8 — QuickBooks sync - credit terms (TestRail section 91462). Ma
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The test organization is not connected to QuickBooks.
-- Customer {Customer-A} holds the shop's own term {Term-A}, due 14 days after the invoice date, and work order {Work-order-1} for it is complete. For example: {Customer-A} is ZZAUTOTEST S8-10 Customer, {Term-A} is ZZAUTOTEST S8-10 Fourteen and {Work-order-1} is S2-15446.
+- Work order {Work-order-1} (made for this test) is complete, for a customer who holds one of the shop's own terms, due 14 days after the invoice date. For example: {Work-order-1} is S2-15446.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-WO, P-INV, P-QBO.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-WO, P-INV, P-QBO.
 Sources (verbatim text in section 9): S8-N1.
 
 ### SETUP-S8-11 — AccountingHub and IBS receive the due date only, never the term name
@@ -2490,11 +2524,11 @@ Section: Story 8 — QuickBooks sync - credit terms (TestRail section 91462). Ma
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization sends invoices to AccountingHub and IBS, and you have access to both so you can see what each received.
-- Customer {Customer-A} holds the shop's own term {Term-A}, and its invoice {Invoice-A} has been sent. For example: {Customer-A} is ZZAUTOTEST S8-11 Customer and {Term-A} is ZZAUTOTEST S8-11 Fourteen.
+- Invoice {Invoice-A} has been sent, for a customer who holds the shop's own term {Term-A}. For example: {Term-A} is ZZAUTOTEST S8-11 Fourteen.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Invoice-A} = invoice A, {Location-A} = the test location, {Term-A} = term A.
-Placeholders: {Customer-A}, {Invoice-A}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Invoice-A} = invoice A, {Location-A} = the test location, {Term-A} = term A.
+Placeholders: {Invoice-A}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-INV.
 Sources (verbatim text in section 9): OOS-14, S8-R8.
 
 ### SETUP-S8-12 — Move Customers sends AccountingHub the same update as Edit Customer
@@ -2502,7 +2536,8 @@ Section: Story 8 — QuickBooks sync - credit terms (TestRail section 91462). Ma
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization is connected to AccountingHub, and you have access to it so you can see the customer updates it receives.
-- The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly one customer, {Customer-A}. For example: {Term-A} is ZZAUTOTEST S8-12 N20, {Customer-A} is ZZAUTOTEST S8-12 Customer.
+- The shop's own term {Term-A} (made for this test), due 20 days after the invoice date, is held by exactly one customer, {Customer-A} (made for this test). For example: {Term-A} is ZZAUTOTEST S8-12 N20, {Customer-A} is ZZAUTOTEST S8-12 Customer.
+- Net 45 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A.
@@ -2526,12 +2561,12 @@ Sources (verbatim text in section 9): EH-S9, S9-R1, S9-R3, UFS-52.
 Section: Story 9 — Over Credit warning (TestRail section 91463). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds Net 30, has a credit limit of $500.00, unpaid invoices totalling $600.00, an open work order {Work-order-1} and an open part sale {Part-sale-A}. For example: {Customer-A} is ZZAUTOTEST S9-02 Customer, {Work-order-1} is S2-15440 and {Part-sale-A} is P-1345.
+- A customer holds Net 30, has a credit limit of $500.00, unpaid invoices totalling $600.00, an open work order {Work-order-1} and an open part sale {Part-sale-A}. For example: the customer is ZZAUTOTEST S9-02 Customer, {Work-order-1} is S2-15440 and {Part-sale-A} is P-1345.
 - Starting screen: the Work Orders page.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Part-sale-A} = part sale A, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Part-sale-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-CUST, P-WO, P-INV, P-BAL.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Part-sale-A} = part sale A, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Part-sale-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-WO, P-INV, P-BAL.
 Sources (verbatim text in section 9): S9-R2, S9-R4.
 
 ### SETUP-S9-03 — Opening a part sale never asks the over-credit question
@@ -2610,11 +2645,11 @@ Sources (verbatim text in section 9): S9-N2.
 Section: Story 9 — Over Credit warning (TestRail section 91463). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds the shop's own term {Term-A}, due 14 days after the invoice date, has a credit limit of $500.00, unpaid invoices totalling $600.00 and an open work order {Work-order-1}. For example: {Customer-A} is ZZAUTOTEST S9-09 Customer, {Term-A} is ZZAUTOTEST S9-09 Fourteen and {Work-order-1} is S2-15446.
+- Customer {Customer-A} holds one of the shop's own terms, due 14 days after the invoice date, has a credit limit of $500.00, unpaid invoices totalling $600.00 and an open work order {Work-order-1}. For example: {Customer-A} is ZZAUTOTEST S9-09 Customer and {Work-order-1} is S2-15446.
 - Starting screen: the Work Orders page.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Work-order-1} = work order 1.
+Placeholders: {Customer-A}, {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-CUST, P-WO, P-INV, P-BAL.
 Sources (verbatim text in section 9): KD-OWNNET, S9-E1.
 
@@ -2634,7 +2669,7 @@ Sources (verbatim text in section 9): S9-R1.
 Section: Story 10 — Imports and Public API (TestRail section 91464). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop's own term {Term-A}, due 14 days after the invoice date, is the default for new customers. For example: {Term-A} is ZZAUTOTEST S10-01 Fourteen.
+- The shop's own term {Term-A} (made for this test), due 14 days after the invoice date, is the default for new customers. For example: {Term-A} is ZZAUTOTEST S10-01 Fourteen.
 - A contacts import file with one new customer, {Customer-A}, whose credit term cell is empty. For example: {Customer-A} is ZZAUTOTEST S10-01 Customer.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A.
@@ -2646,11 +2681,11 @@ Sources (verbatim text in section 9): GOAL-1, KD-LENIENT, S10-R1.
 Section: Story 10 — Imports and Public API (TestRail section 91464). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop's own term {Term-A}, named "Net 10", is active. For example: {Term-A} is Net 10.
+- The shop has its own active term named "Net 10".
 - A contacts import file with three new customers: {Customer-A} with the credit term "net 10", {Customer-B} with "NET10" and {Customer-C} with "Net 10". For example: they are ZZAUTOTEST S10-02 Alpha, Bravo and Charlie.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-B} = customer B, {Customer-C} = customer C, {Location-A} = the test location, {Term-A} = term A.
-Placeholders: {Customer-A}, {Customer-B}, {Customer-C}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-B} = customer B, {Customer-C} = customer C, {Location-A} = the test location.
+Placeholders: {Customer-A}, {Customer-B}, {Customer-C}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-CUST, P-IMPORT.
 Sources (verbatim text in section 9): A-SPELL, KD-LENIENT, S10-R3.
 
@@ -2681,7 +2716,7 @@ Sources (verbatim text in section 9): KD-LENIENT, S10-E1, S5-R8.
 Section: Story 10 — Imports and Public API (TestRail section 91464). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- A contacts import file with three new customers: {Customer-A} on COD with a credit limit of 500, {Customer-B} on Credit Hold with a credit limit of 750, and {Customer-C} on Net 30 with a credit limit of 900. For example: they are ZZAUTOTEST S10-05 Cash, ZZAUTOTEST S10-05 Hold and ZZAUTOTEST S10-05 Net.
+- A contacts import file with three new customers: {Customer-A} on COD with a credit limit of 500, {Customer-B} on Credit Hold with a credit limit of 750, and {Customer-C} (made for this test) on Net 30 with a credit limit of 900. For example: they are ZZAUTOTEST S10-05 Cash, ZZAUTOTEST S10-05 Hold and ZZAUTOTEST S10-05 Net.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-B} = customer B, {Customer-C} = customer C, {Location-A} = the test location.
 Placeholders: {Customer-A}, {Customer-B}, {Customer-C}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
@@ -2692,7 +2727,7 @@ Sources (verbatim text in section 9): KD-ZERO, S10-E2, S10-R6.
 Section: Story 10 — Imports and Public API (TestRail section 91464). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} exists on Net 45. For example: {Customer-A} is ZZAUTOTEST S10-06 Customer.
+- Create {Customer-A} for this test, on Net 45. For example: {Customer-A} is ZZAUTOTEST S10-06 Customer.
 - A contacts import file that updates {Customer-A} (same customer) with a new phone number and an empty credit term cell.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location.
@@ -2704,7 +2739,7 @@ Sources (verbatim text in section 9): S10-E3.
 Section: Story 10 — Imports and Public API (TestRail section 91464). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} exists on Net 30 with a credit limit of $800.00. For example: {Customer-A} is ZZAUTOTEST S10-07 Customer.
+- Create {Customer-A} for this test, on Net 30 with a credit limit of $800.00. For example: {Customer-A} is ZZAUTOTEST S10-07 Customer.
 - A contacts import file that updates {Customer-A} with the credit term "COD" and the credit limit 800.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location.
@@ -2729,11 +2764,11 @@ Section: Story 10 — Imports and Public API (TestRail section 91464). Marker: `
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Net 30 is the shop's default for new customers.
-- The shop's own term {Term-A} is named "Net 10". For example: {Term-A} is Net 10.
+- The shop has its own active term named "Net 10".
 - A vendor import file with two new vendors: {Vendor-A} with an empty credit term cell and {Vendor-B} with the credit term "NET10". For example: {Vendor-A} is ZZAUTOTEST S10-09 Blank and {Vendor-B} is ZZAUTOTEST S10-09 Upper.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {Vendor-A} = vendor A, {Vendor-B} = vendor B.
-Placeholders: {Location-A}, {Term-A}, {Vendor-A}, {Vendor-B}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Vendor-A} = vendor A, {Vendor-B} = vendor B.
+Placeholders: {Location-A}, {Vendor-A}, {Vendor-B}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-STD, P-VENDOR, P-IMPORT.
 Sources (verbatim text in section 9): S10-N2, S10-R3, S6-E1.
 
@@ -2741,7 +2776,7 @@ Sources (verbatim text in section 9): S10-N2, S10-R3, S6-E1.
 Section: Story 10 — Imports and Public API (TestRail section 91464). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Vendor {Vendor-A} exists on Net 60. For example: {Vendor-A} is ZZAUTOTEST S10-10 Vendor.
+- Create {Vendor-A} for this test, on Net 60. For example: {Vendor-A} is ZZAUTOTEST S10-10 Vendor.
 - A vendor import file that updates {Vendor-A} with a new phone number and an empty credit term cell.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Vendor-A} = vendor A.
@@ -2754,7 +2789,7 @@ Section: Story 10 — Imports and Public API (TestRail section 91464). Marker: `
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - You have a valid Public API key for the test organization, the Public API documentation from the developers (it gives the request to create, update and read a customer), and a request tool. For example: the request tool is Postman.
-- The shop's own term {Term-A} is the default for new customers. For example: {Term-A} is ZZAUTOTEST S10-11 Fourteen.
+- The shop's own term {Term-A} (made for this test) is the default for new customers. For example: {Term-A} is ZZAUTOTEST S10-11 Fourteen.
 - Names for two new customers, {Customer-A} and {Customer-B}. For example: {Customer-A} is ZZAUTOTEST S10-11 None and {Customer-B} is ZZAUTOTEST S10-11 Blank.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-B} = customer B, {Location-A} = the test location, {Term-A} = term A.
@@ -2767,11 +2802,11 @@ Section: Story 10 — Imports and Public API (TestRail section 91464). Marker: `
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - You have a valid Public API key for the test organization, the Public API documentation from the developers (it gives the request to create, update and read a customer), and a request tool. For example: the request tool is Postman.
-- The shop's own term {Term-A} is named "Net 10". For example: {Term-A} is Net 10.
+- The shop has its own active term named "Net 10".
 - A name for a new customer, {Customer-A}. For example: {Customer-A} is ZZAUTOTEST S10-12 Customer.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location.
+Placeholders: {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-CUST, P-API.
 Sources (verbatim text in section 9): S10-R3, S10-R7.
 
@@ -2780,11 +2815,11 @@ Section: Story 10 — Imports and Public API (TestRail section 91464). Marker: `
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - You have a valid Public API key for the test organization, the Public API documentation from the developers (it gives the request to create, update and read a customer), and a request tool. For example: the request tool is Postman.
-- The shop's own term {Term-A} is named "Net 10". For example: {Term-A} is Net 10.
-- Customer {Customer-A} exists on Net 30. For example: {Customer-A} is ZZAUTOTEST S10-13 Customer.
+- The shop has its own active term named "Net 10".
+- Create {Customer-A} for this test, on Net 30. For example: {Customer-A} is ZZAUTOTEST S10-13 Customer.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location.
+Placeholders: {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-CUST, P-API.
 Sources (verbatim text in section 9): S10-N1, S10-R4, S10-R5.
 
@@ -2794,7 +2829,7 @@ Preconditions with their placeholders and examples (for Claude sessions; the Tes
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - You have a valid Public API key for the test organization, the Public API documentation from the developers (it gives the request to create, update and read a customer), and a request tool. For example: the request tool is Postman.
 - A name for a new customer, {Customer-A}. For example: {Customer-A} is ZZAUTOTEST S10-14 New.
-- Customer {Customer-B} exists on Net 30 with a $600.00 limit. For example: {Customer-B} is ZZAUTOTEST S10-14 Existing.
+- Create {Customer-B} for this test, on Net 30 with a $600.00 limit. For example: {Customer-B} is ZZAUTOTEST S10-14 Existing.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-B} = customer B, {Location-A} = the test location.
 Placeholders: {Customer-A}, {Customer-B}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
@@ -2878,22 +2913,22 @@ Sources (verbatim text in section 9): GOAL-6, S11-R3, T-STANDARD.
 Section: Release day and what must not change (TestRail section 91465). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds COD and work order {Work-order-1} for it is complete and ready to invoice. For example: {Customer-A} is ZZAUTOTEST S11-05 Cash and {Work-order-1} is S2-15440.
+- Work order {Work-order-1} (made for this test) is complete and ready to invoice (every part received, review done), for a customer who holds COD. For example: {Work-order-1} is S2-15440.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-CUST, P-WO, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-WO, P-INV.
 Sources (verbatim text in section 9): S1-R7, S1-R7 COD, S1-R8, S1-R8 COD, S11-R10.
 
 ### SETUP-S11-06 — Every other term still opens the payment window with Charge Account
 Section: Release day and what must not change (TestRail section 91465). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customers {Customer-A} on Due on Receipt and {Customer-B} on Net 30 each have a complete work order, {Work-order-1} and {Work-order-2}. For example: {Customer-A} is ZZAUTOTEST S11-06 Receipt, {Customer-B} is ZZAUTOTEST S11-06 Net and the work orders are S2-15441 and S2-15442.
+- Work order {Work-order-1} (made for this test), for a customer on Due on Receipt, and work order {Work-order-2} (made for this test), for a customer on Net 30, are complete. For example: the work orders are S2-15441 and S2-15442.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-B} = customer B, {Location-A} = the test location, {Work-order-1} = work order 1, {Work-order-2} = work order 2.
-Placeholders: {Customer-A}, {Customer-B}, {Location-A}, {Work-order-1}, {Work-order-2}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-CUST, P-WO.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Work-order-1} = work order 1, {Work-order-2} = work order 2.
+Placeholders: {Location-A}, {Work-order-1}, {Work-order-2}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-WO.
 Sources (verbatim text in section 9): S1-R8, S1-R8 DOR, S11-R10.
 
 ### SETUP-S11-07 — An existing COD customer keeps its old limit on release day
@@ -2935,24 +2970,20 @@ Sources (verbatim text in section 9): S11-R17, S4-R14, S4-R20.
 ### SETUP-S11-10 — A new organization created after the release starts on Due on Receipt
 Section: Release day and what must not change (TestRail section 91465). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
-- You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- An organization {Organization-A} created after the release, never changed on the Credit Terms page, and you are its Admin. For example: {Organization-A} is ZZAUTOTEST S11-10 Shop.
+- You are signed in as an Admin of an organization created after the release whose Credit Terms page has never been changed. For example: the organization is ZZAUTOTEST S11-10 Shop.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Organization-A} = organization A.
-Placeholders: {Location-A}, {Organization-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Placeholders: none. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: none.
 Sources (verbatim text in section 9): GOAL-6, KD-EXIST, S11-R12.
 
 ### SETUP-S11-11 — An organization with no settings record behaves as COD
 Section: Release day and what must not change (TestRail section 91465). Marker: `AUTOMATION: HOLD - a tester cannot make or recognise an organization with no settings record`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
-- You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- An organization {Organization-A} that has no settings record yet. For example: {Organization-A} is a newly migrated test organization.
+- You are signed in as an Admin of an organization that has no settings record yet. For example: a newly migrated test organization.
 - Starting screen: the Customers page.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Organization-A} = organization A.
-Placeholders: {Location-A}, {Organization-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Placeholders: none. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: none.
 Sources (verbatim text in section 9): S11-E1.
 
@@ -2960,10 +2991,10 @@ Sources (verbatim text in section 9): S11-E1.
 Section: Release day and what must not change (TestRail section 91465). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds Net 30 at {Location-A}, whose time zone has daylight saving time, and has a credit memo {Credit-memo-A} dated Oct 20, 2026. For example: {Customer-A} is ZZAUTOTEST S11-12 Customer, {Location-A} is in Edmonton and {Credit-memo-A} is CM-3576.
+- Customer {Customer-A} holds Net 30 at {Location-A}, whose time zone has daylight saving time, and has a credit memo dated Oct 20, 2026. For example: {Customer-A} is ZZAUTOTEST S11-12 Customer and the credit memo is CM-3576.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Credit-memo-A} = credit memo A, {Customer-A} = customer A, {Location-A} = the test location.
-Placeholders: {Credit-memo-A}, {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location.
+Placeholders: {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-CUST, P-LOC.
 Sources (verbatim text in section 9): OOS-10, S11-R14, S7-E2, S7-R6.
 
@@ -2972,6 +3003,7 @@ Section: Release day and what must not change (TestRail section 91465). Marker: 
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} is stored with the text "NET 30". For example: {Customer-A} is ZZAUTOTEST S11-13 Upper.
+- Net 30 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location.
@@ -3006,7 +3038,7 @@ Section: Release day and what must not change (TestRail section 91465). Marker: 
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization uses AccountingHub; before the case, the Payment Terms list in Accounting Settings was written down.
-- A new name {Term-A} that no term has. For example: {Term-A} is ZZAUTOTEST S11-16 Fourteen.
+- A new name {Term-A} (made for this test) that no term has. For example: {Term-A} is ZZAUTOTEST S11-16 Fourteen.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -3029,7 +3061,8 @@ Sources (verbatim text in section 9): OOS-11.
 Section: Release day and what must not change (TestRail section 91465). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds Net 30. For example: {Customer-A} is ZZAUTOTEST S11-18 Customer.
+- Customer {Customer-A} (made for this test) holds Net 30. For example: {Customer-A} is ZZAUTOTEST S11-18 Customer.
+- Net 45 is active.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location.
 Placeholders: {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
@@ -3052,7 +3085,7 @@ Sources (verbatim text in section 9): OOS-7, S2-N1.
 Section: Release day and what must not change (TestRail section 91465). Marker: `AUTOMATION: HOLD - waiting on the PO (question 4)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds Net 60, which is deactivated, and has an open invoice and an open work order {Work-order-1}. For example: {Customer-A} is ZZAUTOTEST S11-20 Customer and {Work-order-1} is S2-15447.
+- Customer {Customer-A} holds Net 60, which is deactivated, and has an open invoice and an open work order {Work-order-1}, so look for customer A's entry in the report. For example: {Customer-A} is ZZAUTOTEST S11-20 Customer and {Work-order-1} is S2-15447.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Work-order-1} = work order 1.
 Placeholders: {Customer-A}, {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
@@ -3075,7 +3108,7 @@ Section: Story 12 — Credit Terms audit log (TestRail section 91466). Marker: `
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Your user name is {User-A}. For example: {User-A} is ZZAUTOTEST S12 Admin.
-- A new name {Term-A}. For example: {Term-A} is ZZAUTOTEST S12-02 Net 14.
+- A new name {Term-A} (made for this test). For example: {Term-A} is ZZAUTOTEST S12-02 Net 14.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {User-A} = your user name.
@@ -3087,8 +3120,8 @@ Sources (verbatim text in section 9): KD-LOG, S12-R3, S12-R3 CREATED, UFS-48, UF
 Section: Story 12 — Credit Terms audit log (TestRail section 91466). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S12-03 Old.
-- A new name {Term-B}. For example: {Term-B} is ZZAUTOTEST S12-03 New.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S12-03 Old.
+- A new name {Term-B} (made for this test). For example: {Term-B} is ZZAUTOTEST S12-03 New.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {Term-B} = term B.
@@ -3100,7 +3133,7 @@ Sources (verbatim text in section 9): S12-R3, S12-R3 EDITED.
 Section: Story 12 — Credit Terms audit log (TestRail section 91466). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S12-04 Term.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S12-04 Term.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -3112,8 +3145,8 @@ Sources (verbatim text in section 9): S12-R3, S12-R3 EDITED.
 Section: Story 12 — Credit Terms audit log (TestRail section 91466). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S12-05 Old.
-- A new name {Term-B}. For example: {Term-B} is ZZAUTOTEST S12-05 New.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S12-05 Old.
+- A new name {Term-B} (made for this test). For example: {Term-B} is ZZAUTOTEST S12-05 New.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {Term-B} = term B.
@@ -3137,7 +3170,7 @@ Sources (verbatim text in section 9): S12-R2, S12-R3, S12-R3 DEACT, S12-R3 REACT
 Section: Story 12 — Credit Terms audit log (TestRail section 91466). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- A new name {Term-A}. For example: {Term-A} is ZZAUTOTEST S12-07 Short Lived.
+- A new name {Term-A} (made for this test). For example: {Term-A} is ZZAUTOTEST S12-07 Short Lived.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -3150,7 +3183,7 @@ Section: Story 12 — Credit Terms audit log (TestRail section 91466). Marker: `
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - COD is the shop's default for new customers.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date. For example: {Term-A} is ZZAUTOTEST S12-08 Net 14.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date. For example: {Term-A} is ZZAUTOTEST S12-08 Net 14.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -3162,7 +3195,8 @@ Sources (verbatim text in section 9): S12-R3, S12-R3 DEF.
 Section: Story 12 — Credit Terms audit log (TestRail section 91466). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly three customers. For example: {Term-A} is ZZAUTOTEST S12-09 N20 and its customers are ZZAUTOTEST S12-09 Alpha, Bravo and Charlie.
+- The shop's own term {Term-A} (made for this test), due 20 days after the invoice date, is held by exactly three customers. For example: {Term-A} is ZZAUTOTEST S12-09 N20 and its customers are ZZAUTOTEST S12-09 Alpha, Bravo and Charlie.
+- Net 45 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
@@ -3179,7 +3213,7 @@ Preconditions with their placeholders and examples (for Claude sessions; the Tes
 - Net 50 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Hours-A} = the difference in hours, {Location-A} = location A, {Location-B} = location B, {User-A} = your user name.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Hours-A} = the difference in hours, {Location-A} = the test location, {Location-B} = location B, {User-A} = your user name.
 Placeholders: {Hours-A}, {Location-A}, {Location-B}, {User-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-LOC.
 Sources (verbatim text in section 9): S12-R4, S12-R6.
@@ -3213,7 +3247,7 @@ Sources (verbatim text in section 9): S12-R6.
 Section: Story 12 — Credit Terms audit log (TestRail section 91466). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S12-13 Net 14.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S12-13 Net 14.
 - Write down the newest row of the log before you start.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -3226,7 +3260,7 @@ Sources (verbatim text in section 9): S12-R7.
 Section: Story 12 — Credit Terms audit log (TestRail section 91466). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S12-13b Net 14.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S12-13b Net 14.
 - Write down the newest row of the log before you start.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -3239,7 +3273,7 @@ Sources (verbatim text in section 9): S12-R7.
 Section: Story 12 — Credit Terms audit log (TestRail section 91466). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S12-13c Net 14.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S12-13c Net 14.
 - Write down the newest row of the log before you start.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -3253,7 +3287,7 @@ Section: Story 12 — Credit Terms audit log (TestRail section 91466). Marker: `
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - You and a second user, {User-B}, are both signed in with the "Admin" role, in two separate browsers. For example: {User-B} is ZZAUTOTEST S12-14 Second Admin.
-- The shop has its own active term {Term-A}, due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S12-14 Net 14.
+- The shop has its own active term {Term-A} (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST S12-14 Net 14.
 - Starting screen: the Credit Terms page is open in both browsers.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {User-B} = user B.
@@ -3265,8 +3299,8 @@ Sources (verbatim text in section 9): S12-R7.
 Section: Story 12 — Credit Terms audit log (TestRail section 91466). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop's own term {Term-A} has a 31-character name. For example: {Term-A} is ZZAUTOTEST S12-15 Long Name 012.
-- A new name {Term-B}, also 31 characters. For example: {Term-B} is ZZAUTOTEST S12-15 Long Name 456.
+- The shop's own term {Term-A} (made for this test) has a 31-character name. For example: {Term-A} is ZZAUTOTEST S12-15 Long Name 012.
+- A new name {Term-B} (made for this test), also 31 characters. For example: {Term-B} is ZZAUTOTEST S12-15 Long Name 456.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {Term-B} = term B.
@@ -3290,8 +3324,9 @@ Sources (verbatim text in section 9): S12-E1, S12-N2, UFS-50.
 Section: Story 12 — Credit Terms audit log (TestRail section 91466). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Vendor {Vendor-A} holds Net 30. For example: {Vendor-A} is ZZAUTOTEST S12-17 Vendor.
+- Vendor {Vendor-A} (made for this test) holds Net 30. For example: {Vendor-A} is ZZAUTOTEST S12-17 Vendor.
 - Write down the newest row of the log before you start.
+- Net 45 is active.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Vendor-A} = vendor A.
 Placeholders: {Location-A}, {Vendor-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
@@ -3301,10 +3336,9 @@ Sources (verbatim text in section 9): S12-N3.
 ### SETUP-S12-18 — The log is refused by the server without Settings Finance
 Section: Story 12 — Credit Terms audit log (TestRail section 91466). Marker: `AUTOMATION: HOLD - without Settings Finance the page and its menu cannot be reached, so only a request sent outside the page can reach this refusal`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
-- You are signed in as {User-A}, whose role has no Settings → Finance. For example: {User-A} is ZZAUTOTEST S12-18 User.
+- You are signed in as a user whose role has no Settings → Finance. For example: the user is ZZAUTOTEST S12-18 User.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {User-A} = user A.
-Placeholders: {User-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Placeholders: none. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: none.
 Sources (verbatim text in section 9): S12-N1.
 
@@ -3323,230 +3357,214 @@ Sources (verbatim text in section 9): EH-S12, UFS-51.
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds Net 30. For example: {Customer-A} is ZZAUTOTEST DATA-01 Customer.
-- Work order {Work-order-1} for {Customer-A} is complete and ready to invoice (every part received, review done). For example: {Work-order-1} is S2-15440.
+- Work order {Work-order-1} is complete and ready to invoice (every part received, review done), for a customer who holds Net 30. For example: {Work-order-1} is S2-15440.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-CUST, P-WO, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-WO, P-INV.
 Sources (verbatim text in section 9): S7-R1.
 
 ### SETUP-DATA-02 — The shop's own Net 10 term is due 10 days after the invoice date
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds the shop's own term {Term-A}, due 10 days after the invoice date. For example: {Customer-A} is ZZAUTOTEST DATA-02 Customer and {Term-A} is ZZAUTOTEST DATA-02 Net 10.
-- Work order {Work-order-1} for {Customer-A} is complete and ready to invoice (every part received, review done). For example: {Work-order-1} is S2-15440.
+- Work order {Work-order-1} is complete and ready to invoice (every part received, review done), for a customer who holds the shop's own term due 10 days after the invoice date. For example: {Work-order-1} is S2-15440.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-WO, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-WO, P-INV.
 Sources (verbatim text in section 9): S7-R1, T-OWN.
 
 ### SETUP-DATA-03 — Day 10 of the following month: early and late invoice dates
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds the shop's own term {Term-A}, due on day 10 of the following month. For example: {Customer-A} is ZZAUTOTEST DATA-03 Customer and {Term-A} is ZZAUTOTEST DATA-03 Tenth.
-- Work order {Work-order-1} for {Customer-A} is complete and ready to invoice (every part received, review done). For example: {Work-order-1} is S2-15440.
+- Work order {Work-order-1} is complete and ready to invoice (every part received, review done), for a customer who holds the shop's own term due on day 10 of the following month. For example: {Work-order-1} is S2-15440.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-WO, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-WO, P-INV.
 Sources (verbatim text in section 9): S7-R2, T-OWN.
 
 ### SETUP-DATA-04 — Day 31 in a 30-day month uses the month's last day
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds the shop's own term {Term-A}, due on day 31 of the following month. For example: {Customer-A} is ZZAUTOTEST DATA-04 Customer and {Term-A} is ZZAUTOTEST DATA-04 ThirtyFirst.
-- Work order {Work-order-1} for {Customer-A} is complete and ready to invoice (every part received, review done). For example: {Work-order-1} is S2-15440.
+- Work order {Work-order-1} is complete and ready to invoice (every part received, review done), for a customer who holds the shop's own term due on day 31 of the following month. For example: {Work-order-1} is S2-15440.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-WO, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-WO, P-INV.
 Sources (verbatim text in section 9): S7-R3.
 
 ### SETUP-DATA-05 — Days 29 to 31 invoiced in January fall on Feb 28 in 2027
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customers {Customer-A}, {Customer-B} and {Customer-C} hold the shop's own terms {Term-A} (day 31 of the following month), {Term-B} (day 30) and {Term-C} (day 29). For example: the customers are ZZAUTOTEST DATA-05 A, B and C, and the terms ZZAUTOTEST DATA-05 D31, D30 and D29.
-- Work orders {Work-order-1}, {Work-order-2} and {Work-order-3}, for {Customer-A}, {Customer-B} and {Customer-C}, are complete and ready to invoice. For example: {Work-order-1} is S2-15440, {Work-order-2} is S2-15441 and {Work-order-3} is S2-15442.
+- Work orders {Work-order-1}, {Work-order-2} and {Work-order-3} are complete and ready to invoice, for three customers who hold the shop's own terms due on day 31, day 30 and day 29 of the following month, in that order. For example: {Work-order-1} is S2-15440, {Work-order-2} is S2-15441 and {Work-order-3} is S2-15442.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-B} = customer B, {Customer-C} = customer C, {Location-A} = the test location, {Term-A} = term A, {Term-B} = term B, {Term-C} = term C, {Work-order-1} = work order 1, {Work-order-2} = work order 2, {Work-order-3} = work order 3.
-Placeholders: {Customer-A}, {Customer-B}, {Customer-C}, {Location-A}, {Term-A}, {Term-B}, {Term-C}, {Work-order-1}, {Work-order-2}, {Work-order-3}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-WO, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Work-order-1} = work order 1, {Work-order-2} = work order 2, {Work-order-3} = work order 3.
+Placeholders: {Location-A}, {Work-order-1}, {Work-order-2}, {Work-order-3}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-WO, P-INV.
 Sources (verbatim text in section 9): S7-R3.
 
 ### SETUP-DATA-06 — Day 30 or 31 invoiced in January 2028 falls on Feb 29
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds the shop's own term {Term-A}, due on day 31 of the following month. For example: {Customer-A} is ZZAUTOTEST DATA-06 Customer and {Term-A} is ZZAUTOTEST DATA-06 D31.
-- Work order {Work-order-1} for {Customer-A} is complete and ready to invoice (every part received, review done). For example: {Work-order-1} is S2-15440.
+- Work order {Work-order-1} is complete and ready to invoice (every part received, review done), for a customer who holds the shop's own term due on day 31 of the following month. For example: {Work-order-1} is S2-15440.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-WO, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-WO, P-INV.
 Sources (verbatim text in section 9): S7-R3.
 
 ### SETUP-DATA-06b — Day 28 and day 29 terms in February, leap year and not
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customers {Customer-A} and {Customer-B} hold the shop's own terms {Term-A} (day 28 of the following month) and {Term-B} (day 29). For example: the customers are ZZAUTOTEST DATA-06b A and B, {Term-A} is ZZAUTOTEST DATA-06b D28 and {Term-B} is ZZAUTOTEST DATA-06b D29.
-- Work orders {Work-order-1} for {Customer-A} and {Work-order-2} for {Customer-B} are complete and ready to invoice. For example: {Work-order-1} is S2-15440 and {Work-order-2} is S2-15441.
+- Work orders {Work-order-1} and {Work-order-2} are complete and ready to invoice, for two customers who hold the shop's own terms due on day 28 and day 29 of the following month, in that order. For example: {Work-order-1} is S2-15440 and {Work-order-2} is S2-15441.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-B} = customer B, {Location-A} = the test location, {Term-A} = term A, {Term-B} = term B, {Work-order-1} = work order 1, {Work-order-2} = work order 2.
-Placeholders: {Customer-A}, {Customer-B}, {Location-A}, {Term-A}, {Term-B}, {Work-order-1}, {Work-order-2}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-WO, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Work-order-1} = work order 1, {Work-order-2} = work order 2.
+Placeholders: {Location-A}, {Work-order-1}, {Work-order-2}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-WO, P-INV.
 Sources (verbatim text in section 9): S7-R3.
 
 ### SETUP-DATA-07 — A December invoice is due in January of the next year
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds the shop's own term {Term-A}, due on day 10 of the following month. For example: {Customer-A} is ZZAUTOTEST DATA-07 Customer and {Term-A} is ZZAUTOTEST DATA-07 Tenth.
-- Work order {Work-order-1} for {Customer-A} is complete and ready to invoice (every part received, review done). For example: {Work-order-1} is S2-15440.
+- Work order {Work-order-1} is complete and ready to invoice (every part received, review done), for a customer who holds the shop's own term due on day 10 of the following month. For example: {Work-order-1} is S2-15440.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-WO, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-WO, P-INV.
 Sources (verbatim text in section 9): S7-R4.
 
 ### SETUP-DATA-08 — Invoices on the first and the last day of a month
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds the shop's own term {Term-A}, due on day 1 of the following month. For example: {Customer-A} is ZZAUTOTEST DATA-08 Customer and {Term-A} is ZZAUTOTEST DATA-08 First.
-- Work order {Work-order-1} for {Customer-A} is complete and ready to invoice (every part received, review done). For example: {Work-order-1} is S2-15440.
+- Work order {Work-order-1} is complete and ready to invoice (every part received, review done), for a customer who holds the shop's own term due on day 1 of the following month. For example: {Work-order-1} is S2-15440.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-WO, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-WO, P-INV.
 Sources (verbatim text in section 9): S7-R2.
 
 ### SETUP-DATA-09 — Net 30 from the last day of January crosses a short February
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds Net 30. For example: {Customer-A} is ZZAUTOTEST DATA-09 Customer.
-- Work order {Work-order-1} for {Customer-A} is complete and ready to invoice (every part received, review done). For example: {Work-order-1} is S2-15440.
+- Work order {Work-order-1} is complete and ready to invoice (every part received, review done), for a customer who holds Net 30. For example: {Work-order-1} is S2-15440.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-CUST, P-WO, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-WO, P-INV.
 Sources (verbatim text in section 9): S7-R1.
 
 ### SETUP-DATA-10 — Net 1 and Net 365 are exact to the day
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customers {Customer-A} and {Customer-B} hold the shop's own terms {Term-A} (due 1 day after the invoice date) and {Term-B} (due 365 days after). For example: the customers are ZZAUTOTEST DATA-10 A and B, {Term-A} is ZZAUTOTEST DATA-10 N1 and {Term-B} is ZZAUTOTEST DATA-10 N365.
-- Work orders {Work-order-1} for {Customer-A} and {Work-order-2} for {Customer-B} are complete and ready to invoice. For example: {Work-order-1} is S2-15440 and {Work-order-2} is S2-15441.
+- Work order {Work-order-1}, for a customer on the shop's own term due 1 day after the invoice date, and work order {Work-order-2}, for a customer on the shop's own term due 365 days after, are complete and ready to invoice. For example: {Work-order-1} is S2-15440 and {Work-order-2} is S2-15441.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-B} = customer B, {Location-A} = the test location, {Term-A} = term A, {Term-B} = term B, {Work-order-1} = work order 1, {Work-order-2} = work order 2.
-Placeholders: {Customer-A}, {Customer-B}, {Location-A}, {Term-A}, {Term-B}, {Work-order-1}, {Work-order-2}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-WO, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Work-order-1} = work order 1, {Work-order-2} = work order 2.
+Placeholders: {Location-A}, {Work-order-1}, {Work-order-2}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-WO, P-INV.
 Sources (verbatim text in section 9): KD-RANGE, S7-R1.
 
 ### SETUP-DATA-11 — Net 30 across the March clock change is due on the 30th day
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds Net 30. For example: {Customer-A} is ZZAUTOTEST DATA-11 Customer.
 - The work order belongs to {Location-A}, whose time zone has daylight saving time. For example: {Location-A} is in Edmonton (Mountain time).
-- Work order {Work-order-1} for {Customer-A} is complete and ready to invoice (every part received, review done). For example: {Work-order-1} is S2-15440.
+- Work order {Work-order-1} is complete and ready to invoice (every part received, review done), for a customer who holds Net 30. For example: {Work-order-1} is S2-15440.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-CUST, P-WO, P-INV, P-LOC.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-WO, P-INV, P-LOC.
 Sources (verbatim text in section 9): S7-R10, S7-R6.
 
 ### SETUP-DATA-12 — Net 30 across the November clock change is due on the 30th day
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds Net 30. For example: {Customer-A} is ZZAUTOTEST DATA-12 Customer.
 - The work order belongs to {Location-A}, whose time zone has daylight saving time. For example: {Location-A} is in Edmonton (Mountain time).
-- Work order {Work-order-1} for {Customer-A} is complete and ready to invoice (every part received, review done). For example: {Work-order-1} is S2-15440.
+- Work order {Work-order-1} is complete and ready to invoice (every part received, review done), for a customer who holds Net 30. For example: {Work-order-1} is S2-15440.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-CUST, P-WO, P-INV, P-LOC.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-WO, P-INV, P-LOC.
 Sources (verbatim text in section 9): S7-R10, S7-R6.
 
 ### SETUP-DATA-13 — An Edmonton invoice on day 10 of the following month is due Nov 10
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
-- You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds the shop's own term {Term-A}, due on day 10 of the following month. For example: {Customer-A} is ZZAUTOTEST DATA-13 Customer and {Term-A} is ZZAUTOTEST DATA-13 Tenth.
-- The work order belongs to {Location-A}, in Edmonton's time zone, and you are working in a location in another time zone, {Location-B}. For example: {Location-A} is Edmonton and {Location-B} is in Toronto.
-- Work order {Work-order-1} for {Customer-A} is complete and ready to invoice (every part received, review done). For example: {Work-order-1} is S2-15440.
+- You are an Admin user working at a location in another time zone than Edmonton's. For example: a location in Toronto.
+- The work order belongs to a location in Edmonton's time zone. For example: Staging Heavy Duty - 9919.
+- Work order {Work-order-1} is complete and ready to invoice (every part received, review done), for a customer who holds the shop's own term due on day 10 of the following month. For example: {Work-order-1} is S2-15440.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = location A, {Location-B} = location B, {Term-A} = term A, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Location-B}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-WO, P-INV, P-LOC.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Work-order-1} = work order 1.
+Placeholders: {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-WO, P-INV, P-LOC.
 Sources (verbatim text in section 9): S7-R6.
 
 ### SETUP-DATA-14 — A location with no time zone counts due dates on UTC
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds Net 30. For example: {Customer-A} is ZZAUTOTEST DATA-14 Customer.
 - The work order belongs to {Location-A}, which has no time zone set. For example: {Location-A} is ZZAUTOTEST DATA-14 No Zone.
-- Work order {Work-order-1} for {Customer-A} is complete and ready to invoice (every part received, review done). For example: {Work-order-1} is S2-15440.
+- Work order {Work-order-1} is complete and ready to invoice (every part received, review done), for a customer who holds Net 30. For example: {Work-order-1} is S2-15440.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-CUST, P-WO, P-INV, P-LOC.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-WO, P-INV, P-LOC.
 Sources (verbatim text in section 9): S7-R6b.
 
 ### SETUP-DATA-15 — Changing the invoice date recalculates the shop's own term
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds the shop's own term {Term-A}, due on day 10 of the following month. For example: {Customer-A} is ZZAUTOTEST DATA-15 Customer and {Term-A} is ZZAUTOTEST DATA-15 Tenth.
-- Work order {Work-order-1} for {Customer-A} is complete and ready to invoice (every part received, review done). For example: {Work-order-1} is S2-15440.
+- Work order {Work-order-1} is complete and ready to invoice (every part received, review done), for a customer who holds the shop's own term due on day 10 of the following month. For example: {Work-order-1} is S2-15440.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-WO, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-WO, P-INV.
 Sources (verbatim text in section 9): S7-R8.
 
 ### SETUP-DATA-16 — COD and Due on Receipt are due on the invoice date
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} holds COD and customer {Customer-B} holds Due on Receipt. For example: {Customer-A} is ZZAUTOTEST DATA-16 Cash and {Customer-B} is ZZAUTOTEST DATA-16 Receipt.
-- Work orders {Work-order-1} for {Customer-A} and {Work-order-2} for {Customer-B} are complete and ready to invoice. For example: {Work-order-1} is S2-15440 and {Work-order-2} is S2-15441.
+- Work order {Work-order-1}, for a customer who holds COD, and work order {Work-order-2}, for a customer who holds Due on Receipt, are complete and ready to invoice. For example: {Work-order-1} is S2-15440 and {Work-order-2} is S2-15441.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-B} = customer B, {Location-A} = the test location, {Work-order-1} = work order 1, {Work-order-2} = work order 2.
-Placeholders: {Customer-A}, {Customer-B}, {Location-A}, {Work-order-1}, {Work-order-2}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-CUST, P-WO, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Work-order-1} = work order 1, {Work-order-2} = work order 2.
+Placeholders: {Location-A}, {Work-order-1}, {Work-order-2}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-WO, P-INV.
 Sources (verbatim text in section 9): S7-R5.
 
 ### SETUP-DATA-17 — A vendor on Credit Hold has vendor invoices due on the invoice date
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Vendor {Vendor-A} holds Credit Hold and vendor {Vendor-B} holds Net 45. For example: {Vendor-A} is ZZAUTOTEST DATA-17 Held and {Vendor-B} is ZZAUTOTEST DATA-17 Forty Five.
-- A new vendor invoice {Vendor-invoice-A} for {Vendor-A} is open, not yet saved. For example: {Vendor-invoice-A} is a vendor invoice for one part.
+- Vendor {Vendor-B} (made for this test) holds Net 45. For example: {Vendor-B} is ZZAUTOTEST DATA-17 Forty Five.
+- A new vendor invoice is open, not yet saved, for a vendor who holds Credit Hold. For example: the vendor is ZZAUTOTEST DATA-17 Held.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Vendor-A} = vendor A, {Vendor-B} = vendor B, {Vendor-invoice-A} = vendor invoice A.
-Placeholders: {Location-A}, {Vendor-A}, {Vendor-B}, {Vendor-invoice-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-VENDOR, P-INV, P-VINV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Vendor-B} = vendor B.
+Placeholders: {Location-A}, {Vendor-B}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-VENDOR, P-INV.
 Sources (verbatim text in section 9): S7-R5, S7-R9.
 
 ### SETUP-DATA-18 — A vendor invoice from a delivery uses the delivery's location calendar
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- You are working in {Location-A}; a delivery for vendor {Vendor-A} belongs to {Location-B}, in a time zone where the date is already one day later. Run the case at a time of day when the two dates differ. For example: {Location-A} is in Edmonton, {Location-B} is in Auckland and {Vendor-A} is ZZAUTOTEST DATA-18 Vendor on Net 30.
+- Vendor {Vendor-A} (made for this test) holds Net 30. For example: {Vendor-A} is ZZAUTOTEST DATA-18 Vendor.
+- A delivery for vendor {Vendor-A} belongs to {Location-B}, in a time zone where the date is already one day later than where you work. Run the case at a time of day when the two dates differ. For example: you work in Edmonton and {Location-B} is in Auckland.
 - Today's date at {Location-B} is {Date-A}; {Date-B} is {Date-A} plus 30 days. For example: {Date-A} is Oct 22, 2026 and {Date-B} is Nov 21, 2026.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Date-A} = date A, {Date-B} = date B, {Location-A} = location A, {Location-B} = location B, {Vendor-A} = vendor A.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Date-A} = date A, {Date-B} = date B, {Location-A} = the test location, {Location-B} = location B, {Vendor-A} = vendor A.
 Placeholders: {Date-A}, {Date-B}, {Location-A}, {Location-B}, {Vendor-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-VENDOR, P-INV, P-VINV, P-LOC.
 Sources (verbatim text in section 9): S7-R6, S7-R6a.
@@ -3567,12 +3585,13 @@ Sources (verbatim text in section 9): S3-R16, S3-R5, S7-R3.
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop's own term {Term-A} is held by no customer, and Net 30 is held by {Count-B} customers, written down before you start (the Counter Sale customer is never counted). For example: {Count-B} is 40 and {Term-A} is ZZAUTOTEST DATA-20 Fourteen.
-- A contacts import file with three new customers: {Customer-B} with the credit term text "NET 30", {Customer-C} with "net30" and {Customer-D} with {Term-A} written in capital letters. For example: {Customer-B}, {Customer-C} and {Customer-D} are ZZAUTOTEST DATA-20 Bravo, Charlie and Delta.
+- The shop's own term {Term-A} (made for this test) is held by no customer. For example: {Term-A} is ZZAUTOTEST DATA-20 Fourteen.
+- Before you start, write down how many customers hold Net 30 ({Count-B}; the Counter Sale customer is never counted). For example: {Count-B} is 40.
+- A contacts import file with three new customers: {Customer-B} with the credit term text "NET 30", one with "net30" and one with {Term-A} written in capital letters. For example: {Customer-B} is ZZAUTOTEST DATA-20 Bravo and the others ZZAUTOTEST DATA-20 Charlie and Delta.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Count-B} = number B, {Customer-B} = customer B, {Customer-C} = customer C, {Customer-D} = customer D, {Location-A} = the test location, {Term-A} = term A.
-Placeholders: {Count-B}, {Customer-B}, {Customer-C}, {Customer-D}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Count-B} = number B, {Customer-B} = customer B, {Location-A} = the test location, {Term-A} = term A.
+Placeholders: {Count-B}, {Customer-B}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-CUST, P-IMPORT.
 Sources (verbatim text in section 9): A-SPELL, S1-R12, S10-R3, S11-E2, T-INUSE.
 
@@ -3580,24 +3599,28 @@ Sources (verbatim text in section 9): A-SPELL, S1-R12, S10-R3, S11-E2, T-INUSE.
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Customer {Customer-A} and vendor {Vendor-A} were stored with a blank credit term before the release; COD's Customers count is {Count-A} and Vendors count {Count-B} with them included. For example: {Customer-A} is ZZAUTOTEST DATA-21 Blank, {Vendor-A} is ZZAUTOTEST DATA-21 Blank Vendor, {Count-A} is 121 and {Count-B} is 768.
+- Customer {Customer-A} and a vendor were stored with a blank credit term before the release. For example: {Customer-A} is ZZAUTOTEST DATA-21 Blank and the vendor ZZAUTOTEST DATA-21 Blank Vendor.
+- Before you start, write down COD's Customers count ({Count-A}) and Vendors count ({Count-B}), with them included. For example: {Count-A} is 121 and {Count-B} is 768.
 - The organization's Counter Sale customer is on COD.
+- Net 30 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Count-A} = number A, {Count-B} = number B, {Customer-A} = customer A, {Location-A} = the test location, {Vendor-A} = vendor A.
-Placeholders: {Count-A}, {Count-B}, {Customer-A}, {Location-A}, {Vendor-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-CUST, P-OLD, P-VENDOR.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Count-A} = number A, {Count-B} = number B, {Customer-A} = customer A, {Location-A} = the test location.
+Placeholders: {Count-A}, {Count-B}, {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-CUST, P-OLD.
 Sources (verbatim text in section 9): S1-R12, S1-R13, S11-R9, T-COUNTER, T-INUSE.
 
 ### SETUP-DATA-22 — Vendors counts follow the same rules as customers
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- Net 45 is held by {Count-A} vendors (written down). Vendor {Vendor-A} is stored with "NET 45" and vendor {Vendor-B} holds Net 45 and is inactive; both are in {Count-A}. For example: {Count-A} is 5, {Vendor-A} is ZZAUTOTEST DATA-22 Upper and {Vendor-B} is ZZAUTOTEST DATA-22 Inactive.
+- Vendor {Vendor-A} (made for this test) is stored with "NET 45" and another vendor holds Net 45 and is inactive. For example: {Vendor-A} is ZZAUTOTEST DATA-22 Upper and the inactive vendor ZZAUTOTEST DATA-22 Inactive.
+- Before you start, write down how many vendors hold Net 45 ({Count-A}, which includes vendor {Vendor-A} and the inactive vendor). For example: {Count-A} is 5.
+- Net 60 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Count-A} = number A, {Location-A} = the test location, {Vendor-A} = vendor A, {Vendor-B} = vendor B.
-Placeholders: {Count-A}, {Location-A}, {Vendor-A}, {Vendor-B}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Count-A} = number A, {Location-A} = the test location, {Vendor-A} = vendor A.
+Placeholders: {Count-A}, {Location-A}, {Vendor-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-VENDOR.
 Sources (verbatim text in section 9): S1-R13, S6-E2, T-INUSE.
 
@@ -3606,6 +3629,7 @@ Section: Counts and due dates — exact numbers (TestRail section 91467). Marker
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Net 15 is held by {Count-A} customers and Net 20 by {Count-B}, written down; three of the Net 15 customers are {Customer-A}, {Customer-B} and {Customer-C}. For example: {Count-A} is 7, {Count-B} is 2 and the three are ZZAUTOTEST DATA-23 Alpha to Charlie.
+- Create {Customer-A}, {Customer-B} and {Customer-C} just for this test, so no earlier test's changes affect them.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Names in the TestRail case (Rule 117 fourteenth amendment): {Count-A} = number A, {Count-B} = number B, {Customer-A} = customer A, {Customer-B} = customer B, {Customer-C} = customer C, {Location-A} = the test location.
@@ -3631,11 +3655,11 @@ Sources (verbatim text in section 9): S1-R3, S2-R7, S2-R8, S2-R9, S3-R7.
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly five customers: {Customer-A}, {Customer-B}, {Customer-C}, {Customer-D} and {Customer-E}; only {Customer-B} and {Customer-D} have "Fleet" in their names. For example: {Term-A} is ZZAUTOTEST DATA-25 N20, they are ZZAUTOTEST DATA-25 Alpha, ZZAUTOTEST DATA-25 Bravo Fleet, ZZAUTOTEST DATA-25 Charlie, ZZAUTOTEST DATA-25 Delta Fleet and ZZAUTOTEST DATA-25 Echo.
+- The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly five customers made for this test: {Customer-A}, {Customer-B}, {Customer-D} and two more; only {Customer-B} and {Customer-D} have "Fleet" in their names. For example: {Term-A} is ZZAUTOTEST DATA-25 N20 and they are ZZAUTOTEST DATA-25 Alpha, Bravo Fleet, Charlie, Delta Fleet and Echo.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-B} = customer B, {Customer-C} = customer C, {Customer-D} = customer D, {Customer-E} = customer E, {Location-A} = the test location, {Term-A} = term A.
-Placeholders: {Customer-A}, {Customer-B}, {Customer-C}, {Customer-D}, {Customer-E}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-B} = customer B, {Customer-D} = customer D, {Location-A} = the test location, {Term-A} = term A.
+Placeholders: {Customer-A}, {Customer-B}, {Customer-D}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-CUST, P-INV.
 Sources (verbatim text in section 9): S4-R2, S4-R6.
 
@@ -3643,35 +3667,36 @@ Sources (verbatim text in section 9): S4-R2, S4-R6.
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly two customers, {Customer-A} and {Customer-B}. For example: {Term-A} is ZZAUTOTEST DATA-26 N20, they are ZZAUTOTEST DATA-26 Alpha and ZZAUTOTEST DATA-26 Bravo.
+- The shop's own term {Term-A} (made for this test), due 20 days after the invoice date, is held by exactly two customers made for this test. For example: {Term-A} is ZZAUTOTEST DATA-26 N20, held by ZZAUTOTEST DATA-26 Alpha and Bravo.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-B} = customer B, {Location-A} = the test location, {Term-A} = term A.
-Placeholders: {Customer-A}, {Customer-B}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
+Placeholders: {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-INV.
 Sources (verbatim text in section 9): S12-R3, S12-R3 MOVED, S4-R14, S4-R9, UFS-40, UFS-48, UFS-49.
 
 ### SETUP-DATA-26b — Toast and log use the singular for one customer moved
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop's own term {Term-A}, due 45 days after the invoice date, is held by exactly one customer, {Customer-C}. For example: {Term-A} is ZZAUTOTEST DATA-26b N45, {Customer-C} is ZZAUTOTEST DATA-26b Charlie.
+- The shop's own term {Term-A} (made for this test), due 45 days after the invoice date, is held by exactly one customer made for this test. For example: {Term-A} is ZZAUTOTEST DATA-26b N45, held by ZZAUTOTEST DATA-26b Charlie.
+- Net 30 is active.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-C} = customer C, {Location-A} = the test location, {Term-A} = term A.
-Placeholders: {Customer-C}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
+Placeholders: {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-INV.
 Sources (verbatim text in section 9): S12-R3, S12-R3 MOVED, S4-R9.
 
 ### SETUP-DATA-27 — Reversed and paid invoices count toward a term's holders, estimates never
 Section: Counts and due dates — exact numbers (TestRail section 91467). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop's own term {Term-A} is held by no customer or vendor today. It was used by invoices {Invoice-A} (paid), {Invoice-B} (reversed) and {Invoice-C} (open), and by an estimate {Estimate-A} that was never invoiced; the customer was then moved to Net 30. For example: {Term-A} is ZZAUTOTEST DATA-27 Fourteen and the records belong to ZZAUTOTEST DATA-27 Customer.
+- The shop's own term {Term-A} is held by no customer or vendor today. It was used by three invoices (one paid, one reversed and one open) and by an estimate that was never invoiced; the customer was then moved to Net 30. For example: {Term-A} is ZZAUTOTEST DATA-27 Fourteen and the records belong to ZZAUTOTEST DATA-27 Customer.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Estimate-A} = estimate A, {Invoice-A} = invoice A, {Invoice-B} = invoice B, {Invoice-C} = invoice C, {Location-A} = the test location, {Term-A} = term A.
-Placeholders: {Estimate-A}, {Invoice-A}, {Invoice-B}, {Invoice-C}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
+Placeholders: {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-INV.
 Sources (verbatim text in section 9): S2-R2, T-INUSE.
 
@@ -3750,6 +3775,7 @@ Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: 
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Due on Receipt is the default for new customers.
+- Net 30 is active.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
 - The design pictures ct-p1-01-active-tab-one-table.png, ct-p1-10-saved.png, ct-p4-01-active-tab-after-deactivating-everything-it-can.png are attached to this case; open each at 100% zoom beside the screen.
 - Starting screen: the Settings page.
@@ -3834,14 +3860,14 @@ Sources (verbatim text in section 9): S1-N3, S2-N2, S4-N2, UFS-9.
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop has its own active term {Term-A}, due on day 10 of the following month, held by 1 customer, {Customer-A}, and 2 vendors, {Vendor-A} and {Vendor-B}. For example: {Term-A} is 10th of next month, {Customer-A} is ZZAUTOTEST D-46 Customer, {Vendor-A} and {Vendor-B} are ZZAUTOTEST D-46 Vendor A and ZZAUTOTEST D-46 Vendor B.
+- The shop has its own active term {Term-A} (made for this test), due on day 10 of the following month, held by exactly 1 customer and 2 vendors. For example: {Term-A} is 10th of next month.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
 - The design picture ct-p1-07-row-menu-your-term-in-use.png is attached to this case; open it at 100% zoom beside the screen.
 - Starting screen: the Credit Terms page, Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {Vendor-A} = vendor A, {Vendor-B} = vendor B.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Vendor-A}, {Vendor-B}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-VENDOR.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A.
+Placeholders: {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM.
 Sources (verbatim text in section 9): S2-N5, S2-R1, S2-R2, UFS-7.
 
 ### SETUP-D-47 — Design: Row menu of the default term greys Deactivate
@@ -3861,14 +3887,13 @@ Sources (verbatim text in section 9): S2-N4, S2-R1, UFS-8.
 ### SETUP-D-48 — Design: Move Customers greyed without the customer permissions
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
-- You are signed in as {User-A}, working in {Location-A}, and the role of {User-A} has Settings → Finance but not Customers → Create & Edit. For example: {User-A} is ZZAUTOTEST D-48 Finance only and {Location-A} is Staging Heavy Duty - 9919.
+- You are signed in as a user whose role has Settings → Finance but not Customers → Create & Edit. For example: the user is ZZAUTOTEST D-48 Finance only.
 - Due on Receipt is the default for new customers.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
 - The design picture ct-p2-09-without-the-customer-permissions.png is attached to this case; open it at 100% zoom beside the screen.
 - Starting screen: the Credit Terms page, Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {User-A} = user A.
-Placeholders: {Location-A}, {User-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Placeholders: none. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD.
 Sources (verbatim text in section 9): S4-N1, UFS-37.
 
@@ -3917,7 +3942,7 @@ Sources (verbatim text in section 9): S2-R5, UFS-11.
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop has its own active term {Term-A}, due 9 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST D-12 Nine.
+- The shop has its own active term {Term-A} (made for this test), due 9 days after the invoice date, held by no customer, vendor or invoice. For example: {Term-A} is ZZAUTOTEST D-12 Nine.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
 - The design picture ct-p1-11-delete-credit-term-confirmation.png is attached to this case; open it at 100% zoom beside the screen.
 - Starting screen: the Credit Terms page, Active tab.
@@ -3959,6 +3984,7 @@ Sources (verbatim text in section 9): S3-R3, S3-R4, S3-R5, S3-R5 DAY, UFS-28.
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Net 30 is active.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
 - The design picture ct-p3-03-validation-errors.png is attached to this case; open it at 100% zoom beside the screen.
 - Starting screen: the Credit Terms page, Active tab.
@@ -3987,13 +4013,13 @@ Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: 
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Due on Receipt is the default for new customers, not COD.
-- At least ten customers are on COD, among them {Customer-A} and {Customer-B}. For example: {Customer-A} is ZZAUTOTEST D-17 Alpha and {Customer-B} is ZZAUTOTEST D-17 Bravo.
+- At least ten customers are on COD, among them {Customer-A}. For example: {Customer-A} is ZZAUTOTEST D-17 Alpha.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
 - The design pictures ct-p2-02-move-customers-from-cod.png, ct-p2-03-some-customers-unticked.png, ct-p2-06-move-to-cod-the-0-line.png are attached to this case; open each at 100% zoom beside the screen.
 - Starting screen: the Credit Terms page, Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Customer-B} = customer B, {Location-A} = the test location, {n} = N.
-Placeholders: {Customer-A}, {Customer-B}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {n} = N.
+Placeholders: {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-STD, P-CUST.
 Sources (verbatim text in section 9): S4-R1, S4-R2, S4-R4, S4-R7, UFS-34, UFS-49.
 
@@ -4003,6 +4029,7 @@ Preconditions with their placeholders and examples (for Claude sessions; the Tes
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Due on Receipt is the default for new customers.
 - At least one customer is on COD.
+- Net 7 and Net 15 are active.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
 - The design picture ct-p2-04-pick-another-term.png is attached to this case; open it at 100% zoom beside the screen.
 - Starting screen: the Credit Terms page, Active tab.
@@ -4088,14 +4115,14 @@ Sources (verbatim text in section 9): UFS-51.
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- {Customer-A} is on Net 45 with a credit limit of {Amount-A} and a balance above it. For example: {Customer-A} is ZZAUTOTEST D-25 Over, {Amount-A} is $500.00 and the balance is $600.00.
+- A customer is on Net 45 with a credit limit of {Amount-A} and a balance above it. For example: ZZAUTOTEST D-25 Over, {Amount-A} is $500.00 and the balance is $600.00.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
 - The design pictures ct-p8-01-the-over-credit-warning-today.png, ct-p8-03-still-warns-limit-above-0-exceeded.png are attached to this case; open each at 100% zoom beside the screen.
-- Starting screen: the customer page of {Customer-A}.
+- Starting screen: the customer page of that customer.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Amount-A} = $500.00, {Customer-A} = customer A, {Location-A} = the test location.
-Placeholders: {Amount-A}, {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-CUST.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Amount-A} = $500.00, {Location-A} = the test location.
+Placeholders: {Amount-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: none.
 Sources (verbatim text in section 9): S9-R1, S9-R3, UFS-52.
 
 ### SETUP-D-22 — Design: New Customer shows Credit Terms and Credit Limit side by side
@@ -4143,13 +4170,12 @@ Sources (verbatim text in section 9): S5-R4, UFS-44.
 ### SETUP-D-39 — Design: New Customer without AP/AR access has no credit fields
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
-- You are signed in as {User-A}, working in {Location-A}, and the role of {User-A} can create customers but does not have View and Manage AP/AR Data. For example: {User-A} is ZZAUTOTEST D-39 No AP and {Location-A} is Staging Heavy Duty - 9919.
+- You are signed in as a user whose role can create customers but does not have View and Manage AP/AR Data. For example: the user is ZZAUTOTEST D-39 No AP.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
 - The design picture ct-p5-05-new-customer-without-view-and-manage-ap-ar-data.png is attached to this case; open it at 100% zoom beside the screen.
 - Starting screen: the Customers page.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {User-A} = user A.
-Placeholders: {Location-A}, {User-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Placeholders: none. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: none.
 Sources (verbatim text in section 9): S5-N1.
 
@@ -4171,56 +4197,59 @@ Sources (verbatim text in section 9): S5-R14, S5-R8.
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- {Customer-A} is on Net 50 with a credit limit of {Amount-A}, and Net 50 is deactivated. For example: {Customer-A} is ZZAUTOTEST D-27 Customer and {Amount-A} is $5,000.00.
+- A customer is on Net 50 with a credit limit of {Amount-A}. For example: ZZAUTOTEST D-27 Customer and {Amount-A} is $5,000.00.
+- Net 50 is deactivated.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
 - The design pictures ct-p6-03-edit-customer-today.png, ct-p6-04-edit-customer-keeps-the-inactive-term.png are attached to this case; open each at 100% zoom beside the screen.
-- Starting screen: the customer page of {Customer-A}.
+- Starting screen: the customer page of that customer.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Amount-A} = $5,000.00, {Customer-A} = customer A, {Location-A} = the test location.
-Placeholders: {Amount-A}, {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-STD, P-CUST.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Amount-A} = $5,000.00, {Location-A} = the test location.
+Placeholders: {Amount-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-STD.
 Sources (verbatim text in section 9): S5-R1, S5-R12, S5-R7.
 
 ### SETUP-D-40 — Design: Credit Limit locks at $0.00 for COD on Edit Customer
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- {Customer-A} is on Net 30 with a credit limit of {Amount-A}. For example: {Customer-A} is ZZAUTOTEST D-40 Customer and {Amount-A} is $5,000.00.
+- A customer made for this test is on Net 30 with a credit limit of {Amount-A}. For example: ZZAUTOTEST D-40 Customer and {Amount-A} is $5,000.00.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
 - The design picture ct-p6-06-edit-customer-cod-or-credit-hold-locks-the-limit.png is attached to this case; open it at 100% zoom beside the screen.
-- Starting screen: the customer page of {Customer-A}.
+- Starting screen: the customer page of that customer.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Amount-A} = $5,000.00, {Customer-A} = customer A, {Location-A} = the test location.
-Placeholders: {Amount-A}, {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-CUST.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Amount-A} = $5,000.00, {Location-A} = the test location.
+Placeholders: {Amount-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: none.
 Sources (verbatim text in section 9): S5-R4, UFS-44.
 
 ### SETUP-D-28 — Design: Dropdown of a customer on an inactive term lists it last
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- {Customer-A} is on Net 50, and Net 50 is deactivated. For example: {Customer-A} is ZZAUTOTEST D-28 Customer.
+- A customer is on Net 50. For example: ZZAUTOTEST D-28 Customer.
+- Net 50 is deactivated.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
 - The design pictures ct-p6-05-this-customer-s-picker.png, ct-p7-07-edit-vendor-keeps-the-inactive-term.png are attached to this case; open each at 100% zoom beside the screen.
-- Starting screen: the customer page of {Customer-A}.
+- Starting screen: the customer page of that customer.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location.
-Placeholders: {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-STD, P-CUST.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location.
+Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-STD.
 Sources (verbatim text in section 9): S5-R7.
 
 ### SETUP-D-41 — Design: Other customers' dropdown leaves out the inactive term
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- {Customer-A} is on Net 30, and Net 50 is deactivated. For example: {Customer-A} is ZZAUTOTEST D-41 Customer.
+- A customer is on Net 30. For example: ZZAUTOTEST D-41 Customer.
+- Net 50 is deactivated.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
 - The design picture ct-p6-07-any-other-customer-s-picker.png is attached to this case; open it at 100% zoom beside the screen.
-- Starting screen: the customer page of {Customer-A}.
+- Starting screen: the customer page of that customer.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location.
-Placeholders: {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-STD, P-CUST.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location.
+Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-STD.
 Sources (verbatim text in section 9): S5-N2.
 
 ### SETUP-D-29 — Design: New Vendor starts on COD with the shop's own terms
@@ -4242,28 +4271,30 @@ Sources (verbatim text in section 9): S6-R1, S6-R2, S6-R4.
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- {Vendor-A} is on Net 30. For example: {Vendor-A} is ZZAUTOTEST D-30 Vendor.
+- A vendor is on Net 30. For example: ZZAUTOTEST D-30 Vendor.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
 - The design pictures ct-p7-03-edit-vendor-today.png, ct-p7-04-edit-vendor-the-picker-with-your-terms.png, ct-p7-08-any-other-vendor-s-picker.png are attached to this case; open each at 100% zoom beside the screen.
-- Starting screen: the vendor page of {Vendor-A}.
+- Starting screen: the vendor page of that vendor.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Vendor-A} = vendor A.
-Placeholders: {Location-A}, {Vendor-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-VENDOR.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location.
+Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: none.
 Sources (verbatim text in section 9): S6-R1, S6-R2.
 
 ### SETUP-D-31 — Design: Edit Vendor lists the vendor's inactive term last
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- {Vendor-A} is on Net 50, and Net 50 is deactivated. For example: {Vendor-A} is ZZAUTOTEST D-31 Vendor.
+- A vendor is on Net 50. For example: ZZAUTOTEST D-31 Vendor.
+- Net 50 is deactivated.
+- Net 120 is active.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
 - The design picture ct-p7-07-edit-vendor-keeps-the-inactive-term.png is attached to this case; open it at 100% zoom beside the screen.
-- Starting screen: the vendor page of {Vendor-A}.
+- Starting screen: the vendor page of that vendor.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Vendor-A} = vendor A.
-Placeholders: {Location-A}, {Vendor-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-STD, P-VENDOR.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location.
+Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-STD.
 Sources (verbatim text in section 9): S6-R3.
 
 ### SETUP-D-42 — Design: Vendor card shows a deactivated term as Inactive
@@ -4284,15 +4315,13 @@ Sources (verbatim text in section 9): S6-R3, S6-R6.
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop has its own active term {Term-A}, due on day 10 of the following month. For example: {Term-A} is ZZAUTOTEST D-32 Tenth.
-- {Vendor-A} is on {Term-A}. For example: {Vendor-A} is ZZAUTOTEST D-32 Vendor.
-- {Vendor-A} has a saved vendor invoice, {Vendor-invoice-A}, dated Oct 5, 2026. For example: {Vendor-invoice-A} is a vendor invoice for one part.
+- Vendor invoice {Vendor-invoice-A}, dated Oct 5, 2026, is saved for a vendor who holds the shop's own term due on day 10 of the following month. For example: the vendor is ZZAUTOTEST D-32 Vendor on ZZAUTOTEST D-32 Tenth.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
 - The design pictures ct-p7-09-a-vendor-invoice-today-net-60.png, ct-p7-10-vendor-on-10th-of-next-month-oct-5-due-nov-10.png are attached to this case; open each at 100% zoom beside the screen.
 - Starting screen: the vendor invoices list (Parts, Vendors, Vendor Invoices).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {Vendor-A} = vendor A, {Vendor-invoice-A} = vendor invoice A.
-Placeholders: {Location-A}, {Term-A}, {Vendor-A}, {Vendor-invoice-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Vendor-invoice-A} = vendor invoice A.
+Placeholders: {Location-A}, {Vendor-invoice-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-VENDOR, P-INV, P-VINV.
 Sources (verbatim text in section 9): S7-R2, S7-R9.
 
@@ -4300,15 +4329,13 @@ Sources (verbatim text in section 9): S7-R2, S7-R9.
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop has its own active term {Term-A}, due 10 days after the invoice date. For example: {Term-A} is ZZAUTOTEST D-43 Ten.
-- {Vendor-A} is on {Term-A}. For example: {Vendor-A} is ZZAUTOTEST D-43 Vendor.
-- {Vendor-A} has a saved vendor invoice, {Vendor-invoice-A}, dated Oct 5, 2026. For example: {Vendor-invoice-A} is a vendor invoice for one part.
+- Vendor invoice {Vendor-invoice-A}, dated Oct 5, 2026, is saved for a vendor who holds the shop's own term due 10 days after the invoice date. For example: the vendor is ZZAUTOTEST D-43 Vendor on ZZAUTOTEST D-43 Ten.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
 - The design picture ct-p7-11-vendor-on-net-10-oct-5-due-oct-15.png is attached to this case; open it at 100% zoom beside the screen.
 - Starting screen: the vendor invoices list (Parts, Vendors, Vendor Invoices).
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {Vendor-A} = vendor A, {Vendor-invoice-A} = vendor invoice A.
-Placeholders: {Location-A}, {Term-A}, {Vendor-A}, {Vendor-invoice-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Vendor-invoice-A} = vendor invoice A.
+Placeholders: {Location-A}, {Vendor-invoice-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
 Procedures: P-TERM, P-VENDOR, P-INV, P-VINV.
 Sources (verbatim text in section 9): S7-R1, S7-R9.
 
@@ -4317,39 +4344,36 @@ Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: 
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The shop has its own active term {Term-A}, due on day 10 of the following month. For example: {Term-A} is 10th of next month (on a test shop name it ZZAUTOTEST D-33 Tenth).
-- {Customer-A} is on {Term-A}. For example: {Customer-A} is ZZAUTOTEST D-33 Customer.
-- Work order {Work-order-1} for {Customer-A} was invoiced with the invoice date Oct 5, 2026. For example: {Work-order-1} is S2-17610.
+- Work order {Work-order-1} was invoiced with the invoice date Oct 5, 2026, for a customer who holds {Term-A}. For example: {Work-order-1} is S2-17610.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
 - The design pictures ct-p9-01-an-invoice-today-net-30.png, ct-p9-02-10th-of-next-month-invoice-oct-5-due-nov-10.png are attached to this case; open each at 100% zoom beside the screen.
 - Starting screen: work order {Work-order-1}.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-WO, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
+Placeholders: {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-WO, P-INV.
 Sources (verbatim text in section 9): S5-R11, S5-R8, S7-R2.
 
 ### SETUP-D-44 — Design: Late-month invoice is still due the next month
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The shop has its own active term {Term-A}, due on day 10 of the following month. For example: {Term-A} is ZZAUTOTEST D-44 Tenth.
-- {Customer-A} is on {Term-A}. For example: {Customer-A} is ZZAUTOTEST D-44 Customer.
-- Work order {Work-order-1} for {Customer-A} was invoiced with the invoice date Oct 28, 2026. For example: {Work-order-1} is S2-17655.
+- A work order was invoiced with the invoice date Oct 28, 2026, for a customer who holds the shop's own term due on day 10 of the following month. For example: work order S2-17655.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
 - The design picture ct-p9-03-invoice-oct-28-still-due-nov-10.png is attached to this case; open it at 100% zoom beside the screen.
-- Starting screen: work order {Work-order-1}.
+- Starting screen: that work order.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Customer-A} = customer A, {Location-A} = the test location, {Term-A} = term A, {Work-order-1} = work order 1.
-Placeholders: {Customer-A}, {Location-A}, {Term-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-CUST, P-WO, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Location-A} = the test location.
+Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-TERM, P-INV.
 Sources (verbatim text in section 9): S7-R2.
 
 ### SETUP-D-34 — Design: New Work Order for a COD customer shows no warning
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- {Customer-A} is on COD with a $0.00 credit limit and an unpaid balance. For example: {Customer-A} is ZZAUTOTEST D-34 COD, balance $1,200.00.
-- {Customer-A} has an asset, {Asset-A}. For example: {Asset-A} is 2019 Kenworth T880.
+- {Customer-A} (made for this test) is on COD with a $0.00 credit limit and an unpaid balance. For example: {Customer-A} is ZZAUTOTEST D-34 COD, balance $1,200.00.
+- {Customer-A} has an asset, {Asset-A} (made for this test). For example: {Asset-A} is 2019 Kenworth T880.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
 - The design picture ct-p8-02-cod-customer-0-limit-owes-1-200-no-warning.png is attached to this case; open it at 100% zoom beside the screen.
 - Starting screen: the customer page of {Customer-A}.
@@ -4363,15 +4387,14 @@ Sources (verbatim text in section 9): S9-N1, S9-N2.
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- {Customer-A} is on Net 30 with a credit limit of {Amount-A} and a balance above it. For example: {Customer-A} is ZZAUTOTEST D-36 Over, {Amount-A} is $500.00.
-- Work order {Work-order-1} is open for {Customer-A}. For example: {Work-order-1} is S2-17322.
+- Work order {Work-order-1} is open, for a customer on Net 30 with a credit limit of {Amount-A} and a balance above it. For example: {Work-order-1} is S2-17322 and {Amount-A} is $500.00.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
 - The design picture ct-p9-01-an-invoice-today-net-30.png is attached to this case; open it at 100% zoom beside the screen.
 - Starting screen: the Work Orders page.
 - If any record above is missing, mark this test Blocked: "setup not done".
-Names in the TestRail case (Rule 117 fourteenth amendment): {Amount-A} = $500.00, {Customer-A} = customer A, {Location-A} = the test location, {Work-order-1} = work order 1.
-Placeholders: {Amount-A}, {Customer-A}, {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-CUST, P-WO, P-INV.
+Names in the TestRail case (Rule 117 fourteenth amendment): {Amount-A} = $500.00, {Location-A} = the test location, {Work-order-1} = work order 1.
+Placeholders: {Amount-A}, {Location-A}, {Work-order-1}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
+Procedures: P-WO, P-INV.
 Sources (verbatim text in section 9): S9-R2.
 
 ### SETUP-D-50 — Design: Due on Receipt info tooltip reads as designed
@@ -4405,6 +4428,7 @@ Sources (verbatim text in section 9): S1-N2.
 Section: Design — how it looks (TestRail section 91468). Marker: `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 10)`.
 Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):
 - You are an Admin user working at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Net 30 is active.
 - The browser window is 1440 px wide, at 100% zoom. For example: a maximised window on a 1440 x 900 screen.
 - The design picture ct-p3-03-validation-errors.png is attached to this case; open it at 100% zoom beside the screen.
 - Starting screen: the Credit Terms page, Active tab.

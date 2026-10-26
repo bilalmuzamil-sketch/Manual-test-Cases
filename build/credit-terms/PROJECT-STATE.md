@@ -80,3 +80,11 @@ P-OLD recipe updated; applied 26 Oct, read back clean. 7. QA branch: given when 
   (rules + hand-written forms), rendered by `ct_lib.render`; old layout kept as `ct_lib.render_scenario`; pattern gate in
   `authoring/build.py` (0 PROBLEM lines). The authoring data keeps placeholders and examples for the setup file, which now also lists each
   case's plain names. Evidence: `pattern-format-2026-10-26/PASS-REPORT.md`. Needs the QA lead's go-ahead before any TestRail update (Rule 6).
+- 26 Oct 2026: relevance and independence pass DRAFTED (coordinator review; QA lead: "they must make sense and relate to the steps and
+  expected results below" and "if one test case fails that does not block the other test case"), not applied to TestRail: 210 cases'
+  preconditions (and 11 notes) changed; steps, titles, quotes, design blocks and AUTOMATION lines identical to the applied version (one
+  result bullet in S12-10 now says "the test location" for location A). `authoring/relevance.py` (applied in `ct_lib.C()`): records no
+  step or result uses are dropped or left unnamed, records a case changes are "(made for this test)", standard Net terms a case needs are
+  stated active, notes no longer name other cases, "(from other tests)" removed. Two permanent gates added to `authoring/build.py`
+  (relevance; independence: no case key or C-id in tester text, changed records made for this test) plus a stale hand-written-form check;
+  0 PROBLEM lines. Evidence: `pattern-format-2026-10-26/RELEVANCE-PASS.md`. Needs the QA lead's go-ahead before any TestRail update.

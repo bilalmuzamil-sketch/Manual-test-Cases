@@ -53,7 +53,9 @@ for k, b in BEFORE.items():
     hb, ha = b["fields"]["custom_expected"], a["fields"]["custom_expected"]
     ident["quotes"] += quotes_of(hb) == quotes_of(ha); ident["design"] += design_of(hb) == design_of(ha); ident["auto"] += auto_of(hb) == auto_of(ha)
     ident["title"] += b["title"] == a["title"]
-    if c["note"] and PAT.sub(c["note"], names) != c["note"]: ident["note_changed"].append((k, c["note"], PAT.sub(c["note"], names)))
+    _ob = U(re.sub(r"<[^>]+>", "", hb.split("</ul>", 1)[1].split("<p><strong>Exact quotes")[0])).strip()
+    _na = U(re.sub(r"<[^>]+>", "", ha.split("<p></p>", 1)[1].split("<p><strong>Exact quotes")[0])).strip()
+    if _ob != _na: ident["note_changed"].append((k, _ob, _na))
     scen, st, ex, osteps, ores = old_parts(b["fields"]); npre, nsteps, nres = new_parts(a["fields"])
     old_text = " ".join([PAT.sub(x, names) for x in st if x != BLOCKED_OLD] + [PAT.sub(x, names) for x in osteps] + [PAT.sub(x, names) for x in ores])
     old_text = re.sub(r"\bStep \d+: ", "", old_text)
@@ -77,11 +79,11 @@ W_(f"- Exact quotes block with its From lines, byte-identical to before: **{iden
 W_(f"- References from Design block, byte-identical: **{ident['design']} of {N}**.")
 W_(f"- AUTOMATION line, byte-identical and last: **{ident['auto']} of {N}**.")
 W_(f"- Title unchanged: **{ident['title']} of {N}**.")
-W_(f"- Notes below the blank line (held / design-difference / other): unchanged except where they named a placeholder: "
+W_(f"- Notes below the blank line (held / design-difference / other): unchanged except where they named a placeholder or another case (relevance and independence pass, RELEVANCE-PASS.md): "
    + (", ".join(f"{k} ({o!r} -> {n!r})" for k, o, n in ident["note_changed"]) or "none") + ".")
 W_(f"- No fact lost (every amount, date, quoted label, term name and number of the old preconditions, steps and results, with placeholders "
    f"read as the plain names, is in the new title, preconditions, steps, results or note; \"For example\" lines excluded): "
-   + ("**YES, all cases**." if not lost_all else f"**YES** for {N - len(lost_all)} cases; {len(lost_all)} case(s) carry the same facts in new words ({', '.join(lost_all)}, explained in section 4)."))
+   + ("**YES, all cases**." if not lost_all else f"**YES** for {N - len(lost_all)} cases; {len(lost_all)} case(s) explained one by one in section 4 ({', '.join(lost_all)})."))
 W_(f"- Facts only in the removed Scenario line (not in the old or new preconditions, steps or results): "
    + ("none." if not scen_only else "; ".join(f"{k}: {', '.join(v)}" for k, v in scen_only.items()) + "."))
 W_("- `authoring/build.py`: PROBLEM lines 0 (see section 2 for the gates).")
@@ -124,6 +126,9 @@ for k, b, a, scen, st, ex, osteps, ores, npre, nsteps, nres in rows:
         W_(f"  - Step {i}:")
         for x in r: W_(f"    - {x}")
 EXPLAIN = {
+ **{k: "dropped in the relevance pass with a record no step or result uses (the three customers' credit limits and A to Z order; see RELEVANCE-PASS.md)"
+    for k in ("S4-04", "S4-16", "S4-20", "S4-34")},
+ "S4-08": "dropped in the relevance pass with a record no step or result uses (the third customer's $0.00 credit limit; see RELEVANCE-PASS.md)",
  "D-33": "same facts, new words (hand-written result, section 2): the on-screen labels joined the work order number and term name to "
          "placeholders (\"INV-{Work-order-1}\", \"Work Order {Work-order-1}\", \"Terms {Term-A}\"); they now read \"INV-\" followed by work order 1's "
          "number, \"Work Order\" with work order 1's number, and \"Terms\" with term A's name.",

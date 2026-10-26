@@ -117,7 +117,7 @@ def pre_rule(a):
     """One original precondition (with placeholders) -> one imperative bullet (still with placeholders)."""
     if a.startswith("You are an Admin user working at "): return "Sign in as an Admin at " + a[len("You are an Admin user working at "):]
     m = re.match(r'^You and a second user, (\{User-B\}), are both signed in with the "Admin" role, in two separate browsers\.$', a)
-    if m: return f'Sign in with the "Admin" role in one browser, and have a second user, {m.group(1)}, signed in with the "Admin" role in a second browser.'
+    if m: return f'Have a second user, {m.group(1)}, signed in with the "Admin" role in a second browser (you are signed in as an Admin in the first).'
     if a.startswith("You are signed in "): return "Sign in " + a[len("You are signed in "):]
     if a.startswith("You have "): return "Have " + a[len("You have "):]
     if a.startswith("You use "): return "Use " + a[len("You use "):]

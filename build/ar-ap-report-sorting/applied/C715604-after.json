@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792692109,
  "updated_by": 3,
- "updated_on": 1793023839,
+ "updated_on": 1793029129,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,14 +22,14 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/ar-ap-report-sorting/AR-AP-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>Scenario: You expand some groups on A/P Unpaid Invoices, leave the report and come back.</li><li>You are an Admin user (the \"Admin\" role) working at {Location-A}, your current location.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>The report has open documents on today's date in several vendor groups.</li><li>Starting screen: A/P Unpaid Invoices (Reports, then \"A/P Unpaid Invoices\" under ACCOUNTS PAYABLE in the left menu; the page title reads \"A/P Unpaid Invoices Report\") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin user (the \"Admin\" role).</li><li>Make sure the report has open documents on today's date in several vendor groups.</li><li>Use a desktop browser window 1440 px wide.</li><li>Open A/P Unpaid Invoices (Reports, then \"A/P Unpaid Invoices\" under ACCOUNTS PAYABLE in the left menu; the page title reads \"A/P Unpaid Invoices Report\").</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Note which groups are expanded.</li><li>Click the chevron on the first vendor group row to change it.</li><li>Open Sales By Customer (Reports, then \"Sales By Customer\" under PERFORMANCE in the left menu).</li><li>Open A/P Unpaid Invoices (Reports, then \"A/P Unpaid Invoices\" under ACCOUNTS PAYABLE in the left menu; the page title reads \"A/P Unpaid Invoices Report\") again.</li></ol>",
  "custom_testrail_bdd_scenario": null,
- "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: note the report's opening state.</li><li>Step 2: that vendor group changes (expands or collapses).</li><li>Step 3: Sales By Customer opens.</li><li>Step 4: A/P Unpaid Invoices opens in the same state as in step 1, not the state you left: the change is not remembered.</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"A/R and A/P Report Sorting, Export and Location Filter\", Confluence 947650561, version 9 (23 Oct 2026, Chris Ward), read 26 Oct 2026 &middot; Epic SV-11315, story SV-11534 (Story 4, Collapse all, Expand all and pinned group rows)</p><ul><li><strong>S4-R9:</strong> &ldquo;Expanded state is not remembered between visits.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"A/R and A/P Report Sorting\" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 3 \"Collapse all and pinned group rows\" (board Grouped.dc.html). The design draws no picture of this behaviour (all 7 boards and 45 figures checked); the case follows the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
+ "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Note the report's opening state.</li></ul><p>Step 2:</p><ul><li>That vendor group changes (expands or collapses).</li></ul><p>Step 3:</p><ul><li>Sales By Customer opens.</li></ul><p>Step 4:</p><ul><li>A/P Unpaid Invoices opens in the same state as in step 1, not the state you left: the change is not remembered.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"A/R and A/P Report Sorting, Export and Location Filter\", Confluence 947650561, version 9 (23 Oct 2026, Chris Ward), read 26 Oct 2026 &middot; Epic SV-11315, story SV-11534 (Story 4, Collapse all, Expand all and pinned group rows)</p><ul><li><strong>S4-R9:</strong> &ldquo;Expanded state is not remembered between visits.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"A/R and A/P Report Sorting\" (https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4), read 22 Oct 2026: page 3 \"Collapse all and pinned group rows\" (board Grouped.dc.html). The design draws no picture of this behaviour (all 7 boards and 45 figures checked); the case follows the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
  "custom_steps_separated": null,
  "custom_mission": null,
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 3
+ "version": 4
 }
