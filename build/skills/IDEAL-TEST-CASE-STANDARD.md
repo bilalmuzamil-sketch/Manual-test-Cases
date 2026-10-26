@@ -158,3 +158,10 @@ One action per step: a step never bundles two UI actions, and each step has exac
 ## Amendment, 22 Oct 2026 (QA lead, PERMANENT; Rule 136)
 
 Split a case into 2-5 cases when every part checks a different behaviour and can start from its own preconditions; never when a later step checks the effect of an earlier one. The original keeps its C-id as part 1. Shorter but runnable: a step that only reads what the previous action produced is folded into that action's result; state the case does not test goes into the preconditions.
+
+## Amendment, PERMANENT (QA lead, 26 Oct 2026): preconditions read as a scenario (Rule 117 thirteenth amendment)
+
+The Preconditions block opens with one "Scenario:" line (a short plain story of the situation), then what must exist in the account as
+plain bullets in the order a tester would set it up (who and where, records with {placeholders} and "For example:", their state, the
+starting screen). Only what is needed: no "ask your QA lead", no generic lines, no holds for things the tester obtains. Example
+(C723889): "Scenario: Your shop uses only two credit terms of its own and has switched off every other term it can."

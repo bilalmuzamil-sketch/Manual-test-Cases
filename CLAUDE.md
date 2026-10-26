@@ -505,6 +505,8 @@ in `build/rules/RULES-61-96.md` before writing a case.
 
 **🔴 Rule 117 TWELFTH AMENDMENT, PERMANENT (QA lead, 2026-10-19): every new design case's title starts "Design: ".** Then the easiest lay-person wording, at most 80 characters with the prefix, no semicolons; every project; existing titles stay (WO Board's 19 Oct cases keep "Design- "); nothing else changes. Read the amendment in `build/rules/RULES-61-96.md`.
 
+**🔴 Rule 117 THIRTEENTH AMENDMENT, PERMANENT (QA lead, 2026-10-26): preconditions read as a scenario.** One "Scenario:" line (a plain story of the situation), then what must exist in the account as plain bullets in the order a tester would set it up; only what is needed (no "ask your QA lead", no generic lines, no holds for things the tester obtains). Read the amendment in `build/rules/RULES-61-96.md`.
+
 **🔴 Rule 118 (each session follows only its own rule book — facts may be shared, rules may not)** was
 ordered by the QA lead **2026-10-06** and lives at the end of `build/rules/RULES-61-96.md`, after 117.
 My rules are this copy's index, rule files and skills; another session's notes are read for facts only;

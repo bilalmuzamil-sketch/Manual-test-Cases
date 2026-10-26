@@ -2923,6 +2923,25 @@ starts "Design: ", every project, existing titles stay, nothing else changes) an
 5. **Nothing else about a case changes** because of this amendment.
 6. Record of the retitling: `build/wo-board-tech-view/design-titles-2026-10-19/`.
 
+### 117 — THIRTEENTH AMENDMENT, PERMANENT (QA lead, 2026-10-26): preconditions read as a scenario a tester can build in the account
+
+Ordered on 26 Oct 2026, verbatim: *"Preconditions should be like a scenario, easier for a manual QA tester to understand  to create in
+the account."* An example (C723889) was shown; asked one-time or permanent, he chose **"Permanent, all suites"**, and to rewrite the
+Credit terms, A/R and A/P and Splitting Sales Representatives suites now. Earlier the same day: *"Why do you need this when you are
+supposed to create the test cases and you are supposed to ask the Manual QA tester to get them as the preconditions."*, *"DOnt say
+"ask your QA lead" JUst mention what is needed"* and *"Simply say what is needed."*
+
+1. **The Preconditions block opens with one "Scenario:" line**: a short, plain story of the situation the test needs, in the words of
+   the shop and the screen (for example "Scenario: Your shop uses only two credit terms of its own and has switched off every other
+   term it can.").
+2. **Then what must exist in the account, as plain bullets, in the order a tester would set it up**: who you are and where you work,
+   then the records (with their {placeholders} and a "For example:" second line), then their state, then the starting screen. Each
+   bullet says only what is needed: never who to ask, never a generic line ("a test organization set aside for this suite"), never a
+   hold for something the tester obtains (an organization, documentation, access).
+3. The Blocked line stays last. Steps, expected results, quotes, From lines, References from Design and the AUTOMATION line do not
+   change because of this amendment.
+4. **Every project, every new or touched case.** Lessons L-10 (the same day) and this amendment go together.
+
 ## 118 · EACH SESSION FOLLOWS ONLY ITS OWN RULE BOOK — FACTS MAY BE SHARED, RULES MAY NOT (all projects, permanent)
 
 Standing instruction from the QA lead, 2026-10-06, recorded with his explicit approval ("This message is my
