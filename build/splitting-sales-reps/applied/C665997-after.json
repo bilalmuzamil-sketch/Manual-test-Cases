@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792398794,
  "updated_by": 3,
- "updated_on": 1793028865,
+ "updated_on": 1793034390,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have two active staff members at the test location with their \"Sales Representative\" switch on: sales rep A and sales rep B, so that the work order can have a different Labor and Parts representative.</li><li>Use a customer with no Sales Representative assigned.</li><li>Have at least one split work order invoiced today with Labor set to sales rep A and Parts set to sales rep B, so the Parts filter leaves only sales rep B's row.</li><li>Open Reports &gt; Sales By Representative in a desktop browser at least 1024 pixels wide, with the date range set to today and Show Unassigned on.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have two active staff members at the test location with their \"Sales Representative\" switch on: sales rep A and sales rep B, so that the work order can have a different Labor and Parts representative.</li><li>Use a customer with no Sales Representative assigned.</li><li>Have at least one split work order invoiced today with Labor set to sales rep A and Parts set to sales rep B, so the Parts filter leaves only sales rep B's row.</li><li>Open Reports &gt; Sales By Representative in a desktop browser at least 1024 pixels wide, with the date range set to today and Show Unassigned on.</li></ul>",
  "custom_steps": "<ol><li>Select only \"Parts\" in the Sales Type filter.</li><li>Expand sales rep B.</li><li>Open the invoice from sales rep B's row.</li><li>Press the browser's back button.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The filter reads \"Sales Type: Parts\".</li></ul><p>Step 2:</p><ul><li>Sales rep B's invoice rows show.</li></ul><p>Step 3:</p><ul><li>The invoice opens.</li></ul><p>Step 4:</p><ul><li>The report returns without a full reload.</li><li>\"Sales Type: Parts\" is still selected.</li><li>Sales rep B is still expanded.</li><li>The scroll position is the same.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: \"SBR (Sales By Representative) Report\" spec, Confluence 585629698, version 28 (12 Oct 2026), read 19 Oct 2026 &middot; Epic SV-10890, story SV-11272 (Story 8, Filter both sales reports by Sales Type)</p><ul><li><strong>Sales By Representative spec, S12-R3a:</strong> &ldquo;Pressing the browser back button from either destination returns the user to the report with all state intact — date range, sales type, invoice status, location, Show Unassigned, every rep's expansion state, and scroll position — exactly as they were. Back-navigation must not trigger a full report reload. (This differs from a deliberate page reload, which restores the persisted filters/columns/sort but resets expansion and scroll — Story 23.)&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Claude design canvas \"Splitting Sales Representatives\" (https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), pages 4 and 5 (cited by the story), export read 19 Oct 2026, used for on-screen labels; the look itself is checked in the \"Design — how it looks\" cases.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 7
+ "version": 8
 }

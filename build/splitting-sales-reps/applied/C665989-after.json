@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792398782,
  "updated_by": 3,
- "updated_on": 1793028852,
+ "updated_on": 1793034376,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create an active staff member for this test at the test location with the \"Sales Representative\" switch on: sales rep B.</li><li>Create a customer for this test with no Sales Representative assigned.</li><li>Open the customer's Edit Customer window in a desktop browser at least 1024 pixels wide.</li><li>Open sales rep B's staff record in a second tab of the same browser, with the \"Sales Representative\" switch on.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create an active staff member for this test at the test location with the \"Sales Representative\" switch on: sales rep B.</li><li>Create a customer for this test with no Sales Representative assigned.</li><li>Open the customer's Edit Customer window in a desktop browser at least 1024 pixels wide.</li><li>Open sales rep B's staff record in a second tab of the same browser, with the \"Sales Representative\" switch on.</li></ul>",
  "custom_steps": "<ol><li>In the first tab, click the Sales Representative field.</li><li>In the second tab, turn sales rep B's \"Sales Representative\" switch off.</li><li>In the second tab, save the staff record.</li><li>In the first tab, click sales rep B in the open dropdown.</li><li>Save the customer.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The dropdown lists sales rep B.</li></ul><p>Step 2:</p><ul><li>The switch shows off.</li></ul><p>Step 3:</p><ul><li>The staff record saves.</li></ul><p>Step 4:</p><ul><li>The field reads sales rep B.</li></ul><p>Step 5:</p><ul><li>The save is refused with \"The selected staff member is not a sales representative.\"</li><li>The customer keeps no representative.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Splitting Sales Representatives\", Confluence 919928833, version 11 (21 Oct 2026, Chris Ward), read 22 Oct 2026 &middot; Epic SV-10890, story SV-11268 (Story 4, Give a customer default representatives)</p><ul><li><strong>S1-N2:</strong> &ldquo;A staff member whose Sales Representative switch is off is not listed and cannot be picked. If one is sent by any other route, the system refuses it with \"The selected staff member is not a sales representative.\"&rdquo;</li></ul><p>From: Tech plan \"Splitting Sales Representatives — Technical Implementation Plan\" (dated 14 Oct 2026, planned against PRD version 8; uploaded 19 Oct 2026 and again, byte-identical, 22 Oct 2026), read in full 22 Oct 2026</p><ul><li><strong>Tech plan, customer validation (D5):</strong> &ldquo;A `user_id` the customer does not already hold on any side must also be an active user with a staff row flagged `is_sales_rep`. Both failures return 400 \"The selected staff member is not a sales representative.\"&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Claude design canvas \"Splitting Sales Representatives\" (https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), page 2 (cited by the story), export read 19 Oct 2026, used for on-screen labels; the look itself is checked in the \"Design — how it looks\" cases.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 11
+ "version": 12
 }
