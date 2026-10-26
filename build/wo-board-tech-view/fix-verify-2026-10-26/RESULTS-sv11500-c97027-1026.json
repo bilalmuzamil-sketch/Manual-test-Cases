@@ -1,0 +1,17 @@
+{
+ "pass_meta": {"env": "QA branch sv11500", "build": "v26.43.1-a53a4ac", "date": "26 October 2026", "note": "Rule 136: SV-11722 fix verified on its QA branch sv11500 (QA lead 26 Oct)"},
+ "results": {
+  "C97027": {
+   "verdict": "Passed",
+   "observed": [
+    "Passed on the QA branch sv11500 (fix for SV-11722), every step as written, with a fresh user.",
+    "Step 1: searched \"ZZAUTOTEST Bravo GA 36350\" on Work Orders, then Tech View and Board View. The browser's own address still shows the search text, so the search really was in the page.",
+    "Step 2: Column Selection, VIN/Serial turned on; then Tech View, spacing changed to Comfortable.",
+    "Step 3: read all 37 Work Orders analytics records from this session. Every value is a field or setting name (for example board_view, tech_view, total_price, vin, on, comfortable, default).",
+    "The page address sent with each record is now https://sv11500.qa.shopview.com/workorders, with no search text. No record holds the search text, \"Bravo Co\", a technician name, the work order number, a VIN or a dollar amount (picture 1).",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11722 (Ready for Production) - passed on its QA branch; QA Passed comment posted on the ticket."
+   ],
+   "pictures": ["/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-26/SV-11722-sv11500-fixed.png"]
+  }
+ }
+}
