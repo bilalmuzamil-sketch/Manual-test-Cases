@@ -2942,6 +2942,40 @@ supposed to create the test cases and you are supposed to ask the Manual QA test
    change because of this amendment.
 4. **Every project, every new or touched case.** Lessons L-10 (the same day) and this amendment go together.
 
+### 117 — FOURTEENTH AMENDMENT, PERMANENT (QA lead, 2026-10-26): the QA lead's own pattern is the case format
+
+Ordered on 26 Oct 2026. After trial versions of C665915 (scenario layout, full layout, ISO/IEC/IEEE 29119-3 layout), he wrote, verbatim:
+*"See this pattern and format the test case :"* and gave this pattern for C665915:
+
+> Title — Sales Representative field appears below Service Advisor when unassigned
+> Preconditions — * Sign in as an Admin at the test location. * Use a customer with no Sales Representative assigned. * Have an open,
+> uninvoiced work order for that customer, with no Sales Representative assigned, one approved labor line and one part. * Use a desktop
+> browser at least 1024 pixels wide.
+> Steps — 1. Open the work order and look at its details card without hovering over the Sales Representative field.
+> Expected Result — Step 1: * The fields appear in this order: Lead Technician → Service Advisor → Sales Representative. * Sales
+> Representative appears directly below Service Advisor, with its label on the first line and Unassigned on the second. * Its text
+> style, size, weight and left alignment match the other two fields. * No border, dropdown arrow or button appears around or beside the field.
+
+Asked whether it becomes the permanent format for every case, replacing the Scenario line, {placeholders} with "For example:" lines
+and the objective layout, he chose **"Yes, permanent, all suites"**. Earlier the same day: *"The preconditions should be something like
+the easiest to understand for a layman or a manual QA tester to setup and they must make sense and relate to the steps and expected
+results below."*; *"make sure that the preconditions and expected results are very clear One tells what to do and other tells what to
+expect."*; *"you must keep a space after the expected results end."*
+
+1. **Title:** plain words, what the tester will see, at most 80 characters (design cases keep "Design: ").
+2. **Preconditions:** short plain bullets that tell the tester what to set up, in setup order: "Sign in as …", "Use a …", "Have a …",
+   "Use a desktop browser …". Only what the steps and results need, each one related to them. No "Scenario:" line, no {placeholders},
+   no "For example:" lines, no objective, no who-to-ask, no generic lines, no setup-file link. Where a case needs two records of the
+   same kind, name them plainly ("customer A" and "customer B", "the first work order") and use the same names in the steps and results.
+3. **Steps:** numbered, plain; a step may say what to look at ("… and look at its details card without hovering …").
+4. **Expected Result:** for each step a line "Step N:" followed by bullets, one observable fact per bullet, in plain words. Then one
+   blank line.
+5. **Below the blank line, unchanged:** the exact source quotes with their "From:" lines (Rules 113, 117 eleventh amendment), the
+   References from Design block (tenth amendment), any EXPECT FAIL text, and the AUTOMATION line last.
+6. Supersedes the thirteenth amendment (Scenario line) and, for the TestRail fields, the {placeholder} / "For example:" parts of the
+   fifth, seventh, eighth and ninth amendments; the setup file for Claude sessions may still hold placeholders and examples.
+7. Example: C665915 (Splitting Sales Representatives S1-01), 26 Oct 2026.
+
 ## 118 · EACH SESSION FOLLOWS ONLY ITS OWN RULE BOOK — FACTS MAY BE SHARED, RULES MAY NOT (all projects, permanent)
 
 Standing instruction from the QA lead, 2026-10-06, recorded with his explicit approval ("This message is my

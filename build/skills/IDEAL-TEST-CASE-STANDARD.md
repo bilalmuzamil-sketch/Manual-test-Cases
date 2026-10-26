@@ -165,3 +165,9 @@ The Preconditions block opens with one "Scenario:" line (a short plain story of 
 plain bullets in the order a tester would set it up (who and where, records with {placeholders} and "For example:", their state, the
 starting screen). Only what is needed: no "ask your QA lead", no generic lines, no holds for things the tester obtains. Example
 (C723889): "Scenario: Your shop uses only two credit terms of its own and has switched off every other term it can."
+
+## Amendment, PERMANENT (QA lead, 26 Oct 2026): the QA lead's pattern (Rule 117 fourteenth amendment) — supersedes the scenario amendment
+
+Title in plain words · Preconditions as short plain setup bullets ("Sign in as …", "Use a …", "Have a …"), only what the steps need, no
+Scenario line, no {placeholders}, no "For example:" lines · numbered Steps · Expected Result: "Step N:" then bullets, one fact each ·
+a blank line · then the exact quotes, References from Design and the AUTOMATION line, unchanged. Example C665915.
