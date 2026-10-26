@@ -3558,3 +3558,23 @@ produces a case that cannot be run.
    (b) state the case does not test goes into the preconditions (starting screen, filters already set, records already in place), not
    into steps; (c) Rule 135 still applies: one action per step, no unnecessary steps, never at the cost of runnability.
 6. Rule 134 applies to every case changed or created: rewritten top to bottom, with a per-part record.
+
+## 137 · RELEVANT PRECONDITIONS AND INDEPENDENT CASES — NOTHING UNRELATED IS ASKED, AND ONE FAILED CASE NEVER BLOCKS ANOTHER (all projects, permanent)
+
+Ordered by the QA lead, 26 Oct 2026, verbatim: *"This is one major issue, my manual QA tester once complained baout one test where the
+prconditions were asking the maual QA tester to do something which had nothing to do with the steps and the test scenario and the
+expected results. How are you tacking this?"* and *"Also the test cases need to be created in a way that if one test case fails that
+does not block the other test case."* The rule below was stated back to him and he chose **"Yes, permanent"**.
+
+1. **Relevant preconditions.** Every precondition is needed to perform a step or to judge a result. A record that is needed but not named
+   in the steps or results says why ("…so the list has two names to order", "…so the term is in use"). Data a result depends on (rows a
+   report must show, totals that must be non-zero) is created in the preconditions. Nothing unrelated is ever asked of the tester; shared
+   precondition blocks are split so each case takes only what it uses.
+2. **Independent cases.** No case relies on another case's result or leftover data. A record a case changes (edits, moves, deactivates,
+   deletes, invoices, logs) is created fresh for that test; a record it only reads may be any matching one. Every organization-wide
+   setting the case relies on is a "Make sure …" precondition, so a failed earlier case that left it changed never breaks this one. No
+   case mentions another case (no keys or C-ids in tester text).
+3. **Enforced:** each suite's build.py fails on (a) a precondition record not used in the steps or results and not explained, (b) a
+   changed record not described as new for this test, (c) a case key or C-id in tester text. The coordinator checks again before every
+   TestRail write. Lessons L-11 (relevance) and this rule go together.
+
