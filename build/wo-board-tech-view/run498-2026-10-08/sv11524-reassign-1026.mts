@@ -127,9 +127,9 @@ const leadName = async (id: string) => { const w = (await a.get(`/api/work-order
 
 
 // ---------- 26 Oct additions ----------
-const TOAST_RE = /assigned to|moved to Unassigned|lead technician set|Assignment undone|Lead technician (updated|removed)|Couldn.t undo|Failed to update/i;
+const TOAST_RE = /S\d+-\d+ assigned to|moved to Unassigned|lead technician set|Assignment undone|Lead technician (updated|removed)|Couldn.t undo|Failed to update/i;
 const toastRead = (pg: Page = p) => pg.evaluate(`(() => { const re = ${TOAST_RE}; const vis = e => { const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0; };
-  const hits = [...document.querySelectorAll('body *')].filter(e => vis(e) && re.test(e.innerText || '') && (e.innerText || '').length < 220);
+  const hits = [...document.querySelectorAll('body *')].filter(e => vis(e) && re.test(e.innerText || '') && (e.innerText || '').length < 220 && !/keyboard_arrow|Assigned to me/.test(e.innerText || ''));
   // the outermost small box that still holds only the message (toast container)
   const boxes = hits.filter(e => !hits.some(o => o !== e && o.contains(e) === false && e.contains(o) === false ? false : false)).filter(e => e.getBoundingClientRect().width < 700);
   const top = boxes.filter(e => !boxes.some(o => o !== e && o.contains(e))); return top.map(e => { const r = e.getBoundingClientRect(); const btns = [...e.querySelectorAll('button')].map(b => (b.innerText || b.getAttribute('aria-label') || '').replace(/\\s+/g, ' ').trim());
@@ -171,7 +171,7 @@ await run('C682423', async (o) => {
   const x = await openLeadAction(card(set, 'One')); o.s1 = x.menu; o.s2 = x.clicked; o.s3_4 = await leadDialog(); await shotC('C682423-v-s3-dialog');
   await pickInDialog(/C682423 Ana/); await p.waitForTimeout(1500); o.s5 = { dialogs: await dialogsOpen(), col: await colOf(set, 'One'), toasts: await toastRead() };
   const y = await openLeadAction(card(set, 'One')); o.s6 = y.menu; o.s7 = y.clicked; await pickInDialog(/C682423 Ben/);
-  o.s8 = { toast: await waitToast(), dialogs: await dialogsOpen() }; await shotC('C682423-v-s8-after-click'); await p.waitForTimeout(1500); o.s8.col = await colOf(set, 'One'); o.s8.lead = await leadName(set.w.One.id);
+  o.s8 = { toast: await waitToast() }; await p.waitForTimeout(1200); o.s8.dialogsAfter1s = await dialogsOpen(); await shotC('C682423-v-s8-after-click'); await p.waitForTimeout(1500); o.s8.col = await colOf(set, 'One'); o.s8.lead = await leadName(set.w.One.id);
 });
 
 await run('C682424', async (o) => {
