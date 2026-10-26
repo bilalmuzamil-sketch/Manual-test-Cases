@@ -78,3 +78,25 @@ font (Modern), each of the 4 line names appears once, and its text is IDENTICAL 
 Comment 79376 row 12 changed to PASSED with a dated note (text before the edit kept in comment-79376-before-email-edit.txt);
 read back: panel still PARTIALLY PASSED, 14 table lines, picture still a real attachment.
 Remaining: only the line fee/discount (↳) rows — with Chris and Milomir in comment 79377.
+
+## Re-test 26 Oct 2026 — Milomir 79526 (redeployed at e762fe2), Chris ruling 79419 — comment 79544
+- **Why ~3 h passed before testing:** I stopped and asked for fresh sv11685 cookies. Two things I should have tried first:
+  (1) the branch back end was **asleep** (`quick-login` → 302 to `sleep.qa.shopview.com`; the page's Wake Up button posts
+  `{"action":"wake","env":"sv11685"}` to the toggleQaEnv endpoint, awake in ~90 s); (2) the **SSO cookies are shared across
+  all `.qa.shopview.com` branches**, and today's SV-11631 set signed in fine. Recorded as a lesson.
+- Build: index.html still `v26.43.0-a53a4ac` (last-modified Fri 23 Oct 15:53 GMT) — the change is server-side; proven by output.
+- Server renders (`re.mjs`, 24 docs: estimate + invoice × html/pdf × 6 settings, modern + legacy):
+  OFF → 0 LABOR on all 4 lines (est + inv, html + pdf) · RATE → 01/02 $149.95, 03/04 none · HOURS → 01 2, 02 0.3, 04 (est 0 /
+  inv 1), 03 none · PRICE → $299.90/$44.99/$150.00, 04 none · ALL → as before · OFF+summarize labor → none. Totals $690.22 in all.
+  Legacy vs 23 Oct: identical except rate cells (rate on in the new render).
+- On screen (`ui2.mjs`, run twice): Finance tab gear `button_invoice_settings` → `toggle_setting_laborRate/laborHours/laborCost`
+  → preview: all off = no LABOR; each single one brings LABOR back with its figure. Settings restored (rate off, hours+price on).
+- Print `button_print_invoice` → `GET /api/invoices/preview?…type=pdf…historyEvent=109` (same PDF).
+- Email: settings all off, sent to `bilal.muzamil+sv11685@shopview.com` only (contacts unticked) → delivered 23:31:42Z,
+  attachment `invoice-for-order-S11685-17580.pdf`, sizeEstimate 138,533 (direct PDF 89,983 B). Content NOT read (mail tool gives
+  no attachment bytes) — QA lead asked to open it. Settings restored after.
+- Check 13: line 01 has no fee/discount yet → NOT TESTED, waiting on Milomir (Chris 79419).
+- Side note (not reported): issueDate 2026-10-26 printed Oct 25 — same 1-day shift as 23 Oct (22 for 23); comes from my direct
+  request's bare date vs the Edmonton location; bucket (c), unrelated to the ticket.
+- Posted **79544** (yellow PARTIALLY PASSED, quote of 79419, pictures 4–5, 11-row table, 5 steps). Read back: 2 media, 12 table
+  rows, ol 5. Old comments untouched (Rule 112).

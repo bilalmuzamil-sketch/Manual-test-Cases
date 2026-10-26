@@ -1,0 +1,10 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const wo='f94beef2-ce77-4ec3-8d23-be8fb787348f', inv='a4c6bc89-5976-4f35-8089-021e6dcd9dbe';
+const s=await open({env:'branch',ticket:'11685',cookies:JSON.parse(fs.readFileSync('/tmp/qa11685/cookies.json')),quick:'admin',dir:'/tmp/qa21',vp:{width:1440,height:1000},dpr:1});
+const raw=(path)=>s.page.evaluate(async u=>{const r=await fetch(u,{credentials:'include'});const b=new Uint8Array(await r.arrayBuffer());let x='';for(let i=0;i<b.length;i+=32768)x+=String.fromCharCode(...b.subarray(i,i+32768));return {status:r.status,b64:btoa(x)}},'https://sv11685api.qa.shopview.com'+path);
+const y=await raw(`/api/invoices/preview?invoice_id=${inv}&type=pdf&isEstimate=0&includeDeclined=0&historyEvent=`); fs.writeFileSync('/tmp/qa11685/w/re-1026/INV-modern-OFF-decl0-at-send.pdf',Buffer.from(y.b64,'base64')); console.log('direct pdf',y.status,Buffer.from(y.b64,'base64').length);
+const P=async(p,b)=>s.api(p,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)});
+const snap=JSON.parse(fs.readFileSync('/tmp/qa11685/w/re-1026/settings-before.json'));
+const sn=o=>({labor_rate:o.laborRate,labor_hours:o.laborHours,labor_cost:o.laborCost,part_number:o.partNumber,part_quantity:o.partQuantity,part_cost:o.partCost,part_description:o.partDescription,summarize_parts_total:o.summarizePartsTotal,summarize_labor_total:o.summarizeLaborTotal,disclaimer:o.disclaimer});
+await P(`/api/invoices/${wo}/settings/change`,sn(snap)); const fin=(await s.api(`/api/invoices/${wo}/settings/view`)).json.data; console.log('restored',JSON.stringify(fin)===JSON.stringify(snap));
+process.exit(0);

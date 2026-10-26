@@ -1,0 +1,38 @@
+{panel:bgColor=#fffae6}
+*OVERALL QA STATUS: PARTIALLY PASSED*
+{panel}
+Point 2 now passes on the redeployed branch. One check is left: check 13, the fee and discount rows. Line 01 doesn't have a labor fee or discount yet. [~accountid:712020:655c2bc0-ee59-46d8-9da3-f61e54739e55] once you've added them, I'll run it.
+
+I tested on [sv11685.qa.shopview.com|https://sv11685.qa.shopview.com/workorders/f94beef2-ce77-4ec3-8d23-be8fb787348f/finance] on 26 October 2026, as Admin, using work order S11685-17580 in the Modern layout. The page itself still reports build v26.43.0-a53a4ac, but the documents now print the new way, so the update is live.
+
+Chris's ruling in comment 79419:
+{quote}when labor hours, rate and price are all switched off and the line has no labor fee or discount rows, the LABOR heading and its row do not print at all. If the line has a labor fee or discount row, the LABOR heading stays and shows that row. This applies to the Modern estimate and invoice everywhere they print (PDF, print, email attachment, on-screen preview). Legacy is unchanged.{quote}
+
+!SV-11685_4-before-after-all-off.png|width=700,height=607!
+_Picture 1: with Labor rate, Labor hours and Labor price all off, the empty LABOR heading from 23 October is gone._
+
+!SV-11685_5-one-setting-back-on.png|width=700,height=1110!
+_Picture 2: switching any one of the three back on brings the LABOR heading back with that figure._
+
+h3. What I checked
+||#||Check||Status||
+|1|All three off: no LABOR heading on any of the 4 lines, on the estimate and the invoice, in the Finance tab preview and in the PDF|PASSED|
+|2|Only {{Labor rate}} on: LABOR returns with $149.95 on lines 01 and 02. Lines 03 (fixed price) and 04 (fixed line total) have no rate, so they show no LABOR heading|PASSED|
+|3|Only {{Labor hours}} on: LABOR returns with 2 and 0.3 on lines 01 and 02, and with line 04's hours. Line 03 has no hours, so no heading|PASSED|
+|4|Only {{Labor price}} on: LABOR returns with $299.90, $44.99 and $150.00 on lines 01 to 03. Line 04 has no labor price, so no heading|PASSED|
+|5|All three on: hours, rate and price all show, as before|PASSED|
+|6|All three off with {{Summarize labor total}} on: still no LABOR heading under the lines|PASSED|
+|7|Totals the same in every setting: Labor $594.89, Shop supplies $62.46, Subtotal $657.35, GST $32.87, Total $690.22|PASSED|
+|8|Legacy layout unchanged: same as 23 October apart from the labor rate column, which appears only when rate is switched on|PASSED|
+|9|Print: the {{Print}} button opens the same invoice PDF as checked in row 1|PASSED|
+|10|Email attachment: sent with all three off to a test inbox only; delivered with invoice-for-order-S11685-17580.pdf attached|DELIVERED, PDF content being confirmed|
+|11|Fee and discount rows (↳) on line 01|NOT TESTED, line 01 has no labor fee or discount yet|
+
+h3. How to see it
+# Open [the Finance tab of S11685-17580|https://sv11685.qa.shopview.com/workorders/f94beef2-ce77-4ec3-8d23-be8fb787348f/finance].
+# Click the gear icon above the invoice (tooltip {{Settings}}).
+# Switch off {{Labor rate}}, {{Labor hours}} and {{Labor price}}, then click outside the menu.
+# Line 01 now goes from {{Scope of work}} straight to {{Line total}}, with no LABOR heading.
+# Switch any one of the three back on. The LABOR heading returns on line 01 with that figure.
+
+I put the settings back to how they were (Labor hours and Labor price on, Labor rate off).

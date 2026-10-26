@@ -756,6 +756,14 @@ Terse entries; where the full detail already lives elsewhere in this playbook, t
 - **Invoicing can be gated by IBS:** Create Invoice fires `GET /api/invoices/ibs/retrieveIBSApproval?workOrderId=…` → **400** while the work order shows **"Over Limit"**, and the click then only re-renders the estimate preview (no dialog, no write) — it looks like a dead button. Also seen: `GET /api/invoices/{woId}/details` → **500** on a particular work order, which kills the flow before it starts. Screen candidates by calling `details` first.
 - **Work-order list:** `GET /api/work-orders?...&filters[0][field]=status&filters[0][value]=estimate|approved|in_progress|ready_for_review|complete|invoiced|paid` → `data.work_orders` (**not** `data.collection`); `totalPrice` is in **cents**. Statuses: `GET /api/work-orders/statuses`.
 
+### QA branch asleep or "expired" sign-in — try these BEFORE asking for cookies (2026-10-26, SV-11685)
+- `POST /api/quick-login` answering **302 → `https://sleep.qa.shopview.com/...?api=svNNNN`** means the branch back end is
+  **asleep**, not that the cookies died. Wake it the way the sleep page's **Wake Up** button does:
+  `POST https://fz4hhptxi8.execute-api.ca-central-1.amazonaws.com/default/toggleQaEnv {"action":"wake","env":"svNNNN"}`
+  → "svNNNN is waking up."; poll `https://svNNNNapi.qa.shopview.com/` until it stops answering 302/503 (~90 s).
+- The `sv_sso_session`/`PHPSESSID`/`cf_clearance` set is for **`.qa.shopview.com` — it works on every QA branch**. If one
+  branch's saved cookies give 401 `sso_required`, try the newest set in `/tmp/qa*/cookies.json` (any ticket) before asking.
+
 ## L. Git practice with parallel workers
 - **⚠️ Parallel workers SHARE ONE git index** — a bare `git commit` after `git add <own paths>` also
   commits whatever a sibling worker staged in between, sweeping their half-written files into the
