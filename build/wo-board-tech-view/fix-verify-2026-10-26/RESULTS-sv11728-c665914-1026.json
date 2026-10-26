@@ -1,0 +1,18 @@
+{
+ "pass_meta": {"env": "QA branch sv11728", "build": "v26.43.1-baa44e3", "date": "26 October 2026", "note": "SV-11728 (drag preview as in the design) verified on its QA branch; C665914 re-run there"},
+ "results": {
+  "C665914": {
+   "verdict": "Passed",
+   "observed": [
+    "Passed again on the QA branch sv11728 (SV-11728: the drag preview now looks like the design), every step as written.",
+    "Steps 1 and 2 (Board View): holding the card shows a preview with the work order number and the customer name; the preview is now a full copy of the card, and the long name wraps inside it, nothing drawn outside (picture 1).",
+    "Step 3: Escape cancels the drag; the card stays in Ana's column.",
+    "Step 4: Tech View shows the row in Ana's group.",
+    "Steps 5 and 6 (Tech View): the preview is a full copy of the row; the long name is cut off with \"..\" inside it (picture 2).",
+    "Step 7: Escape cancels the drag; the row stays in Ana's group and the lead is still Ana.",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11728 (TESTING QA) - passed on its QA branch; QA Passed comment posted on the ticket."
+   ],
+   "pictures": ["/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-26/SV-11728-card-design-vs-build.png", "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-26/SV-11728-row-design-vs-build.png"]
+  }
+ }
+}
