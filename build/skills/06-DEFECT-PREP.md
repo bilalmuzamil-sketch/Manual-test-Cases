@@ -1695,3 +1695,5 @@ on screen than it is today, while the other half gains.
 keeps the caption text proportionate to the screenshot. **Passing `--scale 1` on a 2× capture leaves
 the captions tiny beside the screenshot** — measured both ways on this pass. So: capture at 2×,
 annotate with `--scale 2`, and if the result is near the frame width it is already right.
+
+> **Rule 136 (QA lead 2026-10-26):** when a ticket passes QA — comment `→ QA Status: Passed` on the ticket AND a Passed result in each linked case's run; then read each linked case top to bottom, verify every needed change in the LIVE PRD/source (quote + version + rule id), make it everywhere in the case (Expected only to the verbatim source sentence), and list every changed Automated case (C-id + case link + run link) to the QA lead for the automation engineer. Full text: `build/rules/RULES-61-ONWARD.md` rule 136.

@@ -685,3 +685,5 @@ his go-ahead, then tell the automation engineer. A tester must never fail a test
 **QA lead 23 Oct 2026 (L0565):** (1) a test fails only for the app's function/usability, harm to the client, or a PRD/source rule
 (name which, quote it) — nothing else ever fails a test. (2) Never update a test's wording to a behaviour whose ticket is not yet on
 PRODUCTION; check the production build first.
+
+> **Rule 136 (QA lead 2026-10-26):** when a ticket passes QA — comment `→ QA Status: Passed` on the ticket AND a Passed result in each linked case's run; then read each linked case top to bottom, verify every needed change in the LIVE PRD/source (quote + version + rule id), make it everywhere in the case (Expected only to the verbatim source sentence), and list every changed Automated case (C-id + case link + run link) to the QA lead for the automation engineer. Full text: `build/rules/RULES-61-ONWARD.md` rule 136.
