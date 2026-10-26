@@ -37,11 +37,10 @@ for code in ("ARC", "APU"):
     C(k, "S4", f"{r['n']}: after Expand all, groups loaded later arrive expanded",
       [ADMIN(), (f"More than 30 {r['parties']} have overdue {r['doc']}s on today's date.", None), START(code)],
       ["Click the chevron button in the table's top-left header cell until its tooltip reads \"Collapse all\" (every group expanded).",
-       f"Scroll down (or go to the next page) until more {r['party']} groups arrive."],
+       f"Scroll down until the next {r['party']} groups load."],
       ["Step 1: every group on screen is expanded.",
-       f"Step 2: the next {r['parties']} load, and they arrive expanded, showing their rows, without another click."],
-      ["S4-R2", "S4-R1"],
-      note=f"How the next 30 {r['parties']} are reached (page buttons or scrolling) is question {QN['paging']}.")
+       f"Step 2: the next {r['parties']} load as you scroll, and they arrive expanded, showing their rows, without another click."],
+      ["S4-R2", "S4-R1", "S1-R8"])
 
 for code in ("ARD", "APD"):
     r = R[code]; k = nk()
@@ -100,14 +99,13 @@ for code in GROUPED:
 
 for code in ("ARC", "APU"):
     r = R[code]; k = nk(); P = r["Party"]
-    C(k, "S4", f"{r['n']}: paging keeps each group expanded or collapsed",
-      [ADMIN(), (f"More than 30 {r['parties']} have overdue {r['doc']}s on today's date; {{{P}-A}} is on the first page.", f"For example: {{{P}-A}} is {ex(k, 'First Page')[0]}."),
+    C(k, "S4", f"{r['n']}: loading more by scrolling keeps groups open or closed",
+      [ADMIN(), (f"More than 30 {r['parties']} have overdue {r['doc']}s on today's date; {{{P}-A}} is among the first 30 in name order.", f"For example: {{{P}-A}} is {ex(k, 'First Page')[0]}."),
        START(code, f", with only {{{P}-A}}'s group expanded")],
-      ["Go to the next page (or scroll until the next 30 load).", "Go back to the first page (or scroll back up)."],
-      ["Step 1: the next groups show.",
-       f"Step 2: the first page shows again: {{{P}-A}}'s group is still expanded and the others are still collapsed."],
-      ["S4-R8"],
-      note=f"How the next 30 are reached is question {QN['paging']}.")
+      [f"Scroll down until the next 30 {r['parties']} load.", "Scroll back up to the top of the table."],
+      ["Step 1: the next groups load as you scroll; there are no page buttons.",
+       f"Step 2: {{{P}-A}}'s group is still expanded and the other groups among the first 30 are still collapsed."],
+      ["S4-R8", "S1-R8"])
 
 # Rule 136 (22 Oct 2026): each pair case became one case per report; the first report keeps the pair's C-id, the second is "b".
 for pair in (["ARD", "ARC"], ["APD", "APU"]):

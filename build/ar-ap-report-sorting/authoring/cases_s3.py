@@ -71,9 +71,9 @@ for code in ALL6:
            "Step 3: the PDF downloads.",
            f"Step 4: the lines read \"As of Oct 15, 2026\", then \"Locations: \" and {{Location-A}}'s name, then \"Past due: 31-60 days, 91+ days\" (menu order, not the order ticked), then \"{Ps}: \" and {{{P}-B}}, {{{P}-A}} (the order ticked). The PDF has no Location column.",
            "Step 5: the CSV downloads.",
-           f"Step 6: the CSV reads \"As of: Oct 15, 2026\", then the same Locations, Past due and {Ps} lines, and has no Location column."]
+           f"Step 6: the CSV starts with four rows of one line each, in this order: \"As of: Oct 15, 2026\", then \"Locations: \" and {{Location-A}}'s name, then \"Past due: 31-60 days, 91+ days\", then \"{Ps}: \" and {{{P}-B}}, {{{P}-A}}; the column heading row follows directly, and there is no Location column."]
     C(k, "S3", f"{r['n']}: each export states the as-of date and the filters", pre, steps, res,
-      ["S3-R4", "S3-R5", "S3-R6", "S6-N1", "S5-R13"])
+      ["S3-R4", "S3-R5", "S3-R8", "S3-R6", "S6-N1", "S5-R13"])
 
 for code in ("ARS", "APD"):
     r = R[code]; k = nk(); P = r["Party"]
@@ -85,11 +85,11 @@ for code in ("ARS", "APD"):
        f"Step 2: under the as-of line it reads \"Locations: All locations\"; there is no \"Past due: \" line and no \"{P}: \" line.",
        f"Step 3: only {{{P}-A}} is ticked.",
        "Step 4: the CSV downloads.",
-       f"Step 5: it reads \"Locations: All locations\", then \"{P}: \" and {{{P}-A}}'s name (one {r['party']}, so \"{P}\", not \"{r['Parties']}\"); there is no \"Past due: \" line."],
-      ["S3-R5"])
+       f"Step 5: it starts with three rows of one line each: \"As of: \" and today's date, then \"Locations: All locations\", then \"{P}: \" and {{{P}-A}}'s name (one {r['party']}, so \"{P}\", not \"{r['Parties']}\"); there is no \"Past due: \" row, and the column heading row follows directly."],
+      ["S3-R5", "S3-R8"])
 
 k = nk()
-C(k, "S3", "A/R Detail: exports list the ticked locations in the order you ticked them",
+C(k, "S3", "A/R Detail: exports list the ticked locations in A to Z order",
   [ADMIN(), ("The organization has open A/R documents at three locations, {Location-A}, {Location-B} and {Location-C}, and you are enrolled at all three; in A to Z order {Location-A}'s name comes before {Location-C}'s.",
              f"For example: {{Location-A}} is {LOC_A}, {{Location-B}} is {LOC_B} and {{Location-C}} is another staging location whose name starts with a later letter."),
    START("ARD", ", with no location ticked in the Location filter (\"Clear selection\" clicked)")],
@@ -99,12 +99,12 @@ C(k, "S3", "A/R Detail: exports list the ticked locations in the order you ticke
   ["Step 1: {Location-C} is ticked; the chip reads \"Location: \" and {Location-C}'s name.",
    "Step 2: {Location-A} is ticked as well; the chip reads \"Location: 2 locations\".",
    "Step 3: the PDF downloads.",
-   "Step 4: it reads \"Locations: \" followed by {Location-C}'s name, then {Location-A}'s name: the order you ticked them, not the menu's A to Z order; {Location-B} is not named.",
-   "Step 5: the CSV downloads.", "Step 6: the same Locations line, with the two names in the same order."],
+   "Step 4: it reads \"Locations: \" followed by {Location-A}'s name, a comma and a space, then {Location-C}'s name: the Location menu's A to Z order, not the order you ticked them; {Location-B} is not named.",
+   "Step 5: the CSV downloads.", "Step 6: its Locations row reads the same: \"Locations: \", {Location-A}'s name, a comma and a space, then {Location-C}'s name."],
   ["S3-R5", "S5-R6"] + TP.q("D30-tick"),
-  note=(f"The PRD does not say in what order several locations are listed (question {QN['export-lines']}, part 1, on Chris Ward's sheet). The tech plan "
-        "(21 Oct 2026) says selections keep the order they were ticked, and nothing in the PRD contradicts it, so this case follows the tech plan (QA lead's "
-        "ruling of 12 Aug 2026); if Chris answers differently, his answer wins and this case changes. What separates the names is not stated anywhere; the case does not check it."))
+  note=("Where the build is expected to differ: the tech plan (21 Oct 2026) says selections keep the order they were ticked, which would list {Location-C} first. "
+        "PRD version 9 (S3-R5, from Chris Ward's answer 7 of 23 Oct 2026) sets the Location menu's A to Z order with a comma and a space between names; "
+        "the case follows the PRD. No ticket number is known yet. If the export lists the names in tick order, mark this test Failed."))
 
 # ---- CSV shape: Summaries (with "91 And Over")
 for code in ("ARS", "APS"):
@@ -117,24 +117,28 @@ for code in ("ARS", "APS"):
       ["Choose \"Download (CSV)\" from the ⋯ menu.", "Open the CSV in a plain text editor (not a spreadsheet program).",
        "Choose \"Download (PDF)\" from the ⋯ menu.", "Open the PDF and look at its last bucket heading."],
       ["Step 1: the CSV downloads.",
-       f"Step 2: the heading row's last bucket column is headed \"91 And Over\", exactly as the screen shows it; one row for {{{P}-A}}: 1-30 Days reads 1250.50 and 91 And Over reads 99.00 (no $ sign, no thousands comma, two decimals); Current, 31-60 Days and 61-90 Days are blank cells, not 0; the Total reads 1349.50 (1250.50 + 99.00); one Totals row at the bottom, and only one; there is no group header or subtotal row: every row except the Totals row is one {r['party']}.",
+       f"Step 2: the file starts with the \"As of: \" row and the \"Locations: All locations\" row, then the heading row, which reads the on-screen headings letter for letter, its last bucket column headed \"91 And Over\", exactly as the screen shows it; one row for {{{P}-A}}: 1-30 Days reads 1250.50 and 91 And Over reads 99.00 (no $ sign, no thousands comma, two decimals); Current, 31-60 Days and 61-90 Days are blank cells, not 0; the Total reads 1349.50 (1250.50 + 99.00); one Totals row at the bottom, and only one; there is no group header or subtotal row: every row except the Totals row is one {r['party']}.",
        "Step 3: the PDF downloads.", "Step 4: the PDF heading reads \"91 And Over\" on one line."],
-      ["S3-R7", "S3-R8"])
+      ["S3-R7", "S3-R8", "S3-R8b"])
 
-# ---- CSV shape: the four document reports
+# ---- CSV shape: the four document reports (26 Oct 2026: PRD v9 S3-R8b names the headings, from Chris Ward's answer 8)
+CSVHEAD = {"ARD": ("Aging Bucket", "Customer Full Name"), "ARC": (None, "Customer"), "APD": ("Aging Bucket", "Vendor Name"), "APU": (None, "Vendor Name")}
 for code in ("ARD", "ARC", "APD", "APU"):
     r = R[code]; k = nk(); P = r["Party"]; d = r["doc"]; Dc = d.capitalize()
-    grp = "aging bucket" if r["group"] == "aging bucket" else r["party"]
+    bh, ph = CSVHEAD[code]
+    cols = (f"an \"{bh}\" column and a \"{ph}\" column" if bh else f"a \"{ph}\" column")
+    vals = ((f"its Aging Bucket reads \"31-60 days past due\" (the bucket's name as the screen shows it) and its {ph} {{{P}-A}}'s name, each in its own column, ")
+            if bh else f"{{{P}-A}}'s name is in the {ph} column, ")
     C(k, "S3", f"{r['n']}: the CSV has one row per document and no group rows",
       [ADMIN(),
-       (f"{P} {{{P}-A}} has two overdue {d}s on today's date in different aging buckets: {{{Dc}-A}}, dated 2026-09-01, amount $1,250.50, and {{{Dc}-B}}, amount $75.00.",
-        f"For example: {{{P}-A}} is {ex(k, 'Flat Rows')[0]}."),
+       (f"{P} {{{P}-A}} has two overdue {d}s on today's date: {{{Dc}-A}}, dated {{Date-A}}, amount $1,250.50, 31 to 60 days past due, and {{{Dc}-B}}, amount $75.00, 1 to 30 days past due.",
+        f"For example: {{{P}-A}} is {ex(k, 'Flat Rows')[0]}; {{Date-A}} is 2026-09-01."),
        START(code, f", with the {P} filter showing {{{P}-A}} ticked")],
       ["Choose \"Download (CSV)\" from the ⋯ menu.", "Open the CSV in a plain text editor."],
       ["Step 1: the CSV downloads.",
-       f"Step 2: the heading row has a column for the {grp}" + (f" and one for the {r['party']}" if grp == "aging bucket" else "") + f"; one row for {{{Dc}-A}}: its {grp} is in its own column" + (f", {{{P}-A}} in the {r['party']} column" if grp == "aging bucket" else "") + f", the Date reads 2026-09-01 and the Amount reads 1250.50 (no $ sign, no thousands comma, two decimals); one row for {{{Dc}-B}} and no group header or subtotal row; one Totals row at the bottom, whose Amount is 1325.50 (1250.50 + 75.00)."],
-      ["S3-R8"],
-      note=f"The CSV headings for the bucket and the {r['party']} columns are not stated in the PRD (question {QN['csv-headings']}); the case checks that the columns exist.")
+       f"Step 2: the file starts with the \"As of: \", \"Locations: All locations\" and \"{P}: \" rows, one line each; the heading row follows directly, written letter for letter as the screen's headings, with {cols}; one row for {{{Dc}-A}}: {vals}the Date reads {{Date-A}} written year-month-day (for example 2026-09-01) and the Amount reads 1250.50 (no $ sign, no thousands comma, two decimals); one row for {{{Dc}-B}}"
+       + (", whose Aging Bucket reads \"1-30 days past due\"" if bh else "") + "; no group header or subtotal row; one Totals row at the bottom, whose Amount is 1325.50 (1250.50 + 75.00)."],
+      ["S3-R8", "S3-R8b", "S2-R4a"])
 
 # ---- an export with no rows
 for code, how in (("ARS", "location"), ("APU", "vendor")):

@@ -282,7 +282,7 @@ for code in ("ARD", "APD"):
     C(k, "S5", f"{r['n']}: the {P} menu ticks several {Ps} and the chip counts them",
       [ADMIN(), (f"{P}s {{{P}-A}} and {{{P}-B}} have open {r['doc']}s on today's date; {{{P}-B}}'s name is longer than the chip can show.",
                  f"For example: {{{P}-A}} is {ex(k, 'Short')[0]} and {{{P}-B}} is {ex(k, 'Northern Alberta Heavy Equipment and Trailer Repair')[0]}.")]
-      + ([("The organization has more than 8 vendors (the Vendor menu shows its search box only then, as on Inventory Value).", "For example: the QA organization (437 vendors).")] if P == "Vendor" else [])
+      + ([("The organization has more than 8 vendors (the Vendor menu shows its search box only when there are more than 8 vendors).", "For example: the QA organization (437 vendors).")] if P == "Vendor" else [])
       + [START(code)],
       [f"Click the {P} chip and read the menu from top to bottom.", f"Type part of {{{P}-B}}'s name in the search box.", f"Tick {{{P}-B}}.",
        f"Search for {{{P}-A}}.", f"Tick {{{P}-A}}.", "Expand every group.", f"In the {P} filter, untick both {Ps}."],
@@ -293,7 +293,7 @@ for code in ("ARD", "APD"):
        f"Step 5: {{{P}-A}} is ticked as well, and the chip reads \"{P}: 2 {Ps}\".",
        f"Step 6: only the two {Ps}' rows remain.",
        f"Step 7: no {P.lower()} is ticked, and the chip reads \"{P}: All {Ps}\" in the resting (grey) style."],
-      ["S5-R13"] + (TP.q("D18") if P == "Vendor" else []),
+      ["S5-R13"],
       note=f"The {P} chip is the native one (as on " + ("Sales By Customer" if P == "Customer" else "Inventory Value") + "): with one name ticked, and for a long name, it reads as that chip does.")
 
 # ---- the Past due menu
@@ -301,11 +301,11 @@ for code in ("ARC", "APS"):
     r = R[code]; k = nk()
     C(k, "S5", f"{r['n']}: the Past due menu offers Any and four ranges in order",
       [ADMIN(), START(code)],
-      ["Click the Past due chip and read the menu from top to bottom.", "Tick \"91+ days\" and read the chip.", "Tick \"31-60 days\" and read the chip.",
-       "Tick \"1-30 days\" and \"61-90 days\" and read the chip.", "Untick all four and read the chip."],
+      ["Click the Past due chip and read the menu from top to bottom.", "Tick \"91+ days\".", "Tick \"31-60 days\".",
+       "Tick \"1-30 days\".", "Tick \"61-90 days\"."],
       ["Step 1: an \"Any\" row (ticked, as no range is), the line \"All ranges are included. Pick one or more to narrow.\", then \"1-30 days\", \"31-60 days\", \"61-90 days\", \"91+ days\", in that order.",
-       "Step 2: \"Past due: 91+ days\".", "Step 3: \"Past due: 2 ranges\".",
-       "Step 4: \"Past due: 4 ranges\", not Any, and the \"Any\" row is not ticked.", "Step 5: \"Past due: Any\" in the resting (grey) style, and the \"Any\" row is ticked again."],
+       "Step 2: the chip reads \"Past due: 91+ days\".", "Step 3: the chip reads \"Past due: 2 ranges\".", "Step 4: the chip reads \"Past due: 3 ranges\".",
+       "Step 5: the chip reads \"Past due: 4 ranges\", not Any, and the \"Any\" row is not ticked."],
       ["S5-R15"] + TP.q("FSN"))
 
 # ---- empty after a customer with nothing at the chosen location
