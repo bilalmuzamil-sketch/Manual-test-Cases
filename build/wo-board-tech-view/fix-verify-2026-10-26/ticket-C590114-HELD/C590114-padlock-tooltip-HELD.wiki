@@ -1,5 +1,5 @@
 TITLE: Tech View / Board View – Padlock Shows No Tooltip on Hover, Only the Browser's Plain Hint
-STATUS: HELD — prepared 26 Oct 2026, NOT filed. QA lead chose (A) on 26 Oct: "mark the test Failed and prepare a ticket for your go-ahead, filed under fast follow". File only on his per-ticket yes (Rule 113).
+STATUS: FILING APPROVED by the QA lead 26 Oct 2026 ("Yes do file the report for this if it is going against the PRD/design", parent SV-11593, test on sv11500); re-checked on sv11500 08:45 UTC first. Earlier: HELD — prepared 26 Oct 2026. QA lead chose (A) on 26 Oct: "mark the test Failed and prepare a ticket for your go-ahead, filed under fast follow". File only on his per-ticket yes (Rule 113).
 Fields (on approval): Bug · parent SV-11593 (Board/Tech View Fast Follow) · Medium · Product Area Work Orders · labels board-tech-view, fast-follow · relates to SV-10047 (Story 4)
 
 h2. Description
@@ -26,13 +26,14 @@ h2. Steps to Reproduce
 
 h2. Screenshots
 
+!C590114-sv11500-padlock-no-tooltip.png|width=1000!
 !C590114-1-padlock-no-tooltip.png|width=1000!
 
 
 h2. Environment
 
 * *Build:* {{v26.43.1-9af7270}} on [production|https://app.shopview.com/workorders] · *Location:* Truck Hill 1 · *Work order:* S1-1553 (Invoiced) · *User:* Admin test account · 26 Oct 2026 08:25 UTC
-* Same on QA branches sv11500 and sv11545 on 26 Oct 2026.
+* Same on [QA branch sv11500|https://sv11500.qa.shopview.com/workorders] (build {{v26.43.1-a53a4ac}}, Staging Heavy Duty - 9919, work order S11500-17581, Invoiced) on 26 Oct 2026 08:45 UTC — the branch to test the fix on — and on QA branch sv11545 the same day (Board View card padlock too).
 
 
 h2. Sources

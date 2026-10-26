@@ -1,0 +1,10 @@
+*QA check on [QA branch sv11500|https://sv11500.qa.shopview.com/workorders]* — build {{v26.43.1-a53a4ac}}, Staging Heavy Duty - 9919, 26 Oct 2026 08:45 UTC
+
+* Opened *Work Orders* > *All* > *Tech View* and found the Invoiced work order *S11500-17581* (padlock after its number).
+* Rested the mouse on the padlock: *no tooltip opens*. Only the browser's own plain hint appears after a pause.
+* As a check, rested the mouse on *Board View* in the display switcher: the app's dark tooltip opens above it, so the check itself works.
+* Result: the problem is present on sv11500, the same as on production ({{v26.43.1-9af7270}}).
+
+!C590114-sv11500-padlock-no-tooltip.png|width=1000!
+
+Test case: [C590114|https://shopview.testrail.io/index.php?/cases/view/590114] — marked *Failed* in [run 498|https://shopview.testrail.io/index.php?/tests/view/3995723] with this ticket.

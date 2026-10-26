@@ -1,0 +1,31 @@
+{
+ "pass_meta": {
+  "env": "production",
+  "build": "v26.43.1-9af7270",
+  "note": "26 Oct 2026 — SV-11754 filed on the QA lead yes; C590114 result re-posted with the ticket (Rule 113)"
+ },
+ "results": {
+  "C590114": {
+   "verdict": "Failed",
+   "failed_steps": "Failed at step 9: resting the mouse on the padlock opens no tooltip; only the browser's own plain hint appears.",
+   "bold_steps": [
+    9
+   ],
+   "source": "PRD \"Work Orders — Board View & Tech View Display Options\" (Confluence 845185030, version 75, 23 Oct 2026), S4-N6: \"The same words are the tooltip on the card’s or row’s lock icon\"; Claude Design project \"Work Orders\" (export of 14 Oct 2026), tooltip: \"transform: translate(-50%, -100%); padding: 6px 10px; border-radius: var(--sv-radius-md); background: var(--sv-surface-inverse);\"",
+   "observed": [
+    "Set-up: at Truck Hill 1, Tech View, All tab, an Invoiced work order (S1-1553) with the small padlock after its number.",
+    "Step 9: rest the mouse on the padlock.",
+    "What you see: no dark tooltip opens above the padlock; only the browser's own plain hint appears after a pause (picture 1).",
+    "As a check, the same mouse rest on Board View in the display switcher opens the app's dark tooltip, so the check itself works.",
+    "The test says: a dark tooltip with light text opens above the padlock.",
+    "Same on QA branch sv11500 (v26.43.1-a53a4ac, work order S11500-17581) on 26 Oct 2026 (picture 2)."
+   ],
+   "pictures": [
+    "prod-check/C590114-1-padlock-no-tooltip.png",
+    "sv11500/lock-tip/C590114-sv11500-padlock-no-tooltip.png"
+   ],
+   "ticket": "https://shopview.atlassian.net/browse/SV-11754 (Open) - filed 26 Oct 2026 under the Board/Tech View fast follow; the same was seen on QA branch sv11500 (v26.43.1-a53a4ac), the branch to test the fix on.",
+   "todo": "What needs to be done: follow the ticket; run this test again when the fix is on sv11500 and then on production."
+  }
+ }
+}
