@@ -1,0 +1,19 @@
+{
+ "pass_meta": {"env": "QA branch sv11582", "build": "v26.43.1-6bdbed5", "date": "26 October 2026", "note": "SV-11582 fix verified on its QA branch; case extended to PRD v77 (Rule 136)"},
+ "results": {
+  "C97022": {
+   "verdict": "Passed",
+   "observed": [
+    "Passed on the QA branch sv11582 (fix for SV-11582), all 16 steps with the keyboard.",
+    "Steps 1 to 6: Tab reaches a card in Ana's column with a ring, then its More actions button; Escape closes the menu and then the window with focus back on the button; the lead is unchanged.",
+    "Step 7: with the Technician filter on Ana, only her column shows, holding both work orders.",
+    "Steps 8 to 10: the first work order is reassigned to Ben with the keyboard; it leaves and the focus ring moves to the remaining card.",
+    "Steps 11 and 12: the last work order leaves; \"No work orders match these filters\" shows and the Clear all filters button has the focus (picture 1, left).",
+    "Step 13: Enter clears the filters; both work orders are in Ben's column.",
+    "Steps 14 to 16 (added for PRD version 77): with only a search for a technician's last name, moving that work order away shows \"No work orders match the search ...\" and the focus is on that message (picture 1, right).",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11582 (TESTING QA) - passed on its QA branch; QA Passed comment posted on the ticket."
+   ],
+   "pictures": ["/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-26/SV-11582-sv11582-fixed.png"]
+  }
+ }
+}

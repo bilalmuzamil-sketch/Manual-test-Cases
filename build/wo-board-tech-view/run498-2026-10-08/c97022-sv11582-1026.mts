@@ -583,10 +583,13 @@ await run('V77', async () => {
   // which has no button, focus moves to that empty state's message, so the next Tab continues from there."
   const EVE = await tech('Eve', 'E' + RUNNO, 'eve' + RUNNO); const s = await mkSet('ZZAUTOTEST V77 Search Focus', [{ co: 'Echo Co', lead: EVE }]); const N = nm(s);
   const o: any = (R.V77 = { eve: `ZZAUTOTEST Eve E${RUNNO}`, prefs: await kPrefs([EVE.staff_id, BEN.staff_id]) });
-  const q = `Eve E${RUNNO}`; o.start = await kStart(p, 'Board View', q); o.chipsActive = await p.evaluate(`[...document.querySelectorAll('[data-test-id^="filter_chip_"]')].filter(e => e.getBoundingClientRect().width > 0 && /\\d/.test(e.innerText)).map(e => e.innerText.replace(/\\s+/g, ' ').trim())`);
+  // the search matches a single word of the lead technician's name (probe-search-tech-1026: 'E<run>' finds it, 'Eve E<run>' finds nothing)
+  const q = `E${RUNNO}`; o.start = await kStart(p, 'Board View', q); o.chipsActive = await p.evaluate(`[...document.querySelectorAll('[data-test-id^="filter_chip_"]')].filter(e => e.getBoundingClientRect().width > 0 && /\\d/.test(e.innerText)).map(e => e.innerText.replace(/\\s+/g, ' ').trim())`);
   o.cardsShown = (await boardCols(p)).reduce((n, c) => n + c.cards.length, 0);
+  if (!o.cardsShown) { o.blocked = 'the search showed no card, so there is nothing to move (instrument stopped before any key press)'; await shot(p, 'V77-no-card'); return; }
   await clickSearch(p); o.tab = await kTabIn(p, 'board', N); o.arrows = await kArrowsTo(p, (f) => /^board_card_/.test(f.raw), 'board', N); o.cardFocus = kshort(await kz(p, N));
   o.more = kshort(await kp(p, 'Tab', N)); await p.keyboard.press('Enter'); await p.waitForTimeout(1000);
+  if (!/more_actions/.test(o.more)) { o.blocked = 'focus did not reach the card\'s More actions button'; await shot(p, 'V77-no-more'); return; }
   o.choose = await kMenuChoose(p, /(Re)?[Aa]ssign lead technician/); if (await p.locator('.q-dialog').count()) o.dialog = await kDialogPick(p, 'ZZAUTOTEST Be', BEN.staff_id, 'Technician-B (Ben Bravo)');
   await p.waitForTimeout(3000);
   o.empty = await p.evaluate(`(() => { const t = document.body.innerText; const m = t.match(/No work orders match the search[^\\n]*/); return { message: m ? m[0] : null, clearBtn: [...document.querySelectorAll('button')].filter(b => /Clear all filters/i.test(b.innerText) && b.getBoundingClientRect().width > 0).length }; })()`);

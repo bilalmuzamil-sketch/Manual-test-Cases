@@ -635,3 +635,9 @@
 - PRD **v77** (26 Oct 13:53 UTC, Chris, SV-11582): S11-E1 adds "When the move leaves nothing matching a search with no filters active, so the view shows the search empty state (S1-N1b), which has no button, focus moves to that empty state's message, so the next Tab continues from there." `c97022-sv11582-1026.mts` (copy of kbd-fix4) runs C97022's 13 steps as the case reads on 26 Oct plus a `V77` check (unique technician "ZZAUTOTEST Eve E<run>", search by that name only, keyboard reassign to Ben, read the focused element).
 - A fresh QA branch's sign-in: copy any branch's `/tmp/shopview/<branch>.env` to `/tmp/shopview/<new>.env` (chmod 600); quick-login does the rest.
 #qa-branch #harness #keyboard #prd → L0578, L0575
+
+## L0581 — 2026-10-26 — The Work Orders search matches single words, not a full technician name; SV-11627 / SV-11582 verified
+- `GET /api/work-orders?search=` (what the page uses): "Eve E7600" and "ZZAUTOTEST Eve E7600" → 0, "E7600" (the lead's unique last name) → the work order, "Ben Bravo" → 0. To build a "search alone empties the view after a move" case, give the technician a unique ONE-WORD last name and search that word (`probe-search-tech-1026.mts`). When the search shows no card, a keyboard script must STOP before pressing anything — otherwise Tab leaves the board and Enter opens a top-menu page (the first V77 run landed on Customers).
+- PRD v77 S1-N1b message is `[data-test-id="text_work_orders_empty"]` with tabindex -1; it gets focus after the move; with nothing after it, the next Tab wraps to "Skip to content" (browser end-of-page behaviour, not a fault).
+- Board/Tech View "Clear all filters" in the empty state is `empty_state_clear_filters`; its focus look is a grey fill, no outline (`:focus-visible` true).
+#keyboard #search #fix-verify #prd → L0580, L0578
