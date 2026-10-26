@@ -2,7 +2,8 @@
 Pattern: build/splitting-sales-reps/authoring/ssr_lib.py. Shape: Rule 117 with all twelve amendments (two-audience preconditions,
 {placeholders} with a "For example:" second line, one action per step, one "Step N:" result per step, "Exact quotes from the source
 (for reproducibility)" with a "From:" line per document, the build line, "References from Design", the AUTOMATION line last).
-Every expected result comes from a verbatim PRD v5 sentence (Rules 57, 113). No build yet. The design canvas was read in full on 22 Oct 2026
+Every expected result comes from a verbatim PRD sentence (Rules 57, 113): PRD version 9 (23 Oct 2026) since the full pass of 26 Oct 2026,
+which re-checked every case against version 9 and Chris Ward's answers 1 to 16 (quoted only where PRD version 9 is silent). No build yet. The design canvas was read in full on 22 Oct 2026
 (design-2026-10-22/): every case's "References from Design" block names the boards, the pictures and the design's own words, and every
 design-vs-PRD difference that touches the case (design_data.py, Rule 130). On-screen navigation comes from the design pictures (Rule 57:
 labels and navigation)."""
@@ -28,7 +29,7 @@ def md_to_text(md):
         else: out.append(t)
     return "\n".join(out)
 
-PRD_FILE = f"{P}/sources/CONFLUENCE-947650561-v5-2026-10-22.md"
+PRD_FILE = f"{P}/sources/CONFLUENCE-947650561-v9-2026-10-26.md"
 PRD_MD = open(PRD_FILE).read().split("<!-- Saved")[0]
 PRD_TXT = md_to_text(PRD_MD)
 PRDW = ws(PRD_TXT)
@@ -36,8 +37,18 @@ PRD_RAWW = ws(re.sub(r"\[([^\]]*)\]\(([^)]*)\)", r"\1", PRD_MD))      # keeps th
 JIRA_FILE = f"{P}/sources/JIRA-READING-2026-10-22.md"
 JIRAW = ws(open(JIRA_FILE).read())
 
-PRD_NAME = 'PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 5 (21 Oct 2026, Chris Ward)'
-PRD_READ = "read 22 Oct 2026"
+PRD_NAME = 'PRD "A/R and A/P Report Sorting, Export and Location Filter", Confluence 947650561, version 9 (23 Oct 2026, Chris Ward)'
+PRD_READ = "read 26 Oct 2026"
+# Chris Ward's answers to our question sheet (Google Sheet 11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA, column E rows 6-23), read 26 Oct 2026
+# (questions-2026-10-22/chris-answers-2026-10-26.json). PRD version 9 carries most of them; an answer is quoted only where PRD v9 is silent.
+ANS_FILE = f"{P}/questions-2026-10-22/chris-answers-2026-10-26.json"
+ANS = {int(k): v for k, v in json.load(open(ANS_FILE))["answers"].items()}
+ANS_NAME = ("Chris Ward's answers to the A/R and A/P Report Sorting question sheet (questions 1 to 16, Google Sheet "
+            "11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA, answered 23 Oct 2026)")
+ANS_READ = "read 26 Oct 2026"
+def AQ(n, part=None):
+    """Quote Chris Ward's answer n (verbatim, or one verbatim sentence of it)."""
+    return (f"Chris Ward's answer {n}", part or ANS[n])
 # The engineering tech plan (uploaded by the QA lead 22 Oct 2026; Rules 30, 115, 134): quoted word for word as the page reads (markdown
 # marks removed, as for the PRD); it informs and never overrules the PRD (Rule 30; QA lead's ruling of 12 Aug 2026).
 TP_FILE = f"{P}/sources/Tech-Plan-AR-AP-2026-10-22-upload.md"
@@ -91,12 +102,13 @@ for line in PRD_MD.split("\n"):
     if _inside and line.startswith("| ") and not line.startswith("| Trigger") and not line.startswith("| ---"):
         _ufs.append(" | ".join(x.strip() for x in line.strip().strip("|").split("|")))
 for i, row in enumerate(_ufs, 1): _n(f"UFS-{i}", "User Feedback Summary", row)
-# What changes for existing users (10 bullets)
+# What changes for existing users (11 bullets in PRD v9)
 _WC = ["A/R reports no longer come out in an unpredictable order", "A/P Detail opens with rows in vendor name order",
        "A/R's Print button becomes the Export menu", "The Totals row on A/R Collection and A/P Unpaid Invoices now follows",
        "The A/R Summary Totals row now adds up exactly", "Clicking a row no longer opens it.",
        "The date filter is labelled", "Re-sorting A/R Collection or A/P Unpaid Invoices no longer collapses",
-       "The A/R column \"Location full name\"", "Which rows and amounts each user can see is unchanged"]
+       "The A/R column \"Location full name\"", "Which rows and amounts each user can see is unchanged",
+       "The A/R column headings change to Title Case"]   # WC-11 added in PRD v9 (23 Oct 2026)
 for i, s in enumerate(_WC, 1): _n(f"WC-{i}", "What changes for existing users", prd_line(s))
 # Out of Scope (9 bullets)
 _OOS = ["Background exports for very large reports", "Restricting these reports by the user's location enrollment.",
@@ -143,7 +155,8 @@ NEEDS = {
     "S2-R1": ALL6, "S2-R2": ALL6, "S2-R3": ALL6, "S2-R4": GROUPED, "S2-R5": GROUPED, "S2-R6": ["APU", "APD"], "S2-R7": ALL6,
     "S2-R8": ALL6, "S2-R9": GROUPED, "S2-N1": ["APU"],
     "S3-R1": ALL6, "S3-R2": ALL6, "S3-R3": ALL6, "S3-R4": ALL6, "S3-R5": ALL6, "S3-R6": ALL6, "S3-R7": ["ARS", "APS"],
-    "S3-R8": ALL6, "S3-R8a": ["ARC"], "S3-R10": ALL6,
+    "S3-R8": ALL6, "S3-R8a": ["ARC"], "S3-R8b": ["ARD", "ARC", "APD", "APU"], "S3-R10": ALL6, "S2-R4a": ALL6,
+    "S5-R18a": ["ARS", "ARD", "APS", "APD"], "S5-R18b": ["ARS"],
     "S4-R1": GROUPED, "S4-R2": ["ARC", "APU"], "S4-R3": GROUPED, "S4-R4": ["ARD", "APD"], "S4-R5": GROUPED, "S4-R6": GROUPED,
     "S4-R7": GROUPED, "S4-R8": GROUPED, "S4-R9": GROUPED, "S4-N1": GROUPED, "S4-N2": ["ARS", "APS"],
     "S5-R1": ALL6, "S5-R6": ALL6, "S5-R8": ["ARS", "APS"], "S5-R11": ["ARS", "APS", "ARC", "APU"], "S5-R13": ALL6, "S5-R15": ALL6,
@@ -282,6 +295,12 @@ def design_block(c):
         h += "</ul>"
     held = c["marker"] == DESIGN_HOLD
     for x in diffs:
+        if x.get("ruling"):
+            # 26 Oct 2026: every difference is closed by Chris Ward's answer and PRD version 9 (Rule 130 item 3: the case still names it)
+            t = ("Difference from the PRD (" + x["id"] + "), closed: PRD version 5 said " + x["prd"] + "; the design shows " + x["design"] + ". "
+                 + x["ruling"])
+            h += "<p>" + e(t) + "</p>"
+            continue
         if x["q"] == 4: how = "question 4 on Chris Ward's sheet (sent 22 Oct 2026)"
         else: how = "question " + str(x["q"]) + " on Chris Ward's question sheet (added 22 Oct 2026)"
         follows = "This held case follows the design" if held else "This case follows the PRD"
@@ -298,15 +317,15 @@ def design_block(c):
 def quotes_block(c):
     """Rule 117 eleventh amendment: each document quoted gets a "From:" line above its own quotes; the epic and the stories go on
     the first "From:" line; the build line follows the last quote."""
-    prd, tp, jira = [], [], []
+    prd, tp, jira, ans = [], [], [], []
     for l, t in quotes(c):
-        (jira if l.startswith("Jira SV-") else tp if l.startswith("Tech plan") else prd).append((l, t))
+        (jira if l.startswith("Jira SV-") else tp if l.startswith("Tech plan") else ans if l.startswith("Chris Ward's answer") else prd).append((l, t))
     sto = ", ".join(f"story {STORY[n][0]} ({STORY[n][1]})" for n in story_nums(c))
     h = "<p><strong>Exact quotes from the source (for reproducibility)</strong></p>"
     first = True
-    for name, group in ((PRD_NAME, prd), (TP_NAME, tp), (JIRA_NAME, jira)):
+    for name, group in ((PRD_NAME, prd), (ANS_NAME, ans), (TP_NAME, tp), (JIRA_NAME, jira)):
         if not group: continue
-        h += f"<p>From: {e(name)}, {PRD_READ}" + (f" &middot; Epic SV-11315, {e(sto)}" if first else "") + "</p>"
+        h += f"<p>From: {e(name)}, { {PRD_NAME: PRD_READ, ANS_NAME: ANS_READ}.get(name, "read 22 Oct 2026")}" + (f" &middot; Epic SV-11315, {e(sto)}" if first else "") + "</p>"
         h += "<ul>" + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in group) + "</ul>"
         first = False
     return h + f"<p>{e(NOBUILD)}</p>"
@@ -349,11 +368,14 @@ def check(c):
     if JARGON.search(tester): p.append(f"{k}: technical term in tester text: {JARGON.search(tester).group(0)}")
     for l, t in quotes(c):
         src = JIRAW if l.startswith("Jira SV-") else None
+        if l.startswith("Chris Ward's answer"):
+            if ws(t) not in ws(ANS[int(l.split()[-1])]): p.append(f"{k}: quote {l} not verbatim in the answer")
+            continue
         if l.startswith("Tech plan"):
             if ws(t) not in TPW and ws(t) not in TP_RAWW: p.append(f"{k}: quote {l} not verbatim in the tech plan")
         elif src is not None:
             if ws(t) not in src: p.append(f"{k}: quote {l} not verbatim in the Jira reading record")
-        elif ws(t) not in PRDW and ws(t) not in PRD_RAWW: p.append(f"{k}: quote {l} not verbatim in PRD v5")
+        elif ws(t) not in PRDW and ws(t) not in PRD_RAWW: p.append(f"{k}: quote {l} not verbatim in PRD v9")
     if not c["q"]: p.append(f"{k}: no source quote (Rule 64)")
     if len(c["pre"]) > 8: p.append(f"{k}: {len(c['pre'])} preconditions")
     # Over 10 steps is over the Rule 117 ninth-amendment TARGET ("Limits are targets"), not an error: the case stays whole and is listed

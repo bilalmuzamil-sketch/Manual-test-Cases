@@ -1,5 +1,6 @@
 """Shared precondition sentences and report facts (tester text: what must exist, never how to make it; examples on the second line).
-Column names are PRD v5 S2-R1's, letter for letter (A/R lower-case second words, A/P capitals)."""
+Column names are PRD v9 S2-R1's, letter for letter: Title Case on all six reports (S2-R4a, added 23 Oct 2026 from Chris Ward's answer 4;
+before 26 Oct 2026 the A/R names followed PRD v5's lower-case second words)."""
 LOC_A, LOC_B, LOC_C = "Staging Heavy Duty - 9919", "Staging Lethbridge - 4310", "a third staging location"
 
 R = {
@@ -12,13 +13,13 @@ R = {
                 text=["Location"], dates=[], money=["Current", "1-30 Days", "31-60 Days", "61-90 Days", "91 And Over", "Total"],
                 past=None, num=None, opened="name", group=None, headline="Total", doc="bill"),
     "ARD": dict(n="A/R Detail", fam="A/R", party="customer", parties="customers", Party="Customer", Parties="Customers",
-                cols=["Date", "Location", "Transaction type", "ID", "Customer full name", "Due date", "Amount", "Open balance"],
-                text=["Location", "Transaction type", "Customer full name"], dates=["Date", "Due date"], money=["Amount", "Open balance"],
-                past=None, num="ID", opened="Customer full name", group="aging bucket", headline="Open balance", doc="invoice"),
+                cols=["Date", "Location", "Transaction Type", "ID", "Customer Full Name", "Due Date", "Amount", "Open Balance"],
+                text=["Location", "Transaction Type", "Customer Full Name"], dates=["Date", "Due Date"], money=["Amount", "Open Balance"],
+                past=None, num="ID", opened="Customer Full Name", group="aging bucket", headline="Open Balance", doc="invoice"),
     "ARC": dict(n="A/R Collection", fam="A/R", party="customer", parties="customers", Party="Customer", Parties="Customers",
-                cols=["Date", "Location", "Transaction type", "ID", "Due date", "Past due", "Amount", "Open balance"],
-                text=["Location", "Transaction type"], dates=["Date", "Due date"], money=["Amount", "Open balance"],
-                past="Past due", num="ID", opened="Date", group="customer", headline="Open balance", doc="invoice"),
+                cols=["Date", "Location", "Transaction Type", "ID", "Due Date", "Past Due", "Amount", "Open Balance"],
+                text=["Location", "Transaction Type"], dates=["Date", "Due Date"], money=["Amount", "Open Balance"],
+                past="Past Due", num="ID", opened="Date", group="customer", headline="Open Balance", doc="invoice"),
     "APD": dict(n="A/P Detail", fam="A/P", party="vendor", parties="vendors", Party="Vendor", Parties="Vendors",
                 cols=["Date", "Location", "Transaction Type", "No.", "Vendor Name", "Due Date", "Past Due", "Amount", "Open Balance"],
                 text=["Location", "Transaction Type", "Vendor Name"], dates=["Date", "Due Date"], money=["Amount", "Open Balance"],

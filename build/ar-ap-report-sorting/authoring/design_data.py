@@ -2,7 +2,9 @@
 design-2026-10-22/: 7 pages, 7 boards, 45 figures (43 screenshot files, 1440 x 900 app screens). Read in full and every picture viewed
 (design-2026-10-22/TRANSCRIPTS.md). This module holds the design's own words (board titles, figure headings, alt texts, captions) and the
 design-vs-PRD differences (Rule 130), so every case can carry a "References from Design" block (Rule 117 tenth amendment).
-The design gives the LOOK and the on-screen labels; expected behaviour still comes from PRD v5 (Rules 57, 113, 126)."""
+The design gives the LOOK and the on-screen labels; expected behaviour still comes from the PRD (version 9 since 26 Oct 2026; Rules 57, 113, 126).
+26 Oct 2026: Chris Ward answered questions 4 and 11 to 15 (23 Oct 2026) and PRD version 9 carries the answers; every difference below carries its
+ruling ("ruling"), which the cases print under References from Design (Rule 130 item 3)."""
 import os, re, json
 D = os.path.dirname(os.path.abspath(__file__)); P = os.path.dirname(D)
 DDIR = f"{P}/design-2026-10-22"
@@ -103,11 +105,32 @@ DIFFS = [
       prd='"the same blue as Work In Progress, semi-bold, no underline" (S7-R7)',
       design='document numbers and customer and vendor names are blue at the same (regular) weight as the plain text beside them',
       kind="text weight"),
- dict(id="DD-06", codes=["S2-R1"], named=["OOS-3", "WC-9"], reps=["ARD", "ARC"], figs=["I14", "I28", "I12", "I26"], q=4, held="D-81",
+ dict(id="DD-06", codes=["S2-R1", "S2-R4a"], named=["OOS-3", "WC-9", "WC-11"], reps=["ARD", "ARC"], figs=["I14", "I28", "I12", "I26"], q=4, held="D-81",
       prd='A/R Detail and A/R Collection headings written "Transaction type", "Customer full name", "Due date", "Past due", "Open balance" (S2-R1)',
       design='the after pictures read "Transaction Type", "Customer Full Name", "Due Date", "Past Due", "Open Balance"; today\'s production pictures already read the same, with "Location Full Name"',
       kind="heading letter case (L-04); already question 4 (sent 22 Oct 2026)"),
 ]
+DEL = " was deleted from TestRail on 26 Oct 2026 with the QA lead's go-ahead (snapshot in v9-pass-2026-10-26/deleted/)."
+RULING = {
+ "DD-01": ("Chris Ward ruled on 23 Oct 2026 (answer 11): the existing prompt keeps \"Cancel\" on the left, \"Switch location\" (small l) on the right and a close × "
+           "at the top right, and the × closes it like Cancel; the capital L the picture and the current build show is a build bug to fix. PRD version 9 "
+           "(S7-R3, S7-R5) now says so, and this case follows PRD version 9. The held design-version case D-76 (C715558)" + DEL),
+ "DD-02": ("PRD version 9 (23 Oct 2026), written after question 12, keeps \"Search vendors\" and adds that the search box shows only when there are more "
+           "than 8 vendors (S5-R13); the singular \"Search vendor\" in the picture is not the requirement (Chris Ward's sheet row for question 12 repeats "
+           "question 14's subject; PRD version 9 settles it). This case follows PRD version 9. The held design-version case D-77 (C715559)" + DEL),
+ "DD-03": ("Chris Ward ruled on 23 Oct 2026 (answer 13): no Totals row, as the PRD says; the design picture will be corrected. This case follows the PRD "
+           "(S5-R6a, unchanged in version 9). The held design-version case D-78 (C715560)" + DEL),
+ "DD-04": ("Chris Ward ruled on 23 Oct 2026 (answers 12 and 14): document-number order, as the PRD says, whatever the time of day the invoices were "
+           "created; the current build orders same-day rows by time of day, a build bug to fix, and the design picture will be corrected. PRD version 9 "
+           "(S1-R6, S2-R4) now says so, and this case follows it. The held design-version case D-79 (C715561)" + DEL),
+ "DD-05": ("Chris Ward ruled on 23 Oct 2026 (answer 15): semi-bold, exactly as Work In Progress links look today; the design pictures will be corrected. "
+           "This case follows the PRD (S7-R7, unchanged in version 9). The held design-version case D-80 (C715562)" + DEL),
+ "DD-06": ("Chris Ward ruled on 23 Oct 2026 (answer 4): Title Case on all six reports, on screen, in the PDF and in the CSV, as the design shows; PRD "
+           "version 9 adds S2-R4a and writes S2-R1 in Title Case. The design's version is now the requirement and this case follows PRD version 9; D-81 "
+           "(C715563), held until then, is now a normal design case."),
+}
+ANSWER_OF = {"DD-01": 11, "DD-02": 12, "DD-03": 13, "DD-04": 14, "DD-05": 15, "DD-06": 4}
+for _d in DIFFS: _d["ruling"] = RULING[_d["id"]]; _d["answer"] = ANSWER_OF[_d["id"]]
 # differences closed by a ruling already in our sources (not asked; skill 07 section 6)
 RULED = [
  dict(id="DR-01", codes=["S8-R4"], figs=["I14", "I15", "I16", "I23", "I25", "I32", "I03", "I28", "I30"],

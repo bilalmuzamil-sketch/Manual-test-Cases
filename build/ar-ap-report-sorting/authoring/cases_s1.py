@@ -19,7 +19,7 @@ for key, code in [("S1-01", "ARS"), ("S1-02", "APS")]:
       [ADMIN(), (f"Four {r['parties']} have open {r['doc']}s on today's date: {lst}. Their names start with the same word and then differ by a number, a dash or capitals, as in the example.", exl),
        START(code)],
       [f"Look at the header of {namecol(code)}.",
-       f"Without clicking any column header, find the four {r['parties']} in the list (use the page controls if they are on a later page)."],
+       f"Without clicking any column header, find the four {r['parties']} in the list (scroll down until they load if they are further down)."],
       [f"Step 1: {namecol(code)} is marked as the sorted column.",
        f"Step 2: all four {r['parties']} are listed, reading from top to bottom {ph[0]}, then {ph[1]}, then {ph[2]}, then {ph[3]} (other {r['parties']} may sit between them). With the example names: \"10 Trucking\" comes before \"2 Trucking\" because names compare character by character, and \"A-1 Towing\" comes before \"a1 towing\" because capitals are ignored and the dash compares as a character."],
       ["S1-R1", "S1-R2", "S1-R7"])
@@ -60,17 +60,14 @@ for key, code in [("S1-05", "ARS"), ("S1-06", "APS")]:
        "Step 6: after the reload they are still in the same order."],
       ["S1-R4", "S1-R2", "S3-R2"])
 
-C("S1-07", "S1", "A/R Summary lists Emile before Émile when only the accent differs",
+# 26 Oct 2026 (PRD v9 S1-R4 carries Chris Ward's answer 1 as its own example): the case follows PRD v9; the tech plan's D4 agrees.
+C("S1-07", "S1", "A/R Summary lists Emile's Towing before Émile's Towing",
   [ADMIN(), ("Two customers have open invoices on today's date and their names differ only by an accent: {Customer-A} without it and {Customer-B} with it.",
-             "For example: {Customer-A} is ZZAUTOTEST S1-07 Emile and {Customer-B} is ZZAUTOTEST S1-07 Émile."),
+             "For example: {Customer-A} is ZZAUTOTEST S1-07 Emile's Towing and {Customer-B} is ZZAUTOTEST S1-07 Émile's Towing."),
    START("ARS")],
-  ["Find {Customer-A} and {Customer-B} in the list."],
-  ["Step 1: the two customers sit next to each other (with accents ignored their names are the same), and {Customer-A} (no accent) is above {Customer-B} (with the accent): the tie is broken by the lower-cased names as they are written, and a plain \"e\" comes before \"é\"."],
-  ["S1-R4", "S1-R3"] + TP.q("D4"),
-  note=(f"The PRD says names that compare equal are ordered \"by the plain lower-cased name\" but not how an accent counts; question {QN['tie-accent']} "
-        "on Chris Ward's sheet (sent 22 Oct 2026) asks. The tech plan (21 Oct 2026) says it: the lower-cased names are compared as written, so "
-        "\"emile\" comes before \"émile\". Nothing in the PRD contradicts it, so this case follows the tech plan (QA lead's ruling of 12 Aug 2026). "
-        "If Chris answers differently, his answer wins and this case changes."))
+  ["Without clicking any column header, find {Customer-A} and {Customer-B} in the list."],
+  ["Step 1: the two customers sit next to each other (with the accent folded to its base letter their names are the same), and {Customer-A} (no accent) is directly above {Customer-B} (with the accent): the tie is broken by the plain lower-cased names, where the unaccented letter comes first."],
+  ["S1-R4", "S1-R3"] + TP.q("D4"))
 
 
 for key, code in [("S1-08", "ARD"), ("S1-09", "APD")]:
@@ -93,16 +90,18 @@ for key, code in [("S1-10", "ARC"), ("S1-11", "APU")]:
     C(key, "S1", f"{r['n']} groups {r['parties']} by name, rows oldest date first",
       [ADMIN(), (f"Two {r['parties']} have overdue {d}s on today's date: {{{P}-A}} and {{{P}-B}}; {{{P}-B}}'s name comes first alphabetically.",
                  f"For example: {{{P}-A}} is ZZAUTOTEST {key} Baker and {{{P}-B}} is ZZAUTOTEST {key} Abbott."),
-       (f"{{{P}-B}} has three overdue {d}s: {{{Dc}-A}} with the oldest date, and {{{Dc}-B}} and {{{Dc}-C}} with the same later date. {{{Dc}-B}}'s number is smaller than {{{Dc}-C}}'s but has fewer digits.",
-        f"For example: {{{Dc}-A}} is dated 40 days ago; {{{Dc}-B}} (S1-99) and {{{Dc}-C}} (S1-100) are dated 35 days ago."),
+       (f"{{{P}-B}} has three overdue {d}s: {{{Dc}-A}} with the oldest date, and {{{Dc}-B}} and {{{Dc}-C}} with the same later date. {{{Dc}-B}}'s number is smaller than {{{Dc}-C}}'s but has fewer digits, and {{{Dc}-C}} was " + ("invoiced" if d == "invoice" else "entered") + f" earlier that day than {{{Dc}-B}}.",
+        f"For example: {{{Dc}-A}} is dated 40 days ago; {{{Dc}-B}} (S1-99) and {{{Dc}-C}} (S1-100) are dated 35 days ago, {{{Dc}-C}} " + ("invoiced" if d == "invoice" else "entered") + f" in the morning and {{{Dc}-B}} in the afternoon."),
        START(code)],
       [f"Find the groups of {{{P}-A}} and {{{P}-B}} and note their order.",
        "Look at the header of the \"Date\" column.",
        f"Expand {{{P}-B}}'s group."],
       [f"Step 1: {{{P}-B}}'s group is above {{{P}-A}}'s group.",
        "Step 2: \"Date\" is marked as the sorted column.",
-       f"Step 3: the group opens: {{{Dc}-A}} first (oldest date), then {{{Dc}-B}}, then {{{Dc}-C}} (same date, smaller number first, counted as a number)."],
-      ["S1-R6", "S1-R7", "S2-R4"])
+       f"Step 3: the group opens: {{{Dc}-A}} first (oldest date), then {{{Dc}-B}}, then {{{Dc}-C}}: on the same date the smaller number comes first, counted as a number, whatever the time of day each was " + ("invoiced" if d == "invoice" else "entered") + "."],
+      ["S1-R6", "S1-R7", "S2-R4"],
+      note=("Where the build is expected to differ: Chris Ward (answers 12 and 14, 23 Oct 2026) says the current build orders same-day rows by the time of day "
+            "they were created, a build bug to fix; no ticket number is known yet. If the rows come out in time-of-day order, mark this test Failed."))
 
 for key, fam, codes in [("S1-12", "A/R", AR3), ("S1-13", "A/P", AP3)]:
     s, d, g = [R[c]["n"] for c in codes]
@@ -151,7 +150,7 @@ C("S1-16", "S1", "A/R Summary sorts names that start with a punctuation mark by 
   ["Without clicking any column header, find the four customers in the list."],
   ["Step 1: all four customers are listed, reading from top to bottom {Customer-A}, {Customer-B}, {Customer-C}, {Customer-D}: plain character order, where \"#\" comes before \"-\", both come before the digits, and \"@\" comes after them."],
   ["S1-R2", ("Key Decisions, name order", "Names sort the way QuickBooks sorts them: plain character order, capitals ignored, accented letters with their base letter.")] + TP.q("UCA"),
-  note=("Held for the PO: the PRD says names compare \"in plain character order: digits and punctuation compare as characters\", the way QuickBooks orders "
-        "them, which this case follows. The tech plan (21 Oct 2026) says the developers' order puts every punctuation mark before every digit and orders the marks "
-        "differently (\"-\" before \"#\"), which would give {Customer-B} first, then {Customer-A} and {Customer-D}, then {Customer-C}. Question 16 asks Chris Ward which order is right."),
-  marker="AUTOMATION: HOLD - waiting on the PO (question 16: names that start with a punctuation mark)")
+  note=("Where the build is expected to differ: the tech plan (21 Oct 2026) puts every punctuation mark before every digit and orders the marks differently "
+        "(\"-\" before \"#\"), which would give {Customer-B} first, then {Customer-A} and {Customer-D}, then {Customer-C}. Chris Ward (answer 16, 23 Oct 2026) "
+        "keeps the PRD's plain character order and asks engineering to match it; PRD version 9 adds this example to the requirement. No ticket number is known "
+        "yet. If the build gives the tech plan's order, mark this test Failed."))

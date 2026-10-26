@@ -76,7 +76,7 @@ def group_pre(code, k):
     return (f"{P} {{{P}-A}} has overdue {r['doc']}s on today's date.", f"For example: {{{P}-A}} is {ex(k, 'Fleet')[0]}.")
 
 def doc_pre(code, k):
-    """Three documents in one group: Date, Due date, Amount and Open balance each give a different order."""
+    """Three documents in one group: Date, Due Date, Amount and Open Balance each give a different order."""
     r = R[code]; P = r["Party"]; g = GROUP_AT[code]
     if r["group"] == "aging bucket":
         who = f" for {{{P}-C}}, {{{P}-A}} and {{{P}-B}} in that order (in name order these {r['parties']} read A, B, C)"
@@ -192,13 +192,13 @@ for code in GROUPED:
       [(f"In {g} there are three open {r['doc']}s with the same due date, {{Document-A}}, {{Document-B}} and {{Document-C}}, whose numbers have different digit counts, so that in number order they read {{Document-A}}, {{Document-B}}, {{Document-C}} but in letter-by-letter order {{Document-B}}, {{Document-C}}, {{Document-A}}.",
         "For example: {Document-A} is S1-99, {Document-B} is S1-100 and {Document-C} is S1-101 (the app assigns the real numbers)." + ""),
        GSTART(code)],
-      [f"Click the \"{num}\" header.", f"Click the \"{num}\" header again.", f"Click the \"{r['dates'][1]}\" header."],
-      [f"Step 1: rows {ins} sort by {num} as numbers, never letter by letter: {{Document-A}}, {{Document-B}}, {{Document-C}} in one direction (smallest number first) or the exact reverse. Note which.",
-       f"Step 2: the exact reverse of step 1, still in number order.",
-       f"Step 3: rows {ins} sort by {r['dates'][1]}, oldest first; {{Document-A}}, {{Document-B}} and {{Document-C}} tie on {r['dates'][1]}, so they are ordered by number: {{Document-A}}, {{Document-B}}, {{Document-C}} (smallest number first)."],
-      ["S2-R4", f"S2-R1 {code}", "S2-R2"],
-      note=(f"Which direction the first click on {num} gives is not stated in the PRD; it is asked in the question sheet (question {QN['id-first-click']}), "
-            f"and whether ties reverse when a sort is reversed is question {QN['tie-reverse']}. The case checks number order both ways and the tie order on the first click only."))
+      [f"Click the \"{num}\" header.", f"Click the \"{num}\" header again.", f"Click the \"{r['dates'][1]}\" header.",
+       f"Click the \"{r['dates'][1]}\" header again."],
+      [f"Step 1: rows {ins} sort by {num} as numbers, never letter by letter, smallest number first: {{Document-A}}, {{Document-B}}, {{Document-C}}.",
+       f"Step 2: largest number first: {{Document-C}}, {{Document-B}}, {{Document-A}}, still in number order.",
+       f"Step 3: rows {ins} sort by {r['dates'][1]}, oldest first; {{Document-A}}, {{Document-B}} and {{Document-C}} tie on {r['dates'][1]}, so they are ordered by number, smallest first: {{Document-A}}, {{Document-B}}, {{Document-C}}.",
+       f"Step 4: the {r['dates'][1]} sort reverses, newest first; the three still tie and keep the same order, smallest number first: {{Document-A}}, {{Document-B}}, {{Document-C}} (reversing a sort reverses the sorted column only)."],
+      ["S2-R4", f"S2-R1 {code}", "S2-R2"])
 
 # ---------------- blanks ----------------
 k = nk()
@@ -261,7 +261,7 @@ for code in ALL6:
     # one action per step (22 Oct 2026): "Expand the largest bucket and scroll down" and "Open the filter and tick" are two steps each
     steps = ([f"Click the \"{sortcol}\" header once.",
               "Change the as-of date to yesterday."]
-             + (["Go to the next page (or scroll until the next ones load)."] if paged else ["Expand the largest bucket.", "Scroll down inside it until more lines load."])
+             + ([f"Scroll down until the next 30 {r['parties']} load."] if paged else ["Expand the largest bucket.", "Scroll down inside it until more lines load."])
              + [f"Open the {r['Party']} filter.",
                 f"Tick {{{r['Party']}-A}}.",
                 "In the Location filter, untick {Location-B}."])
@@ -275,22 +275,18 @@ for code in ALL6:
               f"only {{Location-A}} rows remain{gx}, still sorted by {sortcol}, largest first, and \"{sortcol}\" is still marked as the sorted column."])
     res = [f"Step {i}: {x}" for i, x in enumerate(res, 1)]
     C(k, "S2", f"{r['n']}: the sort stays while changing date, page and filters", pre, steps, res,
-      ["S2-R7", "S2-R2"] + (TP.q("P3-walk") if code in ("ARC", "APU") else []),
-      note=(f"How the next 30 {r['parties']} are reached (page buttons or scrolling) is question {QN['paging']}; the step works either way." if code in ("ARS", "APS", "ARC", "APU") else ""))
+      ["S2-R7", "S2-R2"] + (["S1-R8"] if paged else []) + (TP.q("P3-walk") if code in ("ARC", "APU") else []))
 
-# ---------------- the Past due filter and the sort (held: the PRD does not say) ----------------
+# ---------------- the Past due filter and the sort (PRD v9 S2-R7, from Chris Ward's answer 6; released 26 Oct 2026) ----------------
 k = nk()
 C(k, "S2", "A/R Collection: changing the Past due filter keeps the sort",
-  [ADMIN(), ("Customer {Customer-A} has overdue invoices on today's date, some 1 to 30 days and some 31 to 60 days past due.",
+  [ADMIN(), ("Customer {Customer-A} has overdue invoices on today's date: one 1 to 30 days past due, and two 31 to 60 days past due with different open balances.",
              f"For example: {{Customer-A}} is {ex(k, 'Past Due Sort')[0]}."),
-   START("ARC")],
-  ["Click the \"Open balance\" header once.", "In the Past due filter, tick \"31-60 days\".", "Expand {Customer-A}'s group."],
-  ["Step 1: rows sort by Open balance, largest first.", "Step 2: the report reloads with only 31 to 60 day invoices (and credits) left.",
-   "Step 3: the rows in the group are still sorted by Open balance, largest first, and \"Open balance\" is still marked as the sorted column."],
-  ["S2-R7", "S5-R16"],
-  note=(f"Held for the PO: the PRD lists the as-of date, paging and the customer, vendor and Location filters as keeping the sort, but not the "
-        f"Past due filter; the story's acceptance criteria include it. Question {QN['sort-pastdue']} asks Chris Ward."),
-  marker=f"AUTOMATION: HOLD - waiting on the PO (question {QN['sort-pastdue']}: does the Past due filter keep the sort)")
+   START("ARC", ", with {Customer-A}'s group expanded")],
+  ["Click the \"Open Balance\" header once.", "In the Past due filter, tick \"31-60 days\".", "Expand {Customer-A}'s group."],
+  ["Step 1: the rows in {Customer-A}'s group sort by Open Balance, largest first, and \"Open Balance\" is marked as the sorted column.", "Step 2: the report reloads with only the invoices 31 to 60 days past due (and any credits) left; every group is collapsed.",
+   "Step 3: the rows in the group are still sorted by Open Balance, largest first, and \"Open Balance\" is still marked as the sorted column."],
+  ["S2-R7", "S5-R16", "S4-N1"])
 
 # ---------------- sort not remembered between visits ----------------
 # Rule 136 (22 Oct 2026): each pair case became one case per report; the first report keeps the pair's C-id, the second is "b".
