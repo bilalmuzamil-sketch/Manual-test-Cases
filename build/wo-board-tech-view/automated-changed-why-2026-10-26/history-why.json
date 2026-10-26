@@ -1,0 +1,3834 @@
+[
+ {
+  "cid": 96911,
+  "title": "Switching display keeps the same tab, search, filters and work orders",
+  "atm": 3,
+  "section": 13236,
+  "automated_on": "2026-10-12",
+  "changes": [
+   {
+    "date": "2026-10-14 22:07",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Setup (manual QA tester and Claude session)",
+     "-Needs: 1 | +You are signed in as an Owner or Admin",
+     "-· 1 browser · about 20 minutes. Build: the Work Orders QA build (sv10043, v26.40.8-7a95011). [User-A] = you: an Owner/Admin user (on a QA branch the Admin quic | +whose",
+     "-holds | +has",
+     "-Edit. Desktop | +Edit, at {Location-A} (for example Staging Heavy Duty - 9919). Your",
+     "-with the | +",
+     "- | +is",
+     "-pixels wide (full screen on | +px wide, so the display switcher (List, Tech View, Board View) shows at the right of the Work Orders toolbar. Technician {Technician-A} (for example Esther Howard) is"
+    ]
+   },
+   {
+    "date": "2026-10-14 22:07",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-ZZAUTOTEST Fibridge. Open | +the name of {Customer-A}. Click Status and tick Approved. Click outside",
+     "-filter, tick Approved (the status the setup gave your test work orders) and | +list to",
+     "-the filter. | +it.",
+     "-shown ([WO-1], [WO-2], [WO-3]: 3 rows). In | +shown. Click Tech View in",
+     "-toolbar, click Tech View | +toolbar",
+     "-In | +Click Board View in",
+     "-at the right of the toolbar, click Board View | +",
+     "-In | +Click List in"
+    ]
+   },
+   {
+    "date": "2026-10-14 22:07",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      52
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-The | +Steps 7, 9 and 11: the",
+     "-After | +Steps 7 to 11: after",
+     "-reads ZZAUTOTEST Fibridge | +shows the name of {Customer-A},",
+     "-the | +",
+     "-filter | +",
+     "- | +Approved ticked. Steps 6, 8 and 10:",
+     "-status you ticked. The | +",
+     "-With the example data: | +"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 96929,
+  "title": "A group's work orders are in the order their leads were given, not List's sort",
+  "atm": 3,
+  "section": 13237,
+  "automated_on": "2026-10-14",
+  "changes": [
+   {
+    "date": "2026-10-16 07:47",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Setup (manual QA tester and Claude session)",
+     "-Needs: 2 users · 1 browser · about 20 minutes Build: the Work Orders QA build (sv10043, v26.40.8-7a95011). A desktop browser with the window at least 1024 pixe | +You are signed in as",
+     "-ordinary laptop | +Owner",
+     "-monitor). Below that width the page shows only List. The case is run as [User-B]: a | +Admin",
+     "-who | +whose role",
+     "-never saved a sort in List (e.g. a newly created user: Role Admin, which holds Work orders > View; Time Clock off), so List shows its default sort. [User-A]: a | +",
+     "-Edit (to check: your initials | +Edit,",
+     "-the top right > Settings > Roles & Permissions > Admin > Work orders). One location for the whole case, shown in the top bar next to the bell (e.g. \"Staging | +{Location-A} (for example Staging"
+    ]
+   },
+   {
+    "date": "2026-10-16 07:47",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-[User-B] and open | +{User-B}. Open",
+     "-Orders. Click | +Orders, click",
+     "-on | +and click List in",
+     "-left | +display switcher. Type the shared start",
+     "-toolbar. In List, note | +three customer names (for example ZZAUTOTEST F2 Sort) in Search. Write down",
+     "-three [Tech-A] | +four",
+     "-orders. In | +orders in List. Click Tech View in",
+     "-switcher at the right of the toolbar, click Tech View (tooltip \"Tech View\"). Read | +switcher. Write down"
+    ]
+   },
+   {
+    "date": "2026-10-16 07:47",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      53,
+      54
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-In | +Step 4: List shows the four work orders in its usual default order: by customer name from A to Z (with the example names: {Customer-A}, then {Customer-B}'s two work orders, then {Customer-C}). Step 6:",
+     "-View the | +View's",
+     "-List's default order: Alpha Freight, Mid Trucking, Zeta Hauling (customer name A-Z), | +exactly",
+     "- | +as",
+     "-shows. | +at step 4, including the order of {Customer-B}'s two work orders, {Work-order-3} and {Work-order-4}. Step 8:",
+     "-View shows | +View's cards are in",
+     "-order. The design's sample puts In progress first, then newest created: that is a sample only, the List | +",
+     "-is what passes. | +as Tech View's rows."
+    ]
+   },
+   {
+    "date": "2026-10-16 19:07",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      53,
+      54
+     ],
+     [
+      53,
+      54
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-v26.40.8-7a95011 | +v26.40.19-1493c63 (staging)",
+     "-10/8/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build. | +10/16/2026.",
+     "-HOLD - not yet build-verified on the Work Orders QA build | +READY"
+    ]
+   },
+   {
+    "date": "2026-10-19 03:23",
+    "user": 3,
+    "field": "title",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Before anyone reorders them, a | +A",
+     "-follow | +are in the order their leads were given, not",
+     "-default | +"
+    ]
+   },
+   {
+    "date": "2026-10-19 03:23",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Each of the four got {Technician-A} as its lead after it was created (on the work order page, with Lead Technician on the status card), one after another, in a known order. Write down that order. For "
+    ]
+   },
+   {
+    "date": "2026-10-19 03:23",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      53,
+      54
+     ],
+     [
+      53,
+      64
+     ]
+    ],
+    "keys_added": [
+     "SV-10052",
+     "SV-11312"
+    ],
+    "keys_removed": [],
+    "diff": [
+     "-{Customer-B}'s | +{Customer-B}’s",
+     "- | +The List itself does not change (S2-R6).",
+     "-View's | +View’s",
+     "- | +in {Technician-A}’s group",
+     "-exactly the same order as List at step 4, including | +",
+     "- | +the leads were given: each work order that got its lead after it was created went to the bottom",
+     "-{Customer-B}'s two | +{Technician-A}’s",
+     "-orders, {Work-order-3} and {Work-order-4}. | +(S2-R6, S9-R14). With the example order: {Work-order-1}, {Work-order-3}, {Work-order-4}, {Work-order-2}. This is not List’s order."
+    ]
+   },
+   {
+    "date": "2026-10-19 10:14",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      53,
+      64
+     ],
+     [
+      53,
+      64
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-v26.40.19-31ad1e1 | +v26.40.19-e435950"
+    ]
+   },
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      53,
+      64
+     ],
+     [
+      53,
+      64,
+      68
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-64 (last edited 16 | +68 (19",
+     "-Reassign | +",
+     "- | +(Assign or Reassign lead technician)",
+     "-from | +with",
+     "-Reassign lead technician dialog | +menu’s Unassign action (S11-R9)",
+     "- | +on"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 96936,
+  "title": "A lead changed elsewhere moves the work order to its new group on refresh",
+  "atm": 3,
+  "section": 13237,
+  "automated_on": "2026-10-14",
+  "changes": [
+   {
+    "date": "2026-10-19 10:46",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-\"Ralph Edwards\" | +\"Aaron Baker\"",
+     "- | +Aaron Baker is used because his name sorts near the top: the Lead Technician list on the work order page stops after about 100 names.",
+     "-Ralph Edwards | +Aaron Baker",
+     "-\"Ralph Edwards\" | +\"Aaron Baker\"",
+     "-Ralph Edwards. | +Aaron Baker.",
+     "-Ralph Edwards | +Aaron Baker"
+    ]
+   },
+   {
+    "date": "2026-10-19 10:46",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Ralph Edwards | +Aaron Baker"
+    ]
+   },
+   {
+    "date": "2026-10-19 10:46",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Ralph Edwards. | +Aaron Baker.",
+     "-Ralph Edwards | +Aaron Baker",
+     "- | +QA lead decision, 19 Oct 2026: the second technician is Aaron Baker instead of Ralph Edwards, because Ralph Edwards cannot be picked on the work order page."
+    ]
+   },
+   {
+    "date": "2026-10-19 11:10",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Setup file (for Claude sessions; a tester does not need it)",
+     "-Needs: 1 | +You are signed in as an Admin",
+     "-· 1 browser · 2 browser tabs · about 15 minutes Build: the Work Orders QA build (sv10043, v26.40.8-7a95011). A | +(Work orders > View and Create & Edit) at {Location-A}, in a",
+     "-with the | +",
+     "-pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List. [User-A]: an Owner/Admin user (on a QA branch: the Admin | +px wide. For example: {Location-A} is Staging",
+     "-9919\"); everything below is created in this location. | +9919.",
+     "- | +are active",
+     "-this location | +{Location-A}"
+    ]
+   },
+   {
+    "date": "2026-10-19 11:10",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Open Work Orders | +In tab A, click \"Work Orders\"",
+     "-browser tab A. | +the top menu.",
+     "-All | +\"All\"",
+     "-click Search and | +",
+     "-ZZAUTOTEST F2 Refresh Lead so only this test's work orders show. | +the name of {Customer-A} in \"Search\".",
+     "- | +click \"Tech View\"",
+     "-switcher at the right of the toolbar, click Tech View (tooltip \"Tech View\"). | +switcher.",
+     "-browser | +"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 96945,
+  "title": "A card's More actions menu appears on hover or focus and offers Reassign",
+  "atm": 3,
+  "section": 13238,
+  "automated_on": "2026-10-12",
+  "changes": [
+   {
+    "date": "2026-10-16 16:38",
+    "user": 3,
+    "field": "title",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-more-actions | +More actions"
+    ]
+   },
+   {
+    "date": "2026-10-16 16:38",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Setup file (for Claude sessions; a tester does not need it)",
+     "-Needs: 1 user · 1 browser · about 10 minutes Build: the Work Orders QA build (sv10043, v26.40.8-7a95011). A desktop browser | +You are signed in",
+     "-window | +\"Admin\" role",
+     "-least 1024 pixels wide (full screen on an ordinary laptop or monitor). Below that width the page shows only List. [User-A]: an Owner/Admin user (on a QA branch | +",
+     "-for the whole case, shown in the top bar next to the bell (e.g. | +",
+     "-9919\"); everything below is created in this location. One technician at this location: [Tech-A] (e.g. \"Esther Howard\"). A person only counts as a technician he | +9919\" (on another site:",
+     "- | +named",
+     "-top bar next to the bell; to change it click your initials at the top right > Change Location. Settings (your initials at the top right > Settings) > Staff: co | +test run). Technician \"ZZAUTOTEST C96945 Ana\""
+    ]
+   },
+   {
+    "date": "2026-10-16 16:38",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Open Work Orders. | +Hover the card for unit \"C96945-U1\".",
+     "-All tab on the left of the toolbar. Click Search and type ZZAUTOTEST F2 Card Menu so only this test's work orders show. In the display switcher at the right of | +\"More actions\" (…)",
+     "-(three dots) | +",
+     "-Escape and move | +Escape. Move",
+     "- | +Click once in the \"Search\" box.",
+     "-repeatedly | +",
+     "- | +a card shows a focus ring. Use",
+     "-[WO-1] | +arrow keys to move the focus ring to the"
+    ]
+   },
+   {
+    "date": "2026-10-16 16:38",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [
+     "SV-10043",
+     "SV-10046"
+    ],
+    "diff": [
+     "-Expected results Hovering | +Step 1:",
+     "- | +\"More actions\" (…) button appears on the card. Step 2: the card's menu opens. Step 3: the menu includes \"Reassign lead technician\". Step 4: the menu closes. Step 5: the \"More actions\" button is hidden",
+     "-more-actions button over the card. The menu includes the Reassign lead technician action. The design labels it \"Reassign Lead Tech\" (\"Assign Tech\" on a card wi | +focus ring. Step 8:",
+     "-gets keyboard focus, | +for unit \"C96945-U1\" shows",
+     "-more-actions | +focus ring and its \"More actions\" (…)",
+     "-Source — where this behaviour comes from Epic SV-10043; story SV-10046 (Story 3, Board View — board by lead technician); PRD Confluence 845185030, edited 7 Oct | +"
+    ]
+   },
+   {
+    "date": "2026-10-16 17:22",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-location \"Staging | +{Location-A}. For example: {Location-A} is Staging",
+     "-9919\" (on another site: the location named in the test run). | +9919.",
+     "-\"ZZAUTOTEST C96945 Ana\" | +{Technician-A}",
+     "-this location | +{Location-A} with the \"Technician\" role",
+     "- | +For example: {Technician-A} is ZZAUTOTEST C96945 Ana.",
+     "-\"ZZAUTOTEST C96945 Card Menu\" | +{Customer-A}",
+     "-unit \"C96945-U1\", | +{Work-order-1},",
+     "-\"ZZAUTOTEST | +{Technician-A}. For example: {Customer-A} is ZZAUTOTEST"
+    ]
+   },
+   {
+    "date": "2026-10-16 17:22",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-unit \"C96945-U1\". | +{Work-order-1}.",
+     "-unit \"C96945-U1\". | +{Work-order-1}."
+    ]
+   },
+   {
+    "date": "2026-10-16 17:22",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      54,
+      61
+     ]
+    ],
+    "keys_added": [
+     "SV-10043",
+     "SV-10046",
+     "SV-11395",
+     "SV-11397",
+     "SV-11421",
+     "SV-11422"
+    ],
+    "keys_removed": [],
+    "diff": [
+     "- | +Expected results",
+     "-unit \"C96945-U1\" | +{Work-order-1}",
+     "- | +Source — where this behaviour comes from Epic SV-10043; story SV-10046 (Story 3, Board View — board by lead technician); PRD \"Work Orders — Board View & Tech View Display Options\", Confluence 84518503"
+    ]
+   },
+   {
+    "date": "2026-10-16 19:07",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      54,
+      61
+     ],
+     [
+      54,
+      61
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-v26.40.8-7a95011 | +v26.40.19-1493c63 (staging)",
+     "-10/8/2026, before the expected results changed on 16 Oct 2026; the changed results have not yet been checked against a build. | +10/16/2026."
+    ]
+   },
+   {
+    "date": "2026-10-16 19:11",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-with the | +as an Admin user (the",
+     "-role | +role, which has Work orders > View and Create & Edit)"
+    ]
+   },
+   {
+    "date": "2026-10-19 11:09",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-card. | +card and click once on an empty part of the page. (After Escape the keyboard focus stays on the \"More actions\" button, which keeps it showing until the focus leaves the card.)"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 96978,
+  "title": "Column Selection offers the 13 optional fields with their usual values",
+  "atm": 3,
+  "section": 13240,
+  "automated_on": "2026-10-12",
+  "changes": [
+   {
+    "date": "2026-10-16 07:47",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Setup (manual QA tester and Claude session)",
+     "-Needs: 3 users · 2 browsers · about 30 minutes Build: the Work Orders QA build (sv10043, v26.40.8-7a95011). A desktop browser with the window at least 1024 pix | +You are signed in as",
+     "-ordinary laptop | +Owner",
+     "-monitor). Below that width the page shows only List. [User-A]: an Owner/Admin | +Admin",
+     "-(on a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). The Admin | +whose",
+     "-holds | +has",
+     "-Edit (to check: your initials | +Edit,",
+     "-the top right > Settings > Roles & Permissions > Admin > Work orders). One location for the whole case, shown in the top bar next to the bell (e.g. \"Staging | +{Location-A} (for example Staging"
+    ]
+   },
+   {
+    "date": "2026-10-16 07:47",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Orders | +Orders, click the All tab and click List",
+     "-List, search for ZZAUTOTEST F2 Card Field Values and write | +the display switcher. Type the name of {Customer-A} in Search. Write",
+     "-the [WO-1] row's | +{Work-order-1}'s",
+     "-Assigned Tech, | +",
+     "-Site, | +Site and",
+     "-Pick | +Click",
+     "-View, open | +View in the display switcher and click",
+     "-display and count | +display. Count"
+    ]
+   },
+   {
+    "date": "2026-10-16 07:47",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      52,
+      54
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Step 4: List's Clocked In shows the first technician's full name, then +1 (for example \"Esther Howard +1\"), and hovering shows both names, {Technician-A} and {Technician-B}. Step 6:",
+     "-Each | +Step 8: each",
+     "-the same work order (e.g. 8.0 estimated hours, | +{Work-order-1} (for example",
+     "-lines, | +lines and",
+     "-price). Clocked in shows | +price), and",
+     "-names of | +estimated hours show 8.0,",
+     "-technicians clocked in | +same as",
+     "-way | +work order page's Total Hours. Step 9: the card's clocked-in field reads the same as"
+    ]
+   },
+   {
+    "date": "2026-10-16 19:07",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +In",
+     "-Selection shows | +Selection,",
+     "-price, On Site | +price",
+     "-on. | +on are on (On Site is not in that menu; List always shows it)."
+    ]
+   },
+   {
+    "date": "2026-10-16 19:07",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      52,
+      54
+     ],
+     [
+      52,
+      54
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-v26.40.8-7a95011 | +v26.40.19-1493c63 (staging)",
+     "-10/8/2026, before the expected results changed on 15 Oct 2026; the changed results have not yet been checked against a build. | +10/16/2026.",
+     "-HOLD - not yet build-verified on the Work Orders QA build | +READY"
+    ]
+   },
+   {
+    "date": "2026-10-22 15:05",
+    "user": 7,
+    "field": "title",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Fields to display | +Column Selection"
+    ]
+   },
+   {
+    "date": "2026-10-22 15:05",
+    "user": 7,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": []
+   },
+   {
+    "date": "2026-10-22 15:05",
+    "user": 7,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Fields to display. | +Column Selection"
+    ]
+   },
+   {
+    "date": "2026-10-22 15:05",
+    "user": 7,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      52,
+      54
+     ],
+     [
+      52,
+      73
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Fields to display | +Column Selection",
+     "-fields: | +fields::",
+     "-Fields to display | +Column Selection",
+     "-54 (15 | +73 (21",
+     "- | +S5-R2,",
+     "-15 | +22",
+     "-(https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answer | +( https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU) , answers 3 and",
+     "-15 | +22"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 96981,
+  "title": "Column Selection changes apply to every card at once without a reload",
+  "atm": 3,
+  "section": 13240,
+  "automated_on": "2026-10-12",
+  "changes": [
+   {
+    "date": "2026-10-22 15:11",
+    "user": 7,
+    "field": "title",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Field | +Column Selection"
+    ]
+   },
+   {
+    "date": "2026-10-22 15:11",
+    "user": 7,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Preconditions Needs: 1 user · 1 browser · about 15 minutes Build: the Work Orders QA build (sv10043, v26.40.8-7a95011). A desktop browser with the window at le | +",
+     "-9919\"); everything below is created in this location. Two technicians at this location: [Tech-A] (e.g. \"Esther Howard\") and [Tech-B] (e.g. \"Ralph Edwards\"). A  | +",
+     "- | +-",
+     "- | +-",
+     "- | +-",
+     "- | +-",
+     "- | +-",
+     "-Fields to display, | +Column Selection,"
+    ]
+   },
+   {
+    "date": "2026-10-22 15:11",
+    "user": 7,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-the Fields to display menu | +Column Selection"
+    ]
+   },
+   {
+    "date": "2026-10-22 15:11",
+    "user": 7,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      73
+     ]
+    ],
+    "keys_added": [
+     "SV-11580"
+    ],
+    "keys_removed": [],
+    "diff": [
+     "-Fields to display | +Column Selection",
+     "- | +\"Work Orders — Board View & Tech View Display Options\",",
+     "-edited 7 | +version 73 (21",
+     "-2026 (status line \"PRD v33\"), | +2026, Chris Ward),",
+     "-8 | +22",
+     "- | +SV-11580 renamed Fields to display to Column Selection.",
+     "-8 | +22",
+     "-Last checked against | +Updated for PRD v73 on 22 Oct 2026. Not yet run on the release"
+    ]
+   },
+   {
+    "date": "2026-10-23 07:25",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Assign lead technician (an older screen shows",
+     "-technician | +technician)",
+     "-pick | +click",
+     "-> Reassign.) | +(if the window still shows a Reassign button, click it).)"
+    ]
+   },
+   {
+    "date": "2026-10-23 07:33",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Assign | +Reassign",
+     "-(an older screen shows Reassign lead technician) | +",
+     "-click | +pick",
+     "-(if the window still shows a Reassign button, click it).) | +> Reassign.)"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 96988,
+  "title": "Density changes spacing and size only, never what is shown",
+  "atm": 3,
+  "section": 13241,
+  "automated_on": "2026-10-15",
+  "changes": [
+   {
+    "date": "2026-10-20 19:10",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Setup file (for Claude sessions; a tester does not need it)",
+     "-Needs: 1 user · 1 browser · about 15 minutes. Build: | +You are signed in with",
+     "-Work Orders QA build (sv10043, v26.40.8-7a95011). [User-A] = you: an Owner/Admin user (on | +\"Admin\" role at {Location-A}, in",
+     "-QA branch the Admin quick-login user, shown as \"Admin ShopView\"). The Admin role holds Work orders > View and Work orders > Create & Edit. Desktop | +",
+     "-Narrower windows show only the List, without the display switcher. One location for the whole case, shown in the top bar next to the bell (e.g. \"Staging | +For example: {Location-A} is Staging",
+     "-9919\"); everything below is created in this location. [Tech-A]: one eligible technician at this location. A person only counts as a technician here when the st | +9919. Technician {Technician-A}",
+     "-(not deactivated), | +at {Location-A}, with",
+     "-is on, the Role is neither Office User nor Time Clock User, | +on"
+    ]
+   },
+   {
+    "date": "2026-10-20 19:10",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Open Work Orders, click the All tab and pick Board View in the display switcher (right side of the toolbar; tooltip \"Board View\"). Type \"ZZAUTOTEST F1 Density  | +",
+     "-field | +column heading",
+     "- | +every",
+     "-on | +in {Work-order-1}'s row. Click",
+     "-card. Set | +",
+     "-to Compact, then Regular, then Comfortable, reading | +button and choose \"Compact\". Compare",
+     "-card each time. Repeat steps 3 to 5 in Tech View with its columns | +column headings",
+     "-row's values. | +values in {Work-order-1}'s row with what you wrote down at step 1. Click the density button and choose \"Comfortable\". Compare the column headings and the values in {Work-order-1}'s row with what you w"
+    ]
+   },
+   {
+    "date": "2026-10-20 19:10",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      71
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Each density changes only spacing | +Step 1: the row shows a value in its columns, including {Technician-A} under \"Lead Technician\", a progress bar under \"Progress\"",
+     "- | +an amount under \"Total price\". Step 2:",
+     "-size of rows, cards | +rows are tighter (shorter) than at Regular. Nothing else about the row changes. Step 3: the same columns, in the same order, with the same values as at step 1. \"Lead Technician\", \"Progress\"",
+     "-their parts (Compact tighter, Comfortable roomier). The | +\"Total price\" are still shown. Step 4: the rows are roomier (taller) than at Regular. Step 5: the",
+     "-fields, columns and | +columns, in the same order, with the same",
+     "-are shown | +as",
+     "-every density (e.g. estimated hours and total price stay on | +step 1. Exact quotes from",
+     "-card in Compact). Source | +source (for reproducibility) From: PRD \"Work Orders"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 96989,
+  "title": "Tech View density is kept after logout, in another browser and location",
+  "atm": 3,
+  "section": 13241,
+  "automated_on": "2026-10-12",
+  "changes": [
+   {
+    "date": "2026-10-20 19:10",
+    "user": 3,
+    "field": "title",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-One density choice is shared by | +",
+     "- | +density is kept after logout, in another browser",
+     "-Board View and kept | +location"
+    ]
+   },
+   {
+    "date": "2026-10-20 19:10",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Setup file (for Claude sessions; a tester does not need it)",
+     "-Needs: 1 user · 2 browsers · | +You are signed in with the \"Admin\" role at {Location-A}, in",
+     "-second location · about 15 minutes. Build: the Work Orders QA build (sv10043, v26.40.8-7a95011). [User-A] = you: an Owner/Admin user (on a QA branch the Admin  | +",
+     "-Narrower windows show only the List, without the display switcher. One location for the whole case, shown in the top bar next to the bell (e.g. \"Staging | +For example: {Location-A} is Staging",
+     "-9919\"); everything below | +9919. You can switch to a second location, {Location-B}, and a second browser (or a second computer)",
+     "-created in this location. | +open on the sign-in page. For example: {Location-B} is Staging Lethbridge - 4310.",
+     "-\"ZZAUTOTEST F1 Density Shared\" (used by this case only) with | +{Customer-A} has",
+     "-order [WO-1] | +order, {Work-order-1},"
+    ]
+   },
+   {
+    "date": "2026-10-20 19:10",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Look at the toolbar and at the space around the card of {Work-order-1}. Click \"Tech View\" in the display switcher. Click the density button and choose \"Comfortable\". Click \"Board View\" in the display ",
+     "-Work Orders, pick Tech View | +\"Work Orders\"",
+     "-set density | +click \"Tech View\" in the display switcher. Change location",
+     "-Comfortable. Pick Board View | +{Location-B} (your initials at the top right > \"Change Location\"). Open \"Work Orders\"",
+     "-read | +click \"Tech View\" in",
+     "-selected density. Log out, log back in and open Tech View. | +display switcher.",
+     "-browser | +browser,",
+     "-user and open Board View. Switch to | +user. In"
+    ]
+   },
+   {
+    "date": "2026-10-20 19:10",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      71
+     ]
+    ],
+    "keys_added": [
+     "SV-10046",
+     "SV-11580",
+     "SV-11581"
+    ],
+    "keys_removed": [],
+    "diff": [
+     "- | +Step 1: Board View's toolbar has no density button. Step 2: Tech View shows, with a density button in its toolbar. Step 3: \"Comfortable\" is in use and the rows are roomier than before. Step 4:",
+     "-is already | +still has no density button, and the card of {Work-order-1} has the same spacing as at step 1. Choosing",
+     "-after the change | +",
+     "-(one shared choice). Comfortable | +did not change Board View. Step 5: you are signed out. Step 6: you are signed in. Step 7: Tech View opens with \"Comfortable\" still in use: the rows have the same roomy spacing as at step 3. Step 8: th",
+     "-still selected after logging back in, | +at \"Comfortable\" too. Step 10: you are signed in",
+     "-browser and at | +browser. Step 11: in",
+     "-location. Source | +browser, Tech View is at \"Comfortable\" too. Known problem (SV-11580, Open; planned for this release): until it ships, Board View still shows the density button and its cards follow the density chosen ",
+     "-where this behaviour comes from | +Board View & Tech View Display Options\", Confluence 845185030, version 71 (20 Oct 2026, Chris Ward), read 20 Oct 2026 ·"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 96992,
+  "title": "Density changes Tech View rows only, not Board View cards or List",
+  "atm": 3,
+  "section": 13241,
+  "automated_on": "2026-10-15",
+  "changes": [
+   {
+    "date": "2026-10-20 19:10",
+    "user": 3,
+    "field": "title",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-affects | +changes",
+     "-and | +only, not",
+     "-cards, | +cards or",
+     "-stays as today | +"
+    ]
+   },
+   {
+    "date": "2026-10-20 19:10",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Setup file (for Claude sessions; a tester does not need it)",
+     "-Needs: 1 user · 1 browser · about 10 minutes. Build: | +You are signed in with",
+     "-Work Orders QA build (sv10043, v26.40.8-7a95011). [User-A] = you: an Owner/Admin user (on | +\"Admin\" role at {Location-A}, in",
+     "-QA branch the Admin quick-login user, shown as \"Admin ShopView\"). The Admin role holds Work orders > View and Work orders > Create & Edit. Desktop | +",
+     "-Narrower windows show only the List, without the display switcher. One location for the whole case, shown in the top bar next to the bell (e.g. \"Staging | +For example: {Location-A} is Staging",
+     "-9919\"); everything below is created in this location. [Tech-A]: one eligible technician at this location. A person only counts as a technician here when the st | +9919. Technician {Technician-A}",
+     "-(not deactivated), | +at {Location-A}, with",
+     "-is on, the Role is neither Office User nor Time Clock User, | +on"
+    ]
+   },
+   {
+    "date": "2026-10-20 19:10",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Open Work Orders | +Look at the height of {Work-order-1}'s row. Click \"Board View\"",
+     "-List | +the display switcher. Look at the toolbar",
+     "-note | +at",
+     "-row height. Pick Tech View and set density to Comfortable, then Compact. Pick Board View and read | +space around",
+     "-spacing at Compact. Pick List and compare the row height with step 1. Open another table | +of {Work-order-1}. Click \"Tech View\"",
+     "-app (e.g. Customers) | +display switcher. Click the density button",
+     "-compare it with before. | +choose \"Comfortable\". Click the density button and choose \"Compact\". Click \"Board View\" in the display switcher. Click \"List\" in the display switcher. Switch to the \"Customers\" browser tab and reload "
+    ]
+   },
+   {
+    "date": "2026-10-20 19:10",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      71
+     ]
+    ],
+    "keys_added": [
+     "SV-10046",
+     "SV-11580",
+     "SV-11581"
+    ],
+    "keys_removed": [],
+    "diff": [
+     "- | +Step 1: List shows {Work-order-1}'s row at its usual height. Step 2: Board View shows the card of {Work-order-1} in {Technician-A}'s column. Step 3: Board View's toolbar has no density button. Step 4:",
+     "- | +shows, with a density button in its toolbar. Step 5: Tech View's",
+     "- | +become roomier (taller). Step 6: Tech View's rows become tighter (shorter) than at Comfortable",
+     "- | +at Regular. Step 7:",
+     "- | +still has no density button, and the card of {Work-order-1} has the same spacing as at step 3. Step 8: {Work-order-1}'s row in List is the same height as at step 1. Step 9: the Customers table's rows ",
+     "- | +follow the density chosen in Tech View. (1) If you see exactly that, mark this test Failed and raise nothing new. (2) If it fails in a different way, report it. (3) If it behaves as the expected resul",
+     "-with density. List rows keep today's height, and other tables in | +has shipped. Exact quotes from",
+     "-app are unchanged. Source | +source (for reproducibility) From: PRD \"Work Orders"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 96993,
+  "title": "Cards and Tech View's Assigned Techs show the lead and line technicians",
+  "atm": 3,
+  "section": 13242,
+  "automated_on": "2026-10-14",
+  "changes": [
+   {
+    "date": "2026-10-14 22:07",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Setup (manual QA tester and Claude session)",
+     "-Needs: 1 | +You are signed in as an Owner or Admin",
+     "-· 1 browser · Schedule access · about 20 minutes Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show | +whose",
+     "-holds | +has",
+     "-(to check: your initials | +and Schedule access,",
+     "-the top right > Settings > Roles & Permissions > Admin > Work orders). Location: one location for the whole case, shown in the top bar next to the bell (e.g. \" | +{Location-A} (for example Staging",
+     "-9919\"); to change it click your initials | +9919). Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows",
+     "-top | +"
+    ]
+   },
+   {
+    "date": "2026-10-14 22:07",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-pick | +click",
+     "-(right side of the toolbar; tooltip | +(tooltip",
+     "-[Cust-1] (\"ZZAUTOTEST F3 Avatar Group\") | +the name of {Customer-A}",
+     "-Open | +Click",
+     "-display and | +display,",
+     "-on. | +on and close the menu.",
+     "-card | +{Work-order-1} card. Hover each avatar",
+     "-hover each avatar. Pick | +read the name shown. Click"
+    ]
+   },
+   {
+    "date": "2026-10-14 22:07",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      51,
+      52
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-The | +Steps 4 and 5: the",
+     "-Esther Howard (lead) | +{Technician-A} (the lead)",
+     "-Ralph Edwards, Dana Ortiz | +{Technician-B}, {Technician-C}",
+     "-Jenny Wilson (the scheduled technician on Line 3 | +{Technician-D}. {Technician-D}",
+     "-that line's technician). | +{Line-3}'s technician because of the Schedule shift. Step 8:",
+     "-List | +Step 10: List's menu",
+     "- | +\"Work Orders — Board View & Tech View Display Options\",",
+     "-edited 7 | +version 52 (14"
+    ]
+   },
+   {
+    "date": "2026-10-23 07:25",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Fields to display, | +Column Selection,"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 96994,
+  "title": "The lead comes first and each technician shows only once",
+  "atm": 3,
+  "section": 13242,
+  "automated_on": "2026-10-14",
+  "changes": [
+   {
+    "date": "2026-10-14 22:07",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Setup (manual QA tester and Claude session)",
+     "-Needs: 1 | +You are signed in as an Owner or Admin",
+     "-· 1 browser · about 15 minutes Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, wi | +whose",
+     "-holds | +has",
+     "-Edit (to check: your initials | +Edit,",
+     "-the top right > Settings > Roles & Permissions > Admin > Work orders). Location: one location for the whole case, shown in the top bar next to the bell (e.g. \" | +{Location-A} (for example Staging",
+     "-9919\"); to change it click your initials | +9919). Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows",
+     "-top | +"
+    ]
+   },
+   {
+    "date": "2026-10-14 22:07",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-pick | +click",
+     "-(right side of the toolbar; tooltip | +(tooltip",
+     "-[Cust-1] (\"ZZAUTOTEST F3 Lead First Once\") | +the name of {Customer-A}",
+     "-Turn | +Click Fields to display, turn",
+     "- | +and close the menu. Read the avatars on the {Work-order-1} card",
+     "-Fields to display. | +order. Hover each avatar and read the name shown. Click Tech View in the display switcher. Click the Column Selection button and make sure Assigned Techs is on (it is on by default; turn it on if it w",
+     "-order and hover each one. Pick Tech View with | +{Work-order-1}'s",
+     "-on (Column Selection > Assigned Techs) | +cell in order. Hover each avatar"
+    ]
+   },
+   {
+    "date": "2026-10-14 22:07",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      51,
+      52
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-The | +Steps 4 and 5: the",
+     "-Esther Howard | +{Technician-A}",
+     "-Ralph Edwards. Esther Howard | +{Technician-B}. Steps 4 and 5: {Technician-A}",
+     "-she is | +they are the",
+     "-a line, | +{Line-1},",
+     "-Ralph Edwards | +{Technician-B}",
+     "-he is | +they are",
+     "-two lines. | +{Line-2} and {Line-3}. Steps 8 and 9: Tech View's Assigned Techs cell shows the same 2 avatars, {Technician-A} first, each once."
+    ]
+   },
+   {
+    "date": "2026-10-23 07:25",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Fields to display, | +Column Selection,"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 96995,
+  "title": "Extra technicians show as +N and every name can be found by hovering",
+  "atm": 3,
+  "section": 13242,
+  "automated_on": "2026-10-14",
+  "changes": [
+   {
+    "date": "2026-10-14 22:07",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Setup (manual QA tester and Claude session)",
+     "-Needs: 1 | +You are signed in as an Owner or Admin",
+     "-· 1 browser · about 25 minutes Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, wi | +whose",
+     "-holds | +has",
+     "-Edit (to check: your initials | +Edit,",
+     "-the top right > Settings > Roles & Permissions > Admin > Work orders). Location: one location for the whole case, shown in the top bar next to the bell (e.g. \" | +{Location-A} (for example Staging",
+     "-9919\"); to change it click your initials | +9919). Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows",
+     "-top | +"
+    ]
+   },
+   {
+    "date": "2026-10-14 22:07",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-pick | +click",
+     "-(right side of the toolbar; tooltip | +(tooltip",
+     "-[Cust-1] (\"ZZAUTOTEST F3 Plus N Avatars\") | +the name of {Customer-A}",
+     "-Turn | +Click Fields to display, turn",
+     "-in Fields to display. | +and close the menu.",
+     "- | +on the {Work-order-1} card",
+     "-Pick | +Click",
+     "-with | +in the display switcher. Click the Column Selection button and make sure"
+    ]
+   },
+   {
+    "date": "2026-10-14 22:07",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      51,
+      52
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-If | +Steps 4 and 9: if",
+     "- | +the avatars",
+     "-avatars + | +plus",
+     "-= | +equal",
+     "-(e.g. | +(for example",
+     "-Hovering | +Steps 5 and 10: hovering",
+     "-Every | +Steps 6 and 11: every",
+     "-(e.g. | +(for example"
+    ]
+   },
+   {
+    "date": "2026-10-23 07:25",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Fields to display, | +Column Selection,"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 96996,
+  "title": "The technician field is blank only with no lead and no line technician",
+  "atm": 3,
+  "section": 13242,
+  "automated_on": "2026-10-14",
+  "changes": [
+   {
+    "date": "2026-10-14 22:07",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Setup (manual QA tester and Claude session)",
+     "-Needs: 1 | +You are signed in as an Owner or Admin",
+     "-· 1 browser · about 20 minutes Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, wi | +whose",
+     "-holds | +has",
+     "-Edit (to check: your initials | +Edit,",
+     "-the top right > Settings > Roles & Permissions > Admin > Work orders). Location: one location for the whole case, shown in the top bar next to the bell (e.g. \" | +{Location-A} (for example Staging",
+     "-9919\"); to change it click your initials | +9919). Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows",
+     "-top | +"
+    ]
+   },
+   {
+    "date": "2026-10-14 22:07",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-pick | +click",
+     "-(right side of the toolbar; tooltip | +(tooltip",
+     "-[Cust-1] (\"ZZAUTOTEST F3 Blank Technician\") | +the name of {Customer-A}",
+     "-Turn | +Click Fields to display, turn",
+     "-in Fields to display | +",
+     "-read | +close",
+     "- | +menu. Read the line technicians",
+     "-Pick | +Click"
+    ]
+   },
+   {
+    "date": "2026-10-14 22:07",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      51,
+      52
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-(a) | +Step 4: the {Work-order-1} card's field",
+     "-blank. (b) | +blank, {Work-order-2}",
+     "-Ralph Edwards. (c) | +{Technician-B} and {Work-order-3}",
+     "-Esther Howard. So only | +{Technician-A}. Only",
+     "-cell | +field",
+     "- | +Step 7: in Tech View the Assigned Techs cell is blank for {Work-order-1}, shows {Technician-B} for {Work-order-2} and {Technician-A} for {Work-order-3}.",
+     "- | +\"Work Orders — Board View & Tech View Display Options\",",
+     "-edited 7 | +version 52 (14 Oct 2026, Chris Ward), S7-N1 and S7-R7 (S7-R7 rewritten in version 51 on 14"
+    ]
+   },
+   {
+    "date": "2026-10-23 07:25",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Fields to display, | +Column Selection,"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 97011,
+  "title": "A cancelled drag leaves the order and the lead unchanged",
+  "atm": 3,
+  "section": 13244,
+  "automated_on": "2026-10-12",
+  "changes": [
+   {
+    "date": "2026-10-16 07:47",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Setup (manual QA tester and Claude session)",
+     "-Needs: 1 | +You are signed in as an Owner or Admin",
+     "-· 1 browser · about 15 minutes Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, wi | +whose",
+     "-holds | +has",
+     "-Edit (to check: your initials | +Edit,",
+     "-the top right > Settings > Roles & Permissions > Admin > Work orders). This user is the dispatcher. Location: one location for the whole case, shown in the top | +{Location-A} (for example Staging",
+     "-9919\"); to change it click your initials | +9919). Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows",
+     "-top | +"
+    ]
+   },
+   {
+    "date": "2026-10-16 07:47",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-\"ZZAUTOTEST F3 Cancelled Drag\" | +the name of {Customer-A}",
+     "-Search so only this case's work orders show. | +Search.",
+     "-switcher (tooltip \"Board View\"). | +switcher.",
+     "-Ana's | +{Technician-A}'s",
+     "-counts (Alpha Co, Bravo Co. Ana 2, Ben 1). | +column counts.",
+     "-the Bravo Co | +{Work-order-2}'s",
+     "-Ben's | +{Technician-B}'s",
+     "-the Bravo Co | +{Work-order-2}'s"
+    ]
+   },
+   {
+    "date": "2026-10-16 07:47",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      54
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [
+     "SV-10054"
+    ],
+    "diff": [
+     "-8: | +9:",
+     "-Bravo Co | +{Work-order-2}",
+     "-Ana's | +{Technician-A}'s",
+     "- | +(or group)",
+     "-Alpha Co, Bravo Co, | +{Work-order-1}, {Work-order-2},",
+     "-Ana 2, Ben | +{Technician-A} 2 and {Technician-B}",
+     "-9: | +10:",
+     "- | +has"
+    ]
+   },
+   {
+    "date": "2026-10-16 19:07",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      54
+     ],
+     [
+      54
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-v26.40.8-7a95011 | +v26.40.19-1493c63 (staging)",
+     "-10/8/2026. | +10/16/2026."
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 154649,
+  "title": "Narrowing the window below 1024 px does not change your chosen display",
+  "atm": 3,
+  "section": 20449,
+  "automated_on": "2026-10-12",
+  "changes": [
+   {
+    "date": "2026-10-22 15:16",
+    "user": 7,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-switcher, the density control | +switcher",
+     "-Fields to display | +Column Selection"
+    ]
+   },
+   {
+    "date": "2026-10-22 15:16",
+    "user": 7,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-switcher, no density control | +switcher",
+     "-field | +Column Selection",
+     "- | +Board View has no Density control in this release (S3-R11), so it is not listed here. The tech plan quote is kept as quoted.",
+     "-checked against build v26.40.8-7a95011 | +checked: Updated for PRD v73",
+     "-10/8/2026. | +22 Oct 2026. Not yet run on the release build."
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 368145,
+  "title": "A work order created with a lead keeps its normal place, not the bottom",
+  "atm": 3,
+  "section": 13244,
+  "automated_on": "2026-10-12",
+  "changes": [
+   {
+    "date": "2026-10-16 07:47",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Setup (manual QA tester and Claude session)",
+     "-Needs: 1 | +You are signed in as an Owner or Admin",
+     "-· 1 browser · about 15 minutes Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, wi | +whose",
+     "-holds | +has",
+     "-Edit (to check: your initials | +Edit,",
+     "-the top right > Settings > Roles & Permissions > Admin > Work orders). This user is the dispatcher. Location: one location for the whole case, shown in the top | +{Location-A} (for example Staging",
+     "-9919\"); to change it click your initials | +9919). Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows",
+     "-top | +"
+    ]
+   },
+   {
+    "date": "2026-10-16 07:47",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-\"ZZAUTOTEST | +the shared start of the customer names (for example ZZAUTOTEST",
+     "-Lead\" | +Lead)",
+     "-Search so only this case's work orders show. | +Search.",
+     "-switcher (tooltip \"Board View\"). | +switcher.",
+     "-Ben's column (with the example data: Bravo Co, Delta Co). | +{Technician-A}'s column.",
+     "-customer \"ZZAUTOTEST F3 Created With Lead Charlie Co\" | +{Customer-B}",
+     "-an | +its",
+     "-Ben Bravo | +{Technician-A}"
+    ]
+   },
+   {
+    "date": "2026-10-16 07:47",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      53,
+      54
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +4: {Technician-A}'s column reads {Work-order-1}, {Work-order-2}. Step",
+     "-the new work order | +{Work-order-3}",
+     "-place. With the example data Ben's | +place: {Technician-A}'s",
+     "-Bravo Co, Charlie Co, Delta Co, | +{Work-order-1}, {Work-order-3}, {Work-order-2},",
+     "-Charlie Co | +{Work-order-3}",
+     "-place among Ben's work, | +place,",
+     "- | +\"Work Orders — Board View & Tech View Display Options\",",
+     "-edited 7 | +version 54 (15"
+    ]
+   },
+   {
+    "date": "2026-10-16 19:07",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      53,
+      54
+     ],
+     [
+      53,
+      54
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-READY | +Not available on Build to test Yet - Last checked 10/16/2026"
+    ]
+   },
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      53,
+      54
+     ],
+     [
+      53,
+      68
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-54 (15 | +68 (19",
+     "-15 | +19",
+     "-15 | +19",
+     "-Reassign | +",
+     "- | +(Assign or Reassign lead technician)",
+     "-from | +with",
+     "-Reassign lead technician dialog | +menu’s Unassign action (S11-R9)",
+     "- | +on"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 368167,
+  "title": "A refused lead change on the work order page shows an error, keeps the old lead",
+  "atm": 3,
+  "section": 47110,
+  "automated_on": "2026-10-09",
+  "changes": [
+   {
+    "date": "2026-10-19 10:46",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Close | +Leave",
+     "-(the | +as it is: do not pay and do not close it (closing it with its",
+     "-at its top right) without paying. | +takes the invoice back off and the work order returns to Complete)."
+    ]
+   },
+   {
+    "date": "2026-10-19 11:10",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Setup file (for Claude sessions; a tester does not need it)",
+     "-Needs: 1 | +You are signed in as an Admin",
+     "-· 2 tabs of the same | +(Work orders > View and Create & Edit) at {Location-A}, in a desktop",
+     "-· about 15 minutes Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, | +",
+     "-Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders > View and Create & Ed | +For example: {Location-A} is",
+     "-9919 for | +9919. Two active technicians work at {Location-A}: \"Esther Howard\" (the expected results name her) and {Technician-B}, who is offered in",
+     "-whole case (shown next to the bell; change it with your initials > Change Location). 2 technicians eligible at this location: active, Role Technician, at least | +work order page's \"Lead Technician\" list. For example: {Technician-B} is Jenny Wilson.",
+     "-\"ZZAUTOTEST Refused Lead Change\" (used | +{Customer-A}, used"
+    ]
+   },
+   {
+    "date": "2026-10-19 11:10",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-[WO-1] | +{Work-order-1}",
+     "-[WO-1], | +{Work-order-1},",
+     "-Finance | +\"Finance\"",
+     "-Create Invoice so the work order is Invoiced. | +\"Create Invoice\".",
+     "-New | +\"New",
+     "-Payment | +Payment\"",
+     "-that opens as it is: | +open:",
+     "-off and the work order returns to Complete). | +off)."
+    ]
+   },
+   {
+    "date": "2026-10-19 17:44",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Leave | +Wait until",
+     "- | +invoice shows on the Finance tab (its number starts with \"INV-\"). If a",
+     "- | +opens, leave it",
+     "-it (closing | +it, because closing",
+     "-off). | +off. If no such window opens (the current build does not open one), simply go on to the next step."
+    ]
+   },
+   {
+    "date": "2026-10-19 22:29",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      68
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-845185030 (edited 7 | +845185030, version 68 (19",
+     "-2026) | +2026, Chris Ward), read 19 Oct 2026,",
+     "-Reassign | +the lead technician",
+     "- | +Unassign, Undo,"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 368168,
+  "title": "Changing the lead on the work order page moves the lines that followed it",
+  "atm": 3,
+  "section": 47110,
+  "automated_on": "2026-10-09",
+  "changes": [
+   {
+    "date": "2026-10-19 22:14",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      68
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-845185030 (edited 7 | +845185030, version 68 (19",
+     "-2026) | +2026, Chris Ward),",
+     "-S4-R31). | +S4-R31), read 19 Oct 2026.",
+     "- | +October 2026; the PRD quotes re-checked against version 68 on 19",
+     "-both | +",
+     "-dragging | +dragging, from the lead technician dialog",
+     "-in the Reassign dialog. | +with Unassign."
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 368173,
+  "title": "Changing a line's technician in Edit Line saves the new technician",
+  "atm": 3,
+  "section": 47110,
+  "automated_on": "2026-10-09",
+  "changes": [
+   {
+    "date": "2026-10-20 03:23",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [
+     "SV-11429"
+    ],
+    "keys_removed": [],
+    "diff": [
+     "- | +Setup file (for Claude sessions; a tester does not need it)",
+     "-Needs: 1 user · 1 | +You are signed in with the \"Admin\" role at {Location-A}, in a",
+     "-· about 10 minutes Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, | +",
+     "-Role: Owner/Admin. On the sign-in page click the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders > View and Create & Ed | +For example: {Location-A} is",
+     "-9919 for | +9919. Technicians {Technician-A}, {Technician-B} and {Technician-D} are active at {Location-A}, and all three are offered in Edit Line's \"Add Technician\" list. For example: AA ZZAUTOTEST C368173 Ana, ",
+     "-whole case (shown next | +top of the work order page's technician lists, which offer only about the first 100 people in A",
+     "-the bell; change it with your initials > Change Location). 3 technicians eligible at this location: active, Role Technician, at least one Department, Location  | +Z order (SV-11429)).",
+     "-\"ZZAUTOTEST Edit Line Tech\" (used by this case only) with one contact and one asset. One | +{Customer-A} has an"
+    ]
+   },
+   {
+    "date": "2026-10-20 03:23",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-[WO-1] and click | +\"Work Orders\" > \"All\". Type",
+     "-Lines | +name of {Customer-A} in \"Search\". Click {Work-order-1}. Click the \"Lines\"",
+     "-the line's | +{Line-1}'s",
+     "-Technicians | +\"Technicians\",",
+     "-[Tech-D] to remove it, then click Add Technician | +{Technician-D}. Click \"Add Technician\"",
+     "-[Tech-B]. | +{Technician-B}.",
+     "-Save | +\"Save",
+     "-Close. | +Close\"."
+    ]
+   },
+   {
+    "date": "2026-10-20 03:23",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +1: Work Orders opens on the \"All\" tab. Step 2: {Work-order-1} shows in the List. Step 3: the work order page opens. Step",
+     "- | +{Line-1}'s Labor row shows {Technician-D}. Step 5: Edit Line opens with {Technician-D} under \"Technicians\". Step 6: {Technician-D} is removed from the list. Step 7: {Technician-B} is added under \"Tech",
+     "-saves | +saves,",
+     "-5: | +9:",
+     "-line | +page reloads. Step 10: {Line-1}'s Labor row",
+     "-\"Ralph Edwards\" | +{Technician-B}",
+     "-Source — where this behaviour comes from Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026, High 1; QA handoff test pla | +",
+     "- | +From: developer's regression list (reply received 8 Oct 2026), High 1, read 20 Oct 2026 · Epic SV-10043 · regression for PR #3548"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 368181,
+  "title": "An asset's Work Orders tab count matches its rows",
+  "atm": 3,
+  "section": 47110,
+  "automated_on": "2026-10-09",
+  "changes": [
+   {
+    "date": "2026-10-12 18:29",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +For the comparison in steps 4 to 6: a sign-in to production (app.shopview.com) that can open Customers. You only look there; nothing is changed."
+    ]
+   },
+   {
+    "date": "2026-10-12 18:29",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-list | +list, if there is one",
+     "-label | +label, e.g. \"Work Orders (3)\", or above",
+     "- | +Write down the count, or \"no count\".",
+     "- | +In another browser tab sign in to production (app.shopview.com) and click Customers in the top menu. Open any customer, click its Assets tab and open an asset that has work orders. Click the asset's W"
+    ]
+   },
+   {
+    "date": "2026-10-12 18:29",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [
+     "SV-11110"
+    ],
+    "keys_removed": [],
+    "diff": [
+     "-count reads 3 and the | +",
+     "- | +on TRK-201's Work Orders tab",
+     "-The two numbers are | +If a count shows on this build, it reads 3,",
+     "-same. What you should see today (build v26.40.8-7a95011, 10/8/2026): The asset page's | +same as the rows. If no count shows on this build, that is correct only when production also shows no count on an asset's",
+     "- | +(step 6). That is how the product already works, so it is not a fault of this build (QA lead's ruling below). Mark Failed if a count",
+     "-no count: | +and differs from",
+     "-tab reads \"Work Orders\" with no | +",
+     "- | +of rows, or if production shows a count"
+    ]
+   },
+   {
+    "date": "2026-10-12 19:30",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +a production sign-in for the comparison ·",
+     "-minutes Build: | +minutes. Sign in as an Admin (on a QA branch:",
+     "-Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, | +Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). Desktop browser",
+     "-wide. Role: Owner/Admin. On | +wide; narrower windows show only",
+     "-sign-in page | +List. Work in one location throughout, shown next to the bell in the top bar (e.g. \"Staging Heavy Duty - 9919\"); to change it",
+     "-the Admin quick-login button (you appear as Admin ShopView). The Admin role has Work orders > View and Create & Edit (check: | +",
+     "-Settings > Roles & Permissions > Admin > edit). Location: Staging Heavy Duty - 9919 for the whole case (shown next to the bell; change it with your initials > | +",
+     "-Location). | +Location. Create everything in that location. (Asset tabs list only this location's work orders.)"
+    ]
+   },
+   {
+    "date": "2026-10-12 19:53",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [
+     "SV-11110"
+    ],
+    "diff": [
+     "-ruling | +decision",
+     "-lead's standing rule, | +lead decision,",
+     "-2026, in the QA session chat (Rule 121): “any | +2026: an",
+     "-which is the same on | +that",
+     "- | +has",
+     "-regression”. QA lead's ruling on this test, 12 Oct 2026, in the QA session chat. Question put to him: “Defect 8, the asset page's Work Orders tab showing no co | +regression. Production also",
+     "-either, | +on an asset's Work Orders tab,",
+     "-by your rule it isn't a regression. The ticket (SV-11110) is Ahtasham's. What should the test say in the run?” His answer, word for word: “Mark it as passed wi | +no count on this build passes when"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 368214,
+  "title": "After Back and Forward the List keeps its tab, search and filters",
+  "atm": 3,
+  "section": 47110,
+  "automated_on": "2026-10-09",
+  "changes": [
+   {
+    "date": "2026-10-16 07:47",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Setup (manual QA tester and Claude session)",
+     "-Needs: 1 | +You are signed in as an Owner or Admin",
+     "-· 1 browser · about 10 minutes Build: the Work Orders QA build (sv10043, v26.40.8-7a95011), desktop browser, window at least 1024 px wide. Role: Owner/Admin. O | +whose",
+     "- | +Work orders >",
+     "-Edit (check: your initials (top right) > Settings > Roles & Permissions > Admin > edit). Location: | +Edit, at {Location-A} (for example",
+     "-9919 for the whole case (shown next to the bell; change it with your initials > Change Location). View: on Work Orders the List | +9919). Your browser window",
+     "-shown (click List in | +at least 1024 px wide, so",
+     "- | +(List, Tech View, Board View) shows"
+    ]
+   },
+   {
+    "date": "2026-10-16 07:47",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-(On this build | +If",
+     "-button — | +filter,",
+     "- | +comment",
+     "-on.) | +on.",
+     "-\"ZZAUTOTEST Back Forward\". | +the name of {Customer-A}.",
+     "-the [WO-1] | +{Work-order-1}'s",
+     "-search | +Search",
+     "- | +the browser"
+    ]
+   },
+   {
+    "date": "2026-10-16 07:47",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      54
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-the work order \"S1-796\" | +{Work-order-1}",
+     "- | +\"Work Orders — Board View & Tech View Display Options\",",
+     "-845185030 (edited 7 | +845185030, version 54 (15",
+     "-2026) | +2026, Chris Ward), S1-R8 and section 1 Business Case",
+     "-quoted (§1 Business Case). | +quoted, read 15 Oct 2026. In version 54 S1-R8 gained two sentences about Tech View and Board View; its List sentence is unchanged, so the expected results are unchanged.",
+     "-8 | +15",
+     "- | +Last checked against build v26.40.8-7a95011 on 10/8/2026.",
+     "- | +Horizontal position comes back exactly. Vertically, the row or card that was at the top of the view comes back at the top, fully shown; it may sit up to one row or card from the exact pixel position."
+    ]
+   },
+   {
+    "date": "2026-10-16 16:38",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-(manual QA | +file (for Claude sessions; a",
+     "-and Claude session) | +does not need it)",
+     "-as an Owner or Admin user whose | +with the \"Admin\"",
+     "-has Work orders > View and Work orders > Create & Edit, | +",
+     "-{Location-A} (for example Staging | +location \"Staging",
+     "-9919). Your browser window is at least 1024 px wide, so | +9919\" (on another site:",
+     "-display switcher (List, Tech View, Board View) shows at | +location named in",
+     "-right of the Work Orders toolbar. | +test run)."
+    ]
+   },
+   {
+    "date": "2026-10-16 16:38",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Open Work Orders and click the Work Orders tab. | +",
+     "-Status | +\"Status\"",
+     "-Approved only. If | +\"Approved\". Type \"ZZAUTOTEST C368214 Back Forward\" in \"Search\". Click",
+     "-Work Orders tab shows no Status filter, write \"no Status filter on this tab\" in the result comment and go on. Click Search and type the name of {Customer-A}. C | +",
+     "-to open it. | +for unit \"C368214-U1\".",
+     "-button and read the tab, Status, Search and rows. | +button.",
+     "-button and read the page. | +button.",
+     "-button again and read the List. | +button."
+    ]
+   },
+   {
+    "date": "2026-10-16 16:38",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      54
+     ],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [
+     "SV-10043"
+    ],
+    "diff": [
+     "-Expected results | +Step 1: the \"Status\" chip shows \"Approved\". Step 2: the row for unit \"C368214-U1\" shows. Step 3: the work order page for unit \"C368214-U1\" opens. Step 4: List comes back on the \"Work Orders\" tab with ",
+     "-Work Orders tab, Status Approved and the same rows show, as they do in production today. Write down whether the search text is kept. Step 6: {Work-order-1} | +work order page for unit \"C368214-U1\"",
+     "-7: the | +6:",
+     "-filters | +filter",
+     "-5. Source — where this behaviour comes from Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026; QA handoff test plan (ge | +4."
+    ]
+   },
+   {
+    "date": "2026-10-16 17:22",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-location \"Staging | +{Location-A}. For example: {Location-A} is Staging",
+     "-9919\" (on another site: the location named in the test run). | +9919.",
+     "-\"ZZAUTOTEST C368214 Back Forward\" | +{Customer-A}",
+     "-unit \"C368214-U1\". | +{Work-order-1}. For example: {Customer-A} is ZZAUTOTEST C368214 Back Forward and {Work-order-1} is S10043-17751.",
+     "- | +\"Search\" empty,",
+     "-\"Search\" empty, | +in a",
+     "-named | +"
+    ]
+   },
+   {
+    "date": "2026-10-16 17:22",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-\"ZZAUTOTEST C368214 Back Forward\" | +the name of {Customer-A}",
+     "-the row for unit \"C368214-U1\". | +{Work-order-1}'s row."
+    ]
+   },
+   {
+    "date": "2026-10-16 17:22",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      61
+     ]
+    ],
+    "keys_added": [
+     "SV-10043"
+    ],
+    "keys_removed": [],
+    "diff": [
+     "- | +Expected results",
+     "-the | +{Work-order-1}'s",
+     "-for unit \"C368214-U1\" | +",
+     "-unit \"C368214-U1\" | +{Work-order-1}",
+     "-unit \"C368214-U1\" | +{Work-order-1}",
+     "- | +Source — where this behaviour comes from Regression for epic SV-10043 (PR #3548); developer's regression list, received 8 Oct 2026; QA handoff test plan (generated 2026-10-08), hotspot 3; PRD \"Work Or"
+    ]
+   },
+   {
+    "date": "2026-10-16 19:07",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      61
+     ],
+     [
+      61
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-READY | +Not available on Build to test Yet - Last checked 10/16/2026"
+    ]
+   },
+   {
+    "date": "2026-10-19 12:58",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-\"Work Orders\" tab, | +\"All\" tab (the \"Status\" filter is on this tab),"
+    ]
+   },
+   {
+    "date": "2026-10-19 12:58",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      61
+     ],
+     [
+      61
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-\"Work Orders\" | +\"All\"",
+     "-v26.40.8-7a95011 | +v26.40.19-e435950 (staging)",
+     "-10/8/2026. | +10/19/2026. QA lead decision, 19 Oct 2026: the \"Status\" filter is offered on the \"All\" tab only (production does the same), so this case uses the \"All\" tab.",
+     "-Not available on Build to test Yet - Last checked 10/16/2026 | +READY"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 614719,
+  "title": "First Tab skips a collapsed or empty Unassigned to the first technician",
+  "atm": 3,
+  "section": 13246,
+  "automated_on": "2026-10-16",
+  "changes": [
+   {
+    "date": "2026-10-19 08:46",
+    "user": 1,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Setup file (for Claude sessions; a tester does not need it) Preconditions You are signed | +Signed",
+     "-an Admin user (the \"Admin\" role, which has Work orders > View and Create & Edit) at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919. | +Admin, viewport 1280 px or wider; browser pinned to the fixture workplace",
+     "-are active at {Location-A} with the \"Technician\" role | +eligible to lead work here, A",
+     "-Time Clock on: {Technician-A} and {Technician-B}. For example: {Technician-A} is ZZAUTOTEST C614719 Ana and {Technician-B} is ZZAUTOTEST C614719 Ben. Customer  | +B Customer-A",
+     "-orders: {Work-order-1} | +orders, WO-1",
+     "-{Technician-A} | +A",
+     "-{Work-order-2} | +WO-2",
+     "-{Technician-B}. Customer {Customer-B} | +B; Customer-B"
+    ]
+   },
+   {
+    "date": "2026-10-19 09:17",
+    "user": 1,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Admin, viewport 1280 px or wider; | +Admin;",
+     "-workplace | +workplace; window 1280 px or wider for steps 1-7, 1024 px wide for steps 8-10, and for steps 11-13 also short enough that the Tech View table's body shows about two and a half group headers",
+     "-A third technician | +At least two more technicians",
+     "- | +four in all; the last of them,",
+     "-whose | +so C's",
+     "-is past | +comes after all",
+     "-columns shown | +others",
+     "-whose | +C's"
+    ]
+   },
+   {
+    "date": "2026-10-20 03:31",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Signed | +Preconditions Needs: 1 user · 1 browser · about 15 minutes (plus setup, if the records below do not exist yet). Sign",
+     "-Admin; browser pinned | +an Admin user (on staging or a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\") at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919 (sho",
+     "-fixture workplace; window 1280 px or wider for steps 1-7, 1024 px wide for steps 8-10, | +bell; to change it click your initials at the top right > Change Location). At least four technicians are active at {Location-A} with the \"Technician\" role",
+     "-for steps 11-13 | +Time Clock on: {Technician-A}, {Technician-B} and at least two more. For example: {Technician-A} is ZZAUTOTEST C614719 Ana and {Technician-B} is ZZAUTOTEST C614719 Ben. {Technician-C} is the technicia",
+     "-short enough that | +",
+     "- | +last one in",
+     "-View table's body shows about two and a half group headers Two technicians eligible to lead work here, A and B Customer-A | +View. Customer {Customer-A}",
+     "-orders, WO-1 | +orders: {Work-order-1}"
+    ]
+   },
+   {
+    "date": "2026-10-20 03:31",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Make the browser window narrower, about the width of a small laptop screen (1024 px). Board View is still shown. Replace the text in \"Search\" with the name of {Customer-C}, then click once in the \"Sea"
+    ]
+   },
+   {
+    "date": "2026-10-20 03:31",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      62
+     ],
+     [
+      62,
+      68
+     ]
+    ],
+    "keys_added": [
+     "SV-11422"
+    ],
+    "keys_removed": [],
+    "diff": [
+     "- | +Step 9: only {Work-order-4} shows, as a card in {Technician-C}’s column, which is off to the right, out of sight. The \"Unassigned\" column has no cards. Step 10: the board scrolls sideways to {Technici",
+     "-2026. | +2026; S11-R1 re-read at version 68 on 20 Oct 2026 (unchanged). Steps 8 to 13 (added 20 Oct 2026): Chris Ward in SV-11422, comment 79047 (19 Oct 2026), on a row hidden under its heading: “not acceptabl"
+    ]
+   },
+   {
+    "date": "2026-10-20 09:33",
+    "user": 1,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Preconditions Needs: 1 user · 1 browser · about 15 minutes (plus setup, if the records below do not exist yet). Sign | +Signed",
+     "-an Admin user (on staging or a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\") at {Location-A}. For example: {Loca | +Admin; browser pinned",
+     "-bell; | +fixture workplace; window 1280 px or wider for steps 1-7, 1024 px wide for steps 8-10, and for steps 11-13 also short enough that the Tech View table's body shows about two and a half group headers Tw",
+     "-change it click your initials at the top right > Change Location). At least four technicians are active at {Location-A} with the \"Technician\" role | +lead work here, A",
+     "-Time Clock on: {Technician-A}, {Technician-B} and at least two more. For example: {Technician-A} is ZZAUTOTEST C614719 Ana and {Technician-B} is ZZAUTOTEST C61 | +B Customer-A",
+     "-orders: {Work-order-1} | +orders, WO-1",
+     "-{Technician-A} | +A",
+     "-{Work-order-2} | +WO-2"
+    ]
+   },
+   {
+    "date": "2026-10-23 03:37",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      62,
+      68
+     ],
+     [
+      62,
+      68
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-only {Work-order-4} shows, | +{Customer-C}’s three work orders show ({Work-order-4} to {Work-order-6}),",
+     "-a card | +cards",
+     "- | +(QA lead decision 23 Oct 2026: step 9 expects all three work orders, matching the set-up.)"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 682419,
+  "title": "Board View's sideways scroll bar is thick and its handle is never tiny",
+  "atm": 3,
+  "section": 13238,
+  "automated_on": null,
+  "changes": []
+ },
+ {
+  "cid": 682420,
+  "title": "Design- Tech View count bubbles sit on the status label as in List, any density",
+  "atm": 3,
+  "section": 73780,
+  "automated_on": null,
+  "changes": []
+ },
+ {
+  "cid": 682421,
+  "title": "First Tab goes to the work order even when it is far down or off to the side",
+  "atm": 3,
+  "section": 13246,
+  "automated_on": null,
+  "changes": []
+ },
+ {
+  "cid": 96967,
+  "title": "SV-11546 - A user without create and edit cannot drag or reassign work orders",
+  "atm": 3,
+  "section": 87347,
+  "automated_on": "2026-10-15",
+  "changes": [
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Reassign | +Assign",
+     "-pick | +click",
+     "-technician > Reassign.) | +technician; it is assigned at once.)"
+    ]
+   },
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Try to drag | +Drag",
+     "-into | +over [Tech-B]'s column and, without releasing it, read the note at the top of",
+     "- | +Release the card.",
+     "-actions and | +actions,",
+     "-technician. | +technician and Unassign.",
+     "-6 | +7",
+     "-View. | +View, dragging the row over [Tech-B]'s group."
+    ]
+   },
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      68
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +While Vera Viewonly drags the card over [Tech-B]'s column (or the row over [Tech-B]'s group), the note “You don’t have permission to assign technicians” shows at the top of that column or group. The d",
+     "-drag | +move",
+     "- | +or Unassign",
+     "-action is | +actions are",
+     "-edited 7 | +version 68 (19",
+     "-2026 (status line \"PRD v33\"), | +2026, Chris Ward),",
+     "-8 | +19",
+     "-technicians\". | +technicians\", which PRD version 68 now asks for too."
+    ]
+   },
+   {
+    "date": "2026-10-20 07:10",
+    "user": 3,
+    "field": "title",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [
+     "SV-11546"
+    ],
+    "keys_removed": [],
+    "diff": [
+     "- | +SV-11546 -"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 96969,
+  "title": "Choosing the current lead again changes nothing and shows no message",
+  "atm": 3,
+  "section": 87347,
+  "automated_on": "2026-10-12",
+  "changes": [
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Pick | +Click",
+     "-and confirm. | +in the list."
+    ]
+   },
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      68
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-No \"Lead | +The dialog closes, and no reassignment message appears (no \"[WO-1] assigned to Esther Howard\", \"[WO-1] lead",
+     "-updated\" message (or | +set to Esther Howard\" or",
+     "-reassignment message) appears. | +other lead-change message).",
+     "- | +\"Work Orders — Board View & Tech View Display Options\",",
+     "-edited 7 | +version 68 (19",
+     "-2026 (status line \"PRD v33\"), | +2026, Chris Ward),",
+     "- | +S4-R13,",
+     "-8 | +19"
+    ]
+   },
+   {
+    "date": "2026-10-19 22:29",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      68
+     ],
+     [
+      68
+     ]
+    ],
+    "keys_added": [
+     "SV-11522",
+     "SV-11524"
+    ],
+    "keys_removed": [],
+    "diff": [
+     "- | +Known problem ( SV-11522 and SV-11524 , open; seen on staging by the designer on 19 Oct 2026): the lead technician dialog lists \"Unassigned\" at the top, and choosing a technician needs a click on a \"R",
+     "- | +- EXPECT FAIL (SV-11524)"
+    ]
+   },
+   {
+    "date": "2026-10-23 07:18",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Reassign | +Assign",
+     "-pick | +click",
+     "-technician > Reassign.) | +technician; it is assigned at once.)"
+    ]
+   },
+   {
+    "date": "2026-10-23 07:33",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Assign | +Reassign",
+     "-click | +pick",
+     "-technician; it is assigned at once.) | +technician > Reassign.)"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 96973,
+  "title": "Reassign can pick a technician outside the filter and the card then leaves",
+  "atm": 3,
+  "section": 87347,
+  "automated_on": "2026-10-12",
+  "changes": [
+   {
+    "date": "2026-10-15 09:20",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      52
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-reload (your | +reload. With none of your work orders left, your",
+     "-count goes from 1 | +is hidden and the board shows “No work orders match these filters”, then “Try removing a filter",
+     "-0). | +widen your results.”, with a Clear all filters button.",
+     "-edited 7 | +version 52 (14",
+     "-2026 (status line \"PRD v33\"), | +2026, Chris Ward),",
+     "- | +S3-N1 and S1-N1a,",
+     "-8 | +15",
+     "-8 | +15"
+    ]
+   },
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Reassign | +Assign",
+     "-pick | +click",
+     "-technician > Reassign.) | +technician; it is assigned at once.)"
+    ]
+   },
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Pick | +Click",
+     "-and confirm (keep shifts if asked). | +in the dialog (if a window asks about scheduled shifts, click Keep shifts)."
+    ]
+   },
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      52
+     ],
+     [
+      68
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Clicking Ralph Edwards assigns him at once: the dialog has no confirm button, only Cancel.",
+     "-52 (14 | +68 (19",
+     "- | +S4-R13,",
+     "-15 | +19",
+     "- | +19 October 2026; on",
+     "-2026; | +2026",
+     "-that day | +",
+     "-Reassign | +lead technician"
+    ]
+   },
+   {
+    "date": "2026-10-19 22:29",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      68
+     ],
+     [
+      68
+     ]
+    ],
+    "keys_added": [
+     "SV-11522",
+     "SV-11524"
+    ],
+    "keys_removed": [],
+    "diff": [
+     "- | +Known problem ( SV-11522 and SV-11524 , open; seen on staging by the designer on 19 Oct 2026): the lead technician dialog lists \"Unassigned\" at the top, and choosing a technician needs a click on a \"R",
+     "- | +- EXPECT FAIL (SV-11524)"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 97007,
+  "title": "A work order given a new lead from Reassign or its page goes to the bottom",
+  "atm": 3,
+  "section": 87347,
+  "automated_on": "2026-10-12",
+  "changes": [
+   {
+    "date": "2026-10-16 07:47",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Setup (manual QA tester and Claude session)",
+     "-Needs: 2 users · 2 browsers · about 25 minutes Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show o | +You are signed",
+     "-with the | +as an Owner or",
+     "-quick-login button on the sign-in page; you appear as \"Admin ShopView\". The Admin | +user whose",
+     "-holds | +has",
+     "-Edit (to check: your initials | +Edit,",
+     "-the top right > Settings > Roles & Permissions > Admin > Work orders). This user is the dispatcher. Location: one location for the whole case, shown in the top | +{Location-A} (for example Staging",
+     "-9919\"); to change it click your initials | +9919). Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows"
+    ]
+   },
+   {
+    "date": "2026-10-16 07:47",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-\"ZZAUTOTEST | +the shared start of the customer names (for example ZZAUTOTEST",
+     "-Bottom\" | +Bottom)",
+     "-Search so only this case's work orders show. | +Search.",
+     "-switcher (tooltip \"Board View\"). | +switcher.",
+     "-the Aardvark Co | +{Work-order-1}'s",
+     "-Cal's | +{Technician-C}'s",
+     "-more-actions | +More actions (…) button. Click Reassign lead technician. Pick {Technician-B}, and click the dialog's confirm",
+     "-(…). Click \"Reassign lead technician\". In the dialog pick Ben Bravo (and confirm | +"
+    ]
+   },
+   {
+    "date": "2026-10-16 07:47",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      53,
+      54
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Ben's | +{Technician-B}'s",
+     "-Bravo Co, Delta Co, Aardvark Co. Aardvark Co | +{Work-order-3}, {Work-order-4}, {Work-order-1}. {Work-order-1}",
+     "-Ben's | +{Technician-B}'s",
+     "-Bravo Co, Delta Co, Aardvark Co, Abbey Co. | +{Work-order-3}, {Work-order-4}, {Work-order-1}, {Work-order-2}.",
+     "-Echo Co | +{Work-order-5}",
+     "-Ben's | +{Technician-B}'s",
+     "-Bravo Co, Echo Co, Delta Co, Aardvark Co, Abbey Co. | +{Work-order-3}, {Work-order-5}, {Work-order-4}, {Work-order-1}, {Work-order-2}.",
+     "-Ben's | +{Technician-B}'s"
+    ]
+   },
+   {
+    "date": "2026-10-16 19:07",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-and | +then",
+     "-the dialog's confirm button if it shows one. | +Reassign."
+    ]
+   },
+   {
+    "date": "2026-10-16 19:07",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      53,
+      54
+     ],
+     [
+      53,
+      54
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-v26.40.8-7a95011 | +v26.40.19-1493c63 (staging)",
+     "-10/8/2026. | +10/16/2026."
+    ]
+   },
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Pick {Technician-B}, then click Reassign. | +Click {Technician-B} in the Reassign lead technician dialog."
+    ]
+   },
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      53,
+      54
+     ],
+     [
+      53,
+      68
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-54 (15 | +68 (19",
+     "-15 | +19",
+     "-15 | +19",
+     "-Reassign | +",
+     "- | +(Assign or Reassign lead technician)",
+     "-from | +with",
+     "-Reassign lead technician dialog | +menu’s Unassign action (S11-R9)",
+     "- | +on"
+    ]
+   },
+   {
+    "date": "2026-10-19 22:29",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      53,
+      68
+     ],
+     [
+      53,
+      68
+     ]
+    ],
+    "keys_added": [
+     "SV-11522",
+     "SV-11524"
+    ],
+    "keys_removed": [],
+    "diff": [
+     "- | +Known problem ( SV-11522 and SV-11524 , open; seen on staging by the designer on 19 Oct 2026): the lead technician dialog lists \"Unassigned\" at the top, and choosing a technician needs a click on a \"R",
+     "- | +- EXPECT FAIL (SV-11524)"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 97008,
+  "title": "Moving to another technician shows the message, reordering shows none",
+  "atm": 3,
+  "section": 87347,
+  "automated_on": "2026-10-12",
+  "changes": [
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-clicking. | +clicking or pointing at the message."
+    ]
+   },
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      68
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-\"Lead technician updated\" appears | +a message naming the work order and Ben appears, with an Undo button (e.g. \"S1-801 assigned to ZZAUTOTEST Ben Bravo\", with Alpha Co's own number),",
+     "-fades | +closes",
+     "-itself. | +itself within the 10 seconds (after about 5 seconds).",
+     "- | +\"Work Orders — Board View & Tech View Display Options\",",
+     "-edited 7 | +version 68 (19",
+     "-2026 (status line \"PRD v33\"), | +2026, Chris Ward),",
+     "-8 | +19",
+     "- | +a"
+    ]
+   },
+   {
+    "date": "2026-10-19 22:29",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      68
+     ],
+     [
+      68
+     ]
+    ],
+    "keys_added": [
+     "SV-11524"
+    ],
+    "keys_removed": [],
+    "diff": [
+     "- | +Known problem ( SV-11524 , open; seen on staging by the designer on 19 Oct 2026): the message after a lead change reads \"Lead technician updated\" (or \"Lead technician removed\") and has no Undo button.",
+     "- | +- EXPECT FAIL (SV-11524)"
+    ]
+   },
+   {
+    "date": "2026-10-23 07:18",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Reassign | +Assign",
+     "-pick | +click",
+     "-technician > Reassign.) | +technician; it is assigned at once.)"
+    ]
+   },
+   {
+    "date": "2026-10-23 07:34",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Assign | +Reassign",
+     "-click | +pick",
+     "-technician; it is assigned at once.) | +technician > Reassign.)"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 368133,
+  "title": "The clear-shifts question appears only for the old lead's unfinished shifts",
+  "atm": 3,
+  "section": 87347,
+  "automated_on": "2026-10-12",
+  "changes": [
+   {
+    "date": "2026-10-14 14:12",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Setup (manual QA tester and Claude session)",
+     "-Needs: 1 | +You are signed in as an Owner or Admin",
+     "-· 1 browser · Schedule access · about 40 minutes. Build: the Work Orders QA build (sv10043, v26.40.8-7a95011). [User-A] = you: an Owner/Admin user (on a QA bra | +whose",
+     "-holds | +has",
+     "-View and Work orders > Create & Edit. Desktop browser window at least 1024 px wide. Narrower windows show only the List, without the display switcher. One loca | +View,",
+     "-(to check: your initials | +and Schedule access,",
+     "-the top right > Settings > Roles & Permissions > Admin > Work orders). Use one location for the whole case: it is shown in the top bar next to the bell (e.g. \" | +{Location-A} (for example Staging",
+     "-9919\"); to change it click your initials | +9919). Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows"
+    ]
+   },
+   {
+    "date": "2026-10-14 14:12",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-pick | +click",
+     "-switcher (right side | +switcher. Type the name",
+     "-the toolbar; tooltip \"Board View\"). Type \"ZZAUTOTEST F1 Prompt Only Unfinished\" | +{Customer-A}",
+     "-A | +{Work-order-1}",
+     "-[Tech-A]'s | +{Technician-A}'s",
+     "-[Tech-B]'s | +{Technician-B}'s column. Read the title of the question that opens. Click Keep shifts. Drag {Work-order-2} from {Technician-A}'s column into {Technician-B}'s",
+     "-prompt | +question",
+     "-it | +one"
+    ]
+   },
+   {
+    "date": "2026-10-14 14:12",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      47,
+      48
+     ]
+    ],
+    "keys_added": [
+     "SV-11126"
+    ],
+    "keys_removed": [],
+    "diff": [
+     "-Only A | +Step 4: dragging {Work-order-1}",
+     "- | +question \"Clear {Technician-A}'s scheduled shifts?\" (with the example name:",
+     "-shifts?\" prompt (1 of 6). B | +shifts?\"). Steps 6 to 10: {Work-order-2}",
+     "-C (only a line shift), D | +{Work-order-3} (a shift on {Line-1} only, not on every line), {Work-order-4}",
+     "-E | +{Work-order-5}",
+     "-Dana Ortiz's | +{Technician-C}'s",
+     "-F (Esther Howard's | +{Work-order-6} ({Technician-A}'s",
+     "-change lead | +each move to {Technician-B}'s column"
+    ]
+   },
+   {
+    "date": "2026-10-14 15:21",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +On the Work Orders page, Asset on Site shows no choice (if its chip shows Yes or No, click the x on the chip)."
+    ]
+   },
+   {
+    "date": "2026-10-14 15:21",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      47,
+      48
+     ],
+     [
+      47,
+      48
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Last checked against build v26.40.17-ddb9ba1 (staging) on 10/14/2026."
+    ]
+   },
+   {
+    "date": "2026-10-14 16:15",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      47,
+      48
+     ],
+     [
+      47,
+      49
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-48 (12 | +49 (14",
+     "-47 | +49",
+     "-12 | +14",
+     "-after SV-11126: | +from Chris Ward's answer 1 of 14 Oct 2026:",
+     "-current line), | +approved line, judged at the moment the lead changes; first defined in version 47 after SV-11126),",
+     "-whole, and whether a shift on the only line of | +whole. On",
+     "- | +a shift on that line",
+     "-is an open question to the PO (14 Oct 2026). | +(version 49, S4-R28)."
+    ]
+   },
+   {
+    "date": "2026-10-14 17:07",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": []
+   },
+   {
+    "date": "2026-10-14 17:07",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      47,
+      49
+     ],
+     [
+      47,
+      49
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-This version of the case has not yet been checked against a build (the previous version was last checked against build v26.40.8-7a95011 on 10/8/2026). | +"
+    ]
+   },
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      47,
+      49
+     ],
+     [
+      47,
+      49,
+      68
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +no question, and each time",
+     "-\"Lead technician updated\" and no question. | +names that work order, \"… assigned to {Technician-B}\" (for example \"S10043-17582 assigned to Ralph Edwards\"), with an Undo button.",
+     "-49 (14 | +68 (19",
+     "-S4-R5, | +S4-R5 (message wording changed in versions 66 and 68, 19 Oct 2026),",
+     "-14 | +19",
+     "-49, | +68,",
+     "-14 | +19",
+     "- | +a"
+    ]
+   },
+   {
+    "date": "2026-10-19 22:29",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      47,
+      49,
+      68
+     ],
+     [
+      47,
+      49,
+      68
+     ]
+    ],
+    "keys_added": [
+     "SV-11524"
+    ],
+    "keys_removed": [],
+    "diff": [
+     "- | +Known problem ( SV-11524 , open; seen on staging by the designer on 19 Oct 2026): the message after a lead change reads \"Lead technician updated\" (or \"Lead technician removed\") and has no Undo button.",
+     "- | +- EXPECT FAIL (SV-11524)"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 368135,
+  "title": "Cancel or closing the clear-shifts question calls the change off",
+  "atm": 3,
+  "section": 87347,
+  "automated_on": "2026-10-12",
+  "changes": [
+   {
+    "date": "2026-10-12 18:23",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +A question about [Tech-A]'s scheduled shifts appears.",
+     "-prompt | +question",
+     "-prompt | +question",
+     "-Drag the card into [Tech-B]'s column again and click an empty part of the page outside the prompt. | +",
+     "-prompt | +question",
+     "-10 | +9"
+    ]
+   },
+   {
+    "date": "2026-10-12 18:23",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-X, after Escape | +X",
+     "-a click outside the prompt, | +Escape,",
+     "-What you should see today (build v26.40.8-7a95011, 10/8/2026): changing | +Note: clicking an empty part of",
+     "-lead (by dragging | +page outside",
+     "-card or with Reassign lead technician) shows no | +",
+     "-about scheduled shifts, even when | +does not close it;",
+     "-outgoing lead has | +question simply stays open. That is expected and is not",
+     "-shift booked for the entire work order. The lead changes at once with the \"Lead technician updated\" (or \"Lead technician removed\") message, and the outgoing | +fault (QA"
+    ]
+   },
+   {
+    "date": "2026-10-12 19:30",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Build: the Work Orders QA build (sv10043, v26.40.8-7a95011). [User-A] = you: an Owner/Admin user (on a QA branch the Admin quick-login user, shown as \"Admin Sh | +",
+     "-Owner/Admin user | +Admin",
+     "-The Admin role holds | +Desktop browser window at least 1024 px wide; narrower windows show only the List.",
+     "-orders > View and Work orders > Create & Edit (to check: your initials at the top right > Settings > Roles & Permissions > Admin > Work orders). Use | +in",
+     "-for | +throughout, shown next to",
+     "-whole case: it is shown | +bell",
+     "-next to the bell | +",
+     "-at the top right | +(top right)"
+    ]
+   },
+   {
+    "date": "2026-10-12 19:52",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-ruling | +decision",
+     "-lead's ruling, | +lead decision,",
+     "-2026, in the QA session chat, on the report that | +2026:",
+     "- | +clear-shifts",
+     "-it: “NOt | +it, and that is not",
+     "-defect, letes move to the next defect”. The click-outside step was removed from this test on 12 Oct 2026 under Rule 114(d). | +defect."
+    ]
+   },
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-technician, pick | +technician and click",
+     "-and confirm. | +in the list."
+    ]
+   },
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      68
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-\"Lead technician updated\" | +lead-change",
+     "- | +(such as \"[WO-1] assigned to Ralph Edwards\")",
+     "-dialog with Ralph Edwards still chosen. | +dialog, and nothing has changed.",
+     "- | +\"Work Orders — Board View & Tech View Display Options\",",
+     "-edited 7 | +version 68 (19",
+     "-2026 (status line \"PRD v33\"), | +2026, Chris Ward),",
+     "-8 | +19",
+     "-in | +from"
+    ]
+   },
+   {
+    "date": "2026-10-19 22:29",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      68
+     ],
+     [
+      68
+     ]
+    ],
+    "keys_added": [
+     "SV-11522",
+     "SV-11524"
+    ],
+    "keys_removed": [],
+    "diff": [
+     "- | +Known problem ( SV-11522 and SV-11524 , open; seen on staging by the designer on 19 Oct 2026): the lead technician dialog lists \"Unassigned\" at the top, and choosing a technician needs a click on a \"R",
+     "- | +- EXPECT FAIL (SV-11524)"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 368136,
+  "title": "The clear-shifts question shows on Board and Tech View only",
+  "atm": 3,
+  "section": 87347,
+  "automated_on": "2026-10-12",
+  "changes": [
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-to pick | +and click",
+     "-and confirm. | +in the list.",
+     "- | +Use More actions > Unassign. Note the prompt, click Keep shifts. Drag the card from the Unassigned column back into [Tech-A]'s column.",
+     "-6 | +8"
+    ]
+   },
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      68
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-5 | +5, 7",
+     "-7: | +9:",
+     "-4 | +6",
+     "- | +Board View Unassign,",
+     "-drag | +drag, Tech View dialog",
+     "-dialog. | +Unassign.",
+     "-8 | +10",
+     "-9: | +11:"
+    ]
+   },
+   {
+    "date": "2026-10-19 22:29",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      68
+     ],
+     [
+      68
+     ]
+    ],
+    "keys_added": [
+     "SV-11524"
+    ],
+    "keys_removed": [],
+    "diff": [
+     "- | +Known problem ( SV-11524 , open; seen on staging by the designer on 19 Oct 2026): the message after a lead change reads \"Lead technician updated\" (or \"Lead technician removed\") and has no Undo button.",
+     "- | +- EXPECT FAIL (SV-11524)"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 368140,
+  "title": "Assigning a lead to unassigned work moves only open unassigned lines",
+  "atm": 3,
+  "section": 87347,
+  "automated_on": "2026-10-12",
+  "changes": [
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Reassign | +Assign",
+     "-Pick | +Click",
+     "-and confirm. | +in the list."
+    ]
+   },
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      68
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +The card's More actions menu offers \"Assign lead technician\" (it has no lead).",
+     "- | +and the message \"[WO-1] assigned to Ralph Edwards\" shows (e.g. \"S1-710 assigned to Ralph Edwards\"),",
+     "-\"Lead technician updated\". | +an Undo button.",
+     "- | +\"Work Orders — Board View & Tech View Display Options\",",
+     "-edited 7 | +version 68 (19",
+     "-2026 (status line \"PRD v33\"), | +2026, Chris Ward), S3-R14,",
+     "- | +S4-R5,",
+     "-8 | +19"
+    ]
+   },
+   {
+    "date": "2026-10-19 22:29",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      68
+     ],
+     [
+      68
+     ]
+    ],
+    "keys_added": [
+     "SV-11522",
+     "SV-11524"
+    ],
+    "keys_removed": [],
+    "diff": [
+     "- | +Known problem ( SV-11522 and SV-11524 , open; seen on staging by the designer on 19 Oct 2026): the More actions menu on a work order with no lead says \"Reassign lead technician\"; the lead technician d",
+     "- | +- EXPECT FAIL (SV-11524)"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 368144,
+  "title": "Removing the lead puts the work order in its normal place in Unassigned",
+  "atm": 3,
+  "section": 87347,
+  "automated_on": "2026-10-12",
+  "changes": [
+   {
+    "date": "2026-10-16 07:47",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "- | +Setup (manual QA tester and Claude session)",
+     "-Needs: 1 | +You are signed in as an Owner or Admin",
+     "-· 1 browser · about 15 minutes Build: the Work Orders QA build (sv10043). Desktop browser window at least 1024 px wide (narrower windows show only the List, wi | +whose",
+     "-holds | +has",
+     "-Edit (to check: your initials | +Edit,",
+     "-the top right > Settings > Roles & Permissions > Admin > Work orders). This user is the dispatcher. Location: one location for the whole case, shown in the top | +{Location-A} (for example Staging",
+     "-9919\"); to change it click your initials | +9919). Your browser window is at least 1024 px wide, so the display switcher (List, Tech View, Board View) shows",
+     "-top | +"
+    ]
+   },
+   {
+    "date": "2026-10-16 07:47",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-\"ZZAUTOTEST | +the shared start of the customer names (for example ZZAUTOTEST",
+     "-Place\" | +Place)",
+     "-Search so only this case's work orders show. | +Search.",
+     "-switcher (tooltip \"Board View\"). | +switcher.",
+     "- | +order of the",
+     "-column order (with the example data: Bravo Co, Delta Co). | +column.",
+     "-the Charlie Co | +{Work-order-3}'s",
+     "-Ana's | +{Technician-A}'s"
+    ]
+   },
+   {
+    "date": "2026-10-16 07:47",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      53,
+      54
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-5 shows | +4: Unassigned reads {Work-order-2}, {Work-order-4}. Step 6:",
+     "-removed\". | +removed\" shows.",
+     "-6: | +7:",
+     "-Bravo Co, Charlie Co, Delta Co. Charlie Co | +{Work-order-2}, {Work-order-3}, {Work-order-4}. {Work-order-3}",
+     "-8: | +9:",
+     "-Alpha Co, Bravo Co, Charlie Co, Delta Co. Alpha Co | +{Work-order-1}, {Work-order-2}, {Work-order-3}, {Work-order-4}. {Work-order-1}",
+     "-9: | +10:",
+     "- | +\"Work Orders — Board View & Tech View Display Options\","
+    ]
+   },
+   {
+    "date": "2026-10-16 19:07",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-and | +then",
+     "-the dialog's confirm button if it shows one. | +Reassign."
+    ]
+   },
+   {
+    "date": "2026-10-16 19:07",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      53,
+      54
+     ],
+     [
+      53,
+      54
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-v26.40.8-7a95011 | +v26.40.19-1493c63 (staging)",
+     "-10/8/2026. | +10/16/2026."
+    ]
+   },
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-column, | +column and",
+     "-button and click Reassign lead technician. Pick Unassigned, then click Reassign. | +button. Click Unassign."
+    ]
+   },
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      53,
+      54
+     ],
+     [
+      53,
+      68
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-\"Lead technician removed\" shows. | +\"{Work-order-3} moved to Unassigned\" shows, with an \"Undo\" button.",
+     "-54 (15 | +68 (19",
+     "-15 | +19",
+     "- | +In versions 66 to 68 (19 Oct 2026) the lead technician dialog stopped offering Unassigned (on the board the lead is removed with Unassign in the More actions menu) and the message became \"{work order ",
+     "-15 | +19",
+     "-Last | +Not yet",
+     "- | +a",
+     "-v26.40.19-1493c63 (staging) on 10/16/2026. | +in this wording."
+    ]
+   },
+   {
+    "date": "2026-10-19 22:29",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [
+      53,
+      68
+     ],
+     [
+      53,
+      68
+     ]
+    ],
+    "keys_added": [
+     "SV-11524"
+    ],
+    "keys_removed": [],
+    "diff": [
+     "- | +Known problem ( SV-11524 , open; seen on staging by the designer on 19 Oct 2026): the message after a lead change reads \"Lead technician updated\" (or \"Lead technician removed\") and has no Undo button.",
+     "- | +- EXPECT FAIL (SV-11524)"
+    ]
+   }
+  ]
+ },
+ {
+  "cid": 368147,
+  "title": "SV-11546 - A user without Work Orders create and edit cannot drag work orders",
+  "atm": 3,
+  "section": 87347,
+  "automated_on": "2026-10-15",
+  "changes": [
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "set-up",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Reassign | +Assign",
+     "-pick | +click",
+     "-technician > Reassign.) | +technician; it is assigned at once.)"
+    ]
+   },
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "steps",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Try to drag | +Drag",
+     "-into | +over",
+     "-and release. | +and, without releasing it, read the note at the top of Ben's column. Release the Alpha Co card.",
+     "-Try to drag | +Drag",
+     "-into | +over",
+     "-and release. | +and, without releasing it, read the note at the top of Ben's group. Release the Alpha Co row."
+    ]
+   },
+   {
+    "date": "2026-10-19 22:13",
+    "user": 3,
+    "field": "expected result",
+    "prd_versions": [
+     [],
+     [
+      68
+     ]
+    ],
+    "keys_added": [],
+    "keys_removed": [],
+    "diff": [
+     "-Steps 5 and 6: | +Step 5:",
+     "-cards | +Bravo Co card",
+     "-moved, neither | +moved",
+     "-column nor to Ben. They stay | +column. It stays",
+     "-they were | +it was",
+     "- | +6: the note “You don’t have permission to assign technicians” shows at the top of Ben's column. Step",
+     "- | +the drop is refused. The Alpha Co card stays in Ana's column. Step 8:",
+     "- | +or Unassign"
+    ]
+   },
+   {
+    "date": "2026-10-20 07:10",
+    "user": 3,
+    "field": "title",
+    "prd_versions": [
+     [],
+     []
+    ],
+    "keys_added": [
+     "SV-11546"
+    ],
+    "keys_removed": [],
+    "diff": [
+     "- | +SV-11546 -"
+    ]
+   }
+  ]
+ }
+]
