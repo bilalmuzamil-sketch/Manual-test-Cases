@@ -382,7 +382,8 @@ def quotes_block(c):
         first = False
     return h + f"<p>{e(NOBUILD)}</p>"
 
-def render(c):
+def render_scenario(c):
+    """The layout before 26 Oct 2026 (Scenario line, {placeholders}, "For example:" lines). Kept only so the pass report can show old vs new."""
     pre = (f'<p><strong><a href="{SETUP_URL}">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p>'
            "<p><strong>Preconditions</strong></p><ul>" + f"<li>{SCENARIO}{e(c['scen'])}</li>" + "".join(f"<li>{e(a)}" + (f"<br>{e(b)}" if b else "") + "</li>" for a, b in c["pre"]) + "</ul>")
     exp = ("<p><strong>Expected results</strong></p><ul>" + "".join(f"<li>{e(r)}</li>" for r in c["res"]) + "</ul>"
@@ -391,6 +392,23 @@ def render(c):
     refs = ",".join(dict.fromkeys(STORY[n][0] for n in story_nums(c)))
     return {"title": c["title"], "template_id": 1, "type_id": 7, "priority_id": 2, "refs": refs, "custom_automation_type": 2,
             "custom_atmstatus": 1, "custom_preconds": pre, "custom_steps": "<ol>" + "".join(f"<li>{e(s)}</li>" for s in c["steps"]) + "</ol>",
+            "custom_expected": exp}
+
+import pattern as PAT
+def render(c):
+    """The QA lead's pattern (Rule 117 fourteenth amendment, 26 Oct 2026): plain precondition bullets (Blocked line last), plain steps,
+    "Expected Result" with "Step N:" and one bullet per fact, a blank paragraph, then the note, the exact quotes with their From lines,
+    References from Design and the AUTOMATION line, exactly as before."""
+    p = PAT.pattern_case(c, BLOCKED)
+    pre = "<p><strong>Preconditions</strong></p><ul>" + "".join(f"<li>{e(x)}</li>" for x in p["pre"]) + "</ul>"
+    exp = ("<p><strong>Expected Result</strong></p>"
+           + "".join(f"<p>Step {i}:</p><ul>" + "".join(f"<li>{e(x)}</li>" for x in r) + "</ul>" for i, r in enumerate(p["results"], 1))
+           + "<p></p>"
+           + (f"<p>{e(p['note'])}</p>" if p["note"] else "")
+           + quotes_block(c) + design_block(c) + f"<p>{e(c['marker'])}</p>")
+    refs = ",".join(dict.fromkeys(STORY[n][0] for n in story_nums(c)))
+    return {"title": c["title"], "template_id": 1, "type_id": 7, "priority_id": 2, "refs": refs, "custom_automation_type": 2,
+            "custom_atmstatus": 1, "custom_preconds": pre, "custom_steps": "<ol>" + "".join(f"<li>{e(s)}</li>" for s in p["steps"]) + "</ol>",
             "custom_expected": exp}
 
 PH = re.compile(r"\{([A-Z][A-Za-z]*(?:-[A-Za-z]+)*-[A-Z0-9])\}")

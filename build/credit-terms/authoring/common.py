@@ -20,7 +20,8 @@ def own(ph, rule, extra="", example=None):
     """One of the shop's own terms. rule: 'net N' or 'day N'."""
     kind, n = rule.split()
     r = f"due {n} day{'s' if n != '1' else ''} after the invoice date" if kind == "net" else f"due on day {n} of the following month"
-    return (f"The shop has its own active term {ph}, {r}{extra}.", f"For example: {ph} is {example}." if example else None)
+    state = "" if "deactivated" in extra else "active "  # 26 Oct 2026: a deactivated term is not called "active"
+    return (f"The shop has its own {state}term {ph}, {r}{extra}.", f"For example: {ph} is {example}." if example else None)
 
 def wo_invoice(ph_wo, ph_cust, extra=""):
     return f"Work order {ph_wo} for {ph_cust} is complete and ready to invoice (every part received, review done){extra}."

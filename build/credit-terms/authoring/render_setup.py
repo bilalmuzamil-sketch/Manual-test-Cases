@@ -6,6 +6,7 @@ Holds no environment address, credentials, cookies or session data. python3 rend
 import os, sys, re, json, importlib
 D = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, D)
 import ct_lib as L
+import pattern as PAT
 import build_mods
 from po_questions import QUESTIONS, DROPPED
 SEC = json.load(open(f"{L.P}/sections.json"))
@@ -102,9 +103,10 @@ A("## 5. One recipe per case: the placeholder values (the examples in the case a
 for c in L.CASES:
     A(f"### SETUP-{c['key']} — {c['title']}")
     A(f"Section: {NAMES[c['sec']]} (TestRail section {SEC[c['sec']]}). Marker: `{c['marker']}`.")
-    A("Preconditions, exactly as the case states them:")
-    A(f"- Scenario: {c['scen']}")
+    A("Preconditions with their placeholders and examples (for Claude sessions; the TestRail case states the same in plain words, without the examples):")
     for a, b in c["pre"]: A(f"- {a}" + (f" {b}" if b else ""))
+    nm = PAT.names_for(c)
+    if nm: A("Names in the TestRail case (Rule 117 fourteenth amendment): " + ", ".join(f"{p} = {v}" for p, v in nm.items()) + ".")
     phs = sorted(set(re.findall(r"\{([A-Z][^{}]*)\}", " ".join(a for a, _ in c["pre"]))))
     A("Placeholders: " + (", ".join("{" + p + "}" for p in phs) or "none") + ". Values: the \"For example\" lines above; write the real numbers (work order, invoice) here after setup.")
     A("Procedures: " + ", ".join(procs_for(c)) + ".")

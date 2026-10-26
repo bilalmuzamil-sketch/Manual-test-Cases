@@ -72,3 +72,11 @@ P-OLD recipe updated; applied 26 Oct, read back clean. 7. QA branch: given when 
   field byte-identical; setup file regenerated. Evidence: `scenario-preconditions-2026-10-26/PASS-REPORT.md`. Needs the QA lead's
   go-ahead before any TestRail update (Rule 6).
 - 26 Oct 2026: Rule 117 thirteenth amendment (QA lead: "Preconditions should be like a scenario") applied to every case of this suite: one "Scenario:" line first, then what must exist in setup order; only custom_preconds changed (script-checked), every case updated in TestRail with an edit lock and read back clean.
+- 26 Oct 2026: Rule 117 fourteenth amendment (the QA lead's own pattern, "Yes, permanent, all suites") DRAFTED for all 344 cases, not
+  applied to TestRail: plain precondition bullets in setup order (no Scenario line, no {placeholder}, no "For example", no setup-file
+  link), Blocked line "If you cannot set up any of the above, mark this test Blocked: "setup not done"." last; steps with plain record
+  names (term A, customer B, work order 1, "the test location"); "Expected Result" with "Step N:" and one bullet per sentence; a blank
+  paragraph; quotes, From lines, References from Design and AUTOMATION line byte-identical (344/344). Converter `authoring/pattern.py`
+  (rules + hand-written forms), rendered by `ct_lib.render`; old layout kept as `ct_lib.render_scenario`; pattern gate in
+  `authoring/build.py` (0 PROBLEM lines). The authoring data keeps placeholders and examples for the setup file, which now also lists each
+  case's plain names. Evidence: `pattern-format-2026-10-26/PASS-REPORT.md`. Needs the QA lead's go-ahead before any TestRail update (Rule 6).

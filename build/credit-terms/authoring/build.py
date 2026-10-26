@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Build and check every Credit terms case. python3 build.py   (exit 1 on any PROBLEM line)
-Gates: one "Scenario:" line first in Preconditions (<= 40 words, no code, no "QA lead"/"ask your"); title <= 80 and no semicolon; steps = results, each "Step N:"; no step with two UI actions (Rule 135); placeholders defined and
+Gates: the QA lead's pattern (Rule 117 fourteenth amendment, 26 Oct 2026; replaces the Scenario gate): plain precondition bullets only, no
+"{", no "For example", no "Scenario:", no setup-file link, Blocked line last; "Expected Result", a "Step N:" heading and bullet list per step,
+"<p></p>", then the quotes block, which with the From lines, References from Design and AUTOMATION line is identical to before; title <= 80 and no semicolon; steps = results, each "Step N:"; no step with two UI actions (Rule 135); placeholders defined and
 named name-hyphen-letter/number; quotes verbatim in PRD v3 (or the saved Jira stories); every PRD code and every named PRD item (error
 handling, User Feedback Summary rows, Key Decisions, Permissions, Terminology, Assumptions, Goals, Out of Scope) covered or listed as not
 testable with the reason; every User Feedback Summary message used word for word in a step or result; one AUTOMATION line, last;
@@ -63,33 +65,72 @@ for c in L.CASES:
     if f"Epic {L.EPIC}" not in q or L.NOBUILD not in q or "version 3" not in q: probs.append(f"{c['key']}: epic, version or build line missing")
     if "claude.ai/artifact" in h.split("References from Design")[0]: probs.append(f"{c['key']}: design reference above the References from Design block")
     if "<p></p><p><strong>References from Design</strong></p>" not in h: probs.append(f"{c['key']}: no References from Design block")
-    if not f["custom_preconds"].startswith('<p><strong><a href="'): probs.append(f"{c['key']}: setup-file link not first")
-    if not c["pre"][-1][0] == L.BLOCKED: probs.append(f"{c['key']}: the Blocked line is not last")
-# ---- Scenario line (Rule 117 thirteenth amendment, QA lead 26 Oct 2026): exactly one "Scenario:" line, first in Preconditions, at most
-# 40 words, one plain sentence, no requirement code, no placeholder, no "QA lead" / "ask your"; no precondition says who to ask or "set aside"
-from scenarios import SCEN
-CODE_RE = re.compile(r"\b(?:S\d+-[RNE]\d+|[A-Z]{1,6}-[A-Z]?\d+[a-z]?|SV-\d+)\b")
-ALLCODES = set(L.CODE) | set(L.NAMED) | set(L.SUB)
-for k in SCEN:
-    if k not in keys: probs.append(f"scenarios.py names case {k}, which does not exist")
+    if not c["pre"][-1][0] == L.BLOCKED: probs.append(f"{c['key']}: the Blocked line is not last in the authoring data")
+# ---- PATTERN GATE (Rule 117 fourteenth amendment, QA lead 26 Oct 2026: "Yes, permanent, all suites"). Replaces the Scenario gate.
+# Preconditions: a "Preconditions" heading and plain bullets only, no "{", no "For example", no "Scenario:", no setup-file link, no
+# who-to-ask or generic line, the Blocked line last. Steps: plain, no placeholder. Expected: "Expected Result", then a "Step N:" heading per
+# step each followed by a bullet list, then "<p></p>", then the note (if any) and the quotes block; the quotes block, From lines,
+# References from Design and AUTOMATION line identical to the version before the pattern (before/proposals.json).
+import html as _html
+from pattern import BLOCKED_P
+BEFORE_F = f"{L.P}/pattern-format-2026-10-26/before/proposals.json"
+BEFORE = json.load(open(BEFORE_F)) if os.path.exists(BEFORE_F) else {}
+if not BEFORE: probs.append("pattern gate: before/proposals.json missing, so the quotes/design/AUTOMATION identity cannot be checked")
+def _tail(h): return h[h.index("<p><strong>Exact quotes from the source"):]
+pat_text = []
 for c in L.CASES:
-    k, s = c["key"], c["scen"]
-    pre_html = L.render(c)["custom_preconds"]
-    body = pre_html.split("<p><strong>Preconditions</strong></p><ul>", 1)[1] if "<p><strong>Preconditions</strong></p><ul>" in pre_html else ""
-    if not s: probs.append(f"{k}: no Scenario line"); continue
-    if pre_html.count("Scenario:") != 1: probs.append(f"{k}: {pre_html.count('Scenario:')} Scenario lines in Preconditions (must be exactly one)")
-    if not body.startswith("<li>Scenario: "): probs.append(f"{k}: the Scenario line is not the first precondition")
-    if any(a.startswith("Scenario") for a, _ in c["pre"]): probs.append(f"{k}: a second Scenario bullet inside the preconditions list")
-    if len(s.split()) > 40: probs.append(f"{k}: Scenario line has {len(s.split())} words (at most 40)")
-    if CODE_RE.search(s) or any(re.search(r"(?<![\w-])" + re.escape(x) + r"(?![\w-])", s) for x in ALLCODES if re.search(r"[-\d]", x)):
-        probs.append(f"{k}: Scenario line holds a requirement code or ticket number")
-    if re.search(r"QA lead|ask your|\bask\b", s, re.I): probs.append(f"{k}: Scenario line says who to ask")
-    if "{" in s or "}" in s: probs.append(f"{k}: Scenario line holds a placeholder")
-    if not s.endswith(".") or re.search(r"[.!?]\s+[A-Z]", s[:-1]): probs.append(f"{k}: Scenario line is not one sentence ending with a full stop")
-    allpre = " ".join([s] + [a + " " + (b or "") for a, b in c["pre"]])
-    if re.search(r"QA lead|ask your|set aside for", allpre, re.I): probs.append(f"{k}: a precondition says who to ask or uses a set-aside line")
-print("scenario lines", sum(1 for c in L.CASES if c["scen"]), "of", len(L.CASES),
-      "| longest", max(len(c["scen"].split()) for c in L.CASES), "words")
+    k = c["key"]; f = L.render(c); pre, st, ex = f["custom_preconds"], f["custom_steps"], f["custom_expected"]
+    H = "<p><strong>Preconditions</strong></p><ul>"
+    if not pre.startswith(H) or not pre.endswith("</ul>"): probs.append(f"{k}: Preconditions are not a heading and one bullet list"); continue
+    items = re.findall(r"<li>(.*?)</li>", pre[len(H):-5], re.S)
+    if pre[len(H):-5] != "".join(f"<li>{x}</li>" for x in items): probs.append(f"{k}: Preconditions hold something other than plain bullets")
+    plain = [_html.unescape(x) for x in items]
+    if not plain or plain[-1] != BLOCKED_P: probs.append(f"{k}: the Blocked line is not the last precondition")
+    for x in plain:
+        if re.search(r"[{}]", x): probs.append(f"{k}: a placeholder brace in the preconditions: {x[:80]!r}")
+        if re.search(r"for example", x, re.I): probs.append(f"{k}: a 'For example' in the preconditions: {x[:80]!r}")
+        if "Scenario:" in x: probs.append(f"{k}: a Scenario line in the preconditions")
+        if re.search(r"<a |href=|setup file|Setup file", x): probs.append(f"{k}: a setup-file link or mention in the preconditions")
+        if re.search(r"QA lead|ask your|\bask\b|set aside", x, re.I): probs.append(f"{k}: who-to-ask or generic wording in the preconditions: {x[:80]!r}")
+        if "ZZAUTOTEST" in x: probs.append(f"{k}: an example record name in the preconditions")
+        if re.search(r"<(?!/?(strong)>)", x): probs.append(f"{k}: markup inside a precondition bullet")
+    steps = [_html.unescape(x) for x in re.findall(r"<li>(.*?)</li>", st, re.S)]
+    if len(steps) != len(c["steps"]): probs.append(f"{k}: {len(steps)} steps rendered for {len(c['steps'])}")
+    for x in steps:
+        if re.search(r"[{}]", x): probs.append(f"{k}: a placeholder brace in a step: {x[:80]!r}")
+        if "ZZAUTOTEST" in x: probs.append(f"{k}: an example record name in a step")
+    E = "<p><strong>Expected Result</strong></p>"
+    if not ex.startswith(E): probs.append(f"{k}: Expected does not start with the 'Expected Result' heading"); continue
+    rest = ex[len(E):]; nres = []
+    for n in range(1, len(c["steps"]) + 1):
+        m = re.match(rf"<p>Step {n}:</p><ul>((?:<li>.*?</li>)+)</ul>", rest, re.S)
+        if not m: probs.append(f"{k}: no 'Step {n}:' heading followed by a bullet list"); break
+        nres.append([_html.unescape(x) for x in re.findall(r"<li>(.*?)</li>", m.group(1), re.S)]); rest = rest[m.end():]
+    else:
+        if not rest.startswith("<p></p>"): probs.append(f"{k}: no blank paragraph after the last result")
+        rest = rest[len("<p></p>"):]
+        if c["note"]:
+            if not rest.startswith("<p>"): probs.append(f"{k}: the note is not right after the blank paragraph")
+            rest = rest[rest.index("</p>") + 4:]
+        if not rest.startswith("<p><strong>Exact quotes from the source"): probs.append(f"{k}: the quotes block does not follow the blank line")
+    for r in nres:
+        for x in r:
+            if re.search(r"[{}]", x): probs.append(f"{k}: a placeholder brace in a result: {x[:80]!r}")
+            if "ZZAUTOTEST" in x: probs.append(f"{k}: an example record name in a result")
+            if not x or not (x[0].isupper() or x[0] in '"“$(0123456789⋯'): probs.append(f"{k}: a result bullet does not start a sentence: {x[:60]!r}")
+    if BEFORE:
+        b = BEFORE.get(k)
+        if not b: probs.append(f"{k}: not in before/proposals.json")
+        elif _tail(b["fields"]["custom_expected"]) != _tail(ex): probs.append(f"{k}: quotes / From lines / References from Design / AUTOMATION line changed")
+        elif b["title"] != c["title"]: probs.append(f"{k}: title changed")
+    pat_text.append(" ".join(steps + [x for r in nres for x in r]))
+# every User Feedback Summary message is still used word for word in the pattern steps and results
+pat_all = " ".join(pat_text)
+for k_, (lab, row) in L.NAMED.items():
+    if not k_.startswith("UFS-"): continue
+    for m in msgs(row):
+        if m not in pat_all: probs.append(f"{k_}: message not used word for word in any pattern step or result: {m!r}")
+print("pattern gate: cases", len(L.CASES), "| before snapshot", len(BEFORE))
 # ---- design references (design pass): DREFS keys exist, every picture named exists in design-2026-10-23/images/, design cases have refs
 for k, d in L.DREFS.items():
     if k not in keys: probs.append(f"DREFS names case {k}, which does not exist")
