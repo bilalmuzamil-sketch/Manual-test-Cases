@@ -110,3 +110,38 @@ def testrail_host(json_path=None, default=DEFAULT_HOST):
     if not host.startswith("http"):
         host = "https://" + host
     return host
+
+
+# ---------------------------------------------------------------------------------------
+# Shopview TMS (tms.shopview.com) -- added 2026-10-26 when case management moved from
+# TestRail to TMS. Same three-place search, same reason (one search, never a private copy).
+# Auth per the TMS OpenAPI (build/tms/tms-openapi-2026-10-26.json): an API key `svtm_...`
+# sent as `Authorization: Bearer <key>`. Keys are issued in TMS under Settings > API keys
+# and are shown only once.
+# ---------------------------------------------------------------------------------------
+TMS_JSON_FILE = "/tmp/tms/creds.json"
+TMS_DEFAULT_HOST = "https://tms.shopview.com"
+
+
+def tms_key(json_path=None):
+    """The TMS API key, searched in: TMS_API_KEY env var, /tmp/shopview-creds.env, /tmp/tms/creds.json."""
+    path = json_path or TMS_JSON_FILE
+    key = (os.environ.get("TMS_API_KEY")
+           or _read_env_file().get("TMS_API_KEY")
+           or _read_json(path).get("api_key"))
+    if key:
+        return key
+    raise RuntimeError(
+        "No TMS API key found. Looked in: TMS_API_KEY env var, %s, %s. Do NOT report this "
+        "as a blocker until all three have been checked." % (ENV_FILE, path)
+    )
+
+
+def tms_host(json_path=None, default=TMS_DEFAULT_HOST):
+    """The TMS base host (no trailing slash); the API lives under {host}/api/v1."""
+    path = json_path or TMS_JSON_FILE
+    host = (os.environ.get("TMS_HOST")
+            or _read_env_file().get("TMS_HOST")
+            or _read_json(path).get("host")
+            or default).rstrip("/")
+    return host if host.startswith("http") else "https://" + host
