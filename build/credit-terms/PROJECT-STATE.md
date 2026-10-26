@@ -88,3 +88,28 @@ P-OLD recipe updated; applied 26 Oct, read back clean. 7. QA branch: given when 
   stated active, notes no longer name other cases, "(from other tests)" removed. Two permanent gates added to `authoring/build.py`
   (relevance; independence: no case key or C-id in tester text, changed records made for this test) plus a stale hand-written-form check;
   0 PROBLEM lines. Evidence: `pattern-format-2026-10-26/RELEVANCE-PASS.md`. Needs the QA lead's go-ahead before any TestRail update.
+
+## 26 Oct 2026 — tester read-through (DRAFT, not applied to TestRail)
+- QA lead, 26 Oct 2026: "GO" to a read-through of every case ("Make sure that your work does not bite me"); brief
+  `build/tester-readthrough-2026-10-26/WORKER-BRIEF.md`. Nothing written to TestRail, Jira, Slack or Google; nothing committed.
+- The 10 Credit terms cases deleted from TestRail today on the QA lead's order (S1-27 C723891, S1-28 C723892, S2-35 C723935, S3-27 C723963,
+  S3-28 C723964, S4-30 C723994, S4-34 C723998, S5-23 C724023, S5-25 C724025, S12-19 C724126) are out of the library (case modules,
+  scenarios.py, relevance.py, design_refs.py, render_outputs.py) and of proposals.json, the setup file and the outputs. 12 PRD items covered
+  only by them (S1-E3, S5-E3, EH-S1, EH-S4c, EH-S5b, EH-S12, UFS-1, -21, -26, -31, -38, -45) read "No manual case: deleted 26 Oct 2026 on the
+  QA lead's order (a manual tester cannot set it up); left to the developers' own checks" in REPORT.md §2 (`ct_lib.NO_MANUAL`, accepted by
+  the coverage gate). 334 cases remain.
+- Every one of the 334 cases read as a tester; fixes in `authoring/readthrough.py` (applied by `ct_lib.render` after `pattern.py`):
+  the "mark this test Blocked" line removed from all 334 (Rule 117 fifteenth amendment; new build.py gate, and render_setup.py refuses to
+  write it); 186 cases with further fixes (setup said as what to create and in setup order, bundled bullets split, vague wording made
+  concrete, unnamed windows/pages/"It" named, S1-22/S1-32-34/S4-02/S11-03 steps made runnable, S8-07/S8-02/D-18 one action per step,
+  S10-11/12 results no longer speak of a window for an API request). Check 3: S8-08 now proves a sync ran (term B on a synced invoice
+  appears; PRD S8-R1 quote added, the only quote change), S8-06 syncs an invoice of customer A before checking QuickBooks (S8-R6 already
+  quoted). Quotes block onward byte-identical to applied/C<id>-after.json for 333/334 (S8-08 differs only by the added quote); titles,
+  markers and the 9 held cases' markers and notes unchanged.
+- Gates: `python3 authoring/build.py` PROBLEM lines: 0. Identity check and report:
+  `build/tester-readthrough-2026-10-26/credit-terms/verify_and_report.py` → `READTHROUGH-REPORT.md` (old vs new for every changed case,
+  per-part CHANGED/CONFIRMED record, "could not make concrete" and "negative check without a control" lists).
+- For the QA lead: S12-18 (C724125) and D-38 (C724185) cannot be set up by a manual tester for the same reason as the deleted cases (a
+  request outside the page; a log that fails to load on demand). Not deleted; listed in the report.
+- Setup file and outputs regenerated (the setup file now also lists each case's preconditions as the TestRail case states them).
+  Needs the QA lead's go-ahead before any TestRail update (Rule 6).
