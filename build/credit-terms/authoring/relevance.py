@@ -83,8 +83,9 @@ REPL = {
              [("Invoice {Invoice-A}, dated Oct 5, 2026, at {Location-A}, belongs to a customer who holds one of the shop's own terms, due on day 10 of the following month.",
                "For example: the customer is ZZAUTOTEST S7-04 Customer on ZZAUTOTEST S7-04 Tenth.")]},
  "S7-05": {'On production, customer {Customer-A} is stored with a credit term text ShopView does not know, {Text-A}, and an invoice {Invoice-A} for it, dated Oct 5, 2026, was created before the release reached production; its due date then, {Date-A}, was written down (with a screenshot).':
-             [('On production, a customer is stored with a credit term text ShopView does not know, {Text-A}, and an invoice for it, dated Oct 5, 2026, was created before the release reached production; its due date then, {Date-A}, was written down (with a screenshot).',
-               "For example: the customer is ZZAUTOTEST S7-05 Customer, {Text-A} is Prepaid and {Date-A} is Oct 5, 2026.")],
+             [('On production, a customer is stored with a credit term text ShopView does not know, {Text-A}, and an invoice for it, dated Oct 5, 2026, was created before the release reached production.',
+               "For example: the customer is ZZAUTOTEST S7-05 Customer and {Text-A} is Prepaid."),
+              ("You have that invoice's due date from before the release written down ({Date-A}), with a screenshot.", "For example: {Date-A} is Oct 5, 2026.")],
            "Work order {Work-order-1} for {Customer-A} is complete and ready to invoice.":
              [("Work order {Work-order-1}, for the same customer, is complete and ready to invoice.", "For example: {Work-order-1} is S2-15441.")]},
  "S7-06": {"Customer {Customer-A} holds the shop's own term {Term-A}, due 14 days after the invoice date, and {Term-A} is deactivated.": [],
@@ -176,11 +177,13 @@ REPL = {
              [('A contacts import file with three new customers: {Customer-B} with the credit term text "NET 30", one with "net30" and one with {Term-A} written in capital letters.',
                "For example: {Customer-B} is ZZAUTOTEST DATA-20 Bravo and the others ZZAUTOTEST DATA-20 Charlie and Delta.")]},
  "DATA-21": {"Customer {Customer-A} and vendor {Vendor-A} were stored with a blank credit term before the release; COD's Customers count is {Count-A} and Vendors count {Count-B} with them included.":
-             [("Customer {Customer-A} and a vendor were stored with a blank credit term before the release; COD's Customers count is {Count-A} and Vendors count {Count-B} with them included.",
-               "For example: {Customer-A} is ZZAUTOTEST DATA-21 Blank, the vendor ZZAUTOTEST DATA-21 Blank Vendor, {Count-A} is 121 and {Count-B} is 768.")]},
+             [("Customer {Customer-A} and a vendor were stored with a blank credit term before the release.",
+               "For example: {Customer-A} is ZZAUTOTEST DATA-21 Blank and the vendor ZZAUTOTEST DATA-21 Blank Vendor."),
+              ("Before you start, write down COD's Customers count ({Count-A}) and Vendors count ({Count-B}), with them included.", "For example: {Count-A} is 121 and {Count-B} is 768.")]},
  "DATA-22": {'Net 45 is held by {Count-A} vendors (written down). Vendor {Vendor-A} is stored with "NET 45" and vendor {Vendor-B} holds Net 45 and is inactive; both are in {Count-A}.':
-             [('Net 45 is held by {Count-A} vendors (written down). Vendor {Vendor-A} is stored with "NET 45" and another vendor holds Net 45 and is inactive; both are in {Count-A}.',
-               "For example: {Count-A} is 5, {Vendor-A} is ZZAUTOTEST DATA-22 Upper and the inactive vendor ZZAUTOTEST DATA-22 Inactive.")]},
+             [('Vendor {Vendor-A} is stored with "NET 45" and another vendor holds Net 45 and is inactive.',
+               "For example: {Vendor-A} is ZZAUTOTEST DATA-22 Upper and the inactive vendor ZZAUTOTEST DATA-22 Inactive."),
+              ("Before you start, write down how many vendors hold Net 45 ({Count-A}, which includes vendor {Vendor-A} and the inactive vendor).", "For example: {Count-A} is 5.")]},
  "DATA-25": {'The shop\'s own term {Term-A}, due 20 days after the invoice date, is held by exactly five customers: {Customer-A}, {Customer-B}, {Customer-C}, {Customer-D} and {Customer-E}; only {Customer-B} and {Customer-D} have "Fleet" in their names.':
              [('The shop\'s own term {Term-A}, due 20 days after the invoice date, is held by exactly five customers made for this test: {Customer-A}, {Customer-B}, {Customer-D} and two more; only {Customer-B} and {Customer-D} have "Fleet" in their names.',
                "For example: {Term-A} is ZZAUTOTEST DATA-25 N20 and they are ZZAUTOTEST DATA-25 Alpha, Bravo Fleet, Charlie, Delta Fleet and Echo.")]},
@@ -255,6 +258,13 @@ REPL.update({
  "D-31": {"{Vendor-A} is on Net 50, and Net 50 is deactivated.": [("A vendor is on Net 50.", "For example: ZZAUTOTEST D-31 Vendor."), ("Net 50 is deactivated.", None)],
           VP: [("Starting screen: the vendor page of that vendor.", None)]},
 })
+REPL["S4-17"] = {"The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly one customer, {Customer-A}, whose record misses details Edit Customer would ask for (for example no address).":
+    [("The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly one customer, {Customer-A}, whose record has no address (a detail Edit Customer requires).",
+      "For example: {Term-A} is ZZAUTOTEST S4-17 N20 and {Customer-A} is ZZAUTOTEST S4-17 Incomplete.")]}
+REPL["DATA-20"] = {"The shop's own term {Term-A} is held by no customer, and Net 30 is held by {Count-B} customers, written down before you start (the Counter Sale customer is never counted).":
+    [("The shop's own term {Term-A} (made for this test) is held by no customer.", "For example: {Term-A} is ZZAUTOTEST DATA-20 Fourteen."),
+     ("Before you start, write down how many customers hold Net 30 ({Count-B}; the Counter Sale customer is never counted).", "For example: {Count-B} is 40.")],
+    **REPL["DATA-20"]}
 REPL["S3-08"] = {"A new name {Term-A} that no term has, and a customer {Customer-A} and a vendor {Vendor-A}.":
     [("A new name {Term-A} that no term has.", "For example: {Term-A} is ZZAUTOTEST S3-08 Fourteen."),
      ("Customer {Customer-A} and vendor {Vendor-A} exist.", "For example: {Customer-A} is ZZAUTOTEST S3-08 Customer and {Vendor-A} is ZZAUTOTEST S3-08 Vendor.")]}
@@ -324,6 +334,19 @@ CHANGES = re.compile(r'"(?:Deactivate|Reactivate|Delete Credit Term|Make Default
                      r'Send a (?:Public API request that (?:creates|updates)|save|move request)|\bclick Save\b')
 KINDS = ("Term", "Customer", "Vendor", "Work-order", "Invoice", "Vendor-invoice", "Credit-memo", "Part-sale", "Estimate", "Asset")
 FRESH = re.compile(r"\bnew\b|for this test|before the release|Counter Sale|[Oo]n production|built-in|^(?:A name|Names)\b")   # a name the steps use to create the record is new by definition
+KW = {"Term": "term", "Customer": "customer", "Vendor": "vendor", "Work-order": "work order", "Invoice": "invoice", "Vendor-invoice": "vendor invoice",
+      "Credit-memo": "credit memo", "Part-sale": "part sale", "Estimate": "estimate", "Asset": "asset"}
+ALWAYS_FRESH = re.compile(r"before the release|Counter Sale|[Oo]n production|built-in|^(?:A name|Names|Choose)\b")
+def is_fresh(bullet, name, kind):
+    """True when the bullet says this record is new / made for this test (not merely that something else in the bullet is new)."""
+    i = bullet.find(name)
+    if i < 0: return bool(ALWAYS_FRESH.search(bullet))
+    after = bullet[i + len(name):]
+    if after.startswith(" (made for this test)") or bullet.startswith("Create "): return True
+    clause = re.split(r"[.;]\s|, and |, but ", bullet[:i])[-1]
+    whole = clause + name + re.split(r"[.;]\s|, and |, but ", after)[0]
+    if ALWAYS_FRESH.search(whole) or re.match(r"^(?:A name|Names|Choose)\b", bullet): return True
+    return bool(re.search(r"\bnew (?:\w+ ){0,2}" + kind + r"s?\b|" + kind + r"s? made for this test", clause + name))
 NETS = re.compile(r"(?<![\w-])Net (?:7|15|20|30|45|50|60|90|120)(?![\w\d])")
 def _join(xs): return xs[0] if len(xs) == 1 else ", ".join(xs[:-1]) + " and " + xs[-1]
 def independence(key, pre, steps, res):
@@ -344,7 +367,22 @@ def independence(key, pre, steps, res):
         for kind in KINDS:
             for ph in sorted(set(re.findall(r"\{" + kind + r"-[A-Z0-9]\}", " ".join(list(steps) + list(res))))):
                 first = next((a for a, _ in pre if ph in a), "")
-                if first and not FRESH.search(first): fresh.append(ph)
-        if fresh:
-            add.append((f"Create {_join(fresh)} just for this test, so no earlier test's changes affect {'it' if len(fresh) == 1 else 'them'}.", None))
+                if first and not is_fresh(first, ph, KW[kind]): fresh.append(ph)
+        rest = []
+        for ph in fresh:
+            i = next(i for i, (a, _) in enumerate(pre) if ph in a)
+            a, b = pre[i]
+            m = re.match(r"^(?:Customer|Vendor) (\{[^}]+\})(?: and (?:customer|vendor) (\{[^}]+\}))? exists?(?: on (Net \d+))?(.*)\.$", a)
+            if m and ph in (m.group(1), m.group(2)):
+                who = _join([x for x in (m.group(1), m.group(2)) if x])
+                pre[i] = (f"Create {who} for this test" + (f", on {m.group(3)}" if m.group(3) else "") + m.group(4) + ".", b); continue
+            if re.search(re.escape(ph) + r" \(made for this test\)", a) or re.match(r"Create ", a): continue
+            j = a.index(ph); before, after = a[:j], a[j + len(ph):]
+            in_list = re.search(r"(\}, |\} and |\}, and )$", before) or re.match(r"(?:, | and |, and )\{", after)
+            if not in_list:
+                pre[i] = (before + ph + " (made for this test)" + after, b)
+            else:
+                rest.append(ph)
+        if rest:
+            add.append((f"Create {_join(rest)} just for this test, so no earlier test's changes affect {'it' if len(rest) == 1 else 'them'}.", None))
     return pre[:start] + add + pre[start:]

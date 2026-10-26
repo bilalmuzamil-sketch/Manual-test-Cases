@@ -12,6 +12,7 @@ import sys, json, os, importlib, re
 from collections import Counter
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ct_lib as L
+import relevance as RELEVANCE
 from po_questions import QUESTIONS
 MODS = ["cases_s1", "cases_s2", "cases_s3", "cases_s4", "cases_s5", "cases_s6", "cases_s7", "cases_s8", "cases_s9", "cases_s10",
         "cases_s11", "cases_s12", "cases_data", "cases_design"]
@@ -186,8 +187,10 @@ for c in L.CASES:
         bullets = [b for b in pre if re.search(r"(?<![\w-])" + re.escape(n) + r"(?![\w-])", b, re.I)
                    or re.search(r"(?<![\w-])" + re.escape(n.rsplit(" ", 1)[0]) + r"s (?:[A-Z0-9], )*(?:[A-Z0-9] and )?" + n[-1].upper() + r"\b", b)]
         if not bullets: probs.append(f"{k}: independence: {n!r} is used by the steps but no precondition creates it"); continue
-        if not any(FRESHP.search(b) for b in bullets):
+        if not any(RELEVANCE.is_fresh(b, re.search(re.escape(n), b, re.I).group(0) if re.search(re.escape(n), b, re.I) else n, n.rsplit(" ", 1)[0]) for b in bullets):
             probs.append(f"{k}: independence: the steps change things but {n!r} is not described as new or made for this test")
+import pattern as _PAT
+for _k in sorted(set(_PAT.PRE_OVR) - _PAT.PRE_OVR_USED, key=str): probs.append(f"{_k[0]}: a hand-written precondition form in pattern.py no longer matches its case (stale): {_k[1][:70]!r}")
 print("independence gate: changing cases", ind_changing, "| records checked", ind_records)
 # ---- design references (design pass): DREFS keys exist, every picture named exists in design-2026-10-23/images/, design cases have refs
 for k, d in L.DREFS.items():

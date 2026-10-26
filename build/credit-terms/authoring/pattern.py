@@ -102,28 +102,16 @@ PRE_OVR = {  # (case key, original bullet) -> plain bullet(s); only where the ru
    ["Note today's date on the calendar of the location you work in (date A).", "Work out date B: the date 14 days later."],
  ("D-14", "Today on the calendar of the location you work in is {Date-A}, and {Date-B} is the 10th of the following month."):
    ["Note today's date on the calendar of the location you work in (date A).", "Work out date B: the 10th of the following month."],
- ("DATA-20", "The shop's own term {Term-A} is held by no customer, and Net 30 is held by {Count-B} customers, written down before you start (the Counter Sale customer is never counted)."):
-   ["Make sure the shop's own term A is held by no customer.", "Before you start, write down how many customers hold Net 30 (number B; the Counter Sale customer is never counted)."],
- ("DATA-21", "Customer {Customer-A} and vendor {Vendor-A} were stored with a blank credit term before the release; COD's Customers count is {Count-A} and Vendors count {Count-B} with them included."):
-   ["Make sure customer A and vendor A were stored with a blank credit term before the release.",
-    "Before you start, write down COD's Customers count (number A) and Vendors count (number B), with them included."],
- ("DATA-22", "Net 45 is held by {Count-A} vendors (written down). Vendor {Vendor-A} is stored with \"NET 45\" and vendor {Vendor-B} holds Net 45 and is inactive; both are in {Count-A}."):
-   ["Make sure vendor A is stored with \"NET 45\" and vendor B holds Net 45 and is inactive.",
-    "Before you start, write down how many vendors hold Net 45 (number A, which includes vendor A and vendor B)."],
  ("DATA-23", "Net 15 is held by {Count-A} customers and Net 20 by {Count-B}, written down; three of the Net 15 customers are {Customer-A}, {Customer-B} and {Customer-C}."):
    ["Make sure three of the customers on Net 15 are customer A, customer B and customer C.",
     "Before you start, write down how many customers hold Net 15 (number A) and how many hold Net 20 (number B)."],
- ("S7-05", "On production, customer {Customer-A} is stored with a credit term text ShopView does not know, {Text-A}, and an invoice {Invoice-A} for it, dated Oct 5, 2026, was created before the release reached production; its due date then, {Date-A}, was written down (with a screenshot)."):
-   ["Make sure that on production, customer A is stored with a credit term text ShopView does not know, \"Prepaid\", and that invoice A for it, dated Oct 5, 2026, was created before the release reached production.",
-    "Have invoice A's due date from before the release written down (date A), with a screenshot."],
  ("S11-02", "Before the release reached production, these were written down on production (with screenshots): customer {Customer-A}'s term and credit limit, vendor {Vendor-A}'s term and credit limit, and invoice {Invoice-A}'s term and due date, and vendor invoice {Vendor-invoice-A}'s due date."):
    ["Have these written down on production from before the release reached production (with screenshots): customer A's term and credit limit, vendor A's term and credit limit, invoice A's term and due date, and vendor invoice A's due date."],
- ("S4-17", "The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly one customer, {Customer-A}, whose record misses details Edit Customer would ask for (for example no address)."):
-   ["Make sure the shop's own term A, due 20 days after the invoice date, is held by exactly one customer, customer A, whose record has no address (a detail Edit Customer requires)."],
  ("D-38", "The log cannot be loaded (the setup file says how to make it fail on the test shop)."):
    ["Make sure the Credit Terms Log cannot be loaded on the test shop."],
 }
 
+PRE_OVR_USED = set()
 START_RE = re.compile(r"^Starting screen: (.*)$")
 def pre_rule(a):
     """One original precondition (with placeholders) -> one imperative bullet (still with placeholders)."""
@@ -188,6 +176,7 @@ def pattern_pre(c, names, blocked):
     for a, _ in c["pre"]:
         if a == blocked: continue
         ov = PRE_OVR.get((c["key"], a))
+        if ov: PRE_OVR_USED.add((c["key"], a))
         bullets = ov if ov else [pre_rule(a)]
         out += [_cap(sub(b, names)) for b in bullets]
     out = sorted(out, key=order_key)  # stable: setup order, the starting screen last
