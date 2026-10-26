@@ -359,10 +359,10 @@ def relevance_problems(key, f):
 
 # ---- INDEPENDENCE GATE (26 Oct 2026, PERMANENT; QA lead: "the test cases need to be created in a way that if one test case fails that
 # does not block the other test case.") ----
-_CHG_WO = re.compile(r"(\b(click|tap|pick|choose)\b.*\b(sales rep [a-d]|\"unassigned\"|the \+|remove x|\"sales representative - (parts|part sales|service parts)\"|in the open dropdown)"
-                     r"|\badd (the \"sales representative - parts\"|parts|\"sales representative)|\bset (its|\"sales representative|the work order's)|\bchange (the work order's|sales representative to|service parts|the sales representative field)"
-                     r"|invoice the work order|reverse the invoice|split the (work order|part sale)|move one line|reopen the work order|change the work order's customer"
-                     r"|untick|tick every)")
+_CHG_PICK = re.compile(r"\b(click|tap|pick|choose)\b.*(sales rep [a-d]|\"unassigned\"|the \+|remove x|\"sales representative - (parts|part sales|service parts)\"|in the open dropdown)"
+                       r"|\badd (the \"sales representative - parts\"|parts|\"sales representative)|\bset (its|\"sales representative)|\bchange (sales representative to|service parts|the sales representative field|the work order's sales)")
+_CHG_WO = re.compile(r"invoice the work order|reverse the invoice|split the work order|move one line|reopen the work order|change the work order's customer|to the work order")
+_MADE_IN_STEP = re.compile(r"\b(open new customer|start a new|create a new|add a new customer)", re.I)
 _CHG_CUST = re.compile(r"save the customer|import the file")
 _CHG_STAFF = re.compile(r"switch off|deactivat|reactivate|last name|save the staff record")
 def _kind_of_page(t):
@@ -382,7 +382,7 @@ def independence_problems(key, f, reads_only=("S1-01",)):
     tester = " ".join(items + steps) + " " + html.unescape(re.sub(r"<[^>]+>", " ", f["custom_expected"].split("<p></p>", 1)[0]))
     if re.search(r"\bC\d{5,7}\b|\b(?:S\d|REL|DR|D)-\d{2}[a-z]?\b", tester): p.append(f"{key}: a case key or C-id in the tester text")
     if key in reads_only: return p
-    changed = set()
+    changed, made_in_step = set(), set()
     ctx = _kind_of_page(next((x for x in reversed(items) if re.match(r"(Open |With the release installed, open )", x)), "") or "")
     for s in steps:
         k = _kind_of_page(s) if re.match(r"(Open|Reopen|Create|Start|Back in|In the|Tap the card)", s) or "open " in s.lower()[:40] else None
@@ -390,16 +390,17 @@ def independence_problems(key, f, reads_only=("S1-01",)):
         low = s.lower()
         if _CHG_STAFF.search(low): changed.add("staff member")
         if _CHG_CUST.search(low): changed.add("customer")
-        if "change the work order's customer" in low: changed.add("work order")
-        elif _CHG_WO.search(low):
-            tgt = "staff member" if "second tab" in low and "switch" in low else ("customer" if ctx == "customer" else "part sale" if ctx == "part sale" else
-                  None if ctx in ("report", "staff member") else "work order")
-            if "untick" in low or "tick every" in low: tgt = None
+        if _MADE_IN_STEP.search(s): made_in_step.add(_kind_of_page(s) or ""); ctx = _kind_of_page(s) or ctx
+        if "split the part sale" in low: changed.add("part sale")
+        elif _CHG_WO.search(low): changed.add("work order")
+        elif _CHG_PICK.search(low) and not ("second tab" in low and "switch" in low):
+            tgt = {"customer": "customer", "part sale": "part sale", "report": None, "staff member": None}.get(ctx, "work order")
             if tgt: changed.add(tgt)
     for x in items:
-        if re.search(r"\b(turn|deactivate)\b.*\b(switch off|staff account)", x, re.I) or x.startswith("Then deactivate"): changed.add("staff member")
-    for kind in sorted(changed):
-        made = [x for x in items if kind in x.lower() and re.search(r"for this test", x)]
-        if kind == "staff member": made = [x for x in items if re.search(r"staff members?\b", x) and "for this test" in x]
+        if (re.search(r"\b(turn|deactivate)\b.*\b(switch off|staff account)", x, re.I) or x.startswith("Then deactivate")
+                or re.search(r"change .*last name|no longer exists|another organization", x)): changed.add("staff member")
+    for kind in sorted(changed - made_in_step):
+        kp = r"(staff members?|sales rep [A-D])" if kind == "staff member" else kind
+        made = [x for x in items if re.search(kp + r"s?( [A-D])?,? (made )?for this test", x)]
         if not made: p.append(f"{key}: a step or precondition changes a {kind}, but no precondition makes that {kind} for this test")
     return p

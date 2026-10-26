@@ -77,7 +77,12 @@ GENERIC_REASONS = [
     (lambda kind, x: kind == "label" and x == "Admin", "the role is kept as 'Sign in as an Admin'"),
     (lambda kind, x: kind == "term" and x in {"Customer", "Work Orders"}, "kept in other words"),
 ]
-rows, lost_all, ident_fail, strict = [], [], [], []
+rows, lost_all, ident_fail, strict, dropped = [], [], [], [], []
+# Facts removed on purpose in the relevance pass (26 Oct 2026): they belonged only to a record no step or result uses.
+DROPPED_UNUSED = {("S8-05", "label", "Sales Representative"): "the two sales reps' \"Sales Representative\" switch: the reps were removed, no step or result uses them",
+                  ("S8-05", "term", "Sales Representative"): "same bullet as above"}
+sys.path.insert(0, f"{P}/authoring")
+from pattern_cases import FIXES
 for k in IDS:
     o, n = OLD[k], NEW[k]
     to, tn = ssr_lib.results_tail(o["custom_expected"]), ssr_lib.results_tail(n["custom_expected"])
@@ -95,6 +100,7 @@ for k in IDS:
         if norm(x) in newt: continue
         if kind == "number" and norm(x) in re.sub(r"[^\d.,% ]", " ", newt).split(): continue
         if (kind, x) in JUSTIFIED: continue
+        if (k, kind, x) in DROPPED_UNUSED: dropped.append((k, kind, x, DROPPED_UNUSED[(k, kind, x)])); continue
         lost.append((kind, x))
     lost_all += [(k, a, b) for a, b in lost]
     # stricter: a fact of an old result is in the new results, a fact of an old step in the new steps
@@ -104,8 +110,8 @@ for k in IDS:
             if norm(x) in nn or (kind == "number" and norm(x) in re.sub(r"[^\d.,% ]", " ", nn).split()): continue
             strict.append((k, part, kind, x))
     rows.append(dict(key=k, cid=IDS[k], ident=ident, facts=len(old_f), ex_only=len(ex_only), lost=lost, o=o, n=n))
-json.dump({"identity_failures": ident_fail, "lost": lost_all, "strict": strict}, open(f"{D}/fact-check.json", "w"), indent=1, ensure_ascii=False)
-print("cases", len(rows), "| byte-identity failures", len(ident_fail), "| facts checked", sum(r["facts"] for r in rows), "| facts not found", len(lost_all), "| results/steps facts not in their own part", len(strict))
+json.dump({"identity_failures": ident_fail, "lost": lost_all, "strict": strict, "dropped_unused": dropped, "fixes": FIXES}, open(f"{D}/fact-check.json", "w"), indent=1, ensure_ascii=False)
+print("cases", len(rows), "| byte-identity failures", len(ident_fail), "| facts checked", sum(r["facts"] for r in rows), "| facts not found", len(lost_all), "| dropped with an unused record", len(dropped), "| results/steps facts not in their own part", len(strict))
 for k, a, b in lost_all: print("NOT FOUND", k, a, repr(b))
 if "--report" not in sys.argv: sys.exit(1 if (ident_fail or lost_all or strict) else 0)
 
@@ -150,6 +156,22 @@ L = ["# Splitting Sales Representatives: every case in the QA lead's pattern (26
      "- Below the blank paragraph after the results nothing changed (checked byte for byte below).", ""]
 if ident_fail:
     L += ["## Byte-identity failures", ""] + [f"- {k}: {v}" for k, v in ident_fail] + [""]
+L += ["## Second pass (26 Oct 2026): preconditions relate to the steps and results, and every case stands alone", "",
+      "QA lead: the preconditions \"must make sense and relate to the steps and expected results below\"; \"if one test case fails that does not "
+      "block the other test case.\" Two permanent gates were added to `authoring/build.py` (both end with 0 PROBLEM lines):", "",
+      "- **Relevance gate** (`ssr_lib.relevance_problems`): every record a precondition names (sales rep A-D, staff member A-D, customer A-C, user A/B, "
+      "role A/B, location A/B, the first/second/third work order, part sale, location or customer) must be named in the steps or expected results, or be "
+      "the record the steps start on (the precondition that opens it); otherwise the bullet naming it must say why it is needed with a \"so ...\" clause. "
+      "Any other record is a PROBLEM.",
+      "- **Independence gate** (`ssr_lib.independence_problems`): no case key or C-id in the tester text; and every record a step or a precondition "
+      "changes (picks or changes a rep, adds or removes a field, invoices, reverses, splits, moves lines, reopens, saves or imports a customer, turns a "
+      "switch off, deactivates, reactivates or renames a staff member, a staff record that no longer exists) is described as made \"for this test\" "
+      "in the preconditions, unless a step creates it. C665915 only reads and is kept as it is.",
+      "", f"Facts dropped because their record was unused: {len(dropped)}"] + [f"- {k}: {a} `{b}` ({w})" for k, a, b, w in dropped] + [
+      "", f"Cases changed in this pass: {len(FIXES)}", ""] + [f"- {k} (C{IDS[k]}): " + "; ".join(dict.fromkeys(v)) for k, v in FIXES.items()] + [
+      "- DR-01 (C690658), DR-06 (C690663): the two staff members who only make the split work order are no longer named; their bullet says why they are needed",
+      "- DR-02 (C690659): removed sales rep B (no step or result uses them); the part sale the case changes is made for this test",
+      "- DR-03 (C690660): removed sales rep B (no step or result uses them)", ""]
 if lost_all:
     L += ["## Facts not found", ""] + [f"- {k}: {a} `{b}`" for k, a, b in lost_all] + [""]
 L += ["## Per case, old vs new", ""]

@@ -105,3 +105,8 @@ Intake: INTAKE-2026-10-19.md. Worker brief: WORKER-BRIEF.md.
   (2,100 facts checked, 0 missing). build.py: pattern gate replaces the Scenario gate, 0 PROBLEM. Library: authoring/pattern_lib.py,
   pattern_cases.py (merged into trial_layout.LAYOUT_V2); design-recheck drafts DR-PATTERN.json. Setup file regenerated (plain-name map per
   recipe). Not yet in TestRail: the update waits for the QA lead's go-ahead.
+- 26 Oct 2026 (later still, DRAFT): relevance and independence passes on the pattern drafts (QA lead: preconditions "must make sense and
+  relate to the steps and expected results below"; "if one test case fails that does not block the other test case"). 126 cases changed
+  (122 library, 4 design-recheck): unused records removed or explained with a "so ..." clause, missing data added (S8-01, S5-11b), every record a
+  case changes made "for this test". Two permanent gates in build.py (ssr_lib.relevance_problems, ssr_lib.independence_problems); 0 PROBLEM.
+  Byte identity below the results still 180/180; facts: 0 lost, 2 dropped with an unused record (S8-05). Setup file notes unused and fresh records.

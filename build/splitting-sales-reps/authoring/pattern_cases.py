@@ -817,3 +817,39 @@ SO("S7-04", "where the Parts side was changed to sales rep B today", "the log ha
 SO("D-12", "switch on: sales rep A, sales rep B and sales rep C", "that each of the three fields holds a different name", "said why all three reps are needed")
 SO("D-12", "Use a customer with Service Labor set to sales rep A", "the page shows all three representative rows", "said why all three reps are needed")
 SO("REL-17", "the test location, a second location and a third location", "that the Location filter has several options to tick", "said why three locations are needed")
+
+# ---- INDEPENDENCE pass (26 Oct 2026; QA lead: "if one test case fails that does not block the other test case"): every record a case
+# changes, in a step or in its own preconditions, is made for this test; records it only reads may be any matching one. ----
+FRESH_RULES = {
+ "work order": [("Have an open, uninvoiced work order", "Create an open, uninvoiced work order for this test"),
+                ("Create an open, uninvoiced work order for that customer", "Create an open, uninvoiced work order for this test for that customer"),
+                ("Create an open, uninvoiced work order for customer A", "Create an open, uninvoiced work order for this test for customer A"),
+                ("Have a work order", "Create a work order for this test"), ("Have a first work order", "Create a first work order for this test"),
+                ("Have a second work order", "Create a second work order for this test")],
+ "customer": [("Use a customer ", "Create a customer for this test "), ("Use customer A, ", "Create customer A for this test, "),
+              ("Use customer B, ", "Create customer B for this test, "), ("Use customer C, ", "Create customer C for this test, ")],
+ "part sale": [("Have an open, uninvoiced part sale", "Create an open, uninvoiced part sale for this test")],
+ "staff member": [("Have an active staff member at", "Create an active staff member for this test at"),
+                  ("Have two active staff members at", "Create two active staff members for this test at"),
+                  ("Have three active staff members at", "Create three active staff members for this test at"),
+                  ("Have another active staff member at", "Create another active staff member for this test at"),
+                  ("Have staff member D active", "Create staff member D for this test, active"),
+                  ("Have sales rep A, an active staff member", "Create sales rep A for this test, an active staff member"),
+                  ("Have staff member C, another active staff member", "Create staff member C for this test, another active staff member"),
+                  ("holds a staff member whose staff record no longer exists", "holds a staff member made for this test whose staff record no longer exists"),
+                  ("holding a staff member whose staff record no longer exists", "holding a staff member made for this test whose staff record no longer exists"),
+                  ("holds a staff member of another organization", "holds a staff member made for this test in another organization")]}
+FRESH = {
+ "work order": "D-03 D-04 D-06 D-07 D-09 D-18 D-18b REL-08 REL-11 S1-03 S1-04 S1-08 S1-10 S1-10b S2-01 S2-02 S2-03 S2-04 S2-05 S2-06 S2-07 S2-07b S2-07c "
+               "S2-08 S2-09 S2-10 S2-12 S2-13 S2-14 S2-15 S2-16 S3-02 S3-02b S3-04 S4-14 S4-14b S5-03 S5-04 S5-09 S5-16 S5-20 S7-01 S7-01b S7-01c S7-02 S7-03 S7-05",
+ "customer": "D-10 D-10b D-11 S3-03 S4-01b S4-03 S4-03b S4-04 S4-04b S4-04c S4-05 S4-06 S4-07 S4-14c S4-18 S4-20b S4-22 S4-23 S4-26 S4-28",
+ "part sale": "D-14 S2-11 S4-27",
+ "staff member": "S1-07 S1-08 S1-09 S2-07 S2-07b S2-07c S4-03b S4-04c S4-15 S4-15b S4-18 S4-19 S4-19b S4-20 S4-20b S4-23 S4-26 S6-01 S6-02 "
+                 "S1-11 S7-05 S6-05 S5-19 S5-14"}
+for _kind, _keys in FRESH.items():
+    for _k in _keys.split():
+        SUBST(_k, FRESH_RULES[_kind], f"the {_kind} the case changes is made for this test")
+# release-day work order: made for this test before the release
+RE("REL-02", "Use a work order for that customer that was open (not invoiced), with sales rep A as its sales representative, before the release was installed.",
+   "Use a work order made for this test before the release was installed: for that customer, open (not invoiced), with sales rep A as its sales representative.",
+   "the work order the case invoices is made for this test (before the release)")

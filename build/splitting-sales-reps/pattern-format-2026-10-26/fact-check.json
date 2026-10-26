@@ -1,16 +1,483 @@
 {
  "identity_failures": [],
- "lost": [
+ "lost": [],
+ "strict": [],
+ "dropped_unused": [
   [
    "S8-05",
    "label",
-   "Sales Representative"
+   "Sales Representative",
+   "the two sales reps' \"Sales Representative\" switch: the reps were removed, no step or result uses them"
   ],
   [
    "S8-05",
    "term",
-   "Sales Representative"
+   "Sales Representative",
+   "same bullet as above"
   ]
  ],
- "strict": []
+ "fixes": {
+  "S1-03": [
+   "removed sales rep B: no step or result uses them",
+   "the work order the case changes is made for this test"
+  ],
+  "S1-04": [
+   "removed sales rep B: no step or result uses them",
+   "the one staff member who only fills the field is no longer named (no step or result names them)",
+   "the work order the case changes is made for this test"
+  ],
+  "S1-05": [
+   "removed sales rep B: no step or result uses them"
+  ],
+  "S1-06": [
+   "removed sales rep B: no step or result uses them",
+   "the sign-in user is no longer called user B (no step or result names them)"
+  ],
+  "S1-10": [
+   "removed sales rep B: no step or result uses them",
+   "the work order the case changes is made for this test"
+  ],
+  "S1-11": [
+   "removed sales rep B: no step or result uses them",
+   "staff member C described as a staff member whose record no longer exists (the name is not used)",
+   "staff member D described as a staff member of another organization (the name is not used)",
+   "the staff member the case changes is made for this test"
+  ],
+  "S2-01": [
+   "removed sales rep B: no step or result uses them",
+   "the work order the case changes is made for this test"
+  ],
+  "S2-03": [
+   "removed sales rep B: no step or result uses them",
+   "the work order the case changes is made for this test"
+  ],
+  "S2-11": [
+   "removed sales rep B: no step or result uses them",
+   "the part sale the case changes is made for this test"
+  ],
+  "S3-01": [
+   "removed sales rep B: no step or result uses them"
+  ],
+  "S3-02": [
+   "removed sales rep B: no step or result uses them",
+   "the work order the case changes is made for this test"
+  ],
+  "S3-02b": [
+   "removed sales rep B: no step or result uses them",
+   "the work order the case changes is made for this test"
+  ],
+  "S3-03": [
+   "removed sales rep B: no step or result uses them",
+   "the customer the case changes is made for this test"
+  ],
+  "S3-04": [
+   "removed sales rep B: no step or result uses them",
+   "the one staff member who only fills the field is no longer named (no step or result names them)",
+   "the work order the case changes is made for this test"
+  ],
+  "S4-02": [
+   "removed sales rep B: no step or result uses them"
+  ],
+  "S4-03": [
+   "removed sales rep B: no step or result uses them",
+   "the customer the case changes is made for this test"
+  ],
+  "S4-09": [
+   "removed sales rep B: no step or result uses them"
+  ],
+  "S5-07": [
+   "removed sales rep B: no step or result uses them"
+  ],
+  "S5-08": [
+   "removed sales rep B: no step or result uses them"
+  ],
+  "S5-08b": [
+   "removed sales rep B: no step or result uses them"
+  ],
+  "S5-09": [
+   "removed sales rep B: no step or result uses them",
+   "the work order the case changes is made for this test"
+  ],
+  "S5-18": [
+   "removed sales rep B: no step or result uses them",
+   "the one staff member who only fills the field is no longer named (no step or result names them)"
+  ],
+  "S5-19": [
+   "removed sales rep B: no step or result uses them",
+   "staff member C is now the second staff member",
+   "the Labor person is no longer named (no step or result names them)",
+   "the staff member the case changes is made for this test"
+  ],
+  "S6-01b": [
+   "removed sales rep B: no step or result uses them"
+  ],
+  "S6-05": [
+   "removed sales rep B: no step or result uses them",
+   "the Parts person described as a staff member whose record no longer exists (the name is not used)",
+   "the staff member the case changes is made for this test"
+  ],
+  "S7-01": [
+   "removed sales rep B: no step or result uses them",
+   "the work order the case changes is made for this test"
+  ],
+  "S7-03": [
+   "removed sales rep B: no step or result uses them",
+   "the work order the case changes is made for this test"
+  ],
+  "REL-01": [
+   "removed sales rep B: no step or result uses them"
+  ],
+  "REL-02": [
+   "removed sales rep B: no step or result uses them",
+   "the work order the case invoices is made for this test (before the release)"
+  ],
+  "REL-14": [
+   "removed sales rep B: no step or result uses them"
+  ],
+  "REL-16": [
+   "removed sales rep B: no step or result uses them"
+  ],
+  "D-01": [
+   "removed sales rep B: no step or result uses them"
+  ],
+  "D-02": [
+   "removed sales rep B: no step or result uses them",
+   "the one staff member who only fills the field is no longer named (no step or result names them)"
+  ],
+  "D-03": [
+   "removed sales rep B: no step or result uses them",
+   "the work order the case changes is made for this test"
+  ],
+  "D-04": [
+   "removed sales rep B: no step or result uses them",
+   "the one staff member who only fills the field is no longer named (no step or result names them)",
+   "the work order the case changes is made for this test"
+  ],
+  "D-05": [
+   "removed sales rep B: no step or result uses them",
+   "the one staff member who only fills the field is no longer named (no step or result names them)"
+  ],
+  "D-05b": [
+   "removed sales rep B: no step or result uses them",
+   "the one staff member who only fills the field is no longer named (no step or result names them)"
+  ],
+  "D-07": [
+   "removed sales rep B: no step or result uses them",
+   "the one staff member who only fills the field is no longer named (no step or result names them)",
+   "the work order the case changes is made for this test"
+  ],
+  "D-14": [
+   "removed sales rep B: no step or result uses them",
+   "the part sale the case changes is made for this test"
+  ],
+  "D-18": [
+   "removed sales rep B: no step or result uses them",
+   "the work order the case changes is made for this test"
+  ],
+  "D-18b": [
+   "removed sales rep B: no step or result uses them",
+   "the work order the case changes is made for this test"
+  ],
+  "S1-07": [
+   "removed sales rep A: no step or result uses them",
+   "the staff member the case changes is made for this test"
+  ],
+  "S1-09": [
+   "removed sales rep A: no step or result uses them",
+   "the staff member the case changes is made for this test"
+  ],
+  "S2-06": [
+   "removed sales rep A: no step or result uses them",
+   "the work order the case changes is made for this test"
+  ],
+  "S4-15": [
+   "removed sales rep A: no step or result uses them",
+   "the staff member the case changes is made for this test"
+  ],
+  "S4-15b": [
+   "removed sales rep A: no step or result uses them",
+   "the staff member the case changes is made for this test"
+  ],
+  "S4-19": [
+   "removed sales rep A: no step or result uses them",
+   "the staff member the case changes is made for this test"
+  ],
+  "S4-19b": [
+   "removed sales rep A: no step or result uses them",
+   "the staff member the case changes is made for this test"
+  ],
+  "S4-23": [
+   "removed sales rep A: no step or result uses them",
+   "the customer the case changes is made for this test",
+   "the staff member the case changes is made for this test"
+  ],
+  "REL-19b": [
+   "removed sales rep A: no step or result uses them"
+  ],
+  "S2-07": [
+   "removed sales reps A and B: the case uses only sales rep C",
+   "sales rep C is now the only staff member set up",
+   "the work order the case changes is made for this test",
+   "the staff member the case changes is made for this test"
+  ],
+  "S2-07b": [
+   "removed sales rep B: no step or result uses them",
+   "sales rep C described as the second staff member",
+   "the work order the case changes is made for this test",
+   "the staff member the case changes is made for this test"
+  ],
+  "S2-07c": [
+   "removed sales rep B: no step or result uses them",
+   "sales rep C described as the second staff member",
+   "the Parts person is no longer named (no step or result names them)",
+   "the work order the case changes is made for this test",
+   "the staff member the case changes is made for this test"
+  ],
+  "S4-01b": [
+   "removed the two sales reps: no step or result uses them",
+   "the customer the case changes is made for this test"
+  ],
+  "S8-05": [
+   "removed the two sales reps: no step or result uses them"
+  ],
+  "S4-04": [
+   "removed sales rep C: no step or result uses them (sales rep A stays: Service Labor must hold someone other than the Service Parts person)",
+   "said why sales rep A is needed",
+   "said why sales rep A is needed",
+   "the customer the case changes is made for this test"
+  ],
+  "S4-14": [
+   "removed sales rep B: no step or result uses them",
+   "the work order the case changes is made for this test"
+  ],
+  "S4-27": [
+   "removed sales rep B: no step or result uses them",
+   "the part sale the case changes is made for this test"
+  ],
+  "D-10b": [
+   "removed the three sales reps: the tooltip and menu need none",
+   "the customer the case changes is made for this test"
+  ],
+  "D-11": [
+   "removed sales reps B and C: no step or result uses them",
+   "the customer the case changes is made for this test"
+  ],
+  "D-13": [
+   "removed sales reps A and B: the case picks only sales rep C"
+  ],
+  "D-10": [
+   "said why three reps are needed (the result checks their order)",
+   "the customer the case changes is made for this test"
+  ],
+  "S5-17": [
+   "said why two reps are needed (the split work order) and dropped their unused names"
+  ],
+  "S4-24": [
+   "the sign-in user is no longer called user B (no step or result names them)"
+  ],
+  "S4-25": [
+   "the sign-in user is no longer called user B (no step or result names them)"
+  ],
+  "S4-28": [
+   "the sign-in user is no longer called user B (no step or result names them)",
+   "the customer the case changes is made for this test"
+  ],
+  "S7-05": [
+   "staff member C described as a staff member whose record no longer exists (the name is not used)",
+   "staff member D described as a staff member of another organization (the name is not used)",
+   "the work order the case changes is made for this test",
+   "the staff member the case changes is made for this test"
+  ],
+  "S8-01": [
+   "added a part sale and a work order with labor and parts invoiced today, so Part Sales rows can leave the report and the totals and counts can change"
+  ],
+  "S5-11b": [
+   "added an invoice today, so the Sales Type column has rows to show it holds words only",
+   "the report opens on today"
+  ],
+  "S5-01b": [
+   "the two staff members who only make the split work order are no longer named; their bullet says why they are needed"
+  ],
+  "S5-12": [
+   "the two staff members who only make the split work order are no longer named; their bullet says why they are needed"
+  ],
+  "S8-06b": [
+   "the two staff members who only make the split work order are no longer named; their bullet says why they are needed",
+   "wording follows the unnamed staff members"
+  ],
+  "REL-08": [
+   "the two staff members who only make the split work order are no longer named; their bullet says why they are needed",
+   "the work order the case changes is made for this test"
+  ],
+  "REL-11": [
+   "the two staff members who only make the split work order are no longer named; their bullet says why they are needed",
+   "the work order the case changes is made for this test"
+  ],
+  "REL-18": [
+   "the two staff members who only make the split work order are no longer named; their bullet says why they are needed"
+  ],
+  "REL-18b": [
+   "the two staff members who only make the split work order are no longer named; their bullet says why they are needed"
+  ],
+  "D-15b": [
+   "the two staff members who only make the split work order are no longer named; their bullet says why they are needed"
+  ],
+  "D-16": [
+   "the two staff members who only make the split work order are no longer named; their bullet says why they are needed"
+  ],
+  "S2-05": [
+   "said why sales rep B is needed",
+   "said why sales rep B is needed",
+   "the work order the case changes is made for this test"
+  ],
+  "S4-05": [
+   "said why all three reps are needed",
+   "said why all three reps are needed",
+   "the customer the case changes is made for this test"
+  ],
+  "S4-06": [
+   "said why all three reps are needed",
+   "said why all three reps are needed",
+   "the customer the case changes is made for this test"
+  ],
+  "S4-12": [
+   "said why sales reps A and B are needed",
+   "said why sales reps A and B are needed"
+  ],
+  "S4-20": [
+   "said why sales rep A is needed",
+   "said why sales rep A is needed",
+   "the staff member the case changes is made for this test"
+  ],
+  "S4-14b": [
+   "said why customer A is needed",
+   "the work order the case changes is made for this test"
+  ],
+  "S5-14": [
+   "said why both reps are needed",
+   "said why both reps are needed",
+   "the staff member the case changes is made for this test"
+  ],
+  "S5-15": [
+   "said why both reps are needed",
+   "said why both reps are needed"
+  ],
+  "S8-07": [
+   "said why both reps are needed",
+   "said why both reps are needed"
+  ],
+  "S7-04": [
+   "said why sales rep A is needed",
+   "said why sales rep A is needed"
+  ],
+  "D-12": [
+   "said why all three reps are needed",
+   "said why all three reps are needed"
+  ],
+  "REL-17": [
+   "said why three locations are needed"
+  ],
+  "D-06": [
+   "the work order the case changes is made for this test"
+  ],
+  "D-09": [
+   "the work order the case changes is made for this test"
+  ],
+  "S1-08": [
+   "the work order the case changes is made for this test",
+   "the staff member the case changes is made for this test"
+  ],
+  "S1-10b": [
+   "the work order the case changes is made for this test"
+  ],
+  "S2-02": [
+   "the work order the case changes is made for this test"
+  ],
+  "S2-04": [
+   "the work order the case changes is made for this test"
+  ],
+  "S2-08": [
+   "the work order the case changes is made for this test"
+  ],
+  "S2-09": [
+   "the work order the case changes is made for this test"
+  ],
+  "S2-10": [
+   "the work order the case changes is made for this test"
+  ],
+  "S2-12": [
+   "the work order the case changes is made for this test"
+  ],
+  "S2-13": [
+   "the work order the case changes is made for this test"
+  ],
+  "S2-14": [
+   "the work order the case changes is made for this test"
+  ],
+  "S2-15": [
+   "the work order the case changes is made for this test"
+  ],
+  "S2-16": [
+   "the work order the case changes is made for this test"
+  ],
+  "S5-03": [
+   "the work order the case changes is made for this test"
+  ],
+  "S5-04": [
+   "the work order the case changes is made for this test"
+  ],
+  "S5-16": [
+   "the work order the case changes is made for this test"
+  ],
+  "S5-20": [
+   "the work order the case changes is made for this test"
+  ],
+  "S7-01b": [
+   "the work order the case changes is made for this test"
+  ],
+  "S7-01c": [
+   "the work order the case changes is made for this test"
+  ],
+  "S7-02": [
+   "the work order the case changes is made for this test"
+  ],
+  "S4-03b": [
+   "the customer the case changes is made for this test",
+   "the staff member the case changes is made for this test"
+  ],
+  "S4-04b": [
+   "the customer the case changes is made for this test"
+  ],
+  "S4-04c": [
+   "the customer the case changes is made for this test",
+   "the staff member the case changes is made for this test"
+  ],
+  "S4-07": [
+   "the customer the case changes is made for this test"
+  ],
+  "S4-14c": [
+   "the customer the case changes is made for this test"
+  ],
+  "S4-18": [
+   "the customer the case changes is made for this test",
+   "the staff member the case changes is made for this test"
+  ],
+  "S4-20b": [
+   "the customer the case changes is made for this test",
+   "the staff member the case changes is made for this test"
+  ],
+  "S4-22": [
+   "the customer the case changes is made for this test"
+  ],
+  "S4-26": [
+   "the customer the case changes is made for this test",
+   "the staff member the case changes is made for this test"
+  ],
+  "S6-01": [
+   "the staff member the case changes is made for this test"
+  ],
+  "S6-02": [
+   "the staff member the case changes is made for this test"
+  ]
+ }
 }

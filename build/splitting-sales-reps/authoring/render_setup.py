@@ -32,9 +32,24 @@ for c in ssr_lib.CASES:
     L_ = ssr_lib.LAYOUT_V2.get(c["key"]) or {}
     nm = _PL.default_names(" ".join([a for a, _ in c["pre"]] + c["steps"] + c["res"] + [c["known"]])); nm.update(L_.get("names", {}))
     PLAIN[c["key"]] = nm
+import html as _hh
+def _tester(f): return _hh.unescape(re.sub(r"<[^>]+>", " ", f["custom_preconds"] + " " + f["custom_steps"] + " " + f["custom_expected"].split("<p></p>", 1)[0])).lower()
+TESTER = {c["key"]: _tester(ssr_lib.render(c)) for c in ssr_lib.CASES}
+# records the relevance pass removed (pattern_cases.FIXES reasons "removed sales rep B", "removed sales reps A and B", "removed the two/three sales reps")
+from pattern_cases import FIXES as _FIXES
+def _removed(reasons):
+    out = []
+    for r in reasons:
+        m = re.match(r"removed (?:sales reps? ([A-D](?: and [A-D])?)|the (two|three) sales reps)", r)
+        if not m: continue
+        letters = m.group(1).split(" and ") if m.group(1) else (["A", "B"] if m.group(2) == "two" else ["A", "B", "C"])
+        out += [f"Sales-rep-{x}" for x in letters if f"Sales-rep-{x}" not in out]
+    return out
+REMOVED = {k_: _removed(v_) for k_, v_ in _FIXES.items()}
+REMOVED.update({"DR-02": ["Sales-rep-B"], "DR-03": ["Sales-rep-B"]})
 _drpat = f"{P}/pattern-format-2026-10-26/DR-PATTERN.json"
 if os.path.exists(_drpat):
-    for k_, v_ in json.load(open(_drpat)).items(): PLAIN[k_] = v_.get("names", {})
+    for k_, v_ in json.load(open(_drpat)).items(): PLAIN[k_] = v_.get("names", {}); TESTER[k_] = _tester(v_["fields"])
 link = lambda k: f"[C{ids[k]}](https://shopview.testrail.io/index.php?/cases/view/{ids[k]})" if k in ids else (f"{k} (new 22 Oct 2026, Rule 136 split of {re.sub(r'[a-z]$', '', k)} C{ids.get(re.sub(r'[a-z]$', '', k), '?')}; not yet in TestRail)" if re.search(r"[a-z]$", k) else f"{k} (new 22 Oct 2026; not yet in TestRail)")
 L = []
 L += ["# Splitting Sales Representatives: setup file for Claude sessions",
@@ -44,7 +59,7 @@ L += ["# Splitting Sales Representatives: setup file for Claude sessions",
       "",
       "## 1. Header",
       f"- Feature: Splitting Sales Representatives (epic SV-10890; stories SV-11265 to SV-11272). TestRail group 84266, {len(ssr_lib.CASES) + len(DR)} cases.",
-      "- Generated: 19 Oct 2026, with the cases; regenerated 20 Oct 2026 for PRD version 10, Chris Ward's answers, the 7 new cases and the 8 design cases DR-01 to DR-08; regenerated 22 Oct 2026 for PRD version 11 (answers 39 and 40, new cases S5-18 and REL-16, DR-03 released, DR-08 deleted); regenerated again 22 Oct 2026 for the tech plan pass (Rule 134: 13 cases changed, 9 new draft cases S2-15, S2-16, S4-27, S4-28, S5-19, S5-20, REL-17, REL-18, REL-19, not yet in TestRail); regenerated again 22 Oct 2026 for the one-action-steps pass (steps split to one action each and unnecessary steps removed; no precondition changed, so every recipe below is unchanged); regenerated again 22 Oct 2026 for the Rule 136 pass (DRAFT: 32 cases split into 2 or 3, 36 new cases with keys ending b or c, not yet in TestRail; steps that only read are folded into the step before; untested state such as the report already open for today, an invoice already made, a switch already turned off, moved into the preconditions, so the recipes of the cases that changed follow their new precondition lines); regenerated 26 Oct 2026 for the QA lead's pattern (Rule 117 fourteenth amendment, DRAFT, not yet in TestRail: the cases now say their preconditions in plain words with no placeholders or examples, so every recipe below adds a \"Plain names in the test case\" line matching the case's words to the placeholders; the records, values and examples are unchanged); earlier, regenerated 26 Oct 2026 for the scenario preconditions (Rule 117 thirteenth amendment, DRAFT, not yet in TestRail: every case's Preconditions open with a \"Scenario:\" line; the design cases' browser-window and design-pictures line now sits just above the starting screen; the Counter Sale customer's state in " + link("S4-13") + " is its own line; no record, value or example changed, so every recipe below satisfies the same records as before).",
+      "- Generated: 19 Oct 2026, with the cases; regenerated 20 Oct 2026 for PRD version 10, Chris Ward's answers, the 7 new cases and the 8 design cases DR-01 to DR-08; regenerated 22 Oct 2026 for PRD version 11 (answers 39 and 40, new cases S5-18 and REL-16, DR-03 released, DR-08 deleted); regenerated again 22 Oct 2026 for the tech plan pass (Rule 134: 13 cases changed, 9 new draft cases S2-15, S2-16, S4-27, S4-28, S5-19, S5-20, REL-17, REL-18, REL-19, not yet in TestRail); regenerated again 22 Oct 2026 for the one-action-steps pass (steps split to one action each and unnecessary steps removed; no precondition changed, so every recipe below is unchanged); regenerated again 22 Oct 2026 for the Rule 136 pass (DRAFT: 32 cases split into 2 or 3, 36 new cases with keys ending b or c, not yet in TestRail; steps that only read are folded into the step before; untested state such as the report already open for today, an invoice already made, a switch already turned off, moved into the preconditions, so the recipes of the cases that changed follow their new precondition lines); regenerated 26 Oct 2026 for the QA lead's pattern (Rule 117 fourteenth amendment, DRAFT, not yet in TestRail: the cases now say their preconditions in plain words with no placeholders or examples, so every recipe below adds a \"Plain names in the test case\" line, and, after the relevance and independence passes the same day, a line naming the records the case no longer uses and the records it must make fresh for itself matching the case's words to the placeholders; the records, values and examples are unchanged); earlier, regenerated 26 Oct 2026 for the scenario preconditions (Rule 117 thirteenth amendment, DRAFT, not yet in TestRail: every case's Preconditions open with a \"Scenario:\" line; the design cases' browser-window and design-pictures line now sits just above the starting screen; the Counter Sale customer's state in " + link("S4-13") + " is its own line; no record, value or example changed, so every recipe below satisfies the same records as before).",
       "- Sources: PRD Confluence 919928833 version 11 (21 Oct 2026, Chris Ward); Chris Ward's answers 1 to 40 to the question sheet (19 and 21 Oct 2026); tech plan (dated 14 Oct 2026, uploaded 19 Oct 2026 and again, byte-identical, 22 Oct 2026; read in full 22 Oct 2026); "
       "Claude design canvas https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm (export read 19 Oct 2026); Sales By Representative spec "
       "Confluence 585629698 version 28; Sales By Customer spec Confluence 577634305 version 21.",
@@ -100,6 +115,11 @@ for c in ssr_lib.CASES + DR:
     L.append("Placeholders used: " + ", ".join("{" + p + "}" for p in phs) + ". Values: the \"For example\" lines above; record the real work order and part sale numbers here after setup.")
     nm = PLAIN.get(k, {})
     if nm: L.append("Plain names in the test case: " + "; ".join(f"{{{p}}} = {v}" for p, v in sorted(nm.items())) + ".")
+    tt = TESTER.get(k, "")
+    gone = REMOVED.get(k, [])
+    if gone: L.append("Not used by the test case since 26 Oct 2026 (relevance pass): " + ", ".join("{" + p + "}" for p in gone) + "; do not create them for this case.")
+    fresh = [x for x in ("work order", "customer", "part sale", "staff member") if re.search(r"(" + (r"staff members?|sales rep [A-D]" if x == "staff member" else x) + r")s?( [A-D])?,? (made )?for this test", tt, re.I)]
+    if fresh: L.append("Make fresh for this test (the case changes it; never reuse another case's): " + ", ".join(fresh) + ".")
     L.append("")
 L += ["## 5. Mapping table", "| Sub folder | Cases |", "|---|---|"]
 for s, n in NAMES.items():

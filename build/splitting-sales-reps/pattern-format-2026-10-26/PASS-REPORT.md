@@ -21,6 +21,145 @@ Rule 117 fourteenth amendment (QA lead, 26 Oct 2026: "Yes, permanent, all suites
 - Design cases: the browser-window and design-pictures line became "Set the browser window to …" and "Open the design pictures … attached to this case beside the browser window at 100% (actual size)." with the picture names, boards and the sample-data sentence word for word.
 - Below the blank paragraph after the results nothing changed (checked byte for byte below).
 
+## Second pass (26 Oct 2026): preconditions relate to the steps and results, and every case stands alone
+
+QA lead: the preconditions "must make sense and relate to the steps and expected results below"; "if one test case fails that does not block the other test case." Two permanent gates were added to `authoring/build.py` (both end with 0 PROBLEM lines):
+
+- **Relevance gate** (`ssr_lib.relevance_problems`): every record a precondition names (sales rep A-D, staff member A-D, customer A-C, user A/B, role A/B, location A/B, the first/second/third work order, part sale, location or customer) must be named in the steps or expected results, or be the record the steps start on (the precondition that opens it); otherwise the bullet naming it must say why it is needed with a "so ..." clause. Any other record is a PROBLEM.
+- **Independence gate** (`ssr_lib.independence_problems`): no case key or C-id in the tester text; and every record a step or a precondition changes (picks or changes a rep, adds or removes a field, invoices, reverses, splits, moves lines, reopens, saves or imports a customer, turns a switch off, deactivates, reactivates or renames a staff member, a staff record that no longer exists) is described as made "for this test" in the preconditions, unless a step creates it. C665915 only reads and is kept as it is.
+
+Facts dropped because their record was unused: 2
+- S8-05: label `Sales Representative` (the two sales reps' "Sales Representative" switch: the reps were removed, no step or result uses them)
+- S8-05: term `Sales Representative` (same bullet as above)
+
+Cases changed in this pass: 122
+
+- S1-03 (C665917): removed sales rep B: no step or result uses them; the work order the case changes is made for this test
+- S1-04 (C665918): removed sales rep B: no step or result uses them; the one staff member who only fills the field is no longer named (no step or result names them); the work order the case changes is made for this test
+- S1-05 (C665919): removed sales rep B: no step or result uses them
+- S1-06 (C665920): removed sales rep B: no step or result uses them; the sign-in user is no longer called user B (no step or result names them)
+- S1-10 (C665924): removed sales rep B: no step or result uses them; the work order the case changes is made for this test
+- S1-11 (C690666): removed sales rep B: no step or result uses them; staff member C described as a staff member whose record no longer exists (the name is not used); staff member D described as a staff member of another organization (the name is not used); the staff member the case changes is made for this test
+- S2-01 (C665925): removed sales rep B: no step or result uses them; the work order the case changes is made for this test
+- S2-03 (C665927): removed sales rep B: no step or result uses them; the work order the case changes is made for this test
+- S2-11 (C665935): removed sales rep B: no step or result uses them; the part sale the case changes is made for this test
+- S3-01 (C665937): removed sales rep B: no step or result uses them
+- S3-02 (C665938): removed sales rep B: no step or result uses them; the work order the case changes is made for this test
+- S3-02b (C715642): removed sales rep B: no step or result uses them; the work order the case changes is made for this test
+- S3-03 (C665939): removed sales rep B: no step or result uses them; the customer the case changes is made for this test
+- S3-04 (C690672): removed sales rep B: no step or result uses them; the one staff member who only fills the field is no longer named (no step or result names them); the work order the case changes is made for this test
+- S4-02 (C665941): removed sales rep B: no step or result uses them
+- S4-03 (C665942): removed sales rep B: no step or result uses them; the customer the case changes is made for this test
+- S4-09 (C665948): removed sales rep B: no step or result uses them
+- S5-07 (C665968): removed sales rep B: no step or result uses them
+- S5-08 (C665969): removed sales rep B: no step or result uses them
+- S5-08b (C715652): removed sales rep B: no step or result uses them
+- S5-09 (C665970): removed sales rep B: no step or result uses them; the work order the case changes is made for this test
+- S5-18 (C715271): removed sales rep B: no step or result uses them; the one staff member who only fills the field is no longer named (no step or result names them)
+- S5-19 (C715568): removed sales rep B: no step or result uses them; staff member C is now the second staff member; the Labor person is no longer named (no step or result names them); the staff member the case changes is made for this test
+- S6-01b (C715654): removed sales rep B: no step or result uses them
+- S6-05 (C665980): removed sales rep B: no step or result uses them; the Parts person described as a staff member whose record no longer exists (the name is not used); the staff member the case changes is made for this test
+- S7-01 (C665981): removed sales rep B: no step or result uses them; the work order the case changes is made for this test
+- S7-03 (C665983): removed sales rep B: no step or result uses them; the work order the case changes is made for this test
+- REL-01 (C666003): removed sales rep B: no step or result uses them
+- REL-02 (C666004): removed sales rep B: no step or result uses them; the work order the case invoices is made for this test (before the release)
+- REL-14 (C666016): removed sales rep B: no step or result uses them
+- REL-16 (C715272): removed sales rep B: no step or result uses them
+- D-01 (C666017): removed sales rep B: no step or result uses them
+- D-02 (C666018): removed sales rep B: no step or result uses them; the one staff member who only fills the field is no longer named (no step or result names them)
+- D-03 (C666019): removed sales rep B: no step or result uses them; the work order the case changes is made for this test
+- D-04 (C666020): removed sales rep B: no step or result uses them; the one staff member who only fills the field is no longer named (no step or result names them); the work order the case changes is made for this test
+- D-05 (C666021): removed sales rep B: no step or result uses them; the one staff member who only fills the field is no longer named (no step or result names them)
+- D-05b (C715667): removed sales rep B: no step or result uses them; the one staff member who only fills the field is no longer named (no step or result names them)
+- D-07 (C666023): removed sales rep B: no step or result uses them; the one staff member who only fills the field is no longer named (no step or result names them); the work order the case changes is made for this test
+- D-14 (C666030): removed sales rep B: no step or result uses them; the part sale the case changes is made for this test
+- D-18 (C666034): removed sales rep B: no step or result uses them; the work order the case changes is made for this test
+- D-18b (C715672): removed sales rep B: no step or result uses them; the work order the case changes is made for this test
+- S1-07 (C665921): removed sales rep A: no step or result uses them; the staff member the case changes is made for this test
+- S1-09 (C665923): removed sales rep A: no step or result uses them; the staff member the case changes is made for this test
+- S2-06 (C665930): removed sales rep A: no step or result uses them; the work order the case changes is made for this test
+- S4-15 (C665954): removed sales rep A: no step or result uses them; the staff member the case changes is made for this test
+- S4-15b (C715648): removed sales rep A: no step or result uses them; the staff member the case changes is made for this test
+- S4-19 (C665958): removed sales rep A: no step or result uses them; the staff member the case changes is made for this test
+- S4-19b (C715649): removed sales rep A: no step or result uses them; the staff member the case changes is made for this test
+- S4-23 (C665989): removed sales rep A: no step or result uses them; the customer the case changes is made for this test; the staff member the case changes is made for this test
+- REL-19b (C715666): removed sales rep A: no step or result uses them
+- S2-07 (C665931): removed sales reps A and B: the case uses only sales rep C; sales rep C is now the only staff member set up; the work order the case changes is made for this test; the staff member the case changes is made for this test
+- S2-07b (C715640): removed sales rep B: no step or result uses them; sales rep C described as the second staff member; the work order the case changes is made for this test; the staff member the case changes is made for this test
+- S2-07c (C715641): removed sales rep B: no step or result uses them; sales rep C described as the second staff member; the Parts person is no longer named (no step or result names them); the work order the case changes is made for this test; the staff member the case changes is made for this test
+- S4-01b (C715643): removed the two sales reps: no step or result uses them; the customer the case changes is made for this test
+- S8-05 (C665988): removed the two sales reps: no step or result uses them
+- S4-04 (C665943): removed sales rep C: no step or result uses them (sales rep A stays: Service Labor must hold someone other than the Service Parts person); said why sales rep A is needed; the customer the case changes is made for this test
+- S4-14 (C665953): removed sales rep B: no step or result uses them; the work order the case changes is made for this test
+- S4-27 (C715566): removed sales rep B: no step or result uses them; the part sale the case changes is made for this test
+- D-10b (C715668): removed the three sales reps: the tooltip and menu need none; the customer the case changes is made for this test
+- D-11 (C666027): removed sales reps B and C: no step or result uses them; the customer the case changes is made for this test
+- D-13 (C666029): removed sales reps A and B: the case picks only sales rep C
+- D-10 (C666026): said why three reps are needed (the result checks their order); the customer the case changes is made for this test
+- S5-17 (C665993): said why two reps are needed (the split work order) and dropped their unused names
+- S4-24 (C665990): the sign-in user is no longer called user B (no step or result names them)
+- S4-25 (C690668): the sign-in user is no longer called user B (no step or result names them)
+- S4-28 (C715567): the sign-in user is no longer called user B (no step or result names them); the customer the case changes is made for this test
+- S7-05 (C690670): staff member C described as a staff member whose record no longer exists (the name is not used); staff member D described as a staff member of another organization (the name is not used); the work order the case changes is made for this test; the staff member the case changes is made for this test
+- S8-01 (C665984): added a part sale and a work order with labor and parts invoiced today, so Part Sales rows can leave the report and the totals and counts can change
+- S5-11b (C715653): added an invoice today, so the Sales Type column has rows to show it holds words only; the report opens on today
+- S5-01b (C715651): the two staff members who only make the split work order are no longer named; their bullet says why they are needed
+- S5-12 (C665973): the two staff members who only make the split work order are no longer named; their bullet says why they are needed
+- S8-06b (C715660): the two staff members who only make the split work order are no longer named; their bullet says why they are needed; wording follows the unnamed staff members
+- REL-08 (C666010): the two staff members who only make the split work order are no longer named; their bullet says why they are needed; the work order the case changes is made for this test
+- REL-11 (C666013): the two staff members who only make the split work order are no longer named; their bullet says why they are needed; the work order the case changes is made for this test
+- REL-18 (C715571): the two staff members who only make the split work order are no longer named; their bullet says why they are needed
+- REL-18b (C715665): the two staff members who only make the split work order are no longer named; their bullet says why they are needed
+- D-15b (C715670): the two staff members who only make the split work order are no longer named; their bullet says why they are needed
+- D-16 (C666032): the two staff members who only make the split work order are no longer named; their bullet says why they are needed
+- S2-05 (C665929): said why sales rep B is needed; the work order the case changes is made for this test
+- S4-05 (C665944): said why all three reps are needed; the customer the case changes is made for this test
+- S4-06 (C665945): said why all three reps are needed; the customer the case changes is made for this test
+- S4-12 (C665951): said why sales reps A and B are needed
+- S4-20 (C665959): said why sales rep A is needed; the staff member the case changes is made for this test
+- S4-14b (C715646): said why customer A is needed; the work order the case changes is made for this test
+- S5-14 (C665975): said why both reps are needed; the staff member the case changes is made for this test
+- S5-15 (C665991): said why both reps are needed
+- S8-07 (C665997): said why both reps are needed
+- S7-04 (C665994): said why sales rep A is needed
+- D-12 (C666028): said why all three reps are needed
+- REL-17 (C715570): said why three locations are needed
+- D-06 (C666022): the work order the case changes is made for this test
+- D-09 (C666025): the work order the case changes is made for this test
+- S1-08 (C665922): the work order the case changes is made for this test; the staff member the case changes is made for this test
+- S1-10b (C715639): the work order the case changes is made for this test
+- S2-02 (C665926): the work order the case changes is made for this test
+- S2-04 (C665928): the work order the case changes is made for this test
+- S2-08 (C665932): the work order the case changes is made for this test
+- S2-09 (C665933): the work order the case changes is made for this test
+- S2-10 (C665934): the work order the case changes is made for this test
+- S2-12 (C665936): the work order the case changes is made for this test
+- S2-13 (C665995): the work order the case changes is made for this test
+- S2-14 (C690667): the work order the case changes is made for this test
+- S2-15 (C715564): the work order the case changes is made for this test
+- S2-16 (C715565): the work order the case changes is made for this test
+- S5-03 (C665964): the work order the case changes is made for this test
+- S5-04 (C665965): the work order the case changes is made for this test
+- S5-16 (C665992): the work order the case changes is made for this test
+- S5-20 (C715569): the work order the case changes is made for this test
+- S7-01b (C715655): the work order the case changes is made for this test
+- S7-01c (C715656): the work order the case changes is made for this test
+- S7-02 (C665982): the work order the case changes is made for this test
+- S4-03b (C724219): the customer the case changes is made for this test; the staff member the case changes is made for this test
+- S4-04b (C715644): the customer the case changes is made for this test
+- S4-04c (C724220): the customer the case changes is made for this test; the staff member the case changes is made for this test
+- S4-07 (C665946): the customer the case changes is made for this test
+- S4-14c (C715647): the customer the case changes is made for this test
+- S4-18 (C665957): the customer the case changes is made for this test; the staff member the case changes is made for this test
+- S4-20b (C715650): the customer the case changes is made for this test; the staff member the case changes is made for this test
+- S4-22 (C665961): the customer the case changes is made for this test
+- S4-26 (C690669): the customer the case changes is made for this test; the staff member the case changes is made for this test
+- S6-01 (C665976): the staff member the case changes is made for this test
+- S6-02 (C665977): the staff member the case changes is made for this test
+- DR-01 (C690658), DR-06 (C690663): the two staff members who only make the split work order are no longer named; their bullet says why they are needed
+- DR-02 (C690659): removed sales rep B (no step or result uses them); the part sale the case changes is made for this test
+- DR-03 (C690660): removed sales rep B (no step or result uses them)
+
 ## Per case, old vs new
 
 ### S1-01 — C665915 (https://shopview.testrail.io/index.php?/cases/view/665915)
@@ -145,9 +284,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field reading "Unassigned".
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one "Sales Representative" field reading "Unassigned".
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -213,9 +352,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one "Sales Representative" field set to that staff member.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -285,7 +424,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
   - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
   - Open the work order in a desktop browser at least 1024 pixels wide.
@@ -351,8 +490,8 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 
 **New preconditions**
 
-  - Sign in at the test location as user B, whose role has "Work Orders — View" but not "Work Orders — Create & Edit".
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Sign in at the test location as a user whose role has "Work Orders — View" but not "Work Orders — Create & Edit".
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
   - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
   - Open the work order in a desktop browser at least 1024 pixels wide.
@@ -407,7 +546,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Create an active staff member for this test at the test location with the "Sales Representative" switch on: sales rep B.
   - Use a customer with no Sales Representative assigned.
   - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep B.
   - After sales rep B was picked on the work order, turn sales rep B's "Sales Representative" switch off and save (the staff account stays active).
@@ -469,9 +608,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Create two active staff members for this test at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep B.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep B.
   - After sales rep B was picked on the work order, deactivate sales rep B's staff account.
   - Open the Work Orders page in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -531,7 +670,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Create an active staff member for this test at the test location with the "Sales Representative" switch on: sales rep B.
   - Use a customer with no Sales Representative assigned.
   - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field reading "Unassigned".
   - Open the work order in a desktop browser at least 1024 pixels wide.
@@ -598,9 +737,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field reading "Unassigned".
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one "Sales Representative" field reading "Unassigned".
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -653,9 +792,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -732,7 +871,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 
   - Sign in as an Admin at the test location.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field reading "Unassigned".
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one "Sales Representative" field reading "Unassigned".
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -789,9 +928,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -864,7 +1003,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
   - Sign in as an Admin at the test location.
   - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and "Sales Representative - Labor" and "Sales Representative - Parts" both set to sales rep A.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and "Sales Representative - Labor" and "Sales Representative - Parts" both set to sales rep A.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -956,9 +1095,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B, so that Labor and Parts can hold different people.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B, so that the remove x takes away a Parts person different from the Labor person.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -1016,9 +1155,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep B.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and "Sales Representative - Labor" reading "Unassigned" and "Sales Representative - Parts" set to sales rep B.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and "Sales Representative - Labor" reading "Unassigned" and "Sales Representative - Parts" set to sales rep B.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -1066,10 +1205,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
-  - Have a third active staff member at the test location, sales rep C, with the "Sales Representative" switch on.
+  - Create an active staff member for this test at the test location with the "Sales Representative" switch on: sales rep C.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep C.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep C.
   - Then turn sales rep C's "Sales Representative" switch off and save (the staff account stays active), so the work order's field reads sales rep C's name followed by "(Inactive)".
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -1138,7 +1276,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
   - Sign in as an Admin at the test location.
   - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
   - Use a customer with no Sales Representative assigned.
-  - Have a work order for that customer with "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B, and invoice it.
+  - Create a work order for this test for that customer with "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B, and invoice it.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -1200,7 +1338,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
   - Sign in as an Admin at the test location.
   - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A, ready to invoice.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A, ready to invoice.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - Open the same work order in a second tab of the same browser.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -1261,7 +1399,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
   - Sign in as an Admin at the test location.
   - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
   - Use a customer with no Sales Representative assigned.
-  - Have a work order for that customer with one "Sales Representative" field set to sales rep A, and invoice it (do not take a payment).
+  - Create a work order for this test for that customer with one "Sales Representative" field set to sales rep A, and invoice it (do not take a payment).
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -1338,9 +1476,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced part sale for that customer, with its Sales Representative field reading "Unassigned".
+  - Create an open, uninvoiced part sale for this test for that customer, with its Sales Representative field reading "Unassigned".
   - Open the part sale in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -1421,7 +1559,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
   - Sign in as an Admin at the test location.
   - Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C.
   - Use a customer whose one Sales Representative is sales rep C.
-  - Have an open, uninvoiced work order for that customer, with two approved lines (one labor line and one part), "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B.
+  - Create an open, uninvoiced work order for this test for that customer, with two approved lines (one labor line and one part), "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -1473,7 +1611,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
   - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
   - Open the work order on a phone (a touch screen with no mouse pointer).
@@ -1528,9 +1666,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
   - Open the work order on a phone (a touch screen with no mouse pointer).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -1589,8 +1727,8 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
-  - Use a customer with no Sales Representative assigned.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
+  - Create a customer for this test with no Sales Representative assigned.
   - Open the customer's page on a phone (a touch screen with no mouse pointer).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -1730,7 +1868,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Open the Customers page in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -1798,8 +1936,8 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
-  - Use a customer whose one Sales Representative is sales rep A.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
+  - Create a customer for this test whose one Sales Representative is sales rep A.
   - Open the customer's Edit Customer window in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -1864,8 +2002,8 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C.
-  - Use a customer with "Sales Representative - Service Labor" set to sales rep A and "Sales Representative - Service Parts" set to sales rep B, and no Part Sales field.
+  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B, so that Service Labor and Service Parts hold different people.
+  - Create a customer for this test with "Sales Representative - Service Labor" set to sales rep A and "Sales Representative - Service Parts" set to sales rep B, and no Part Sales field, so you can see that Part Sales copies Service Parts, not Service Labor.
   - Open the customer's Edit Customer window in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -1923,8 +2061,8 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C.
-  - Use a customer with "Sales Representative - Service Labor" set to sales rep A, "Sales Representative - Service Parts" set to sales rep B and "Sales Representative - Part Sales" set to sales rep C.
+  - Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C, so that each customer field holds a different person.
+  - Create a customer for this test with "Sales Representative - Service Labor" set to sales rep A, "Sales Representative - Service Parts" set to sales rep B and "Sales Representative - Part Sales" set to sales rep C, so you can see which person stays when Service Parts is removed.
   - Open the customer's Edit Customer window in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -1976,8 +2114,8 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C.
-  - Use a customer with "Sales Representative - Service Labor" set to sales rep A, "Sales Representative - Service Parts" set to sales rep B and "Sales Representative - Part Sales" set to sales rep C.
+  - Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C, so that each customer field holds a different person.
+  - Create a customer for this test with "Sales Representative - Service Labor" set to sales rep A, "Sales Representative - Service Parts" set to sales rep B and "Sales Representative - Part Sales" set to sales rep C, so you can see that new part sales follow Service Parts once Part Sales is removed.
   - Open the customer's Edit Customer window in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -2033,7 +2171,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 
   - Sign in as an Admin at the test location.
   - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
-  - Use a customer whose one Sales Representative is sales rep A.
+  - Create a customer for this test whose one Sales Representative is sales rep A.
   - Open the customer's Edit Customer window in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -2153,7 +2291,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer whose one Sales Representative is sales rep A.
   - Open the Work Orders page in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -2318,8 +2456,8 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
-  - Use a customer with "Sales Representative - Service Labor" set to sales rep A, "Sales Representative - Service Parts" set to sales rep B and "Sales Representative - Part Sales" reading "Unassigned".
+  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B, so that Service Labor and Service Parts hold different people.
+  - Use a customer with "Sales Representative - Service Labor" set to sales rep A, "Sales Representative - Service Parts" set to sales rep B and "Sales Representative - Part Sales" reading "Unassigned", so you can see that new part sales take neither the Service Labor nor the Service Parts person.
   - Open the Part Sales page in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -2404,9 +2542,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C.
+  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep C.
   - Use a customer whose one Sales Representative is sales rep A.
-  - Create an open, uninvoiced work order for that customer, with one approved labor line and one part, so that its one "Sales Representative" field reads sales rep A (copied from the customer when it was created).
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line and one part, so that its one "Sales Representative" field reads sales rep A (copied from the customer when it was created).
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -2455,7 +2593,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Create an active staff member for this test at the test location with the "Sales Representative" switch on: sales rep B.
   - Use a customer whose one Sales Representative is sales rep B.
   - Then turn sales rep B's "Sales Representative" switch off and save (the staff account stays active).
   - Open the Work Orders page in a desktop browser at least 1024 pixels wide.
@@ -2613,9 +2751,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C.
-  - Use customer A, with "Sales Representative - Service Labor" set to sales rep A, "Sales Representative - Service Parts" set to sales rep B and "Sales Representative - Part Sales" set to sales rep C.
-  - Use customer B, whose one Sales Representative is sales rep C.
+  - Create three active staff members for this test at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C.
+  - Create customer A for this test, with "Sales Representative - Service Labor" set to sales rep A, "Sales Representative - Service Parts" set to sales rep B and "Sales Representative - Part Sales" set to sales rep C.
+  - Create customer B for this test, whose one Sales Representative is sales rep C.
   - Open Settings > Staff in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -2678,7 +2816,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Create an active staff member for this test at the test location with the "Sales Representative" switch on: sales rep B.
   - Use a customer with "Sales Representative - Service Labor" and "Sales Representative - Service Parts" both set to sales rep B. No other customer has sales rep B.
   - Open Settings > Staff in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -2729,8 +2867,8 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
-  - Use customer A, with "Sales Representative - Service Labor" set to sales rep A and "Sales Representative - Service Parts" set to sales rep B.
+  - Create two active staff members for this test at the test location with their "Sales Representative" switch on: sales rep A and sales rep B, so that customer A's two fields hold different people.
+  - Use customer A, with "Sales Representative - Service Labor" set to sales rep A and "Sales Representative - Service Parts" set to sales rep B, so only its Service Parts row holds sales rep B.
   - Use customer B, whose one Sales Representative is sales rep B.
   - Open sales rep B's staff record in Settings > Staff in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -2853,7 +2991,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 
   - Sign in as an Admin at the test location.
   - Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C.
-  - Use a customer with Service Labor set to sales rep A, Service Parts set to sales rep B and "Sales Representative - Part Sales" set to sales rep C.
+  - Create a customer for this test with Service Labor set to sales rep A, Service Parts set to sales rep B and "Sales Representative - Part Sales" set to sales rep C.
   - Have a contacts import file that contains the customer with its current details.
   - Open the contacts import in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -3029,7 +3167,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
   - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
   - Use a customer with no Sales Representative assigned.
   - Make sure the test location's Shop Supplies Charge is 0% and nothing else is invoiced at the test location today.
-  - Have an open, uninvoiced work order for that customer with one labor line of 6.00 hours at $100.00 an hour ($600.00), one part sold at $400.00, shop supplies typed by hand as $30.00 and a whole-invoice discount of $50.00 (not on any line), with Labor set to sales rep A and Parts set to sales rep B.
+  - Create an open, uninvoiced work order for this test for that customer with one labor line of 6.00 hours at $100.00 an hour ($600.00), one part sold at $400.00, shop supplies typed by hand as $30.00 and a whole-invoice discount of $50.00 (not on any line), with Labor set to sales rep A and Parts set to sales rep B.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -3108,7 +3246,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
   - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
   - Use a customer with no Sales Representative assigned.
   - Make sure the test location's Shop Supplies Charge is 0% and nothing else is invoiced at the test location today.
-  - Have an open, uninvoiced work order for that customer with one labor line of 6.00 hours at $100.00 an hour ($600.00), one returned part credited at $100.00 (a part line of -$100.00) and a whole-invoice discount of $70.00, with Labor set to sales rep A and Parts set to sales rep B.
+  - Create an open, uninvoiced work order for this test for that customer with one labor line of 6.00 hours at $100.00 an hour ($600.00), one returned part credited at $100.00 (a part line of -$100.00) and a whole-invoice discount of $70.00, with Labor set to sales rep A and Parts set to sales rep B.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -3307,7 +3445,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
   - Make sure the test location's Shop Supplies Charge is 0% and nothing else is invoiced at the test location today.
   - Have a first part sale for that customer with one part at $80.00 and shop supplies of $5.00.
@@ -3363,7 +3501,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
   - Make sure the test location's Shop Supplies Charge is 0% and nothing else is invoiced at the test location today.
   - Have a first work order for that customer with one labor line of 2.00 hours at $100.00 an hour and one part sold at $50.00.
@@ -3418,10 +3556,10 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
   - Make sure the test location's Shop Supplies Charge is 0% and nothing else is invoiced at the test location today.
-  - Have a work order for that customer with one labor line of 2.00 hours at $100.00 an hour and one part sold at $50.00, its one "Sales Representative" set to sales rep A, and invoice it today.
+  - Create a work order for this test for that customer with one labor line of 2.00 hours at $100.00 an hour and one part sold at $50.00, its one "Sales Representative" set to sales rep A, and invoice it today.
   - Open Reports > Sales By Representative in a desktop browser at least 1024 pixels wide, with the date range set to today.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -3619,9 +3757,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have two active staff members at the test location with their "Sales Representative" switch on, so that a work order can have a different Labor and Parts representative.
   - Use a customer with no Sales Representative assigned.
-  - Have a work order for that customer with a labor line and a part, Labor set to sales rep A and Parts set to sales rep B, and invoice it today.
+  - Have a work order for that customer with a labor line and a part, Labor set to one of them and Parts set to the other, and invoice it today.
   - Open Reports > Sales By Representative in a desktop browser at least 1024 pixels wide, with the date range set to today and the Sales Type column off on screen.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -3741,9 +3879,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Create two active staff members for this test at the test location with their "Sales Representative" switch on: sales rep A and sales rep B, so that the work order can have a different Labor and Parts representative.
   - Use a customer with no Sales Representative assigned.
-  - Have a work order for that customer with a labor line and a part, Labor set to sales rep A and Parts set to sales rep B, and invoice it today.
+  - Have a work order for that customer with a labor line and a part, Labor set to sales rep A and Parts set to sales rep B, and invoice it today, so the invoice has a separate Parts row for sales rep B.
   - After that invoice, change sales rep B's last name in Settings > Staff and save.
   - Open Reports > Sales By Representative in a desktop browser at least 1024 pixels wide, with the date range set to today.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -3796,7 +3934,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep C.
+  - Create two active staff members for this test at the test location with their "Sales Representative" switch on: sales rep A and sales rep C.
   - Use a customer with no Sales Representative assigned.
   - Have a first work order for that customer with one "Sales Representative" field set to sales rep A.
   - Have a second work order for that customer with one "Sales Representative" field set to sales rep C.
@@ -3871,7 +4009,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C.
+  - Create three active staff members for this test at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C.
   - Use a customer with no Sales Representative assigned.
   - Have a first work order for that customer with Labor set to sales rep A and Parts set to sales rep B.
   - Have a second work order for that customer with Labor set to sales rep A and Parts set to sales rep C.
@@ -4066,9 +4204,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Create an active staff member for this test at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part, Labor set to sales rep A and Parts holding sales rep B, whose staff record no longer exists.
+  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part, Labor set to sales rep A and Parts holding a staff member made for this test whose staff record no longer exists.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -4120,9 +4258,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field reading "Unassigned".
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one "Sales Representative" field reading "Unassigned".
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -4181,7 +4319,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
   - Sign in as an Admin at the test location.
   - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -4238,9 +4376,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -4317,7 +4455,8 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Open Reports > Sales By Representative in a desktop browser at least 1024 pixels wide.
+  - Have, today, at least one invoiced part sale and one invoiced work order with labor and parts at the test location.
+  - Open Reports > Sales By Representative in a desktop browser at least 1024 pixels wide, with the date range set to today.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
 **Old steps**
@@ -4575,7 +4714,6 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
   - Use a customer that has, today, one invoiced part sale of $40.00 and one invoiced work order of $250.00 that includes a part.
   - Open Reports > Sales By Customer in a desktop browser at least 1024 pixels wide, with the date range set to today.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -4631,8 +4769,8 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
-  - Use a customer with no Sales Representative assigned.
+  - Create an active staff member for this test at the test location with the "Sales Representative" switch on: sales rep B.
+  - Create a customer for this test with no Sales Representative assigned.
   - Open the customer's Edit Customer window in a desktop browser at least 1024 pixels wide.
   - Open sales rep B's staff record in a second tab of the same browser, with the "Sales Representative" switch on.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -4698,7 +4836,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 
 **New preconditions**
 
-  - Sign in at the test location as user B, whose role has "Work Orders — Create & Edit" but not "Customers — Create & Edit".
+  - Sign in at the test location as a user whose role has "Work Orders — Create & Edit" but not "Customers — Create & Edit".
   - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
   - Open the Work Orders page in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -4776,9 +4914,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B, so that the work order can have a different Labor and Parts representative.
   - Use a customer with no Sales Representative assigned.
-  - Have a work order for that customer with a labor line and a part, Labor set to sales rep A and Parts set to sales rep B, and invoice it today.
+  - Have a work order for that customer with a labor line and a part, Labor set to sales rep A and Parts set to sales rep B, and invoice it today, so the Expanded CSV has a representative row for sales rep A and separate Labor and Parts rows.
   - Open Reports > Sales By Representative in a desktop browser at least 1024 pixels wide, with the date range set to today.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -4834,7 +4972,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
   - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
   - Use a customer with no Sales Representative assigned.
   - Make sure the test location's Shop Supplies Charge is 0% and nothing else is invoiced at the test location today.
-  - Have an open, uninvoiced work order for that customer with one labor line of 3.00 hours at $100.00 ($300.00) with a labor-line discount of $30.00, one part sold at $100.00 with a part-line fee of $10.00, and a whole-invoice fee of $38.00, with Labor set to sales rep A and Parts set to sales rep B.
+  - Create an open, uninvoiced work order for this test for that customer with one labor line of 3.00 hours at $100.00 ($300.00) with a labor-line discount of $30.00, one part sold at $100.00 with a part-line fee of $10.00, and a whole-invoice fee of $38.00, with Labor set to sales rep A and Parts set to sales rep B.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -4906,7 +5044,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have two active staff members at the test location with their "Sales Representative" switch on, so that one work order can have a different Labor and Parts representative.
   - Make sure the test location has at least three invoices today: one split work order, one work order with one person on both sides and one part sale.
   - Open Reports > Sales By Representative in a desktop browser at least 1024 pixels wide, with the date range set to today and Show Unassigned on.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -4955,9 +5093,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B, so that Labor and Parts hold different people.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B, where the Parts side was changed to sales rep B today.
+  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B, where the Parts side was changed to sales rep B today, so the log has an entry for the Parts person.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -5016,8 +5154,8 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
   - Sign in as an Admin at the test location.
   - Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C.
   - Use a customer with no Sales Representative assigned.
-  - Have a first work order for that customer with two approved lines, Labor set to sales rep A and Parts set to sales rep B.
-  - Have a second work order for that customer with one Sales Representative, sales rep C.
+  - Create a first work order for this test for that customer with two approved lines, Labor set to sales rep A and Parts set to sales rep B.
+  - Create a second work order for this test for that customer with one Sales Representative, sales rep C.
   - Open the first work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -5127,9 +5265,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B, so that the work order can have a different Labor and Parts representative.
   - Use a customer with no Sales Representative assigned.
-  - Have at least one split work order invoiced today with Labor set to sales rep A and Parts set to sales rep B.
+  - Have at least one split work order invoiced today with Labor set to sales rep A and Parts set to sales rep B, so the Parts filter leaves only sales rep B's row.
   - Open Reports > Sales By Representative in a desktop browser at least 1024 pixels wide, with the date range set to today and Show Unassigned on.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -5444,7 +5582,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use customer A, which had sales rep A as its sales representative before the release was installed.
   - Use customer B, which had no sales representative before the release was installed.
   - Use customer C, whose representative was no longer a user of the shop before the release was installed.
@@ -5516,9 +5654,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
-  - Use a work order for that customer that was open (not invoiced), with sales rep A as its sales representative, before the release was installed.
+  - Use a work order made for this test before the release was installed: for that customer, open (not invoiced), with sales rep A as its sales representative.
   - Open the design pictures "card-00-b-wo-rest2.png" (board 1.0) and "card-01-b-wo-open.png" (board 1.1) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.
   - With the release installed, open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -5847,9 +5985,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have two active staff members at the test location with their "Sales Representative" switch on, so that a work order can have a different Labor and Parts representative.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and "Sales Representative - Labor" set to one of them and "Sales Representative - Parts" set to the other.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -5992,10 +6130,10 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have two active staff members at the test location with their "Sales Representative" switch on, so that a work order can have a different Labor and Parts representative.
   - Use a customer with no Sales Representative assigned.
   - Make sure the test location is connected to a QuickBooks test company.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and "Sales Representative - Labor" set to one of them and "Sales Representative - Parts" set to the other.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -6154,7 +6292,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
   - Make sure the test location's Shop Supplies Charge is 0% and nothing else is invoiced at the test location today.
   - Have a work order for that customer with one labor line of 2.00 hours at $100.00 an hour and one part with cost $30.00 sold at $50.00, its one Sales Representative set to sales rep A, and invoice it today.
@@ -6210,7 +6348,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
   - Have a first work order for that customer, open and not invoiced, with nobody in Sales Representative.
   - Have a second work order with Sales Representative set to sales rep A.
@@ -6272,9 +6410,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
+  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field set to that staff member.
   - Set the browser window to 1440 pixels wide with the zoom at 100%.
   - Open the design pictures "card-03-n1-hover.png" (board 1.3) and "card-06-n1-picked-hover.png" (board 1.6) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.
   - Open the work order in that browser window.
@@ -6345,9 +6483,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field reading "Unassigned".
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one "Sales Representative" field reading "Unassigned".
   - Set the browser window to 1440 pixels wide with the zoom at 100%.
   - Open the design pictures "card-04-n1-list.png" (board 1.4) and "card-15-n1-unassign-list.png" (board 1.15) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.
   - Open the work order in that browser window.
@@ -6411,9 +6549,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one "Sales Representative" field set to that staff member.
   - Set the browser window to 1440 pixels wide with the zoom at 100%.
   - Open the design pictures "card-07-n1-add-tip.png" (board 1.7) and "card-08-n1-add-menu.png" (board 1.8) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.
   - Open the work order in that browser window.
@@ -6470,9 +6608,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and "Sales Representative - Labor" and "Sales Representative - Parts" both set to sales rep A.
+  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and "Sales Representative - Labor" and "Sales Representative - Parts" both set to that staff member.
   - Set the browser window to 1440 pixels wide with the zoom at 100%.
   - Open the design pictures "card-09-n1-added.png" (board 1.9), "card-10-n1-added-hover.png" (board 1.10) and "card-11-n1-labor-list.png" (board 1.11) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.
   - Open the work order in that browser window.
@@ -6563,7 +6701,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
   - Sign in as an Admin at the test location.
   - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and "Sales Representative - Labor" set to sales rep B and "Sales Representative - Parts" set to sales rep A.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and "Sales Representative - Labor" set to sales rep B and "Sales Representative - Parts" set to sales rep A.
   - Set the browser window to 1440 pixels wide with the zoom at 100%.
   - Open the design pictures "card-12-n1-two.png" (board 1.12), "card-13-n1-remove-tip.png" (board 1.13) and "card-14-n1-removed.png" (board 1.14) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.
   - Open the work order in that browser window.
@@ -6625,9 +6763,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one "Sales Representative" field set to that staff member.
   - Set the browser window to 1440 pixels wide with the zoom at 100%.
   - Open the design pictures "card-15-n1-unassign-list.png" (board 1.15) and "card-16-n1-cleared.png" (board 1.16) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.
   - Open the work order in that browser window.
@@ -6737,7 +6875,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
   - Sign in as an Admin at the test location.
   - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
   - Set the browser window to 1440 pixels wide with the zoom at 100%.
   - Open the design pictures "card-18-b-audit.png" (board 1.18) and "card-19-n1-audit.png" (board 1.19) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.
   - Open the work order in that browser window.
@@ -6808,8 +6946,8 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C.
-  - Use a customer with no Sales Representative assigned.
+  - Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C, so the list has several names to sort.
+  - Create a customer for this test with no Sales Representative assigned.
   - Set the browser window to 1440 pixels wide with the zoom at 100%.
   - Open the design pictures "customer-03-n2-edit.png" (board 2.3), "customer-04-n2-edit-list.png" (board 2.4) and "customer-05-n2-edit-picked.png" (board 2.5) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.
   - Open the customer's page in that browser window.
@@ -6873,8 +7011,8 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C.
-  - Use a customer whose one Sales Representative is sales rep A.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
+  - Create a customer for this test whose one Sales Representative is sales rep A.
   - Set the browser window to 1440 pixels wide with the zoom at 100%.
   - Open the design pictures "customer-08-n2-service-parts.png" (board 2.8), "customer-09-n2-add-menu-2.png" (board 2.9), "customer-10-n2-three-added.png" (board 2.10) and "customer-11-n2-ps-list.png" (board 2.11) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.
   - Open the customer's Edit Customer window in that browser window.
@@ -6945,8 +7083,8 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C.
-  - Use a customer with Service Labor set to sales rep A, Service Parts set to sales rep B and "Sales Representative - Part Sales" set to sales rep C.
+  - Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C, so that each of the three fields holds a different name.
+  - Use a customer with Service Labor set to sales rep A, Service Parts set to sales rep B and "Sales Representative - Part Sales" set to sales rep C, so the page shows all three representative rows.
   - Set the browser window to 1440 pixels wide with the zoom at 100%.
   - Open the design picture "customer-15-n2-page-three.png" (board 2.15) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.
   - Open the customer's page in that browser window.
@@ -6992,7 +7130,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep C.
   - Set the browser window to 1440 pixels wide with the zoom at 100%.
   - Open the design pictures "customer-16-n2-new.png" (board 2.16), "customer-17-n2-new-menu.png" (board 2.17) and "customer-18-n2-new-ps.png" (board 2.18) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.
   - Open the Customers page in that browser window.
@@ -7065,9 +7203,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced part sale for that customer.
+  - Create an open, uninvoiced part sale for this test for that customer.
   - Set the browser window to 1440 pixels wide with the zoom at 100%.
   - Open the design pictures "partsale-00-b-ps.png" (board 3.0), "partsale-01-n3-rest.png" (board 3.1), "partsale-02-n3-hover.png" (board 3.2), "partsale-03-n3-list.png" (board 3.3) and "partsale-04-n3-picked-hover.png" (board 3.4) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.
   - Open the part sale in that browser window.
@@ -7207,9 +7345,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have two active staff members at the test location with their "Sales Representative" switch on, so that a work order can have a different Labor and Parts representative.
   - Use a customer with no Sales Representative assigned.
-  - Have, today, one invoiced split work order for that customer (Labor set to sales rep A, Parts set to sales rep B) and one invoiced part sale.
+  - Have, today, one invoiced split work order for that customer (Labor set to one of them, Parts set to the other) and one invoiced part sale.
   - Set the browser window to 1440 pixels wide with the zoom at 100%.
   - Open the design pictures "sbr-11-a4-export-csv.png" (board 4.11) and "sbr-12-a4-export-pdf-crop-1.png" (board 4.12) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.
   - Open Reports > Sales By Representative in that browser window, with the Sales Type column off.
@@ -7314,9 +7452,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field reading "Unassigned".
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one "Sales Representative" field reading "Unassigned".
   - Use a phone screen 390 pixels wide.
   - Open the design pictures "phone-02-n6-field.png" (board 6.2), "phone-03-n6-list.png" (board 6.3) and "phone-04-n6-picked.png" (board 6.4) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.
   - Open the work order on a phone (a touch screen with no mouse pointer), with the card expanded.
@@ -7380,8 +7518,8 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
-  - Have a first work order with "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B, and invoice it.
+  - Have two active staff members at the test location with their "Sales Representative" switch on, so that a work order can have a different Labor and Parts representative.
+  - Have a first work order with "Sales Representative - Labor" set to one of them and "Sales Representative - Parts" set to the other, and invoice it.
   - Have a second work order, open and not invoiced.
   - Set the browser window to 1440 pixels wide with the zoom at 100%.
   - Open the design pictures "card-17-n1-invoiced.png" (board 1.17) and "card-02-n1-rest.png" (board 1.2) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.
@@ -7444,9 +7582,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced part sale for that customer.
+  - Create an open, uninvoiced part sale for this test for that customer.
   - Set the browser window to 1440 pixels wide with the zoom at 100%.
   - Open the design pictures "partsale-01-n3-rest.png" (board 3.1), "partsale-02-n3-hover.png" (board 3.2) and "partsale-04-n3-picked-hover.png" (board 3.4) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.
   - Open the part sale in that browser window.
@@ -7511,7 +7649,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
   - Have a part sale for that customer with Sales Representative set to sales rep A, one part and no labor, and invoice it today.
   - Set the browser window to 1440 pixels wide with the zoom at 100%.
@@ -7643,8 +7781,8 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 
   - Sign in as an Admin at the test location.
   - Have a second location open to you, and select both locations in the Location filter so that the report shows its Location column.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
-  - Have a work order at the test location with "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B, and invoice it today.
+  - Have two active staff members at the test location with their "Sales Representative" switch on, so that a work order can have a different Labor and Parts representative.
+  - Have a work order at the test location with "Sales Representative - Labor" set to one of them and "Sales Representative - Parts" set to the other, and invoice it today.
   - Set the browser window to 1440 pixels wide with the zoom at 100%.
   - Open the design pictures "sbr-09-a4-columns-on.png" (board 4.9), "sbr-11-a4-export-csv.png" (board 4.11) and "sbr-12-a4-export-pdf-crop-1.png" (board 4.12) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.
   - Open Reports > Sales By Representative in that browser window, with the date range set to today and Show Unassigned on.
@@ -7778,10 +7916,10 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Create an active staff member for this test at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
-  - Have a first work order for that customer, open and not invoiced, whose "Sales Representative - Labor" field reads sales rep A and whose "Sales Representative - Parts" field holds staff member C, whose staff record no longer exists.
-  - Have a second work order for that customer, open and not invoiced, whose one "Sales Representative" field holds staff member D, a staff member of another organization.
+  - Have a first work order for that customer, open and not invoiced, whose "Sales Representative - Labor" field reads sales rep A and whose "Sales Representative - Parts" field holds a staff member made for this test whose staff record no longer exists.
+  - Have a second work order for that customer, open and not invoiced, whose one "Sales Representative" field holds a staff member made for this test in another organization.
   - Open the first work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -7835,7 +7973,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
   - Sign in as an Admin at the test location.
   - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
   - Open the work order in two windows of a desktop browser at least 1024 pixels wide, side by side, both showing the one "Sales Representative" field.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -7921,7 +8059,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 
 **New preconditions**
 
-  - Sign in at the test location as user B, whose role has "Part Sales — Create & Edit" but not "Customers — Create & Edit" or "Work Orders — Create & Edit".
+  - Sign in at the test location as a user whose role has "Part Sales — Create & Edit" but not "Customers — Create & Edit" or "Work Orders — Create & Edit".
   - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
   - Have staff member D active at the test location with the "Sales Representative" switch off.
   - Open the Part Sales page in a desktop browser at least 1024 pixels wide.
@@ -8000,9 +8138,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C.
-  - Use customer A, whose one Sales Representative is sales rep C.
-  - Use customer B, with "Sales Representative - Service Labor" set to sales rep A, "Sales Representative - Service Parts" set to sales rep B and "Sales Representative - Part Sales" set to sales rep C.
+  - Create three active staff members for this test at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C.
+  - Create customer A for this test, whose one Sales Representative is sales rep C.
+  - Create customer B for this test, with "Sales Representative - Service Labor" set to sales rep A, "Sales Representative - Service Parts" set to sales rep B and "Sales Representative - Part Sales" set to sales rep C.
   - Then deactivate sales rep C's staff account.
   - Open sales rep C's staff record in Settings > Staff in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -8065,10 +8203,10 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Create two active staff members for this test at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
   - Use a customer with no Sales Representative assigned.
-  - Have a first work order for that customer, open and not invoiced, whose "Sales Representative - Labor" field reads sales rep A and whose "Sales Representative - Parts" field holds staff member C, whose staff record no longer exists.
-  - Have a second work order for that customer, open and not invoiced, whose one "Sales Representative" field holds staff member D, a staff member of another organization.
+  - Create a first work order for this test for that customer, open and not invoiced, whose "Sales Representative - Labor" field reads sales rep A and whose "Sales Representative - Parts" field holds a staff member made for this test whose staff record no longer exists.
+  - Create a second work order for this test for that customer, open and not invoiced, whose one "Sales Representative" field holds a staff member made for this test in another organization.
   - Open the first work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -8205,9 +8343,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one "Sales Representative" field set to that staff member.
   - Open the work order on a touch tablet with no mouse, held so that its screen is at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -8270,9 +8408,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on.
   - Use a customer with no Sales Representative assigned.
-  - Have a part sale for that customer with Sales Representative set to sales rep A and one part at $80.00, and invoice it today.
+  - Have a part sale for that customer with Sales Representative set to that staff member and one part at $80.00, and invoice it today.
   - Open Reports > Sales By Representative in a desktop browser at least 1024 pixels wide, with the date range set to today.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -8336,7 +8474,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
   - Make sure the test location's Shop Supplies Charge is 0% and nothing else is invoiced at the test location today.
   - Have a part sale for that customer with one part at $80.00 and Sales Representative set to sales rep A, and invoice it today.
@@ -8388,7 +8526,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
   - Sign in as an Admin at the test location.
   - Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C.
   - Use a customer whose one Sales Representative is sales rep C.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B.
   - After both representatives are set, add a line to the work order so that its history holds a version saved after both were set.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -8464,7 +8602,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
   - Sign in as an Admin at the test location.
   - Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C.
   - Use a customer whose one Sales Representative is sales rep C.
-  - Have a work order for that customer with "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B, then invoice it and take payment in full.
+  - Create a work order for this test for that customer with "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B, then invoice it and take payment in full.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -8516,9 +8654,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C.
+  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep C.
   - Use a customer whose "Sales Representative - Part Sales" is sales rep C.
-  - Have an open, uninvoiced part sale for that customer, with two parts and its Sales Representative set to sales rep A.
+  - Create an open, uninvoiced part sale for this test for that customer, with two parts and its Sales Representative set to sales rep A.
   - Open the part sale in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -8569,10 +8707,10 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 
 **New preconditions**
 
-  - Sign in at the test location as user B, whose role has "Customers — Create & Edit" but neither "Work Orders — View" nor "Work Orders — Create & Edit".
+  - Sign in at the test location as a user whose role has "Customers — Create & Edit" but neither "Work Orders — View" nor "Work Orders — Create & Edit".
   - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
   - Have staff member D active at the test location with the "Sales Representative" switch off.
-  - Use a customer with no Sales Representative assigned.
+  - Create a customer for this test with no Sales Representative assigned.
   - Open the customer's page in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -8641,11 +8779,11 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
-  - Have staff member C, a third active staff member at the test location, with the "Sales Representative" switch on.
+  - Create an active staff member for this test at the test location with the "Sales Representative" switch on, for the Labor side.
+  - Create staff member C for this test, another active staff member at the test location, with the "Sales Representative" switch on.
   - Use a customer with no Sales Representative assigned.
   - Make sure the test location's Shop Supplies Charge is 0% and nothing else is invoiced at the test location today.
-  - Have a work order for that customer with "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to staff member C, and invoice it today.
+  - Have a work order for that customer with "Sales Representative - Labor" set to that staff member and "Sales Representative - Parts" set to staff member C, and invoice it today.
   - After the invoice, staff member C's staff record no longer exists.
   - Open Reports > Sales By Representative in a desktop browser at least 1024 pixels wide, with the date range set to today, Show Unassigned on and the Sales Type column turned on.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -8696,7 +8834,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
   - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
   - Use a customer with no Sales Representative assigned, set as tax exempt so that no tax applies to its invoices.
   - Make sure the test location's Shop Supplies Charge is 0% and nothing else is invoiced at the test location today.
-  - Have an open, uninvoiced work order for that customer with one labor line of 1.00 hour at $100.00 ($100.00), one part sold at $50.00 and a non-taxable whole-invoice discount of $200.00 (not on any line), with Labor set to sales rep A and Parts set to sales rep B.
+  - Create an open, uninvoiced work order for this test for that customer with one labor line of 1.00 hour at $100.00 ($100.00), one part sold at $50.00 and a non-taxable whole-invoice discount of $200.00 (not on any line), with Labor set to sales rep A and Parts set to sales rep B.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -8770,7 +8908,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Make sure at least three locations are open to you: the test location, a second location and a third location.
+  - Make sure at least three locations are open to you: the test location, a second location and a third location, so that the Location filter has several options to tick.
   - Open Reports > Parts Velocity in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -8848,9 +8986,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have two active staff members at the test location with their "Sales Representative" switch on, so that a work order can have a different Labor and Parts representative.
   - Use a customer with no Sales Representative assigned and a unit (vehicle).
-  - Have an open, uninvoiced work order for that customer on that unit, with one labor line, one part, "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B.
+  - Have an open, uninvoiced work order for that customer on that unit, with one labor line, one part, "Sales Representative - Labor" set to one of them and "Sales Representative - Parts" set to the other.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -8952,7 +9090,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
   - Sign in as an Admin at the test location.
   - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field reading "Unassigned".
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one "Sales Representative" field reading "Unassigned".
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -9012,10 +9150,10 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
-  - Have a third active staff member at the test location, sales rep C, with the "Sales Representative" switch on.
+  - Create an active staff member for this test at the test location with the "Sales Representative" switch on: sales rep A.
+  - Have a second active staff member at the test location with the "Sales Representative" switch on: sales rep C.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and "Sales Representative - Labor" and "Sales Representative - Parts" both set to sales rep C.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and "Sales Representative - Labor" and "Sales Representative - Parts" both set to sales rep C.
   - Then turn sales rep C's "Sales Representative" switch off and save (the staff account stays active), so both fields read sales rep C's name followed by "(Inactive)".
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -9072,10 +9210,10 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
-  - Have a third active staff member at the test location, sales rep C, with the "Sales Representative" switch on.
+  - Create an active staff member for this test at the test location with the "Sales Representative" switch on.
+  - Create another active staff member for this test at the test location with the "Sales Representative" switch on: sales rep C.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and "Sales Representative - Labor" set to sales rep C and "Sales Representative - Parts" set to sales rep A.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and "Sales Representative - Labor" set to sales rep C and "Sales Representative - Parts" set to the first staff member.
   - Then turn sales rep C's "Sales Representative" switch off and save (the staff account stays active), so Labor reads sales rep C's name followed by "(Inactive)".
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -9121,9 +9259,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
   - Open the work order on a phone (a touch screen with no mouse pointer).
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -9187,8 +9325,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
-  - Use a customer with no Sales Representative assigned.
+  - Create a customer for this test with no Sales Representative assigned.
   - Open the customer's Edit Customer window in a desktop browser at least 1024 pixels wide, with the Sales Representative field reading "Unassigned".
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -9233,7 +9370,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 
   - Sign in as an Admin at the test location.
   - Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C.
-  - Use a customer with "Sales Representative - Service Labor" set to sales rep A, "Sales Representative - Service Parts" set to sales rep B and "Sales Representative - Part Sales" set to sales rep B.
+  - Create a customer for this test with "Sales Representative - Service Labor" set to sales rep A, "Sales Representative - Service Parts" set to sales rep B and "Sales Representative - Part Sales" set to sales rep B.
   - Open the customer's Edit Customer window in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -9335,9 +9472,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 
   - Sign in as an Admin at the test location.
   - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
-  - Use customer A, whose one Sales Representative is sales rep A.
+  - Use customer A, whose one Sales Representative is sales rep A, so the work order starts with sales rep A.
   - Use customer B, whose one Sales Representative is sales rep B.
-  - Create an open, uninvoiced work order for customer A, with one approved labor line and one part, so that its one "Sales Representative" field reads sales rep A (copied from customer A when it was created).
+  - Create an open, uninvoiced work order for this test for customer A, with one approved labor line and one part, so that its one "Sales Representative" field reads sales rep A (copied from customer A when it was created).
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -9385,7 +9522,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 
   - Sign in as an Admin at the test location.
   - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
-  - Use a customer whose one Sales Representative is sales rep A.
+  - Create a customer for this test whose one Sales Representative is sales rep A.
   - Create an open, uninvoiced work order for that customer, with one approved labor line and one part, so that its one "Sales Representative" field reads sales rep A (copied from the customer when it was created).
   - Open the customer's Edit Customer window in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -9443,7 +9580,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Create an active staff member for this test at the test location with the "Sales Representative" switch on: sales rep B.
   - Use a customer whose one Sales Representative is sales rep B.
   - Then turn sales rep B's "Sales Representative" switch off and save (the staff account stays active).
   - After that, create a work order for that customer with one labor line and one part (its Sales Representative reads "Unassigned"), and invoice it today without picking a representative.
@@ -9489,7 +9626,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Create an active staff member for this test at the test location with the "Sales Representative" switch on: sales rep B.
   - Use a customer with "Sales Representative - Service Labor" and "Sales Representative - Service Parts" both set to sales rep B.
   - Open sales rep B's staff record in Settings > Staff in a desktop browser at least 1024 pixels wide, with the "Sales Representative" switch on.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -9540,8 +9677,8 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
-  - Use a customer with "Sales Representative - Service Labor" set to sales rep A and "Sales Representative - Service Parts" set to sales rep B.
+  - Create two active staff members for this test at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Create a customer for this test with "Sales Representative - Service Labor" set to sales rep A and "Sales Representative - Service Parts" set to sales rep B.
   - Then turn sales rep A's "Sales Representative" switch off and save (the staff account stays active).
   - Open the Customers page in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -9616,10 +9753,10 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have two active staff members at the test location with their "Sales Representative" switch on, so that a work order can have a different Labor and Parts representative.
   - Use a customer with no Sales Representative assigned.
   - Make sure the test location's Shop Supplies Charge is 0% and nothing else is invoiced at the test location today.
-  - Have a work order for that customer with one labor line of 2.00 hours at $100.00 an hour (Tech Time 2.00) and one part sold at $50.00, "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B, and invoice it today.
+  - Have a work order for that customer with one labor line of 2.00 hours at $100.00 an hour (Tech Time 2.00) and one part sold at $50.00, "Sales Representative - Labor" set to one of them and "Sales Representative - Parts" set to the other, and invoice it today.
   - Open Reports > Sales By Representative in a desktop browser at least 1024 pixels wide, with the date range set to today and the Sales Type column off.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -9667,7 +9804,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
   - Make sure the test location's Shop Supplies Charge is 0% and nothing else is invoiced at the test location today.
   - Have a work order for that customer with one labor line of 2.00 hours at $100.00 an hour and one part sold at $50.00, "Sales Representative - Labor" and "Sales Representative - Parts" both set to sales rep A, and invoice it today.
@@ -9725,7 +9862,8 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 
   - Sign in as an Admin at the test location.
   - Make sure the Sales Type column of Sales By Representative is off for you.
-  - Open Reports > Sales By Representative in a desktop browser at least 1024 pixels wide.
+  - Have at least one invoiced work order at the test location today, so the report has invoice rows.
+  - Open Reports > Sales By Representative in a desktop browser at least 1024 pixels wide, with the date range set to today.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
 **Old steps**
@@ -9795,7 +9933,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
   - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and "Sales Representative - Labor" and "Sales Representative - Parts" both set to sales rep A.
   - Open the work order in a desktop browser at least 1024 pixels wide.
@@ -9852,7 +9990,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
   - Sign in as an Admin at the test location.
   - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -9926,7 +10064,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
   - Sign in as an Admin at the test location.
   - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B.
   - Open the work order in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -10120,9 +10258,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have two active staff members at the test location with their "Sales Representative" switch on, so that a work order can have a different Labor and Parts representative.
   - Use a customer with no Sales Representative assigned.
-  - Have one split work order for that customer with Labor set to sales rep A and Parts set to sales rep B, invoiced today. Neither sales rep has other invoices today.
+  - Have one split work order for that customer with Labor set to one of them and Parts set to the other, invoiced today. Neither of them has other invoices today.
   - Open Reports > Sales By Representative in a desktop browser at least 1024 pixels wide, with the date range set to today, Show Unassigned on and the Sales Type column turned on.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -10353,9 +10491,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have two active staff members at the test location with their "Sales Representative" switch on, so that a work order can have a different Labor and Parts representative.
   - Use a customer with no Sales Representative assigned and a unit (vehicle).
-  - Have a work order for that customer on that unit, with one labor line, one part, "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B, and invoice it today.
+  - Have a work order for that customer on that unit, with one labor line, one part, "Sales Representative - Labor" set to one of them and "Sales Representative - Parts" set to the other, and invoice it today.
   - Open the unit's page in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
 
@@ -10401,7 +10539,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep B.
   - Use a customer with no Sales Representative assigned.
   - Use a work order for that customer, still open and not invoiced, that had sales rep B as its one Sales Representative before the release was installed, with a version saved to its history with sales rep B before the release.
   - With the release installed, open the work order in a desktop browser at least 1024 pixels wide.
@@ -10456,9 +10594,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and "Sales Representative - Labor" and "Sales Representative - Parts" both set to sales rep A.
+  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and "Sales Representative - Labor" and "Sales Representative - Parts" both set to that staff member.
   - Set the browser window to 1440 pixels wide with the zoom at 100%.
   - Open the design pictures "card-09-n1-added.png" (board 1.9) and "card-10-n1-added-hover.png" (board 1.10) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.
   - Open the work order in that browser window.
@@ -10512,8 +10650,7 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C.
-  - Use a customer with no Sales Representative assigned.
+  - Create a customer for this test with no Sales Representative assigned.
   - Set the browser window to 1440 pixels wide with the zoom at 100%.
   - Open the design pictures "customer-06-n2-add-tip.png" (board 2.6) and "customer-07-n2-add-menu.png" (board 2.7) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.
   - Open the customer's Edit Customer window in that browser window.
@@ -10627,9 +10764,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have two active staff members at the test location with their "Sales Representative" switch on, so that a work order can have a different Labor and Parts representative.
   - Use a customer with no Sales Representative assigned.
-  - Have, today, one invoiced split work order for that customer (Labor set to sales rep A, Parts set to sales rep B), one invoiced work order with sales rep A on both sides and one invoiced part sale with no shop supplies.
+  - Have, today, one invoiced split work order for that customer (Labor set to one of them, Parts set to the other), one invoiced work order with one of them on both sides and one invoiced part sale with no shop supplies.
   - Set the browser window to 1440 pixels wide with the zoom at 100%.
   - Open the design pictures "sbr-06-a4-filter-open.png" (board 4.6) and "sbr-07-a4-sbr-labor-only.png" (board 4.7) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.
   - Open Reports > Sales By Representative for today in that browser window, with the Sales Type column turned on (as in the picture of board 4.7).
@@ -10760,9 +10897,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep B.
+  - Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.
   - Use a customer with no Sales Representative assigned.
-  - Have an open, uninvoiced work order for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
+  - Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one "Sales Representative" field set to sales rep A.
   - Use a phone screen 390 pixels wide.
   - Open the design pictures "phone-05-n6-add-menu.png" (board 6.5), "phone-06-n6-added.png" (board 6.6) and "phone-07-n6-parts-list.png" (board 6.7) attached to this case beside the browser window at 100% (actual size). Names, numbers and dates in the pictures are sample data.
   - Open the work order on a phone (a touch screen with no mouse pointer), with the card expanded.
@@ -10822,8 +10959,8 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have staff member D active at the test location with the "Sales Representative" switch on.
-  - Use a customer whose one Sales Representative is staff member D.
+  - Create staff member D for this test, active at the test location with the "Sales Representative" switch on.
+  - Create a customer for this test whose one Sales Representative is staff member D.
   - Then turn staff member D's "Sales Representative" switch off and save, so the customer shows staff member D's name followed by "(Inactive)".
   - Open the customer's Edit Customer window in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".
@@ -10885,9 +11022,9 @@ Below the results byte-identical: quotes yes, design block yes, notes yes, AUTOM
 **New preconditions**
 
   - Sign in as an Admin at the test location.
-  - Have sales rep A, an active staff member at the test location with the "Sales Representative" switch on.
-  - Have staff member D active at the test location with the "Sales Representative" switch on.
-  - Use a customer with "Sales Representative - Service Labor" set to sales rep A and "Sales Representative - Service Parts" set to staff member D, and no Part Sales field.
+  - Create sales rep A for this test, an active staff member at the test location with the "Sales Representative" switch on.
+  - Create staff member D for this test, active at the test location with the "Sales Representative" switch on.
+  - Create a customer for this test with "Sales Representative - Service Labor" set to sales rep A and "Sales Representative - Service Parts" set to staff member D, and no Part Sales field.
   - Then turn staff member D's "Sales Representative" switch off and save, so Service Parts shows staff member D's name followed by "(Inactive)".
   - Open the customer's Edit Customer window in a desktop browser at least 1024 pixels wide.
   - If you cannot set up any of the above, mark this test Blocked: "setup not done".

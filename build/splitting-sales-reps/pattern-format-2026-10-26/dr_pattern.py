@@ -25,7 +25,7 @@ PAT = {
                r={1: ['The labels read "Lead technician" and "Service advisor" (small second word, as on an invoiced card today).',
                       'Then come "Sales Representative - Labor" and "Sales Representative - Parts", with capital letters.',
                       "Each name sits below its label as plain text, as in the picture."]}),
- "DR-02": dict(pre=[ADMIN_P, REP1_A, CUST_P, "Have an open, uninvoiced part sale for that customer.", PICS, "Open the part sale in that browser window."],
+ "DR-02": dict(pre=[ADMIN_P, REP1_A, CUST_P, "Create an open, uninvoiced part sale for this test for that customer.", PICS, "Open the part sale in that browser window."],
                r={1: ['The label reads "Sales representative", with a small "r" (not "Sales Representative").', "There is one field.",
                       "There is no + or remove x beside it."],
                   2: ["The hover look is the part sale field's own (box and arrow across the full width of the card, as in the picture).",
