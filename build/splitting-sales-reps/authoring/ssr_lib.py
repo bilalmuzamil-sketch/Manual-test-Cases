@@ -214,16 +214,36 @@ def render_pre_iso(c, L):
             + "<p><strong>Preconditions: do these before you start</strong></p><ol>" + "".join(f"<li>{e(x)}</li>" for x in L["setup"]) + "</ol>"
             + "<p><strong>Test inputs</strong></p><ul>" + "".join(f"<li><strong>{e(n)}</strong>: {e(x)}.</li>" for n, x in L["inputs"]) + "</ul>"
             + "<p>If you cannot complete any precondition above, mark this test Blocked: \"setup not done\".</p>")
+import pattern_lib as PL
+def pattern_parts(c, L):
+    """Rule 117 fourteenth amendment (26 Oct 2026): the tester-facing parts of a case in the QA lead's pattern. S1-01, the model the QA
+    lead approved, keeps its own preconditions and results exactly as approved; every other case (auto=True, pattern_cases.py) gets its
+    plain precondition bullets with the Blocked line last, its steps and results with the placeholders turned into the plain names its
+    preconditions use, and each result as bullets (pattern_lib)."""
+    if not L.get("auto"): return L["pre"], c["steps"], L["results"], c["title"]
+    names = PL.default_names(" ".join([a for a, _ in c["pre"]] + c["steps"] + c["res"] + [c["known"]])); names.update(L["names"])
+    steps = [L["s"].get(i) or PL.sub(x, names) for i, x in enumerate(c["steps"], 1)]
+    res = [L["r"].get(i) or PL.split_bullets(PL.sub(x[len(f"Step {i}: "):], names)) for i, x in enumerate(c["res"], 1)]
+    pre = []
+    for x in L["pre"]: pre += PL.pics_p(c["pre"]) if x == PL.PICS else [x]
+    return pre + [PL.BLOCKED_P], steps, res, L.get("title") or c["title"]
+def below_results(c):
+    """Everything below the blank line after the results, unchanged by the pattern: any known-problem text, a held or Blocked note that
+    is not about the design, the exact quotes with their From: lines, the References from Design block and the AUTOMATION line last."""
+    return ((f"<p>{e(c['known'])}</p>" if c["known"] else "")
+            + (f"<p>{e(c['note'])}</p>" if c["note"] and not design_note(c) else "")
+            + quotes_block(c) + design_block(c) + f"<p>{e(c['marker'])}</p>")
 def render(c):
     sc = scenario_line(c["key"]); L = LAYOUT_V2.get(c["key"])
     if L and L.get("pattern"):   # the QA lead's pattern (26 Oct 2026): plain preconditions, steps, "Step N:" with bullet results
-        pre = "<p><strong>Preconditions</strong></p><ul>" + "".join(f"<li>{e(x)}</li>" for x in L["pre"]) + "</ul>"
+        P_pre, P_steps, P_res, P_title = pattern_parts(c, L)
+        pre = "<p><strong>Preconditions</strong></p><ul>" + "".join(f"<li>{e(x)}</li>" for x in P_pre) + "</ul>"
         exp = ("<p><strong>Expected Result</strong></p>" + "".join(f"<p>Step {i}:</p><ul>" + "".join(f"<li>{e(x)}</li>" for x in r) + "</ul>"
-                                                                   for i, r in enumerate(L["results"], 1))
-               + "<p></p>" + quotes_block(c) + design_block(c) + f"<p>{e(c['marker'])}</p>")
+                                                                   for i, r in enumerate(P_res, 1))
+               + "<p></p>" + below_results(c))
         refs = ",".join(dict.fromkeys(STORY[n][0] for n in story_nums(c)))
-        return {"title": c["title"], "template_id": 1, "type_id": 7, "priority_id": 2, "refs": refs, "custom_automation_type": 2,
-                "custom_atmstatus": 1, "custom_preconds": pre, "custom_steps": "<ol>" + "".join(f"<li>{e(x)}</li>" for x in c["steps"]) + "</ol>",
+        return {"title": P_title, "template_id": 1, "type_id": 7, "priority_id": 2, "refs": refs, "custom_automation_type": 2,
+                "custom_atmstatus": 1, "custom_preconds": pre, "custom_steps": "<ol>" + "".join(f"<li>{e(x)}</li>" for x in P_steps) + "</ol>",
                 "custom_expected": exp}
     pre = (render_pre_iso(c, L) if L.get("iso") else render_pre_v2(c, L)) if L else ("<p><strong>Preconditions</strong></p><ul>" + (f"<li>{e(sc)}</li>" if sc else "") + "".join(f"<li>{e(a)}" + (f"<br>{e(b)}" if b else "") + "</li>" for a, b in c["pre"]) + "</ul>")
     exp = ("<p><strong>Expected results</strong></p><ul>" + "".join(f"<li>{e(r)}</li>" for r in c["res"]) + "</ul>"
@@ -263,4 +283,54 @@ def check(c, extra_sources=None):
         if ws(t) not in src: p.append(f"{k}: quote {l} not verbatim")
     if len(c["pre"]) > 7: p.append(f"{k}: {len(c['pre'])} preconditions")
     if len(c["steps"]) > 10: p.append(f"{k}: {len(c['steps'])} steps (over 10: split it, or record in SPLITS.json why it stays whole, Rule 136)")
+    return p
+
+# ---- PATTERN GATE (Rule 117 fourteenth amendment, 26 Oct 2026; replaces the Scenario gate) ----
+_PRE_RE = re.compile(r"<p><strong>Preconditions</strong></p><ul>((?:<li>[^<]*</li>)+)</ul>")
+_RES_RE = re.compile(r"<p>Step (\d+):</p><ul>((?:<li>[^<]*</li>)+)</ul>")
+def results_tail(expected_html):
+    """What sits below the results: for the pattern, everything after the blank paragraph that closes the results; for the layout
+    before 26 Oct 2026, everything after the one results list (and its blank paragraph, if any)."""
+    if expected_html.startswith("<p><strong>Expected Result</strong></p>"):
+        return expected_html.split("<p></p>", 1)[1]
+    t = expected_html.split("</ul>", 1)[1]
+    return t[len("<p></p>"):] if t.startswith("<p></p>") else t
+def pattern_problems(key, f, old=None, exempt_blocked=("S1-01",)):
+    """Preconditions are plain bullets only (no {placeholder}, no "For example", no "Scenario:", no who-to-ask), the Blocked line last;
+    steps a numbered list with no placeholder; expected starts "Expected Result", has a "Step N:" heading and a bullet list for every
+    step in order, then <p></p>, then the quotes block and the rest; the title at most 80 characters with no semicolon. With old (the
+    case's fields before the pattern), everything below the results must be byte-identical to before."""
+    p = []
+    t = f["title"]
+    if len(t) > 80 or ";" in t: p.append(f"{key}: title {len(t)} characters or has a semicolon")
+    m = _PRE_RE.fullmatch(f["custom_preconds"])
+    if not m: p.append(f"{key}: Preconditions are not plain bullets only"); items = []
+    else: items = [html.unescape(x) for x in re.findall(r"<li>([^<]*)</li>", m.group(1))]
+    for x in items:
+        if "{" in x or "}" in x: p.append(f"{key}: placeholder in the Preconditions: {x[:60]}")
+        if re.search(r"for example|for instance", x, re.I): p.append(f"{key}: example in the Preconditions: {x[:60]}")
+        if "Scenario:" in x: p.append(f"{key}: Scenario line in the Preconditions")
+        if re.search(r"QA lead|ask your|set aside", x, re.I): p.append(f"{key}: who-to-ask or generic wording in the Preconditions")
+        if "ZZAUTOTEST" in x: p.append(f"{key}: example record name in the Preconditions")
+    if key not in exempt_blocked and (not items or items[-1] != PL.BLOCKED_P): p.append(f"{key}: the Blocked line is not last in the Preconditions")
+    steps = re.findall(r"<li>(.*?)</li>", f["custom_steps"], re.S)
+    if not re.fullmatch(r"<ol>(?:<li>[^<]*</li>)+</ol>", f["custom_steps"]): p.append(f"{key}: Steps are not a plain numbered list")
+    if any("{" in x for x in steps): p.append(f"{key}: placeholder in the Steps")
+    ex = f["custom_expected"]
+    head = "<p><strong>Expected Result</strong></p>"
+    if not ex.startswith(head): p.append(f"{key}: Expected does not start with \"Expected Result\""); return p
+    body, pos, n = ex[len(head):], 0, 0
+    while True:
+        mm = _RES_RE.match(body, pos)
+        if not mm: break
+        n += 1
+        if int(mm.group(1)) != n: p.append(f"{key}: result heading Step {mm.group(1)} where Step {n} was expected")
+        if "{" in mm.group(2): p.append(f"{key}: placeholder in the result of Step {n}")
+        pos = mm.end()
+    if n != len(steps): p.append(f"{key}: {n} result blocks for {len(steps)} steps")
+    if not body.startswith("<p></p>", pos): p.append(f"{key}: no blank paragraph after the results"); return p
+    tail = body[pos + len("<p></p>"):]
+    if "<p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: " not in tail: p.append(f"{key}: quotes block missing below the blank line")
+    if not re.search(r"<p>AUTOMATION: [^<]*</p>$", tail): p.append(f"{key}: the AUTOMATION line is not last")
+    if old is not None and tail != results_tail(old["custom_expected"]): p.append(f"{key}: what sits below the results is not byte-identical to before")
     return p

@@ -14,3 +14,7 @@ LAYOUT_V2 = {
              "Its text style, size, weight and left alignment match the other two fields.",
              "No border, dropdown arrow or button appears around or beside the field."]]),
 }
+# 26 Oct 2026 (Rule 117 fourteenth amendment, QA lead: "Yes, permanent, all suites"): every other case of the suite in the same pattern.
+# S1-01 above is kept exactly as approved; pattern_cases.py holds the rest (auto=True: steps and results come from the case model).
+from pattern_cases import PATTERN as _PATTERN
+for _k, _v in _PATTERN.items(): LAYOUT_V2.setdefault(_k, dict(pattern=True, auto=True, **_v))
