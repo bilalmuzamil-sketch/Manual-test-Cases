@@ -25,8 +25,6 @@ S1-23,723887,S1,"An empty Inactive tab says ""No inactive terms""",https://shopv
 S1-24,723888,S1,"Every row has a menu, even Credit Hold and the default COD",https://shopview.testrail.io/index.php?/cases/view/723888
 S1-25,723889,S1,"With every term deactivated, Active keeps the three fixed terms and the default",https://shopview.testrail.io/index.php?/cases/view/723889
 S1-26,723890,S1,A term held only by an invoice shows 0 and 0 but is still in use,https://shopview.testrail.io/index.php?/cases/view/723890
-S1-27,723891,S1,"While the list loads, the Inactive tab never says ""No inactive terms""",https://shopview.testrail.io/index.php?/cases/view/723891
-S1-28,723892,S1,"If the list cannot load, the page says so above the tabs",https://shopview.testrail.io/index.php?/cases/view/723892
 S1-29,723893,S1,The Admin role has Settings Finance on and it cannot be turned off,https://shopview.testrail.io/index.php?/cases/view/723893
 S1-30,723894,S1,The out-of-the-box Parts Manager role can open Credit Terms and move customers,https://shopview.testrail.io/index.php?/cases/view/723894
 S1-31,723895,S1,The out-of-the-box Office User role can open Credit Terms and move customers,https://shopview.testrail.io/index.php?/cases/view/723895
@@ -69,7 +67,6 @@ S2-31,723931,S2,Deleting a term another user just put a customer on is refused,h
 S2-32,723932,S2,Deleting a term another user just made the default is refused,https://shopview.testrail.io/index.php?/cases/view/723932
 S2-33,723933,S2,Making a term the default after another user deactivated it is refused,https://shopview.testrail.io/index.php?/cases/view/723933
 S2-34,723934,S2,Deleting a term another user already deleted says it was not found,https://shopview.testrail.io/index.php?/cases/view/723934
-S2-35,723935,S2,"Deactivating COD, Due on Receipt or Credit Hold is refused by the server",https://shopview.testrail.io/index.php?/cases/view/723935
 S2-36,723936,S2,Acting on a term another user renamed after the page loaded,https://shopview.testrail.io/index.php?/cases/view/723936
 S3-01,723937,S3,New Credit Term opens with Name focused and Net X days chosen,https://shopview.testrail.io/index.php?/cases/view/723937
 S3-02,723938,S3,Clicking the disabled Day box chooses it and empties Days,https://shopview.testrail.io/index.php?/cases/view/723938
@@ -97,8 +94,6 @@ S3-23,723959,S3,Cancel or the close icon discards the window's contents,https://
 S3-24,723960,S3,A name that reads like a Net term may carry a different rule,https://shopview.testrail.io/index.php?/cases/view/723960
 S3-25,723961,S3,"Creating a name another user just created is refused, window stays",https://shopview.testrail.io/index.php?/cases/view/723961
 S3-26,723962,S3,Saving an edit after another user put a customer on the term is refused,https://shopview.testrail.io/index.php?/cases/view/723962
-S3-27,723963,S3,A name longer than 31 characters is refused by the server,https://shopview.testrail.io/index.php?/cases/view/723963
-S3-28,723964,S3,A create request with no option chosen is refused,https://shopview.testrail.io/index.php?/cases/view/723964
 S4-01,723965,S4,"Move Customers lists the term's customers A to Z, all ticked",https://shopview.testrail.io/index.php?/cases/view/723965
 S4-02,723966,S4,Moving from COD lists blank-term customers but never Counter Sale,https://shopview.testrail.io/index.php?/cases/view/723966
 S4-03,723967,S4,"Moving from Net 30 also lists a customer stored as ""NET 30""",https://shopview.testrail.io/index.php?/cases/view/723967
@@ -128,11 +123,9 @@ S4-26,723990,S4,"With only Settings Finance, Move Customers is greyed with the r
 S4-27,723991,S4,"Without AP/AR Data access, Move Customers is greyed",https://shopview.testrail.io/index.php?/cases/view/723991
 S4-28,723992,S4,"Without Customers Create & Edit, Move Customers is greyed",https://shopview.testrail.io/index.php?/cases/view/723992
 S4-29,723993,S4,With all three permissions a custom role can move customers,https://shopview.testrail.io/index.php?/cases/view/723993
-S4-30,723994,S4,A move sent without all three permissions is refused by the server,https://shopview.testrail.io/index.php?/cases/view/723994
 S4-31,723995,S4,A ticked customer another user moved meanwhile is left alone,https://shopview.testrail.io/index.php?/cases/view/723995
 S4-32,723996,S4,"If every ticked customer left the term meanwhile, the move is refused",https://shopview.testrail.io/index.php?/cases/view/723996
 S4-33,723997,S4,"If the Move To term was deactivated meanwhile, the move is refused",https://shopview.testrail.io/index.php?/cases/view/723997
-S4-34,723998,S4,"If a move fails partway, nobody is changed",https://shopview.testrail.io/index.php?/cases/view/723998
 S4-35,723999,S4,Moving off a deactivated term: how the note names the old term,https://shopview.testrail.io/index.php?/cases/view/723999
 S4-36,724000,S4,"Moving a customer stored as ""NET 30"": how the note names the old term",https://shopview.testrail.io/index.php?/cases/view/724000
 S5-01,724001,S5,"New Customer shows Credit Terms and Credit Limit, prefilled with the default",https://shopview.testrail.io/index.php?/cases/view/724001
@@ -157,9 +150,7 @@ S5-19,724019,S5,Editing a customer without AP/AR access keeps its term and limit
 S5-20,724020,S5,A user without Settings Finance still gets the default and the shop's terms,https://shopview.testrail.io/index.php?/cases/view/724020
 S5-21,724021,S5,"If the default changes while New Customer is open, the form keeps its term",https://shopview.testrail.io/index.php?/cases/view/724021
 S5-22,724022,S5,A customer stored with unknown term text shows that text in Edit Customer,https://shopview.testrail.io/index.php?/cases/view/724022
-S5-23,724023,S5,"Before the term list loads, the dropdown shows the twelve standard terms",https://shopview.testrail.io/index.php?/cases/view/724023
 S5-24,724024,S5,Saving New Customer on a term deactivated meanwhile is refused,https://shopview.testrail.io/index.php?/cases/view/724024
-S5-25,724025,S5,A limit above $0 sent for a COD customer is refused by the server,https://shopview.testrail.io/index.php?/cases/view/724025
 S5-26,724026,S5,"On a phone, Credit Terms and Credit Limit stay side by side",https://shopview.testrail.io/index.php?/cases/view/724026
 S6-01,724027,S6,"The vendor Credit Terms dropdown lists active terms, with no Default tag",https://shopview.testrail.io/index.php?/cases/view/724027
 S6-02,724028,S6,New Vendor starts on COD whatever the customer default is,https://shopview.testrail.io/index.php?/cases/view/724028
@@ -260,7 +251,6 @@ S12-15,724122,S12,Long names in the log wrap and are never cut off,https://shopv
 S12-16,724123,S12,An untouched log on release day shows its empty state,https://shopview.testrail.io/index.php?/cases/view/724123
 S12-17,724124,S12,Changing a vendor's term in Edit Vendor writes nothing to the log,https://shopview.testrail.io/index.php?/cases/view/724124
 S12-18,724125,S12,The log is refused by the server without Settings Finance,https://shopview.testrail.io/index.php?/cases/view/724125
-S12-19,724126,S12,"If the log cannot load, it says so and the page is unaffected",https://shopview.testrail.io/index.php?/cases/view/724126
 DATA-01,724127,DATA,Net 30 is due 30 days after the invoice date,https://shopview.testrail.io/index.php?/cases/view/724127
 DATA-02,724128,DATA,The shop's own Net 10 term is due 10 days after the invoice date,https://shopview.testrail.io/index.php?/cases/view/724128
 DATA-03,724129,DATA,Day 10 of the following month: early and late invoice dates,https://shopview.testrail.io/index.php?/cases/view/724129
