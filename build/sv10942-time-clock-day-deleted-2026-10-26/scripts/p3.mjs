@@ -1,0 +1,14 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import {tday} from './lib2.mjs'; import {netlog,dlg} from './lib.mjs';
+const s=await open({env:'prod',user:'bilal.muzamil+tech@shopview.com',dir:'/tmp/qa21',vp:{width:390,height:844},dpr:2,touch:true});
+const A=s.page; const log=[]; netlog(A,log); const fl=t=>{console.log('--',t); console.log(log.filter(x=>!/my-tasks/.test(x)).join('\n')); log.length=0;};
+await A.waitForTimeout(3500);
+const tapOut=async(story)=>{await A.tap('[data-test-id="clock_in_button"]'); await A.waitForTimeout(1800); await A.locator('.q-dialog textarea').first().fill(story); await A.screenshot({path:`p3-${Date.now()}-outdlg.png`}); await A.tap('.q-dialog [data-test-id="button_clock_out"]'); await A.waitForTimeout(2800);};
+const tapIn=async(dept='Department1')=>{await A.tap('[data-test-id="clock_in_button"]'); await A.waitForTimeout(1800); await A.locator('.q-dialog [data-test-id="department_name"]',{hasText:new RegExp('^'+dept+'$')}).first().tap(); await A.waitForTimeout(2800);};
+await tday(s,'P3 start');
+await tapOut('ZZAUTOTEST SV-10942 stop old June clock'); fl('stop June 30 clock'); await tday(s,'P3 after stopping June clock');
+await tapIn(); fl('in 1'); await tday(s,'P3 in 1');
+await tapOut('ZZAUTOTEST SV-10942 out 1'); fl('out 1'); await tday(s,'P3 out 1');
+await tapIn(); fl('in 2 (after punch out)'); await tday(s,'P3 in 2');
+await A.screenshot({path:'p3-phone-after-in2.png'});
+await tapOut('ZZAUTOTEST SV-10942 out 2'); fl('out 2'); await tday(s,'P3 out 2');
+process.exit(0);

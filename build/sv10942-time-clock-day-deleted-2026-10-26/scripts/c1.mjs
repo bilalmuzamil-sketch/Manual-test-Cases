@@ -1,0 +1,11 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import {day,netlog,clockOut} from './lib.mjs';
+const s=await open({env:'prod',user:'bilal.muzamil@shopview.com',dir:'/tmp/qa21',vp:{width:1440,height:900},dpr:1});
+const A=s.page; const log=[]; netlog(A,log);
+await s.go('/workorders'); await A.waitForTimeout(5000);
+const a=await day(s,'C1 fresh session after closed browsers');
+await A.screenshot({path:'c1-header.png',clip:{x:1080,y:0,width:360,height:56}});
+await clockOut(A,'ZZAUTOTEST SV-10942 after crash'); console.log(log.filter(x=>!/my-tasks/.test(x)).join('\n'));
+const b=await day(s,'C1 after clock-out');
+const lost=a.mine.map(r=>r.id).filter(i=>!b.mine.map(r=>r.id).includes(i)); console.log('LOST',lost.length?lost:'none');
+console.log('marker',JSON.stringify(await s.marker()));
+process.exit(0);

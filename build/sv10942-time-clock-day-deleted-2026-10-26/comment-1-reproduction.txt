@@ -1,0 +1,46 @@
+{panel:bgColor=#fffae6}
+*REPRODUCTION ON PRODUCTION: NOT REPRODUCED*
+{panel}
+[~accountid:712020:1f21c3b6-c183-4d46-9561-7b79f0e197ab] [~accountid:5bd6d7573aa82432ce72b8d3] I tried the customer's sequence on production ([app.shopview.com|https://app.shopview.com], build v26.43.1-9af7270) on 26 October 2026, on a computer and on a phone-size touch screen. Clocking in again after a punch out never removed any earlier punch. The only way I found that removes a day's punches is the overlap rule from SV-10696, explained below.
+
+h3. What I tried
+||#||What I did (all from the Clock In button at the top of the screen unless noted)||Result||
+|1|Clock in to a department, clock out, clock in again, clock out (computer, Admin user)|All punches kept|
+|2|Two tabs open: clock out in tab 2, then use tab 1, which still showed the running timer, to clock out|"ID is missing." message, nothing removed (picture 2)|
+|3|Same out-of-date tab 1: tick a department and press Start (switching task)|Same "ID is missing." message, nothing removed|
+|4|Switch department from the Clock Out window (tick another department, Start)|Old punch closed, new one started, all kept|
+|5|Double click the department in the Clock In window|One punch created, all kept|
+|6|The clock-in request sent twice, as after a crash and retry|Second one refused: "You are already clocked in.", all kept|
+|7|Browser closed while clocked in for about 45 minutes, then reopened and clocked out|Clock still running on return, clock-out saved, all kept|
+|8|Phone, 390 wide, touch (Technician 1): stop a clock left running since 30 June, clock in, clock out, clock in again, clock out|All punches kept, including the long 30 June one (picture 3)|
+|9|Phone menu > Timesheets page|Shows the day's punches; there is no delete control on it|
+
+After all of the above, the Admin user had 9 punches today and all 9 are listed (picture 1); Technician 1 had 2 and both are listed.
+
+!SV-10942_1-desktop-all-punches-kept.png|width=700,height=513!
+_Picture 1: Reports > Timesheet Activities on production. All 9 of today's punches are still there._
+
+!SV-10942_2-stale-tab-id-missing.png|width=700,height=834!
+_Picture 2: an out-of-date second tab shows "ID is missing." and nothing is saved or removed._
+
+!SV-10942_3-phone-punches-kept.png|width=700,height=553!
+_Picture 3: on a phone, punch out then clock in again; the first punch is still there._
+
+h3. The one way I found that removes a day's punches
+Creating, editing or clocking out a timesheet entry that covers other entries removes those other entries. This is the overlap rule from SV-10696. Office admins have timesheet edit permission, so they can trigger it on their own day.
+!SV-10942_4-overlap-rule-deletes-punches.png|width=700,height=698!
+_Picture 4: production now lists what will be deleted and asks first. I pressed Cancel and both punches were kept._
+
+How to see it:
+# Open [Reports > Timesheet Activities|https://app.shopview.com/reports/punch-clock-activities] on production as an Admin.
+# Click {{New}} at the top right.
+# Pick a staff member who already has punches today, pick a department, and set {{Start}} and {{End}} so they cover those punches (for example 5:00 PM to 6:00 PM).
+# Click {{Create}}. The {{Confirm Overwrite}} window says how many entries will be permanently deleted.
+
+Since build v26.43.0 (22 October, SV-10696) this window warns first. Before that, the entries were removed with no message at all. Both of the customer's cases happened before 22 October, so this may be what happened: for example, a user who thought a punch was missing adds or edits an entry that covers the rest of the day. I can't confirm it, because I can't see the customer's own data. Related and still open: SV-11590 ("Clock Out from a work order's Timesheets fills Start with the wrong time", Ready to Fix), because a wrong Start can make an entry cover others.
+
+h3. What I could not test
+* The customer's own account and records (production test organization only).
+* The customer's "Office Admin" role: I used an Admin user and a Technician.
+
+Test data left on production: Admin user Bilal Muzammil and Technician 1 have ZZAUTOTEST punches dated 26 October 2026 (Department1).

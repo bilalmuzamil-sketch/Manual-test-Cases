@@ -1,0 +1,13 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import {day,netlog,dlg,clockIn,clockOut} from './lib.mjs';
+const s=await open({env:'prod',user:'bilal.muzamil@shopview.com',dir:'/tmp/qa21',vp:{width:1440,height:900},dpr:1});
+const p=s.page; const log=[]; netlog(p,log);
+await s.go('/workorders'); await p.waitForTimeout(6000);
+const a=await day(s,'M1 start (clocked in)');
+await clockOut(p); console.log('dialog after:',JSON.stringify(await dlg(p))); console.log(log.join('\n')); log.length=0;
+const b=await day(s,'M1 after clock-out');
+await p.screenshot({path:'m1-after-out.png'});
+await clockIn(p); console.log(log.join('\n')); log.length=0;
+const c=await day(s,'M1 after clock-in 2');
+await p.screenshot({path:'m1-after-in2.png'});
+const ids=x=>new Set(x.mine.map(r=>r.id)); const lost=[...ids(b)].filter(i=>!ids(c).has(i)); console.log('lost after second clock-in:',lost);
+process.exit(0);

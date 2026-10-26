@@ -1436,6 +1436,16 @@ items are **gated by permission** (a hidden item means the role lacks the perm).
 - **THE SV-9500 BUG (unfixed):** when a line's clocked **actual ≥ estimate**, remaining ≤ 0, and dragging the WO onto the Schedule is **blocked client-side** (NO `POST /api/schedule/shifts`) with the toaster **"Nothing left to schedule — there's no estimated time left to book."** Reproduced live on production 2026-08-28 (WO with Actual 0.2h / Estimate 0.1h). Fix (SV-9497) should allow scheduling when remaining is 0/negative.
 
 ### Timesheets
+- **Production Time Clock recipes (2026-10-26, SV-10942):** header `clock_in_button` → Clock In window (`section_departments`,
+  rows `department_name`) → `POST /api/technician-tasks/department-clock-in {department_id}`; while clocked in the same button
+  opens "Stop working on <dept>" (`input_tech_story`, `checkbox_select_task` to switch → `button_start_next_task` "Start",
+  `button_clock_out`) → `department-clock-out {task_id, description}`; a WO-line clock stops via `POST /api/technician-tasks/check-out
+  {task_id, tech_story, complete_line}`. Read a user's day: `GET /api/reporting/individual-punch-clock/today?range=today` (own) or
+  `/api/reporting/punch-clock-activities/today?range=today&pagination[...]` (admin, **location-scoped** — switch location to read
+  another location). Timesheet Activities **New** (`button_new_timesheet`): `select_timesheet_staff`, `select_timesheet_department`,
+  inputs `input_timesheet_start_date`/`_end_date` take **"Oct 26, 2026 09:00 AM"**; overlapping entries open `card_dialog_overwrite_confirmation`
+  ("N entries will be permanently deleted", `button_cancel_overwrite_confirmation`). Own active row = **Stop** (`button_stop_timesheet`),
+  someone else's = **Clock Out** (`button_clock_out_timesheet`); both sit right of the 1440 viewport.
 - **UI path:** Reports → **Timesheet Activities** (`/reports/punch-clock-activities`). Wage fields on Staff → Edit Staff Member (needs `settingsWages`). Department clock: `POST /api/technician-tasks/department-clock-in {department_id}` → 201 · `.../department-clock-out {task_id,description}` → 201.
 - **Preconditions:** `timesheetsView` (+ reports) to see; Create&Edit to edit. Timesheets card has no Delete column.
 - **Gotcha:** virtualized report rows resist automation — edit dialog could not be opened in-harness.
