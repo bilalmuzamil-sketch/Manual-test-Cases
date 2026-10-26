@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792692616,
  "updated_by": 3,
- "updated_on": 1793028749,
+ "updated_on": 1793034276,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an active staff member at the test location with the \"Sales Representative\" switch on: sales rep A.</li><li>Use a customer with no Sales Representative assigned.</li><li>Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one \"Sales Representative\" field set to sales rep A.</li><li>Open the work order on a phone (a touch screen with no mouse pointer).</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an active staff member at the test location with the \"Sales Representative\" switch on: sales rep A.</li><li>Use a customer with no Sales Representative assigned.</li><li>Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one \"Sales Representative\" field set to sales rep A.</li><li>Open the work order on a phone (a touch screen with no mouse pointer).</li></ul>",
  "custom_steps": "<ol><li>Tap the card's edit button to expand it.</li><li>Tap the + button.</li><li>Tap \"Sales Representative - Parts\".</li><li>Tap the remove x beside \"Sales Representative - Parts\".</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The card expands.</li><li>The + button shows beside the Sales Representative field at its full size, without any hover.</li></ul><p>Step 2:</p><ul><li>A menu opens.</li></ul><p>Step 3:</p><ul><li>\"Sales Representative - Labor\" and \"Sales Representative - Parts\" show, both reading sales rep A.</li><li>Each shows its arrow.</li><li>The remove x shows beside Parts.</li></ul><p>Step 4:</p><ul><li>One \"Sales Representative\" field shows again, reading sales rep A.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Splitting Sales Representatives\", Confluence 919928833, version 11 (21 Oct 2026, Chris Ward), read 22 Oct 2026 &middot; Epic SV-10890, story SV-11266 (Story 2, Give a work order a separate Labor and Parts representative), story SV-11267 (Story 3, Set the representatives on a phone)</p><ul><li><strong>S3-R2:</strong> &ldquo;The + and remove x buttons are always shown, at the same 32px size (S2-R1, S2-R8), and work as on a desktop (Story 2).&rdquo;</li><li><strong>S3-R4:</strong> &ldquo;Nothing in the fields or the buttons depends on hover. On a touch screen the Sales Representative fields always show their dropdown arrow, as the + and remove x buttons always do. Lead Technician and Service Advisor keep today's behavior, where the arrow shows once the field is tapped.&rdquo;</li><li><strong>S2-R6:</strong> &ldquo;Both fields start with the person who was in the one field, or \"Unassigned\" if it was empty. Adding the Parts field on its own changes nobody's credit.&rdquo;</li><li><strong>S2-R16:</strong> &ldquo;Clicking the remove x replaces the two fields with the one \"Sales Representative\" field. It holds the person who was in \"Sales Representative - Labor\", or \"Unassigned\", and that person is credited with the whole work order, labor and parts.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Claude design canvas \"Splitting Sales Representatives\" (https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), pages 1 and 6 (cited by the story), export read 19 Oct 2026, used for on-screen labels; the look itself is checked in the \"Design — how it looks\" cases.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 3
+ "version": 4
 }

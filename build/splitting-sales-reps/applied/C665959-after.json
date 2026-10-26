@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792398737,
  "updated_by": 3,
- "updated_on": 1793028788,
+ "updated_on": 1793034316,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create two active staff members for this test at the test location with their \"Sales Representative\" switch on: sales rep A and sales rep B, so that customer A's two fields hold different people.</li><li>Use customer A, with \"Sales Representative - Service Labor\" set to sales rep A and \"Sales Representative - Service Parts\" set to sales rep B, so only its Service Parts row holds sales rep B.</li><li>Use customer B, whose one Sales Representative is sales rep B.</li><li>Open sales rep B's staff record in Settings &gt; Staff in a desktop browser at least 1024 pixels wide.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create two active staff members for this test at the test location with their \"Sales Representative\" switch on: sales rep A and sales rep B, so that customer A's two fields hold different people.</li><li>Use customer A, with \"Sales Representative - Service Labor\" set to sales rep A and \"Sales Representative - Service Parts\" set to sales rep B, so only its Service Parts row holds sales rep B.</li><li>Use customer B, whose one Sales Representative is sales rep B.</li><li>Open sales rep B's staff record in Settings &gt; Staff in a desktop browser at least 1024 pixels wide.</li></ul>",
  "custom_steps": "<ol><li>Change sales rep B's last name (for example to \"Brook\").</li><li>Save the staff record.</li><li>Open customer A's page.</li><li>Open customer B's page.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The new last name shows in the staff record.</li></ul><p>Step 2:</p><ul><li>The staff record saves.</li></ul><p>Step 3:</p><ul><li>Service Parts shows sales rep B's new name.</li></ul><p>Step 4:</p><ul><li>\"Sales Representative\" also shows sales rep B's new name.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Splitting Sales Representatives\", Confluence 919928833, version 11 (21 Oct 2026, Chris Ward), read 22 Oct 2026 &middot; Epic SV-10890, story SV-11268 (Story 4, Give a customer default representatives)</p><ul><li><strong>S4-R22:</strong> &ldquo;Renaming a staff member updates their name in every customer field they hold.&rdquo;</li></ul><p>From: Tech plan \"Splitting Sales Representatives — Technical Implementation Plan\" (dated 14 Oct 2026, planned against PRD version 8; uploaded 19 Oct 2026 and again, byte-identical, 22 Oct 2026), read in full 22 Oct 2026</p><ul><li><strong>Tech plan, what the code does today (section 1):</strong> &ldquo;Assumed but not true today: a rename updates every customer (it updates one, `findOneBy`)&rdquo;</li><li><strong>Tech plan, Phase 2 functional tests (section 3.7, rename):</strong> &ldquo;Rename the user, then the view shows the new name on every customer holding them (S4-R22).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Claude design canvas \"Splitting Sales Representatives\" (https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), page 2 (cited by the story), export read 19 Oct 2026, used for on-screen labels; the look itself is checked in the \"Design — how it looks\" cases.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 11
+ "version": 12
 }

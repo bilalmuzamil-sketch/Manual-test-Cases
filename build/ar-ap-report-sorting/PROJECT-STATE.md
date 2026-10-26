@@ -126,3 +126,25 @@
   add up or change their records now create them "for this test"; D-33, D-34, D-56, D-59 gained the two-location data their results need.
   Notes of S1-16, S3-17, S5-18 now use plain names. Permanent gate in build.py (relevance, no case key or C-id, changed/summed records created
   for this test): 0 PROBLEM lines. Per-case list in pattern-format-2026-10-26/PASS-REPORT.md.
+
+## 26 Oct 2026 — tester read-through (QA lead "GO"; brief build/tester-readthrough-2026-10-26/WORKER-BRIEF.md), DRAFT
+- All 356 remaining cases read as a manual tester would (title, preconditions, steps, results, notes; design cases with their quotes and design
+  words). Report: `build/tester-readthrough-2026-10-26/ar-ap-report-sorting/READTHROUGH-REPORT.md` (reading coverage, per-case checks 1-8,
+  old vs new for every case, the two lists, enrolment findings). Nothing written to TestRail, Jira, Slack or Google; nothing committed.
+- DATA-21 (C715470, deleted from TestRail today by the coordinator on the QA lead's order) removed from the library: cases_data.py (the
+  counter still steps past it, so DATA-22 onwards keep their keys), scenarios.py, pattern_layout.py, tech_plan.py (TP-06, TP-10, TP-45).
+  `ar_lib.DELETED` records it; S3-N2, UFS-2 and OOS-1 (covered only by it) read "No manual case: deleted 26 Oct 2026 on the QA lead's order
+  (a manual tester cannot set it up); left to the developers' own checks" in REPORT.md; S3-N3 and S3-R9 stay covered by DATA-18 to DATA-20.
+- Rule 117 fifteenth amendment applied: the "If you cannot set up any of the above, mark this test Blocked" line is gone from every case and
+  from the setup file (its large-data procedure also no longer says "mark Blocked" or "ask the user"); DATA-13's note variant removed and
+  DATA-20's note no longer says "tell the QA lead". build.py fails on the line or any variant in any case field, note or the setup file.
+- Read-through corrections (180 cases): new layer `authoring/readthrough_layout.py` (applied after the relevance pass) plus model edits:
+  "Make sure the report has open documents" replaced by what to have and why; vague words made concrete ("native", "looks as described",
+  "as in the layout being checked", "The header shows it", "Rule 96/136" in notes); design titles made concrete; enrolment line kept only in
+  22 cases whose steps need it (PRD v9: organization-wide), removed in 62; the unused "current location" clause removed; S3-26/S3-27 gain a
+  retry step; S7-05/S7-20 move "note the rows" into the preconditions; S7-12 reordered; S8-07/S8-07b gain a control step with a new PRD v9
+  S3-R3 quote (their only quotes-block change; refs SV-11533,SV-11538). New permanent gates in build.py: Blocked line, deleted case,
+  vague words, enrolment. build.py: 0 PROBLEM lines. check_tail_identity.py: 354 byte-identical, 2 changed only by the added quote.
+- Not done in this pass: lines 3,359-9,356 of pattern-format-2026-10-26/PASS-REPORT.md were not read line by line (session context limit);
+  their new text was verified by script equal to the TestRail read-back (237/237), which was read in full. Needs the QA lead's go-ahead
+  before any TestRail write (Rules 6, 123).

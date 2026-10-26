@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792692626,
  "updated_by": 3,
- "updated_on": 1793028789,
+ "updated_on": 1793034317,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create two active staff members for this test at the test location with their \"Sales Representative\" switch on: sales rep A and sales rep B.</li><li>Create a customer for this test with \"Sales Representative - Service Labor\" set to sales rep A and \"Sales Representative - Service Parts\" set to sales rep B.</li><li>Then turn sales rep A's \"Sales Representative\" switch off and save (the staff account stays active).</li><li>Open the Customers page in a desktop browser at least 1024 pixels wide.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create two active staff members for this test at the test location with their \"Sales Representative\" switch on: sales rep A and sales rep B.</li><li>Create a customer for this test with \"Sales Representative - Service Labor\" set to sales rep A and \"Sales Representative - Service Parts\" set to sales rep B.</li><li>Then turn sales rep A's \"Sales Representative\" switch off and save (the staff account stays active).</li><li>Open the Customers page in a desktop browser at least 1024 pixels wide.</li></ul>",
  "custom_steps": "<ol><li>Open the customer's page.</li><li>Open Edit Customer.</li><li>Click the \"Sales Representative - Service Labor\" field.</li><li>Close the dropdown without picking anything.</li><li>Save the customer.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Service Labor still shows sales rep A, as sales rep A's name followed by \"(Inactive)\".</li></ul><p>Step 2:</p><ul><li>The Edit Customer window opens.</li></ul><p>Step 3:</p><ul><li>The field reads sales rep A's name followed by \"(Inactive)\".</li><li>Sales rep A is not offered in the dropdown.</li><li>No option is checked.</li></ul><p>Step 4:</p><ul><li>The field still reads sales rep A's name followed by \"(Inactive)\".</li></ul><p>Step 5:</p><ul><li>The customer saves with no error message.</li><li>Its page still shows Service Labor with sales rep A's name followed by \"(Inactive)\".</li><li>Its page still shows Service Parts with sales rep B.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Splitting Sales Representatives\", Confluence 919928833, version 11 (21 Oct 2026, Chris Ward), read 22 Oct 2026 &middot; Epic SV-10890, story SV-11268 (Story 4, Give a customer default representatives)</p><ul><li><strong>S4-N2:</strong> &ldquo;Turning off a staff member's Sales Representative switch, without deactivating their account, leaves them in the customer fields they hold, as today. In Edit Customer and on the customer page their name reads followed by \"(Inactive)\", for example \"Elliot Brennan (Inactive)\", as on the work order (S1-E2). They are not offered in the dropdown, so no option is checked while they hold the field.&rdquo;</li></ul><p>From: Chris Ward's answers to the Splitting Sales Representatives question sheet (answers 1 to 38, 19 Oct 2026; answers 39 and 40, 21 Oct 2026), read 22 Oct 2026</p><ul><li><strong>Chris Ward's answer 14:</strong> &ldquo;14. (b) \"Name (Inactive)\", as on a work order. Yes, no option is ticked while they hold the field.&rdquo;</li></ul><p>From: Tech plan \"Splitting Sales Representatives — Technical Implementation Plan\" (dated 14 Oct 2026, planned against PRD version 8; uploaded 19 Oct 2026 and again, byte-identical, 22 Oct 2026), read in full 22 Oct 2026</p><ul><li><strong>Tech plan, Phase 2 functional tests (section 3.7, already held):</strong> &ldquo;An already-held unflagged id saves (S4-N2).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Claude design canvas \"Splitting Sales Representatives\" (https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), page 2 (cited by the story), export read 19 Oct 2026, used for on-screen labels; the look itself is checked in the \"Design — how it looks\" cases.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 3
+ "version": 4
 }

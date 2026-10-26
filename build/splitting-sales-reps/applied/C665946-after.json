@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792398719,
  "updated_by": 3,
- "updated_on": 1793028764,
+ "updated_on": 1793034292,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have two active staff members at the test location with their \"Sales Representative\" switch on: sales rep A and sales rep B.</li><li>Create a customer for this test whose one Sales Representative is sales rep A.</li><li>Open the customer's Edit Customer window in a desktop browser at least 1024 pixels wide.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have two active staff members at the test location with their \"Sales Representative\" switch on: sales rep A and sales rep B.</li><li>Create a customer for this test whose one Sales Representative is sales rep A.</li><li>Open the customer's Edit Customer window in a desktop browser at least 1024 pixels wide.</li></ul>",
  "custom_steps": "<ol><li>Click the +.</li><li>Click \"Sales Representative - Service Parts\".</li><li>Change Service Parts to sales rep B.</li><li>Close the window without saving (Cancel or the window's close button).</li><li>Open Edit Customer again.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The menu opens.</li></ul><p>Step 2:</p><ul><li>Service Labor and Service Parts show, both reading sales rep A.</li></ul><p>Step 3:</p><ul><li>Service Parts reads sales rep B.</li></ul><p>Step 4:</p><ul><li>The window closes.</li><li>The page still shows one \"Sales Representative\" sales rep A.</li></ul><p>Step 5:</p><ul><li>The window shows one \"Sales Representative\" field reading sales rep A.</li><li>Nothing was saved.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Splitting Sales Representatives\", Confluence 919928833, version 11 (21 Oct 2026, Chris Ward), read 22 Oct 2026 &middot; Epic SV-10890, story SV-11268 (Story 4, Give a customer default representatives)</p><ul><li><strong>S4-R16:</strong> &ldquo;Nothing in the window is saved, including adding or removing a field, until the user saves the customer.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Claude design canvas \"Splitting Sales Representatives\" (https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), page 2 (cited by the story), export read 19 Oct 2026, used for on-screen labels; the look itself is checked in the \"Design — how it looks\" cases.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 10
+ "version": 11
 }

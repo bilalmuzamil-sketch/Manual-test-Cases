@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792398731,
  "updated_by": 3,
- "updated_on": 1793028778,
+ "updated_on": 1793034307,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create an active staff member for this test at the test location with the \"Sales Representative\" switch on: sales rep B.</li><li>Use a customer whose one Sales Representative is sales rep B.</li><li>Then turn sales rep B's \"Sales Representative\" switch off and save (the staff account stays active).</li><li>Open the Work Orders page in a desktop browser at least 1024 pixels wide.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create an active staff member for this test at the test location with the \"Sales Representative\" switch on: sales rep B.</li><li>Use a customer whose one Sales Representative is sales rep B.</li><li>Then turn sales rep B's \"Sales Representative\" switch off and save (the staff account stays active).</li><li>Open the Work Orders page in a desktop browser at least 1024 pixels wide.</li></ul>",
  "custom_steps": "<ol><li>Open the customer's page.</li><li>Create a new work order for the customer.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The customer still shows sales rep B, as sales rep B's name followed by \"(Inactive)\".</li></ul><p>Step 2:</p><ul><li>The new work order's Sales Representative reads \"Unassigned\".</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Splitting Sales Representatives\", Confluence 919928833, version 11 (21 Oct 2026, Chris Ward), read 22 Oct 2026 &middot; Epic SV-10890, story SV-11268 (Story 4, Give a customer default representatives)</p><ul><li><strong>S4-R27:</strong> &ldquo;Only a staff member whose account is active and whose Sales Representative switch is on is copied (S1-R8). Anyone else leaves that field \"Unassigned\", and S4-R17 and S4-R18 still apply at invoicing.&rdquo;</li><li><strong>S4-N2:</strong> &ldquo;Turning off a staff member's Sales Representative switch, without deactivating their account, leaves them in the customer fields they hold, as today. In Edit Customer and on the customer page their name reads followed by \"(Inactive)\", for example \"Elliot Brennan (Inactive)\", as on the work order (S1-E2). They are not offered in the dropdown, so no option is checked while they hold the field.&rdquo;</li><li><strong>Story 4 context note (S4-R27, S4-N2):</strong> &ldquo;* Context note (S4-R27, S4-N2): a person whose Sales Representative switch is off but whose account is active can stay in a customer field (S4-N2). A new work order does not copy them, so its card reads \"Unassigned\", but when it is invoiced with nobody on it, S4-R17 still credits them from the customer. QA should expect both.&rdquo;</li></ul><p>From: Chris Ward's answers to the Splitting Sales Representatives question sheet (answers 1 to 38, 19 Oct 2026; answers 39 and 40, 21 Oct 2026), read 22 Oct 2026</p><ul><li><strong>Chris Ward's answer 14:</strong> &ldquo;14. (b) \"Name (Inactive)\", as on a work order. Yes, no option is ticked while they hold the field.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Claude design canvas \"Splitting Sales Representatives\" (https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), page 2 (cited by the story), export read 19 Oct 2026, used for on-screen labels; the look itself is checked in the \"Design — how it looks\" cases.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 10
+ "version": 11
 }

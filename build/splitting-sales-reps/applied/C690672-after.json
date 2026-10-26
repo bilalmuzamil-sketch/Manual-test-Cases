@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792478094,
  "updated_by": 3,
- "updated_on": 1793028795,
+ "updated_on": 1793034324,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an active staff member at the test location with the \"Sales Representative\" switch on.</li><li>Use a customer with no Sales Representative assigned.</li><li>Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one \"Sales Representative\" field set to that staff member.</li><li>Open the work order on a touch tablet with no mouse, held so that its screen is at least 1024 pixels wide.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an active staff member at the test location with the \"Sales Representative\" switch on.</li><li>Use a customer with no Sales Representative assigned.</li><li>Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and one \"Sales Representative\" field set to that staff member.</li><li>Open the work order on a touch tablet with no mouse, held so that its screen is at least 1024 pixels wide.</li></ul>",
  "custom_steps": "<ol><li>Look at the work order card as it first opens, without tapping anything.</li><li>Tap the + button.</li><li>Tap \"Sales Representative - Parts\".</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The card is not collapsed.</li><li>Lead Technician, Service Advisor and the Sales Representative field show without tapping the card's edit button.</li><li>The field shows its dropdown arrow without any hover.</li><li>The + button shows beside it at its full size, without any hover.</li></ul><p>Step 2:</p><ul><li>A menu opens.</li></ul><p>Step 3:</p><ul><li>The menu closes.</li><li>\"Sales Representative - Labor\" and \"Sales Representative - Parts\" show, in that order.</li><li>Without tapping them, both fields show their dropdown arrow, without any hover.</li><li>The remove x shows beside \"Sales Representative - Parts\", without any hover.</li></ul><p></p><p>Chris Ward's answer 10 chose option (a) of the question sheet: on a wide touch screen with no mouse the card opens expanded, with the + and remove x always shown. Touch decides the buttons; the screen width decides whether the card is collapsed.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Splitting Sales Representatives\", Confluence 919928833, version 11 (21 Oct 2026, Chris Ward), read 22 Oct 2026 &middot; Epic SV-10890, story SV-11266 (Story 2, Give a work order a separate Labor and Parts representative), story SV-11267 (Story 3, Set the representatives on a phone)</p><ul><li><strong>S3-R2:</strong> &ldquo;The + and remove x buttons are always shown, at the same 32px size (S2-R1, S2-R8), and work as on a desktop (Story 2).&rdquo;</li><li><strong>S3-R4:</strong> &ldquo;Nothing in the fields or the buttons depends on hover. On a touch screen the Sales Representative fields always show their dropdown arrow, as the + and remove x buttons always do. Lead Technician and Service Advisor keep today's behavior, where the arrow shows once the field is tapped.&rdquo;</li><li><strong>S2-R5:</strong> &ldquo;Picking \"Sales Representative - Parts\" closes the menu and replaces the one field with two fields, in this order: \"Sales Representative - Labor\" and \"Sales Representative - Parts\".&rdquo;</li></ul><p>From: Chris Ward's answers to the Splitting Sales Representatives question sheet (answers 1 to 38, 19 Oct 2026; answers 39 and 40, 21 Oct 2026), read 22 Oct 2026</p><ul><li><strong>Chris Ward's answer 10:</strong> &ldquo;10. (a) as the tech plan: touch decides the buttons, screen width decides whether the card is collapsed.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Claude design canvas \"Splitting Sales Representatives\" (https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), pages 1 and 6 (cited by the story), export read 19 Oct 2026, used for on-screen labels; the look itself is checked in the \"Design — how it looks\" cases.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 6
+ "version": 7
 }

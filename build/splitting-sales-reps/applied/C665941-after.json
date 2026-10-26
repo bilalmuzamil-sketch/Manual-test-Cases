@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792398712,
  "updated_by": 3,
- "updated_on": 1793028754,
+ "updated_on": 1793034281,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an active staff member at the test location with the \"Sales Representative\" switch on: sales rep A.</li><li>Open the Customers page in a desktop browser at least 1024 pixels wide.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an active staff member at the test location with the \"Sales Representative\" switch on: sales rep A.</li><li>Open the Customers page in a desktop browser at least 1024 pixels wide.</li></ul>",
  "custom_steps": "<ol><li>Open New Customer.</li><li>Fill in the required customer details.</li><li>Pick sales rep A in Sales Representative.</li><li>Save the customer.</li><li>Open the new customer's page.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The New Customer window shows a Sales Representative field.</li><li>The + shows beside it.</li></ul><p>Step 2:</p><ul><li>The required fields are filled in.</li></ul><p>Step 3:</p><ul><li>The field reads sales rep A.</li></ul><p>Step 4:</p><ul><li>The customer is created.</li></ul><p>Step 5:</p><ul><li>The page shows \"Sales Representative\" with sales rep A.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Splitting Sales Representatives\", Confluence 919928833, version 11 (21 Oct 2026, Chris Ward), read 22 Oct 2026 &middot; Epic SV-10890, story SV-11268 (Story 4, Give a customer default representatives)</p><ul><li><strong>S4-R1:</strong> &ldquo;The Edit Customer window and the New Customer window both show a Sales Representative field, in the place Edit Customer shows it today, with the outlined box every other field in the window has.&rdquo;</li><li><strong>S4-R19:</strong> &ldquo;The customer page shows the representatives with the window's labels, in the window's order: \"Sales Representative\" or \"Sales Representative - Service Labor\", then \"Sales Representative - Service Parts\" when added, then \"Sales Representative - Part Sales\" when added. An empty one reads \"Unassigned\". The Sales Representative rows show on every customer, whether or not the customer has an address. The other fields on the page keep today's rule of showing only when the customer has an address.&rdquo;</li><li><strong>Release day:</strong> &ldquo;New: the New Customer window has a Sales Representative field (S4-R1). Before, a representative could only be set from Edit Customer.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Claude design canvas \"Splitting Sales Representatives\" (https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), page 2 (cited by the story), export read 19 Oct 2026, used for on-screen labels; the look itself is checked in the \"Design — how it looks\" cases.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 9
+ "version": 10
 }

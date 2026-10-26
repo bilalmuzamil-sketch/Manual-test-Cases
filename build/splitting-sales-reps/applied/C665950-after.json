@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792398726,
  "updated_by": 3,
- "updated_on": 1793028769,
+ "updated_on": 1793034297,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have three active staff members at the test location with their \"Sales Representative\" switch on: sales rep A, sales rep B and sales rep C.</li><li>Use customer A, whose one Sales Representative is sales rep A.</li><li>Use customer B, with \"Sales Representative - Service Labor\" set to sales rep A and \"Sales Representative - Service Parts\" set to sales rep B.</li><li>Use customer C, with \"Sales Representative - Service Labor\" set to sales rep A, \"Sales Representative - Service Parts\" set to sales rep B and \"Sales Representative - Part Sales\" set to sales rep C.</li><li>Open the Part Sales page in a desktop browser at least 1024 pixels wide.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have three active staff members at the test location with their \"Sales Representative\" switch on: sales rep A, sales rep B and sales rep C.</li><li>Use customer A, whose one Sales Representative is sales rep A.</li><li>Use customer B, with \"Sales Representative - Service Labor\" set to sales rep A and \"Sales Representative - Service Parts\" set to sales rep B.</li><li>Use customer C, with \"Sales Representative - Service Labor\" set to sales rep A, \"Sales Representative - Service Parts\" set to sales rep B and \"Sales Representative - Part Sales\" set to sales rep C.</li><li>Open the Part Sales page in a desktop browser at least 1024 pixels wide.</li></ul>",
  "custom_steps": "<ol><li>Create a new part sale for customer A.</li><li>Create a new part sale for customer B.</li><li>Create a new part sale for customer C.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Its Sales Representative field reads sales rep A.</li></ul><p>Step 2:</p><ul><li>It reads sales rep B, the Service Parts person.</li></ul><p>Step 3:</p><ul><li>It reads sales rep C, the Part Sales person.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Splitting Sales Representatives\", Confluence 919928833, version 11 (21 Oct 2026, Chris Ward), read 22 Oct 2026 &middot; Epic SV-10890, story SV-11268 (Story 4, Give a customer default representatives)</p><ul><li><strong>S4-R26:</strong> &ldquo;A new part sale starts with the customer's Part Sales field when it is added: the person picked, or \"Unassigned\" when \"Unassigned\" was picked. Without a Part Sales field it starts with the Service Parts person, or the one representative when the customer is not split.&rdquo;</li><li><strong>S4-R13:</strong> &ldquo;While the Part Sales field is not added, a change to Service Parts, or to the one representative, changes what new part sales get at once.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Claude design canvas \"Splitting Sales Representatives\" (https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), page 2 (cited by the story), export read 19 Oct 2026, used for on-screen labels; the look itself is checked in the \"Design — how it looks\" cases.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 8
+ "version": 9
 }

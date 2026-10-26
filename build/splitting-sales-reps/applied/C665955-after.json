@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792398732,
  "updated_by": 3,
- "updated_on": 1793028781,
+ "updated_on": 1793034309,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have two active staff members at the test location with their \"Sales Representative\" switch on: sales rep A and sales rep B.</li><li>Use a customer with \"Sales Representative - Service Labor\" set to sales rep A and \"Sales Representative - Service Parts\" set to sales rep B.</li><li>Have a work order for that customer with one labor line of $100.00 and one part of $50.00, with both sides reading \"Unassigned\", and invoice it today without picking a representative.</li><li>Open Reports &gt; Sales By Representative in a desktop browser at least 1024 pixels wide, with the date range set to today and the Sales Type column turned on.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have two active staff members at the test location with their \"Sales Representative\" switch on: sales rep A and sales rep B.</li><li>Use a customer with \"Sales Representative - Service Labor\" set to sales rep A and \"Sales Representative - Service Parts\" set to sales rep B.</li><li>Have a work order for that customer with one labor line of $100.00 and one part of $50.00, with both sides reading \"Unassigned\", and invoice it today without picking a representative.</li><li>Open Reports &gt; Sales By Representative in a desktop browser at least 1024 pixels wide, with the date range set to today and the Sales Type column turned on.</li></ul>",
  "custom_steps": "<ol><li>Expand sales rep A.</li><li>Expand sales rep B.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The labor of the work order's invoice ($100.00) is credited to sales rep A on a \"Labor\" row.</li></ul><p>Step 2:</p><ul><li>The part ($50.00) is credited to sales rep B on a \"Parts\" row.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Splitting Sales Representatives\", Confluence 919928833, version 11 (21 Oct 2026, Chris Ward), read 22 Oct 2026 &middot; Epic SV-10890, story SV-11268 (Story 4, Give a customer default representatives), story SV-11269 (Story 5, Credit each side on the invoice and in Sales By Representative)</p><ul><li><strong>S4-R17:</strong> &ldquo;A work order invoiced with nobody on either side is credited with the customer's Service Parts person on the parts side and the Service Labor person on the labor side. A customer that is not split gives its one person both sides.&rdquo;</li><li><strong>S5-R3:</strong> &ldquo;The report reads every invoice as one row per representative per Sales Type: \"Labor\" for a work order's labor side, \"Parts\" for its parts side, and \"Part Sales\" for a part sale.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Claude design canvas \"Splitting Sales Representatives\" (https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), pages 2 and 4 (cited by the story), export read 19 Oct 2026, used for on-screen labels; the look itself is checked in the \"Design — how it looks\" cases.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 10
+ "version": 11
 }

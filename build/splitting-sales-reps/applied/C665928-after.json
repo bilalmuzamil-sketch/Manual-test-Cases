@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792398695,
  "updated_by": 3,
- "updated_on": 1793028728,
+ "updated_on": 1793034255,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have two active staff members at the test location with their \"Sales Representative\" switch on: sales rep A and sales rep B.</li><li>Use a customer with no Sales Representative assigned.</li><li>Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and \"Sales Representative - Labor\" and \"Sales Representative - Parts\" both set to sales rep A.</li><li>Open the work order in a desktop browser at least 1024 pixels wide.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have two active staff members at the test location with their \"Sales Representative\" switch on: sales rep A and sales rep B.</li><li>Use a customer with no Sales Representative assigned.</li><li>Create an open, uninvoiced work order for this test for that customer, with one approved labor line, one part and \"Sales Representative - Labor\" and \"Sales Representative - Parts\" both set to sales rep A.</li><li>Open the work order in a desktop browser at least 1024 pixels wide.</li></ul>",
  "custom_steps": "<ol><li>Click \"Sales Representative - Parts\".</li><li>Click sales rep B in the dropdown.</li><li>Click \"Sales Representative - Labor\".</li><li>Click \"Unassigned\" in the dropdown.</li><li>Reload the page.</li><li>Click \"Sales Representative - Labor\".</li><li>Click sales rep B in the dropdown.</li><li>Reload the page.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The dropdown opens.</li></ul><p>Step 2:</p><ul><li>Parts reads sales rep B.</li><li>Labor still reads sales rep A.</li></ul><p>Step 3:</p><ul><li>The dropdown opens.</li></ul><p>Step 4:</p><ul><li>Labor reads \"Unassigned\".</li><li>Parts still reads sales rep B.</li><li>Labor is not handed to sales rep B.</li></ul><p>Step 5:</p><ul><li>Labor reads \"Unassigned\".</li><li>Parts reads sales rep B.</li></ul><p>Step 6:</p><ul><li>The dropdown opens.</li></ul><p>Step 7:</p><ul><li>Both fields read sales rep B.</li></ul><p>Step 8:</p><ul><li>Both fields still show after the reload.</li><li>Both read sales rep B.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Splitting Sales Representatives\", Confluence 919928833, version 11 (21 Oct 2026, Chris Ward), read 22 Oct 2026 &middot; Epic SV-10890, story SV-11266 (Story 2, Give a work order a separate Labor and Parts representative)</p><ul><li><strong>S2-R11:</strong> &ldquo;Each of the two fields works as S1-R2 to S1-R15.&rdquo;</li><li><strong>S2-R12:</strong> &ldquo;Picking in one field never changes the other.&rdquo;</li><li><strong>S2-N1:</strong> &ldquo;A side is never refilled on its own. Setting one side to \"Unassigned\" never hands that side to the other person and never fills it from the customer after the work order is created (S4-R24, S4-R28).&rdquo;</li><li><strong>S2-R15:</strong> &ldquo;The work order keeps both fields when the page is reloaded or reopened, including when both hold the same person.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Claude design canvas \"Splitting Sales Representatives\" (https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm), page 1 (cited by the story), export read 19 Oct 2026, used for on-screen labels; the look itself is checked in the \"Design — how it looks\" cases.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 9
+ "version": 10
 }
