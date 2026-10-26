@@ -61,7 +61,8 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 ### SETUP-S1-01 — A/R Summary opens with customers in name order, A to Z
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has four customers with open invoices whose names start alike and differ only by a number, a dash or capitals.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Four customers have open invoices on today's date: {Customer-A}, {Customer-B}, {Customer-C} and {Customer-D}. Their names start with the same word and then differ by a number, a dash or capitals, as in the example. For example: {Customer-A} is ZZAUTOTEST S1-01 10 Trucking, {Customer-B} is ZZAUTOTEST S1-01 2 Trucking, {Customer-C} is ZZAUTOTEST S1-01 A-1 Towing, {Customer-D} is ZZAUTOTEST S1-01 a1 towing.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -73,7 +74,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-S1-02 — A/P Summary opens with vendors in name order, A to Z
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop owes four vendors whose names start alike and differ only by a number, a dash or capitals.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Four vendors have open bills on today's date: {Vendor-A}, {Vendor-B}, {Vendor-C} and {Vendor-D}. Their names start with the same word and then differ by a number, a dash or capitals, as in the example. For example: {Vendor-A} is ZZAUTOTEST S1-02 10 Trucking, {Vendor-B} is ZZAUTOTEST S1-02 2 Trucking, {Vendor-C} is ZZAUTOTEST S1-02 A-1 Towing, {Vendor-D} is ZZAUTOTEST S1-02 a1 towing.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -85,7 +87,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-S1-03 — A/R Summary sorts accented customer names with their base letter
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Some of your customers with open invoices have names that start with an accented capital letter.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Six customers have open invoices on today's date: {Customer-A}, {Customer-B}, {Customer-C}, {Customer-D}, {Customer-E} and {Customer-F}. {Customer-B} and {Customer-E} start with a capital accented letter. For example: {Customer-A} is ZZAUTOTEST S1-03 Eagle, {Customer-B} is ZZAUTOTEST S1-03 Émile's, {Customer-C} is ZZAUTOTEST S1-03 Emma, {Customer-D} is ZZAUTOTEST S1-03 Fargo, {Customer-E} is ZZAUTOTEST S1-03 Øster and {Customer-F} is ZZAUTOTEST S1-03 Ozone.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -97,7 +100,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-S1-04 — A/P Summary sorts lower-case accented and joined letters as plain letters
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Some of the vendors you owe have names containing letters such as "æ" or "ß".
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Six vendors have open bills on today's date: {Vendor-A}, {Vendor-B}, {Vendor-C}, {Vendor-D}, {Vendor-E} and {Vendor-F}. {Vendor-B} has "æ" and {Vendor-E} has "ß" in its name. For example: {Vendor-A} is ZZAUTOTEST S1-04 Ackley, {Vendor-B} is ZZAUTOTEST S1-04 æble, {Vendor-C} is ZZAUTOTEST S1-04 Afton, {Vendor-D} is ZZAUTOTEST S1-04 Strand, {Vendor-E} is ZZAUTOTEST S1-04 Straße and {Vendor-F} is ZZAUTOTEST S1-04 Strasser.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -109,7 +113,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-S1-05 — Two customer names that differ only in capitals keep one order everywhere
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Two of your customers with open invoices have names that differ only in capital letters.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two customers have open invoices on today's date and their names differ only in capitals: {Customer-A} and {Customer-B}. For example: {Customer-A} is ZZAUTOTEST S1-05 Ace Towing and {Customer-B} is ZZAUTOTEST S1-05 ACE TOWING.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -121,7 +126,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S1-06 — Two vendor names that differ only in capitals keep one order everywhere
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Two of the vendors you owe have names that differ only in capital letters.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two vendors have open bills on today's date and their names differ only in capitals: {Vendor-A} and {Vendor-B}. For example: {Vendor-A} is ZZAUTOTEST S1-06 Ace Towing and {Vendor-B} is ZZAUTOTEST S1-06 ACE TOWING.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -133,7 +139,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S1-07 — A/R Summary lists Emile's Towing before Émile's Towing
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Two of your customers with open invoices have the same name, one written with an accent and one without.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two customers have open invoices on today's date and their names differ only by an accent: {Customer-A} without it and {Customer-B} with it. For example: {Customer-A} is ZZAUTOTEST S1-07 Emile's Towing and {Customer-B} is ZZAUTOTEST S1-07 Émile's Towing.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -145,7 +152,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S1-08 — A/R Detail lists the five buckets in fixed order and rows by name
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your customers owe you money in every aging bucket, and one bucket holds invoices from two customers.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents in all five aging buckets on today's date.
 - In the "1-30 days past due" bucket, {Customer-A} has one open invoice, {Invoice-A}, and {Customer-B} has two, {Invoice-B} and {Invoice-C}. {Customer-B}'s name comes first alphabetically, and {Invoice-B}'s number is smaller than {Invoice-C}'s but has fewer digits. For example: {Customer-A} is ZZAUTOTEST S1-08 Baker and {Customer-B} is ZZAUTOTEST S1-08 Abbott; {Invoice-B} is S1-99 and {Invoice-C} is S1-100 (the app assigns the real numbers).
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -158,7 +166,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-p-aging-detail-as-it-opens-today.
 ### SETUP-S1-09 — A/P Detail lists the five buckets in fixed order and rows by name
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe vendors money in every aging bucket, and one bucket holds bills from two vendors.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents in all five aging buckets on today's date.
 - In the "1-30 days past due" bucket, {Vendor-A} has one open bill, {Bill-A}, and {Vendor-B} has two, {Bill-B} and {Bill-C}. {Vendor-B}'s name comes first alphabetically, and {Bill-B}'s number is smaller than {Bill-C}'s but has fewer digits. For example: {Vendor-A} is ZZAUTOTEST S1-09 Baker and {Vendor-B} is ZZAUTOTEST S1-09 Abbott; {Bill-B} is S1-99 and {Bill-C} is S1-100 (the app assigns the real numbers).
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -171,7 +180,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-p-aging-detail-as-it-opens-today.
 ### SETUP-S1-10 — A/R Collection groups customers by name, rows oldest date first
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Two customers have overdue invoices, and one of them has two invoices dated the same day.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two customers have overdue invoices on today's date: {Customer-A} and {Customer-B}; {Customer-B}'s name comes first alphabetically. For example: {Customer-A} is ZZAUTOTEST S1-10 Baker and {Customer-B} is ZZAUTOTEST S1-10 Abbott.
 - {Customer-B} has three overdue invoices: {Invoice-A} with the oldest date, and {Invoice-B} and {Invoice-C} with the same later date. {Invoice-B}'s number is smaller than {Invoice-C}'s but has fewer digits, and {Invoice-C} was invoiced earlier that day than {Invoice-B}. For example: {Invoice-A} is dated 40 days ago; {Invoice-B} (S1-99) and {Invoice-C} (S1-100) are dated 35 days ago, {Invoice-C} invoiced in the morning and {Invoice-B} in the afternoon.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -184,7 +194,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S1-11 — A/P Unpaid Invoices groups vendors by name, rows oldest date first
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe two vendors overdue bills, and one of them has two bills dated the same day.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two vendors have overdue bills on today's date: {Vendor-A} and {Vendor-B}; {Vendor-B}'s name comes first alphabetically. For example: {Vendor-A} is ZZAUTOTEST S1-11 Baker and {Vendor-B} is ZZAUTOTEST S1-11 Abbott.
 - {Vendor-B} has three overdue bills: {Bill-A} with the oldest date, and {Bill-B} and {Bill-C} with the same later date. {Bill-B}'s number is smaller than {Bill-C}'s but has fewer digits, and {Bill-C} was entered earlier that day than {Bill-B}. For example: {Bill-A} is dated 40 days ago; {Bill-B} (S1-99) and {Bill-C} (S1-100) are dated 35 days ago, {Bill-C} entered in the morning and {Bill-B} in the afternoon.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -197,7 +208,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S1-12 — Each A/R report opens with its opening column marked as sorted
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/R Summary, A/R Detail, A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has open customer documents and you open each of the three A/R reports in turn.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Each of the three A/R reports has open documents on today's date.
 - Starting screen: Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) is open in a desktop browser window 1440 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -209,7 +221,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S1-13 — Each A/P report opens with its opening column marked as sorted
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/P Summary, A/P Detail, A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has open vendor documents and you open each of the three A/P reports in turn.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Each of the three A/P reports has open documents on today's date.
 - Starting screen: Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) is open in a desktop browser window 1440 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -221,6 +234,7 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S1-14 — Without Reports page access the six reports are not available
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
+- Scenario: A staff member whose role has no access to the Reports page tries to reach the A/R and A/P reports.
 - You are signed in as {User-B}, whose custom role {Role-A} has every permission except "Reports → Page Access". For example: {User-B} is ZZAUTOTEST S1-14 No Reports with the custom role ZZAUTOTEST S1-14 No Reports Role.
 - You have a link to A/R Summary and a link to A/P Detail, copied earlier from the address bar by an Admin user.
 - Starting screen: the ShopView home page in a desktop browser window 1440 px wide.
@@ -233,7 +247,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S1-15 — A customer with nothing open on the as-of date is not listed
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: One customer has paid everything they owe while another has an invoice that is still open.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has no open documents: its only invoice is paid in full. For example: {Customer-A} is ZZAUTOTEST S1-15 Paid Up.
 - Customer {Customer-B} has one open invoice, created today, and nothing before today. For example: {Customer-B} is ZZAUTOTEST S1-15 New Today.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -246,7 +261,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-S1-16 — A/R Summary sorts names that start with a punctuation mark by character
 Section: Story 1 — Reports open in QuickBooks name order (TestRail section 90419). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Some of your customers with open invoices have names that continue with a symbol or a digit, such as "#", "-" or "@".
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Four customers have open invoices on today's date: {Customer-A}, {Customer-B}, {Customer-C} and {Customer-D}. After the same first words, {Customer-A}'s name goes on with "#", {Customer-B}'s with "-", {Customer-C}'s with a digit and {Customer-D}'s with "@". For example: {Customer-A} is ZZAUTOTEST S1-16 #1 Diesel, {Customer-B} is ZZAUTOTEST S1-16 -1 Diesel, {Customer-C} is ZZAUTOTEST S1-16 10 Trucking and {Customer-D} is ZZAUTOTEST S1-16 @Home Towing.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -258,7 +274,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S2-01 — A/R Summary: the customer name header reverses on its first click
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Three customers have open invoices and you want to reverse the name order on A/R Summary.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three customers have open invoices on today's date: {Customer-A}, {Customer-B} and {Customer-C}; in name order they read {Customer-A}, {Customer-B}, {Customer-C}. For example: {Customer-A} is ZZAUTOTEST S2-01 Alder, {Customer-B} is ZZAUTOTEST S2-01 Birch and {Customer-C} is ZZAUTOTEST S2-01 Cedar.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -270,7 +287,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-01b — A/R Summary: the Location header sorts A to Z, then Z to A
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and customers have open invoices at one or both of them.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Three customers have open invoices on today's date: {Customer-A} only at {Location-B}, {Customer-B} at both locations and {Customer-C} only at {Location-A}. Both location names come after the word "Multiple" in A to Z order. For example: {Customer-A} is ZZAUTOTEST S2-01 Alder, {Customer-B} is ZZAUTOTEST S2-01 Birch and {Customer-C} is ZZAUTOTEST S2-01 Cedar.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -283,7 +301,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-summaries-show-multiple.png` (I36, 
 ### SETUP-S2-02 — A/R Summary: Current, 1-30 Days and 31-60 Days sort largest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Three customers owe you different amounts in each aging column, and you sort A/R Summary by the first three columns.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three customers, {Customer-A}, {Customer-B} and {Customer-C}, have open invoices on today's date with these open amounts per column: {Customer-A}: Current $100.00, 1-30 Days $200.00, 31-60 Days $300.00, 61-90 Days $250.00, 91 And Over $350.00, Total $1,200.00; {Customer-B}: Current $300.00, 1-30 Days $100.00, 31-60 Days $200.00, 61-90 Days $350.00, 91 And Over $150.00, Total $1,100.00; {Customer-C}: Current $200.00, 1-30 Days $300.00, 31-60 Days $100.00, 61-90 Days $150.00, 91 And Over $250.00, Total $1,000.00. For example: {Customer-A} is ZZAUTOTEST S2-02 Alder, {Customer-B} is ZZAUTOTEST S2-02 Birch and {Customer-C} is ZZAUTOTEST S2-02 Cedar.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -295,7 +314,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-03 — A/R Summary: 61-90 Days, 91 And Over and Total sort largest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Three customers owe you different amounts in each aging column, and you sort A/R Summary by the last three columns.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three customers, {Customer-A}, {Customer-B} and {Customer-C}, have open invoices on today's date with these open amounts per column: {Customer-A}: Current $100.00, 1-30 Days $200.00, 31-60 Days $300.00, 61-90 Days $250.00, 91 And Over $350.00, Total $1,200.00; {Customer-B}: Current $300.00, 1-30 Days $100.00, 31-60 Days $200.00, 61-90 Days $350.00, 91 And Over $150.00, Total $1,100.00; {Customer-C}: Current $200.00, 1-30 Days $300.00, 31-60 Days $100.00, 61-90 Days $150.00, 91 And Over $250.00, Total $1,000.00. For example: {Customer-A} is ZZAUTOTEST S2-03 Alder, {Customer-B} is ZZAUTOTEST S2-03 Birch and {Customer-C} is ZZAUTOTEST S2-03 Cedar.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -307,7 +327,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-04 — A/P Summary: the vendor name header reverses on its first click
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe three vendors and want to reverse the vendor name order on A/P Summary.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three vendors have open bills on today's date: {Vendor-A}, {Vendor-B} and {Vendor-C}; in name order they read {Vendor-A}, {Vendor-B}, {Vendor-C}. For example: {Vendor-A} is ZZAUTOTEST S2-04 Alder, {Vendor-B} is ZZAUTOTEST S2-04 Birch and {Vendor-C} is ZZAUTOTEST S2-04 Cedar.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -319,7 +340,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-04b — A/P Summary: the Location header sorts A to Z, then Z to A
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you owe vendors bills at one or both of them.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Three vendors have open bills on today's date: {Vendor-A} only at {Location-B}, {Vendor-B} at both locations and {Vendor-C} only at {Location-A}. Both location names come after the word "Multiple" in A to Z order. For example: {Vendor-A} is ZZAUTOTEST S2-04 Alder, {Vendor-B} is ZZAUTOTEST S2-04 Birch and {Vendor-C} is ZZAUTOTEST S2-04 Cedar.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -332,7 +354,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-summaries-show-multiple.png` (I36, 
 ### SETUP-S2-05 — A/P Summary: Current, 1-30 Days and 31-60 Days sort largest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe three vendors different amounts in each aging column, and you sort A/P Summary by the first three columns.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three vendors, {Vendor-A}, {Vendor-B} and {Vendor-C}, have open bills on today's date with these open amounts per column: {Vendor-A}: Current $100.00, 1-30 Days $200.00, 31-60 Days $300.00, 61-90 Days $250.00, 91 And Over $350.00, Total $1,200.00; {Vendor-B}: Current $300.00, 1-30 Days $100.00, 31-60 Days $200.00, 61-90 Days $350.00, 91 And Over $150.00, Total $1,100.00; {Vendor-C}: Current $200.00, 1-30 Days $300.00, 31-60 Days $100.00, 61-90 Days $150.00, 91 And Over $250.00, Total $1,000.00. For example: {Vendor-A} is ZZAUTOTEST S2-05 Alder, {Vendor-B} is ZZAUTOTEST S2-05 Birch and {Vendor-C} is ZZAUTOTEST S2-05 Cedar.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -344,7 +367,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-06 — A/P Summary: 61-90 Days, 91 And Over and Total sort largest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe three vendors different amounts in each aging column, and you sort A/P Summary by the last three columns.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three vendors, {Vendor-A}, {Vendor-B} and {Vendor-C}, have open bills on today's date with these open amounts per column: {Vendor-A}: Current $100.00, 1-30 Days $200.00, 31-60 Days $300.00, 61-90 Days $250.00, 91 And Over $350.00, Total $1,200.00; {Vendor-B}: Current $300.00, 1-30 Days $100.00, 31-60 Days $200.00, 61-90 Days $350.00, 91 And Over $150.00, Total $1,100.00; {Vendor-C}: Current $200.00, 1-30 Days $300.00, 31-60 Days $100.00, 61-90 Days $150.00, 91 And Over $250.00, Total $1,000.00. For example: {Vendor-A} is ZZAUTOTEST S2-06 Alder, {Vendor-B} is ZZAUTOTEST S2-06 Birch and {Vendor-C} is ZZAUTOTEST S2-06 Cedar.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -356,7 +380,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-07 — A/R Detail: the text column headers sort A to Z, then Z to A
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and one aging bucket on A/R Detail holds three documents of different kinds.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - In the "1-30 days past due" bucket there are three open documents: {Document-A} for {Customer-C} at {Location-B}, and {Document-B} for {Customer-A} and {Document-C} for {Customer-B} at {Location-A}; one of the three is a different transaction type from the others. For example: {Customer-A} is ZZAUTOTEST S2-07 Alder, {Customer-B} is ZZAUTOTEST S2-07 Birch and {Customer-C} is ZZAUTOTEST S2-07 Cedar; {Document-A} and {Document-B} are invoices and {Document-C} is a credit memo.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
@@ -369,7 +394,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-07b — A/R Detail: the Customer Full Name header reverses on its first click
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: One aging bucket on A/R Detail holds open documents from three different customers.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - In the "1-30 days past due" bucket there are three open documents: {Document-A} for {Customer-C}, {Document-B} for {Customer-A} and {Document-C} for {Customer-B}; in name order the customers read {Customer-A}, {Customer-B}, {Customer-C}. For example: {Customer-A} is ZZAUTOTEST S2-07 Alder, {Customer-B} is ZZAUTOTEST S2-07 Birch and {Customer-C} is ZZAUTOTEST S2-07 Cedar.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -381,7 +407,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-08 — A/R Detail: Date and Due Date sort oldest first, then newest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: One aging bucket on A/R Detail holds three invoices with different dates and due dates.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - In the "1-30 days past due" bucket there are three open invoices, {Document-A}, {Document-B} and {Document-C} for {Customer-C}, {Customer-A} and {Customer-B} in that order (in name order these customers read A, B, C): {Document-A} is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00; {Document-B} is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00; {Document-C} is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00. For example: {Customer-A} is ZZAUTOTEST S2-08 Alder, {Customer-B} is ZZAUTOTEST S2-08 Birch, {Customer-C} is ZZAUTOTEST S2-08 Cedar; {Document-A} is S1-101, {Document-B} is S1-99 and {Document-C} is S1-100 (the app assigns the real numbers; the dates and amounts are the ones that matter).
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -393,7 +420,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-09 — A/R Detail: money headers sort largest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: One aging bucket on A/R Detail holds three invoices with different amounts and open balances.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - In the "1-30 days past due" bucket there are three open invoices, {Document-A}, {Document-B} and {Document-C} for {Customer-C}, {Customer-A} and {Customer-B} in that order (in name order these customers read A, B, C): {Document-A} is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00; {Document-B} is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00; {Document-C} is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00. For example: {Customer-A} is ZZAUTOTEST S2-09 Alder, {Customer-B} is ZZAUTOTEST S2-09 Birch, {Customer-C} is ZZAUTOTEST S2-09 Cedar; {Document-A} is S1-101, {Document-B} is S1-99 and {Document-C} is S1-100 (the app assigns the real numbers; the dates and amounts are the ones that matter).
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -405,7 +433,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-10 — A/R Detail: ID sorts by number value, and ties go by number
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: One aging bucket on A/R Detail holds three invoices due the same day whose numbers have different lengths.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - In the "1-30 days past due" bucket there are three open invoices with the same due date, {Document-A}, {Document-B} and {Document-C}, whose numbers have different digit counts, so that in number order they read {Document-A}, {Document-B}, {Document-C} but in letter-by-letter order {Document-B}, {Document-C}, {Document-A}. For example: {Document-A} is S1-99, {Document-B} is S1-100 and {Document-C} is S1-101 (the app assigns the real numbers).
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -417,7 +446,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-11 — A/R Collection: the text column headers sort A to Z, then Z to A
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and one customer's overdue documents on A/R Collection are of different kinds.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has overdue invoices on today's date. For example: {Customer-A} is ZZAUTOTEST S2-11 Fleet.
 - In {Customer-A}'s group there are three open documents: {Document-A} at {Location-B}, and {Document-B} and {Document-C} at {Location-A}; one of the three is a different transaction type from the others. For example: {Document-A} and {Document-B} are invoices and {Document-C} is a credit memo.
@@ -431,7 +461,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-12 — A/R Collection: the Date header reverses on its first click
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: One customer on A/R Collection has three overdue invoices with different dates.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has overdue invoices on today's date. For example: {Customer-A} is ZZAUTOTEST S2-12 Fleet.
 - In {Customer-A}'s group there are three open invoices, {Document-A}, {Document-B} and {Document-C}: {Document-A} is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00; {Document-B} is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00; {Document-C} is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00. For example: {Document-A} is S1-101, {Document-B} is S1-99 and {Document-C} is S1-100 (the app assigns the real numbers; the dates and amounts are the ones that matter).
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
@@ -444,7 +475,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-12b — A/R Collection: Due Date sorts oldest first, then newest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: One customer on A/R Collection has three overdue invoices with different due dates.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has overdue invoices on today's date. For example: {Customer-A} is ZZAUTOTEST S2-12 Fleet.
 - In {Customer-A}'s group there are three open invoices, {Document-A}, {Document-B} and {Document-C}: {Document-A} is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00; {Document-B} is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00; {Document-C} is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00. For example: {Document-A} is S1-101, {Document-B} is S1-99 and {Document-C} is S1-100 (the app assigns the real numbers; the dates and amounts are the ones that matter).
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
@@ -457,7 +489,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-13 — A/R Collection: money and Past Due headers sort largest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: One customer on A/R Collection has three overdue invoices with different amounts, balances and days past due.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has overdue invoices on today's date. For example: {Customer-A} is ZZAUTOTEST S2-13 Fleet.
 - In {Customer-A}'s group there are three open invoices, {Document-A}, {Document-B} and {Document-C}: {Document-A} is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00; {Document-B} is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00; {Document-C} is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00. For example: {Document-A} is S1-101, {Document-B} is S1-99 and {Document-C} is S1-100 (the app assigns the real numbers; the dates and amounts are the ones that matter).
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
@@ -470,7 +503,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-14 — A/R Collection: ID sorts by number value, and ties go by number
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: One customer on A/R Collection has three invoices due the same day whose numbers have different lengths.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has overdue invoices on today's date. For example: {Customer-A} is ZZAUTOTEST S2-14 Fleet.
 - In {Customer-A}'s group there are three open invoices with the same due date, {Document-A}, {Document-B} and {Document-C}, whose numbers have different digit counts, so that in number order they read {Document-A}, {Document-B}, {Document-C} but in letter-by-letter order {Document-B}, {Document-C}, {Document-A}. For example: {Document-A} is S1-99, {Document-B} is S1-100 and {Document-C} is S1-101 (the app assigns the real numbers).
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
@@ -483,7 +517,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-15 — A/P Detail: the text column headers sort A to Z, then Z to A
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and one aging bucket on A/P Detail holds three documents of different kinds.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - In the "1-30 days past due" bucket there are three open documents: {Document-A} for {Vendor-C} at {Location-B}, and {Document-B} for {Vendor-A} and {Document-C} for {Vendor-B} at {Location-A}; one of the three is a different transaction type from the others. For example: {Vendor-A} is ZZAUTOTEST S2-15 Alder, {Vendor-B} is ZZAUTOTEST S2-15 Birch and {Vendor-C} is ZZAUTOTEST S2-15 Cedar; {Document-A} and {Document-B} are bills and {Document-C} is a vendor credit.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
@@ -496,7 +531,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-15b — A/P Detail: the Vendor Name header reverses on its first click
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: One aging bucket on A/P Detail holds open documents from three different vendors.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - In the "1-30 days past due" bucket there are three open documents: {Document-A} for {Vendor-C}, {Document-B} for {Vendor-A} and {Document-C} for {Vendor-B}; in name order the vendors read {Vendor-A}, {Vendor-B}, {Vendor-C}. For example: {Vendor-A} is ZZAUTOTEST S2-15 Alder, {Vendor-B} is ZZAUTOTEST S2-15 Birch and {Vendor-C} is ZZAUTOTEST S2-15 Cedar.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -508,7 +544,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-16 — A/P Detail: Date and Due Date sort oldest first, then newest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: One aging bucket on A/P Detail holds three bills with different dates and due dates.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - In the "1-30 days past due" bucket there are three open bills, {Document-A}, {Document-B} and {Document-C} for {Vendor-C}, {Vendor-A} and {Vendor-B} in that order (in name order these vendors read A, B, C): {Document-A} is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00; {Document-B} is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00; {Document-C} is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00. For example: {Vendor-A} is ZZAUTOTEST S2-16 Alder, {Vendor-B} is ZZAUTOTEST S2-16 Birch, {Vendor-C} is ZZAUTOTEST S2-16 Cedar; {Document-A} is S1-101, {Document-B} is S1-99 and {Document-C} is S1-100 (the app assigns the real numbers; the dates and amounts are the ones that matter).
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -520,7 +557,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-17 — A/P Detail: money and Past Due headers sort largest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: One aging bucket on A/P Detail holds three bills with different amounts, balances and days past due.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - In the "1-30 days past due" bucket there are three open bills, {Document-A}, {Document-B} and {Document-C} for {Vendor-C}, {Vendor-A} and {Vendor-B} in that order (in name order these vendors read A, B, C): {Document-A} is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00; {Document-B} is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00; {Document-C} is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00. For example: {Vendor-A} is ZZAUTOTEST S2-17 Alder, {Vendor-B} is ZZAUTOTEST S2-17 Birch, {Vendor-C} is ZZAUTOTEST S2-17 Cedar; {Document-A} is S1-101, {Document-B} is S1-99 and {Document-C} is S1-100 (the app assigns the real numbers; the dates and amounts are the ones that matter).
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -532,7 +570,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-18 — A/P Detail: No. sorts by number value, and ties go by number
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: One aging bucket on A/P Detail holds three bills due the same day whose numbers have different lengths.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - In the "1-30 days past due" bucket there are three open bills with the same due date, {Document-A}, {Document-B} and {Document-C}, whose numbers have different digit counts, so that in number order they read {Document-A}, {Document-B}, {Document-C} but in letter-by-letter order {Document-B}, {Document-C}, {Document-A}. For example: {Document-A} is S1-99, {Document-B} is S1-100 and {Document-C} is S1-101 (the app assigns the real numbers).
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the "1-30 days past due" bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -544,7 +583,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-19 — A/P Unpaid Invoices: the text column headers sort A to Z, then Z to A
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and one vendor's documents on A/P Unpaid Invoices are of different kinds.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has overdue bills on today's date. For example: {Vendor-A} is ZZAUTOTEST S2-19 Fleet.
 - In {Vendor-A}'s group there are three open documents: {Document-A} at {Location-B}, and {Document-B} and {Document-C} at {Location-A}; one of the three is a different transaction type from the others. For example: {Document-A} and {Document-B} are bills and {Document-C} is a vendor credit.
@@ -558,7 +598,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-19b — A/P Unpaid Invoices: the Vendor Name header cannot be clicked
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe a vendor several overdue bills and look at the vendor name heading on A/P Unpaid Invoices.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Vendor {Vendor-A} has overdue bills on today's date. For example: {Vendor-A} is ZZAUTOTEST S2-19 Fleet.
 - {Vendor-A} has at least two open documents with different dates.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A}'s group expanded.
@@ -571,7 +612,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-20 — A/P Unpaid Invoices: the Date header reverses on its first click
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe one vendor three overdue bills with different dates.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Vendor {Vendor-A} has overdue bills on today's date. For example: {Vendor-A} is ZZAUTOTEST S2-20 Fleet.
 - In {Vendor-A}'s group there are three open bills, {Document-A}, {Document-B} and {Document-C}: {Document-A} is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00; {Document-B} is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00; {Document-C} is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00. For example: {Document-A} is S1-101, {Document-B} is S1-99 and {Document-C} is S1-100 (the app assigns the real numbers; the dates and amounts are the ones that matter).
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A}'s group expanded.
@@ -584,7 +626,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-20b — A/P Unpaid Invoices: Due Date sorts oldest first, then newest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe one vendor three overdue bills with different due dates.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Vendor {Vendor-A} has overdue bills on today's date. For example: {Vendor-A} is ZZAUTOTEST S2-20 Fleet.
 - In {Vendor-A}'s group there are three open bills, {Document-A}, {Document-B} and {Document-C}: {Document-A} is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00; {Document-B} is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00; {Document-C} is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00. For example: {Document-A} is S1-101, {Document-B} is S1-99 and {Document-C} is S1-100 (the app assigns the real numbers; the dates and amounts are the ones that matter).
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A}'s group expanded.
@@ -597,7 +640,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-21 — A/P Unpaid Invoices: money and Past Due headers sort largest first
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe one vendor three overdue bills with different amounts, balances and days past due.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Vendor {Vendor-A} has overdue bills on today's date. For example: {Vendor-A} is ZZAUTOTEST S2-21 Fleet.
 - In {Vendor-A}'s group there are three open bills, {Document-A}, {Document-B} and {Document-C}: {Document-A} is dated 40 days ago, due 10 days ago, amount $300.00, open $50.00; {Document-B} is dated 20 days ago, due 20 days ago, amount $100.00, open $100.00; {Document-C} is dated 35 days ago, due 5 days ago, amount $200.00, open $150.00. For example: {Document-A} is S1-101, {Document-B} is S1-99 and {Document-C} is S1-100 (the app assigns the real numbers; the dates and amounts are the ones that matter).
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A}'s group expanded.
@@ -610,7 +654,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-22 — A/P Unpaid Invoices: No. sorts by number value, and ties go by number
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe one vendor three bills due the same day whose numbers have different lengths.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Vendor {Vendor-A} has overdue bills on today's date. For example: {Vendor-A} is ZZAUTOTEST S2-22 Fleet.
 - In {Vendor-A}'s group there are three open bills with the same due date, {Document-A}, {Document-B} and {Document-C}, whose numbers have different digit counts, so that in number order they read {Document-A}, {Document-B}, {Document-C} but in letter-by-letter order {Document-B}, {Document-C}, {Document-A}. For example: {Document-A} is S1-99, {Document-B} is S1-100 and {Document-C} is S1-101 (the app assigns the real numbers).
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A}'s group expanded.
@@ -623,7 +668,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-23 — A/P Unpaid Invoices: a vendor credit stays at the bottom when Due Date is sorted
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe a vendor two overdue bills and also hold an unused credit from that vendor.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Vendor {Vendor-A} has two overdue bills, {Bill-A} and {Bill-B}, and one unused vendor credit, {Vendor-credit-A}, on today's date. For example: {Vendor-A} is ZZAUTOTEST S2-23 Parts Co; {Bill-A} is due 10 days ago and {Bill-B} 20 days ago.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -635,7 +681,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-24 — A/P Detail: a vendor credit shows its own date as its Due Date
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You hold an unused credit from a vendor and look at it on A/P Detail.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Vendor {Vendor-A} has one unused vendor credit, {Vendor-credit-A}, on today's date. For example: {Vendor-A} is ZZAUTOTEST S2-24 Parts Co; {Vendor-credit-A} is dated 12 days ago.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -647,7 +694,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S2-25 — A/R Detail: sorting moves rows, never groups, and keeps groups open
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Customers owe you invoices, credit memos and deposits spread over several aging buckets, some of them expanded.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open invoices, credit memos and deposits in several buckets on today's date.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu; two buckets are expanded: "31-60 days past due" and "1-30 days past due"; the other three are collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -659,7 +707,8 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-S2-26 — A/R Collection: sorting moves rows, never groups, and keeps groups open
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Three customers have overdue invoices, and some of their groups on A/R Collection are expanded.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three customers, {Customer-A}, {Customer-B} and {Customer-C}, have overdue invoices on today's date; in name order they read A, B, C. For example: {Customer-A} is ZZAUTOTEST S2-26 Alder, {Customer-B} is ZZAUTOTEST S2-26 Birch and {Customer-C} is ZZAUTOTEST S2-26 Cedar.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu; {Customer-A}'s and {Customer-C}'s groups are expanded and {Customer-B}'s is collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -671,7 +720,8 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-S2-27 — A/P Detail: sorting moves rows, never groups, and keeps groups open
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe vendors bills and hold vendor credits spread over several aging buckets, some of them expanded.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open bills and vendor credits in several buckets on today's date.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu; two buckets are expanded: "31-60 days past due" and "1-30 days past due"; the other three are collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -683,7 +733,8 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-S2-28 — A/P Unpaid Invoices: sorting moves rows, never groups, and keeps groups open
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe three vendors overdue bills, and some of their groups on A/P Unpaid Invoices are expanded.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three vendors, {Vendor-A}, {Vendor-B} and {Vendor-C}, have overdue bills on today's date; in name order they read A, B, C. For example: {Vendor-A} is ZZAUTOTEST S2-28 Alder, {Vendor-B} is ZZAUTOTEST S2-28 Birch and {Vendor-C} is ZZAUTOTEST S2-28 Cedar.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu; {Vendor-A}'s and {Vendor-C}'s groups are expanded and {Vendor-B}'s is collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -695,7 +746,8 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-S2-29 — A/R Summary: the sort stays while changing date, scrolling and filters
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations with many customers owing money, and you sort A/R Summary, then change dates, scroll and filter.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - The report has more than 30 customers with open documents on today's date and on yesterday's date, at both locations.
 - Customer {Customer-A} has open documents at both locations. For example: {Customer-A} is ZZAUTOTEST S2-29 Kept Sort.
@@ -709,7 +761,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S2-30 — A/R Detail: the sort stays while changing date, scrolling and filters
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations with many open customer documents, and you sort A/R Detail, then change dates, scroll and filter.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - The report has open documents at both locations on today's and yesterday's date, with more than 100 lines in at least one bucket.
 - Customer {Customer-A} has open documents at both locations. For example: {Customer-A} is ZZAUTOTEST S2-30 Kept Sort.
@@ -723,7 +776,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-31 — A/R Collection: the sort stays while changing date, scrolling and filters
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations with many customers owing money, and you sort A/R Collection, then change dates, scroll and filter.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - The report has more than 30 customers with open documents on today's date and on yesterday's date, at both locations.
 - Customer {Customer-A} has open documents at both locations. For example: {Customer-A} is ZZAUTOTEST S2-31 Kept Sort.
@@ -737,7 +791,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S2-32 — A/P Summary: the sort stays while changing date, scrolling and filters
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations and owes many vendors, and you sort A/P Summary, then change dates, scroll and filter.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - The report has more than 30 vendors with open documents on today's date and on yesterday's date, at both locations.
 - Vendor {Vendor-A} has open documents at both locations. For example: {Vendor-A} is ZZAUTOTEST S2-32 Kept Sort.
@@ -751,7 +806,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S2-33 — A/P Detail: the sort stays while changing date, scrolling and filters
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations with many open bills, and you sort A/P Detail, then change dates, scroll and filter.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - The report has open documents at both locations on today's and yesterday's date, with more than 100 lines in at least one bucket.
 - Vendor {Vendor-A} has open documents at both locations. For example: {Vendor-A} is ZZAUTOTEST S2-33 Kept Sort.
@@ -765,7 +821,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-34 — A/P Unpaid Invoices: the sort stays while changing date, scrolling and filters
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations and owes many vendors, and you sort A/P Unpaid Invoices, then change dates, scroll and filter.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - The report has more than 30 vendors with open documents on today's date and on yesterday's date, at both locations.
 - Vendor {Vendor-A} has open documents at both locations. For example: {Vendor-A} is ZZAUTOTEST S2-34 Kept Sort.
@@ -779,7 +836,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S2-35 — A/R Collection: changing the Past due filter keeps the sort
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer has invoices overdue by different numbers of days, and you sort A/R Collection and then change the Past due filter.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has overdue invoices on today's date: one 1 to 30 days past due, and two 31 to 60 days past due with different open balances. For example: {Customer-A} is ZZAUTOTEST S2-35 Past Due Sort.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -791,7 +849,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-S2-36 — A/R Summary forgets the sort between visits
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has open customer documents, and you sort A/R Summary, leave it and come back.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -803,7 +862,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S2-36b — A/R Detail forgets the sort between visits
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has open customer documents, and you sort A/R Detail, leave it and come back.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -815,7 +875,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S2-37 — A/R Collection forgets the sort between visits
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has open customer documents, and you sort A/R Collection, leave it and come back.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -827,7 +888,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S2-37b — A/P Summary forgets the sort between visits
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has open vendor documents, and you sort A/P Summary, leave it and come back.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -839,7 +901,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S2-38 — A/P Detail forgets the sort between visits
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has open vendor documents, and you sort A/P Detail, leave it and come back.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -851,7 +914,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S2-38b — A/P Unpaid Invoices forgets the sort between visits
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has open vendor documents, and you sort A/P Unpaid Invoices, leave it and come back.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -863,7 +927,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-S2-39 — A/R Collection: a column where every row is the same does not reorder
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and one customer has three overdue invoices, all at the same location.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has three overdue invoices on today's date, {Invoice-A}, {Invoice-B} and {Invoice-C}, all at {Location-A}; in number order they read A, B, C. For example: {Customer-A} is ZZAUTOTEST S2-39 Same Place; {Invoice-A} is S1-99, {Invoice-B} S1-100 and {Invoice-C} S1-101.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -876,7 +941,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-p-aging-detail-opens-by-vendor-na
 ### SETUP-S2-40 — A/R Detail: column headings are in Title Case on screen, PDF and CSV
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations with open customer documents, and you check the A/R Detail column headings on screen and in exports.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - The report has open documents at both locations on today's date.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group expanded (Expand all).
@@ -889,7 +955,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-41 — A/R Collection: column headings are in Title Case on screen, PDF and CSV
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations with open customer documents, and you check the A/R Collection column headings on screen and in exports.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - The report has open documents at both locations on today's date.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group expanded (Expand all).
@@ -902,7 +969,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S2-42 — A/P Detail: column headings are in Title Case on screen, PDF and CSV
 Section: Story 2 — Sort by clicking any column header (TestRail section 90420). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations with open vendor documents, and you check the A/P Detail column headings on screen and in exports.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - The report has open documents at both locations on today's date.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group expanded (Expand all).
@@ -915,7 +983,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-S3-01 — A/R Summary has the Export menu with PDF and CSV
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has open customer documents and you want to export A/R Summary.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -927,7 +996,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-r-a-print-icon-only.png` (I06, "A
 ### SETUP-S3-01b — A/R Detail has the Export menu with PDF and CSV
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has open customer documents and you want to export A/R Detail.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -939,7 +1009,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-r-a-print-icon-only.png` (I06, "A
 ### SETUP-S3-01c — A/R Collection has the Export menu with PDF and CSV
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has open customer documents and you want to export A/R Collection.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -951,7 +1022,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-r-a-print-icon-only.png` (I06, "A
 ### SETUP-S3-02 — A/P Summary has the Export menu with PDF and CSV
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has open vendor documents and you want to export A/P Summary.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -963,7 +1035,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-p-no-export-at-all.png` (I07, "A/
 ### SETUP-S3-02b — A/P Detail has the Export menu with PDF and CSV
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has open vendor documents and you want to export A/P Detail.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -975,7 +1048,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-r-a-print-icon-only.png` (I06, "A
 ### SETUP-S3-02c — A/P Unpaid Invoices has the Export menu with PDF and CSV
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has open vendor documents and you want to export A/P Unpaid Invoices.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -987,7 +1061,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-r-a-print-icon-only.png` (I06, "A
 ### SETUP-S3-03 — A/R Summary: the PDF and CSV match the rows and order on screen
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you export A/R Summary for two customers to check it matches the screen.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customers {Customer-A} and {Customer-B} have open documents at both locations on today's date, at least two each, with different amounts. For example: {Customer-A} is ZZAUTOTEST S3-03 Export One and {Customer-B} is ZZAUTOTEST S3-03 Export Two.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing {Customer-A} and {Customer-B} ticked.
@@ -1000,7 +1075,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-04 — A/R Detail: the PDF and CSV match the rows and order on screen
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you export A/R Detail for two customers to check it matches the screen.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customers {Customer-A} and {Customer-B} have open documents at both locations on today's date, at least two each, with different amounts. For example: {Customer-A} is ZZAUTOTEST S3-04 Export One and {Customer-B} is ZZAUTOTEST S3-04 Export Two.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing {Customer-A} and {Customer-B} ticked and every group expanded (Expand all).
@@ -1013,7 +1089,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-05 — A/R Collection: the PDF and CSV match the rows and order on screen
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you export A/R Collection for two customers to check it matches the screen.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customers {Customer-A} and {Customer-B} have open documents at both locations on today's date, at least two each, with different amounts. For example: {Customer-A} is ZZAUTOTEST S3-05 Export One and {Customer-B} is ZZAUTOTEST S3-05 Export Two.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing {Customer-A} and {Customer-B} ticked and every group expanded (Expand all).
@@ -1026,7 +1103,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-06 — A/P Summary: the PDF and CSV match the rows and order on screen
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you export A/P Summary for two vendors to check it matches the screen.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendors {Vendor-A} and {Vendor-B} have open documents at both locations on today's date, at least two each, with different amounts. For example: {Vendor-A} is ZZAUTOTEST S3-06 Export One and {Vendor-B} is ZZAUTOTEST S3-06 Export Two.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Vendor filter showing {Vendor-A} and {Vendor-B} ticked.
@@ -1039,7 +1117,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-07 — A/P Detail: the PDF and CSV match the rows and order on screen
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you export A/P Detail for two vendors to check it matches the screen.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendors {Vendor-A} and {Vendor-B} have open documents at both locations on today's date, at least two each, with different amounts. For example: {Vendor-A} is ZZAUTOTEST S3-07 Export One and {Vendor-B} is ZZAUTOTEST S3-07 Export Two.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Vendor filter showing {Vendor-A} and {Vendor-B} ticked and every group expanded (Expand all).
@@ -1052,7 +1131,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-08 — A/P Unpaid Invoices: the PDF and CSV match the rows and order on screen
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you export A/P Unpaid Invoices for two vendors to check it matches the screen.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendors {Vendor-A} and {Vendor-B} have open documents at both locations on today's date, at least two each, with different amounts. For example: {Vendor-A} is ZZAUTOTEST S3-08 Export One and {Vendor-B} is ZZAUTOTEST S3-08 Export Two.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Vendor filter showing {Vendor-A} and {Vendor-B} ticked and every group expanded (Expand all).
@@ -1065,7 +1145,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-09 — A/R Summary: each export states the as-of date and the filters
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You export A/R Summary for a past date with filters set, and check the export says which date and filters were used.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customers {Customer-A} and {Customer-B} each have invoices at {Location-A} that were 31 to 60 and more than 90 days past due on Oct 15, 2026. For example: {Customer-A} is ZZAUTOTEST S3-09 First Ticked and {Customer-B} is ZZAUTOTEST S3-09 Second Ticked.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to 10/15/2026 and only {Location-A} ticked in the Location filter (the Location column is hidden).
@@ -1078,7 +1159,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-10 — A/R Detail: each export states the as-of date and the filters
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You export A/R Detail for a past date with filters set, and check the export says which date and filters were used.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customers {Customer-A} and {Customer-B} each have invoices at {Location-A} that were 31 to 60 and more than 90 days past due on Oct 15, 2026. For example: {Customer-A} is ZZAUTOTEST S3-10 First Ticked and {Customer-B} is ZZAUTOTEST S3-10 Second Ticked.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to 10/15/2026 and only {Location-A} ticked in the Location filter (the Location column is hidden).
@@ -1091,7 +1173,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-11 — A/R Collection: each export states the as-of date and the filters
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You export A/R Collection for a past date with filters set, and check the export says which date and filters were used.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customers {Customer-A} and {Customer-B} each have invoices at {Location-A} that were 31 to 60 and more than 90 days past due on Oct 15, 2026. For example: {Customer-A} is ZZAUTOTEST S3-11 First Ticked and {Customer-B} is ZZAUTOTEST S3-11 Second Ticked.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to 10/15/2026 and only {Location-A} ticked in the Location filter (the Location column is hidden).
@@ -1104,7 +1187,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-12 — A/P Summary: each export states the as-of date and the filters
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You export A/P Summary for a past date with filters set, and check the export says which date and filters were used.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendors {Vendor-A} and {Vendor-B} each have bills at {Location-A} that were 31 to 60 and more than 90 days past due on Oct 15, 2026. For example: {Vendor-A} is ZZAUTOTEST S3-12 First Ticked and {Vendor-B} is ZZAUTOTEST S3-12 Second Ticked.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to 10/15/2026 and only {Location-A} ticked in the Location filter (the Location column is hidden).
@@ -1117,7 +1201,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-13 — A/P Detail: each export states the as-of date and the filters
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You export A/P Detail for a past date with filters set, and check the export says which date and filters were used.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendors {Vendor-A} and {Vendor-B} each have bills at {Location-A} that were 31 to 60 and more than 90 days past due on Oct 15, 2026. For example: {Vendor-A} is ZZAUTOTEST S3-13 First Ticked and {Vendor-B} is ZZAUTOTEST S3-13 Second Ticked.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to 10/15/2026 and only {Location-A} ticked in the Location filter (the Location column is hidden).
@@ -1130,7 +1215,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-14 — A/P Unpaid Invoices: each export states the as-of date and the filters
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You export A/P Unpaid Invoices for a past date with filters set, and check the export says which date and filters were used.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendors {Vendor-A} and {Vendor-B} each have bills at {Location-A} that were 31 to 60 and more than 90 days past due on Oct 15, 2026. For example: {Vendor-A} is ZZAUTOTEST S3-14 First Ticked and {Vendor-B} is ZZAUTOTEST S3-14 Second Ticked.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to 10/15/2026 and only {Location-A} ticked in the Location filter (the Location column is hidden).
@@ -1143,7 +1229,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-15 — A/R Summary: exports say All locations and add only the lines that are set
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you export A/R Summary first with no filters and then with some filters set.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has open invoices on today's date. For example: {Customer-A} is ZZAUTOTEST S3-15 Only One.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -1156,7 +1243,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-16 — A/P Detail: exports say All locations and add only the lines that are set
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you export A/P Detail first with no filters and then with some filters set.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has open bills on today's date. For example: {Vendor-A} is ZZAUTOTEST S3-16 Only One.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -1169,7 +1257,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-17 — A/R Detail: exports list the ticked locations in A to Z order
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has open customer documents at three locations, and you export A/R Detail with some of them ticked.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open A/R documents at three locations, {Location-A}, {Location-B} and {Location-C}, and you are enrolled at all three; in A to Z order {Location-A}'s name comes before {Location-C}'s. For example: {Location-A} is Staging Heavy Duty - 9919, {Location-B} is Staging Lethbridge - 4310 and {Location-C} is another staging location whose name starts with a later letter.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with no location ticked in the Location filter ("Clear selection" clicked).
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1181,7 +1270,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-18 — A/R Summary: the CSV is one flat table with plain two-decimal amounts
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer owes you amounts in two aging buckets, and you open the A/R Summary export in a spreadsheet.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has open invoices on today's date of $1,250.50 that is 1 to 30 days past due and $99.00 that is more than 90 days past due, and nothing in the other buckets. For example: {Customer-A} is ZZAUTOTEST S3-18 Flat Table.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1193,7 +1283,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-19 — A/P Summary: the CSV is one flat table with plain two-decimal amounts
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe a vendor amounts in two aging buckets, and you open the A/P Summary export in a spreadsheet.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Vendor {Vendor-A} has open bills on today's date of $1,250.50 that is 1 to 30 days past due and $99.00 that is more than 90 days past due, and nothing in the other buckets. For example: {Vendor-A} is ZZAUTOTEST S3-19 Flat Table.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1205,7 +1296,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-20 — A/R Detail: the CSV has one row per document and no group rows
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer has two overdue invoices in different aging buckets, and you export A/R Detail as a spreadsheet file.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has two overdue invoices on today's date: {Invoice-A}, dated {Date-A}, amount $1,250.50, 31 to 60 days past due, and {Invoice-B}, amount $75.00, 1 to 30 days past due. For example: {Customer-A} is ZZAUTOTEST S3-20 Flat Rows; {Date-A} is 2026-09-01.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing {Customer-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1217,7 +1309,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-21 — A/R Collection: the CSV has one row per document and no group rows
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer has two overdue invoices in different aging buckets, and you export A/R Collection as a spreadsheet file.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has two overdue invoices on today's date: {Invoice-A}, dated {Date-A}, amount $1,250.50, 31 to 60 days past due, and {Invoice-B}, amount $75.00, 1 to 30 days past due. For example: {Customer-A} is ZZAUTOTEST S3-21 Flat Rows; {Date-A} is 2026-09-01.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing {Customer-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1229,7 +1322,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-22 — A/P Detail: the CSV has one row per document and no group rows
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe a vendor two overdue bills in different aging buckets, and you export A/P Detail as a spreadsheet file.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Vendor {Vendor-A} has two overdue bills on today's date: {Bill-A}, dated {Date-A}, amount $1,250.50, 31 to 60 days past due, and {Bill-B}, amount $75.00, 1 to 30 days past due. For example: {Vendor-A} is ZZAUTOTEST S3-22 Flat Rows; {Date-A} is 2026-09-01.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Vendor filter showing {Vendor-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1241,7 +1335,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-23 — A/P Unpaid Invoices: the CSV has one row per document and no group rows
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe a vendor two overdue bills in different aging buckets, and you export A/P Unpaid Invoices as a spreadsheet file.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Vendor {Vendor-A} has two overdue bills on today's date: {Bill-A}, dated {Date-A}, amount $1,250.50, 31 to 60 days past due, and {Bill-B}, amount $75.00, 1 to 30 days past due. For example: {Vendor-A} is ZZAUTOTEST S3-23 Flat Rows; {Date-A} is 2026-09-01.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Vendor filter showing {Vendor-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1253,7 +1348,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-24 — A/R Summary: exporting an empty report downloads nothing and warns
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you untick every location on A/R Summary and then try to export it.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1265,7 +1361,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cl
 ### SETUP-S3-25 — A/P Unpaid Invoices: exporting an empty report downloads nothing and warns
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you try to export A/P Unpaid Invoices while the ticked location has no rows.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has open bills only at {Location-B}. For example: {Vendor-A} is ZZAUTOTEST S3-25 Elsewhere.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Location-A} ticked in the Location filter.
@@ -1278,7 +1375,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S3-26 — A/R Detail: a CSV export that fails shows one error and downloads nothing
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your network connection is off when you try to export A/R Detail as a spreadsheet file.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -1291,7 +1389,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S3-27 — A/P Summary: a PDF export that fails shows one error and downloads nothing
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your network connection is off when you try to export A/P Summary as a PDF.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -1304,7 +1403,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S3-28 — A/R Detail: exporting with every bucket closed still downloads every row
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer has open invoices in two aging buckets, and you export A/R Detail while every bucket is closed.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has three open invoices on today's date, in two different aging buckets. For example: {Customer-A} is ZZAUTOTEST S3-28 Closed Buckets.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing only {Customer-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1316,7 +1416,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-29 — A/P Detail: exporting with every bucket closed still downloads every row
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe a vendor open bills in two aging buckets, and you export A/P Detail while every bucket is closed.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Vendor {Vendor-A} has three open bills on today's date, in two different aging buckets. For example: {Vendor-A} is ZZAUTOTEST S3-29 Closed Buckets.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Vendor filter showing only {Vendor-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1328,7 +1429,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S3-30 — A/R Summary: a name starting with = opens in the CSV as plain text
 Section: Story 3 — Export to PDF and CSV (TestRail section 90421). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer's name starts with "=", and you open the A/R Summary export in a spreadsheet program.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has an open invoice on today's date, and its name starts with "=" so that it reads like a spreadsheet formula. For example: {Customer-A} is =2+3 ZZAUTOTEST S3-30 Formula.
 - A spreadsheet program is installed on the computer. For example: Microsoft Excel, Google Sheets or LibreOffice Calc.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing only {Customer-A} ticked.
@@ -1341,7 +1443,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S4-01 — A/R Detail: the top-left chevron collapses and expands every group
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Customers owe you documents in at least three aging buckets, and you collapse and expand every group on A/R Detail at once.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open invoices, credit memos and deposits in at least three aging buckets on today's date.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1353,7 +1456,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-S4-02 — A/R Collection: the top-left chevron collapses and expands every group
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: At least three customers have overdue invoices, and you collapse and expand every group on A/R Collection at once.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - At least three customers have overdue invoices on today's date. For example: ZZAUTOTEST S4-02 Alder, ZZAUTOTEST S4-02 Birch, ZZAUTOTEST S4-02 Cedar.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1365,7 +1469,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-S4-03 — A/P Detail: the top-left chevron collapses and expands every group
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe vendors documents in at least three aging buckets, and you collapse and expand every group on A/P Detail at once.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open bills and vendor credits in at least three aging buckets on today's date.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1377,7 +1482,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-S4-04 — A/P Unpaid Invoices: the top-left chevron collapses and expands every group
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe at least three vendors overdue bills, and you collapse and expand every group on A/P Unpaid Invoices at once.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - At least three vendors have overdue bills on today's date. For example: ZZAUTOTEST S4-04 Alder, ZZAUTOTEST S4-04 Birch, ZZAUTOTEST S4-04 Cedar.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1389,7 +1495,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-S4-05 — A/R Collection: after Expand all, groups loaded later arrive expanded
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Many customers have overdue invoices, so A/R Collection loads more groups as you scroll after expanding all.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - More than 30 customers have overdue invoices on today's date.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1401,7 +1508,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-S4-06 — A/P Unpaid Invoices: after Expand all, groups loaded later arrive expanded
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe many vendors overdue bills, so A/P Unpaid Invoices loads more groups as you scroll after expanding all.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - More than 30 vendors have overdue bills on today's date.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1413,7 +1521,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-S4-07 — A/R Detail: an expanded bucket shows 100 lines, then loads more on scroll
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: One aging bucket on A/R Detail holds more than 150 open lines.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - One aging bucket, {Bucket-A}, has more than 150 open lines on today's date. For example: {Bucket-A} is "91 or more days past due" on the QA organization.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every bucket collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1425,7 +1534,8 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-S4-08 — A/P Detail: an expanded bucket shows 100 lines, then loads more on scroll
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: One aging bucket on A/P Detail holds more than 150 open lines.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - One aging bucket, {Bucket-A}, has more than 150 open lines on today's date. For example: {Bucket-A} is "91 or more days past due" on the QA organization (13,540 open A/P lines).
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every bucket collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1437,7 +1547,8 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-S4-09 — A/R Detail: the group row stays pinned under the headings
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Two neighbouring aging buckets on A/R Detail each hold more lines than fit on the screen, and you scroll down.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - On today's date the report has two buckets, {Bucket-A} and the next bucket below it, {Bucket-B}, each with more lines than fit on the screen. For example: {Bucket-A} is "31-60 days past due" and {Bucket-B} is "1-30 days past due".
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Bucket-A} and {Bucket-B} expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1449,7 +1560,8 @@ Design pictures: `design-2026-10-22/ar-ap-p3-scrolling-loses-the-customer-name.p
 ### SETUP-S4-09b — A/R Detail: group labels stay at the left when scrolling sideways
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Two neighbouring aging buckets on A/R Detail each hold more lines than fit on the screen, and you scroll sideways.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - On today's date the report has two buckets, {Bucket-A} and the next bucket below it, {Bucket-B}, each with more lines than fit on the screen. For example: {Bucket-A} is "31-60 days past due" and {Bucket-B} is "1-30 days past due".
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Bucket-A} and {Bucket-B} expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1461,7 +1573,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S4-10 — A/R Collection: the group row stays pinned under the headings
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Two customers next to each other on A/R Collection each have more overdue invoices than fit on the screen, and you scroll down.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Your role has the "View and Manage AP/AR Data" switch on.
 - On today's date the report has two customers next to each other in name order, {Customer-A} then {Customer-B}, each with more overdue invoices than fit on the screen and with a phone number and a credit term on its customer card. For example: {Customer-A} is ZZAUTOTEST S4-10 Long List A and {Customer-B} is ZZAUTOTEST S4-10 Long List B, each with 25 overdue invoices.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Customer-A} and {Customer-B} expanded.
@@ -1474,7 +1587,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-S4-10b — A/R Collection: group labels stay at the left when scrolling sideways
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Two customers next to each other on A/R Collection each have more overdue invoices than fit on the screen, and you scroll sideways.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - On today's date the report has two customers next to each other in name order, {Customer-A} then {Customer-B}, each with more overdue invoices than fit on the screen and with a phone number and a credit term on its customer card. For example: {Customer-A} is ZZAUTOTEST S4-10 Long List A and {Customer-B} is ZZAUTOTEST S4-10 Long List B, each with 25 overdue invoices.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Customer-A} and {Customer-B} expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1486,7 +1600,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S4-11 — A/P Detail: the group row stays pinned under the headings
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Two neighbouring aging buckets on A/P Detail each hold more lines than fit on the screen, and you scroll down.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - On today's date the report has two buckets, {Bucket-A} and the next bucket below it, {Bucket-B}, each with more lines than fit on the screen. For example: {Bucket-A} is "31-60 days past due" and {Bucket-B} is "1-30 days past due".
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Bucket-A} and {Bucket-B} expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1498,7 +1613,8 @@ Design pictures: `design-2026-10-22/ar-ap-p3-scrolling-loses-the-customer-name.p
 ### SETUP-S4-11b — A/P Detail: group labels stay at the left when scrolling sideways
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Two neighbouring aging buckets on A/P Detail each hold more lines than fit on the screen, and you scroll sideways.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - On today's date the report has two buckets, {Bucket-A} and the next bucket below it, {Bucket-B}, each with more lines than fit on the screen. For example: {Bucket-A} is "31-60 days past due" and {Bucket-B} is "1-30 days past due".
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Bucket-A} and {Bucket-B} expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1510,7 +1626,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S4-12 — A/P Unpaid Invoices: the group row stays pinned under the headings
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Two vendors next to each other on A/P Unpaid Invoices each have more overdue bills than fit on the screen, and you scroll down.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - On today's date the report has two vendors next to each other in name order, {Vendor-A} then {Vendor-B}, each with more overdue bills than fit on the screen. For example: {Vendor-A} is ZZAUTOTEST S4-12 Long List A and {Vendor-B} is ZZAUTOTEST S4-12 Long List B, each with 25 overdue bills.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Vendor-A} and {Vendor-B} expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1522,7 +1639,8 @@ Design pictures: `design-2026-10-22/ar-ap-p3-scrolling-loses-the-customer-name.p
 ### SETUP-S4-12b — A/P Unpaid Invoices: group labels stay at the left when scrolling sideways
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Two vendors next to each other on A/P Unpaid Invoices each have more overdue bills than fit on the screen, and you scroll sideways.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - On today's date the report has two vendors next to each other in name order, {Vendor-A} then {Vendor-B}, each with more overdue bills than fit on the screen. For example: {Vendor-A} is ZZAUTOTEST S4-12 Long List A and {Vendor-B} is ZZAUTOTEST S4-12 Long List B, each with 25 overdue bills.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the groups of {Vendor-A} and {Vendor-B} expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1534,7 +1652,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S4-13 — A/R Collection: loading more by scrolling keeps groups open or closed
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Many customers have overdue invoices, and you scroll A/R Collection to load more while one group is open.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - More than 30 customers have overdue invoices on today's date; {Customer-A} is among the first 30 in name order. For example: {Customer-A} is ZZAUTOTEST S4-13 First Page.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Customer-A}'s group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1546,7 +1665,8 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-S4-14 — A/P Unpaid Invoices: loading more by scrolling keeps groups open or closed
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe many vendors overdue bills, and you scroll A/P Unpaid Invoices to load more while one group is open.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - More than 30 vendors have overdue bills on today's date; {Vendor-A} is among the first 30 in name order. For example: {Vendor-A} is ZZAUTOTEST S4-14 First Page.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Vendor-A}'s group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1558,7 +1678,8 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-S4-15 — A/R Detail does not remember expanded groups
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You expand some groups on A/R Detail, leave the report and come back.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date in several buckets.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1570,7 +1691,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S4-15b — A/R Collection does not remember expanded groups
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You expand some groups on A/R Collection, leave the report and come back.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date in several customer groups.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1582,7 +1704,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S4-16 — A/P Detail does not remember expanded groups
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You expand some groups on A/P Detail, leave the report and come back.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date in several buckets.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1594,7 +1717,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S4-16b — A/P Unpaid Invoices does not remember expanded groups
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You expand some groups on A/P Unpaid Invoices, leave the report and come back.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date in several vendor groups.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1606,7 +1730,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S4-17 — A/R Detail: changing the date or a filter collapses every group
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you change the date or a filter on A/R Detail while every group is open.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has open invoices at both locations, some 31 to 60 days past due, on today's and yesterday's date. For example: {Customer-A} is ZZAUTOTEST S4-17 Collapse Me.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group expanded (Expand all).
@@ -1619,7 +1744,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S4-18 — A/R Collection: changing the date or a filter collapses every group
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you change the date or a filter on A/R Collection while every group is open.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has open invoices at both locations, some 31 to 60 days past due, on today's and yesterday's date. For example: {Customer-A} is ZZAUTOTEST S4-18 Collapse Me.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group expanded (Expand all).
@@ -1632,7 +1758,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S4-19 — A/P Detail: changing the date or a filter collapses every group
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you change the date or a filter on A/P Detail while every group is open.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has open bills at both locations, some 31 to 60 days past due, on today's and yesterday's date. For example: {Vendor-A} is ZZAUTOTEST S4-19 Collapse Me.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group expanded (Expand all).
@@ -1645,7 +1772,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S4-20 — A/P Unpaid Invoices: changing the date or a filter collapses every group
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you change the date or a filter on A/P Unpaid Invoices while every group is open.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has open bills at both locations, some 31 to 60 days past due, on today's and yesterday's date. For example: {Vendor-A} is ZZAUTOTEST S4-20 Collapse Me.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every group expanded (Expand all).
@@ -1658,7 +1786,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S4-21 — A/R Summary has no Collapse all button
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has open customer documents and you look for a Collapse all button on A/R Summary.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1670,7 +1799,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S4-21b — A/P Summary has no Collapse all button
 Section: Story 4 — Collapse all, Expand all and pinned group rows (TestRail section 90422). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has open vendor documents and you look for a Collapse all button on A/P Summary.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1682,7 +1812,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S5-01 — A/R Summary: the filter row reads As of, Customer, Past due, Location
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations and you check the filters above A/R Summary.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1694,7 +1825,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-S5-02 — A/R Detail: the filter row reads As of, Customer, Past due, Location
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations and you check the filters above A/R Detail.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1706,7 +1838,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-every-location-no-way-to-narrow.png
 ### SETUP-S5-03 — A/R Collection: the filter row reads As of, Customer, Past due, Location
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations and you check the filters above A/R Collection.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1718,7 +1851,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-S5-04 — A/P Summary: the filter row reads As of, Vendor, Past due, Location
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations and you check the filters above A/P Summary.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1730,7 +1864,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-S5-05 — A/P Detail: the filter row reads As of, Vendor, Past due, Location
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations and you check the filters above A/P Detail.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1742,7 +1877,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-S5-06 — A/P Unpaid Invoices: the filter row reads As of, Vendor, Past due, Location
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations and you check the filters above A/P Unpaid Invoices.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1754,7 +1890,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-S5-07 — A/R Detail: the Location menu lists the locations, ticked ones first
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at a few locations and you open the Location filter on A/R Detail.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - The report's Location list has 8 locations or fewer on today's date.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -1767,7 +1904,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "
 ### SETUP-S5-08 — A/P Summary: the Location menu lists the locations, ticked ones first
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at a few locations and you open the Location filter on A/P Summary.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - The report's Location list has 8 locations or fewer on today's date.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -1780,7 +1918,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "
 ### SETUP-S5-09 — A/R Summary: the Location menu has a search box above 8 locations
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has open customer documents at nine or more locations and you open the Location filter on A/R Summary.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open A/R documents at nine or more locations on today's date, among them {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919; the other eight are staging locations made for this test (ZZAUTOTEST S5-09 Location 1 to ZZAUTOTEST S5-09 Location 8).
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1792,6 +1931,7 @@ Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "
 ### SETUP-S5-10 — A/R Collection: every location is listed, whatever your enrollment
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
+- Scenario: A staff member enrolled at only one location opens A/R Collection while your shop has open documents at two locations.
 - You are signed in as {User-B}, an "Admin" user enrolled only at {Location-A}, with {Location-A} as your current location. For example: {User-B} is ZZAUTOTEST S5-10 One Place; {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in this report at {Location-A} and {Location-B} on today's date. For example: {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -1804,7 +1944,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33,
 ### SETUP-S5-10b — A/R Collection: the filters do not narrow the Location list
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you filter A/R Collection to a customer who has documents at only one of them.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has open documents only at {Location-A}. For example: {Customer-A} is ZZAUTOTEST S5-10 Home Only.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -1817,7 +1958,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33,
 ### SETUP-S5-10c — A/R Collection: the Location list changes with the as-of date
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: One of your locations had no open customer documents on an earlier date, and you change the as-of date on A/R Collection.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in this report at {Location-A} and {Location-B} on today's date; {Location-B} had none on {Date-A}. For example: {Location-B} is Staging Lethbridge - 4310; {Date-A} is a date before {Location-B}'s first open invoice.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1829,6 +1971,7 @@ Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33,
 ### SETUP-S5-11 — A/P Unpaid Invoices: every location is listed, whatever your enrollment
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
+- Scenario: A staff member enrolled at only one location opens A/P Unpaid Invoices while your shop has open bills at two locations.
 - You are signed in as {User-B}, an "Admin" user enrolled only at {Location-A}, with {Location-A} as your current location. For example: {User-B} is ZZAUTOTEST S5-11 One Place; {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in this report at {Location-A} and {Location-B} on today's date. For example: {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -1841,7 +1984,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33,
 ### SETUP-S5-11b — A/P Unpaid Invoices: the filters do not narrow the Location list
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you filter A/P Unpaid Invoices to a vendor who has documents at only one of them.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has open documents only at {Location-A}. For example: {Vendor-A} is ZZAUTOTEST S5-11 Home Only.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -1854,7 +1998,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33,
 ### SETUP-S5-11c — A/P Unpaid Invoices: the Location list changes with the as-of date
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: One of your locations had no open vendor documents on an earlier date, and you change the as-of date on A/P Unpaid Invoices.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in this report at {Location-A} and {Location-B} on today's date; {Location-B} had none on {Date-A}. For example: {Location-B} is Staging Lethbridge - 4310; {Date-A} is a date before {Location-B}'s first open bill.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1866,7 +2011,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33,
 ### SETUP-S5-12 — Location names in the menu and column match the location switcher
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you compare the location names on A/R Detail with the location switcher.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every bucket expanded (Expand all).
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1878,7 +2024,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33,
 ### SETUP-S5-13 — A/R Summary: the Location chip reads all, a count, one name or none
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has open customer documents at three locations, one with a long name, and you tick different locations on A/R Summary.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open A/R documents at three locations, {Location-A}, {Location-B} and {Location-C}; {Location-C}'s name is longer than the chip can show. For example: {Location-A} is Staging Heavy Duty - 9919, {Location-B} is Staging Lethbridge - 4310 and {Location-C} is ZZAUTOTEST S5-13 Northern Alberta Heavy Equipment Service Centre.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1890,7 +2037,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33,
 ### SETUP-S5-14 — A/P Detail: with no location ticked the report is empty
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you untick every location on A/P Detail.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1902,7 +2050,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One
 ### SETUP-S5-15 — A/R Detail: each row belongs to its own document's location
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer has an invoice made at one location, part-paid at another, plus a credit memo and a deposit there.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has, on today's date, an invoice {Invoice-A} made at {Location-A} for $500.00 and partly paid ($200.00) by a payment taken at {Location-B}, a credit memo {Credit-memo-A} made at {Location-B} and a deposit {Deposit-A} taken at {Location-B}. For example: {Customer-A} is ZZAUTOTEST S5-15 Where It Lives.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing {Customer-A} ticked and every bucket expanded.
@@ -1915,7 +2064,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "
 ### SETUP-S5-16 — A/P Detail: a bill belongs to the location of its delivery
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe a vendor two bills received on deliveries at two different locations.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has two unpaid bills: {Bill-A}, received on a delivery at {Location-A}, and {Bill-B}, received on a delivery at {Location-B}. For example: {Vendor-A} is ZZAUTOTEST S5-16 Delivered Elsewhere; {Bill-A} and {Bill-B} are the bills of two vendor orders, one received at each location.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Vendor filter showing {Vendor-A} ticked and every bucket expanded.
@@ -1928,7 +2078,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One
 ### SETUP-S5-17 — A/P Unpaid Invoices: a vendor credit belongs to its return or vendor
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You hold two credits from a vendor: one from a return at one location, one entered directly at another.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has two unused vendor credits: {Vendor-credit-A}, from a vendor return made at {Location-B}, and {Vendor-credit-B}, entered directly (not from a vendor return) while signed in at {Location-A}. For example: {Vendor-A} is ZZAUTOTEST S5-17 Credit Home.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Vendor filter showing {Vendor-A} ticked and its group expanded.
@@ -1941,7 +2092,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One
 ### SETUP-S5-18 — A/R Collection: the Location chip hides when only one location has data
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: On an earlier date all your open customer documents were at one location, and you open A/R Collection for that date.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - On {Date-A} the organization's open A/R documents were all at {Location-A}. For example: {Date-A} is a date before {Location-B}'s first invoice.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -1954,7 +2106,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cl
 ### SETUP-S5-19 — A/R Collection: ticked locations survive reload, Back and a shared link
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you tick locations on A/R Collection, then reload, go back and share the link.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1966,7 +2119,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One
 ### SETUP-S5-20 — A/P Summary: a link naming several locations or every location
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has open vendor documents at three locations, and you open A/P Summary from a link that names locations.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open A/P documents at three locations, {Location-A}, {Location-B} and {Location-C}, and you are enrolled at all three. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1978,7 +2132,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One
 ### SETUP-S5-21 — A/R Detail: a link with an unknown location ignores it
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you open A/R Detail from a link that names a location that does not exist.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -1990,7 +2145,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S5-22 — A/P Unpaid Invoices: a Past due value the chip does not offer reads Any
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You change the Past due value in the A/P Unpaid Invoices page address to one the filter does not offer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real document numbers here after setup.
@@ -2001,7 +2157,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I0
 ### SETUP-S5-23 — A/R Summary: ticked customers and ranges survive reload and Back
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Two customers have invoices more than 90 days past due, and you filter A/R Summary, then reload and go back.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customers {Customer-A} and {Customer-B} have invoices more than 90 days past due on today's date. For example: {Customer-A} is ZZAUTOTEST S5-23 Kept One and {Customer-B} is ZZAUTOTEST S5-23 Kept Two.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2013,7 +2170,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-S5-24 — A/R Collection: a customer ticked by link is named even if hard to find
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has more than 50 customers, and you open A/R Collection from a link that ticks one far down the list.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has more than 50 customers (the Customer menu lists at most 50 until you search), and {Customer-A}, who has overdue invoices on today's date, comes after the first 50 in name order. For example: {Customer-A} is ZZAUTOTEST S5-24 Late In The List.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2025,7 +2183,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "
 ### SETUP-S5-25 — A/P Unpaid Invoices: opening from the Reports menu starts with no filters
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You set filters on A/P Unpaid Invoices, then open the report again from the Reports menu.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has unpaid bills on yesterday's date. For example: {Vendor-A} is ZZAUTOTEST S5-25 Fresh Start.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to yesterday, only {Vendor-A} ticked in the Vendor filter, "61-90 days" ticked in the Past due filter and only {Location-A} ticked in the Location filter.
@@ -2038,7 +2197,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S5-26 — A/R Summary: clicking a customer opens A/R Collection with the same filters
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Summary, A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You filter A/R Summary by date, past due range and location, then click a customer to see its details.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has invoices at {Location-A} more than 90 days past due on yesterday's date. For example: {Customer-A} is ZZAUTOTEST S5-26 Drill Down.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to yesterday, "91+ days" ticked in the Past due filter and only {Location-A} ticked in the Location filter.
@@ -2051,7 +2211,8 @@ Design pictures: `design-2026-10-22/ar-ap-p5-clicking-one-dead-ends.png` (I27, "
 ### SETUP-S5-27 — A/P Summary: clicking a vendor opens A/P Unpaid Invoices with the same filters
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Summary, A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You filter A/P Summary by date, past due range and location, then click a vendor to see its details.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has bills at {Location-A} more than 90 days past due on yesterday's date. For example: {Vendor-A} is ZZAUTOTEST S5-27 Drill Down.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to yesterday, "91+ days" ticked in the Past due filter and only {Location-A} ticked in the Location filter.
@@ -2064,7 +2225,8 @@ Design pictures: `design-2026-10-22/ar-ap-p5-clicking-one-dead-ends.png` (I27, "
 ### SETUP-S5-28 — A/R Detail: the Customer menu ticks several customers and the chip counts them
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Two customers have open invoices, one with a long name, and you tick both in the Customer filter on A/R Detail.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customers {Customer-A} and {Customer-B} have open invoices on today's date; {Customer-B}'s name is longer than the chip can show. For example: {Customer-A} is ZZAUTOTEST S5-28 Short and {Customer-B} is ZZAUTOTEST S5-28 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2076,7 +2238,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I0
 ### SETUP-S5-29 — A/P Detail: the Vendor menu ticks several vendors and the chip counts them
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe two vendors, one with a long name, and you tick both in the Vendor filter on A/P Detail.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Vendors {Vendor-A} and {Vendor-B} have open bills on today's date; {Vendor-B}'s name is longer than the chip can show. For example: {Vendor-A} is ZZAUTOTEST S5-29 Short and {Vendor-B} is ZZAUTOTEST S5-29 Northern Alberta Heavy Equipment and Trailer Repair.
 - The organization has more than 8 vendors (the Vendor menu shows its search box only when there are more than 8 vendors). For example: the QA organization (437 vendors).
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -2089,7 +2252,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I0
 ### SETUP-S5-30 — A/R Collection: the Past due menu offers Any and four ranges in order
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You open the Past due filter on A/R Collection to see which ranges it offers.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real document numbers here after setup.
@@ -2100,7 +2264,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I0
 ### SETUP-S5-31 — A/P Summary: the Past due menu offers Any and four ranges in order
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You open the Past due filter on A/P Summary to see which ranges it offers.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real document numbers here after setup.
@@ -2111,7 +2276,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I0
 ### SETUP-S5-32 — A/R Summary: no rows after a customer pick, and the Location chip stays
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you filter A/R Summary to a customer whose invoices are all at the location not ticked.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has open invoices only at {Location-B}. For example: {Customer-A} is ZZAUTOTEST S5-32 Only There.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Location-A} ticked in the Location filter.
@@ -2124,7 +2290,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S5-33 — A/R Collection: switching location in the top right reloads the report
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You have A/R Collection filtered, sorted and scrolled, and then switch location in the top right.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has an overdue invoice {Invoice-A} at {Location-B} and others at {Location-A}. For example: {Customer-A} is ZZAUTOTEST S5-33 Switcher.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} ticked, "Past due: 1-30 days" ticked, the "Amount" header clicked once, every group expanded and the page scrolled down.
@@ -2137,7 +2304,8 @@ Design pictures: `design-2026-10-22/ar-ap-p5-cancel-stays-on-the-report.png` (I3
 ### SETUP-S5-34 — A/P Detail: switching location in the top right reloads the report
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You have A/P Detail filtered, sorted and scrolled, and then switch location in the top right.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has an overdue bill {Bill-A} at {Location-B} and others at {Location-A}. For example: {Vendor-A} is ZZAUTOTEST S5-34 Switcher.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A} ticked, "Past due: 1-30 days" ticked, the "Amount" header clicked once, every group expanded and the page scrolled down.
@@ -2150,7 +2318,8 @@ Design pictures: `design-2026-10-22/ar-ap-p5-cancel-stays-on-the-report.png` (I3
 ### SETUP-S5-35 — A/R Collection: a link with an unknown customer ignores it
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You open A/R Collection from a link that names a customer who does not exist.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has overdue invoices on today's date. For example: {Customer-A} is ZZAUTOTEST S5-35 Old Link.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2162,7 +2331,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-S5-36 — A/P Unpaid Invoices: a link with an unknown vendor ignores it
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You open A/P Unpaid Invoices from a link that names a vendor who does not exist.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Vendor {Vendor-A} has overdue bills on today's date. For example: {Vendor-A} is ZZAUTOTEST S5-36 Old Link.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2174,7 +2344,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-S5-37 — A/R Summary: the As of date cannot be set later than today
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You try to set the As of date on A/R Summary to a day after today.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real document numbers here after setup.
@@ -2185,7 +2356,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-S5-38 — A/R Summary: ticking several customers quickly shows rows for all of them
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Five customers each have one open invoice, and you tick them quickly one after another on A/R Summary.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Five customers, {Customer-A}, {Customer-B}, {Customer-C}, {Customer-D} and {Customer-E}, each have one open invoice on today's date, of different amounts, and nothing else open. For example: {Customer-A} to {Customer-E} are ZZAUTOTEST S5-38 Quick 1 to ZZAUTOTEST S5-38 Quick 5, with invoices of $100.00, $200.00, $300.00, $400.00 and $500.00.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2197,7 +2369,9 @@ Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I0
 ### SETUP-S5-39 — A/P Summary: the Vendor menu has no search box with 8 vendors or fewer
 Section: Story 5 — Filters: customer or vendor, past due and location (TestRail section 90423). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role in a test organization that has 8 vendors or fewer, with {Location-A} as your current location. For example: a test organization made for this case, with the vendors ZZAUTOTEST S5-39 Vendor 1 to ZZAUTOTEST S5-39 Vendor 8; {Location-A} is its main location.
+- Scenario: Your shop has only a few vendors (8 or fewer), and you open the Vendor filter on A/P Summary.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is the main location of an organization made for this case.
+- Your organization has 8 vendors or fewer in total. For example: the vendors ZZAUTOTEST S5-39 Vendor 1 to ZZAUTOTEST S5-39 Vendor 8.
 - At least one of those vendors, {Vendor-A}, has an unpaid bill on today's date. For example: {Vendor-A} is ZZAUTOTEST S5-39 Vendor 1.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2209,7 +2383,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I0
 ### SETUP-S6-01 — A/R reports: the column is named Location and sits in its place
 Section: Story 6 — Location column (TestRail section 90424). Reports: A/R Summary, A/R Detail, A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check where the Location column sits on each A/R report.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) in a desktop browser window 1440 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2221,7 +2396,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-every-location-no-way-to-narrow.png
 ### SETUP-S6-02 — A/P reports: the column is named Location and sits in its place
 Section: Story 6 — Location column (TestRail section 90424). Reports: A/P Summary, A/P Detail, A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check where the Location column sits on each A/P report.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) in a desktop browser window 1440 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2233,7 +2409,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-every-location-no-way-to-narrow.png
 ### SETUP-S6-03 — A/R Collection: the Location column shows with two or more locations
 Section: Story 6 — Location column (TestRail section 90424). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has open customer documents at three locations, and you untick them one by one on A/R Collection.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open A/R documents at three locations, {Location-A}, {Location-B} and {Location-C}. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2245,7 +2422,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "
 ### SETUP-S6-04 — A/R Summary: a row shows one location's name or Multiple
 Section: Story 6 — Location column (TestRail section 90424). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: One customer owes you at one location only and another at two locations.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents at three locations, {Location-A}, {Location-B} and {Location-C}. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has open invoices only at {Location-A}; Customer {Customer-B} has open invoices at {Location-A} and {Location-B}. For example: {Customer-A} is ZZAUTOTEST S6-04 One Place and {Customer-B} is ZZAUTOTEST S6-04 Two Places.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -2258,7 +2436,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "
 ### SETUP-S6-05 — A/P Summary: a row shows one location's name or Multiple
 Section: Story 6 — Location column (TestRail section 90424). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe one vendor at one location only and another at two locations.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents at three locations, {Location-A}, {Location-B} and {Location-C}. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has open bills only at {Location-A}; Vendor {Vendor-B} has open bills at {Location-A} and {Location-B}. For example: {Vendor-A} is ZZAUTOTEST S6-05 One Place and {Vendor-B} is ZZAUTOTEST S6-05 Two Places.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -2271,7 +2450,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "
 ### SETUP-S7-01 — A/R Detail: an invoice at your location opens its finance page
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer has an open work order invoice made at your current location, and you click its number on A/R Detail.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has an open work order invoice {Invoice-A} made at {Location-A}. For example: {Customer-A} is ZZAUTOTEST S7-01 Opens Here.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing {Customer-A} ticked and every bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2283,7 +2463,8 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-S7-02 — A/R Collection: a part sale invoice at your location opens its finance page
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer has an overdue part sale invoice made at your current location, and you click its number on A/R Collection.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has an overdue part sale invoice {Invoice-A} made at {Location-A}. For example: {Customer-A} is ZZAUTOTEST S7-02 Counter Sale.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2295,7 +2476,8 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-S7-03 — A/R Detail: a work order invoice at another location asks to switch
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer has an open work order invoice made at your other location, and you click its number on A/R Detail.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has an open work order invoice {Invoice-A} made at {Location-B}. For example: {Customer-A} is ZZAUTOTEST S7-03 Other Place.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} ticked and its rows showing.
@@ -2308,7 +2490,8 @@ Design pictures: `design-2026-10-22/ar-ap-p5-another-location-asks-first.png` (I
 ### SETUP-S7-04 — A/R Collection: a part sale invoice at another location asks to switch
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer has an open part sale invoice made at your other location, and you click its number on A/R Collection.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has an open part sale invoice {Invoice-A} made at {Location-B}. For example: {Customer-A} is ZZAUTOTEST S7-04 Other Place.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} ticked and its rows showing.
@@ -2321,7 +2504,8 @@ Design pictures: `design-2026-10-22/ar-ap-p5-another-location-asks-first.png` (I
 ### SETUP-S7-05 — A/R Collection: Cancel on the switch prompt leaves the report as it was
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You click an invoice from your other location on A/R Collection and then cancel the switch.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has overdue invoices at {Location-A} and one, {Invoice-A}, at {Location-B}; more than 20 other customers have overdue invoices. For example: {Customer-A} is ZZAUTOTEST S7-05 Stay Put.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with "Past due: 1-30 days" ticked, the "Amount" header clicked once, {Customer-A}'s group expanded and the page scrolled so {Invoice-A} is in the middle of the screen.
@@ -2334,7 +2518,8 @@ Design pictures: `design-2026-10-22/ar-ap-p5-cancel-stays-on-the-report.png` (I3
 ### SETUP-S7-06 — A/P Detail: a bill opens its delivery here and is plain text elsewhere
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe a vendor one bill received at your current location and one received at your other location.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has an unpaid bill {Bill-A} received at {Location-A} and an unpaid bill {Bill-B} received at {Location-B}. For example: {Vendor-A} is ZZAUTOTEST S7-06 Two Deliveries.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A} ticked and every bucket expanded.
@@ -2347,7 +2532,8 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-S7-07 — A/P Detail: a vendor credit links to the return it came from
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You hold three credits from a vendor: two from returns at different locations and one not from a return, shown on A/P Detail.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has three unused vendor credits: {Vendor-credit-A} from a vendor return made at {Location-A}, {Vendor-credit-B} from a vendor return made at {Location-B}, and {Vendor-credit-C} not from a vendor return. For example: {Vendor-A} is ZZAUTOTEST S7-07 Returns.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A} ticked and its rows showing.
@@ -2360,7 +2546,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-vendor-credits-link.png` (I43, "Ven
 ### SETUP-S7-08 — A/P Unpaid Invoices: a vendor credit links to the return it came from
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You hold three credits from a vendor: two from returns at different locations and one not from a return, shown on A/P Unpaid Invoices.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has three unused vendor credits: {Vendor-credit-A} from a vendor return made at {Location-A}, {Vendor-credit-B} from a vendor return made at {Location-B}, and {Vendor-credit-C} not from a vendor return. For example: {Vendor-A} is ZZAUTOTEST S7-08 Returns.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A} ticked and its rows showing.
@@ -2373,7 +2560,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-vendor-credits-link.png` (I43, "Ven
 ### SETUP-S7-09 — A/R Detail: opening an invoice link in a new tab asks there
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer has an open work order invoice made at your other location, and you open its link in a new tab.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has an open work order invoice {Invoice-A} made at {Location-B}. For example: {Customer-A} is ZZAUTOTEST S7-09 New Tab.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} ticked and every bucket expanded.
@@ -2386,7 +2574,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S7-10 — A/R Detail: credit memos and deposits are plain text
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer has an unused credit memo and an unused deposit on A/R Detail.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has an unused credit memo {Credit-memo-A} and an unused deposit {Deposit-A} at {Location-A}. For example: {Customer-A} is ZZAUTOTEST S7-10 Credits.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} ticked and every bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2398,6 +2587,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-vendor-credits-link.png` (I43, "Ven
 ### SETUP-S7-11 — A/R Detail: a document at a location you are not enrolled in is plain text
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
+- Scenario: A staff member enrolled at only one location looks at an invoice made at a location they are not enrolled in.
 - You are signed in as {User-B}, an "Admin" user enrolled only at {Location-A}, with {Location-A} as your current location. For example: {User-B} is ZZAUTOTEST S7-11 Not There; {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has an open invoice {Invoice-A} made at {Location-B}, a location {User-B} is not enrolled in. For example: {Customer-A} is ZZAUTOTEST S7-11 Far Away; {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} ticked and every bucket expanded.
@@ -2410,6 +2600,7 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-S7-12 — With Invoicing and Work Orders View, a work order invoice is a link
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
+- Scenario: A staff member can view invoices and work orders but not part sales, and looks at both kinds of invoice.
 - You are signed in as {User-B}, whose custom role has "Reports → Page Access", "Invoicing & Payments → View", "Work Orders → View" but not "Part Sales → View", with {Location-A} as your current location. For example: {User-B} is ZZAUTOTEST S7-12 User with the custom role ZZAUTOTEST S7-12 Role; {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has an open work order invoice {Invoice-A} and an open part sale invoice {Invoice-B}, both made at {Location-A}. For example: {Customer-A} is ZZAUTOTEST S7-12 Permissions.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} ticked and every bucket expanded.
@@ -2422,6 +2613,7 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-S7-13 — Without Invoicing View, work order and part sale invoices are plain text
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
+- Scenario: A staff member can view work orders and part sales but not invoices, and looks at both kinds of invoice.
 - You are signed in as {User-B}, whose custom role has "Reports → Page Access", "Work Orders → View", "Part Sales → View" but not "Invoicing & Payments → View", with {Location-A} as your current location. For example: {User-B} is ZZAUTOTEST S7-13 User with the custom role ZZAUTOTEST S7-13 Role; {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has an overdue work order invoice {Invoice-A} and an overdue part sale invoice {Invoice-B}, both made at {Location-A}. For example: {Customer-A} is ZZAUTOTEST S7-13 No Invoicing.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
@@ -2434,6 +2626,7 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-S7-14 — With Invoicing and Part Sales View only, only part sale invoices link
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
+- Scenario: A staff member can view invoices and part sales but not work orders, and looks at both kinds of invoice.
 - You are signed in as {User-B}, whose custom role has "Reports → Page Access", "Invoicing & Payments → View", "Part Sales → View" but not "Work Orders → View", with {Location-A} as your current location. For example: {User-B} is ZZAUTOTEST S7-14 User with the custom role ZZAUTOTEST S7-14 Role; {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has an overdue work order invoice {Invoice-A} and an overdue part sale invoice {Invoice-B}, both made at {Location-A}. For example: {Customer-A} is ZZAUTOTEST S7-14 Parts Only.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A}'s group expanded.
@@ -2446,6 +2639,7 @@ Design pictures: `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png`
 ### SETUP-S7-15 — With Vendor Order Management View, a bill at your location is a link
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
+- Scenario: A staff member can view vendor orders but not edit them, and looks at a bill on A/P Unpaid Invoices.
 - You are signed in as {User-B}, whose custom role has "Reports → Page Access", "Vendor Order Management → View" but not "Vendor Order Management → Create & Edit", with {Location-A} as your current location. For example: {User-B} is ZZAUTOTEST S7-15 User with the custom role ZZAUTOTEST S7-15 Role; {Location-A} is Staging Heavy Duty - 9919.
 - Vendor {Vendor-A} has an unpaid bill {Bill-A} received at {Location-A}. For example: {Vendor-A} is ZZAUTOTEST S7-15 Bills.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A}'s group expanded.
@@ -2458,6 +2652,7 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-S7-16 — With Vendor Order Management Create & Edit, a bill at your location is a link
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
+- Scenario: A staff member can create and edit vendor orders but has no view permission, and looks at a bill on A/P Unpaid Invoices.
 - You are signed in as {User-B}, whose custom role has "Reports → Page Access", "Vendor Order Management → Create & Edit" but not "Vendor Order Management → View", with {Location-A} as your current location. For example: {User-B} is ZZAUTOTEST S7-16 User with the custom role ZZAUTOTEST S7-16 Role; {Location-A} is Staging Heavy Duty - 9919.
 - Vendor {Vendor-A} has an unpaid bill {Bill-A} received at {Location-A}. For example: {Vendor-A} is ZZAUTOTEST S7-16 Bills.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A}'s group expanded.
@@ -2470,6 +2665,7 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-S7-17 — Without Vendor Order Management, bills and vendor credits are plain text
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
+- Scenario: A staff member has no vendor order permissions, and looks at a bill and a vendor credit on A/P Detail.
 - You are signed in as {User-B}, whose custom role has "Reports → Page Access" but not "Vendor Order Management → View" or "Vendor Order Management → Create & Edit", with {Location-A} as your current location. For example: {User-B} is ZZAUTOTEST S7-17 User with the custom role ZZAUTOTEST S7-17 Role; {Location-A} is Staging Heavy Duty - 9919.
 - Vendor {Vendor-A} has an unpaid bill {Bill-A} received at {Location-A} and an unused vendor credit {Vendor-credit-A} from a vendor return made at {Location-A}. For example: {Vendor-A} is ZZAUTOTEST S7-17 No Orders.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A} ticked and every bucket expanded.
@@ -2482,6 +2678,7 @@ Design pictures: `design-2026-10-22/ar-ap-p7-vendor-credits-link.png` (I43, "Ven
 ### SETUP-S7-18 — A/R Summary: with Customers View, customer names link to A/R Collection
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Summary, A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
+- Scenario: A staff member who can view customers opens A/R Summary.
 - You are signed in as {User-B}, whose custom role has "Reports → Page Access" and "Customers → View". For example: {User-B} is ZZAUTOTEST S7-18 Can See Customers.
 - Customer {Customer-A} has open invoices on today's date. For example: {Customer-A} is ZZAUTOTEST S7-18 Name Link.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -2494,6 +2691,7 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-S7-18b — A/R Summary: without Customers View, customer names are plain text
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
+- Scenario: A staff member who cannot view customers opens A/R Summary.
 - You are signed in as {User-C}, whose custom role has "Reports → Page Access" but not "Customers → View". For example: {User-C} is ZZAUTOTEST S7-18 No Customers.
 - Customer {Customer-A} has open invoices on today's date. For example: {Customer-A} is ZZAUTOTEST S7-18 Name Link.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -2506,6 +2704,7 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-S7-19 — A/P Summary: vendor names link for everyone who can open the report
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/P Summary, A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
+- Scenario: A staff member with no vendor order permissions opens A/P Summary.
 - You are signed in as {User-B}, whose custom role has "Reports → Page Access" but not "Vendor Order Management → View" or "Vendor Order Management → Create & Edit", with {Location-A} as your current location. For example: {User-B} is ZZAUTOTEST S7-19 User with the custom role ZZAUTOTEST S7-19 Role; {Location-A} is Staging Heavy Duty - 9919.
 - Vendor {Vendor-A} has unpaid bills on today's date. For example: {Vendor-A} is ZZAUTOTEST S7-19 Name Link.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -2518,7 +2717,8 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-S8-01 — A/R Summary: the info icon shows the report's description
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You want to read what A/R Summary shows, using the info icon beside its title.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real document numbers here after setup.
@@ -2529,7 +2729,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S8-02 — A/R Detail: the info icon shows the report's description
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You want to read what A/R Detail shows, using the info icon beside its title.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real document numbers here after setup.
@@ -2540,7 +2741,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S8-03 — A/R Collection: the info icon shows the report's description
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You want to read what A/R Collection shows, using the info icon beside its title.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real document numbers here after setup.
@@ -2551,7 +2753,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S8-04 — A/P Summary: the info icon shows the report's description
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You want to read what A/P Summary shows, using the info icon beside its title.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real document numbers here after setup.
@@ -2562,7 +2765,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S8-05 — A/P Detail: the info icon shows the report's description
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You want to read what A/P Detail shows, using the info icon beside its title.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real document numbers here after setup.
@@ -2573,7 +2777,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S8-06 — A/P Unpaid Invoices: the info icon shows the report's description
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You want to read what A/P Unpaid Invoices shows, using the info icon beside its title.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real document numbers here after setup.
@@ -2584,7 +2789,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S8-07 — A/R Summary: the description is not in the PDF or CSV
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has open customer documents, and you export A/R Summary to check the description is left out.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2596,7 +2802,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S8-07b — A/P Unpaid Invoices: the description is not in the PDF or CSV
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has open vendor documents, and you export A/P Unpaid Invoices to check the description is left out.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2608,7 +2815,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S8-08 — A/R Detail: Clear all filters keeps the date and resets the rest
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You filter A/R Detail until it shows no rows, then click Clear all filters.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has open invoices only at {Location-B}, none 61 to 90 days past due, on yesterday's date. For example: {Customer-A} is ZZAUTOTEST S8-08 Nothing Here.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to yesterday, only {Customer-A} ticked in the Customer filter, "61-90 days" ticked in the Past due filter and only {Location-A} ticked in the Location filter.
@@ -2621,7 +2829,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S8-09 — A/P Detail: Clear all filters keeps the date and resets the rest
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You filter A/P Detail until it shows no rows, then click Clear all filters.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has open bills only at {Location-B}, none 61 to 90 days past due, on yesterday's date. For example: {Vendor-A} is ZZAUTOTEST S8-09 Nothing Here.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the as-of date set to yesterday, only {Vendor-A} ticked in the Vendor filter, "61-90 days" ticked in the Past due filter and only {Location-A} ticked in the Location filter.
@@ -2634,7 +2843,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S8-10 — A/R Collection: a report that fails to load says so in place of the rows
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your network connection is off when you change the as-of date on A/R Collection.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2646,7 +2856,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S8-11 — A/P Summary: a report that fails to load says so in place of the rows
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your network connection is off when you change the as-of date on A/P Summary.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2658,7 +2869,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S8-12 — A/P Detail: the progress bar shows while the report loads
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has so many open vendor lines that A/P Detail takes a moment to load.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has many open A/P lines, so the report takes a moment to load. For example: the QA organization (13,540 open A/P lines).
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2670,7 +2882,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S9-01 — A/R Collection: each customer row shows phone and credit term
 Section: Story 9 — A/R Collection call list (TestRail section 90427). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You call customers about overdue invoices, and one has a phone number and credit term while another has no credit term.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Your role has the "View and Manage AP/AR Data" switch on.
 - Customer {Customer-A} has an overdue invoice, a phone number and a credit term on its customer card; customer {Customer-B} has an overdue invoice and no credit term. For example: {Customer-A} is ZZAUTOTEST S9-01 Call Me with phone (403) 555-0101 and credit term Net 30; {Customer-B} is ZZAUTOTEST S9-01 No Terms.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -2683,7 +2896,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-S9-02 — A/R Collection: a customer with no phone shows no Phone label
 Section: Story 9 — A/R Collection call list (TestRail section 90427). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You call customers about overdue invoices, and one of them has no phone number on file.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has an overdue invoice and no phone number on its customer card. For example: {Customer-A} is ZZAUTOTEST S9-02 No Phone.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Customer-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2695,7 +2909,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-S9-03 — A/R Collection: the PDF and CSV carry the phone and credit term
 Section: Story 9 — A/R Collection call list (TestRail section 90427). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You export the A/R Collection call list for a customer with a phone number and a credit term.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Your role has the "View and Manage AP/AR Data" switch on.
 - Customer {Customer-A} has two overdue invoices, a phone number and a credit term. For example: {Customer-A} is ZZAUTOTEST S9-03 Export Call with phone (403) 555-0102 and credit term Net 15.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Customer-A} ticked.
@@ -2708,6 +2923,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S9-04 — A/R Collection: without AP/AR Data access there is no credit term
 Section: Story 9 — A/R Collection call list (TestRail section 90427). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
+- Scenario: A staff member without access to AP/AR data looks at the A/R Collection call list.
 - You are signed in as {User-B}, whose custom role has "Reports → Page Access" and the "View and Manage AP/AR Data" switch off. For example: {User-B} is ZZAUTOTEST S9-04 No Terms User.
 - Customer {Customer-A} has an overdue invoice, a phone number and a credit term. For example: {Customer-A} is ZZAUTOTEST S9-04 Hidden Term with credit term Net 30.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Customer-A} ticked.
@@ -2720,7 +2936,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-S8-13 — A/R Collection: a tap on the info icon shows the description
 Section: Story 8 — Report descriptions and layout (TestRail section 90426). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You use a touch-screen device without a mouse and tap the info icon on A/R Collection.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - You use a touch-screen device whose screen is at least 1024 px wide, with no mouse. For example: a touch-screen laptop or a large tablet in a desktop browser.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu on that device.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2732,7 +2949,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-S7-20 — A/R Detail: the × on the switch prompt leaves the report as it was
 Section: Story 7 — Document links open where they can (TestRail section 90425). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You click an invoice from your other location on A/R Detail and then close the switch prompt with the ×.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has open invoices at {Location-A} and one open work order invoice, {Invoice-A}, made at {Location-B}. For example: {Customer-A} is ZZAUTOTEST S7-20 Close Box.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} ticked, the "Amount" header clicked once, every bucket expanded and the page scrolled so {Invoice-A} is in the middle of the screen.
@@ -2745,7 +2963,8 @@ Design pictures: `design-2026-10-22/ar-ap-p5-another-location-asks-first.png` (I
 ### SETUP-DATA-01 — A/R Summary: 30 customers at a time, none repeated or skipped
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Between 31 and 90 customers owe you money, so A/R Summary loads them 30 at a time as you scroll.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Between 31 and 90 customers have open documents on today's date. For example: the QA organization's A/R Summary has 46 customers.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2757,7 +2976,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-DATA-01b — A/R Summary: the Totals row adds up every customer, not only those loaded
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Between 31 and 90 customers owe you money, and you check the Totals row before every customer has loaded.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Between 31 and 90 customers have open documents on today's date. For example: the QA organization's A/R Summary has 46 customers.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2769,7 +2989,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-DATA-02 — A/P Summary: 30 vendors at a time, none repeated or skipped
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe between 31 and 90 vendors, so A/P Summary loads them 30 at a time as you scroll.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Between 31 and 90 vendors have open documents on today's date.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2781,7 +3002,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-DATA-02b — A/P Summary: the Totals row adds up every vendor, not only those loaded
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe between 31 and 90 vendors, and you check the Totals row before every vendor has loaded.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Between 31 and 90 vendors have open documents on today's date.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2793,7 +3015,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-DATA-03 — A/R Collection: 30 customers at a time, none repeated or skipped
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Between 31 and 90 customers have overdue invoices, so A/R Collection loads them 30 at a time as you scroll.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Between 31 and 90 customers have overdue invoices on today's date.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2805,7 +3028,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-DATA-03b — A/R Collection: the Totals row adds up every customer, not only those loaded
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Between 31 and 90 customers have overdue invoices, and you check the Totals row before every customer has loaded.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Between 31 and 90 customers have overdue invoices on today's date.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2817,7 +3041,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-DATA-04 — A/P Unpaid Invoices: 30 vendors at a time, none repeated or skipped
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe between 31 and 90 vendors overdue bills, so A/P Unpaid Invoices loads them 30 at a time as you scroll.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Between 31 and 90 vendors have overdue bills on today's date.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2829,7 +3054,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-DATA-04b — A/P Unpaid Invoices: the Totals row adds up every vendor, not only those loaded
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe between 31 and 90 vendors overdue bills, and you check the Totals row before every vendor has loaded.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Between 31 and 90 vendors have overdue bills on today's date.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2841,7 +3067,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-DATA-05 — A/R Detail: a long bucket loads in 100s with no line repeated or skipped
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: One aging bucket on A/R Detail holds a few hundred open lines, which load 100 at a time.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - One aging bucket, {Bucket-A}, has between 101 and 400 open lines on today's date. For example: {Bucket-A} is "91 or more days past due".
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every bucket collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2853,7 +3080,8 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-DATA-06 — A/P Detail: a long bucket loads in 100s with no line repeated or skipped
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: One aging bucket on A/P Detail holds a few hundred open lines, which load 100 at a time.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - One aging bucket, {Bucket-A}, has between 101 and 400 open lines on today's date. For example: {Bucket-A} is "91 or more days past due".
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with every bucket collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2865,7 +3093,8 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-DATA-07 — A/R Summary: the Totals row adds up exactly the rows each filter leaves
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Three customers owe you known amounts at two locations, and you check the A/R Summary Totals row under each filter.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - {Customer-A} has an invoice of $1,000.00 at {Location-A} 15 days past due, an invoice of $400.00 at {Location-B} 45 days past due and an unused credit memo of $150.00 at {Location-A}; {Customer-B} has an invoice of $700.00 at {Location-A} 45 days past due and an invoice of $250.00 at {Location-B} 100 days past due; {Customer-C} has an invoice of $900.00 at {Location-A} 5 days past due. Nothing else is open for the three on today's date. For example: {Customer-A} is ZZAUTOTEST DATA-07 Alpha, {Customer-B} is ZZAUTOTEST DATA-07 Bravo and {Customer-C} is ZZAUTOTEST DATA-07 Charlie.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -2878,7 +3107,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-DATA-08 — A/P Summary: the Totals row adds up exactly the rows each filter leaves
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe three vendors known amounts at two locations, and you check the A/P Summary Totals row under each filter.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - {Vendor-A} has a bill of $1,000.00 at {Location-A} 15 days past due, a bill of $400.00 at {Location-B} 45 days past due and an unused vendor credit of $150.00 at {Location-A}; {Vendor-B} has a bill of $700.00 at {Location-A} 45 days past due and a bill of $250.00 at {Location-B} 100 days past due; {Vendor-C} has a bill of $900.00 at {Location-A} 5 days past due. Nothing else is open for the three on today's date. For example: {Vendor-A} is ZZAUTOTEST DATA-08 Alpha, {Vendor-B} is ZZAUTOTEST DATA-08 Bravo and {Vendor-C} is ZZAUTOTEST DATA-08 Charlie.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -2891,7 +3121,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-DATA-09 — A/R Detail: Totals follow the customer, Past due and Location filters
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Three customers owe you known amounts at two locations, and you check the A/R Detail totals under each filter.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - {Customer-A} has an invoice of $1,000.00 at {Location-A} 15 days past due, an invoice of $400.00 at {Location-B} 45 days past due and an unused credit memo of $150.00 at {Location-A}; {Customer-B} has an invoice of $700.00 at {Location-A} 45 days past due and an invoice of $250.00 at {Location-B} 100 days past due; {Customer-C} has an invoice of $900.00 at {Location-A} 5 days past due. Nothing else is open for the three on today's date. For example: {Customer-A} is ZZAUTOTEST DATA-09 Alpha, {Customer-B} is ZZAUTOTEST DATA-09 Bravo and {Customer-C} is ZZAUTOTEST DATA-09 Charlie.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -2904,7 +3135,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-DATA-10 — A/R Collection: Totals follow the customer, Past due and Location filters
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Three customers owe you known amounts at two locations, and you check the A/R Collection totals under each filter.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - {Customer-A} has an invoice of $1,000.00 at {Location-A} 15 days past due, an invoice of $400.00 at {Location-B} 45 days past due and an unused credit memo of $150.00 at {Location-A}; {Customer-B} has an invoice of $700.00 at {Location-A} 45 days past due and an invoice of $250.00 at {Location-B} 100 days past due; {Customer-C} has an invoice of $900.00 at {Location-A} 5 days past due. Nothing else is open for the three on today's date. For example: {Customer-A} is ZZAUTOTEST DATA-10 Alpha, {Customer-B} is ZZAUTOTEST DATA-10 Bravo and {Customer-C} is ZZAUTOTEST DATA-10 Charlie.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -2917,7 +3149,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-DATA-11 — A/P Detail: Totals follow the vendor, Past due and Location filters
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe three vendors known amounts at two locations, and you check the A/P Detail totals under each filter.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - {Vendor-A} has a bill of $1,000.00 at {Location-A} 15 days past due, a bill of $400.00 at {Location-B} 45 days past due and an unused vendor credit of $150.00 at {Location-A}; {Vendor-B} has a bill of $700.00 at {Location-A} 45 days past due and a bill of $250.00 at {Location-B} 100 days past due; {Vendor-C} has a bill of $900.00 at {Location-A} 5 days past due. Nothing else is open for the three on today's date. For example: {Vendor-A} is ZZAUTOTEST DATA-11 Alpha, {Vendor-B} is ZZAUTOTEST DATA-11 Bravo and {Vendor-C} is ZZAUTOTEST DATA-11 Charlie.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -2930,7 +3163,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-DATA-12 — A/P Unpaid Invoices: Totals follow the vendor, Past due and Location filters
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe three vendors known amounts at two locations, and you check the A/P Unpaid Invoices totals under each filter.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - {Vendor-A} has a bill of $1,000.00 at {Location-A} 15 days past due, a bill of $400.00 at {Location-B} 45 days past due and an unused vendor credit of $150.00 at {Location-A}; {Vendor-B} has a bill of $700.00 at {Location-A} 45 days past due and a bill of $250.00 at {Location-B} 100 days past due; {Vendor-C} has a bill of $900.00 at {Location-A} 5 days past due. Nothing else is open for the three on today's date. For example: {Vendor-A} is ZZAUTOTEST DATA-12 Alpha, {Vendor-B} is ZZAUTOTEST DATA-12 Bravo and {Vendor-C} is ZZAUTOTEST DATA-12 Charlie.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -2943,7 +3177,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-DATA-13 — A/R Summary: the Totals row leaves out overpaid invoices, as the rows do
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer overpaid one invoice and still has another invoice open.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has an invoice {Invoice-A} of $100.00 paid $120.00 (overpaid), and an open invoice {Invoice-B} of $500.00 on today's date. For example: {Customer-A} is ZZAUTOTEST DATA-13 Overpaid.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing only {Customer-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2955,7 +3190,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-DATA-14 — A/R Summary Totals equal A/R Detail's Open Balance, bucket by bucket
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Summary, A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Two customers owe you known amounts in several aging buckets, and you compare A/R Summary with A/R Detail.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - {Customer-A} has an invoice of $1,000.00 at {Location-A} that is not yet due, an invoice of $400.00 at {Location-A} 45 days past due and an invoice of $300.00 at {Location-B} 15 days past due; {Customer-B} has an invoice of $700.00 at {Location-A} 45 days past due, partly paid $200.00 (open $500.00), and an invoice of $250.00 at {Location-A} 100 days past due. Nothing else is open for the two on today's date. For example: {Customer-A} is ZZAUTOTEST DATA-14 Parity One and {Customer-B} is ZZAUTOTEST DATA-14 Parity Two.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} and {Customer-B} ticked in the Customer filter and Past due on Any.
@@ -2968,7 +3204,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-DATA-15 — A/P Summary Totals equal A/P Detail's Open Balance, bucket by bucket
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Summary, A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe two vendors known amounts in several aging buckets, and you compare A/P Summary with A/P Detail.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - {Vendor-A} has a bill of $1,000.00 at {Location-A} that is not yet due, a bill of $400.00 at {Location-A} 45 days past due and a bill of $300.00 at {Location-B} 15 days past due; {Vendor-B} has a bill of $700.00 at {Location-A} 45 days past due, partly paid $200.00 (open $500.00), and a bill of $250.00 at {Location-A} 100 days past due. Nothing else is open for the two on today's date. For example: {Vendor-A} is ZZAUTOTEST DATA-15 Parity One and {Vendor-B} is ZZAUTOTEST DATA-15 Parity Two.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A} and {Vendor-B} ticked in the Vendor filter and Past due on Any.
@@ -2981,7 +3218,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-DATA-16 — A/R Detail: the Past due ranges split at 30, 60 and 90 days exactly
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer has invoices exactly on each edge of the past due ranges: 30, 31, 60, 61, 90 and 91 days.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has eight open invoices on today's date: one not yet due, and one each 1, 30, 31, 60, 61, 90 and 91 days past its due date. For example: {Customer-A} is ZZAUTOTEST DATA-16 Boundaries; the invoices are $10.00, $1.00, $30.00, $31.00, $60.00, $61.00, $90.00 and $91.00 in that order.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Customer-A} ticked in the Customer filter and every group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2993,7 +3231,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I0
 ### SETUP-DATA-17 — A/P Unpaid Invoices: the Past due ranges split at 30, 60 and 90 days exactly
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe a vendor bills exactly on each edge of the past due ranges: 30, 31, 60, 61, 90 and 91 days.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Vendor {Vendor-A} has eight open bills on today's date: one not yet due, and one each 1, 30, 31, 60, 61, 90 and 91 days past its due date. For example: {Vendor-A} is ZZAUTOTEST DATA-17 Boundaries; the bills are $10.00, $1.00, $30.00, $31.00, $60.00, $61.00, $90.00 and $91.00 in that order.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Vendor-A} ticked in the Vendor filter and every group expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -3005,7 +3244,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-four-chips-on-every-report.png` (I0
 ### SETUP-DATA-18 — A/P Detail: a PDF over 2,000 rows is refused, the CSV downloads
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has more than 2,000 open vendor lines, and you export A/P Detail as a PDF and as a spreadsheet file.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has more than 2,000 and fewer than 50,000 open A/P lines on today's date. For example: the QA organization, with 13,540 open A/P lines.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -3017,7 +3257,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-pdf-over-2-000-rows-is-refused.png`
 ### SETUP-DATA-19 — A/R Summary: a PDF of exactly 2,000 customers downloads, 2,001 is refused
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - needs more rows than any test site holds; the developers check this limit in their own check tasks (SV-11595, SV-11598)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A/R Summary lists exactly 2,000 customers on one date and 2,001 on another, and you export each as a PDF.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - On {Date-A} A/R Summary lists exactly 2,000 customers, and on {Date-B} exactly 2,001. For example: a prepared test organization (see the note).
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -3029,7 +3270,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-pdf-over-2-000-rows-is-refused.png`
 ### SETUP-DATA-20 — A/P Detail: a PDF of exactly 2,000 lines downloads, 2,001 is refused
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You pick vendors whose open lines add up to exactly 2,000, then add one more line, and export A/P Detail as a PDF.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Today the organization has more than 2,001 open A/P lines, and the vendors {Vendors-A} together have exactly 2,000 of them. For example: the QA organization (13,540 open A/P lines); {Vendors-A} is the list of vendors the setup file gives for today.
 - Vendor {Vendor-B} is not one of {Vendors-A} and has exactly one open A/P line today. For example: {Vendor-B} is ZZAUTOTEST DATA-20 One Bill, with one open bill.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -3042,7 +3284,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-pdf-over-2-000-rows-is-refused.png`
 ### SETUP-DATA-21 — A/P Detail: a CSV of 50,000 rows downloads, 50,001 is refused
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - needs more rows than any test site holds; the developers check this limit in their own check tasks (SV-11595, SV-11598)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A/P Detail has exactly 50,000 open lines on one date and 50,001 on another, and you export each as a spreadsheet file.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - On {Date-A} A/P Detail has exactly 50,000 open lines, and on {Date-B} exactly 50,001. For example: a prepared test organization (see the note).
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -3054,7 +3297,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-pdf-over-2-000-rows-is-refused.png`
 ### SETUP-DATA-22 — A/R Summary: a payment shows as soon as the report is reloaded
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer pays an open invoice while you have A/R Summary open in another tab.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has one open invoice, {Invoice-A}, of $500.00 on today's date, and nothing else open. For example: {Customer-A} is ZZAUTOTEST DATA-22 Fresh Payment.
 - {Invoice-A}'s page is open in a second browser tab, ready to record a payment.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with the Customer filter showing only {Customer-A} ticked.
@@ -3067,7 +3311,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-DATA-23 — A/R Summary and Detail Totals differ by what a Past due filter drops
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/R Summary, A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Two customers owe you known amounts, and you compare the Summary and Detail totals with a Past due filter set.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - {Customer-A} has an invoice of $1,000.00 that is not yet due, an invoice of $400.00 45 days past due, an invoice of $300.00 15 days past due and an unused credit memo of $150.00; {Customer-B} has an invoice of $500.00 45 days past due and an invoice of $250.00 100 days past due. Nothing else is open for the two on today's date. For example: {Customer-A} is ZZAUTOTEST DATA-23 Filtered One and {Customer-B} is ZZAUTOTEST DATA-23 Filtered Two.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Customer-A} and {Customer-B} ticked in the Customer filter.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -3079,7 +3324,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-DATA-24 — A/P Summary and Detail Totals differ by what a Past due filter drops
 Section: Totals and counts — exact amounts (TestRail section 90428). Reports: A/P Summary, A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe two vendors known amounts, and you compare the Summary and Detail totals with a Past due filter set.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - {Vendor-A} has a bill of $1,000.00 that is not yet due, a bill of $400.00 45 days past due, a bill of $300.00 15 days past due and an unused vendor credit of $150.00; {Vendor-B} has a bill of $500.00 45 days past due and a bill of $250.00 100 days past due. Nothing else is open for the two on today's date. For example: {Vendor-A} is ZZAUTOTEST DATA-24 Filtered One and {Vendor-B} is ZZAUTOTEST DATA-24 Filtered Two.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Vendor-A} and {Vendor-B} ticked in the Vendor filter.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -3091,7 +3337,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-REL-01 — On release day an untouched A/R report shows the same rows and amounts
 Section: Release day and what must not change (TestRail section 90429). Reports: A/R Summary, A/R Detail, A/R Collection. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Before the release you captured the three A/R reports for a past date, and after it you compare them.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Before the release was installed, you took screenshots (and, for A/R, any print or export there was) of the three A/R reports for {Date-A}, untouched. For example: {Date-A} is the day before the release.
 - Starting screen: the release is installed; Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) is open in a desktop browser window 1440 px wide, with {Date-A} chosen as the as-of date on each report as you open it.
@@ -3104,7 +3351,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "
 ### SETUP-REL-02 — On release day an untouched A/P report shows the same rows and amounts
 Section: Release day and what must not change (TestRail section 90429). Reports: A/P Summary, A/P Detail, A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Before the release you captured the three A/P reports for a past date, and after it you compare them.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Before the release was installed, you took screenshots (and, for A/P, any print or export there was) of the three A/P reports for {Date-A}, untouched. For example: {Date-A} is the day before the release.
 - Starting screen: the release is installed; Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) is open in a desktop browser window 1440 px wide, with {Date-A} chosen as the as-of date on each report as you open it.
@@ -3117,7 +3365,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "
 ### SETUP-REL-03 — A/R PDF prints the as-of date you picked, late in the day too
 Section: Release day and what must not change (TestRail section 90429). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You print A/R Detail to PDF in the evening, when it is already tomorrow in UTC.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has open invoices on today's date. For example: {Customer-A} is ZZAUTOTEST REL-03 Evening Print.
 - The test is run in the evening at {Location-A}'s local time, when the date in UTC is already tomorrow, and this computer's clock is set to {Location-A}'s time zone. For example: after 6 pm at a location on Mountain Time (UTC-6 in summer, UTC-7 in winter).
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -3130,6 +3379,7 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-r-a-print-icon-only.png` (I06, "A
 ### SETUP-REL-04 — Reports page access alone opens all six reports with their amounts
 Section: Release day and what must not change (TestRail section 90429). Reports: A/R Summary, A/R Detail, A/R Collection, A/P Summary, A/P Detail, A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
+- Scenario: A staff member whose role has only Reports page access opens each of the six reports.
 - You are signed in as {User-B}, whose custom role has "Reports → Page Access" and nothing else, with "See Financial Data" off. For example: {User-B} is ZZAUTOTEST REL-04 Reports Only with the custom role ZZAUTOTEST REL-04 Reports Only Role.
 - Each of the six reports has open documents on today's date.
 - Starting screen: the ShopView home page in a desktop browser window 1440 px wide.
@@ -3142,6 +3392,7 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-REL-04b — Reports page access alone exports the reports
 Section: Release day and what must not change (TestRail section 90429). Reports: A/R Summary, A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
+- Scenario: A staff member whose role has only Reports page access exports A/R Summary and A/P Detail.
 - You are signed in as {User-B}, whose custom role has "Reports → Page Access" and nothing else, with "See Financial Data" off. For example: {User-B} is ZZAUTOTEST REL-04 Reports Only with the custom role ZZAUTOTEST REL-04 Reports Only Role.
 - A/R Summary and A/P Detail have open documents on today's date.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -3154,7 +3405,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-REL-05 — Inventory Value link, PDF and CSV work as before the release
 Section: Release day and what must not change (TestRail section 90429). Reports: none. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Before the release you saved Inventory Value's PDF, CSV and filtered link, and after it you compare them.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Before the release was installed, you saved Inventory Value's PDF and CSV for {Date-A} with one location ticked, and copied a link to Inventory Value with that filter. For example: {Date-A} is the day before the release.
 - Starting screen: the release is installed; Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) is open in a desktop browser window 1440 px wide.
@@ -3167,7 +3419,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-REL-05b — Sales By Customer link, PDF and CSV work as before the release
 Section: Release day and what must not change (TestRail section 90429). Reports: none. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Before the release you saved Sales By Customer's PDF, CSV and filtered link, and after it you compare them.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Before the release was installed, you saved Sales By Customer's PDF and CSV for {Date-A} with one location ticked, and copied a link to Sales By Customer with that filter. For example: {Date-A} is the day before the release.
 - Starting screen: the release is installed; Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) is open in a desktop browser window 1440 px wide.
@@ -3180,7 +3433,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-REL-05c — Work In Progress link, PDF and CSV work as before the release
 Section: Release day and what must not change (TestRail section 90429). Reports: none. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Before the release you saved Work In Progress's PDF, CSV and filtered link, and after it you compare them.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Before the release was installed, you saved Work In Progress's PDF and CSV for {Date-A} with one location ticked, and copied a link to Work In Progress with that filter. For example: {Date-A} is the day before the release.
 - Starting screen: the release is installed; Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) is open in a desktop browser window 1440 px wide.
@@ -3193,7 +3447,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-REL-06 — Other reports keep their own export error message
 Section: Release day and what must not change (TestRail section 90429). Reports: none. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Before the release you noted the Sales By Customer export error message, and after it you check it again.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Before the release was installed, you noted the message Sales By Customer shows when its CSV export fails because the computer is offline.
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: the release is installed; Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a desktop browser window 1440 px wide.
@@ -3206,7 +3461,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-REL-07 — A work order link from another location still asks to switch
 Section: Release day and what must not change (TestRail section 90429). Reports: none. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: After the release you open a link to a work order made at your other location.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Work order {Work-order-1} was made at {Location-B}, and you have a link to it copied from the address bar. For example: {Work-order-1} is S2-41001.
 - Starting screen: the release is installed; Work Orders is open at {Location-A} in a desktop browser window 1440 px wide.
@@ -3219,7 +3475,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-REL-08 — A credit dated on the as-of date stays in the same bucket as before
 Section: Release day and what must not change (TestRail section 90429). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer has an unused credit memo dated on the as-of date, and you check it stays in the same bucket.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has an unused credit memo {Credit-memo-A} dated {Date-A}; before the release you noted which A/R Detail bucket it was in with {Date-A} as the as-of date. For example: {Customer-A} is ZZAUTOTEST REL-08 Same Day Credit; {Date-A} is the day before the release.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with {Date-A} as the as-of date and {Customer-A} ticked.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -3231,7 +3488,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-REL-09 — The research ideas left out of this release do not appear
 Section: Release day and what must not change (TestRail section 90429). Reports: A/R Summary, A/R Collection, A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: After the release you check the A/R reports for features that were left out of this release.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The three A/R reports have open documents on today's date.
 - Starting screen: Reports (top menu; its left menu lists the A/R reports under ACCOUNTS RECEIVABLE and the A/P reports under ACCOUNTS PAYABLE) in a desktop browser window 1440 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -3243,7 +3501,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-REL-10 — The location switcher in the top right is unchanged
 Section: Release day and what must not change (TestRail section 90429). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Before the release you captured the location switcher, and after it you compare it.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Before the release was installed, you took a screenshot of the open location switcher.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -3256,7 +3515,8 @@ Design pictures: `design-2026-10-22/ar-ap-p5-cancel-stays-on-the-report.png` (I3
 ### SETUP-REL-11 — A drill-down link saved before the release still opens on its customer
 Section: Release day and what must not change (TestRail section 90429). Reports: A/R Collection, A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Before the release you saved links from the Summary reports to a customer and a vendor, and after it you open them.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Before the release was installed, you clicked {Customer-A}'s name on A/R Summary and saved the address of the A/R Collection page it opened, and did the same for {Vendor-A} on A/P Summary. For example: {Customer-A} is ZZAUTOTEST REL-11 Old Bookmark and {Vendor-A} is ZZAUTOTEST REL-11 Old Bookmark Parts.
 - {Customer-A} had overdue invoices and {Vendor-A} unpaid bills on the day the addresses were saved.
 - Starting screen: the release is installed; the ShopView home page is open in a desktop browser window 1440 px wide.
@@ -3269,7 +3529,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "
 ### SETUP-REL-12 — Sales By Customer keeps or forgets its filter between visits as before
 Section: Release day and what must not change (TestRail section 90429). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Before the release you noted whether Sales By Customer remembered its location filter, and after it you check again.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Before the release was installed, you did the steps below on Sales By Customer and noted whether the unticked location was still unticked when you came back.
 - Starting screen: the release is installed; Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a desktop browser window 1440 px wide.
@@ -3282,7 +3543,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-REL-12b — Inventory Value keeps or forgets its filter between visits as before
 Section: Release day and what must not change (TestRail section 90429). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Before the release you noted whether Inventory Value remembered its location filter, and after it you check again.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Before the release was installed, you did the steps below on Inventory Value and noted whether the unticked location was still unticked when you came back.
 - Starting screen: the release is installed; Inventory Value (Reports, then "Inventory Value" under PARTS in the left menu) is open in a desktop browser window 1440 px wide.
@@ -3295,7 +3557,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-REL-12c — Work In Progress keeps or forgets its filter between visits as before
 Section: Release day and what must not change (TestRail section 90429). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Before the release you noted whether Work In Progress remembered its location filter, and after it you check again.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Before the release was installed, you did the steps below on Work In Progress and noted whether the unticked location was still unticked when you came back.
 - Starting screen: the release is installed; Work In Progress (Reports, then "Work In Progress" under PERFORMANCE in the left menu) is open in a desktop browser window 1440 px wide.
@@ -3308,7 +3571,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-REL-13 — Sales By Customer's filter menus behave as before the release
 Section: Release day and what must not change (TestRail section 90429). Reports: none. Marker: `AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Before the release you noted how the Sales By Customer filter menus behaved, and after it you check again.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Before the release was installed, you did the steps below on Sales By Customer and noted the Location chip and the page address after "Select all", whether the cursor stayed in the Customer menu's search box while you typed, and how the filter row looked at 900 px.
 - Starting screen: the release is installed; Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a desktop browser window 1440 px wide.
@@ -3321,7 +3585,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-D-01 — Design: A/R Summary at 1440 px in light theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check how A/R Summary looks in light theme, next to Sales By Customer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo. For example: {Customer-A} is ZZAUTOTEST D-01 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
@@ -3335,7 +3600,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-01b — Design: A/R Summary Total column and Totals row look native
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you compare A/R Summary's Total column and Totals row with Sales By Customer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo. For example: {Customer-A} is ZZAUTOTEST D-01 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
@@ -3349,7 +3615,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-01c — Design: A/R Summary links use the native report link style
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check that A/R Summary's links look like other report links.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo. For example: {Customer-A} is ZZAUTOTEST D-01 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
@@ -3362,7 +3629,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-r-aging-summary-opens-a-to-z.png`
 ### SETUP-D-02 — Design: A/R Summary in dark theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check how A/R Summary looks in dark theme, next to Sales By Customer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo. For example: {Customer-A} is ZZAUTOTEST D-02 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in dark theme at 100% zoom.
@@ -3376,7 +3644,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-03 — Design: A/R Summary at 1536 px looks as described in both themes
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check A/R Summary on a wider 1536 px screen in both themes.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo. For example: {Customer-A} is ZZAUTOTEST D-03 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1536 px wide, as opened from the Reports menu in light theme at 100% zoom.
@@ -3389,7 +3658,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-04 — Design: A/R Detail at 1440 px in light theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check how A/R Detail looks in light theme, next to Sales By Customer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo. For example: {Customer-A} is ZZAUTOTEST D-04 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
@@ -3403,7 +3673,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-04b — Design: A/R Detail Open Balance column and Totals row look native
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you compare A/R Detail's Open Balance column and Totals row with Sales By Customer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo. For example: {Customer-A} is ZZAUTOTEST D-04 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
@@ -3417,7 +3688,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-04c — Design: A/R Detail links use the native report link style
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check that A/R Detail's links look like other report links.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo. For example: {Customer-A} is ZZAUTOTEST D-04 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
@@ -3430,7 +3702,8 @@ Design pictures: `design-2026-10-22/ar-ap-p5-links-only-where-they-can-open.png`
 ### SETUP-D-05 — Design: A/R Detail in dark theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check how A/R Detail looks in dark theme, next to Sales By Customer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo. For example: {Customer-A} is ZZAUTOTEST D-05 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in dark theme at 100% zoom, with every group expanded (Expand all).
@@ -3444,7 +3717,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-06 — Design: A/R Detail at 1536 px looks as described in both themes
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check A/R Detail on a wider 1536 px screen in both themes.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo. For example: {Customer-A} is ZZAUTOTEST D-06 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1536 px wide, as opened from the Reports menu in light theme at 100% zoom.
@@ -3457,7 +3731,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-07 — Design: A/R Collection at 1440 px in light theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check how A/R Collection looks in light theme, next to Sales By Customer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo. For example: {Customer-A} is ZZAUTOTEST D-07 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
@@ -3471,7 +3746,8 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-D-07b — Design: A/R Collection Open Balance column and Totals row look native
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you compare A/R Collection's Open Balance column and Totals row with Sales By Customer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo. For example: {Customer-A} is ZZAUTOTEST D-07 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
@@ -3485,7 +3761,8 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-D-07c — Design: A/R Collection links use the native report link style
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check that A/R Collection's links look like other report links.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo. For example: {Customer-A} is ZZAUTOTEST D-07 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
@@ -3498,7 +3775,8 @@ Design pictures: `design-2026-10-22/ar-ap-p3-expand-all-from-the-header.png` (I1
 ### SETUP-D-08 — Design: A/R Collection in dark theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check how A/R Collection looks in dark theme, next to Sales By Customer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo. For example: {Customer-A} is ZZAUTOTEST D-08 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in dark theme at 100% zoom, with every group expanded (Expand all).
@@ -3512,7 +3790,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-09 — Design: A/R Collection at 1536 px looks as described in both themes
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check A/R Collection on a wider 1536 px screen in both themes.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a credit memo. For example: {Customer-A} is ZZAUTOTEST D-09 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1536 px wide, as opened from the Reports menu in light theme at 100% zoom.
@@ -3525,7 +3804,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-10 — Design: A/P Summary at 1440 px in light theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check how A/P Summary looks in light theme, next to Sales By Customer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest). For example: {Vendor-A} is ZZAUTOTEST D-10 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
@@ -3539,7 +3819,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-p-gets-the-same-menu.png` (I10, "
 ### SETUP-D-10b — Design: A/P Summary Total column and Totals row look native
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you compare A/P Summary's Total column and Totals row with Sales By Customer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest). For example: {Vendor-A} is ZZAUTOTEST D-10 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
@@ -3553,7 +3834,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-p-gets-the-same-menu.png` (I10, "
 ### SETUP-D-10c — Design: A/P Summary links use the native report link style
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check that A/P Summary's links look like other report links.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest). For example: {Vendor-A} is ZZAUTOTEST D-10 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
@@ -3566,7 +3848,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-p-gets-the-same-menu.png` (I10, "
 ### SETUP-D-11 — Design: A/P Summary in dark theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check how A/P Summary looks in dark theme, next to Sales By Customer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest). For example: {Vendor-A} is ZZAUTOTEST D-11 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in dark theme at 100% zoom.
@@ -3580,7 +3863,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-12 — Design: A/P Summary at 1536 px looks as described in both themes
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check A/P Summary on a wider 1536 px screen in both themes.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest). For example: {Vendor-A} is ZZAUTOTEST D-12 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1536 px wide, as opened from the Reports menu in light theme at 100% zoom.
@@ -3593,7 +3877,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-p-gets-the-same-menu.png` (I10, "
 ### SETUP-D-13 — Design: A/P Detail at 1440 px in light theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check how A/P Detail looks in light theme, next to Sales By Customer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest). For example: {Vendor-A} is ZZAUTOTEST D-13 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
@@ -3607,7 +3892,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-13b — Design: A/P Detail Open Balance column and Totals row look native
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you compare A/P Detail's Open Balance column and Totals row with Sales By Customer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest). For example: {Vendor-A} is ZZAUTOTEST D-13 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
@@ -3621,7 +3907,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-13c — Design: A/P Detail links use the native report link style
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check that A/P Detail's links look like other report links.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest). For example: {Vendor-A} is ZZAUTOTEST D-13 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
@@ -3634,7 +3921,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-open-balance-pinned-light.png` (I23
 ### SETUP-D-14 — Design: A/P Detail in dark theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check how A/P Detail looks in dark theme, next to Sales By Customer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest). For example: {Vendor-A} is ZZAUTOTEST D-14 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in dark theme at 100% zoom, with every group expanded (Expand all).
@@ -3648,7 +3936,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-15 — Design: A/P Detail at 1536 px looks as described in both themes
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check A/P Detail on a wider 1536 px screen in both themes.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest). For example: {Vendor-A} is ZZAUTOTEST D-15 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1536 px wide, as opened from the Reports menu in light theme at 100% zoom.
@@ -3661,7 +3950,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-16 — Design: A/P Unpaid Invoices at 1440 px in light theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check how A/P Unpaid Invoices looks in light theme, next to Sales By Customer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest). For example: {Vendor-A} is ZZAUTOTEST D-16 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
@@ -3675,7 +3965,8 @@ Design pictures: `design-2026-10-22/ar-ap-p3-same-on-a-p-unpaid-invoices.png` (I
 ### SETUP-D-16b — Design: A/P Unpaid Invoices Open Balance column and Totals row look native
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you compare A/P Unpaid Invoices' Open Balance column and Totals row with Sales By Customer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest). For example: {Vendor-A} is ZZAUTOTEST D-16 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
@@ -3689,7 +3980,8 @@ Design pictures: `design-2026-10-22/ar-ap-p3-same-on-a-p-unpaid-invoices.png` (I
 ### SETUP-D-16c — Design: A/P Unpaid Invoices links use the native report link style
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check that A/P Unpaid Invoices' links look like other report links.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest). For example: {Vendor-A} is ZZAUTOTEST D-16 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded (Expand all).
@@ -3702,7 +3994,8 @@ Design pictures: `design-2026-10-22/ar-ap-p3-same-on-a-p-unpaid-invoices.png` (I
 ### SETUP-D-17 — Design: A/P Unpaid Invoices in dark theme looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check how A/P Unpaid Invoices looks in dark theme, next to Sales By Customer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest). For example: {Vendor-A} is ZZAUTOTEST D-17 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu in dark theme at 100% zoom, with every group expanded (Expand all).
@@ -3716,7 +4009,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-18 — Design: A/P Unpaid Invoices at 1536 px looks as described in both themes
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check A/P Unpaid Invoices on a wider 1536 px screen in both themes.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has a long name (more than 40 characters) and open documents at both locations on today's date, including a vendor credit (its Transaction Type is the longest). For example: {Vendor-A} is ZZAUTOTEST D-18 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1536 px wide, as opened from the Reports menu in light theme at 100% zoom.
@@ -3729,7 +4023,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-19 — Design: A/R Summary loading and empty states look as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer's invoices are all at your other location, and you check how A/R Summary looks while loading and when empty.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has open invoices only at {Location-B}. For example: {Customer-A} is ZZAUTOTEST D-19 States.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -3743,7 +4038,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cl
 ### SETUP-D-19b — Design: A/R Summary load error looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your network connection is off when you change the as-of date on A/R Summary, and you check how the error looks.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -3756,7 +4052,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-D-20 — Design: A/R Detail loading and empty states look as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer's invoices are all at your other location, and you check how A/R Detail looks while loading and when empty.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has open invoices only at {Location-B}. For example: {Customer-A} is ZZAUTOTEST D-20 States.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -3770,7 +4067,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cl
 ### SETUP-D-20b — Design: A/R Detail load error looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your network connection is off when you change the as-of date on A/R Detail, and you check how the error looks.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -3783,7 +4081,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-D-21 — Design: A/R Collection loading and empty states look as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer's invoices are all at your other location, and you check how A/R Collection looks while loading and when empty.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has open invoices only at {Location-B}. For example: {Customer-A} is ZZAUTOTEST D-21 States.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -3797,7 +4096,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cl
 ### SETUP-D-21b — Design: A/R Collection load error looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your network connection is off when you change the as-of date on A/R Collection, and you check how the error looks.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -3810,7 +4110,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-D-22 — Design: A/P Summary loading and empty states look as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A vendor's bills are all at your other location, and you check how A/P Summary looks while loading and when empty.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has open bills only at {Location-B}. For example: {Vendor-A} is ZZAUTOTEST D-22 States.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -3824,7 +4125,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cl
 ### SETUP-D-22b — Design: A/P Summary load error looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your network connection is off when you change the as-of date on A/P Summary, and you check how the error looks.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -3837,7 +4139,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-D-23 — Design: A/P Detail loading and empty states look as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A vendor's bills are all at your other location, and you check how A/P Detail looks while loading and when empty.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has open bills only at {Location-B}. For example: {Vendor-A} is ZZAUTOTEST D-23 States.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -3851,7 +4154,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cl
 ### SETUP-D-23b — Design: A/P Detail load error looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your network connection is off when you change the as-of date on A/P Detail, and you check how the error looks.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -3864,7 +4168,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-D-24 — Design: A/P Unpaid Invoices loading and empty states look as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A vendor's bills are all at your other location, and you check how A/P Unpaid Invoices looks while loading and when empty.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has open bills only at {Location-B}. For example: {Vendor-A} is ZZAUTOTEST D-24 States.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -3878,7 +4183,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cl
 ### SETUP-D-24b — Design: A/P Unpaid Invoices load error looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your network connection is off when you change the as-of date on A/P Unpaid Invoices, and you check how the error looks.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents on today's date.
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
@@ -3891,7 +4197,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-D-25 — Design: A/R Detail chevrons and pinned group row look as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A/R Detail has several aging buckets, one longer than the screen, and you check how the chevrons and pinned group row look.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents in several buckets on today's date, one with more lines than fit on the screen.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -3903,7 +4210,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-D-26 — Design: A/R Collection chevrons and pinned group row look as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A/R Collection has several customer groups, one longer than the screen, and you check how the chevrons and pinned group row look.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents in several customer groups on today's date, one with more lines than fit on the screen.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -3915,7 +4223,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-D-27 — Design: A/P Detail chevrons and pinned group row look as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A/P Detail has several aging buckets, one longer than the screen, and you check how the chevrons and pinned group row look.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents in several buckets on today's date, one with more lines than fit on the screen.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -3927,7 +4236,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-D-28 — Design: A/P Unpaid Invoices chevrons and pinned group row look as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A/P Unpaid Invoices has several vendor groups, one longer than the screen, and you check how the chevrons and pinned group row look.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has open documents in several vendor groups on today's date, one with more lines than fit on the screen.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group collapsed.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -3939,7 +4249,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-D-29 — Design: A/R Location chip and menu match Sales By Customer's
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you compare the A/R Location filter with the one on Sales By Customer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
@@ -3952,7 +4263,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-opens-on-all-locations.png` (I32, "
 ### SETUP-D-30 — Design: A/P Location chip and menu match Sales By Customer's
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you compare the A/P Location filter with the one on Sales By Customer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
@@ -3965,7 +4277,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33,
 ### SETUP-D-31 — Design: A/R Customer chip and menu match Sales By Customer's
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer with a long name has open invoices, and you compare the A/R Customer filter with the one on Sales By Customer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has open invoices on today's date and a long name (more than 40 characters). For example: {Customer-A} is ZZAUTOTEST D-31 Northern Alberta Heavy Equipment and Trailer Repair.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
@@ -3978,7 +4291,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Tw
 ### SETUP-D-32 — Design: A/P Vendor chip and menu match Inventory Value's
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has more than 8 vendors, and you compare the A/P Vendor filter with the one on Inventory Value.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Vendor {Vendor-A} has unpaid bills on today's date. For example: {Vendor-A} is ZZAUTOTEST D-32 Truck Icon.
 - The organization has more than 8 vendors (the Vendor menu shows its search box only when there are more than 8 vendors). For example: the QA organization (437 vendors).
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
@@ -3992,7 +4306,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "
 ### SETUP-D-33 — Design: A/R Past due chip and menu look as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You check how the Past due filter looks on A/R Summary.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real document numbers here after setup.
@@ -4003,7 +4318,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-menu.png` (I38, "Past due 
 ### SETUP-D-34 — Design: A/P Past due chip and menu look as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You check how the Past due filter looks on A/P Detail.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real document numbers here after setup.
@@ -4014,7 +4330,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-menu.png` (I38, "Past due 
 ### SETUP-D-35 — Design: A/R Export menu matches the native report Export menu
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You compare the A/R Collection Export menu with the one on Sales By Customer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -4026,7 +4343,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-p-no-export-at-all.png` (I07, "A/
 ### SETUP-D-36 — Design: A/P Export menu matches the native report Export menu
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You compare the A/P Summary Export menu with the one on Sales By Customer.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -4038,7 +4356,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-p-no-export-at-all.png` (I07, "A/
 ### SETUP-D-37 — Design: the export Success and Empty export messages look native
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you check how the export success and empty-export messages look.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - Sales By Customer (Reports, then "Sales By Customer" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
@@ -4051,7 +4370,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-D-38 — Design: the export error messages look like the other reports' errors
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has more than 2,000 open vendor lines, and you check how the export error messages look.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has more than 2,000 open A/P lines. For example: the QA organization (13,540).
 - You can switch this computer's network connection off and on (for example Wi-Fi).
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
@@ -4064,7 +4384,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-pdf-over-2-000-rows-is-refused.png`
 ### SETUP-D-39 — Design: the switch-location dialog for a work order looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer has a work order invoice made at your other location, and you check how the switch-location prompt looks.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has an open work order invoice {Invoice-A} made at {Location-B}. For example: {Customer-A} is ZZAUTOTEST D-39 Dialog.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with {Customer-A} ticked and its rows showing.
@@ -4077,7 +4398,8 @@ Design pictures: `design-2026-10-22/ar-ap-p5-another-location-asks-first.png` (I
 ### SETUP-D-40 — Design: the switch-location dialog for a part sale looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer has a part sale invoice made at your other location, and you check how the switch-location prompt looks.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has an open part sale invoice {Invoice-A} made at {Location-B}. For example: {Customer-A} is ZZAUTOTEST D-40 Dialog.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with {Customer-A} ticked and its rows showing.
@@ -4090,7 +4412,8 @@ Design pictures: `design-2026-10-22/ar-ap-p5-another-location-asks-first.png` (I
 ### SETUP-D-41 — Design: A/R info icon and tooltip match Work In Progress
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You compare the info icon and its tooltip on A/R Detail with the ones on Work In Progress.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - Work In Progress (Reports, then "Work In Progress" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -4102,7 +4425,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-42 — Design: A/P info icon and tooltip match Work In Progress
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You compare the info icon and its tooltip on A/P Summary with the ones on Work In Progress.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - Work In Progress (Reports, then "Work In Progress" under PERFORMANCE in the left menu) is open in a second tab of the same window, for comparison.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -4114,7 +4438,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-43 — Design: A/R Collection call list on the customer row looks as described
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Two customers have overdue invoices, one with a phone number and credit term and one with no phone, on A/R Collection.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has an overdue invoice, a phone number and a credit term; customer {Customer-B} has an overdue invoice and no phone. For example: {Customer-A} is ZZAUTOTEST D-43 Phone Row with phone (403) 555-0103 and credit term Net 30; {Customer-B} is ZZAUTOTEST D-43 No Phone Row.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -4126,7 +4451,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-D-44 — Design: A/R Summary PDF heading 91 And Over stays on one line
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Customers owe you money in every aging bucket, and you check the A/R Summary PDF column headings.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has customers with amounts in every bucket on today's date.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -4138,7 +4464,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-D-45 — Design: A/P Summary PDF heading 91 And Over stays on one line
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe vendors money in every aging bucket, and you check the A/P Summary PDF column headings.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The report has vendors with amounts in every bucket on today's date.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -4150,7 +4477,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-D-46 — Design: A/R Collection PDF prints the call list on each customer's line
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer with a phone number and credit term has an overdue invoice, and you check the A/R Collection PDF.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Your role has the "View and Manage AP/AR Data" switch on.
 - Customer {Customer-A} has an overdue invoice, a phone number and a credit term. For example: {Customer-A} is ZZAUTOTEST D-46 PDF Phone.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu, with only {Customer-A} ticked.
@@ -4163,7 +4491,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-export-menu-pdf-and-csv.png` (I09, 
 ### SETUP-D-47 — Design: A/R Detail narrower than 1440 px scrolls under the pinned column
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you view A/R Detail in a window narrower than 1440 px.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1280 px wide, as opened from the Reports menu, with every bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -4175,7 +4504,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-48 — Design: A/P Detail narrower than 1440 px scrolls under the pinned column
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you view A/P Detail in a window narrower than 1440 px.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1280 px wide, as opened from the Reports menu, with every bucket expanded.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -4187,7 +4517,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-49 — Design: narrower than 1024 px the reports show the mobile filter row
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary, A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You view A/R Summary in a window narrower than 1024 px.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 900 px wide, as opened from the Reports menu.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real document numbers here after setup.
@@ -4198,7 +4529,8 @@ Design pictures: none (the design does not draw this; the case follows the PRD).
 ### SETUP-D-50 — Design: A/R Summary opening screen matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Customers owe you money at two locations, one with a credit balance and one with a long name, and you compare with the design picture.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - The report lists customers at both locations on today's date, including at least one with a credit balance (a negative Total) and one with a long name. For example: the QA organization's A/R Summary (46 customers).
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
@@ -4212,7 +4544,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-summary-date-only.png` (I01, "A
 ### SETUP-D-51 — Design: A/R Summary sorted by Total matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Customers owe you money at two locations, one with a credit balance, and you sort A/R Summary by Total to compare with the design picture.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - The report lists customers at both locations on today's date, including at least one with a credit balance (a negative Total) and one with a long name. For example: the QA organization's A/R Summary (46 customers).
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
@@ -4226,7 +4559,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-click-the-total-header.png` (I04, "
 ### SETUP-D-52 — Design: A/P Detail with every bucket closed matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe vendors bills in all five aging buckets, and you compare A/P Detail with every bucket closed to the design picture.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - The report has open bills in all five aging buckets on today's date.
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every bucket collapsed.
@@ -4240,7 +4574,8 @@ Design pictures: `design-2026-10-22/ar-ap-p1-a-p-aging-detail-as-it-opens-today.
 ### SETUP-D-53 — Design: the Export menu matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You open the Export menu on A/R Summary and compare it with the design picture.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - The design picture "Export menu: PDF and CSV" (ar-ap-p2-export-menu-pdf-and-csv.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -4252,7 +4587,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-p-no-export-at-all.png` (I07, "A/
 ### SETUP-D-54 — Design: A/P Summary title row and ⋯ button match the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe vendors at two locations, and you compare the A/P Summary title row with the design picture.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - The report lists vendors at both locations on today's date, one of them with documents at both.
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
@@ -4266,7 +4602,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-a-p-no-export-at-all.png` (I07, "A/
 ### SETUP-D-55 — Design: the PDF-too-large message matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has more than 2,000 open vendor lines, and you compare the PDF-too-large message with the design picture.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has more than 2,000 open A/P lines on today's date. For example: the QA organization (13,540 open A/P lines).
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every bucket collapsed.
 - The design picture "PDF over 2,000 rows is refused" (ar-ap-p2-pdf-over-2-000-rows-is-refused.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
@@ -4279,7 +4616,8 @@ Design pictures: `design-2026-10-22/ar-ap-p2-pdf-over-2-000-rows-is-refused.png`
 ### SETUP-D-56 — Design: A/R Collection after Expand all matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer with a credit memo, phone number and credit term has an overdue invoice, and you expand all to compare with the design picture.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Your role has the "View and Manage AP/AR Data" switch on.
 - Customer {Customer-A}, first in name order, has an overdue invoice, an unused credit memo, a phone number and a credit term. For example: {Customer-A} is ZZAUTOTEST D-56 10 Trucking.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group collapsed.
@@ -4293,7 +4631,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-D-57 — Design: the pinned customer row matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Two neighbouring customers each have more overdue invoices than fit on the screen, and you compare the pinned row with the design picture.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customers {Customer-A} and {Customer-B} are next to each other in name order, and each has more overdue invoices than fit on the screen. For example: {Customer-A} is ZZAUTOTEST D-57 Apollo Beach and {Customer-B} is ZZAUTOTEST D-57 Bancescu, 25 overdue invoices each.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded.
 - The design picture "The customer row stays pinned" (ar-ap-p3-the-customer-row-stays-pinned.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
@@ -4306,7 +4645,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-D-58 — Design: A/P Unpaid Invoices pinned vendor row matches the design pictures
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe a vendor more bills than fit on the screen plus a vendor credit, and you compare the pinned row with the design pictures.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Vendor {Vendor-A} has more unpaid bills than fit on the screen at your location, a long name, and an unused vendor credit {Vendor-credit-A} from a vendor return made at your location. For example: {Vendor-A} is ZZAUTOTEST D-58 Akal Mobile Truck Repair.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded.
 - The design pictures "Same on A/P Unpaid Invoices" (ar-ap-p3-same-on-a-p-unpaid-invoices.png) and "Vendor credits link" (ar-ap-p7-vendor-credits-link.png) are attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
@@ -4319,7 +4659,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-vendor-credits-link.png` (I43, "Ven
 ### SETUP-D-59 — Design: A/R Collection with groups closed matches the pictures in both themes
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: At least ten customers have overdue invoices, phone numbers and credit terms, and you compare A/R Collection with the design pictures.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Your role has the "View and Manage AP/AR Data" switch on.
 - At least ten customers have overdue invoices on today's date, each with a phone number and a credit term.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group collapsed.
@@ -4333,7 +4674,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-D-60 — Design: the description tooltip matches the pictures in both themes
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You open the description tooltip on A/R Collection and compare it with the design pictures in both themes.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - The design pictures "Info icon open, light" (ar-ap-p6-info-icon-open-light.png) and "Info icon open, dark" (ar-ap-p6-info-icon-open-dark.png) are attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -4345,7 +4687,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-61 — Design: A/P Detail with a bucket open matches the pictures in both themes
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: One A/P aging bucket is longer than the screen, and you compare A/P Detail with that bucket open to the design pictures.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - The "91 or more days past due" bucket has more lines than fit on the screen on today's date. For example: the QA organization (11,334 lines in that bucket).
 - Starting screen: A/P Detail (Reports, then "A/P Aging Detail" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with "91 or more days past due" expanded.
@@ -4359,7 +4702,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-62 — Design: A/P Unpaid Invoices at 1440 px shows every column, as pictured
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Unpaid Invoices. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You owe two vendors with long names at two locations, and you check every A/P Unpaid Invoices column shows at 1440 px.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Vendor {Vendor-A} has an unpaid bill at {Location-B}; vendor {Vendor-B} has unpaid bills at {Location-A}; both have long names. For example: {Vendor-A} is ZZAUTOTEST D-62 Abadi Diesel Repair and {Vendor-B} is ZZAUTOTEST D-62 Adams Diesel Repair.
 - Starting screen: A/P Unpaid Invoices (Reports, then "A/P Unpaid Invoices" under ACCOUNTS PAYABLE in the left menu; the page title reads "A/P Unpaid Invoices Report") is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every group expanded.
@@ -4373,7 +4717,8 @@ Design pictures: `design-2026-10-22/ar-ap-p6-a-p-detail-scrolled-sideways-light.
 ### SETUP-D-63 — Design: A/R Detail links and plain numbers match the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Three customers have documents more than 90 days past due, some at your other location, and you compare A/R Detail's links with the design picture.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has an open invoice made at {Location-B}, customer {Customer-B} an unused credit memo at {Location-A}, and customer {Customer-C} an open invoice at {Location-A}, all more than 90 days past due. For example: {Customer-A} is ZZAUTOTEST D-63 Oakland City, {Customer-B} is ZZAUTOTEST D-63 Sledge and {Customer-C} is ZZAUTOTEST D-63 Wellington.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with the "91 or more days past due" bucket expanded.
@@ -4387,7 +4732,8 @@ Design pictures: `design-2026-10-22/ar-ap-p5-every-invoice-number-is-a-link.png`
 ### SETUP-D-64 — Design: the switch-location dialog frame matches the design pictures
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer has a work order invoice made at your other location, and you compare the switch-location prompt with the design pictures.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has an open work order invoice {Invoice-A} made at {Location-B}. For example: {Customer-A} is ZZAUTOTEST D-64 Dialog Frame.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with {Customer-A} ticked and every bucket expanded.
@@ -4401,7 +4747,8 @@ Design pictures: `design-2026-10-22/ar-ap-p5-another-location-asks-first.png` (I
 ### SETUP-D-65 — Design: A/R Detail opens on All locations as in the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you compare A/R Detail opening on All locations with the design picture.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with the first bucket expanded.
 - The design picture "Opens on All locations" (ar-ap-p4-opens-on-all-locations.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
@@ -4414,7 +4761,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-every-location-no-way-to-narrow.png
 ### SETUP-D-66 — Design: the Location menu with two locations matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you compare the Location filter menu with the design picture.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - The design picture "The native Location menu" (ar-ap-p4-the-native-location-menu.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
@@ -4427,7 +4775,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-the-native-location-menu.png` (I33,
 ### SETUP-D-67 — Design: one location ticked hides the Location column as pictured
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you tick only one of them on A/R Detail to compare with the design picture.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with every bucket collapsed.
 - The design picture "One location ticked" (ar-ap-p4-one-location-ticked.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
@@ -4440,7 +4789,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-one-location-ticked.png` (I34, "One
 ### SETUP-D-68 — Design: No locations shows the empty state as in the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you untick both on A/R Detail to compare the empty report with the design picture.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - The design picture "Cleared: No locations" (ar-ap-p4-cleared-no-locations.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
@@ -4453,7 +4803,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-cleared-no-locations.png` (I35, "Cl
 ### SETUP-D-69 — Design: A/R Summary sorted by Location matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer owes you money at two locations, and you sort A/R Summary by Location to compare with the design picture.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customer {Customer-A} has open invoices at both locations on today's date. For example: {Customer-A} is ZZAUTOTEST D-69 Monroe.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
@@ -4467,7 +4818,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-summaries-show-multiple.png` (I36, 
 ### SETUP-D-70 — Design: clicking a customer on A/R Summary matches the drill-down picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary, A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer had open invoices on a past date, and you click the customer on A/R Summary to compare with the design picture.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Your role has the "Customers → View" permission and the "View and Manage AP/AR Data" switch on.
 - Customer {Customer-A} had open invoices on {Date-A}. For example: {Customer-A} is ZZAUTOTEST D-70 Drill Picture; {Date-A} is the last day of last month.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom, with the as-of date set to {Date-A}.
@@ -4481,7 +4833,8 @@ Design pictures: `design-2026-10-22/ar-ap-p4-drill-down-keeps-the-as-of-date.png
 ### SETUP-D-71 — Design: the Past due menu matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: You open the Past due filter on A/R Summary and compare it with the design picture.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - The design picture "Past due menu" (ar-ap-p7-past-due-menu.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -4493,7 +4846,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-menu.png` (I38, "Past due 
 ### SETUP-D-72 — Design: Past due with two ranges ticked matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Customers owe you money in every past due range, and you tick two ranges to compare with the design picture.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Customers have open invoices in every Past due range on today's date.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
@@ -4507,7 +4861,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-past-due-ticked.png` (I39, "Past du
 ### SETUP-D-73 — Design: the Vendor menu matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/P Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop has more than 8 vendors, and you compare the Vendor filter on A/P Summary with the design picture.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has more than 8 vendors (the Vendor menu shows its search box only when there are more than 8 vendors). For example: the QA organization (437 vendors).
 - Starting screen: A/P Summary (Reports, then "A/P Aging Summary" under ACCOUNTS PAYABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - Inventory Value (Reports, then "Inventory Value" under PARTS in the left menu) is open in a second tab of the same window, for comparison.
@@ -4521,7 +4876,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-the-native-vendor-menu.png` (I40, "
 ### SETUP-D-74 — Design: two customers ticked look as in the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Summary. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: One customer has open invoices and another has nothing open, and you tick both to compare with the design picture.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has open invoices on today's date; customer {Customer-B} has nothing open. For example: {Customer-A} is ZZAUTOTEST D-74 10 Trucking and {Customer-B} is ZZAUTOTEST D-74 4 Star Truck Repair.
 - Starting screen: A/R Summary (Reports, then "A/R Aging Summary" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - The design picture "Two customers ticked" (ar-ap-p7-two-customers-ticked.png) is attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.
@@ -4534,7 +4890,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-two-customers-ticked.png` (I41, "Tw
 ### SETUP-D-75 — Design: the call list for one customer matches the design picture
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: A customer with a long name, phone number and credit term has an overdue invoice, and you compare the call list with the design picture.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Your role has the "View and Manage AP/AR Data" switch on.
 - Customer {Customer-A} has a long name, an overdue invoice, a phone number and a credit term. For example: {Customer-A} is ZZAUTOTEST D-75 Andrews Truck and Trailer Repair LLC.
 - Starting screen: A/R Collection (Reports, then "A/R Aging Collection" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
@@ -4548,7 +4905,8 @@ Design pictures: `design-2026-10-22/ar-ap-p7-a-r-collection-date-and-customer-on
 ### SETUP-D-81 — Design: A/R Detail and Collection headings are in Title Case
 Section: Design — how it looks (TestRail section 90430). Reports: A/R Detail, A/R Collection. Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- You are signed in as a user with the "Admin" role, with {Location-A} as your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
+- Scenario: Your shop works at two locations, and you compare the A/R Detail and A/R Collection column headings with the design picture.
+- You are an Admin user (the "Admin" role) working at {Location-A}, your current location. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization has open documents in these reports at two locations, {Location-A} and {Location-B}, and you are enrolled at both; {Location-A}'s name comes first in A to Z order. For example: {Location-A} is Staging Heavy Duty - 9919 and {Location-B} is Staging Lethbridge - 4310.
 - Starting screen: A/R Detail (Reports, then "A/R Aging Detail" under ACCOUNTS RECEIVABLE in the left menu) is open in a desktop browser window 1440 px wide, as opened from the Reports menu in light theme at 100% zoom.
 - The design pictures "Links only where they can open" (ar-ap-p5-links-only-where-they-can-open.png) and "Expand all from the header" (ar-ap-p3-expand-all-from-the-header.png) are attached to this case and open beside the browser at 100% zoom; compare the layout, labels and styles, not the names and amounts, which are only examples.

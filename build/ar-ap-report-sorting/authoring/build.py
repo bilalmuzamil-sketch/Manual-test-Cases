@@ -3,7 +3,9 @@
 Gates: title <= 80 and no semicolon; design titles start "Design: "; steps = results, each "Step N:"; placeholders defined;
 quotes verbatim in PRD v9 (or Chris Ward's answers, the Jira reading record, or the tech plan); every PRD code and every named PRD item (error handling, User Feedback
 Summary rows, What changes, Out of Scope, key decisions) covered or listed as not testable with the reason; every report a
-requirement names covered; one AUTOMATION line, last; the "From:" / build line / "References from Design" layout."""
+requirement names covered; one AUTOMATION line, last; the "From:" / build line / "References from Design" layout; exactly one
+"Scenario:" line, first in the Preconditions, at most 40 words, with no requirement code, placeholder, "QA lead" or "ask your"
+(Rule 117 thirteenth amendment, 26 Oct 2026)."""
 import sys, json, os, importlib, re
 from collections import Counter, defaultdict
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -73,6 +75,21 @@ for c in L.CASES:
     if "claude.ai/artifact" in top: probs.append(f"{c['key']}: design reference above the References from Design block")
     if "<p></p><p><strong>References from Design</strong></p>" not in h: probs.append(f"{c['key']}: no References from Design block")
     if not f["custom_preconds"].startswith('<p><strong><a href="'): probs.append(f"{c['key']}: setup-file link not first")
+# ---- Rule 117 thirteenth amendment (26 Oct 2026): the Preconditions open with exactly one "Scenario:" line, first, at most 40 words,
+# plain words only: no requirement code, no placeholder, no "QA lead", no "ask your"
+SCEN_BAD = re.compile(r"\bS\d+-[RNE]\d+|\b(?:NFR|OOS|UFS|KD|EH)-?\d|\bSV-\d+|\{|\}|QA lead|ask your|\bask (?:the|a|your)\b|Rule \d", re.I)
+for c in L.CASES:
+    pc = L.render(c)["custom_preconds"]
+    items = pc.split("<p><strong>Preconditions</strong></p><ul>", 1)[1].split("<li>")[1:]
+    if pc.count("Scenario:") != 1 or sum(1 for x in items if x.startswith("Scenario:")) != 1:
+        probs.append(f"{c['key']}: not exactly one Scenario line"); continue
+    if not items[0].startswith("Scenario: "): probs.append(f"{c['key']}: Scenario line not first in Preconditions")
+    s = c["scenario"]
+    if not s.strip(): probs.append(f"{c['key']}: empty Scenario line")
+    if len(s.split()) > 40: probs.append(f"{c['key']}: Scenario line {len(s.split())} words (limit 40)")
+    if SCEN_BAD.search(s): probs.append(f"{c['key']}: Scenario line has {SCEN_BAD.search(s).group(0)!r}")
+print("scenario lines", sum(1 for c in L.CASES if c["scenario"]), "| longest", max(len(c["scenario"].split()) for c in L.CASES), "words",
+      "| over 25 words", sum(1 for c in L.CASES if len(c["scenario"].split()) > 25))
 # ---- every column of every report is clicked in a Story 2 case for that report (S2-R1), and some click is a third click (S2-R2)
 import common as CM
 for code, r in CM.R.items():

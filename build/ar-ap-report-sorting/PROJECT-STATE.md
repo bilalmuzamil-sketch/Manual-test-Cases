@@ -98,3 +98,11 @@
   (2) "Switch Location" capital L (C715416, C715417, C715519, C715520, C715546), (3) punctuation order (C715573), (4) export
   Locations tick order (C715343). Jira searched 26 Oct: no ticket for any of the four.
 - 26 Oct 2026: the ≤ 8-vendor organization for C797943 (S5-39) is the tester's precondition (already written so); no reminder to the QA lead.
+
+## 26 Oct 2026 — Preconditions rewritten as a scenario (Rule 117 thirteenth amendment), DRAFT
+- All 357 cases: a hand-written "Scenario:" line now opens the Preconditions (`authoring/scenarios.py`, attached by `ar_lib.C()` by key,
+  rendered first; `build.py` gates it: exactly one, first, ≤ 40 words, no requirement code, placeholder, "QA lead" or "ask your").
+- Standard Admin line reworded to "You are an Admin user (the "Admin" role) working at {Location-A}, your current location."; S5-39's
+  organization moved into its own bullet ("Your organization has 8 vendors or fewer in total."). No other precondition changed.
+- Every other field byte-identical to before (`scenario-preconditions-2026-10-26/make_pass_report.py`, PASS-REPORT.md). Setup file
+  regenerated. Not written to TestRail (needs the QA lead's go-ahead, together with the v9 pass).

@@ -379,8 +379,9 @@ C(k, "S5", "A/R Summary: ticking several customers quickly shows rows for all of
 # ---- 26 Oct 2026 (PRD v9 S5-R13, from question 12): the Vendor menu's search box shows only when there are more than 8 vendors
 k = nk()
 C(k, "S5", "A/P Summary: the Vendor menu has no search box with 8 vendors or fewer",
-  [('You are signed in as a user with the "Admin" role in a test organization that has 8 vendors or fewer, with {Location-A} as your current location.',
-    f"For example: a test organization made for this case, with the vendors {ex(k, 'Vendor 1')[0]} to {ex(k, 'Vendor 8')[0]}; {{Location-A}} is its main location."),
+  [('You are an Admin user (the "Admin" role) working at {Location-A}, your current location.',
+    "For example: {Location-A} is the main location of an organization made for this case."),
+   ("Your organization has 8 vendors or fewer in total.", f"For example: the vendors {ex(k, 'Vendor 1')[0]} to {ex(k, 'Vendor 8')[0]}."),
    ("At least one of those vendors, {Vendor-A}, has an unpaid bill on today's date.", f"For example: {{Vendor-A}} is {ex(k, 'Vendor 1')[0]}."),
    START("APS")],
   ["Click the Vendor chip and read the menu from top to bottom."],

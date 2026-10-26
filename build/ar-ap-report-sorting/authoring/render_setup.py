@@ -74,7 +74,7 @@ A("|---|---|---|---|")
 slots = {}
 for c in L.CASES:
     first = c["pre"][0][0]
-    if first.startswith('You are signed in as a user with the "Admin" role'): s = "ACCOUNT-A (Admin, enrolled at every location used)"
+    if first.startswith('You are an Admin user (the "Admin" role)'): s = "ACCOUNT-A (Admin, enrolled at every location used)"
     elif "enrolled only at" in first: s = "ACCOUNT-B (Admin, enrolled only at {Location-A})"
     elif "custom role" in first or "Two users exist" in first: s = "ROLE-" + c["key"] + " (custom role, see the case's first precondition)"
     else: s = "ACCOUNT-A (Admin)"
@@ -105,6 +105,7 @@ for c in L.CASES:
     A(f"### SETUP-{c['key']} — {c['title']}")
     A(f"Section: {NAMES[c['sec']]} (TestRail section {SEC[c['sec']]}). Reports: {', '.join(L.REPORTS[r] for r in L.reports_of(c)) or 'none'}. Marker: `{c['marker']}`.")
     A("Preconditions, exactly as the case states them:")
+    A(f"- {L.SCEN_PREFIX}{c['scenario']}")
     for a, b in c["pre"]: A(f"- {a}" + (f" {b}" if b else ""))
     phs = sorted(set(re.findall(r"\{([A-Z][^{}]*)\}", " ".join(a for a, _ in c["pre"]))))
     A("Placeholders: " + (", ".join("{" + p + "}" for p in phs) or "none") + ". Values: the \"For example\" lines above; write the real document numbers here after setup.")

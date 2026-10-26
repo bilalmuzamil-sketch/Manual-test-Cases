@@ -9,6 +9,7 @@ design-vs-PRD difference that touches the case (design_data.py, Rule 130). On-sc
 labels and navigation)."""
 import os, re, html, json
 import design_data as DD
+from scenarios import SCENARIO
 D = os.path.dirname(os.path.abspath(__file__)); P = os.path.dirname(D)
 
 def ws(s): return re.sub(r"\s+", " ", html.unescape(s).replace("**", "").replace("\\", "")).strip()
@@ -65,6 +66,7 @@ NOBUILD = "The build is not yet available to check this case against."
 MARKER = "AUTOMATION: HOLD - not yet build-verified (no build yet)"
 PRE_REL = "AUTOMATION: HOLD - needs records and screenshots captured before the release is installed on the test site"
 BLOCKED = 'If any record above is missing, mark this test Blocked: "setup not done".'
+SCEN_PREFIX = "Scenario: "
 DESIGN_HOLD = "AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO"
 
 # ---- requirement codes (S1-R1 ... S9-N2) -------------------------------------------------------------------------------------
@@ -209,11 +211,14 @@ def ui_res(s):
     return s.replace("marked as the sorted column", "marked as the sorted column (a small arrow beside its heading)", 1) if "small arrow" not in s else s
 
 CASES = []
-def C(key, sec, title, pre, steps, res, q, stories=None, note="", marker=None, known="", reports=None, design=None):
+def C(key, sec, title, pre, steps, res, q, stories=None, note="", marker=None, known="", reports=None, design=None, scenario=None):
     """pre: list of str or (state, example). res: one 'Step N:' line per step. q: PRD codes, NAMED keys, SUB keys or ('label', 'verbatim').
-    design: None (pictures chosen from the codes the case quotes) or a dict: figs (I-ids), boards (for a picture used twice), why, words."""
+    design: None (pictures chosen from the codes the case quotes) or a dict: figs (I-ids), boards (for a picture used twice), why, words.
+    scenario: the case's "Scenario:" sentence (Rule 117 thirteenth amendment); by default taken from scenarios.SCENARIO by key and
+    rendered as the first Preconditions bullet."""
     pre = [p if isinstance(p, tuple) else (p, None) for p in pre]
-    CASES.append(dict(key=key, sec=sec, title=title, pre=[(ui(a), ui(b) if b else b) for a, b in pre] + [(BLOCKED, None)],
+    CASES.append(dict(key=key, sec=sec, title=title, scenario=scenario if scenario is not None else SCENARIO.get(key, ""),
+                      pre=[(ui(a), ui(b) if b else b) for a, b in pre] + [(BLOCKED, None)],
                       steps=[ui(x) for x in steps], res=[ui_res(x) for x in res], q=q, stories=stories, note=note, marker=marker or MARKER,
                       known=known, reports=reports, design=design))
 
@@ -333,7 +338,7 @@ def quotes_block(c):
 
 def render(c):
     pre = (f'<p><strong><a href="{SETUP_URL}">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p>'
-           "<p><strong>Preconditions</strong></p><ul>" + "".join(f"<li>{e(a)}" + (f"<br>{e(b)}" if b else "") + "</li>" for a, b in c["pre"]) + "</ul>")
+           "<p><strong>Preconditions</strong></p><ul>" + f"<li>{e(SCEN_PREFIX + c['scenario'])}</li>" + "".join(f"<li>{e(a)}" + (f"<br>{e(b)}" if b else "") + "</li>" for a, b in c["pre"]) + "</ul>")
     exp = ("<p><strong>Expected results</strong></p><ul>" + "".join(f"<li>{e(r)}</li>" for r in c["res"]) + "</ul>"
            + (f"<p>{e(c['known'])}</p>" if c["known"] else "")
            + (f"<p>{e(c['note'])}</p>" if c["note"] else "")
@@ -363,7 +368,7 @@ def check(c):
         if b and not b.startswith("For example:"): p.append(f"{k}: example line must start 'For example:'")
         if PH.search(a) and not b and a != BLOCKED and not a.startswith("Starting screen") and "{Location-" not in a and "{Role-" not in a:
             pass
-    tester = " ".join([a for a, _ in c["pre"]] + c["steps"] + c["res"])
+    tester = " ".join([c["scenario"]] + [a for a, _ in c["pre"]] + c["steps"] + c["res"])
     if "ZZAUTOTEST" in tester: p.append(f"{k}: hard-coded record in tester text (examples go on the For example line)")
     if re.search(r"\bS\d+-[RNE]\d+", tester): p.append(f"{k}: requirement code in tester text")
     if JARGON.search(tester): p.append(f"{k}: technical term in tester text: {JARGON.search(tester).group(0)}")

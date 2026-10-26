@@ -10,8 +10,8 @@ sys.path.insert(0, D); import design_data as DD
 PROP = json.load(open(f"{D}/proposals.json")); MAP = f"{P}/testrail-id-map.csv"
 ids = {r["key"]: int(r["case_id"]) for r in csv.DictReader(open(MAP))}
 HOLD = "AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO"
-TAG = "v9-2026-10-26"  # was rule136-2026-10-22; design-2026-10-22 for the design pass
-RELEASED = ["S2-35", "DATA-14", "DATA-15", "S1-16", "D-81"]  # released by Chris Ward's answers 6, 9, 16 and 4 (26 Oct 2026); was ["S1-07"] (tech plan pass)
+TAG = "scenario-2026-10-26"  # was v9-2026-10-26; rule136-2026-10-22; design-2026-10-22
+RELEASED = []  # nothing released in the scenario pass; was the five released by Chris Ward's answers (v9 pass)
 PICRE = re.compile(r"ar-ap-p\d-[a-z0-9-]+\.png")
 def pics(f): return sorted(set(PICRE.findall(f["custom_preconds"] + f["custom_expected"])))
 def same(prev, f):
