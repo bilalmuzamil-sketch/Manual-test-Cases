@@ -616,3 +616,9 @@
 - A fresh QA branch signs in by quick-login on its own once `/tmp/shopview/<branch>.env` exists (copied from another branch's file); `expected` text that already holds a `<br>` must have it turned into `</p><p>` before `safe_case_edit.py` will send it.
 - C665914 Passed in run 498 (T4014037), known-problem block + EXPECT FAIL marker removed and the 23 Oct design confirmation quoted (Rule 136); stays in Fast-follow folder like the other passed fast-follow tests.
 #drag #fix-verify #qa-branch #rule136 → L0575, L0576
+
+## L0578 — 2026-10-26 — SV-11720 (Board View page scroll) verified on sv11720; two wait-loop traps
+- C96953 run whole on sv11720 (v26.43.1-a53a4ac) at 1600 x 1000 with `c96953-cols.mts` + `layout-1023.mts`: page height 1000 = window 1000 (Create Work Order still on its own line), step 7 wheel at (464,578) leaves `scrollY` 0 and the toolbar where it was; Unassigned/Esther columns scroll alone; 46 of 46 technician columns. QA Passed comment 79501 (picture sized); C96953 Passed in run 498 (T3481897); title prefix removed by hand (`safe_case_edit.py`, title only) because the push tool holds Automated titles — Rule 136 covers it, named to the QA lead for Ahtasham.
+- `c96953-cols.mts` now creates "Esther Howard" (eligible technician) when a fresh QA branch has none; `layout-1023.mts` times out waiting for an empty column until that data exists.
+- Wait-loop traps: (1) waiting on a log's "EXIT" line matches a STALE log from the previous run — delete/rename logs before re-running, or wait on the process (`pgrep -f <script>`); (2) a background wait with the default 30-min limit is killed while the scripts still finish — read the logs, not the wait's status.
+#scroll #board-view #fix-verify #rule136 #automated → L0577, L0573

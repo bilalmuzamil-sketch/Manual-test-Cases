@@ -1,0 +1,18 @@
+{
+ "pass_meta": {"env": "QA branch sv11720", "build": "v26.43.1-a53a4ac", "date": "26 October 2026", "note": "Rule 136: SV-11720 fix verified on its QA branch sv11720 (QA lead 26 Oct)"},
+ "results": {
+  "C96953": {
+   "verdict": "Passed",
+   "observed": [
+    "Passed on the QA branch sv11720 (fix for SV-11720), all 10 steps with the mouse, window 1600 x 1000.",
+    "Set-up: customer \"ZZAUTOTEST F2 Column Scroll\" with 25 unassigned work orders, 20 led by Esther Howard (created on this branch) and 1 each for two other technicians; 46 eligible technicians at the location.",
+    "Steps 5 and 6: scrolling inside Unassigned moves only its cards; the other columns and every header stay where they are.",
+    "Step 7: turning the wheel over the empty area below a short column does not move the page; the tabs, Search, filters and view switcher stay in place (picture 1). The page is exactly as tall as the window, so there is nothing to scroll.",
+    "Step 8: Esther Howard's column scrolls on its own the same way.",
+    "Steps 9 and 10: scrolling sideways reaches every technician: 46 technician columns for 46 eligible technicians, none hidden.",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11720 (TESTING QA) - passed on its QA branch; QA Passed comment posted on the ticket."
+   ],
+   "pictures": ["/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-26/SV-11720-sv11720-fixed.png"]
+  }
+ }
+}
