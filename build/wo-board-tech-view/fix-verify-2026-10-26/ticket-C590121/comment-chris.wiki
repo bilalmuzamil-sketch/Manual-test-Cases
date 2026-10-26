@@ -1,0 +1,17 @@
+[~accountid:712020:aa00b8d6-a71f-4259-8919-82a304227c20] could you please confirm whether the *…* (More actions) button's position on a Board View card is acceptable as it is now built?
+
+*Where this comes from:*
+
+* *The design* (Claude Design project "Work Orders", export of 14 Oct 2026, state "board card menu button over badge"): on hover the *…* button sits *over the right end of the status label*, so the label reads *Appro…* under the button.
+* *The PRD* (version 75, 23 Oct 2026, *S3-R13*): "Reveal the card’s more-actions overlay on hover or keyboard focus." It does not say where the button sits, so the test follows the design for the position.
+
+*What the build does* (QA branch sv11545, build v26.43.1-a53a4ac, 26 Oct 2026): the *…* button sits *beside* the status label, to its left, and the label is shown in full. The button works: it opens the menu, and the menu items are right.
+
+!C590121-design-vs-build.png|width=1000!
+
+*Please choose one:*
+
+# *Accept it as built* (button beside the label). I will then pass the test and close nothing — you or the team can close this ticket.
+# *Follow the design* (button over the right end of the label). The ticket stays open for the developer.
+
+Note: Ahtasham Amjad asked on 14 Oct 2026 whether the button may cover part of the status label; that question is the same point and has no answer recorded yet.

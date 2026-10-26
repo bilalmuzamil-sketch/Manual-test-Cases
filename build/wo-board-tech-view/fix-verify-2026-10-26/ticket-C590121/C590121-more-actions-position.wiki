@@ -1,0 +1,50 @@
+TITLE: Board Card – More Actions Button Sits Beside the Status Label, Not Over It
+STATUS: FILED as SV-11753 26 Oct 2026 (Chris Ward asked in comment 79481). FILING APPROVED by the QA lead 26 Oct 2026 ("Create the ticket tell Chris everything and ask him to confirm if this is acceptable this way ... with the annotated screenshots from Design VS Build").
+Fields: Bug · parent SV-11593 (Board/Tech View Fast Follow) · Medium · Product Area Work Orders · labels board-tech-view, fast-follow · relates to SV-10046
+
+h2. Description
+
+*What the design requires:* when the mouse is over a Board View card, the *…* (More actions) button appears at the card's top right, *over the right end of the status label*, covering part of it. The design names this state "board card menu button over badge". The PRD only says the button appears on hover or keyboard focus (*S3-R13*) and says nothing about where it sits, so the design is the source for its position.
+
+*What happens instead:* the *…* button appears *beside* the status label, to its left, and the status label is shown in full.
+
+For example:
+
+* on an Approved work order the design shows *Appro…* with the *…* button on top of the rest of the word
+* the build shows the full word *Approved* with the *…* button in a space to its left
+
+h2. Steps to Reproduce
+
+# Sign in and open *Work Orders*, click the *All* tab and click *Board View* in the display switcher.
+# Find the card of any work order with a status label (e.g. *Approved*).
+# Move the mouse over the card.
+#* The card's border darkens and the *…* button appears at the top right.
+#* The *…* button sits to the left of the status label; the label is not covered.
+
+*Actual Result:*
+
+* The *…* button sits beside the status label, to its left.
+
+*Expected Result:*
+
+* As in the design, the *…* button sits over the right end of the status label.
+
+h2. Screenshots
+
+!C590121-design-vs-build.png|width=1000!
+
+
+h2. Environment
+
+* *Build:* {{v26.43.1-a53a4ac}} on [QA branch sv11545|https://sv11545.qa.shopview.com/workorders] · *Work order:* S11545-17590 (Approved) · *User:* Admin test account · window 1440 px wide · seen on 26 Oct 2026
+* Same on [production|https://app.shopview.com/workorders]: build {{v26.43.1-9af7270}}, location Truck Hill 1, work order S1-1372 (Approved), 26 Oct 2026 08:25 UTC — the *…* button sits 10 px to the left of the status label and does not cover it.
+
+
+h2. Sources
+
+* Claude Design project "Work Orders" (Branko Cicovic), [Work Orders.dc.html|https://claude.ai/design/p/787fef1a-9523-43cc-bd06-f88765051d21?file=Work+Orders.dc.html&via=share], export of 14 Oct 2026 — state {{states__work-orders__board-card-menu-button-over-badge__light__1440}} ("menu button over badge"); the design picture on the left of the screenshot above (DC-12-board-card-hover-button-light-1440.png) is rendered from that state at 1440 px.
+* PRD "Work Orders — Board View & Tech View Display Options", [Confluence 845185030|https://shopview.atlassian.net/wiki/pages/viewpage.action?pageId=845185030], version 75 (23 Oct 2026, Chris Ward; read 26 Oct 2026), *S3-R13*: "Reveal the card’s more-actions overlay on hover or keyboard focus." — the PRD says nothing about where the button sits.
+
+h2. Test case
+
+* [C590121|https://shopview.testrail.io/index.php?/cases/view/590121] — Design: The More actions button and its menu look as in the design
