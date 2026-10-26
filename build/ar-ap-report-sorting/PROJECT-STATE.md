@@ -80,3 +80,16 @@
 - 22 Oct 2026 Rule 136 pass applied (rule136-2026-10-22/): 42 cases split into 96 (54 new C715585-C715638 range, see map), 146 shortened,
   steps 1,734 → 1,438; 20 cases fixed that quoted PRD Change Log rows instead of the requirement (parser fix; all 771 requirement quotes
   now match their requirement line). 204 updated + 54 added, all read back OK; 98 pictures uploaded. Run 549: 291 → 345, none lost.
+
+## 26 Oct 2026 — Chris Ward answered all 16 questions; PRD v9; full pass (QA lead chose "Full pass")
+- Answers saved verbatim: questions-2026-10-22/chris-answers-2026-10-26.json (row 17's text repeats question 14; PRD v9 S5-R13
+  settles question 12). PRD v9 (23 Oct 2026) saved and diffed: 15 requirements changed, 4 new (S2-R4a, S3-R8b, S5-R18a, S5-R18b).
+- Deleted with the QA lead's go-ahead (snapshots in v9-pass-2026-10-26/deleted/): C715558–C715562 (design versions that lost, q11–15).
+- Applied (applied/v9-2026-10-26-log.jsonl): 350 updated (176 rewritten top to bottom, 174 From-line v9 re-stamps), 7 new
+  (C797940–C797946: S2-40, S2-41, S2-42, S5-39, S7-20, DATA-23, DATA-24), every read-back equal; 25 pictures uploaded, all read back.
+- Released into run 549: C715322 (S2-35), C715463 (DATA-14), C715464 (DATA-15), C715573 (S1-16), C715563 (D-81).
+  Run 549: 345 → 357 = every case of the suite (union, nothing lost).
+- Stories SV-11531…SV-11539 re-read 26 Oct (6 updated 23 Oct): requirement lines match v9 except SV-11538 "Transaction type"
+  (PRD: "Transaction Type"; PRD wins, answer 10). Saved: sources/JIRA-SV-11315-stories-2026-10-26.md.
+- Expected build differences (no ticket numbers yet): same-day order by time (S1-10, S1-11); "Switch Location" capital L (S7-03, S7-04,
+  D-39, D-40, D-64); punctuation name order (S1-16); export Locations tick order (S3-17). S5-39 needs an org with ≤ 8 vendors.
