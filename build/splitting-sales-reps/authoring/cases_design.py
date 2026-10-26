@@ -327,8 +327,10 @@ for c in ssr_lib.CASES:
         b = BEFORE[c["key"]]
         if c["key"].startswith("REL"):
             c["pre"].insert(len(c["pre"]) - 1, PIC_PRE(b, "a desktop browser at least 1024 px wide" if c["key"] != "REL-12" else "a phone screen"))
+            c["pre"] = ssr_lib.setup_order(c["pre"][:-1]) + c["pre"][-1:]  # 26 Oct 2026: browser-window line above the starting screen
             c["design_src"] = DSRC(b).replace("(the attached pictures are these boards)", "(\"Before\" boards: production today, attached for comparison)")
         else:
-            c["pre"][1] = PIC_PRE(sorted(set(b) | set(re.findall(r'\(board (\d+\.\d+)\)', c["pre"][1][0])), key=lambda x: [int(y) for y in x.split(".")]))
+            i = next(n for n, x in enumerate(c["pre"]) if x[0].startswith("The browser window is "))  # 26 Oct 2026: no longer always line 2
+            c["pre"][i] = PIC_PRE(sorted(set(b) | set(re.findall(r'\(board (\d+\.\d+)\)', c["pre"][i][0])), key=lambda x: [int(y) for y in x.split(".")]))
             c["design_src"] = DSRC(sorted(set(b) | set(re.findall(r'board (\d+\.\d+)', " ".join(c["steps"]))), key=lambda x: [int(y) for y in x.split(".")]))
         c["q"] = c["q"] + DQ(b); c["pictures"] = sorted(set(c["pictures"]) | set(PICS(b)))

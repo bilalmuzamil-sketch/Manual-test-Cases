@@ -249,6 +249,9 @@ DESIGN_PAGES = {1: ['"1 List and row menus"', '"3 New credit term and Inactive t
 NAMED_STORY = {"EH-S1": 1, "EH-S2": 2, "EH-S3a": 3, "EH-S3b": 3, "EH-S4a": 4, "EH-S4b": 4, "EH-S4c": 4, "EH-S5a": 5, "EH-S5b": 5, "EH-S6": 6,
                "EH-S8": 8, "EH-S9": 9, "EH-S10": 10, "EH-S12": 12}
 
+# Rule 117 thirteenth amendment (QA lead, 26 Oct 2026): every case's Preconditions open with one "Scenario:" line (scenarios.py)
+from scenarios import SCEN
+SCENARIO = "Scenario: "
 CASES = []
 def C(key, sec, title, pre, steps, res, q, stories=None, note="", marker=None, api=False):
     """pre: list of str or (state, example). res: one 'Step N:' line per step. q: PRD codes, NAMED keys, SUB keys or ('label', 'verbatim').
@@ -256,10 +259,11 @@ def C(key, sec, title, pre, steps, res, q, stories=None, note="", marker=None, a
     pre = [p if isinstance(p, tuple) else (p, None) for p in pre]
     steps, res = fold_reads(steps, res)
     res = [visible(r, steps[i] if i < len(steps) else "") for i, r in enumerate(res)]
+    clean = marker == CLEAN_HOLD  # the setup file's P-CLEAN recipe applies (the case needs a shop holding only its own records)
     if marker == CLEAN_HOLD:  # 26 Oct 2026 (QA lead): the set-aside organization is the tester's precondition, not a hold
         marker = None  # 26 Oct 2026 (QA lead): "Simply say what is needed" — each case's own preconditions state the state it needs
-    CASES.append(dict(key=key, sec=sec, title=title, pre=pre + [(BLOCKED, None)], steps=steps, res=res, q=q, stories=stories,
-                      note=note, marker=marker or MARKER, api=api))
+    CASES.append(dict(key=key, sec=sec, title=title, scen=SCEN.get(key, ""), pre=pre + [(BLOCKED, None)], steps=steps, res=res, q=q,
+                      stories=stories, note=note, marker=marker or MARKER, api=api, clean=clean))
 
 TRIVIAL = [
  (r"^the name is typed\.$", "the field shows the name as typed."),
@@ -380,7 +384,7 @@ def quotes_block(c):
 
 def render(c):
     pre = (f'<p><strong><a href="{SETUP_URL}">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p>'
-           "<p><strong>Preconditions</strong></p><ul>" + "".join(f"<li>{e(a)}" + (f"<br>{e(b)}" if b else "") + "</li>" for a, b in c["pre"]) + "</ul>")
+           "<p><strong>Preconditions</strong></p><ul>" + f"<li>{SCENARIO}{e(c['scen'])}</li>" + "".join(f"<li>{e(a)}" + (f"<br>{e(b)}" if b else "") + "</li>" for a, b in c["pre"]) + "</ul>")
     exp = ("<p><strong>Expected results</strong></p><ul>" + "".join(f"<li>{e(r)}</li>" for r in c["res"]) + "</ul>"
            + (f"<p>{e(c['note'])}</p>" if c["note"] else "")
            + quotes_block(c) + design_block(c) + f"<p>{e(c['marker'])}</p>")
@@ -424,7 +428,7 @@ def check(c):
         if not PH.fullmatch("{" + x + "}"): p.append(f"{k}: placeholder {{{x}}} is not name-hyphen-letter or number")
     for a, b in c["pre"]:
         if b and not b.startswith("For example:"): p.append(f"{k}: example line must start 'For example:'")
-    tester = " ".join([a for a, _ in c["pre"]] + c["steps"] + c["res"])
+    tester = " ".join([c["scen"]] + [a for a, _ in c["pre"]] + c["steps"] + c["res"])
     if "ZZAUTOTEST" in tester: p.append(f"{k}: hard-coded record in tester text (examples go on the For example line)")
     if re.search(r"\bS\d+-[RNE]\d+", tester): p.append(f"{k}: requirement code in tester text")
     if not c["api"] and JARGON.search(tester): p.append(f"{k}: technical term in tester text: {JARGON.search(tester).group(0)}")

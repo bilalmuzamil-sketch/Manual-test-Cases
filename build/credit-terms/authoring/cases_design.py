@@ -24,7 +24,8 @@ def dz(key, title, pre, pairs, q, figs, words=(), note="", marker=None, who=None
     """pairs: [(step, what the tester sees)]. A final 1536-px step is added unless width=False."""
     pairs = list(pairs) + ([TO1536] if width else [])
     st = [a for a, _ in pairs]; rs = [f"Step {i}: {b}" for i, (_, b) in enumerate(pairs, 1)]
-    C(key, "DESIGN", title, [who or ADMIN()] + list(pre) + [W1440, PICS(figs)], st, rs, q, note=note, marker=marker)
+    start = [p for p in pre if p[0].startswith("Starting screen:")]
+    C(key, "DESIGN", title, [who or ADMIN()] + [p for p in pre if p not in start] + [W1440, PICS(figs)] + start, st, rs, q, note=note, marker=marker)
     DREFS[key] = R(figs, words)
 
 OPEN_PAGE = ('In the Settings menu, click "Credit Terms".', None)
@@ -199,7 +200,7 @@ dz("D-16", "Design: Edit Credit Term window looks as designed",
    ["S2-R4", "S3-R1"], [(3, 4)], [cap(NT, 4, "Rendered from the local build: Edit on an unused term")])
 
 dz("D-17", "Design: Move Customers window looks as designed",
-   [DEFAULT_COD, ("Due on Receipt is the default for new customers instead of COD.", None),
+   [("Due on Receipt is the default for new customers, not COD.", None),
     ("At least ten customers are on COD, among them {Customer-A} and {Customer-B}.", "For example: {Customer-A} is ZZAUTOTEST D-17 Alpha and {Customer-B} is ZZAUTOTEST D-17 Bravo."),
     ("Starting screen: the Credit Terms page, Active tab.", None)],
    [('Click "⋯" on the COD row.', "the row menu opens."),

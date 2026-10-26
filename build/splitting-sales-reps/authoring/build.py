@@ -56,6 +56,24 @@ for p in longs:
     e = _splits.get(k, {})
     if e.get("verdict") == "NOT-SPLIT" and e.get("why"): print("LONG (Rule 136, kept whole, reason in SPLITS.json)", p.split(" (")[0])
     else: probs.append(p + " — no NOT-SPLIT reason in SPLITS.json")
+# SCENARIO GATE (Rule 117 thirteenth amendment, 26 Oct 2026, QA lead: "Preconditions should be like a scenario, easier for a manual QA
+# tester to understand  to create in the account."): every case, library and design-recheck alike, opens its Preconditions with exactly
+# one "Scenario:" line, at most 40 words, with no requirement code and no "QA lead" / "ask your"; every case in testrail-id-map.csv
+# has one. The design-recheck cases are checked in their draft, scenario-preconditions-2026-10-26/DR-PROPOSALS.json.
+import csv as _csv
+for c in ssr_lib.CASES: probs += ssr_lib.scenario_problems(c["key"], ssr_lib.render(c)["custom_preconds"])
+_map = list(_csv.DictReader(open(f"{ssr_lib.P}/testrail-id-map.csv")))
+for r in _map:
+    if r["key"] not in ssr_lib.SCENARIO: probs.append(f"{r['key']} (C{r['case_id']}): no Scenario line")
+_drp = f"{ssr_lib.P}/scenario-preconditions-2026-10-26/DR-PROPOSALS.json"
+_dr = json.load(open(_drp)) if os.path.exists(_drp) else {}
+for r in _map:
+    if r["key"].startswith("DR-"):
+        if r["case_id"] not in _dr: probs.append(f"{r['key']} (C{r['case_id']}): no draft Preconditions in DR-PROPOSALS.json")
+        else: probs += ssr_lib.scenario_problems(r["key"], _dr[r["case_id"]]["custom_preconds"])
+_lib = {c["key"] for c in ssr_lib.CASES}
+print("scenario gate: library cases", len(_lib), "| design-recheck cases", sum(r["key"].startswith("DR-") for r in _map),
+      "| cases in testrail-id-map.csv", len(_map), "| unmapped library cases", sorted(_lib - {r["key"] for r in _map}))
 for p in probs: print("PROBLEM", p)
 out = {c["key"]: dict(sec=c["sec"], fields=ssr_lib.render(c)) for c in ssr_lib.CASES}
 json.dump(out, open(f"{ssr_lib.D}/proposals.json", "w"), indent=1, ensure_ascii=False)

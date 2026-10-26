@@ -75,9 +75,20 @@ MARKER = "AUTOMATION: HOLD - not yet build-verified (no build yet)"
 BLOCKED = 'If any record above is missing, mark this test Blocked: "setup not done".'
 CASES = []
 
+def setup_order(pre):
+    """26 Oct 2026, Rule 117 thirteenth amendment: the preconditions read in the order a tester sets the account up (who you are, the
+    records, their state, then the screen). The design cases' browser-window line (window width, zoom and the attached design pictures)
+    describes where the test is watched, so it sits directly above the "Starting screen:" line (which may say "in that browser window")
+    instead of between the role and the records, or after the starting screen. No line is changed, added or dropped."""
+    win = [x for x in pre if x[0].startswith("The browser window is ")]
+    rest = [x for x in pre if x not in win]
+    i = next((n for n, x in enumerate(rest) if x[0].startswith("Starting screen:")), len(rest))
+    return rest[:i] + win + rest[i:]
+
 def C(key, sec, title, pre, steps, res, q, stories=None, extra_src="", note="", marker=None, known="", pictures=None, design_src=""):
-    """pre: list of str or (state, example). res: one 'Step N:' line per step. q: list of PRD codes or ('label', 'verbatim text')."""
-    CASES.append(dict(key=key, sec=sec, title=title, pre=[p if isinstance(p, tuple) else (p, None) for p in pre] + [(BLOCKED, None)],
+    """pre: list of str or (state, example). res: one 'Step N:' line per step. q: list of PRD codes or ('label', 'verbatim text').
+    The case's "Scenario:" line (26 Oct 2026) lives in scenarios.py and is rendered first in the Preconditions."""
+    CASES.append(dict(key=key, sec=sec, title=title, pre=setup_order([p if isinstance(p, tuple) else (p, None) for p in pre]) + [(BLOCKED, None)],
                       steps=steps, res=res, q=q, stories=stories, extra_src=extra_src, note=note, marker=marker or MARKER, known=known, pictures=pictures or [], design_src=design_src))
 
 def quotes(c):
@@ -161,8 +172,29 @@ def quotes_block(c):
         first = False
     return h + f"<p>{e(NOBUILD)}</p>"
 
+from scenarios import SCENARIO
+SCEN_PREFIX = "Scenario: "
+def scenario_line(key):
+    return SCEN_PREFIX + SCENARIO[key] if key in SCENARIO else None
+def scenario_problems(key, preconds_html):
+    """SCENARIO GATE (Rule 117 thirteenth amendment, 26 Oct 2026): exactly one "Scenario:" line, the first line of the Preconditions,
+    at most 40 words, with no requirement code and no "QA lead" / "ask your" / who-to-ask wording."""
+    p = []
+    items = [html.unescape(re.sub(r"<[^>]+>", " ", x)).strip() for x in re.findall(r"<li>(.*?)</li>", preconds_html, re.S)]
+    if preconds_html.count("Scenario:") != 1: p.append(f"{key}: Preconditions hold {preconds_html.count('Scenario:')} Scenario lines (must be exactly one)")
+    if not items or not items[0].startswith(SCEN_PREFIX): p.append(f"{key}: the first precondition is not the Scenario line")
+    else:
+        t = items[0][len(SCEN_PREFIX):]
+        w = len(t.split())
+        if w > 40: p.append(f"{key}: Scenario line has {w} words (at most 40)")
+        if re.search(r"\bS\d+-[RNE]\d+", t): p.append(f"{key}: requirement code in the Scenario line")
+        if re.search(r"QA lead|ask your|\bask\b|set aside", t, re.I): p.append(f"{key}: who-to-ask or generic wording in the Scenario line")
+        if re.search(r"\{[A-Z][^{}]*\}|ZZAUTOTEST", t): p.append(f"{key}: placeholder or record name in the Scenario line")
+    return p
+
 def render(c):
-    pre = "<p><strong>Preconditions</strong></p><ul>" + "".join(f"<li>{e(a)}" + (f"<br>{e(b)}" if b else "") + "</li>" for a, b in c["pre"]) + "</ul>"
+    sc = scenario_line(c["key"])
+    pre = "<p><strong>Preconditions</strong></p><ul>" + (f"<li>{e(sc)}</li>" if sc else "") + "".join(f"<li>{e(a)}" + (f"<br>{e(b)}" if b else "") + "</li>" for a, b in c["pre"]) + "</ul>"
     exp = ("<p><strong>Expected results</strong></p><ul>" + "".join(f"<li>{e(r)}</li>" for r in c["res"]) + "</ul>"
            + (f"<p>{e(c['known'])}</p>" if c["known"] else "")
            + (f"<p>{e(c['note'])}</p>" if c["note"] and not design_note(c) else "")

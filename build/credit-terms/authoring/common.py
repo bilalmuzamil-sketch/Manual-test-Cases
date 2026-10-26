@@ -8,11 +8,11 @@ def ex(key, *names):
     return [f"ZZAUTOTEST {key} {n}" for n in names]
 
 def ADMIN(loc="A"):
-    return (f'You are signed in as a user with the "Admin" role, working in {{Location-{loc}}}.',
+    return (f'You are an Admin user working at {{Location-{loc}}}.',
             f"For example: {{Location-{loc}}} is {LOC_A if loc == 'A' else LOC_B}.")
 
-PAGE = ('Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group) is open on the Active tab.', None)
-PAGE_INACTIVE = ('Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group) is open on the Inactive tab.', None)
+PAGE = ('Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Active tab.', None)
+PAGE_INACTIVE = ('Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group), Inactive tab.', None)
 STD_ACTIVE = ("All twelve standard terms are active and COD is the default for new customers.", None)
 DEFAULT_COD = ("COD is the shop's default for new customers.", None)
 

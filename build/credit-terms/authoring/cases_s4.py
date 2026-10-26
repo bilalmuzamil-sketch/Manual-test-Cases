@@ -76,7 +76,7 @@ mv("S4-09", "Moving one customer says \"1 customer moved\"",
    ["S4-R9", "S4-R2", "UFS-40"])
 
 mv("S4-10", "Each moved customer gets a note naming the old term, new term and user",
-   [DEFAULT_COD, ("Your user name is {User-A}.", "For example: {Term-A} is ZZAUTOTEST S4-10 N20, {User-A} is ZZAUTOTEST S4-10 Admin."), ("The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly one customer, {Customer-A}, with a $0.00 limit.", "For example: {Customer-A} is ZZAUTOTEST S4-10 Solo.")],
+   [DEFAULT_COD, ("The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly one customer, {Customer-A}, with a $0.00 limit.", "For example: {Term-A} is ZZAUTOTEST S4-10 N20 and {Customer-A} is ZZAUTOTEST S4-10 Solo."), ("Your user name is {User-A}.", "For example: {User-A} is ZZAUTOTEST S4-10 Admin.")],
    open_move("{Term-A}") + [('Choose "Net 45" in "Move To".', 'the button reads "Move 1 Customer".'), ('Click "Move 1 Customer".', "the toast shows."),
      ("Open {Customer-A}'s customer page.", "the page opens."), ('Click the "Notes" tab.',
       'a new note, authored by {User-A}, reads "Credit term changed from {Term-A} to Net 45 by {User-A} (Move Customers)." with nothing about the credit limit after it.')],

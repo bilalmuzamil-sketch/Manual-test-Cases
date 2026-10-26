@@ -68,37 +68,38 @@ im("S10-10", "A vendor import update with a blank term cell keeps the stored ter
 
 # ---- Public API (the tester sends a request; Rule 4) -------------------------------------------------------------------------
 APIHOLD = None  # 26 Oct 2026 (QA lead): the API documentation is the tester's precondition (KEY), not a hold
-KEY = ("You have a valid Public API key for the test organization, the Public API documentation from the developers (it gives the request to create, update and read a customer), and a request tool.", "For example: Postman.")
+KEY = ("You have a valid Public API key for the test organization, the Public API documentation from the developers (it gives the request to create, update and read a customer), and a request tool.", "For example: the request tool is Postman.")
 def api(key, title, pre, pairs, q):
     im(key, title, [KEY] + pre, pairs, q, marker=APIHOLD, api=True,
        note="The tester sends a Public API request in this case. The exact request is added once the API documentation or tech plan is shared; until then the case is held.")
 
 api("S10-11", "A customer created through the API without a term gets the default",
     [("The shop's own term {Term-A} is the default for new customers.", "For example: {Term-A} is ZZAUTOTEST S10-11 Fourteen."),
-     ("Names for two new customers, {Customer-A} and {Customer-B}.", "For example: ZZAUTOTEST S10-11 None and ZZAUTOTEST S10-11 Blank.")],
+     ("Names for two new customers, {Customer-A} and {Customer-B}.", "For example: {Customer-A} is ZZAUTOTEST S10-11 None and {Customer-B} is ZZAUTOTEST S10-11 Blank.")],
     [("Send a Public API request that creates {Customer-A} with no credit term at all.", "the customer is created."),
      ("Send a Public API request that creates {Customer-B} with an empty credit term.", "the customer is created."),
      ("Open {Customer-A}'s customer page.", 'the "Credit term" reads {Term-A}.'), ("Open {Customer-B}'s customer page.", 'the "Credit term" reads {Term-A}.')],
     ["S10-R2", "KD-LENIENT"])
 api("S10-12", "An API term in other capitals saves and reads back in the term's spelling",
-    [("The shop's own term {Term-A} is named \"Net 10\".", "For example: {Term-A} is Net 10."), ("A name for a new customer, {Customer-A}.", "For example: ZZAUTOTEST S10-12 Customer.")],
+    [("The shop's own term {Term-A} is named \"Net 10\".", "For example: {Term-A} is Net 10."), ("A name for a new customer, {Customer-A}.", "For example: {Customer-A} is ZZAUTOTEST S10-12 Customer.")],
     [("Send a Public API request that creates {Customer-A} with the credit term \"net 10\".", "the customer is created."),
      ("Send a Public API request that reads {Customer-A}.", 'the credit term comes back as "Net 10" (the saved spelling).'), ("Open {Customer-A}'s customer page.", 'the "Credit term" reads "Net 10".')],
     ["S10-R3", "S10-R7"])
 api("S10-13", "Updating a term through the API matches spelling, or saves unknown text",
-    [("The shop's own term {Term-A} is named \"Net 10\".", "For example: {Term-A} is Net 10."), ("Customer {Customer-A} exists on Net 30.", "For example: ZZAUTOTEST S10-13 Customer.")],
+    [("The shop's own term {Term-A} is named \"Net 10\".", "For example: {Term-A} is Net 10."), ("Customer {Customer-A} exists on Net 30.", "For example: {Customer-A} is ZZAUTOTEST S10-13 Customer.")],
     [("Send a Public API request that updates {Customer-A}'s credit term to \"NET10\".", "the request succeeds."), ("Open {Customer-A}'s customer page.", 'the "Credit term" reads "Net 10".'),
      ("Send a Public API request that updates {Customer-A}'s credit term to \"Prepaid\".", "the request succeeds (it is not refused)."), ("Reload {Customer-A}'s customer page.", 'the "Credit term" reads "Prepaid" exactly as sent.')],
     ["S10-R5", "S10-R4", "S10-N1"])
 api("S10-14", "A customer created or updated through the API on COD gets a $0 limit",
-    [("Names for a new customer, {Customer-A}; customer {Customer-B} exists on Net 30 with a $600.00 limit.", "For example: ZZAUTOTEST S10-14 New and ZZAUTOTEST S10-14 Existing.")],
+    [("A name for a new customer, {Customer-A}.", "For example: {Customer-A} is ZZAUTOTEST S10-14 New."),
+     ("Customer {Customer-B} exists on Net 30 with a $600.00 limit.", "For example: {Customer-B} is ZZAUTOTEST S10-14 Existing.")],
     [("Send a Public API request that creates {Customer-A} with the credit term \"COD\" and the credit limit 500.", "the customer is created (the request is not refused)."),
      ("Open Edit Customer for {Customer-A}.", "Credit Limit shows $0.00, disabled."), ("Close it without saving.", "the window closes."),
      ("Send a Public API request that updates {Customer-B} with the credit term \"Credit Hold\" and the credit limit 600.", "the request succeeds."),
      ("Open Edit Customer for {Customer-B}.", "Credit Terms reads Credit Hold and Credit Limit shows $0.00, disabled.")],
     ["S10-R8", "S10-N1", "KD-ZERO"])
 api("S10-15", "An API update with neither term nor limit keeps the stored limit",
-    [("Customer {Customer-A} holds COD and keeps a credit limit of $1,000.00 stored from before the release.", "For example: ZZAUTOTEST S10-15 Customer.")],
+    [("Customer {Customer-A} holds COD and keeps a credit limit of $1,000.00 stored from before the release.", "For example: {Customer-A} is ZZAUTOTEST S10-15 Customer.")],
     [("Send a Public API request that updates only {Customer-A}'s phone number.", "the request succeeds."),
      ("Send a Public API request that reads {Customer-A}.", "the credit limit still reads 1,000.00 (neither a term nor a limit was sent)."),
      ("Send a Public API request that updates {Customer-A} with the credit term \"COD\".", "the request succeeds."), ("Send a Public API request that reads {Customer-A}.", "the credit limit now reads 0.")],

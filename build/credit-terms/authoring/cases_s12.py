@@ -61,7 +61,7 @@ lg("S12-08", "Changing the default writes a \"Default changed\" row",
    ["S12-R3 DEF", ("Jira SV-11681 acceptance criterion", "Given the default changes from COD to Net 14, then a row reads \"Default changed\" / \"COD → Net 14\" (S12-R3).")])
 
 lg("S12-09", "Moving customers to a Net term writes a row with no limit line",
-   [("The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly three customers.", "For example: {Term-A} is ZZAUTOTEST S12-09 N20, ZZAUTOTEST S12-09 Alpha, Bravo and Charlie.")],
+   [("The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly three customers.", "For example: {Term-A} is ZZAUTOTEST S12-09 N20 and its customers are ZZAUTOTEST S12-09 Alpha, Bravo and Charlie.")],
    [row_menu('{Term-A}'), ('Click "Move Customers".', "the window opens with 3 selected."), ('Choose "Net 45" in "Move To".', "Net 45 is chosen."), ('Click "Move 3 Customers".', "the toast shows.")]
    + log_then('the newest row reads Event "Customers moved" and Details "3 customers from {Term-A} to Net 45", with no credit-limit line.'),
    ["S12-R3 MOVED", "KD-LOG"])

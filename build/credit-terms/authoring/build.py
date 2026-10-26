@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Build and check every Credit terms case. python3 build.py   (exit 1 on any PROBLEM line)
-Gates: title <= 80 and no semicolon; steps = results, each "Step N:"; no step with two UI actions (Rule 135); placeholders defined and
+Gates: one "Scenario:" line first in Preconditions (<= 40 words, no code, no "QA lead"/"ask your"); title <= 80 and no semicolon; steps = results, each "Step N:"; no step with two UI actions (Rule 135); placeholders defined and
 named name-hyphen-letter/number; quotes verbatim in PRD v3 (or the saved Jira stories); every PRD code and every named PRD item (error
 handling, User Feedback Summary rows, Key Decisions, Permissions, Terminology, Assumptions, Goals, Out of Scope) covered or listed as not
 testable with the reason; every User Feedback Summary message used word for word in a step or result; one AUTOMATION line, last;
@@ -65,6 +65,31 @@ for c in L.CASES:
     if "<p></p><p><strong>References from Design</strong></p>" not in h: probs.append(f"{c['key']}: no References from Design block")
     if not f["custom_preconds"].startswith('<p><strong><a href="'): probs.append(f"{c['key']}: setup-file link not first")
     if not c["pre"][-1][0] == L.BLOCKED: probs.append(f"{c['key']}: the Blocked line is not last")
+# ---- Scenario line (Rule 117 thirteenth amendment, QA lead 26 Oct 2026): exactly one "Scenario:" line, first in Preconditions, at most
+# 40 words, one plain sentence, no requirement code, no placeholder, no "QA lead" / "ask your"; no precondition says who to ask or "set aside"
+from scenarios import SCEN
+CODE_RE = re.compile(r"\b(?:S\d+-[RNE]\d+|[A-Z]{1,6}-[A-Z]?\d+[a-z]?|SV-\d+)\b")
+ALLCODES = set(L.CODE) | set(L.NAMED) | set(L.SUB)
+for k in SCEN:
+    if k not in keys: probs.append(f"scenarios.py names case {k}, which does not exist")
+for c in L.CASES:
+    k, s = c["key"], c["scen"]
+    pre_html = L.render(c)["custom_preconds"]
+    body = pre_html.split("<p><strong>Preconditions</strong></p><ul>", 1)[1] if "<p><strong>Preconditions</strong></p><ul>" in pre_html else ""
+    if not s: probs.append(f"{k}: no Scenario line"); continue
+    if pre_html.count("Scenario:") != 1: probs.append(f"{k}: {pre_html.count('Scenario:')} Scenario lines in Preconditions (must be exactly one)")
+    if not body.startswith("<li>Scenario: "): probs.append(f"{k}: the Scenario line is not the first precondition")
+    if any(a.startswith("Scenario") for a, _ in c["pre"]): probs.append(f"{k}: a second Scenario bullet inside the preconditions list")
+    if len(s.split()) > 40: probs.append(f"{k}: Scenario line has {len(s.split())} words (at most 40)")
+    if CODE_RE.search(s) or any(re.search(r"(?<![\w-])" + re.escape(x) + r"(?![\w-])", s) for x in ALLCODES if re.search(r"[-\d]", x)):
+        probs.append(f"{k}: Scenario line holds a requirement code or ticket number")
+    if re.search(r"QA lead|ask your|\bask\b", s, re.I): probs.append(f"{k}: Scenario line says who to ask")
+    if "{" in s or "}" in s: probs.append(f"{k}: Scenario line holds a placeholder")
+    if not s.endswith(".") or re.search(r"[.!?]\s+[A-Z]", s[:-1]): probs.append(f"{k}: Scenario line is not one sentence ending with a full stop")
+    allpre = " ".join([s] + [a + " " + (b or "") for a, b in c["pre"]])
+    if re.search(r"QA lead|ask your|set aside for", allpre, re.I): probs.append(f"{k}: a precondition says who to ask or uses a set-aside line")
+print("scenario lines", sum(1 for c in L.CASES if c["scen"]), "of", len(L.CASES),
+      "| longest", max(len(c["scen"].split()) for c in L.CASES), "words")
 # ---- design references (design pass): DREFS keys exist, every picture named exists in design-2026-10-23/images/, design cases have refs
 for k, d in L.DREFS.items():
     if k not in keys: probs.append(f"DREFS names case {k}, which does not exist")

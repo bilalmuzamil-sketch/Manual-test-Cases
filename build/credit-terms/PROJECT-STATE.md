@@ -64,3 +64,10 @@ P-OLD recipe updated; applied 26 Oct, read back clean. 7. QA branch: given when 
 - 26 Oct 2026, QA lead: "DOnt say "ask your QA lead" JUst mention what is needed". Removed from the 7 cases that had it (C723887,
   C723889, C724058, C724059, C724089, C724095, C724123); applied and read back. Lesson L-10.
 - 26 Oct 2026, QA lead: "Simply say what is needed." The generic set-aside-organization line was removed from C723887, C723889, C724089, C724123 (each already states the state it needs; C723889 now adds "and no other terms of its own"). Applied, read back.
+- 26 Oct 2026, QA lead: "Preconditions should be like a scenario, easier for a manual QA tester to understand  to create in the account."
+  (Rule 117 thirteenth amendment, permanent, all suites). DRAFTED, not applied to TestRail: every one of the 344 cases now opens its
+  Preconditions with one "Scenario:" line (`authoring/scenarios.py`, rendered first by `ct_lib.render`; gate in `authoring/build.py`);
+  "You are an Admin user working at {Location-A}."; design cases end with the starting screen; S1-25 matches the worked example;
+  examples fixed in S4-10, S10-11 to S10-16, S12-09, DATA-05/06b/10/16; D-17's contradictory default line made one line. Every other
+  field byte-identical; setup file regenerated. Evidence: `scenario-preconditions-2026-10-26/PASS-REPORT.md`. Needs the QA lead's
+  go-ahead before any TestRail update (Rule 6).

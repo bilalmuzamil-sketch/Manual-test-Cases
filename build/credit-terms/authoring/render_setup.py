@@ -28,8 +28,8 @@ PROC = [
  ("P-TWO", "Two browsers, two users", "Sign in as the first Admin in one browser and as the second Admin ({User-B}) in another browser or a private window.", "Both browsers show the starting screen."),
  ("P-LOC", "Locations and time zones", "Settings > Locations: {Location-A} (Edmonton time unless the case says otherwise), {Location-B} in another time zone the case names; a location with no time zone where the case asks (UNVERIFIED: the time zone may be required).", "The location switcher lists both."),
  ("P-QBO", "QuickBooks Online sandbox", "Connect the test organization to the QuickBooks Online sandbox (playbook; build/sv9087-credit-term-2026-08-27/FINDINGS.md Check G: the qb1 environment, sync paused items, US tax codes). Sign in to the sandbox in another tab; Terms are under Settings > All lists > Terms.", "Invoices sync and appear in the sandbox."),
- ("P-API", "Public API", "A Public API key for the test organization and a request tool. The request addresses and field names are not in our sources yet (no tech plan): ask the QA lead for the API documentation.", "UNVERIFIED until the documentation is shared."),
- ("P-CLEAN", "Organization holding only this suite's records", "Cases marked `needs a test organization holding only ZZAUTOTEST records` need an organization with no other session's terms, customers or log rows (a fresh test organization set aside for this suite, or the shared one once every foreign term is reactivated and no foreign log row exists). Ask the QA lead which organization to use; never reactivate or delete another session's terms on the shared site.", "The Inactive tab and the Credit Terms Log hold only this suite's rows."),
+ ("P-API", "Public API", "What the case's preconditions name: a valid Public API key for the test organization, the Public API documentation from the developers (the requests to create, update and read a customer) and a request tool such as Postman. The request addresses and field names are not in our sources yet (no tech plan); take them from that documentation.", "UNVERIFIED until the documentation is in hand."),
+ ("P-CLEAN", "A shop holding only the case's own records", "Where the case's preconditions say the shop has no other terms of its own, no deactivated term, or a log nobody else has written to, use a test organization that holds none of another session's terms, customers or log rows: a fresh test organization, or the shared one once every foreign term is reactivated and no foreign log row exists. Never reactivate or delete another session's terms on the shared site.", "The tabs and the Credit Terms Log hold only what the case's preconditions name."),
  ("P-VOLUME", "Large term", "2,000 or 2,500 customers on one term: contacts import with that many rows on the term (P-IMPORT), or Move Customers into it.", "The term's Customers count equals the number."),
 ]
 def procs_for(c):
@@ -51,7 +51,7 @@ def procs_for(c):
     if "QuickBooks" in t: out.append("P-QBO")
     if c["api"]: out.append("P-API")
     if re.search(r"2,000|2,500", t): out.append("P-VOLUME")
-    if c["marker"] == L.CLEAN_HOLD: out.append("P-CLEAN")
+    if c.get("clean"): out.append("P-CLEAN")
     return out or ["none"]
 
 Lines = []; A = Lines.append
@@ -75,7 +75,7 @@ A("| Slot | Role as shown in the UI | Used for | Cases |"); A("|---|---|---|---|
 slots = {}
 for c in L.CASES:
     first = c["pre"][0][0]
-    if first.startswith('You are signed in as a user with the "Admin" role'): s = "ADMIN-A"
+    if first.startswith("You are an Admin user"): s = "ADMIN-A"
     elif "custom role" in first: s = "ROLE-" + c["key"]
     elif "out-of-the-box" in first: s = "OOTB-" + c["key"]
     else: s = "OTHER-" + c["key"]
@@ -103,6 +103,7 @@ for c in L.CASES:
     A(f"### SETUP-{c['key']} — {c['title']}")
     A(f"Section: {NAMES[c['sec']]} (TestRail section {SEC[c['sec']]}). Marker: `{c['marker']}`.")
     A("Preconditions, exactly as the case states them:")
+    A(f"- Scenario: {c['scen']}")
     for a, b in c["pre"]: A(f"- {a}" + (f" {b}" if b else ""))
     phs = sorted(set(re.findall(r"\{([A-Z][^{}]*)\}", " ".join(a for a, _ in c["pre"]))))
     A("Placeholders: " + (", ".join("{" + p + "}" for p in phs) or "none") + ". Values: the \"For example\" lines above; write the real numbers (work order, invoice) here after setup.")

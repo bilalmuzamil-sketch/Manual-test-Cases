@@ -19,6 +19,9 @@ DR = []
 for r in csv.DictReader(open(f"{P}/testrail-id-map.csv")):
     if r["key"].startswith("DR-"):
         a = json.load(open(f"{P}/design-recheck-2026-10-20/applied/C{r['case_id']}-after.json"))
+        # 26 Oct 2026: the draft Preconditions with the Scenario line (scenario-preconditions-2026-10-26/DR-PROPOSALS.json) when present
+        _drp = f"{P}/scenario-preconditions-2026-10-26/DR-PROPOSALS.json"
+        if os.path.exists(_drp) and r["case_id"] in json.load(open(_drp)): a = dict(a, custom_preconds=json.load(open(_drp))[r["case_id"]]["custom_preconds"])
         pre = [(_h.unescape(re.sub(r"<[^>]+>", "", x.replace("<br>", "\n"))).split("\n") + [""])[:2] for x in re.findall(r"<li>(.*?)</li>", a["custom_preconds"], re.S)]
         DR.append({"key": r["key"], "sec": "DESIGN", "title": a["title"], "pre": [(x[0], x[1]) for x in pre]})
 link = lambda k: f"[C{ids[k]}](https://shopview.testrail.io/index.php?/cases/view/{ids[k]})" if k in ids else (f"{k} (new 22 Oct 2026, Rule 136 split of {re.sub(r'[a-z]$', '', k)} C{ids.get(re.sub(r'[a-z]$', '', k), '?')}; not yet in TestRail)" if re.search(r"[a-z]$", k) else f"{k} (new 22 Oct 2026; not yet in TestRail)")
@@ -30,7 +33,7 @@ L += ["# Splitting Sales Representatives: setup file for Claude sessions",
       "",
       "## 1. Header",
       f"- Feature: Splitting Sales Representatives (epic SV-10890; stories SV-11265 to SV-11272). TestRail group 84266, {len(ssr_lib.CASES) + len(DR)} cases.",
-      "- Generated: 19 Oct 2026, with the cases; regenerated 20 Oct 2026 for PRD version 10, Chris Ward's answers, the 7 new cases and the 8 design cases DR-01 to DR-08; regenerated 22 Oct 2026 for PRD version 11 (answers 39 and 40, new cases S5-18 and REL-16, DR-03 released, DR-08 deleted); regenerated again 22 Oct 2026 for the tech plan pass (Rule 134: 13 cases changed, 9 new draft cases S2-15, S2-16, S4-27, S4-28, S5-19, S5-20, REL-17, REL-18, REL-19, not yet in TestRail); regenerated again 22 Oct 2026 for the one-action-steps pass (steps split to one action each and unnecessary steps removed; no precondition changed, so every recipe below is unchanged); regenerated again 22 Oct 2026 for the Rule 136 pass (DRAFT: 32 cases split into 2 or 3, 36 new cases with keys ending b or c, not yet in TestRail; steps that only read are folded into the step before; untested state such as the report already open for today, an invoice already made, a switch already turned off, moved into the preconditions, so the recipes of the cases that changed follow their new precondition lines).",
+      "- Generated: 19 Oct 2026, with the cases; regenerated 20 Oct 2026 for PRD version 10, Chris Ward's answers, the 7 new cases and the 8 design cases DR-01 to DR-08; regenerated 22 Oct 2026 for PRD version 11 (answers 39 and 40, new cases S5-18 and REL-16, DR-03 released, DR-08 deleted); regenerated again 22 Oct 2026 for the tech plan pass (Rule 134: 13 cases changed, 9 new draft cases S2-15, S2-16, S4-27, S4-28, S5-19, S5-20, REL-17, REL-18, REL-19, not yet in TestRail); regenerated again 22 Oct 2026 for the one-action-steps pass (steps split to one action each and unnecessary steps removed; no precondition changed, so every recipe below is unchanged); regenerated again 22 Oct 2026 for the Rule 136 pass (DRAFT: 32 cases split into 2 or 3, 36 new cases with keys ending b or c, not yet in TestRail; steps that only read are folded into the step before; untested state such as the report already open for today, an invoice already made, a switch already turned off, moved into the preconditions, so the recipes of the cases that changed follow their new precondition lines); regenerated 26 Oct 2026 for the scenario preconditions (Rule 117 thirteenth amendment, DRAFT, not yet in TestRail: every case's Preconditions open with a \"Scenario:\" line; the design cases' browser-window and design-pictures line now sits just above the starting screen; the Counter Sale customer's state in " + link("S4-13") + " is its own line; no record, value or example changed, so every recipe below satisfies the same records as before).",
       "- Sources: PRD Confluence 919928833 version 11 (21 Oct 2026, Chris Ward); Chris Ward's answers 1 to 40 to the question sheet (19 and 21 Oct 2026); tech plan (dated 14 Oct 2026, uploaded 19 Oct 2026 and again, byte-identical, 22 Oct 2026; read in full 22 Oct 2026); "
       "Claude design canvas https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm (export read 19 Oct 2026); Sales By Representative spec "
       "Confluence 585629698 version 28; Sales By Customer spec Confluence 577634305 version 21.",
@@ -78,6 +81,7 @@ for c in ssr_lib.CASES + DR:
     L.append(f"#### SETUP-{k} — {link(k)} {c['title']}")
     L.append(f"Sub folder: {NAMES[c['sec']]} (section {SEC[c['sec']]}).")
     L.append("Satisfies these precondition lines, exactly as the case states them:")
+    if k in ssr_lib.SCENARIO and not any(a.startswith(ssr_lib.SCEN_PREFIX) for a, _ in c["pre"]): L.append(f"- {ssr_lib.scenario_line(k)}")
     for a, b in c["pre"]:
         L.append(f"- {a}" + (f" {b}" if b else ""))
     phs = sorted(set(re.findall(r"\{([A-Z][^{}]*)\}", " ".join(a for a, _ in c["pre"]))))

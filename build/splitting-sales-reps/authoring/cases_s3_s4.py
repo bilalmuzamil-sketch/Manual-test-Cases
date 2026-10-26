@@ -227,7 +227,8 @@ C("S4-12b", "S4", "A part sale invoiced with Unassigned is credited to Unassigne
   ["S4-R18", "S5-R9"])
 
 C("S4-13", "S4", "Counter Sale starts with no representative",
-  [ADMIN, START("the Part Sales page is open at {Location-A} in a desktop browser at least 1024 px wide; nobody has set a representative on {Location-A}'s Counter Sale customer")],
+  # 26 Oct 2026 (Rule 117 thirteenth amendment): the state of the Counter Sale customer is its own line, before the starting screen.
+  [ADMIN, "Nobody has set a representative on {Location-A}'s Counter Sale customer.", START("the Part Sales page is open at {Location-A} in a desktop browser at least 1024 px wide")],
   ["Create a new walk-in part sale (Counter Sale customer)."],
   ["Step 1: its Sales Representative field reads \"Unassigned\"."],
   ["S4-R31"])
