@@ -7,6 +7,7 @@ import os, sys, re, json, importlib
 D = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, D)
 import ar_lib as L
 import design_data as DD
+import pattern as PT
 for m in ["cases_s1", "cases_s2", "cases_s3", "cases_s4", "cases_s5", "cases_s6_s9", "cases_data", "cases_rel", "cases_design"]: importlib.import_module(m)
 from po_questions import QUESTIONS, QN
 SEC = json.load(open(f"{L.P}/sections.json"))
@@ -104,11 +105,13 @@ A("## 5. One recipe per case: the placeholder values (the examples in the case a
 for c in L.CASES:
     A(f"### SETUP-{c['key']} — {c['title']}")
     A(f"Section: {NAMES[c['sec']]} (TestRail section {SEC[c['sec']]}). Reports: {', '.join(L.REPORTS[r] for r in L.reports_of(c)) or 'none'}. Marker: `{c['marker']}`.")
-    A("Preconditions, exactly as the case states them:")
-    A(f"- {L.SCEN_PREFIX}{c['scenario']}")
+    A("Preconditions as the TestRail case states them (the QA lead's pattern, 26 Oct 2026):")
+    for x in PT.pattern(c)["pre"]: A(f"- {x}")
+    A("The same preconditions with their placeholders and example values (for a Claude session):")
     for a, b in c["pre"]: A(f"- {a}" + (f" {b}" if b else ""))
     phs = sorted(set(re.findall(r"\{([A-Z][^{}]*)\}", " ".join(a for a, _ in c["pre"]))))
-    A("Placeholders: " + (", ".join("{" + p + "}" for p in phs) or "none") + ". Values: the \"For example\" lines above; write the real document numbers here after setup.")
+    A("Placeholders and their plain names in the case: " + (", ".join("{" + p + "} = \"" + PT.plain("{" + p + "}") + "\"" for p in phs) or "none")
+      + ". Values: the \"For example\" lines above; write the real document numbers here after setup.")
     A("Procedures: " + ", ".join(procs_for(c)) + ".")
     tpl = [x[0] for x in c["q"] if isinstance(x, tuple) and x[0].startswith("Tech plan")]
     A("Sources (verbatim text in section 9): " + ", ".join(sorted(L.codes_of(c))) + (("; " + "; ".join(tpl)) if tpl else "") + ".")
@@ -122,6 +125,7 @@ for s, n in NAMES.items(): A(f"| {n} | " + ", ".join(c["key"] for c in L.CASES i
 A("")
 A("## 7. Dependencies and shared fixtures")
 A("- Every case owns its records: the example names carry ZZAUTOTEST and the case key. Paging, volume and limit cases share the QA organization's existing data (read only).")
+A("- The TestRail cases (Rule 117 fourteenth amendment, 26 Oct 2026) name records plainly (\"customer A\", \"vendor B\", \"location A\", \"date A\") and hold no example values; each recipe above maps every placeholder to that plain name. Where a case fixes a name or an amount the result depends on (S1-01 to S1-04 and S1-07 names, S2-23 due days, S5-38 and DATA-16 / DATA-17 amounts), create the record with ZZAUTOTEST and the case key in front of that name, which keeps the order the case expects.")
 A("- Release-day cases (PRE_REL marker) need their records and captures made before the release is installed on the test site.")
 A("")
 A("## 8. Reset and cleanup")

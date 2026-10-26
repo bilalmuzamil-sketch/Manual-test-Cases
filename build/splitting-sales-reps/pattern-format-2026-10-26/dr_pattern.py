@@ -28,7 +28,7 @@ PAT = {
                   3: ["The field reads sales rep A.", 'Its label still reads "Sales representative".', "There is still no + and no remove x."]}),
  "DR-03": dict(pre=[ADMIN_P, REPS2_P, CUST_P,
                     "Have a part sale for that customer with Sales Representative set to sales rep A, one part and no labor, and invoice it today.",
-                    PICS, SBR_WIN[:-1] + " and the Sales Type column turned on."],
+                    PICS, "Open Reports > Sales By Representative in that browser window, with the date range set to today, Show Unassigned on and the Sales Type column turned on."],
                r={1: ['The part sale shows as one row with Sales Type "Part Sales".',
                       'In the Labor Delta, Labor Invoiced and Labor Margin columns each cell shows a dash ("—"), as in the picture (today\'s report, board 4.3, shows 0.00 and $0.00 there).']}),
  "DR-04": dict(pre=[ADMIN_P, REPS2_P, CUST_P,

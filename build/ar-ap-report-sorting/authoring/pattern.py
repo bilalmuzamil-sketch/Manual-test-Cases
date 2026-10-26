@@ -163,7 +163,7 @@ def split_list(s):
     while i >= 0:
         head, rest = s[:i + 1], s[i + 2:]
         parts = rest.split("; ")
-        if len(parts) >= 2 and all(re.match(LIST_ITEM, p) for p in parts):
+        if len(parts) >= 2 and all(re.match(LIST_ITEM + r"(?::| is | has )", p) for p in parts):
             return [head] + [p.rstrip(".") + "." for p in parts]
         i = s.find(": ", i + 2)
     return [s]

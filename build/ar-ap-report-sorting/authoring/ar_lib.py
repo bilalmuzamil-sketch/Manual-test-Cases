@@ -1,4 +1,6 @@
 """A/R and A/P Report Sorting, Export and Location Filter — case model, quote lookup, checks and TestRail rendering (22 Oct 2026).
+26 Oct 2026: the TestRail fields are rendered in the QA lead's own pattern (Rule 117 fourteenth amendment; pattern.py and
+pattern_layout.py); the case model below keeps the {placeholders} and "For example:" values for the setup file.
 Pattern: build/splitting-sales-reps/authoring/ssr_lib.py. Shape: Rule 117 with all twelve amendments (two-audience preconditions,
 {placeholders} with a "For example:" second line, one action per step, one "Step N:" result per step, "Exact quotes from the source
 (for reproducibility)" with a "From:" line per document, the build line, "References from Design", the AUTOMATION line last).
@@ -336,16 +338,26 @@ def quotes_block(c):
         first = False
     return h + f"<p>{e(NOBUILD)}</p>"
 
+def tail(c):
+    """Everything below the blank line that closes the Expected Result: the build-difference or held note, the exact quotes with
+    their From: lines, References from Design and the AUTOMATION line, byte for byte as before the pattern pass (26 Oct 2026)."""
+    return ((f"<p>{e(c['known'])}</p>" if c["known"] else "") + (f"<p>{e(c['note'])}</p>" if c["note"] else "")
+            + quotes_block(c) + design_block(c) + f"<p>{e(c['marker'])}</p>")
+
 def render(c):
-    pre = (f'<p><strong><a href="{SETUP_URL}">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p>'
-           "<p><strong>Preconditions</strong></p><ul>" + f"<li>{e(SCEN_PREFIX + c['scenario'])}</li>" + "".join(f"<li>{e(a)}" + (f"<br>{e(b)}" if b else "") + "</li>" for a, b in c["pre"]) + "</ul>")
-    exp = ("<p><strong>Expected results</strong></p><ul>" + "".join(f"<li>{e(r)}</li>" for r in c["res"]) + "</ul>"
-           + (f"<p>{e(c['known'])}</p>" if c["known"] else "")
-           + (f"<p>{e(c['note'])}</p>" if c["note"] else "")
-           + quotes_block(c) + design_block(c) + f"<p>{e(c['marker'])}</p>")
+    """Rule 117 fourteenth amendment (26 Oct 2026, the QA lead's own pattern, "Yes, permanent, all suites"): Preconditions as plain
+    bullets in setup order (no Scenario line, placeholder, "For example:" line or setup-file link; the Blocked line last); Steps;
+    "Expected Result" with a "Step N:" heading and one bullet per fact for each step; one blank paragraph; then tail(c) unchanged.
+    The case model (C() above, with placeholders and examples) stays the source; pattern.pattern(c) writes the tester's words."""
+    import pattern as PT
+    p = PT.pattern(c)
+    pre = "<p><strong>Preconditions</strong></p><ul>" + "".join(f"<li>{e(x)}</li>" for x in p["pre"]) + "</ul>"
+    exp = ("<p><strong>Expected Result</strong></p>"
+           + "".join(f"<p>Step {i}:</p><ul>" + "".join(f"<li>{e(x)}</li>" for x in r) + "</ul>" for i, r in enumerate(p["results"], 1))
+           + "<p></p>" + tail(c))
     refs = ",".join(dict.fromkeys(STORY[n][0] for n in story_nums(c)))
-    return {"title": c["title"], "template_id": 1, "type_id": 7, "priority_id": 2, "refs": refs, "custom_automation_type": 2,
-            "custom_atmstatus": 1, "custom_preconds": pre, "custom_steps": "<ol>" + "".join(f"<li>{e(s)}</li>" for s in c["steps"]) + "</ol>",
+    return {"title": p["title"], "template_id": 1, "type_id": 7, "priority_id": 2, "refs": refs, "custom_automation_type": 2,
+            "custom_atmstatus": 1, "custom_preconds": pre, "custom_steps": "<ol>" + "".join(f"<li>{e(x)}</li>" for x in p["steps"]) + "</ol>",
             "custom_expected": exp}
 
 PH = re.compile(r"\{([A-Z][^{}]*)\}")

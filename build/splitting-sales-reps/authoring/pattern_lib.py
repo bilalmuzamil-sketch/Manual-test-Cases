@@ -29,7 +29,7 @@ def WO_P(state='one "Sales Representative" field reading "Unassigned"', who="tha
     """An open, uninvoiced work order (what the old WO() helper described), with the state the case needs."""
     return f"Have an open, uninvoiced work order for {who}, with " + (f"one approved labor line, one part and {state}." if lines else f"{state}.")
 def OPEN_P(what="the work order", where="a desktop browser at least 1024 pixels wide"):
-    return f"Open {what} in {where}."
+    return f"Open {what} {where}." if where.startswith("on ") else f"Open {what} in {where}."
 OPEN_WO_P = OPEN_P()
 SBR_P = ("Open Reports > Sales By Representative in a desktop browser at least 1024 pixels wide, with the date range set to today.")
 
@@ -107,5 +107,7 @@ def pics_p(old_pre):
                  r"\(actual size\)\. (.*)$", line)
     win, kind, lst, rest = m.groups()
     win = win.replace(" px", " pixels")
-    w = f"Use {win}." if win.startswith(("a desktop browser", "a phone screen")) else f"Set the browser window to {win}."
+    pics = f"Open the {kind} {lst} attached to this case beside the browser window at 100% (actual size). {rest}"
+    if win.startswith("a desktop browser"): return [pics]   # the case's own last precondition already opens it in a desktop browser
+    w = f"Use {win}." if win.startswith("a phone screen") else f"Set the browser window to {win}."
     return [w, f"Open the {kind} {lst} attached to this case beside the browser window at 100% (actual size). {rest}"]

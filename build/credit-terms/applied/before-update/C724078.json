@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726813,
  "updated_by": 3,
- "updated_on": 1792726813,
+ "updated_on": 1793025019,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with the \"Admin\" role, working in {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Net 30 is the shop's default for new customers.</li><li>The shop's own term {Term-A} is named \"Net 10\".<br>For example: {Term-A} is Net 10.</li><li>A vendor import file with two new vendors: {Vendor-A} with an empty credit term cell and {Vendor-B} with the credit term \"NET10\".<br>For example: {Vendor-A} is ZZAUTOTEST S10-09 Blank and {Vendor-B} is ZZAUTOTEST S10-09 Upper.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>Scenario: Your shop uses Net 30 as the default and has its own term Net 10, and you import two new vendors.</li><li>You are an Admin user working at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Net 30 is the shop's default for new customers.</li><li>The shop's own term {Term-A} is named \"Net 10\".<br>For example: {Term-A} is Net 10.</li><li>A vendor import file with two new vendors: {Vendor-A} with an empty credit term cell and {Vendor-B} with the credit term \"NET10\".<br>For example: {Vendor-A} is ZZAUTOTEST S10-09 Blank and {Vendor-B} is ZZAUTOTEST S10-09 Upper.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Import the file through Settings, Data Import, Vendors.</li><li>Open {Vendor-A}'s vendor page.</li><li>Open {Vendor-B}'s vendor page.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the import finishes; no row is refused because of its credit term.</li><li>Step 2: the \"Credit term\" reads COD (not Net 30).</li><li>Step 3: the \"Credit term\" reads \"Net 10\" (the term's spelling).</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11675 (Story 6, Vendors), story SV-11679 (Story 10, Imports and Public API)</p><ul><li><strong>S10-N2:</strong> &ldquo;Vendors imported with a blank term start on COD, not the default (S6-E1).&rdquo;</li><li><strong>S6-E1:</strong> &ldquo;A vendor imported with a blank term starts on COD, as today; a vendor imported with a known term in any capitalization is saved in that term's correct spelling.&rdquo;</li><li><strong>S10-R3:</strong> &ldquo;A credit term that matches one of the shop's terms (standard or its own) ignoring capitals and spaces is saved in that term's spelling: \"net 10\", \"NET10\" and \"Net 10\" all save as the shop's \"Net 10\". This applies to customers and vendors created or updated by an import, and created or updated through the Public API.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"7 Vendors\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 1
+ "version": 2
 }

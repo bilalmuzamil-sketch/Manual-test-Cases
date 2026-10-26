@@ -154,3 +154,31 @@ LAYOUT = {
     "D-70": dict(pre_set=[("Have a customer, customer A, with open invoices on date A", [
         "Have a customer, customer A, with open invoices on an earlier date, date A."])]),
 }
+
+# Result sentences that list several separate facts, split one fact per bullet (read 26 Oct 2026)
+for doc, party, col in (("invoice", "customer", "Customer Full Name"), ("bill", "vendor", "Vendor Name")):
+    RES_SPLIT[f'One row for {doc} A: its Aging Bucket reads "31-60 days past due" (the bucket\'s name as the screen shows it) and its {col} '
+              f"{party} A's name, each in its own column, the Date reads date A written year-month-day (for example 2026-09-01) and the "
+              "Amount reads 1250.50 (no $ sign, no thousands comma, two decimals)."] = [
+        f"One row for {doc} A.",
+        f'Its Aging Bucket reads "31-60 days past due" (the bucket\'s name as the screen shows it) and its {col} reads {party} A\'s name, each in its own column.',
+        "Its Date reads date A written year-month-day (for example 2026-09-01).",
+        "Its Amount reads 1250.50 (no $ sign, no thousands comma, two decimals)."]
+for doc, party, col in (("invoice", "customer", "Customer"), ("bill", "vendor", "Vendor Name")):
+    RES_SPLIT[f"One row for {doc} A: {party} A's name is in the {col} column, the Date reads date A written year-month-day (for example "
+              "2026-09-01) and the Amount reads 1250.50 (no $ sign, no thousands comma, two decimals)."] = [
+        f"One row for {doc} A.",
+        f"{party.capitalize()} A's name is in the {col} column.",
+        "Its Date reads date A written year-month-day (for example 2026-09-01).",
+        "Its Amount reads 1250.50 (no $ sign, no thousands comma, two decimals)."]
+for party, credit in (("customer", "credit memo"), ("vendor", "vendor credit")):
+    P_ = party.capitalize()
+    RES_SPLIT[f"Both {party}s stay listed (each has an amount 31 to 60 days past due) with their whole balance: {party} A's Total $1,550.00 "
+              f"(1,000.00 + 400.00 + 300.00 − 150.00, the not-yet-due amount and the {credit} included) and {party} B's $750.00 (500.00 + 250.00)."] = [
+        f"Both {party}s stay listed (each has an amount 31 to 60 days past due), each with its whole balance.",
+        f"{P_} A's Total is $1,550.00 (1,000.00 + 400.00 + 300.00 − 150.00, the not-yet-due amount and the {credit} included).",
+        f"{P_} B's Total is $750.00 (500.00 + 250.00)."]
+RES_SPLIT['Then "Cancel" on the left and "Switch location" (small l) on the right, and a close "×" at the top right, as in the picture except '
+          'that the picture writes "Switch Location" with a capital L (the PRD\'s small l is right: see References from Design).'] = [
+    'Below them, "Cancel" is on the left and "Switch location" (small l) on the right, and a close "×" is at the top right, as in the picture '
+    'except that the picture writes "Switch Location" with a capital L (the PRD\'s small l is right: see References from Design).']

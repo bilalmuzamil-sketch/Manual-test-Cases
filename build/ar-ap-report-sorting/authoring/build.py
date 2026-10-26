@@ -3,13 +3,16 @@
 Gates: title <= 80 and no semicolon; design titles start "Design: "; steps = results, each "Step N:"; placeholders defined;
 quotes verbatim in PRD v9 (or Chris Ward's answers, the Jira reading record, or the tech plan); every PRD code and every named PRD item (error handling, User Feedback
 Summary rows, What changes, Out of Scope, key decisions) covered or listed as not testable with the reason; every report a
-requirement names covered; one AUTOMATION line, last; the "From:" / build line / "References from Design" layout; exactly one
-"Scenario:" line, first in the Preconditions, at most 40 words, with no requirement code, placeholder, "QA lead" or "ask your"
-(Rule 117 thirteenth amendment, 26 Oct 2026)."""
+requirement names covered; one AUTOMATION line, last; the "From:" / build line / "References from Design" layout; the PATTERN GATE
+(Rule 117 fourteenth amendment, 26 Oct 2026, the QA lead's own pattern; it replaced the thirteenth amendment's Scenario gate): the
+Preconditions are plain bullets only, with no "{", no "For example", no "Scenario:", no setup-file link and no who-to-ask, the Blocked
+line last; the Expected Result opens "Expected Result", has a "Step N:" heading per step with a bullet list under it, then one blank
+paragraph, then the quotes block, the design block and the AUTOMATION line exactly as ar_lib.tail() writes them."""
 import sys, json, os, importlib, re
 from collections import Counter, defaultdict
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ar_lib as L
+import pattern as PT
 MODS = ["cases_s1", "cases_s2", "cases_s3", "cases_s4", "cases_s5", "cases_s6_s9", "cases_data", "cases_rel", "cases_design"]
 MODS = [m for m in MODS if os.path.exists(f"{L.D}/{m}.py")]
 for m in MODS: importlib.import_module(m)
@@ -56,7 +59,8 @@ MSGS = ["This report is too large for PDF. Export it as CSV, or narrow the filte
         "Search vendors", "Export report", "Download (PDF)", "Download (CSV)", "Switch location", "Cancel", "Multiple", "COD", "Phone: ",
         "Credit term: ", "Location: All locations", "Location: No locations", "Customer: All customers", "Vendor: All vendors",
         "Past due: Any", "Past due: 4 ranges", "91 And Over", "Locations: All locations", "As of Oct 15, 2026", "As of: Oct 15, 2026"]
-tester_all = " ".join(" ".join(c["steps"] + c["res"]) for c in L.CASES)
+PAT = {c["key"]: PT.pattern(c) for c in L.CASES}
+tester_all = " ".join(" ".join(PAT[c["key"]]["steps"] + sum(PAT[c["key"]]["results"], [])) for c in L.CASES)
 for m in MSGS:
     if m not in tester_all: probs.append(f"PRD message not used word for word in any case: {m!r}")
 for code in ["S8-R1 " + r for r in L.ALL6]:
@@ -74,26 +78,44 @@ for c in L.CASES:
     top = h.split("References from Design")[0]
     if "claude.ai/artifact" in top: probs.append(f"{c['key']}: design reference above the References from Design block")
     if "<p></p><p><strong>References from Design</strong></p>" not in h: probs.append(f"{c['key']}: no References from Design block")
-    if not f["custom_preconds"].startswith('<p><strong><a href="'): probs.append(f"{c['key']}: setup-file link not first")
-# ---- Rule 117 thirteenth amendment (26 Oct 2026): the Preconditions open with exactly one "Scenario:" line, first, at most 40 words,
-# plain words only: no requirement code, no placeholder, no "QA lead", no "ask your"
-SCEN_BAD = re.compile(r"\bS\d+-[RNE]\d+|\b(?:NFR|OOS|UFS|KD|EH)-?\d|\bSV-\d+|\{|\}|QA lead|ask your|\bask (?:the|a|your)\b|Rule \d", re.I)
+# ---- PATTERN GATE (Rule 117 fourteenth amendment, 26 Oct 2026): replaces the thirteenth amendment's Scenario gate
+BAD_PRE = re.compile(r"\{|\}|for example|Scenario:|href=|Setup file|QA lead|ask your|\bask (?:the|a|your)\b|set aside", re.I)
+CODE_RE = re.compile(r"\bS\d+-[RNE]\d+|\bSV-\d+|Rule \d")
+LI = r"<li>[^<]*</li>"
 for c in L.CASES:
-    pc = L.render(c)["custom_preconds"]
-    items = pc.split("<p><strong>Preconditions</strong></p><ul>", 1)[1].split("<li>")[1:]
-    if pc.count("Scenario:") != 1 or sum(1 for x in items if x.startswith("Scenario:")) != 1:
-        probs.append(f"{c['key']}: not exactly one Scenario line"); continue
-    if not items[0].startswith("Scenario: "): probs.append(f"{c['key']}: Scenario line not first in Preconditions")
-    s = c["scenario"]
-    if not s.strip(): probs.append(f"{c['key']}: empty Scenario line")
-    if len(s.split()) > 40: probs.append(f"{c['key']}: Scenario line {len(s.split())} words (limit 40)")
-    if SCEN_BAD.search(s): probs.append(f"{c['key']}: Scenario line has {SCEN_BAD.search(s).group(0)!r}")
-print("scenario lines", sum(1 for c in L.CASES if c["scenario"]), "| longest", max(len(c["scenario"].split()) for c in L.CASES), "words",
-      "| over 25 words", sum(1 for c in L.CASES if len(c["scenario"].split()) > 25))
+    k = c["key"]; f = L.render(c); p = PAT[k]
+    pc = f["custom_preconds"]
+    if not re.fullmatch(r"<p><strong>Preconditions</strong></p><ul>(?:" + LI + r")+</ul>", pc): probs.append(f"{k}: Preconditions are not plain bullets only")
+    if BAD_PRE.search(pc): probs.append(f"{k}: Preconditions hold {BAD_PRE.search(pc).group(0)!r}")
+    if p["pre"][-1] != PT.BLOCKED_NEW: probs.append(f"{k}: the Blocked line is not last")
+    if len(p["title"]) > 80 or ";" in p["title"]: probs.append(f"{k}: title over 80 characters or has a semicolon")
+    if c["sec"] == "DESIGN" and not p["title"].startswith("Design: "): probs.append(f"{k}: design title lost 'Design: '")
+    if not re.fullmatch(r"<ol>(?:" + LI + r")+</ol>", f["custom_steps"]) or f["custom_steps"].count("<li>") != len(c["steps"]): probs.append(f"{k}: steps")
+    words = " ".join(p["pre"] + p["steps"] + sum(p["results"], []))
+    if "{" in words or "}" in words: probs.append(f"{k}: a placeholder in the tester's words")
+    if CODE_RE.search(words): probs.append(f"{k}: requirement code or ticket in the tester's words: {CODE_RE.search(words).group(0)}")
+    if L.JARGON.search(words): probs.append(f"{k}: technical term in the tester's words: {L.JARGON.search(words).group(0)}")
+    if "ZZAUTOTEST" in words: probs.append(f"{k}: ZZAUTOTEST in the tester's words (it belongs in the setup file)")
+    h = f["custom_expected"]
+    head = "<p><strong>Expected Result</strong></p>" + "".join(f"<p>Step {i}:</p><ul>" + "".join(f"<li>{L.e(x)}</li>" for x in r) + "</ul>"
+                                                             for i, r in enumerate(p["results"], 1)) + "<p></p>"
+    if len(p["results"]) != len(c["steps"]) or any(not r for r in p["results"]): probs.append(f"{k}: a step without its Step N: bullets")
+    if not h.startswith(head): probs.append(f"{k}: Expected Result does not open with the Step N: blocks and the blank paragraph")
+    elif h[len(head):] != L.tail(c): probs.append(f"{k}: below the blank paragraph differs from the quotes / design / AUTOMATION block")
+    elif not h[len(head):].startswith(("<p>", )) or "<p><strong>Exact quotes from the source" not in h[len(head):]: probs.append(f"{k}: no quotes block after the blank paragraph")
+import pattern_layout as PLY
+_conv = {b for c in L.CASES for r in PT.convert(c)["results"] for b in r}
+for kk in PLY.RES_SPLIT:
+    if kk not in _conv: probs.append(f"pattern_layout.RES_SPLIT entry matches no result any more: {kk[:70]}")
+for kk in PLY.LAYOUT:
+    if kk not in PAT: probs.append(f"pattern_layout.LAYOUT names a case that does not exist: {kk}")
+print("pattern: cases", len(PAT), "| precondition bullets", sum(len(p["pre"]) for p in PAT.values()), "(most in one case:",
+      max(len(p["pre"]) for p in PAT.values()), ") | result bullets", sum(len(b) for p in PAT.values() for b in p["results"]),
+      "| cases corrected by hand", len(PLY.LAYOUT))
 # ---- every column of every report is clicked in a Story 2 case for that report (S2-R1), and some click is a third click (S2-R2)
 import common as CM
 for code, r in CM.R.items():
-    st = [x for c in L.CASES if c["sec"] == "S2" and code in L.reports_of(c) for x in c["steps"]]
+    st = [x for c in L.CASES if c["sec"] == "S2" and code in L.reports_of(c) for x in PAT[c["key"]]["steps"]]
     for col in r["cols"]:
         lab = CM.namecol(code) if col == "name" else f'"{col}"'
         if not any(x.startswith("Click the") and lab in x for x in st): probs.append(f"{code}: column {col} is never clicked in a sort case")

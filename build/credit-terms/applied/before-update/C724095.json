@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726836,
  "updated_by": 3,
- "updated_on": 1793022509,
+ "updated_on": 1793025044,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with the \"Admin\" role, working in {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>An organization {Organization-A} created after the release, never changed on the Credit Terms page, and you are its Admin.<br>For example: {Organization-A} is ZZAUTOTEST S11-10 Shop.</li><li>Starting screen: the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group) is open on the Active tab.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>Scenario: A new shop was created after the release and has never used the Credit Terms page.</li><li>You are an Admin user working at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>An organization {Organization-A} created after the release, never changed on the Credit Terms page, and you are its Admin.<br>For example: {Organization-A} is ZZAUTOTEST S11-10 Shop.</li><li>Starting screen: the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Look at the Name column.</li><li>Open the Customers page.</li><li>Click \"New Customer\".</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: Due on Receipt carries the \"Default\" tag.</li><li>Step 2: the page opens.</li><li>Step 3: Credit Terms is prefilled with Due on Receipt (Default).</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11680 (Story 11, Release day: what changes for existing users)</p><ul><li><strong>S11-R12:</strong> &ldquo;An organization created after release starts with Due on Receipt as its default.&rdquo;</li><li><strong>Key Decisions:</strong> &ldquo;Existing organizations keep COD as their default at release; organizations created after release start on Due on Receipt. No existing customer changes term.&rdquo;</li><li><strong>Goals:</strong> &ldquo;With no setup at all, existing shops behave exactly as before release (default COD, the same twelve terms), and new shops start on Due on Receipt.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"4 Everything deactivated and an empty tab\" (\"A new shop: Inactive tab empty\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes.</p><p>Design pictures attached to this case:</p><ul><li>ct-p4-03-a-new-shop-inactive-tab-empty.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;No build shot: drawn from the rule, not checked against the build.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 3
+ "version": 4
 }

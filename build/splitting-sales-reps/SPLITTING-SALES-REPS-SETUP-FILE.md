@@ -4,7 +4,7 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 
 ## 1. Header
 - Feature: Splitting Sales Representatives (epic SV-10890; stories SV-11265 to SV-11272). TestRail group 84266, 180 cases.
-- Generated: 19 Oct 2026, with the cases; regenerated 20 Oct 2026 for PRD version 10, Chris Ward's answers, the 7 new cases and the 8 design cases DR-01 to DR-08; regenerated 22 Oct 2026 for PRD version 11 (answers 39 and 40, new cases S5-18 and REL-16, DR-03 released, DR-08 deleted); regenerated again 22 Oct 2026 for the tech plan pass (Rule 134: 13 cases changed, 9 new draft cases S2-15, S2-16, S4-27, S4-28, S5-19, S5-20, REL-17, REL-18, REL-19, not yet in TestRail); regenerated again 22 Oct 2026 for the one-action-steps pass (steps split to one action each and unnecessary steps removed; no precondition changed, so every recipe below is unchanged); regenerated again 22 Oct 2026 for the Rule 136 pass (DRAFT: 32 cases split into 2 or 3, 36 new cases with keys ending b or c, not yet in TestRail; steps that only read are folded into the step before; untested state such as the report already open for today, an invoice already made, a switch already turned off, moved into the preconditions, so the recipes of the cases that changed follow their new precondition lines); regenerated 26 Oct 2026 for the scenario preconditions (Rule 117 thirteenth amendment, DRAFT, not yet in TestRail: every case's Preconditions open with a "Scenario:" line; the design cases' browser-window and design-pictures line now sits just above the starting screen; the Counter Sale customer's state in [C665952](https://shopview.testrail.io/index.php?/cases/view/665952) is its own line; no record, value or example changed, so every recipe below satisfies the same records as before).
+- Generated: 19 Oct 2026, with the cases; regenerated 20 Oct 2026 for PRD version 10, Chris Ward's answers, the 7 new cases and the 8 design cases DR-01 to DR-08; regenerated 22 Oct 2026 for PRD version 11 (answers 39 and 40, new cases S5-18 and REL-16, DR-03 released, DR-08 deleted); regenerated again 22 Oct 2026 for the tech plan pass (Rule 134: 13 cases changed, 9 new draft cases S2-15, S2-16, S4-27, S4-28, S5-19, S5-20, REL-17, REL-18, REL-19, not yet in TestRail); regenerated again 22 Oct 2026 for the one-action-steps pass (steps split to one action each and unnecessary steps removed; no precondition changed, so every recipe below is unchanged); regenerated again 22 Oct 2026 for the Rule 136 pass (DRAFT: 32 cases split into 2 or 3, 36 new cases with keys ending b or c, not yet in TestRail; steps that only read are folded into the step before; untested state such as the report already open for today, an invoice already made, a switch already turned off, moved into the preconditions, so the recipes of the cases that changed follow their new precondition lines); regenerated 26 Oct 2026 for the QA lead's pattern (Rule 117 fourteenth amendment, DRAFT, not yet in TestRail: the cases now say their preconditions in plain words with no placeholders or examples, so every recipe below adds a "Plain names in the test case" line matching the case's words to the placeholders; the records, values and examples are unchanged); earlier, regenerated 26 Oct 2026 for the scenario preconditions (Rule 117 thirteenth amendment, DRAFT, not yet in TestRail: every case's Preconditions open with a "Scenario:" line; the design cases' browser-window and design-pictures line now sits just above the starting screen; the Counter Sale customer's state in [C665952](https://shopview.testrail.io/index.php?/cases/view/665952) is its own line; no record, value or example changed, so every recipe below satisfies the same records as before).
 - Sources: PRD Confluence 919928833 version 11 (21 Oct 2026, Chris Ward); Chris Ward's answers 1 to 40 to the question sheet (19 and 21 Oct 2026); tech plan (dated 14 Oct 2026, uploaded 19 Oct 2026 and again, byte-identical, 22 Oct 2026; read in full 22 Oct 2026); Claude design canvas https://claude.ai/artifact/8MHqwyffAYtqZ6EccS5RUm (export read 19 Oct 2026); Sales By Representative spec Confluence 585629698 version 28; Sales By Customer spec Confluence 577634305 version 21.
 - **No build yet** (QA lead, 19 Oct 2026). Every recipe below is UNVERIFIED until the build verification session runs it.
 - At session start, ask the user for: the site to use and how to sign in as ACCOUNT-A (and ACCOUNT-B/C/D where a case needs them).
@@ -47,8 +47,7 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 ### One recipe per case: the placeholder values (the examples in the case are the values)
 #### SETUP-S1-02 — [C665916](https://shopview.testrail.io/index.php?/cases/view/665916) Sales Representative list starts with Unassigned, then reps by first name
 Sub folder: Story 1 — One Sales Representative field on the work order (section 84267).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Your shop has three sales representatives (two share a first name), a staff member who is not a representative, and an open work order with nobody on it.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. {Sales-rep-A} and {Sales-rep-B} share a first name; {Sales-rep-C} has a later first name. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ann Brook and {Sales-rep-C} is ZZAUTOTEST Ben Able (first name "ZZAUTOTEST Ann" or "ZZAUTOTEST Ben").
 - Staff member {Staff-member-D} is active at {Location-A} with the "Sales Representative" switch off. For example: {Staff-member-D} is ZZAUTOTEST Dan Noswitch.
@@ -58,11 +57,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}, {Staff-member-D}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C; {Staff-member-D} = staff member D; {Work-order-1} = the work order.
 
 #### SETUP-S1-03 — [C665917](https://shopview.testrail.io/index.php?/cases/view/665917) Picking a sales representative saves at once and closes the list
 Sub folder: Story 1 — One Sales Representative field on the work order (section 84267).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Your shop has two sales representatives and an open work order with nobody on it, and you give the work order a representative.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -71,11 +70,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S1-04 — [C665918](https://shopview.testrail.io/index.php?/cases/view/665918) Picking Unassigned clears the Sales Representative field
 Sub folder: Story 1 — One Sales Representative field on the work order (section 84267).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order has a sales representative, and you take them off so nobody is credited.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -84,11 +83,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S1-05 — [C665919](https://shopview.testrail.io/index.php?/cases/view/665919) Escape or a click outside closes the list without a change
 Sub folder: Story 1 — One Sales Representative field on the work order (section 84267).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order has a sales representative; you open the representative list and leave it without choosing anyone.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -97,11 +96,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S1-06 — [C665920](https://shopview.testrail.io/index.php?/cases/view/665920) A user who can only view work orders sees the field as plain text
 Sub folder: Story 1 — One Sales Representative field on the work order (section 84267).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A colleague whose role lets them only view work orders opens a work order that already has a sales representative.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as {User-B}, whose role has "Work Orders — View" but not "Work Orders — Create & Edit", at {Location-A}. For example: {User-B} is ZZAUTOTEST SSR Viewer with the custom role ZZAUTOTEST SSR View Only; {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -110,11 +109,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {User-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {User-B} = user B; {Work-order-1} = the work order.
 
 #### SETUP-S1-07 — [C665921](https://shopview.testrail.io/index.php?/cases/view/665921) A rep whose switch is turned off stays and reads (Inactive)
 Sub folder: Story 1 — One Sales Representative field on the work order (section 84267).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A sales representative was put on an open work order, and later their "Sales Representative" switch was turned off.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Staff members {Sales-rep-A} and {Sales-rep-B} are active at {Location-A}. {Sales-rep-A}'s "Sales Representative" switch is on; {Sales-rep-B}'s was on and has since been turned off (the staff account is still active). For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -123,11 +122,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S1-08 — [C665922](https://shopview.testrail.io/index.php?/cases/view/665922) A deactivated staff member stays in the field and reads (Inactive)
 Sub folder: Story 1 — One Sales Representative field on the work order (section 84267).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A sales representative was put on an open work order, and later their staff account was deactivated.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Staff member {Sales-rep-A} is active at {Location-A} with the "Sales Representative" switch on. Staff member {Sales-rep-B} had the switch on, and their staff account has since been deactivated. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -136,11 +135,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S1-09 — [C665923](https://shopview.testrail.io/index.php?/cases/view/665923) Picking a rep turned off in another tab is refused with a message
 Sub folder: Story 1 — One Sales Representative field on the work order (section 84267).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You pick a sales representative on an open work order just as that person's "Sales Representative" switch is turned off in another tab.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -149,11 +148,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S1-10 — [C665924](https://shopview.testrail.io/index.php?/cases/view/665924) Developer check: a failed save puts the field back and shows an error
 Sub folder: Story 1 — One Sales Representative field on the work order (section 84267).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You give an open work order a sales representative, but the save fails because the browser has lost its connection.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -162,11 +161,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S1-10b — [C715639](https://shopview.testrail.io/index.php?/cases/view/715639) Developer check: a change made while the field is saving is ignored
 Sub folder: Story 1 — One Sales Representative field on the work order (section 84267).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You change an open work order's sales representative twice in quick succession, before the first change has finished saving.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -175,11 +174,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S1-11 — [C690666](https://shopview.testrail.io/index.php?/cases/view/690666) A rep who no longer exists or is in another organization reads Unassigned
 Sub folder: Story 1 — One Sales Representative field on the work order (section 84267).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Two open work orders name representatives who cannot be shown: one whose staff record is gone and one from another organization.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -189,11 +188,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Staff-member-C}, {Staff-member-D}, {Work-order-1}, {Work-order-2}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Staff-member-C} = staff member C; {Staff-member-D} = staff member D; {Work-order-1} = the first work order; {Work-order-2} = the second work order.
 
 #### SETUP-S2-01 — [C665925](https://shopview.testrail.io/index.php?/cases/view/665925) The + adds Labor and Parts fields holding the same person
 Sub folder: Story 2 — Separate Labor and Parts representatives (section 84268).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order has one sales representative, and you split it into separate Labor and Parts representatives.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -202,11 +201,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S2-02 — [C665926](https://shopview.testrail.io/index.php?/cases/view/665926) Adding the Parts field to an Unassigned work order gives two Unassigned
 Sub folder: Story 2 — Separate Labor and Parts representatives (section 84268).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order has nobody as its sales representative, and you split it into separate Labor and Parts fields.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
 - Work order {Work-order-1} for {Customer-A} is open and not invoiced; it has one approved labor line and one part, and its card shows one "Sales Representative" field reading "Unassigned". For example: {Work-order-1} is S2-40001.
@@ -214,11 +213,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Work-order-1} = the work order.
 
 #### SETUP-S2-03 — [C665927](https://shopview.testrail.io/index.php?/cases/view/665927) The + menu closes with Escape or a click outside, with no change
 Sub folder: Story 2 — Separate Labor and Parts representatives (section 84268).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order has one sales representative; you open the + menu and leave it without choosing anything.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -227,11 +226,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S2-04 — [C665928](https://shopview.testrail.io/index.php?/cases/view/665928) Changing the Parts representative never changes the Labor one
 Sub folder: Story 2 — Separate Labor and Parts representatives (section 84268).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order has the same person as its Labor and Parts representative, and you change only the Parts person.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -240,11 +239,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S2-05 — [C665929](https://shopview.testrail.io/index.php?/cases/view/665929) The remove x keeps the Labor person in the one field
 Sub folder: Story 2 — Separate Labor and Parts representatives (section 84268).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order has different Labor and Parts representatives, and you go back to one representative.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -253,11 +252,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S2-06 — [C665930](https://shopview.testrail.io/index.php?/cases/view/665930) Removing Parts when Labor is Unassigned leaves nobody
 Sub folder: Story 2 — Separate Labor and Parts representatives (section 84268).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order has nobody on Labor and a person on Parts, and you remove the Parts field.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -266,11 +265,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S2-07 — [C665931](https://shopview.testrail.io/index.php?/cases/view/665931) An inactive person is copied to Parts when the Parts field is added
 Sub folder: Story 2 — Separate Labor and Parts representatives (section 84268).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order's one representative has had their switch turned off, and you add the Parts field.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Staff member {Sales-rep-C} had the "Sales Representative" switch on, was picked on {Work-order-1}, and has since had the switch turned off (the account is still active). For example: {Sales-rep-C} is ZZAUTOTEST Cara Able.
@@ -280,11 +279,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C; {Work-order-1} = the work order.
 
 #### SETUP-S2-07b — [C715640](https://shopview.testrail.io/index.php?/cases/view/715640) An inactive Labor person does not stop a change to the Parts field
 Sub folder: Story 2 — Separate Labor and Parts representatives (section 84268).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order's Labor and Parts both hold a representative whose switch was turned off, and you change only Parts.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Staff member {Sales-rep-C} had the "Sales Representative" switch on, was picked on {Work-order-1}, and has since had the switch turned off (the account is still active). For example: {Sales-rep-C} is ZZAUTOTEST Cara Able.
@@ -294,11 +293,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C; {Work-order-1} = the work order.
 
 #### SETUP-S2-07c — [C715641](https://shopview.testrail.io/index.php?/cases/view/715641) Removing Parts keeps the inactive Labor person in the one field
 Sub folder: Story 2 — Separate Labor and Parts representatives (section 84268).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order's Labor representative has had their switch turned off, and you remove the Parts field.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Staff member {Sales-rep-C} had the "Sales Representative" switch on, was picked on {Work-order-1}, and has since had the switch turned off (the account is still active). For example: {Sales-rep-C} is ZZAUTOTEST Cara Able.
@@ -308,11 +307,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C; {Work-order-1} = the work order.
 
 #### SETUP-S2-08 — [C665932](https://shopview.testrail.io/index.php?/cases/view/665932) An invoiced split work order shows both names as plain text
 Sub folder: Story 2 — Separate Labor and Parts representatives (section 84268).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A work order with different Labor and Parts representatives has just been invoiced.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -321,11 +320,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S2-09 — [C665933](https://shopview.testrail.io/index.php?/cases/view/665933) A change sent to a work order invoiced in another tab is refused
 Sub folder: Story 2 — Separate Labor and Parts representatives (section 84268).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order is invoiced in one tab while you are changing its sales representative in another tab.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -334,11 +333,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S2-10 — [C665934](https://shopview.testrail.io/index.php?/cases/view/665934) Reversing the invoice unlocks the field and the next invoice re-captures
 Sub folder: Story 2 — Separate Labor and Parts representatives (section 84268).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An invoiced work order has one sales representative; you reverse the invoice, change the representative and invoice it again.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -347,11 +346,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S2-11 — [C665935](https://shopview.testrail.io/index.php?/cases/view/665935) A part sale's single Sales Representative field still saves and logs
 Sub folder: Story 2 — Separate Labor and Parts representatives (section 84268).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A part sale still has a single Sales Representative field, and you give it a representative.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -360,11 +359,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Part-sale-1}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Part-sale-1} = the part sale; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S2-12 — [C665936](https://shopview.testrail.io/index.php?/cases/view/665936) A work order split off another keeps its representatives
 Sub folder: Story 2 — Separate Labor and Parts representatives (section 84268).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order with different Labor and Parts representatives is split into two work orders.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - Customer {Customer-A} has {Sales-rep-C} as its one sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -373,11 +372,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C; {Work-order-1} = the work order.
 
 #### SETUP-S2-14 — [C690667](https://shopview.testrail.io/index.php?/cases/view/690667) Two windows: the later pick on the one field wins and Parts goes
 Sub folder: Story 2 — Separate Labor and Parts representatives (section 84268).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: The same open work order is on screen in two windows; one adds the Parts field while the other changes the one representative.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -386,11 +385,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S2-15 — [C715564](https://shopview.testrail.io/index.php?/cases/view/715564) A work order opened from its history shows its reps as plain text
 Sub folder: Story 2 — Separate Labor and Parts representatives (section 84268).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A work order with different Labor and Parts representatives has an earlier saved version in its history.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - Customer {Customer-A} has {Sales-rep-C} as its one sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -399,11 +398,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C; {Work-order-1} = the work order.
 
 #### SETUP-S2-16 — [C715565](https://shopview.testrail.io/index.php?/cases/view/715565) Reopening a paid work order keeps its representatives
 Sub folder: Story 2 — Separate Labor and Parts representatives (section 84268).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A work order with different Labor and Parts representatives was invoiced and paid in full, and is reopened.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - Customer {Customer-A} has {Sales-rep-C} as its one sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -412,11 +411,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C; {Work-order-1} = the work order.
 
 #### SETUP-S3-01 — [C665937](https://shopview.testrail.io/index.php?/cases/view/665937) On a phone the representatives show after the card is expanded
 Sub folder: Story 3 — Representatives on a phone (section 84269).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You look at an open work order that has a sales representative on a phone.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -425,11 +424,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S3-02 — [C665938](https://shopview.testrail.io/index.php?/cases/view/665938) On a phone the field shows its arrow and opens its list without hover
 Sub folder: Story 3 — Representatives on a phone (section 84269).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: On a phone, you open the Sales Representative list of an open work order that has a representative.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -438,11 +437,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S3-02b — [C715642](https://shopview.testrail.io/index.php?/cases/view/715642) On a phone the + and the remove x work without hover
 Sub folder: Story 3 — Representatives on a phone (section 84269).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: On a phone, you split an open work order's representative into Labor and Parts and then remove Parts again.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -451,11 +450,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S3-03 — [C665939](https://shopview.testrail.io/index.php?/cases/view/665939) On a phone the customer window's representative fields work as on desktop
 Sub folder: Story 3 — Representatives on a phone (section 84269).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: On a phone, you set a customer's sales representatives in the Edit Customer window and save the customer.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -463,11 +462,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S4-01 — [C665940](https://shopview.testrail.io/index.php?/cases/view/665940) Edit Customer has a Sales Representative field that lists Unassigned first
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Your shop has two sales representatives, one staff member who is not a representative, and a customer with no representative.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Staff member {Staff-member-D} is active with the "Sales Representative" switch off. For example: {Staff-member-D} is ZZAUTOTEST Dan Noswitch.
@@ -476,11 +475,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Staff-member-D}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Staff-member-D} = staff member D.
 
 #### SETUP-S4-01b — [C715643](https://shopview.testrail.io/index.php?/cases/view/715643) A customer can be saved with nobody as its sales representative
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer has no sales representative, and you save its details leaving the representative empty.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -488,22 +487,22 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S4-02 — [C665941](https://shopview.testrail.io/index.php?/cases/view/665941) New Customer has the Sales Representative field too
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Your shop has two sales representatives, and you add a brand-new customer.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Starting screen: the Customers page is open in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S4-03 — [C665942](https://shopview.testrail.io/index.php?/cases/view/665942) Adding Service Parts renames the first field and copies the person
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer has one sales representative, and you give it a separate representative for service parts.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has {Sales-rep-A} as its one sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -511,11 +510,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S4-04 — [C665943](https://shopview.testrail.io/index.php?/cases/view/665943) Adding Part Sales starts with what new part sales would get
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer has separate service labor and service parts representatives, and you add a representative for part sales.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - Customer {Customer-A} shows "Sales Representative - Service Labor" {Sales-rep-A} and "Sales Representative - Service Parts" {Sales-rep-B}, with no Part Sales field. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -523,11 +522,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C.
 
 #### SETUP-S4-04b — [C715644](https://shopview.testrail.io/index.php?/cases/view/715644) Changing Service Parts never changes an added Part Sales field
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer has representatives for service labor, service parts and part sales, and you change only the service parts one.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - Customer {Customer-A} shows "Sales Representative - Service Labor" {Sales-rep-A}, "Sales Representative - Service Parts" {Sales-rep-B} and "Sales Representative - Part Sales" {Sales-rep-B}. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -535,11 +534,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C.
 
 #### SETUP-S4-03b — [C724219](https://shopview.testrail.io/index.php?/cases/view/724219) Adding Service Parts starts Unassigned when the rep's switch is off
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer's one representative has had their switch turned off, and you add a separate service parts representative.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Staff member {Staff-member-D} is active at {Location-A} with the "Sales Representative" switch turned off after being picked on the customer. For example: {Staff-member-D} is ZZAUTOTEST Dan Noswitch.
 - Customer {Customer-A} has {Staff-member-D} as its one sales representative, shown as "{Staff-member-D} (Inactive)". For example: {Customer-A} is ZZAUTOTEST SSR Switch Off.
@@ -547,11 +546,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Staff-member-D}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Staff-member-D} = staff member D.
 
 #### SETUP-S4-04c — [C724220](https://shopview.testrail.io/index.php?/cases/view/724220) Adding Part Sales starts Unassigned when the person it copies is switched off
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer's service parts representative has had their switch turned off, and you add a part sales representative.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Staff member {Sales-rep-A} is active at {Location-A} with the "Sales Representative" switch on. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able.
 - Staff member {Staff-member-D} is active at {Location-A} with the "Sales Representative" switch turned off after being picked on the customer. For example: {Staff-member-D} is ZZAUTOTEST Dan Noswitch.
@@ -560,11 +559,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Staff-member-D}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Staff-member-D} = staff member D.
 
 #### SETUP-S4-05 — [C665944](https://shopview.testrail.io/index.php?/cases/view/665944) Removing Service Parts makes the Service Labor person the one rep
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer has representatives for service labor, service parts and part sales, and you remove the service parts one.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - Customer {Customer-A} shows "Sales Representative - Service Labor" {Sales-rep-A}, "Sales Representative - Service Parts" {Sales-rep-B} and "Sales Representative - Part Sales" {Sales-rep-C}. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -572,11 +571,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C.
 
 #### SETUP-S4-06 — [C665945](https://shopview.testrail.io/index.php?/cases/view/665945) Removing Part Sales makes new part sales follow again
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer has representatives for service labor, service parts and part sales, and you remove the part sales one.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - Customer {Customer-A} shows "Sales Representative - Service Labor" {Sales-rep-A}, "Sales Representative - Service Parts" {Sales-rep-B} and "Sales Representative - Part Sales" {Sales-rep-C}. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -584,11 +583,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C.
 
 #### SETUP-S4-07 — [C665946](https://shopview.testrail.io/index.php?/cases/view/665946) Nothing in the customer window is saved until Save
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer has one sales representative; you change its representatives in Edit Customer and close the window without saving.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has {Sales-rep-A} as its one sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -596,11 +595,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S4-08 — [C665947](https://shopview.testrail.io/index.php?/cases/view/665947) The customer page shows the reps with or without an address
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Two customers have no address: one has no sales representative, the other has separate service labor and service parts representatives.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no address and no sales representative; customer {Customer-B} has no address and {Sales-rep-A} as Service Labor and {Sales-rep-B} as Service Parts. For example: {Customer-A} is ZZAUTOTEST SSR No Address and {Customer-B} is ZZAUTOTEST SSR Split No Address.
@@ -608,11 +607,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Customer-B}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = customer A; {Customer-B} = customer B; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S4-09 — [C665948](https://shopview.testrail.io/index.php?/cases/view/665948) A new work order starts with the customer's one representative
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer has one sales representative, and you create a new work order for it.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has {Sales-rep-A} as its one sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -620,11 +619,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S4-10 — [C665949](https://shopview.testrail.io/index.php?/cases/view/665949) A new work order for a split customer starts with Labor and Parts
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer has separate service labor and service parts representatives, and you create a new work order for it.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} shows "Sales Representative - Service Labor" {Sales-rep-A} and "Sales Representative - Service Parts" {Sales-rep-B}. For example: {Customer-A} is ZZAUTOTEST SSR Split Fleet.
@@ -632,11 +631,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S4-11 — [C665950](https://shopview.testrail.io/index.php?/cases/view/665950) A new part sale starts with Part Sales, Service Parts or the one rep
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Three customers have their representatives set up three different ways, and you start a new part sale for each.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - Customer {Customer-A} has {Sales-rep-A} as its one sales representative; customer {Customer-B} shows "Sales Representative - Service Labor" {Sales-rep-A} and "Sales Representative - Service Parts" {Sales-rep-B}; customer {Customer-C} shows Service Labor {Sales-rep-A}, Service Parts {Sales-rep-B} and "Sales Representative - Part Sales" {Sales-rep-C}. For example: {Customer-A} is ZZAUTOTEST SSR One, {Customer-B} is ZZAUTOTEST SSR Two and {Customer-C} is ZZAUTOTEST SSR Three.
@@ -644,11 +643,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Customer-B}, {Customer-C}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = customer A; {Customer-B} = customer B; {Customer-C} = customer C; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C.
 
 #### SETUP-S4-12 — [C665951](https://shopview.testrail.io/index.php?/cases/view/665951) Part Sales set to Unassigned gives new part sales Unassigned
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer's part sales representative is set to Unassigned, and you start a new part sale for it.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} shows "Sales Representative - Service Labor" {Sales-rep-A}, "Sales Representative - Service Parts" {Sales-rep-B} and "Sales Representative - Part Sales" reading "Unassigned". For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -656,11 +655,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S4-12b — [C715645](https://shopview.testrail.io/index.php?/cases/view/715645) A part sale invoiced with Unassigned is credited to Unassigned
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A part sale for a customer whose part sales representative is Unassigned was invoiced today with nobody on it.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} shows "Sales Representative - Service Labor" {Sales-rep-A}, "Sales Representative - Service Parts" {Sales-rep-B} and "Sales Representative - Part Sales" reading "Unassigned". For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -669,22 +668,22 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Part-sale-1}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Part-sale-1} = the part sale; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S4-13 — [C665952](https://shopview.testrail.io/index.php?/cases/view/665952) Counter Sale starts with no representative
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You start a walk-in counter sale, and nobody has set a representative on the Counter Sale customer.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Nobody has set a representative on {Location-A}'s Counter Sale customer.
 - Starting screen: the Part Sales page is open at {Location-A} in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location.
 
 #### SETUP-S4-14 — [C665953](https://shopview.testrail.io/index.php?/cases/view/665953) Changing a work order's representative never changes its customer
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order took its representative from its customer, and you change the work order's representative.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - Customer {Customer-A} has {Sales-rep-A} as its one sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -693,11 +692,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C; {Work-order-1} = the work order.
 
 #### SETUP-S4-14b — [C715646](https://shopview.testrail.io/index.php?/cases/view/715646) Changing a work order's customer never changes its representatives
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order took its representative from its customer, and you move the work order to another customer.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has {Sales-rep-A} as its one sales representative; customer {Customer-B} has {Sales-rep-B}. For example: {Customer-A} is ZZAUTOTEST SSR Fleet and {Customer-B} is ZZAUTOTEST SSR Other.
@@ -706,11 +705,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Customer-B}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = customer A; {Customer-B} = customer B; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S4-14c — [C715647](https://shopview.testrail.io/index.php?/cases/view/715647) Changing a customer's representative never changes its work orders
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order took its representative from its customer, and you change the customer's representative.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has {Sales-rep-A} as its one sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -719,11 +718,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S4-15 — [C665954](https://shopview.testrail.io/index.php?/cases/view/665954) A rep with the switch off is not copied to a new work order
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer's sales representative has had their switch turned off, and you create a new work order for that customer.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Staff members {Sales-rep-A} and {Sales-rep-B} are active at {Location-A}. {Sales-rep-A}'s "Sales Representative" switch is on; {Sales-rep-B}'s was on and has since been turned off (the staff account is still active). For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has {Sales-rep-B} as its one sales representative, picked while their switch was on. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -731,11 +730,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S4-15b — [C715648](https://shopview.testrail.io/index.php?/cases/view/715648) A switched-off customer rep is still credited when invoicing with nobody
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer's representative was switched off, and a new work order for that customer was invoiced today with nobody on it.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Staff members {Sales-rep-A} and {Sales-rep-B} are active at {Location-A}. {Sales-rep-A}'s "Sales Representative" switch is on; {Sales-rep-B}'s was on and has since been turned off (the staff account is still active). For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has {Sales-rep-B} as its one sales representative, picked while their switch was on. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -744,11 +743,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S4-16 — [C665955](https://shopview.testrail.io/index.php?/cases/view/665955) A work order invoiced with nobody takes the customer's reps per side
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer has separate service labor and service parts representatives, and its work order was invoiced today with nobody on it.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} shows "Sales Representative - Service Labor" {Sales-rep-A} and "Sales Representative - Service Parts" {Sales-rep-B}. For example: {Customer-A} is ZZAUTOTEST SSR Split Fleet.
@@ -757,11 +756,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S4-17 — [C665956](https://shopview.testrail.io/index.php?/cases/view/665956) An empty side is not filled from the customer at invoicing
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A work order was invoiced today with nobody on Labor and a person on Parts, while its customer has one representative.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has {Sales-rep-B} as its one sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -770,11 +769,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S4-18 — [C665957](https://shopview.testrail.io/index.php?/cases/view/665957) Deactivating a rep clears their customer fields and removes Part Sales
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A sales representative is on two customers, on one of them only for part sales, and you deactivate that person's staff account.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - Customer {Customer-A} shows "Sales Representative - Service Labor" {Sales-rep-A}, "Sales Representative - Service Parts" {Sales-rep-B} and "Sales Representative - Part Sales" {Sales-rep-C}; customer {Customer-B} has {Sales-rep-C} as its one representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet and {Customer-B} is ZZAUTOTEST SSR Other.
@@ -782,11 +781,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Customer-B}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = customer A; {Customer-B} = customer B; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C.
 
 #### SETUP-S4-19 — [C665958](https://shopview.testrail.io/index.php?/cases/view/665958) The Deactivate window counts a customer once when a rep holds two fields
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: One sales representative holds both service fields of a customer, and you deactivate that person's staff account.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} shows "Sales Representative - Service Labor" {Sales-rep-B} and "Sales Representative - Service Parts" {Sales-rep-B}, and no other customer has {Sales-rep-B}. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -794,11 +793,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S4-19b — [C715649](https://shopview.testrail.io/index.php?/cases/view/715649) Turning off the switch still shows today's warning with no customer count
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: One sales representative holds both service fields of a customer, and you start to turn their "Sales Representative" switch off.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} shows "Sales Representative - Service Labor" {Sales-rep-B} and "Sales Representative - Service Parts" {Sales-rep-B}. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -806,11 +805,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S4-20 — [C665959](https://shopview.testrail.io/index.php?/cases/view/665959) Renaming a rep updates their name on every customer
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A sales representative is on two customers, and you change that person's name.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} shows "Sales Representative - Service Labor" {Sales-rep-A} and "Sales Representative - Service Parts" {Sales-rep-B}; customer {Customer-B} has {Sales-rep-B} as its one sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet and {Customer-B} is ZZAUTOTEST SSR Other.
@@ -818,11 +817,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Customer-B}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = customer A; {Customer-B} = customer B; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S4-20b — [C715650](https://shopview.testrail.io/index.php?/cases/view/715650) A customer still holding a switched-off rep keeps them and saves
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer still holds a service labor representative whose switch was turned off, and you edit and save the customer.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Staff members {Sales-rep-A} and {Sales-rep-B} are active at {Location-A}. {Sales-rep-B}'s "Sales Representative" switch is on; {Sales-rep-A}'s was on and has since been turned off (the staff account is still active). For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} shows "Sales Representative - Service Labor" {Sales-rep-A}, picked while their switch was on, and "Sales Representative - Service Parts" {Sales-rep-B}. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -830,11 +829,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S4-21 — [C665960](https://shopview.testrail.io/index.php?/cases/view/665960) The assignments export lists one row per customer per person with Side
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Three customers have their representatives set up in different ways, and you download the sales representative assignments.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - Customer {Customer-A} has {Sales-rep-A} as its one representative; customer {Customer-B} shows Service Labor {Sales-rep-A} and Service Parts {Sales-rep-B}; customer {Customer-C} has {Sales-rep-C} as its one representative and "Sales Representative - Part Sales" {Sales-rep-C}. The customer names sort A to Z as {Customer-A}, {Customer-B}, {Customer-C}, and {Sales-rep-A}'s name sorts before {Sales-rep-B}'s. For example: {Customer-A} is ZZAUTOTEST SSR A-One, {Customer-B} is ZZAUTOTEST SSR B-Two and {Customer-C} is ZZAUTOTEST SSR C-Three.
@@ -842,11 +841,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Customer-B}, {Customer-C}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = customer A; {Customer-B} = customer B; {Customer-C} = customer C; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C.
 
 #### SETUP-S4-22 — [C665961](https://shopview.testrail.io/index.php?/cases/view/665961) Re-importing a customer keeps all its representatives
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer has representatives for service labor, service parts and part sales, and you import its details again.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - Customer {Customer-A} shows Service Labor {Sales-rep-A}, Service Parts {Sales-rep-B} and "Sales Representative - Part Sales" {Sales-rep-C}. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -855,11 +854,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C.
 
 #### SETUP-S4-25 — [C690668](https://shopview.testrail.io/index.php?/cases/view/690668) A part-sales-only user adding a customer from a part sale sees the reps
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A colleague who may work only on part sales adds a new customer from a part sale.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as {User-B}, whose role has "Part Sales — Create & Edit" but not "Customers — Create & Edit" or "Work Orders — Create & Edit", at {Location-A}. For example: {User-B} is ZZAUTOTEST SSR Part Sales Only with the custom role ZZAUTOTEST SSR Part Sales Only; {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Staff member {Staff-member-D} is active at {Location-A} with the "Sales Representative" switch off. For example: {Staff-member-D} is ZZAUTOTEST Dan Noswitch.
@@ -867,11 +866,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Staff-member-D}, {User-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Staff-member-D} = staff member D; {User-B} = user B.
 
 #### SETUP-S4-26 — [C690669](https://shopview.testrail.io/index.php?/cases/view/690669) Reactivating a rep does not put them back on their customers
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A sales representative was on two customers before their staff account was deactivated, and now the account is reactivated.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Staff members {Sales-rep-A} and {Sales-rep-B} are active at {Location-A} with the "Sales Representative" switch on. Staff member {Sales-rep-C} had the switch on, and their staff account has since been deactivated. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - Before {Sales-rep-C} was deactivated, customer {Customer-A} had {Sales-rep-C} as its one sales representative and customer {Customer-B} showed "Sales Representative - Service Labor" {Sales-rep-A}, "Sales Representative - Service Parts" {Sales-rep-B} and "Sales Representative - Part Sales" {Sales-rep-C}. For example: {Customer-A} is ZZAUTOTEST SSR Fleet and {Customer-B} is ZZAUTOTEST SSR Other.
@@ -879,11 +878,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Customer-B}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = customer A; {Customer-B} = customer B; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C.
 
 #### SETUP-S3-04 — [C690672](https://shopview.testrail.io/index.php?/cases/view/690672) On a wide touch tablet the card opens expanded with its buttons showing
 Sub folder: Story 3 — Representatives on a phone (section 84269).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order with a sales representative is opened on a wide touch tablet with no mouse.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -892,11 +891,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S4-27 — [C715566](https://shopview.testrail.io/index.php?/cases/view/715566) A part sale split off another keeps its representative
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open part sale with a sales representative and two parts is split into two part sales.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - Customer {Customer-A} shows "Sales Representative - Part Sales" {Sales-rep-C}. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -905,11 +904,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Part-sale-1}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Part-sale-1} = the part sale; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C.
 
 #### SETUP-S4-28 — [C715567](https://shopview.testrail.io/index.php?/cases/view/715567) A customers-only user sees the representatives in Edit Customer
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A colleague who may work on customers but cannot see work orders edits a customer's representatives.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as {User-B}, whose role has "Customers — Create & Edit" but neither "Work Orders — View" nor "Work Orders — Create & Edit", at {Location-A}. For example: {User-B} is ZZAUTOTEST SSR Customers Only with the custom role ZZAUTOTEST SSR Customers Only; {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Staff member {Staff-member-D} is active at {Location-A} with the "Sales Representative" switch off. For example: {Staff-member-D} is ZZAUTOTEST Dan Noswitch.
@@ -918,11 +917,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Staff-member-D}, {User-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Staff-member-D} = staff member D; {User-B} = user B.
 
 #### SETUP-S5-01 — [C665962](https://shopview.testrail.io/index.php?/cases/view/665962) A split invoice gives the Labor rep a Labor row and the Parts rep a Parts row
 Sub folder: Story 5 — Credit on the invoice and in Sales By Representative (section 84271).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A work order with different Labor and Parts representatives was invoiced today, and you check who is credited in Sales By Representative.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -932,11 +931,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S5-01b — [C715651](https://shopview.testrail.io/index.php?/cases/view/715651) The Sales Type column shows after Status, with no value on summary rows
 Sub folder: Story 5 — Credit on the invoice and in Sales By Representative (section 84271).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A work order with different Labor and Parts representatives was invoiced today, and you turn on the Sales Type column.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -946,11 +945,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S5-02 — [C665963](https://shopview.testrail.io/index.php?/cases/view/665963) All shop supplies, including a hand-typed amount, go to the Labor row
 Sub folder: Story 5 — Credit on the invoice and in Sales By Representative (section 84271).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A work order with different Labor and Parts representatives and hand-typed shop supplies was invoiced today.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -960,11 +959,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S5-03 — [C665964](https://shopview.testrail.io/index.php?/cases/view/665964) A whole-invoice discount is shared by the size of each side
 Sub folder: Credit and totals — exact amounts (section 84272).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A work order with different Labor and Parts representatives has a discount on the whole invoice.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -974,11 +973,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S5-04 — [C665965](https://shopview.testrail.io/index.php?/cases/view/665965) A negative side still shares a discount by size
 Sub folder: Credit and totals — exact amounts (section 84272).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A work order with different Labor and Parts representatives has a returned part and a discount on the whole invoice.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -988,11 +987,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S5-05 — [C665966](https://shopview.testrail.io/index.php?/cases/view/665966) The Parts share is rounded to the cent and the Labor row gets the rest
 Sub folder: Credit and totals — exact amounts (section 84272).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Two work orders with different Labor and Parts representatives have small whole-invoice discounts that do not share out evenly to the cent.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1002,11 +1001,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}, {Work-order-2}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the first work order; {Work-order-2} = the second work order.
 
 #### SETUP-S5-06 — [C665967](https://shopview.testrail.io/index.php?/cases/view/665967) A whole-invoice fee with no labor or parts dollars goes to one side
 Sub folder: Credit and totals — exact amounts (section 84272).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Three work orders that have only a fee on the whole invoice, and no labor or parts, were invoiced today.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1016,11 +1015,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}, {Work-order-2}, {Work-order-3}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the first work order; {Work-order-2} = the second work order; {Work-order-3} = the third work order.
 
 #### SETUP-S5-07 — [C665968](https://shopview.testrail.io/index.php?/cases/view/665968) A part sale is one Part Sales row holding the whole sale
 Sub folder: Story 5 — Credit on the invoice and in Sales By Representative (section 84271).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Three part sales with one sales representative were invoiced today with different shop supplies charges.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1030,11 +1029,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Part-sale-1}, {Part-sale-2}, {Part-sale-3}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Part-sale-1} = the first part sale; {Part-sale-2} = the second part sale; {Part-sale-3} = the third part sale; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S5-08 — [C665969](https://shopview.testrail.io/index.php?/cases/view/665969) One person on both sides shows one Labor, Parts row
 Sub folder: Story 5 — Credit on the invoice and in Sales By Representative (section 84271).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: One person is both the Labor and the Parts representative on two work orders invoiced today.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1044,11 +1043,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}, {Work-order-2}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the first work order; {Work-order-2} = the second work order.
 
 #### SETUP-S5-08b — [C715652](https://shopview.testrail.io/index.php?/cases/view/715652) Narrowing Sales Type to Labor or Parts shows only that side
 Sub folder: Story 5 — Credit on the invoice and in Sales By Representative (section 84271).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: One person is both the Labor and the Parts representative on a work order invoiced today, and you narrow the report by Sales Type.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1058,11 +1057,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S5-09 — [C665970](https://shopview.testrail.io/index.php?/cases/view/665970) Report totals are the same split or not when Show Unassigned is on
 Sub folder: Credit and totals — exact amounts (section 84272).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A work order invoiced today with one sales representative is invoiced again with an empty Parts side, and you compare the report totals.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1072,11 +1071,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S5-10 — [C665971](https://shopview.testrail.io/index.php?/cases/view/665971) Margin % on an invoice row uses only that row's side
 Sub folder: Credit and totals — exact amounts (section 84272).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A work order with different Labor and Parts representatives and a part of known cost was invoiced today.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1086,33 +1085,33 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S5-11 — [C665972](https://shopview.testrail.io/index.php?/cases/view/665972) The Sales Type column is off by default and first in the column list
 Sub folder: Story 5 — Credit on the invoice and in Sales By Representative (section 84271).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You open Sales By Representative without having changed its columns since the release.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - You have never changed the columns of Sales By Representative since the release.
 - Starting screen: Reports > Sales By Representative is open in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location.
 
 #### SETUP-S5-11b — [C715653](https://shopview.testrail.io/index.php?/cases/view/715653) A Sales Type column you turn on stays on when you sign in again
 Sub folder: Story 5 — Credit on the invoice and in Sales By Representative (section 84271).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You turn on the Sales Type column of Sales By Representative, then sign out and sign in again.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The Sales Type column of Sales By Representative is off for you.
 - Starting screen: Reports > Sales By Representative is open in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location.
 
 #### SETUP-S5-12 — [C665973](https://shopview.testrail.io/index.php?/cases/view/665973) Expanded CSV and PDF always carry the Sales Type column
 Sub folder: Story 5 — Credit on the invoice and in Sales By Representative (section 84271).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A work order with different Labor and Parts representatives was invoiced today, and you export the Expanded report with the Sales Type column off.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1121,11 +1120,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S5-13 — [C665974](https://shopview.testrail.io/index.php?/cases/view/665974) A zero-dollar side or invoice still counts for its representative
 Sub folder: Credit and totals — exact amounts (section 84272).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Two work orders invoiced today have a side, or a whole invoice, worth nothing.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1135,11 +1134,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}, {Work-order-2}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the first work order; {Work-order-2} = the second work order.
 
 #### SETUP-S5-14 — [C665975](https://shopview.testrail.io/index.php?/cases/view/665975) A renamed rep stays one row under the current name in the report
 Sub folder: Story 5 — Credit on the invoice and in Sales By Representative (section 84271).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A work order with different Labor and Parts representatives was invoiced today, and the Parts representative's last name has changed since.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1149,11 +1148,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S6-01 — [C665976](https://shopview.testrail.io/index.php?/cases/view/665976) Printed work order names the one person who holds both sides
 Sub folder: Story 6 — Printed work order (section 84273).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Two work orders each have one sales representative, one of whom has since had their switch turned off, and you print them.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Staff member {Sales-rep-A} is active at {Location-A} with the "Sales Representative" switch on. Staff member {Sales-rep-C} is active and had the switch on, and it has since been turned off. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1162,11 +1161,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-C}, {Work-order-1}, {Work-order-2}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-C} = sales rep C; {Work-order-1} = the first work order; {Work-order-2} = the second work order.
 
 #### SETUP-S6-01b — [C715654](https://shopview.testrail.io/index.php?/cases/view/715654) A split work order with one person on both sides prints one name
 Sub folder: Story 6 — Printed work order (section 84273).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order has the same person on Labor and Parts, and you print it.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1175,11 +1174,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S6-02 — [C665977](https://shopview.testrail.io/index.php?/cases/view/665977) Printed work order names both people, Parts first
 Sub folder: Story 6 — Printed work order (section 84273).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Two work orders have different Labor and Parts representatives, one of whom has since been switched off, and you print them.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Staff members {Sales-rep-A} and {Sales-rep-B} are active at {Location-A} with the "Sales Representative" switch on. Staff member {Sales-rep-C} is active and had the switch on, and it has since been turned off. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1188,11 +1187,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}, {Work-order-1}, {Work-order-2}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C; {Work-order-1} = the first work order; {Work-order-2} = the second work order.
 
 #### SETUP-S6-03 — [C665978](https://shopview.testrail.io/index.php?/cases/view/665978) Printed work order shows Unassigned for an empty side
 Sub folder: Story 6 — Printed work order (section 84273).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Two work orders each have nobody on one side, and you print them.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1201,11 +1200,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}, {Work-order-2}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the first work order; {Work-order-2} = the second work order.
 
 #### SETUP-S6-04 — [C665979](https://shopview.testrail.io/index.php?/cases/view/665979) Printed work order leaves the row off when nobody is on it
 Sub folder: Story 6 — Printed work order (section 84273).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order has nobody as its sales representative, and you print it.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
 - Work order {Work-order-1} for {Customer-A} is open and not invoiced; it has one approved labor line and one part, and its card shows one "Sales Representative" field reading "Unassigned". For example: {Work-order-1} is S2-40001.
@@ -1213,11 +1212,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Work-order-1} = the work order.
 
 #### SETUP-S6-05 — [C665980](https://shopview.testrail.io/index.php?/cases/view/665980) A side whose staff member no longer exists prints as Unassigned
 Sub folder: Story 6 — Printed work order (section 84273).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order's Parts representative's staff record no longer exists, and you print the work order.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1226,11 +1225,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S7-01 — [C665981](https://shopview.testrail.io/index.php?/cases/view/665981) Changing the one field writes a log entry with before and after
 Sub folder: Story 7 — Work order log (section 84274).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order has nobody on it, and you give it a sales representative and look at its log.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1239,11 +1238,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S7-01b — [C715655](https://shopview.testrail.io/index.php?/cases/view/715655) Adding the Parts field and changing it each write one log entry
 Sub folder: Story 7 — Work order log (section 84274).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order has one sales representative; you add the Parts field and change it, then look at its log.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1252,11 +1251,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S7-01c — [C715656](https://shopview.testrail.io/index.php?/cases/view/715656) Removing the Parts field writes a log entry
 Sub folder: Story 7 — Work order log (section 84274).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order has different Labor and Parts representatives; you remove the Parts field and look at its log.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1265,11 +1264,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S7-02 — [C665982](https://shopview.testrail.io/index.php?/cases/view/665982) A split work order's log entry shows Unassigned for an empty side
 Sub folder: Story 7 — Work order log (section 84274).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order has different Labor and Parts representatives; you set Labor to Unassigned and look at its log.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1278,11 +1277,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S7-03 — [C665983](https://shopview.testrail.io/index.php?/cases/view/665983) Picking the person already in the field writes no log entry
 Sub folder: Story 7 — Work order log (section 84274).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order has a sales representative, and you pick that same person again.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1291,11 +1290,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S7-05 — [C690670](https://shopview.testrail.io/index.php?/cases/view/690670) A log entry reads Unassigned for a rep who no longer exists
 Sub folder: Story 7 — Work order log (section 84274).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Two open work orders name representatives who cannot be shown, one whose staff record is gone and one from another organization, and you change them.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1305,71 +1304,71 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Staff-member-C}, {Staff-member-D}, {Work-order-1}, {Work-order-2}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Staff-member-C} = staff member C; {Staff-member-D} = staff member D; {Work-order-1} = the first work order; {Work-order-2} = the second work order.
 
 #### SETUP-S8-01 — [C665984](https://shopview.testrail.io/index.php?/cases/view/665984) Sales By Representative has a Sales Type filter, all selected
 Sub folder: Story 8 — Sales Type filters on both sales reports (section 84275).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You open Sales By Representative and look at its new Sales Type filter.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: Reports > Sales By Representative is open in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location.
 
 #### SETUP-S8-02 — [C665985](https://shopview.testrail.io/index.php?/cases/view/665985) Sales By Representative exports name the Sales Type selection
 Sub folder: Story 8 — Sales Type filters on both sales reports (section 84275).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You export Sales By Representative with different Sales Type choices.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: Reports > Sales By Representative is open in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location.
 
 #### SETUP-S8-02b — [C715657](https://shopview.testrail.io/index.php?/cases/view/715657) With no Sales Type ticked, Sales By Representative export makes no file
 Sub folder: Story 8 — Sales Type filters on both sales reports (section 84275).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You untick every Sales Type in Sales By Representative and try to export.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: Reports > Sales By Representative is open in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location.
 
 #### SETUP-S8-03 — [C665986](https://shopview.testrail.io/index.php?/cases/view/665986) Sales By Customer's Product Type filter now reads Sales Type
 Sub folder: Story 8 — Sales Type filters on both sales reports (section 84275).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You open Sales By Customer, whose Product Type filter has been renamed.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: Reports > Sales By Customer is open in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location.
 
 #### SETUP-S8-04 — [C665987](https://shopview.testrail.io/index.php?/cases/view/665987) Sales By Customer exports name the Sales Type selection
 Sub folder: Story 8 — Sales Type filters on both sales reports (section 84275).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You export Sales By Customer with different Sales Type choices.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: Reports > Sales By Customer is open in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location.
 
 #### SETUP-S8-04b — [C715658](https://shopview.testrail.io/index.php?/cases/view/715658) With no Sales Type ticked, Sales By Customer export makes no file
 Sub folder: Story 8 — Sales Type filters on both sales reports (section 84275).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You untick every Sales Type in Sales By Customer and try to export.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: Reports > Sales By Customer is open in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location.
 
 #### SETUP-S8-05 — [C665988](https://shopview.testrail.io/index.php?/cases/view/665988) Sales By Customer figures do not change with the new wording
 Sub folder: Story 8 — Sales Type filters on both sales reports (section 84275).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer had a part sale and a work order invoiced today, and you compare its Sales By Customer figures by Sales Type.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Today customer {Customer-A} has one invoiced part sale of $40.00 and one invoiced work order of $250.00 that includes a part. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1377,33 +1376,33 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S8-12 — [C690671](https://shopview.testrail.io/index.php?/cases/view/690671) Sales By Representative exports with no rows still have the headings
 Sub folder: Story 8 — Sales Type filters on both sales reports (section 84275).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Your location has no invoices on a chosen day, and you export Sales By Representative for that day.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - {Location-A} has no invoices on {Date-A}. For example: {Date-A} is 1 Jan 2026.
 - Starting screen: Reports > Sales By Representative is open for {Date-A} in a desktop browser at least 1024 px wide, showing no invoices.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Date-A}, {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Date-A} = the date; {Location-A} = the test location.
 
 #### SETUP-S8-12b — [C715659](https://shopview.testrail.io/index.php?/cases/view/715659) Sales By Customer exports with no rows still have the headings
 Sub folder: Story 8 — Sales Type filters on both sales reports (section 84275).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Your location has no invoices on a chosen day, and you export Sales By Customer for that day.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - {Location-A} has no invoices on {Date-A}. For example: {Date-A} is 1 Jan 2026.
 - Starting screen: Reports > Sales By Customer is open for {Date-A} in a desktop browser at least 1024 px wide, showing no invoices.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Date-A}, {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Date-A} = the date; {Location-A} = the test location.
 
 #### SETUP-S5-19 — [C715568](https://shopview.testrail.io/index.php?/cases/view/715568) A rep whose staff record is gone shows the name kept on the invoice
 Sub folder: Story 5 — Credit on the invoice and in Sales By Representative (section 84271).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A work order was invoiced today with a Parts representative whose staff record no longer exists.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1413,11 +1412,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Staff-member-C}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Staff-member-C} = staff member C; {Work-order-1} = the work order.
 
 #### SETUP-S5-20 — [C715569](https://shopview.testrail.io/index.php?/cases/view/715569) A discount bigger than the invoice is shared by size and both rows end at $0.00
 Sub folder: Credit and totals — exact amounts (section 84272).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A work order for a tax-exempt customer, with different Labor and Parts representatives, has a discount bigger than the invoice.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative, and no tax applies to its invoices. For example: {Customer-A} is ZZAUTOTEST SSR Tax Exempt, set as tax exempt.
@@ -1427,11 +1426,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S4-23 — [C665989](https://shopview.testrail.io/index.php?/cases/view/665989) Saving a customer with a rep turned off in another tab is refused
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You save a customer with a new representative just as that person's "Sales Representative" switch is turned off in another tab.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1439,22 +1438,22 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S4-24 — [C665990](https://shopview.testrail.io/index.php?/cases/view/665990) A work-orders-only user adding a customer from a work order sees the reps
 Sub folder: Story 4 — A customer's default representatives (section 84270).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A colleague who may work on work orders but not on customers adds a new customer from a work order.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as {User-B}, whose role has "Work Orders — Create & Edit" but not "Customers — Create & Edit", at {Location-A}. For example: {User-B} is ZZAUTOTEST SSR WO Only with the custom role ZZAUTOTEST SSR WO Only; {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Starting screen: the Work Orders page is open in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {User-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {User-B} = user B.
 
 #### SETUP-S5-15 — [C665991](https://shopview.testrail.io/index.php?/cases/view/665991) The Summary export has no Sales Type column and rep rows leave it blank
 Sub folder: Story 5 — Credit on the invoice and in Sales By Representative (section 84271).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A work order with different Labor and Parts representatives was invoiced today, and you export the Summary and Expanded reports.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1463,11 +1462,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S5-16 — [C665992](https://shopview.testrail.io/index.php?/cases/view/665992) Line fees stay with their side and a processing fee is shared by size
 Sub folder: Credit and totals — exact amounts (section 84272).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A work order with different Labor and Parts representatives has a fee and a discount on its lines and a fee on the whole invoice.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1477,11 +1476,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S5-17 — [C665993](https://shopview.testrail.io/index.php?/cases/view/665993) Every report row adds up to the report totals to the cent
 Sub folder: Credit and totals — exact amounts (section 84272).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Your location invoiced a split work order, a work order with one person on both sides and a part sale today.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Today {Location-A} has at least three invoices: one split work order, one work order with one person on both sides and one part sale.
@@ -1489,11 +1488,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S7-04 — [C665994](https://shopview.testrail.io/index.php?/cases/view/665994) The Audit Log finds an entry by the Parts person's name
 Sub folder: Story 7 — Work order log (section 84274).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: The Parts representative of an open work order was changed today, and you search the Audit Log for that person's name.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1502,11 +1501,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S2-13 — [C665995](https://shopview.testrail.io/index.php?/cases/view/665995) Moving lines into an existing work order does not change its reps
 Sub folder: Story 2 — Separate Labor and Parts representatives (section 84268).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Lines are moved from a work order with different Labor and Parts representatives into another work order with its own representative.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1515,11 +1514,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}, {Work-order-1}, {Work-order-2}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C; {Work-order-1} = the first work order; {Work-order-2} = the second work order.
 
 #### SETUP-S5-18 — [C715271](https://shopview.testrail.io/index.php?/cases/view/715271) A part sale's labor cells show a dash in the PDF and are blank in the CSV
 Sub folder: Story 5 — Credit on the invoice and in Sales By Representative (section 84271).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A part sale with a sales representative was invoiced today, and you export Sales By Representative.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1528,11 +1527,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Part-sale-1}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Part-sale-1} = the part sale; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S8-06 — [C665996](https://shopview.testrail.io/index.php?/cases/view/665996) A rep with no invoice of the chosen Sales Type leaves the report
 Sub folder: Story 8 — Sales Type filters on both sales reports (section 84275).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Two representatives share one split work order invoiced today, one on Labor and one on Parts, and you narrow the report by Sales Type.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1541,11 +1540,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S8-06b — [C715660](https://shopview.testrail.io/index.php?/cases/view/715660) The Sales Type column header does not sort the report
 Sub folder: Story 8 — Sales Type filters on both sales reports (section 84275).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Two representatives share one split work order invoiced today, and you click the Sales Type column heading.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1554,11 +1553,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S8-07 — [C665997](https://shopview.testrail.io/index.php?/cases/view/665997) Going back from an invoice keeps the Sales Type selection
 Sub folder: Story 8 — Sales Type filters on both sales reports (section 84275).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A split work order was invoiced today; you narrow Sales By Representative by Sales Type, open an invoice and go back.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1567,21 +1566,21 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-S8-08 — [C665998](https://shopview.testrail.io/index.php?/cases/view/665998) Sales By Customer's Sales Type menu has Select all and Clear selection
 Sub folder: Story 8 — Sales Type filters on both sales reports (section 84275).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You open the Sales Type filter of Sales By Customer for today.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: Reports > Sales By Customer is open for today in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location.
 
 #### SETUP-S8-09 — [C665999](https://shopview.testrail.io/index.php?/cases/view/665999) Changing Sales Type on Sales By Customer collapses expanded rows
 Sub folder: Story 8 — Sales Type filters on both sales reports (section 84275).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer had a part sale and a work order invoiced today; you expand its rows and then change the Sales Type.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
 - Today {Customer-A} has an invoiced part sale and an invoiced work order.
@@ -1589,11 +1588,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location.
 
 #### SETUP-S8-09b — [C715661](https://shopview.testrail.io/index.php?/cases/view/715661) Sales By Customer keeps its Sales Type choice when you go back
 Sub folder: Story 8 — Sales Type filters on both sales reports (section 84275).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer had a part sale and a work order invoiced today; you choose a Sales Type, open an invoice and go back.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
 - Today {Customer-A} has an invoiced part sale and an invoiced work order.
@@ -1601,52 +1600,52 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location.
 
 #### SETUP-S8-10 — [C666000](https://shopview.testrail.io/index.php?/cases/view/666000) The Customer filter searches only within the chosen Sales Type
 Sub folder: Story 8 — Sales Type filters on both sales reports (section 84275).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Two customers whose names start alike had only a part sale or only a work order invoiced today, and you search for them.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Today customer {Customer-A} has only an invoiced part sale and customer {Customer-B} only an invoiced work order; both names start with the same text, {Search-A}. For example: {Customer-A} is ZZAUTOTEST SSR Parts Only, {Customer-B} is ZZAUTOTEST SSR Service Only and {Search-A} is ZZAUTOTEST SSR.
 - Starting screen: Reports > Sales By Customer is open for today in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Customer-B}, {Location-A}, {Search-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = customer A; {Customer-B} = customer B; {Location-A} = the test location; {Search-A} = the search word.
 
 #### SETUP-S8-10b — [C715662](https://shopview.testrail.io/index.php?/cases/view/715662) The Customer filter sits between Sales Type and Location
 Sub folder: Story 8 — Sales Type filters on both sales reports (section 84275).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You open Sales By Customer and look at the order of its filters.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: Reports > Sales By Customer is open for today in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location.
 
 #### SETUP-S8-11 — [C666001](https://shopview.testrail.io/index.php?/cases/view/666001) Sales By Representative's Sales Type filter works on a touch screen
 Sub folder: Story 8 — Sales Type filters on both sales reports (section 84275).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You use the Sales Type filter of Sales By Representative on a phone or tablet.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: Reports > Sales By Representative is open on a phone or tablet (a touch screen with no mouse pointer).
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location.
 
 #### SETUP-S8-11b — [C715663](https://shopview.testrail.io/index.php?/cases/view/715663) Sales By Customer's Sales Type filter works on a touch screen
 Sub folder: Story 8 — Sales Type filters on both sales reports (section 84275).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You use the Sales Type filter of Sales By Customer on a phone or tablet.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: Reports > Sales By Customer is open on a phone or tablet (a touch screen with no mouse pointer).
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location.
 
 #### SETUP-REL-15 — [C666002](https://shopview.testrail.io/index.php?/cases/view/666002) Reversed invoices stay out of Sales By Customer with both types selected
 Sub folder: Release day and what must not change (section 84276).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer has an invoiced work order and a reversed invoice today, and you open Sales By Customer with both types selected.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
 - Today {Customer-A} has one invoiced work order and one invoice that was reversed.
@@ -1654,11 +1653,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location.
 
 #### SETUP-REL-16 — [C715272](https://shopview.testrail.io/index.php?/cases/view/715272) Part sale rows show a dash in the labor columns and the totals do not change
 Sub folder: Release day and what must not change (section 84276).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A part sale and a work order with the same sales representative were invoiced today.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1668,11 +1667,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Part-sale-1}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Part-sale-1} = the part sale; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-REL-01 — [C666003](https://shopview.testrail.io/index.php?/cases/view/666003) On release day an existing customer keeps its one representative
 Sub folder: Release day and what must not change (section 84276).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Three customers had their sales representatives set up before the release, and you look at them after it is installed.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Before the release was installed, customer {Customer-A} had {Sales-rep-A} as its sales representative, customer {Customer-B} had none, and customer {Customer-C} had a representative who was no longer a user of the shop; you noted how the three customer pages looked. For example: {Customer-A} is ZZAUTOTEST SSR Before, {Customer-B} is ZZAUTOTEST SSR Before None and {Customer-C} is ZZAUTOTEST SSR Before Gone User.
@@ -1681,11 +1680,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Customer-B}, {Customer-C}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = customer A; {Customer-B} = customer B; {Customer-C} = customer C; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-REL-02 — [C666004](https://shopview.testrail.io/index.php?/cases/view/666004) On release day an open work order keeps its one representative
 Sub folder: Release day and what must not change (section 84276).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A work order was open with one sales representative before the release, and you open it after the release.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1695,11 +1694,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-REL-03 — [C666005](https://shopview.testrail.io/index.php?/cases/view/666005) Sales By Representative for a past date shows the same totals
 Sub folder: Release day and what must not change (section 84276).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You exported Sales By Representative for a past month before the release, and compare that file with the report after the release.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Before the release was installed, you exported Sales By Representative (Expanded CSV) for a past date range with invoices, with Show Unassigned on. For example: the range is 1 Aug 2026 to 31 Aug 2026.
 - The browser window is a desktop browser at least 1024 px wide, and the design pictures "sbr-00-b-sbr.png" (board 4.0), "sbr-01-b-sbr-filter.png" (board 4.1), "sbr-02-b-sbr-columns.png" (board 4.2) and "sbr-03-b-sbr-expanded.png" (board 4.3) attached to this case are open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
@@ -1707,44 +1706,44 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location.
 
 #### SETUP-REL-04 — [C666006](https://shopview.testrail.io/index.php?/cases/view/666006) Invoices from before 29 Jul 2026 stay Unassigned on both sides
 Sub folder: Release day and what must not change (section 84276).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Your location has invoices from before 29 Jul 2026, and you look at them in Sales By Representative.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - {Location-A} has invoices dated before 29 Jul 2026. For example: invoices from June 2026.
 - Starting screen: Reports > Sales By Representative is open in a desktop browser at least 1024 px wide, set to a date range before 29 Jul 2026 that holds those invoices, with Show Unassigned on.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location.
 
 #### SETUP-REL-05 — [C666007](https://shopview.testrail.io/index.php?/cases/view/666007) Saved report columns and sort reset once on release day
 Sub folder: Release day and what must not change (section 84276).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You had changed the columns and sort of Sales By Representative before the release, and open it after the release.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Before the release was installed, you changed the columns and the sort of Sales By Representative.
 - Starting screen: the release is installed and you open Reports > Sales By Representative in the same browser, desktop width at least 1024 px.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location.
 
 #### SETUP-REL-05b — [C715664](https://shopview.testrail.io/index.php?/cases/view/715664) An old Product Type link opens Sales By Representative with all types
 Sub folder: Release day and what must not change (section 84276).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You bookmarked Sales By Representative narrowed by Product Type before the release, and open the bookmark after it.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Before the release was installed, you bookmarked a link to Sales By Representative that narrowed it by Product Type.
 - Starting screen: the release is installed and the bookmark is ready in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location.
 
 #### SETUP-REL-06 — [C666008](https://shopview.testrail.io/index.php?/cases/view/666008) A Sales By Customer filter from before the release keeps its options
 Sub folder: Release day and what must not change (section 84276).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You bookmarked Sales By Customer with one Product Type option before the release, and open the bookmark after it.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Before the release was installed, you bookmarked Sales By Customer with only one Product Type option selected. For example: only the parts option selected.
 - The browser window is a desktop browser at least 1024 px wide, and the design picture "sbc-00-b-sbc-filter.png" (board 5.0) attached to this case is open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
@@ -1752,22 +1751,22 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location.
 
 #### SETUP-REL-07 — [C666009](https://shopview.testrail.io/index.php?/cases/view/666009) Imported work orders still have no sales representative
 Sub folder: Release day and what must not change (section 84276).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Your location has a work order imported from the previous system.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - {Location-A} has an imported work order, {Work-order-1}. For example: {Work-order-1} is an imported work order from the previous system.
 - Starting screen: {Work-order-1} is open in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location; {Work-order-1} = the work order.
 
 #### SETUP-REL-08 — [C666010](https://shopview.testrail.io/index.php?/cases/view/666010) Customer invoice and estimate documents still show no representative
 Sub folder: Release day and what must not change (section 84276).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order has different Labor and Parts representatives, and you look at the estimate and invoice the customer receives.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1776,11 +1775,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-REL-09 — [C666011](https://shopview.testrail.io/index.php?/cases/view/666011) Credit memos stay out of Sales By Representative
 Sub folder: Release day and what must not change (section 84276).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer had a split work order invoiced and a credit memo made today.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1789,21 +1788,21 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-REL-10 — [C666012](https://shopview.testrail.io/index.php?/cases/view/666012) The Sales Follow-Up report is still not in the Reports menu
 Sub folder: Release day and what must not change (section 84276).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: After the release, you look through the Reports menu.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: any page is open in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location.
 
 #### SETUP-REL-11 — [C666013](https://shopview.testrail.io/index.php?/cases/view/666013) No sales representative is sent to QuickBooks
 Sub folder: Release day and what must not change (section 84276).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Your location is connected to QuickBooks, and you invoice a work order with different Labor and Parts representatives.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1813,11 +1812,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-REL-12 — [C666014](https://shopview.testrail.io/index.php?/cases/view/666014) On a phone Lead Technician and Service Advisor keep today's arrow behaviour
 Sub folder: Release day and what must not change (section 84276).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: On a phone, you use the Lead Technician and Service Advisor fields of an open work order after the release.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
 - Work order {Work-order-1} for {Customer-A} is open and not invoiced; it has one approved labor line and one part, and its card shows one "Sales Representative" field reading "Unassigned". For example: {Work-order-1} is S2-40001.
@@ -1826,21 +1825,21 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Work-order-1} = the work order.
 
 #### SETUP-REL-13 — [C666015](https://shopview.testrail.io/index.php?/cases/view/666015) A user without Reports access still cannot open Sales By Representative
 Sub folder: Release day and what must not change (section 84276).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A colleague whose role has no access to reports tries to open Sales By Representative.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as {User-B}, whose role does not have "Reports — Page Access", at {Location-A}. For example: {User-B} is ZZAUTOTEST SSR No Reports; {Location-A} is Staging Heavy Duty - 9919.
 - Starting screen: any page is open in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}, {User-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location; {User-B} = user B.
 
 #### SETUP-REL-14 — [C666016](https://shopview.testrail.io/index.php?/cases/view/666016) A work order that is never split is credited exactly as before
 Sub folder: Release day and what must not change (section 84276).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A work order with one sales representative, never split, was invoiced today.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1850,22 +1849,22 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-REL-17 — [C715570](https://shopview.testrail.io/index.php?/cases/view/715570) Filter labels on other reports read as before
 Sub folder: Release day and what must not change (section 84276).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You can work at three or more locations, and you use a filter on another report, Parts Velocity.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - At least three locations are open to you: {Location-A}, {Location-B} and {Location-C}. For example: Staging Heavy Duty - 9919, QA Testing and ZZAUTOTEST SSR Third Location.
 - Starting screen: Reports > Parts Velocity is open in a desktop browser at least 1024 px wide.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}, {Location-B}, {Location-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location; {Location-B} = the second location; {Location-C} = the third location.
 
 #### SETUP-REL-18 — [C715571](https://shopview.testrail.io/index.php?/cases/view/715571) The invoice preview still opens for a split work order
 Sub folder: Release day and what must not change (section 84276).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order for a customer's unit has different Labor and Parts representatives, and you preview its invoice.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1875,11 +1874,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Unit-A}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Unit-A} = the unit; {Work-order-1} = the work order.
 
 #### SETUP-REL-18b — [C715665](https://shopview.testrail.io/index.php?/cases/view/715665) A unit's invoice list still opens after a split work order is invoiced
 Sub folder: Release day and what must not change (section 84276).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A work order for a customer's unit, with different Labor and Parts representatives, was invoiced today, and you open the unit's invoices.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1889,11 +1888,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Unit-A}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Unit-A} = the unit; {Work-order-1} = the work order.
 
 #### SETUP-REL-19 — [C715572](https://shopview.testrail.io/index.php?/cases/view/715572) A log entry saved before the release reads one representative
 Sub folder: Release day and what must not change (section 84276).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Before the release, an open work order's sales representative was changed and logged, and you look at its log after the release.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1902,11 +1901,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-REL-19b — [C715666](https://shopview.testrail.io/index.php?/cases/view/715666) A history version saved before the release shows one representative
 Sub folder: Release day and what must not change (section 84276).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Before the release, an open work order with one sales representative was saved to its history, and you open that version after the release.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1915,11 +1914,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-D-01 — [C666017](https://shopview.testrail.io/index.php?/cases/view/666017) Work order card at rest matches the design
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You compare an open work order's card, with and without a sales representative, against the design pictures.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1929,11 +1928,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}, {Work-order-2}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the first work order; {Work-order-2} = the second work order.
 
 #### SETUP-D-02 — [C666018](https://shopview.testrail.io/index.php?/cases/view/666018) Hovering the Sales Representative row shows the box, arrow and +
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You hover over the Sales Representative row of an open work order and compare it with the design pictures.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1943,11 +1942,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-D-03 — [C666019](https://shopview.testrail.io/index.php?/cases/view/666019) The Sales Representative list looks as designed
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You open the Sales Representative list of an open work order and compare it with the design pictures.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1957,11 +1956,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-D-04 — [C666020](https://shopview.testrail.io/index.php?/cases/view/666020) The + tooltip and menu look as designed
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You hover over and click the + beside an open work order's sales representative and compare it with the design pictures.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1971,11 +1970,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-D-05 — [C666021](https://shopview.testrail.io/index.php?/cases/view/666021) Labor and Parts fields at rest and on hover look as designed
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order has separate Labor and Parts fields, and you compare them at rest and on hover with the design pictures.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1985,11 +1984,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-D-05b — [C715667](https://shopview.testrail.io/index.php?/cases/view/715667) Design: at 200% zoom the Labor and Parts labels show in full
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order has separate Labor and Parts fields, and you check their labels at 200% browser zoom.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -1999,11 +1998,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-D-06 — [C666022](https://shopview.testrail.io/index.php?/cases/view/666022) Two reps, the remove x and removing Parts look as designed
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order has different Labor and Parts representatives, and you remove Parts while comparing with the design pictures.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -2013,11 +2012,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-D-07 — [C666023](https://shopview.testrail.io/index.php?/cases/view/666023) Clearing the field with Unassigned looks as designed
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An open work order has a sales representative, and you clear it with Unassigned while comparing with the design pictures.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -2027,11 +2026,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-D-08 — [C666024](https://shopview.testrail.io/index.php?/cases/view/666024) The invoiced work order card shows the reps as plain text
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A work order with different Labor and Parts representatives has been invoiced, and you compare its card with the design picture.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -2041,11 +2040,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-D-09 — [C666025](https://shopview.testrail.io/index.php?/cases/view/666025) Work order log entries read as designed
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You add, change and remove an open work order's Parts representative and compare its log with the design pictures.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -2055,11 +2054,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-D-10 — [C666026](https://shopview.testrail.io/index.php?/cases/view/666026) Design: Edit Customer's Sales Representative field and list look as designed
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer has no sales representative, and you compare Edit Customer's representative field and list with the design pictures.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -2068,11 +2067,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C.
 
 #### SETUP-D-10b — [C715668](https://shopview.testrail.io/index.php?/cases/view/715668) Design: Edit Customer's + tooltip and menu look as designed
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: In a customer's Edit Customer window, you compare the + tooltip and menu with the design pictures.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -2081,11 +2080,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C.
 
 #### SETUP-D-11 — [C666027](https://shopview.testrail.io/index.php?/cases/view/666027) Design: adding Service Parts and Part Sales in Edit Customer looks as designed
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer has one sales representative, and you add service parts and part sales representatives while comparing with the design pictures.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - Customer {Customer-A} has {Sales-rep-A} as its one sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -2094,11 +2093,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C.
 
 #### SETUP-D-11b — [C715669](https://shopview.testrail.io/index.php?/cases/view/715669) Design: removing Service Parts in Edit Customer looks as designed
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer has three representatives, and you remove the service parts one while comparing with the design pictures.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - Customer {Customer-A} shows "Sales Representative - Service Labor" {Sales-rep-A}, "Sales Representative - Service Parts" {Sales-rep-B} and "Sales Representative - Part Sales" {Sales-rep-C}. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -2107,11 +2106,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C.
 
 #### SETUP-D-12 — [C666028](https://shopview.testrail.io/index.php?/cases/view/666028) The customer page reads every representative row as designed
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A customer has representatives for service labor, service parts and part sales, and you compare its page with the design picture.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - Customer {Customer-A} shows Service Labor {Sales-rep-A}, Service Parts {Sales-rep-B} and "Sales Representative - Part Sales" {Sales-rep-C}. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -2120,11 +2119,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C.
 
 #### SETUP-D-13 — [C666029](https://shopview.testrail.io/index.php?/cases/view/666029) New Customer's representative field looks as designed
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You add a new customer and compare its representative field and menu with the design pictures.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Three active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A}, {Sales-rep-B} and {Sales-rep-C}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able, {Sales-rep-B} is ZZAUTOTEST Ben Able and {Sales-rep-C} is ZZAUTOTEST Cara Able.
 - The browser window is 1440 px wide with the zoom at 100%, and the design pictures "customer-16-n2-new.png" (board 2.16), "customer-17-n2-new-menu.png" (board 2.17) and "customer-18-n2-new-ps.png" (board 2.18) attached to this case are open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
@@ -2132,11 +2131,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Sales-rep-C}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Sales-rep-C} = sales rep C.
 
 #### SETUP-D-14 — [C666030](https://shopview.testrail.io/index.php?/cases/view/666030) A part sale's representative field is unchanged from Part Sales Update v1
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You compare an open part sale's representative field, at rest, on hover and with its list open, with the design pictures.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -2146,11 +2145,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Part-sale-1}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Part-sale-1} = the part sale; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-D-15 — [C666031](https://shopview.testrail.io/index.php?/cases/view/666031) Design: Sales By Representative rows and dashes look as designed
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Today has a split work order, a work order with one person on both sides and a part sale, and you compare the report rows with the design.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -2160,11 +2159,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-D-15b — [C715670](https://shopview.testrail.io/index.php?/cases/view/715670) Design: the Sales Type filter on Sales By Representative looks as designed
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Today has a split work order, a work order with one person on both sides and a part sale, and you compare the Sales Type filter with the design.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -2174,11 +2173,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-D-15c — [C715671](https://shopview.testrail.io/index.php?/cases/view/715671) Design: the Sales Type column on Sales By Representative looks as designed
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: Today has a split work order, a work order with one person on both sides and a part sale, and you compare the Sales Type column with the design.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -2188,11 +2187,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-D-16 — [C666032](https://shopview.testrail.io/index.php?/cases/view/666032) Sales By Representative Expanded CSV and PDF look as designed
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A split work order and a part sale were invoiced today, and you compare the Expanded CSV and PDF with the design pictures.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -2202,22 +2201,22 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-D-17 — [C666033](https://shopview.testrail.io/index.php?/cases/view/666033) Sales By Customer Sales Type filter looks as designed
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You compare the Sales Type filter of Sales By Customer with the design pictures.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The browser window is 1440 px wide with the zoom at 100%, and the design pictures "sbc-01-n5-sbc.png" (board 5.1) and "sbc-02-n5-sbc-open.png" (board 5.2) attached to this case are open beside it at 100% (actual size). Names, numbers and dates in the pictures are sample data.
 - Starting screen: Reports > Sales By Customer is open in that browser window.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location.
 
 #### SETUP-D-18 — [C666034](https://shopview.testrail.io/index.php?/cases/view/666034) Design: on a phone the Sales Representative field looks as designed
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: On a phone, you compare an open work order's Sales Representative field, with nobody on it, with the design pictures.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -2227,11 +2226,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-D-18b — [C715672](https://shopview.testrail.io/index.php?/cases/view/715672) Design: on a phone the + and the Labor and Parts fields look as designed
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: On a phone, an open work order has a sales representative, and you add the Parts field while comparing with the design pictures.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -2241,11 +2240,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-S1-01 — [C665915](https://shopview.testrail.io/index.php?/cases/view/665915) Sales Representative field appears below Service Advisor when unassigned
 Sub folder: Story 1 — One Sales Representative field on the work order (section 84267).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You open a new work order for a customer who has no sales representative and look at the card.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the Admin role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
 - Work order {Work-order-1} was created for {Customer-A} at {Location-A}, is not invoiced or paid, and nobody has picked a sales representative on it. For example: {Work-order-1} is S2-40001.
@@ -2253,11 +2252,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Work-order-1} = the work order.
 
 #### SETUP-DR-01 — [C690658](https://shopview.testrail.io/index.php?/cases/view/690658) Design: invoiced card keeps "Lead technician" and "Service advisor" labels
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: An invoiced work order has different Labor and Parts representatives, and you check that its Lead technician and Service advisor labels are unchanged.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Work order {Work-order-1} has been invoiced; its card shows "Sales Representative - Labor" reading {Sales-rep-A} and "Sales Representative - Parts" reading {Sales-rep-B}. For example: {Work-order-1} is S2-40001.
@@ -2267,11 +2266,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}, {Work-order-2}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the first work order; {Work-order-2} = the second work order.
 
 #### SETUP-DR-02 — [C690659](https://shopview.testrail.io/index.php?/cases/view/690659) Design: a part sale's field label still reads "Sales representative"
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: You compare an open part sale's representative field label with the design pictures.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -2281,11 +2280,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Part-sale-1}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Part-sale-1} = the part sale; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-DR-03 — [C690660](https://shopview.testrail.io/index.php?/cases/view/690660) Design: a part sale row shows a dash in the labor columns
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A part sale with a sales representative and no labor was invoiced today, and you look at its row in Sales By Representative.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -2295,11 +2294,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Part-sale-1}, {Sales-rep-A}, {Sales-rep-B}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Part-sale-1} = the part sale; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B.
 
 #### SETUP-DR-04 — [C690661](https://shopview.testrail.io/index.php?/cases/view/690661) Design: invoice dates in the Expanded exports match the screen
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A split work order was invoiced today, and you compare the invoice dates in the Expanded exports with the screen.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -2309,11 +2308,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-DR-06 — [C690663](https://shopview.testrail.io/index.php?/cases/view/690663) Design: Sales Type sits between Status and Location
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A split work order was invoiced today at one of two locations, and you check where the Sales Type column sits.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - A second location, {Location-B}, is open to you, and the report shows its Location column. For example: {Location-B} is QA Testing, and both locations are selected in the Location filter.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
@@ -2323,11 +2322,11 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Location-A}, {Location-B}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Location-A} = the test location; {Location-B} = the second location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 #### SETUP-DR-07 — [C690664](https://shopview.testrail.io/index.php?/cases/view/690664) Design: each split row shows its share under Adjustments
 Sub folder: Design — how it looks (section 84277).
-Satisfies these precondition lines, exactly as the case states them:
-- Scenario: A split work order with a whole-invoice discount was invoiced today, and you check each row's share under Adjustments.
+Satisfies the case's preconditions; here with the placeholders and examples a Claude session uses (the case itself, in the QA lead's pattern of 26 Oct 2026, says them in plain words):
 - You are signed in as a user with the "Admin" role at {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - Two active staff members at {Location-A} have their "Sales Representative" switch on: {Sales-rep-A} and {Sales-rep-B}. For example: {Sales-rep-A} is ZZAUTOTEST Ann Able and {Sales-rep-B} is ZZAUTOTEST Ben Able.
 - Customer {Customer-A} has no sales representative. For example: {Customer-A} is ZZAUTOTEST SSR Fleet.
@@ -2337,6 +2336,7 @@ Satisfies these precondition lines, exactly as the case states them:
 - If any record above is missing, mark this test Blocked: "setup not done".
 Procedures: P-REP for each {Sales-rep-…}; P-NOSWITCH for {Staff-member-…}; P-CUSTOMER for each {Customer-…}; P-WO / P-PARTSALE / P-FEE for the work orders and part sales; P-INVOICE where a precondition says invoiced; P-PRE-RELEASE for release-day cases; where a precondition says a switch was turned off, an account deactivated or a name changed after the person was picked, do that in Settings > Staff last; P-EXPAND when a step expands a row of Sales By Representative.
 Placeholders used: {Customer-A}, {Location-A}, {Sales-rep-A}, {Sales-rep-B}, {Work-order-1}. Values: the "For example" lines above; record the real work order and part sale numbers here after setup.
+Plain names in the test case: {Customer-A} = the customer; {Location-A} = the test location; {Sales-rep-A} = sales rep A; {Sales-rep-B} = sales rep B; {Work-order-1} = the work order.
 
 ## 5. Mapping table
 | Sub folder | Cases |
@@ -2367,4 +2367,4 @@ Every case's expected results quote their source sentences word for word (PRD v1
 
 ## 10. Open questions
 - Chris Ward answered all 38 questions of the first sheet on 19 Oct 2026 (design-recheck-2026-10-20/chris-answers.json).
-- Questions 39 and 40 (rows 46 and 47, light green) of the same sheet (https://docs.google.com/spreadsheets/d/17Ry1BtRTPEkecBP5TlgAE0T93Ai1TQewdJ7B7WpWDBQ) were answered by Chris Ward on 21 Oct 2026 and became PRD version 11: [C690660](https://shopview.testrail.io/index.php?/cases/view/690660) was released; DR-08 (C690665) was deleted on 22 Oct 2026 because nothing makes a Lead Technician message show today (answer 40). (A third, on the phone control, was withdrawn on 20 Oct 2026 as answered by answer 9; its held case DR-05 was deleted.) Question 41 (a customer adds the Part Sales field while its Service Parts or one representative has the switch off: what does the new field start with?) was drafted on 22 Oct 2026 in tech-plan-pass-2026-10-22/NEW-QUESTIONS.md; it was added to the same sheet on 22 Oct 2026 (rows 48-49, light orange) and is not yet answered; no case is held on it.
+- Questions 39 and 40 (rows 46 and 47, light green) of the same sheet (https://docs.google.com/spreadsheets/d/17Ry1BtRTPEkecBP5TlgAE0T93Ai1TQewdJ7B7WpWDBQ) were answered by Chris Ward on 21 Oct 2026 and became PRD version 11: [C690660](https://shopview.testrail.io/index.php?/cases/view/690660) was released; DR-08 (C690665) was deleted on 22 Oct 2026 because nothing makes a Lead Technician message show today (answer 40). (A third, on the phone control, was withdrawn on 20 Oct 2026 as answered by answer 9; its held case DR-05 was deleted.) Question 41 (a customer adds the Part Sales field while its Service Parts or one representative has the switch off: what does the new field start with?) was drafted on 22 Oct 2026 in tech-plan-pass-2026-10-22/NEW-QUESTIONS.md; it was added to the same sheet on 22 Oct 2026 (rows 48-49, light orange) and Chris Ward answered it on 23 Oct 2026 (PRD version 13, S4-R7 and S4-R8: the added field starts "Unassigned"); no case is held on it.

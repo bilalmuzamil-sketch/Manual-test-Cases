@@ -17,10 +17,16 @@ def E(key, pre, r=None, s=None, names=None, title=None):
 E("S1-02", [ADMIN_P,
    'Have three active staff members at the test location with their "Sales Representative" switch on: sales rep A, sales rep B and sales rep C. Sales rep A and sales rep B share a first name and sales rep A\'s last name comes first in the alphabet; sales rep C has a later first name.',
    'Have staff member D active at the test location with the "Sales Representative" switch off.',
-   CUST_P, WO_P(), OPEN_WO_P])
-E("S1-03", [ADMIN_P, REPS2_P, CUST_P, WO_P(), OPEN_WO_P])
-E("S1-04", [ADMIN_P, REPS2_P, CUST_P, WO_P('one "Sales Representative" field set to sales rep A'), OPEN_WO_P])
-E("S1-05", [ADMIN_P, REPS2_P, CUST_P, WO_P('one "Sales Representative" field set to sales rep A'), OPEN_WO_P])
+   CUST_P, WO_P(), OPEN_WO_P],
+  r={1: ["A dropdown opens under the field.", 'Reading it from top to bottom: the first option is "Unassigned".', '"Unassigned" is checked.',
+         "The sales representatives follow, sorted by first name, then last name, A to Z, so sales rep A comes before sales rep B, and sales rep B before sales rep C.",
+         "There is no search box.", "Staff member D is not listed."]})
+E("S1-03", [ADMIN_P, REPS2_P, CUST_P, WO_P(), OPEN_WO_P],
+  r={2: ["The dropdown closes.", "The field reads sales rep A.", "There is no Save button near the field.", "The change is already saved."]})
+E("S1-04", [ADMIN_P, REPS2_P, CUST_P, WO_P('one "Sales Representative" field set to sales rep A'), OPEN_WO_P],
+  r={3: ["The dropdown closes.", 'The field reads "Unassigned".']})
+E("S1-05", [ADMIN_P, REPS2_P, CUST_P, WO_P('one "Sales Representative" field set to sales rep A'), OPEN_WO_P],
+  r={2: ["The dropdown closes.", "The field still reads sales rep A."], 4: ["The dropdown closes.", "The field still reads sales rep A."]})
 E("S1-06", ['Sign in at the test location as user B, whose role has "Work Orders — View" but not "Work Orders — Create & Edit".',
    REPS2_P, CUST_P, WO_P('one "Sales Representative" field set to sales rep A'), OPEN_WO_P],
   r={1: ['The field shows as plain text: "Sales Representative" with sales rep A under it.', "There is no box, no arrow, no + and no remove x."]})
@@ -43,8 +49,8 @@ E("S1-10", [ADMIN_P, REPS2_P, CUST_P, WO_P(), OPEN_WO_P],
   r={2: ['The field returns to the last saved value ("Unassigned").', "An error message shows."]})
 E("S1-10b", [ADMIN_P, REPS2_P, CUST_P, WO_P(), OPEN_WO_P])
 E("S1-11", [ADMIN_P, REPS2_P, CUST_P,
-   'Have a first open, uninvoiced work order for that customer whose "Sales Representative - Labor" field reads sales rep A and whose "Sales Representative - Parts" field holds staff member C, whose staff record no longer exists.',
-   'Have a second open, uninvoiced work order for that customer whose one "Sales Representative" field holds staff member D, a staff member of another organization.',
+   'Have a first work order for that customer, open and not invoiced, whose "Sales Representative - Labor" field reads sales rep A and whose "Sales Representative - Parts" field holds staff member C, whose staff record no longer exists.',
+   'Have a second work order for that customer, open and not invoiced, whose one "Sales Representative" field holds staff member D, a staff member of another organization.',
    OPEN_P("the first work order")])
 
 # ---------------- Story 2: separate Labor and Parts representatives ----------------
@@ -89,7 +95,8 @@ E("S2-10", [ADMIN_P, REPS2_P, CUST_P,
 E("S2-11", [ADMIN_P, REPS2_P, CUST_P,
    'Have an open, uninvoiced part sale for that customer, with its Sales Representative field reading "Unassigned".',
    OPEN_P("the part sale")],
-  r={1: ['There is one representative field, labelled "Sales representative" with a small "r".', "There is no + button beside it."]})
+  r={1: ['There is one representative field, labelled "Sales representative" with a small "r".', "There is no + button beside it."],
+     3: ["The field reads sales rep A.", 'Its label still reads "Sales representative".', "There is still no + and no remove x."]})
 CUST_C_P = "Use a customer whose one Sales Representative is sales rep C."
 E("S2-12", [ADMIN_P, REPS3_P, CUST_C_P,
    WO_P('two approved lines (one labor line and one part), "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B', lines=False),
@@ -162,7 +169,8 @@ E("S4-04c", [ADMIN_P, 'Have sales rep A, an active staff member at the test loca
   r={2: ['"Sales Representative - Part Sales" shows last.', 'It reads "Unassigned".', 'Service Parts still reads staff member D\'s name followed by "(Inactive)".',
          "Service Labor still reads sales rep A."],
      3: ["The customer saves.", 'Its page lists, in this order: Service Labor with sales rep A, Service Parts with staff member D\'s name followed by "(Inactive)", and "Sales Representative - Part Sales" with Unassigned.']})
-E("S4-05", [ADMIN_P, REPS3_P, CUST_SPLIT3_P, CEDIT_P])
+E("S4-05", [ADMIN_P, REPS3_P, CUST_SPLIT3_P, CEDIT_P],
+  r={1: ["Service Parts goes away.", 'The first field is renamed "Sales Representative".', "It reads sales rep A.", '"Sales Representative - Part Sales" still reads sales rep C.']})
 E("S4-06", [ADMIN_P, REPS3_P, CUST_SPLIT3_P, CEDIT_P])
 E("S4-07", [ADMIN_P, REPS2_P, CUST_A_P, CEDIT_P],
   r={2: ["Service Labor and Service Parts show, both reading sales rep A."]})
@@ -254,7 +262,7 @@ E("S4-26", [ADMIN_P, REPS3_P, "Use customer A, whose one Sales Representative is
   r={3: ['Customer B shows "Sales Representative - Service Labor" sales rep A and "Sales Representative - Service Parts" sales rep B.', "There is no Part Sales field.",
          "Sales rep C has not been put back."]})
 E("S3-04", [ADMIN_P, REPS2_P, CUST_P, WO_P('one "Sales Representative" field set to sales rep A'),
-   OPEN_P(where="a touch tablet with no mouse, held so that its screen is at least 1024 pixels wide")],
+   OPEN_P(where="on a touch tablet with no mouse, held so that its screen is at least 1024 pixels wide")],
   r={1: ["The card is not collapsed.", "Lead Technician, Service Advisor and the Sales Representative field show without tapping the card's edit button.",
          "The field shows its dropdown arrow without any hover.", "The + button shows beside it at its full size, without any hover."],
      3: ["The menu closes.", '"Sales Representative - Labor" and "Sales Representative - Parts" show, in that order.',
@@ -352,7 +360,8 @@ E("S5-10", [ADMIN_P, REPS2_P, CUST_P, LOC0_P,
   r={1: ["The work order's Parts row under sales rep B shows Parts Margin $20.00 and Margin % 40.00% (20 ÷ 50 × 100).", "Labor plays no part."],
      2: ["The work order's Labor row under sales rep A shows a Margin % equal to Labor Margin ÷ $200.00 × 100, from the labor figures only."]})
 E("S5-11", ["Sign in as an Admin at the test location, as a user who has never changed the columns of Sales By Representative since the release.",
-   OPEN_P("Reports > Sales By Representative")])
+   OPEN_P("Reports > Sales By Representative")],
+  r={2: ['"Sales Type" is first in the list.', "It is off."]})
 E("S5-11b", [ADMIN_P, "Make sure the Sales Type column of Sales By Representative is off for you.", OPEN_P("Reports > Sales By Representative")],
   r={1: ["The column selector opens.", "Sales Type is off."]})
 E("S5-12", [ADMIN_P, REPS2_P, CUST_P, INV_P("a labor line and a part", "Labor set to sales rep A and Parts set to sales rep B"),
@@ -402,8 +411,8 @@ E("S7-02", [ADMIN_P, REPS2_P, CUST_P, WO_P(_SPLIT_AB), OPEN_WO_P])
 E("S7-03", [ADMIN_P, REPS2_P, CUST_P, WO_P('one "Sales Representative" field set to sales rep A'), OPEN_WO_P],
   r={2: ["The log opens.", 'You have the count of "Sales representative changed" entries.'], 7: ["The count is the same.", "There is no new entry."]})
 E("S7-05", [ADMIN_P, REPS2_P, CUST_P,
-   'Have a first open, uninvoiced work order for that customer whose "Sales Representative - Labor" field reads sales rep A and whose "Sales Representative - Parts" field holds staff member C, whose staff record no longer exists.',
-   'Have a second open, uninvoiced work order for that customer whose one "Sales Representative" field holds staff member D, a staff member of another organization.',
+   'Have a first work order for that customer, open and not invoiced, whose "Sales Representative - Labor" field reads sales rep A and whose "Sales Representative - Parts" field holds staff member C, whose staff record no longer exists.',
+   'Have a second work order for that customer, open and not invoiced, whose one "Sales Representative" field holds staff member D, a staff member of another organization.',
    OPEN_P("the first work order")])
 
 # ---------------- Story 8: Sales Type filters on both sales reports ----------------
@@ -428,7 +437,7 @@ E("S8-12", [ADMIN_P, "Pick a date on which the test location has no invoices.",
   r={1: ['"Empty export" does not show.', 'A CSV downloads with the filter line "Sales Type: All", the column headings and no rows.']})
 E("S8-12b", [ADMIN_P, "Pick a date on which the test location has no invoices.",
    "Open Reports > Sales By Customer for that date in a desktop browser at least 1024 pixels wide, so it shows no invoices."])
-E("S5-19", [ADMIN_P, REPS2_P, CUST_P, LOC0_P,
+E("S5-19", [ADMIN_P, REPS2_P, 'Have staff member C, a third active staff member at the test location, with the "Sales Representative" switch on.', CUST_P, LOC0_P,
    'Have a work order for that customer with "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to staff member C, and invoice it today.',
    "After the invoice, staff member C's staff record no longer exists.",
    SBR_UN_P])

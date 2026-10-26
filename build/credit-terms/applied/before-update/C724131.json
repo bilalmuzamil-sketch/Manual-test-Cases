@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726907,
  "updated_by": 3,
- "updated_on": 1792726907,
+ "updated_on": 1793025095,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with the \"Admin\" role, working in {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Customers {Customer-A}, {Customer-B} and {Customer-C} hold the shop's own terms {Term-A} (day 31 of the following month), {Term-B} (day 30) and {Term-C} (day 29).<br>For example: the customers are ZZAUTOTEST DATA-05 A, B and C, and the terms ZZAUTOTEST DATA-05 D31, D30 and D29.</li><li>Work orders {Work-order-1}, {Work-order-2} and {Work-order-3}, for {Customer-A}, {Customer-B} and {Customer-C}, are complete and ready to invoice.<br>For example: S2-15440, S2-15441 and S2-15442.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>Scenario: Three customers on terms due on the 29th, 30th and 31st of the following month are invoiced in January 2027.</li><li>You are an Admin user working at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Customers {Customer-A}, {Customer-B} and {Customer-C} hold the shop's own terms {Term-A} (day 31 of the following month), {Term-B} (day 30) and {Term-C} (day 29).<br>For example: the customers are ZZAUTOTEST DATA-05 A, B and C, and the terms ZZAUTOTEST DATA-05 D31, D30 and D29.</li><li>Work orders {Work-order-1}, {Work-order-2} and {Work-order-3}, for {Customer-A}, {Customer-B} and {Customer-C}, are complete and ready to invoice.<br>For example: {Work-order-1} is S2-15440, {Work-order-2} is S2-15441 and {Work-order-3} is S2-15442.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Open {Work-order-1}'s Finance tab.</li><li>Set Invoice Date to Jan 20, 2027.</li><li>Open {Work-order-2}'s Finance tab.</li><li>Set Invoice Date to Jan 20, 2027.</li><li>Open {Work-order-3}'s Finance tab.</li><li>Set Invoice Date to Jan 20, 2027.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the invoice preview shows.</li><li>Step 2: the Due date reads Feb 28, 2027 (2027 is not a leap year; February has 28 days, fewer than 31).</li><li>Step 3: the invoice preview shows.</li><li>Step 4: the Due date reads Feb 28, 2027 (fewer than 30).</li><li>Step 5: the invoice preview shows.</li><li>Step 6: the Due date reads Feb 28, 2027 (fewer than 29).</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11676 (Story 7, Due dates)</p><ul><li><strong>S7-R3:</strong> &ldquo;When the following month is shorter than the term's day, the due date is that month's last day: day 31 invoiced in October is due Nov 30; day 30 or 31 invoiced in January is due Feb 28 (Feb 29 in a leap year); day 31 invoiced in March is due Apr 30.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"9 Invoice due date\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 1
+ "version": 2
 }

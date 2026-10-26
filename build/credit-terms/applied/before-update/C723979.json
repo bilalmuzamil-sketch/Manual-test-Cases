@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726684,
  "updated_by": 3,
- "updated_on": 1792726684,
+ "updated_on": 1793024881,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with the \"Admin\" role, working in {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Due on Receipt is the shop's default for new customers.</li><li>COD is held by customer {Customer-A}, with a $0.00 limit.<br>For example: {Customer-A} is ZZAUTOTEST S4-15 Cash.</li><li>Starting screen: the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group) is open on the Active tab.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>Scenario: Your shop moves a COD customer with a $0 credit limit to Net 30.</li><li>You are an Admin user working at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Due on Receipt is the shop's default for new customers.</li><li>COD is held by customer {Customer-A}, with a $0.00 limit.<br>For example: {Customer-A} is ZZAUTOTEST S4-15 Cash.</li><li>Starting screen: the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Click the \"⋯\" at the right of the \"COD\" row.</li><li>Click \"Move Customers\".</li><li>Click \"Select None\".</li><li>Type {Customer-A}'s name in \"Search customers\".</li><li>Tick {Customer-A}.</li><li>Choose \"Net 30\" in \"Move To\".</li><li>Click \"Move 1 Customer\".</li><li>Open Edit Customer for {Customer-A}.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the menu opens.</li><li>Step 2: a window titled \"Move Customers from COD\" opens.</li><li>Step 3: \"0 selected\" (every customer on the term is unticked, including those not in view).</li><li>Step 4: only {Customer-A} is listed.</li><li>Step 5: \"1 selected\".</li><li>Step 6: no $0 line shows.</li><li>Step 7: no confirmation opens and the toast \"1 customer moved to Net 30.\" shows.</li><li>Step 8: Credit Terms reads Net 30 and Credit Limit reads $0.00, now editable.</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11673 (Story 4, Move Customers), story SV-11674 (Story 5, New Customer and Edit Customer)</p><ul><li><strong>S4-E3:</strong> &ldquo;Moving customers to COD or Credit Hold sets each moved customer's credit limit to $0 (S4-R16), whatever limit they had, and keeps the previous limit in each note (S4-R20). Moving customers off COD or Credit Hold to another term leaves their $0 limit as it is until someone enters a new one in Edit Customer.&rdquo;</li><li><strong>S4-R17:</strong> &ldquo;When \"Move To\" is any other term, no confirmation opens, and each moved customer's credit limit stays as it was.&rdquo;</li><li><strong>S5-R5:</strong> &ldquo;For any other term, Credit Limit is editable, as on Edit Customer today. Switching from COD or Credit Hold to another term leaves the limit at $0.00 until the user enters one.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"2 Move customers to another term\", \"5 New Customer\", \"6 Customer on a deactivated term\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 1
+ "version": 2
 }

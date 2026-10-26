@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726590,
  "updated_by": 3,
- "updated_on": 1793024809,
+ "updated_on": 1793027917,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,14 +22,14 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>Scenario: Your shop switches off an unused term of its own that has the longest name allowed.</li><li>You are an Admin user working at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>COD is the shop's default for new customers.</li><li>The shop's own term {Term-A} has a 31-character name, due 14 days after the invoice date, and is unused.<br>For example: {Term-A} is ZZAUTOTEST S2-28 Long Name 0123 (31 characters).</li><li>Starting screen: the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
- "custom_steps": "<ol><li>Click the \"⋯\" at the right of the {Term-A} row.</li><li>Click \"Deactivate\".</li></ol>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure COD is the shop's default for new customers.</li><li>Make sure the shop's own term A has a 31-character name, due 14 days after the invoice date, and is unused.</li><li>Start on the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_steps": "<ol><li>Click the \"⋯\" at the right of the term A row.</li><li>Click \"Deactivate\".</li></ol>",
  "custom_testrail_bdd_scenario": null,
- "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the menu opens.</li><li>Step 2: the toast reads \"{Term-A} deactivated\" with every character of the name; a long line wraps and nothing is cut off or replaced by \"...\".</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11671 (Story 2, Row menu actions)</p><ul><li><strong>S2-R12:</strong> &ldquo;Every success toast that shows a term name ({name} or {term}) on the Credit Terms page, in Story 3: Create or edit a credit term and in Story 4: Move Customers shows the full name; a long name wraps and is never cut off.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"1 List and row menus\" (\"A 31-character term name\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes.</p><p>Design pictures attached to this case:</p><ul><li>ct-p1-12-a-31-character-term-name.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Toast in the capture: \"Net 45 Fleet Accounts Payable X created\" (S3-R7).&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
+ "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The menu opens.</li></ul><p>Step 2:</p><ul><li>The toast reads \"term A deactivated\" with every character of the name.</li><li>A long line wraps and nothing is cut off or replaced by \"...\".</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11671 (Story 2, Row menu actions)</p><ul><li><strong>S2-R12:</strong> &ldquo;Every success toast that shows a term name ({name} or {term}) on the Credit Terms page, in Story 3: Create or edit a credit term and in Story 4: Move Customers shows the full name; a long name wraps and is never cut off.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"1 List and row menus\" (\"A 31-character term name\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes.</p><p>Design pictures attached to this case:</p><ul><li>ct-p1-12-a-31-character-term-name.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Toast in the capture: \"Net 45 Fleet Accounts Payable X created\" (S3-R7).&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
  "custom_steps_separated": null,
  "custom_mission": null,
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 2
+ "version": 3
 }

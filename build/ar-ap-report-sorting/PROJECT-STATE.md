@@ -107,3 +107,15 @@
 - Every other field byte-identical to before (`scenario-preconditions-2026-10-26/make_pass_report.py`, PASS-REPORT.md). Setup file
   regenerated. Not written to TestRail (needs the QA lead's go-ahead, together with the v9 pass).
 - 26 Oct 2026: Rule 117 thirteenth amendment (QA lead: "Preconditions should be like a scenario") applied to every case of this suite: one "Scenario:" line first, then what must exist in setup order; only custom_preconds changed (script-checked), every case updated in TestRail with an edit lock and read back clean.
+
+## 26 Oct 2026 — every case in the QA lead's own pattern (Rule 117 fourteenth amendment), DRAFT
+- Worker brief `build/pattern-format-2026-10-26/WORKER-BRIEF.md`. All 357 cases rendered in the pattern: plain Preconditions bullets in setup
+  order (no Scenario line, placeholder, "For example:" line or setup-file link; records named "customer A", "location B", "date A"; Blocked line
+  last, reworded "If you cannot set up any of the above, ..."), Steps, "Expected Result" with "Step N:" and one bullet per fact, `<p></p>`, then
+  the note / quotes / design / AUTOMATION block byte-identical to before.
+- How: `authoring/pattern.py` (mechanical conversion of the case model) + `authoring/pattern_layout.py` (47 cases corrected by hand after reading
+  every converted case; RES_SPLIT for shared multi-fact sentences). `ar_lib.render` uses it; `build.py` PATTERN GATE replaced the Scenario gate
+  (0 PROBLEM lines). The case model and the setup file keep the placeholders and examples; the setup file maps each placeholder to its plain name.
+- Proof: `pattern-format-2026-10-26/PASS-REPORT.md` (make_pass_report.py): byte identity below the blank line PASS 357/357, no fact lost PASS
+  357/357; example values kept as facts where a result depends on them (S1-01 to S1-04 and S1-07 names, S2-23 due days, S5-38 and DATA-16/17
+  amounts). Before-state: `pattern-format-2026-10-26/proposals-before.json`. Not written to TestRail (needs the QA lead's go-ahead).

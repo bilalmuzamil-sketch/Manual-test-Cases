@@ -98,3 +98,10 @@ Intake: INTAKE-2026-10-19.md. Worker brief: WORKER-BRIEF.md.
   every customer field first (S4-R20), so no field can hold them when a field is added.
 - The tech plan copies the person into the added field; the PRD now says "Unassigned" — expect the build to differ until changed.
 - 26 Oct 2026: Rule 117 thirteenth amendment (QA lead: "Preconditions should be like a scenario") applied to every case of this suite: one "Scenario:" line first, then what must exist in setup order; only custom_preconds changed (script-checked), every case updated in TestRail with an edit lock and read back clean.
+- 26 Oct 2026 (later): Rule 117 fourteenth amendment (QA lead's own pattern, "Yes, permanent, all suites") DRAFTED for all 180 cases
+  (pattern-format-2026-10-26/): plain precondition bullets in setup order with the Blocked line last (C665915 kept exactly as the QA lead
+  approved it), steps and results with plain names (sales rep A, the first work order) in place of placeholders, one "Step N:" bullet list
+  per step, a blank paragraph, then quotes / design block / AUTOMATION line byte-identical to before (180/180, script-checked); no fact lost
+  (2,100 facts checked, 0 missing). build.py: pattern gate replaces the Scenario gate, 0 PROBLEM. Library: authoring/pattern_lib.py,
+  pattern_cases.py (merged into trial_layout.LAYOUT_V2); design-recheck drafts DR-PATTERN.json. Setup file regenerated (plain-name map per
+  recipe). Not yet in TestRail: the update waits for the QA lead's go-ahead.
