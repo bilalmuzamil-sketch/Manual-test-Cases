@@ -31,7 +31,8 @@ export async function viewAs(browser: Browser, main: Page, a: Api, userId: strin
   const page = await ctx.newPage();
   // 22 Oct 2026 (production): a fresh page sits on about:blank, and production's API refuses a credentialed fetch from it ("Failed to fetch",
   // design-stg5 C590113) where staging answered. On production only, open the app first so every later fetch comes from the app's origin.
-  if (process.env.WOB_PROD_LOGIN) { const app = String(process.env.GS_APP || '').replace(/\/$/, ''); if (app) { await page.goto(app + '/customers', { waitUntil: 'domcontentloaded', timeout: 45_000 }) /* 22 Oct 2026: a page with no Work Orders events — opening /workorders here added two List views to the analytics counts (C97023) */.catch(() => {}); await page.waitForTimeout(3000); } }
+  // 26 Oct 2026: QA branches refuse the same about:blank fetch (C97020 on sv11545, "Failed to fetch"), so open the app first there too
+  if (process.env.WOB_PROD_LOGIN || /\.qa\.shopview\.com/.test(String(process.env.GS_APP || ''))) { const app = String(process.env.GS_APP || '').replace(/\/$/, ''); if (app) { await page.goto(app + '/customers', { waitUntil: 'domcontentloaded', timeout: 45_000 }) /* 22 Oct 2026: a page with no Work Orders events — opening /workorders here added two List views to the analytics counts (C97023) */.catch(() => {}); await page.waitForTimeout(3000); } }
   const close = async () => { await ctx.close().catch(() => {}); if (backTo) return backTo(); const e = await a.post('/api/exit-switch-user', {}); if (e.status >= 300) await a.post('/api/switch-user', { user_id: adminStaffId }); };
   return { page, close, userKeys: user ? Object.keys(user) : null, perms: Array.isArray(fe) ? fe.length : (fe?.fe_permissions ?? []).length };
 }

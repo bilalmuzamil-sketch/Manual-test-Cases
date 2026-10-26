@@ -1,0 +1,18 @@
+07:21:12 trying the saved session
+07:21:16 saved session no longer works — signing in once
+07:21:19 signed in through quick-login as "admin" — shop: Staging Heavy Duty - 9919
+07:21:32 https://sv11545.qa.shopview.com/customers | app-version=v26.43.1-a53a4ac | fe_permissions=57
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator('[data-test-id="board_card_5e8f7ac8-2e5e-45cb-89a8-23e54d48b7c5"]').first()
+
+    at <anonymous> (/home/user/Manual-test-Cases/build/wo-board-tech-view/run498-2026-10-08/c97020-admin-1026.mts:31:62) {
+  name: 'TimeoutError'
+}
+
+Node.js v22.22.0
+EXIT 0

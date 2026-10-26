@@ -1,0 +1,38 @@
+{
+ "pass_meta": {
+  "env": "QA branch sv11545",
+  "build": "v26.43.1-a53a4ac",
+  "date": "26 October 2026",
+  "note": "Rule 136: linked to a ticket that passed QA on its own QA branch"
+ },
+ "results": {
+  "C96964": {
+   "verdict": "Passed",
+   "observed": [
+    "Passed on the QA branch sv11545 (fix for SV-11545), Invoiced S11545-17580 and Paid S11545-17581, in Board View and Tech View.",
+    "The lock icon's hover text reads \"Invoiced \u00b7 can't be reassigned\" / \"Paid \u00b7 can't be reassigned\".",
+    "In More actions, Reassign lead technician and Unassign are greyed out and their tooltip reads the same words.",
+    "Dragged over another technician's column or group, the note at the top reads the same words; on release the work order stays with its own technician.",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11545 (Testing QA) - passed on its QA branch."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-26/sv11545/SV-11545-1-menu-tooltip.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-26/sv11545/SV-11545-2-drag-note-board.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-26/sv11545/SV-11545-3-drag-note-tech.png"
+   ]
+  },
+  "C97020": {
+   "verdict": "Passed",
+   "observed": [
+    "Passed on the QA branch sv11545, every step as written, keyboard only.",
+    "Steps 1 to 6 (view-only user, role \"ZZAUTOTEST WO View Only\"): the card has no More actions button, Enter opens nothing, and Space or Shift with the arrow keys moves nothing; the work order keeps its place and its lead.",
+    "Steps 7 to 13 (Admin, Invoiced S11545-17589): the More actions button takes focus, Enter opens the menu with Reassign lead technician and Unassign greyed out and the note \"Invoiced \u00b7 can't be reassigned\"; Enter on the greyed item opens nothing; Escape closes the menu.",
+    "Steps 14 to 16: Space and Shift with the arrow keys move nothing; after a refresh the work order is still in ZZAUTOTEST C97020 Ana Alpha's column and its page shows that Lead technician.",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11545 (Testing QA) - passed on its QA branch."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-26/sv11545/C97020-ann-keyboard-menu.png"
+   ]
+  }
+ }
+}

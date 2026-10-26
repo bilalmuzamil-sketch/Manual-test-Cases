@@ -1,0 +1,214 @@
+{
+ "case": {
+  "id": 682422,
+  "title": "More actions reads Assign lead technician when a work order has no lead",
+  "section_id": 13239,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 2,
+  "milestone_id": null,
+  "refs": "SV-10046,SV-10047,SV-11570",
+  "created_by": 3,
+  "created_on": 1792428665,
+  "updated_by": 7,
+  "updated_on": 1792682547,
+  "estimate": null,
+  "estimate_forecast": null,
+  "suite_id": 1,
+  "display_order": 1,
+  "is_deleted": 0,
+  "is_ai_generated": false,
+  "is_ai_automated": false,
+  "custom_ai_type": null,
+  "custom_ai_model": null,
+  "custom_automation_type": 2,
+  "custom_atmstatus": 1,
+  "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p><br></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at {Location-A}, in a browser window at least 1024 px wide.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Technician {Technician-A} is active at {Location-A} with the \"Technician\" role and Time Clock on.<br>For example: {Technician-A} is ZZAUTOTEST C682422 Ana.</li><li>Customer {Customer-A} has two Approved work orders: {Work-order-1} with no lead technician, and {Work-order-2} led by {Technician-A}.<br>For example: {Customer-A} is ZZAUTOTEST C682422 Assign Wording, and {Work-order-1} and {Work-order-2} are S2-37401 and S2-37402.</li><li>Starting screen: \"Work Orders\" &gt; \"All\" tab, \"Board View\" shown, the name of {Customer-A} in \"Search\", no filter chosen, \"Assigned to me\" off.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+  "custom_steps": "<ol><li>Open the \"More actions\" (\u2026) menu on the card for {Work-order-1} in \"Unassigned\".</li><li>Click \"Assign lead technician\".</li><li>Click \"Cancel\".</li><li>Open the \"More actions\" (\u2026) menu on the card for {Work-order-2} in {Technician-A}'s column.</li><li>Click \"Reassign lead technician\".</li><li>Click \"Cancel\".</li><li>Click \"Tech View\" in the display switcher.</li><li>Open the \"More actions\" (\u2026) menu on the row for {Work-order-1} in \"Unassigned\".</li><li>Click \"Assign lead technician\".</li><li>Click \"Cancel\".</li></ol>",
+  "custom_testrail_bdd_scenario": null,
+  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the menu offers \"Assign lead technician\". It does not say \"Reassign lead technician\".</li><li>Step 2: a dialog titled \"Assign lead technician\" opens.</li><li>Step 3: the dialog closes and {Work-order-1} stays in \"Unassigned\".</li><li>Step 4: the menu offers \"Reassign lead technician\".</li><li>Step 5: a dialog titled \"Reassign lead technician\" opens.</li><li>Step 6: the dialog closes and {Work-order-2} stays in {Technician-A}'s column.</li><li>Step 7: Tech View shows {Work-order-1} in \"Unassigned\" and {Work-order-2} in {Technician-A}'s group.</li><li>Step 8: the menu offers \"Assign lead technician\". It does not say \"Reassign lead technician\".</li><li>Step 9: a dialog titled \"Assign lead technician\" opens.</li><li>Step 10: the dialog closes and {Work-order-1} stays in \"Unassigned\".</li></ul><p>Developers also check this with unit tests (SV-11570): <code>WorkOrderMoreActions.spec.ts</code> (\"the lead action's label\") and <code>ReassignLeadTechnicianDialog.spec.ts</code> (\"its title and confirm button\").</p><p><strong>Known problem</strong> (SV-11570, Testing QA, for this release; it replaces SV-11522 and SV-11524 for the label only, Chris Ward, Slack #fs-board-tech-view, 20 Oct 2026): until it ships, the menu on a work order with no lead says \"Reassign lead technician\". (1) If you see exactly that, mark this test Failed and raise nothing new. (2) If it fails in a different way, report it. (3) If it behaves as the expected results say, mark it Passed and tell the QA lead: the change has shipped.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 71 (20 Oct 2026, Chris Ward), read 20 Oct 2026 \u00b7 Epic SV-10043, stories SV-10046 (Story 3, Board View \u2014 board by lead technician) and SV-10047 (Story 4, Reassign or unassign the lead technician from the board or grouped table); ticket SV-11570</p><ul><li><strong>S3-R14:</strong> \u201cInclude the lead technician action in the card\u2019s more-actions menu: \u201cAssign lead technician\u201d on a work order with no lead technician, \u201cReassign lead technician\u201d on one that has a lead technician.\u201d</li><li><strong>S4-R4:</strong> \u201cThe card or row more-actions menu opens the lead technician dialog, titled \u201cAssign lead technician\u201d or \u201cReassign lead technician\u201d to match the menu item it was opened from (S3-R14).\u201d</li><li><strong>S4-R13:</strong> \u201cClicking a technician in the dialog assigns them at once; there is no confirm button, and the dialog\u2019s only button is Cancel. When the shift-clearing prompt applies (S4-R28) it shows first, and the change is made from the prompt. Clicking the work order\u2019s current lead closes the dialog with no change (S4-N4).\u201d</li></ul><p>Not yet checked against a build in this wording.</p><p><br></p><p>AUTOMATION: UNIT-TESTED - WorkOrderMoreActions.spec.ts \u203a \"the lead action's label\"; ReassignLeadTechnicianDialog.spec.ts \u203a \"its title and confirm button\". The confirm button goes with the fast follow SV-11524, so the second test changes then.</p>",
+  "custom_steps_separated": null,
+  "custom_mission": null,
+  "custom_goals": null,
+  "ai_automated_test": null,
+  "labels": [],
+  "version": 7
+ },
+ "history": {
+  "offset": 0,
+  "limit": 250,
+  "size": 6,
+  "_links": {
+   "next": null,
+   "prev": null
+  },
+  "history": [
+   {
+    "id": 33998,
+    "type_id": 6,
+    "created_on": 1792428666,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at {Location-A}, in a browser window at least 1024 px wide.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Technician {Technician-A} is active at {Location-A} with the \"Technician\" role and Time Clock on.<br>For example: {Technician-A} is ZZAUTOTEST C0 Ana.</li><li>Customer {Customer-A} has two Approved work orders: {Work-order-1} with no lead technician, and {Work-order-2} led by {Technician-A}.<br>For example: {Customer-A} is ZZAUTOTEST C0 Assign Wording, and {Work-order-1} and {Work-order-2} are S2-37401 and S2-37402.</li><li>Starting screen: \"Work Orders\" &gt; \"All\" tab, \"Board View\" shown, the name of {Customer-A} in \"Search\", no filter chosen, \"Assigned to me\" off.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+      "new_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at {Location-A}, in a browser window at least 1024 px wide.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Technician {Technician-A} is active at {Location-A} with the \"Technician\" role and Time Clock on.<br>For example: {Technician-A} is ZZAUTOTEST C682422 Ana.</li><li>Customer {Customer-A} has two Approved work orders: {Work-order-1} with no lead technician, and {Work-order-2} led by {Technician-A}.<br>For example: {Customer-A} is ZZAUTOTEST C682422 Assign Wording, and {Work-order-1} and {Work-order-2} are S2-37401 and S2-37402.</li><li>Starting screen: \"Work Orders\" &gt; \"All\" tab, \"Board View\" shown, the name of {Customer-A} in \"Search\", no filter chosen, \"Assigned to me\" off.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 34176,
+    "type_id": 6,
+    "created_on": 1792463748,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "old_text": "S4 \u2014 Reassign or unassign the lead technician",
+      "new_text": "Fast-follow",
+      "field": "section_id",
+      "old_value": 13239,
+      "new_value": 87347
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 34469,
+    "type_id": 6,
+    "created_on": 1792513871,
+    "user_id": 1,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at {Location-A}, in a browser window at least 1024 px wide.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Technician {Technician-A} is active at {Location-A} with the \"Technician\" role and Time Clock on.<br>For example: {Technician-A} is ZZAUTOTEST C682422 Ana.</li><li>Customer {Customer-A} has two Approved work orders: {Work-order-1} with no lead technician, and {Work-order-2} led by {Technician-A}.<br>For example: {Customer-A} is ZZAUTOTEST C682422 Assign Wording, and {Work-order-1} and {Work-order-2} are S2-37401 and S2-37402.</li><li>Starting screen: \"Work Orders\" &gt; \"All\" tab, \"Board View\" shown, the name of {Customer-A} in \"Search\", no filter chosen, \"Assigned to me\" off.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+      "new_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at {Location-A}, in a browser window at least 1024 px wide.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Technician {Technician-A} is active at {Location-A} with the \"Technician\" role and Time Clock on.<br>For example: {Technician-A} is ZZAUTOTEST C682422 Ana.</li><li>Customer {Customer-A} has two Approved work orders: {Work-order-1} with no lead technician, and {Work-order-2} led by {Technician-A}.<br>For example: {Customer-A} is ZZAUTOTEST C682422 Assign Wording, and {Work-order-1} and {Work-order-2} are S2-37401 and S2-37402.</li><li>Starting screen: \"Work Orders\" &gt; \"All\" tab, \"Board View\" shown, the name of {Customer-A} in \"Search\", no filter chosen, \"Assigned to me\" off.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul><p></p><p><strong>Dev-layer test (fe-unit, gate 3: a mocked API is enough).</strong> Covered by unit tests, SV-11570: <code>app/src/components/ts/work-orders/displays/shared/tests/WorkOrderMoreActions.spec.ts</code> (\"the lead action's label\") and <code>app/src/components/ts/work-orders/displays/dialogs/tests/ReassignLeadTechnicianDialog.spec.ts</code> (\"its title and confirm button\"). Automation status stays Not Automated.</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 34475,
+    "type_id": 6,
+    "created_on": 1792522147,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "field": "refs",
+      "old_value": "SV-10046,SV-10047,SV-11522,SV-11524",
+      "new_value": "SV-10046,SV-10047,SV-11570"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at {Location-A}, in a browser window at least 1024 px wide.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Technician {Technician-A} is active at {Location-A} with the \"Technician\" role and Time Clock on.<br>For example: {Technician-A} is ZZAUTOTEST C682422 Ana.</li><li>Customer {Customer-A} has two Approved work orders: {Work-order-1} with no lead technician, and {Work-order-2} led by {Technician-A}.<br>For example: {Customer-A} is ZZAUTOTEST C682422 Assign Wording, and {Work-order-1} and {Work-order-2} are S2-37401 and S2-37402.</li><li>Starting screen: \"Work Orders\" &gt; \"All\" tab, \"Board View\" shown, the name of {Customer-A} in \"Search\", no filter chosen, \"Assigned to me\" off.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul><p></p><p><strong>Dev-layer test (fe-unit, gate 3: a mocked API is enough).</strong> Covered by unit tests, SV-11570: <code>app/src/components/ts/work-orders/displays/shared/tests/WorkOrderMoreActions.spec.ts</code> (\"the lead action's label\") and <code>app/src/components/ts/work-orders/displays/dialogs/tests/ReassignLeadTechnicianDialog.spec.ts</code> (\"its title and confirm button\"). Automation status stays Not Automated.</p>",
+      "new_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at {Location-A}, in a browser window at least 1024 px wide.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Technician {Technician-A} is active at {Location-A} with the \"Technician\" role and Time Clock on.<br>For example: {Technician-A} is ZZAUTOTEST C682422 Ana.</li><li>Customer {Customer-A} has two Approved work orders: {Work-order-1} with no lead technician, and {Work-order-2} led by {Technician-A}.<br>For example: {Customer-A} is ZZAUTOTEST C682422 Assign Wording, and {Work-order-1} and {Work-order-2} are S2-37401 and S2-37402.</li><li>Starting screen: \"Work Orders\" &gt; \"All\" tab, \"Board View\" shown, the name of {Customer-A} in \"Search\", no filter chosen, \"Assigned to me\" off.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Step 1: the menu offers \"Assign lead technician\". It does not say \"Reassign lead technician\".</li><li>Step 2: a dialog titled \"Assign lead technician\" opens.</li><li>Step 3: the dialog closes and {Work-order-1} stays in \"Unassigned\".</li><li>Step 4: the menu offers \"Reassign lead technician\".</li><li>Step 5: a dialog titled \"Reassign lead technician\" opens.</li><li>Step 6: the dialog closes and {Work-order-2} stays in {Technician-A}'s column.</li><li>Step 7: Tech View shows {Work-order-1} in \"Unassigned\" and {Work-order-2} in {Technician-A}'s group.</li><li>Step 8: the menu offers \"Assign lead technician\". It does not say \"Reassign lead technician\".</li><li>Step 9: a dialog titled \"Assign lead technician\" opens.</li><li>Step 10: the dialog closes and {Work-order-1} stays in \"Unassigned\".</li></ul><p>Known problem (SV-11522 and SV-11524, open; seen on staging by the designer on 19 Oct 2026): the menu on a work order with no lead says \"Reassign lead technician\". (1) If you see exactly that, mark this test Failed and raise nothing new. (2) If it fails in a different way, that is a new problem: report it. (3) If it behaves as the expected results say, the change has shipped: mark it Passed and tell the QA lead.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 66 (19 Oct 2026, Chris Ward), read 19 Oct 2026 &middot; Epic SV-10043, story SV-10046 (Story 3, Board View \u2014 board by lead technician), story SV-10047 (Story 4, Reassign or unassign the lead technician from the board or grouped table); tickets SV-11522 (Tech View) and SV-11524 (Board View)</p><ul><li><strong>S3-R14:</strong> &ldquo;Include the lead technician action in the card\u2019s more-actions menu: \u201cAssign lead technician\u201d on a work order with no lead technician, \u201cReassign lead technician\u201d on one that has a lead technician.&rdquo;</li><li><strong>S4-R4:</strong> &ldquo;The card or row more-actions menu opens the lead technician dialog, titled \u201cAssign lead technician\u201d or \u201cReassign lead technician\u201d to match the menu item it was opened from (S3-R14).&rdquo;</li><li><strong>PRD change log, 19 Oct 2026:</strong> &ldquo;S3-R14, S4-R4: the menu item and dialog read \u201cAssign lead technician\u201d on a work order with no lead and \u201cReassign lead technician\u201d on one with a lead. v66.&rdquo;</li></ul><p>Not yet checked against a build.</p><p>AUTOMATION: READY - EXPECT FAIL (SV-11524)</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Step 1: the menu offers \"Assign lead technician\". It does not say \"Reassign lead technician\".</li><li>Step 2: a dialog titled \"Assign lead technician\" opens.</li><li>Step 3: the dialog closes and {Work-order-1} stays in \"Unassigned\".</li><li>Step 4: the menu offers \"Reassign lead technician\".</li><li>Step 5: a dialog titled \"Reassign lead technician\" opens.</li><li>Step 6: the dialog closes and {Work-order-2} stays in {Technician-A}'s column.</li><li>Step 7: Tech View shows {Work-order-1} in \"Unassigned\" and {Work-order-2} in {Technician-A}'s group.</li><li>Step 8: the menu offers \"Assign lead technician\". It does not say \"Reassign lead technician\".</li><li>Step 9: a dialog titled \"Assign lead technician\" opens.</li><li>Step 10: the dialog closes and {Work-order-1} stays in \"Unassigned\".</li></ul><p>Developers also check this with unit tests (SV-11570): <code>WorkOrderMoreActions.spec.ts</code> (\"the lead action's label\") and <code>ReassignLeadTechnicianDialog.spec.ts</code> (\"its title and confirm button\").</p><p><strong>Known problem</strong> (SV-11570, Testing QA, for this release; it replaces SV-11522 and SV-11524 for the label only, Chris Ward, Slack #fs-board-tech-view, 20 Oct 2026): until it ships, the menu on a work order with no lead says \"Reassign lead technician\". (1) If you see exactly that, mark this test Failed and raise nothing new. (2) If it fails in a different way, report it. (3) If it behaves as the expected results say, mark it Passed and tell the QA lead: the change has shipped.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 71 (20 Oct 2026, Chris Ward), read 20 Oct 2026 &middot; Epic SV-10043, stories SV-10046 (Story 3, Board View \u2014 board by lead technician) and SV-10047 (Story 4, Reassign or unassign the lead technician from the board or grouped table); ticket SV-11570</p><ul><li><strong>S3-R14:</strong> &ldquo;Include the lead technician action in the card\u2019s more-actions menu: \u201cAssign lead technician\u201d on a work order with no lead technician, \u201cReassign lead technician\u201d on one that has a lead technician.&rdquo;</li><li><strong>S4-R4:</strong> &ldquo;The card or row more-actions menu opens the lead technician dialog, titled \u201cAssign lead technician\u201d or \u201cReassign lead technician\u201d to match the menu item it was opened from (S3-R14).&rdquo;</li><li><strong>S4-R13:</strong> &ldquo;Clicking a technician in the dialog assigns them at once; there is no confirm button, and the dialog\u2019s only button is Cancel. When the shift-clearing prompt applies (S4-R28) it shows first, and the change is made from the prompt. Clicking the work order\u2019s current lead closes the dialog with no change (S4-N4).&rdquo;</li></ul><p>Not yet checked against a build in this wording.</p><p></p><p>AUTOMATION: READY - EXPECT FAIL (SV-11570)</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 34478,
+    "type_id": 6,
+    "created_on": 1792522592,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "old_text": "Fast-follow",
+      "new_text": "S4 \u2014 Reassign or unassign the lead technician",
+      "field": "section_id",
+      "old_value": 87347,
+      "new_value": 13239
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 35005,
+    "type_id": 6,
+    "created_on": 1792682547,
+    "user_id": 7,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at {Location-A}, in a browser window at least 1024 px wide.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Technician {Technician-A} is active at {Location-A} with the \"Technician\" role and Time Clock on.<br>For example: {Technician-A} is ZZAUTOTEST C682422 Ana.</li><li>Customer {Customer-A} has two Approved work orders: {Work-order-1} with no lead technician, and {Work-order-2} led by {Technician-A}.<br>For example: {Customer-A} is ZZAUTOTEST C682422 Assign Wording, and {Work-order-1} and {Work-order-2} are S2-37401 and S2-37402.</li><li>Starting screen: \"Work Orders\" &gt; \"All\" tab, \"Board View\" shown, the name of {Customer-A} in \"Search\", no filter chosen, \"Assigned to me\" off.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+      "new_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p><br></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at {Location-A}, in a browser window at least 1024 px wide.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Technician {Technician-A} is active at {Location-A} with the \"Technician\" role and Time Clock on.<br>For example: {Technician-A} is ZZAUTOTEST C682422 Ana.</li><li>Customer {Customer-A} has two Approved work orders: {Work-order-1} with no lead technician, and {Work-order-2} led by {Technician-A}.<br>For example: {Customer-A} is ZZAUTOTEST C682422 Assign Wording, and {Work-order-1} and {Work-order-2} are S2-37401 and S2-37402.</li><li>Starting screen: \"Work Orders\" &gt; \"All\" tab, \"Board View\" shown, the name of {Customer-A} in \"Search\", no filter chosen, \"Assigned to me\" off.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Step 1: the menu offers \"Assign lead technician\". It does not say \"Reassign lead technician\".</li><li>Step 2: a dialog titled \"Assign lead technician\" opens.</li><li>Step 3: the dialog closes and {Work-order-1} stays in \"Unassigned\".</li><li>Step 4: the menu offers \"Reassign lead technician\".</li><li>Step 5: a dialog titled \"Reassign lead technician\" opens.</li><li>Step 6: the dialog closes and {Work-order-2} stays in {Technician-A}'s column.</li><li>Step 7: Tech View shows {Work-order-1} in \"Unassigned\" and {Work-order-2} in {Technician-A}'s group.</li><li>Step 8: the menu offers \"Assign lead technician\". It does not say \"Reassign lead technician\".</li><li>Step 9: a dialog titled \"Assign lead technician\" opens.</li><li>Step 10: the dialog closes and {Work-order-1} stays in \"Unassigned\".</li></ul><p>Developers also check this with unit tests (SV-11570): <code>WorkOrderMoreActions.spec.ts</code> (\"the lead action's label\") and <code>ReassignLeadTechnicianDialog.spec.ts</code> (\"its title and confirm button\").</p><p><strong>Known problem</strong> (SV-11570, Testing QA, for this release; it replaces SV-11522 and SV-11524 for the label only, Chris Ward, Slack #fs-board-tech-view, 20 Oct 2026): until it ships, the menu on a work order with no lead says \"Reassign lead technician\". (1) If you see exactly that, mark this test Failed and raise nothing new. (2) If it fails in a different way, report it. (3) If it behaves as the expected results say, mark it Passed and tell the QA lead: the change has shipped.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 71 (20 Oct 2026, Chris Ward), read 20 Oct 2026 &middot; Epic SV-10043, stories SV-10046 (Story 3, Board View \u2014 board by lead technician) and SV-10047 (Story 4, Reassign or unassign the lead technician from the board or grouped table); ticket SV-11570</p><ul><li><strong>S3-R14:</strong> &ldquo;Include the lead technician action in the card\u2019s more-actions menu: \u201cAssign lead technician\u201d on a work order with no lead technician, \u201cReassign lead technician\u201d on one that has a lead technician.&rdquo;</li><li><strong>S4-R4:</strong> &ldquo;The card or row more-actions menu opens the lead technician dialog, titled \u201cAssign lead technician\u201d or \u201cReassign lead technician\u201d to match the menu item it was opened from (S3-R14).&rdquo;</li><li><strong>S4-R13:</strong> &ldquo;Clicking a technician in the dialog assigns them at once; there is no confirm button, and the dialog\u2019s only button is Cancel. When the shift-clearing prompt applies (S4-R28) it shows first, and the change is made from the prompt. Clicking the work order\u2019s current lead closes the dialog with no change (S4-N4).&rdquo;</li></ul><p>Not yet checked against a build in this wording.</p><p></p><p>AUTOMATION: READY - EXPECT FAIL (SV-11570)</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Step 1: the menu offers \"Assign lead technician\". It does not say \"Reassign lead technician\".</li><li>Step 2: a dialog titled \"Assign lead technician\" opens.</li><li>Step 3: the dialog closes and {Work-order-1} stays in \"Unassigned\".</li><li>Step 4: the menu offers \"Reassign lead technician\".</li><li>Step 5: a dialog titled \"Reassign lead technician\" opens.</li><li>Step 6: the dialog closes and {Work-order-2} stays in {Technician-A}'s column.</li><li>Step 7: Tech View shows {Work-order-1} in \"Unassigned\" and {Work-order-2} in {Technician-A}'s group.</li><li>Step 8: the menu offers \"Assign lead technician\". It does not say \"Reassign lead technician\".</li><li>Step 9: a dialog titled \"Assign lead technician\" opens.</li><li>Step 10: the dialog closes and {Work-order-1} stays in \"Unassigned\".</li></ul><p>Developers also check this with unit tests (SV-11570): <code>WorkOrderMoreActions.spec.ts</code> (\"the lead action's label\") and <code>ReassignLeadTechnicianDialog.spec.ts</code> (\"its title and confirm button\").</p><p><strong>Known problem</strong> (SV-11570, Testing QA, for this release; it replaces SV-11522 and SV-11524 for the label only, Chris Ward, Slack #fs-board-tech-view, 20 Oct 2026): until it ships, the menu on a work order with no lead says \"Reassign lead technician\". (1) If you see exactly that, mark this test Failed and raise nothing new. (2) If it fails in a different way, report it. (3) If it behaves as the expected results say, mark it Passed and tell the QA lead: the change has shipped.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 71 (20 Oct 2026, Chris Ward), read 20 Oct 2026 \u00b7 Epic SV-10043, stories SV-10046 (Story 3, Board View \u2014 board by lead technician) and SV-10047 (Story 4, Reassign or unassign the lead technician from the board or grouped table); ticket SV-11570</p><ul><li><strong>S3-R14:</strong> \u201cInclude the lead technician action in the card\u2019s more-actions menu: \u201cAssign lead technician\u201d on a work order with no lead technician, \u201cReassign lead technician\u201d on one that has a lead technician.\u201d</li><li><strong>S4-R4:</strong> \u201cThe card or row more-actions menu opens the lead technician dialog, titled \u201cAssign lead technician\u201d or \u201cReassign lead technician\u201d to match the menu item it was opened from (S3-R14).\u201d</li><li><strong>S4-R13:</strong> \u201cClicking a technician in the dialog assigns them at once; there is no confirm button, and the dialog\u2019s only button is Cancel. When the shift-clearing prompt applies (S4-R28) it shows first, and the change is made from the prompt. Clicking the work order\u2019s current lead closes the dialog with no change (S4-N4).\u201d</li></ul><p>Not yet checked against a build in this wording.</p><p><br></p><p>AUTOMATION: UNIT-TESTED - WorkOrderMoreActions.spec.ts \u203a \"the lead action's label\"; ReassignLeadTechnicianDialog.spec.ts \u203a \"its title and confirm button\". The confirm button goes with the fast follow SV-11524, so the second test changes then.</p>"
+     }
+    ],
+    "comments": []
+   }
+  ]
+ }
+}

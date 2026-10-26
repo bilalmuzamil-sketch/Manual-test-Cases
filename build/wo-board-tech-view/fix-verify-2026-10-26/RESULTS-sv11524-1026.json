@@ -1,0 +1,23 @@
+{
+ "pass_meta": {
+  "env": "QA branch sv11524",
+  "build": "v26.43.0-729e774",
+  "date": "26 October 2026",
+  "note": "Rule 136: linked to a ticket that passed QA on its own QA branch"
+ },
+ "results": {
+  "C682422": {
+   "verdict": "Passed",
+   "observed": [
+    "Passed on the QA branch sv11524 (fix for SV-11524), every step as written.",
+    "Board View: a work order with no lead offers \"Assign lead technician\" and opens a dialog with that title; one with a lead offers \"Reassign lead technician\" and a dialog with that title. Cancel closes each with no change.",
+    "Tech View: the work order with no lead sits in Unassigned and its menu offers \"Assign lead technician\"; Cancel changes nothing.",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11524 (Testing QA) - passed on its QA branch."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-26/sv11524/SV-11524-3-assign-label.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-26/sv11524/SV-11524-1-dialog.png"
+   ]
+  }
+ }
+}

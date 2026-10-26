@@ -1,0 +1,24 @@
+{
+ "pass_meta": {
+  "env": "QA branch sv11501",
+  "build": "v26.43.1-a53a4ac",
+  "date": "26 October 2026",
+  "note": "Rule 136: linked to a ticket that passed QA on its own QA branch"
+ },
+ "results": {
+  "C590117": {
+   "verdict": "Passed",
+   "observed": [
+    "Passed on the QA branch sv11501 (fix for SV-11501), every step as written.",
+    "Steps 1 to 3: the Unassigned header and both technician headers show the parts the test lists (grip, arrow, avatar or photo, name, pin, divider, clipboard, count; no grip or pin on Unassigned).",
+    "Step 4: hovering the count opens the tooltip \"1 work order\" above the number; it covers no column heading. The tooltip is the app's standard grey with white text.",
+    "Step 5: the avatar shows the technician's name as the browser's plain hint. Step 6: the pin turns blue.",
+    "Steps 7 and 8: the group closes and opens again. Steps 9 and 10: Compact makes the headers shorter and the avatars smaller, Comfortable taller and larger; the names keep the same size. Step 11: the pin is grey again.",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11501 (Testing QA) - passed on its QA branch."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-26/sv11501/SV-11501-ann-count-tooltip.png"
+   ]
+  }
+ }
+}
