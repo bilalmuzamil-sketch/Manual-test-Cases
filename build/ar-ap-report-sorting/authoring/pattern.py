@@ -238,7 +238,56 @@ def apply_layout(c, conv, L, G=None):
     if miss: raise KeyError(f"{c['key']}: replacement text not found: {miss}")
     return out
 
+RECORD = re.compile(r"\b(customer|vendor|invoice|bill|document|location|bucket|date|user|credit memo|deposit|vendor credit|role|work order) ([A-F1-9])\b"
+                    r"|\bthe second (?:customer|vendor|invoice|bill|document|location|bucket|user|work order|credit memo|deposit)\b", re.I)
+def records(text):
+    """The records a text names: ("customer", "A") ... and ("the second", "customer") for "the second customer"."""
+    out = set()
+    for m in RECORD.finditer(text):
+        out.add((m.group(1).lower(), m.group(2)) if m.group(1) else ("the second", m.group(0).split()[-1].lower()))
+    return out
+SO = re.compile(r"\bso (?:that )?\w")
+TWO_LOC_NEW = "Have open documents in these reports at two locations, location A and location B, with location A's name first in A to Z order."
+ENROLLED = "Make sure you are enrolled at both locations."
+
+def relate(c, out, PL):
+    """Preconditions relate to the steps and results (QA lead, 26 Oct 2026: "they must make sense and relate to the steps and expected
+    results below"): a record a precondition names is used in the steps or results, or the bullet says why it is needed ("so ...").
+    Applied after the hand corrections: (1) the two-locations block follows PL.TWO_LOC (removed, or kept with its reason) where the
+    case never names location A or B again; (2) a signed-in user the case never names again is not given a name; (3) "location A as
+    your current location" is dropped where nothing else in the case names location A; (4) PL.PRE_ADD bullets are inserted."""
+    k = c["key"]
+    later = " ".join(out["steps"] + sum(out["results"], []))
+    pre = list(out["pre"])
+    if k in PL.TWO_LOC:
+        if TWO_LOC_NEW not in pre: raise KeyError(f"{k}: PL.TWO_LOC names a case without the two-locations bullet")
+        i = pre.index(TWO_LOC_NEW); reason, keep_enrolled = PL.TWO_LOC[k]
+        pre[i:i + 1] = [] if reason is None else [f"Have open documents in these reports at two locations, so {reason}."]
+        if not keep_enrolled and ENROLLED in pre: pre.remove(ENROLLED)
+    for u in ("B", "C"):
+        if f"user {u}" not in later:
+            pre = [x.replace(f"Sign in as user {u}, whose ", "Sign in as a user whose ").replace(f"Sign in as user {u}, an ", "Sign in as an ")
+                    .replace(f"a location user {u} is not enrolled in", "a location this user is not enrolled in") for x in pre]
+    rest = " ".join(pre) + " " + later
+    if rest.count("location A") == sum(x.count("location A") for x in pre if "as your current location" in x):
+        pre = [x.replace(", with location A as your current location.", ".") for x in pre]
+    for after, new in PL.PRE_ADD.get(k, []):
+        hit = [i for i, x in enumerate(pre) if x.startswith(after)]
+        if len(hit) != 1: raise KeyError(f"{k}: PRE_ADD anchor {after!r} matches {len(hit)} preconditions")
+        pre[hit[0] + 1:hit[0] + 1] = new
+    out["pre"] = pre
+    return out
+
+def unrelated(p):
+    """Gate helper: (bullet, names) for every precondition bullet that names a record the steps and results never use and gives no reason."""
+    later = records(" ".join(p["steps"] + sum(p["results"], [])))
+    bad = []
+    for x in p["pre"]:
+        miss = sorted(records(x) - later)
+        if miss and not SO.search(x): bad.append((x, miss))
+    return bad
+
 def pattern(c):
     """The case in the QA lead's pattern: dict(title, pre, steps, results)."""
     import pattern_layout as PL
-    return apply_layout(c, convert(c), PL.LAYOUT.get(c["key"]), PL.RES_SPLIT)
+    return relate(c, apply_layout(c, convert(c), PL.LAYOUT.get(c["key"]), PL.RES_SPLIT), PL)

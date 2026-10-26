@@ -131,6 +131,33 @@ for k_, (lab, row) in L.NAMED.items():
     for m in msgs(row):
         if m not in pat_all: probs.append(f"{k_}: message not used word for word in any pattern step or result: {m!r}")
 print("pattern gate: cases", len(L.CASES), "| before snapshot", len(BEFORE))
+# ---- RELEVANCE GATE (permanent; QA lead 26 Oct 2026: "they must make sense and relate to the steps and expected results below"; a
+# manual tester once complained that preconditions asked for something unrelated to the steps and results). Rule: every record a
+# precondition names (term A/B, customer A/B/C, vendor A/B, work order 1/2, invoice A, location A/B, user A, role A, number A, date A,
+# your user name, "the second …") must appear in the steps or the expected results, or the bullet that names it must say why it is
+# needed with a "so …" clause (for example "…, so the term is in use"). Otherwise a PROBLEM line.
+REC = re.compile(r"\b(?:vendor invoice|work order|credit memo|part sale|organization|estimate|customer|location|invoice|vendor|asset|number|term|user|role|date)s? [A-Z0-9]\b|\byour user name\b|\bthe second (?:customer|vendor|term|work order|invoice|user|location)\b", re.I)
+LISTS = re.compile(r"\b(customers|terms|vendors|invoices|work orders) ((?:[A-Z0-9](?: \([^)]*\))?(?:, | and |, and ))+[A-Z0-9])\b")
+def _named(b):
+    out = set()
+    for m in REC.findall(b):
+        m = m.lower(); m = re.sub(r"^(vendor invoice|work order|credit memo|part sale|[a-z]+)s ([a-z0-9])$", r"\1 \2", m); out.add(m)
+    for kind, lst in LISTS.findall(b):
+        for x in re.findall(r"\b[A-Z0-9]\b", re.sub(r"\([^)]*\)", "", lst)): out.add(kind[:-1] + " " + x.lower())
+    return out
+rel_named = rel_so = 0
+for c in L.CASES:
+    k = c["key"]; f = L.render(c)
+    pre = [_html.unescape(x) for x in re.findall(r"<li>(.*?)</li>", f["custom_preconds"], re.S)][:-1]
+    head = f["custom_expected"].split("<p></p>", 1)[0]
+    later = " ".join([_html.unescape(x) for x in re.findall(r"<li>(.*?)</li>", f["custom_steps"] + head, re.S)]).lower()
+    for b in pre:
+        for n in sorted(_named(b)):
+            rel_named += 1
+            if re.search(r"(?<![\w-])" + re.escape(n) + r"(?![\w-])", later): continue
+            if re.search(r"[,(]? so (?:that )?\w", b): rel_so += 1; continue
+            probs.append(f"{k}: relevance: the precondition names {n!r}, which no step or result uses, and gives no 'so …' reason: {b[:90]!r}")
+print("relevance gate: named records", rel_named, "| kept by a 'so …' reason", rel_so)
 # ---- design references (design pass): DREFS keys exist, every picture named exists in design-2026-10-23/images/, design cases have refs
 for k, d in L.DREFS.items():
     if k not in keys: probs.append(f"DREFS names case {k}, which does not exist")

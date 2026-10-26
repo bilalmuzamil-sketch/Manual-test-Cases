@@ -684,3 +684,136 @@ E("D-18b", [ADMIN_P, REPS2_P, CUST_P, WO_P('one "Sales Representative" field set
      2: ['"Sales Representative - Labor" and "Sales Representative - Parts" show, both reading sales rep A.', "Both labels show in full.",
          "The remove x (32 px) always shows beside Parts.", "Each field shows its arrow."],
      3: ["The same list opens as for each row."]})
+
+# ---------------- 26 Oct 2026, second pass: every precondition relates to the steps and results ----------------
+# QA lead: "they must make sense and relate to the steps and expected results below." A precondition stays only if the tester needs it to
+# do a step or judge a result (a record that holds a field, a name the list must order, data a result reads); a record the case never
+# uses is removed; what a result needs but no precondition created is added. Steps and results are not touched. FIXES records each change
+# so the pass report can list it.
+FIXES = {}
+def RE(key, old, new=None, why=""):
+    pre = PATTERN[key]["pre"]
+    assert old in pre, (key, old)
+    i = pre.index(old)
+    if new is None: pre.pop(i)
+    elif isinstance(new, list): pre[i:i + 1] = new
+    else: pre[i] = new
+    FIXES.setdefault(key, []).append(why)
+def ADD(key, before, new, why):
+    pre = PATTERN[key]["pre"]; i = pre.index(before) if before else len(pre)
+    pre.insert(i, new); FIXES.setdefault(key, []).append(why)
+REP1 = lambda x: f'Have an active staff member at the test location with the "Sales Representative" switch on: sales rep {x}.'
+NO_REPS_REASON = "removed the two sales reps: no step or result uses them"
+# a second rep the case never sees
+for k in ["S1-03", "S1-04", "S1-05", "S1-06", "S1-10", "S1-11", "S2-01", "S2-03", "S2-11", "S3-01", "S3-02", "S3-02b", "S3-03", "S3-04",
+          "S4-02", "S4-03", "S4-09", "S5-07", "S5-08", "S5-08b", "S5-09", "S5-18", "S5-19", "S6-01b", "S6-05", "S7-01",
+          "S7-03", "REL-01", "REL-02", "REL-14", "REL-16", "D-01", "D-02", "D-03", "D-04", "D-05", "D-05b", "D-07", "D-14", "D-18", "D-18b"]:
+    RE(k, REPS2_P, REP1("A"), "removed sales rep B: no step or result uses them")
+for k in ["S1-07", "S1-09", "S2-06", "S4-15", "S4-15b", "S4-19", "S4-19b", "S4-23", "REL-19b"]:
+    RE(k, REPS2_P, REP1("B"), "removed sales rep A: no step or result uses them")
+RE("S2-07", REPS2_P, None, "removed sales reps A and B: the case uses only sales rep C")
+RE("S2-07", _C_OFF[0], REP1("C"), "sales rep C is now the only staff member set up")
+for k in ["S2-07b", "S2-07c"]:
+    RE(k, REPS2_P, REP1("A"), "removed sales rep B: no step or result uses them")
+    RE(k, _C_OFF[0], 'Have a second active staff member at the test location with the "Sales Representative" switch on: sales rep C.', "sales rep C described as the second staff member")
+for k in ["S4-01b", "S8-05"]: RE(k, REPS2_P, None, NO_REPS_REASON)
+RE("S4-04", REPS3_P, REPS2_P, "removed sales rep C: no step or result uses them (sales rep A stays: Service Labor must hold someone other than the Service Parts person)")
+RE("S4-14", REPS3_P, 'Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep C.', "removed sales rep B: no step or result uses them")
+RE("S4-27", REPS3_P, 'Have two active staff members at the test location with their "Sales Representative" switch on: sales rep A and sales rep C.', "removed sales rep B: no step or result uses them")
+RE("D-10b", REPS3_P, None, "removed the three sales reps: the tooltip and menu need none")
+RE("D-11", REPS3_P, REP1("A"), "removed sales reps B and C: no step or result uses them")
+RE("D-13", REPS3_P, REP1("C"), "removed sales reps A and B: the case picks only sales rep C")
+RE("D-10", REPS3_P, REPS3_P[:-1] + ", so the list has several names to sort.", "said why three reps are needed (the result checks their order)")
+RE("S5-17", REPS2_P, 'Have two active staff members at the test location with their "Sales Representative" switch on, so that one work order can have a different Labor and Parts representative.',
+   "said why two reps are needed (the split work order) and dropped their unused names")
+# the sign-in user is never named in the steps or results
+for k, role in [("S1-06", '"Work Orders — View" but not "Work Orders — Create & Edit"'),
+                ("S4-24", '"Work Orders — Create & Edit" but not "Customers — Create & Edit"'),
+                ("S4-25", '"Part Sales — Create & Edit" but not "Customers — Create & Edit" or "Work Orders — Create & Edit"'),
+                ("S4-28", '"Customers — Create & Edit" but neither "Work Orders — View" nor "Work Orders — Create & Edit"')]:
+    RE(k, f"Sign in at the test location as user B, whose role has {role}.", f"Sign in at the test location as a user whose role has {role}.",
+       "the sign-in user is no longer called user B (no step or result names them)")
+# records whose letter names no step or result uses: described by what they are
+for k in ["S1-11", "S7-05"]:
+    RE(k, 'Have a first work order for that customer, open and not invoiced, whose "Sales Representative - Labor" field reads sales rep A and whose "Sales Representative - Parts" field holds staff member C, whose staff record no longer exists.',
+       'Have a first work order for that customer, open and not invoiced, whose "Sales Representative - Labor" field reads sales rep A and whose "Sales Representative - Parts" field holds a staff member whose staff record no longer exists.',
+       "staff member C described as a staff member whose record no longer exists (the name is not used)")
+    RE(k, 'Have a second work order for that customer, open and not invoiced, whose one "Sales Representative" field holds staff member D, a staff member of another organization.',
+       'Have a second work order for that customer, open and not invoiced, whose one "Sales Representative" field holds a staff member of another organization.',
+       "staff member D described as a staff member of another organization (the name is not used)")
+RE("S6-05", "Have an open, uninvoiced work order for that customer, with one approved labor line, one part, Labor set to sales rep A and Parts holding sales rep B, whose staff record no longer exists.",
+   "Have an open, uninvoiced work order for that customer, with one approved labor line, one part, Labor set to sales rep A and Parts holding a staff member whose staff record no longer exists.",
+   "the Parts person described as a staff member whose record no longer exists (the name is not used)")
+RE("S5-19", 'Have staff member C, a third active staff member at the test location, with the "Sales Representative" switch on.',
+   'Have staff member C, a second active staff member at the test location, with the "Sales Representative" switch on.', "staff member C is now the second staff member")
+# data a result needs that no precondition created
+RE("S8-01", SBR_OPEN_P, ["Have, today, at least one invoiced part sale and one invoiced work order with labor and parts at the test location.",
+   "Open Reports > Sales By Representative in a desktop browser at least 1024 pixels wide, with the date range set to today."],
+   "added a part sale and a work order with labor and parts invoiced today, so Part Sales rows can leave the report and the totals and counts can change")
+RE("S5-11b", "Make sure the Sales Type column of Sales By Representative is off for you.",
+   ["Make sure the Sales Type column of Sales By Representative is off for you.", "Have at least one invoiced work order at the test location today, so the report has invoice rows."],
+   "added an invoice today, so the Sales Type column has rows to show it holds words only")
+RE("S5-11b", OPEN_P("Reports > Sales By Representative"),
+   "Open Reports > Sales By Representative in a desktop browser at least 1024 pixels wide, with the date range set to today.", "the report opens on today")
+
+# ---- RELEVANCE GATE pass (26 Oct 2026, ssr_lib.relevance_problems): a record a case never names after the preconditions is either
+# described without a name (it only fills a field) or its bullet says why it is needed ("so ..."). ----
+def SUBST(key, pairs, why):
+    pre = PATTERN[key]["pre"]; done = False
+    for i, x in enumerate(pre):
+        y = x
+        for a, b in pairs: y = y.replace(a, b)
+        if y != x: pre[i] = y; done = True
+    assert done, key
+    FIXES.setdefault(key, []).append(why)
+def SO(key, part, clause, why):
+    pre = PATTERN[key]["pre"]; hit = [i for i, x in enumerate(pre) if part in x]
+    assert len(hit) == 1, (key, part, hit)
+    pre[hit[0]] = pre[hit[0]][:-1] + f", so {clause}."
+    FIXES.setdefault(key, []).append(why)
+ONE_REP = 'Have an active staff member at the test location with the "Sales Representative" switch on.'
+# one rep who only fills a field: no name
+for k in ["S1-04", "S3-04", "D-02", "D-04", "D-05", "D-05b", "D-07", "S5-18"]:
+    SUBST(k, [(REP1("A"), ONE_REP), ("set to sales rep A", "set to that staff member"), ("both set to sales rep A", "both set to that staff member"),
+              ("Sales Representative set to sales rep A", "Sales Representative set to that staff member")],
+          "the one staff member who only fills the field is no longer named (no step or result names them)")
+SUBST("S2-07c", [(REP1("A"), ONE_REP), ('Have a second active staff member at the test location with the "Sales Representative" switch on: sales rep C.',
+                  'Have another active staff member at the test location with the "Sales Representative" switch on: sales rep C.'),
+                 ('"Sales Representative - Parts" set to sales rep A', '"Sales Representative - Parts" set to the first staff member')],
+      "the Parts person is no longer named (no step or result names them)")
+SUBST("S5-19", [(REP1("A"), ONE_REP[:-1] + ", for the Labor side."), ('"Sales Representative - Labor" set to sales rep A', '"Sales Representative - Labor" set to that staff member'),
+                ("staff member C, a second active staff member", "staff member C, another active staff member")],
+      "the Labor person is no longer named (no step or result names them)")
+# two reps who only make a split work order: no names
+SPLIT2 = 'Have two active staff members at the test location with their "Sales Representative" switch on, so that a work order can have a different Labor and Parts representative.'
+NAMELESS = [(REPS2_P, SPLIT2),
+            ('"Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B', '"Sales Representative - Labor" set to one of them and "Sales Representative - Parts" set to the other'),
+            ("Labor set to sales rep A and Parts set to sales rep B", "Labor set to one of them and Parts set to the other"),
+            ("(Labor set to sales rep A, Parts set to sales rep B)", "(Labor set to one of them, Parts set to the other)"),
+            ("with sales rep A on both sides", "with one of them on both sides")]
+for k in ["S5-01b", "S5-12", "S8-06b", "REL-08", "REL-11", "REL-18", "REL-18b", "D-15b", "D-16"]:
+    SUBST(k, NAMELESS, "the two staff members who only make the split work order are no longer named; their bullet says why they are needed")
+SUBST("S8-06b", [("Neither sales rep has other invoices today.", "Neither of them has other invoices today.")], "wording follows the unnamed staff members")
+# a rep the steps never name but whose place the result depends on: say why
+SO("S2-05", "switch on: sales rep A and sales rep B", "that Labor and Parts can hold different people", "said why sales rep B is needed")
+SO("S2-05", '"Sales Representative - Parts" set to sales rep B', "that the remove x takes away a Parts person different from the Labor person", "said why sales rep B is needed")
+SO("S4-04", "switch on: sales rep A and sales rep B", "that Service Labor and Service Parts hold different people", "said why sales rep A is needed")
+SO("S4-04", '"Sales Representative - Service Labor" set to sales rep A', "you can see that Part Sales copies Service Parts, not Service Labor", "said why sales rep A is needed")
+for k, clause in [("S4-05", "you can see which person stays when Service Parts is removed"), ("S4-06", "you can see that new part sales follow Service Parts once Part Sales is removed")]:
+    SO(k, "switch on: sales rep A, sales rep B and sales rep C", "that each customer field holds a different person", "said why all three reps are needed")
+    SO(k, '"Sales Representative - Service Labor" set to sales rep A', clause, "said why all three reps are needed")
+SO("S4-12", "switch on: sales rep A and sales rep B", "that Service Labor and Service Parts hold different people", "said why sales reps A and B are needed")
+SO("S4-12", '"Sales Representative - Service Labor" set to sales rep A', "you can see that new part sales take neither the Service Labor nor the Service Parts person", "said why sales reps A and B are needed")
+SO("S4-20", "switch on: sales rep A and sales rep B", "that customer A's two fields hold different people", "said why sales rep A is needed")
+SO("S4-20", "Use customer A,", "only its Service Parts row holds sales rep B", "said why sales rep A is needed")
+SO("S4-14b", "Use customer A,", "the work order starts with sales rep A", "said why customer A is needed")
+for k, clause in [("S5-14", "the invoice has a separate Parts row for sales rep B"),
+                  ("S5-15", "the Expanded CSV has a representative row for sales rep A and separate Labor and Parts rows"),
+                  ("S8-07", "the Parts filter leaves only sales rep B's row")]:
+    SO(k, "switch on: sales rep A and sales rep B", "that the work order can have a different Labor and Parts representative", "said why both reps are needed")
+    SO(k, "Labor set to sales rep A", clause, "said why both reps are needed")
+SO("S7-04", "switch on: sales rep A and sales rep B", "that Labor and Parts hold different people", "said why sales rep A is needed")
+SO("S7-04", "where the Parts side was changed to sales rep B today", "the log has an entry for the Parts person", "said why sales rep A is needed")
+SO("D-12", "switch on: sales rep A, sales rep B and sales rep C", "that each of the three fields holds a different name", "said why all three reps are needed")
+SO("D-12", "Use a customer with Service Labor set to sales rep A", "the page shows all three representative rows", "said why all three reps are needed")
+SO("REL-17", "the test location, a second location and a third location", "that the Location filter has several options to tick", "said why three locations are needed")

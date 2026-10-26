@@ -14,19 +14,24 @@ e = lambda s: html.escape(s, quote=False)
 OLD = json.load(open(f"{D}/before-dr.json"))
 SBR_WIN = "Open Reports > Sales By Representative in that browser window, with the date range set to today and Show Unassigned on."
 SPLIT_AB = '"Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B'
+# second pass, 26 Oct 2026: DR-02 and DR-03 never use sales rep B, so only sales rep A is set up
+REP1_A = 'Have an active staff member at the test location with the "Sales Representative" switch on: sales rep A.'
+# relevance gate (26 Oct 2026): DR-01 and DR-06 never name the two staff members; they only make the split work order
+SPLIT2 = 'Have two active staff members at the test location with their "Sales Representative" switch on, so that a work order can have a different Labor and Parts representative.'
+SPLIT_ONE_OTHER = '"Sales Representative - Labor" set to one of them and "Sales Representative - Parts" set to the other'
 PAT = {
- "DR-01": dict(pre=[ADMIN_P, REPS2_P, f"Have a first work order with {SPLIT_AB}, and invoice it.",
+ "DR-01": dict(pre=[ADMIN_P, SPLIT2, f"Have a first work order with {SPLIT_ONE_OTHER}, and invoice it.",
                     "Have a second work order, open and not invoiced.", PICS, "Open the first work order in that browser window."],
                r={1: ['The labels read "Lead technician" and "Service advisor" (small second word, as on an invoiced card today).',
                       'Then come "Sales Representative - Labor" and "Sales Representative - Parts", with capital letters.',
                       "Each name sits below its label as plain text, as in the picture."]}),
- "DR-02": dict(pre=[ADMIN_P, REPS2_P, CUST_P, "Have an open, uninvoiced part sale for that customer.", PICS, "Open the part sale in that browser window."],
+ "DR-02": dict(pre=[ADMIN_P, REP1_A, CUST_P, "Have an open, uninvoiced part sale for that customer.", PICS, "Open the part sale in that browser window."],
                r={1: ['The label reads "Sales representative", with a small "r" (not "Sales Representative").', "There is one field.",
                       "There is no + or remove x beside it."],
                   2: ["The hover look is the part sale field's own (box and arrow across the full width of the card, as in the picture).",
                       "No + or remove x appears."],
                   3: ["The field reads sales rep A.", 'Its label still reads "Sales representative".', "There is still no + and no remove x."]}),
- "DR-03": dict(pre=[ADMIN_P, REPS2_P, CUST_P,
+ "DR-03": dict(pre=[ADMIN_P, REP1_A, CUST_P,
                     "Have a part sale for that customer with Sales Representative set to sales rep A, one part and no labor, and invoice it today.",
                     PICS, "Open Reports > Sales By Representative in that browser window, with the date range set to today, Show Unassigned on and the Sales Type column turned on."],
                r={1: ['The part sale shows as one row with Sales Type "Part Sales".',
@@ -34,7 +39,7 @@ PAT = {
  "DR-04": dict(pre=[ADMIN_P, REPS2_P, CUST_P,
                     f"Have a work order for that customer with one labor line, one part, {SPLIT_AB}, and invoice it today.", PICS, SBR_WIN]),
  "DR-06": dict(pre=[ADMIN_P, "Have a second location open to you, and select both locations in the Location filter so that the report shows its Location column.",
-                    REPS2_P, f"Have a work order at the test location with {SPLIT_AB}, and invoice it today.", PICS, SBR_WIN],
+                    SPLIT2, f"Have a work order at the test location with {SPLIT_ONE_OTHER}, and invoice it today.", PICS, SBR_WIN],
                r={1: ["A Sales Type column appears.",
                       "Read from Status to the first money column, the headings read Status, Sales Type, Location, in that order (the picture of board 4.9 shows Sales Type straight after Status)."]}),
  "DR-07": dict(pre=[ADMIN_P, REPS2_P, CUST_P,

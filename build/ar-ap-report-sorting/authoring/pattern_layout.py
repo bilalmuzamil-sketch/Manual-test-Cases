@@ -182,3 +182,30 @@ RES_SPLIT['Then "Cancel" on the left and "Switch location" (small l) on the righ
           'that the picture writes "Switch Location" with a capital L (the PRD\'s small l is right: see References from Design).'] = [
     'Below them, "Cancel" is on the left and "Switch location" (small l) on the right, and a close "×" is at the top right, as in the picture '
     'except that the picture writes "Switch Location" with a capital L (the PRD\'s small l is right: see References from Design).']
+
+# ---- Preconditions that relate to the steps and results (26 Oct 2026, relevance pass) -----------------------------------------------
+# TWO_LOC: cases that never name location A or B again. Value (reason, keep "enrolled at both"): reason None removes the two-locations
+# block; otherwise the bullet becomes "Have open documents in these reports at two locations, so <reason>."
+_COL, _CHIP, _FILTER = "the Location column shows", "the Location chip shows", "the Location filter shows and can be cleared"
+_PIC = "the Location column and the Location chip show, as in the design picture"
+_LOOK = "the Location column shows, as in the layout being checked"
+TWO_LOC = {}
+for _k in ["S2-40", "S2-41", "S2-42", "S6-01", "S6-02", "D-01", "D-04", "D-07", "D-10", "D-13", "D-16", "D-81", "D-47", "D-48"]: TWO_LOC[_k] = (_COL, False)
+for _k in ["S3-03", "S3-04", "S3-05", "S3-06", "S3-07", "S3-08"]: TWO_LOC[_k] = ("the Location column shows on screen and in the exports", False)
+for _k in ["S3-15", "S3-16"]: TWO_LOC[_k] = ("the exports cover more than one location (\"Locations: All locations\")", False)
+for _k in ["S5-01", "S5-02", "S5-03", "S5-04", "S5-05", "S5-06", "REL-01", "REL-02"]: TWO_LOC[_k] = (_CHIP, False)
+for _k in ["S3-24", "S5-14", "REL-13", "D-37"]: TWO_LOC[_k] = (_FILTER, False)
+for _k in ["REL-05", "REL-05b", "REL-05c"]: TWO_LOC[_k] = ("one location can be ticked in the filter", False)
+for _k in ["D-29", "D-30"]: TWO_LOC[_k] = ("the Location menu lists two locations (\"2 selected\")", False)
+for _k in ["D-02", "D-03", "D-05", "D-06", "D-08", "D-09", "D-11", "D-12", "D-14", "D-15", "D-17", "D-18"]: TWO_LOC[_k] = (_LOOK, False)
+for _k in ["D-50", "D-51", "D-52", "D-54", "D-68", "D-69", "D-72"]: TWO_LOC[_k] = (_PIC, False)
+TWO_LOC["D-65"] = (_PIC + ", and the location switcher names both", True)
+for _k in ["D-01b", "D-01c", "D-04b", "D-04c", "D-07b", "D-07c", "D-10b", "D-10c", "D-13b", "D-13c", "D-16b", "D-16c"]: TWO_LOC[_k] = (None, False)
+# PRE_ADD: data a result needs that no precondition created (inserted after the bullet that starts with the anchor)
+_ADMIN = 'Sign in as an Admin user (the "Admin" role)'
+PRE_ADD = {
+    "D-33": [(_ADMIN, ["Have open documents in this report at two locations, so the Location chip shows."])],
+    "D-34": [(_ADMIN, ["Have open documents in this report at two locations, so the Location chip shows."])],
+    "D-56": [(_ADMIN, ["Have open documents in this report at two locations, so the Location column shows."])],
+    "D-59": [(_ADMIN, ["Have open documents in this report at two locations, so the Location chip shows."])],
+}

@@ -68,6 +68,10 @@ _before = json.load(open(f"{_PF}/before-library-render.json")) if os.path.exists
 for c in ssr_lib.CASES:
     if not (ssr_lib.LAYOUT_V2.get(c["key"]) or {}).get("pattern"): probs.append(f"{c['key']}: not in the QA lead's pattern"); continue
     probs += ssr_lib.pattern_problems(c["key"], ssr_lib.render(c), (_before.get(c["key"]) or {}).get("fields"))
+    probs += ssr_lib.relevance_problems(c["key"], ssr_lib.render(c))
+    probs += ssr_lib.independence_problems(c["key"], ssr_lib.render(c))   # INDEPENDENCE GATE (26 Oct 2026, permanent)   # RELEVANCE GATE (26 Oct 2026, permanent): see ssr_lib.relevance_problems
+print("independence gate: no case key or C-id in tester text; every record a step or precondition changes is made \"for this test\" in the preconditions")
+print("relevance gate: every record a precondition names is used by a step or result, is the record the steps start on, or says why (\"so ...\")")
 print("pattern gate: S1-01 keeps the QA lead's approved Preconditions word for word (no Blocked line), as he gave them")
 _map = list(_csv.DictReader(open(f"{ssr_lib.P}/testrail-id-map.csv")))
 _drp, _drb = f"{_PF}/DR-PATTERN.json", f"{_PF}/before-dr.json"
@@ -77,6 +81,8 @@ for r in _map:
     if r["key"].startswith("DR-"):
         if r["key"] not in _dr: probs.append(f"{r['key']} (C{r['case_id']}): no pattern draft in DR-PATTERN.json")
         else: probs += ssr_lib.pattern_problems(r["key"], _dr[r["key"]]["fields"], (_drold.get(r["key"]) or {}).get("fields"))
+        if r["key"] in _dr: probs += ssr_lib.relevance_problems(r["key"], _dr[r["key"]]["fields"])
+        if r["key"] in _dr: probs += ssr_lib.independence_problems(r["key"], _dr[r["key"]]["fields"])
 _lib = {c["key"] for c in ssr_lib.CASES}
 for r in _map:
     if not r["key"].startswith("DR-") and r["key"] not in _lib: probs.append(f"{r['key']} (C{r['case_id']}): in the id map but not in the library")

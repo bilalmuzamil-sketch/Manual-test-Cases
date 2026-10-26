@@ -334,3 +334,72 @@ def pattern_problems(key, f, old=None, exempt_blocked=("S1-01",)):
     if not re.search(r"<p>AUTOMATION: [^<]*</p>$", tail): p.append(f"{key}: the AUTOMATION line is not last")
     if old is not None and tail != results_tail(old["custom_expected"]): p.append(f"{key}: what sits below the results is not byte-identical to before")
     return p
+
+# ---- RELEVANCE GATE (26 Oct 2026, PERMANENT; QA lead: the preconditions "must make sense and relate to the steps and expected results
+# below", and a manual tester once complained of preconditions "which had nothing to do with the steps and the test scenario and the
+# expected results") ----
+REC = re.compile(r"\b(sales rep [A-D]|staff member [A-D]|customer [A-C]|user [A-B]|role [A-B]|location [A-B]|"
+                 r"(?:first|second|third) (?:work order|part sale|location|customer))\b", re.I)
+def relevance_problems(key, f):
+    """Every record a precondition names (sales rep A-D, staff member A-D, customer A-C, user A/B, role A/B, location A/B, the first /
+    second / third work order, part sale, location or customer) must be used: named in the steps or expected results, or be the record
+    the steps start on (the precondition that opens it). Otherwise the bullet that names it must say why it is needed with a "so ..."
+    clause (for example "... so the list has several names to sort"). Any other record is a PROBLEM: the tester would be asked to set up
+    something the test never uses."""
+    p = []
+    items = [html.unescape(x) for x in re.findall(r"<li>([^<]*)</li>", f["custom_preconds"])]
+    body = html.unescape(re.sub(r"<[^>]+>", " ", f["custom_steps"] + " " + f["custom_expected"].split("<p></p>", 1)[0])).lower()
+    opened = " ".join(x for x in items if re.match(r"(Open |With the release installed, open )", x)).lower()
+    for x in items:
+        for name in dict.fromkeys(m.lower() for m in REC.findall(x)):
+            if name in body or name in opened: continue
+            if re.search(r"\bso\b", x): continue
+            p.append(f"{key}: precondition record \"{name}\" is not used by any step or result and its bullet does not say why it is needed (\"so ...\"): {x[:90]}")
+    return p
+
+# ---- INDEPENDENCE GATE (26 Oct 2026, PERMANENT; QA lead: "the test cases need to be created in a way that if one test case fails that
+# does not block the other test case.") ----
+_CHG_WO = re.compile(r"(\b(click|tap|pick|choose)\b.*\b(sales rep [a-d]|\"unassigned\"|the \+|remove x|\"sales representative - (parts|part sales|service parts)\"|in the open dropdown)"
+                     r"|\badd (the \"sales representative - parts\"|parts|\"sales representative)|\bset (its|\"sales representative|the work order's)|\bchange (the work order's|sales representative to|service parts|the sales representative field)"
+                     r"|invoice the work order|reverse the invoice|split the (work order|part sale)|move one line|reopen the work order|change the work order's customer"
+                     r"|untick|tick every)")
+_CHG_CUST = re.compile(r"save the customer|import the file")
+_CHG_STAFF = re.compile(r"switch off|deactivat|reactivate|last name|save the staff record")
+def _kind_of_page(t):
+    t = t.lower()
+    if re.search(r"report|reports >|parts velocity", t): return "report"
+    if re.search(r"staff record|settings > staff", t): return "staff member"
+    if re.search(r"edit customer|new customer|customer's page|customers page|customer [a-c]'s page|contacts import", t): return "customer"
+    if re.search(r"part sale", t): return "part sale"
+    if re.search(r"work order", t): return "work order"
+    return None
+def independence_problems(key, f, reads_only=("S1-01",)):
+    """No case key or C-id in the tester text; and every record a step (or a precondition) changes is described as made for this test
+    ("for this test" in the precondition that creates it), so one case failing never leaves another case without its data."""
+    p = []
+    items = [html.unescape(x) for x in re.findall(r"<li>([^<]*)</li>", f["custom_preconds"])]
+    steps = [html.unescape(x) for x in re.findall(r"<li>([^<]*)</li>", f["custom_steps"])]
+    tester = " ".join(items + steps) + " " + html.unescape(re.sub(r"<[^>]+>", " ", f["custom_expected"].split("<p></p>", 1)[0]))
+    if re.search(r"\bC\d{5,7}\b|\b(?:S\d|REL|DR|D)-\d{2}[a-z]?\b", tester): p.append(f"{key}: a case key or C-id in the tester text")
+    if key in reads_only: return p
+    changed = set()
+    ctx = _kind_of_page(next((x for x in reversed(items) if re.match(r"(Open |With the release installed, open )", x)), "") or "")
+    for s in steps:
+        k = _kind_of_page(s) if re.match(r"(Open|Reopen|Create|Start|Back in|In the|Tap the card)", s) or "open " in s.lower()[:40] else None
+        if k and re.match(r"(Open|Start|Create)", s): ctx = k
+        low = s.lower()
+        if _CHG_STAFF.search(low): changed.add("staff member")
+        if _CHG_CUST.search(low): changed.add("customer")
+        if "change the work order's customer" in low: changed.add("work order")
+        elif _CHG_WO.search(low):
+            tgt = "staff member" if "second tab" in low and "switch" in low else ("customer" if ctx == "customer" else "part sale" if ctx == "part sale" else
+                  None if ctx in ("report", "staff member") else "work order")
+            if "untick" in low or "tick every" in low: tgt = None
+            if tgt: changed.add(tgt)
+    for x in items:
+        if re.search(r"\b(turn|deactivate)\b.*\b(switch off|staff account)", x, re.I) or x.startswith("Then deactivate"): changed.add("staff member")
+    for kind in sorted(changed):
+        made = [x for x in items if kind in x.lower() and re.search(r"for this test", x)]
+        if kind == "staff member": made = [x for x in items if re.search(r"staff members?\b", x) and "for this test" in x]
+        if not made: p.append(f"{key}: a step or precondition changes a {kind}, but no precondition makes that {kind} for this test")
+    return p
