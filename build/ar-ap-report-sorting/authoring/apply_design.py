@@ -22,6 +22,7 @@ npics = sum(len(pics(v["fields"])) for v in PROP.values())
 unknown = {p for v in PROP.values() for p in pics(v["fields"])} - set(DD.PIC_FILE)
 print("update", len(upd), "add", len(add), "picture links", npics, "unknown pictures", unknown)
 if "--apply" not in sys.argv or unknown: sys.exit(0)
+sys.path.insert(0, "/home/user/Manual-test-Cases/build/testing-tools"); import tester_readiness_check as _TRC; _TRC.require("/home/user/Manual-test-Cases/build/ar-ap-report-sorting")  # Rule 138: no write unless the check passes
 C_ = json.load(open("/tmp/testrail/creds.json")); AUTH = base64.b64encode(f"{C_.get('email') or C_.get('user')}:{C_['password']}".encode()).decode()
 def upload(cid, name, path):
     b = uuid.uuid4().hex

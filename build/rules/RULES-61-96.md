@@ -3592,3 +3592,23 @@ does not block the other test case."* The rule below was stated back to him and 
    changed record not described as new for this test, (c) a case key or C-id in tester text. The coordinator checks again before every
    TestRail write. Lessons L-11 (relevance) and this rule go together.
 
+## 138 · THE TESTER-READINESS CHECK RUNS BEFORE EVERY TESTRAIL WRITE, AND A SAMPLE OF CASES IS READ IN FULL (all projects, permanent)
+
+Ordered on 26 Oct 2026. After the lessons of that day (L-12 to L-18: green gates had been taken as proof that cases were runnable; 17
+cases a tester could not set up sat in manual runs; vague look words and "does not appear" checks with no control had shipped), the
+coordinator built `build/testing-tools/tester_readiness_check.py` and asked whether it should become a required step before every
+TestRail write. The QA lead answered, verbatim: *"Readiness check - Yes"*.
+
+1. **Before any case is written to TestRail** (add, update, release, reformat, any pass, any suite), the suite's cases are run through
+   `python3 build/testing-tools/tester_readiness_check.py <suite folder> [--also <extra cases json>]`. Exit 1 means **no write**: fix
+   the cases first. It fails on the "mark this test Blocked / setup not done" line (Rule 117 fifteenth amendment), a case a manual
+   tester cannot set up or reach, vague look words, "Make sure" for a record the test creates, a case key or C-id in tester text, and
+   "ask your QA lead".
+2. **Every suite's write script calls it itself** (`tester_readiness_check.require(...)` straight after its `--apply` check) and
+   refuses to write when it fails. A new suite's write script gets the same two lines before its first write. Wired on 26 Oct 2026 in
+   Splitting Sales Representatives (`apply5.py`, `apply_dr_pattern.py`), A/R and A/P (`apply_design.py`) and Credit terms
+   (`update_changed.py`, `create.py`); a negative test (a copy with the Blocked line) was refused.
+3. **Gates check words, not meaning.** The coordinator also reads, in full, the random sample the tool prints (default 5 cases) and
+   every "does not appear / never" result it lists, checking that each such result has a control the tester can see (L-15). Reports
+   say how many cases were read and what was found. "Runnable" or "related" is never claimed from gate output alone (L-13).
+4. A fault the tool does not yet know is added to it the day it is found, so it is caught on every suite from then on.

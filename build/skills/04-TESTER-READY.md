@@ -375,3 +375,10 @@ retire.
 | Ask the PO the question a hold is waiting on | **[`07-PO-QUESTIONS`](07-PO-QUESTIONS.md)** |
 
 **And it never grades a test.**
+
+## Rule 138 (26 Oct 2026, PERMANENT): tester-readiness check before every TestRail write
+
+Run `python3 build/testing-tools/tester_readiness_check.py <suite folder>` (add `--also <file>` for cases kept outside proposals.json)
+before any write; exit 1 = no write. The suite's write script must call `tester_readiness_check.require(...)` straight after its
+`--apply` check. Read the printed sample and every listed "does not appear" result in full before writing, and say in the report how many
+cases were read. Full text: `build/rules/RULES-61-96.md`, Rule 138. Lessons L-12 to L-18.

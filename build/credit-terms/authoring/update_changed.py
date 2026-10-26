@@ -13,6 +13,7 @@ WHY = sys.argv[2] if len(sys.argv) > 2 else "question sheet shared 23 Oct: marke
 upd = [(k, cid) for k, cid in ids.items() if diff(json.load(open(f"{P}/applied/C{cid}-after.json")), PROP[k]["fields"])]
 print("to update", [f"{k} C{c}" for k, c in upd])
 if "--apply" not in sys.argv: sys.exit(0)
+sys.path.insert(0, "/home/user/Manual-test-Cases/build/testing-tools"); import tester_readiness_check as _TRC; _TRC.require("/home/user/Manual-test-Cases/build/credit-terms")  # Rule 138: no write unless the check passes
 os.makedirs(f"{P}/applied/before-update", exist_ok=True)
 log = open(f"{P}/applied/create-log.jsonl", "a"); bad = 0
 for k, cid in upd:

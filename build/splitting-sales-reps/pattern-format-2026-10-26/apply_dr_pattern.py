@@ -12,6 +12,7 @@ for key, v in DR.items():
     if d: todo.append((key, cid, d))
 print("to update", [(k, f"C{c}", d) for k, c, d in todo])
 if "--apply" not in sys.argv: sys.exit(0)
+sys.path.insert(0, "/home/user/Manual-test-Cases/build/testing-tools"); import tester_readiness_check as _TRC; _TRC.require("/home/user/Manual-test-Cases/build/splitting-sales-reps", ["pattern-format-2026-10-26/DR-PATTERN.json"])  # Rule 138: no write unless the check passes
 log = open(f"{H}/apply-dr-pattern-log.jsonl", "a"); bad = 0
 for key, cid, d in todo:
     prev = json.load(open(f"{P}/applied/C{cid}-after.json")); live = api(f"get_case/{cid}")

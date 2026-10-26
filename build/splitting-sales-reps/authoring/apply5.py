@@ -19,6 +19,7 @@ for c in ssr_lib.CASES:
 add = [c for c in ssr_lib.CASES if c["key"] not in ids]
 print("update", len(upd), "add", [c["key"] for c in add])
 if "--apply" not in sys.argv: sys.exit(0)
+sys.path.insert(0, "/home/user/Manual-test-Cases/build/testing-tools"); import tester_readiness_check as _TRC; _TRC.require("/home/user/Manual-test-Cases/build/splitting-sales-reps", ["pattern-format-2026-10-26/DR-PATTERN.json"])  # Rule 138: no write unless the check passes
 log = open(f"{P}/applied/apply-readthrough-log.jsonl", "a"); bad = 0
 def L(r): log.write(json.dumps(r, ensure_ascii=False) + "\n"); log.flush()
 for c, f, prev in upd:

@@ -16,6 +16,7 @@ todo = [k for k in PROP if k not in ids]
 missing = {p for v in PROP.values() for p in pics(v["fields"]) if not os.path.exists(f"{IMG}/{p}")}
 print("to add", len(todo), "already", len(ids), "picture links", sum(len(pics(v["fields"])) for v in PROP.values()), "missing pictures", missing)
 if "--apply" not in sys.argv or missing: sys.exit(0)
+sys.path.insert(0, "/home/user/Manual-test-Cases/build/testing-tools"); import tester_readiness_check as _TRC; _TRC.require("/home/user/Manual-test-Cases/build/credit-terms")  # Rule 138: no write unless the check passes
 for sec in sorted({v["section_id"] for v in PROP.values()}):  # the sections must hold only our cases from this pass
     r = api(f"get_cases/1&section_id={sec}"); cs = r["cases"] if isinstance(r, dict) else r
     extra = [c["id"] for c in cs if c["id"] not in ids.values()]

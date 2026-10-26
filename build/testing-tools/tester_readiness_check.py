@@ -14,7 +14,9 @@ It reads the tester text only (title, preconditions, steps and the results above
                      and a random sample of N cases printed in full tester text, which the coordinator must read
                      before writing (gates check words, not meaning: L-13).
 
-python3 tester_readiness_check.py <suite folder> [--sample N] [--seed S]
+python3 tester_readiness_check.py <suite folder> [--sample N] [--seed S] [--also <file.json> ...]
+--also adds cases kept outside proposals.json (same {key: {"fields": {...}}} shape), e.g. Splitting Sales Representatives'
+pattern-format-2026-10-26/DR-PATTERN.json. Every suite's TestRail write script calls require() and refuses to write on exit 1 (Rule 138).
 The suite folder must hold authoring/proposals.json ({key: {"fields": {...}}} or {key: {...}})."""
 import sys, json, re, html, random, os, signal
 signal.signal(signal.SIGPIPE, signal.SIG_DFL)
@@ -49,6 +51,8 @@ def main():
     folder = a[0]; n = int(a[a.index("--sample") + 1]) if "--sample" in a else 5
     seed = int(a[a.index("--seed") + 1]) if "--seed" in a else None
     P = json.load(open(os.path.join(folder, "authoring", "proposals.json")))
+    for i, x in enumerate(a):
+        if x == "--also": P.update(json.load(open(a[i + 1] if os.path.isabs(a[i + 1]) else os.path.join(folder, a[i + 1]))))
     hard, neg, T = [], [], {}
     for k, v in P.items():
         f = v.get("fields", v); t = tester_text(f); T[k] = t
@@ -68,6 +72,18 @@ def main():
     for k in keys:
         t = T[k]; print(f"\n----- {k}: {t['title']}\n{t['pre']}\nSTEPS\n{t['steps']}\n{t['exp']}")
     sys.exit(1 if hard else 0)
+
+
+def require(folder, also=()):
+    """Called by every suite's TestRail write script before it writes (Rule 138). Exits the caller on any hard problem."""
+    import subprocess
+    cmd = [sys.executable, os.path.abspath(__file__), folder, "--sample", "0"] + [y for x in also for y in ("--also", x)]
+    r = subprocess.run(cmd, capture_output=True, text=True)
+    head = r.stdout.splitlines()[0] if r.stdout else r.stderr[-300:]
+    print("tester-readiness check (Rule 138):", head)
+    if r.returncode != 0:
+        print("\n".join(l for l in r.stdout.splitlines() if l.startswith("PROBLEM")) or r.stderr[-1000:])
+        sys.exit("REFUSED: the tester-readiness check failed; fix the cases, then write (Rule 138)")
 
 
 if __name__ == "__main__":
