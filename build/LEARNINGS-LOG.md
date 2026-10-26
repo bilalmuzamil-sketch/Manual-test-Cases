@@ -652,3 +652,7 @@
 - On sv11546 (v26.43.1-6bdbed5) the view-only user CAN pick the card up (drag preview shows) — the note "You don't have permission to assign technicians" appears over the target and the drop is refused; that matches S4-N1 ("A user without it who drags a card or row over another technician's column or group sees … and the drop is refused").
 - `retest-locks2` reports the lead as an id (`s9_lead`/`s12_lead`); read names with `probe-leads-1026.mts` (ONLY='<search>|<search>').
 #permissions #fix-verify #fast-follow → L0582, L0580
+
+## L0584 — 2026-10-26 — "quick-login answered HTTP 403" in the evening = the QA branch is ASLEEP, not an expired sign-in
+- At 20:50 UTC sv11728 (and sv11546, sv11500) answered quick-login with a 302 to `https://sleep.qa.shopview.com:443/api/quick-login?api=<branch>`; the harness, following the redirect, reports "quick-login answered HTTP 403". Same cookie, same branches worked hours earlier. Check with `curl -D - -X POST https://<branch>api.qa.shopview.com/api/quick-login -b "sv_sso_session=…"` (API host is `<branch>api.qa.shopview.com`, no dot) and read the `location` header; if it points at sleep.qa, run `node build/testing-tools/wake_branch.mjs <branch> 10` (in the background, it can take minutes), then re-run. Only a 401 `sso_required` means the cookie itself is dead.
+#qa-branch #sign-in #sleep → L0580, L0582
