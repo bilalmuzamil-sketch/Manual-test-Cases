@@ -1,0 +1,17 @@
+{
+ "pass_meta": {"env": "QA branch sv11545 (step 3 also on production)", "build": "v26.43.1-a53a4ac", "date": "26 October 2026", "note": "QA lead 26 Oct: adjust C590121 to Chris Ward's last comment on SV-11753; PRD v76 S3-R13"},
+ "results": {
+  "C590121": {
+   "verdict": "Passed",
+   "observed": [
+    "Passed on the QA branch sv11545, every step as the test now reads (all steps run 26 Oct 2026).",
+    "Step 3: on hover the … button appears at the card's top right, to the left of the status label, and does not cover it; the full status \"Approved\" stays readable. Same on production v26.43.1-9af7270 (picture 1).",
+    "Why this now passes: Chris Ward on SV-11753, 26 Oct 2026: \"Option 1: accept it as built. The … button sits beside the status label, so the full status stays readable while hovering, and it matches production. Please pass the test.\"",
+    "PRD version 76 (26 Oct 2026, Chris Ward), S3-R13: \"The … button sits at the card’s top right, to the left of the status label, and never covers it: the full status stays readable while the button shows.\" The test's step 3 now says the same.",
+    "Steps 2, 4 to 11: no button without hover; the menu opens below the button lined up with its right edge, Reassign lead technician first; in Tech View the row's button and menu work the same; on an Invoiced work order Reassign lead technician is greyed out and its tooltip reads \"Invoiced · can’t be reassigned\" (picture 2).",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11753 (OBSOLETE) - accepted as built by Chris Ward."
+   ],
+   "pictures": ["/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-26/C590121-pass-beside-label.png", "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-26/C590121-pass-locked-menu.png"]
+  }
+ }
+}

@@ -622,3 +622,9 @@
 - `c96953-cols.mts` now creates "Esther Howard" (eligible technician) when a fresh QA branch has none; `layout-1023.mts` times out waiting for an empty column until that data exists.
 - Wait-loop traps: (1) waiting on a log's "EXIT" line matches a STALE log from the previous run — delete/rename logs before re-running, or wait on the process (`pgrep -f <script>`); (2) a background wait with the default 30-min limit is killed while the scripts still finish — read the logs, not the wait's status.
 #scroll #board-view #fix-verify #rule136 #automated → L0577, L0573
+
+## L0579 — 2026-10-26 — C590121 adjusted to Chris Ward's SV-11753 ruling; PRD v76 S3-R13 now places the … button
+- Chris Ward (SV-11753 comment 79505, 26 Oct): "Option 1: accept it as built … Please pass the test." He published PRD **v76** (26 Oct 13:26 UTC, note "SV-11753: S3-R13 names the more-actions button position (beside the status label)"): S3-R13 now ends "The … button sits at the card’s top right, to the left of the status label, and never covers it: the full status stays readable while the button shows." SV-11753 is OBSOLETE.
+- C590121 changed on the QA lead's named order (114(c)) and only after reading v76 live: step 3 Expected = the v76 sentence verbatim; the Ahtasham "no result is set" note replaced by a dated line quoting Chris word for word (114(d) amendment: someone else's ruling is quoted); S3-R13 quote → v76; build stamp; title prefix off; one `<br>` turned into `</p><p>` so `safe_case_edit.py` accepts it. Passed in run 498 (T3995730) on the sv11545 full run (all steps) + production step 3. Not Automated.
+- `design-stg5.json` s2 "button visible" reading is the hidden button's own style (its parent hides it) — the picture is the proof for step 2.
+#rule131 #prd #design #ruling → L0574, L0573
