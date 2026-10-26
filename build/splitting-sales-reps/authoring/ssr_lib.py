@@ -182,7 +182,7 @@ def scenario_problems(key, preconds_html):
     p = []
     items = [html.unescape(re.sub(r"<[^>]+>", " ", x)).strip() for x in re.findall(r"<li>(.*?)</li>", preconds_html, re.S)]
     if preconds_html.count("Scenario:") != 1: p.append(f"{key}: Preconditions hold {preconds_html.count('Scenario:')} Scenario lines (must be exactly one)")
-    if not items or not items[0].startswith(SCEN_PREFIX): p.append(f"{key}: the first precondition is not the Scenario line")
+    if not items or not items[0].startswith(SCEN_PREFIX): p.append(f"{key}: the first precondition is not the Scenario line")  # in the trial layout the Scenario is the first list item, after the Objective paragraph
     else:
         t = items[0][len(SCEN_PREFIX):]
         w = len(t.split())
@@ -193,10 +193,20 @@ def scenario_problems(key, preconds_html):
     return p
 
 SPACE_AFTER_RESULTS = {"S1-01"}  # trial case first (26 Oct 2026); widened once the QA lead approves the style
+from trial_layout import LAYOUT_V2
+def render_pre_v2(c, L):
+    """Trial layout (26 Oct 2026): Objective, Scenario, Test data, Before you start; the Blocked line closes it."""
+    return ("<p><strong>Objective</strong></p><p>" + e(L["objective"]) + "</p>"
+            + "<ul><li>" + e(scenario_line(c["key"])) + "</li></ul>"
+            + "<p><strong>Test data (create these in the account first)</strong></p><ul>"
+            + "".join(f"<li><strong>{e(n)}</strong>: {e(w)}.<br>For example: {e(x)}.</li>" for n, w, x in L["data"]) + "</ul>"
+            + "<p><strong>Before you start</strong></p><ul>" + "".join(f"<li>{e(x)}</li>" for x in L["before"])
+            + f"<li>{e(BLOCKED)}</li></ul>")
 def render(c):
-    sc = scenario_line(c["key"])
-    pre = "<p><strong>Preconditions</strong></p><ul>" + (f"<li>{e(sc)}</li>" if sc else "") + "".join(f"<li>{e(a)}" + (f"<br>{e(b)}" if b else "") + "</li>" for a, b in c["pre"]) + "</ul>"
+    sc = scenario_line(c["key"]); L = LAYOUT_V2.get(c["key"])
+    pre = render_pre_v2(c, L) if L else ("<p><strong>Preconditions</strong></p><ul>" + (f"<li>{e(sc)}</li>" if sc else "") + "".join(f"<li>{e(a)}" + (f"<br>{e(b)}" if b else "") + "</li>" for a, b in c["pre"]) + "</ul>")
     exp = ("<p><strong>Expected results</strong></p><ul>" + "".join(f"<li>{e(r)}</li>" for r in c["res"]) + "</ul>"
+           + (f"<p><strong>{e(L['passfail'])}</strong></p>" if L else "")
            + ("<p></p>" if c["key"] in SPACE_AFTER_RESULTS else "")  # 26 Oct 2026, QA lead: "keep a space after the expected results end"
            + (f"<p>{e(c['known'])}</p>" if c["known"] else "")
            + (f"<p>{e(c['note'])}</p>" if c["note"] and not design_note(c) else "")
