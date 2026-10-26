@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726493,
  "updated_by": 3,
- "updated_on": 1793027831,
+ "updated_on": 1793030996,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure all twelve standard terms are active and COD is the default for new customers.</li><li>Make sure the shop has five active terms of its own: term A due 10 days after the invoice date, term B due 30 days after the invoice date, term C due on day 1 of the following month, term D due on day 22 of the following month, and term E due on day 1 of the following month. Term E's name comes after term C's in A to Z order.</li><li>Other terms of the shop (from other tests) may also be listed; the checks below are about the order of the named rows.</li><li>Start on the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure all twelve standard terms are active and COD is the default for new customers.</li><li>Make sure the shop has five active terms of its own: term A due 10 days after the invoice date, term B due 30 days after the invoice date, term C due on day 1 of the following month, term D due on day 22 of the following month, and term E due on day 1 of the following month. Term E's name comes after term C's in A to Z order.</li><li>Other terms may also be listed; check only the order of the named rows.</li><li>Start on the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Without clicking any column heading, read the Name column from top to bottom.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>COD is the first row, Due on Receipt the second and Credit Hold the last.</li><li>In between, the Net terms (standard and the shop's own) run by number of days, lowest first: Net 7, then term A (10 days), then Net 15, Net 20, Net 30, then term B (30 days, after Net 30 because ties sort A to Z by name), then Net 45, Net 50, Net 60, Net 90, Net 120.</li><li>After every Net term come the day-of-the-following-month terms by day: term C, then term E (both day 1, A to Z by name), then term D (day 22).</li></ul><p></p><p>The order also has a place for \"any other term A to Z\" before Credit Hold; question 2 on Chris Ward's sheet (shared with him 23 Oct 2026) asks which terms those are. This case checks every kind a shop can create.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11670 (Story 1, Credit Terms page and list)</p><ul><li><strong>S1-R5:</strong> &ldquo;Rows are listed in this order on both tabs: COD; Due on Receipt; every Net term (standard and the shop's own) by number of days, lowest first; every \"day of the following month\" term by day, lowest first; any other term A to Z; Credit Hold last. Ties sort A to Z by name. The same order is used in every customer and vendor Credit Terms dropdown.&rdquo;</li><li><strong>S1-R14:</strong> &ldquo;The Active tab lists every active term; the Inactive tab lists every deactivated term, standard and the shop's own, in the same columns and order.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"1 List and row menus\" (\"Active tab: one table\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes.</p><p>Design pictures attached to this case:</p><ul><li>ct-p1-01-active-tab-one-table.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Order: COD, Due on Receipt, Net terms by days (the shop's own Net 10 sits between Net 7 and Net 15), \"of the following month\" terms by day, any other terms of the shop's own A to Z, Credit Hold last. Terms with the same days sort A to Z.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 4
+ "version": 5
 }
