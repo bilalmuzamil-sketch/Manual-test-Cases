@@ -90,14 +90,14 @@ C("S8-10", "S8", "Without QuickBooks connected, nothing is sent and terms work t
   ["S8-N1"])
 
 C("S8-11", "S8", "AccountingHub and IBS receive the due date only, never the term name",
-  [ADMIN(), ("The organization sends invoices to AccountingHub and IBS, and you have access to both (ask your QA lead for it) so you can see what each received.", None),
+  [ADMIN(), ("The organization sends invoices to AccountingHub and IBS, and you have access to both so you can see what each received.", None),
    ("Customer {Customer-A} holds the shop's own term {Term-A}, and its invoice {Invoice-A} has been sent.", "For example: {Customer-A} is ZZAUTOTEST S8-11 Customer and {Term-A} is ZZAUTOTEST S8-11 Fourteen.")],
   ["Open what AccountingHub received for {Invoice-A}.", "Open what IBS received for {Invoice-A}."],
   ["Step 1: it holds the invoice's due date and not the name {Term-A}.", "Step 2: it holds the due date and not the name {Term-A}."],
   ["S8-R8", "OOS-14"], )
 
 C("S8-12", "S8", "Move Customers sends AccountingHub the same update as Edit Customer",
-  [ADMIN(), ("The organization is connected to AccountingHub, and you have access to it (ask your QA lead for it) so you can see the customer updates it receives.", None),
+  [ADMIN(), ("The organization is connected to AccountingHub, and you have access to it so you can see the customer updates it receives.", None),
    ("The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly one customer, {Customer-A}.", "For example: {Term-A} is ZZAUTOTEST S8-12 N20, {Customer-A} is ZZAUTOTEST S8-12 Customer."), PAGE],
   ['Click the "⋯" at the right of the {Term-A} row.', 'Click "Move Customers".', 'Choose "Net 45" in "Move To".', 'Click "Move 1 Customer".', "Open the customer update AccountingHub received."],
   ["Step 1: the menu opens.", "Step 2: the window opens.", "Step 3: Net 45 is chosen.", 'Step 4: the toast "1 customer moved to Net 45." shows.',

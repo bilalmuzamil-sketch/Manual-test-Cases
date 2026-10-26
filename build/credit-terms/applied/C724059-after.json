@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726788,
  "updated_by": 3,
- "updated_on": 1793021728,
+ "updated_on": 1793022507,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with the \"Admin\" role, working in {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>The organization is connected to AccountingHub, and you have access to it (ask your QA lead for it) so you can see the customer updates it receives.</li><li>The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly one customer, {Customer-A}.<br>For example: {Term-A} is ZZAUTOTEST S8-12 N20, {Customer-A} is ZZAUTOTEST S8-12 Customer.</li><li>Starting screen: the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group) is open on the Active tab.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with the \"Admin\" role, working in {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>The organization is connected to AccountingHub, and you have access to it so you can see the customer updates it receives.</li><li>The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly one customer, {Customer-A}.<br>For example: {Term-A} is ZZAUTOTEST S8-12 N20, {Customer-A} is ZZAUTOTEST S8-12 Customer.</li><li>Starting screen: the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group) is open on the Active tab.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Click the \"⋯\" at the right of the {Term-A} row.</li><li>Click \"Move Customers\".</li><li>Choose \"Net 45\" in \"Move To\".</li><li>Click \"Move 1 Customer\".</li><li>Open the customer update AccountingHub received.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the menu opens.</li><li>Step 2: the window opens.</li><li>Step 3: the dropdown shows Net 45.</li><li>Step 4: the toast \"1 customer moved to Net 45.\" shows.</li><li>Step 5: AccountingHub received one customer update for {Customer-A}, the same kind an Edit Customer save sends.</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11673 (Story 4, Move Customers)</p><ul><li><strong>S4-R12:</strong> &ldquo;Each moved customer gets the new term (and, under S4-R16, a $0 credit limit) and the S4-R11 note. AccountingHub receives the same customer update an Edit Customer save sends. The customer's other fields are not re-checked, so a customer with incomplete details still moves. No customer update is sent to QuickBooks (S8-R6).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"2 Move customers to another term\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 2
+ "version": 3
 }
