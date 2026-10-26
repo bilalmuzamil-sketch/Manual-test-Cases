@@ -17,8 +17,8 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 |---|---|---|---|
 | ADMIN-A | Admin | every case not listed below | 316 cases |
 | OTHER-S1-22 | see the case | You are signed in as {User-A}, whose role has every Settings page except Finance. | S1-22 |
-| OTHER-S1-23 | see the case | This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows. | S1-23 |
-| OTHER-S1-25 | see the case | This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows. | S1-25 |
+| OTHER-S1-23 | see the case | This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows (ask your QA lead for one). | S1-23 |
+| OTHER-S1-25 | see the case | This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows (ask your QA lead for one). | S1-25 |
 | OOTB-S1-30 | out-of-the-box role | You are signed in as {User-A}, on the out-of-the-box "Parts Manager" role, reset to its template. | S1-30 |
 | OOTB-S1-31 | out-of-the-box role | You are signed in as {User-A}, on the out-of-the-box "Office User" role, reset to its template. | S1-31 |
 | OOTB-S1-32 | out-of-the-box role | You are signed in as {User-A}, on the out-of-the-box "Service Manager" role, reset to its template. | S1-32 |
@@ -37,10 +37,10 @@ This file is for a Claude session. A manual tester never needs it: each test cas
 | ROLE-S6-08 | custom role | You are signed in as {User-A}, on a custom role, {Role-A}, with the vendor permissions to create and edit vendors but not View and Manage AP/AR Data. | S6-08 |
 | OTHER-S7-05 | see the case | You are signed in to production (the live app, app.shopview.com) as a user with the "Admin" role, working in {Location-A}. | S7-05 |
 | OTHER-S11-02 | see the case | You are signed in to production (the live app, app.shopview.com) as a user with the "Admin" role, working in {Location-A}. | S11-02 |
-| OTHER-S11-04 | see the case | This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows. | S11-04 |
+| OTHER-S11-04 | see the case | This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows (ask your QA lead for one). | S11-04 |
 | OTHER-S11-07 | see the case | You are signed in to production (the live app, app.shopview.com) as a user with the "Admin" role, working in {Location-A}. | S11-07 |
 | OTHER-S11-14 | see the case | You are signed in to production (the live app, app.shopview.com) as a user with the "Admin" role, working in {Location-A}. | S11-14 |
-| OTHER-S12-16 | see the case | This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows. | S12-16 |
+| OTHER-S12-16 | see the case | This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows (ask your QA lead for one). | S12-16 |
 | OTHER-S12-18 | see the case | You are signed in as {User-A}, whose role has no Settings → Finance. | S12-18 |
 | OTHER-D-48 | see the case | You are signed in as {User-A}, working in {Location-A}, and the role of {User-A} has Settings → Finance but not Customers → Create & Edit. | D-48 |
 | OTHER-D-39 | see the case | You are signed in as {User-A}, working in {Location-A}, and the role of {User-A} can create customers but does not have View and Manage AP/AR Data. | D-39 |
@@ -327,16 +327,16 @@ Procedures: P-ROLE.
 Sources (verbatim text in section 9): PERM-PAGE, S1-N1, S11-N2, S3-N1.
 
 ### SETUP-S1-23 — An empty Inactive tab says "No inactive terms"
-Section: Story 1 — Credit Terms page and list (TestRail section 91455). Marker: `AUTOMATION: HOLD - needs a test organization holding only ZZAUTOTEST records (the shared test site holds other terms and customers)`.
+Section: Story 1 — Credit Terms page and list (TestRail section 91455). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows.
+- This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows (ask your QA lead for one).
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - All twelve standard terms are active and COD is the default for new customers.
 - No term is deactivated (every standard term is active and the shop has no inactive term of its own).
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group) is open on the Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-STD, P-CLEAN.
+Procedures: P-TERM, P-STD.
 Sources (verbatim text in section 9): S1-N2, S1-R3, UFS-2.
 
 ### SETUP-S1-24 — Every row has a menu, even Credit Hold and the default COD
@@ -351,9 +351,9 @@ Procedures: P-STD.
 Sources (verbatim text in section 9): S1-N3.
 
 ### SETUP-S1-25 — With every term deactivated, Active keeps the three fixed terms and the default
-Section: Story 1 — Credit Terms page and list (TestRail section 91455). Marker: `AUTOMATION: HOLD - needs a test organization holding only ZZAUTOTEST records (the shared test site holds other terms and customers)`.
+Section: Story 1 — Credit Terms page and list (TestRail section 91455). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows.
+- This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows (ask your QA lead for one).
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The shop's own term {Term-A}, due 14 days after the invoice date, is the default for new customers. For example: {Term-A} is ZZAUTOTEST S1-25 Fourteen.
 - The shop also has its own term {Term-B}, due on day 10 of the following month. For example: {Term-B} is ZZAUTOTEST S1-25 Tenth.
@@ -361,7 +361,7 @@ Preconditions, exactly as the case states them:
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group) is open on the Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}, {Term-A}, {Term-B}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-TERM, P-STD, P-INV, P-CLEAN.
+Procedures: P-TERM, P-STD, P-INV.
 Sources (verbatim text in section 9): S1-E1, S1-R3.
 
 ### SETUP-S1-26 — A term held only by an invoice shows 0 and 0 but is still in use
@@ -2299,10 +2299,10 @@ Procedures: P-TERM, P-CUST, P-WO, P-INV, P-QBO.
 Sources (verbatim text in section 9): S8-N1.
 
 ### SETUP-S8-11 — AccountingHub and IBS receive the due date only, never the term name
-Section: Story 8 — QuickBooks sync - credit terms (TestRail section 91462). Marker: `AUTOMATION: HOLD - what AccountingHub and IBS receive cannot be seen in ShopView; needs access to those systems`.
+Section: Story 8 — QuickBooks sync - credit terms (TestRail section 91462). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The organization sends invoices to AccountingHub and IBS, and you can see what each received.
+- The organization sends invoices to AccountingHub and IBS, and you have access to both (ask your QA lead for it) so you can see what each received.
 - Customer {Customer-A} holds the shop's own term {Term-A}, and its invoice {Invoice-A} has been sent. For example: {Customer-A} is ZZAUTOTEST S8-11 Customer and {Term-A} is ZZAUTOTEST S8-11 Fourteen.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Customer-A}, {Invoice-A}, {Location-A}, {Term-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
@@ -2310,10 +2310,10 @@ Procedures: P-TERM, P-CUST, P-INV.
 Sources (verbatim text in section 9): OOS-14, S8-R8.
 
 ### SETUP-S8-12 — Move Customers sends AccountingHub the same update as Edit Customer
-Section: Story 8 — QuickBooks sync - credit terms (TestRail section 91462). Marker: `AUTOMATION: HOLD - what AccountingHub receives cannot be seen in ShopView; needs access to AccountingHub`.
+Section: Story 8 — QuickBooks sync - credit terms (TestRail section 91462). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- The organization is connected to AccountingHub, and you can see the customer updates it receives.
+- The organization is connected to AccountingHub, and you have access to it (ask your QA lead for it) so you can see the customer updates it receives.
 - The shop's own term {Term-A}, due 20 days after the invoice date, is held by exactly one customer, {Customer-A}. For example: {Term-A} is ZZAUTOTEST S8-12 N20, {Customer-A} is ZZAUTOTEST S8-12 Customer.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group) is open on the Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2541,10 +2541,10 @@ Procedures: P-VENDOR, P-IMPORT.
 Sources (verbatim text in section 9): S10-E3.
 
 ### SETUP-S10-11 — A customer created through the API without a term gets the default
-Section: Story 10 — Imports and Public API (TestRail section 91464). Marker: `AUTOMATION: HOLD - the Public API request (address and field names) is not in our sources yet (no tech plan); the steps say what to send but not the exact request`.
+Section: Story 10 — Imports and Public API (TestRail section 91464). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- You have a valid Public API key for the test organization and a request tool (for example Postman).
+- You have a valid Public API key for the test organization, the Public API documentation from the developers (it gives the request to create, update and read a customer), and a request tool. For example: Postman.
 - The shop's own term {Term-A} is the default for new customers. For example: {Term-A} is ZZAUTOTEST S10-11 Fourteen.
 - Names for two new customers, {Customer-A} and {Customer-B}. For example: ZZAUTOTEST S10-11 None and ZZAUTOTEST S10-11 Blank.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2553,10 +2553,10 @@ Procedures: P-TERM, P-STD, P-CUST, P-API.
 Sources (verbatim text in section 9): KD-LENIENT, S10-R2.
 
 ### SETUP-S10-12 — An API term in other capitals saves and reads back in the term's spelling
-Section: Story 10 — Imports and Public API (TestRail section 91464). Marker: `AUTOMATION: HOLD - the Public API request (address and field names) is not in our sources yet (no tech plan); the steps say what to send but not the exact request`.
+Section: Story 10 — Imports and Public API (TestRail section 91464). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- You have a valid Public API key for the test organization and a request tool (for example Postman).
+- You have a valid Public API key for the test organization, the Public API documentation from the developers (it gives the request to create, update and read a customer), and a request tool. For example: Postman.
 - The shop's own term {Term-A} is named "Net 10". For example: {Term-A} is Net 10.
 - A name for a new customer, {Customer-A}. For example: ZZAUTOTEST S10-12 Customer.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2565,10 +2565,10 @@ Procedures: P-TERM, P-CUST, P-API.
 Sources (verbatim text in section 9): S10-R3, S10-R7.
 
 ### SETUP-S10-13 — Updating a term through the API matches spelling, or saves unknown text
-Section: Story 10 — Imports and Public API (TestRail section 91464). Marker: `AUTOMATION: HOLD - the Public API request (address and field names) is not in our sources yet (no tech plan); the steps say what to send but not the exact request`.
+Section: Story 10 — Imports and Public API (TestRail section 91464). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- You have a valid Public API key for the test organization and a request tool (for example Postman).
+- You have a valid Public API key for the test organization, the Public API documentation from the developers (it gives the request to create, update and read a customer), and a request tool. For example: Postman.
 - The shop's own term {Term-A} is named "Net 10". For example: {Term-A} is Net 10.
 - Customer {Customer-A} exists on Net 30. For example: ZZAUTOTEST S10-13 Customer.
 - If any record above is missing, mark this test Blocked: "setup not done".
@@ -2577,10 +2577,10 @@ Procedures: P-TERM, P-CUST, P-API.
 Sources (verbatim text in section 9): S10-N1, S10-R4, S10-R5.
 
 ### SETUP-S10-14 — A customer created or updated through the API on COD gets a $0 limit
-Section: Story 10 — Imports and Public API (TestRail section 91464). Marker: `AUTOMATION: HOLD - the Public API request (address and field names) is not in our sources yet (no tech plan); the steps say what to send but not the exact request`.
+Section: Story 10 — Imports and Public API (TestRail section 91464). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- You have a valid Public API key for the test organization and a request tool (for example Postman).
+- You have a valid Public API key for the test organization, the Public API documentation from the developers (it gives the request to create, update and read a customer), and a request tool. For example: Postman.
 - Names for a new customer, {Customer-A}; customer {Customer-B} exists on Net 30 with a $600.00 limit. For example: ZZAUTOTEST S10-14 New and ZZAUTOTEST S10-14 Existing.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Customer-A}, {Customer-B}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
@@ -2588,10 +2588,10 @@ Procedures: P-CUST, P-API.
 Sources (verbatim text in section 9): KD-ZERO, S10-N1, S10-R8.
 
 ### SETUP-S10-15 — An API update with neither term nor limit keeps the stored limit
-Section: Story 10 — Imports and Public API (TestRail section 91464). Marker: `AUTOMATION: HOLD - the Public API request (address and field names) is not in our sources yet (no tech plan); the steps say what to send but not the exact request`.
+Section: Story 10 — Imports and Public API (TestRail section 91464). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- You have a valid Public API key for the test organization and a request tool (for example Postman).
+- You have a valid Public API key for the test organization, the Public API documentation from the developers (it gives the request to create, update and read a customer), and a request tool. For example: Postman.
 - Customer {Customer-A} holds COD and keeps a credit limit of $1,000.00 stored from before the release. For example: ZZAUTOTEST S10-15 Customer.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Customer-A}, {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
@@ -2599,10 +2599,10 @@ Procedures: P-CUST, P-OLD, P-API.
 Sources (verbatim text in section 9): KD-ZERO2, S10-E2, S10-R8.
 
 ### SETUP-S10-16 — The Public API has no way to list terms or the default
-Section: Story 10 — Imports and Public API (TestRail section 91464). Marker: `AUTOMATION: HOLD - the Public API request (address and field names) is not in our sources yet (no tech plan); the steps say what to send but not the exact request`.
+Section: Story 10 — Imports and Public API (TestRail section 91464). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- You have a valid Public API key for the test organization and a request tool (for example Postman).
+- You have a valid Public API key for the test organization, the Public API documentation from the developers (it gives the request to create, update and read a customer), and a request tool. For example: Postman.
 - The Public API documentation for the test organization is open.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
@@ -2644,15 +2644,15 @@ Procedures: P-STD, P-CUST.
 Sources (verbatim text in section 9): S11-R2, S5-R15, T-COUNTER.
 
 ### SETUP-S11-04 — At release all twelve standard terms are active and the shop has none of its own
-Section: Release day and what must not change (TestRail section 91465). Marker: `AUTOMATION: HOLD - needs a test organization holding only ZZAUTOTEST records (the shared test site holds other terms and customers)`.
+Section: Release day and what must not change (TestRail section 91465). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows.
+- This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows (ask your QA lead for one).
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization existed before the release, and nobody has used the Credit Terms page since.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group) is open on the Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-OLD, P-CLEAN.
+Procedures: P-OLD.
 Sources (verbatim text in section 9): GOAL-6, S11-R3, T-STANDARD.
 
 ### SETUP-S11-05 — COD at invoicing works as before, with no Charge Account
@@ -2709,10 +2709,10 @@ Procedures: P-STD, P-CUST, P-OLD.
 Sources (verbatim text in section 9): S11-R17, S4-R14, S4-R20.
 
 ### SETUP-S11-10 — A new organization created after the release starts on Due on Receipt
-Section: Release day and what must not change (TestRail section 91465). Marker: `AUTOMATION: HOLD - needs an organization created after the release; how a tester gets a new organization on the test site is to be confirmed with the QA lead`.
+Section: Release day and what must not change (TestRail section 91465). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
-- An organization {Organization-A} created after the release, never changed on the Credit Terms page, and you are its Admin. For example: {Organization-A} is ZZAUTOTEST S11-10 Shop.
+- An organization {Organization-A} created after the release (ask your QA lead for a new one), never changed on the Credit Terms page, and you are its Admin. For example: {Organization-A} is ZZAUTOTEST S11-10 Shop.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group) is open on the Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}, {Organization-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
@@ -3023,15 +3023,15 @@ Procedures: P-TERM.
 Sources (verbatim text in section 9): S12-R8.
 
 ### SETUP-S12-16 — An untouched log on release day shows its empty state
-Section: Story 12 — Credit Terms audit log (TestRail section 91466). Marker: `AUTOMATION: HOLD - needs a test organization holding only ZZAUTOTEST records (the shared test site holds other terms and customers)`.
+Section: Story 12 — Credit Terms audit log (TestRail section 91466). Marker: `AUTOMATION: HOLD - not yet build-verified (no build yet)`.
 Preconditions, exactly as the case states them:
-- This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows.
+- This case runs on a test organization set aside for this suite, holding none of anyone else's terms, customers or log rows (ask your QA lead for one).
 - You are signed in as a user with the "Admin" role, working in {Location-A}. For example: {Location-A} is Staging Heavy Duty - 9919.
 - The organization existed before the release and nobody has used the Credit Terms page since.
 - Starting screen: the Credit Terms page (Settings, then "Credit Terms" in the Finance group) is open on the Active tab.
 - If any record above is missing, mark this test Blocked: "setup not done".
 Placeholders: {Location-A}. Values: the "For example" lines above; write the real numbers (work order, invoice) here after setup.
-Procedures: P-OLD, P-CLEAN.
+Procedures: P-OLD.
 Sources (verbatim text in section 9): S12-E1, S12-N2, UFS-50.
 
 ### SETUP-S12-17 — Changing a vendor's term in Edit Vendor writes nothing to the log

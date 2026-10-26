@@ -54,3 +54,10 @@ GIVES THE QA ENVIRONMENT, REMIND HIM TO GIVE A NEW ORGANIZATION. 4. Public API d
 them. 6. "This you can take from production environment if you need the BEFORE screenshots." — done: C724041, C724087, C724092,
 C724099 now run on production (before values taken there shortly before the release reaches production; run there after);
 P-OLD recipe updated; applied 26 Oct, read back clean. 7. QA branch: given when he gets it. 8. Rule 128 story footers: "NO".
+
+- 26 Oct 2026, QA lead: "Why do you need this when you are supposed to create the test cases and you are supposed to ask the Manual QA
+  tester to get them as the preconditions." Done: 13 cases (C723887, C723889, C724089, C724123, C724095, C724080-C724085, C724058,
+  C724059) no longer held; each states what the tester needs in its preconditions (set-aside or new organization, API documentation,
+  AccountingHub/IBS access — "ask your QA lead"). The QA-environment reminders are withdrawn. Still held for honest reasons: 4
+  release-day cases (production before/after), C724096 (an organization with no settings record cannot be made or recognised by a
+  tester), 10 cases a tester cannot trigger by hand, and the 9 held on Chris's answers.

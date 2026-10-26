@@ -78,9 +78,9 @@ rl("S11-09", "An old COD customer moved to Credit Hold gets $0, its limit kept i
    ["S11-R17", "S4-R20", "S4-R14"])
 
 rl("S11-10", "A new organization created after the release starts on Due on Receipt",
-   [("An organization {Organization-A} created after the release, never changed on the Credit Terms page, and you are its Admin.", "For example: {Organization-A} is ZZAUTOTEST S11-10 Shop."), PAGE],
+   [("An organization {Organization-A} created after the release (ask your QA lead for a new one), never changed on the Credit Terms page, and you are its Admin.", "For example: {Organization-A} is ZZAUTOTEST S11-10 Shop."), PAGE],
    [("Look at the Name column.", 'Due on Receipt carries the "Default" tag.'), ("Open the Customers page.", "the page opens."), ('Click "New Customer".', "Credit Terms is prefilled with Due on Receipt (Default).")],
-   ["S11-R12", "KD-EXIST", "GOAL-6"], marker=HOLD("needs an organization created after the release; how a tester gets a new organization on the test site is to be confirmed with the QA lead"))
+   ["S11-R12", "KD-EXIST", "GOAL-6"])
 
 rl("S11-11", "An organization with no settings record behaves as COD",
    [("An organization {Organization-A} that has no settings record yet.", "For example: {Organization-A} is a newly migrated test organization."), ("Starting screen: the Customers page.", None)],

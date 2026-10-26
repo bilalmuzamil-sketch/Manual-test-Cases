@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726822,
  "updated_by": 3,
- "updated_on": 1792726822,
+ "updated_on": 1793021737,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,14 +22,14 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with the \"Admin\" role, working in {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>You have a valid Public API key for the test organization and a request tool (for example Postman).</li><li>The Public API documentation for the test organization is open.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with the \"Admin\" role, working in {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>You have a valid Public API key for the test organization, the Public API documentation from the developers (it gives the request to create, update and read a customer), and a request tool.<br>For example: Postman.</li><li>The Public API documentation for the test organization is open.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Look for a request that lists the shop's credit terms or its default.</li></ol>",
  "custom_testrail_bdd_scenario": null,
- "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: there is none: an integrator sends a term name and reads back the saved spelling. They are unchanged from before the release (no new credit term fields or rules).</li></ul><p>The tester sends a Public API request in this case. The exact request is added once the API documentation or tech plan is shared; until then the case is held.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11679 (Story 10, Imports and Public API)</p><ul><li><strong>S10-R7:</strong> &ldquo;The Public API reads, creates and updates a customer's credit term. It has no way to list the shop's terms or its default; an integrator sends a term name and reads back the saved spelling (S10-R3). The vendor API is unchanged.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): no canvas page (the PRD says this story has no new screens). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - the Public API request (address and field names) is not in our sources yet (no tech plan); the steps say what to send but not the exact request</p>",
+ "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: there is none: an integrator sends a term name and reads back the saved spelling. They are unchanged from before the release (no new credit term fields or rules).</li></ul><p>The tester sends a Public API request in this case. The exact request is added once the API documentation or tech plan is shared; until then the case is held.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11679 (Story 10, Imports and Public API)</p><ul><li><strong>S10-R7:</strong> &ldquo;The Public API reads, creates and updates a customer's credit term. It has no way to list the shop's terms or its default; an integrator sends a term name and reads back the saved spelling (S10-R3). The vendor API is unchanged.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): no canvas page (the PRD says this story has no new screens). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
  "custom_steps_separated": null,
  "custom_mission": null,
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 1
+ "version": 2
 }

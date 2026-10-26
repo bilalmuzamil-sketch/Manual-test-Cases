@@ -97,4 +97,4 @@
   purple, colour guide G3, person chip for chris.w@shopview.com) asks for tickets for (1) same-day order by time (C715282, C715283),
   (2) "Switch Location" capital L (C715416, C715417, C715519, C715520, C715546), (3) punctuation order (C715573), (4) export
   Locations tick order (C715343). Jira searched 26 Oct: no ticket for any of the four.
-- 26 Oct 2026, QA lead: the ≤ 8-vendor organization for C797943 (S5-39) — ASK HIM FOR IT WHEN HE GIVES THE QA ENVIRONMENT.
+- 26 Oct 2026: the ≤ 8-vendor organization for C797943 (S5-39) is the tester's precondition (already written so); no reminder to the QA lead.

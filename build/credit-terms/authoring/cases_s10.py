@@ -67,8 +67,8 @@ im("S10-10", "A vendor import update with a blank term cell keeps the stored ter
    [VIMP, ("Open {Vendor-A}'s vendor page.", 'the phone number is updated and the "Credit term" still reads Net 60.')], ["S10-E3"])
 
 # ---- Public API (the tester sends a request; Rule 4) -------------------------------------------------------------------------
-APIHOLD = HOLD("the Public API request (address and field names) is not in our sources yet (no tech plan); the steps say what to send but not the exact request")
-KEY = ("You have a valid Public API key for the test organization and a request tool (for example Postman).", None)
+APIHOLD = None  # 26 Oct 2026 (QA lead): the API documentation is the tester's precondition (KEY), not a hold
+KEY = ("You have a valid Public API key for the test organization, the Public API documentation from the developers (it gives the request to create, update and read a customer), and a request tool.", "For example: Postman.")
 def api(key, title, pre, pairs, q):
     im(key, title, [KEY] + pre, pairs, q, marker=APIHOLD, api=True,
        note="The tester sends a Public API request in this case. The exact request is added once the API documentation or tech plan is shared; until then the case is held.")

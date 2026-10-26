@@ -3264,7 +3264,10 @@ Done: 42 updates + C598326 new, run 498 = 272 (record `wo-board-tech-view/answer
   documentation (6 cases); AccountingHub/IBS access (2 cases); a QA branch; whether to add Rule 128 footers to the 12 stories.
 - WAITING ON THE PO: Credit terms questions 1-12 (sheet 15S4Giqs…).
 
-## Reminders for when the QA lead gives a QA environment (recorded 26 Oct 2026, his instruction)
-- Credit terms (SV-11638): remind him to give a new organization (clean org for C723887, C723889, C724089, C724123; post-release org
-  for C724095, C724096).
-- A/R and A/P: ask him for an organization with 8 or fewer vendors (C797943, S5-39).
+## Withdrawn 26 Oct 2026: QA-environment reminders for organizations, API documentation and AccountingHub/IBS access
+- QA lead, 26 Oct 2026: "Why do you need this when you are supposed to create the test cases and you are supposed to ask the Manual QA
+  tester to get them as the preconditions." These are tester preconditions, not items for the QA lead. Credit terms: the holds on
+  C723887, C723889, C724089, C724123 (set-aside organization), C724095 (new organization), C724080-C724085 (API documentation),
+  C724058, C724059 (AccountingHub/IBS access) were removed and the need written into each case's preconditions (applied, read back).
+  A/R and A/P C797943 (8 or fewer vendors) already had it as a precondition. Lesson: a thing the tester obtains is a precondition,
+  never a hold and never an ask to the QA lead.
