@@ -20,7 +20,7 @@ try {
   await p.setViewportSize({ width: 1440, height: 900 });
   await p.goto(APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }).catch(() => {}); await W(4500);
   R.location = await ensureLocation(p, a, HEAVY); await tab(p, 'All').catch(() => {});
-  for (const view of ['Board View', 'Tech View']) {
+  for (const view of (process.env.ESC_VIEWS || 'Board View,Tech View').split(',')) { // 26 Oct: ESC_VIEWS='Tech View' re-runs one view
     const v: any = {}; R[view] = v; const tag = view === 'Board View' ? 'board' : 'tech';
     await display(p, view); await W(2000);
     // control: Escape with focus where the click left it
