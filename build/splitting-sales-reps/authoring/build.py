@@ -39,7 +39,7 @@ for c in ssr_lib.CASES:
 for c in ssr_lib.CASES:
     h = ssr_lib.render(c)["custom_expected"]
     if "Source &mdash;" in h or "where this behaviour comes from" in h: probs.append(f"{c['key']}: separate Source paragraph")
-    q = h.split("Exact quotes from the source")[1].split("References from Design")[0]
+    q = re.split(r"Exact quotes from the source|Traceability: the requirements this test checks, quoted exactly", h)[1].split("References from Design")[0]
     if not q.split("</strong></p>", 1)[1].startswith("<p>From: "): probs.append(f"{c['key']}: quotes do not start with a From line")
     if q.count("<p>From: ") != q.count("<ul>"): probs.append(f"{c['key']}: a quote group without its own From line")
     if "Epic SV-10890" not in q or ssr_lib.NOBUILD not in q: probs.append(f"{c['key']}: tickets or build line missing")

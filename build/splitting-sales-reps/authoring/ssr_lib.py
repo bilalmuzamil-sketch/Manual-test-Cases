@@ -160,7 +160,8 @@ def quotes_block(c):
         groups.setdefault(doc_of(l), []).append((l, t))
     sto = ", ".join(f"story {STORY[n][0]} ({STORY[n][1]})" for n in story_nums(c))
     tickets = f"Epic SV-10890, {sto}"
-    h = "<p><strong>Exact quotes from the source (for reproducibility)</strong></p>"
+    h = ("<p><strong>Traceability: the requirements this test checks, quoted exactly</strong></p>" if LAYOUT_V2.get(c["key"], {}).get("iso")
+         else "<p><strong>Exact quotes from the source (for reproducibility)</strong></p>")
     first = True
     for k, name in DOCS:
         if k not in groups: continue
@@ -202,11 +203,20 @@ def render_pre_v2(c, L):
             + "".join(f"<li><strong>{e(n)}</strong>: {e(w)}.<br>For example: {e(x)}.</li>" for n, w, x in L["data"]) + "</ul>"
             + "<p><strong>Before you start</strong></p><ul>" + "".join(f"<li>{e(x)}</li>" for x in L["before"])
             + f"<li>{e(BLOCKED)}</li></ul>")
+def render_pre_iso(c, L):
+    """ISO/IEC/IEEE 29119-3 trial (26 Oct 2026, QA lead: "Follow this ISO 29119-3 standard ... One tells what to do and other tells
+    what to expect"): Objective, Priority, Preconditions as numbered actions (what to do before the test), Test inputs, Blocked line."""
+    return ("<p><strong>Objective</strong></p><p>" + e(L["objective"]) + "</p>"
+            + "<ul><li>" + e(scenario_line(c["key"])) + "</li></ul>"
+            + "<p><strong>Priority</strong>: " + e(L["priority"]) + "</p>"
+            + "<p><strong>Preconditions: do these before you start</strong></p><ol>" + "".join(f"<li>{e(x)}</li>" for x in L["setup"]) + "</ol>"
+            + "<p><strong>Test inputs</strong></p><ul>" + "".join(f"<li><strong>{e(n)}</strong>: {e(x)}.</li>" for n, x in L["inputs"]) + "</ul>"
+            + "<p>If you cannot complete any precondition above, mark this test Blocked: \"setup not done\".</p>")
 def render(c):
     sc = scenario_line(c["key"]); L = LAYOUT_V2.get(c["key"])
-    pre = render_pre_v2(c, L) if L else ("<p><strong>Preconditions</strong></p><ul>" + (f"<li>{e(sc)}</li>" if sc else "") + "".join(f"<li>{e(a)}" + (f"<br>{e(b)}" if b else "") + "</li>" for a, b in c["pre"]) + "</ul>")
+    pre = (render_pre_iso(c, L) if L.get("iso") else render_pre_v2(c, L)) if L else ("<p><strong>Preconditions</strong></p><ul>" + (f"<li>{e(sc)}</li>" if sc else "") + "".join(f"<li>{e(a)}" + (f"<br>{e(b)}" if b else "") + "</li>" for a, b in c["pre"]) + "</ul>")
     exp = ("<p><strong>Expected results</strong></p><ul>" + "".join(f"<li>{e(r)}</li>" for r in c["res"]) + "</ul>"
-           + (f"<p><strong>{e(L['passfail'])}</strong></p>" if L else "")
+           + (f"<p><strong>Pass / fail criteria</strong></p><p>{e(L['passfail'])}</p>" if L and L.get("iso") else (f"<p><strong>{e(L['passfail'])}</strong></p>" if L else ""))
            + ("<p></p>" if c["key"] in SPACE_AFTER_RESULTS else "")  # 26 Oct 2026, QA lead: "keep a space after the expected results end"
            + (f"<p>{e(c['known'])}</p>" if c["known"] else "")
            + (f"<p>{e(c['note'])}</p>" if c["note"] and not design_note(c) else "")
