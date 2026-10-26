@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726830,
  "updated_by": 3,
- "updated_on": 1793028153,
+ "updated_on": 1793031185,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure customer A on Due on Receipt and customer B on Net 30 each have a complete work order, work order 1 and work order 2.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure work order 1 (made for this test), for a customer on Due on Receipt, and work order 2 (made for this test), for a customer on Net 30, are complete.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>On work order 1's Finance tab, click Create Invoice.</li><li>Close the payment window without paying.</li><li>On work order 2's Finance tab, click Create Invoice.</li><li>Close the payment window without paying.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The payment window opens and Charge Account is offered.</li></ul><p>Step 2:</p><ul><li>The invoice is still listed on the Finance tab.</li></ul><p>Step 3:</p><ul><li>The payment window opens and Charge Account is offered.</li></ul><p>Step 4:</p><ul><li>The invoice is still listed on the Finance tab.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11670 (Story 1, Credit Terms page and list), story SV-11680 (Story 11, Release day: what changes for existing users)</p><ul><li><strong>S11-R10:</strong> &ldquo;COD behaves as today at invoicing: Create Invoice still opens the payment window, Charge Account is still hidden for COD customers, and closing the window without paying still removes the new invoice. The COD row's Due text and info tooltip describe that existing behavior; they do not change it. The payment window opens for every term at invoicing, as today; COD is the only term whose window has no Charge Account.&rdquo;</li><li><strong>S1-R8, Due on Receipt info icon:</strong> &ldquo;Due on Receipt: \"Payment is due on the invoice date. You can charge the invoice to the customer's account instead of taking payment.\"&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"1 List and row menus\", \"3 New credit term and Inactive tab\", \"4 Everything deactivated and an empty tab\", \"5 New Customer\", \"8 Over Credit warning\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 3
+ "version": 4
 }

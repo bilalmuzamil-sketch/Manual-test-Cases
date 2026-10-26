@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726704,
  "updated_by": 3,
- "updated_on": 1793028012,
+ "updated_on": 1793031095,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,14 +22,14 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as user A, on a custom role, role A, that has Settings → Finance and Customers → Create &amp; Edit, but not View and Manage AP/AR Data (and whatever it needs to reach Settings), and nothing else that matters here.</li><li>Make sure Net 20 is held by at least one customer.</li><li>Start on the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as a user on a custom role that has Settings → Finance and Customers → Create &amp; Edit, but not View and Manage AP/AR Data (and whatever it needs to reach Settings), and nothing else that matters here.</li><li>Make sure Net 20 is held by at least one customer.</li><li>Start on the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Send a move request for Net 20's customers by a means other than the page, as a user who has Settings → Finance but not View and Manage AP/AR Data.</li></ol>",
  "custom_testrail_bdd_scenario": null,
- "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The request is refused and no customer changes term.</li></ul><p></p><p>A manual tester cannot reach this: S4-26 to S4-28 check the page greys the item; an old open window does not help, because changing the user's role signs them out. It is for an automated check.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11673 (Story 4, Move Customers)</p><ul><li><strong>S4-N1:</strong> &ldquo;If the user has 'Settings → Finance' but lacks 'Customers → Create &amp; Edit' or 'View and Manage AP/AR Data', \"Move Customers\" shows greyed in every row menu with the hover text \"You need Customers → Create &amp; Edit and View and Manage AP/AR Data to move customers.\" A move sent by other means without all three permissions is refused by the server.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"2 Move customers to another term\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - the page greys Move Customers for this user, and changing a role signs the user out, so only a request sent outside the page can reach this refusal</p>",
+ "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The request is refused and no customer changes term.</li></ul><p></p><p>A manual tester cannot reach this: the page greys the item for such a user, and an old open window does not help, because changing the user's role signs them out. It is for an automated check.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11673 (Story 4, Move Customers)</p><ul><li><strong>S4-N1:</strong> &ldquo;If the user has 'Settings → Finance' but lacks 'Customers → Create &amp; Edit' or 'View and Manage AP/AR Data', \"Move Customers\" shows greyed in every row menu with the hover text \"You need Customers → Create &amp; Edit and View and Manage AP/AR Data to move customers.\" A move sent by other means without all three permissions is refused by the server.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"2 Move customers to another term\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - the page greys Move Customers for this user, and changing a role signs the user out, so only a request sent outside the page can reach this refusal</p>",
  "custom_steps_separated": null,
  "custom_mission": null,
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 3
+ "version": 4
 }

@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792737550,
  "updated_by": 3,
- "updated_on": 1793028307,
+ "updated_on": 1793031278,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have the shop's own active term A, due on day 10 of the following month.</li><li>Make sure customer A is on term A.</li><li>Make sure work order 1 for customer A was invoiced with the invoice date Oct 5, 2026.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Open the attached design pictures ct-p9-01-an-invoice-today-net-30.png, ct-p9-02-10th-of-next-month-invoice-oct-5-due-nov-10.png at 100% zoom beside the screen.</li><li>Start on work order 1.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have the shop's own active term A, due on day 10 of the following month.</li><li>Make sure work order 1 was invoiced with the invoice date Oct 5, 2026, for a customer who holds term A.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Open the attached design pictures ct-p9-01-an-invoice-today-net-30.png, ct-p9-02-10th-of-next-month-invoice-oct-5-due-nov-10.png at 100% zoom beside the screen.</li><li>Start on work order 1.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Click the \"Finance\" tab.</li><li>Resize the browser window to 1536 px wide (for example, maximise it on a 1536 x 864 screen at 100% zoom).</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Under \"Invoice: INV-\" followed by work order 1's number, the lines read \"Invoice date: Oct 5, 2026\" and \"Due date: Nov 10, 2026\".</li><li>The reference chips read \"Work Order\" with work order 1's number, \"Customer PO …\" and \"Terms\" with term A's name, the term name whole.</li><li>The layout is today's (compare ct-p9-02-10th-of-next-month-invoice-oct-5-due-nov-10.png and today's ct-p9-01-an-invoice-today-net-30.png; the orange outline on the picture is not part of the screen).</li></ul><p>Step 2:</p><ul><li>At 1536 px nothing overlaps, nothing is cut off and nothing needs a sideways scroll.</li><li>The layout described above is unchanged, only wider.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11674 (Story 5, New Customer and Edit Customer), story SV-11676 (Story 7, Due dates)</p><ul><li><strong>S7-R2:</strong> &ldquo;A \"day of the following month\" term is always due in the month after the invoice date, whatever the day of the invoice: with day 10, an invoice dated Oct 5 and one dated Oct 28 are both due Nov 10.&rdquo;</li><li><strong>S5-R8:</strong> &ldquo;The customer card's \"Credit term\" shows \"{name} (Inactive)\" for a deactivated term. Invoices and printed documents show the plain name.&rdquo;</li><li><strong>S5-R11:</strong> &ldquo;A term name of up to 31 characters prints in full, without clipping, on modern and legacy invoices and estimates. Work order prints do not show the credit term.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"9 Invoice due date\" (\"An invoice today (Net 30)\", \"10th of next month: invoice Oct 5, due Nov 10\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes, except where this held design case follows the design.</p><p>Design pictures attached to this case:</p><ul><li>ct-p9-01-an-invoice-today-net-30.png</li><li>ct-p9-02-10th-of-next-month-invoice-oct-5-due-nov-10.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Layout and labels unchanged; only the value of Due date and Terms differ.&rdquo;</li><li>&ldquo;The screen shows the same document the PDF prints (the invoice preview is the PDF render), so screen and PDF match. Highlights on the board mark what to check; they are not part of the document.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 3
+ "version": 4
 }

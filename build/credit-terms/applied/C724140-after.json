@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726944,
  "updated_by": 3,
- "updated_on": 1793028221,
+ "updated_on": 1793031233,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at location A.</li><li>Make sure customer A holds the shop's own term A, due on day 10 of the following month.</li><li>Make sure the work order belongs to location A, in Edmonton's time zone, and you are working in a location in another time zone, location B.</li><li>Make sure work order 1 for customer A is complete and ready to invoice (every part received, review done).</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at a location in another time zone than Edmonton's.</li><li>Make sure the work order belongs to a location in Edmonton's time zone.</li><li>Make sure work order 1 is complete and ready to invoice (every part received, review done), for a customer who holds the shop's own term due on day 10 of the following month.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Open work order 1's Finance tab.</li><li>Set Invoice Date to Oct 5, 2026.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The invoice preview shows Invoice Date and Due date.</li></ul><p>Step 2:</p><ul><li>The Due date reads Nov 10, 2026 (not Nov 9: the November clock change inside the span does not move the date).</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11676 (Story 7, Due dates)</p><ul><li><strong>S7-R6:</strong> &ldquo;Due dates are counted on the calendar of the location the invoice or vendor invoice belongs to, never the location of the user, API connection or import that creates or views it, so a daylight saving change inside the span never moves the date: an Edmonton invoice dated Oct 5 on \"10th of the following month\" is due Nov 10 (not Nov 9).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"9 Invoice due date\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 3
+ "version": 4
 }

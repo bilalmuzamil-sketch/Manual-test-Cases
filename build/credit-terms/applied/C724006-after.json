@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726719,
  "updated_by": 3,
- "updated_on": 1793028030,
+ "updated_on": 1793031108,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure COD is the shop's default for new customers.</li><li>Have the shop's own active term A, due 14 days after the invoice date.</li><li>Choose a name for the new customer, customer A.</li><li>Start on the Customers page.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure COD is the shop's default for new customers.</li><li>Have the shop's own active term A (made for this test), due 14 days after the invoice date.</li><li>Choose a name for the new customer, customer A.</li><li>Start on the Customers page.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Click \"New Customer\".</li><li>Type the name of customer A in Customer Name.</li><li>Choose term A in Credit Terms.</li><li>Type 800 in Credit Limit.</li><li>Click Save.</li><li>Open customer A's customer page.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The \"New Customer\" window opens.</li></ul><p>Step 2:</p><ul><li>The field shows the name as typed.</li></ul><p>Step 3:</p><ul><li>The dropdown shows term A.</li></ul><p>Step 4:</p><ul><li>Credit Limit reads 800.</li></ul><p>Step 5:</p><ul><li>The window closes and the new customer is saved.</li></ul><p>Step 6:</p><ul><li>The \"Credit term\" reads term A and the credit limit is $800.00.</li><li>No extra screen was needed to set the term.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11674 (Story 5, New Customer and Edit Customer)</p><ul><li><strong>S5-R6:</strong> &ldquo;On Save, the customer is created with the chosen term and limit.&rdquo;</li><li><strong>Goals:</strong> &ldquo;Creating a customer on a non-default term takes zero extra screens: the term is set on New Customer itself.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"5 New Customer\", \"6 Customer on a deactivated term\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 3
+ "version": 4
 }

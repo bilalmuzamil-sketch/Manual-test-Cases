@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726905,
  "updated_by": 3,
- "updated_on": 1793028206,
+ "updated_on": 1793031219,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure customer A holds the shop's own term A, due on day 10 of the following month.</li><li>Make sure work order 1 for customer A is complete and ready to invoice (every part received, review done).</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure work order 1 is complete and ready to invoice (every part received, review done), for a customer who holds the shop's own term due on day 10 of the following month.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Open work order 1's Finance tab.</li><li>Set Invoice Date to Oct 5, 2026.</li><li>Set Invoice Date to Oct 28, 2026.</li><li>Set Invoice Date to Oct 10, 2026.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The invoice preview shows Invoice Date and Due date.</li></ul><p>Step 2:</p><ul><li>The Due date reads Nov 10, 2026 (day 10 of November).</li></ul><p>Step 3:</p><ul><li>The Due date reads Nov 10, 2026 (still day 10 of November, whatever the invoice day).</li></ul><p>Step 4:</p><ul><li>The Due date reads Nov 10, 2026 (an invoice on day 10 is due in the following month, not the same day).</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11676 (Story 7, Due dates)</p><ul><li><strong>S7-R2:</strong> &ldquo;A \"day of the following month\" term is always due in the month after the invoice date, whatever the day of the invoice: with day 10, an invoice dated Oct 5 and one dated Oct 28 are both due Nov 10.&rdquo;</li><li><strong>Terminology:</strong> &ldquo;The shop's own term → A term the shop created on the Credit Terms page, of one of two kinds: Due Net X days (due X days after the invoice date) or Due day of the following month (due on day X of the month after the invoice date).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"9 Invoice due date\" (\"10th of next month: invoice Oct 5, due Nov 10\", \"Invoice Oct 28: still due Nov 10\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes.</p><p>Design pictures attached to this case:</p><ul><li>ct-p9-02-10th-of-next-month-invoice-oct-5-due-nov-10.png</li><li>ct-p9-03-invoice-oct-28-still-due-nov-10.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Always the next month, even when the 10th of this month is still ahead or nearly here. Day 31 in a 30-day month uses its last day (Nov 30).&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 3
+ "version": 4
 }

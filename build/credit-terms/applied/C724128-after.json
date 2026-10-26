@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726904,
  "updated_by": 3,
- "updated_on": 1793028204,
+ "updated_on": 1793031217,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure customer A holds the shop's own term A, due 10 days after the invoice date.</li><li>Make sure work order 1 for customer A is complete and ready to invoice (every part received, review done).</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure work order 1 is complete and ready to invoice (every part received, review done), for a customer who holds the shop's own term due 10 days after the invoice date.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Open work order 1's Finance tab.</li><li>Set Invoice Date to Oct 5, 2026.</li><li>Set Invoice Date to Oct 25, 2026.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The invoice preview shows Invoice Date and Due date.</li></ul><p>Step 2:</p><ul><li>The Due date reads Oct 15, 2026 (Oct 5 + 10 days).</li></ul><p>Step 3:</p><ul><li>The Due date reads Nov 4, 2026 (Oct 25 + 10 days: 6 days to Oct 31, then 4).</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11676 (Story 7, Due dates)</p><ul><li><strong>S7-R1:</strong> &ldquo;A Net term (standard or the shop's own) is due that many days after the invoice date: an invoice dated Oct 5 on Net 30 is due Nov 4; on a shop's \"Net 10\" it is due Oct 15.&rdquo;</li><li><strong>Terminology:</strong> &ldquo;The shop's own term → A term the shop created on the Credit Terms page, of one of two kinds: Due Net X days (due X days after the invoice date) or Due day of the following month (due on day X of the month after the invoice date).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"7 Vendors\" (\"Vendor on Net 10: Oct 5, due Oct 15\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes.</p><p>Design pictures attached to this case:</p><ul><li>ct-p7-11-vendor-on-net-10-oct-5-due-oct-15.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;A shop's own Net X term adds X days, like the standard Net terms.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 3
+ "version": 4
 }

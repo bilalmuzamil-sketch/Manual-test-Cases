@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726697,
  "updated_by": 3,
- "updated_on": 1793028005,
+ "updated_on": 1793031088,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure COD is the shop's default for new customers.</li><li>Make sure customer A holds Credit Hold, with a $0.00 limit (other customers may hold Credit Hold too).</li><li>Start on the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure COD is the shop's default for new customers.</li><li>Make sure customer A (made for this test) holds Credit Hold, with a $0.00 limit (other customers may hold Credit Hold too).</li><li>Make sure Net 30 is active.</li><li>Start on the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Click the \"⋯\" at the right of the \"Credit Hold\" row.</li><li>Click \"Move Customers\".</li><li>Click \"Select None\".</li><li>Type customer A's name in \"Search customers\".</li><li>Tick customer A.</li><li>Choose \"Net 30\" in \"Move To\".</li><li>Click \"Move 1 Customer\".</li><li>Open Edit Customer for customer A.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The menu opens.</li></ul><p>Step 2:</p><ul><li>A window titled \"Move Customers from Credit Hold\" opens.</li></ul><p>Step 3:</p><ul><li>\"0 selected\" (every customer on the term is unticked, including those not in view).</li></ul><p>Step 4:</p><ul><li>Only customer A is listed.</li></ul><p>Step 5:</p><ul><li>The count reads \"1 selected\".</li></ul><p>Step 6:</p><ul><li>No $0 line shows.</li></ul><p>Step 7:</p><ul><li>The toast \"1 customer moved to Net 30.\" shows.</li><li>Every other Credit Hold customer stays on Credit Hold.</li></ul><p>Step 8:</p><ul><li>Credit Terms reads Net 30 and Credit Limit is $0.00, editable.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11673 (Story 4, Move Customers)</p><ul><li><strong>S4-N3:</strong> &ldquo;Inactive terms and Credit Hold are valid sources (Move Customers is how a shop empties a deactivated term). Inactive terms are never offered in \"Move To\".&rdquo;</li><li><strong>S4-E3:</strong> &ldquo;Moving customers to COD or Credit Hold sets each moved customer's credit limit to $0 (S4-R16), whatever limit they had, and keeps the previous limit in each note (S4-R20). Moving customers off COD or Credit Hold to another term leaves their $0 limit as it is until someone enters a new one in Edit Customer.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"2 Move customers to another term\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 3
+ "version": 4
 }

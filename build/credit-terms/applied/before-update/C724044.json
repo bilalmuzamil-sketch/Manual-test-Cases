@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726769,
  "updated_by": 3,
- "updated_on": 1793024972,
+ "updated_on": 1793028086,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,14 +22,14 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>Scenario: A work order ready to invoice is switched to a different customer, who is on another term.</li><li>You are an Admin user working at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Customer {Customer-A} holds Net 30 and customer {Customer-B} holds the shop's own term {Term-A}, due on day 10 of the following month.<br>For example: {Customer-A} is ZZAUTOTEST S7-08 First, {Customer-B} is ZZAUTOTEST S7-08 Second and {Term-A} is ZZAUTOTEST S7-08 Tenth.</li><li>Work order {Work-order-1} for {Customer-A} is complete and ready to invoice (every part received, review done).<br>For example: {Work-order-1} is S2-15444.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
- "custom_steps": "<ol><li>On {Work-order-1}, change the customer to {Customer-B}.</li><li>Open the Finance tab.</li><li>Set Invoice Date to Oct 5, 2026.</li><li>Click Create Invoice.</li></ol>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure customer A holds Net 30 and customer B holds the shop's own term A, due on day 10 of the following month.</li><li>Make sure work order 1 for customer A is complete and ready to invoice (every part received, review done).</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_steps": "<ol><li>On work order 1, change the customer to customer B.</li><li>Open the Finance tab.</li><li>Set Invoice Date to Oct 5, 2026.</li><li>Click Create Invoice.</li></ol>",
  "custom_testrail_bdd_scenario": null,
- "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the work order now shows {Customer-B}.</li><li>Step 2: the invoice preview shows.</li><li>Step 3: the due date reads Nov 10, 2026 ({Term-A}, not Net 30's Nov 4).</li><li>Step 4: the invoice shows {Term-A} and due Nov 10, 2026.</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11676 (Story 7, Due dates)</p><ul><li><strong>S7-E4:</strong> &ldquo;If the customer on an open work order or part sale is changed, the invoice takes the new customer's term at invoicing, by the same rule. Nothing about the term is copied onto the work order or part sale before invoicing.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"9 Invoice due date\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
+ "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The work order now shows customer B.</li></ul><p>Step 2:</p><ul><li>The invoice preview shows.</li></ul><p>Step 3:</p><ul><li>The due date reads Nov 10, 2026 (term A, not Net 30's Nov 4).</li></ul><p>Step 4:</p><ul><li>The invoice shows term A and due Nov 10, 2026.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11676 (Story 7, Due dates)</p><ul><li><strong>S7-E4:</strong> &ldquo;If the customer on an open work order or part sale is changed, the invoice takes the new customer's term at invoicing, by the same rule. Nothing about the term is copied onto the work order or part sale before invoicing.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"9 Invoice due date\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
  "custom_steps_separated": null,
  "custom_mission": null,
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 2
+ "version": 3
 }

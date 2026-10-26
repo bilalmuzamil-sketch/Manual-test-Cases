@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726770,
  "updated_by": 3,
- "updated_on": 1793028088,
+ "updated_on": 1793031147,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure customer A holds the shop's own term A, due 14 days after the invoice date, with a credit limit of $5,000.00.</li><li>Make sure work order 1 for customer A is complete and ready to invoice (every part received, review done).</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure work order 1 (made for this test) is complete and ready to invoice (every part received, review done), for a customer who holds one of the shop's own terms, due 14 days after the invoice date, with a credit limit of $5,000.00.</li><li>Make sure Net 30 is active.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Open work order 1's Finance tab.</li><li>Click Create Invoice.</li><li>Close the payment window without paying.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Create Invoice is enabled (invoicing is not blocked).</li></ul><p>Step 2:</p><ul><li>The invoice is created and the payment window opens.</li><li>Charge Account is offered, as for a Net 30 customer.</li></ul><p>Step 3:</p><ul><li>The invoice stays (it is not removed, unlike a COD invoice).</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11680 (Story 11, Release day: what changes for existing users)</p><ul><li><strong>Key Decisions:</strong> &ldquo;The shop's own terms behave like Net terms: Charge Account allowed, invoicing never blocked.&rdquo;</li><li><strong>S11-R10:</strong> &ldquo;COD behaves as today at invoicing: Create Invoice still opens the payment window, Charge Account is still hidden for COD customers, and closing the window without paying still removes the new invoice. The COD row's Due text and info tooltip describe that existing behavior; they do not change it. The payment window opens for every term at invoicing, as today; COD is the only term whose window has no Charge Account.&rdquo;</li><li><strong>Goals:</strong> &ldquo;A shop can create a \"Net X days\" or \"day of the following month\" term and select it on any customer or vendor; invoices and vendor invoices dated afterwards show the due date the term defines.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"1 List and row menus\", \"5 New Customer\", \"8 Over Credit warning\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 3
+ "version": 4
 }

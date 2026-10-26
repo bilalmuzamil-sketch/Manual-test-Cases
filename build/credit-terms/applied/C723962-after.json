@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726662,
  "updated_by": 3,
- "updated_on": 1793027966,
+ "updated_on": 1793031060,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Sign in with the \"Admin\" role in one browser, and have a second user, user B, signed in with the \"Admin\" role in a second browser.</li><li>Have the shop's own active term A, due 14 days after the invoice date, held by no customer, vendor or invoice.</li><li>Make sure customer A holds COD.</li><li>Start with your browser showing the Credit Terms page and user B's browser showing Edit Customer for customer A.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have a second user, user B, signed in with the \"Admin\" role in a second browser (you are signed in as an Admin in the first).</li><li>Have the shop's own active term A (made for this test), due 14 days after the invoice date, held by no customer, vendor or invoice.</li><li>Start with your browser showing the Credit Terms page and user B's browser showing Edit Customer for a customer who holds COD.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>In your browser, click the \"⋯\" at the right of the term A row.</li><li>Click \"Edit\".</li><li>Replace 14 with 21 in the Days box.</li><li>In user B's browser, set Credit Terms to term A.</li><li>In user B's browser, click Save.</li><li>In your browser, click \"Save Changes\".</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The menu opens.</li></ul><p>Step 2:</p><ul><li>The \"Edit Credit Term\" window opens.</li></ul><p>Step 3:</p><ul><li>The blue line shows 21 days.</li></ul><p>Step 4:</p><ul><li>The dropdown shows term A.</li></ul><p>Step 5:</p><ul><li>The customer is saved on term A.</li></ul><p>Step 6:</p><ul><li>The app's error alert shows \"Used by 1 customer. Deactivate it instead to take it out of the pickers.\" The window stays open with 21 still typed, and the row still reads 14 days.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11672 (Story 3, Create or edit a credit term)</p><ul><li><strong>Story 3, Error Handling:</strong> &ldquo;If Create or Save is refused by the server, the app's standard error alert shows the reason (the S3-R9 texts, or \"Pick Due Net X days or Due day of the following month.\" when no option is sent, or \"Used by {holders}. Deactivate it instead to take it out of the pickers.\" when the term became in use meanwhile). The window stays open with the user's input.&rdquo;</li><li><strong>Key Decisions:</strong> &ldquo;Once a term is in use (by any customer, vendor or invoice), its name and days are locked; it can be deactivated but not deleted. An unused term can be edited or deleted.&rdquo;</li><li><strong>Out of Scope:</strong> &ldquo;Renaming or changing the days of a term in use. QuickBooks cannot rename a term and invoices hold the name. To rename, deactivate the term and create a new one.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"3 New credit term and Inactive tab\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 3
+ "version": 4
 }

@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726844,
  "updated_by": 3,
- "updated_on": 1793025052,
+ "updated_on": 1793028167,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,14 +22,14 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>Scenario: Your shop uses AccountingHub and creates a new credit term in ShopView.</li><li>You are an Admin user working at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>The organization uses AccountingHub; before the case, the Payment Terms list in Accounting Settings was written down.</li><li>A new name {Term-A} that no term has.<br>For example: {Term-A} is ZZAUTOTEST S11-16 Fourteen.</li><li>Starting screen: the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
- "custom_steps": "<ol><li>Click \"New Credit Term\".</li><li>Type {Term-A} in Name.</li><li>Type 14 in the Days box.</li><li>Click \"Create Credit Term\".</li><li>Open Accounting Settings, Payment Terms.</li></ol>",
+ "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure the organization uses AccountingHub; before the case, the Payment Terms list in Accounting Settings was written down.</li><li>Choose a new name for term A that no term has.</li><li>Start on the Credit Terms page (Settings, then \"Credit Terms\" in the Finance group), Active tab.</li><li>If you cannot set up any of the above, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_steps": "<ol><li>Click \"New Credit Term\".</li><li>Type the name of term A in Name.</li><li>Type 14 in the Days box.</li><li>Click \"Create Credit Term\".</li><li>Open Accounting Settings, Payment Terms.</li></ol>",
  "custom_testrail_bdd_scenario": null,
- "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the window opens.</li><li>Step 2: the field shows the name as typed.</li><li>Step 3: the blue information line shows below the options.</li><li>Step 4: the toast \"{Term-A} created\" shows.</li><li>Step 5: the list is exactly as written down; {Term-A} does not appear there.</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11680 (Story 11, Release day: what changes for existing users)</p><ul><li><strong>Out of Scope:</strong> &ldquo;Merging with AccountingHub's own Payment Terms list. AccountingHub keeps its separate Payment Terms list (Accounting Settings). A merge waits until AccountingHub's term rules are confirmed (follow-up, open question on the review page).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"1 List and row menus\", \"5 New Customer\", \"8 Over Credit warning\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
+ "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The window opens.</li></ul><p>Step 2:</p><ul><li>The field shows the name as typed.</li></ul><p>Step 3:</p><ul><li>The blue information line shows below the options.</li></ul><p>Step 4:</p><ul><li>The toast \"term A created\" shows.</li></ul><p>Step 5:</p><ul><li>The list is exactly as written down.</li><li>Term A does not appear there.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11680 (Story 11, Release day: what changes for existing users)</p><ul><li><strong>Out of Scope:</strong> &ldquo;Merging with AccountingHub's own Payment Terms list. AccountingHub keeps its separate Payment Terms list (Accounting Settings). A merge waits until AccountingHub's term rules are confirmed (follow-up, open question on the review page).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"1 List and row menus\", \"5 New Customer\", \"8 Over Credit warning\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
  "custom_steps_separated": null,
  "custom_mission": null,
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 2
+ "version": 3
 }
