@@ -9,6 +9,7 @@ import os, sys, re, json, html
 D = os.path.dirname(os.path.abspath(__file__)); P = os.path.dirname(D)
 sys.path.insert(0, f"{P}/authoring")
 import pattern_lib as PL
+import readthrough as RTH
 from pattern_lib import ADMIN_P, REPS2_P, CUST_P, PICS
 e = lambda s: html.escape(s, quote=False)
 OLD = json.load(open(f"{D}/before-dr.json"))
@@ -65,7 +66,8 @@ for k, v in OLD.items():
     res = [L.get("r", {}).get(i) or PL.split_bullets(PL.sub(x[len(f"Step {i}: "):], names)) for i, x in enumerate(res0, 1)]
     pre = []
     for x in L["pre"]: pre += PL.pics_p(pre0) if x == PICS else [x]
-    pre.append(PL.BLOCKED_P)
+    # 26 Oct 2026, Rule 117 fifteenth amendment: no Blocked line (was: pre.append(PL.BLOCKED_P))
+    pre, steps, res, _t = RTH.apply(k, pre, steps, res, f["title"])   # 26 Oct 2026, tester read-through (authoring/readthrough.py)
     new = dict(f)
     new["custom_preconds"] = "<p><strong>Preconditions</strong></p><ul>" + "".join(f"<li>{e(x)}</li>" for x in pre) + "</ul>"
     new["custom_steps"] = "<ol>" + "".join(f"<li>{e(x)}</li>" for x in steps) + "</ol>"

@@ -72,7 +72,7 @@ def AQ(n, part=None):
 READ = {"PRD": "read 22 Oct 2026", "Chris Ward's answer": "read 22 Oct 2026", "Tech plan": "read in full 22 Oct 2026"}
 NOBUILD = "The build is not yet available to check this case against."
 MARKER = "AUTOMATION: HOLD - not yet build-verified (no build yet)"
-BLOCKED = 'If any record above is missing, mark this test Blocked: "setup not done".'
+# 26 Oct 2026, Rule 117 fifteenth amendment: the closing "mark this test Blocked" line is no longer added to any case or recipe.
 CASES = []
 
 def setup_order(pre):
@@ -88,7 +88,7 @@ def setup_order(pre):
 def C(key, sec, title, pre, steps, res, q, stories=None, extra_src="", note="", marker=None, known="", pictures=None, design_src=""):
     """pre: list of str or (state, example). res: one 'Step N:' line per step. q: list of PRD codes or ('label', 'verbatim text').
     The case's "Scenario:" line (26 Oct 2026) lives in scenarios.py and is rendered first in the Preconditions."""
-    CASES.append(dict(key=key, sec=sec, title=title, pre=setup_order([p if isinstance(p, tuple) else (p, None) for p in pre]) + [(BLOCKED, None)],
+    CASES.append(dict(key=key, sec=sec, title=title, pre=setup_order([p if isinstance(p, tuple) else (p, None) for p in pre]),
                       steps=steps, res=res, q=q, stories=stories, extra_src=extra_src, note=note, marker=marker or MARKER, known=known, pictures=pictures or [], design_src=design_src))
 
 def quotes(c):
@@ -204,7 +204,7 @@ def render_pre_v2(c, L):
             + "<p><strong>Test data (create these in the account first)</strong></p><ul>"
             + "".join(f"<li><strong>{e(n)}</strong>: {e(w)}.<br>For example: {e(x)}.</li>" for n, w, x in L["data"]) + "</ul>"
             + "<p><strong>Before you start</strong></p><ul>" + "".join(f"<li>{e(x)}</li>" for x in L["before"])
-            + f"<li>{e(BLOCKED)}</li></ul>")
+            + "</ul>")   # fifteenth amendment: no Blocked line
 def render_pre_iso(c, L):
     """ISO/IEC/IEEE 29119-3 trial (26 Oct 2026, QA lead: "Follow this ISO 29119-3 standard ... One tells what to do and other tells
     what to expect"): Objective, Priority, Preconditions as numbered actions (what to do before the test), Test inputs, Blocked line."""
@@ -213,12 +213,13 @@ def render_pre_iso(c, L):
             + "<p><strong>Priority</strong>: " + e(L["priority"]) + "</p>"
             + "<p><strong>Preconditions: do these before you start</strong></p><ol>" + "".join(f"<li>{e(x)}</li>" for x in L["setup"]) + "</ol>"
             + "<p><strong>Test inputs</strong></p><ul>" + "".join(f"<li><strong>{e(n)}</strong>: {e(x)}.</li>" for n, x in L["inputs"]) + "</ul>"
-            + "<p>If you cannot complete any precondition above, mark this test Blocked: \"setup not done\".</p>")
+            )   # fifteenth amendment: no Blocked line
 import pattern_lib as PL
+import readthrough
 def pattern_parts(c, L):
     """Rule 117 fourteenth amendment (26 Oct 2026): the tester-facing parts of a case in the QA lead's pattern. S1-01, the model the QA
     lead approved, keeps its own preconditions and results exactly as approved; every other case (auto=True, pattern_cases.py) gets its
-    plain precondition bullets with the Blocked line last, its steps and results with the placeholders turned into the plain names its
+    plain precondition bullets (no Blocked line since the fifteenth amendment, 26 Oct 2026), its steps and results with the placeholders turned into the plain names its
     preconditions use, and each result as bullets (pattern_lib)."""
     if not L.get("auto"): return L["pre"], c["steps"], L["results"], c["title"]
     names = PL.default_names(" ".join([a for a, _ in c["pre"]] + c["steps"] + c["res"] + [c["known"]])); names.update(L["names"])
@@ -226,7 +227,8 @@ def pattern_parts(c, L):
     res = [L["r"].get(i) or PL.split_bullets(PL.sub(x[len(f"Step {i}: "):], names)) for i, x in enumerate(c["res"], 1)]
     pre = []
     for x in L["pre"]: pre += PL.pics_p(c["pre"]) if x == PL.PICS else [x]
-    return pre + [PL.BLOCKED_P], steps, res, L.get("title") or c["title"]
+    # 26 Oct 2026, tester read-through (readthrough.py): the per-case fixes are applied last, to the tester-facing parts only
+    return readthrough.apply(c["key"], pre, steps, res, L.get("title") or c["title"])
 def below_results(c):
     """Everything below the blank line after the results, unchanged by the pattern: any known-problem text, a held or Blocked note that
     is not about the design, the exact quotes with their From: lines, the References from Design block and the AUTOMATION line last."""
@@ -296,7 +298,7 @@ def results_tail(expected_html):
     t = expected_html.split("</ul>", 1)[1]
     return t[len("<p></p>"):] if t.startswith("<p></p>") else t
 def pattern_problems(key, f, old=None, exempt_blocked=("S1-01",)):
-    """Preconditions are plain bullets only (no {placeholder}, no "For example", no "Scenario:", no who-to-ask), the Blocked line last;
+    """Preconditions are plain bullets only (no {placeholder}, no "For example", no "Scenario:", no who-to-ask, no Blocked line);
     steps a numbered list with no placeholder; expected starts "Expected Result", has a "Step N:" heading and a bullet list for every
     step in order, then <p></p>, then the quotes block and the rest; the title at most 80 characters with no semicolon. With old (the
     case's fields before the pattern), everything below the results must be byte-identical to before."""
@@ -312,7 +314,9 @@ def pattern_problems(key, f, old=None, exempt_blocked=("S1-01",)):
         if "Scenario:" in x: p.append(f"{key}: Scenario line in the Preconditions")
         if re.search(r"QA lead|ask your|set aside", x, re.I): p.append(f"{key}: who-to-ask or generic wording in the Preconditions")
         if "ZZAUTOTEST" in x: p.append(f"{key}: example record name in the Preconditions")
-    if key not in exempt_blocked and (not items or items[-1] != PL.BLOCKED_P): p.append(f"{key}: the Blocked line is not last in the Preconditions")
+    # BLOCKED-LINE GATE (Rule 117 fifteenth amendment, 26 Oct 2026, PERMANENT): no "mark this test Blocked" line or variant anywhere
+    if any(PL.BLOCKED_RE.search(html.unescape(re.sub(r"<[^>]+>", " ", f[x]))) for x in ("custom_preconds", "custom_steps")) or PL.BLOCKED_RE.search(html.unescape(re.sub(r"<[^>]+>", " ", f["custom_expected"]))):
+        p.append(f"{key}: carries the \"mark this test Blocked\" line or a variant (Rule 117 fifteenth amendment)")
     steps = re.findall(r"<li>(.*?)</li>", f["custom_steps"], re.S)
     if not re.fullmatch(r"<ol>(?:<li>[^<]*</li>)+</ol>", f["custom_steps"]): p.append(f"{key}: Steps are not a plain numbered list")
     if any("{" in x for x in steps): p.append(f"{key}: placeholder in the Steps")

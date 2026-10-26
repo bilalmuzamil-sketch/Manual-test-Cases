@@ -48,10 +48,6 @@ E("S1-09", [ADMIN_P, REPS2_P, CUST_P, WO_P(), OPEN_WO_P,
 E("S1-10", [ADMIN_P, REPS2_P, CUST_P, WO_P(), OPEN_WO_P],
   r={2: ['The field returns to the last saved value ("Unassigned").', "An error message shows."]})
 E("S1-10b", [ADMIN_P, REPS2_P, CUST_P, WO_P(), OPEN_WO_P])
-E("S1-11", [ADMIN_P, REPS2_P, CUST_P,
-   'Have a first work order for that customer, open and not invoiced, whose "Sales Representative - Labor" field reads sales rep A and whose "Sales Representative - Parts" field holds staff member C, whose staff record no longer exists.',
-   'Have a second work order for that customer, open and not invoiced, whose one "Sales Representative" field holds staff member D, a staff member of another organization.',
-   OPEN_P("the first work order")])
 
 # ---------------- Story 2: separate Labor and Parts representatives ----------------
 E("S2-01", [ADMIN_P, REPS2_P, CUST_P, WO_P('one "Sales Representative" field set to sales rep A'), OPEN_WO_P],
@@ -394,9 +390,6 @@ E("S6-03", [ADMIN_P, REPS2_P, CUST_P,
    'Have a second work order with Labor set to sales rep A and Parts reading "Unassigned".',
    OPEN_P("the first work order")])
 E("S6-04", [ADMIN_P, CUST_P, WO_P(), OPEN_WO_P])
-E("S6-05", [ADMIN_P, REPS2_P, CUST_P,
-   "Have an open, uninvoiced work order for that customer, with one approved labor line, one part, Labor set to sales rep A and Parts holding sales rep B, whose staff record no longer exists.",
-   OPEN_WO_P])
 
 # ---------------- Story 7: the work order log ----------------
 _SPLIT_AB = '"Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to sales rep B'
@@ -410,10 +403,6 @@ E("S7-01c", [ADMIN_P, REPS2_P, CUST_P, WO_P(_SPLIT_AB), OPEN_WO_P])
 E("S7-02", [ADMIN_P, REPS2_P, CUST_P, WO_P(_SPLIT_AB), OPEN_WO_P])
 E("S7-03", [ADMIN_P, REPS2_P, CUST_P, WO_P('one "Sales Representative" field set to sales rep A'), OPEN_WO_P],
   r={2: ["The log opens.", 'You have the count of "Sales representative changed" entries.'], 7: ["The count is the same.", "There is no new entry."]})
-E("S7-05", [ADMIN_P, REPS2_P, CUST_P,
-   'Have a first work order for that customer, open and not invoiced, whose "Sales Representative - Labor" field reads sales rep A and whose "Sales Representative - Parts" field holds staff member C, whose staff record no longer exists.',
-   'Have a second work order for that customer, open and not invoiced, whose one "Sales Representative" field holds staff member D, a staff member of another organization.',
-   OPEN_P("the first work order")])
 
 # ---------------- Story 8: Sales Type filters on both sales reports ----------------
 SBR_OPEN_P = OPEN_P("Reports > Sales By Representative")
@@ -437,10 +426,6 @@ E("S8-12", [ADMIN_P, "Pick a date on which the test location has no invoices.",
   r={1: ['"Empty export" does not show.', 'A CSV downloads with the filter line "Sales Type: All", the column headings and no rows.']})
 E("S8-12b", [ADMIN_P, "Pick a date on which the test location has no invoices.",
    "Open Reports > Sales By Customer for that date in a desktop browser at least 1024 pixels wide, so it shows no invoices."])
-E("S5-19", [ADMIN_P, REPS2_P, 'Have staff member C, a third active staff member at the test location, with the "Sales Representative" switch on.', CUST_P, LOC0_P,
-   'Have a work order for that customer with "Sales Representative - Labor" set to sales rep A and "Sales Representative - Parts" set to staff member C, and invoice it today.',
-   "After the invoice, staff member C's staff record no longer exists.",
-   SBR_UN_P])
 E("S5-20", [ADMIN_P, REPS2_P, "Use a customer with no Sales Representative assigned, set as tax exempt so that no tax applies to its invoices.", LOC0_P,
    "Have an open, uninvoiced work order for that customer with one labor line of 1.00 hour at $100.00 ($100.00), one part sold at $50.00 and a non-taxable whole-invoice discount of $200.00 (not on any line), with Labor set to sales rep A and Parts set to sales rep B.",
    OPEN_WO_P],
@@ -705,8 +690,8 @@ def ADD(key, before, new, why):
 REP1 = lambda x: f'Have an active staff member at the test location with the "Sales Representative" switch on: sales rep {x}.'
 NO_REPS_REASON = "removed the two sales reps: no step or result uses them"
 # a second rep the case never sees
-for k in ["S1-03", "S1-04", "S1-05", "S1-06", "S1-10", "S1-11", "S2-01", "S2-03", "S2-11", "S3-01", "S3-02", "S3-02b", "S3-03", "S3-04",
-          "S4-02", "S4-03", "S4-09", "S5-07", "S5-08", "S5-08b", "S5-09", "S5-18", "S5-19", "S6-01b", "S6-05", "S7-01",
+for k in ["S1-03", "S1-04", "S1-05", "S1-06", "S1-10", "S2-01", "S2-03", "S2-11", "S3-01", "S3-02", "S3-02b", "S3-03", "S3-04",
+          "S4-02", "S4-03", "S4-09", "S5-07", "S5-08", "S5-08b", "S5-09", "S5-18", "S6-01b", "S7-01",
           "S7-03", "REL-01", "REL-02", "REL-14", "REL-16", "D-01", "D-02", "D-03", "D-04", "D-05", "D-05b", "D-07", "D-14", "D-18", "D-18b"]:
     RE(k, REPS2_P, REP1("A"), "removed sales rep B: no step or result uses them")
 for k in ["S1-07", "S1-09", "S2-06", "S4-15", "S4-15b", "S4-19", "S4-19b", "S4-23", "REL-19b"]:
@@ -733,19 +718,6 @@ for k, role in [("S1-06", '"Work Orders — View" but not "Work Orders — Creat
                 ("S4-28", '"Customers — Create & Edit" but neither "Work Orders — View" nor "Work Orders — Create & Edit"')]:
     RE(k, f"Sign in at the test location as user B, whose role has {role}.", f"Sign in at the test location as a user whose role has {role}.",
        "the sign-in user is no longer called user B (no step or result names them)")
-# records whose letter names no step or result uses: described by what they are
-for k in ["S1-11", "S7-05"]:
-    RE(k, 'Have a first work order for that customer, open and not invoiced, whose "Sales Representative - Labor" field reads sales rep A and whose "Sales Representative - Parts" field holds staff member C, whose staff record no longer exists.',
-       'Have a first work order for that customer, open and not invoiced, whose "Sales Representative - Labor" field reads sales rep A and whose "Sales Representative - Parts" field holds a staff member whose staff record no longer exists.',
-       "staff member C described as a staff member whose record no longer exists (the name is not used)")
-    RE(k, 'Have a second work order for that customer, open and not invoiced, whose one "Sales Representative" field holds staff member D, a staff member of another organization.',
-       'Have a second work order for that customer, open and not invoiced, whose one "Sales Representative" field holds a staff member of another organization.',
-       "staff member D described as a staff member of another organization (the name is not used)")
-RE("S6-05", "Have an open, uninvoiced work order for that customer, with one approved labor line, one part, Labor set to sales rep A and Parts holding sales rep B, whose staff record no longer exists.",
-   "Have an open, uninvoiced work order for that customer, with one approved labor line, one part, Labor set to sales rep A and Parts holding a staff member whose staff record no longer exists.",
-   "the Parts person described as a staff member whose record no longer exists (the name is not used)")
-RE("S5-19", 'Have staff member C, a third active staff member at the test location, with the "Sales Representative" switch on.',
-   'Have staff member C, a second active staff member at the test location, with the "Sales Representative" switch on.', "staff member C is now the second staff member")
 # data a result needs that no precondition created
 RE("S8-01", SBR_OPEN_P, ["Have, today, at least one invoiced part sale and one invoiced work order with labor and parts at the test location.",
    "Open Reports > Sales By Representative in a desktop browser at least 1024 pixels wide, with the date range set to today."],
@@ -781,9 +753,6 @@ SUBST("S2-07c", [(REP1("A"), ONE_REP), ('Have a second active staff member at th
                   'Have another active staff member at the test location with the "Sales Representative" switch on: sales rep C.'),
                  ('"Sales Representative - Parts" set to sales rep A', '"Sales Representative - Parts" set to the first staff member')],
       "the Parts person is no longer named (no step or result names them)")
-SUBST("S5-19", [(REP1("A"), ONE_REP[:-1] + ", for the Labor side."), ('"Sales Representative - Labor" set to sales rep A', '"Sales Representative - Labor" set to that staff member'),
-                ("staff member C, a second active staff member", "staff member C, another active staff member")],
-      "the Labor person is no longer named (no step or result names them)")
 # two reps who only make a split work order: no names
 SPLIT2 = 'Have two active staff members at the test location with their "Sales Representative" switch on, so that a work order can have a different Labor and Parts representative.'
 NAMELESS = [(REPS2_P, SPLIT2),
@@ -841,11 +810,10 @@ FRESH_RULES = {
                   ("holds a staff member of another organization", "holds a staff member made for this test in another organization")]}
 FRESH = {
  "work order": "D-03 D-04 D-06 D-07 D-09 D-18 D-18b REL-08 REL-11 S1-03 S1-04 S1-08 S1-10 S1-10b S2-01 S2-02 S2-03 S2-04 S2-05 S2-06 S2-07 S2-07b S2-07c "
-               "S2-08 S2-09 S2-10 S2-12 S2-13 S2-14 S2-15 S2-16 S3-02 S3-02b S3-04 S4-14 S4-14b S5-03 S5-04 S5-09 S5-16 S5-20 S7-01 S7-01b S7-01c S7-02 S7-03 S7-05",
+               "S2-08 S2-09 S2-10 S2-12 S2-13 S2-14 S2-15 S2-16 S3-02 S3-02b S3-04 S4-14 S4-14b S5-03 S5-04 S5-09 S5-16 S5-20 S7-01 S7-01b S7-01c S7-02 S7-03",
  "customer": "D-10 D-10b D-11 S3-03 S4-01b S4-03 S4-03b S4-04 S4-04b S4-04c S4-05 S4-06 S4-07 S4-14c S4-18 S4-20b S4-22 S4-23 S4-26 S4-28",
  "part sale": "D-14 S2-11 S4-27",
- "staff member": "S1-07 S1-08 S1-09 S2-07 S2-07b S2-07c S4-03b S4-04c S4-15 S4-15b S4-18 S4-19 S4-19b S4-20 S4-20b S4-23 S4-26 S6-01 S6-02 "
-                 "S1-11 S7-05 S6-05 S5-19 S5-14"}
+ "staff member": "S1-07 S1-08 S1-09 S2-07 S2-07b S2-07c S4-03b S4-04c S4-15 S4-15b S4-18 S4-19 S4-19b S4-20 S4-20b S4-23 S4-26 S6-01 S6-02 S5-14"}
 for _kind, _keys in FRESH.items():
     for _k in _keys.split():
         SUBST(_k, FRESH_RULES[_kind], f"the {_kind} the case changes is made for this test")

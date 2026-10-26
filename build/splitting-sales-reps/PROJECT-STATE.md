@@ -110,3 +110,23 @@ Intake: INTAKE-2026-10-19.md. Worker brief: WORKER-BRIEF.md.
   (122 library, 4 design-recheck): unused records removed or explained with a "so ..." clause, missing data added (S8-01, S5-11b), every record a
   case changes made "for this test". Two permanent gates in build.py (ssr_lib.relevance_problems, ssr_lib.independence_problems); 0 PROBLEM.
   Byte identity below the results still 180/180; facts: 0 lost, 2 dropped with an unused record (S8-05). Setup file notes unused and fresh records.
+
+## 26 Oct 2026 (evening) — tester read-through (DRAFT, not in TestRail; brief build/tester-readthrough-2026-10-26/WORKER-BRIEF.md)
+- 4 cases deleted from TestRail earlier today on the QA lead's order (a manual tester cannot set them up): S1-11 C690666, S5-19 C715568,
+  S6-05 C665980, S7-05 C690670. Removed from the library (case modules, pattern_cases.py, scenarios.py), the setup file (their recipes and
+  the developer-check slot) and every output; apply5.py can no longer re-create them (dry run "update 169 add []"). Library 170 cases + 6 DR.
+- Requirement coverage: NO_MANUAL_CASE.json. S1-E3, S6-N1 and S7-R6 (and the Story 6 context note, answers 5 and 30, tech plan 8.4, the
+  last part of S5-R2): "No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the
+  developers' own checks". S5-R1, S7-R2, S7-R3 still covered (cases named there). build.py REQUIREMENT-COVERAGE GATE checks it.
+- Every one of the 176 cases read as a manual tester would (report: build/tester-readthrough-2026-10-26/splitting-sales-reps/READTHROUGH-REPORT.md).
+  175 changed: the closing "mark this test Blocked" line removed from all of them (Rule 117 fifteenth amendment; C665915 never had it), and
+  39 with further fixes in authoring/readthrough.py (applied last by ssr_lib.pattern_parts and by dr_pattern.py): clear setup (lines on
+  work orders to invoice, the export and import pages, the report address, amounts for REL-15), vague words made concrete from the cases'
+  own quotes and design references ("native dropdown", "counts once" as the (N) after the name, "the cells of the side ..."), S2-10 gets an
+  expand step so its last result is visible, S6-04 shows the printout opening, "Before" design pictures say why they are open.
+  8 results could not be made concrete and 1 negative check has no source-backed control (listed in the report). Notes below the
+  results that say when to mark Blocked for an outside reason (S1-09, S2-11, S4-27, REL-19) left for the QA lead to confirm.
+- Gates: build.py 0 PROBLEM, with the new BLOCKED-LINE GATE (cases and setup file), REQUIREMENT-COVERAGE GATE and READ-THROUGH GATE;
+  quotes block onward byte-identical to applied/C<id>-after.json in 176 of 176 (check_byte_identity.py), no quote added.
+- Setup file regenerated (no Blocked line; 22 recipes carry the read-through precondition wording). Waiting on the QA lead: go-ahead to
+  write the 175 updates (apply5.py --apply for 169 library cases, apply_dr_pattern.py --apply for the 6 DR cases).

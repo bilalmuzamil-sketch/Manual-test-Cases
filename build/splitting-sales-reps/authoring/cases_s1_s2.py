@@ -107,21 +107,6 @@ C("S1-10b", "S1", "Developer check: a change made while the field is saving is i
   ["S1-E1"],
   marker="AUTOMATION: HOLD - needs a second click timed before a save finishes; check with developer tools or automation, not by hand")
 
-GONE = "AUTOMATION: HOLD - only a data repair makes a staff record stop existing or belong to another organization; developers check this, manual QA cannot set it up"
-C("S1-11", "S1", "A rep who no longer exists or is in another organization reads Unassigned",
-  [ADMIN, REPS2, CUST,
-   ('Work order {Work-order-1} for {Customer-A} is open and not invoiced; "Sales Representative - Labor" reads {Sales-rep-A} and "Sales Representative - Parts" holds {Staff-member-C}, whose staff record no longer exists.',
-    "For example: {Work-order-1} is S2-40001 and {Staff-member-C} is ZZAUTOTEST Gone Rep."),
-   ('Work order {Work-order-2} for {Customer-A} is open and not invoiced; its one "Sales Representative" field holds {Staff-member-D}, a staff member of another organization.',
-    "For example: {Work-order-2} is S2-40002 and {Staff-member-D} is ZZAUTOTEST Other Org Rep."),
-   WO_START],
-  ["Look at {Work-order-1}'s Sales Representative fields without clicking them.",
-   "Open {Work-order-2} and look at its Sales Representative field."],
-  ["Step 1: \"Sales Representative - Parts\" reads \"Unassigned\", never a bare \"(Inactive)\"; \"Sales Representative - Labor\" still reads {Sales-rep-A}.",
-   "Step 2: the Sales Representative field reads \"Unassigned\", never a bare \"(Inactive)\"."],
-  ["S1-E3", ("Story 6 context note (S6-N1, S1-E3, S7-R6)", prd_line("* Context note (S6-N1, S1-E3, S7-R6)")), AQ(5), AQ(30)],
-  marker=GONE,
-  note="A manual tester cannot set up this case: a staff record stops existing, or sits in another organization, only through a data repair. The developers check it.")
 
 # ---------------- Story 2: Labor and Parts ----------------
 C("S2-01", "S2", "The + adds Labor and Parts fields holding the same person",

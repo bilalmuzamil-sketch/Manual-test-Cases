@@ -12,7 +12,22 @@ if dups: probs.append(f"duplicate keys {dups}")
 from collections import Counter
 print("cases", len(ssr_lib.CASES), dict(Counter(c["sec"] for c in ssr_lib.CASES)))
 codes = set(ssr_lib.CODE); used = {x for c in ssr_lib.CASES for x in c["q"] if isinstance(x, str)}
-print("PRD codes", len(codes), "covered", len(codes & used), "not yet covered:", sorted(codes - used, key=lambda s: (int(s.split('-')[0][1:]), s)))
+# REQUIREMENT-COVERAGE GATE (26 Oct 2026): every PRD code is covered by a case, or is recorded in NO_MANUAL_CASE.json as "No manual case:
+# deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks". An uncovered code
+# that is not recorded there fails the build; a recorded code that a case covers again also fails (the record must be kept true).
+_nm = json.load(open(f"{ssr_lib.P}/NO_MANUAL_CASE.json"))["requirements"]
+_nmc = {r["requirement"] for r in _nm if r["status"].startswith("No manual case")}
+_cov = lambda s: (int(s.split('-')[0][1:]), s)
+print("PRD codes", len(codes), "covered", len(codes & used), "| no manual case (deleted 26 Oct 2026, QA lead's order):", sorted(codes & _nmc - used, key=_cov),
+      "| not covered and not recorded:", sorted(codes - used - _nmc, key=_cov))
+for x in sorted(codes - used - _nmc, key=_cov): probs.append(f"PRD code {x} is covered by no case and not recorded in NO_MANUAL_CASE.json")
+for x in sorted(_nmc & used): probs.append(f"PRD code {x} is recorded as having no manual case but a case covers it: correct NO_MANUAL_CASE.json")
+_qlabels = {(x if isinstance(x, str) else x[0]) for c in ssr_lib.CASES for x in c["q"]}
+for r in _nm:
+    if r["status"].startswith("Covered by") and r["requirement"] not in _qlabels: probs.append(f"NO_MANUAL_CASE.json says {r['requirement']} is still covered, but no case quotes it")
+_gone = set(json.load(open(f"{ssr_lib.P}/NO_MANUAL_CASE.json"))["deleted_cases"])
+for c in ssr_lib.CASES:
+    if c["key"] in _gone: probs.append(f"{c['key']}: deleted 26 Oct 2026 on the QA lead's order, but back in the library")
 # DESIGN GATE (19 Oct 2026, after the QA lead caught design cases with no design references): every "Design — how it looks"
 # case must attach its design pictures, name them in the preconditions and quote the design's own words; every design board must
 # be attached to at least one case. The build refuses otherwise.
@@ -58,8 +73,9 @@ for p in longs:
     else: probs.append(p + " — no NOT-SPLIT reason in SPLITS.json")
 # PATTERN GATE (Rule 117 fourteenth amendment, 26 Oct 2026, QA lead: "Yes, permanent, all suites"; replaces the Scenario gate of the
 # thirteenth amendment): every case, library and design-recheck alike, is in the QA lead's pattern (ssr_lib.pattern_problems): plain
-# precondition bullets with no {placeholder}, "For example", "Scenario:" or who-to-ask, the Blocked line last (S1-01, the model the QA
-# lead approved word for word, has none and is kept as approved); a "Step N:" heading and bullets per step, a blank paragraph, then the
+# precondition bullets with no {placeholder}, "For example", "Scenario:" or who-to-ask, and NO Blocked line (BLOCKED-LINE GATE, Rule 117
+# fifteenth amendment, 26 Oct 2026, QA lead: "B -> and never add that line in the future test cases too": ssr_lib.pattern_problems fails
+# any case that carries it or a variant, and the setup file is checked below); a "Step N:" heading and bullets per step, a blank paragraph, then the
 # quotes, design block and AUTOMATION line, byte-identical to before the pattern (pattern-format-2026-10-26/before-*.json). Every case
 # in testrail-id-map.csv must be in the pattern. The design-recheck cases are checked in their draft, pattern-format-2026-10-26/DR-PATTERN.json.
 import csv as _csv
@@ -72,7 +88,17 @@ for c in ssr_lib.CASES:
     probs += ssr_lib.independence_problems(c["key"], ssr_lib.render(c))   # INDEPENDENCE GATE (26 Oct 2026, permanent)   # RELEVANCE GATE (26 Oct 2026, permanent): see ssr_lib.relevance_problems
 print("independence gate: no case key or C-id in tester text; every record a step or precondition changes is made \"for this test\" in the preconditions")
 print("relevance gate: every record a precondition names is used by a step or result, is the record the steps start on, or says why (\"so ...\")")
-print("pattern gate: S1-01 keeps the QA lead's approved Preconditions word for word (no Blocked line), as he gave them")
+print("pattern gate: S1-01 keeps the QA lead's approved Preconditions word for word, as he gave them")
+# BLOCKED-LINE GATE on the setup file for Claude sessions (fifteenth amendment): it must not carry the line either.
+import pattern_lib as _PL
+_sf = f"{ssr_lib.P}/SPLITTING-SALES-REPS-SETUP-FILE.md"
+if os.path.exists(_sf):
+    _sft = open(_sf).read()
+    _hits = [n for n, l in enumerate(_sft.split("\n"), 1) if _PL.BLOCKED_RE.search(l)]
+    if _hits: probs.append(f"setup file carries the \"mark this test Blocked\" line or a variant on lines {_hits[:10]} (Rule 117 fifteenth amendment)")
+    for k in sorted(_gone):
+        if k in _sft: probs.append(f"setup file still names deleted case {k}")
+print("blocked-line gate: no case and no setup-file line carries \"mark this test Blocked\" / \"setup not done\" or a variant (Rule 117 fifteenth amendment)")
 _map = list(_csv.DictReader(open(f"{ssr_lib.P}/testrail-id-map.csv")))
 _drp, _drb = f"{_PF}/DR-PATTERN.json", f"{_PF}/before-dr.json"
 _dr = json.load(open(_drp)) if os.path.exists(_drp) else {}
@@ -88,6 +114,13 @@ for r in _map:
     if not r["key"].startswith("DR-") and r["key"] not in _lib: probs.append(f"{r['key']} (C{r['case_id']}): in the id map but not in the library")
 print("pattern gate: library cases", len(_lib), "| design-recheck cases", sum(r["key"].startswith("DR-") for r in _map),
       "| cases in testrail-id-map.csv", len(_map), "| unmapped library cases", sorted(_lib - {r["key"] for r in _map}))
+# READ-THROUGH GATE (26 Oct 2026): every case the tester read-through fixed (readthrough.py) exists, and its fixes were applied
+import readthrough as _RT
+for k in _RT.RT:
+    if k not in _lib and not (k.startswith("DR-") and k in _dr): probs.append(f"readthrough.py fixes {k}, which is not a case of this suite")
+for k in list(_RT.COULD_NOT_MAKE_CONCRETE) + list(_RT.NEGATIVE_WITHOUT_CONTROL):
+    if k not in _lib and k not in _dr: probs.append(f"readthrough.py lists {k}, which is not a case of this suite")
+print("read-through gate: fixes for", len(_RT.RT), "cases applied (readthrough.py); could not make concrete:", len(_RT.COULD_NOT_MAKE_CONCRETE), "| negative check without a control:", len(_RT.NEGATIVE_WITHOUT_CONTROL))
 for p in probs: print("PROBLEM", p)
 out = {c["key"]: dict(sec=c["sec"], fields=ssr_lib.render(c)) for c in ssr_lib.CASES}
 json.dump(out, open(f"{ssr_lib.D}/proposals.json", "w"), indent=1, ensure_ascii=False)

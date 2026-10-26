@@ -17,7 +17,6 @@ SCENARIO = {
     "S1-09": "You pick a sales representative on an open work order just as that person's \"Sales Representative\" switch is turned off in another tab.",
     "S1-10": "You give an open work order a sales representative, but the save fails because the browser has lost its connection.",
     "S1-10b": "You change an open work order's sales representative twice in quick succession, before the first change has finished saving.",
-    "S1-11": "Two open work orders name representatives who cannot be shown: one whose staff record is gone and one from another organization.",
     # Story 2 — separate Labor and Parts representatives
     "S2-01": "An open work order has one sales representative, and you split it into separate Labor and Parts representatives.",
     "S2-02": "An open work order has nobody as its sales representative, and you split it into separate Labor and Parts fields.",
@@ -104,7 +103,6 @@ SCENARIO = {
     "S5-16": "A work order with different Labor and Parts representatives has a fee and a discount on its lines and a fee on the whole invoice.",
     "S5-17": "Your location invoiced a split work order, a work order with one person on both sides and a part sale today.",
     "S5-18": "A part sale with a sales representative was invoiced today, and you export Sales By Representative.",
-    "S5-19": "A work order was invoiced today with a Parts representative whose staff record no longer exists.",
     "S5-20": "A work order for a tax-exempt customer, with different Labor and Parts representatives, has a discount bigger than the invoice.",
     # Story 6 — printed work order
     "S6-01": "Two work orders each have one sales representative, one of whom has since had their switch turned off, and you print them.",
@@ -112,7 +110,6 @@ SCENARIO = {
     "S6-02": "Two work orders have different Labor and Parts representatives, one of whom has since been switched off, and you print them.",
     "S6-03": "Two work orders each have nobody on one side, and you print them.",
     "S6-04": "An open work order has nobody as its sales representative, and you print it.",
-    "S6-05": "An open work order's Parts representative's staff record no longer exists, and you print the work order.",
     # Story 7 — work order log
     "S7-01": "An open work order has nobody on it, and you give it a sales representative and look at its log.",
     "S7-01b": "An open work order has one sales representative; you add the Parts field and change it, then look at its log.",
@@ -120,7 +117,6 @@ SCENARIO = {
     "S7-02": "An open work order has different Labor and Parts representatives; you set Labor to Unassigned and look at its log.",
     "S7-03": "An open work order has a sales representative, and you pick that same person again.",
     "S7-04": "The Parts representative of an open work order was changed today, and you search the Audit Log for that person's name.",
-    "S7-05": "Two open work orders name representatives who cannot be shown, one whose staff record is gone and one from another organization, and you change them.",
     # Story 8 — Sales Type filters on both sales reports
     "S8-01": "You open Sales By Representative and look at its new Sales Type filter.",
     "S8-02": "You export Sales By Representative with different Sales Type choices.",

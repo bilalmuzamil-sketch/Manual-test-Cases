@@ -240,14 +240,6 @@ C("S6-04", "S6", "Printed work order leaves the row off when nobody is on it",
       ("Click Print Work Order and look for a Sales Representative row on the printout.", "there is no Sales Representative row on the printout.")),
   ["S6-R4"])
 
-C("S6-05", "S6", "A side whose staff member no longer exists prints as Unassigned",
-  [ADMIN, REPS2, CUST, WO('Labor reads {Sales-rep-A} and Parts held {Sales-rep-B}, whose staff record no longer exists'), WO_START],
-  *SR(MENU,
-      (PRINT, "the row reads \"Unassigned (Parts) · {Sales-rep-A} (Labor)\"; it never reads a bare \"(Inactive)\".")),
-  ["S6-N1", ("Story 6 context note (S6-N1, S1-E3, S7-R6)", prd_line("* Context note (S6-N1, S1-E3, S7-R6)")), AQ(30)],
-  marker="AUTOMATION: HOLD - only a data repair makes a staff record stop existing; developers check this, manual QA cannot set it up",
-  note="A manual tester cannot set up this case: a staff record stops existing only through a data repair. The developers check it.")
-
 # ---------------- Story 7: log ----------------
 LOG = "Click Audit Log."
 # 22 Oct 2026, Rule 136 split (was 13 steps): a change to the one field, adding the Parts field and changing it, and removing the Parts
@@ -293,26 +285,6 @@ C("S7-03", "S7", "Picking the person already in the field writes no log entry",
       MENU,
       ("Click Audit Log and count the \"Sales representative changed\" entries.", "the count is the same; no new entry.")),
   ["S7-R4"])
-
-C("S7-05", "S7", "A log entry reads Unassigned for a rep who no longer exists",
-  [ADMIN, REPS2, CUST,
-   ('Work order {Work-order-1} for {Customer-A} is open and not invoiced; "Sales Representative - Labor" reads {Sales-rep-A} and "Sales Representative - Parts" holds {Staff-member-C}, whose staff record no longer exists.',
-    "For example: {Work-order-1} is S2-40001 and {Staff-member-C} is ZZAUTOTEST Gone Rep."),
-   ('Work order {Work-order-2} for {Customer-A} is open and not invoiced; its one "Sales Representative" field holds {Staff-member-D}, a staff member of another organization.',
-    "For example: {Work-order-2} is S2-40002 and {Staff-member-D} is ZZAUTOTEST Other Org Rep."),
-   WO_START],
-  *SR(("Set \"Sales Representative - Labor\" to {Sales-rep-B}.", "Labor reads {Sales-rep-B}."),
-      MENU,
-      (LOG, "the newest entry reads \"Sales Representative: Unassigned (Parts) · {Sales-rep-A} (Labor) → Unassigned (Parts) · {Sales-rep-B} (Labor)\"; the Parts side never reads a bare \"(Inactive)\"."),
-      CLOSE_LOG,
-      ("Open {Work-order-2}.", "{Work-order-2} opens."),
-      ("Set its Sales Representative to {Sales-rep-A}.", "the field reads {Sales-rep-A}."),
-      MENU,
-      (LOG, "the newest entry reads \"Sales Representative: Unassigned → {Sales-rep-A}\".")),
-  ["S7-R6", "S7-R2", "S7-R3", ("Story 6 context note (S6-N1, S1-E3, S7-R6)", prd_line("* Context note (S6-N1, S1-E3, S7-R6)")), AQ(5), AQ(30)],
-  stories=[7],
-  marker="AUTOMATION: HOLD - only a data repair makes a staff record stop existing or belong to another organization; developers check this, manual QA cannot set it up",
-  note="A manual tester cannot set up this case: a staff record stops existing, or sits in another organization, only through a data repair. The developers check it.")
 
 # ---------------- Story 8: Sales Type filters ----------------
 C("S8-01", "S8", "Sales By Representative has a Sales Type filter, all selected",
@@ -407,17 +379,6 @@ C("S8-12b", "S8", "Sales By Customer exports with no rows still have the heading
   ["S8-R9", AQ(27)])
 
 # ---------------- 22 Oct 2026, tech plan pass (Rule 134): new cases ----------------
-C("S5-19", "S5", "A rep whose staff record is gone shows the name kept on the invoice",
-  [ADMIN, REPS2, CUST, LOC0,
-   ('Work order {Work-order-1} for {Customer-A} was invoiced today with "Sales Representative - Labor" {Sales-rep-A} and "Sales Representative - Parts" {Staff-member-C}; since then {Staff-member-C}\'s staff record no longer exists.',
-    "For example: {Work-order-1} is S2-40001 and {Staff-member-C} is ZZAUTOTEST Gone Rep."),
-   SBR_TODAY(", with Show Unassigned on and the Sales Type column turned on")],
-  *SR(EXPAND("{Staff-member-C}", "{Work-order-1}'s Parts row is listed under the name captured on the invoice, {Staff-member-C}; it is not moved to Unassigned and not dropped.")),
-  ["S5-R2", "S5-R1", ("Story 6 context note (S6-N1, S1-E3, S7-R6)", prd_line("* Context note (S6-N1, S1-E3, S7-R6)")), AQ(30),
-   ("Tech plan, Phase 8 fetcher tests (section 8.4)", "A cross-org staff id on an invoice gives a null live name and falls back to the captured name with inactive set (D4).")],
-  marker="AUTOMATION: HOLD - only a data repair makes a staff record stop existing; developers check this, manual QA cannot set it up",
-  note="A manual tester cannot set up this case: a staff record stops existing only through a data repair. The developers check it.")
-
 C("S5-20", "DATA", "A discount bigger than the invoice is shared by size and both rows end at $0.00",
   [ADMIN, REPS2, ("Customer {Customer-A} has no sales representative, and no tax applies to its invoices.", "For example: {Customer-A} is ZZAUTOTEST SSR Tax Exempt, set as tax exempt."),
    ("{Location-A}'s Shop Supplies Charge is 0%, and nothing else is invoiced at {Location-A} today.", None),

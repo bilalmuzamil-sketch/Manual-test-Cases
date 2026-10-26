@@ -2,7 +2,8 @@
 
 Shape (the model is C665915, S1-01, whose entry in trial_layout.py is kept exactly as the QA lead approved it):
   Preconditions: short plain bullets telling the tester what to set up, in setup order ("Sign in as ...", "Use a ...", "Have a ...",
-                 "Open ... in a desktop browser ..."), no {placeholders}, no "For example:", no "Scenario:", the Blocked line last.
+                 "Open ... in a desktop browser ..."), no {placeholders}, no "For example:", no "Scenario:", and no Blocked line
+                 (fifteenth amendment, 26 Oct 2026): the preconditions end with the last thing the tester sets up.
   Steps:         numbered, plain, the build's own labels, with the same plain record names as the preconditions.
   Expected:      "Expected Result", then per step "Step N:" and a bullet list (one observable fact per bullet), then a blank paragraph,
                  then, byte for byte as before, any known-problem or held note, the exact quotes with their From: lines, the References
@@ -16,7 +17,10 @@ import re
 
 def cap(s): return s[:1].upper() + s[1:] if s else s
 PH = re.compile(r"\{([A-Z][^{}]*)\}")
-BLOCKED_P = 'If you cannot set up any of the above, mark this test Blocked: "setup not done".'
+# Rule 117 fifteenth amendment (QA lead, 26 Oct 2026: "B -> and never add that line in the future test cases too"): no case carries the
+# closing line 'If you cannot set up any of the above, mark this test Blocked: "setup not done".' or any variant of it. BLOCKED_RE is what
+# the build's BLOCKED-LINE GATE looks for in every case and in the setup file; nothing renders the line any more.
+BLOCKED_RE = re.compile(r'setup not done|If you cannot (?:set up|complete) any (?:of the above|precondition)|If any record above is missing|mark this test Blocked', re.I)
 
 # ---- shared precondition bullets (plain, setup order) ----
 ADMIN_P = "Sign in as an Admin at the test location."
