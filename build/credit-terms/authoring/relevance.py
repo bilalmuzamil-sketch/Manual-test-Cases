@@ -99,7 +99,7 @@ REPL = {
  "S7-09": {"Customer {Customer-A} holds the shop's own term {Term-A}, due 14 days after the invoice date, with a credit limit of $5,000.00.": [],
            WO_READY: [wo("one of the shop's own terms, due 14 days after the invoice date", "S2-15445", ", with a credit limit of $5,000.00")]},
  "S7-10": {"Customer {Customer-A} has invoice {Invoice-A} created on Net 30, dated Oct 5, 2026 (due Nov 4, 2026); the customer has since been moved to Net 60.":
-             [("Invoice {Invoice-A} was created on Net 30, dated Oct 5, 2026 (due Nov 4, 2026); its customer has since been moved to Net 60.",
+             [("Create invoice {Invoice-A} for this test, for a customer on Net 30, dated Oct 5, 2026 (due Nov 4, 2026); then move that customer to Net 60.",
                "For example: {Invoice-A} is the invoice of work order S2-15446 for ZZAUTOTEST S7-10 Customer.")]},
  "S8-01": {"The shop's own term {Term-A}, due 14 days after the invoice date, is not in QuickBooks' Terms list. Customer {Customer-A} holds {Term-A} and work order {Work-order-1} for it is complete.":
              [("The shop's own term {Term-A}, due 14 days after the invoice date, is not in QuickBooks' Terms list.", "For example: {Term-A} is ZZAUTOTEST S8-01 Fourteen."),

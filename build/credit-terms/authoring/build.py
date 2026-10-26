@@ -91,11 +91,12 @@ for _k, _cid in IDS.items():
     if os.path.exists(_f): _a = json.load(open(_f)); BEFORE[_k] = {"title": _a["title"], "fields": {"custom_expected": _a["custom_expected"]}}
 if not BEFORE: probs.append("pattern gate: applied/C<id>-after.json read-backs missing, so the quotes/design/AUTOMATION identity cannot be checked")
 import readthrough as _RT
-def _drop_added(k, t):
+def _drop_added(k, t, quiet=False):
+    # quiet=True for the read-back side: once a case with an added quote is written to TestRail, the read-back holds it too
     for code in _RT.ADD_Q.get(k, []):
         lab, txt = (code, L.CODE[code]) if code in L.CODE else L.NAMED[code]
         li = f"<li><strong>{L.e(lab)}:</strong> &ldquo;{L.e(txt)}&rdquo;</li>"
-        if li not in t: probs.append(f"{k}: added quote {code} not found in the quotes block")
+        if li not in t and not quiet: probs.append(f"{k}: added quote {code} not found in the quotes block")
         t = t.replace(li, "", 1)
     return t
 def _tail(h): return h[h.index("<p><strong>Exact quotes from the source"):]
@@ -150,7 +151,7 @@ for c in L.CASES:
     if BEFORE:
         b = BEFORE.get(k)
         if not b: probs.append(f"{k}: not in before/proposals.json")
-        elif _tail(b["fields"]["custom_expected"]) != _drop_added(k, _tail(ex)): probs.append(f"{k}: quotes / From lines / References from Design / AUTOMATION line changed")
+        elif _drop_added(k, _tail(b["fields"]["custom_expected"]), quiet=True) != _drop_added(k, _tail(ex)): probs.append(f"{k}: quotes / From lines / References from Design / AUTOMATION line changed")
         elif b["title"] != c["title"]: probs.append(f"{k}: title changed")
     pat_text.append(" ".join(steps + [x for r in nres for x in r]))
 # every User Feedback Summary message is still used word for word in the pattern steps and results
