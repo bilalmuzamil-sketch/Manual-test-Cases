@@ -107,8 +107,6 @@ PRE_OVR = {  # (case key, original bullet) -> plain bullet(s); only where the ru
     "Before you start, write down how many customers hold Net 15 (number A) and how many hold Net 20 (number B)."],
  ("S11-02", "Before the release reached production, these were written down on production (with screenshots): customer {Customer-A}'s term and credit limit, vendor {Vendor-A}'s term and credit limit, and invoice {Invoice-A}'s term and due date, and vendor invoice {Vendor-invoice-A}'s due date."):
    ["Have these written down on production from before the release reached production (with screenshots): customer A's term and credit limit, vendor A's term and credit limit, invoice A's term and due date, and vendor invoice A's due date."],
- ("D-38", "The log cannot be loaded (the setup file says how to make it fail on the test shop)."):
-   ["Make sure the Credit Terms Log cannot be loaded on the test shop."],
 }
 
 PRE_OVR_USED = set()

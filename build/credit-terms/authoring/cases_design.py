@@ -247,13 +247,6 @@ dz("D-21", "Design: Empty Credit Terms Log shows its empty line",
     ('Click "Audit Log".', 'the log window shows its column headings and, centred under them in grey, "No history here. Yet." (as in ct-p1-15-credit-terms-log-empty.png).')],
    ["S12-E1", "UFS-50"], [(1, 15)], [cap(M, 15, "Rendered from the local build with no log rows")])
 
-dz("D-38", "Design: Credit Terms Log load error looks as designed",
-   [("The log cannot be loaded (the setup file says how to make it fail on the test shop).", None), ("Starting screen: the Credit Terms page, Active tab.", None)],
-   [('Click the "⋯" button beside "New Credit Term".', "the page menu opens."),
-    ('Click "Audit Log".', 'the table shows no rows and, in place of the empty line, "Something went wrong loading the Credit Terms Log. Please try again."; a red alert at the bottom right with a warning triangle reads the same sentence with "Close"; the Credit Terms page behind is unchanged (as in ct-p1-16-credit-terms-log-could-not-load.png).')],
-   ["UFS-51"], [(1, 16)], [cap(M, 16, "Rendered from the local build with the log request failing."), cap(M, 16, "Differs from the PRD:")],
-   note="The picture's caption says the build differs from the PRD; PRD v3 now says exactly what the picture shows (register CT-D08, settled).")
-
 dz("D-25", "Design: Over Credit confirmation looks as it does today",
    [("{Customer-A} is on Net 45 with a credit limit of {Amount-A} and a balance above it.", "For example: {Customer-A} is ZZAUTOTEST D-25 Over, {Amount-A} is $500.00 and the balance is $600.00."),
     ("Starting screen: the customer page of {Customer-A}.", None)],

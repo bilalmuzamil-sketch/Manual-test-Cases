@@ -3276,5 +3276,7 @@ Done: 42 updates + C598326 new, run 498 = 272 (record `wo-board-tech-view/answer
 
 - 15 cases a manual tester cannot set up were deleted on the QA lead's order (`build/tester-readthrough-2026-10-26/deleted/`).
 - The closing "mark this test Blocked" line is gone from all 866 cases (Rule 117 fifteenth amendment, permanent).
-- **Asked, waiting on the QA lead:** delete Credit terms S12-18 (C724125, server refusal only an API request reaches) and D-38
-  (C724185, a log that cannot be loaded), the same kind as the 15.
+- ~~Asked: delete Credit terms S12-18 (C724125) and D-38 (C724185)~~ **DONE 26 Oct 2026** (QA lead "1. Do it"): deleted, read back
+  "not found", run 551 325 → 323, keys out of the library, S12-N1 and UFS-51 recorded as "No manual case".
+- Reminder set for 29 Oct 2026 17:47 UTC (QA lead "Remind me in 3 days"; trigger trig_015R6bxwxvpyXZ33RM7W7sEQ): Credit terms tech
+  plan and QA environment.

@@ -1,6 +1,6 @@
 # Credit terms — draft suite report (23 Oct 2026)
 
-Drafted from PRD v3 (Confluence 963346440, 22 Oct 2026) and the 12 stories of epic SV-11638. 334 cases, not written to TestRail. No tech plan yet; no build; the design is driven in parallel by another worker and its pass fills "References from Design" and the DESIGN section.
+Drafted from PRD v3 (Confluence 963346440, 22 Oct 2026) and the 12 stories of epic SV-11638. 332 cases, not written to TestRail. No tech plan yet; no build; the design is driven in parallel by another worker and its pass fills "References from Design" and the DESIGN section.
 
 ## 1. Counts per section
 | Key | TestRail section | Name | Cases |
@@ -16,12 +16,12 @@ Drafted from PRD v3 (Confluence 963346440, 22 Oct 2026) and the 12 stories of ep
 | S9 | 91463 | Story 9 — Over Credit warning | 10 |
 | S10 | 91464 | Story 10 — Imports and Public API | 16 |
 | S11 | 91465 | Release day and what must not change | 20 |
-| S12 | 91466 | Story 12 — Credit Terms audit log | 20 |
+| S12 | 91466 | Story 12 — Credit Terms audit log | 19 |
 | DATA | 91467 | Counts and due dates — exact numbers | 29 |
-| DESIGN | 91468 | Design — how it looks (written by the design worker, cases_design.py) | 53 |
-| | | **Total** | **334** |
+| DESIGN | 91468 | Design — how it looks (written by the design worker, cases_design.py) | 52 |
+| | | **Total** | **332** |
 
-Markers: `AUTOMATION: HOLD - not yet build-verified (no build yet)` × 319; `AUTOMATION: HOLD - needs the before values taken on production shortly before the release reaches production; run on production after the release` × 3; `AUTOMATION: HOLD - waiting on the PO (question 3)` × 1; `AUTOMATION: HOLD - waiting on the PO (question 5)` × 1; `AUTOMATION: HOLD - waiting on the PO (question 6)` × 1; `AUTOMATION: HOLD - needs the before due date taken on production shortly before the release reaches production; run on production after the release` × 1; `AUTOMATION: HOLD - waiting on the PO (question 7)` × 1; `AUTOMATION: HOLD - a tester cannot make or recognise an organization with no settings record` × 1; `AUTOMATION: HOLD - waiting on the PO (question 4)` × 1; `AUTOMATION: HOLD - without Settings Finance the page and its menu cannot be reached, so only a request sent outside the page can reach this refusal` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 8)` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 9)` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 10)` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 11)` × 1
+Markers: `AUTOMATION: HOLD - not yet build-verified (no build yet)` × 318; `AUTOMATION: HOLD - needs the before values taken on production shortly before the release reaches production; run on production after the release` × 3; `AUTOMATION: HOLD - waiting on the PO (question 3)` × 1; `AUTOMATION: HOLD - waiting on the PO (question 5)` × 1; `AUTOMATION: HOLD - waiting on the PO (question 6)` × 1; `AUTOMATION: HOLD - needs the before due date taken on production shortly before the release reaches production; run on production after the release` × 1; `AUTOMATION: HOLD - waiting on the PO (question 7)` × 1; `AUTOMATION: HOLD - a tester cannot make or recognise an organization with no settings record` × 1; `AUTOMATION: HOLD - waiting on the PO (question 4)` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 8)` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 9)` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 10)` × 1; `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 11)` × 1
 
 ## 2. Coverage of the 211 requirement codes
 | Code | Cases |
@@ -231,14 +231,14 @@ Markers: `AUTOMATION: HOLD - not yet build-verified (no build yet)` × 319; `AUT
 | S12-R6 | S12-10, S12-12 |
 | S12-R7 | S12-13, S12-13b, S12-13c, S12-14 |
 | S12-R8 | S12-15, D-20 |
-| S12-N1 | S12-18 |
+| S12-N1 | No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks (was S12-18, C724125) |
 | S12-N2 | S12-16 |
 | S12-N3 | S11-18, S12-17 |
 | S12-E1 | S12-16, D-21 |
 | S12-E2 | S12-07 |
 | S12-E3 | S4-31 |
 
-No code is listed as not testable. 26 Oct 2026: 10 cases were deleted on the QA lead's order because a manual tester cannot set them up (S1-27 C723891, S1-28 C723892, S2-35 C723935, S3-27 C723963, S3-28 C723964, S4-30 C723994, S4-34 C723998, S5-23 C724023, S5-25 C724025, S12-19 C724126); each requirement only they covered reads "No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks"; every other requirement they quoted is still covered by the remaining cases named in its row. Story 11 has no S11-R15 (question 1).
+No code is listed as not testable. 26 Oct 2026: 12 cases were deleted on the QA lead's order because a manual tester cannot set them up (S1-27 C723891, S1-28 C723892, S2-35 C723935, S3-27 C723963, S3-28 C723964, S4-30 C723994, S4-34 C723998, S5-23 C724023, S5-25 C724025, S12-19 C724126, S12-18 C724125, D-38 C724185); each requirement only they covered reads "No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks"; every other requirement they quoted is still covered by the remaining cases named in its row. Story 11 has no S11-R15 (question 1).
 
 ### Named PRD items (no code): Error Handling, User Feedback Summary, Key Decisions, Permissions, Terminology, Assumptions, Goals, Out of Scope
 | Item | Where | Cases or reason |
@@ -309,7 +309,7 @@ No code is listed as not testable. 26 Oct 2026: 10 cases were deleted on the QA 
 | UFS-48 | User Feedback Summary | S12-02, DATA-26 |
 | UFS-49 | User Feedback Summary | S12-02, DATA-26, D-17 |
 | UFS-50 | User Feedback Summary | S12-16, D-21 |
-| UFS-51 | User Feedback Summary | D-38 |
+| UFS-51 | User Feedback Summary | No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); left to the developers' own checks (was D-38, C724185) |
 | UFS-52 | User Feedback Summary | S9-01, D-25 |
 | KD-EXIST | Key Decisions | S11-01, S11-02, S11-10 |
 | KD-NEWONLY | Key Decisions | S2-21 |
@@ -443,7 +443,6 @@ Honest limit (skill 17 §7): undocumented, untested, code-invisible behaviours c
 | S11-11 | An organization with no settings record behaves as COD | `AUTOMATION: HOLD - a tester cannot make or recognise an organization with no settings record` |
 | S11-14 | Nothing is re-sent to QuickBooks at release | `AUTOMATION: HOLD - needs the before values taken on production shortly before the release reaches production; run on production after the release` |
 | S11-20 | Other screens showing a customer's term: plain name or (Inactive) | `AUTOMATION: HOLD - waiting on the PO (question 4)` |
-| S12-18 | The log is refused by the server without Settings Finance | `AUTOMATION: HOLD - without Settings Finance the page and its menu cannot be reached, so only a request sent outside the page can reach this refusal` |
 | D-50 | Design: Due on Receipt info tooltip reads as designed | `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 8)` |
 | D-51 | Design: Empty Inactive tab keeps the column headings | `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 9)` |
 | D-52 | Design: No blue line while the name is not allowed | `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO (question 10)` |

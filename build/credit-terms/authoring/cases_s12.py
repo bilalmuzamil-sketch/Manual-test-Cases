@@ -121,8 +121,3 @@ lg("S12-17", "Changing a vendor's term in Edit Vendor writes nothing to the log"
     ("Open the Credit Terms page.", "the page opens.")] + log_then("the newest row is still the one you wrote down."),
    ["S12-N3"], start=None)
 
-lg("S12-18", "The log is refused by the server without Settings Finance", [],
-   [("Request the Credit Terms Log by a means other than the page, as a user without Settings → Finance.", "the request is refused.")],
-   ["S12-N1"], marker=HOLD("without Settings Finance the page and its menu cannot be reached, so only a request sent outside the page can reach this refusal"),
-   note="Case S1-22 checks that such a user cannot reach the page or its menu. This part is for an automated check.", start=None,
-   who=("You are signed in as {User-A}, whose role has no Settings → Finance.", "For example: {User-A} is ZZAUTOTEST S12-18 User."))

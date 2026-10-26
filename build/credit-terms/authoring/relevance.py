@@ -144,7 +144,6 @@ REPL = {
  "S11-20": {"Customer {Customer-A} holds Net 60, which is deactivated, and has an open invoice and an open work order {Work-order-1}.":
              [("Customer {Customer-A} holds Net 60, which is deactivated, and has an open invoice and an open work order {Work-order-1}, so look for customer A's entry in the report.",
                "For example: {Customer-A} is ZZAUTOTEST S11-20 Customer and {Work-order-1} is S2-15447.")]},
- "S12-18": {"You are signed in as {User-A}, whose role has no Settings → Finance.": [signed("whose role has no Settings → Finance", "the user is ZZAUTOTEST S12-18 User")]},
  "DATA-05": {"Customers {Customer-A}, {Customer-B} and {Customer-C} hold the shop's own terms {Term-A} (day 31 of the following month), {Term-B} (day 30) and {Term-C} (day 29).": [],
              "Work orders {Work-order-1}, {Work-order-2} and {Work-order-3}, for {Customer-A}, {Customer-B} and {Customer-C}, are complete and ready to invoice.":
              [("Work orders {Work-order-1}, {Work-order-2} and {Work-order-3} are complete and ready to invoice, for three customers who hold the shop's own terms due on day 31, day 30 and day 29 of the following month, in that order.",
@@ -271,7 +270,6 @@ REPL["D-44"]["Work order {Work-order-1} for {Customer-A} was invoiced with the i
 REPL["D-44"]["Starting screen: work order {Work-order-1}."] = [("Starting screen: that work order.", None)]
 
 NOTE_REPL = {
- "S12-18": "Such a user cannot reach the page or its menu. This part is for an automated check.",
  "D-10": "The design keeps the column headings above the line (question 9, register CT-D02); this case follows the PRD. The design's version is held separately until the PO answers.",
  "D-15": "Whether the blue line shows while only the Name is wrong is question 10 (CT-D03), held separately; this case types two wrong values, where design and PRD agree that no blue line shows.",
  "D-50": "Held: this is the design's wording; the PRD's wording differs. Released or deleted the day Chris Ward answers question 8 (register CT-D01).",

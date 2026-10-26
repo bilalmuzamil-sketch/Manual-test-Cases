@@ -240,11 +240,13 @@ NOT_TESTABLE = {
 # build/tester-readthrough-2026-10-26/deleted/). The requirement each covered: another remaining case, or this exclusion (the coverage gate
 # in build.py accepts it; render_outputs.py prints it in REPORT.md).
 DELETED_CASES = {"S1-27": "C723891", "S1-28": "C723892", "S2-35": "C723935", "S3-27": "C723963", "S3-28": "C723964", "S4-30": "C723994",
-                 "S4-34": "C723998", "S5-23": "C724023", "S5-25": "C724025", "S12-19": "C724126"}
+                 "S4-34": "C723998", "S5-23": "C724023", "S5-25": "C724025", "S12-19": "C724126",
+                 "S12-18": "C724125", "D-38": "C724185"}  # the last two deleted later on 26 Oct 2026 ("1. Do it")
 DELETED_MSG = ("No manual case: deleted 26 Oct 2026 on the QA lead's order (a manual tester cannot set it up); "
                "left to the developers' own checks")
 NO_MANUAL = {"S1-E3": "S1-27", "EH-S1": "S1-28", "UFS-1": "S1-28", "UFS-31": "S2-35", "UFS-21": "S3-27", "UFS-26": "S3-28",
-             "EH-S4c": "S4-34", "UFS-38": "S4-34", "S5-E3": "S5-23", "EH-S5b": "S5-25", "UFS-45": "S5-25", "EH-S12": "S12-19"}
+             "EH-S4c": "S4-34", "UFS-38": "S4-34", "S5-E3": "S5-23", "EH-S5b": "S5-25", "UFS-45": "S5-25", "EH-S12": "S12-19",
+             "S12-N1": "S12-18", "UFS-51": "D-38"}
 
 STORY = {1: ("SV-11670", "Story 1, Credit Terms page and list"), 2: ("SV-11671", "Story 2, Row menu actions"),
          3: ("SV-11672", "Story 3, Create or edit a credit term"), 4: ("SV-11673", "Story 4, Move Customers"),

@@ -267,7 +267,6 @@ SCEN = {
 "S12-15": "Your shop renames a term with a 31-character name to another 31-character name, and you check the history.",
 "S12-16": "Your shop existed before the release and nobody has used the Credit Terms page since.",
 "S12-17": "You change a Net 30 vendor's term to Net 45 in Edit Vendor, and then check the history.",
-"S12-18": "A user without Finance settings tries to read the credit terms history without using the page.",
 # ---- Counts and due dates: exact numbers
 "DATA-01": "A Net 30 customer has a work order ready to invoice, dated Oct 5, 2026.",
 "DATA-02": "A customer on the shop's own term due 10 days after the invoice date has a work order ready to invoice.",
@@ -327,7 +326,6 @@ SCEN = {
 "D-19": "Your shop is moving Net 7 customers to COD, and you compare the $0 confirmation with the design.",
 "D-20": "Your shop has made several changes on the Credit Terms page, and you compare the history window with the design.",
 "D-21": "Nobody has changed anything on the Credit Terms page since the release, and you compare the empty history with the design.",
-"D-38": "The credit terms history cannot be loaded, and you compare the error with the design.",
 "D-25": "A Net 45 customer is over its credit limit, and you compare the Over Credit question with the design.",
 "D-22": "Your shop uses Due on Receipt as the default, and you compare the New Customer window with the design.",
 "D-23": "Your shop uses Due on Receipt as the default, and you compare the New Customer term dropdown with the design.",

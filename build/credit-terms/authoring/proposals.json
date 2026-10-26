@@ -6452,30 +6452,6 @@
    "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Edit Vendor window for vendor A opens.</li></ul><p>Step 2:</p><ul><li>The dropdown shows Net 45.</li></ul><p>Step 3:</p><ul><li>The window closes and the vendor is saved on Net 45.</li></ul><p>Step 4:</p><ul><li>The Credit Terms page opens.</li></ul><p>Step 5:</p><ul><li>The menu opens.</li></ul><p>Step 6:</p><ul><li>The newest row is still the one you wrote down.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11681 (Story 12, Credit Terms audit log)</p><ul><li><strong>S12-N3:</strong> &ldquo;Changes made outside the Credit Terms page (a customer's or vendor's term or credit limit changed in New Customer, Edit Customer, Edit Vendor, by import or by the Public API) are not in this log.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"1 List and row menus\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
   }
  },
- "S12-18": {
-  "sec": "S12",
-  "section_id": 91466,
-  "title": "The log is refused by the server without Settings Finance",
-  "refs": "SV-11681",
-  "codes": [
-   "S12-N1"
-  ],
-  "automation": "AUTOMATION: HOLD - without Settings Finance the page and its menu cannot be reached, so only a request sent outside the page can reach this refusal",
-  "held": true,
-  "api": false,
-  "fields": {
-   "title": "The log is refused by the server without Settings Finance",
-   "template_id": 1,
-   "type_id": 7,
-   "priority_id": 2,
-   "refs": "SV-11681",
-   "custom_automation_type": 2,
-   "custom_atmstatus": 1,
-   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as a user whose role has no Settings → Finance.</li></ul>",
-   "custom_steps": "<ol><li>Request the Credit Terms Log by a means other than the page, as a user without Settings → Finance.</li></ol>",
-   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The request is refused.</li></ul><p></p><p>Such a user cannot reach the page or its menu. This part is for an automated check.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11681 (Story 12, Credit Terms audit log)</p><ul><li><strong>S12-N1:</strong> &ldquo;If the user does not have the 'Settings → Finance' setting, they cannot reach the page or its \"⋯\" menu, and a request for the log is refused by the server.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"1 List and row menus\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - without Settings Finance the page and its menu cannot be reached, so only a request sent outside the page can reach this refusal</p>"
-  }
- },
  "DATA-01": {
   "sec": "DATA",
   "section_id": 91467,
@@ -7952,30 +7928,6 @@
    "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure no change has been saved on the Credit Terms page since release.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Open the attached design picture ct-p1-15-credit-terms-log-empty.png at 100% zoom beside the screen.</li><li>Start on the Credit Terms page, Active tab.</li></ul>",
    "custom_steps": "<ol><li>Click the \"⋯\" button beside \"New Credit Term\".</li><li>Click \"Audit Log\".</li><li>Resize the browser window to 1536 px wide (for example, maximise it on a 1536 x 864 screen at 100% zoom).</li></ol>",
    "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The page menu opens.</li></ul><p>Step 2:</p><ul><li>The log window shows its column headings and, centred under them in grey, \"No history here. Yet.\" (as in ct-p1-15-credit-terms-log-empty.png).</li></ul><p>Step 3:</p><ul><li>At 1536 px nothing overlaps, nothing is cut off and nothing needs a sideways scroll.</li><li>The layout described above is unchanged, only wider.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11681 (Story 12, Credit Terms audit log)</p><ul><li><strong>S12-E1:</strong> &ldquo;When the log has no rows, the table shows the log's standard empty state, \"No history here. Yet.\"&rdquo;</li><li><strong>User Feedback Summary:</strong> &ldquo;Credit Terms Log has no rows | \"No history here. Yet.\" | Empty state in the table&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"1 List and row menus\" (\"Credit Terms Log: empty\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes, except where this held design case follows the design.</p><p>Design pictures attached to this case:</p><ul><li>ct-p1-15-credit-terms-log-empty.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Rendered from the local build with no log rows: the standard empty state \"No history here. Yet.\" (S12-E1).&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
-  }
- },
- "D-38": {
-  "sec": "DESIGN",
-  "section_id": 91468,
-  "title": "Design: Credit Terms Log load error looks as designed",
-  "refs": "SV-11680",
-  "codes": [
-   "UFS-51"
-  ],
-  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
-  "held": false,
-  "api": false,
-  "fields": {
-   "title": "Design: Credit Terms Log load error looks as designed",
-   "template_id": 1,
-   "type_id": 7,
-   "priority_id": 2,
-   "refs": "SV-11680",
-   "custom_automation_type": 2,
-   "custom_atmstatus": 1,
-   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure the Credit Terms Log cannot be loaded on the test shop.</li><li>Use a desktop browser window 1440 pixels wide, at 100% zoom.</li><li>Open the attached design picture ct-p1-16-credit-terms-log-could-not-load.png at 100% zoom beside the screen.</li><li>Start on the Credit Terms page, Active tab.</li></ul>",
-   "custom_steps": "<ol><li>Click the \"⋯\" button beside \"New Credit Term\".</li><li>Click \"Audit Log\".</li><li>Resize the browser window to 1536 px wide (for example, maximise it on a 1536 x 864 screen at 100% zoom).</li></ol>",
-   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The page menu opens.</li></ul><p>Step 2:</p><ul><li>The table shows no rows and, in place of the empty line, \"Something went wrong loading the Credit Terms Log. Please try again.\"</li><li>A red alert at the bottom right with a warning triangle reads the same sentence with \"Close\"</li><li>The Credit Terms page behind is unchanged (as in ct-p1-16-credit-terms-log-could-not-load.png).</li></ul><p>Step 3:</p><ul><li>At 1536 px nothing overlaps, nothing is cut off and nothing needs a sideways scroll.</li><li>The layout described above is unchanged, only wider.</li></ul><p></p><p>The picture's caption says the build differs from the PRD; PRD v3 now says exactly what the picture shows (register CT-D08, settled).</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11680 (Story 11, Release day: what changes for existing users)</p><ul><li><strong>User Feedback Summary:</strong> &ldquo;Credit Terms Log fails to load | \"Something went wrong loading the Credit Terms Log. Please try again.\" | Standard error alert; the table shows no rows and repeats the same sentence in place of the empty-state line&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"1 List and row menus\" (\"Credit Terms Log: could not load\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes, except where this held design case follows the design.</p><p>Design pictures attached to this case:</p><ul><li>ct-p1-16-credit-terms-log-could-not-load.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Rendered from the local build with the log request failing. The error alert reads \"Something went wrong loading the Credit Terms Log. Please try again.\" and the page is unaffected.&rdquo;</li><li>&ldquo;Differs from the PRD: the build also repeats that sentence inside the table; the PRD says the table shows no rows and no empty-state line.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
   }
  },
  "D-25": {

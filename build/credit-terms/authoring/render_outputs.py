@@ -70,7 +70,7 @@ def _cov(k):
         return (", ".join(cs) + "; " if cs else "") + f"{L.DELETED_MSG} (was {L.NO_MANUAL[k]}, {L.DELETED_CASES[L.NO_MANUAL[k]]})"
     return ", ".join(cs)
 for k in L.CODE: A(f"| {k} | {_cov(k)} |")
-A(""); A("No code is listed as not testable. 26 Oct 2026: 10 cases were deleted on the QA lead's order because a manual tester cannot set them up (" + ", ".join(f"{k} {c}" for k, c in L.DELETED_CASES.items()) + "); each requirement only they covered reads \"" + L.DELETED_MSG + "\"; every other requirement they quoted is still covered by the remaining cases named in its row. Story 11 has no S11-R15 (question 1).")
+A(""); A("No code is listed as not testable. 26 Oct 2026: " + str(len(L.DELETED_CASES)) + " cases were deleted on the QA lead's order because a manual tester cannot set them up (" + ", ".join(f"{k} {c}" for k, c in L.DELETED_CASES.items()) + "); each requirement only they covered reads \"" + L.DELETED_MSG + "\"; every other requirement they quoted is still covered by the remaining cases named in its row. Story 11 has no S11-R15 (question 1).")
 A(""); A("### Named PRD items (no code): Error Handling, User Feedback Summary, Key Decisions, Permissions, Terminology, Assumptions, Goals, Out of Scope")
 A("| Item | Where | Cases or reason |"); A("|---|---|---|")
 for k, (lab, t) in L.NAMED.items():
