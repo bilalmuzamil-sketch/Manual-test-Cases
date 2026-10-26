@@ -233,3 +233,29 @@ st("TP-83", "Header and 🎨 note, lines 6 and 29", "Only three things are genui
    "CONFIRM", ["D-25", "D-26", "D-27", "D-28", "D-41", "D-42", "D-33", "D-34"], "The plan was written without the design (\"the canvas was not readable by the planning account\"); where the design differs from the PRD (questions 11 to 15) the plan follows the PRD.")
 st("TP-84", "§11 Verification Tickets, lines 641-645", "When all these tickets are marked Done, the feature is ready for QA.",
    "CONFIRM", [], "SV-11595 to SV-11599 are in the ticket ledger (read 22 Oct 2026). No case: the build is not yet ready for QA.")
+
+# ---- 26 Oct 2026: full pass against PRD version 9 (23 Oct 2026) and Chris Ward's answers 1 to 16 (Rules 122, 134). The plan itself has not changed
+# (same upload, read in full 22 Oct 2026); each statement below was re-checked against PRD v9. Verdicts are changed only where PRD v9 or an answer
+# moves them; the 22 Oct reason is kept and the 26 Oct reason added after it. Cases deleted on 26 Oct 2026 (D-76 to D-80) are taken off the lists.
+V9 = {
+ "TP-04": ("CONFIRM", None, "26 Oct 2026: PRD v9 S5-R18b (from Chris Ward's answer 9) now states it: reloading shows a payment recorded a moment before. DATA-22 quotes the PRD instead of the plan."),
+ "TP-18": (None, None, "26 Oct 2026: question 9 (part 1) is answered: PRD v9 S5-R18a; new DATA-23, DATA-24 and released DATA-14, DATA-15 check it."),
+ "TP-21": (None, None, "26 Oct 2026: PRD v9 S1-R4 adds this very example (\"Emile's Towing\" before \"Émile's Towing\", Chris Ward's answer 1); S1-07 now uses the PRD's names and quotes it; the plan agrees."),
+ "TP-22": (None, None, "26 Oct 2026: Chris Ward (answer 16) keeps the PRD's plain character order and asks engineering to match it; PRD v9 S1-R2 adds the example \"#1 Diesel\", \"-1 Diesel\", \"10 Trucking\", \"@Home Towing\". S1-16 released (normal marker); it notes the build may follow the plan's order until engineering changes it (no ticket number known)."),
+ "TP-30": ("CONFIRM", ["S5-29", "D-32", "D-73", "S5-28", "D-31"], "26 Oct 2026: PRD v9 S5-R13 now says it (\"as there, the search box shows only when there are more than 8 vendors\"); the cases quote the PRD instead of the plan. D-77 deleted."),
+ "TP-37": (None, ["S5-14", "S3-24", "S6-03", "D-68"], "26 Oct 2026: Chris Ward (answer 13): no Totals row, the design picture will be corrected; D-78 deleted."),
+ "TP-41": ("DIVERGE", None, "26 Oct 2026: PRD v9 S3-R5 (Chris Ward's answer 7) lists the ticked locations in the Location menu's order (A to Z), separated by a comma and a space; the plan keeps tick order for locations. S3-17 now follows the PRD, quotes this plan line and notes the build may differ (no ticket number known). Customers and vendors stay in tick order in both (S3-09 to S3-14 confirmed)."),
+ "TP-52": (None, None, "26 Oct 2026: questions 2 and 3 are answered: PRD v9 S2-R2 and S2-R4 (smallest number first, ties smallest number first both ways); the number-order cases now check both."),
+ "TP-62": (None, ["S1-10", "S1-11"], "26 Oct 2026: PRD v9 S1-R6 and S2-R4 (Chris Ward's answers 12 and 14): same-day rows by document number whatever the time of day; the plan agrees. D-79 deleted; S1-10 and S1-11 now ask for invoices created in the other order of time and note that the current build orders by time of day (a build bug, no ticket number known)."),
+ "TP-63": (None, ["S7-03", "S7-04", "D-39", "D-40"], "26 Oct 2026: Chris Ward (answer 11): the existing prompt has \"Cancel\" on the left, \"Switch location\" on the right and a close ×; PRD v9 S7-R3 and S7-R5 say so; \"exact copy\" agrees. D-76 deleted; new S7-20 checks the ×."),
+ "TP-65": (None, None, "26 Oct 2026: PRD v9 S1-R8 (Chris Ward's answer 5): the next 30 load as the user scrolls, no page buttons; every paging step now says scroll."),
+ "TP-83": (None, None, "26 Oct 2026: questions 11 to 15 are answered; the design differences are closed (DESIGN-DIVERGENCE-REGISTER.json)."),
+}
+for _x in S:
+    if _x["id"] in V9:
+        _v, _c, _r = V9[_x["id"]]
+        if _v: _x["verdict"] = _v
+        if _c is not None: _x["cases"] = _c
+        _x["reason"] = _x["reason"] + " " + _r
+for _x in S:
+    _x["cases"] = [k for k in _x["cases"] if k not in ("D-76", "D-77", "D-78", "D-79", "D-80")]

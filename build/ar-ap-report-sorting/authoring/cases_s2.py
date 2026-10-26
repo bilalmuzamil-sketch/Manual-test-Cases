@@ -274,7 +274,7 @@ for code in ALL6:
               f"only {{{r['Party']}-A}}'s rows remain{gx}, still sorted by {sortcol}, largest first.",
               f"only {{Location-A}} rows remain{gx}, still sorted by {sortcol}, largest first, and \"{sortcol}\" is still marked as the sorted column."])
     res = [f"Step {i}: {x}" for i, x in enumerate(res, 1)]
-    C(k, "S2", f"{r['n']}: the sort stays while changing date, page and filters", pre, steps, res,
+    C(k, "S2", f"{r['n']}: the sort stays while changing date, scrolling and filters", pre, steps, res,
       ["S2-R7", "S2-R2"] + (["S1-R8"] if paged else []) + (TP.q("P3-walk") if code in ("ARC", "APU") else []))
 
 # ---------------- the Past due filter and the sort (PRD v9 S2-R7, from Chris Ward's answer 6; released 26 Oct 2026) ----------------
@@ -313,3 +313,23 @@ C(k, "S2", "A/R Collection: a column where every row is the same does not reorde
   ["Step 1: the group shows the three invoices, each with Location {Location-A}.",
    "Step 2: the Location column is marked as sorted, but nothing visibly moves inside the group: every row has the same value, and the three invoices stay ordered by number: {Invoice-A}, {Invoice-B}, {Invoice-C}."],
   ["S2-E1", "S2-R4"])
+
+# ---------------- Title Case headings on screen, in the PDF and in the CSV (PRD v9 S2-R4a and S3-R8b, from Chris Ward's answers 4 and 8; new 26 Oct 2026) ----------------
+CSV_EXTRA = {"ARD": "an \"Aging Bucket\" column for the bucket name (\"Customer Full Name\" is already among the headings)",
+             "ARC": "a \"Customer\" column for the customer's name, with \"Phone\" right after it",
+             "APD": "an \"Aging Bucket\" column for the bucket name (\"Vendor Name\" is already among the headings)"}
+for code in ("ARD", "ARC", "APD"):
+    r = R[code]; k = nk()
+    heads = ", ".join(f"\"{c}\"" for c in r["cols"])
+    C(k, "S2", f"{r['n']}: column headings are in Title Case on screen, PDF and CSV",
+      [ADMIN(), TWO_LOC, ("The report has open documents at both locations on today's date.", None),
+       START(code, ", with every group expanded (Expand all)")],
+      ["Read the column headings, letter for letter, capitals included.",
+       "Choose \"Download (PDF)\" from the ⋯ menu.", "Open the PDF and read its column headings.",
+       "Choose \"Download (CSV)\" from the ⋯ menu.", "Open the CSV in a plain text editor and read its column heading row."],
+      [f"Step 1: {heads}" + (" (the chevron button sits before \"Date\")" if r["group"] else "") + ": every word starts with a capital letter" + (", as on the A/P reports" if r["fam"] == "A/R" else "") + ".",
+       "Step 2: the PDF downloads.",
+       "Step 3: the PDF's column headings read exactly as on screen, capitals included.",
+       "Step 4: the CSV downloads.",
+       f"Step 5: the heading row (right after the \"As of: \" and \"Locations: All locations\" rows) holds the same headings, letter for letter as on screen, and {CSV_EXTRA[code]}."],
+      ["S2-R4a", f"S2-R1 {code}", "S3-R8b"] + (["WC-11"] if r["fam"] == "A/R" else []))

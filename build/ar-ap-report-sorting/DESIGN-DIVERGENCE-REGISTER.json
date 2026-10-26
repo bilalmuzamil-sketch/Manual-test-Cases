@@ -3,7 +3,8 @@
  "design": "https://claude.ai/artifact/BRYCdjKwGRSgGPC9xxkgF4",
  "design_read": true,
  "read": "22 Oct 2026: 7 boards, 45 figures, 43 screenshots viewed (design-2026-10-22/DESIGN-READING-RECORD.md)",
- "note": "Both directions checked (Rule 130): design to cases (DESIGN-TEXT-INVENTORY, DESIGN-VISUAL-INVENTORY) and PRD to design (spec_to_design_check.py on the boards plus the after-pictures' words, AFTER-SCREEN-WORDS.txt, and the by-hand list below). Questions 11 to 15 are drafted, not sent: they close their rows once the QA lead adds them to Chris Ward's sheet https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA (Rule 131).",
+ "updated": "26 Oct 2026: differences DD-01 to DD-06 closed by Chris Ward's answers 4 and 11 to 15 (23 Oct 2026, read 26 Oct 2026) and PRD version 9 (v9-pass-2026-10-26/)",
+ "note": "Both directions checked (Rule 130): design to cases (DESIGN-TEXT-INVENTORY, DESIGN-VISUAL-INVENTORY) and PRD to design (spec_to_design_check.py on the boards plus the after-pictures' words, AFTER-SCREEN-WORDS.txt, and the by-hand list below). Questions 4 and 11 to 15 were sent on Chris Ward's sheet https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA (22 Oct 2026) and answered on 23 Oct 2026; every difference is closed (outcome PO-RULED, with the answer and date). Design versions that lost (D-76 to D-80) were deleted 26 Oct 2026 with the QA lead's go-ahead; D-81 (the design won) is a normal design case.",
  "differences": [
   {
    "id": "DD-01",
@@ -13,9 +14,14 @@
    "pictures": [
     "ar-ap-p5-another-location-asks-first.png"
    ],
-   "outcome": "QUESTION-READY",
-   "where": "question 11, drafted 22 Oct 2026 in design-2026-10-22/NEW-QUESTIONS.py, not yet sent (the QA lead adds it to the sheet: Rule 131)",
-   "held_case": "D-76"
+   "outcome": "PO-RULED",
+   "where": "question 11 on https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA, sent 22 Oct 2026; answered by Chris Ward 23 Oct 2026, read 26 Oct 2026",
+   "ruling": "Chris Ward ruled on 23 Oct 2026 (answer 11): the existing prompt keeps \"Cancel\" on the left, \"Switch location\" (small l) on the right and a close × at the top right, and the × closes it like Cancel; the capital L the picture and the current build show is a build bug to fix. PRD version 9 (S7-R3, S7-R5) now says so, and this case follows PRD version 9. The held design-version case D-76 (C715558) was deleted from TestRail on 26 Oct 2026 with the QA lead's go-ahead (snapshot in v9-pass-2026-10-26/deleted/).",
+   "ruled_on": "23 Oct 2026",
+   "answer": 11,
+   "won": "PRD wording, design button order and ×",
+   "held_case": "D-76",
+   "held_case_now": "deleted from TestRail 26 Oct 2026 (QA lead's go-ahead)"
   },
   {
    "id": "DD-02",
@@ -25,9 +31,14 @@
    "pictures": [
     "ar-ap-p7-the-native-vendor-menu.png"
    ],
-   "outcome": "QUESTION-READY",
-   "where": "question 12, drafted 22 Oct 2026 in design-2026-10-22/NEW-QUESTIONS.py, not yet sent (the QA lead adds it to the sheet: Rule 131)",
-   "held_case": "D-77"
+   "outcome": "PO-RULED",
+   "where": "question 12 on https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA, sent 22 Oct 2026; answered by Chris Ward 23 Oct 2026, read 26 Oct 2026",
+   "ruling": "PRD version 9 (23 Oct 2026), written after question 12, keeps \"Search vendors\" and adds that the search box shows only when there are more than 8 vendors (S5-R13); the singular \"Search vendor\" in the picture is not the requirement (Chris Ward's sheet row for question 12 repeats question 14's subject; PRD version 9 settles it). This case follows PRD version 9. The held design-version case D-77 (C715559) was deleted from TestRail on 26 Oct 2026 with the QA lead's go-ahead (snapshot in v9-pass-2026-10-26/deleted/).",
+   "ruled_on": "23 Oct 2026",
+   "answer": 12,
+   "won": "PRD",
+   "held_case": "D-77",
+   "held_case_now": "deleted from TestRail 26 Oct 2026 (QA lead's go-ahead)"
   },
   {
    "id": "DD-03",
@@ -37,9 +48,14 @@
    "pictures": [
     "ar-ap-p4-cleared-no-locations.png"
    ],
-   "outcome": "QUESTION-READY",
-   "where": "question 13, drafted 22 Oct 2026 in design-2026-10-22/NEW-QUESTIONS.py, not yet sent (the QA lead adds it to the sheet: Rule 131)",
-   "held_case": "D-78"
+   "outcome": "PO-RULED",
+   "where": "question 13 on https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA, sent 22 Oct 2026; answered by Chris Ward 23 Oct 2026, read 26 Oct 2026",
+   "ruling": "Chris Ward ruled on 23 Oct 2026 (answer 13): no Totals row, as the PRD says; the design picture will be corrected. This case follows the PRD (S5-R6a, unchanged in version 9). The held design-version case D-78 (C715560) was deleted from TestRail on 26 Oct 2026 with the QA lead's go-ahead (snapshot in v9-pass-2026-10-26/deleted/).",
+   "ruled_on": "23 Oct 2026",
+   "answer": 13,
+   "won": "PRD",
+   "held_case": "D-78",
+   "held_case_now": "deleted from TestRail 26 Oct 2026 (QA lead's go-ahead)"
   },
   {
    "id": "DD-04",
@@ -49,9 +65,14 @@
    "pictures": [
     "ar-ap-p3-the-customer-row-stays-pinned.png"
    ],
-   "outcome": "QUESTION-READY",
-   "where": "question 14, drafted 22 Oct 2026 in design-2026-10-22/NEW-QUESTIONS.py, not yet sent (the QA lead adds it to the sheet: Rule 131)",
-   "held_case": "D-79"
+   "outcome": "PO-RULED",
+   "where": "question 14 on https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA, sent 22 Oct 2026; answered by Chris Ward 23 Oct 2026, read 26 Oct 2026",
+   "ruling": "Chris Ward ruled on 23 Oct 2026 (answers 12 and 14): document-number order, as the PRD says, whatever the time of day the invoices were created; the current build orders same-day rows by time of day, a build bug to fix, and the design picture will be corrected. PRD version 9 (S1-R6, S2-R4) now says so, and this case follows it. The held design-version case D-79 (C715561) was deleted from TestRail on 26 Oct 2026 with the QA lead's go-ahead (snapshot in v9-pass-2026-10-26/deleted/).",
+   "ruled_on": "23 Oct 2026",
+   "answer": 14,
+   "won": "PRD",
+   "held_case": "D-79",
+   "held_case_now": "deleted from TestRail 26 Oct 2026 (QA lead's go-ahead)"
   },
   {
    "id": "DD-05",
@@ -63,9 +84,14 @@
     "ar-ap-p1-a-r-aging-summary-opens-a-to-z.png",
     "ar-ap-p3-same-on-a-p-unpaid-invoices.png"
    ],
-   "outcome": "QUESTION-READY",
-   "where": "question 15, drafted 22 Oct 2026 in design-2026-10-22/NEW-QUESTIONS.py, not yet sent (the QA lead adds it to the sheet: Rule 131)",
-   "held_case": "D-80"
+   "outcome": "PO-RULED",
+   "where": "question 15 on https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA, sent 22 Oct 2026; answered by Chris Ward 23 Oct 2026, read 26 Oct 2026",
+   "ruling": "Chris Ward ruled on 23 Oct 2026 (answer 15): semi-bold, exactly as Work In Progress links look today; the design pictures will be corrected. This case follows the PRD (S7-R7, unchanged in version 9). The held design-version case D-80 (C715562) was deleted from TestRail on 26 Oct 2026 with the QA lead's go-ahead (snapshot in v9-pass-2026-10-26/deleted/).",
+   "ruled_on": "23 Oct 2026",
+   "answer": 15,
+   "won": "PRD",
+   "held_case": "D-80",
+   "held_case_now": "deleted from TestRail 26 Oct 2026 (QA lead's go-ahead)"
   },
   {
    "id": "DD-06",
@@ -78,9 +104,14 @@
     "ar-ap-p7-a-r-collection-date-and-customer-only.png",
     "ar-ap-p5-every-invoice-number-is-a-link.png"
    ],
-   "outcome": "QUESTION-SENT",
-   "where": "question 4 on https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA (row 9), sent 22 Oct 2026",
-   "held_case": "D-81"
+   "outcome": "PO-RULED",
+   "where": "question 4 on https://docs.google.com/spreadsheets/d/11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA (row 9), sent 22 Oct 2026; answered by Chris Ward 23 Oct 2026, read 26 Oct 2026",
+   "ruling": "Chris Ward ruled on 23 Oct 2026 (answer 4): Title Case on all six reports, on screen, in the PDF and in the CSV, as the design shows; PRD version 9 adds S2-R4a and writes S2-R1 in Title Case. The design's version is now the requirement and this case follows PRD version 9; D-81 (C715563), held until then, is now a normal design case.",
+   "ruled_on": "23 Oct 2026",
+   "answer": 4,
+   "won": "design",
+   "held_case": "D-81",
+   "held_case_now": "released as a normal design case 26 Oct 2026"
   }
  ],
  "closed_by_ruling": [
@@ -281,7 +312,7 @@
     "× (top right)"
    ],
    "prd": "S7-R3: title \"Switch location?\", message \"This work order is in {location}. Switch your active location to view it?\", buttons \"Switch location\" and \"Cancel\"",
-   "verdict": "DIFFERENT: button letter case, button order, extra × (DD-01, question 11)"
+   "verdict": "DIFFERENT: button letter case, button order, extra × (DD-01, question 11). Ruled 23 Oct 2026 (answer 11; PRD v9 S7-R3, S7-R5): \"Cancel\" left, \"Switch location\" (small l) right, close × top right; only the capital L is wrong in the picture"
   },
   {
    "what": "Location menu, two locations (I33)",
@@ -331,7 +362,7 @@
     "vendors (not A to Z)"
    ],
    "prd": "S5-R13: search box (\"Search vendors\"), \"All vendors\" row, the native line, the list",
-   "verdict": "DIFFERENT placeholder (DD-02, question 12); rows and order the same"
+   "verdict": "DIFFERENT placeholder (DD-02, question 12); rows and order the same. Ruled by PRD v9 S5-R13 (23 Oct 2026): \"Search vendors\", box only above 8 vendors"
   },
   {
    "what": "Customer menu, two ticked (I41)",
@@ -353,7 +384,7 @@
     "Clear all filters"
    ],
    "prd": "S5-R6a \"no totals and no Location column\"; S8-R5 messages and \"Clear all filters\"",
-   "verdict": "DIFFERENT: an extra Totals row (DD-03, question 13); words and button the same"
+   "verdict": "DIFFERENT: an extra Totals row (DD-03, question 13); words and button the same. Ruled 23 Oct 2026 (answer 13): no Totals row; the picture will be corrected"
   },
   {
    "what": "Description tooltip (I20, I22)",
@@ -457,8 +488,8 @@
   "where": "the Empty export warning is not pictured. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
  },
  "S5-R13|Search vendors": {
-  "outcome": "QUESTION-READY",
-  "where": "DD-02: the design shows \"Search vendor\" (I40). Question 12, drafted 22 Oct 2026 in design-2026-10-22/NEW-QUESTIONS.py, not yet sent (the QA lead adds it to the sheet: Rule 131). Held design version D-77."
+  "outcome": "PO-RULED",
+  "where": "DD-02: the design shows \"Search vendor\" (I40). Question 12 (sent 22 Oct 2026); PRD version 9 (23 Oct 2026) keeps \"Search vendors\" and adds the more-than-8-vendors rule (S5-R13); the held design version D-77 (C715559) was deleted 26 Oct 2026 with the QA lead's go-ahead."
  },
  "S5-R13|All customers are included. Pick one or more to narrow.": {
   "outcome": "DESIGN-SILENT",
@@ -487,6 +518,34 @@
  "S6-R1|Location full name": {
   "outcome": "PO-RULED",
   "where": "CASE-DIFFERS: today's screen writes \"Location Full Name\" (I12, I26, I31). PRD v5 S6-R1 renames the column \"Location\", so the old label leaves the screen; S6-01 names today's spelling. Ruling: the PRD's own rename (no question needed)."
+ },
+ "S1-R2|#1 Diesel": {
+  "outcome": "DESIGN-SILENT",
+  "where": "a PRD version 9 example name (Chris Ward's answer 16), not drawn. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S1-R2|-1 Diesel": {
+  "outcome": "DESIGN-SILENT",
+  "where": "a PRD version 9 example name (Chris Ward's answer 16), not drawn. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S1-R2|@Home Towing": {
+  "outcome": "DESIGN-SILENT",
+  "where": "a PRD version 9 example name (Chris Ward's answer 16), not drawn. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S1-R4|Emile's Towing": {
+  "outcome": "DESIGN-SILENT",
+  "where": "a PRD version 9 example name (Chris Ward's answer 1), not drawn; the design draws \"Émile's Test Fleet\" among the E names (I36). all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S1-R4|Émile's Towing": {
+  "outcome": "DESIGN-SILENT",
+  "where": "a PRD version 9 example name (Chris Ward's answer 1), not drawn. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S3-R5|Locations: Main Shop, North Bay": {
+  "outcome": "DESIGN-SILENT",
+  "where": "a PRD version 9 example of the export's Locations line (Chris Ward's answer 7); no export file is pictured. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
+ },
+ "S3-R8b|Aging Bucket": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the CSV bucket column heading (PRD version 9, Chris Ward's answer 8); no CSV is pictured. all 7 boards and 45 figures checked, 22 Oct 2026 (design-2026-10-22/TRANSCRIPTS.md); the PRD stands alone"
  },
  "S8-R6|Something went wrong loading this report. Please try again.": {
   "outcome": "DESIGN-SILENT",

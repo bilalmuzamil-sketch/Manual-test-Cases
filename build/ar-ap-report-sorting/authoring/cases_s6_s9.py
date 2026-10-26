@@ -10,7 +10,7 @@ def nk(s):
     ORDER[s] += 1; return f"{s}-{ORDER[s]:02d}"
 
 # ======================= Story 6: Location column =======================
-for fam, codes, old, keep in (("A/R", AR3, "Location full name", ("ID", "Customer full name")), ("A/P", AP3, "Location Name", ("No.", "Vendor Name"))):
+for fam, codes, old, keep in (("A/R", AR3, "Location full name", ("ID", "Customer Full Name")), ("A/P", AP3, "Location Name", ("No.", "Vendor Name"))):
     k = nk("S6"); steps, res = [], []
     for code in codes:
         r = R[code]; n0 = len(steps)
@@ -46,6 +46,9 @@ for code in ("ARS", "APS"):
       ["S6-R4", "S6-R2"])
 
 # ======================= Story 7: document links =======================
+CAPL = ("Where the build is expected to differ: Chris Ward (answer 11, 23 Oct 2026) says the current build writes the button \"Switch Location\" with a "
+        "capital L, a build bug to fix; the PRD's \"Switch location\" stands. No ticket number is known yet. If the button reads \"Switch Location\", mark this test Failed.")
+
 def role(user, k, has, lacks):
     return (f'You are signed in as {{{user}}}, whose custom role has "Reports → Page Access"' + (", " + ", ".join(f'"{h}"' for h in has) if has else "")
             + (f" but not " + " or ".join(f'"{l}"' for l in lacks) if lacks else "") + ", with {Location-A} as your current location.",
@@ -63,7 +66,7 @@ k = nk("S7")
 C(k, "S7", "A/R Collection: a part sale invoice at your location opens its finance page",
   [ADMIN(), ("Customer {Customer-A} has an overdue part sale invoice {Invoice-A} made at {Location-A}.", f"For example: {{Customer-A}} is {ex(k, 'Counter Sale')[0]}."),
    START("ARC", ", with {Customer-A}'s group expanded")],
-  ["Hover over {Invoice-A}'s Open balance cell.", "Click {Invoice-A}'s Open balance cell.", "Click {Invoice-A}'s number."],
+  ["Hover over {Invoice-A}'s Open Balance cell.", "Click {Invoice-A}'s Open Balance cell.", "Click {Invoice-A}'s number."],
   ["Step 1: the pointer does not turn into a hand and the row's text is not blue: only the number is a link.",
    "Step 2: nothing opens.", "Step 3: the part sale's finance page opens, as today."],
   ["S7-R1", "S7-R2", "WC-6"] + TP.q("P3-rowclick"))
@@ -74,9 +77,9 @@ for code, kind, word in (("ARD", "work order", "This work order is in"), ("ARC",
       [ADMIN(), TWO_LOC, (f"Customer {{Customer-A}} has an open {kind} invoice {{Invoice-A}} made at {{Location-B}}.", f"For example: {{Customer-A}} is {ex(k, 'Other Place')[0]}."),
        START(code, ", with {Customer-A} ticked and its rows showing")],
       ["Click {Invoice-A}'s number.", "Click \"Switch location\"."],
-      [f"Step 1: a dialog opens on the report, before leaving it: title \"Switch location?\", message \"{word} \" followed by {{Location-B}}'s name and \"Switch your active location to view it?\", buttons \"Switch location\" and \"Cancel\".",
+      [f"Step 1: a dialog opens on the report, before leaving it: title \"Switch location?\", message \"{word} \" followed by {{Location-B}}'s name and \"Switch your active location to view it?\", the button \"Cancel\" on the left and the button \"Switch location\" (small l) on the right, and a close \"×\" at the top right.",
        f"Step 2: the {kind}'s finance page opens, and the location switcher in the top right shows that your active location is now {{Location-B}}."],
-      ["S7-R3", "S7-R4", "UFS-3" if kind == "work order" else "UFS-4"])
+      ["S7-R3", "S7-R4", "UFS-3" if kind == "work order" else "UFS-4"], note=CAPL)
 
 k = nk("S7")
 C(k, "S7", "A/R Collection: Cancel on the switch prompt leaves the report as it was",
@@ -315,3 +318,17 @@ C(k, "S8", "A/R Collection: a tap on the info icon shows the description",
   ["Step 1: the description tooltip shows: \"Overdue invoices, unused credit memos and deposits for each customer to help you follow up on payments. Excludes invoices that aren’t due yet.\"",
    "Step 2: the tooltip closes."],
   ["S8-R1", "S8-R1 ARC"])
+
+# ======================= 26 Oct 2026 (PRD v9 S7-R3 and S7-R5, from Chris Ward's answer 11): the close × on the switch prompt =======================
+k = nk("S7")
+C(k, "S7", "A/R Detail: the × on the switch prompt leaves the report as it was",
+  [ADMIN(), TWO_LOC, ("Customer {Customer-A} has open invoices at {Location-A} and one open work order invoice, {Invoice-A}, made at {Location-B}.",
+                      f"For example: {{Customer-A}} is {ex(k, 'Close Box')[0]}."),
+   START("ARD", ", with {Customer-A} ticked, the \"Amount\" header clicked once, every bucket expanded and the page scrolled so {Invoice-A} is in the middle of the screen")],
+  ["Copy the page address.", "Note which rows are at the top and bottom of the screen.", "Click {Invoice-A}'s number.",
+   "Click the \"×\" at the dialog's top right.", "Compare the page address with the copied one."],
+  ["Step 1: the address is copied.", "Step 2: noted.",
+   "Step 3: the \"Switch location?\" dialog opens, with a close \"×\" at its top right.",
+   "Step 4: the dialog closes, no message pops up, and you stay on the report exactly where you were: {Customer-A} still ticked, the Amount sort, every bucket still expanded and the same rows at the top and bottom of the screen (the same scroll position); the location switcher in the top right still shows {Location-A}.",
+   "Step 5: the address is the same."],
+  ["S7-R5", "S7-R3"])

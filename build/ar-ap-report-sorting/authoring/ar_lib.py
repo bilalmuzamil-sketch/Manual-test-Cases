@@ -325,7 +325,8 @@ def quotes_block(c):
     first = True
     for name, group in ((PRD_NAME, prd), (ANS_NAME, ans), (TP_NAME, tp), (JIRA_NAME, jira)):
         if not group: continue
-        h += f"<p>From: {e(name)}, { {PRD_NAME: PRD_READ, ANS_NAME: ANS_READ}.get(name, "read 22 Oct 2026")}" + (f" &middot; Epic SV-11315, {e(sto)}" if first else "") + "</p>"
+        rd = {PRD_NAME: PRD_READ, ANS_NAME: ANS_READ}.get(name, "read 22 Oct 2026")
+        h += f"<p>From: {e(name)}, {rd}" + (f" &middot; Epic SV-11315, {e(sto)}" if first else "") + "</p>"
         h += "<ul>" + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in group) + "</ul>"
         first = False
     return h + f"<p>{e(NOBUILD)}</p>"

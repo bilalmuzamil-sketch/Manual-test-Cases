@@ -31,7 +31,7 @@ TOOL_ROWS = {
  "S5-R6|Location: N locations": ("DESIGN-SILENT", "pictured: \"Location: All locations\", one name and \"Location: No locations\" only. " + SILENT_WHERE),
  "S5-R6a|Empty export": ("DESIGN-SILENT", "the Empty export warning is not pictured. " + SILENT_WHERE),
  "S5-R6a|Export didn't yield any results": ("DESIGN-SILENT", "the Empty export warning is not pictured. " + SILENT_WHERE),
- "S5-R13|Search vendors": ("QUESTION-READY", "DD-02: the design shows \"Search vendor\" (I40). Question 12, " + NOTSENT + ". Held design version D-77."),
+ "S5-R13|Search vendors": ("PO-RULED", "DD-02: the design shows \"Search vendor\" (I40). Question 12 (sent 22 Oct 2026); PRD version 9 (23 Oct 2026) keeps \"Search vendors\" and adds the more-than-8-vendors rule (S5-R13); the held design version D-77 (C715559) was deleted 26 Oct 2026 with the QA lead's go-ahead."),
  "S5-R13|All customers are included. Pick one or more to narrow.": ("DESIGN-SILENT", "the Customer menu is pictured with two customers ticked, where the line is hidden (I41); the Vendor and Past due lines are drawn (I40, I38). " + SILENT_WHERE),
  "S5-R13|Customer: N customers": ("SHOWN-WHEN-DRIVEN", "drawn as \"Customer: 2 customers\" (I41)"),
  "S5-R13|Vendor: N vendors": ("DESIGN-SILENT", "not pictured. " + SILENT_WHERE),
@@ -39,6 +39,14 @@ TOOL_ROWS = {
  "S5-R15|Past due: N ranges": ("SHOWN-WHEN-DRIVEN", "drawn as \"Past due: 2 ranges\" (I39)"),
  "S5-R15|Past due: 4 ranges": ("DESIGN-SILENT", "not pictured. " + SILENT_WHERE),
  "S6-R1|Location full name": ("PO-RULED", "CASE-DIFFERS: today's screen writes \"Location Full Name\" (I12, I26, I31). PRD v5 S6-R1 renames the column \"Location\", so the old label leaves the screen; S6-01 names today's spelling. Ruling: the PRD's own rename (no question needed)."),
+ # 26 Oct 2026: PRD version 9 words the design does not show (spec_to_design_check.py on PRD v9)
+ "S1-R2|#1 Diesel": ("DESIGN-SILENT", "a PRD version 9 example name (Chris Ward's answer 16), not drawn. " + SILENT_WHERE),
+ "S1-R2|-1 Diesel": ("DESIGN-SILENT", "a PRD version 9 example name (Chris Ward's answer 16), not drawn. " + SILENT_WHERE),
+ "S1-R2|@Home Towing": ("DESIGN-SILENT", "a PRD version 9 example name (Chris Ward's answer 16), not drawn. " + SILENT_WHERE),
+ "S1-R4|Emile's Towing": ("DESIGN-SILENT", "a PRD version 9 example name (Chris Ward's answer 1), not drawn; the design draws \"Émile's Test Fleet\" among the E names (I36). " + SILENT_WHERE),
+ "S1-R4|Émile's Towing": ("DESIGN-SILENT", "a PRD version 9 example name (Chris Ward's answer 1), not drawn. " + SILENT_WHERE),
+ "S3-R5|Locations: Main Shop, North Bay": ("DESIGN-SILENT", "a PRD version 9 example of the export's Locations line (Chris Ward's answer 7); no export file is pictured. " + SILENT_WHERE),
+ "S3-R8b|Aging Bucket": ("DESIGN-SILENT", "the CSV bucket column heading (PRD version 9, Chris Ward's answer 8); no CSV is pictured. " + SILENT_WHERE),
  "S8-R6|Something went wrong loading this report. Please try again.": ("DESIGN-SILENT", "the load-error state is not pictured. " + SILENT_WHERE),
 }
 
@@ -47,7 +55,7 @@ BY_HAND = [
  dict(what="Export menu (I09)", design=["Download (PDF)", "Download (CSV)"], prd='S3-R1: "Download (PDF)" and "Download (CSV)" (the ⋯ button "labelled "Export report"")', verdict="same rows and order; the label \"Export report\" is not visible (DESIGN-SILENT)"),
  dict(what="PDF-too-large message (I11)", design=["This report is too large for PDF. Export it as CSV, or narrow the filters, then try again.", "Close"], prd='S3-N1 message; User Feedback Summary "Error toast, as on the other reports"', verdict="same words; one message; red error toast with Close"),
  dict(what="Switch location dialog (I29)", design=["Switch location?", "This work order is in Staging Lethbridge - 4310. Switch your active location to view it?", "Cancel", "Switch Location", "× (top right)"],
-      prd='S7-R3: title "Switch location?", message "This work order is in {location}. Switch your active location to view it?", buttons "Switch location" and "Cancel"', verdict="DIFFERENT: button letter case, button order, extra × (DD-01, question 11)"),
+      prd='S7-R3: title "Switch location?", message "This work order is in {location}. Switch your active location to view it?", buttons "Switch location" and "Cancel"', verdict="DIFFERENT: button letter case, button order, extra × (DD-01, question 11). Ruled 23 Oct 2026 (answer 11; PRD v9 S7-R3, S7-R5): \"Cancel\" left, \"Switch location\" (small l) right, close × top right; only the capital L is wrong in the picture"),
  dict(what="Location menu, two locations (I33)", design=["Select all · 2 selected", "Staging Heavy Duty - 9919 (ticked)", "Staging Lethbridge - 4310 (ticked)", "—", "Clear selection"],
       prd='S5-R2: "Select all", "{N} selected", the locations with the ticked ones first, "Search locations" over 8 locations, "Clear selection"', verdict="same rows and order; the chip shows a circled × while open (native)"),
  dict(what="Location menu, one ticked (I34)", design=["Select all (unticked) · 1 selected", "Staging Heavy Duty - 9919 (unticked)", "Staging Lethbridge - 4310 (ticked)", "—", "Clear selection"],
@@ -55,11 +63,11 @@ BY_HAND = [
  dict(what="Past due menu (I38)", design=["Any (ticked)", "—", "All ranges are included. Pick one or more to narrow.", "1-30 days", "31-60 days", "61-90 days", "91+ days"],
       prd='S5-R15: "Any" row, the native line, then "1-30 days", "31-60 days", "61-90 days", "91+ days"', verdict="same rows and order; range boxes drawn with a dash (look, D-71)"),
  dict(what="Vendor menu (I40)", design=["Search vendor (search box)", "All vendors (ticked)", "—", "All vendors are included. Pick one or more to narrow.", "vendors (not A to Z)"],
-      prd='S5-R13: search box ("Search vendors"), "All vendors" row, the native line, the list', verdict="DIFFERENT placeholder (DD-02, question 12); rows and order the same"),
+      prd='S5-R13: search box ("Search vendors"), "All vendors" row, the native line, the list', verdict="DIFFERENT placeholder (DD-02, question 12); rows and order the same. Ruled by PRD v9 S5-R13 (23 Oct 2026): \"Search vendors\", box only above 8 vendors"),
  dict(what="Customer menu, two ticked (I41)", design=["search box with tags 10 Trucking ×, 4 Star Truck Repair × and a clear ×", "All customers (unticked) · 2 selected", "—", "customers A to Z (two ticked)"],
       prd='S5-R13: search box, "All customers" row, the native line while none is ticked, the list', verdict="no conflict: the line is hidden because two are ticked; tags and count are the native extras (DR-04)"),
  dict(what="Empty state, No locations (I35)", design=["Totals $0.00 $0.00", "No record matches these filters", "Try changing filters to widen your results.", "Clear all filters"],
-      prd='S5-R6a "no totals and no Location column"; S8-R5 messages and "Clear all filters"', verdict="DIFFERENT: an extra Totals row (DD-03, question 13); words and button the same"),
+      prd='S5-R6a "no totals and no Location column"; S8-R5 messages and "Clear all filters"', verdict="DIFFERENT: an extra Totals row (DD-03, question 13); words and button the same. Ruled 23 Oct 2026 (answer 13): no Totals row; the picture will be corrected"),
  dict(what="Description tooltip (I20, I22)", design=["Overdue invoices, unused credit memos and deposits for each customer to help you follow up on payments. Excludes invoices that aren’t due yet."],
       prd='S8-R1 A/R Collection description', verdict="same words; opens below the icon (look, D-60)"),
  dict(what="Collapse all / Expand all tooltip", design=["not drawn (the chevron is: I05 right, I14 down)"], prd='S4-R1 tooltip above the button', verdict="DESIGN-SILENT for the tooltip"),
@@ -68,16 +76,21 @@ BY_HAND = [
 def build():
     reg = {"project": "A/R and A/P Report Sorting, Export and Location Filter", "design": DD.URL, "design_read": True,
            "read": "22 Oct 2026: 7 boards, 45 figures, 43 screenshots viewed (design-2026-10-22/DESIGN-READING-RECORD.md)",
+           "updated": "26 Oct 2026: differences DD-01 to DD-06 closed by Chris Ward's answers 4 and 11 to 15 (23 Oct 2026, read 26 Oct 2026) and PRD version 9 (v9-pass-2026-10-26/)",
            "note": ("Both directions checked (Rule 130): design to cases (DESIGN-TEXT-INVENTORY, DESIGN-VISUAL-INVENTORY) and PRD to design "
                     "(spec_to_design_check.py on the boards plus the after-pictures' words, AFTER-SCREEN-WORDS.txt, and the by-hand list below). "
-                    "Questions 11 to 15 are drafted, not sent: they close their rows once the QA lead adds them to Chris Ward's sheet " + SHEET + " (Rule 131)."),
+                    "Questions 4 and 11 to 15 were sent on Chris Ward's sheet " + SHEET + " (22 Oct 2026) and answered on 23 Oct 2026; every difference is closed "
+                    "(outcome PO-RULED, with the answer and date). Design versions that lost (D-76 to D-80) were deleted 26 Oct 2026 with the QA lead's go-ahead; "
+                    "D-81 (the design won) is a normal design case."),
            "differences": [], "closed_by_ruling": [], "design_silent": [], "by_hand": BY_HAND}
+    WON = {"DD-06": "design", "DD-01": "PRD wording, design button order and ×"}
     for d in DD.DIFFS:
-        sent = d["q"] == 4
         reg["differences"].append(dict(id=d["id"], kind=d["kind"], prd=d["prd"], design=d["design"], pictures=[DD.pic(DD.FIG_BY_IID[i]) for i in d["figs"]],
-                                       outcome="QUESTION-SENT" if sent else "QUESTION-READY",
-                                       where=(f"question 4 on {SHEET} (row 9), sent 22 Oct 2026" if sent else f"question {d['q']}, {NOTSENT}"),
-                                       held_case=d["held"]))
+                                       outcome="PO-RULED",
+                                       where=(f"question {d['q']} on {SHEET}" + (" (row 9)" if d["q"] == 4 else "") + ", sent 22 Oct 2026; answered by Chris Ward 23 Oct 2026, read 26 Oct 2026"),
+                                       ruling=d["ruling"], ruled_on="23 Oct 2026", answer=d["answer"], won=WON.get(d["id"], "PRD"),
+                                       held_case=d["held"],
+                                       held_case_now=("released as a normal design case 26 Oct 2026" if d["id"] == "DD-06" else "deleted from TestRail 26 Oct 2026 (QA lead's go-ahead)")))
     for d in DD.RULED:
         reg["closed_by_ruling"].append(dict(id=d["id"], design=d["design"], outcome="PO-RULED", where=d["ruling"], pictures=[DD.pic(DD.FIG_BY_IID[i]) for i in d["figs"]]))
     for c, w in DD.SILENT:

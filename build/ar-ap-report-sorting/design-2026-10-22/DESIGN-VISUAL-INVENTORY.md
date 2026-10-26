@@ -1,5 +1,8 @@
 # Design visual inventory — A/R and A/P Report Sorting (22 Oct 2026)
 
+
+> 26 Oct 2026: the six SPEC-CONFLICT rows (DD-01 to DD-06) are closed by Chris Ward's answers of 23 Oct 2026 and PRD version 9 (v9-pass-2026-10-26/); rows V24, V29, V32, V39, V44, V64 updated.
+
 Rule 126 point 3 and skill 21 §4b: every look the design shows (columns and their order, icons, chips and their colours at rest and active,
 header styles, sort marks, chevrons, pinned rows, the Totals row, link style in light and dark, tooltip and menu positions, empty state,
 toast, dialog, sizes at 1440 px, overlap) is COVERED by a case or classified. The canvas is image-only (each board is a row of 1440 x 900
@@ -46,15 +49,15 @@ the pictures by viewing them, with a few colours sampled from the PNG files (pix
 | V21 | Ticked checkboxes: light-blue fill with a blue tick (I33, I38, I40, I41) | COVERED | D-66 (library: "Checked checkbox/radio use a TINTED fill with an accent glyph") |
 | V22 | Range rows and vendor rows show a grey DASH box while "Any" / "All vendors" is ticked (I38, I40) | COVERED | D-71, D-73 |
 | V23 | Vendor list not A to Z (native list order) (I40) | COVERED | D-73 (compared with Inventory Value's Vendor menu: PRD "exactly as Inventory Value's Vendor filter") |
-| V24 | Vendor search placeholder "Search vendor" (I40) | SPEC-CONFLICT | DD-02, question 12 (drafted); held D-77; PRD-following D-32, D-73, S5-29 |
+| V24 | Vendor search placeholder "Search vendor" (I40) | SPEC-CONFLICT, CLOSED | DD-02, question 12: PRD v9 S5-R13 (23 Oct 2026) keeps "Search vendors" (box only above 8 vendors); held D-77 deleted 26 Oct 2026 (QA lead's go-ahead); PRD-following D-32, D-73, S5-29, S5-39 |
 | V25 | Customer menu with two ticked: names as blue tags with "×" in the search box, a circled clear "×", "2 selected" on "All customers", helper line hidden, ticked names keep their A to Z place (I41) | COVERED | D-74 (DR-04) |
 | V26 | Description tooltip: dark-grey box (light) / mid-grey box (dark), white text, four lines, opens BELOW the icon starting near it, covers the As of and Customer chips; icon turns blue on hover (I20, I22) | COVERED | D-60, D-41, D-42, S8 description cases |
 | V27 | PDF-too-large toast: solid red box bottom right, white warning triangle, three lines of white text, white "Close", no title, only one (I11) | COVERED | D-55, D-38, DATA-18 |
 | V28 | Switch location dialog: centred white dialog, page dimmed behind, bold title, message, buttons bottom right (I29) | COVERED | D-64, D-39 |
-| V29 | Dialog buttons "Cancel" (grey, left) then "Switch Location" (blue, right, capital L) and a close "×" top right (I29) | SPEC-CONFLICT | DD-01, question 11 (drafted); held D-76; PRD-following S7-03, S7-04, D-39, D-40, D-64 |
+| V29 | Dialog buttons "Cancel" (grey, left) then "Switch Location" (blue, right, capital L) and a close "×" top right (I29) | SPEC-CONFLICT, CLOSED | DD-01, question 11, ruled 23 Oct 2026 (answer 11; PRD v9 S7-R3, S7-R5): button order and × as drawn, "Switch location" with a small l; held D-76 deleted 26 Oct 2026; cases S7-03, S7-04, S7-20, D-39, D-40, D-64 |
 | V30 | After Cancel: the report unchanged (I30) | COVERED | D-64, S7-05 |
 | V31 | Empty state: grey circle with magnifier, "No record matches these filters" (larger), grey "Try changing filters to widen your results.", outlined "Clear all filters" (I35) | COVERED | D-68, D-19–D-24, S5-14 |
-| V32 | Empty state draws a Totals row reading $0.00 $0.00 (I35) | SPEC-CONFLICT | DD-03, question 13 (drafted); held D-78; PRD-following D-68, S5-14, S3-24, S6-03, D-19–D-24 |
+| V32 | Empty state draws a Totals row reading $0.00 $0.00 (I35) | SPEC-CONFLICT, CLOSED | DD-03, question 13, ruled 23 Oct 2026 (answer 13): no Totals row, the picture will be corrected; held D-78 deleted 26 Oct 2026; PRD-following D-68, S5-14, S3-24, S6-03, D-19–D-24 |
 
 ## 4 · Table: headings, sort mark, rows, links
 
@@ -66,12 +69,12 @@ the pictures by viewing them, with a few colours sampled from the PNG files (pix
 | V36 | A/R Detail columns: Date, Location, Transaction Type, ID, Customer Full Name, Due Date, Amount, Open Balance (no Past Due) (I28, I32) | COVERED | D-63, D-04, S2-07–S2-10 (letter case: V39) |
 | V37 | A/R Collection columns: Date, Location, Transaction Type, ID, Due Date, Past Due, Amount, Open Balance (I14, I19) | COVERED | D-56, D-07, S2-11–S2-14 (letter case: V39) |
 | V38 | A/P Detail and A/P Unpaid Invoices columns: Date, Location, Transaction Type, No., Vendor Name, Due Date, Past Due, Amount, Open Balance (I05, I23, I25) | COVERED | D-52, D-61, D-62, D-13, D-16, S2-15–S2-22 |
-| V39 | A/R headings in capitals ("Transaction Type", "Customer Full Name", "Due Date", "Past Due", "Open Balance") where PRD S2-R1 writes small letters; today's production already in capitals (I12, I26, I31) | SPEC-CONFLICT | DD-06, question 4 (sent 22 Oct 2026); held D-81; PRD-following D-04, D-07 |
+| V39 | A/R headings in capitals ("Transaction Type", "Customer Full Name", "Due Date", "Past Due", "Open Balance"); today's production already in capitals (I12, I26, I31) | COVERED (was SPEC-CONFLICT) | DD-06, question 4, ruled 23 Oct 2026 (answer 4; PRD v9 S2-R1, S2-R4a): Title Case on all six reports, as drawn; D-81 released as a normal design case; also D-01–D-09, D-56, D-63, D-67, S2-40, S2-41 |
 | V40 | Location column right after Date (after Customer/Vendor on the Summaries) (I03, I10, I32) | COVERED | S6-01, S6-02, D-65 |
 | V41 | Sort mark: a small dark triangle right of the sorted heading only (up on A to Z / oldest first, down on largest first), sampled rgb(35,35,35) (I03, I04, I05, I14, I36) | COVERED | every "marked as the sorted column (a small arrow beside its heading)" result; D-50, D-51, D-69 |
 | V42 | Library: "the arrow is quiet until the column is sorted or hovered" and a sorted arrow in accent blue | OUT-OF-SCOPE | the report screens are the native newer-report table (PRD reuse rule), not this library's table; the pictures show the arrow dark and only on the sorted column (V41). The design names no hover state for headings. |
 | V43 | Customer/vendor names on the Summaries blue (rgb(34,118,224) sampled), regular weight; document numbers blue (I03, I28, I16) | COVERED | D-50, D-63, D-58 (colour); weight: V44 |
-| V44 | Links at REGULAR weight; PRD S7-R7 says semi-bold (all after pictures) | SPEC-CONFLICT | DD-05, question 15 (drafted); held D-80; PRD-following D-01–D-18 |
+| V44 | Links at REGULAR weight; PRD S7-R7 says semi-bold (all after pictures) | SPEC-CONFLICT, CLOSED | DD-05, question 15, ruled 23 Oct 2026 (answer 15): semi-bold as on Work In Progress, the pictures will be corrected; held D-80 deleted 26 Oct 2026; PRD-following D-01–D-18 |
 | V45 | Links in dark theme: medium blue, readable (I24) | COVERED | D-61, D-05, D-14 |
 | V46 | Plain text for credit memos (CM2-…), other-location bills (5956), other-location vendor credits (C-99, C-100) (I14, I25, I28) | COVERED | D-56, D-62, D-63, S7-06, S7-10 |
 | V47 | Vendor credit from a return at your location is a link (C-1224) (I16, I43) | COVERED | D-58, S7-07, S7-08 |
@@ -96,7 +99,7 @@ the pictures by viewing them, with a few colours sampled from the PNG files (pix
 | V61 | Totals row stays at the bottom of the table while rows scroll under it (I03, I14, I25) | COVERED | D-50, D-56, D-61 |
 | V62 | Totals row on a light-grey band (rgb 241,242,243) in I14, I15, I16, I23, I25, I32 but on the page colour in I03, I19, I28, I30 (same screen I30 vs I32) | COVERED | DR-01: PRD S8-R4 "native totals row style of the newer reports"; D-01–D-18 compare with Sales By Customer |
 | V63 | Totals row empty buckets read "$0.00" while rows leave them blank (I41) | COVERED | D-74 |
-| V64 | Same-day invoices of one customer not in number order (S3-14690, S3-14693, S3-15660, S3-14691, S3-14692) (I15) | SPEC-CONFLICT | DD-04, question 14 (drafted); held D-79; PRD-following S1-10, S1-11 |
+| V64 | Same-day invoices of one customer not in number order (S3-14690, S3-14693, S3-15660, S3-14691, S3-14692) (I15) | SPEC-CONFLICT, CLOSED | DD-04, question 14, ruled 23 Oct 2026 (answers 12 and 14; PRD v9 S1-R6, S2-R4): document-number order whatever the time of day; the picture will be corrected and the build's time-of-day order is a build bug; held D-79 deleted 26 Oct 2026; PRD-following S1-10, S1-11 |
 
 ## 6 · States, themes, widths
 

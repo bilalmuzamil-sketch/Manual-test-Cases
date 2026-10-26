@@ -10,8 +10,8 @@ sys.path.insert(0, D); import design_data as DD
 PROP = json.load(open(f"{D}/proposals.json")); MAP = f"{P}/testrail-id-map.csv"
 ids = {r["key"]: int(r["case_id"]) for r in csv.DictReader(open(MAP))}
 HOLD = "AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO"
-TAG = "rule136-2026-10-22"  # was design-2026-10-22 for the design pass
-RELEASED = ["S1-07"]  # released from hold by the tech plan pass (plan D4)
+TAG = "v9-2026-10-26"  # was rule136-2026-10-22; design-2026-10-22 for the design pass
+RELEASED = ["S2-35", "DATA-14", "DATA-15", "S1-16", "D-81"]  # released by Chris Ward's answers 6, 9, 16 and 4 (26 Oct 2026); was ["S1-07"] (tech plan pass)
 PICRE = re.compile(r"ar-ap-p\d-[a-z0-9-]+\.png")
 def pics(f): return sorted(set(PICRE.findall(f["custom_preconds"] + f["custom_expected"])))
 def same(prev, f):
@@ -71,7 +71,7 @@ def tests(run):
         r = api(f"get_tests/{run}&limit=250&offset={off}"); t = r["tests"] if isinstance(r, dict) else r; out += t
         if len(t) < 250: return out
         off += 250
-b4 = tests(549); json.dump(b4, open(f"{P}/applied/run549-tests-before-design.json", "w"))
+b4 = tests(549); json.dump(b4, open(f"{P}/applied/run549-tests-before-{TAG}.json", "w"))
 PO_HOLD = "AUTOMATION: HOLD - waiting on the PO"
 new_run = [ids[k] for k in add if HOLD not in PROP[k]["fields"]["custom_expected"] and PO_HOLD not in PROP[k]["fields"]["custom_expected"]]
 new_run += [ids[k] for k in RELEASED]

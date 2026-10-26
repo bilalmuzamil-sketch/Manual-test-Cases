@@ -3,7 +3,9 @@ D-01 to D-49 (written 22 Oct 2026 from the PRD's own look sentences, before the 
 PRD names; on the full pass of 22 Oct 2026 each was re-checked against the design canvas and now carries its pictures (FIGS_FOR).
 D-50 to D-75: one "matches the design picture" case for every screen and state the design draws ("This build (after)" and "New in this
 build" pictures), compared at 1440 px (light, and dark where the design shows dark), and at 1536 px for overlap.
-D-76 to D-81: the design's version of every design-vs-PRD difference (Rule 130 item 5), held until Chris Ward rules.
+D-76 to D-81: the design's version of every design-vs-PRD difference (Rule 130 item 5), held until Chris Ward ruled (23 Oct 2026). 26 Oct 2026:
+D-76 to D-80 lost (answers 11 to 15) and were deleted from TestRail with the QA lead's go-ahead; D-81 won (answer 4, PRD v9 S2-R4a) and is now a
+normal design case.
 The production ("before") pictures are today's look: the release-day cases use them, no design case aims at them (Rule 115: the named
 target only)."""
 from ar_lib import C, ALL6, GROUPED, DESIGN_URL, CASES, DESIGN_HOLD
@@ -11,7 +13,7 @@ import design_data as DD
 from common import *
 from po_questions import QN
 import tech_plan as TP
-VEND8 = ("The organization has more than 8 vendors (the Vendor menu shows its search box only then, as on Inventory Value).", "For example: the QA organization (437 vendors).")
+VEND8 = ("The organization has more than 8 vendors (the Vendor menu shows its search box only when there are more than 8 vendors).", "For example: the QA organization (437 vendors).")
 
 ORDER = {"n": 0}
 def nk():
@@ -19,6 +21,8 @@ def nk():
 def DREF(pages):
     """22 Oct 2026: the design was read; the pictures for each case are set by key at the end of this file (FIGS_FOR)."""
     return {}
+CAPL = ("Where the build is expected to differ: Chris Ward (answer 11, 23 Oct 2026) says the current build writes the button \"Switch Location\" with a "
+        "capital L, a build bug to fix; the PRD's \"Switch location\" stands. No ticket number is known yet. If the button reads \"Switch Location\", mark this test Failed.")
 SBC2 = "Reports > Finance > Sales By Customer is open in a second tab of the same window, for comparison."
 
 def headings(code):
@@ -41,25 +45,24 @@ for code in ALL6:
     k = nk()
     LOOKPRE = [ADMIN(), TWO_LOC, long_pre(code, k),
                START(code, " in light theme at 100% zoom" + ("" if summ else ", with every group expanded (Expand all)"))]
-    CASE_NOTE = (f"The PRD writes \"Open balance\", \"Due date\" and \"Transaction type\" for this report (S2-R1) but \"Open Balance\" in its Terminology; "
-                 f"which letter case is right is question {QN['open-balance-case']}." if r["fam"] == "A/R" and not summ else "")
+    CASE_NOTE = ""   # 26 Oct 2026: question 4 answered (Title Case on all six reports, PRD v9 S2-R4a); the A/R letter-case note is gone
     C(k, "DESIGN", f"Design: {r['n']} at 1440 px in light theme looks as described",
       LOOKPRE + [SBC2],
       ["Look at the title row.",
        "Look at where the filter row sits, and compare with Sales By Customer.",
        "Read the column headings left to right, letter for letter, capitals included.",
        "Look for a sideways scroll bar under the table.",
-       (f"Look at {{{P}-A}}'s name cell and at the money cells." if summ else f"Look at {{{P}-A}}'s rows: the name and Transaction type cells, and the money, date and number cells."),
+       (f"Look at {{{P}-A}}'s name cell and at the money cells." if summ else f"Look at {{{P}-A}}'s rows: the name and Transaction Type cells, and the money, date and number cells."),
        "Look across the whole page for any text that overlaps, is cut off or is clipped."],
       ["Step 1: the title, its info icon directly right of it, and the ⋯ Export button at the right end, all on one line.",
        "Step 2: the filter row sits below the title row, in the same place as on Sales By Customer.",
        f"Step 3: {headings(code)} (\"Location\" shown because two locations are in view; it sits right after "
        + ("the name" if summ else "\"Date\"") + "). No heading wraps.",
        "Step 4: there is none: every column is visible at 1440 px without scrolling sideways.",
-       "Step 5: " + ("the long name wraps" if summ else "the long name and a long Transaction type wrap") + " onto a second line; money, date and number cells stay on one line"
+       "Step 5: " + ("the long name wraps" if summ else "the long name and a long Transaction Type wrap") + " onto a second line; money, date and number cells stay on one line"
        + (", and Location wraps only on this report (nine columns)." if code == "APD" else ", and Location does not wrap."),
        "Step 6: nothing overlaps, is cut off or clipped."],
-      ["S8-R2", "S8-R3", f"S2-R1 {code}", "S6-R3", "KD-REUSE"],
+      ["S8-R2", "S8-R3", f"S2-R1 {code}", "S2-R4a", "S6-R3", "KD-REUSE"],
       note=("The first column keeps today's heading: only the Location column is renamed in this release." if summ else CASE_NOTE),
       design=DREF("page 6 (Descriptions and pinned column) and page 1 (Opening order and header sorting)"))
     hl = f"Design: {r['n']} {r['headline']} column and Totals row look native"
@@ -190,7 +193,7 @@ C(k, "DESIGN", "Design: A/P Vendor chip and menu match Inventory Value's",
   ["Step 1: \"Vendor: All vendors\" with the truck icon, in the resting (grey) style, as on Inventory Value.",
    "Step 2: in this order: a search box with the placeholder \"Search vendors\", \"All vendors\", the line \"All vendors are included. Pick one or more to narrow.\", then the vendors.",
    "Step 3: the same menu: rows, order, tick boxes, spacing and position."],
-  ["S5-R13", "KD-REUSE"] + TP.q("D18"), design=DREF("page 7 (Filters and call list)"))
+  ["S5-R13", "KD-REUSE"], design=DREF("page 7 (Filters and call list)"))
 
 for fam, code in (("A/R", "ARS"), ("A/P", "APD")):
     k = nk()
@@ -241,10 +244,10 @@ for kind, code, word in (("work order", "ARD", "This work order is in"), ("part 
        START(code, " in light theme at 100% zoom, with {Customer-A} ticked and its rows showing")],
       ["Click {Invoice-A}'s number.",
        "Compare the dialog with the one a work order link from another location shows today.", "Click \"Cancel\".", "Switch ShopView to dark theme.", "Click {Invoice-A}'s number again."],
-      [f"Step 1: a dialog opens over the report; read letter for letter, in order: title \"Switch location?\", message \"{word} \" then {{Location-B}}'s name and \"Switch your active location to view it?\", then the buttons \"Switch location\" and \"Cancel\".",
+      [f"Step 1: a dialog opens over the report; read letter for letter, in order: title \"Switch location?\", message \"{word} \" then {{Location-B}}'s name and \"Switch your active location to view it?\", then the button \"Cancel\" on the left and the button \"Switch location\" (small l) on the right, and a close \"×\" at the top right.",
        "Step 2: it is the existing location-switch prompt: same look, buttons and position.", "Step 3: the dialog closes.", "Step 4: the page switches to dark theme.",
        "Step 5: the dialog opens again and is readable in dark theme."],
-      ["S7-R3", "UFS-3" if kind == "work order" else "UFS-4", "KD-REUSE"], design=DREF("page 5 (Document links and Switch location)"))
+      ["S7-R3", "UFS-3" if kind == "work order" else "UFS-4", "KD-REUSE"], design=DREF("page 5 (Document links and Switch location)"), note=CAPL)
 
 for fam, code in (("A/R", "ARD"), ("A/P", "APS")):
     k = nk()
@@ -389,7 +392,7 @@ P(k, "Design: A/R Collection after Expand all matches the design picture",
    START("ARC", " in light theme at 100% zoom, with every group collapsed"), PICS("I14")],
   ["Click the chevron button in the table's top-left header cell.",
    "Scroll down a little and look at the Totals row.", W1536[0]],
-  ["every customer group opens and the header chevron points down; compared with the picture: the header row shows the chevron, then the columns in the picture's order: Date (with a small up arrow), Location, Transaction type, ID, Due date, Past due, Amount, Open balance (their capital letters are checked in other design cases); {Customer-A}'s group row shows a blue chevron pointing down, the name in bold with its count in brackets, then in grey \"Phone: \" and the number and \"Credit term: \" and the term, on one line; each of its document rows shows the date, location, transaction type, number (a blue link for the invoice, plain text for the credit memo), due date, days past due, amount, and the open balance in bold; the subtotal row under the group reads \"Total for \" and the customer's name, with the Amount and Open balance sums in bold.",
+  ["every customer group opens and the header chevron points down; compared with the picture: the header row shows the chevron, then the columns in the picture's order, letter for letter: \"Date\" (with a small up arrow), \"Location\", \"Transaction Type\", \"ID\", \"Due Date\", \"Past Due\", \"Amount\", \"Open Balance\"; {Customer-A}'s group row shows a blue chevron pointing down, the name in bold with its count in brackets, then in grey \"Phone: \" and the number and \"Credit term: \" and the term, on one line; each of its document rows shows the date, location, transaction type, number (a blue link for the invoice, plain text for the credit memo), due date, days past due, amount, and the open balance in bold; the subtotal row under the group reads \"Total for \" and the customer's name, with the Amount and Open Balance sums in bold.",
    "the bold Totals row stays at the bottom of the table while the rows scroll under it.", W1536[1]],
   ["S4-R1", "S4-R5", "S9-R1", "S9-R2", "S8-R3", "S1-R7", "S7-R10", "S2-R1 ARC"], ["I14"], reports=["ARC"])
 
@@ -472,9 +475,9 @@ P(k, "Design: A/R Detail links and plain numbers match the design picture",
    START("ARD", " in light theme at 100% zoom, with the \"91 or more days past due\" bucket expanded"), PICS("I28")],
   ["Compare the header row with the picture.", "Look at {Customer-A}'s invoice number, {Customer-B}'s credit memo number and {Customer-C}'s invoice number.",
    "Compare the subtotal row at the end of the bucket with the picture.", W1536[0]],
-  ["the chevron, then the columns in the picture's order: Date, Location, Transaction type, ID, Customer full name (with a small up arrow), Due date, Amount, Open balance; this report has no Past due column (their capital letters are checked in other design cases).",
+  ["the chevron, then the columns in the picture's order, letter for letter: \"Date\", \"Location\", \"Transaction Type\", \"ID\", \"Customer Full Name\" (with a small up arrow), \"Due Date\", \"Amount\", \"Open Balance\"; this report has no Past Due column.",
    "{Customer-A}'s is a blue link (another location you work at); {Customer-B}'s is plain dark text, not blue; {Customer-C}'s is a blue link.",
-   "\"Total for 91 or more days past due\" with the Amount and Open balance sums in bold.", W1536[1]],
+   "\"Total for 91 or more days past due\" with the Amount and Open Balance sums in bold.", W1536[1]],
   ["S7-R1", "S7-R3", "S7-R10", "S2-R1 ARD", "S1-R5"], ["I28"], reports=["ARD"])
 
 k = nk()  # D-64
@@ -482,9 +485,9 @@ P(k, "Design: the switch-location dialog frame matches the design pictures",
   [ADMIN(), TWO_LOC, ("Customer {Customer-A} has an open work order invoice {Invoice-A} made at {Location-B}.", f"For example: {{Customer-A}} is {ex(k, 'Dialog Frame')[0]}."),
    START("ARD", " in light theme at 100% zoom, with {Customer-A} ticked and every bucket expanded"), PICS("I29", "I30")],
   ["Click {Invoice-A}'s number.", "Click \"Cancel\"."],
-  ["the dialog opens over the report: as in the first picture, a white dialog in the middle of the window, with the report dimmed behind it; read letter for letter: the bold title \"Switch location?\", then \"This work order is in \", {Location-B}'s name and \"Switch your active location to view it?\"; then, left to right, the buttons \"Switch location\" and \"Cancel\", as the PRD words them (the picture differs: see References from Design).",
+  ["the dialog opens over the report: as in the first picture, a white dialog in the middle of the window, with the report dimmed behind it; read letter for letter: the bold title \"Switch location?\", then \"This work order is in \", {Location-B}'s name and \"Switch your active location to view it?\"; then \"Cancel\" on the left and \"Switch location\" (small l) on the right, and a close \"×\" at the top right, as in the picture except that the picture writes \"Switch Location\" with a capital L (the PRD's small l is right: see References from Design).",
    "the dialog closes, and the report is exactly as before the click, as in the second picture: the same filters, open bucket, sort and scroll position."],
-  ["S7-R3", "S7-R5", "UFS-3"], ["I29", "I30"], reports=["ARD"])
+  ["S7-R3", "S7-R5", "UFS-3"], ["I29", "I30"], reports=["ARD"], note=CAPL)
 
 k = nk()  # D-65
 P(k, "Design: A/R Detail opens on All locations as in the design picture",
@@ -508,7 +511,7 @@ P(k, "Design: one location ticked hides the Location column as pictured",
   ["Click the Location chip.", "Untick {Location-A}.", "Close the menu."],
   ["the menu opens.",
    "the count reads \"1 selected\" and \"Select all\" is no longer ticked; as in the picture, while the menu stays open the rows do not move: {Location-A}, now unticked, stays where it was; the chip reads \"Location: \" and {Location-B}'s name, shortened with \"...\" when long (\"Location: Staging Lethbri...\" in the picture), still in a blue pill.",
-   "the menu closes, and as in the picture the Location column is gone: the header row reads the chevron, then Date, Transaction type, ID, Customer full name, Due date, Amount, Open balance."],
+   "the menu closes, and as in the picture the Location column is gone: the header row reads the chevron, then \"Date\", \"Transaction Type\", \"ID\", \"Customer Full Name\", \"Due Date\", \"Amount\", \"Open Balance\"."],
   ["S5-R6", "S6-R2", "S6-N1", "S5-R2"], ["I34"], reports=["ARD"])
 
 k = nk()  # D-68
@@ -516,7 +519,7 @@ P(k, "Design: No locations shows the empty state as in the design picture",
   [ADMIN(), TWO_LOC, START("ARD", " in light theme at 100% zoom"), PICS("I35")],
   ["In the Location menu, click \"Clear selection\".", "Close the menu.", W1536[0]],
   ["no location is ticked.",
-   "the menu closes. As in the picture: the chip reads \"Location: No locations\" with the pin icon and no blue fill, still in the filter row; the table area shows the column headings without a Location column, then the empty state in the middle under a grey circle with a magnifier; no rows and no Totals row (the picture also draws a Totals row of $0.00: see References from Design); the empty state reads, letter for letter, \"No record matches these filters\", \"Try changing filters to widen your results.\" and an outlined \"Clear all filters\" button.", W1536[1]],
+   "the menu closes. As in the picture: the chip reads \"Location: No locations\" with the pin icon and no blue fill, still in the filter row; the table area shows the column headings without a Location column, then the empty state in the middle under a grey circle with a magnifier; no rows and no Totals row (the picture also draws a Totals row of $0.00; Chris Ward ruled there is none and the picture will be corrected: see References from Design); the empty state reads, letter for letter, \"No record matches these filters\", \"Try changing filters to widen your results.\" and an outlined \"Clear all filters\" button.", W1536[1]],
   ["S5-R6a", "S5-R6", "S5-R9", "S8-R5"], ["I35"], reports=["ARD"])
 
 k = nk()  # D-69
@@ -556,9 +559,9 @@ P(k, "Design: the Vendor menu matches the design picture",
   [ADMIN(), VEND8, START("APS", " in light theme at 100% zoom"), "Reports > Inventory > Inventory Value is open in a second tab of the same window, for comparison.", PICS("I40")],
   ["Click the Vendor chip.",
    "Compare the order of the vendors with Inventory Value's Vendor menu."],
-  ["the menu opens, as in the picture: while the menu is open the chip (\"Vendor: All vendors\", truck icon) has a light-grey background; the menu opens under it; its rows read, top to bottom, a search box with a magnifier and the placeholder \"Search vendors\", \"All vendors\" (ticked), a dividing line, the grey line \"All vendors are included. Pick one or more to narrow.\", then the vendors (the picture's placeholder differs: see References from Design); each vendor box shows a grey dash while \"All vendors\" is ticked.",
+  ["the menu opens, as in the picture: while the menu is open the chip (\"Vendor: All vendors\", truck icon) has a light-grey background; the menu opens under it; its rows read, top to bottom, a search box with a magnifier and the placeholder \"Search vendors\", \"All vendors\" (ticked), a dividing line, the grey line \"All vendors are included. Pick one or more to narrow.\", then the vendors (the picture's placeholder reads \"Search vendor\"; the PRD's \"Search vendors\" is right: see References from Design); each vendor box shows a grey dash while \"All vendors\" is ticked.",
    "the same order as Inventory Value's Vendor menu."],
-  ["S5-R13", "KD-REUSE"] + TP.q("D18"), ["I40"], reports=["APS"])
+  ["S5-R13", "KD-REUSE"], ["I40"], reports=["APS"])
 
 k = nk()  # D-74
 P(k, "Design: two customers ticked look as in the design picture",
@@ -580,60 +583,20 @@ P(k, "Design: the call list for one customer matches the design picture",
   ["only {Customer-A}'s group is listed. As in the picture: the chip reads \"Customer: \" and {Customer-A}'s name, shortened with \"...\", in a blue pill; a closed group row: a chevron pointing right, the bold name and count, grey \"Phone: \" and the number, grey \"Credit term: \" and the term, \"Total\" and the sums; the Totals row equals the group's sums."],
   ["S9-R1", "S9-R2", "S5-R13", "S5-R18"], ["I42"], reports=["ARC"])
 
-# ---------------- held design-version cases (Rule 130 item 5): not run until Chris Ward rules ----------------
-def HOLDNOTE(q, sent=False):
-    return (f"Held: this is the design's version of a difference from the PRD. Question {q} " + ("on Chris Ward's sheet (sent 22 Oct 2026)" if sent else
-            "on Chris Ward's question sheet (added 22 Oct 2026)") + " decides it. If the design wins, this case is released and the PRD-following "
-            "cases change; if the PRD wins, this case is deleted with the QA lead's go-ahead.")
-
-k = nk()  # D-76
-P(k, "Design: the switch-location dialog as the design draws it",
-  [ADMIN(), TWO_LOC, ("Customer {Customer-A} has an open work order invoice {Invoice-A} made at {Location-B}.", f"For example: {{Customer-A}} is {ex(k, 'Design Dialog')[0]}."),
-   START("ARD", ", with {Customer-A} ticked and every bucket expanded"), PICS("I29")],
-  ["Click {Invoice-A}'s number.", "Click the \"×\" at the dialog's top right corner."],
-  ["the \"Switch location?\" dialog opens over the report; as in the picture, its buttons read, letter for letter, left to right, \"Cancel\" (grey) on the left, then \"Switch Location\" (blue, capital L) on the right, and a close \"×\" sits at its top right corner.",
-   "the dialog closes and you stay on the report, as with \"Cancel\" (option (a) of the question)."],
-  ["S7-R3", "UFS-3"], ["I29"], reports=["ARD"], marker=DESIGN_HOLD, note=HOLDNOTE(11))
-
-k = nk()  # D-77
-P(k, "Design: the Vendor menu's search box reads Search vendor",
-  [ADMIN(), VEND8, START("APD", " in light theme at 100% zoom"), PICS("I40")],
-  ["Click the Vendor chip."],
-  ["the menu opens with a search box at the top, whose placeholder reads, letter for letter, \"Search vendor\" (singular), as in the picture."],
-  ["S5-R13"] + TP.q("D18"), ["I40"], reports=["APD"], marker=DESIGN_HOLD, note=HOLDNOTE(12))
-
-k = nk()  # D-78
-P(k, "Design: with No locations a Totals row of $0.00 shows",
-  [ADMIN(), TWO_LOC, START("ARD", " in light theme at 100% zoom"), PICS("I35")],
-  ["In the Location menu, click \"Clear selection\".", "Close the menu."],
-  ["\"Location: No locations\".", "the menu closes, and under the column headings a \"Totals\" row reads $0.00 and $0.00, then the empty state, as in the picture."],
-  ["S5-R6a"], ["I35"], reports=["ARD"], marker=DESIGN_HOLD, note=HOLDNOTE(13))
-
-k = nk()  # D-79
-P(k, "Design: same-day invoices on A/R Collection keep the time order",
-  [ADMIN(), ("Customer {Customer-A} has three overdue invoices dated the same day: {Invoice-A}, {Invoice-B} and {Invoice-C}, numbered in that order, where {Invoice-C} was invoiced first that day, then {Invoice-A}, then {Invoice-B}.",
-             f"For example: {{Customer-A}} is {ex(k, 'Same Day')[0]}; {{Invoice-A}} is S3-14690, {{Invoice-B}} S3-14691 and {{Invoice-C}} S3-15660 (the app assigns the real numbers)."),
-   START("ARC", ", with {Customer-A}'s group expanded"), PICS("I15")],
-  ["Read the order of {Invoice-A}, {Invoice-B} and {Invoice-C}.", "Choose \"Download (CSV)\" from the ⋯ menu.", "Open the CSV and read the same three rows."],
-  ["{Invoice-C} first, then {Invoice-A}, then {Invoice-B}: same-day invoices follow the time they were invoiced, not their numbers (option (b) of the question; the picture lists same-day invoices out of number order).",
-   "the CSV downloads.", "the same order as on screen."],
-  ["S1-R6", "S1-R4"], ["I15"], reports=["ARC"], marker=DESIGN_HOLD, note=HOLDNOTE(14))
-
-k = nk()  # D-80
-P(k, "Design: report links are blue at regular weight",
-  [ADMIN(), ("Customer {Customer-A} has an open invoice at your location on today's date.", f"For example: {{Customer-A}} is {ex(k, 'Link Weight')[0]}."),
-   START("ARD", " in light theme at 100% zoom, with every bucket expanded"), PICS("I28", "I03")],
-  ["Compare {Customer-A}'s invoice number with the plain text next to it.", "Open A/R Summary and compare a customer name with the Location text next to it."],
-  ["the number is blue and of the same weight as the plain text, not semi-bold, as in the picture.", "the name is blue and of the same weight as the Location text, as in the picture."],
-  ["S7-R7"], ["I28", "I03"], reports=["ARD", "ARS"], marker=DESIGN_HOLD, note=HOLDNOTE(15))
-
+# ---------------- held design-version cases (Rule 130 item 5) ----------------
+# 26 Oct 2026: Chris Ward ruled on every difference (23 Oct 2026). D-76 (C715558), D-77 (C715559), D-78 (C715560), D-79 (C715561) and D-80
+# (C715562) were the design versions that lost (answers 11 to 15; PRD v9) and were deleted from TestRail with the QA lead's go-ahead
+# (v9-pass-2026-10-26/deleted/); their keys are not reused. D-81 (C715563) won (answer 4, PRD v9 S2-R4a) and is released as a normal design case.
+ORDER["n"] = 80
 k = nk()  # D-81
-P(k, "Design: A/R Detail and Collection headings keep their capital letters",
+P(k, "Design: A/R Detail and Collection headings are in Title Case",
   [ADMIN(), TWO_LOC, START("ARD", " in light theme at 100% zoom"), PICS("I28", "I14")],
-  ["Read the column headings, letter for letter.", "Open A/R Collection and read its column headings, letter for letter."],
-  ["\"Date\", \"Location\", \"Transaction Type\", \"ID\", \"Customer Full Name\", \"Due Date\", \"Amount\", \"Open Balance\", as in the picture.",
+  ["Read the column headings, letter for letter, capitals included.", "Open A/R Collection from the Reports menu.",
+   "Read its column headings, letter for letter, capitals included."],
+  ["\"Date\", \"Location\", \"Transaction Type\", \"ID\", \"Customer Full Name\", \"Due Date\", \"Amount\", \"Open Balance\": every word starts with a capital letter, as in the picture and as on the A/P reports.",
+   "A/R Collection opens.",
    "\"Date\", \"Location\", \"Transaction Type\", \"ID\", \"Due Date\", \"Past Due\", \"Amount\", \"Open Balance\", as in the picture."],
-  ["S2-R1", "S2-R1 ARD", "S2-R1 ARC", "OOS-3"], ["I28", "I14"], reports=["ARD", "ARC"], marker=DESIGN_HOLD, note=HOLDNOTE(4, sent=True))
+  ["S2-R4a", "S2-R1 ARD", "S2-R1 ARC", "WC-11", "OOS-3"], ["I28", "I14"], reports=["ARD", "ARC"])
 
 # ---------------- the pictures for D-01 to D-49 (re-checked against the design on 22 Oct 2026) ----------------
 FIGS_FOR = {

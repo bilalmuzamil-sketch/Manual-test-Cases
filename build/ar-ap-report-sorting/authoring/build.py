@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build and check every A/R and A/P Report Sorting case. python3 build.py   (exit 1 on any PROBLEM line)
 Gates: title <= 80 and no semicolon; design titles start "Design: "; steps = results, each "Step N:"; placeholders defined;
-quotes verbatim in PRD v5 (or the Jira reading record, or the tech plan); every PRD code and every named PRD item (error handling, User Feedback
+quotes verbatim in PRD v9 (or Chris Ward's answers, the Jira reading record, or the tech plan); every PRD code and every named PRD item (error handling, User Feedback
 Summary rows, What changes, Out of Scope, key decisions) covered or listed as not testable with the reason; every report a
 requirement names covered; one AUTOMATION line, last; the "From:" / build line / "References from Design" layout."""
 import sys, json, os, importlib, re
@@ -68,7 +68,7 @@ for c in L.CASES:
     q = h.split("Exact quotes from the source")[1].split("References from Design")[0]
     if not q.split("</strong></p>", 1)[1].startswith("<p>From: "): probs.append(f"{c['key']}: quotes do not start with a From line")
     if q.count("<p>From: ") != q.count("<ul>"): probs.append(f"{c['key']}: a quote group without its own From line")
-    if "Epic SV-11315" not in q or L.NOBUILD not in q or "version 5" not in q: probs.append(f"{c['key']}: epic, version or build line missing")
+    if "Epic SV-11315" not in q or L.NOBUILD not in q or "version 9" not in q: probs.append(f"{c['key']}: epic, version or build line missing")
     top = h.split("References from Design")[0]
     if "claude.ai/artifact" in top: probs.append(f"{c['key']}: design reference above the References from Design block")
     if "<p></p><p><strong>References from Design</strong></p>" not in h: probs.append(f"{c['key']}: no References from Design block")

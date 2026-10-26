@@ -375,3 +375,14 @@ C(k, "S5", "A/R Summary: ticking several customers quickly shows rows for all of
    "Step 5: the same five rows and the same Totals: no late answer for an earlier tick replaces them."],
   ["S5-R13", "S5-R18"] + TP.q("NFR5", "P1-rapid"),
   note="Why: the report waits until you stop ticking and then asks once, dropping any answer still on its way for an earlier tick (tech plan). The wait itself is too short to see; the end state is what a tester checks.")
+
+# ---- 26 Oct 2026 (PRD v9 S5-R13, from question 12): the Vendor menu's search box shows only when there are more than 8 vendors
+k = nk()
+C(k, "S5", "A/P Summary: the Vendor menu has no search box with 8 vendors or fewer",
+  [('You are signed in as a user with the "Admin" role in a test organization that has 8 vendors or fewer, with {Location-A} as your current location.',
+    f"For example: a test organization made for this case, with the vendors {ex(k, 'Vendor 1')[0]} to {ex(k, 'Vendor 8')[0]}; {{Location-A}} is its main location."),
+   ("At least one of those vendors, {Vendor-A}, has an unpaid bill on today's date.", f"For example: {{Vendor-A}} is {ex(k, 'Vendor 1')[0]}."),
+   START("APS")],
+  ["Click the Vendor chip and read the menu from top to bottom."],
+  ["Step 1: the menu opens with no search box: it starts with the \"All vendors\" row, then the line \"All vendors are included. Pick one or more to narrow.\", then the vendors, {Vendor-A} among them."],
+  ["S5-R13"])
