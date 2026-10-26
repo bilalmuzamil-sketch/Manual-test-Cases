@@ -1,0 +1,28 @@
+[~accountid:712020:655c2bc0-ee59-46d8-9da3-f61e54739e55] four smaller points from the same test, and one thing I need from you to finish R10. Same branch, build v26.43.1-a53a4ac, 26 October 2026.
+
+*1. Category is cut where the design shows it in full*
+!SV-11631_E1-category-cut-vs-design.png|width=700,height=384!
+# Open [part sale P2-162|https://sv11631.qa.shopview.com/parts/part-sale/90a95f29-f405-4763-834d-6e3a237f8c33/part-requests], 1440 wide, 100% zoom.
+# Look at the {{Category}} box on the second row (Engine Oil Filter).
+It shows {{HD-Fil...}}; only about 54px of the 96px box holds text. The design at 1440 shows {{HD-Filters}} in full in the same column. R6: "Category and Vendor show in full when they fit".
+
+*2. The "Actions" heading is about 4px left of centre*
+!SV-11631_E2-actions-heading-off-centre.png|width=700,height=339!
+# Same page, 1440 wide.
+# Look at the {{Actions}} heading at the top right of the table.
+The word's centre sits about 4px left of the column's centre. R11: "its "Actions" header is centered over it."
+
+*3. At 1024 wide, the right edge of the Sell Price box hides under Actions*
+!SV-11631_E3-sell-price-edge-under-actions.png|width=700,height=500!
+# Open [part sale P2-109|https://sv11631.qa.shopview.com/parts/part-sale/48ba5757-175a-4701-8c4a-810791ac2ede/part-requests] in a window 1024 wide.
+# Look at the {{Sell Price}} box on a row that has a blue {{Order}} button (for example $150.32).
+About 7px of the box sits under the pinned Actions column. The value is still readable. R13: "Description, Part Number, Qty, Cost, Core and Sell Price show without scrolling."
+
+*4. The Description tooltip stays on top of the open dropdown*
+!SV-11631_E4-tooltip-over-dropdown.png|width=700,height=240!
+# Same part sale P2-109, 1440 wide.
+# Point at the {{Description}} box on the row that starts {{ZZAUTOTEST H...}} until the full name appears.
+# Click the box to open its dropdown.
+The full-name tooltip stays open and covers the left part of the first option. No requirement covers this, so it's your call whether it's worth fixing.
+
+*R10, the case where Fees & Discounts shows:* I could only check that the column is hidden when there are no fees or discounts. To check the other half I need a part with a fee or discount on a part sale, and on this branch the app refuses to add one because no QuickBooks item is connected for fees (none of the 318 parts here has one). Could you add a part fee or discount to a part sale on this branch, or turn that QuickBooks check off for this branch's organization? Then I'll check R10 straight away.

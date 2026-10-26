@@ -23,7 +23,11 @@ const cookieDomain = env => env==='branch' ? '.qa.shopview.com' : '.shopview.com
 function port(dir){ return fs.readFileSync(dir+'/port.txt','utf8').trim(); }
 
 export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, pw=(process.env.SV_PROD_PW||(()=>{try{return fs.readFileSync('/tmp/sv-prod-pw.txt','utf8').trim()}catch(e){return ''}})()),
-                            cookies=null, vp={width:1900,height:1100}, dpr=1, quiet=true, record=null, quick='admin', tz=null}={}){
+                            cookies=null, vp={width:1900,height:1100}, dpr=1, quiet=true, record=null, quick='admin', tz=null,
+                            scrollbars=false, touch=false}={}){
+  // scrollbars: true -> launch WITHOUT Playwright's default --hide-scrollbars, so scrollbars take space and show in
+  // screenshots as a user sees them (needed to check "a visible scrollbar" requirements). Added 2026-10-26 (SV-11631).
+  // touch: true -> hasTouch + isMobile context, for tap-instead-of-hover checks on phones. Added 2026-10-26 (SV-11631).
   // tz: browser timezone (IANA name, e.g. 'America/New_York') -> Playwright timezoneId. Added 2026-10-15 (SV-10795:
   // date bugs that only show when the browser is behind/ahead of UTC).
   // quick: which dev quick-login button to press on staging/branches ('admin' | 'tech'). Added 2026-10-08:
@@ -31,8 +35,10 @@ export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, p
   // record: a folder path -> the whole session is filmed (see recording.mjs: finishRecording()).
   const H = env==='prod' ? PROD : env==='staging' ? STAGING : branch(ticket);
   const b = await chromium.launch({executablePath:CHROME, args:[
-    '--proxy-server=http://127.0.0.1:'+port(dir),'--ignore-certificate-errors','--no-sandbox','--ssl-version-max=tls1.2']});
+    '--proxy-server=http://127.0.0.1:'+port(dir),'--ignore-certificate-errors','--no-sandbox','--ssl-version-max=tls1.2'],
+    ...(scrollbars ? {ignoreDefaultArgs:['--hide-scrollbars']} : {})});
   const ctx = await b.newContext(Object.assign({viewport:vp, deviceScaleFactor:dpr, ignoreHTTPSErrors:true}, tz ? {timezoneId:tz} : {},
+    touch ? {hasTouch:true, isMobile:true} : {},
     record ? {recordVideo:{dir:record, size:vp}} : {}));
   // Recordings do not show the mouse: draw a pointer, a click ripple and a caption bar into every page.
   if (record) await ctx.addInitScript(RECORD_OVERLAY);

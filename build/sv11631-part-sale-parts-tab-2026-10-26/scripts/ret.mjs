@@ -1,0 +1,14 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const s=await open({env:'branch',ticket:'11631',cookies:JSON.parse(fs.readFileSync('/tmp/qa11631/cookies.json')),quick:'admin',dir:'/tmp/qa21',vp:{width:1440,height:900},dpr:2,scrollbars:true});
+const p=s.page; const P='90a95f29-f405-4763-834d-6e3a237f8c33'; await s.go(`/parts/part-sale/${P}/part-requests`); await p.waitForTimeout(6500);
+const b=await p.evaluate(()=>{const e=document.querySelector('[data-test-id^=button_return_part_request]'); const r=e.closest('tr'); r.setAttribute('data-qa-r','1'); const x=e.getBoundingClientRect(); return {id:e.getAttribute('data-test-id'),b:[x.x,x.y,x.width,x.height],row:[...r.querySelectorAll('input')].map(i=>i.value).slice(0,2)}});
+await p.mouse.click(b.b[0]+b.b[2]/2,b.b[1]+b.b[3]/2); await p.waitForTimeout(2000);
+const fields=await p.evaluate(()=>{const d=[...document.querySelectorAll('.q-dialog')].pop(); return [...d.querySelectorAll('[data-test-id]')].map(e=>e.getAttribute('data-test-id')+':'+e.tagName+':'+(e.className||'').toString().slice(0,30))});
+console.log('return on',b.row,'fields',fields.join(' | '));
+const w0=s.writes.length;
+await p.fill('[data-test-id=input_return_reason]','ZZAUTOTEST SV-11631 return check'); await p.fill('[data-test-id=input_return_quantity]','1'); await p.waitForTimeout(500);
+await p.screenshot({path:'/tmp/qa11631/w/act/return-filled.png'});
+await (await p.$('[data-test-id=button_confirm_dialog]')).click(); await p.waitForTimeout(2500);
+const d2=await p.evaluate(()=>{const d=[...document.querySelectorAll('.q-dialog')].filter(x=>x.getBoundingClientRect().height>0).pop(); return d?d.innerText.replace(/\n+/g,' | ').slice(0,200):null});
+console.log('after save dialog',d2,'writes',JSON.stringify(s.writes.slice(w0)));
+await p.screenshot({path:'/tmp/qa11631/w/act/return-done.png'}); process.exit(0);

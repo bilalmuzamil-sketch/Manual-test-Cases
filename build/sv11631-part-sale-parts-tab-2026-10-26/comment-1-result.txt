@@ -1,0 +1,75 @@
+{panel:bgColor=#ffebe6}
+*OVERALL QA STATUS: FAILED*
+{panel}
+4 of the 19 checks failed. They are below, each with a picture and steps. Everything else passed and is listed after the line.
+
+h3. WHAT FAILED
+
+*1. R2: a 12-character part number is cut off (1440 wide)*
+!SV-11631_F1-part-number-cut.png|width=700,height=377!
+_Picture 1: WK4707Q-23KW shows as "WK4707Q-23..." and nothing appears when you point at it._
+# Open [part sale P2-109|https://sv11631.qa.shopview.com/parts/part-sale/48ba5757-175a-4701-8c4a-810791ac2ede/part-requests] in a browser window 1440 wide, at 100% zoom.
+# In the parts table, look at the {{Part Number}} column on the first row (status {{Requested}}).
+# Move the mouse over that box (don't click).
+*Current:* it shows {{WK4707Q-23...}} and nothing appears on hover. The test part number {{ZZ12CHARPN01}} two rows down is cut the same way ({{ZZ12CHARPN...}}).
+*Expected (R2):* "No value is cut off: Part Number, Qty, Cost, Core, Sell Price and Margin show in full, up to $9,999.99 and a 12-character part number."
+
+*2. R12: at 1440 wide the table scrolls sideways when a part has status "Requested"*
+!SV-11631_F2-requested-scrolls-at-1440.png|width=700,height=527!
+_Picture 2: the "Requested" badge is half hidden under the Actions column, and a sideways scrollbar appears under the table._
+# Open the same [part sale P2-109|https://sv11631.qa.shopview.com/parts/part-sale/48ba5757-175a-4701-8c4a-810791ac2ede/part-requests], 1440 wide, 100% zoom. It has no fees or discounts.
+# Look at the {{Status}} column on the first row ({{Requested}} is the status of a part just added, before it has a price).
+# Look at the bottom of the parts table.
+*Current:* the {{Requested}} badge runs under the pinned {{Actions}} column, and the table scrolls sideways (1146px of table in a 1130px space). On [part sale P2-162|https://sv11631.qa.shopview.com/parts/part-sale/90a95f29-f405-4763-834d-6e3a237f8c33/part-requests], which has no "Requested" part, the table fits.
+*Expected (R12):* "At 1440px wide, the whole table fits with no sideways scroll when Fees & Discounts is hidden."
+
+*3. R3: on a phone, tapping a cut-off Description shows nothing*
+!SV-11631_F3-phone-tap-description.png|width=500,height=469!
+_Picture 3: the finger taps "Engine Oil Filter, Kubota V24..." and the full name never appears._
+# Open [part sale P2-162|https://sv11631.qa.shopview.com/parts/part-sale/90a95f29-f405-4763-834d-6e3a237f8c33/part-requests] on a phone. (I used Chrome's phone preview: developer tools, device toolbar, 390 wide with touch on. That is a browser tool, not a ShopView feature.)
+# Find the second row, whose {{Description}} reads {{Engine Oil Filter, Kubota V24...}}.
+# Tap that Description text once.
+*Current:* nothing appears; the full name can't be read on a phone.
+*Expected (R3):* "A long name ends in "..." and shows in full on hover, or on tap on a touch screen."
+
+*4. R9: on a phone, tapping the avatar shows nothing*
+!SV-11631_F4-phone-tap-avatar.png|width=500,height=469!
+_Picture 4: the finger taps the "JJ" circle and no "Requested by" text appears._
+# Same part sale P2-162, same phone view.
+# Tap the round {{JJ}} circle at the start of the second row.
+*Current:* nothing appears, so on a phone the request date can no longer be seen anywhere (the Requested At column is gone). With a mouse, pointing at the circle does show "Requested by Admin ShopView on Oct 26, 2026", so desktop is fine.
+*Expected (R9):* "The Requested At column is removed. Its date moves into the avatar hover: "Requested by {name} on {date}"." The approved design decision adds: "Requested At column removed; the date moves into the avatar hover: "Requested by {name} on {date}" (tap on touch). Approved."
+
+Environment: [sv11631.qa.shopview.com|https://sv11631.qa.shopview.com/workorders], build v26.43.1-a53a4ac, 26 October 2026, signed in as Admin.
+
+----
+
+h3. WHAT PASSED
+
+I tested on the same branch and build at 1440, 1024, 768 and 390 (phone) wide, compared each width with the design linked in the ticket, and compared with production ([app.shopview.com|https://app.shopview.com], build v26.43.0-ffea43c).
+
+!SV-11631_BA-before-after-1440.png|width=700,height=781!
+_Picture 5: the Parts tab at 1440 wide. Before (production), the table is twice as wide as the screen and the rows are tall. After (branch), it fits, rows are one line, and Actions is pinned on the right. Production has no P2-162, so the before uses P2-85 (same screen and width, different parts)._
+
+||#||Check||Status||
+|R1|Every field is one 32px line with no label inside; all rows are 41px|PASSED|
+|R2|Qty, Cost, Core, Sell Price and Margin show in full up to $9,999.99 (Part Number fails, see 1 above)|FAILED|
+|R3|One field style on every row, one line, "..." at the end, full name on hover. Tap on a phone fails, see 3 above|FAILED|
+|R4|Cost shows $7,123.46 at rest and 7,123.45670 while editing; leaving the box without a change saves nothing and the stored value stays 7123.4567|PASSED|
+|R5|Margin reads "28.77%"|PASSED|
+|R6|Category and Vendor end in "..." with the full value on hover (see the next comment for a Category point)|PASSED|
+|R7|Column order: Description, Part Number, Qty, Cost, Core, Sell Price, Margin, Category, Vendor, Status, Actions|PASSED|
+|R8|The header reads "Qty"|PASSED|
+|R9|Requested At column removed; pointing at the avatar shows "Requested by Admin ShopView on Oct 26, 2026". Tap on a phone fails, see 4 above|FAILED|
+|R10|With no fee or discount on any row, the Fees & Discounts column is hidden. The case where it shows is in the next comment|PASSED for the hidden case|
+|R11|Actions is pinned on the right, only as wide as its buttons, with a visible left edge (heading position: see the next comment)|PASSED|
+|R12|P2-162 fits at 1440 (1130px in 1130px). P2-109 with a "Requested" part does not, see 2 above|FAILED|
+|R13|At 1024 and 768, Description is 108px and Description to Sell Price show without scrolling (see the next comment for one small point)|PASSED|
+|R14|At 1024 and 768 a scrollbar and a right-edge shadow show; on a phone an edge shadow shows|PASSED|
+|R15|On a phone nothing is pinned and the table scrolls as one piece|PASSED|
+|R16|The "Requested by" tooltip sits on the avatar only and goes away when the pointer leaves, and when the page scrolls down or sideways|PASSED|
+|R17|The Description dropdown's 30 options don't overlap each other|PASSED|
+|N1|Work order Parts tab: same headers, widths and labels as production|PASSED|
+|N2|Pick (In Stock to Received), Return, delete and the row menu work; totals unchanged (P2-162: 8 parts add up to $817.30, Financial Info shows Parts $817.30)|PASSED|
+
+Test data left on the branch: P2-109 has the parts WK4707Q-23KW and ZZ12CHARPN01 (ZZAUTOTEST); on P2-162 one Engine Oil Filter was picked and one Ignition Switch return was requested.

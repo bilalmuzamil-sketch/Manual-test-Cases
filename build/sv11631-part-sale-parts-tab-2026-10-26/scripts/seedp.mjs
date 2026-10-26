@@ -1,0 +1,15 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const s=await open({env:'prod',user:'bilal.muzamil@shopview.com',dir:'/tmp/qa21',vp:{width:1440,height:900}});
+const P=async(u,b)=>{const r=await s.api(u,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)}); console.log('POST',u,r.status,JSON.stringify(r.json||r.text).slice(0,200)); return r;};
+const cats=(await s.api('/api/inventory/categories')).json.data; const C=(Array.isArray(cats)?cats:Object.values(cats).find(Array.isArray)).sort((a,b)=>b.label.length-a.label.length)[0];
+const vr=(await s.api('/api/parts-catalogue/vendors?pagination[page]=1&pagination[rowsPerPage]=200&pagination[sortBy]=&pagination[descending]=false&search=')).json; const VL=Object.values(vr.data||{}).find(Array.isArray)||[]; const V=VL.filter(v=>v.name).sort((a,b)=>b.name.length-a.name.length)[0];
+console.log('category',C.label,'| vendor',V&&V.name,V&&V.id,'vendors',VL.length);
+const WO='99997e1d-f641-4deb-b774-273adddfe690', LINE='f33e4a17-6a2a-4b3d-aa7b-2eba39b95832';
+const r=await P('/api/work-orders/part/make-request',{line:LINE,work_order:WO,description:'ZZAUTOTEST Heavy duty hydraulic pump assembly with mounting bracket and seals',quantity:2,part_source_type:'vendor',part_number:'ZZ12CHARPN01',price:7123.4567,part_category_id:C.value,vendor_id:V.id});
+const pr=(await s.api(`/api/work-orders/${WO}/parts/list-requests-by-line?search=`)).json.data.collection.flatMap(l=>l.part_requests); const me=pr.find(x=>x.part_number==='ZZ12CHARPN01'); console.log('part',me&&me.id,me&&JSON.stringify({cost:me.cost,cd:me.cost_decimal,sp:me.sell_price,m:me.margin}));
+await P('/api/work-orders/part/change-request',{id:me.id,sell_price:9999.99,cost:7123.4567,quantity:2,core_charge:9999.99});
+const pr2=(await s.api(`/api/work-orders/${WO}/parts/list-requests-by-line?search=`)).json.data.collection.flatMap(l=>l.part_requests).find(x=>x.id===me.id);
+console.log('after',JSON.stringify({cost:pr2.cost,cd:pr2.cost_decimal,sp:pr2.sell_price,core:pr2.core_charge,m:pr2.margin,cat:pr2.part_category_id,v:pr2.vendor_id}));
+for(const [d,pn,c] of [['ZZAUTOTEST Fuel filter',  'FF5052',45.12],['ZZAUTOTEST Air filter primary','AF25555',1234.56],['ZZAUTOTEST Brake chamber','BC-30-30',89.9],['ZZAUTOTEST Seal kit','860511811',17.14]]) await P('/api/work-orders/part/make-request',{line:LINE,work_order:WO,description:d,quantity:1,part_source_type:'vendor',part_number:pn,price:c,part_category_id:C.value,vendor_id:V.id});
+fs.writeFileSync('/tmp/qa11631/w/stress-prod.json',JSON.stringify({id:me.id,cat:C.label,vendor:V.name}));
+process.exit(0);

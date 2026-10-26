@@ -1,0 +1,12 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const s=await open({env:'branch',ticket:'11631',cookies:JSON.parse(fs.readFileSync('/tmp/qa11631/cookies.json')),quick:'admin',dir:'/tmp/qa21',vp:{width:1440,height:520},dpr:2,scrollbars:true});
+const p=s.page; await s.go('/parts/part-sale/48ba5757-175a-4701-8c4a-810791ac2ede/part-requests'); await p.waitForTimeout(6500);
+const tip=()=>p.evaluate(()=>[...document.querySelectorAll('.q-tooltip')].filter(t=>t.getBoundingClientRect().height>0).map(t=>t.innerText.trim()));
+const scrollers=await p.evaluate(()=>[...document.querySelectorAll('*')].filter(e=>e.scrollHeight>e.clientHeight+5&&/(auto|scroll)/.test(getComputedStyle(e).overflowY)).map(e=>(e.className||e.tagName).toString().slice(0,50)+' '+e.scrollHeight+'/'+e.clientHeight));
+console.log('scrollers',scrollers.join(' | '),'doc',await p.evaluate(()=>[document.documentElement.scrollHeight,innerHeight]));
+const av=await p.evaluate(()=>{const e=document.querySelectorAll('.base-table tbody .q-avatar')[2]; const r=e.getBoundingClientRect(); return [r.x,r.y,r.width,r.height]});
+await p.mouse.move(av[0]+av[2]/2,av[1]+av[3]/2,{steps:5}); await p.waitForTimeout(1500); const before=await tip();
+await p.screenshot({path:'/tmp/qa11631/w/hov/scroll-before.png'});
+await p.mouse.wheel(0,250); await p.waitForTimeout(1200); const after=await tip(); const y=await p.evaluate(()=>[scrollY,...[...document.querySelectorAll('*')].filter(e=>e.scrollTop>0).map(e=>(e.className||'').toString().slice(0,30)+':'+e.scrollTop)]);
+await p.screenshot({path:'/tmp/qa11631/w/hov/scroll-after.png'});
+console.log(JSON.stringify({before,after,y})); process.exit(0);

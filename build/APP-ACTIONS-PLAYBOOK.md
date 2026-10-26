@@ -5389,6 +5389,11 @@ touches nothing that Rules 12/50/64/73 require.
   `shot(name)` · `marker()` (app-version + last-modified + etag) · `writes[]` (every non-GET the
   page made — the proof of what a pass did or did not write). `parallel([...])` runs independent
   environments concurrently.
+  **`scrollbars:true`** (2026-10-26, SV-11631): Playwright's headless Chromium hides scrollbars by default
+  (`--hide-scrollbars`), so a "visible scrollbar" check, or a width measured with a scrollbar present, is wrong
+  without it — the option launches with `ignoreDefaultArgs:['--hide-scrollbars']`. **`touch:true`**: hasTouch +
+  isMobile for tap/long-press checks on phone widths; open a **fresh page per tap** so one tap's tooltip doesn't
+  carry into the next, and long-press via CDP `Input.dispatchTouchEvent`.
 - **`build/testing-tools/qa_exhibits.py`** — `panel` / `strip` / `stack` / `words` / `arrow` / `tag`.
   `words(img, tooltip_box)` finds word boundaries **from the pixels** (all-background columns), so a
   box lands on the real glyphs rather than an estimate. `panel` drops the word callout from a blank

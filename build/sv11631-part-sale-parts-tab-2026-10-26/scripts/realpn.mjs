@@ -1,0 +1,10 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const s=await open({env:'branch',ticket:'11631',cookies:JSON.parse(fs.readFileSync('/tmp/qa11631/cookies.json')),quick:'admin',dir:'/tmp/qa21',vp:{width:1440,height:900},dpr:2,scrollbars:true});
+const p=s.page; const WO='48ba5757-175a-4701-8c4a-810791ac2ede', LINE='26500e12-0682-4c9c-9d55-b1e175d9668a';
+const r=await s.api('/api/work-orders/part/make-request',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({line:LINE,work_order:WO,description:'ZZAUTOTEST Real part number check',quantity:1,part_source_type:'vendor',part_number:'WK4707Q-23KW',price:45.5,part_category_id:'b7e14515-4c95-43b1-a745-d081abd0d1ed',vendor_id:'3765b3fb-a3e8-4cdb-a57e-603dda5e0f2a'})}); console.log('add',r.status);
+await s.go(`/parts/part-sale/${WO}/part-requests`); await p.waitForTimeout(6500);
+const b=await p.evaluate(()=>{const r=[...document.querySelectorAll('.base-table tbody tr')].find(r=>[...r.querySelectorAll('input')].some(i=>i.value==='WK4707Q-23KW')); r.scrollIntoView({block:'center'}); const i=r.querySelector('.part-number-cell input'); const x=i.getBoundingClientRect(); const row=r.getBoundingClientRect(); return {pn:[x.x,x.y,x.width,x.height],row:[row.x,row.y,row.width,row.height],sw:i.scrollWidth,cw:i.clientWidth,shown:getComputedStyle(i).textOverflow}});
+await p.mouse.move(b.pn[0]+b.pn[2]/2,b.pn[1]+b.pn[3]/2,{steps:5}); await p.waitForTimeout(1800);
+const tips=await p.evaluate(()=>[...document.querySelectorAll('.q-tooltip')].filter(t=>t.getBoundingClientRect().height>0).map(t=>t.innerText));
+await p.screenshot({path:'/tmp/qa11631/w/realpn-hover.png'}); fs.writeFileSync('/tmp/qa11631/w/realpn.json',JSON.stringify({...b,tips}));
+console.log(JSON.stringify({...b,tips})); process.exit(0);

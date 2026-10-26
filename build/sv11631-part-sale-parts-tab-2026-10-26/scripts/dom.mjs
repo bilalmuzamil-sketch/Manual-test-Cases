@@ -1,0 +1,11 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const s=await open({env:'branch',ticket:'11631',cookies:JSON.parse(fs.readFileSync('/tmp/qa11631/cookies.json')),quick:'admin',dir:'/tmp/qa21',vp:{width:1440,height:900},dpr:1});
+const p=s.page; await s.go('/parts/part-sale/90a95f29-f405-4763-834d-6e3a237f8c33/part-requests'); await p.waitForTimeout(7000);
+const info=await p.evaluate(()=>{ const t=[...document.querySelectorAll('table')].sort((a,b)=>b.querySelectorAll('tr').length-a.querySelectorAll('tr').length)[0]; if(!t) return {none:true};
+  const R=e=>{const r=e.getBoundingClientRect();return [Math.round(r.x),Math.round(r.y),Math.round(r.width),Math.round(r.height)]};
+  const ths=[...t.querySelectorAll('thead th')].map(th=>({t:th.innerText.trim(),b:R(th),cls:th.className.slice(0,60),sticky:getComputedStyle(th).position}));
+  const tr=t.querySelector('tbody tr'); const tds=tr?[...tr.querySelectorAll('td')].map(td=>({b:R(td),html:td.innerHTML.replace(/\s+/g,' ').slice(0,260),cls:td.className.slice(0,60)})):[];
+  const sc=t.closest('.q-table__middle, .q-table__container, [class*=scroll]'); 
+  return {tableCls:t.className, wrap:sc?{cls:sc.className.slice(0,80),sw:sc.scrollWidth,cw:sc.clientWidth}:null, rows:t.querySelectorAll('tbody tr').length, ths, tds, rowH:[...t.querySelectorAll('tbody tr')].map(r=>Math.round(r.getBoundingClientRect().height))}; });
+fs.writeFileSync('/tmp/qa11631/w/dom.json',JSON.stringify(info,null,1)); console.log(JSON.stringify({tableCls:info.tableCls,wrap:info.wrap,rows:info.rows,rowH:info.rowH,ths:info.ths?.map(h=>h.t+'@'+h.b[2]+(h.sticky!=='static'?'('+h.sticky+')':''))}));
+await p.screenshot({path:'/tmp/qa11631/w/b1440.png'}); process.exit(0);
