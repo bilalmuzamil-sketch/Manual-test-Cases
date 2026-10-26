@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726949,
  "updated_by": 3,
- "updated_on": 1792726949,
+ "updated_on": 1793025114,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with the \"Admin\" role, working in {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Vendor {Vendor-A} holds Credit Hold and vendor {Vendor-B} holds Net 45.<br>For example: {Vendor-A} is ZZAUTOTEST DATA-17 Held and {Vendor-B} is ZZAUTOTEST DATA-17 Forty Five.</li><li>A new vendor invoice {Vendor-invoice-A} for {Vendor-A} is open, not yet saved.<br>For example: {Vendor-invoice-A} is a vendor invoice for one part.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>Scenario: Your shop enters a bill from a vendor on Credit Hold, then switches the bill to a Net 45 vendor.</li><li>You are an Admin user working at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Vendor {Vendor-A} holds Credit Hold and vendor {Vendor-B} holds Net 45.<br>For example: {Vendor-A} is ZZAUTOTEST DATA-17 Held and {Vendor-B} is ZZAUTOTEST DATA-17 Forty Five.</li><li>A new vendor invoice {Vendor-invoice-A} for {Vendor-A} is open, not yet saved.<br>For example: {Vendor-invoice-A} is a vendor invoice for one part.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Set the invoice date to Oct 5, 2026.</li><li>Change the vendor to {Vendor-B}.</li><li>Save the vendor invoice.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the due date reads Oct 5, 2026 (Credit Hold: due on the invoice date).</li><li>Step 2: the due date reads Nov 19, 2026 (Oct 5 + 45 days: 26 to Oct 31, then 19).</li><li>Step 3: the stored due date is Nov 19, 2026.</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11676 (Story 7, Due dates)</p><ul><li><strong>S7-R5:</strong> &ldquo;COD, Due on Receipt and Credit Hold are due on the invoice date, as today.&rdquo;</li><li><strong>S7-R9:</strong> &ldquo;A vendor invoice stores no term. Its due date is calculated by the same rules from the vendor's term when the vendor invoice is created, recalculated when its invoice date or its vendor changes, and stored.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"9 Invoice due date\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 1
+ "version": 2
 }

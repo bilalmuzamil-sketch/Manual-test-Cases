@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792726944,
  "updated_by": 3,
- "updated_on": 1792726944,
+ "updated_on": 1793025108,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with the \"Admin\" role, working in {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Customer {Customer-A} holds the shop's own term {Term-A}, due on day 10 of the following month.<br>For example: {Customer-A} is ZZAUTOTEST DATA-13 Customer and {Term-A} is ZZAUTOTEST DATA-13 Tenth.</li><li>The work order belongs to {Location-A}, in Edmonton's time zone, and you are working in a location in another time zone, {Location-B}.<br>For example: {Location-A} is Edmonton and {Location-B} is in Toronto.</li><li>Work order {Work-order-1} for {Customer-A} is complete and ready to invoice (every part received, review done).<br>For example: {Work-order-1} is S2-15440.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>Scenario: An Edmonton work order on a 10th-of-the-following-month term is invoiced by a user working in another time zone.</li><li>You are an Admin user working at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Customer {Customer-A} holds the shop's own term {Term-A}, due on day 10 of the following month.<br>For example: {Customer-A} is ZZAUTOTEST DATA-13 Customer and {Term-A} is ZZAUTOTEST DATA-13 Tenth.</li><li>The work order belongs to {Location-A}, in Edmonton's time zone, and you are working in a location in another time zone, {Location-B}.<br>For example: {Location-A} is Edmonton and {Location-B} is in Toronto.</li><li>Work order {Work-order-1} for {Customer-A} is complete and ready to invoice (every part received, review done).<br>For example: {Work-order-1} is S2-15440.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Open {Work-order-1}'s Finance tab.</li><li>Set Invoice Date to Oct 5, 2026.</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the invoice preview shows Invoice Date and Due date.</li><li>Step 2: the Due date reads Nov 10, 2026 (not Nov 9: the November clock change inside the span does not move the date).</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11676 (Story 7, Due dates)</p><ul><li><strong>S7-R6:</strong> &ldquo;Due dates are counted on the calendar of the location the invoice or vendor invoice belongs to, never the location of the user, API connection or import that creates or views it, so a daylight saving change inside the span never moves the date: an Edmonton invoice dated Oct 5 on \"10th of the following month\" is due Nov 10 (not Nov 9).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf): canvas pages \"9 Invoice due date\" (the pages the PRD names for this story). The design (read in full on 23 Oct 2026) does not draw this case's screen or state, so no design picture is attached; the expected results above come from the PRD.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 1
+ "version": 2
 }

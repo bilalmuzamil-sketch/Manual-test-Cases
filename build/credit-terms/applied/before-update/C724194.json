@@ -10,7 +10,7 @@
  "created_by": 3,
  "created_on": 1792737540,
  "updated_by": 3,
- "updated_on": 1792737540,
+ "updated_on": 1793025185,
  "estimate": null,
  "estimate_forecast": null,
  "suite_id": 1,
@@ -22,7 +22,7 @@
  "custom_ai_model": null,
  "custom_automation_type": 2,
  "custom_atmstatus": 1,
- "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as a user with the \"Admin\" role, working in {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>{Customer-A} is on Net 50, and Net 50 is deactivated.<br>For example: {Customer-A} is ZZAUTOTEST D-28 Customer.</li><li>Starting screen: the customer page of {Customer-A}.</li><li>The browser window is 1440 px wide, at 100% zoom.<br>For example: a maximised window on a 1440 x 900 screen.</li><li>The design pictures ct-p6-05-this-customer-s-picker.png, ct-p7-07-edit-vendor-keeps-the-inactive-term.png are attached to this case; open each at 100% zoom beside the screen.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+ "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/credit-terms/CREDIT-TERMS-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>Scenario: Your shop switched off Net 50 while a customer is on it, and you compare that customer's term dropdown with the design.</li><li>You are an Admin user working at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>{Customer-A} is on Net 50, and Net 50 is deactivated.<br>For example: {Customer-A} is ZZAUTOTEST D-28 Customer.</li><li>The browser window is 1440 px wide, at 100% zoom.<br>For example: a maximised window on a 1440 x 900 screen.</li><li>The design pictures ct-p6-05-this-customer-s-picker.png, ct-p7-07-edit-vendor-keeps-the-inactive-term.png are attached to this case; open each at 100% zoom beside the screen.</li><li>Starting screen: the customer page of {Customer-A}.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
  "custom_steps": "<ol><li>Click the pencil on the customer card.</li><li>Click the \"Credit Terms\" box.</li><li>Resize the browser window to 1536 px wide (for example, maximise it on a 1536 x 864 screen at 100% zoom).</li></ol>",
  "custom_testrail_bdd_scenario": null,
  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the \"Edit Customer\" window opens.</li><li>Step 2: the list shows the active terms in the page's order with no \"Net 50\" among them, then, last, \"Net 50 (Inactive)\", selected (highlighted). Compare ct-p6-05-this-customer-s-picker.png for the list and ct-p7-07-edit-vendor-keeps-the-inactive-term.png for the last row (the customer drawing is cut off before that row).</li><li>Step 3: at 1536 px nothing overlaps, nothing is cut off and nothing needs a sideways scroll; the layout described above is unchanged, only wider.</li></ul><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Credit terms\", Confluence 963346440, version 3 (22 Oct 2026, \"Renamed to Credit terms\", Chris Ward), read 23 Oct 2026 &middot; Epic SV-11638, story SV-11674 (Story 5, New Customer and Edit Customer)</p><ul><li><strong>S5-R7:</strong> &ldquo;On Edit Customer, a customer whose term was deactivated shows it as \"{name} (Inactive)\" in the dropdown, selected, listed after the active terms.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Default Credit Terms\" (https://claude.ai/artifact/2erYxWz2ffDNcoXzEfu6wf), read 23 Oct 2026: page \"6 Customer on a deactivated term\" (\"This customer's picker\"), page \"7 Vendors\" (\"Edit Vendor keeps the inactive term\"). Compare the screen with the pictures below; the expected results above come from the PRD quotes, except where this held design case follows the design.</p><p>Design pictures attached to this case:</p><ul><li>ct-p6-05-this-customer-s-picker.png</li><li>ct-p7-07-edit-vendor-keeps-the-inactive-term.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;The active terms, then this customer's own \"Net 10 (Inactive)\" at the end, selected. Once another term is picked and saved, Net 10 is gone from this customer's list.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>",
@@ -31,5 +31,5 @@
  "custom_goals": null,
  "ai_automated_test": null,
  "labels": [],
- "version": 1
+ "version": 2
 }
