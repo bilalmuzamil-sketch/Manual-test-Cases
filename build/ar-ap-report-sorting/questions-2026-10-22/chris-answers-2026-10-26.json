@@ -1,0 +1,23 @@
+{
+ "source": "Google Sheet 11_3z_TpKkOL-MiAWqxrj1jlHP1rn9QXu_h3uCR0SjVA, column E rows 6-23, read 26 Oct 2026",
+ "answered_by": "Chris Ward",
+ "note_q12": "The text in row 17 (question 12, Vendor search hint) repeats the subject of question 14 (same-day order). PRD v9 settles question 12 itself: S5-R13 keeps \"Search vendors\" and shows the box only above 8 vendors. Cases follow PRD v9.",
+ "answers": {
+  "1": "1. (a) \"Emile's Towing\" first. Accents fold to their base letter (S1-R3), so the two names tie, and S1-R4 breaks the tie by the plain lower-cased name, where the plain E comes first. I'll add this example to S1-R4.",
+  "2": "2. (a) Smallest number first; the second click gives largest first.",
+  "3": "3. (a) Tied rows stay smallest document number first in both directions. Only the sorted column reverses.",
+  "4": "4. (c) One style on all six reports: Title Case, like the other reports (Sales By Customer, Inventory Value, Parts Velocity): \"Open Balance\", \"Due Date\", \"Past Due\", \"Transaction Type\", \"Customer Full Name\". Screen, PDF and CSV. Only the A/R headings change; I'll add it under \"What changes for existing users\".",
+  "5": "5. (b) The next 30 load as the user scrolls down, as today. No page buttons. I'll reword S1-R8.",
+  "6": "6. (a) Yes, the sort stays when Past due changes. I'll add Past due to S2-R7.",
+  "7": "7.\n   a. (a) Location menu order (A to Z by name), separated by a comma and a space. When every location is ticked, the line reads \"Locations: All locations\" (S3-R5). 2. (a) Yes, each line is its own row above the column headings, in this order: As of, Locations, Past due (only when set), Customer(s) or Vendor(s) (only when set). Then the table.",
+  "8": "8. (b) Same as the screen, letter for letter, in Title Case (see answer 4): \"Customer Full Name\" on A/R Detail, \"Customer\" on A/R Collection, \"Vendor Name\" on the A/P reports. The bucket column is \"Aging Bucket\", and its values are the screen's bucket names.",
+  "9": "9.\n   a. With Past due = Any they always match: Summary's Total equals Detail's Open Balance total, bucket by bucket (Detail's Amount column is original amounts, so it is not comparable). With a Past due filter they can differ: Summary keeps the whole row of a customer or vendor that qualifies (Current and credits included), while Detail lists only the invoices or bills that qualify, plus credits. 2. (a) A browser reload always shows a payment that was just recorded. Going away and back inside the app within 30 seconds, without reloading, can still show the earlier figures, as on every screen.",
+  "10": "10. (a) The PRD wins. The stories will be brought in line with it, including today's answers.",
+  "11": "11. Existing prompt: \"Cancel\" on the left, \"Switch location\" (small l) on the right, and a close × at the top right. The × closes it like Cancel, and both keep the user on the report. The current build still shows \"Switch Location\" with a capital L; that is a build bug to fix, the PRD wording stands.",
+  "12": "12. (a) Number order, as the PRD says: invoices on the same date go in invoice-number order, whatever time of day they were created. The current build orders them by time of day, which is why the picture looks out of order; that is a build bug to fix, the PRD rule stands.",
+  "13": "13. (a) No Totals row, as the PRD says. The design picture will be corrected.",
+  "14": "14. (a) Number order, as the PRD says. The design picture will be corrected.",
+  "15": "15. (a) Semi-bold, exactly as Work In Progress links look today. The design pictures will be corrected.",
+  "16": "16. (a) Plain character order, as the PRD says: \"#1 Diesel\", \"-1 Diesel\", \"10 Trucking\", \"@Home Towing\". Engineering's plan needs to match this. I'll add this example to S1-R2."
+ }
+}
