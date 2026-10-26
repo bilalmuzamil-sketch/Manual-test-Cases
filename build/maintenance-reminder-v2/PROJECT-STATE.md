@@ -108,3 +108,9 @@ numeric/date-accuracy cases (Rule 116, DATA folder). Not spec-dumps.
 ## 13 Oct 2026 — HANDED OVER: do not touch these cases
 - **QA lead, 13 Oct 2026:** "Do not touch maintenance reminder test cases anymore they are being taken care of Vladimir and Nebojsa for everything at the moment."
 - No reads-for-edit, rewrites, moves, run changes or setup docs on any Maintenance Reminders case (Chunk 1 group 19397 and Chunk 2 group 26635) until the QA lead says otherwise.
+
+## 26 Oct 2026 — one run for Chunk 1 and Chunk 2
+- QA lead: all cases of Chunk 1 and Chunk 2 in ONE run "Maintenance reminder (Chunk1 and 2)". No run or milestone named
+  "FM - Maintenance Reminders" exists in TestRail (all 452 runs and 5 milestones checked), so run 552 was created:
+  https://shopview.testrail.io/index.php?/runs/view/552 — 299 tests = every case under section 19397 and its 25 sub-sections
+  (209 created by us, 90 by user 1), milestone 5, assigned to Bilal; read back, exact match. Record: run-chunk1-and-2-2026-10-26.json.
