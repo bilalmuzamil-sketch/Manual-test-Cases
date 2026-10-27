@@ -1,6 +1,6 @@
 # What/Why (Title and Description) — setup file for Claude sessions (a tester does not need it)
 
-Built by `authoring/render_setup.py` from the case library (45 cases). Sources: PRD "What Are You Doing / Why Are You Doing It?" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026; Product's answers of 14 Oct 2026; tech plan of 23 Sep 2026; Jira epic SV-11257 read 27 Oct 2026; design canvas https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6 (27 Oct copy). No credential, cookie or session data is written here.
+Built by `authoring/render_setup.py` from the case library (62 cases). Sources: PRD "What Are You Doing / Why Are You Doing It?" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026; Product's answers of 14 Oct 2026; tech plan of 23 Sep 2026; Jira epic SV-11257 read 27 Oct 2026; design canvas https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6 (27 Oct copy). No credential, cookie or session data is written here.
 
 ## 1 · Accounts and places (slots)
 | Slot | What it is | Notes |
@@ -276,7 +276,7 @@ State the tester sets up:
 - Make sure Require Tech Story is off (Settings, then the Work Orders tab).
 - Create a work order for this test, work order 1, with one labor line, line 1, titled "Replace tie rod" with the description "excessive play".
 - Have line 1 opened in Edit Line and saved once with Save & Close, without typing a tech story, so it holds "Tech story missing.".
-- Have line 1 completed with no tech story, and work order 1 completed and invoiced today as invoice A.
+- Have line 1 completed without typing a tech story, and work order 1 completed and invoiced today as invoice A.
 - Use Google Sheets (File, then Import, then Upload) to open downloaded files, so accented letters and character counts read correctly.
 - Start on Reports, then Export Reports in the Reports left menu, with the Export Report dialog open.
 - Typed values: title 'Replace tie rod', description 'excessive play', tech story 'Tech story missing.' → line text by the PRD's rule: 32 characters, 32 bytes: 'Replace tie rod - excessive play'.
@@ -464,3 +464,162 @@ State the tester sets up:
 - Give invoices A and B numbers that start with the same text, so one search lists both.
 - Start on Settings, then Invoices under Data Import in the Settings left menu.
 Quotes: S4-R3, S4-R5, SV-10133, Nemanja Djuric, 19 Oct 2026 (QA update, PRD v14), SV-10133, Nemanja Djuric, 21 Oct 2026. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
+
+### D-01 · new case · Design: New Line opens with the Title box ready and its grey prompt
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Have an open work order, work order 1, that is not invoiced, so you can add a line to it.
+- Use a desktop browser window at full screen, at 100% zoom, so the window can be compared with the attached board picture.
+- Start on work order 1, on its Lines tab.
+- The grey fill and the dark red bottom line are the focused picker as both New Line boards draw it (#d9d9d9 background, 2 px #8b0f1d line; label #8b0f1d 10 px; prompt #8b95a3 14 px). Nothing is saved; close the window afterwards.
+Quotes: S1-R1, S1-R3, S1-R5. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
+
+### D-02 · new case · Design: New Line shows Description above its grey prompt
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Have an open work order, work order 1, that is not invoiced, so you can add a line to it.
+- Use a desktop browser window at full screen, at 100% zoom, so the window can be compared with the attached board picture.
+- Start on work order 1, on its Lines tab.
+- Description box as drawn: 1 px #c6ccd4 border, 4 px corners, label #7b8595 10 px, prompt #8b95a3 14 px.
+Quotes: S1-R2, S1-R3. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
+
+### D-03 · new case · Design: New Line keeps its header, other fields and buttons as drawn
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Have an open work order, work order 1, that is not invoiced, so you can add a line to it.
+- Use a desktop browser window at full screen, at 100% zoom, so the window can be compared with the attached board picture.
+- Start on work order 1, on its Lines tab.
+- Header: title 17 px bold #1d2129; AI tag #9C27B0; link #2276DA 11 px 600; X #5b6472. Buttons: outlined #2276DA; Save & Close filled #2276DA.
+Quotes: S1-R7, S1-R5. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
+
+### D-04 · new case · Design: Edit Line shows Title above the saved title
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Have an open work order, work order 1, with a line, line 1, titled "Replace tie rod" with the description "excessive play".
+- Use a desktop browser window at full screen, at 100% zoom, so the window can be compared with the attached board picture.
+- Start on work order 1, on its Lines tab.
+- Any line works; nothing is saved. Edit Line has no canned-line picker, so its Title box is a plain outlined box.
+Quotes: S1-R1, S1-R3. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
+
+### D-05 · new case · Design: Edit Line shows Description above the grey prompt when empty
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Have an open work order, work order 1, with a line, line 1, titled "Replace tie rod" with no description.
+- Use a desktop browser window at full screen, at 100% zoom, so the window can be compared with the attached board picture.
+- Start on work order 1, on its Lines tab.
+- Line 1 is made with a title and no description, as board 1.5 draws it.
+Quotes: S1-R2, S1-R3. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
+
+### D-06 · new case · Design: Edit Line keeps Status, labor row, link and buttons as drawn
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Have an open work order, work order 1, with a line, line 1, titled "Replace tie rod" with the description "excessive play".
+- Use a desktop browser window at full screen, at 100% zoom, so the window can be compared with the attached board picture.
+- Start on work order 1, on its Lines tab.
+- X #2276DA; Delete #C10015; Save & Close #2276DA; labor guide link #2276DA 11 px 600 beside the #9C27B0 AI tag.
+Quotes: S1-R7. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
+
+### D-07 · new case · Design: New Line shows every label and button whole at 1440 pixels
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Have an open work order, work order 1, that is not invoiced, so you can add a line to it.
+- Use a desktop browser window exactly 1440 pixels wide, at 100% zoom.
+- Start on work order 1, on its Lines tab.
+- Window width 1440 px (browser window, not the screen). The board draws the window 455 px wide; no overlap or clipping was found in the board at 1440 or 1536 px (design/inventory/VISUAL-INVENTORY-2026-10-27.md).
+Quotes: S1-R3, S1-R7. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
+
+### D-08 · new case · Design: New Line shows every label and button whole at 1536 pixels
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Have an open work order, work order 1, that is not invoiced, so you can add a line to it.
+- Use a desktop browser window exactly 1536 pixels wide, at 100% zoom.
+- Start on work order 1, on its Lines tab.
+- Window width 1536 px (browser window, not the screen). The board draws the window 455 px wide; no overlap or clipping was found in the board at 1440 or 1536 px (design/inventory/VISUAL-INVENTORY-2026-10-27.md).
+Quotes: S1-R3, S1-R7. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
+
+### D-09 · new case · Design: Edit Line shows every label and button whole at 1440 pixels
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Have an open work order, work order 1, with a line, line 1, titled "Replace tie rod" with no description.
+- Use a desktop browser window exactly 1440 pixels wide, at 100% zoom.
+- Start on work order 1, on its Lines tab.
+- Window width 1440 px. Line 1 has no description so the grey prompt is on screen.
+Quotes: S1-R3, S1-R7. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
+
+### D-10 · new case · Design: Edit Line shows every label and button whole at 1536 pixels
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Have an open work order, work order 1, with a line, line 1, titled "Replace tie rod" with no description.
+- Use a desktop browser window exactly 1536 pixels wide, at 100% zoom.
+- Start on work order 1, on its Lines tab.
+- Window width 1536 px. Line 1 has no description so the grey prompt is on screen.
+Quotes: S1-R3, S1-R7. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
+
+### D-11 · new case · Design: Legacy invoice prints title, description and tech story with no labels
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Make sure Legacy invoice layout is on (Settings, then Invoice), so work order 1's invoice prints in the legacy layout.
+- Create a work order for this test, work order 1, with one labor line, line 1, titled "Replace tie rod" with the description "excessive play".
+- Have line 1 completed with the tech story "Both outer ends worn, replaced and aligned", and work order 1 completed and invoiced today as invoice A.
+- Start on work order 1.
+- Legacy invoice layout: Settings → Invoice toggle (off = modern, on = legacy), a fact from the Invoice UI refresh suite; an invoice keeps the layout it was created with, so set the toggle before invoicing. Screen label to confirm on the build.
+Quotes: KD-4, OOS-1. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
+
+### D-12 · new case · Design: Modern invoice prints the tech story under Scope of work
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Make sure Legacy invoice layout is off (Settings, then Invoice), so work order 1's invoice prints in the modern layout.
+- Create a work order for this test, work order 1, with one labor line, line 1, titled "Replace tie rod" with the description "excessive play".
+- Have line 1 completed with the tech story "Both outer ends worn, replaced and aligned", and work order 1 completed and invoiced today as invoice A.
+- Start on work order 1.
+- Modern layout = Legacy invoice layout off. The heading is drawn as 11 px bold capitals #8b95a3 (board 1.3).
+Quotes: KD-4, OOS-1. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
+
+### D-13 · new case · Design: Legacy invoice leaves out "Tech story missing."
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Make sure Legacy invoice layout is on (Settings, then Invoice), so work order 1's invoice prints in the legacy layout.
+- Make sure Require Tech Story is off (Settings, then the Work Orders tab), so line 1 can be completed without a tech story.
+- Create a work order for this test, work order 1, with one labor line, line 1, titled "Replace tie rod" with the description "excessive play".
+- Have line 1 opened in Edit Line and saved once with Save & Close, without typing a tech story, so it holds "Tech story missing.".
+- Have line 1 completed without typing a tech story, and work order 1 completed and invoiced today as invoice A.
+- Start on work order 1.
+- Line 1 holds the placeholder because it was saved once from Edit Line with no tech story (PRD S3-R6, answer 6 of 14 Oct).
+Quotes: KD-4, KD-7, S3-R6, OOS-1. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
+
+### D-14 · new case · Design: Modern invoice leaves out "Tech story missing."
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Make sure Legacy invoice layout is off (Settings, then Invoice), so work order 1's invoice prints in the modern layout.
+- Make sure Require Tech Story is off (Settings, then the Work Orders tab), so line 1 can be completed without a tech story.
+- Create a work order for this test, work order 1, with one labor line, line 1, titled "Replace tie rod" with the description "excessive play".
+- Have line 1 opened in Edit Line and saved once with Save & Close, without typing a tech story, so it holds "Tech story missing.".
+- Have line 1 completed without typing a tech story, and work order 1 completed and invoiced today as invoice A.
+- Start on work order 1.
+- Not asserted: whether the "Scope of work" heading still prints with no tech story (no source; proposed question DQ-03).
+Quotes: KD-4, KD-7, S3-R6, OOS-1. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
+
+### D-15 · new case · Design: An imported invoice line reads title - description in the report
+State the tester sets up:
+- Sign in as an Admin at the test location, with Invoicing & payments - View.
+- Import a file made for this test, file A, from the downloaded Invoices import template (Settings, then Invoices under Data Import), with one Labor row dated today: a new invoice number (invoice A), an existing customer, *Line Title "Replace tie rod", Line Description "excessive play" and Tech Story left empty, so invoice A exists only as an imported invoice.
+- Use Google Sheets (File, then Import, then Upload) to open downloaded files, so accented letters and character counts read correctly.
+- Start on Reports, then Export Reports in the Reports left menu, with the Export Report dialog open.
+- Held design-version case (Rule 130 item 5): DV-04 / DQ-01 (the coordinator numbers it Q12). Release it if Product says the report shows imported invoices with the joined text; delete it (with the go-ahead) if not. Imported invoices are found under Work Orders → All → Status → Imported (List view).
+Quotes: S3-R12, PRE-S3-1. Marker: AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO.
+
+### D-16 · new case · Design: An emptied ShopCoach editor shows its label above the prompt
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Have an open work order, work order 1, that is not invoiced, for an asset with its year, make and model filled in, so ShopCoach can suggest lines for it.
+- Start on work order 1, on its Lines tab.
+- Tech plan D5: stack-label on all five fields (picker, Title, Description, and the two ShopCoach editors).
+Quotes: S2-R1, S2-R2, S1-R3, D5 (stack-label on all five fields), FR-006 (SV-10131), SV-10131, Nemanja Djuric, 8 Oct 2026 (Ready for QA testing), SV-10391, Milan Zivanovic, 23 Sep 2026 (Checklist), SV-10131, Nemanja Djuric, 8 Oct 2026 (Ready for QA testing). Marker: AUTOMATION: READY - EXPECT FAIL (SV-11850).
+
+### D-17 · new case · Design: ShopCoach table rows keep their size when a cell shows its prompt
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Have an open work order, work order 1, that is not invoiced, for an asset with its year, make and model filled in, so ShopCoach can suggest lines for it.
+- Start on work order 1, on its Lines tab.
+- Source: tech plan Phase 3 browser-walk step 5 (risk R2) and SV-10391's checklist; the PRD and the design are silent on the table. The grey italic look (developer note on SV-10131) is not asserted here (proposed question DQ-02).
+Quotes: S2-R2, FR-006 (SV-10131), Phase 3, browser-walk step 5, SV-10391, Milan Zivanovic, 23 Sep 2026 (Checklist), SV-10131, Nemanja Djuric, 8 Oct 2026 (Ready for QA testing). Marker: AUTOMATION: READY - EXPECT FAIL (SV-11850).

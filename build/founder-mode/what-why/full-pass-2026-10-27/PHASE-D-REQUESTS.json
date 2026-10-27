@@ -1,0 +1,30 @@
+{
+ "from": "Phase D part 2 (design worker), 27 Oct 2026",
+ "section": {
+  "key": "DESIGN",
+  "ask": "Create the TestRail section \"Design — how it looks\" under What/Why 20437 and write its id into section-map.json as \"DESIGN\" (17 cases D-01 … D-17 wait on it; apply.py skips them until then)."
+ },
+ "register": {
+  "ask": "Merge full-pass-2026-10-27/design/DESIGN-DIVERGENCE-ROWS.json (12 rows: 8 DESIGN-SILENT PRD-word/hand rows, DV-01..DV-03 PO-RULED, DV-04 QUESTION-READY) into DESIGN-DIVERGENCE-REGISTER.json; DV-04's held case is D-15."
+ },
+ "questions": {
+  "ask": "Append full-pass-2026-10-27/design/QUESTIONS-DESIGN.json as Q12 (DQ-01, holds D-15), Q13 (DQ-02, holds nothing), Q14 (DQ-03, holds nothing) after Phase A's Q9-Q11; then, on the QA lead's go-ahead, at the bottom of the question doc 1QcT7FRZci6AhYcI33HUac-Oob03-gCnCOKn2NFHMLjA in a new colour (Rule 131) and in build/PO-QUESTIONS-OPEN.md (Rule 132).",
+  "design_questions": "D-15 uses marker DESIGN_HOLD, so wwlib.DESIGN_QUESTIONS needs no change; if you prefer PO_HOLD(\"Q12\", …) instead, add \"Q12\" to wwlib.DESIGN_QUESTIONS."
+ },
+ "library": [
+  {"file": "authoring/wwlib.py", "what": "design_block() prints \"These boards draw the line text, not a screen\" for any case whose boards are all in TEXT_BOARDS. D-11..D-14 name board 1.3 (QuickBooks) for its Legacy / Modern invoice panels, which ARE a screen of ours. Each carries a note saying so; consider exempting DESIGN-section cases (or these four) from that sentence. Not changed by me (outside my file)."}
+ ],
+ "overlap_and_consistency": [
+  "S2-03 (C549079, Phase A) asserts the emptied ShopCoach cells read in \"grey italic\" and that cells do not grow or shift, quoting the developer's SV-10131 note. Phase D's DQ-02 asks Product whether grey italic is expected, because neither the PRD nor the design says so; D-16/D-17 do not assert it. Decide whether S2-03 keeps that bullet while DQ-02 is open.",
+  "D-17 (table rows keep their size, screenshot comparison) checks the same thing as S2-03's last bullet, more concretely; both kept."
+ ],
+ "screen_labels_to_confirm_on_the_build": [
+  "\"Legacy invoice layout\" switch under Settings, then Invoice (D-11..D-14; a fact from the Invoice UI refresh suite's files, off = modern, on = legacy)",
+  "\"Set the Estimate / Invoice toggle to Invoice\" on the Finance tab (D-11..D-14; label from the Part Sales model case)",
+  "the description cell / Description editor of a ShopCoach suggested line (D-16, D-17; as in Phase A's S2 cases)"
+ ],
+ "not_asserted_no_source": [
+  "grey italic look of an empty ShopCoach cell (DQ-02)",
+  "whether the modern invoice still prints the \"Scope of work\" heading when a line has no tech story (DQ-03; D-14 checks only that \"Tech story missing.\" is not printed)"
+ ]
+}

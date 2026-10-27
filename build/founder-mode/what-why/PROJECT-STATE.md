@@ -9,11 +9,17 @@ Title / Description and strip our field names from the text that reaches QuickBo
 **Branch:** `claude/slack-session-setup-7v5itm`
 **Build:** ❌ No QA branch yet → every case `AUTOMATION: HOLD`, source-verified only (Rule 85).
 
-## 🟢 CURRENT STATE — 27 Oct 2026 (full pass, DRAFT, nothing written to TestRail yet) — read this first
-- QA lead 27 Oct: "Full pass" (as for Parts Lifecycle); "Not now" to filing the S1-R6 bug of Chris Ward's answer 7.
-- Sources: PRD **v15** (14 Oct; v14 holds Chris's 8 answers), `full-pass-2026-10-27/PRD-DIFF-v13-v15.md`; Jira read 27 Oct (`sources/jira-2026-10-27/`), incl. new open bug **SV-11850** (Build Lines shows nothing on staging); tech plan unchanged; design 27 Oct copy (only "Title *" → "Title").
-- Phase A (library + Stories 1-4) done in `authoring/`: 45 cases (37 rewritten keeping C-ids, 2 splits, 6 new), 41/41 codes, gates green; `PHASE-A-HANDOFF.md`. Phase D (design) works in `full-pass-2026-10-27/design/` and writes `authoring/cases_design.py`.
-- Open questions Q9-Q11 (`full-pass-2026-10-27/QUESTIONS.json`), not sent.
+## 🟢 CURRENT STATE — 27 Oct 2026 (full pass WRITTEN to TestRail) — read this first
+- QA lead 27 Oct: "OK now we do the same for WHy and WHY what you did for Parts life cycle" → "Full pass"; "Not now" to filing the S1-R6 bug of Chris Ward's answer 7.
+- **Epic SV-11257** · PRD 845348896 **v15** (14 Oct; v14 holds Chris's 8 answers; re-checked unchanged just before the write, Rule 59) · Jira read 27 Oct (`sources/jira-2026-10-27/`), incl. open bug **SV-11850** (ShopCoach Build Lines shows nothing on staging) · tech plan unchanged · design 27 Oct copy (only change "Title *" → "Title").
+- **Suite (live): 62 cases** = 37 rewritten in place (same C-ids) + 25 new (2 splits, 6 new story cases, 17 design cases in the new section **"Design — how it looks" 105855**). Map `testrail-id-map.csv` (62 rows). Every case in the QA lead's pattern; tester-readiness check 0 problems before the write (Rule 138); all 62 read back identical; design pictures attached (log `applied-2026-10-27/apply-log.jsonl`).
+- Markers: 56 HOLD (not yet build-verified), 5 EXPECT FAIL SV-11850 (S2-01 C154711, S2-02 C154712, S2-03 C549079, D-16, D-17), 1 held design-version case **D-15 C839525** (Doc question 12).
+- Runs: no dedicated run (QA lead 13 Oct); the automatic Nightly runs include every case, so the new cases join them.
+- **Rule 65:** C154707–C154725 were "automation planned" and are rewritten → the QA lead to tell Vlad.
+- **Questions:** 9-14 added 27 Oct to the bottom of Chris's question Doc 1QcT7FRZ… (green headings, Chris tagged); see `build/PO-QUESTIONS-OPEN.md`. Q12 holds D-15; Q13 may remove S2-03's grey-italic words; Q9, Q10, Q11, Q14 have no case until answered (Rule 58).
+- **Design differences:** `DESIGN-DIVERGENCE-REGISTER.json` (Phase D's 12 rows merged 27 Oct); every one closed by a ruling or a sent question.
+- **Old per-case setup Docs:** 37 listed in `full-pass-2026-10-27/OLD-SETUP-DOCS.json`, no longer linked; trashed with a per-Doc log `full-pass-2026-10-27/old-setup-docs-trash-log.jsonl`.
+- **Build verification:** not started. QA build sv10130.qa.shopview.com (QuickBooks qb1.qa.shopview.com) and staging carry the change; SV-11850 blocks the ShopCoach cases on staging.
 
 ## (HISTORY) STATE — 13 Oct 2026 (full update, Rule 122) — read this first
 - **Epic now SV-11257** (split out of SV-9667). PRD 845348896 unchanged in substance since 30 Sep (40 codes). Tech plan received 13 Oct (`sources/tech-plan-Title-and-Description-2026-10-13.md`).

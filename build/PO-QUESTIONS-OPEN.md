@@ -18,3 +18,13 @@ Stopped by the QA lead, 22 Oct 2026 ("Forget the wo board and tech view now and 
 - Open: Q1, Q2, Q3, Q4, Q6, Q7, Q8, Q9, Q10, Q11, Q12, Q13, Q14, Q15, Q16 (`build/founder-mode/part-lifecycle/full-pass-2026-10-27/QUESTIONS.json`).
 - Held on them: S5-18 C573677, S10-22 C425769, S10-29 C425777, S13-03b C839442 (Q1); S5-01 C154770 (Q2); S12-06 C425620 (Q3);
   S7-25 C573682 (Q4); D-49 C839502 (Q8); D-33 C839486 (Q10); S7-17 C425681 (Q12).
+
+## What/Why — Title and Description (Chris Ward) — 6 open, SENT 27 Oct 2026 as questions 9-14 of the question Doc (Chris tagged)
+- File for the questions: the 14 Oct Google Doc https://docs.google.com/document/d/1QcT7FRZci6AhYcI33HUac-Oob03-gCnCOKn2NFHMLjA/edit
+  (Rule 131: new rows at the bottom, green headings); questions 1-8 there were all answered by Chris on 14 Oct and are used (PRD v14/v15).
+- Doc number = our id: 9=Q9, 10=Q10, 11=Q11, 12=Q12, 13=Q13, 14=Q14 (`build/founder-mode/what-why/full-pass-2026-10-27/QUESTIONS.json`).
+- 9: the "Title cannot be longer than 255 characters" message; 10: Invoices import row messages still in the old words; 11: a title
+  starting with =, +, - or @ in the downloaded report; 12: an imported invoice in the Customer Invoice report; 13: grey italic in an
+  empty ShopCoach cell; 14: the "Scope of work" heading when a line has no tech story.
+- Held on them: D-15 C839525 (12, held design-version case, not in a run). Affected if answered "no": S2-03 C549079 (13, its grey
+  italic words). No case is written yet for 9, 10, 11 and 14 (Rule 58); each gets cases the day it is answered.

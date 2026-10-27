@@ -1321,5 +1321,501 @@
    "custom_steps": "<ol><li>Upload file A.</li><li>Upload file B.</li><li>Click Work Orders in the top bar.</li><li>Click the All tab.</li><li>Switch the list to List view.</li><li>Pick Imported in the Status filter.</li><li>Type the shared start of the two invoice numbers in the Search box.</li><li>Click invoice A.</li><li>Go back to the list.</li><li>Click invoice B.</li></ol>",
    "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>\"All invoices have been imported successfully.\" shows.</li></ul><p>Step 2:</p><ul><li>\"All invoices have been imported successfully.\" shows.</li><li>No message says a column is missing or should be removed.</li></ul><p>Step 3:</p><ul><li>The Work Orders page opens.</li></ul><p>Step 4:</p><ul><li>The All tab is shown.</li></ul><p>Step 5:</p><ul><li>The work orders show as a list.</li></ul><p>Step 6:</p><ul><li>Only imported work orders are listed.</li></ul><p>Step 7:</p><ul><li>Invoices A and B are listed.</li></ul><p>Step 8:</p><ul><li>Invoice A opens; its line reads \"Replace tie rod\" as the title and \"excessive play\" as the description.</li></ul><p>Step 9:</p><ul><li>The list is back, with invoices A and B.</li></ul><p>Step 10:</p><ul><li>Invoice B opens; its line reads \"Replace tie rod\" as the title and \"excessive play\" as the description, exactly like invoice A.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10133 (Story 4, The Imports)</p><ul><li><strong>S4-R3:</strong> &ldquo;The importer accepts the old column names as well as the new ones. A file carrying either spelling validates and imports identically. Column names are matched regardless of capital letters and surrounding spaces, as every column already is.&rdquo;</li><li><strong>S4-R5:</strong> &ldquo;The old name is accepted as the column it became: it is neither reported missing nor reported as a column to remove.&rdquo;</li></ul><p>From: Jira tickets and comments under epic SV-11257, and bug SV-11850 (saved in sources/jira-2026-10-27/ALL-TICKETS-2026-10-27.md), read 27 Oct 2026</p><ul><li><strong>SV-10133, Nemanja Djuric, 19 Oct 2026 (QA update, PRD v14):</strong> &ldquo;Old column names in any capitals, or with spaces around them (for example \"*line title - WHAT ARE YOU DOING\" or \" Line Description - Why are you doing it \"), import the same as the new names (S4-R3).&rdquo;</li><li><strong>SV-10133, Nemanja Djuric, 21 Oct 2026:</strong> &ldquo;Work Orders → All tab → Status → Imported. Selecting Imported clears the other statuses and only works in List view (in other views it's greyed out: \"Imported work orders open in List.\"). Then search by invoice number or customer name; partial text works, so \"QA10133\" finds all four.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): the design has no board for the Invoices import (the tech plan: \"No boards for Story 2 / Story 4 — accepted as text-only\"), so no design picture is attached; the expected results above come from the quotes above.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
   }
+ },
+ "D-01": {
+  "sec": "DESIGN",
+  "section_id": 105855,
+  "case_id": null,
+  "part_of": null,
+  "title": "Design: New Line opens with the Title box ready and its grey prompt",
+  "refs": "SV-10130",
+  "codes": [
+   "S1-R1",
+   "S1-R3",
+   "S1-R5"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [
+   "board-1.2-new-line-after.png",
+   "board-1.1-new-line-before.png"
+  ],
+  "fields": {
+   "title": "Design: New Line opens with the Title box ready and its grey prompt",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10130",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an open work order, work order 1, that is not invoiced, so you can add a line to it.</li><li>Use a desktop browser window at full screen, at 100% zoom, so the window can be compared with the attached board picture.</li><li>Start on work order 1, on its Lines tab.</li></ul>",
+   "custom_steps": "<ol><li>Click New Line.</li><li>Type \"R\".</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The New Line window opens over work order 1.</li><li>The first box spans the window's width, has a light grey background and a dark red line along its bottom edge, as on the attached picture of board 1.2.</li><li>A small dark red label reads exactly \"Title\", with no star after it, at the top left inside the box.</li><li>Under the label, grey text reads \"What are you doing?\", with only the first W a capital (not \"What Are You Doing?\" as on board 1.1).</li><li>A grey down-arrow sits at the right end of the box.</li></ul><p>Step 2:</p><ul><li>\"R\" appears in the Title box without clicking it first, because the cursor was already there when the window opened.</li><li>The grey prompt \"What are you doing?\" is gone and only \"R\" shows under the label \"Title\".</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10130 (Story 1, The Work Order Line Dialog)</p><ul><li><strong>S1-R1:</strong> &ldquo;The first field is labeled exactly \"Title\", with no asterisk.&rdquo;</li><li><strong>S1-R3:</strong> &ldquo;The Title box carries the placeholder \"What are you doing?\" and the Description box carries \"Why are you doing it?\". Placeholder text shows while the box is empty and disappears as soon as there is a value. The labels Title and Description always sit at the top of their boxes, empty or filled, with the placeholder underneath; in production the label sat inside the empty box. This is the one layout change in the dialog.&rdquo;</li><li><strong>S1-R5:</strong> &ldquo;The canned-line picker at the top of the dialog is labeled \"Title\" and carries the placeholder \"What are you doing?\" in its typeahead box, the same as the free-text Title field. The dialog focuses this field on open, so the placeholder is visible the moment the dialog appears and clears as soon as the user types or picks a canned line. (Corrected 2026-09-10: the first build gave the picker no placeholder, so the prompt never appeared on a new line.)&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): boards 1.2 \"New Line - after\", 1.1 \"New Line - before\". Compare the screen with the pictures below; the expected results above come from the quotes above where the PRD speaks, and from the board pictures where it is silent about the look.</p><p>Board 1.1 \"New Line - before\" is today's window and is attached only as the control: there the question itself sits inside the box as its label.</p><p>Design pictures attached to this case:</p><ul><li>board-1.2-new-line-after.png</li><li>board-1.1-new-line-before.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;The only two things that change The field is now named Title and the question moves inside it as the prompt, in sentence case: “What are you doing?”. Same for Description . The name stays put whether the picker is empty or filled, which replaces a label that swapped between the question and “Title” depending on state.&rdquo;</li><li>&ldquo;Staging renders the questions in Title Case. The spec and the branch both say sentence case, so the after boards read \"What are you doing?\". That normalisation is not called out in the spec.&rdquo;</li><li>&ldquo;What a writer sees today Each field is named by the question it asks. Nothing on screen says what the values are called, so whatever is typed is read back elsewhere as the answer to a question, including in a shop's accounting records.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ },
+ "D-02": {
+  "sec": "DESIGN",
+  "section_id": 105855,
+  "case_id": null,
+  "part_of": null,
+  "title": "Design: New Line shows Description above its grey prompt",
+  "refs": "SV-10130",
+  "codes": [
+   "S1-R2",
+   "S1-R3"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [
+   "board-1.2-new-line-after.png",
+   "board-1.1-new-line-before.png"
+  ],
+  "fields": {
+   "title": "Design: New Line shows Description above its grey prompt",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10130",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an open work order, work order 1, that is not invoiced, so you can add a line to it.</li><li>Use a desktop browser window at full screen, at 100% zoom, so the window can be compared with the attached board picture.</li><li>Start on work order 1, on its Lines tab.</li></ul>",
+   "custom_steps": "<ol><li>Click New Line.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The New Line window opens over work order 1.</li><li>Directly under the Title box is a white box with a thin light grey border and rounded corners, as wide as the Title box.</li><li>A small grey label reads exactly \"Description\" at the top left inside the box.</li><li>Under the label, lighter grey text reads \"Why are you doing it?\", with only the first W a capital.</li><li>The box shows two lines of text, the label above the prompt, where board 1.1 shows the question alone in the box.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10130 (Story 1, The Work Order Line Dialog)</p><ul><li><strong>S1-R2:</strong> &ldquo;The second field is labeled exactly \"Description\".&rdquo;</li><li><strong>S1-R3:</strong> &ldquo;The Title box carries the placeholder \"What are you doing?\" and the Description box carries \"Why are you doing it?\". Placeholder text shows while the box is empty and disappears as soon as there is a value. The labels Title and Description always sit at the top of their boxes, empty or filled, with the placeholder underneath; in production the label sat inside the empty box. This is the one layout change in the dialog.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): boards 1.2 \"New Line - after\", 1.1 \"New Line - before\". Compare the screen with the pictures below; the expected results above come from the quotes above where the PRD speaks, and from the board pictures where it is silent about the look.</p><p>Board 1.1 \"New Line - before\" is attached as the control (today's box holds only \"Why Are You Doing It?\").</p><p>Design pictures attached to this case:</p><ul><li>board-1.2-new-line-after.png</li><li>board-1.1-new-line-before.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;The only two things that change The field is now named Title and the question moves inside it as the prompt, in sentence case: “What are you doing?”. Same for Description . The name stays put whether the picker is empty or filled, which replaces a label that swapped between the question and “Title” depending on state.&rdquo;</li><li>&ldquo;Staging renders the questions in Title Case. The spec and the branch both say sentence case, so the after boards read \"What are you doing?\". That normalisation is not called out in the spec.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ },
+ "D-03": {
+  "sec": "DESIGN",
+  "section_id": 105855,
+  "case_id": null,
+  "part_of": null,
+  "title": "Design: New Line keeps its header, other fields and buttons as drawn",
+  "refs": "SV-10130",
+  "codes": [
+   "S1-R5",
+   "S1-R7"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [
+   "board-1.2-new-line-after.png"
+  ],
+  "fields": {
+   "title": "Design: New Line keeps its header, other fields and buttons as drawn",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10130",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an open work order, work order 1, that is not invoiced, so you can add a line to it.</li><li>Use a desktop browser window at full screen, at 100% zoom, so the window can be compared with the attached board picture.</li><li>Start on work order 1, on its Lines tab.</li></ul>",
+   "custom_steps": "<ol><li>Click New Line.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The New Line window opens over work order 1.</li><li>The header shows, from left to right: \"New Line\" in bold, a small purple \"AI\" tag with white letters, and \"SHOPCOACH LINE BUILDER\" in blue capitals; a grey X sits at the far right.</li><li>Under the Description box: the word \"Technicians\", then a box reading \"Add Technician\" with a grey down-arrow at its right.</li><li>Next, one row of three boxes from left to right: \"Labor Rate\" (the widest, with a down-arrow), \"Estimated Time\" and \"Tech Time\", each with its small grey label at the top.</li><li>At the bottom right, in this order: \"Save &amp; Add Part\" and \"Save &amp; Add Line\" (white with a blue border and blue letters), then \"Save &amp; Close\" (solid blue with white letters).</li><li>Side by side with the attached picture of board 1.2 at 100% zoom, the window shows these parts in the same order with nothing between them.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10130 (Story 1, The Work Order Line Dialog)</p><ul><li><strong>S1-R7:</strong> &ldquo;Nothing else about the dialog changes, other than the label position in S1-R3: same fields in the same order, same validation, same values saved.&rdquo;</li><li><strong>S1-R5:</strong> &ldquo;The canned-line picker at the top of the dialog is labeled \"Title\" and carries the placeholder \"What are you doing?\" in its typeahead box, the same as the free-text Title field. The dialog focuses this field on open, so the placeholder is visible the moment the dialog appears and clears as soon as the user types or picks a canned line. (Corrected 2026-09-10: the first build gave the picker no placeholder, so the prompt never appeared on a new line.)&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): board 1.2 \"New Line - after\". Compare the screen with the pictures below; the expected results above come from the quotes above where the PRD speaks, and from the board pictures where it is silent about the look.</p><p>Design pictures attached to this case:</p><ul><li>board-1.2-new-line-after.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Everything else on this dialog is untouched: the field set, the technician and labor rows, and all three button labels.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ },
+ "D-04": {
+  "sec": "DESIGN",
+  "section_id": 105855,
+  "case_id": null,
+  "part_of": null,
+  "title": "Design: Edit Line shows Title above the saved title",
+  "refs": "SV-10130",
+  "codes": [
+   "S1-R1",
+   "S1-R3"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [
+   "board-1.5-edit-line-after.png",
+   "board-1.4-edit-line-before.png"
+  ],
+  "fields": {
+   "title": "Design: Edit Line shows Title above the saved title",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10130",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an open work order, work order 1, with a line, line 1, titled \"Replace tie rod\" with the description \"excessive play\".</li><li>Use a desktop browser window at full screen, at 100% zoom, so the window can be compared with the attached board picture.</li><li>Start on work order 1, on its Lines tab.</li></ul>",
+   "custom_steps": "<ol><li>Click line 1's title.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Edit Line window opens for line 1 of work order 1.</li><li>The first box is white with a thin light grey border, with no grey background and no red line under it.</li><li>A small grey label reads exactly \"Title\", with no star after it, at the top left inside the box.</li><li>Under the label, \"Replace tie rod\" shows in dark text, exactly as saved.</li><li>The label reads \"Title\", where board 1.4 shows the question \"What Are You Doing?\" above the saved title.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10130 (Story 1, The Work Order Line Dialog)</p><ul><li><strong>S1-R1:</strong> &ldquo;The first field is labeled exactly \"Title\", with no asterisk.&rdquo;</li><li><strong>S1-R3:</strong> &ldquo;The Title box carries the placeholder \"What are you doing?\" and the Description box carries \"Why are you doing it?\". Placeholder text shows while the box is empty and disappears as soon as there is a value. The labels Title and Description always sit at the top of their boxes, empty or filled, with the placeholder underneath; in production the label sat inside the empty box. This is the one layout change in the dialog.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): boards 1.5 \"Edit Line - after\", 1.4 \"Edit Line - before\". Compare the screen with the pictures below; the expected results above come from the quotes above where the PRD speaks, and from the board pictures where it is silent about the look.</p><p>Board 1.4 \"Edit Line - before\" is today's window and is attached only as the control.</p><p>Design pictures attached to this case:</p><ul><li>board-1.5-edit-line-after.png</li><li>board-1.4-edit-line-before.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Two labels, nothing else The floating labels now read Title and Description , so a filled field is named rather than interrogated. The empty Description still prompts with “Why are you doing it?” in sentence case.&rdquo;</li><li>&ldquo;The question is worst here With a value in the field, the label floats up and sits directly above the words it supposedly names. “Replace - Brake pot” reads as the answer to “What Are You Doing?” rather than as the name of the job, which is exactly how it then arrives in the shop's books.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ },
+ "D-05": {
+  "sec": "DESIGN",
+  "section_id": 105855,
+  "case_id": null,
+  "part_of": null,
+  "title": "Design: Edit Line shows Description above the grey prompt when empty",
+  "refs": "SV-10130",
+  "codes": [
+   "S1-R2",
+   "S1-R3"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [
+   "board-1.5-edit-line-after.png"
+  ],
+  "fields": {
+   "title": "Design: Edit Line shows Description above the grey prompt when empty",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10130",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an open work order, work order 1, with a line, line 1, titled \"Replace tie rod\" with no description.</li><li>Use a desktop browser window at full screen, at 100% zoom, so the window can be compared with the attached board picture.</li><li>Start on work order 1, on its Lines tab.</li></ul>",
+   "custom_steps": "<ol><li>Click line 1's title.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Edit Line window opens for line 1 of work order 1.</li><li>The Title box shows \"Replace tie rod\" in dark text under its label.</li><li>The second box shows a small grey label reading exactly \"Description\" at its top left.</li><li>Under that label, lighter grey text reads \"Why are you doing it?\", with only the first W a capital, because line 1 has no description.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10130 (Story 1, The Work Order Line Dialog)</p><ul><li><strong>S1-R2:</strong> &ldquo;The second field is labeled exactly \"Description\".&rdquo;</li><li><strong>S1-R3:</strong> &ldquo;The Title box carries the placeholder \"What are you doing?\" and the Description box carries \"Why are you doing it?\". Placeholder text shows while the box is empty and disappears as soon as there is a value. The labels Title and Description always sit at the top of their boxes, empty or filled, with the placeholder underneath; in production the label sat inside the empty box. This is the one layout change in the dialog.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): board 1.5 \"Edit Line - after\". Compare the screen with the pictures below; the expected results above come from the quotes above where the PRD speaks, and from the board pictures where it is silent about the look.</p><p>Design pictures attached to this case:</p><ul><li>board-1.5-edit-line-after.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Two labels, nothing else The floating labels now read Title and Description , so a filled field is named rather than interrogated. The empty Description still prompts with “Why are you doing it?” in sentence case.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ },
+ "D-06": {
+  "sec": "DESIGN",
+  "section_id": 105855,
+  "case_id": null,
+  "part_of": null,
+  "title": "Design: Edit Line keeps Status, labor row, link and buttons as drawn",
+  "refs": "SV-10130",
+  "codes": [
+   "S1-R7"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [
+   "board-1.5-edit-line-after.png"
+  ],
+  "fields": {
+   "title": "Design: Edit Line keeps Status, labor row, link and buttons as drawn",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10130",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an open work order, work order 1, with a line, line 1, titled \"Replace tie rod\" with the description \"excessive play\".</li><li>Use a desktop browser window at full screen, at 100% zoom, so the window can be compared with the attached board picture.</li><li>Start on work order 1, on its Lines tab.</li></ul>",
+   "custom_steps": "<ol><li>Click line 1's title.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Edit Line window opens for line 1 of work order 1.</li><li>The header shows \"Edit Line\" in bold at the left and a blue X at the far right; the header has no AI tag and no ShopCoach link.</li><li>Under the Description box, in this order: a \"Status\" box showing line 1's status with a down-arrow, the word \"Technicians\" above an \"Add Technician\" box, and one row with \"Labor Rate\", \"Estimated Time\" and \"Tech Time\".</li><li>Under the labor row: a small purple \"AI\" tag and \"SHOPCOACH LABOR GUIDE\" in blue capitals.</li><li>At the bottom right: a solid red \"Delete\" button, then a solid blue \"Save &amp; Close\" button.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10130 (Story 1, The Work Order Line Dialog)</p><ul><li><strong>S1-R7:</strong> &ldquo;Nothing else about the dialog changes, other than the label position in S1-R3: same fields in the same order, same validation, same values saved.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): board 1.5 \"Edit Line - after\". Compare the screen with the pictures below; the expected results above come from the quotes above where the PRD speaks, and from the board pictures where it is silent about the look.</p><p>Design pictures attached to this case:</p><ul><li>board-1.5-edit-line-after.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Status, Technicians, the labor row, the ShopCoach link, Delete and Save &amp; Close are all untouched. Edit mode has no canned-line picker, so the state-dependent label S1-R4 removes was a New Line problem only.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ },
+ "D-07": {
+  "sec": "DESIGN",
+  "section_id": 105855,
+  "case_id": null,
+  "part_of": null,
+  "title": "Design: New Line shows every label and button whole at 1440 pixels",
+  "refs": "SV-10130",
+  "codes": [
+   "S1-R3",
+   "S1-R7"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [
+   "board-1.2-new-line-after.png"
+  ],
+  "fields": {
+   "title": "Design: New Line shows every label and button whole at 1440 pixels",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10130",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an open work order, work order 1, that is not invoiced, so you can add a line to it.</li><li>Use a desktop browser window exactly 1440 pixels wide, at 100% zoom.</li><li>Start on work order 1, on its Lines tab.</li></ul>",
+   "custom_steps": "<ol><li>Click New Line.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The New Line window opens over work order 1.</li><li>\"Title\", \"What are you doing?\", \"Description\" and \"Why are you doing it?\" each show in full, with every letter visible and no text over another.</li><li>\"SHOPCOACH LINE BUILDER\" shows in full on the header line, with the X at the far right of the same line.</li><li>\"Save &amp; Add Part\", \"Save &amp; Add Line\" and \"Save &amp; Close\" sit on one row at the bottom right, each label in full.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10130 (Story 1, The Work Order Line Dialog)</p><ul><li><strong>S1-R3:</strong> &ldquo;The Title box carries the placeholder \"What are you doing?\" and the Description box carries \"Why are you doing it?\". Placeholder text shows while the box is empty and disappears as soon as there is a value. The labels Title and Description always sit at the top of their boxes, empty or filled, with the placeholder underneath; in production the label sat inside the empty box. This is the one layout change in the dialog.&rdquo;</li><li><strong>S1-R7:</strong> &ldquo;Nothing else about the dialog changes, other than the label position in S1-R3: same fields in the same order, same validation, same values saved.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): board 1.2 \"New Line - after\". Compare the screen with the pictures below; the expected results above come from the quotes above where the PRD speaks, and from the board pictures where it is silent about the look.</p><p>Design pictures attached to this case:</p><ul><li>board-1.2-new-line-after.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Everything else on this dialog is untouched: the field set, the technician and labor rows, and all three button labels.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ },
+ "D-08": {
+  "sec": "DESIGN",
+  "section_id": 105855,
+  "case_id": null,
+  "part_of": null,
+  "title": "Design: New Line shows every label and button whole at 1536 pixels",
+  "refs": "SV-10130",
+  "codes": [
+   "S1-R3",
+   "S1-R7"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [
+   "board-1.2-new-line-after.png"
+  ],
+  "fields": {
+   "title": "Design: New Line shows every label and button whole at 1536 pixels",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10130",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an open work order, work order 1, that is not invoiced, so you can add a line to it.</li><li>Use a desktop browser window exactly 1536 pixels wide, at 100% zoom.</li><li>Start on work order 1, on its Lines tab.</li></ul>",
+   "custom_steps": "<ol><li>Click New Line.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The New Line window opens over work order 1.</li><li>\"Title\", \"What are you doing?\", \"Description\" and \"Why are you doing it?\" each show in full, with every letter visible and no text over another.</li><li>\"SHOPCOACH LINE BUILDER\" shows in full on the header line, with the X at the far right of the same line.</li><li>\"Save &amp; Add Part\", \"Save &amp; Add Line\" and \"Save &amp; Close\" sit on one row at the bottom right, each label in full.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10130 (Story 1, The Work Order Line Dialog)</p><ul><li><strong>S1-R3:</strong> &ldquo;The Title box carries the placeholder \"What are you doing?\" and the Description box carries \"Why are you doing it?\". Placeholder text shows while the box is empty and disappears as soon as there is a value. The labels Title and Description always sit at the top of their boxes, empty or filled, with the placeholder underneath; in production the label sat inside the empty box. This is the one layout change in the dialog.&rdquo;</li><li><strong>S1-R7:</strong> &ldquo;Nothing else about the dialog changes, other than the label position in S1-R3: same fields in the same order, same validation, same values saved.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): board 1.2 \"New Line - after\". Compare the screen with the pictures below; the expected results above come from the quotes above where the PRD speaks, and from the board pictures where it is silent about the look.</p><p>Design pictures attached to this case:</p><ul><li>board-1.2-new-line-after.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Everything else on this dialog is untouched: the field set, the technician and labor rows, and all three button labels.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ },
+ "D-09": {
+  "sec": "DESIGN",
+  "section_id": 105855,
+  "case_id": null,
+  "part_of": null,
+  "title": "Design: Edit Line shows every label and button whole at 1440 pixels",
+  "refs": "SV-10130",
+  "codes": [
+   "S1-R3",
+   "S1-R7"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [
+   "board-1.5-edit-line-after.png"
+  ],
+  "fields": {
+   "title": "Design: Edit Line shows every label and button whole at 1440 pixels",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10130",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an open work order, work order 1, with a line, line 1, titled \"Replace tie rod\" with no description.</li><li>Use a desktop browser window exactly 1440 pixels wide, at 100% zoom.</li><li>Start on work order 1, on its Lines tab.</li></ul>",
+   "custom_steps": "<ol><li>Click line 1's title.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Edit Line window opens for line 1 of work order 1.</li><li>\"Title\" with \"Replace tie rod\" under it, and \"Description\" with \"Why are you doing it?\" under it, each show in full, with no text over another.</li><li>\"SHOPCOACH LABOR GUIDE\" shows in full beside its purple \"AI\" tag.</li><li>\"Delete\" and \"Save &amp; Close\" sit on one row at the bottom right, each label in full.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10130 (Story 1, The Work Order Line Dialog)</p><ul><li><strong>S1-R3:</strong> &ldquo;The Title box carries the placeholder \"What are you doing?\" and the Description box carries \"Why are you doing it?\". Placeholder text shows while the box is empty and disappears as soon as there is a value. The labels Title and Description always sit at the top of their boxes, empty or filled, with the placeholder underneath; in production the label sat inside the empty box. This is the one layout change in the dialog.&rdquo;</li><li><strong>S1-R7:</strong> &ldquo;Nothing else about the dialog changes, other than the label position in S1-R3: same fields in the same order, same validation, same values saved.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): board 1.5 \"Edit Line - after\". Compare the screen with the pictures below; the expected results above come from the quotes above where the PRD speaks, and from the board pictures where it is silent about the look.</p><p>Design pictures attached to this case:</p><ul><li>board-1.5-edit-line-after.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Status, Technicians, the labor row, the ShopCoach link, Delete and Save &amp; Close are all untouched. Edit mode has no canned-line picker, so the state-dependent label S1-R4 removes was a New Line problem only.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ },
+ "D-10": {
+  "sec": "DESIGN",
+  "section_id": 105855,
+  "case_id": null,
+  "part_of": null,
+  "title": "Design: Edit Line shows every label and button whole at 1536 pixels",
+  "refs": "SV-10130",
+  "codes": [
+   "S1-R3",
+   "S1-R7"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [
+   "board-1.5-edit-line-after.png"
+  ],
+  "fields": {
+   "title": "Design: Edit Line shows every label and button whole at 1536 pixels",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10130",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an open work order, work order 1, with a line, line 1, titled \"Replace tie rod\" with no description.</li><li>Use a desktop browser window exactly 1536 pixels wide, at 100% zoom.</li><li>Start on work order 1, on its Lines tab.</li></ul>",
+   "custom_steps": "<ol><li>Click line 1's title.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Edit Line window opens for line 1 of work order 1.</li><li>\"Title\" with \"Replace tie rod\" under it, and \"Description\" with \"Why are you doing it?\" under it, each show in full, with no text over another.</li><li>\"SHOPCOACH LABOR GUIDE\" shows in full beside its purple \"AI\" tag.</li><li>\"Delete\" and \"Save &amp; Close\" sit on one row at the bottom right, each label in full.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10130 (Story 1, The Work Order Line Dialog)</p><ul><li><strong>S1-R3:</strong> &ldquo;The Title box carries the placeholder \"What are you doing?\" and the Description box carries \"Why are you doing it?\". Placeholder text shows while the box is empty and disappears as soon as there is a value. The labels Title and Description always sit at the top of their boxes, empty or filled, with the placeholder underneath; in production the label sat inside the empty box. This is the one layout change in the dialog.&rdquo;</li><li><strong>S1-R7:</strong> &ldquo;Nothing else about the dialog changes, other than the label position in S1-R3: same fields in the same order, same validation, same values saved.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): board 1.5 \"Edit Line - after\". Compare the screen with the pictures below; the expected results above come from the quotes above where the PRD speaks, and from the board pictures where it is silent about the look.</p><p>Design pictures attached to this case:</p><ul><li>board-1.5-edit-line-after.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Status, Technicians, the labor row, the ShopCoach link, Delete and Save &amp; Close are all untouched. Edit mode has no canned-line picker, so the state-dependent label S1-R4 removes was a New Line problem only.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ },
+ "D-11": {
+  "sec": "DESIGN",
+  "section_id": 105855,
+  "case_id": null,
+  "part_of": null,
+  "title": "Design: Legacy invoice prints title, description and tech story with no labels",
+  "refs": "SV-10132",
+  "codes": [
+   "KD-4",
+   "OOS-1"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [
+   "board-1.3-what-reaches-quickbooks.png"
+  ],
+  "fields": {
+   "title": "Design: Legacy invoice prints title, description and tech story with no labels",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10132",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure Legacy invoice layout is on (Settings, then Invoice), so work order 1's invoice prints in the legacy layout.</li><li>Create a work order for this test, work order 1, with one labor line, line 1, titled \"Replace tie rod\" with the description \"excessive play\".</li><li>Have line 1 completed with the tech story \"Both outer ends worn, replaced and aligned\", and work order 1 completed and invoiced today as invoice A.</li><li>Start on work order 1.</li></ul>",
+   "custom_steps": "<ol><li>Click the Finance tab.</li><li>Set the Estimate / Invoice toggle to Invoice.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1's Finance tab opens.</li></ul><p>Step 2:</p><ul><li>Invoice A shows in the legacy layout.</li><li>Line 1 prints \"Replace tie rod\" in bold, \"excessive play\" on the next line and \"Both outer ends worn, replaced and aligned\" on the line after it, as in the \"Legacy invoice\" panel of the attached picture of board 1.3.</li><li>No word such as \"Title\", \"Description\", \"Tech Story\" or \"Scope of work\" prints in front of any of the three lines.</li><li>\"What are you doing?\" and \"Why are you doing it?\" appear nowhere on the invoice, while the three lines above do.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10132 (Story 3, What Reaches QuickBooks)</p><ul><li><strong>Key Decisions:</strong> &ldquo;The narrative carries no label either, and \"Scope of work\" was considered and rejected. The two invoice views disagree about the label and agree about everything else. The legacy view prints the narrative as a plain paragraph under the description with no label. The modern view prints it under a \"Scope of work\" heading. Both print the title and the description unlabeled, both put the narrative last, and both drop it entirely when it is absent. Printing no label is the only choice that matches what a customer sees in either view. Rejected: \"Scope of work\", which only half our customers see, and \"Tech Story\", which is the one label a customer has objected to in writing (SV-6582).&rdquo;</li><li><strong>Feature Overview, Out of scope:</strong> &ldquo;The customer-facing estimate, invoice and credit documents. They have never printed either question and are untouched.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): board 1.3 \"What reaches QuickBooks\". Compare the screen with the pictures below; the expected results above come from the quotes above where the PRD speaks, and from the board pictures where it is silent about the look.</p><p>The \"Legacy invoice\" and \"Modern invoice\" panels of board 1.3 draw the printed invoice itself, a screen of ours: compare work order 1's invoice on the Finance tab with them.</p><p>Design pictures attached to this case:</p><ul><li>board-1.3-what-reaches-quickbooks.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Why the narrative carries no label Because the two invoice views disagree about the label and agree about everything else. Legacy prints the narrative as a plain paragraph under the description with no label at all. Modern prints it under a “Scope of work” heading. Both print the title and the description with no labels, both put the narrative last, and both drop it entirely when it is empty or reads “Tech story missing.” Printing no label is the only choice that matches what a customer sees in either view.&rdquo;</li><li>&ldquo;Legacy invoice Replace tie rod excessive play Both outer ends worn, replaced and aligned&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ },
+ "D-12": {
+  "sec": "DESIGN",
+  "section_id": 105855,
+  "case_id": null,
+  "part_of": null,
+  "title": "Design: Modern invoice prints the tech story under Scope of work",
+  "refs": "SV-10132",
+  "codes": [
+   "KD-4",
+   "OOS-1"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [
+   "board-1.3-what-reaches-quickbooks.png"
+  ],
+  "fields": {
+   "title": "Design: Modern invoice prints the tech story under Scope of work",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10132",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure Legacy invoice layout is off (Settings, then Invoice), so work order 1's invoice prints in the modern layout.</li><li>Create a work order for this test, work order 1, with one labor line, line 1, titled \"Replace tie rod\" with the description \"excessive play\".</li><li>Have line 1 completed with the tech story \"Both outer ends worn, replaced and aligned\", and work order 1 completed and invoiced today as invoice A.</li><li>Start on work order 1.</li></ul>",
+   "custom_steps": "<ol><li>Click the Finance tab.</li><li>Set the Estimate / Invoice toggle to Invoice.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1's Finance tab opens.</li></ul><p>Step 2:</p><ul><li>Invoice A shows in the modern layout.</li><li>Line 1 prints \"Replace tie rod\" in bold, then \"excessive play\", then a small grey heading in capitals reading \"SCOPE OF WORK\", then \"Both outer ends worn, replaced and aligned\", as in the \"Modern invoice\" panel of the attached picture of board 1.3.</li><li>No word such as \"Title\" or \"Description\" prints in front of \"Replace tie rod\" or \"excessive play\".</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10132 (Story 3, What Reaches QuickBooks)</p><ul><li><strong>Key Decisions:</strong> &ldquo;The narrative carries no label either, and \"Scope of work\" was considered and rejected. The two invoice views disagree about the label and agree about everything else. The legacy view prints the narrative as a plain paragraph under the description with no label. The modern view prints it under a \"Scope of work\" heading. Both print the title and the description unlabeled, both put the narrative last, and both drop it entirely when it is absent. Printing no label is the only choice that matches what a customer sees in either view. Rejected: \"Scope of work\", which only half our customers see, and \"Tech Story\", which is the one label a customer has objected to in writing (SV-6582).&rdquo;</li><li><strong>Feature Overview, Out of scope:</strong> &ldquo;The customer-facing estimate, invoice and credit documents. They have never printed either question and are untouched.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): board 1.3 \"What reaches QuickBooks\". Compare the screen with the pictures below; the expected results above come from the quotes above where the PRD speaks, and from the board pictures where it is silent about the look.</p><p>The \"Legacy invoice\" and \"Modern invoice\" panels of board 1.3 draw the printed invoice itself, a screen of ours: compare work order 1's invoice on the Finance tab with them.</p><p>Design pictures attached to this case:</p><ul><li>board-1.3-what-reaches-quickbooks.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Why the narrative carries no label Because the two invoice views disagree about the label and agree about everything else. Legacy prints the narrative as a plain paragraph under the description with no label at all. Modern prints it under a “Scope of work” heading. Both print the title and the description with no labels, both put the narrative last, and both drop it entirely when it is empty or reads “Tech story missing.” Printing no label is the only choice that matches what a customer sees in either view.&rdquo;</li><li>&ldquo;Modern invoice Replace tie rod excessive play Scope of work Both outer ends worn, replaced and aligned&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ },
+ "D-13": {
+  "sec": "DESIGN",
+  "section_id": 105855,
+  "case_id": null,
+  "part_of": null,
+  "title": "Design: Legacy invoice leaves out \"Tech story missing.\"",
+  "refs": "SV-10132",
+  "codes": [
+   "KD-4",
+   "KD-7",
+   "OOS-1",
+   "S3-R6"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [
+   "board-1.3-what-reaches-quickbooks.png"
+  ],
+  "fields": {
+   "title": "Design: Legacy invoice leaves out \"Tech story missing.\"",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10132",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure Legacy invoice layout is on (Settings, then Invoice), so work order 1's invoice prints in the legacy layout.</li><li>Make sure Require Tech Story is off (Settings, then the Work Orders tab), so line 1 can be completed without a tech story.</li><li>Create a work order for this test, work order 1, with one labor line, line 1, titled \"Replace tie rod\" with the description \"excessive play\".</li><li>Have line 1 opened in Edit Line and saved once with Save &amp; Close, without typing a tech story, so it holds \"Tech story missing.\".</li><li>Have line 1 completed without typing a tech story, and work order 1 completed and invoiced today as invoice A.</li><li>Start on work order 1.</li></ul>",
+   "custom_steps": "<ol><li>Click the Finance tab.</li><li>Set the Estimate / Invoice toggle to Invoice.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1's Finance tab opens.</li></ul><p>Step 2:</p><ul><li>Invoice A shows in the legacy layout, with line 1 printing \"Replace tie rod\" in bold and \"excessive play\" on the next line.</li><li>The words \"Tech story missing.\" appear nowhere on the invoice, while line 1's title and description do.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10132 (Story 3, What Reaches QuickBooks)</p><ul><li><strong>Key Decisions:</strong> &ldquo;The narrative carries no label either, and \"Scope of work\" was considered and rejected. The two invoice views disagree about the label and agree about everything else. The legacy view prints the narrative as a plain paragraph under the description with no label. The modern view prints it under a \"Scope of work\" heading. Both print the title and the description unlabeled, both put the narrative last, and both drop it entirely when it is absent. Printing no label is the only choice that matches what a customer sees in either view. Rejected: \"Scope of work\", which only half our customers see, and \"Tech Story\", which is the one label a customer has objected to in writing (SV-6582).&rdquo;</li><li><strong>Key Decisions:</strong> &ldquo;The \"Tech story missing.\" placeholder is never sent. The line dialog writes that literal sentence when nothing was typed. Both invoice views already refuse to show it to a customer, and the accounting records should not be the one place it appears. A line whose narrative is that placeholder is treated as having none.&rdquo;</li><li><strong>S3-R6:</strong> &ldquo;A line with no narrative ends after the description, with no trailing hyphen and no trailing space. A narrative is absent when the value is empty, is made only of spaces, or is the literal placeholder \"Tech story missing.\"; the three are treated identically, and none reaches QuickBooks. The Edit Line window writes the placeholder when an existing line with no tech story is saved from it; a line saved from New Line keeps an empty tech story. Neither depends on completion or on Require Tech Story.&rdquo;</li><li><strong>Feature Overview, Out of scope:</strong> &ldquo;The customer-facing estimate, invoice and credit documents. They have never printed either question and are untouched.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): board 1.3 \"What reaches QuickBooks\". Compare the screen with the pictures below; the expected results above come from the quotes above where the PRD speaks, and from the board pictures where it is silent about the look.</p><p>The \"Legacy invoice\" and \"Modern invoice\" panels of board 1.3 draw the printed invoice itself, a screen of ours: compare work order 1's invoice on the Finance tab with them.</p><p>Design pictures attached to this case:</p><ul><li>board-1.3-what-reaches-quickbooks.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Why the narrative carries no label Because the two invoice views disagree about the label and agree about everything else. Legacy prints the narrative as a plain paragraph under the description with no label at all. Modern prints it under a “Scope of work” heading. Both print the title and the description with no labels, both put the narrative last, and both drop it entirely when it is empty or reads “Tech story missing.” Printing no label is the only choice that matches what a customer sees in either view.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ },
+ "D-14": {
+  "sec": "DESIGN",
+  "section_id": 105855,
+  "case_id": null,
+  "part_of": null,
+  "title": "Design: Modern invoice leaves out \"Tech story missing.\"",
+  "refs": "SV-10132",
+  "codes": [
+   "KD-4",
+   "KD-7",
+   "OOS-1",
+   "S3-R6"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [
+   "board-1.3-what-reaches-quickbooks.png"
+  ],
+  "fields": {
+   "title": "Design: Modern invoice leaves out \"Tech story missing.\"",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10132",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Make sure Legacy invoice layout is off (Settings, then Invoice), so work order 1's invoice prints in the modern layout.</li><li>Make sure Require Tech Story is off (Settings, then the Work Orders tab), so line 1 can be completed without a tech story.</li><li>Create a work order for this test, work order 1, with one labor line, line 1, titled \"Replace tie rod\" with the description \"excessive play\".</li><li>Have line 1 opened in Edit Line and saved once with Save &amp; Close, without typing a tech story, so it holds \"Tech story missing.\".</li><li>Have line 1 completed without typing a tech story, and work order 1 completed and invoiced today as invoice A.</li><li>Start on work order 1.</li></ul>",
+   "custom_steps": "<ol><li>Click the Finance tab.</li><li>Set the Estimate / Invoice toggle to Invoice.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Work order 1's Finance tab opens.</li></ul><p>Step 2:</p><ul><li>Invoice A shows in the modern layout, with line 1 printing \"Replace tie rod\" in bold and then \"excessive play\".</li><li>The words \"Tech story missing.\" appear nowhere on the invoice, while line 1's title and description do.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10132 (Story 3, What Reaches QuickBooks)</p><ul><li><strong>Key Decisions:</strong> &ldquo;The narrative carries no label either, and \"Scope of work\" was considered and rejected. The two invoice views disagree about the label and agree about everything else. The legacy view prints the narrative as a plain paragraph under the description with no label. The modern view prints it under a \"Scope of work\" heading. Both print the title and the description unlabeled, both put the narrative last, and both drop it entirely when it is absent. Printing no label is the only choice that matches what a customer sees in either view. Rejected: \"Scope of work\", which only half our customers see, and \"Tech Story\", which is the one label a customer has objected to in writing (SV-6582).&rdquo;</li><li><strong>Key Decisions:</strong> &ldquo;The \"Tech story missing.\" placeholder is never sent. The line dialog writes that literal sentence when nothing was typed. Both invoice views already refuse to show it to a customer, and the accounting records should not be the one place it appears. A line whose narrative is that placeholder is treated as having none.&rdquo;</li><li><strong>S3-R6:</strong> &ldquo;A line with no narrative ends after the description, with no trailing hyphen and no trailing space. A narrative is absent when the value is empty, is made only of spaces, or is the literal placeholder \"Tech story missing.\"; the three are treated identically, and none reaches QuickBooks. The Edit Line window writes the placeholder when an existing line with no tech story is saved from it; a line saved from New Line keeps an empty tech story. Neither depends on completion or on Require Tech Story.&rdquo;</li><li><strong>Feature Overview, Out of scope:</strong> &ldquo;The customer-facing estimate, invoice and credit documents. They have never printed either question and are untouched.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): board 1.3 \"What reaches QuickBooks\". Compare the screen with the pictures below; the expected results above come from the quotes above where the PRD speaks, and from the board pictures where it is silent about the look.</p><p>The \"Legacy invoice\" and \"Modern invoice\" panels of board 1.3 draw the printed invoice itself, a screen of ours: compare work order 1's invoice on the Finance tab with them.</p><p>Design pictures attached to this case:</p><ul><li>board-1.3-what-reaches-quickbooks.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;Why the narrative carries no label Because the two invoice views disagree about the label and agree about everything else. Legacy prints the narrative as a plain paragraph under the description with no label at all. Modern prints it under a “Scope of work” heading. Both print the title and the description with no labels, both put the narrative last, and both drop it entirely when it is empty or reads “Tech story missing.” Printing no label is the only choice that matches what a customer sees in either view.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ },
+ "D-15": {
+  "sec": "DESIGN",
+  "section_id": 105855,
+  "case_id": null,
+  "part_of": null,
+  "title": "Design: An imported invoice line reads title - description in the report",
+  "refs": "SV-10132",
+  "codes": [
+   "PRE-S3-1",
+   "S3-R12"
+  ],
+  "automation": "AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO",
+  "held": true,
+  "pictures": [
+   "board-2.1-awkward-inputs.png"
+  ],
+  "fields": {
+   "title": "Design: An imported invoice line reads title - description in the report",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10132",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location, with Invoicing &amp; payments - View.</li><li>Import a file made for this test, file A, from the downloaded Invoices import template (Settings, then Invoices under Data Import), with one Labor row dated today: a new invoice number (invoice A), an existing customer, *Line Title \"Replace tie rod\", Line Description \"excessive play\" and Tech Story left empty, so invoice A exists only as an imported invoice.</li><li>Use Google Sheets (File, then Import, then Upload) to open downloaded files, so accented letters and character counts read correctly.</li><li>Start on Reports, then Export Reports in the Reports left menu, with the Export Report dialog open.</li></ul>",
+   "custom_steps": "<ol><li>Pick Customer Invoice in the Report Name list.</li><li>Set the date range to today.</li><li>Click Download.</li><li>Open the downloaded file in Google Sheets.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Customer Invoice is picked in Report Name.</li></ul><p>Step 2:</p><ul><li>The date range shows today's date.</li></ul><p>Step 3:</p><ul><li>A Customer Invoice file downloads.</li></ul><p>Step 4:</p><ul><li>Invoice A's labor row is in the file, and its ItemDescription cell reads exactly \"Replace tie rod - excessive play\", with nothing after \"excessive play\", as board 2.1 shows for a line imported from a previous system.</li></ul><p></p><p>This case follows the design, which differs from the page: it is held and is not run until Product answers whether an imported invoice appears in the downloaded Customer Invoice report and how its line reads.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10132 (Story 3, What Reaches QuickBooks)</p><ul><li><strong>S3-R12:</strong> &ldquo;An imported historical invoice never reaches the live QuickBooks sync, so its line text is unaffected whatever the import wrote into it.&rdquo;</li><li><strong>Story 3, Prerequisites:</strong> &ldquo;An invoice's line text is being produced, either by the live QuickBooks sync or by the downloadable Customer Invoice report.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): board 2.1 \"Awkward inputs\". Compare the screen with the pictures below; the expected results above come from the quotes above, except where this held design case follows the design.</p><p>Board 2.1 lists a line \"Imported from a previous system\" among the tech-story cases that reach the books and shows it as \"Replace tie rod - excessive play\"; the PRD says only that an imported invoice never reaches the live sync and its text is unaffected whatever the import wrote (question 12, divergence DV-04).</p><p>Design pictures attached to this case:</p><ul><li>board-2.1-awkward-inputs.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;The four flavours of tech story that reach the books&rdquo;</li><li>&ldquo;Imported from a previous system · may be empty Replace tie rod - excessive play&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO</p>"
+  }
+ },
+ "D-16": {
+  "sec": "DESIGN",
+  "section_id": 105855,
+  "case_id": null,
+  "part_of": null,
+  "title": "Design: An emptied ShopCoach editor shows its label above the prompt",
+  "refs": "SV-10131,SV-10130,SV-11850",
+  "codes": [
+   "S1-R3",
+   "S2-R1",
+   "S2-R2"
+  ],
+  "automation": "AUTOMATION: READY - EXPECT FAIL (SV-11850)",
+  "held": false,
+  "pictures": [],
+  "fields": {
+   "title": "Design: An emptied ShopCoach editor shows its label above the prompt",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10131,SV-10130,SV-11850",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an open work order, work order 1, that is not invoiced, for an asset with its year, make and model filled in, so ShopCoach can suggest lines for it.</li><li>Start on work order 1, on its Lines tab.</li></ul>",
+   "custom_steps": "<ol><li>Type \"brakes grinding\" in the ShopCoach Line Builder box on work order 1's Lines tab.</li><li>Click Build Lines.</li><li>Click the title cell of the first suggested line.</li><li>Delete all the text in the Title editor.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>\"brakes grinding\" shows in the ShopCoach Line Builder box of work order 1.</li></ul><p>Step 2:</p><ul><li>Suggested lines appear in a table, each with a title and a description.</li></ul><p>Step 3:</p><ul><li>An editor opens on the title, with the label \"Title\" at its top and the suggested title under the label.</li></ul><p>Step 4:</p><ul><li>The label \"Title\" stays at the top of the editor.</li><li>The grey prompt \"What are you doing?\" shows under the label, the same arrangement as the Title box of the New Line window.</li></ul><p></p><p>What you should see today: after you click Build Lines, nothing appears: no suggested lines, no error message, and the builder never shows that it has finished (seen on staging; whether the QA build sv10130 has the same fault is not known). This is a known problem and it is already reported — see https://shopview.atlassian.net/browse/SV-11850 (found on staging on 27 Oct 2026).</p><p>· If you see exactly that, mark this test FAILED and do not raise anything new.</p><p>· If it fails in a DIFFERENT way from what is described above, that is a NEW problem — please report it.</p><p>· If it PASSES, the fix has shipped: report it so the ticket can be closed and this note removed.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10131 (Story 2, The ShopCoach Line Builder), story SV-10130 (Story 1, The Work Order Line Dialog)</p><ul><li><strong>S2-R1:</strong> &ldquo;The line builder's two text fields are labeled \"Title\" and \"Description\".&rdquo;</li><li><strong>S2-R2:</strong> &ldquo;Both carry the same placeholders as S1-R3.&rdquo;</li><li><strong>S1-R3:</strong> &ldquo;The Title box carries the placeholder \"What are you doing?\" and the Description box carries \"Why are you doing it?\". Placeholder text shows while the box is empty and disappears as soon as there is a value. The labels Title and Description always sit at the top of their boxes, empty or filled, with the placeholder underneath; in production the label sat inside the empty box. This is the one layout change in the dialog.&rdquo;</li></ul><p>From: Jira tickets and comments under epic SV-11257, and bug SV-11850 (saved in sources/jira-2026-10-27/ALL-TICKETS-2026-10-27.md), read 27 Oct 2026</p><ul><li><strong>SV-10131, Nemanja Djuric, 8 Oct 2026 (Ready for QA testing):</strong> &ldquo;Click a suggested line's title cell: the editor is labelled \"Title\"; empty it and \"What are you doing?\" shows.&rdquo;</li><li><strong>SV-10391, Milan Zivanovic, 23 Sep 2026 (Checklist):</strong> &ldquo;The only visible layout change is that labels now always sit above their fields.&rdquo;</li><li><strong>SV-10131, Nemanja Djuric, 8 Oct 2026 (Ready for QA testing):</strong> &ldquo;Test plan (Work order → Lines → ShopCoach Line Builder → Build Lines)&rdquo;</li></ul><p>From: Tech plan \"Title and Description — Technical Implementation Plan\" (23 Sep 2026; re-shared by the QA lead on 27 Oct 2026, unchanged), read 27 Oct 2026</p><ul><li><strong>D5 (stack-label on all five fields):</strong> &ldquo;Quasar makes the placeholder transparent on a labeled, non-floated field (app/node_modules/quasar/src/components/field/QField.sass:399-403); without stack-label FR-003 silently fails.&rdquo;</li><li><strong>FR-006 (SV-10131):</strong> &ldquo;The builder's two editors are labelled \"Title\" / \"Description\" with the FR-003 placeholders; the empty-cell fallback text reads \"What are you doing?\" / \"Why are you doing it?\" in sentence case (S2-R1, S2-R2).&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): no board draws the ShopCoach line builder (the tech plan: \"No boards for Story 2 / Story 4 — accepted as text-only, verified by browser-walk.\"), so no design picture is attached; the expected results above come from the quotes above, and the comparison is with the line window's own Title box.</p><p></p><p>AUTOMATION: READY - EXPECT FAIL (SV-11850)</p>"
+  }
+ },
+ "D-17": {
+  "sec": "DESIGN",
+  "section_id": 105855,
+  "case_id": null,
+  "part_of": null,
+  "title": "Design: ShopCoach table rows keep their size when a cell shows its prompt",
+  "refs": "SV-10131,SV-11850",
+  "codes": [
+   "S2-R2"
+  ],
+  "automation": "AUTOMATION: READY - EXPECT FAIL (SV-11850)",
+  "held": false,
+  "pictures": [],
+  "fields": {
+   "title": "Design: ShopCoach table rows keep their size when a cell shows its prompt",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10131,SV-11850",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an open work order, work order 1, that is not invoiced, for an asset with its year, make and model filled in, so ShopCoach can suggest lines for it.</li><li>Start on work order 1, on its Lines tab.</li></ul>",
+   "custom_steps": "<ol><li>Type \"brakes grinding\" in the ShopCoach Line Builder box on work order 1's Lines tab.</li><li>Click Build Lines.</li><li>Take a screenshot of the suggested lines table.</li><li>Click the description cell of the first suggested line.</li><li>Delete all the text in the Description editor.</li><li>Click outside the table.</li><li>Take a second screenshot of the table.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>\"brakes grinding\" shows in the ShopCoach Line Builder box of work order 1.</li></ul><p>Step 2:</p><ul><li>Suggested lines appear in a table, each with a title and a description.</li><li>The table shows at least two suggested lines.</li></ul><p>Step 3:</p><ul><li>The first screenshot is saved, with every row of the table in it.</li></ul><p>Step 4:</p><ul><li>An editor labeled \"Description\" opens on the description.</li></ul><p>Step 5:</p><ul><li>The grey prompt \"Why are you doing it?\" shows in the empty editor.</li></ul><p>Step 6:</p><ul><li>The emptied cell reads \"Why are you doing it?\", with only the first W a capital.</li></ul><p>Step 7:</p><ul><li>Side by side, the two screenshots show the same row heights and the same column widths: the emptied cell's row is no taller or shorter than before, and the other cells sit where they were.</li></ul><p></p><p>What you should see today: after you click Build Lines, nothing appears: no suggested lines, no error message, and the builder never shows that it has finished (seen on staging; whether the QA build sv10130 has the same fault is not known). This is a known problem and it is already reported — see https://shopview.atlassian.net/browse/SV-11850 (found on staging on 27 Oct 2026).</p><p>· If you see exactly that, mark this test FAILED and do not raise anything new.</p><p>· If it fails in a DIFFERENT way from what is described above, that is a NEW problem — please report it.</p><p>· If it PASSES, the fix has shipped: report it so the ticket can be closed and this note removed.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10131 (Story 2, The ShopCoach Line Builder)</p><ul><li><strong>S2-R2:</strong> &ldquo;Both carry the same placeholders as S1-R3.&rdquo;</li></ul><p>From: Jira tickets and comments under epic SV-11257, and bug SV-11850 (saved in sources/jira-2026-10-27/ALL-TICKETS-2026-10-27.md), read 27 Oct 2026</p><ul><li><strong>SV-10391, Milan Zivanovic, 23 Sep 2026 (Checklist):</strong> &ldquo;Screenshot the table: cells must not grow or shift.&rdquo;</li><li><strong>SV-10131, Nemanja Djuric, 8 Oct 2026 (Ready for QA testing):</strong> &ldquo;Test plan (Work order → Lines → ShopCoach Line Builder → Build Lines)&rdquo;</li></ul><p>From: Tech plan \"Title and Description — Technical Implementation Plan\" (23 Sep 2026; re-shared by the QA lead on 27 Oct 2026, unchanged), read 27 Oct 2026</p><ul><li><strong>FR-006 (SV-10131):</strong> &ldquo;The builder's two editors are labelled \"Title\" / \"Description\" with the FR-003 placeholders; the empty-cell fallback text reads \"What are you doing?\" / \"Why are you doing it?\" in sentence case (S2-R1, S2-R2).&rdquo;</li><li><strong>Phase 3, browser-walk step 5:</strong> &ldquo;5. ShopCoach builder: both editors labelled, placeholders visible, empty cells read in sentence case; screenshot the table — cells must not grow/shift (risk R2).&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): no board draws the ShopCoach line builder (the tech plan: \"No boards for Story 2 / Story 4 — accepted as text-only, verified by browser-walk.\"), so no design picture is attached; the expected results above come from the quotes above, and the comparison is between the tester's two screenshots of the table.</p><p></p><p>AUTOMATION: READY - EXPECT FAIL (SV-11850)</p>"
+  }
  }
 }

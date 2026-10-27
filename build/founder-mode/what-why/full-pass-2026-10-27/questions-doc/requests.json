@@ -1,0 +1,546 @@
+{
+ "requests": [
+  {
+   "insertText": {
+    "location": {
+     "index": 6033
+    },
+    "text": "\nNew questions, 27 October 2026\nDear Sir, thank you for your answers of 14 October; we have used all eight. We have now checked every What/Why test case again against your page (version 15, 14 October), the four stories, the design and the engineering plan. These points are still open. Each one decides what a tester marks as pass or fail, and one test waits for your answer. Could you please write your answer under each question? A short answer is perfect. The new questions have green headings.\n9. The message for a Title that is too long\nWhat the page says: the only message named for the Title box is \"Title is a required field\" (S1-R6), and the line window's checks are otherwise unchanged (S1-R7).\nWhat the developer's note says (19 October): a Title over 255 characters shows \"Title cannot be longer than 255 characters\" from the 256th character, and the line cannot be saved while it shows.\nQuestion: (a) Is \"Title cannot be longer than 255 characters\" the message testers should expect? (b) Did the window show a length message before this change (for example \"Line Name cannot be longer than 255 characters\"), so this is only the new name?\nAnswer:\n10. The Invoices import messages still use the old words\nWhat the page says: the two fields are called Title and Description everywhere a person reads them (Feature Overview, first point).\nWhat the developer's note says (8 October): the Invoices import's messages for a row keep the old words: an empty *Line Title still gives \"Line name cannot be empty.\", and the length message mentions \"line description\".\nQuestion: (a) Should those import messages use the new names (Line Title and Line Description, or Title and Description) after this change? (b) Or are they left for a later release, so testers should expect the old words?\nAnswer:\n11. A Title starting with =, +, - or @ in the downloaded report\nWhat the page says: the values are carried as they were written (S3-R8, S3-R9).\nWhat the developer's note says (8 October): the downloaded Customer Invoice report has never protected against spreadsheet formulas. Now that a line no longer starts with \"What are you doing?: \", a Title that starts with =, +, - or @ opens as a formula in Excel.\nQuestion: is that acceptable for this release, or should testers expect such a Title to open as plain text?\nAnswer:\n12. An imported invoice in the Customer Invoice report\nWhat the design shows: the \"Awkward inputs\" board lists a line \"Imported from a previous system\" among the texts that reach the books, reading \"Replace tie rod - excessive play\".\nWhat the page says: an imported invoice never reaches the live QuickBooks sync, and its text is unaffected whatever the import wrote (S3-R12).\nQuestion: (a) Does an imported invoice appear in the downloaded Customer Invoice report? (b) If it does, should its line read \"Title - Description\" like any other line, as the board shows? (c) If not, what should the report show for it? One test waits for your answer.\nAnswer:\n13. How an empty ShopCoach cell looks\nWhat the developer's note says: in the ShopCoach line builder, an emptied title or description cell shows \"What are you doing?\" or \"Why are you doing it?\" in grey italic letters.\nWhat the page and the design say: nothing about how the empty cell looks.\nQuestion: should testers expect grey italic letters there, or is the look of the empty cell not part of this change?\nAnswer:\n14. The \"Scope of work\" heading when a line has no tech story\nWhat the page says: on the modern invoice the tech story prints under a \"Scope of work\" heading (section 3). When a line has no tech story, or it reads \"Tech story missing.\", the tech story is left out.\nQuestion: is the \"Scope of work\" heading left out as well, so nothing prints under the description?\nAnswer:\nThank you very much, Sir.\nBilal Muzamil"
+   }
+  },
+  {
+   "updateParagraphStyle": {
+    "range": {
+     "startIndex": 6034,
+     "endIndex": 9837
+    },
+    "paragraphStyle": {
+     "namedStyleType": "NORMAL_TEXT"
+    },
+    "fields": "namedStyleType"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 6034,
+     "endIndex": 9837
+    },
+    "textStyle": {},
+    "fields": "bold,italic,foregroundColor"
+   }
+  },
+  {
+   "updateParagraphStyle": {
+    "range": {
+     "startIndex": 6034,
+     "endIndex": 6064
+    },
+    "paragraphStyle": {
+     "namedStyleType": "HEADING_2"
+    },
+    "fields": "namedStyleType"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 6034,
+     "endIndex": 6064
+    },
+    "textStyle": {
+     "foregroundColor": {
+      "color": {
+       "rgbColor": {
+        "red": 0.11,
+        "green": 0.49,
+        "blue": 0.22
+       }
+      }
+     }
+    },
+    "fields": "foregroundColor"
+   }
+  },
+  {
+   "updateParagraphStyle": {
+    "range": {
+     "startIndex": 6532,
+     "endIndex": 6575
+    },
+    "paragraphStyle": {
+     "namedStyleType": "HEADING_2"
+    },
+    "fields": "namedStyleType"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 6532,
+     "endIndex": 6575
+    },
+    "textStyle": {
+     "foregroundColor": {
+      "color": {
+       "rgbColor": {
+        "red": 0.11,
+        "green": 0.49,
+        "blue": 0.22
+       }
+      }
+     }
+    },
+    "fields": "foregroundColor"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 6576,
+     "endIndex": 6595
+    },
+    "textStyle": {
+     "bold": true
+    },
+    "fields": "bold"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 6739,
+     "endIndex": 6783
+    },
+    "textStyle": {
+     "bold": true
+    },
+    "fields": "bold"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 6934,
+     "endIndex": 6943
+    },
+    "textStyle": {
+     "bold": true
+    },
+    "fields": "bold"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 7185,
+     "endIndex": 7192
+    },
+    "textStyle": {
+     "bold": true
+    },
+    "fields": "bold"
+   }
+  },
+  {
+   "updateParagraphStyle": {
+    "range": {
+     "startIndex": 7193,
+     "endIndex": 7249
+    },
+    "paragraphStyle": {
+     "namedStyleType": "HEADING_2"
+    },
+    "fields": "namedStyleType"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 7193,
+     "endIndex": 7249
+    },
+    "textStyle": {
+     "foregroundColor": {
+      "color": {
+       "rgbColor": {
+        "red": 0.11,
+        "green": 0.49,
+        "blue": 0.22
+       }
+      }
+     }
+    },
+    "fields": "foregroundColor"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 7250,
+     "endIndex": 7269
+    },
+    "textStyle": {
+     "bold": true
+    },
+    "fields": "bold"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 7382,
+     "endIndex": 7425
+    },
+    "textStyle": {
+     "bold": true
+    },
+    "fields": "bold"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 7602,
+     "endIndex": 7611
+    },
+    "textStyle": {
+     "bold": true
+    },
+    "fields": "bold"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 7824,
+     "endIndex": 7831
+    },
+    "textStyle": {
+     "bold": true
+    },
+    "fields": "bold"
+   }
+  },
+  {
+   "updateParagraphStyle": {
+    "range": {
+     "startIndex": 7832,
+     "endIndex": 7895
+    },
+    "paragraphStyle": {
+     "namedStyleType": "HEADING_2"
+    },
+    "fields": "namedStyleType"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 7832,
+     "endIndex": 7895
+    },
+    "textStyle": {
+     "foregroundColor": {
+      "color": {
+       "rgbColor": {
+        "red": 0.11,
+        "green": 0.49,
+        "blue": 0.22
+       }
+      }
+     }
+    },
+    "fields": "foregroundColor"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 7896,
+     "endIndex": 7915
+    },
+    "textStyle": {
+     "bold": true
+    },
+    "fields": "bold"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 7976,
+     "endIndex": 8019
+    },
+    "textStyle": {
+     "bold": true
+    },
+    "fields": "bold"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 8239,
+     "endIndex": 8248
+    },
+    "textStyle": {
+     "bold": true
+    },
+    "fields": "bold"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 8347,
+     "endIndex": 8354
+    },
+    "textStyle": {
+     "bold": true
+    },
+    "fields": "bold"
+   }
+  },
+  {
+   "updateParagraphStyle": {
+    "range": {
+     "startIndex": 8355,
+     "endIndex": 8409
+    },
+    "paragraphStyle": {
+     "namedStyleType": "HEADING_2"
+    },
+    "fields": "namedStyleType"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 8355,
+     "endIndex": 8409
+    },
+    "textStyle": {
+     "foregroundColor": {
+      "color": {
+       "rgbColor": {
+        "red": 0.11,
+        "green": 0.49,
+        "blue": 0.22
+       }
+      }
+     }
+    },
+    "fields": "foregroundColor"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 8410,
+     "endIndex": 8432
+    },
+    "textStyle": {
+     "bold": true
+    },
+    "fields": "bold"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 8589,
+     "endIndex": 8608
+    },
+    "textStyle": {
+     "bold": true
+    },
+    "fields": "bold"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 8732,
+     "endIndex": 8741
+    },
+    "textStyle": {
+     "bold": true
+    },
+    "fields": "bold"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 9001,
+     "endIndex": 9008
+    },
+    "textStyle": {
+     "bold": true
+    },
+    "fields": "bold"
+   }
+  },
+  {
+   "updateParagraphStyle": {
+    "range": {
+     "startIndex": 9009,
+     "endIndex": 9046
+    },
+    "paragraphStyle": {
+     "namedStyleType": "HEADING_2"
+    },
+    "fields": "namedStyleType"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 9009,
+     "endIndex": 9046
+    },
+    "textStyle": {
+     "foregroundColor": {
+      "color": {
+       "rgbColor": {
+        "red": 0.11,
+        "green": 0.49,
+        "blue": 0.22
+       }
+      }
+     }
+    },
+    "fields": "foregroundColor"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 9047,
+     "endIndex": 9078
+    },
+    "textStyle": {
+     "bold": true
+    },
+    "fields": "bold"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 9226,
+     "endIndex": 9259
+    },
+    "textStyle": {
+     "bold": true
+    },
+    "fields": "bold"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 9300,
+     "endIndex": 9309
+    },
+    "textStyle": {
+     "bold": true
+    },
+    "fields": "bold"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 9417,
+     "endIndex": 9424
+    },
+    "textStyle": {
+     "bold": true
+    },
+    "fields": "bold"
+   }
+  },
+  {
+   "updateParagraphStyle": {
+    "range": {
+     "startIndex": 9425,
+     "endIndex": 9486
+    },
+    "paragraphStyle": {
+     "namedStyleType": "HEADING_2"
+    },
+    "fields": "namedStyleType"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 9425,
+     "endIndex": 9486
+    },
+    "textStyle": {
+     "foregroundColor": {
+      "color": {
+       "rgbColor": {
+        "red": 0.11,
+        "green": 0.49,
+        "blue": 0.22
+       }
+      }
+     }
+    },
+    "fields": "foregroundColor"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 9487,
+     "endIndex": 9506
+    },
+    "textStyle": {
+     "bold": true
+    },
+    "fields": "bold"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 9690,
+     "endIndex": 9699
+    },
+    "textStyle": {
+     "bold": true
+    },
+    "fields": "bold"
+   }
+  },
+  {
+   "updateTextStyle": {
+    "range": {
+     "startIndex": 9790,
+     "endIndex": 9797
+    },
+    "textStyle": {
+     "bold": true
+    },
+    "fields": "bold"
+   }
+  }
+ ],
+ "writeControl": {
+  "requiredRevisionId": "AHj4eMRCS_GOeaseKzX0i-kQe4_CaUIRvDmfWYHFZjnwbrQs7a096oCB13rhqKIEbwzyyd6Sww8UT-acRoDl6LT9nzICxHwLS-FkL8h0abU"
+ },
+ "intro_at": 6065,
+ "map": {
+  "9": "Q9",
+  "10": "Q10",
+  "11": "Q11",
+  "12": "Q12",
+  "13": "Q13",
+  "14": "Q14"
+ }
+}

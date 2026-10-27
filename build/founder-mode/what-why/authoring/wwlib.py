@@ -254,7 +254,7 @@ def design_block(c):
     head = (f'Design canvas "What Are You Doing / Why Are You Doing It?" ({DESIGN_URL}), copy re-read on 27 Oct 2026 (its one change '
             f'since 13 Oct: the New Line board\'s "Title *" now reads "Title")')
     if d["boards"]:
-        if all(b in TEXT_BOARDS for b in d["boards"]):
+        if all(b in TEXT_BOARDS for b in d["boards"]) and c["sec"] != "DESIGN":   # D-11..D-14 compare board 1.3's printed-invoice panels, a screen
             how = ". These boards draw the line text, not a screen: the case types their example values where they fit; "
         else:
             how = ". Compare the screen with the pictures below; " if d["pictures"] else ". Compare the screen with the board; "
