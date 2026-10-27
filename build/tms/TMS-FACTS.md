@@ -194,3 +194,17 @@ Key holder: the QA lead's own key (TMS user **id 4**, role `user`). Stored only 
 - Runs are created with `external_key = testrail-run-<id>` so a re-run returns the existing run (idempotent, [API-DOC]).
 - TestRail user 3 = TMS user 4 (same email).
 - Text the API stores is HTML-entity-encoded (`'` → `&#039;`); compare rendered text.
+
+## 9 · Decisions executed 2026-10-27 (QA lead: "1. Delete · 2. Option A · 3. Yes")
+
+- **Deleted (soft) 23 TMS-only cases** in Splitting Sales Representatives (5), A/R and A/P (6), Credit Terms (12).
+  Each was only in the nightly runs 1/2/3/5, Untested, no results. Restorable with `POST /cases/{id}/restore`.
+- **Created 7 TestRail-only A/R and A/P cases in TMS** (C797940–C797946 → **TMS C10000000–C10000006**),
+  read back identical, and added to TMS run 7 (now 356 = TestRail run 549).
+  **TMS-native case numbers start at 10,000,000.** Mapping kept in `build/tms/tr-tms-case-map.csv`; `tms_sync.py` reads it.
+- **First TMS → TestRail sync: 74 results** from TMS run 4 (recorded by **Nebojsa Glavinic**, TMS user 3)
+  copied to TestRail run 552 with `add_results_for_cases`. Run 552 now reads 38 Passed · 34 Failed · 2 Blocked ·
+  225 Untested — identical to TMS run 4, every case checked. TestRail shows the API-key owner (Bilal) as author,
+  so each comment names the real tester and TMS timestamp. **This overrides, by the QA lead's explicit
+  instruction, the older playbook §J line "Log ONLY Passed cases to a run"** — that line is TestRail-era
+  guidance and should be reviewed under the TMS changeover (Rule 72 proposal pending).
