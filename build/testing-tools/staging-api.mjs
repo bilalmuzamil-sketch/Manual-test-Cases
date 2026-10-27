@@ -9,6 +9,7 @@
 // Usage (import): import { api } from './staging-api.mjs';
 import fs from 'fs';
 
+if (!fs.existsSync('/tmp/cln/cookies.json')) { console.error('No staging sign-in: put the staging cookies '+ '{sv_sso_session, PHPSESSID, cf_clearance} in /tmp/cln/cookies.json (they last about 24 hours).'); process.exit(3); }
 const c = JSON.parse(fs.readFileSync('/tmp/cln/cookies.json', 'utf8'));
 const cookieHeader = Object.entries(c).map(([k, v]) => `${k}=${v}`).join('; ');
 const UA = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';

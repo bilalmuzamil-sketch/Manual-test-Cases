@@ -23,7 +23,7 @@ const cookieDomain = env => env==='branch' ? '.qa.shopview.com' : '.shopview.com
 
 // Self-healing bridge (2026-10-27): a dead MITM bridge used to fail every run with ERR_PROXY_CONNECTION_FAILED
 // until it was restarted by hand. Check the port is alive before each run; if not, start a fresh bridge.
-function port(dir){
+export function port(dir){
   const alive=p=>p&&spawnSync('bash',['-c',`(echo > /dev/tcp/127.0.0.1/${p}) 2>/dev/null`]).status===0;
   let p=fs.existsSync(dir+'/port.txt')?fs.readFileSync(dir+'/port.txt','utf8').trim():'';
   if(alive(p)) return p;
