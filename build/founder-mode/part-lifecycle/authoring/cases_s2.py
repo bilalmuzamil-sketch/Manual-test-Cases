@@ -143,7 +143,7 @@ C("S2-07", "S2", "When some parts fail, only the failed parts stay ticked",
   design=dict(boards=["4.3", "4.4"]))
 
 C("S2-08", "S2", "With nothing ticked Deactivate is disabled and its hover text says why",
-  [ADMIN, "Have an active part, part A.", "Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box."],
+  [ADMIN, "Create an active part, part A, for this test.", "Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box."],
   [MENU, "Click Deactivate parts.", "Hover over Deactivate on the dark bar.", "Click Deactivate.", "Click the part A row.", "Hover over Deactivate.",
    "Click the part A row again.", "Hover over Deactivate.", X],
   [["The menu opens."],
@@ -257,7 +257,7 @@ C("S2-13b", "S2", "More than 200 ticked parts disables Activate on the Inactive 
   design=dict(boards=["4.9", "4.6"]))
 
 C("S2-14", "S2", "Search, filters, sorting and scrolling keep working in bulk mode",
-  [ADMIN, "Have three active parts: part A and part C in category A, and part B in category B.",
+  [ADMIN, "Have three active parts: part A and part C in category A, and part B in category B, so the category A filter leaves part B out.",
    "Give parts A, B and C part numbers that start with the same text, so one search lists them, and descriptions that run A to Z in the order part A, part B, part C.",
    "Make sure the test location has more than 30 active parts, so the list loads more rows as you scroll.", START],
   [MENU, "Click Deactivate parts.", TYPE_SHARED, "Pick category A in the Category filter.", "Pick All categories in the Category filter.",
@@ -276,7 +276,7 @@ C("S2-14", "S2", "Search, filters, sorting and scrolling keep working in bulk mo
   design=dict(boards=["4.2", "4.3"]))
 
 C("S2-15", "S2", "Changing the search or a filter clears the ticks but sorting keeps them",
-  [ADMIN, "Have three active parts: part A and part B in category A, and part C in category B.", SHARED("parts A, B and C", 3),
+  [ADMIN, "Have three active parts: part A and part B in category A, and part C in category B, so the category A filter leaves part C out.", SHARED("parts A, B and C", 3),
    "Use a longer search text that still matches all three part numbers.", START],
   [TYPE_SHARED, MENU, "Click Deactivate parts.", "Click the part A row.", "Click the part B row.", "Click the Description column heading.",
    "Click the Description column heading again.", "Replace the search text with the longer search text.", "Click the part A row.", "Click the part B row.",
@@ -373,9 +373,9 @@ C("S2-19b", "S2", "Activating a part that has a core charge also activates its c
   design=dict(note="no board draws a core; the expected results above come from the quotes above."))
 
 C("S2-20", "S2", "The work order lines bulk bar is unchanged and its X shows Clear selection",
-  [ADMIN, "Create an open work order, work order 1, for this test, with two lines.",
+  [ADMIN, "Create an open work order for this test, with two lines.",
    "Have screenshots of the work order lines bulk bar from the build before this one, in the light and the dark theme, so the bar can be compared.",
-   LIGHT, "Start on work order 1, on its Lines tab."],
+   LIGHT, "Start on that work order's Lines tab."],
   ["Tick the checkbox of the first line.", "Tick the checkbox of the second line.", "Hover over the X at the right end of the bar.",
    "Click your avatar at the top right.", "Click Dark.", "Click your avatar at the top right again.", "Click Light.", "Click the X at the right end of the bar."],
   [["A bulk bar appears, with a round badge reading 1."],

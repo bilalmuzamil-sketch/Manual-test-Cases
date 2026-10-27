@@ -32,6 +32,9 @@ for m in MODS:
     if not os.path.exists(f"{L.D}/{m}.py"): continue
     mod = importlib.import_module(m)
     if getattr(mod, "WRITTEN", False): WRITTEN.add(getattr(mod, "SECTION", m.replace("cases_", "").upper()))
+PLANT = os.environ.get("PL_PLANT")          # gate_selftest.py plants one known fault; nothing is written while planting
+if PLANT:
+    import plants; plants.plant(PLANT)
 probs = []
 P = probs.append
 # ---------------------------------------------------------------- per case
@@ -143,7 +146,7 @@ KIND = [("bin location", r"bin locations?"), ("work order", r"work orders?"), ("
         ("part sale", r"part sales?"), ("part", r"parts?"), ("location", r"locations?"), ("category", r"categor(?:y|ies)"), ("user", r"users?"),
         ("role", r"roles?"), ("vendor", r"vendors?"), ("customer", r"customers?"), ("estimate", r"estimates?"), ("return", r"returns?"),
         ("credit", r"credits?"), ("date", r"dates?"), ("line", r"lines?"), ("description", r"descriptions?")]
-REC = re.compile(r"(?<![\w-])(?i:(" + "|".join(p for _, p in KIND) + r")) ((?:[A-Z]|\d)(?:(?:, | and |, and )(?:[A-Z]|\d))*)(?![\w-])")
+REC = re.compile(r"(?<![\w-])(?i:(" + "|".join(p for _, p in KIND) + r")) ([A-Z](?:(?:, | and |, and )[A-Z])*|\d(?:(?:, | and |, and )\d)*)(?![\w-])")
 def named(text):
     out = set()
     for m in REC.finditer(text):
@@ -186,6 +189,8 @@ for c in L.CASES:
     out[c["key"]] = dict(sec=c["sec"], section_id=L.SECTIONS.get(c["sec"]), case_id=int(r["case_id"]) if r else None,
                          part_of=c["part_of"], title=c["title"], refs=f["refs"], codes=sorted(L.codes_of(c)), automation=c["marker"],
                          held=c["marker"] != L.MARKER, pictures=L.design_of(c)["pictures"], fields=f)
+if PLANT:
+    print("PROBLEM lines:", len(probs)); sys.exit(1 if probs else 0)
 json.dump(out, open(f"{L.D}/proposals.json", "w"), indent=1, ensure_ascii=False)
 json.dump({"prd": f"Confluence 829227015 version {L.PRD_VERSION}", "built": "by authoring/build.py", "counts": dict(st_counts),
            "deleted_cases": L.DELETED, "no_manual_ufs": RM.NO_MANUAL_UFS, "codes": reqmap},

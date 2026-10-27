@@ -1,0 +1,72 @@
+{
+ "_about": "Design-vs-PRD differences for Parts Lifecycle (Rule 130). Format of build/testing-tools/spec_to_design_check.py: \"<code>|<words>\" -> {outcome QUESTION-SENT / PO-RULED / QA-LEAD-RULED / DESIGN-SILENT / SHOWN-WHEN-DRIVEN, where, cases}. Carried 27 Oct 2026 (Phase A) from the 8 Oct and 13 Oct design checks: 6 rows, all ruled on 9 Oct 2026, and the 13 Oct design matches the PRD on all six. The 13 Oct text inventory found 0 SPEC-CONFLICT. The design canvas is unchanged since 13 Oct (re-read 27 Oct). Phase D adds every new difference from its both-ways check (PRD v33 against the design) here, each with a held design-version case and a question in full-pass-2026-10-27/QUESTIONS.json. Open rows now: 0.",
+ "S4-R3|Inventory Tracking hover text (board 5.1 lacked the Inventory Value sentence)": {
+  "outcome": "PO-RULED",
+  "where": "Chris Ward, question sheet of 9 Oct 2026 (https://docs.google.com/spreadsheets/d/1qVNQ2RtjBUJP7hor79Pjo9Y5mKmYaGM55W3rLgkme7k/edit), answer 2: \"A) The PRD is right on all five. The design will be updated.\" Design redrawn by 13 Oct 2026: board 5.1 now shows all three sentences (sources/design-2026-10-13-artifact/DESIGN-CHANGES-2026-10-13.md).",
+  "cases": [
+   "C425627"
+  ],
+  "keys": [
+   "S4-05"
+  ],
+  "ruled": "2026-10-09",
+  "design_matches_prd_since": "2026-10-13",
+  "carried_from": "8 Oct / 13 Oct 2026 design checks"
+ },
+ "S9-R10|Canned job warning wording (board 6.5 showed one message per part)": {
+  "outcome": "PO-RULED",
+  "where": "Chris Ward, question sheet of 9 Oct 2026 (https://docs.google.com/spreadsheets/d/1qVNQ2RtjBUJP7hor79Pjo9Y5mKmYaGM55W3rLgkme7k/edit), answer 2: \"A) The PRD is right on all five. The design will be updated.\" Design redrawn by 13 Oct 2026: board 6.5 shows the single warning \"These parts are inactive and were not added: GREASETUBE.\"",
+  "cases": [],
+  "keys": [
+   "S9 cases (Phase B)"
+  ],
+  "ruled": "2026-10-09",
+  "design_matches_prd_since": "2026-10-13",
+  "carried_from": "8 Oct / 13 Oct 2026 design checks"
+ },
+ "S10-R25|Where \"Changed at\" shows (canvas note correct-note-4)": {
+  "outcome": "PO-RULED",
+  "where": "Chris Ward, question sheet of 9 Oct 2026 (https://docs.google.com/spreadsheets/d/1qVNQ2RtjBUJP7hor79Pjo9Y5mKmYaGM55W3rLgkme7k/edit), answer 2: \"A) The PRD is right on all five. The design will be updated.\" Canvas note now says the entries at the change location carry no \"Changed at\" (13 Oct 2026).",
+  "cases": [],
+  "keys": [
+   "S10 / S13 cases (Phases B, C)"
+  ],
+  "ruled": "2026-10-09",
+  "design_matches_prd_since": "2026-10-13",
+  "carried_from": "8 Oct / 13 Oct 2026 design checks"
+ },
+ "S8-R7|Which saves of an untracked part need Delete (canvas note create-note-6)": {
+  "outcome": "PO-RULED",
+  "where": "Chris Ward, question sheet of 9 Oct 2026 (https://docs.google.com/spreadsheets/d/1qVNQ2RtjBUJP7hor79Pjo9Y5mKmYaGM55W3rLgkme7k/edit), answer 2: \"A) The PRD is right on all five. The design will be updated.\" Canvas note now carries the S8-R7 / S8-N1a wording (13 Oct 2026).",
+  "cases": [],
+  "keys": [
+   "S8 cases (Phase B)"
+  ],
+  "ruled": "2026-10-09",
+  "design_matches_prd_since": "2026-10-13",
+  "carried_from": "8 Oct / 13 Oct 2026 design checks"
+ },
+ "S10-R21|Part History column widths (board 2.6 narrowed Staff, Date and Time)": {
+  "outcome": "PO-RULED",
+  "where": "Chris Ward, question sheet of 9 Oct 2026 (https://docs.google.com/spreadsheets/d/1qVNQ2RtjBUJP7hor79Pjo9Y5mKmYaGM55W3rLgkme7k/edit), answer 2: \"A) The PRD is right on all five. The design will be updated.\" Canvas note now says board 2.6 keeps the production column widths and the build must be fixed to match (13 Oct 2026): a build check, not a design difference.",
+  "cases": [],
+  "keys": [
+   "S10 cases (Phase B)"
+  ],
+  "ruled": "2026-10-09",
+  "design_matches_prd_since": "2026-10-13",
+  "carried_from": "8 Oct / 13 Oct 2026 design checks"
+ },
+ "S4-R8|Quantity column label \"Total Quantity\" vs \"Total Qty\"": {
+  "outcome": "PO-RULED",
+  "where": "Chris Ward, question sheet of 9 Oct 2026, answer 3: \"A) Total Qty. This update doesn't change it: production already says Total Qty (shortened by SV-10027 on 28 Sep). The design's \"before\" screen is older than that.\" Boards 5.3, 5.6 and 5.7 say \"Total Qty\" since 13 Oct 2026.",
+  "cases": [],
+  "keys": [
+   "S4-03",
+   "S5 cases"
+  ],
+  "ruled": "2026-10-09",
+  "design_matches_prd_since": "2026-10-13",
+  "carried_from": "8 Oct / 13 Oct 2026 design checks"
+ }
+}

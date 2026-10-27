@@ -10,6 +10,13 @@ Catalog→Part Library rename, editable part number.
 **Build:** ❌ No QA branch yet. **PROVISIONAL — the spec is in review**; every case is
 `AUTOMATION: HOLD` naming the in-review status (Rules 49/85).
 
+## 🟡 IN PROGRESS — 27 Oct 2026 full pass against PRD v33 (draft, nothing written to TestRail yet)
+- QA lead: "Full pass" and "Delete all 12" (the "Retire OR retest" cases; the coordinator deletes them). Brief: `full-pass-2026-10-27/WORKER-BRIEF.md`.
+- Phase A done (27 Oct): library `authoring/` (pllib, gates, quote parser from the v33 requirement lines), `testrail-id-map.csv` (274 live cases → keys),
+  `REQUIREMENT-MAP.json` (311 codes), `TICKET-LEDGER.json` (24 tickets), `DESIGN-DIVERGENCE-REGISTER.json` (6 carried rows, 0 open),
+  `full-pass-2026-10-27/QUESTIONS.json` (Q1-Q7), Stories 1-5 written: 73 cases (62 rewritten keeping C-ids, 10 split parts, 1 new). Handoff for
+  Phases B, C, D: `PHASE-A-HANDOFF.md`. Pass record: `full-pass-2026-10-27/PASS-REPORT-PHASE-A.md`.
+
 ## 🟢 CURRENT STATE — 14 Oct 2026 (PRD v29 + Product's answers) — read this first
 - PRD v29 (Chris Ward wrote his 13 Oct answers into it): 302 codes. All 262 cases re-read and re-written, 19 new (C573668–C573686); 302/302 covered; 57 new setup docs (224 kept). Retire proposals: C425659, C425758 (dashboard figure removed). All 281 in Nightly run 539. Record: `update-2026-10-14/FULL-UPDATE-2026-10-14.md`.
 

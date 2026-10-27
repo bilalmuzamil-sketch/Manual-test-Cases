@@ -22,5 +22,5 @@ NO_MANUAL_UFS = {
 }
 # A code covered by a case that lives in another story's section (the case quotes the code; checked once that section is written).
 OTHER_STORY = {
-    "S5-N2": "S8",     # a user without Delete sees the tracking switch disabled: the permission cases (S8-07, C154781)
+    "S5-N2": "S8",     # a user without Delete sees the tracking switch disabled: S8-02 (C154781)
 }

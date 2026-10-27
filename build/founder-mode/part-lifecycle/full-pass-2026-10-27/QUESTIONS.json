@@ -1,0 +1,183 @@
+{
+ "_about": "Open questions for the Parts Lifecycle full pass (27 Oct 2026). Plain words, one row each, with the case keys held on it. Not sent: the coordinator adds the OPEN rows at the bottom of the existing question sheet in a new colour (Rule 131) and lists them in build/PO-QUESTIONS-OPEN.md (Rule 132). Phases B, C and D append rows Q8 onward.",
+ "questions": [
+  {
+   "id": "Q1",
+   "status": "OPEN",
+   "carried_from": "14 Oct 2026 open item 1",
+   "phase": "A (also C)",
+   "topic": "Part Lifecycle: seeing a core's own state and history",
+   "question": "The spec says a core's name and history show on \"the core's own Part History page\" (S5-E3), but no screen we know opens that page: the core has no row on the Inventory list, in Export or on the Part Library list. (a) How does a user open a core's own Part History page? (b) Does the global search in the top bar list a core (\"Core for …\"), with the grey Inactive tag and \"Not Tracked\" like any other part?",
+   "options": "(a) A) From the part's own Part History page (please say where). B) From Parts → Returns (\"Core for …\" rows). C) There is no way on screen.\n(b) A) Yes, cores are listed like other parts. B) No, cores are not listed.",
+   "sources": [
+    "PRD v33 S5-E3",
+    "PRD v33 S13-R15",
+    "PRD v33 S10-R26",
+    "QA lead's answer of 9 Oct 2026, situation 5"
+   ],
+   "held": [
+    {
+     "key": "S5-18",
+     "case": "C573677"
+    },
+    {
+     "key": "S13-03",
+     "case": "C154838",
+     "phase": "C"
+    },
+    {
+     "key": "S13-13",
+     "case": "C425691",
+     "phase": "C"
+    },
+    {
+     "key": "S10-22",
+     "case": "C425769",
+     "phase": "B"
+    },
+    {
+     "key": "S10-29",
+     "case": "C425777",
+     "phase": "B"
+    }
+   ],
+   "depends_not_held": [
+    {
+     "key": "S2-19",
+     "case": "C425603"
+    },
+    {
+     "key": "S2-19b",
+     "case": null
+    },
+    {
+     "key": "S5-08",
+     "case": "C425634"
+    },
+    {
+     "key": "S5-09",
+     "case": "C425635"
+    }
+   ],
+   "v33_check": "v33 has the same S5-E3 text as v29 (no route named). Still open."
+  },
+  {
+   "id": "Q2",
+   "status": "OPEN",
+   "carried_from": "14 Oct 2026 open item 2",
+   "phase": "A",
+   "topic": "Part Lifecycle: a part with no bin location",
+   "question": "Turning tracking on for a part with no bin location gives it the location's default bin (S5-R7). In the part window the last bin can never be removed (Story 4 note), and the import puts a part with no bin into an \"Unassigned\" bin (S7-N10). How does a part end up with no bin location at all, so a tester can check S5-R7?",
+   "options": "A) Delete its only bin location in Bin Locations while the part holds 0 there.\nB) Save an untracked part with its bin row removed (the window allows it while tracking is off).\nC) Only old data has such parts.\nD) Another way (please say).",
+   "sources": [
+    "PRD v33 S5-R7",
+    "PRD v33 Story 4 context note",
+    "PRD v33 S7-N10",
+    "PRD v33 S5-E2"
+   ],
+   "held": [
+    {
+     "key": "S5-01",
+     "case": "C154770"
+    }
+   ],
+   "v33_check": "v33 unchanged on this point. Still open. S5-01 is written with route A and held until answered."
+  },
+  {
+   "id": "Q3",
+   "status": "OPEN",
+   "carried_from": "14 Oct 2026 open item 3",
+   "phase": "C",
+   "topic": "Part Lifecycle: the Delete button in an open Edit Library Part window",
+   "question": "If the last part using a Part Library entry is deleted while the entry's \"Edit Library Part\" window is open in another tab, does that window's Delete button become enabled without a reload?",
+   "options": "A) Yes, without a reload.\nB) Only after the window is closed and opened again.\nC) Only after the page is reloaded.",
+   "sources": [
+    "PRD v33 S11-R3",
+    "PRD v33 S11-R3c"
+   ],
+   "held": [
+    {
+     "key": "S12-06",
+     "case": "C425620",
+     "phase": "C"
+    }
+   ],
+   "v33_check": "v33 unchanged (S11-R3c says nothing about refresh). Still open."
+  },
+  {
+   "id": "Q4",
+   "status": "OPEN",
+   "carried_from": "14 Oct 2026 open item 4",
+   "phase": "B",
+   "topic": "Part Lifecycle: parts added by the parts import",
+   "question": "(a) Is a part that the parts import adds tracked or untracked? (b) Is the import template's \"name\" column the part's description?",
+   "options": "(a) A) Always tracked. B) It depends on the file (please say which column). (b) A) Yes. B) No (please say which column).",
+   "sources": [
+    "PRD v33 S7-N10",
+    "PRD v33 S7-N9",
+    "Tech plan Phase 6 (the import never writes is_tracked / is_active)"
+   ],
+   "held": [
+    {
+     "key": "S7-25",
+     "case": "C573682",
+     "phase": "B"
+    }
+   ],
+   "v33_check": "v33 S7-N10 still speaks of \"an import row that adds a tracked part\" without saying how a row is tracked. The tech plan says the import never writes the tracking flag (so a new part would take the default, tracked); the tech plan informs and never overrules, so this stays a question."
+  },
+  {
+   "id": "Q5",
+   "status": "ANSWERED BY PRD v33",
+   "carried_from": "14 Oct 2026 open item 5",
+   "phase": "B",
+   "topic": "Part Lifecycle: vendor return permissions",
+   "question": "What does a user without the Vendor Order Management permissions see on Parts → Returns?",
+   "answer": "PRD v31 (23 Oct 2026) S9-N3a: \"Opening Parts → Returns and starting a vendor return keep the access today's 'Vendor Order Management' settings give. This feature adds, removes and changes no permission (S12-N1).\" Chris Ward on SV-10822, 23 Oct 2026: \"Leave the role bundles as they are.\" Nothing new to test beyond today's access; Phase B rewrites S9-28, S9-41, S9-42 (C425746, C573685, C573686) to the new S9-N3a.",
+   "sources": [
+    "PRD v33 S9-N3a",
+    "Jira SV-10822 comment, Chris Ward, 23 Oct 2026"
+   ],
+   "held": []
+  },
+  {
+   "id": "Q6",
+   "status": "OPEN",
+   "carried_from": "14 Oct 2026 open item 6",
+   "phase": "A",
+   "topic": "Part Lifecycle: where Bin Locations is",
+   "question": "The spec says Bin Locations is under \"Administration\" (S5-E2), and the 14 Oct answer 5 says the same, but on screen it is under Settings. Which name should the tests use?",
+   "options": "A) Settings (the screen is right; the spec will say Settings).\nB) Administration (the screen will change).",
+   "sources": [
+    "PRD v33 S5-E2",
+    "Chris Ward's answer 5 of 14 Oct 2026"
+   ],
+   "held": [],
+   "depends_not_held": [
+    {
+     "key": "S5-01",
+     "case": "C154770"
+    },
+    {
+     "key": "S5-16",
+     "case": "C573675"
+    }
+   ],
+   "v33_check": "v33 still says Administration → Bin Locations. The cases use the screen's place (Bin Locations under Settings) as a navigation fact; the expected results do not depend on it."
+  },
+  {
+   "id": "Q7",
+   "status": "OPEN",
+   "carried_from": "14 Oct 2026 open item 7",
+   "phase": "C",
+   "topic": "Inventory Value (SV-10380): the Available badge for bins +5 and −2",
+   "question": "SV-10380 keeps the shop-floor availability calculation unchanged. For a part with bins +5 and −2, should the Inventory list's badge read \"5 Available\" (positive bins only, as today) or \"3 Available\" (net)?",
+   "options": "A) 5 Available (unchanged).\nB) 3 Available (net).",
+   "sources": [
+    "Jira SV-10380 description (Expected behavior: Keep the shop-floor availability calculation unchanged)"
+   ],
+   "held": [],
+   "v33_check": "Not in the PRD; the ticket text is unchanged. Still open (Phase C)."
+  }
+ ]
+}
