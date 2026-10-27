@@ -1,0 +1,10 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const W=JSON.parse(fs.readFileSync('../../data/prod-wo.json'));
+const s=await open({env:'prod',user:'bilal.muzamil@shopview.com',dir:'/tmp/qa21',vp:{width:2000,height:1100},dpr:2});
+const q=await s.api('/api/work-orders/lines/'+W.wo); for(const l of q.json.data.collection) console.log('  '+l.line_name.trim().slice(0,30)+': '+l.tasks.map(t=>((t.first_name||'')+' '+(t.last_name||'')).trim()+' '+t.logged_time_decimal+'h tech_exists='+t.tech_exists).join(', '));
+await s.go(`/workorders/${W.wo}/lines`); await s.waitFor('line_number_'+W.lines[1]); await s.page.waitForTimeout(2000);
+await s.page.screenshot({path:'../../ev/prod-8-stray-row-2x.png'});
+const r=await s.page.evaluate(ids=>({lines:ids.map(id=>{const r=document.querySelector(`[data-test-id="line_number_${id}"]`).getBoundingClientRect(); return {x:r.x,y:r.y};}),labels:[...document.querySelectorAll('div,span,td')].filter(e=>!e.children.length&&/^(Deleted user|Ayesha Test|Bilal Muzammil|Unassigned)$/.test((e.innerText||'').trim())).map(e=>{const r=e.getBoundingClientRect(); return {t:e.innerText.trim(),x:r.x,y:r.y,w:r.width,h:r.height};})}),W.lines);
+fs.writeFileSync('../../ev/prod-8-stray-row-2x.rects.json',JSON.stringify(r,null,1)); console.log(JSON.stringify(r).slice(0,600));
+const ver=await s.page.evaluate(()=>document.querySelector('meta[name="app-version"]')?.content); console.log('prod version',ver);
+await s.browser.close(); process.exit(0);

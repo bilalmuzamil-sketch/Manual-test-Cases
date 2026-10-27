@@ -1,0 +1,49 @@
+v3 seeded S11253-17583 ["Service - Full grease service","Service - PDI","Service - Battery service"]
+[0 seeded]
+  Service - Full grease service: Unassigned 0.00h (tech_exists false)
+  Service - PDI: Unassigned 0.00h (tech_exists false)
+  Service -  Battery service: Unassigned 0.00h (tech_exists false)
+v3 start line 0 POST 201 /api/technician-tasks/check-in :: {"task_id":"e94366cd-f077-4ba2-b9c5-414e86233f08","line_id":"2f2f46c7-7065-4f1f-864f-6e8c2c9911d6","work_order_id":"a
+[after tech start on line 1]
+  Service - Full grease service: Tech ShopView 0.00h
+  Service - PDI: Unassigned 0.00h (tech_exists false)
+  Service -  Battery service: Unassigned 0.00h (tech_exists false)
+v3 stop line 0 POST 201 /api/technician-tasks/check-out :: {"task_id":"a9011a8b-fb37-4968-9973-dd1124e340f9","tech_story":"ZZAUTOTEST SV-11253 v3","complete_line":false,"work_
+[after tech stop on line 1]
+  Service - Full grease service: Tech ShopView 0.01h
+  Service - PDI: Unassigned 0.00h (tech_exists false)
+  Service -  Battery service: Unassigned 0.00h (tech_exists false)
+v3 edit labor pick check David Combs -> box shows: Tech ShopView, David Combs
+[after Edit labor line 1 -> David]
+  Service - Full grease service: David Combs 0.00h, Tech ShopView 0.01h
+  Service - PDI: Unassigned 0.00h (tech_exists false)
+  Service -  Battery service: Unassigned 0.00h (tech_exists false)
+v3 move tech check Tech - ShopView -> box shows: Tech - ShopView
+v3 move tech check David - Combs -> box shows: Tech - ShopView, David - Combs
+v3 target check Service - PDI -
+v3 move writes POST 201 /api/work-orders/tasks/move :: {"tasks":[{"id":"811644dc-af06-4685-942a-6fdf8fae873a","line_id":"2f2f46c7-7065-4f1f-864f-6e8c2c9911d6","tech_assigned_id":"4d18c4ef-6dd4-450a-a797-496c81601a59","time_estimate":0,"tech_time":0,"first_name":"David","last_name":"Combs","star
+[after Move labor line 1 -> line 2]
+  Service - Full grease service: Unassigned 0.00h (tech_exists false)
+  Service - PDI: David Combs 0.00h, Tech ShopView 0.01h
+  Service -  Battery service: Unassigned 0.00h (tech_exists false)
+v3 timesheet rows ["","Tech ShopView 2 - Service - PDI ZZAUTOTEST SV-11253 .. Today 03:52 AM 03:53 AM 0.01 -",""]
+v3 ts line check 3 Service - Battery service
+v3 ts writes POST 201 /api/technician-tasks/change :: {"id":"a9011a8b-fb37-4968-9973-dd1124e340f9","start_date":"27/10/2026 03:52","end_date":"27/10/2026 03:53","work_order_id":"a9c0cb03-4155-43d1-b4c1-76608c4f87e || POST 201 /api/technician-tasks/move :: {"id":"a9011a8b-fb37-4968-9973-dd1124e340f9","line_id":"9f69b1d7-ddc9-4aad-a8c2-d09d8dd2978b","work_order_id":"a9c0cb03-4155-43d1-b4c1-76608c4f87e9"}
+[after timesheet move Tech line 2 -> line 3]
+  Service - Full grease service: Unassigned 0.00h (tech_exists false)
+  Service - PDI: David Combs 0.00h, Tech ShopView 0.00h
+  Service -  Battery service: Tech ShopView 0.02h
+v3 start line 1 POST 201 /api/work-orders/tasks/create :: {"staff_id":"7f85bc58-9ff5-4b50-b3f3-d85821069066","line_id":"4077ff78-4495-4168-acce-acb82b86df47","work_order_id":"a || POST 201 /api/technician-tasks/check-in :: {"task_id":"cc8d0f29-ce4c-4290-a680-536c5abd4280","line_id":"4077ff78-4495-4168-acce-acb82b86df47","work_order_id":"a
+[after tech start on line 2]
+  Service - Full grease service: Unassigned 0.00h (tech_exists false)
+  Service - PDI: David Combs 0.00h, Admin ShopView 0.00h, Tech ShopView 0.00h
+  Service -  Battery service: Tech ShopView 0.02h
+v3 stop line 1 POST 201 /api/technician-tasks/check-out :: {"task_id":"05033f3d-e4b4-448a-ab17-276b20129456","tech_story":"ZZAUTOTEST SV-11253 v3","complete_line":false,"work_
+[after tech stop on line 2]
+  Service - Full grease service: Unassigned 0.00h (tech_exists false)
+  Service - PDI: David Combs 0.00h, Admin ShopView 0.01h, Tech ShopView 0.00h
+  Service -  Battery service: Tech ShopView 0.02h
+[shot final2x]
+  Service - Full grease service: Unassigned 0.00h (tech_exists false)
+  Service - PDI: David Combs 0.00h, Admin ShopView 0.01h, Tech ShopView 0.00h
+  Service -  Battery service: Tech ShopView 0.02h

@@ -1,0 +1,39 @@
+v2 seeded S11253-17582 ["Service - Full grease service","Service - PDI","Service - Battery service"]
+[0 seeded]
+  Service - Full grease service: Unassigned 0.00h (tech_exists false)
+  Service - PDI: Unassigned 0.00h (tech_exists false)
+  Service -  Battery service: Unassigned 0.00h (tech_exists false)
+v2 start line 0 POST 201 /api/technician-tasks/check-in :: {"task_id":"d7be3f05-a488-450f-a919-04f7105752de","line_id":"7c728235-6aa0-44f5-bce7-a9f2e0bb312f","work_order_id":"b
+[after tech start on line 1]
+  Service - Full grease service: Tech ShopView 0.00h
+  Service - PDI: Unassigned 0.00h (tech_exists false)
+  Service -  Battery service: Unassigned 0.00h (tech_exists false)
+v2 stop line 0 POST 201 /api/technician-tasks/check-out :: {"task_id":"b6c8e20b-35db-4868-b894-b278bac5a760","tech_story":"ZZAUTOTEST SV-11253 v2","complete_line":false,"work_
+[after tech stop on line 1]
+  Service - Full grease service: Tech ShopView 0.01h
+  Service - PDI: Unassigned 0.00h (tech_exists false)
+  Service -  Battery service: Unassigned 0.00h (tech_exists false)
+v2 move tech check Tech - ShopView -> box shows: Tech - ShopView
+v2 target check Service - PDI -
+v2 move writes POST 201 /api/work-orders/tasks/move :: {"tasks":[{"id":"d7be3f05-a488-450f-a919-04f7105752de","line_id":"7c728235-6aa0-44f5-bce7-a9f2e0bb312f","tech_assigned_id":"d2cb20a6-90a8-4884-ac50-022ff2fb9313","time_estimate":0,"tech_time":0,"first_name":"Tech","last_name":"ShopView","st
+[after Move labor line 1 -> line 2]
+  Service - Full grease service: Unassigned 0.00h (tech_exists false)
+  Service - PDI: Tech ShopView 0.01h
+  Service -  Battery service: Unassigned 0.00h (tech_exists false)
+v2 timesheet rows ["","Tech ShopView 2 - Service - PDI ZZAUTOTEST SV-11253 .. Today 03:47 AM 03:48 AM 0.01 -",""]
+v2 ts line check 3 Service - Battery service
+v2 ts writes POST 201 /api/technician-tasks/change :: {"id":"b6c8e20b-35db-4868-b894-b278bac5a760","start_date":"27/10/2026 03:47","end_date":"27/10/2026 03:48","work_order_id":"b5587797-f48a-425e-aac3-5e74444d69f || POST 201 /api/technician-tasks/move :: {"id":"b6c8e20b-35db-4868-b894-b278bac5a760","line_id":"996a06a0-48f7-48cd-8f28-531f87ed096d","work_order_id":"b5587797-f48a-425e-aac3-5e74444d69f7"}
+[after timesheet move Tech line 2 -> line 3]
+  Service - Full grease service: Unassigned 0.00h (tech_exists false)
+  Service - PDI: Tech ShopView 0.00h
+  Service -  Battery service: Tech ShopView 0.02h
+v2 start line 1 POST 201 /api/work-orders/tasks/create :: {"staff_id":"7f85bc58-9ff5-4b50-b3f3-d85821069066","line_id":"7485e192-ebbb-4249-ae04-690e13cb1e41","work_order_id":"b || POST 201 /api/technician-tasks/check-in :: {"task_id":"52440152-24c7-4506-ab16-64625300673a","line_id":"7485e192-ebbb-4249-ae04-690e13cb1e41","work_order_id":"b
+[after tech start on line 2]
+  Service - Full grease service: Unassigned 0.00h (tech_exists false)
+  Service - PDI: Admin ShopView 0.00h, Tech ShopView 0.00h
+  Service -  Battery service: Tech ShopView 0.02h
+v2 stop line 1 POST 201 /api/technician-tasks/check-out :: {"task_id":"428b9815-5031-4e20-b7cb-b47cd918ad04","tech_story":"ZZAUTOTEST SV-11253 v2","complete_line":false,"work_
+[after tech stop on line 2]
+  Service - Full grease service: Unassigned 0.00h (tech_exists false)
+  Service - PDI: Admin ShopView 0.01h, Tech ShopView 0.00h
+  Service -  Battery service: Tech ShopView 0.02h

@@ -1,0 +1,26 @@
+v4 seeded S11253-17584 ["Service - Full grease service","Service - PDI","Service - Battery service"]
+[0 seeded]
+  Service - Full grease service: Unassigned 0.00h (tech_exists false)
+  Service - PDI: Unassigned 0.00h (tech_exists false)
+  Service -  Battery service: Unassigned 0.00h (tech_exists false)
+v4 start line 0 POST 201 /api/technician-tasks/check-in :: {"task_id":"e02878a9-4323-4a1e-9316-4671a527ff5f","line_id":"bda2fdf5-d035-4368-aaf8-bc3c50ffb7a5","work_order_id":"7
+[after tech start on line 1]
+  Service - Full grease service: Tech ShopView 0.00h
+  Service - PDI: Unassigned 0.00h (tech_exists false)
+  Service -  Battery service: Unassigned 0.00h (tech_exists false)
+v4 stop line 0 POST 201 /api/technician-tasks/check-out :: {"task_id":"963a5441-791d-4a4d-83ba-70f97d8b20b1","tech_story":"ZZAUTOTEST SV-11253 v4","complete_line":false,"work_
+[after tech stop on line 1]
+  Service - Full grease service: Tech ShopView 0.01h
+  Service - PDI: Unassigned 0.00h (tech_exists false)
+  Service -  Battery service: Unassigned 0.00h (tech_exists false)
+v4 timesheet rows ["","Tech ShopView 1 - Service - Full grease service ZZAUTOTEST SV-11253 .. Today 03:58 AM 03:59 AM 0.01 -",""]
+v4 ts line check 3 Service - Battery service
+v4 ts writes POST 201 /api/technician-tasks/change :: {"id":"963a5441-791d-4a4d-83ba-70f97d8b20b1","start_date":"27/10/2026 03:58","end_date":"27/10/2026 03:59","work_order_id":"7b7e5962-901f-43e3-b203-e440318aeb5 || POST 201 /api/technician-tasks/move :: {"id":"963a5441-791d-4a4d-83ba-70f97d8b20b1","line_id":"fd2d754a-7c12-44f3-80d8-d09f5752e11f","work_order_id":"7b7e5962-901f-43e3-b203-e440318aeb59"}
+[after timesheet move Tech line 1 -> line 3]
+  Service - Full grease service: Unassigned 0.00h (tech_exists false)
+  Service - PDI: Unassigned 0.00h (tech_exists false)
+  Service -  Battery service: Tech ShopView 0.02h
+[shot final2x]
+  Service - Full grease service: Unassigned 0.00h (tech_exists false)
+  Service - PDI: Unassigned 0.00h (tech_exists false)
+  Service -  Battery service: Tech ShopView 0.02h

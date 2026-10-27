@@ -1,0 +1,58 @@
+v1 seeded S11253-17581 ["Service - Full grease service","Service - PDI","Service - Battery service"]
+[0 seeded]
+  Service - Full grease service: Unassigned 0.00h (tech_exists false)
+  Service - PDI: Unassigned 0.00h (tech_exists false)
+  Service -  Battery service: Unassigned 0.00h (tech_exists false)
+v1 start line 0 POST 201 /api/technician-tasks/check-in :: {"task_id":"7c8dbbe6-7d35-469c-aa42-76a38305d63f","line_id":"315a1daf-7fc5-4a84-9a48-5d30680a734c","work_order_id":"e
+[after tech start on line 1]
+  Service - Full grease service: Tech ShopView 0.00h
+  Service - PDI: Unassigned 0.00h (tech_exists false)
+  Service -  Battery service: Unassigned 0.00h (tech_exists false)
+v1 edit labor pick check David Combs
+[after Edit labor line 2 -> David Combs]
+  Service - Full grease service: Tech ShopView 0.01h
+  Service - PDI: Unassigned 0.00h (tech_exists false)
+  Service -  Battery service: Unassigned 0.00h (tech_exists false)
+v1 stop line 0 POST 201 /api/technician-tasks/check-out :: {"task_id":"f411b3e4-4a52-4f57-9552-2f9dadf6dfd7","tech_story":"ZZAUTOTEST SV-11253 v1","complete_line":false,"work_
+[after tech stop on line 1]
+  Service - Full grease service: Tech ShopView 0.05h
+  Service - PDI: David Combs 0.00h
+  Service -  Battery service: Unassigned 0.00h (tech_exists false)
+v1 move tech check Tech - ShopView -> box shows: Tech - ShopView
+v1 target check Service - PDI -
+v1 move writes POST 201 /api/work-orders/tasks/move :: {"tasks":[{"id":"7c8dbbe6-7d35-469c-aa42-76a38305d63f","line_id":"315a1daf-7fc5-4a84-9a48-5d30680a734c","tech_assigned_id":"d2cb20a6-90a8-4884-ac50-022ff2fb9313","time_estimate":0,"tech_time":0,"first_name":"Tech","last_name":"ShopView","st
+[after Move labor line 1 -> line 2]
+  Service - Full grease service: Unassigned 0.00h (tech_exists false)
+  Service - PDI: Tech ShopView 0.05h, David Combs 0.00h
+  Service -  Battery service: Unassigned 0.00h (tech_exists false)
+v1 timesheet rows ["","Tech ShopView 2 - Service - PDI ZZAUTOTEST SV-11253 .. Today 03:37 AM 03:40 AM 0.05 -",""]
+v1 ts line check 3 Service - Battery service
+v1 ts writes POST 201 /api/technician-tasks/change :: {"id":"f411b3e4-4a52-4f57-9552-2f9dadf6dfd7","start_date":"27/10/2026 03:37","end_date":"27/10/2026 03:40","work_order_id":"ef914e70-5370-492a-b945-1b9e6c0ffbd || POST 201 /api/technician-tasks/move :: {"id":"f411b3e4-4a52-4f57-9552-2f9dadf6dfd7","line_id":"06a799c0-3ad3-47b9-bd24-44643101693f","work_order_id":"ef914e70-5370-492a-b945-1b9e6c0ffbd9"}
+[after timesheet move Tech line 2 -> line 3]
+  Service - Full grease service: Unassigned 0.00h (tech_exists false)
+  Service - PDI: Tech ShopView 0.00h, David Combs 0.00h
+  Service -  Battery service: Tech ShopView 0.05h
+v1 start line 1 POST 201 /api/technician-tasks/check-in :: {"task_id":"7c8dbbe6-7d35-469c-aa42-76a38305d63f","line_id":"90ef06e0-c62a-4e08-990d-aad8b41ba09e","work_order_id":"e
+[after tech start on line 2]
+  Service - Full grease service: Unassigned 0.00h (tech_exists false)
+  Service - PDI: Tech ShopView 0.00h, David Combs 0.00h
+  Service -  Battery service: Tech ShopView 0.05h
+v1 stop line 1 POST 201 /api/technician-tasks/check-out :: {"task_id":"6c0eb67c-8e61-4ae1-99ca-8073a438bc01","tech_story":"ZZAUTOTEST SV-11253 v1","complete_line":false,"work_
+[after tech stop on line 2]
+  Service - Full grease service: Unassigned 0.00h (tech_exists false)
+  Service - PDI: Tech ShopView 0.01h, David Combs 0.00h
+  Service -  Battery service: Tech ShopView 0.05h
+v1 start line 1 POST 201 /api/work-orders/tasks/create :: {"staff_id":"7f85bc58-9ff5-4b50-b3f3-d85821069066","line_id":"90ef06e0-c62a-4e08-990d-aad8b41ba09e","work_order_id":"e || POST 201 /api/technician-tasks/check-in :: {"task_id":"277c68eb-c211-4ee3-91ea-5a25612ae842","line_id":"90ef06e0-c62a-4e08-990d-aad8b41ba09e","work_order_id":"e
+[after tech start on line 2]
+  Service - Full grease service: Unassigned 0.00h (tech_exists false)
+  Service - PDI: Admin ShopView 0.00h, Tech ShopView 0.01h, David Combs 0.00h
+  Service -  Battery service: Tech ShopView 0.05h
+v1 stop line 1 POST 201 /api/technician-tasks/check-out :: {"task_id":"c46d69a7-ac56-4541-a54e-b107597ee337","tech_story":"ZZAUTOTEST SV-11253 v1","complete_line":false,"work_
+[after tech stop on line 2]
+  Service - Full grease service: Unassigned 0.00h (tech_exists false)
+  Service - PDI: Admin ShopView 0.01h, Tech ShopView 0.01h, David Combs 0.00h
+  Service -  Battery service: Tech ShopView 0.05h
+[shot final]
+  Service - Full grease service: Unassigned 0.00h (tech_exists false)
+  Service - PDI: Admin ShopView 0.01h, Tech ShopView 0.01h, David Combs 0.00h
+  Service -  Battery service: Tech ShopView 0.05h

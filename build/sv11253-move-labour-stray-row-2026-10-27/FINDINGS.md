@@ -59,3 +59,32 @@ the test can continue."
   `GET /api/fe-permissions` includes `woMoveLabor`, fresh login, switch Move labor on for Admin, re-read the role, then run
   the move → timesheet move → stray-row check on S11253-17580 + the variants. Blocked now on (1) the commands and (2) fresh
   `.qa.shopview.com` cookies (sso_required since ~08:38 UTC).
+
+## 27 Oct — RETEST after Slavcho set up Move labor (79558) → PASSED, comment 79561
+Fresh cookies; branch `v26.43.1-baa44e3` (index last-modified Mon 26 Oct 2026 16:51:59 GMT, etag `94fe3ef1…`) unchanged at
+start and at the pre-post gate. Catalogue now 61 incl. `woMoveLabor`; Admin `fe_permissions` includes it; the line menu shows
+`menu-item_move_labor`. Ticket re-read before testing: Blocked, last comment 79558. Source = ticket description (no
+developer test plan). Each variant on a fresh work order (3 canned lines, each with an empty Unassigned row); Start/Stop
+driven on screen as Tech ShopView (quick-login tech); Edit labor / Move labor / timesheet edit driven on screen as Admin.
+
+| V | Work order | Steps | Line under check, end state | Verdict |
+|---|---|---|---|---|
+| V1 | S11253-17581 | Tech Start/Stop on L1 (claims empty row) → Edit labor L2 = David Combs → Move labor L1→L2 → timesheet move Tech L2→L3 | L2: Tech ShopView 0.00 h, David Combs — no empty row | PASS |
+| V1b | S11253-17581 | then Tech Start/Stop on L2; then Admin Start/Stop on L2 | Tech reused his row (0.01 h); Admin got his own new row; no stray row claimed | PASS |
+| V2 | S11253-17582 | claim L1 → Move L1→L2 (L2 had only its own empty row, which the move absorbed) → timesheet move L2→L3 → Admin clocks in on L2 | L2: Tech ShopView 0.00 h (+ Admin's own row) — no empty row | PASS |
+| V3 | S11253-17583 | claim L1 → Edit labor adds David on L1 → Move BOTH (multi-select) L1→L2 → timesheet move Tech L2→L3 → Admin clocks in on L2 | L2: David Combs, Admin ShopView, Tech ShopView 0.00 h — no empty row | PASS |
+| V4 | S11253-17584 | claim L1, NOT moved → timesheet move Tech L1→L3 | L1 gets its empty Unassigned row back (SV-11087 hand-back unchanged) | PASS |
+| V5 | S11253-17585 | Tech picked on purpose (Edit labor) on L1 → Start/Stop → Edit labor L2 = David → Move L1→L2 → timesheet move L2→L3 | L2: David Combs, Tech ShopView 0.00 h — identical to V1 (the ticket's "like Edit Line") | PASS |
+| V6 | S11253-17586 | V1 repeated (second specimen, 2x capture) | L2: Tech ShopView 0.00 h, David Combs | PASS |
+
+Production before, re-captured 27 Oct at 2x (app.shopview.com `v26.43.2-537378f`, S2-1763): line 2 = "Deleted user" (API:
+Unassigned, tech_exists false) + Ayesha Test.
+Bundle check: the only screen action that moves labour rows between lines is `work-orders/tasks/move` (Move To Line, one or
+several technicians) — both driven. Whether the server routes a multi-technician move through `changeLineId()` or
+`updateMultipleTaskByLineId()` cannot be seen from the screen; both screen paths behave correctly.
+Exhibits: ev/01-before-after-stray-row.png (prod vs V6), ev/02-other-variants.png (V3/V4/V5). Comment **79561** posted (no
+recording, no technical section — QA lead's choice), read back: PASSED panel first, 2 attachments 1040×718 / 1040×1056 in
+order, 6 check rows, 7 steps. Pre-post gate: branch build re-read (gate gained `--build-url` — it had read staging's marker),
+ticket re-read (Blocked, 79558 last), PRD unchanged, voice scan clean. Ticket status left as is (Blocked) for the QA lead.
+Learning check: playbook §AT addendum (multi-select technician pick by typing; timesheet editor path; timesheet create /
+clock-out payloads; gate --build-url).

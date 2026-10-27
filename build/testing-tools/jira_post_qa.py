@@ -1,6 +1,6 @@
 """Pre-post gate + upload + post + read-back for a Jira QA comment (Standing Rules 72/81/84/104).
 
-usage: python3 jira_post_qa.py <KEY> <comment.txt> <file1> [<file2> ...] [--expect-build v..] [--prd 63] [--edit <commentId>] [--dry]
+usage: python3 jira_post_qa.py <KEY> <comment.txt> <file1> [<file2> ...] [--expect-build v..] [--prd 63] [--edit <commentId>] [--build-url <url> [--build-cookies <json>]] [--dry]
 - --edit updates that comment in place (Rule 100: the text must carry the dated edit note); new files are uploaded first
 - re-reads the staging build marker and stops if it differs from --expect-build
 - re-reads the ticket (status, assignee, comment count) and the PRD version, stops if --prd differs
@@ -23,11 +23,17 @@ def main():
     a = sys.argv[1:]
     opt = lambda k: a[a.index(k) + 1] if k in a else None
     key, ctext = a[0], a[1]
-    files = [x for x in a[2:] if not x.startswith('--') and x not in (opt('--expect-build'), opt('--prd'), opt('--edit'))]
+    files = [x for x in a[2:] if not x.startswith('--') and x not in (opt('--expect-build'), opt('--prd'), opt('--edit'), opt('--build-url'), opt('--build-cookies'))]
     # Every embedded picture or film must carry both width and height, or Jira stores it at 183 px high (squashed).
     bad = [m for m in re.findall(r'!([^!|\n]+\.(?:png|jpg|mp4|webm))\|([^!\n]*)!', open(ctext).read()) if 'height=' not in m[1]]
     if bad: sys.exit(f'STOP: embeds without height: {[b[0] for b in bad]}')
-    html = curl('https://app.staging.shopview.com/index.html')
+    # --build-url <https://svNNNN.qa.shopview.com/> [--build-cookies /tmp/x.json] checks the branch under test (default: staging)
+    if opt('--build-url'):
+        import subprocess
+        ck = json.load(open(opt('--build-cookies'))) if opt('--build-cookies') else {}
+        html = subprocess.run(['curl', '-s', '-m', '30', '-H', 'cookie: ' + '; '.join(f'{k}={v}' for k, v in ck.items()), opt('--build-url')], capture_output=True, text=True).stdout
+    else:
+        html = curl('https://app.staging.shopview.com/index.html')
     build = re.search(r'app-version" content="([^"]+)', html).group(1)
     print('build', build)
     if opt('--expect-build') and build != opt('--expect-build'): sys.exit(f'STOP: build moved to {build}')

@@ -1,0 +1,34 @@
+{panel:bgColor=#e3fcef}*OVERALL QA STATUS: PASSED*{panel}
+Tested on the QA branch sv11253 (build v26.43.1-baa44e3) on 27 October 2026, after Move labor was set up on the branch. 6 of 6 checks passed.
+
+When a technician claims an empty labor row with *Start* and that row is then moved to another line with *Move labor*, moving the technician's time away from that line no longer leaves an empty row behind. On production the same steps still leave an extra empty row, shown as "Deleted user".
+
+What the ticket expects:
+{quote}Moving a row with Move labour to line counts as on purpose, like picking a technician in Edit Line, so nothing is handed back on the new line.{quote}
+
+*Before (production) and after (sv11253), same steps:*
+!01-before-after-stray-row.png|width=1040,height=718!
+
+h3. What was checked
+||#||Check||Work order on sv11253||Status||
+|1|The ticket's steps: Tech ShopView claims the empty row on line 1 with {{Start}} → the row is moved to line 2 (which has David Combs) with {{Move labor}} → Tech ShopView's time is moved to line 3 in the timesheet. Line 2 shows only {{Tech ShopView}} (0.00 h) and {{David Combs}}, with no empty row. Done twice on fresh work orders.|S11253-17581, S11253-17586|(/) PASSED|
+|2|The next person to clock in on line 2 is not handed an extra row: Tech ShopView reused his own row, and Admin ShopView got a new row of his own.|S11253-17581|(/) PASSED|
+|3|Same steps, but line 2 had no technician (only its own empty row). After the time was moved off, line 2 shows only {{Tech ShopView}} (0.00 h), with no empty row. Admin ShopView then clocked in there and got his own row.|S11253-17582|(/) PASSED|
+|4|Two technicians moved at once: Tech ShopView (claimed) and David Combs (picked in {{Edit labor}}) moved together from line 1 to line 2, then Tech ShopView's time moved off. No empty row on line 2.|S11253-17583|(/) PASSED|
+|5|Not changed: a claimed row that is *not* moved still gives the line its empty row back when the time is moved off (line 1 shows {{Unassigned}} again, as before).|S11253-17584|(/) PASSED|
+|6|A row picked on purpose in {{Edit labor}}, moved, then its time moved off, ends up exactly like check 1. So a moved claimed row now behaves like one picked in Edit labor, as the ticket expects.|S11253-17585|(/) PASSED|
+
+For comparison, production (app.shopview.com, build v26.43.2-537378f), work order S2-1763: after the same steps, line 2 still shows an extra "Deleted user" row above Ayesha Test.
+
+!02-other-variants.png|width=1040,height=1056!
+
+h3. Steps to see it on sv11253
+# Open [https://sv11253.qa.shopview.com|https://sv11253.qa.shopview.com] and sign in as Admin. Create a work order with three lines that have no technician (on each line, {{Labor}} reads {{Unassigned}}).
+# Sign in as a technician (for example Tech ShopView) and open the work order. On line 1, click the green {{Start}} button at the right of the {{Labor}} row. Wait a minute, click the button again, type a story and click {{Clock Out}}. Line 1's {{Labor}} now shows the technician.
+# Sign in as Admin. Right-click line 2's title, click {{Edit labor}}, type "David" in {{Technician}}, pick {{David Combs}} and click {{Save & Close}}.
+# Right-click line 1's title and click {{Move labor}}. In {{Technician}} pick {{Tech - ShopView}}; in {{Target Line}} pick {{Service - PDI}}; click {{Move To Line}}. Line 2's {{Labor}} now shows Tech ShopView and David Combs.
+# At the top right of the work order, click the three-dot button just left of the blue {{New Line}} button and choose {{Timesheets (1)}}.
+# Move the mouse over the Tech ShopView row and click the small edit icon at the right end of the row. The {{Edit Timesheet}} window opens. In {{Line}} pick {{3 Service - Battery Service}} and click {{Save}}.
+# Click the {{Lines}} tab. Line 2's {{Labor}} shows {{Tech ShopView}} and {{David Combs}} only, with no empty row and no "Deleted user" row.
+
+Fastest way to see the result: open [work order S11253-17586|https://sv11253.qa.shopview.com/workorders/8b7801db-a13c-48eb-bbdc-7d80fcbf0f53/lines] and look at {{Labor}} under line 2.
