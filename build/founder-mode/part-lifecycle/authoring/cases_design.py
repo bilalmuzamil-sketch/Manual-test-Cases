@@ -1,12 +1,713 @@
 """Design — how it looks (Rule 126). NEW section under Part Lifecycle 20439 (the coordinator creates it; section_id None in
-proposals.json until then). Keys D-01, D-02 ...; every title starts "Design: " (Rule 117 twelfth amendment); sec="DESIGN".
-PHASE D STUB (written by Phase A, 27 Oct 2026). Phase D writes the design-look cases here and the per-case design references in
-design_refs.py (DREFS), then sets WRITTEN = True. A design-vs-PRD difference gets a held case with marker DESIGN_HOLD and a row in
-../DESIGN-DIVERGENCE-REGISTER.json plus a question in ../full-pass-2026-10-27/QUESTIONS.json (Rule 130). Pictures: put readable PNG
-names under ../full-pass-2026-10-27/design/images/ or use the board PNGs in ../sources/design-2026-10-13-artifact/png/. Read
-../PHASE-A-HANDOFF.md first."""
+proposals.json until then). Keys D-01 … D-49; every title starts "Design: " (Rule 117 twelfth amendment); sec="DESIGN".
+Phase D, 27 Oct 2026, from ../full-pass-2026-10-27/design/DESIGN-CASE-PLAN.md (the design drive proof is DESIGN-DRIVE-PROOF.md there).
+The expected look comes from PRD v33 where it speaks and from the named board where the PRD is silent (Rule 126 point 5). Two held
+design-version cases (Rule 130 item 5): D-33 (long Part History entries wrap in the design, the tech plan cuts them off: question DQ-03)
+and D-49 (the close X the design draws on every status confirmation: question DQ-01). D-47 and D-48 check PRD look sentences the design
+does not draw (skill 21 §6d item 7); the coordinator drops them only if Phase B/C cases check the same look."""
 from pllib import C, DESIGN_HOLD, HOLD, PO_HOLD
 from common import *
 
-WRITTEN = False
+WRITTEN = True
 SECTION = "DESIGN"
+
+S = "DESIGN"
+WIDE = "Use a desktop browser window at least 1600 pixels wide with the page zoom at 100%, so the screen is as wide as the design boards."
+def PIC(*boards):
+    b = list(boards)
+    s = ("boards " + ", ".join(b[:-1]) + " and " + b[-1]) if len(b) > 1 else ("board " + b[0])
+    return f"Open the attached design picture{'s' if len(b) > 1 else ''} of {s} at 100% zoom, so you can compare the screen with {'them' if len(b) > 1 else 'it'}."
+X_NOTE = ("The design also draws a grey close X at the right end of this confirmation's title row; the PRD lists only a title, a message, "
+          "an optional note, Cancel and a confirm button. That difference is asked of Product (question DQ-01) and checked by the held "
+          "design case \"Design: Status confirmation has a close X in its title row\"; this case follows the PRD and does not check the X.")
+D24_COUNT = ("TECH", "Tech plan, §3 Technical Decisions, D24", 'Show "N records selected." under the table in bulk mode (boards 4.3, 4.9).')
+D24_NEW = ("TECH", "Tech plan, §3 Technical Decisions, D24", 'Keep "New Inventory Part" visible in bulk mode (4.3, 4.8).')
+TOAST_BR = "The message box sits at the bottom right of the page."
+OPEN_WO = "Click Work Orders in the top bar."
+
+# ---------------------------------------------------------------- Inventory list frame, tabs, empty states (Story 1)
+C("D-01", S, "Design: Inventory list page looks as in the design",
+  [ADMIN, "Have an active part, part A, with Part History entries, two or more tags and stock in one bin, so its row shows the history icon, tag chips and a bin chip.",
+   LIGHT, WIDE, PIC("1.4", "2.3", "2.5", "4.0", "5.3"), "Start on any page other than Inventory, so you can watch the Inventory page open."],
+  ["Click Parts in the top bar.", "Click Inventory in the left menu.", "Type part A's part number in the Search box.",
+   "Scroll the table to the right until the Max column shows."],
+  [["The left menu shows a PARTS group with Inventory and Part Library, each with a small icon before it."],
+   ["The page title \"Inventory\" sits at the top left in bold.",
+    "The tabs \"Active\" and \"Inactive\" sit on their own line under the title; \"Active\" is blue and \"Inactive\" is dark text.",
+    "On the next line, at the right, left to right: Search with a magnifier, \"Bin Location: All bin locations\" with a pin icon and a down arrow, \"Category: All categories\" with a down arrow, \"Supply\" with a box icon and a down arrow, a thin upright divider, the columns icon, the three-dot button, and the blue \"New Inventory Part\" button at the right end.",
+    "The first column is the narrow history-icon column, then Description: there is no checkbox column.",
+    "Inventory in the left menu is blue, Part Library is dark text."],
+   ["The Search box shows part A's part number with a round clear (x) icon at its right end.",
+    "Part A's row has a clock-with-arrow history icon at its left.",
+    "Its tags show as grey rounded chips, with a \"...\" chip when more tags do not fit.",
+    "Its Bin Location / Quantity cell shows an outlined rounded chip: the bin name, a thin divider, then the quantity.",
+    "The column headers are bold and read, left to right: Description, Part Number, Tags, Category, Manufacturer, Vendor, Bin Location / Quantity."],
+   ["The headers continue: Total Qty, Avg Cost, Core, Sell Price, Min, Max: the same columns, in the same order, as today's list on board 4.0."]],
+  ["S1-R1", "S1-R8", "S2-R3", "S4-R8", "S12-R1"],
+  design=dict(boards=["1.4", "2.3", "2.5", "4.0", "5.3"], words=[note("No Active and Inactive tabs, no checkboxes")]),
+  claude=["Part A: any active part with history, 2+ tags and one bin with stock (a ZZAUTOTEST part made for the suite is fine)."])
+
+C("D-02", S, "Design: Inactive tab selected looks as in the design",
+  [ADMIN, "Have an inactive part, part A, and an active part, part B.", SHARED("parts A and B"), LIGHT, WIDE, PIC("3.5"), START],
+  [TYPE_SHARED, "Click the Inactive tab."],
+  [["\"Active\" is blue.", "Part B is listed and part A is not."],
+   ["\"Inactive\" is blue and \"Active\" is dark text.", "Part A is listed and part B is not.",
+    "Part A's row carries no tag or badge: it reads like any row on the Active tab, with the same columns in the same order.",
+    "The toolbar shows the same controls in the same places as on the Active tab."]],
+  ["S1-R4", "S1-R7", "CN-S9-4"],
+  design=dict(boards=["3.5"], words=[note("The part is listed on the Inactive tab")]))
+
+C("D-03", S, "Design: Empty Inactive tab message looks as in the design",
+  ["Sign in as an Admin at a location that has no inactive parts.", "Make sure no search text and no filter is set on the Inventory list.",
+   LIGHT, WIDE, PIC("4.10"), START],
+  ["Click the Inactive tab.", "Click the Active tab."],
+  [["The column header row still shows (Description, Part Number, Tags …).",
+    "Under it, centred, one line of grey text reads \"No inactive parts at this location.\"",
+    "The grey line is the only thing under the header row: no icon above it and no rows."],
+   ["The Active tab lists the location's parts again, which shows the empty Inactive tab came from the data, not a broken page."]],
+  ["S1-N1", "UFS-40"],
+  design=dict(boards=["4.10"], words=[note("At a location with no inactive parts")]))
+
+C("D-04", S, "Design: Search with no matching part looks as in the design",
+  [ADMIN, LIGHT, WIDE, PIC("3.4"), START],
+  ["Type XQXQXQ in the Search box.", "Click the Inactive tab.", "Click the round clear (x) icon in the Search box."],
+  [["The column header row still shows.",
+    "Centred under it: a magnifier icon inside a light grey circle, and under that dark text reading No parts match the search \"XQXQXQ\".",
+    "No rows are listed."],
+   ["The Inactive tab shows the same magnifier, light grey circle and \"No parts match the search\" line, not \"No inactive parts at this location.\""],
+   ["The search text is cleared and the Inactive tab lists its parts, or \"No inactive parts at this location.\" if the location has none."]],
+  ["S1-N2", "S1-N1"],
+  design=dict(boards=["3.4"]))
+
+# ---------------------------------------------------------------- Actions menu and bulk mode (Stories 2, 3)
+C("D-05", S, "Design: Actions menu with Deactivate parts looks as in the design",
+  [ADMIN, NO_COUNT, LIGHT, WIDE, PIC("4.1"), START],
+  [MENU, "Press Escape."],
+  [["The three-dot button shows a light grey square behind its dots while the menu is open.",
+    "The menu opens just below the three-dot button, its right edge lined up with the button, as a white card with a shadow.",
+    "It lists, top to bottom, in plain dark text with no icons: Cycle count, Deactivate parts, Export.",
+    "The menu covers the column headers under it; the blue New Inventory Part button stays fully visible."],
+   ["The menu closes and the three-dot button loses its grey square."]],
+  ["S2-R1", "S2-R2"],
+  design=dict(boards=["4.1"], words=[note("\"Deactivate parts\" sits between Cycle count and Export")]))
+
+C("D-06", S, "Design: Actions menu in bulk mode shows only Export",
+  [ADMIN, NO_COUNT, LIGHT, WIDE, PIC("4.8"), START],
+  [MENU, "Click Deactivate parts.", MENU2, "Press Escape.", X],
+  [["The menu lists Cycle count, Deactivate parts and Export."],
+   ["The dark bar appears under the tabs and a checkbox column appears in the list."],
+   ["The menu opens just below the three-dot button with one entry only: Export.", "The dark bar stays in place above the toolbar while the menu is open."],
+   ["The menu closes; the dark bar is still shown."],
+   ["The dark bar and the checkbox column disappear."]],
+  ["S2-R10b", "S2-R9a"],
+  design=dict(boards=["4.8"], words=[note("While bulk status mode is on, the actions menu offers only Export")]))
+
+C("D-07", S, "Design: Bulk bar with nothing ticked looks as in the design",
+  [ADMIN, "Have an active part, part A.", NO_COUNT, LIGHT, WIDE, PIC("4.2"), START],
+  ["Type part A's part number in the Search box.", MENU, "Click Deactivate parts.", X],
+  [["Part A is listed."],
+   ["The menu opens."],
+   ["A near-black bar with rounded corners spans the full width of the list, directly under the Active and Inactive tabs.",
+    "At the bar's left: a round dark grey badge with a white 0, the word \"selected\" in light grey, a thin upright divider, then a small blue \"Deactivate\" button that looks dimmed.",
+    "A white X sits at the right end of the bar.",
+    "The search and filter row now sits under the bar, and the blue New Inventory Part button is still shown at its right end.",
+    "A checkbox column is now the first column, with an empty square box in the header and on part A's row; the history-icon column comes next.",
+    "Part A's row is not shaded: nothing is ticked yet."],
+   ["The dark bar and the checkbox column disappear, and the search and filter row moves back under the tabs."]],
+  ["S2-R4", "S2-R7", "S2-R7a", "S2-R7b", "S2-R8", "S2-R9", D24_NEW],
+  design=dict(boards=["4.2"], words=[note("A checkbox column appears at the left")]))
+
+C("D-08", S, "Design: Two ticked rows in bulk mode look as in the design",
+  [ADMIN, "Have two active parts, part A and part B.",
+   "Give part A a description long enough to be cut off with \"...\" in the Description column, so hovering it can show the full text.",
+   SHARED("parts A and B"), NO_COUNT, LIGHT, WIDE, PIC("4.3"), START],
+  [TYPE_SHARED, MENU, "Click Deactivate parts.", "Click the part A row.", "Click the part B row.", "Hover over part A's description.", X],
+  [["Parts A and B are listed."],
+   ["The menu opens."],
+   ["The dark bar shows a round badge with 0."],
+   ["Part A's box is filled dark grey with a white tick, and the whole part A row is shaded light grey.",
+    "The header box shows a white dash on dark grey: some rows are ticked.",
+    "The badge reads 1 and the Deactivate button is bright blue."],
+   ["Part B's box and row look the same as part A's.", "The badge reads 2.",
+    "Small dark text under the table, at its left, reads \"2 records selected.\""],
+   ["A dark grey tooltip with part A's full description appears just under the part A row."],
+   ["The dark bar, the checkboxes, the shading and the \"2 records selected.\" line disappear."]],
+  ["S2-R5", "S2-R7b", D24_COUNT],
+  design=dict(boards=["4.3"], words=[note("A click anywhere on a row ticks it instead of opening the part")]))
+
+C("D-09", S, "Design: Every row ticked on the Inactive tab looks as in the design",
+  [ADMIN, "Have two inactive parts, part A and part B.", SHARED("parts A and B"), NO_COUNT, LIGHT, WIDE, PIC("4.6"), START_INACTIVE],
+  [TYPE_SHARED, MENU, "Click Activate parts.", "Click the checkbox in the header row.", X],
+  [["Parts A and B are listed on the Inactive tab."],
+   ["The menu lists Cycle count, Activate parts and Export."],
+   ["The dark bar appears with a small blue \"Activate\" button, the same blue as Deactivate on the Active tab."],
+   ["The header box shows a white tick on dark grey: every listed row is ticked.",
+    "Both rows are shaded light grey with ticked boxes.", "The bar reads 2 selected and \"2 records selected.\" shows under the table."],
+   ["The dark bar and the checkboxes disappear; parts A and B are still listed on the Inactive tab."]],
+  ["S3-R1", "S3-R2", "S2-R6", D24_COUNT],
+  design=dict(boards=["4.6"], words=[note("On the Inactive tab the menu entry reads \"Activate parts\"")]))
+
+C("D-10", S, "Design: Over 200 ticked shows its hover text below Deactivate",
+  [ADMIN, "Have 201 active parts whose part numbers start with the same text, so one search lists all 201.", NO_COUNT, LIGHT, WIDE, PIC("4.9"), START],
+  [TYPE_SHARED, "Scroll the list down until no more rows load.", MENU, "Click Deactivate parts.", "Click the checkbox in the header row.",
+   "Hover over Deactivate on the dark bar.", X],
+  [["The first parts are listed."],
+   ["All 201 parts are listed (the list loads 30 at a time)."],
+   ["The menu opens."],
+   ["The dark bar shows a round badge with 0."],
+   ["The badge widens to hold 201 and reads 201 selected.", "The Deactivate button looks dimmed.",
+    "\"201 records selected.\" shows under the table."],
+   ["A dark grey tooltip reading \"Select 200 parts or fewer.\" appears just below the Deactivate button, over the search box.",
+    "The tooltip does not cover the badge or the word \"selected\", which stay readable."],
+   ["The dark bar and the checkboxes disappear."]],
+  ["S2-R8a", "UFS-34", "S2-R6"],
+  design=dict(boards=["4.9"], words=[note("One change takes at most 200 parts")]))
+
+C("D-11", S, "Design: Bulk deactivation confirmation looks as in the design",
+  [ADMIN, "Create two active parts for this test, part A and part B.", SHARED("parts A and B"), NO_COUNT, LIGHT, WIDE, PIC("4.4"), START],
+  [TYPE_SHARED, MENU, "Click Deactivate parts.", "Click the part A row.", "Click the part B row.", "Click Deactivate on the dark bar.", "Click Cancel."],
+  [["Parts A and B are listed."],
+   ["The menu opens."],
+   ["The dark bar appears."],
+   ["Part A is ticked."],
+   ["Part B is ticked and the badge reads 2."],
+   ["A white dialog with rounded corners opens in the middle of the page, and the page behind it, the dark bar included, is dimmed.",
+    "Its title \"Deactivate parts?\" is large and bold, with a thin line under the title row.",
+    "The lines read, in this order: \"2 parts selected.\", \"These parts won't show up when adding parts to work orders, estimates, part sales or purchase orders.\", \"Existing records that use them stay as they are.\", \"Stock, cost of goods and QuickBooks aren't affected.\"",
+    "\"Existing records that use them stay as they are.\" is a little bolder than the lines above it, and the \"Stock, cost of goods …\" line is grey.",
+    "A full-width box with the grey placeholder \"Note (Optional)\" sits under the lines.",
+    "A thin line runs above the footer; at the bottom right sit a white \"Cancel\" button with a grey outline, then a red \"Deactivate\" button."],
+   ["The dialog closes, parts A and B are still ticked and the badge still reads 2: nothing changed."]],
+  ["S10-R2", "S10-R3", "S10-R4", "S10-R5", "S10-R9", "S10-R10", "S10-R11", "S10-N1"],
+  design=dict(boards=["4.4"], words=[note("\"Deactivate parts?\", \"2 parts selected.\"")], note=X_NOTE))
+
+C("D-12", S, "Design: Bulk reactivation confirmation looks as in the design",
+  [ADMIN, "Create two inactive parts for this test, part A and part B.", SHARED("parts A and B"), NO_COUNT, LIGHT, WIDE, PIC("4.7"), START_INACTIVE],
+  [TYPE_SHARED, MENU, "Click Activate parts.", "Click the part A row.", "Click the part B row.", "Click Activate on the dark bar.", "Click Cancel."],
+  [["Parts A and B are listed on the Inactive tab."],
+   ["The menu opens."],
+   ["The dark bar appears with a blue Activate button."],
+   ["Part A is ticked."],
+   ["Part B is ticked and the badge reads 2."],
+   ["A white dialog opens in the middle of the dimmed page, titled \"Activate parts?\" in large bold text.",
+    "The lines read, in this order: \"2 parts selected.\", \"These parts can be added to new work again.\", \"Existing records that use them stay as they are.\" (a little bolder).",
+    "There are exactly three lines: no grey \"Stock, cost of goods …\" line.",
+    "A \"Note (Optional)\" box follows, then a white Cancel and a blue \"Activate\" button at the bottom right."],
+   ["The dialog closes and parts A and B are still ticked on the Inactive tab: nothing changed."]],
+  ["S10-R3", "S10-R4", "S10-R8", "S10-R9", "S10-R10", "S10-R11", "S10-N1"],
+  design=dict(boards=["4.7"], words=[note("\"Activate parts?\", \"2 parts selected.\"")], note=X_NOTE))
+
+C("D-13", S, "Design: Bulk change success message looks as in the design",
+  [ADMIN, "Create two active parts for this test, part A and part B.", SHARED("parts A and B"), NO_COUNT, LIGHT, WIDE, PIC("4.5"), START],
+  [TYPE_SHARED, MENU, "Click Deactivate parts.", "Click the part A row.", "Click the part B row.", "Click Deactivate on the dark bar.",
+   "Click \"Deactivate\" in the confirmation."],
+  [["Parts A and B are listed."],
+   ["The menu opens."],
+   ["The dark bar appears."],
+   ["Part A is ticked."],
+   ["Part B is ticked and the badge reads 2."],
+   ["The \"Deactivate parts?\" confirmation opens."],
+   ["A green message box appears with a white tick-in-a-circle icon at its left, the words \"2 parts updated.\" and \"Close\" at its right.", TOAST_BR,
+    "The dark bar and the checkbox column are gone.",
+    "The search text is still in the Search box, and parts A and B are no longer listed on the Active tab."]],
+  ["S10-R12", "S2-R12", "S2-R14", "UFS-28"],
+  design=dict(boards=["4.5"], words=[note("\"2 parts updated.\" (S10-R12)")]))
+
+# ---------------------------------------------------------------- Part window: create (Stories 4, 7, 13)
+C("D-14", S, "Design: New Inventory Part window looks as in the design",
+  [ADMIN, "Make sure the test location has a default bin location, so the new part's bin row is filled in.", LIGHT, WIDE, PIC("1.1"), START],
+  ["Click New Inventory Part.", "Click Cancel."],
+  [["A white window with rounded corners opens in the middle of the page, and the list behind it is dimmed.",
+    "The title \"New Inventory Part\" sits at the left of the title row, a grey X at its right end, and a thin line runs under the row; there is no status pill between them.",
+    "The Description box is outlined in blue with a small blue label \"Description\"; the other boxes are outlined in grey with grey labels inside.",
+    "Under Description, in this order: Part Number; Vendor, Category and Manufacturer, each with a down arrow at its right; then Cost, Sell Price and Core Charge as three equal boxes on one line.",
+    "Then a heading \"Inventory Tracking\" with a small (i) icon after it, a blue switch that is on, labelled \"Track quantities and cost of goods\", and under it Min and Max as two equal boxes on one line.",
+    "Then Tags, then a heading \"Inventory\" with a Bin Location box holding the default bin, a Quantity box holding 0 and a light-blue rounded \"Default\" tag.",
+    "Under the bin row, a blue \"Add Bin Location\" link with a plus icon before the words.",
+    "A thin line runs above the footer; at the bottom right sit a white \"Cancel\" button with a grey outline and a blue \"Save\" button; the bottom left is empty."],
+   ["The window closes and no part is created: the list behind it is unchanged."]],
+  ["S13-R1", "S13-R2", "S13-R4", "S13-R5", "S13-R6", "S13-R8", "S13-R9", "S13-R10", "S4-R1", "S4-R2", "S4-R3", "S4-R4", "S7-R1"],
+  design=dict(boards=["1.1"], words=[note("Description first, then Part Number")]))
+
+C("D-15", S, "Design: Typed values in New Inventory Part look as in the design",
+  [ADMIN, LIGHT, WIDE, PIC("1.3"), START],
+  ["Click New Inventory Part.", "Type Design check part in the Description box.", "Click the Cost box.", "Type 45 in the Cost box.",
+   "Click the Sell Price box.", "Click Cancel."],
+  [["The New Inventory Part window opens with the Description box outlined in blue."],
+   ["The Description box shows its label small at its top left and \"Design check part\" under it."],
+   ["The Cost box turns blue with a small blue label; the Description box turns back to a grey outline and keeps its text."],
+   ["The Cost box shows \"$ 45\" (a dollar sign before the amount)."],
+   ["The Sell Price box is now blue with a small blue label and a \"$\" in it; the Cost box is grey again and still shows its amount."],
+   ["The window closes and no part is created."]],
+  ["S7-R1", "S13-R4"],
+  design=dict(boards=["1.3"], words=[note("The user types SLACK ADJUSTER LEFT and F40010212")]))
+
+C("D-16", S, "Design: Required-field errors in the part window look as drawn",
+  [ADMIN, LIGHT, WIDE, PIC("1.2"), START],
+  ["Click New Inventory Part.", "Click Save.", "Click Cancel."],
+  [["The New Inventory Part window opens with every box empty."],
+   ["Four boxes turn red (red outline and red label), each with a small red message right under it, all at the same time: \"Description is a required field\", \"Part number is a required field\", \"Category is a required field\", \"Cost is a required field\".",
+    "Vendor, Manufacturer, Sell Price, Core Charge, Min, Max and Tags keep their grey outline.",
+    "The window stays open."],
+   ["The window closes and no part is created."]],
+  ["S7-N1", "S7-N2", "UFS-04", "UFS-05"],
+  design=dict(boards=["1.2"], words=[note("Every empty required field shows its own error at the same time")]))
+
+C("D-17", S, "Design: New part with tracking off looks as in the design",
+  [ADMIN, LIGHT, WIDE, PIC("1.6"), START],
+  ["Click New Inventory Part.", "Click the Track quantities and cost of goods switch.", "Click Cancel."],
+  [["The switch is blue with its knob at the right, and Min and Max show under it."],
+   ["The switch turns grey with its knob at the left.",
+    "Min and Max are gone and Tags moves up, directly under the switch.",
+    "The \"Inventory\" heading and the bin row, with its Quantity box and \"Default\" tag, still show."],
+   ["The window closes and no part is created."]],
+  ["S4-R5", "S4-R6"],
+  design=dict(boards=["1.6"], words=[note("With the switch off, Min and Max are hidden")]))
+
+C("D-18", S, "Design: Part created and linked message looks as in the design",
+  ["Sign in as an Admin who can switch between two locations: the test location and location B.",
+   "Create part A for this test at location B only, so its Part Library entry exists and the test location does not stock it.",
+   "Write down part A's part number and description.", LIGHT, WIDE, PIC("1.4"), START],
+  ["Click New Inventory Part.", "Type a description that differs from part A's description in the Description box.",
+   "Type part A's part number, exactly as at location B, in the Part Number box.", "Pick any category in the Category box.",
+   "Type 1 in the Cost box.", "Click Save."],
+  [["The New Inventory Part window opens."],
+   ["The Description box shows the typed description."],
+   ["The Part Number box shows part A's part number."],
+   ["The Category box shows the picked category."],
+   ["The Cost box shows \"$ 1\"."],
+   ["The window closes and the list shows behind a green message box with a white tick-in-a-circle icon at its left and \"Close\" at its right.", TOAST_BR,
+    "The message wraps over up to three lines and reads: Part created. Linked to (part A's part number) in the Part Library. Its description \"(part A's description)\" was kept."]],
+  ["S7-R9", "UFS-10"],
+  design=dict(boards=["1.4"], words=[note("Exactly one Part Library entry has the number typed")]))
+
+C("D-19", S, "Design: Duplicate part number error looks as in the design",
+  [ADMIN, "Create part A for this test at the test location, with a part number that has capital letters.", LIGHT, WIDE, PIC("1.5"), START],
+  ["Click New Inventory Part.", "Type Duplicate check in the Description box.", "Type part A's part number in lower case in the Part Number box.",
+   "Pick any category in the Category box.", "Type 1 in the Cost box.", "Click Save."],
+  [["The New Inventory Part window opens."],
+   ["The Description box shows \"Duplicate check\"."],
+   ["The Part Number box shows part A's number in lower case."],
+   ["The Category box shows the picked category."],
+   ["The Cost box shows \"$ 1\"."],
+   ["A red message box appears with a white warning triangle at its left and \"Close\" at its right.", TOAST_BR,
+    "Its first line reads part A's part number in capitals, as stocked, followed by \"already exists at this location.\"",
+    "A second, smaller line under it reads \"Please try to resolve this.\"",
+    "The New Inventory Part window stays open behind the message with everything you typed."]],
+  ["S7-N3", "S7-N5", "UFS-08", "CN-S13-3"],
+  design=dict(boards=["1.5"], words=[note("Typing f40010212 at a location that already stocks F40010212")]))
+
+# ---------------------------------------------------------------- Part window: edit and status (Story 13)
+C("D-20", S, "Design: Edit Inventory Part window looks as in the design",
+  [ADMIN, "Have an active, tracked part, part A, with two or more tags, so the tags show as chips.", LIGHT, WIDE, PIC("2.1", "3.1"), START],
+  ["Type part A's part number in the Search box.", "Click the part A row.", "Click Cancel."],
+  [["Part A is listed."],
+   ["The window is titled \"Edit Inventory Part\"; at the right of the title row sits a green rounded \"Active\" pill (light green fill, green text and green border), then the grey X; a thin line runs under the title row.",
+    "Under Description and Part Number sits a grey label \"Part Status\" with two round radio buttons on one line, Active and Inactive; Active is filled blue.",
+    "The cost box is labelled \"Average Cost\", beside Sell Price and Core Charge.",
+    "Tags show as blue chips, each with a small x.",
+    "The footer has a red \"Delete Part\" button at the bottom left, with a white trash icon and a white label, and a white Cancel with a grey outline and a blue Save at the bottom right."],
+   ["The window closes and part A's row shows again in the list, with its part number and description unchanged."]],
+  ["S13-R1", "S13-R2", "S13-R3", "S13-R4", "S13-R6", "S13-R7", "S13-R8", "S13-R9", "S13-R20"],
+  design=dict(boards=["2.1", "3.1"], words=[note("Edit Inventory Part for FF5507"), note("Part Status, Active or Inactive, sits under Part Number")]))
+
+C("D-21", S, "Design: Inactive part's window shows a grey Inactive pill",
+  [ADMIN, "Have an inactive part, part A.", LIGHT, WIDE, PIC("3.6"), START_INACTIVE],
+  ["Type part A's part number in the Search box.", "Click the part A row.", "Click Cancel."],
+  [["Part A is listed on the Inactive tab."],
+   ["The pill at the right of the title row reads \"Inactive\" in grey (light grey fill, grey text and grey border), not green.",
+    "Under Part Status the Inactive radio button is filled blue and Active is empty.",
+    "The fields, the Delete Part button and the footer buttons sit in the same places as on an active part's window."],
+   ["The window closes and part A's row shows again in the list, with its part number and description unchanged."]],
+  ["S13-R3", "S9-R14"],
+  design=dict(boards=["3.6"], words=[note("The badge reads Inactive and Part Status is on Inactive")]))
+
+C("D-22", S, "Design: Picked status leaves the green Active pill in place",
+  [ADMIN, "Have an active part, part A.", LIGHT, WIDE, PIC("3.2"), START],
+  ["Type part A's part number in the Search box.", "Click the part A row.", "Click Inactive under Part Status.", "Click Cancel."],
+  [["Part A is listed."],
+   ["The title row shows a green \"Active\" pill and the Active radio is filled blue."],
+   ["The Inactive radio is filled blue with a light blue halo around it, and Active is empty.",
+    "The pill in the title row still reads \"Active\" in green."],
+   ["The window closes and part A is still listed on the Active tab: picking Inactive changed nothing."]],
+  ["S13-R21", "S13-R25"],
+  design=dict(boards=["3.2"], words=[note("Picking a status applies nothing yet")]))
+
+C("D-23", S, "Design: Other-locations warnings look as in the design",
+  [ADMIN, "Have part A stocked at the test location and at one other location, so a change to it reaches one other location.", LIGHT, WIDE, PIC("2.2"), START],
+  ["Type part A's part number in the Search box.", "Click the part A row.", "Type one more letter at the end of the Description box.",
+   "Type one more letter at the end of the Part Number box.", "Click Cancel."],
+  [["Part A is listed."],
+   ["Edit Inventory Part opens with no message under Description or Part Number."],
+   ["A small orange line appears directly under the Description box: \"This also changes the description at 1 other location.\"",
+    "The Description box keeps its normal outline; it does not turn red."],
+   ["A small orange line appears directly under the Part Number box: \"This also changes the part number at 1 other location.\"",
+    "The orange line under Description is still shown."],
+   ["The window closes and part A's row still shows its old part number and description: nothing was saved."]],
+  ["S13-R12", "S13-R16", "UFS-11", "UFS-12"],
+  design=dict(boards=["2.2"], words=[note("Description becomes \"Fuel Filter, Mack/Volvo\"")]))
+
+C("D-24", S, "Design: Deactivate part confirmation looks as in the design",
+  [ADMIN, "Create an active part for this test, part A.", LIGHT, WIDE, PIC("3.3"), START],
+  ["Type part A's part number in the Search box.", "Click the part A row.", "Click Inactive under Part Status.", "Click Save.",
+   "Type Superseded by a newer part in the Note (Optional) box.", "Click Cancel in the confirmation.", "Click Cancel."],
+  [["Part A is listed."],
+   ["Edit Inventory Part opens."],
+   ["The Inactive radio is filled blue."],
+   ["A smaller white dialog opens over the Edit Inventory Part window, which dims behind it.",
+    "Its title \"Deactivate part?\" is large and bold, with a thin line under the title row.",
+    "The first line reads part A's part number, a space, then part A's description.",
+    "Then, in this order: \"This part won't show up when adding parts to work orders, estimates, part sales or purchase orders.\", \"Existing records that use it stay as they are.\" (a little bolder), \"Stock, cost of goods and QuickBooks aren't affected.\" (grey).",
+    "A white Cancel with a grey outline and a red \"Deactivate\" button sit at the bottom right."],
+   ["The Note (Optional) box turns blue, its label moves up small and blue, and the box shows \"Superseded by a newer part\"."],
+   ["The confirmation closes and Edit Inventory Part shows again with Inactive still picked and the green \"Active\" pill."],
+   ["The window closes and part A is still listed on the Active tab."]],
+  ["S10-R3", "S10-R4", "S10-R6", "S10-R9", "S10-R10", "S10-R11", "S13-R23"],
+  design=dict(boards=["3.3"], words=[note("Save raises \"Deactivate part?\"")], note=X_NOTE))
+
+C("D-25", S, "Design: Activate part confirmation looks as in the design",
+  [ADMIN, "Create an inactive part for this test, part A.", LIGHT, WIDE, PIC("3.7"), START_INACTIVE],
+  ["Type part A's part number in the Search box.", "Click the part A row.", "Click Active under Part Status.", "Click Save.",
+   "Click Cancel in the confirmation.", "Click Cancel."],
+  [["Part A is listed on the Inactive tab."],
+   ["Edit Inventory Part opens with a grey \"Inactive\" pill."],
+   ["The Active radio is filled blue and the pill still reads \"Inactive\"."],
+   ["A white dialog titled \"Activate part?\" opens over the dimmed window.",
+    "Its first line reads part A's part number, a space, then part A's description.",
+    "It has one more line only: \"This part can be added to new work again.\"",
+    "An empty \"Note (Optional)\" box follows, then a white Cancel and a blue \"Activate\" button at the bottom right.",
+    "Behind the dialog the window's pill still reads \"Inactive\"."],
+   ["The confirmation closes and Edit Inventory Part shows again with Active still picked."],
+   ["The window closes and part A is still listed on the Inactive tab."]],
+  ["S10-R3", "S10-R4", "S10-R7", "S10-R10", "S10-R11", "S13-R25"],
+  design=dict(boards=["3.7"], words=[note("Active picked, then Save")], note=X_NOTE))
+
+C("D-26", S, "Design: Part deactivated message looks as in the design",
+  [ADMIN, "Create an active part for this test, part A.", LIGHT, WIDE, PIC("3.4"), START],
+  ["Type part A's part number in the Search box.", "Click the part A row.", "Click Inactive under Part Status.", "Click Save.",
+   "Click \"Deactivate\" in the confirmation."],
+  [["Part A is listed."],
+   ["Edit Inventory Part opens."],
+   ["The Inactive radio is filled blue."],
+   ["The \"Deactivate part?\" confirmation opens."],
+   ["The confirmation and the part window close.",
+    "A green message box appears with a white tick-in-a-circle icon at its left, \"Part deactivated.\" and \"Close\" at its right.", TOAST_BR,
+    "Part A is no longer listed on the Active tab: the list shows the magnifier in a light grey circle with No parts match the search and part A's number."]],
+  ["S13-R22", "UFS-24", "S1-N2"],
+  design=dict(boards=["3.4"], words=[note("Every change in the dialog is saved, the status is applied")]))
+
+# ---------------------------------------------------------------- Tracking (Stories 4, 5)
+C("D-27", S, "Design: Inventory Tracking hover text opens below its info icon",
+  [ADMIN, "Have an active, tracked part, part A.", LIGHT, WIDE, PIC("5.1"), START],
+  ["Type part A's part number in the Search box.", "Click the part A row.", "Hover over the (i) icon beside Inventory Tracking.",
+   "Move the pointer off the (i) icon.", "Click Cancel."],
+  [["Part A is listed."],
+   ["Edit Inventory Part opens."],
+   ["A dark grey box with white text over four lines opens just below the (i) icon, over the switch and the Min box.",
+    "The heading \"Inventory Tracking\" stays visible above the box.",
+    "The text reads in full: \"Tracked parts keep a stock count, with Min and Max. Turn this off for items you don't count. Untracked parts are left out of the Inventory Value report.\""],
+   ["The box disappears and the switch and the Min box show again."],
+   ["The window closes and part A's row shows again in the list, with its part number and description unchanged."]],
+  ["S4-R3"],
+  design=dict(boards=["5.1"], words=[note("Hovering the info icon shows")]))
+
+C("D-28", S, "Design: Tracking switched off on a part looks as in the design",
+  [ADMIN, "Have an active, tracked part, part A, with stock in one bin and a saved Min and Max.", LIGHT, WIDE, PIC("5.2"), START],
+  ["Type part A's part number in the Search box.", "Click the part A row.", "Click the Track quantities and cost of goods switch.", "Click Cancel."],
+  [["Part A is listed with a quantity in Total Qty."],
+   ["Edit Inventory Part opens with the switch blue and Min and Max shown."],
+   ["The switch turns grey with its knob at the left.",
+    "Min and Max are gone and Tags sits directly under the switch.",
+    "The bin row still shows part A's bin, its quantity and the \"Default\" tag.",
+    "The window stays open with no message and no confirmation."],
+   ["The window closes and part A's Total Qty still shows a quantity: nothing was saved."]],
+  ["S5-R3", "S5-R3a", "S5-R5"],
+  design=dict(boards=["5.2"], words=[note("Min and Max are hidden in the part dialog")]))
+
+C("D-29", S, "Design: Tracking switched back on shows Min and Max again",
+  [ADMIN, "Have an untracked part, part A, that had Min 2 and Max 6 saved before tracking was turned off.", LIGHT, WIDE, PIC("5.6"), START],
+  ["Type part A's part number in the Search box.", "Click the part A row.", "Click the Track quantities and cost of goods switch.", "Click Cancel."],
+  [["Part A is listed with \"Not Tracked\" in Total Qty."],
+   ["Edit Inventory Part opens with the switch grey and no Min or Max."],
+   ["The switch turns blue with its knob at the right.",
+    "Min and Max come back as two boxes between the switch and Tags, showing 2 and 6."],
+   ["The window closes and part A still shows \"Not Tracked\": nothing was saved."]],
+  ["S5-R4"],
+  design=dict(boards=["5.6"], words=[note("Min and Max show again with the values they had")]))
+
+C("D-30", S, "Design: Not Tracked in the Inventory list looks as in the design",
+  [ADMIN, "Have an untracked part, part A, with stock in one bin and a saved Min and Max.", "Have a tracked part, part B, with stock.",
+   SHARED("parts A and B"), LIGHT, WIDE, PIC("5.3", "5.4"), START],
+  [TYPE_SHARED, "Scroll the table to the right until the Min column shows.", "Replace the search text with not tracked."],
+  [["Parts A and B are listed."],
+   ["Part A's Total Qty cell reads \"Not Tracked\" in light grey plain text, with no coloured badge around it.",
+    "Part B's Total Qty cell shows a coloured badge with its quantity and the word Available.",
+    "Part A's Bin Location / Quantity cell still shows the outlined chip with its bin and quantity.",
+    "Part A's Min and Max cells still show numbers."],
+   ["Part A is listed, with the same grey \"Not Tracked\" text in Total Qty."]],
+  ["S4-R8", "S4-R8a", "S4-R8b", "S6-R1"],
+  design=dict(boards=["5.3", "5.4"], words=[note("Total Qty reads \"Not Tracked\" instead of a quantity")]))
+
+C("D-31", S, "Design: Cycle count with an untracked part looks as in the design",
+  [ADMIN, "Have an untracked part, part A, and a tracked part, part B, with stock.", SHARED("parts A and B"), NO_COUNT, LIGHT, WIDE, PIC("5.7"), START],
+  [TYPE_SHARED, MENU, "Click Cycle count.", "Click Cancel in the count toolbar."],
+  [["Parts A and B are listed."],
+   ["The menu opens."],
+   ["The toolbar shows a printer icon, a pale \"Save\" button, a blue \"Cancel\" button and \"Count changes available: 200\" at the right.",
+    "The Active and Inactive tabs still show above the toolbar.",
+    "Part A's row shows \"Not Tracked\" in light grey in both Total Qty and Count, with no count box.",
+    "Part B's row shows a coloured badge in Total Qty and an empty count box in Count."],
+   ["The count toolbar is replaced by the normal toolbar and nothing was counted."]],
+  ["S5-R12", "S1-E1", "UFS-41"],
+  design=dict(boards=["5.7"], words=[note("In Cycle count the untracked part shows \"Not Tracked\"")]))
+
+# ---------------------------------------------------------------- Part History (Story 10)
+C("D-32", S, "Design: Part History page looks as in the design",
+  [ADMIN, "Have an active part, part A, whose tracking was turned off and back on, so its Part History has entries.", LIGHT, WIDE, PIC("2.4", "5.5"), START],
+  ["Type part A's part number in the Search box.", "Click the clock icon at the left of the part A row."],
+  [["Part A is listed with the clock icon at its left."],
+   ["At the left a white card with rounded corners reads \"Part details\", then part A's description in blue (cut off with \"..\" when long), then the bold labels Part number, Category, Manufacturer and Measurement, each with its value under it.",
+    "To the right of the card sits the title \"Part History\", with a magnifier and the word \"Search\" at the top right of the page.",
+    "A table with the bold headers Staff, Date, Time and Event lists the entries, with a thin line between rows.",
+    "The entries \"Tracking turned off\" and \"Tracking turned on\" show in the Event column, in darker, slightly bolder text than Staff, Date and Time."]],
+  ["S10-R20", "S10-R22"],
+  design=dict(boards=["2.4", "5.5"], words=[note("Turning tracking off writes \"Tracking turned off\"")]))
+
+C("D-33", S, "Design: Part History keeps column widths when events are long",
+  ["Sign in as an Admin who can switch between two locations: the test location and location B.",
+   "Create part A for this test at the test location and at location B, and change its part number once at the test location, so location B's Part History has a long entry ending with Changed at.",
+   LIGHT, WIDE, PIC("2.4", "2.6"), "Start on the test location's Inventory page, on the Active tab."],
+  ["Type part A's part number in the Search box.", "Click the clock icon at the left of the part A row.",
+   "Pick location B in the location selector at the top right.", "Click Parts in the top bar.", "Click Inventory in the left menu.",
+   "Type part A's part number in the Search box.", "Click the clock icon at the left of the part A row."],
+  [["Part A is listed."],
+   ["The test location's Part History shows the \"Part number updated\" entry, with no \"Changed at\" at its end."],
+   ["The location selector shows location B."],
+   ["The Parts left menu shows Inventory."],
+   ["Location B's Inventory page opens on the Active tab."],
+   ["Part A is listed at location B under its new part number."],
+   ["The Staff, Date and Time columns are as wide as on the test location's Part History page (compare with board 2.4).",
+    "The \"Part number updated | Original number: … | New number: … | Changed at: …\" entry wraps onto a second line inside the Event column.",
+    "No column narrows, and the end of the entry, the test location's name, is readable: it is not cut off with \"...\"."]],
+  ["S10-R21", "S10-R25", ("TECH", "Tech plan, Phase 8, PartHistory.vue", "S10-R21: fixed headerStyle widths on Staff/Date/Time, Event elastic, table-layout: fixed + ellipsis (the Inventory list approach)")],
+  marker=PO_HOLD("DQ-03", "the design wraps long Part History entries, the tech plan cuts them off; not run until answered"),
+  design=dict(boards=["2.4", "2.6"], pictures=["correct-04-p2-4-history-here.png", "board-2.6-part-history-at-lethbridge-redrawn-table.png"],
+              words=[note("The entries are written at Lethbridge too")],
+              note=("Held design-version case (Rule 130): board 2.6 redraws the table over the build screenshot and its note says a long "
+                    "Event wraps onto a second line, while the tech plan cuts it off with an ellipsis; the PRD does not say which. "
+                    "Question DQ-03 to Product. Compare with the attached redrawn table, not with the board's raw screenshot.")))
+
+C("D-34", S, "Design: Part History search with a term looks as in the design",
+  [ADMIN, "Have an inactive part, part A, deactivated with the note Superseded by a newer part, so its Part History has a Deactivated entry with a reason.",
+   LIGHT, WIDE, PIC("3.8"), START_INACTIVE],
+  ["Type part A's part number in the Search box.", "Click the clock icon at the left of the part A row.", "Click Search at the top right of Part History.",
+   "Type superseded in the Part History search box.", "Click the round clear (x) icon in the Part History search box."],
+  [["Part A is listed on the Inactive tab."],
+   ["Part History lists every entry of part A."],
+   ["A search field opens at the top right with a magnifier at its left."],
+   ["The field shows \"superseded\" with a round clear (x) icon at its right end.",
+    "Only the entries whose Event text contains it are listed, \"Deactivated | Reason: Superseded by a newer part\" among them, in the same table layout."],
+   ["The search text is cleared and every entry of part A is listed again."]],
+  ["S10-R27", "S10-R17"],
+  design=dict(boards=["3.8"], words=[note("Typing \"superseded\" in the Part History search")]))
+
+# ---------------------------------------------------------------- Daily work (Story 9, 12)
+WO1 = "Create an open work order for this test, work order 1, with one line."
+C("D-35", S, "Design: Part lookup results look as in the design",
+  [ADMIN, "Have an active part, part A, with stock in one bin.",
+   "Have a Part Library entry, part B, that is not stocked at the test location, so the lookup lists one result from the Part Library.",
+   SHARED("parts A and B"), WO1, LIGHT, WIDE, PIC("6.1"), "Start on the Work Orders page."],
+  ["Click work order 1.", "Click Add Part in the Parts row of its line.", "Type the shared start of the part numbers in the Part Number box.",
+   "Click the X at the top right of the New Part Request window."],
+  [["Work order 1 opens on its Lines tab."],
+   ["The New Part Request window opens with the Part Number box focused."],
+   ["Part A's result shows its description at the left and its part number at the right on the first line, then \"Inventory Qty:\" with its quantity in grey, then an outlined chip with its bin and quantity.",
+    "Part B's result shows its description and part number on the first line, then \"Part Library\" in grey on its second line."],
+   ["The window closes and the line's Parts row still shows only Add Part: no part was added."]],
+  ["S12-R10", "S9-R1"],
+  design=dict(boards=["6.1"], words=[note("New Part Request on work order S2-9647")]))
+
+C("D-36", S, "Design: Lookup with no match shows No results",
+  [ADMIN, "Have an inactive part, part A, and an active part, part B.", WO1, LIGHT, WIDE, PIC("6.2"), "Start on the Work Orders page."],
+  ["Click work order 1.", "Click Add Part in the Parts row of its line.", "Type the start of part A's description in the Part Number box.",
+   "Replace the text with part B's part number.", "Click the X at the top right of the New Part Request window."],
+  [["Work order 1 opens on its Lines tab."],
+   ["The New Part Request window opens."],
+   ["The open lookup list holds one line, \"No results\", in dark text, and nothing else."],
+   ["Part B's result is listed, which shows the lookup is searching."],
+   ["The window closes and the line's Parts row still shows only Add Part: no part was added."]],
+  ["S9-R1"],
+  design=dict(boards=["6.2"], words=[note("The same search returns \"No results\"")]))
+
+C("D-37", S, "Design: Retired number typed in a lookup shows the inactive line",
+  [ADMIN, "Have an inactive part, part A, whose part number has capital letters.", WO1, LIGHT, WIDE, PIC("6.3"), "Start on the Work Orders page."],
+  ["Click work order 1.", "Click Add Part in the Parts row of its line.", "Type part A's full part number in lower case in the Part Number box.",
+   "Click the X at the top right of the New Part Request window."],
+  [["Work order 1 opens on its Lines tab."],
+   ["The New Part Request window opens."],
+   ["The open lookup list holds one line of dark text: part A's number in capitals, as stocked, followed by \"is inactive. Activate it from the Inactive tab to use it.\"",
+    "That line is the only one in the list: no special-order row and no option to add the number."],
+   ["The window closes and the line's Parts row still shows only Add Part: no part was added."]],
+  ["S9-R16", "UFS-44"],
+  design=dict(boards=["6.3"], words=[note("Typing greasetube in full does not offer it as a special order")]))
+
+C("D-38", S, "Design: Canned job warning looks as in the design",
+  [ADMIN, "Create an inactive part for this test, part A, and an active part for this test, part B.",
+   "Have a canned job, canned job 1, that holds part A and part B.", WO1, LIGHT, WIDE, PIC("6.4", "6.5"), "Start on the Work Orders page."],
+  ["Click work order 1.", "Click New Line.", "Type the start of canned job 1's title in the Title box.", "Click canned job 1 in the list.",
+   "Click Save & Close.", "Wait 10 seconds without closing the message.", "Click Close on the message."],
+  [["Work order 1 opens on its Lines tab."],
+   ["The New Line window opens."],
+   ["The list under Title offers canned job 1 with its rate and \"Total Parts: 2\"."],
+   ["Canned job 1's title fills the Title box."],
+   ["The window closes and the new line shows on the work order with part B and without part A.",
+    "An orange message box appears with a white \"!\" icon at its left and \"Close\" at its right.", TOAST_BR,
+    "It reads \"These parts are inactive and were not added:\" followed by part A's part number and a full stop."],
+   ["The orange message is still on screen."],
+   ["The orange message disappears."]],
+  ["S9-R9", "S9-R10", "UFS-43"],
+  design=dict(boards=["6.4", "6.5"], words=[note("New Line on S2-9647"), note("The line is added without GREASETUBE")]))
+
+C("D-39", S, "Design: Inactive tag in the vendor return lookup looks as drawn",
+  [ADMIN, "Have an inactive part, part A, and an active part, part B, both with stock.", SHARED("parts A and B"), LIGHT, WIDE, PIC("6.6"),
+   "Start on the Create Return page (Parts in the top bar, Returns in the left menu, then start a new return)."],
+  [TYPE_SHARED.replace("Search box", "Part Number box"), "Press Escape."],
+  [["Both parts are offered.",
+    "Part A's result shows a small grey rounded \"Inactive\" tag right after its description, before its part number.",
+    "Part B's result has no tag; its description runs straight to its part number."],
+   ["The lookup list closes and the Part Number box of the return line is still empty."]],
+  ["S9-R11", "S9-R12"],
+  design=dict(boards=["6.6"], words=[note("The vendor return lookup includes inactive parts")]))
+
+C("D-40", S, "Design: Inactive tag in the Issue Credit list looks as in the design",
+  [ADMIN, "Have a paid part sale, part sale 1, that sold part A and part B, with part A set inactive after the sale and part B still active.",
+   LIGHT, WIDE, PIC("6.7"), "Start on the Part Sales page."],
+  ["Click part sale 1.", "Click the Finance tab.", "Click the three-dot menu of the invoice.", "Click Issue Credit.", "Tick Parts are being returned.", "Click Cancel."],
+  [["Part sale 1 opens."],
+   ["The invoice shows."],
+   ["The invoice menu opens with Issue Credit in it."],
+   ["The Issue Credit window opens."],
+   ["The \"Parts to return\" list shows parts A and B.",
+    "Part A's row shows a small grey rounded \"Inactive\" tag right after its part number, before its description.",
+    "Part B's row has no tag."],
+   ["The window closes and no credit is issued."]],
+  ["S9-R13"],
+  design=dict(boards=["6.7"], words=[note("Issue Credit on part sale P2-89")]))
+
+# ---------------------------------------------------------------- Part Library (Stories 11, 12)
+C("D-41", S, "Design: Part Library page looks as in the design",
+  [ADMIN, LIGHT, WIDE, PIC("7.1"), "Start on the Inventory page."],
+  ["Click Part Library in the left menu.", "Click the three-dot button before the Description header.", "Press Escape."],
+  [["The page title reads \"Part Library\" and Part Library is blue in the left menu.",
+    "At the right of the title row: Search with a magnifier, \"Manufacturer: All manufacturers\" with a person icon and a down arrow, \"Category: All categories\" with a down arrow; the row ends there, with no button that creates an entry.",
+    "A header checkbox and a blue three-dot button sit before the Description header, and every row has a checkbox.",
+    "The columns read, in order: Description, Part Number, Tags, Category, Manufacturer, Measurement, Size."],
+   ["A menu opens with Set category in it."],
+   ["The menu closes."]],
+  ["S11-R1", "S11-R4", "S11-R5", "S12-R1", "S12-R2"],
+  design=dict(boards=["7.1"], words=[note("Called Part Library in the side menu and the page title")]))
+
+C("D-42", S, "Design: Part Library entry page looks as in the design",
+  [ADMIN, "Have a Part Library entry, part A, stocked at the test location.", LIGHT, WIDE, PIC("7.2"), "Start on the Part Library page."],
+  ["Type part A's part number in the Search box.", "Click the part A row."],
+  [["Part A's entry is listed."],
+   ["The browser tab reads \"Library Part\".",
+    "At the left a white card reads \"Part details\", then part A's name in bold with a blue pencil-on-lines (edit) icon to its right, then Part number, Category, Manufacturer, Measurement and Total parts.",
+    "To its right the title \"Parts\" heads a table with an arrow column, then Workplace, Bin location, Average cost, Sell price, Core charge, Remaining Quantity, Min and Max; the test location's row is listed.",
+    "The page shows the pencil as its only edit control and has no Delete button anywhere."]],
+  ["S11-R3", "S12-R12"],
+  design=dict(boards=["7.2"], words=[note("Clicking a row opens the entry")],
+              note=("The board's note above still says the entry can be deleted on this page; the PRD (S11-R3) says the page has no Delete "
+                    "button and the board's picture shows none. This case follows the PRD; question DQ-02 asks Product to confirm the note is "
+                    "out of date.")))
+
+# ---------------------------------------------------------------- Widths (Rule 126 point 2; PRD form factor)
+def WPC(w): return f"Use a computer whose screen is set to {w} pixels wide, with the browser window maximised and the page zoom at 100%."
+for key, w in (("D-43", 1440), ("D-44", 1536)):
+    C(key, S, f"Design: Inventory list and bulk bar fit a {w} px wide window",
+      [ADMIN, "Have two active parts, part A and part B.", SHARED("parts A and B"), NO_COUNT, LIGHT, WPC(w), PIC("4.2", "4.3"), START],
+      [TYPE_SHARED, MENU, "Click Deactivate parts.", "Click the part A row.", "Click the part B row.", X],
+      [["The title, the tabs and the toolbar each sit on their own line with nothing overlapping.",
+        "Every toolbar label reads in full: Search, Bin Location: All bin locations, Category: All categories, Supply, New Inventory Part.",
+        "Parts A and B are listed; columns that do not fit can be reached by scrolling the table sideways, and no header text overlaps another."],
+       ["The menu opens below the three-dot button and every entry reads in full."],
+       ["The dark bar fits the list's width on its own line under the tabs, with the badge, \"selected\", the divider, the Deactivate button and the X all showing.",
+        "The search and filter row under the bar keeps every label in full."],
+       ["Part A is ticked and the badge reads 1."],
+       ["The badge reads 2 and \"2 records selected.\" shows under the table without overlapping the rows."],
+       ["The dark bar and the checkboxes disappear."]],
+      ["FF-1", "S1-R8", "S2-R7"],
+      design=dict(boards=["4.2", "4.3"]))
+for key, w in (("D-45", 1440), ("D-46", 1536)):
+    C(key, S, f"Design: Part window and confirmation fit a {w} px wide window",
+      [ADMIN, "Create an active part for this test, part A, with two or more tags.", LIGHT, WPC(w), PIC("2.1", "3.3"), START],
+      ["Type part A's part number in the Search box.", "Click the part A row.", "Click Inactive under Part Status.", "Click Save.",
+       "Click Cancel in the confirmation.", "Click Cancel."],
+      [["Part A is listed."],
+       ["Edit Inventory Part opens with every field, the footer and its three buttons in view or reachable by scrolling inside the window.",
+        "The title, the green \"Active\" pill and the X sit on one line without touching each other."],
+       ["The Inactive radio is filled blue."],
+       ["The \"Deactivate part?\" confirmation fits inside the screen; its lines wrap inside the dialog and every word reads in full.",
+        "Cancel and Deactivate sit side by side at the bottom right without overlapping."],
+       ["The confirmation closes and the window shows Inactive still picked."],
+       ["The window closes and part A is still listed on the Active tab."]],
+      ["FF-1", "S13-R2", "S13-R3", "S10-R11"],
+      design=dict(boards=["2.1", "3.3"]))
+
+# ---------------------------------------------------------------- PRD look sentences the design does not draw (skill 21 §6d item 7)
+C("D-47", S, "Design: Inactive tag on the Part Library entry page sits before the quantity",
+  ["Sign in as an Admin who can switch between two locations: the test location and location B.",
+   "Have part A stocked at the test location and at location B, active here and inactive at location B.",
+   "Have part B stocked at the test location and at location B, tracked here and untracked at location B.", LIGHT, WIDE, PIC("7.2"),
+   "Start on the Part Library page."],
+  ["Type part A's part number in the Search box.", "Click the part A row.", "Click Part Library in the left menu.",
+   "Type part B's part number in the Search box.", "Click the part B row."],
+  [["Part A's entry is listed."],
+   ["The Parts table lists two rows, the test location and location B.",
+    "Location B's row shows a small grey rounded \"Inactive\" tag in the Remaining Quantity column, before the number.",
+    "The test location's row shows only the number in Remaining Quantity."],
+   ["The Part Library list shows again."],
+   ["Part B's entry is listed."],
+   ["Location B's row shows \"Not Tracked\" in the Remaining Quantity column, in place of the number.",
+    "The test location's row shows a number in Remaining Quantity."]],
+  ["S11-R8", "S11-R9"],
+  design=dict(boards=["7.2"], note="Board 7.2 draws the Parts table layout only; it shows no inactive or untracked row, so the expected results come from the quotes above."))
+
+C("D-48", S, "Design: Not Tracked replaces the stock line in a part lookup",
+  [ADMIN, "Have an untracked part, part A, with stock in one bin, and a tracked part, part B, with stock.", SHARED("parts A and B"), WO1,
+   LIGHT, WIDE, PIC("6.1"), "Start on the Work Orders page."],
+  ["Click work order 1.", "Click Add Part in the Parts row of its line.", "Type the shared start of the part numbers in the Part Number box.",
+   "Click the X at the top right of the New Part Request window."],
+  [["Work order 1 opens on its Lines tab."],
+   ["The New Part Request window opens."],
+   ["Part B's result shows \"Inventory Qty:\" with its quantity on its second line.",
+    "Part A's result shows \"Not Tracked\" on its second line in that place, and its bin chip still shows under it."],
+   ["The window closes and the line's Parts row still shows only Add Part: no part was added."]],
+  ["S9-R21"],
+  design=dict(boards=["6.1"], note="Board 6.1 draws the lookup's result layout only; it shows no untracked result, so the expected results come from the quote above."))
+
+# ---------------------------------------------------------------- Held design-version case (Rule 130 item 5)
+C("D-49", S, "Design: Status confirmation has a close X in its title row",
+  [ADMIN, "Create two active parts for this test, part A and part B.", SHARED("parts A and B"), NO_COUNT, LIGHT, WIDE,
+   PIC("3.3", "3.7", "4.4", "4.7"), START],
+  [TYPE_SHARED, "Click the part A row.", "Click Inactive under Part Status.", "Click Save.",
+   "Click the X at the right end of the confirmation's title row.", "Click Cancel.", MENU, "Click Deactivate parts.", "Click the part B row.",
+   "Click Deactivate on the dark bar.", "Click the X at the right end of the confirmation's title row.", X],
+  [["Parts A and B are listed."],
+   ["Edit Inventory Part opens."],
+   ["The Inactive radio is filled blue."],
+   ["The \"Deactivate part?\" confirmation opens with a grey X at the right end of its title row."],
+   ["The confirmation closes; Edit Inventory Part shows again with Inactive still picked and the green \"Active\" pill: nothing was saved."],
+   ["The window closes and part A is still listed on the Active tab."],
+   ["The menu opens."],
+   ["The dark bar appears."],
+   ["Part B is ticked and the badge reads 1."],
+   ["The \"Deactivate parts?\" confirmation opens with a grey X at the right end of its title row."],
+   ["The confirmation closes; part B is still ticked and still listed on the Active tab."],
+   ["The dark bar and the checkboxes disappear."]],
+  ["KD-11", "S10-R2", "S13-R23", "S10-N1"],
+  marker=DESIGN_HOLD,
+  design=dict(boards=["3.3", "3.7", "4.4", "4.7"], words=[note("Save raises \"Deactivate part?\"")],
+              note=("Held design-version case (Rule 130): every status confirmation on the boards has a close X in its title row; the PRD "
+                    "lists a title, a message, an optional note, Cancel and a confirm button only. Question DQ-01 to Product. Not run "
+                    "until Product rules; if the PRD wins, this case is deleted.")))

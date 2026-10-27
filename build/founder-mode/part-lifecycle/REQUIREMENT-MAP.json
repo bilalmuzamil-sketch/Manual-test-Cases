@@ -2,10 +2,10 @@
  "prd": "Confluence 829227015 version 33",
  "built": "by authoring/build.py",
  "counts": {
-  "COVERED": 107,
+  "COVERED": 166,
   "NO MANUAL CASE": 5,
   "OTHER STORY": 1,
-  "PENDING": 198
+  "PENDING": 139
  },
  "deleted_cases": {
   "C425659": "dashboard inventory figure (removed in PRD v29, Product answer 7 of 14 Oct)",
@@ -33,9 +33,11 @@
    "text": "The Inventory list shows two tabs, Active and Inactive.",
    "status": "COVERED",
    "keys": [
+    "D-01",
     "S1-01"
    ],
    "case_ids": [
+    null,
     "154752"
    ]
   },
@@ -71,10 +73,12 @@
    "text": "The Inactive tab lists only parts that are inactive at the current location.",
    "status": "COVERED",
    "keys": [
+    "D-02",
     "S1-01",
     "S1-03"
    ],
    "case_ids": [
+    null,
     "154752",
     "425585"
    ]
@@ -133,9 +137,11 @@
    "text": "Search, filters and sort work the same way on both tabs.",
    "status": "COVERED",
    "keys": [
+    "D-02",
     "S1-05"
    ],
    "case_ids": [
+    null,
     "425587"
    ]
   },
@@ -145,9 +151,15 @@
    "text": "The Active and Inactive tabs sit on their own line under the page title, above the search and filter row.",
    "status": "COVERED",
    "keys": [
+    "D-01",
+    "D-43",
+    "D-44",
     "S1-01"
    ],
    "case_ids": [
+    null,
+    null,
+    null,
     "154752"
    ]
   },
@@ -219,10 +231,14 @@
    "text": "If there are no inactive parts at the location and no search or filter is narrowing the list, the Inactive tab shows \"No inactive parts at this location.\"",
    "status": "COVERED",
    "keys": [
+    "D-03",
+    "D-04",
     "S1-09",
     "S1-10"
    ],
    "case_ids": [
+    null,
+    null,
     "425591",
     "425592"
    ]
@@ -233,9 +249,13 @@
    "text": "If a search or filter leaves the Inactive tab empty, it shows the list's standard filtered empty state.",
    "status": "COVERED",
    "keys": [
+    "D-04",
+    "D-26",
     "S1-10"
    ],
    "case_ids": [
+    null,
+    null,
     "425592"
    ]
   },
@@ -245,9 +265,11 @@
    "text": "The tabs stay available during a Cycle count. Switching tabs before saving drops the counts typed so far, without asking, the same as changing the search or a filter during a count.",
    "status": "COVERED",
    "keys": [
+    "D-31",
     "S1-14"
    ],
    "case_ids": [
+    null,
     null
    ]
   },
@@ -257,9 +279,11 @@
    "text": "Bulk deactivation is a mode. The user turns it on from the Inventory actions menu, the three-dot button in the toolbar that holds Cycle count and Export.",
    "status": "COVERED",
    "keys": [
+    "D-05",
     "S2-01"
    ],
    "case_ids": [
+    null,
     "154754"
    ]
   },
@@ -269,9 +293,11 @@
    "text": "The menu entry reads \"Deactivate parts\" while the Active tab shows and \"Activate parts\" while the Inactive tab shows. Only one of the two shows at a time. It sits between Cycle count and Export.",
    "status": "COVERED",
    "keys": [
+    "D-05",
     "S2-01"
    ],
    "case_ids": [
+    null,
     "154754"
    ]
   },
@@ -281,10 +307,12 @@
    "text": "Outside the mode the Inventory list has no checkbox column, and a row click opens the part.",
    "status": "COVERED",
    "keys": [
+    "D-01",
     "S2-02",
     "S3-04"
    ],
    "case_ids": [
+    null,
     "154755",
     "425606"
    ]
@@ -295,9 +323,11 @@
    "text": "Turning the mode on adds a checkbox column, 44px wide, at the left of the table, and scrolls the table back to its left edge so the column is in view.",
    "status": "COVERED",
    "keys": [
+    "D-07",
     "S2-10"
    ],
    "case_ids": [
+    null,
     "425593"
    ]
   },
@@ -307,10 +337,12 @@
    "text": "While the mode is on, a click anywhere on a row ticks or unticks that row instead of opening the part.",
    "status": "COVERED",
    "keys": [
+    "D-08",
     "S2-03",
     "S3-04"
    ],
    "case_ids": [
+    null,
     "154756",
     "425606"
    ]
@@ -321,6 +353,8 @@
    "text": "The checkbox in the header ticks or clears every row loaded in the list. The list loads 30 parts at a time as the user scrolls, so it ticks only the rows loaded so far. The count in the bar shows exactly how many parts will change.",
    "status": "COVERED",
    "keys": [
+    "D-09",
+    "D-10",
     "S1-11",
     "S2-11",
     "S2-13",
@@ -329,6 +363,8 @@
     "S5-17"
    ],
    "case_ids": [
+    null,
+    null,
     "573668",
     "425594",
     "425596",
@@ -343,9 +379,15 @@
    "text": "While the mode is on, the bulk bar spans the full width of the list directly under the Active and Inactive tabs, and the search and filter row moves down under it.",
    "status": "COVERED",
    "keys": [
+    "D-07",
+    "D-43",
+    "D-44",
     "S2-04"
    ],
    "case_ids": [
+    null,
+    null,
+    null,
     "154757"
    ]
   },
@@ -355,9 +397,11 @@
    "text": "In the light theme the bulk bar is near-black (#121926), the count is white, and the word \"selected\" is light grey. In the dark theme the bar is white and its text is dark. Its corners are rounded 8px.",
    "status": "COVERED",
    "keys": [
+    "D-07",
     "S2-12"
    ],
    "case_ids": [
+    null,
     "425595"
    ]
   },
@@ -367,9 +411,13 @@
    "text": "From left to right the bar shows: the number of ticked rows in a round badge followed by the word \"selected\", a thin divider, and a blue button reading \"Deactivate\". The number updates as the user ticks.",
    "status": "COVERED",
    "keys": [
+    "D-07",
+    "D-08",
     "S2-04"
    ],
    "case_ids": [
+    null,
+    null,
     "154757"
    ]
   },
@@ -379,9 +427,11 @@
    "text": "The Deactivate button is disabled while no row is ticked. Hovering it then shows \"Tick the parts to deactivate\".",
    "status": "COVERED",
    "keys": [
+    "D-07",
     "S2-08"
    ],
    "case_ids": [
+    null,
     "154762"
    ]
   },
@@ -391,10 +441,12 @@
    "text": "One change takes at most 200 parts. With more than 200 rows ticked, the Deactivate button is disabled, and hovering it shows \"Select 200 parts or fewer.\"",
    "status": "COVERED",
    "keys": [
+    "D-10",
     "S2-13",
     "S2-13b"
    ],
    "case_ids": [
+    null,
     "425596",
     null
    ]
@@ -405,12 +457,14 @@
    "text": "An X button sits at the right end of the bar. Hovering it shows \"Clear selection\", which is also its screen reader label.",
    "status": "COVERED",
    "keys": [
+    "D-07",
     "S2-04",
     "S2-05",
     "S2-20",
     "S3-04c"
    ],
    "case_ids": [
+    null,
     "154757",
     "154758",
     "425604",
@@ -423,10 +477,12 @@
    "text": "The X leaves the mode, clears the selection and puts the toolbar back to its normal state.",
    "status": "COVERED",
    "keys": [
+    "D-06",
     "S2-05b",
     "S3-04c"
    ],
    "case_ids": [
+    null,
     null,
     null
    ]
@@ -463,10 +519,12 @@
    "text": "While the mode is on, the actions menu offers only Export. Cycle count and the bulk entry come back when the mode ends.",
    "status": "COVERED",
    "keys": [
+    "D-06",
     "S2-16",
     "S3-04b"
    ],
    "case_ids": [
+    null,
     "425599",
     null
    ]
@@ -489,10 +547,12 @@
    "text": "The deactivated parts leave the Active tab without a page reload.",
    "status": "COVERED",
    "keys": [
+    "D-13",
     "S2-06",
     "S2-06b"
    ],
    "case_ids": [
+    null,
     "154759",
     null
    ]
@@ -515,10 +575,12 @@
    "text": "When every ticked part changes, the mode ends and the selection clears.",
    "status": "COVERED",
    "keys": [
+    "D-13",
     "S2-06",
     "S2-06b"
    ],
    "case_ids": [
+    null,
     "154759",
     null
    ]
@@ -652,10 +714,12 @@
    "text": "Reactivation uses the same mode as Story 2. On the Inactive tab the actions menu entry reads \"Activate parts\", and turning it on shows the same checkbox column and the same bulk bar.",
    "status": "COVERED",
    "keys": [
+    "D-09",
     "S2-01",
     "S3-01"
    ],
    "case_ids": [
+    null,
     "154754",
     "154764"
    ]
@@ -666,9 +730,11 @@
    "text": "The bulk bar button reads \"Activate\", in the same blue as \"Deactivate\".",
    "status": "COVERED",
    "keys": [
+    "D-09",
     "S3-01"
    ],
    "case_ids": [
+    null,
     "154764"
    ]
   },
@@ -738,9 +804,11 @@
    "text": "The New Inventory Part dialog has a \"Track quantities and cost of goods\" switch, on by default.",
    "status": "COVERED",
    "keys": [
+    "D-14",
     "S4-01"
    ],
    "case_ids": [
+    null,
     "154766"
    ]
   },
@@ -750,9 +818,11 @@
    "text": "The switch sits in its own section headed \"Inventory Tracking\", below the cost, Sell Price and Core Charge fields, and above Tags (S13-R4).",
    "status": "COVERED",
    "keys": [
+    "D-14",
     "S4-01"
    ],
    "case_ids": [
+    null,
     "154766"
    ]
   },
@@ -762,9 +832,13 @@
    "text": "The heading has an info icon. Hovering it shows \"Tracked parts keep a stock count, with Min and Max. Turn this off for items you don't count. Untracked parts are left out of the Inventory Value report.\"",
    "status": "COVERED",
    "keys": [
+    "D-14",
+    "D-27",
     "S4-05"
    ],
    "case_ids": [
+    null,
+    null,
     "425627"
    ]
   },
@@ -774,9 +848,11 @@
    "text": "Min and Max sit in the section, under the switch.",
    "status": "COVERED",
    "keys": [
+    "D-14",
     "S4-01"
    ],
    "case_ids": [
+    null,
     "154766"
    ]
   },
@@ -786,9 +862,11 @@
    "text": "When the switch is off, Min and Max are hidden.",
    "status": "COVERED",
    "keys": [
+    "D-17",
     "S4-02"
    ],
    "case_ids": [
+    null,
     "154767"
    ]
   },
@@ -798,10 +876,12 @@
    "text": "When the switch is off, the bin location section stays visible and is optional. A bin can be set as a shelf reference without being required to save.",
    "status": "COVERED",
    "keys": [
+    "D-17",
     "S4-02",
     "S4-06"
    ],
    "case_ids": [
+    null,
     "154767",
     "425628"
    ]
@@ -836,12 +916,16 @@
    "text": "An untracked part shows \"Not Tracked\" in the Inventory list's Total Qty column instead of a quantity.",
    "status": "COVERED",
    "keys": [
+    "D-01",
+    "D-30",
     "S1-02",
     "S1-07",
     "S4-03",
     "S4-06"
    ],
    "case_ids": [
+    null,
+    null,
     "154753",
     "425589",
     "154768",
@@ -854,9 +938,11 @@
    "text": "On the Inventory list, an untracked part's Bin Location / Quantity column still shows each bin with its quantity.",
    "status": "COVERED",
    "keys": [
+    "D-30",
     "S4-03"
    ],
    "case_ids": [
+    null,
     "154768"
    ]
   },
@@ -866,10 +952,12 @@
    "text": "On the Inventory list, an untracked part's Min and Max columns still show the saved values.",
    "status": "COVERED",
    "keys": [
+    "D-30",
     "S4-03",
     "S5-02"
    ],
    "case_ids": [
+    null,
     "154768",
     "154771"
    ]
@@ -936,10 +1024,12 @@
    "text": "Turning tracking off hides Min and Max in the part dialog. It does not change the quantity in any bin.",
    "status": "COVERED",
    "keys": [
+    "D-28",
     "S5-02",
     "S5-04"
    ],
    "case_ids": [
+    null,
     "154771",
     "154773"
    ]
@@ -950,9 +1040,11 @@
    "text": "The bin locations and their quantities stay visible in the part dialog, as a shelf reference (S4-R6).",
    "status": "COVERED",
    "keys": [
+    "D-28",
     "S5-04"
    ],
    "case_ids": [
+    null,
     "154773"
    ]
   },
@@ -962,9 +1054,11 @@
    "text": "Turning tracking off keeps the Min and Max values, so turning tracking back on shows them as they were.",
    "status": "COVERED",
    "keys": [
+    "D-29",
     "S5-02"
    ],
    "case_ids": [
+    null,
     "154771"
    ]
   },
@@ -974,9 +1068,11 @@
    "text": "Turning tracking off asks for no confirmation, whatever the part holds.",
    "status": "COVERED",
    "keys": [
+    "D-28",
     "S5-03"
    ],
    "case_ids": [
+    null,
     "154772"
    ]
   },
@@ -1038,9 +1134,11 @@
    "text": "In Cycle count, an untracked part shows \"Not Tracked\" in the count column instead of count boxes, and it is never counted.",
    "status": "COVERED",
    "keys": [
+    "D-31",
     "S5-10"
    ],
    "case_ids": [
+    null,
     "425636"
    ]
   },
@@ -1152,99 +1250,129 @@
    "story": 6,
    "jira": "SV-10819",
    "text": "Typing \"not tracked\", \"not\" or \"tracked\" in the Inventory search returns the untracked parts, together with every part those words match on part number, description, tags and the other standard fields. Upper and lower case, and spaces before and after the term, do not matter.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S6-01"
+   "status": "COVERED",
+   "keys": [
+    "D-30",
+    "S6-01",
+    "S6-09",
+    "S6-10"
    ],
-   "phase": "B"
+   "case_ids": [
+    null,
+    "154774",
+    null,
+    null
+   ]
   },
   "S6-R1a": {
    "story": 6,
    "jira": "SV-10819",
    "text": "The part search on vendor returns and vendor credits uses the same search, so those words return untracked parts there too.",
-   "status": "PENDING",
-   "planned_keys": [],
-   "phase": "B"
+   "status": "COVERED",
+   "keys": [
+    "S6-09",
+    "S6-10"
+   ],
+   "case_ids": [
+    null,
+    null
+   ]
   },
   "S6-R2": {
    "story": 6,
    "jira": "SV-10819",
    "text": "Any other term, including part of those words such as \"t\" or \"track\", matches on part number, description, tags and the other standard fields, never on tracking state.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S6-03"
    ],
-   "phase": "B"
+   "case_ids": [
+    "425641"
+   ]
   },
   "S6-R3": {
    "story": 6,
    "jira": "SV-10819",
    "text": "The Total Qty column can be sorted.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S6-02"
    ],
-   "phase": "B"
+   "case_ids": [
+    "154775"
+   ]
   },
   "S6-R4": {
    "story": 6,
    "jira": "SV-10819",
    "text": "When that column is sorted, untracked parts sit below every tracked part, in both sort directions.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S6-02"
    ],
-   "phase": "B"
+   "case_ids": [
+    "154775"
+   ]
   },
   "S6-R5": {
    "story": 6,
    "jira": "SV-10819",
    "text": "Tracked parts sort against each other by quantity.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S6-02"
    ],
-   "phase": "B"
+   "case_ids": [
+    "154775"
+   ]
   },
   "S6-R6": {
    "story": 6,
    "jira": "SV-10819",
    "text": "Tracked parts with the same quantity are then ordered by description, A to Z.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S6-02"
    ],
-   "phase": "B"
+   "case_ids": [
+    "154775"
+   ]
   },
   "S6-R7": {
    "story": 6,
    "jira": "SV-10819",
    "text": "Untracked parts are ordered by description, A to Z.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S6-02"
    ],
-   "phase": "B"
+   "case_ids": [
+    "154775"
+   ]
   },
   "S6-R8": {
    "story": 6,
    "jira": "SV-10819",
    "text": "Sorting by any other column sorts by that column first, then by description, A to Z. Tracking state plays no part in it.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S6-05"
    ],
-   "phase": "B"
+   "case_ids": [
+    "425643"
+   ]
   },
   "S6-R9": {
    "story": 6,
    "jira": "SV-10819",
    "text": "With no sort chosen, tracked parts are listed first and untracked parts after them, each ordered by description, A to Z.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S6-06"
    ],
-   "phase": "B"
+   "case_ids": [
+    "425644"
+   ]
   },
   "S6-R10": {
    "story": 6,
@@ -1252,31 +1380,39 @@
    "text": "In the Supply filter, an untracked part shows only under \"All\". Under-supplied, Well-supplied and Over-supplied leave it out.",
    "status": "COVERED",
    "keys": [
-    "S1-12b"
+    "S1-12b",
+    "S6-07"
    ],
    "case_ids": [
-    null
+    null,
+    "425645"
    ]
   },
   "S6-N1": {
    "story": 6,
    "jira": "SV-10819",
    "text": "If there are no untracked parts, searching \"not tracked\" returns no results.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S6-04"
    ],
-   "phase": "B"
+   "case_ids": [
+    "425642"
+   ]
   },
   "S7-R1": {
    "story": 7,
    "jira": "SV-10820",
    "text": "The New Inventory Part dialog has a Description field, followed by a Part Number field. Both are free text.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S7-01"
+   "status": "COVERED",
+   "keys": [
+    "D-14",
+    "D-15"
    ],
-   "phase": "B"
+   "case_ids": [
+    null,
+    null
+   ]
   },
   "S7-R2": {
    "story": 7,
@@ -1404,13 +1540,13 @@
    "story": 7,
    "jira": "SV-10820",
    "text": "When the part was linked to an existing entry whose description differs from the one typed, ignoring upper and lower case and spaces before and after, the system shows \"Part created. Linked to {part number} in the Part Library. Its description \"{library description}\" was kept.\" For example: \"Part created. Linked to N68SL-356 in the Part Library. Its description \"BRAKE PAD\" was kept.\"",
-   "status": "PENDING",
-   "planned_keys": [
-    "S11-16",
-    "S7-02",
-    "S7-10"
+   "status": "COVERED",
+   "keys": [
+    "D-18"
    ],
-   "phase": "B"
+   "case_ids": [
+    null
+   ]
   },
   "S7-R10": {
    "story": 7,
@@ -1440,36 +1576,37 @@
    "story": 7,
    "jira": "SV-10820",
    "text": "Description is required. Left empty, or holding only spaces, the field shows \"Description is a required field\" and the part is not saved.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S7-04",
-    "S7-18"
+   "status": "COVERED",
+   "keys": [
+    "D-16"
    ],
-   "phase": "B"
+   "case_ids": [
+    null
+   ]
   },
   "S7-N2": {
    "story": 7,
    "jira": "SV-10820",
    "text": "Part Number is required. Left empty, or holding only spaces, the field shows \"Part number is a required field\" and the part is not saved.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S7-04",
-    "S7-18"
+   "status": "COVERED",
+   "keys": [
+    "D-16"
    ],
-   "phase": "B"
+   "case_ids": [
+    null
+   ]
   },
   "S7-N3": {
    "story": 7,
    "jira": "SV-10820",
    "text": "If a part with the same number is already stocked at this location and is active, the save is refused with \"{part number} already exists at this location.\"",
-   "status": "PENDING",
-   "planned_keys": [
-    "S7-13",
-    "S7-15",
-    "S7-17",
-    "S7-20"
+   "status": "COVERED",
+   "keys": [
+    "D-19"
    ],
-   "phase": "B"
+   "case_ids": [
+    null
+   ]
   },
   "S7-N4": {
    "story": 7,
@@ -1485,14 +1622,13 @@
    "story": 7,
    "jira": "SV-10820",
    "text": "For S7-N3 and S7-N4, \"the same number\" ignores upper and lower case, hyphens, asterisks, periods, spaces and other blank characters. The message names the number of the part already there.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S7-13",
-    "S7-14",
-    "S7-15",
-    "S7-17"
+   "status": "COVERED",
+   "keys": [
+    "D-19"
    ],
-   "phase": "B"
+   "case_ids": [
+    null
+   ]
   },
   "S7-N5a": {
    "story": 7,
@@ -1788,11 +1924,15 @@
    "story": 9,
    "jira": "SV-10822",
    "text": "Part lookup on a work order line does not return inactive parts.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S9-01"
+   "status": "COVERED",
+   "keys": [
+    "D-35",
+    "D-36"
    ],
-   "phase": "B"
+   "case_ids": [
+    null,
+    null
+   ]
   },
   "S9-R2": {
    "story": 9,
@@ -1869,12 +2009,13 @@
    "story": 9,
    "jira": "SV-10822",
    "text": "Applying a canned job adds the job without its inactive parts.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S9-12",
-    "S9-40"
+   "status": "COVERED",
+   "keys": [
+    "D-38"
    ],
-   "phase": "B"
+   "case_ids": [
+    null
+   ]
   },
   "S9-R9a": {
    "story": 9,
@@ -1890,14 +2031,13 @@
    "story": 9,
    "jira": "SV-10822",
    "text": "When a canned job leaves out parts, the system shows one warning listing every part left out: \"These parts are inactive and were not added: {part numbers}.\" The warning stays until the user closes it.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S9-12",
-    "S9-13",
-    "S9-14",
-    "S9-40"
+   "status": "COVERED",
+   "keys": [
+    "D-38"
    ],
-   "phase": "B"
+   "case_ids": [
+    null
+   ]
   },
   "S9-R10b": {
    "story": 9,
@@ -1936,44 +2076,49 @@
    "story": 9,
    "jira": "SV-10822",
    "text": "Part lookup on a vendor return and on a vendor credit includes inactive parts.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S9-15",
-    "S9-16"
+   "status": "COVERED",
+   "keys": [
+    "D-39"
    ],
-   "phase": "B"
+   "case_ids": [
+    null
+   ]
   },
   "S9-R12": {
    "story": 9,
    "jira": "SV-10822",
    "text": "In those lookups an inactive part carries a grey \"Inactive\" tag beside its description.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S9-15",
-    "S9-16"
+   "status": "COVERED",
+   "keys": [
+    "D-39"
    ],
-   "phase": "B"
+   "case_ids": [
+    null
+   ]
   },
   "S9-R13": {
    "story": 9,
    "jira": "SV-10822",
    "text": "A credit on any invoice, from a part sale or a work order, lists the parts sold on the invoice, active or inactive. A part that is now inactive carries the grey \"Inactive\" tag beside its part number.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S9-17",
-    "S9-18"
+   "status": "COVERED",
+   "keys": [
+    "D-40"
    ],
-   "phase": "B"
+   "case_ids": [
+    null
+   ]
   },
   "S9-R14": {
    "story": 9,
    "jira": "SV-10822",
    "text": "The part dialog of an inactive part shows the grey \"Inactive\" badge in its title row (S13-R3).",
-   "status": "PENDING",
-   "planned_keys": [
-    "S9-02"
+   "status": "COVERED",
+   "keys": [
+    "D-21"
    ],
-   "phase": "B"
+   "case_ids": [
+    null
+   ]
   },
   "S9-R15": {
    "story": 9,
@@ -1989,14 +2134,13 @@
    "story": 9,
    "jira": "SV-10822",
    "text": "When the number typed in a part lookup matches an inactive part at this location, the lookup does not offer to add it as a special order. It shows \"{part number} is inactive. Activate it from the Inactive tab to use it.\", naming the inactive part's number. On technician charge-out, where a typed number is taken straight from the field, the field shows the same message as its error and the line cannot be saved.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S9-07",
-    "S9-08",
-    "S9-09",
-    "S9-20"
+   "status": "COVERED",
+   "keys": [
+    "D-37"
    ],
-   "phase": "B"
+   "case_ids": [
+    null
+   ]
   },
   "S9-R17": {
    "story": 9,
@@ -2043,20 +2187,26 @@
    "status": "COVERED",
    "keys": [
     "S5-08",
-    "S5-09"
+    "S5-09",
+    "S6-08"
    ],
    "case_ids": [
     "425634",
-    "425635"
+    "425635",
+    "425656"
    ]
   },
   "S9-R21": {
    "story": 9,
    "jira": "SV-10822",
    "text": "In the part lookup on work orders, estimates, part sales and purchase orders, an untracked part shows \"Not Tracked\" in place of \"Inventory Qty: {n}\". Its bin chips stay as a shelf reference.",
-   "status": "PENDING",
-   "planned_keys": [],
-   "phase": "B"
+   "status": "COVERED",
+   "keys": [
+    "D-48"
+   ],
+   "case_ids": [
+    null
+   ]
   },
   "S9-R22": {
    "story": 9,
@@ -2254,11 +2404,15 @@
    "story": 10,
    "jira": "SV-10823",
    "text": "The confirmation is the application's standard confirmation dialog. There is no confirmation word to type.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S10-01"
+   "status": "COVERED",
+   "keys": [
+    "D-11",
+    "D-49"
    ],
-   "phase": "B"
+   "case_ids": [
+    null,
+    null
+   ]
   },
   "S10-R3": {
    "story": 10,
@@ -2266,10 +2420,18 @@
    "text": "Raised from the bulk bar, the confirmation is titled \"Deactivate parts?\" or \"Activate parts?\". Raised from the part dialog, it is titled \"Deactivate part?\" or \"Activate part?\".",
    "status": "COVERED",
    "keys": [
+    "D-11",
+    "D-12",
+    "D-24",
+    "D-25",
     "S2-06",
     "S3-02"
    ],
    "case_ids": [
+    null,
+    null,
+    null,
+    null,
     "154759",
     "154765"
    ]
@@ -2280,11 +2442,19 @@
    "text": "Raised from the bulk bar, the confirmation opens with \"{n} parts selected.\", or \"1 part selected.\" for one. Raised from the part dialog, it opens with the part number followed by the description, as they stand in the form, with spaces before and after removed.",
    "status": "COVERED",
    "keys": [
+    "D-11",
+    "D-12",
+    "D-24",
+    "D-25",
     "S2-06",
     "S2-06b",
     "S2-13"
    ],
    "case_ids": [
+    null,
+    null,
+    null,
+    null,
     "154759",
     null,
     "425596"
@@ -2294,31 +2464,37 @@
    "story": 10,
    "jira": "SV-10823",
    "text": "For a deactivation from the bulk bar, the confirmation then states, in this order: \"These parts won't show up when adding parts to work orders, estimates, part sales or purchase orders.\", \"Existing records that use them stay as they are.\", and \"Stock, cost of goods and QuickBooks aren't affected.\" With exactly one part ticked, the lines read \"This part won't show up ...\" and \"Existing records that use it stay as they are.\"",
-   "status": "PENDING",
-   "planned_keys": [
-    "S10-07"
+   "status": "COVERED",
+   "keys": [
+    "D-11"
    ],
-   "phase": "B"
+   "case_ids": [
+    null
+   ]
   },
   "S10-R6": {
    "story": 10,
    "jira": "SV-10823",
    "text": "For a deactivation from the part dialog, the confirmation states, in this order: \"This part won't show up when adding parts to work orders, estimates, part sales or purchase orders.\", \"Existing records that use it stay as they are.\", and \"Stock, cost of goods and QuickBooks aren't affected.\"",
-   "status": "PENDING",
-   "planned_keys": [
-    "S10-14"
+   "status": "COVERED",
+   "keys": [
+    "D-24"
    ],
-   "phase": "B"
+   "case_ids": [
+    null
+   ]
   },
   "S10-R7": {
    "story": 10,
    "jira": "SV-10823",
    "text": "For a reactivation from the part dialog, the confirmation states \"This part can be added to new work again.\" and nothing more.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S10-08"
+   "status": "COVERED",
+   "keys": [
+    "D-25"
    ],
-   "phase": "B"
+   "case_ids": [
+    null
+   ]
   },
   "S10-R8": {
    "story": 10,
@@ -2326,9 +2502,11 @@
    "text": "For a reactivation from the bulk bar, the confirmation states \"These parts can be added to new work again.\" (\"This part ...\" for one), followed by \"Existing records that use them stay as they are.\" (\"... that use it ...\" for one).",
    "status": "COVERED",
    "keys": [
+    "D-12",
     "S3-02"
    ],
    "case_ids": [
+    null,
     "154765"
    ]
   },
@@ -2336,21 +2514,35 @@
    "story": 10,
    "jira": "SV-10823",
    "text": "The \"Existing records that use ...\" line is medium weight. The \"Stock, cost of goods and QuickBooks aren't affected.\" line is grey. Every other line is regular weight in the default text color.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S10-16"
+   "status": "COVERED",
+   "keys": [
+    "D-11",
+    "D-12",
+    "D-24"
    ],
-   "phase": "B"
+   "case_ids": [
+    null,
+    null,
+    null
+   ]
   },
   "S10-R10": {
    "story": 10,
    "jira": "SV-10823",
    "text": "The confirmation has a note field labelled \"Note (Optional)\". It stops accepting input at 255 characters.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S10-09"
+   "status": "COVERED",
+   "keys": [
+    "D-11",
+    "D-12",
+    "D-24",
+    "D-25"
    ],
-   "phase": "B"
+   "case_ids": [
+    null,
+    null,
+    null,
+    null
+   ]
   },
   "S10-R11": {
    "story": 10,
@@ -2358,9 +2550,21 @@
    "text": "The confirm button reads \"Deactivate\" in red for a deactivation and \"Activate\" in blue for a reactivation. Cancel sits to its left.",
    "status": "COVERED",
    "keys": [
+    "D-11",
+    "D-12",
+    "D-24",
+    "D-25",
+    "D-45",
+    "D-46",
     "S3-02"
    ],
    "case_ids": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
     "154765"
    ]
   },
@@ -2370,9 +2574,11 @@
    "text": "After a bulk change, the system shows how many parts changed and how many failed.",
    "status": "COVERED",
    "keys": [
+    "D-13",
     "S2-06"
    ],
    "case_ids": [
+    null,
     "154759"
    ]
   },
@@ -2456,9 +2662,11 @@
    "text": "The entry reads \"Deactivated\" or \"Activated\". When the user gave a note it reads \"Deactivated | Reason: {note}\" or \"Activated | Reason: {note}\". With no note it reads \"Deactivated\" or \"Activated\" and nothing more.",
    "status": "COVERED",
    "keys": [
+    "D-34",
     "S2-09"
    ],
    "case_ids": [
+    null,
     "154763"
    ]
   },
@@ -2487,21 +2695,25 @@
    "story": 10,
    "jira": "SV-10823",
    "text": "A Part History entry keeps the Staff, Date and Time columns of every other entry, and can be found with the Part History search.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S10-23"
+   "status": "COVERED",
+   "keys": [
+    "D-32"
    ],
-   "phase": "B"
+   "case_ids": [
+    null
+   ]
   },
   "S10-R21": {
    "story": 10,
    "jira": "SV-10823",
    "text": "The Part History table keeps its column layout whatever an entry says. A short entry does not widen the Staff, Date or Time columns.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S10-10"
+   "status": "COVERED",
+   "keys": [
+    "D-33"
    ],
-   "phase": "B"
+   "case_ids": [
+    null
+   ]
   },
   "S10-R22": {
    "story": 10,
@@ -2509,9 +2721,11 @@
    "text": "Turning tracking off writes the entry \"Tracking turned off\" to the part's Part History, and turning it on writes \"Tracking turned on\". A part with nothing on hand still gets the entry.",
    "status": "COVERED",
    "keys": [
+    "D-32",
     "S5-12"
    ],
    "case_ids": [
+    null,
     "425638"
    ]
   },
@@ -2555,14 +2769,13 @@
    "story": 10,
    "jira": "SV-10823",
    "text": "On the entries written at the other locations, the line ends with \"| Changed at: {location}\", naming the location where the change was made.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S10-27",
-    "S10-28",
-    "S11-08",
-    "S11-09"
+   "status": "COVERED",
+   "keys": [
+    "D-33"
    ],
-   "phase": "B"
+   "case_ids": [
+    null
+   ]
   },
   "S10-R25a": {
    "story": 10,
@@ -2588,11 +2801,13 @@
    "story": 10,
    "jira": "SV-10823",
    "text": "The Part History search finds an entry when the typed text appears in its Event text as shown on screen, or in its Staff name. Upper and lower case do not matter. This applies to every kind of entry.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S10-30"
+   "status": "COVERED",
+   "keys": [
+    "D-34"
    ],
-   "phase": "B"
+   "case_ids": [
+    null
+   ]
   },
   "S10-R28": {
    "story": 10,
@@ -2618,13 +2833,17 @@
    "story": 10,
    "jira": "SV-10823",
    "text": "If the user cancels the confirmation, no part changes status.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S10-12",
-    "S10-13",
-    "S10-14"
+   "status": "COVERED",
+   "keys": [
+    "D-11",
+    "D-12",
+    "D-49"
    ],
-   "phase": "B"
+   "case_ids": [
+    null,
+    null,
+    null
+   ]
   },
   "S10-N2": {
    "story": 10,
@@ -2662,12 +2881,13 @@
    "story": 11,
    "jira": "SV-10824",
    "text": "The Part Library page has no control that creates a Part Library entry.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S11-01",
-    "S11-05"
+   "status": "COVERED",
+   "keys": [
+    "D-41"
    ],
-   "phase": "C"
+   "case_ids": [
+    null
+   ]
   },
   "S11-R2": {
    "story": 11,
@@ -2683,17 +2903,13 @@
    "story": 11,
    "jira": "SV-10824",
    "text": "Clicking a row opens that entry's detail page. The pencil beside the entry's name opens the \"Edit Library Part\" window, where the entry is edited and where its Delete button sits, bottom left. The detail page itself has no Delete button.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S11-01",
-    "S11-02",
-    "S11-18",
-    "S12-02",
-    "S12-05",
-    "S12-06",
-    "S12-07"
+   "status": "COVERED",
+   "keys": [
+    "D-42"
    ],
-   "phase": "C"
+   "case_ids": [
+    null
+   ]
   },
   "S11-R3c": {
    "story": 11,
@@ -2736,21 +2952,25 @@
    "story": 11,
    "jira": "SV-10824",
    "text": "Row selection on the Part Library list and its bulk \"Set category\" action stay available.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S11-06"
+   "status": "COVERED",
+   "keys": [
+    "D-41"
    ],
-   "phase": "C"
+   "case_ids": [
+    null
+   ]
   },
   "S11-R5": {
    "story": 11,
    "jira": "SV-10824",
    "text": "Search, filtering, sorting and the column set on the Part Library list stay available.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S11-07"
+   "status": "COVERED",
+   "keys": [
+    "D-41"
    ],
-   "phase": "C"
+   "case_ids": [
+    null
+   ]
   },
   "S11-R6": {
    "story": 11,
@@ -2788,17 +3008,25 @@
    "story": 11,
    "jira": "SV-10824",
    "text": "On a Part Library entry's detail page, the parts table shows \"Not Tracked\" in the Remaining Quantity column for a row whose part is untracked at its location, in place of the quantity.",
-   "status": "PENDING",
-   "planned_keys": [],
-   "phase": "C"
+   "status": "COVERED",
+   "keys": [
+    "D-47"
+   ],
+   "case_ids": [
+    null
+   ]
   },
   "S11-R9": {
    "story": 11,
    "jira": "SV-10824",
    "text": "In that table, a row whose part is inactive at its location shows the grey \"Inactive\" tag in the Remaining Quantity column, before the value.",
-   "status": "PENDING",
-   "planned_keys": [],
-   "phase": "C"
+   "status": "COVERED",
+   "keys": [
+    "D-47"
+   ],
+   "case_ids": [
+    null
+   ]
   },
   "S11-N1": {
    "story": 11,
@@ -2856,22 +3084,27 @@
    "story": 12,
    "jira": "SV-10825",
    "text": "The Parts left menu entry reads \"Part Library\".",
-   "status": "PENDING",
-   "planned_keys": [
-    "S12-01"
+   "status": "COVERED",
+   "keys": [
+    "D-01",
+    "D-41"
    ],
-   "phase": "C"
+   "case_ids": [
+    null,
+    null
+   ]
   },
   "S12-R2": {
    "story": 12,
    "jira": "SV-10825",
    "text": "The page title on that screen reads \"Part Library\".",
-   "status": "PENDING",
-   "planned_keys": [
-    "S12-01",
-    "S12-04"
+   "status": "COVERED",
+   "keys": [
+    "D-41"
    ],
-   "phase": "C"
+   "case_ids": [
+    null
+   ]
   },
   "S12-R3": {
    "story": 12,
@@ -2951,13 +3184,13 @@
    "story": 12,
    "jira": "SV-10825",
    "text": "A part lookup result that comes from the shared list shows its source as \"Part Library\".",
-   "status": "PENDING",
-   "planned_keys": [
-    "S12-08",
-    "S12-13",
-    "S9-19"
+   "status": "COVERED",
+   "keys": [
+    "D-35"
    ],
-   "phase": "C"
+   "case_ids": [
+    null
+   ]
   },
   "S12-R11": {
    "story": 12,
@@ -2974,11 +3207,13 @@
    "story": 12,
    "jira": "SV-10825",
    "text": "The browser tab titles read \"Part Library\" on the list and \"Library Part\" on an entry's detail page.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S12-01"
+   "status": "COVERED",
+   "keys": [
+    "D-42"
    ],
-   "phase": "C"
+   "case_ids": [
+    null
+   ]
   },
   "S12-R13": {
    "story": 12,
@@ -3064,9 +3299,13 @@
    "text": "The dialog is titled \"New Inventory Part\" when creating a part and \"Edit Inventory Part\" when editing one.",
    "status": "COVERED",
    "keys": [
+    "D-14",
+    "D-20",
     "S4-01"
    ],
    "case_ids": [
+    null,
+    null,
     "154766"
    ]
   },
@@ -3074,11 +3313,19 @@
    "story": 13,
    "jira": "SV-10826",
    "text": "The title row has a thin line under it, and the close X at its right end.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S13-01"
+   "status": "COVERED",
+   "keys": [
+    "D-14",
+    "D-20",
+    "D-45",
+    "D-46"
    ],
-   "phase": "C"
+   "case_ids": [
+    null,
+    null,
+    null,
+    null
+   ]
   },
   "S13-R3": {
    "story": 13,
@@ -3086,9 +3333,17 @@
    "text": "When editing, the title row shows the part's saved status as a pill beside the close X: \"Active\" in green, or \"Inactive\" in grey.",
    "status": "COVERED",
    "keys": [
+    "D-20",
+    "D-21",
+    "D-45",
+    "D-46",
     "S1-02"
    ],
    "case_ids": [
+    null,
+    null,
+    null,
+    null,
     "154753"
    ]
   },
@@ -3096,13 +3351,17 @@
    "story": 13,
    "jira": "SV-10826",
    "text": "The fields appear in this order: Description, Part Number, Part Status (editing only), Vendor, Category, Manufacturer, Average Cost (editing) or Cost (creating), Sell Price, Core Charge, Inventory Tracking (the switch, then Min and Max), Tags, and Inventory (bin locations, then \"Add Bin Location\").",
-   "status": "PENDING",
-   "planned_keys": [
-    "S13-06",
-    "S13-07",
-    "S13-44"
+   "status": "COVERED",
+   "keys": [
+    "D-14",
+    "D-15",
+    "D-20"
    ],
-   "phase": "C"
+   "case_ids": [
+    null,
+    null,
+    null
+   ]
   },
   "S13-R4a": {
    "story": 13,
@@ -3119,62 +3378,79 @@
    "story": 13,
    "jira": "SV-10826",
    "text": "\"Add Bin Location\" has a plus icon before its label.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S13-06"
+   "status": "COVERED",
+   "keys": [
+    "D-14"
    ],
-   "phase": "C"
+   "case_ids": [
+    null
+   ]
   },
   "S13-R6": {
    "story": 13,
    "jira": "SV-10826",
    "text": "The footer has a thin line above it. \"Delete Part\" sits at its left; Cancel and Save sit at its right.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S13-09"
+   "status": "COVERED",
+   "keys": [
+    "D-14",
+    "D-20"
    ],
-   "phase": "C"
+   "case_ids": [
+    null,
+    null
+   ]
   },
   "S13-R7": {
    "story": 13,
    "jira": "SV-10826",
    "text": "\"Delete Part\" is the design system's danger button: red, with a white trash icon and white label.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S13-09"
+   "status": "COVERED",
+   "keys": [
+    "D-20"
    ],
-   "phase": "C"
+   "case_ids": [
+    null
+   ]
   },
   "S13-R8": {
    "story": 13,
    "jira": "SV-10826",
    "text": "Cancel is the design system's secondary button: white, with a grey outline and dark label. It closes the dialog without saving.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S13-09",
-    "S13-10"
+   "status": "COVERED",
+   "keys": [
+    "D-14",
+    "D-20"
    ],
-   "phase": "C"
+   "case_ids": [
+    null,
+    null
+   ]
   },
   "S13-R9": {
    "story": 13,
    "jira": "SV-10826",
    "text": "Save is the design system's primary button: blue, with a white label.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S13-09"
+   "status": "COVERED",
+   "keys": [
+    "D-14",
+    "D-20"
    ],
-   "phase": "C"
+   "case_ids": [
+    null,
+    null
+   ]
   },
   "S13-R10": {
    "story": 13,
    "jira": "SV-10826",
    "text": "Delete Part is shown only when editing, to a user with the 'Part Library & Inventory → Delete' permission.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S13-11"
+   "status": "COVERED",
+   "keys": [
+    "D-14"
    ],
-   "phase": "C"
+   "case_ids": [
+    null
+   ]
   },
   "S13-R11": {
    "story": 13,
@@ -3190,13 +3466,13 @@
    "story": 13,
    "jira": "SV-10826",
    "text": "When the user changes the description and at least one other location stocks the same Part Library entry, the dialog shows, under the field, \"This also changes the description at {n} other locations.\", or \"This also changes the description at 1 other location.\" for one.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S11-09",
-    "S13-12",
-    "S8-10"
+   "status": "COVERED",
+   "keys": [
+    "D-23"
    ],
-   "phase": "C"
+   "case_ids": [
+    null
+   ]
   },
   "S13-R13": {
    "story": 13,
@@ -3236,12 +3512,13 @@
    "story": 13,
    "jira": "SV-10826",
    "text": "When the user changes the part number and at least one other location stocks the same Part Library entry, the dialog shows, under the field, \"This also changes the part number at {n} other locations.\", or \"This also changes the part number at 1 other location.\" for one.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S11-08",
-    "S13-04"
+   "status": "COVERED",
+   "keys": [
+    "D-23"
    ],
-   "phase": "C"
+   "case_ids": [
+    null
+   ]
   },
   "S13-R17": {
    "story": 13,
@@ -3327,9 +3604,11 @@
    "text": "When editing, a \"Part Status\" choice offers two options, Active and Inactive, set to the part's saved status. A user without the 'Part Library & Inventory → Delete' permission sees the choice disabled.",
    "status": "COVERED",
    "keys": [
+    "D-20",
     "S1-02"
    ],
    "case_ids": [
+    null,
     "154753"
    ]
   },
@@ -3339,9 +3618,11 @@
    "text": "Picking a different status changes nothing until Save. When Save is pressed with a different status picked, the confirmation of Story 10 opens first.",
    "status": "COVERED",
    "keys": [
+    "D-22",
     "S1-09"
    ],
    "case_ids": [
+    null,
     "425591"
    ]
   },
@@ -3351,9 +3632,11 @@
    "text": "Confirming saves every change in the dialog, then applies the status, and closes the dialog with \"Part deactivated.\" or \"Part activated.\".",
    "status": "COVERED",
    "keys": [
+    "D-26",
     "S1-09"
    ],
    "case_ids": [
+    null,
     "425591"
    ]
   },
@@ -3361,12 +3644,15 @@
    "story": 13,
    "jira": "SV-10826",
    "text": "Cancelling the confirmation saves nothing and returns to the dialog with the picked status kept.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S10-12",
-    "S13-30"
+   "status": "COVERED",
+   "keys": [
+    "D-24",
+    "D-49"
    ],
-   "phase": "C"
+   "case_ids": [
+    null,
+    null
+   ]
   },
   "S13-R24": {
    "story": 13,
@@ -3382,11 +3668,15 @@
    "story": 13,
    "jira": "SV-10826",
    "text": "The title row pill shows the saved status, not the picked one.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S13-26"
+   "status": "COVERED",
+   "keys": [
+    "D-22",
+    "D-25"
    ],
-   "phase": "C"
+   "case_ids": [
+    null,
+    null
+   ]
   },
   "S13-R26": {
    "story": 13,

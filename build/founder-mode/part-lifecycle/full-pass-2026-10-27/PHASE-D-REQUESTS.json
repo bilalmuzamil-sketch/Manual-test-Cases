@@ -1,0 +1,459 @@
+{
+ "_about": "Phase D (design look) requests for the coordinator to merge, 27 Oct 2026. Phase D edited only authoring/cases_design.py and authoring/design_refs.py (DREFS left empty: every design reference sits in the design cases themselves).",
+ "section": {
+  "key": "DESIGN",
+  "name": "Design — how it looks",
+  "parent": "Part Lifecycle 20439",
+  "note": "create it, then set pllib.SECTIONS['DESIGN'] to its id; keys D-01 … D-49, all new (no C-id)"
+ },
+ "questions_to_append": [
+  {
+   "id": "DQ-01",
+   "proposed_id": "Q8",
+   "status": "OPEN",
+   "phase": "D",
+   "topic": "Part Lifecycle: the close X on status confirmations",
+   "question": "The design draws a close X at the top right of every status confirmation (Deactivate part?, Activate part?, Deactivate parts?, Activate parts?). The PRD lists only a title, a message, an optional note, Cancel and a confirm button. (a) Should the X be there? (b) If yes, does clicking it do the same as Cancel (nothing changes, and from the part window the picked status is kept)?",
+   "options": "A) Keep the X; it acts as Cancel.\nB) No X: title, message, note, Cancel and the confirm button only.",
+   "sources": [
+    "PRD v33 §4 Key Decisions: \"Every confirmation is the application's standard dialog. A title, a message, an optional note, Cancel and a confirm button.\"",
+    "Design boards 3.3, 3.7, 4.4, 4.7 (X drawn)",
+    "SV-10823 UI/UX: \"Standard confirmation with title, message lines, optional note, Cancel and a red Deactivate or blue Activate button.\""
+   ],
+   "held": [
+    "D-49"
+   ],
+   "divergence": "DV-01"
+  },
+  {
+   "id": "DQ-02",
+   "proposed_id": "Q9",
+   "status": "OPEN",
+   "phase": "D",
+   "topic": "Part Lifecycle: the note on design board 7.2",
+   "question": "The note on design board 7.2 still says a Part Library entry \"can be edited and deleted\" on its page, while the PRD (S11-R3) says the page itself has no Delete button and Delete sits in the Edit Library Part window. The board's picture shows no Delete. Can you confirm the PRD is right and the note is out of date? Our cases follow the PRD.",
+   "options": "A) The PRD is right; the note is out of date.\nB) The page should have a Delete button.",
+   "sources": [
+    "PRD v33 S11-R3",
+    "Design board 7.2 note: \"Clicking a row opens the entry, where it can be edited and deleted (S11-R3).\""
+   ],
+   "held": [],
+   "divergence": "DV-02"
+  },
+  {
+   "id": "DQ-03",
+   "proposed_id": "Q10",
+   "status": "OPEN",
+   "phase": "D",
+   "topic": "Part Lifecycle: long Part History entries",
+   "question": "When a Part History entry is long (for example a part number change ending \"| Changed at: <location>\"), the design (board 2.6) wraps it onto a second line inside the Event column. The engineering plan cuts the Event text off with \"...\" instead. Which is right: (a) wrap onto more lines, or (b) cut off with \"...\"? If (b), how does a user read the full entry?",
+   "options": "A) Wrap onto more lines (as the design).\nB) Cut off with \"...\" (as the tech plan).",
+   "sources": [
+    "PRD v33 S10-R21 (silent on wrap or cut-off)",
+    "Design board 2.6 note: \"Staff, Date and Time keep their production widths; a long Event wraps onto a second line.\"",
+    "Tech plan Phase 8, PartHistory.vue: \"S10-R21: fixed headerStyle widths on Staff/Date/Time, Event elastic, table-layout: fixed + ellipsis (the Inventory list approach)\""
+   ],
+   "held": [
+    "D-33"
+   ],
+   "divergence": "DV-03"
+  }
+ ],
+ "question_ids_note": "Proposed ids Q8-Q10 follow QUESTIONS.json's Q7. If they are renumbered, also change the marker text of D-33 ('question DQ-03') and the design notes of D-11, D-12, D-24, D-25, D-33, D-42, D-49 that name DQ-01 / DQ-02 / DQ-03.",
+ "register_rows_to_add": {
+  "S1-R9b|Empty export": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S2-R8|Tick the parts to deactivate": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S2-R9|Clear selection": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S2-N3|A core follows its part. Activate or deactivate the part instead.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S3-R3|Tick the parts to activate": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S4-N1|At least one bin must be provided.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S4-N2|At least one bin must be marked as default.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S5-N1|At least one bin must be provided.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S7-R9|Part created. Linked to N68SL-356 in the Part Library. Its description ": {
+   "outcome": "SHOWN-WHEN-DRIVEN",
+   "where": "The design shows the same message with its own example data (board 1.4: \"Part created. Linked to F40010212 in the Part Library. Its description \\\"Slack Adjuster\\\" was kept.\"); checked by viewing the boards 27 Oct 2026",
+   "cases": []
+  },
+  "S7-N5|the same number": {
+   "outcome": "SHOWN-WHEN-DRIVEN",
+   "where": "PRD definition in quotes, not on-screen words; checked by viewing the boards 27 Oct 2026",
+   "cases": []
+  },
+  "S7-N6|Description is required.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S7-N6|Part number is required.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S9-R10c|These parts are inactive and were not added: AB-100, FF-5507.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S9-R10a|The {fee} fee for {part number} was not added.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S10-R4|1 part selected.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S10-R5| With exactly one part ticked, the lines read ": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S10-R8|This part ...": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S10-R8|... that use it ...": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S10-R9|Existing records that use ...": {
+   "outcome": "SHOWN-WHEN-DRIVEN",
+   "where": "The design shows \"Existing records that use them stay as they are.\" (4.4, 4.7) and \"... use it ...\" (3.3); the PRD's own words are a fragment with \"...\"; checked by viewing the boards 27 Oct 2026",
+   "cases": []
+  },
+  "S10-R13a|A core follows its part. Activate or deactivate the part instead.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S10-R13a|Part not found.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S10-R13a|Part is already in that state.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S10-R17|Activated": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S10-R17|Activated | Reason: {note}": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S10-R22a|Min/Max updated | {changes} | Source: {source}": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S10-R22a|Min: {old} → {new}": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S10-R22a|Max: {old} → {new}": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S10-R22a|Edit Part": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S10-R22a|Import": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S10-R25a|| Changed through: Public API": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S10-R26|Core for {description}": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S10-N3|A note cannot be longer than 255 characters.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S10-N4|Select at least one part.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S11-R3|Edit Library Part": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S11-R3c|Part cannot be deleted. Please delete related parts first.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S11-R4|Set category": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S11-E4|Part Library entry not found.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S12-R3|Edit Library Part": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S12-R4|Failed to save library part.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S12-R5|Library part deleted successfully.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S12-R6|Part Library and Inventory": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S12-R7|Manage the parts library and inventory levels.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S12-R8|Manage parts inventory, part library, sales, and vendor operations.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S12-R9|Part Library & Inventory — View": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S12-R9|Part Library & Inventory — Create & Edit": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S12-R9|Part Library & Inventory — Delete": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S12-R11|This Part Library entry is in use and cannot be deleted.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S12-R11|Part Library entry not found.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S12-R11|Part Library entry not found": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S12-R11|Part Library entry not found for ID: {id}.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S12-R11|Part Library entry not found for part number: {part number}.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S12-R11|Part Library entry missing category.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S12-R11|A part from the Part Library must have Vendor as its source.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S12-R12|Library Part": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S12-R13|Are you sure you want to delete this library part?": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S12-R14|Part Library · {vendor}": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S13-R15|Core for {description}": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S13-R22|Part activated.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S13-R27|Please delete related work order parts first.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S13-R28|Please complete or cancel the related return or credit first.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S13-N1|Part number {number} already belongs to another part in the Part Library.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S13-N1b|A core follows its part. Rename the part instead.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S13-N4|This part could not be deactivated": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S13-N4|This part could not be activated": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S13-N6|Inventory part that has a work order part cannot be deleted.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S13-N6|Inventory part with an open return or a pending credit cannot be deleted.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S13-N7|Part number can't be longer than 50 characters while it's on an open part request.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "S13-N8|A part can't be moved to a different Part Library entry.": {
+   "outcome": "DESIGN-SILENT",
+   "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+   "cases": []
+  },
+  "DV-01|Boards 3.3, 3.7, 4.4, 4.7 (every status confirmation)": {
+   "outcome": "QUESTION-READY",
+   "where": "question DQ-01 drafted 27 Oct 2026, NOT sent (Phase D draft; no Google writes)",
+   "design": "Each confirmation has a grey close X at the right of its title row.",
+   "prd": "§4 Key decisions: \"Every confirmation is the application's standard dialog. A title, a message, an optional note, Cancel and a confirm button. There is no confirmation word to type.\" (S10-R2: \"The confirmation is the application's standard confirmation dialog.\")",
+   "cases": [
+    "C154794",
+    "C154795",
+    "C425761",
+    "C154799",
+    "C154800"
+   ],
+   "held_case": "D-49"
+  },
+  "DV-02|Board 7.2 canvas note": {
+   "outcome": "QUESTION-READY",
+   "where": "question DQ-02 drafted 27 Oct 2026, NOT sent (Phase D draft; no Google writes)",
+   "design": "Note: \"Clicking a row opens the entry, where it can be edited and deleted (S11-R3).\" (the board itself shows no Delete button)",
+   "prd": "S11-R3: \"Clicking a row opens that entry's detail page. The pencil beside the entry's name opens the \\\"Edit Library Part\\\" window, where the entry is edited and where its Delete button sits, bottom left. The detail page itself has no Delete button.\"",
+   "cases": [
+    "C154829",
+    "C425619",
+    "C573671"
+   ],
+   "held_case": null
+  },
+  "DV-03|Board 2.6 (redrawn table) and its note; tech plan Phase 8": {
+   "outcome": "QUESTION-READY",
+   "where": "question DQ-03 drafted 27 Oct 2026, NOT sent (Phase D draft; no Google writes)",
+   "design": "Note: \"Staff, Date and Time keep their production widths; a long Event wraps onto a second line.\" The board's table wraps long events.",
+   "prd": "S10-R21: \"The Part History table keeps its column layout whatever an entry says. A short entry does not widen the Staff, Date or Time columns.\" (silent on wrap or cut-off). Tech plan Phase 8 (PartHistory.vue): \"fixed headerStyle widths on Staff/Date/Time, Event elastic, table-layout: fixed + ellipsis\" (cuts a long event off).",
+   "cases": [
+    "C154798",
+    "C425774",
+    "C425775"
+   ],
+   "held_case": "D-33"
+  }
+ },
+ "register_note": "69 PRD-word rows from spec_to_design_check.py (65 DESIGN-SILENT, 3 SHOWN-WHEN-DRIVEN: closed) and 3 hand rows DV-01..DV-03 (QUESTION-READY: open until the questions are sent; then QUESTION-SENT with the sheet row and date).",
+ "pictures_added": [
+  "full-pass-2026-10-27/design/images/board-2.6-part-history-at-lethbridge-redrawn-table.png (the board's own HTML table rendered over its screenshot; png/correct-06-...png is the raw screenshot without that table, so D-33 attaches this one)"
+ ],
+ "held_cases": {
+  "D-33": "PO_HOLD on DQ-03",
+  "D-49": "DESIGN_HOLD on DQ-01"
+ },
+ "coverage_note": "D-47 (S11-R8, S11-R9) and D-48 (S9-R21) quote three v30 codes, so build.py now shows them COVERED; Phases B and C still write the behaviour cases. Drop D-47/D-48 later only if those cases check the same placement and colour.",
+ "phase_a_note": "Readiness sample read: S5-14 step 9 \"For today part A is not listed.\" has no visible control in that step (the date-A rows of step 8 are the control); Phase A's call.",
+ "library_fix": {
+  "file": "authoring/pllib.py, design_block()",
+  "now": "every DESIGN-section case says \"the expected results above come from the quotes above, except where this held design case follows the design.\", also the 47 cases that are not held",
+  "proposed": "for a DESIGN case that is not held: \"the expected results above come from the quotes above where the PRD speaks, and from the board pictures where it is silent (Rule 126 point 5).\"; keep the current sentence for held cases (marker DESIGN_HOLD or a PO_HOLD on a DQ question)",
+  "why": "Rule 126 point 5: where the spec is silent the design is the source; 47 of the 49 design cases are not held, so the current sentence misdescribes them"
+ }
+}
