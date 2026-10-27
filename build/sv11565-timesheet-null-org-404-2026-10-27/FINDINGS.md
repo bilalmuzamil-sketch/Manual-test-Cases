@@ -54,3 +54,15 @@ work orders S2-38096 (kept, holds Brett's entry) and a deleted one.
 ## 27 Oct — BLOCKED, question to Slavcho (comment 79548)
 Posted 79548 tagging Slavcho Mitrov: how to create a department / work order / line with no organization on sv11565, or is
 it covered only by his automated test. Ticket TESTING QA → **Blocked**. Mention read back.
+
+## 27 Oct ~08:40 UTC — Slavcho's answer (79553) and our reply (79555)
+- Slavcho: a department / work order / line with no organization cannot be created in the app (the column was added in
+  2023; only older rows can be empty). Covered by the PR's automated tests for create, change, move and department
+  clock-in. Offered: pass on what was checked, OR a developer empties the organization of a test department on sv11565.
+- Coverage gap found on re-reading his list (Rule 91): my matrix covered **change and move only**. **Create** and
+  **department clock-in** with unknown / deleted references were NOT run. Tried to run them now: blocked — the
+  `.qa.shopview.com` sign-in has expired (quick-login → 401 `sso_required`, browser lands on Google sign-in).
+- Reply 79555 (mention read back): accepted his offer — asked him to empty the organization on one test department, one
+  work order and one line on sv11565 and name them; said we'll run create / change / move / clock-in against them and also
+  finish create + clock-in with unknown/deleted references. Ticket stays **Blocked**.
+- Needed: fresh `.qa.shopview.com` cookies; Slavcho's prepared records.
