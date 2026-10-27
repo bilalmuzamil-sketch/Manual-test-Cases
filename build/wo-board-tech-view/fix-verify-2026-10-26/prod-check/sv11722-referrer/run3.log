@@ -1,0 +1,122 @@
+12:21:41 logged in as bilal.muzamil+serviceadvisornoreports@shopview.com - PHPSESSID minted by POST /api/login
+12:21:56 prod https://app.shopview.com/workorders | app-version=v26.43.2-537378f | fe_permissions=46
+{
+ "at": "2026-10-27T12:21:56.350Z",
+ "version": "v26.43.2-537378f",
+ "A_oneSearch": {
+  "allEvents": {
+   "names": [
+    "page_search",
+    "page_view",
+    "work_orders_display_view"
+   ],
+   "total": 4,
+   "leaking": 1,
+   "leakingByName": {
+    "page_view": [
+     {
+      "en": "page_view",
+      "dl": "https://app.shopview.com/workorders?search=ZZAUTOTEST Bravo",
+      "dr": "https://app.shopview.com/workorders",
+      "params": {}
+     }
+    ]
+   }
+  },
+  "terms": [
+   "ZZAUTOTEST Bravo"
+  ],
+  "browserAddressAfterEachSearch": [
+   "https://app.shopview.com/workorders?search=ZZAUTOTEST+Bravo"
+  ],
+  "records": 1,
+  "dlWithSearch": 0,
+  "drWithSearch": 0,
+  "distinctDl": [
+   "https://app.shopview.com/workorders"
+  ],
+  "distinctDr": [
+   "https://app.shopview.com/workorders"
+  ],
+  "sample": [
+   {
+    "en": "work_orders_display_view",
+    "loc": "tech_view",
+    "label": "all",
+    "dl": "https://app.shopview.com/workorders",
+    "dr": "https://app.shopview.com/workorders"
+   }
+  ]
+ },
+ "B_twoSearches": {
+  "allEvents": {
+   "names": [
+    "page_search",
+    "page_view",
+    "work_orders_display_view"
+   ],
+   "total": 6,
+   "leaking": 3,
+   "leakingByName": {
+    "page_view": [
+     {
+      "en": "page_view",
+      "dl": "https://app.shopview.com/workorders?search=ZZAUTOTEST Alpha",
+      "dr": "https://app.shopview.com/workorders",
+      "params": {}
+     },
+     {
+      "en": "page_view",
+      "dl": "https://app.shopview.com/workorders?search=ZZAUTOTEST Bravo",
+      "dr": "https://app.shopview.com/workorders?search=ZZAUTOTEST Alpha",
+      "params": {}
+     }
+    ],
+    "work_orders_display_view": [
+     {
+      "en": "work_orders_display_view",
+      "dl": "https://app.shopview.com/workorders",
+      "dr": "https://app.shopview.com/workorders?search=ZZAUTOTEST Alpha",
+      "params": {
+       "ep.page_type": "work_orders",
+       "ep.element_type": "page",
+       "ep.element_location": "tech_view",
+       "ep.element_label": "all",
+       "ep.setting_source": "saved"
+      }
+     }
+    ]
+   }
+  },
+  "terms": [
+   "ZZAUTOTEST Alpha",
+   "ZZAUTOTEST Bravo"
+  ],
+  "browserAddressAfterEachSearch": [
+   "https://app.shopview.com/workorders?search=ZZAUTOTEST+Alpha",
+   "https://app.shopview.com/workorders?search=ZZAUTOTEST+Bravo"
+  ],
+  "records": 1,
+  "dlWithSearch": 0,
+  "drWithSearch": 1,
+  "distinctDl": [
+   "https://app.shopview.com/workorders"
+  ],
+  "distinctDr": [
+   "https://app.shopview.com/workorders?search=ZZAUTOTEST Alpha"
+  ],
+  "sample": [
+   {
+    "en": "work_orders_display_view",
+    "loc": "tech_view",
+    "label": "all",
+    "dl": "https://app.shopview.com/workorders",
+    "dr": "https://app.shopview.com/workorders?search=ZZAUTOTEST Alpha"
+   }
+  ]
+ },
+ "positiveControl": {
+  "searchInBrowserAddress": true,
+  "dlRead": true
+ }
+}
