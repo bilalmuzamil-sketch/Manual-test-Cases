@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap">
+  <style>
+    body { margin: 0; font-family: 'Nunito Sans', system-ui, sans-serif; background: #8d8d8d; }
+    a { color: #175cd3; } a:hover { color: #123f92; }
+    .chev { flex: 0 0 auto; }
+    .btn-out { border: 1px solid #2276DA; color: #2276DA; background: #ffffff; font-size: 13px; font-weight: 600; padding: 9px 14px; border-radius: 4px; }
+    .btn-fill { background: #2276DA; color: #ffffff; font-size: 13px; font-weight: 600; padding: 9px 16px; border-radius: 4px; }
+    .float-lbl { font-size: 10px; color: #7b8595; }
+  </style>
+</helmet>
+
+<div style="padding: 26px; display: flex; flex-direction: column; gap: 14px; align-items: flex-start;">
+
+  <div style="background: #ffffff; border-radius: 4px; padding: 3px 9px; font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: #1a7f37;">After &middot; S1-R1 to S1-R5</div>
+
+  <div style="background: #ffffff; border-radius: 8px; box-shadow: 0 6px 24px rgba(0,0,0,0.28); width: 455px; padding: 22px 24px 18px 24px; display: flex; flex-direction: column; gap: 16px;">
+
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div style="font-size: 17px; font-weight: 700; color: #1d2129;">New Line</div>
+      <div style="background: #9C27B0; color: #ffffff; font-size: 10px; font-weight: 700; padding: 2px 5px; border-radius: 3px; line-height: 1.3;">AI</div>
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.02em; color: #2276DA;">SHOPCOACH LINE BUILDER</div>
+      <div style="margin-left: auto;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: space-between; background: #d9d9d9; border-bottom: 2px solid #8b0f1d; border-radius: 4px 4px 0 0; padding: 6px 12px 8px 12px; gap: 8px;">
+      <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+        <div class="float-lbl" style="color: #8b0f1d;">Title</div>
+        <div style="font-size: 14px; color: #8b95a3;">What are you doing?</div>
+      </div>
+      <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+
+    <div style="border: 1px solid #c6ccd4; border-radius: 4px; padding: 6px 12px 8px 12px; display: flex; flex-direction: column; gap: 2px;">
+      <div class="float-lbl">Description</div>
+      <div style="font-size: 14px; color: #8b95a3;">Why are you doing it?</div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 6px;">
+      <div style="font-size: 13px; color: #1d2129;">Technicians</div>
+      <div style="display: flex; align-items: center; justify-content: space-between; border: 1px solid #c6ccd4; border-radius: 4px; padding: 11px 12px;">
+        <div style="font-size: 14px; color: #8b95a3;">Add Technician</div>
+        <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 10px; align-items: stretch;">
+      <div style="flex: 1 1 200px; border: 1px solid #c6ccd4; border-radius: 4px; padding: 6px 12px 8px 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+        <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+          <div class="float-lbl">Labor Rate</div>
+          <div style="font-size: 14px; color: #1d2129; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">After hours CP rate</div>
+        </div>
+        <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5b6472" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </div>
+      <div style="flex: 0 0 100px; border: 1px solid #c6ccd4; border-radius: 4px; padding: 6px 12px 8px 12px; display: flex; flex-direction: column; gap: 2px;">
+        <div class="float-lbl">Estimated Time</div>
+        <div style="font-size: 14px; color: #1d2129;">0</div>
+      </div>
+      <div style="flex: 0 0 90px; border: 1px solid #c6ccd4; border-radius: 4px; padding: 6px 12px 8px 12px; display: flex; flex-direction: column; gap: 2px;">
+        <div class="float-lbl">Tech Time</div>
+        <div style="font-size: 14px; color: #1d2129;">0</div>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: flex-end; gap: 10px; padding-top: 4px;">
+      <div class="btn-out">Save &amp; Add Part</div>
+      <div class="btn-out">Save &amp; Add Line</div>
+      <div class="btn-fill">Save &amp; Close</div>
+    </div>
+
+  </div>
+
+  <div style="background: #ffffff; border-radius: 6px; padding: 12px 14px; width: 455px; display: flex; flex-direction: column; gap: 8px;">
+    <div style="font-size: 12px; font-weight: 700; color: #1d2129;">The only two things that change</div>
+    <div style="font-size: 12.5px; color: #3d4654; line-height: 1.5;">The field is now named <strong>Title</strong> and the question moves inside it as the prompt, in sentence case: &ldquo;What are you doing?&rdquo;. Same for <strong>Description</strong>. The name stays put whether the picker is empty or filled, which replaces a label that swapped between the question and &ldquo;Title&rdquo; depending on state.</div>
+    <div style="font-size: 12px; color: #7b8595; line-height: 1.5; border-top: 1px solid #eef1f4; padding-top: 8px;">Everything else on this dialog is untouched: the field set, the technician and labor rows, and all three button labels.</div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>
