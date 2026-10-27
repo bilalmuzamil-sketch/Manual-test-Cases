@@ -2517,3 +2517,60 @@ QA lead's rulings that shaped it in that session** — so it looks authoritative
 thing in the file. Facts travel safely because they can be checked against the environment; rules do
 not, because there is nothing to check them against except the book they came from.
 
+
+## 115 · TESTRAIL AND TMS ARE BOTH PRODUCTION SYSTEMS — EVERY PROTECTION THAT COVERS ONE COVERS THE OTHER
+
+**Ordered by the QA lead, 2026-10-27.** The instruction that started it (2026-10-26, verbatim): *"the test
+cases and everything which we were pushing to Testrail now needs to e pushed to this TMS."* Asked how the
+rule book should handle that, his answer (verbatim): *"DO what is logically and scientifically correct and
+what keeps me safe for being bitten."* The proposal (one overlay rule, not a rewrite of the ~48 rules that
+name TestRail) was put to him in full and approved verbatim: *"YES"*. Permanent, all projects. Recorded
+under that express approval (Rule 72).
+
+**Why one overlay rule and not a rewrite:** TestRail is still in use, so every rule that names it is still
+correct for TestRail. Rewriting ~48 rules would risk silently changing what one of them means, and could not
+be undone cleanly. This rule **changes the meaning of no existing rule and makes nothing easier to do — it
+only extends the existing protection to TMS.**
+
+### The rule
+
+1. **Same protection in both systems.** Shopview TMS (https://tms.shopview.com) is a production system
+   exactly as TestRail is. **Every rule that protects TestRail protects TMS in the same way**, including:
+   - **no create / update / delete of cases, sections, runs, results or milestones without the QA lead's
+     explicit go-ahead** (Rule 6 as it applies to TestRail);
+   - **Automated cases are hands-off** — TMS `automation_status = 3` is the same flag as TestRail
+     `custom_atmstatus = 3`; change one only with his go-ahead, and tell Vlad (Rules 65 / 71);
+   - **other people's cases are hands-off** (Rule 38);
+   - **every write is logged per operation and read back** (Rules 41 / 50);
+   - **keys and passwords live in `/tmp` only, `chmod 600`, never committed** (Rule 82). The TMS key is
+     resolved by `build/testing-tools/load_creds.py` → `tms_key()`.
+2. **Both links, every time.** A case is cited with its C-number, its TestRail link **and** its TMS link
+   (`https://tms.shopview.com/cases/<id>`) (Rule 8). Imported cases keep their TestRail number in TMS;
+   **cases created in TMS through the API are numbered from 10,000,000**, so their number comes from
+   `build/tms/tr-tms-case-map.csv`, never by assuming it equals the TestRail number. **TMS numbers runs on
+   its own** (TestRail run 547 = TMS run 6), so a run is never assumed to share a number either.
+3. **Syncs follow the QA lead's own words, quoted in `build/tms/SYNC-POLICY.md`:**
+   - **a sync runs only when he asks** (2026-10-27, verbatim: *"Only when I ask"*);
+   - **TestRail → TMS updates** of cases present in both systems are allowed within the scope he names;
+   - **any case found in only one system is brought to him** — numbers and links — to keep, edit or delete.
+     **Never decided by a session**; a delete happens only after he says "delete" to the listed cases.
+4. **Results — two kinds, two rules:**
+   - **results a Claude session records itself:** the existing rule stands — **Passed only** to a run;
+     Failed / Retest / Blocked stay local (`build/APP-ACTIONS-PLAYBOOK.md` §J);
+   - **results copied by a sync:** copied **exactly as the human tester recorded them**, every status, with
+     the tester's name and original timestamp in the comment (the account that writes shows as the author).
+     Precedent: TMS run 4 → TestRail run 552, 74 results, 2026-10-27, on his explicit *"Yes"*.
+5. **TMS "Test layer" and "Deferred" (`test_layer`, `is_deferred`): do not change them** on any case. QA lead
+   2026-10-27, verbatim: *"Do not do anything related to 4, leave it as it is for now."* A case a session
+   creates takes the TMS defaults until he rules otherwise.
+6. **Read `build/tms/TMS-FACTS.md` before any TMS work.** It holds the proven traps — among them: **the case
+   *list* returns `preconditions` / `steps` / `expected` as empty**, so case text is read one case at a time
+   (`GET /cases/{id}`), never from the list (it produced a false "all 332 cases are blank" on 2026-10-27);
+   TMS stores text HTML-encoded, so compare **rendered** text; and **the TestRail import is a one-time
+   snapshot, not a live sync.**
+
+### What this rule does NOT do
+
+It does not edit, renumber or reinterpret any other rule. Where an older rule says "TestRail", it still
+means TestRail — and **this rule adds TMS alongside it**. If the two ever appear to conflict, **stop and ask
+(Rule 63)**.

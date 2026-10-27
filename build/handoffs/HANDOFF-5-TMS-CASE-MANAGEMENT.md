@@ -20,17 +20,19 @@ Testrail now needs to e pushed to this TMS. … all that we used to do in testra
 | Key resolver | ✅ `build/testing-tools/load_creds.py` → `tms_key()` / `tms_host()` |
 | **API key** | ❌ **None exists in any session yet.** A person signed in with Google must issue one (§3 step 0) |
 | Signed-in read or write | ❌ **Never done.** Every case and section field name is UNVERIFIED until the §3 gate passes |
-| Rule book | ⚠️ **Still says TestRail in about 48 rules.** See §1. Not edited (Rule 72) |
+| Rule book | ✅ **Rule 115 (2026-10-27)** extends every TestRail protection to TMS. See §1 |
 
 ---
 
-## §1 · 🔴 THE RULE BOOK STILL SAYS "TESTRAIL" — HOW TO READ IT UNTIL IT IS AMENDED
+## §1 · 🔴 RULE 115 — TESTRAIL AND TMS ARE BOTH PRODUCTION SYSTEMS (ruled 2026-10-27)
 
-**Rule 63 applies:** the instruction above conflicts with recorded rules that name TestRail as the
-system of record. **The conflict has been raised with the QA lead. The rule files have NOT been edited**
-— under Rule 72 a rule change is proposed, then recorded. Until the QA lead rules, **this lane reads every
-rule about TestRail as being about TMS, with the protection unchanged.** The rule's *purpose* carries
-over; only the system name changes:
+**Resolved 2026-10-27.** The QA lead approved **Rule 115** (end of `build/rules/RULES-61-96.md` — **read it
+in full before any TMS work**). It is an **overlay**: no rule was rewritten; every protection that covers
+TestRail now covers TMS too. Rule 115 also settles four things the table below does not:
+**syncs run only when he asks** · **a case in only one system is brought to him** (keep / edit / delete) ·
+**results a session records itself stay Passed-only, results a sync copies mirror the human tester** ·
+**never change TMS "Test layer" / "Deferred"**. Where this table and Rule 115 differ, **Rule 115 wins**.
+The table shows how each TestRail rule applies in TMS:
 
 | Rule | What it said about TestRail | How this lane applies it in TMS |
 |---|---|---|
@@ -242,4 +244,4 @@ into `build/tms/TMS-FACTS.md` in the same pass.**
 6. Values for the new fields `test_layer` and `is_deferred` on our manual cases.
 7. Are the TestRail-only custom fields (`custom_status`, `custom_mission`, `custom_goals`, AI fields) needed?
 8. How do we tell our cases from foreign ones in TMS?
-9. **The rule-book amendment** (§1): approve the TestRail → TMS wording change across the rules, or rule otherwise.
+9. ~~The rule-book amendment~~ — **settled 2026-10-27 by Rule 115.**

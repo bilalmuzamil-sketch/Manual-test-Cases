@@ -21,7 +21,7 @@ AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSE
 they had read the whole file. A rule you have never seen is a rule you will break.
 
 **THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **96 numbered Standing Rules**,
-**plus Rules 109, 110, 111, 112, 113 and 114** at the end of `build/rules/RULES-61-96.md`.
+**plus Rules 109, 110, 111, 112, 113, 114 and 115** at the end of `build/rules/RULES-61-96.md`.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -105,6 +105,14 @@ These are stated here **in full** because a session that gets only this far must
   no jargon — no case IDs, spec anchors, HTTP terms or internal names in what they read.
 - **FOREIGN CASES AND TICKETS ARE HANDS-OFF (38).** Report, never edit. State both numbers: ours N /
   live total M.
+- **🔴 TESTRAIL AND TMS ARE BOTH PRODUCTION SYSTEMS (115).** Ordered by the QA lead 2026-10-27. Shopview
+  TMS (`tms.shopview.com`) gets **every protection TestRail has** — no write without his go-ahead,
+  Automated cases hands-off (tell Vlad), foreign cases hands-off, per-op log + read-back, keys in `/tmp`.
+  Cite **both links**; TMS-created cases are numbered from 10,000,000 (`build/tms/tr-tms-case-map.csv`).
+  **Syncs run only when he asks** (`build/tms/SYNC-POLICY.md`); a case in only one system is **brought to
+  him** to keep / edit / delete. Session-recorded results stay **Passed only**; sync-copied results mirror
+  the human tester exactly. **Never touch TMS "Test layer" / "Deferred".** Read `build/tms/TMS-FACTS.md`
+  first. It overlays — it changes no other rule.
 - **🔴 FOLLOW ONLY YOUR OWN RULE BOOK — FACTS MAY BE SHARED, RULES MAY NOT (114).** Ordered by the QA
   lead 2026-10-06. Your rules are this copy's index (`CLAUDE.md`), its rule files (`RULES-01-20`,
   `21-40`, `41-60`, `61-96`) and its skills. **Never take a rule, standard or procedure from another
@@ -344,6 +352,11 @@ QA lead **2026-10-06** and lives at the end of `build/rules/RULES-61-96.md`, aft
 a prior proposal because his message was itself the approval (Rule 72). **It supersedes any line in this
 rule book that told a session to read, follow, or keep in step with another session's rules** — every
 such line was changed the same day to say facts only, and the list of what changed is in Rule 114.
+
+**Rule 115 (TestRail and TMS are both production systems)** was ordered by the QA lead **2026-10-27** and
+lives at the end of `build/rules/RULES-61-96.md`, after 114. It is an **overlay**: it extends every
+TestRail protection to Shopview TMS and changes the meaning of no other rule. Its operator documents are
+`build/tms/TMS-FACTS.md`, `build/tms/SYNC-POLICY.md` and `build/handoffs/HANDOFF-5-TMS-CASE-MANAGEMENT.md`.
 
 **Rules 89 (access resilience + MCP hygiene) and 90 (shared-quota budget allocation)** were added
 2026-08-21 and live in `build/rules/RULES-61-96.md` with 61–88. Rule 89's operator form is
