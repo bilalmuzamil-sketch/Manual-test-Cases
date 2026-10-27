@@ -52,8 +52,12 @@ log = open(f"{OUT}/apply-log.jsonl", "a")
 def L(r): log.write(json.dumps(r, ensure_ascii=False) + "\n"); log.flush()
 def diff(a, f): return [x for x, y in f.items() if ((a.get(x) or "").replace(" ", "") != y.replace(" ", "") if x == "refs" else a.get(x) != y)]
 for k in upd:
-    cid = int(MAP[k]["case_id"]); prev = json.load(open(f"{P}/update-2026-10-14/applied/C{cid}-after.json"))
-    live = api(f"get_case/{cid}")
+    cid = int(MAP[k]["case_id"])
+    # 27 Oct 2026 (coordinator): lock against our LATEST read-back, so a re-run neither writes twice nor skips a case it wrote
+    lastf = f"{OUT}/C{cid}-after.json" if os.path.exists(f"{OUT}/C{cid}-after.json") else f"{P}/update-2026-10-14/applied/C{cid}-after.json"
+    prev = json.load(open(lastf)); live = api(f"get_case/{cid}")
+    if lastf.startswith(OUT) and not diff(live, PROP[k]["fields"]):
+        L({"op": "already", "key": k, "case": f"C{cid}"}); continue
     if live["updated_on"] != prev["updated_on"]:
         L({"op": "skip", "key": k, "case": f"C{cid}", "why": "changed since our 14 Oct read-back: ask the QA lead (Rule 123)"}); continue
     json.dump(live, open(f"{OUT}/before/C{cid}.json", "w"), indent=1, ensure_ascii=False)
@@ -68,4 +72,36 @@ for k in new:
     L({"op": "add_case", "key": k, "case": f"C{cid}", "http": st, "readback_ok": not diff(a, v["fields"]), "bad": diff(a, v["fields"])})
     with open(f"{P}/testrail-id-map.csv", "a", newline="") as mf:
         csv.writer(mf).writerow([k, cid, v["section_id"], v["fields"]["title"], f"https://shopview.testrail.io/index.php?/cases/view/{cid}"])
-print("written; see", f"{OUT}/apply-log.jsonl", "(pictures: upload with the credit-terms create.py recipe once the coordinator confirms the names)")
+# 27 Oct 2026 (coordinator): attach every design picture a case names (idempotent: names already attached are skipped), then read back
+import re as _re, base64 as _b64, uuid as _uuid, time as _time, urllib.request as _ur, urllib.error as _ue
+PIC_DIRS = [f"{P}/sources/design-2026-10-13-artifact/png", f"{P}/full-pass-2026-10-27/design/images"]
+_C = json.load(open("/tmp/testrail/creds.json")); _AUTH = _b64.b64encode(f"{_C.get('email') or _C.get('user')}:{_C['password']}".encode()).decode()
+def _upload(cid, name, path):
+    b = _uuid.uuid4().hex
+    body = (f"--{b}\r\nContent-Disposition: form-data; name=\"attachment\"; filename=\"{name}\"\r\nContent-Type: image/png\r\n\r\n").encode() + open(path, "rb").read() + f"\r\n--{b}--\r\n".encode()
+    r = _ur.Request(f"https://shopview.testrail.io/index.php?/api/v2/add_attachment_to_case/{cid}", data=body,
+                    headers={"Authorization": "Basic " + _AUTH, "Content-Type": f"multipart/form-data; boundary={b}"})
+    for t in range(4):
+        try: x = _ur.urlopen(r, timeout=120); return x.status
+        except _ue.HTTPError as e:
+            if e.code < 500 or t == 3: return e.code
+        except (_ue.URLError, ConnectionError, TimeoutError):
+            if t == 3: return 0
+        _time.sleep(3 * (t + 1))
+def _attached(cid):
+    d = api(f"get_attachments_for_case/{cid}"); d = d.get("attachments", d) if isinstance(d, dict) else d
+    return {x["name"] for x in d}
+IDS = {r["key"]: int(r["case_id"]) for r in csv.DictReader(open(f"{P}/testrail-id-map.csv"))}
+for k, v in PROP.items():
+    if k not in IDS: continue
+    want = sorted(set(_re.findall(r"[A-Za-z0-9_.-]+\.png", v["fields"]["custom_preconds"] + v["fields"]["custom_expected"])))
+    if not want: continue
+    have = _attached(IDS[k])
+    for n in want:
+        if n in have: continue
+        path = next((f"{d}/{n}" for d in PIC_DIRS if os.path.exists(f"{d}/{n}")), None)
+        st = _upload(IDS[k], n, path) if path else "no file"
+        L({"op": "add_attachment", "key": k, "case": f"C{IDS[k]}", "name": n, "http": st})
+    miss = [n for n in want if n not in _attached(IDS[k])]
+    L({"op": "readback_attachments", "key": k, "case": f"C{IDS[k]}", "want": len(want), "missing": miss})
+print("written; see", f"{OUT}/apply-log.jsonl")
