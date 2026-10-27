@@ -2,8 +2,7 @@
  "prd": "Confluence 845348896 version 15",
  "built": "by authoring/build.py",
  "counts": {
-  "COVERED": 8,
-  "PENDING": 33
+  "COVERED": 41
  },
  "deleted_cases": {},
  "part_manual": {
@@ -63,7 +62,8 @@
     "S1-04b",
     "S1-05",
     "S1-07",
-    "S1-08"
+    "S1-08",
+    "S2-03"
    ],
    "case_ids": [
     "154707",
@@ -73,7 +73,8 @@
     null,
     "549075",
     "549077",
-    "549078"
+    "549078",
+    "549079"
    ]
   },
   "S1-R4": {
@@ -156,77 +157,126 @@
    "story": 2,
    "jira": "SV-10131",
    "text": "The line builder's two text fields are labeled \"Title\" and \"Description\".",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S2-01",
+    "S2-02",
     "S2-03"
+   ],
+   "case_ids": [
+    "154711",
+    "154712",
+    "549079"
    ]
   },
   "S2-R2": {
    "story": 2,
    "jira": "SV-10131",
    "text": "Both carry the same placeholders as S1-R3.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S2-03"
+   ],
+   "case_ids": [
+    "549079"
    ]
   },
   "S2-R3": {
    "story": 2,
    "jira": "SV-10131",
    "text": "What ShopCoach generates and writes into a line is unchanged. A generated line becomes an ordinary work order line and follows Story 3 like any other.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S2-02",
     "S2-04"
+   ],
+   "case_ids": [
+    "154712",
+    "549080"
    ]
   },
   "S3-R1": {
    "story": 3,
    "jira": "SV-10132",
    "text": "A line's text joins the title, the description and the technician's narrative with a spaced hyphen and no labels: \"Replace tie rod - excessive play - Both outer ends worn, replaced and aligned\".",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S2-04",
     "S3-01",
     "S3-03",
+    "S3-10",
     "S3-16"
+   ],
+   "case_ids": [
+    "549080",
+    "154713",
+    "154715",
+    "154722",
+    "549086"
    ]
   },
   "S3-R2": {
    "story": 3,
    "jira": "SV-10132",
    "text": "The separator is exactly one space, one hyphen-minus, one space.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S3-01",
-    "S3-16"
+    "S3-22"
+   ],
+   "case_ids": [
+    "154713",
+    null
    ]
   },
   "S3-R3": {
    "story": 3,
    "jira": "SV-10132",
    "text": "A separator appears only between two segments that are both present. A line with no description joins the title straight to the narrative. A line with no narrative ends after the description. A line with neither carries the title alone. In every case there is no trailing separator and no trailing space. A segment made only of spaces counts as absent.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S2-04",
     "S3-02",
     "S3-04",
     "S3-11",
-    "S3-16"
+    "S3-16",
+    "S3-19",
+    "S3-20",
+    "S3-21"
+   ],
+   "case_ids": [
+    "549080",
+    "154714",
+    "154716",
+    "549081",
+    "549086",
+    null,
+    null,
+    null
    ]
   },
   "S3-R4": {
    "story": 3,
    "jira": "SV-10132",
    "text": "The same text is used by the live QuickBooks sync and by the downloadable Customer Invoice report. Built at the same moment, the two never show different text for the same line. An invoice already in QuickBooks keeps its old text there (S3-N1, S3-E4).",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S3-03",
     "S3-05",
     "S3-08",
+    "S3-09",
     "S3-13",
-    "S3-14"
+    "S3-14",
+    "S3-23"
+   ],
+   "case_ids": [
+    "154715",
+    "154717",
+    "154720",
+    "154721",
+    "549083",
+    "549084",
+    null
    ],
    "part_manual": "Covered by S3-03 and S3-14 (the same line on both routes) and S3-23 (an old invoice). \"Built at the same moment\" is approached by downloading the report right after the sync; the builder being one piece of code is the developers' check (tech plan: InvoiceCreateSyncServiceTest)."
   },
@@ -234,29 +284,48 @@
    "story": 3,
    "jira": "SV-10132",
    "text": "The technician's narrative is the third and last segment. It carries no label of any kind, and no semicolon appears anywhere in the line text. The reasoning is in §2.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S3-01",
-    "S3-16"
+    "S3-06"
+   ],
+   "case_ids": [
+    "154713",
+    "154718"
    ]
   },
   "S3-R6": {
    "story": 3,
    "jira": "SV-10132",
    "text": "A line with no narrative ends after the description, with no trailing hyphen and no trailing space. A narrative is absent when the value is empty, is made only of spaces, or is the literal placeholder \"Tech story missing.\"; the three are treated identically, and none reaches QuickBooks. The Edit Line window writes the placeholder when an existing line with no tech story is saved from it; a line saved from New Line keeps an empty tech story. Neither depends on completion or on Require Tech Story.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
+    "S2-04",
     "S3-04",
-    "S3-12"
+    "S3-12",
+    "S3-20"
+   ],
+   "case_ids": [
+    "549080",
+    "154716",
+    "549082",
+    null
    ]
   },
   "S3-R6a": {
    "story": 3,
    "jira": "SV-10132",
    "text": "A narrative is absent legitimately, not only exceptionally. The organization setting Administration, Work Order Settings, Require Tech Story governs whether the completion gate gets in the way, so a shop with it switched off invoices completed lines with no narrative as a matter of course. Shops created since the setting was introduced (June 2025) start with it off; shops that existed then started with it on. Each shop keeps the value it has set, and this change does not touch it.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
+    "S3-01",
+    "S3-02",
     "S3-04"
+   ],
+   "case_ids": [
+    "154713",
+    "154714",
+    "154716"
    ],
    "part_manual": "Covered in both states (on: S3-01, S3-03, S3-06, S3-11, S3-12; off: S3-02, S3-04, S3-05 ...). Not by hand: the default for a shop created since June 2025 (a manual tester cannot create a new shop); developers' check."
   },
@@ -264,12 +333,16 @@
    "story": 3,
    "jira": "SV-10132",
    "text": "When the joined text is longer than 4,000 bytes it is shortened from the end to fit, and it is never cut in the middle of a character. The live sync and the downloadable report are both cut at that same limit, so S3-R4 holds on a long line too. Today only the live sync cuts, and it cuts by bytes without regard for where a character ends; the report has no cut at all. Because the title leads and the narrative trails, the title always survives and the narrative is what gets clipped first.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S3-05",
-    "S3-06",
     "S3-13",
     "S3-14"
+   ],
+   "case_ids": [
+    "154717",
+    "549083",
+    "549084"
    ],
    "part_manual": "Covered on both routes (S3-05, S3-13 report; S3-14 QuickBooks). \"Today only the live sync cuts ... the report has no cut at all\" describes the old build and is not re-tested."
   },
@@ -277,58 +350,78 @@
    "story": 3,
    "jira": "SV-10132",
    "text": "The limit is a storage limit rather than a count of what a reader sees, so a line written with accented or non-Latin characters may be shortened more than an English line that looks the same length on screen. Two lines that look equally long can therefore be cut at different points. That is correct behavior and not a defect.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S3-05",
+   "status": "COVERED",
+   "keys": [
     "S3-13"
+   ],
+   "case_ids": [
+    "549083"
    ]
   },
   "S3-R8": {
    "story": 3,
    "jira": "SV-10132",
    "text": "The values themselves are unchanged. Nothing is trimmed, truncated, re-cased or escaped that is not trimmed, truncated, re-cased or escaped today, other than the shortening described in S3-R7 and the removal of spaces and line breaks at the very end of the whole line (S3-R3).",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S3-05",
-    "S3-06"
+    "S3-06",
+    "S3-21",
+    "S3-22"
+   ],
+   "case_ids": [
+    "154717",
+    "154718",
+    null,
+    null
    ]
   },
   "S3-R9": {
    "story": 3,
    "jira": "SV-10132",
    "text": "A title, a description or a narrative that itself contains a hyphen, including a spaced hyphen, is carried as written. The separator is not escaped and the text is not quoted, so a reader cannot always tell our separator from theirs. This is accepted deliberately: the alternative is printing a field name to mark the join, which is the thing being removed.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S3-06"
+   ],
+   "case_ids": [
+    "154718"
    ]
   },
   "S3-R9a": {
    "story": 3,
    "jira": "SV-10132",
    "text": "A semicolon typed inside any of the three values is ordinary punctuation and is carried through untouched. It was ambiguous only while the semicolon was the separator.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S3-06"
+   ],
+   "case_ids": [
+    "154718"
    ]
   },
   "S3-R10": {
    "story": 3,
    "jira": "SV-10132",
    "text": "For a user who cannot see financial data, the downloaded report masks its money columns (rate, amount, tax and average cost) as it does today. The line text is not a money value and is not masked, so the same words reach every reader of the file.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S3-07",
-    "S3-18"
+   "status": "COVERED",
+   "keys": [
+    "S3-07"
+   ],
+   "case_ids": [
+    "154719"
    ]
   },
   "S3-R11": {
    "story": 3,
    "jira": "SV-10132",
    "text": "No other report or export reads this line text. Changing it changes these two routes and nothing else.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S3-03",
+   "status": "COVERED",
+   "keys": [
     "S3-08"
+   ],
+   "case_ids": [
+    "154720"
    ],
    "part_manual": "Covered by S3-08 over every report the Export Reports dialog lists. Reports or exports outside that dialog are the developers' check (tech plan FR-010: nothing else reads the text)."
   },
@@ -336,154 +429,216 @@
    "story": 3,
    "jira": "SV-10132",
    "text": "An imported historical invoice never reaches the live QuickBooks sync, so its line text is unaffected whatever the import wrote into it.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S3-15"
+   ],
+   "case_ids": [
+    "549085"
    ]
   },
   "S3-N1": {
    "story": 3,
    "jira": "SV-10132",
    "text": "Invoices already in QuickBooks keep the text they were sent with. Nothing is re-synced to QuickBooks or rewritten there.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S3-09",
-    "S3-15",
     "S3-17"
+   ],
+   "case_ids": [
+    "154721",
+    "549087"
    ]
   },
   "S3-N2": {
    "story": 3,
    "jira": "SV-10132",
    "text": "No line falls back to the old labels or the old questions, including lines created before this change.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S3-16"
+   "status": "COVERED",
+   "keys": [
+    "S3-16",
+    "S3-23"
+   ],
+   "case_ids": [
+    "549086",
+    null
    ]
   },
   "S3-N3": {
    "story": 3,
    "jira": "SV-10132",
    "text": "A parts line, a shop supplies line and a fee or discount line are unaffected: none of them carries a title-and-description pair.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S3-10",
-    "S3-15"
+   "status": "COVERED",
+   "keys": [
+    "S3-10"
+   ],
+   "case_ids": [
+    "154722"
    ]
   },
   "S3-E1": {
    "story": 3,
    "jira": "SV-10132",
    "text": "A line with a title, no description and a narrative reads \"Replace tie rod - Both outer ends worn, replaced and aligned\": one separator, not two, and no gap where the description would have been.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S3-11",
-    "S3-16"
+    "S3-19"
+   ],
+   "case_ids": [
+    "549081",
+    null
    ]
   },
   "S3-E2": {
    "story": 3,
    "jira": "SV-10132",
    "text": "An invoice that is reversed and re-invoiced after release day carries the new text on the new invoice, while the original keeps the old text. A bookkeeper can therefore see both forms in one set of books, on one job.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S3-15",
+   "status": "COVERED",
+   "keys": [
     "S3-17"
+   ],
+   "case_ids": [
+    "549087"
    ]
   },
   "S3-E3": {
    "story": 3,
    "jira": "SV-10132",
    "text": "A description long enough to be cut still syncs. The invoice reaches QuickBooks; it does not land in Unexported Items.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S3-05",
-    "S3-13",
+   "status": "COVERED",
+   "keys": [
     "S3-14"
+   ],
+   "case_ids": [
+    "549084"
    ]
   },
   "S3-E4": {
    "story": 3,
    "jira": "SV-10132",
    "text": "The downloadable Customer Invoice report is built each time it is downloaded, so an invoice made before the release shows the new text in it, while QuickBooks keeps the text that invoice was sent with (S3-N1).",
-   "status": "PENDING",
-   "planned_keys": []
+   "status": "COVERED",
+   "keys": [
+    "S3-23"
+   ],
+   "case_ids": [
+    null
+   ]
   },
   "S4-R1": {
    "story": 4,
    "jira": "SV-10133",
    "text": "Withdrawn. There is no separate work order import. The only live import carrying these columns is Administration → Invoices, which writes to the imported work order history and is covered by S4-R2. The column names this requirement renamed exist only in code nothing calls, and nothing ships for them.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S4-01"
+   ],
+   "case_ids": [
+    "154723"
    ]
   },
   "S4-R2": {
    "story": 4,
    "jira": "SV-10133",
    "text": "The historical invoice import's two columns (Administration → Invoices) are named \"*Line Title\" and \"Line Description\", replacing \"*Line Title - What are you doing\" and \"Line Description - Why are you doing it\".",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S4-01",
+    "S4-03",
     "S4-04"
+   ],
+   "case_ids": [
+    "154723",
+    "154725",
+    "549089"
    ]
   },
   "S4-R3": {
    "story": 4,
    "jira": "SV-10133",
    "text": "The importer accepts the old column names as well as the new ones. A file carrying either spelling validates and imports identically. Column names are matched regardless of capital letters and surrounding spaces, as every column already is.",
-   "status": "PENDING",
-   "planned_keys": [
-    "S4-02"
+   "status": "COVERED",
+   "keys": [
+    "S4-02",
+    "S4-05",
+    "S4-08"
+   ],
+   "case_ids": [
+    "154724",
+    "549090",
+    null
    ]
   },
   "S4-R4": {
    "story": 4,
    "jira": "SV-10133",
    "text": "A file may mix the two spellings, carrying one column under its old name and the other under its new one.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S4-05"
+   ],
+   "case_ids": [
+    "549090"
    ]
   },
   "S4-R5": {
    "story": 4,
    "jira": "SV-10133",
    "text": "The old name is accepted as the column it became: it is neither reported missing nor reported as a column to remove.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S4-02",
-    "S4-05"
+    "S4-05",
+    "S4-08"
+   ],
+   "case_ids": [
+    "154724",
+    "549090",
+    null
    ]
   },
   "S4-R6": {
    "story": 4,
    "jira": "SV-10133",
    "text": "The downloadable sample file and the on-screen column list both show the new names.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S4-01",
     "S4-04"
+   ],
+   "case_ids": [
+    "154723",
+    "549089"
    ]
   },
   "S4-R7": {
    "story": 4,
    "jira": "SV-10133",
    "text": "Every other column name, and the required order of columns, is unchanged.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S4-03",
     "S4-06"
+   ],
+   "case_ids": [
+    "154725",
+    "549091"
    ]
   },
   "S4-N1": {
    "story": 4,
    "jira": "SV-10133",
    "text": "A genuinely unrecognized column is still rejected. The compatibility rule covers exactly the two renamed columns and nothing else.",
-   "status": "PENDING",
-   "planned_keys": [
+   "status": "COVERED",
+   "keys": [
     "S4-06",
     "S4-07"
+   ],
+   "case_ids": [
+    "549091",
+    "549092"
    ]
   }
  }

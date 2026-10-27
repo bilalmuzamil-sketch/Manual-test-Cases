@@ -1,0 +1,41 @@
+{
+ "_about": "Design-vs-PRD differences for What/Why (Rule 130). Format of build/testing-tools/spec_to_design_check.py: \"<code>|<words>\" -> {outcome QUESTION-SENT / PO-RULED / QA-LEAD-RULED / DESIGN-SILENT / SHOWN-WHEN-DRIVEN, where, cases}. Carried 27 Oct 2026 (Phase A) from the 13 Oct design check (one SPEC-CONFLICT, the \"Title *\" star) and the 14 Oct answers. Phase D (design worker, full-pass-2026-10-27/design/DESIGN-DIVERGENCE-ROWS.json: 12 rows, DV-01 to DV-04 plus 8 DESIGN-SILENT) is merged here by the coordinator; until then this file holds Phase A's three rows, all closed. Open rows: 0 here; Phase D's DV-04 is QUESTION-READY (question DQ-01, not sent).",
+ "S1-R1|\"Title *\" with a star on board New Line - after (13 Oct copy)": {
+  "outcome": "PO-RULED",
+  "where": "PRD v14 S1-R1 \"with no asterisk\" (14 Oct 2026, after our FYI on the question sheet); the design re-read on 27 Oct shows \"Title\" (Main.dc.html, the only change since 13 Oct). Design and PRD agree.",
+  "cases": [
+   "C154707",
+   "C549077"
+  ],
+  "keys": [
+   "S1-01",
+   "S1-07"
+  ],
+  "ruled": "2026-10-14",
+  "carried_from": "13 Oct text inventory SPEC-CONFLICT (minor)"
+ },
+ "S3-R6a|Require Tech Story \"off by default\" (canvas note note-format)": {
+  "outcome": "PO-RULED",
+  "where": "Chris Ward, answer 8 of 14 Oct 2026 (Google Doc 1QcT7FRZci6AhYcI33HUac-Oob03-gCnCOKn2NFHMLjA): shops created since June 2025 start off, older shops on; PRD v14 S3-R6a. A design note only; no board draws a different screen. Cases test both states.",
+  "cases": [
+   "C154713",
+   "C154716"
+  ],
+  "keys": [
+   "S3-01",
+   "S3-04"
+  ],
+  "ruled": "2026-10-14"
+ },
+ "S3-R6|\"Tech story missing.\" written by the line dialog \"when nothing was typed\" (board Awkward inputs; PRD §3)": {
+  "outcome": "PO-RULED",
+  "where": "Chris Ward, answer 6 of 14 Oct 2026: written when an existing line with no tech story is saved from Edit Line; New Line keeps it empty; PRD v14 S3-R6. The board's sentence and PRD §3 Key Decisions repeat the older wording; no screen differs. S3-12 sets the line up the S3-R6 way.",
+  "cases": [
+   "C549082"
+  ],
+  "keys": [
+   "S3-12"
+  ],
+  "ruled": "2026-10-14"
+ }
+}

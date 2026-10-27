@@ -123,6 +123,7 @@ for code, t in L.CODE.items():
 print("PRD quoted words checked", w_checked, "| not screen words", sorted(RM.NOT_SCREEN_WORDS))
 # ---------------------------------------------------------------- Rule 116: every stated count equals the length of the text it counts
 n_counts = 0
+def INS(c): return [] if not c["inputs"] else (c["inputs"] if isinstance(c["inputs"], list) else [c["inputs"]])
 for c in L.CASES:
     for r in c["res"]:
         for b in r:
@@ -130,13 +131,14 @@ for c in L.CASES:
             if not m: continue
             n_counts += 1
             texts = [x for rr in c["res"] for bb in rr for x in re.findall(r'reads exactly "([^"]*)"', bb)]
-            ok = [len(x) for x in texts] + ([len(L.joined(*c["inputs"]))] if c["inputs"] else [])
+            ok = [len(x) for x in texts] + [len(L.joined(*i)) for i in INS(c)]
             if int(m.group(1).replace(",", "")) not in ok:
                 P(f"{c['key']}: the count {m.group(1)} is neither the length of a text this case says the cell reads exactly nor of the line its inputs make")
     if c["inputs"]:
+        made = [L.joined(*i) for i in INS(c)]
         for x in [x for r in c["res"] for b in r for x in re.findall(r'reads exactly "([^"]*)"', b)]:
-            if "ItemDescription" in " ".join(b for r in c["res"] for b in r) and x not in (L.joined(*c["inputs"]),) and not x.startswith("What are you doing?"):
-                P(f"{c['key']}: a quoted line text is not what its inputs make by the PRD's rule: {x[:60]!r} vs {L.joined(*c['inputs'])[:60]!r}")
+            if x not in made:
+                P(f"{c['key']}: a quoted line text is not what its inputs make by the PRD's rule: {x[:60]!r} vs {[m[:40] for m in made]!r}")
 print("Rule 116 counts checked", n_counts)
 # ---------------------------------------------------------------- rendered layout
 for c in L.CASES:

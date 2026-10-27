@@ -142,7 +142,14 @@ BOARD_TEXT = {a["file"].replace(".dc.html", ""): _board_text(a["file"]) for a in
 NOTESW = [ws(n["text"]) for n in CANVAS["annotations"]]
 DESIGN_WORDS = NOTESW + list(BOARD_TEXT.values())
 # Phase D (design worker) writes the board pictures here; until then no case names a picture (design_refs.DREFS adds them)
-PNG_DIRS = [f"{FP}/design/images", f"{P}/sources/design-2026-10-27-artifact/png"]
+PNG_DIRS = [f"{FP}/design/images", f"{FP}/design/renders", f"{P}/sources/design-2026-10-27-artifact/png"]
+# the Phase D worker's board pictures (full-pass-2026-10-27/design/renders/, 27 Oct 2026), numbered page.board as in its proof file
+BOARD_NO = {"DialogBefore": "1.1", "Main": "1.2", "QuickBooks": "1.3", "EditBefore": "1.4", "EditAfter": "1.5", "EdgeCases": "2.1",
+            "Truncation": "2.2"}
+def board_png(stem):
+    """'Main' -> 'board-1.2-new-line-after.png' when the Phase D render exists, else None."""
+    name = f"board-{BOARD_NO[stem]}-" + re.sub(r"[^a-z0-9]+", "-", BOARD_BY_STEM[stem].lower()).strip("-") + ".png"
+    return name if any(os.path.isfile(os.path.join(x, name)) for x in PNG_DIRS) else None
 DOCS = {"PRD": (PRD_NAME, lambda t: ws(t) in PRDW or ws(t) in PRD_ROWSW),
         "PO": (PO_NAME, lambda t: ws(t) in POW),
         "JIRA": (JIRA_NAME, lambda t: ws(t) in JIRAW),
@@ -227,6 +234,8 @@ def design_of(c):
         for v in x.get(k, []):
             if v not in d[k]: d[k].append(v)
     if x.get("note"): d["note"] = (d["note"] + " " + x["note"]).strip()
+    if not d["pictures"]:
+        d["pictures"] = [p for p in (board_png(b) for b in d["boards"]) if p]
     return d
 
 DESIGN_QUESTIONS = ()     # the design-vs-PRD question ids Phase D adds (QUESTIONS.json); a PO hold on one of them is a held design case
@@ -237,6 +246,7 @@ def source_sentence(c):
     if held_on_design(c): return "the expected results above come from the quotes above, except where this held design case follows the design."
     return ("the expected results above come from the quotes above where the PRD speaks, and from the board pictures where it is silent "
             "about the look.")
+TEXT_BOARDS = {"QuickBooks", "EdgeCases", "Truncation"}    # boards that draw line text (Phase D's DESIGN-CASE-PLAN.md), not a screen
 def design_block(c):
     """Rule 117 tenth amendment: design references in their own block below the quotes."""
     d = design_of(c)
@@ -244,9 +254,12 @@ def design_block(c):
     head = (f'Design canvas "What Are You Doing / Why Are You Doing It?" ({DESIGN_URL}), copy re-read on 27 Oct 2026 (its one change '
             f'since 13 Oct: the New Line board\'s "Title *" now reads "Title")')
     if d["boards"]:
-        t = (head + ": board" + ("s " if len(d["boards"]) > 1 else " ") + ", ".join(f'"{board(b)}"' for b in d["boards"])
-             + (". Compare the screen with the pictures below; " if d["pictures"] else ". Compare the screen with the board; ")
-             + source_sentence(c))
+        if all(b in TEXT_BOARDS for b in d["boards"]):
+            how = ". These boards draw the line text, not a screen: the case types their example values where they fit; "
+        else:
+            how = ". Compare the screen with the pictures below; " if d["pictures"] else ". Compare the screen with the board; "
+        t = (head + ": board" + ("s " if len(d["boards"]) > 1 else " ")
+             + ", ".join(f'{BOARD_NO[b]} "{board(b)}"' for b in d["boards"]) + how + source_sentence(c))
         h += "<p>" + e(t) + "</p>"
         if d["note"]: h += "<p>" + e(d["note"]) + "</p>"
         if d["pictures"]:

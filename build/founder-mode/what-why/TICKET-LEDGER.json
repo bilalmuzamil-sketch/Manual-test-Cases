@@ -1,0 +1,144 @@
+{
+ "SV-10130": {
+  "updated": "2026-10-23T07:02:55.296-0500",
+  "summary": "Title and Description - Story 1 - The Work Order Line Dialog",
+  "status": "Merged to Staging",
+  "outcome": "NEW-CASES",
+  "cases": [
+   "C154707",
+   "C154708",
+   "C154709",
+   "C154710",
+   "C549075",
+   "C549076",
+   "C549077",
+   "C549078",
+   "S1-03b (new)",
+   "S1-04b (new)"
+  ],
+  "note": "Story 1 rewritten to PRD v15 (8 live cases, top to bottom). New splits S1-03b (v14 S1-R6: the message shows on leaving Title empty, SV-10916) and S1-04b (Edit Line fields). Developer's 19 Oct note (\"Title cannot be longer than 255 characters\") is not in the PRD: question Q1, no case."
+ },
+ "SV-10390": {
+  "updated": "2026-10-21T11:29:33.042-0500",
+  "summary": "Title and Description — Verify QuickBooks and report line text",
+  "status": "Done",
+  "outcome": "NO-CASE",
+  "cases": [],
+  "note": "Developers' verification checklist (Done 21 Oct): facts about what is testable, not a source of expected behaviour; every item is a PRD code covered in REQUIREMENT-MAP.json (Story 3)."
+ },
+ "SV-10391": {
+  "updated": "2026-10-21T11:29:34.416-0500",
+  "summary": "Title and Description — Verify line dialog and ShopCoach labels and placeholders",
+  "status": "Done",
+  "outcome": "NO-CASE",
+  "cases": [],
+  "note": "Developers' verification checklist (Done 21 Oct) for Stories 1-2; every item is a PRD code covered in REQUIREMENT-MAP.json."
+ },
+ "SV-10392": {
+  "updated": "2026-10-21T11:29:35.285-0500",
+  "summary": "Title and Description — Verify invoices import wording and old-template compatibility",
+  "status": "Done",
+  "outcome": "NO-CASE",
+  "cases": [],
+  "note": "Developers' verification checklist (Done 21 Oct) for Story 4; every item is a PRD code covered in REQUIREMENT-MAP.json."
+ },
+ "SV-10393": {
+  "updated": "2026-10-21T11:29:36.420-0500",
+  "summary": "Title and Description — Verify E2E coverage updated",
+  "status": "Done",
+  "outcome": "NO-CASE",
+  "cases": [],
+  "note": "E2E coverage task (Done 21 Oct): automation work, no behaviour of its own."
+ },
+ "SV-11257": {
+  "updated": "2026-10-27T09:15:07.069-0500",
+  "summary": "What Are You Doing / Why Are You Doing It?",
+  "status": "TESTING QA",
+  "outcome": "COVERED",
+  "cases": [],
+  "note": "Epic. Every story below handled; comments of 19 Oct (redeployed with PRD v14, QA on sv10130 and qb1) and 27 Oct (QA's staging re-check: Stories 1, 3, 4 passed; Story 2 blocked by SV-11850) read. No new behaviour beyond PRD v15."
+ },
+ "SV-11558": {
+  "updated": "2026-10-21T11:15:14.899-0500",
+  "summary": "Founder Mode Batch #2",
+  "status": "Open",
+  "outcome": "NO-CASE",
+  "cases": [],
+  "note": "Founder Mode Batch #2 epic, linked to SV-11257 (Fixes); lists What/Why as item 1, no behaviour of its own."
+ },
+ "SV-11850": {
+  "updated": "2026-10-27T09:19:30.643-0500",
+  "summary": "ShopCoach Line Builder on staging: Build Lines fails with \"Failed to parse work description into lines\" and the UI shows nothing",
+  "status": "Open",
+  "outcome": "COVERED",
+  "cases": [
+   "C154711",
+   "C154712",
+   "C549079",
+   "C549080"
+  ],
+  "note": "Open bug (27 Oct): Build Lines shows nothing on staging. Marker AUTOMATION: READY - EXPECT FAIL (SV-11850) with the symptom and three outcomes on the cases whose steps click Build Lines; S2-04 carries a note (its precondition needs a ShopCoach line)."
+ },
+ "SV-10131": {
+  "updated": "2026-10-27T09:15:06.112-0500",
+  "summary": "",
+  "status": "Merged to Staging",
+  "outcome": "COVERED",
+  "cases": [
+   "C154711",
+   "C154712",
+   "C549079",
+   "C549080"
+  ],
+  "note": "Story 2 rewritten to PRD v15 (4 live cases). The builder is reached through the ShopCoach Line Builder box on the Lines tab (developer's test plan, SV-11850). C154711, C154712, C549079 carry AUTOMATION: READY - EXPECT FAIL (SV-11850)."
+ },
+ "SV-10132": {
+  "updated": "2026-10-23T07:02:58.631-0500",
+  "summary": "",
+  "status": "Merged to Staging",
+  "outcome": "NEW-CASES",
+  "cases": [
+   "C154713",
+   "C154714",
+   "C154715",
+   "C154716",
+   "C154717",
+   "C154718",
+   "C154719",
+   "C154720",
+   "C154721",
+   "C154722",
+   "C549081",
+   "C549082",
+   "C549083",
+   "C549084",
+   "C549085",
+   "C549086",
+   "C549087",
+   "C549088",
+   "S3-19 (new)",
+   "S3-20 (new)",
+   "S3-21 (new)",
+   "S3-22 (new)",
+   "S3-23 (new)"
+  ],
+  "note": "Story 3 rewritten to PRD v15 (18 live cases). New for v14: S3-19 (description of spaces), S3-20 (tech story of spaces), S3-21 (end of line trimmed), S3-22 (a value's own trailing space kept; developer and QA, 23 Oct), S3-23 (S3-E4: old invoice, new text in the report)."
+ },
+ "SV-10133": {
+  "updated": "2026-10-23T07:03:00.274-0500",
+  "summary": "",
+  "status": "Merged to Staging",
+  "outcome": "NEW-CASES",
+  "cases": [
+   "C154723",
+   "C154724",
+   "C154725",
+   "C549089",
+   "C549090",
+   "C549091",
+   "C549092",
+   "S4-08 (new)"
+  ],
+  "note": "Story 4 rewritten to PRD v15 (7 live cases). New S4-08 (v14 S4-R3: old names in any capitals, spaces around). Where imported invoices are found (developer, 21 Oct) used in the steps. Row error messages that keep the old wording (developer, 8 Oct) asked as question Q3."
+ }
+}

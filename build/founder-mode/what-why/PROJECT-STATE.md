@@ -9,7 +9,13 @@ Title / Description and strip our field names from the text that reaches QuickBo
 **Branch:** `claude/slack-session-setup-7v5itm`
 **Build:** ❌ No QA branch yet → every case `AUTOMATION: HOLD`, source-verified only (Rule 85).
 
-## 🟢 CURRENT STATE — 13 Oct 2026 (full update, Rule 122) — read this first
+## 🟢 CURRENT STATE — 27 Oct 2026 (full pass, DRAFT, nothing written to TestRail yet) — read this first
+- QA lead 27 Oct: "Full pass" (as for Parts Lifecycle); "Not now" to filing the S1-R6 bug of Chris Ward's answer 7.
+- Sources: PRD **v15** (14 Oct; v14 holds Chris's 8 answers), `full-pass-2026-10-27/PRD-DIFF-v13-v15.md`; Jira read 27 Oct (`sources/jira-2026-10-27/`), incl. new open bug **SV-11850** (Build Lines shows nothing on staging); tech plan unchanged; design 27 Oct copy (only "Title *" → "Title").
+- Phase A (library + Stories 1-4) done in `authoring/`: 45 cases (37 rewritten keeping C-ids, 2 splits, 6 new), 41/41 codes, gates green; `PHASE-A-HANDOFF.md`. Phase D (design) works in `full-pass-2026-10-27/design/` and writes `authoring/cases_design.py`.
+- Open questions Q9-Q11 (`full-pass-2026-10-27/QUESTIONS.json`), not sent.
+
+## (HISTORY) STATE — 13 Oct 2026 (full update, Rule 122) — read this first
 - **Epic now SV-11257** (split out of SV-9667). PRD 845348896 unchanged in substance since 30 Sep (40 codes). Tech plan received 13 Oct (`sources/tech-plan-Title-and-Description-2026-10-13.md`).
 - **QA build exists:** sv10130.qa.shopview.com (qb1.qa.shopview.com for QuickBooks), PR #3553 — not yet build-verified.
 - **Suite:** 37 cases = 19 rewritten + 18 new (C549075–C549092), current layout, one setup doc each; 40/40 codes. All 37 in Nightly run 538.

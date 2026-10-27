@@ -1,0 +1,91 @@
+{
+ "_about": "Open questions of the What/Why full pass (27 Oct 2026), plain words, for Chris Ward. Rule 131: they go at the BOTTOM of the existing What/Why question sheet (Google Doc 1QcT7FRZci6AhYcI33HUac-Oob03-gCnCOKn2NFHMLjA, questions 1-8 answered 14 Oct), numbered on from 8, in a new colour; nothing is sent by Phase A. Phase D's DQ-01..DQ-03 (full-pass-2026-10-27/design/QUESTIONS-DESIGN.json) join them, numbered after these.",
+ "answered_14_oct": [
+  {
+   "id": "Q1",
+   "status": "ANSWERED",
+   "answer_file": "po-answers-2026-10-14/ANSWERS-Chris-Ward-2026-10-14.md",
+   "now_in_prd": "S3-R3, S3-R6"
+  },
+  {
+   "id": "Q2",
+   "status": "ANSWERED",
+   "answer_file": "po-answers-2026-10-14/ANSWERS-Chris-Ward-2026-10-14.md",
+   "now_in_prd": "S3-R8"
+  },
+  {
+   "id": "Q3",
+   "status": "ANSWERED",
+   "answer_file": "po-answers-2026-10-14/ANSWERS-Chris-Ward-2026-10-14.md",
+   "now_in_prd": "S1-R3, S1-R7"
+  },
+  {
+   "id": "Q4",
+   "status": "ANSWERED",
+   "answer_file": "po-answers-2026-10-14/ANSWERS-Chris-Ward-2026-10-14.md",
+   "now_in_prd": "S4-R3"
+  },
+  {
+   "id": "Q5",
+   "status": "ANSWERED",
+   "answer_file": "po-answers-2026-10-14/ANSWERS-Chris-Ward-2026-10-14.md",
+   "now_in_prd": "S3-E4, S3-R4, S3-N1"
+  },
+  {
+   "id": "Q6",
+   "status": "ANSWERED",
+   "answer_file": "po-answers-2026-10-14/ANSWERS-Chris-Ward-2026-10-14.md",
+   "now_in_prd": "S3-R6"
+  },
+  {
+   "id": "Q7",
+   "status": "ANSWERED",
+   "answer_file": "po-answers-2026-10-14/ANSWERS-Chris-Ward-2026-10-14.md",
+   "now_in_prd": "S1-R6"
+  },
+  {
+   "id": "Q8",
+   "status": "ANSWERED",
+   "answer_file": "po-answers-2026-10-14/ANSWERS-Chris-Ward-2026-10-14.md",
+   "now_in_prd": "S3-R6a"
+  }
+ ],
+ "questions": [
+  {
+   "id": "Q9",
+   "status": "OPEN",
+   "topic": "What/Why: the Title length message",
+   "question": "The developer's note of 19 Oct (SV-10130) says a Title over 255 characters now shows \"Title cannot be longer than 255 characters\" from the 256th character, and saving is blocked while it shows. Your page says the dialog's validation is unchanged (S1-R7) and names only \"Title is a required field\" (S1-R6). (a) Is \"Title cannot be longer than 255 characters\" the message testers should expect? (b) Did the dialog show a length message before this change (for example \"Line Name cannot be longer than 255 characters\"), so this is only the rename?",
+   "sources": [
+    "PRD v15 S1-R6, S1-R7, Assumptions (255-character line name)",
+    "SV-10130 comment, Nemanja Djuric, 19 Oct 2026"
+   ],
+   "held": [],
+   "note": "No case written for the length message until answered (Rule 58)."
+  },
+  {
+   "id": "Q10",
+   "status": "OPEN",
+   "topic": "What/Why: Invoices import row messages still use the old words",
+   "question": "The developer's note of 8 Oct (SV-10133) says the Invoices import's row messages keep the old wording: an empty *Line Title still says \"Line name cannot be empty.\", and the length message mentions \"line description\". Your page says the two fields are named Title and Description \"everywhere a person reads them\". (a) Should those import messages say \"Line Title\" / \"Line Description\" (or Title / Description) after this change? (b) Or are they out of this release, so testers should expect the old wording?",
+   "sources": [
+    "PRD v15 Feature Overview, first bullet",
+    "SV-10133 comment, Nemanja Djuric, 8 Oct 2026 (Known gaps)"
+   ],
+   "held": [],
+   "note": "No case written until answered."
+  },
+  {
+   "id": "Q11",
+   "status": "OPEN",
+   "topic": "What/Why: a title that starts with =, +, - or @ in the downloaded report",
+   "question": "The developer's note of 8 Oct (SV-10132) says the downloaded Customer Invoice report never protected spreadsheet formulas, and now that a line no longer starts with \"What are you doing?: \", a title starting with =, +, - or @ opens as a formula in Excel. Your page says values are carried as written (S3-R8, S3-R9). Is that acceptable for this release, or should testers expect such a title to open as plain text?",
+   "sources": [
+    "PRD v15 S3-R8, S3-R9",
+    "SV-10132 comment, Nemanja Djuric, 8 Oct 2026 (Known gaps)"
+   ],
+   "held": [],
+   "note": "No case written until answered; every Story 3 case uses titles that start with a letter."
+  }
+ ]
+}
