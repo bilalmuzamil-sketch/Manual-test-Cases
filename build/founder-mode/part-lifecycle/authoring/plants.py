@@ -23,4 +23,5 @@ def plant(name):
     elif name == "lost":     L.CASES[:] = [c for c in L.CASES if c["key"] != "S1-05"]
     elif name == "notmanual": _clone("S1-01", "S1-01c")["res"][0].append("This part cannot be checked by hand.")
     elif name == "title":    _clone("S1-01", "S1-01c")["title"] = "Inventory opens on the Active tab; the Inactive tab sits beside it on the same line too"
+    elif name == "jargon":   _clone("S1-01", "S1-01c")["res"][0].append("The part request list opens and the request is sent.")  # "part request" allowed, bare "request" refused
     else: raise SystemExit(f"unknown plant {name}")

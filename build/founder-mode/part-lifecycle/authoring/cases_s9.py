@@ -3,17 +3,15 @@ Phase B, 27 Oct 2026: every live case rewritten top to bottom against PRD v33 (R
 Changed code S9-N3a (v31: access to Parts → Returns stays as today's Vendor Order Management settings give; Vendor Order Management →
 Create & Edit includes Part Library & Inventory → View; Chris Ward on SV-10822, 23 Oct 2026): S9-28 now checks that such a role can
 search parts on a return; S9-41 and S9-42 compare the build with production (today's app) for the same role, since the PRD names no
-access beyond "today's" (question Q-B1 asks the PO to state it).
+access beyond "today's" (question Q11 asks the PO to state it).
 New cases: S9-43 to S9-46 (S9-R21, "Not Tracked" in place of "Inventory Qty" in the part lookups) and S9-47, S9-48 (S9-R22, an
-untracked part keeps its "In Stock" badge). No manual case: S9-E9 (the public API create refusal)."""
+untracked part keeps its "In Stock" badge). No manual case: S9-E9 (the public API create refusal; requirement_map.py)."""
 from pllib import C, PO_HOLD, HOLD, DESIGN_HOLD
 from common import *
-from cases_s6 import B_NO_MANUAL, TYPE_A, ROW_A, SAVE, DEACT_CONF, GS_OPEN
+from cases_s6 import TYPE_A, ROW_A, SAVE, DEACT_CONF, GS_OPEN
 
 WRITTEN = True
 
-B_NO_MANUAL({"S9-E9": "The public API create refusal: no screen sends it (the New Inventory Part window refuses a number stocked here with "
-                      "S7-N3/S7-N4 instead). Developers' check (tech plan §5: public API POST /api/v1/parts unchanged, its 409)."})
 
 MSG = "is inactive. Activate it from the Inactive tab to use it."
 INAMSG = f"The lookup shows part A's part number, written as it was saved (capitals and hyphens), followed by \"{MSG}\""

@@ -2,7 +2,7 @@
 Phase C, 27 Oct 2026: every live case rewritten top to bottom against PRD v33 in the QA lead's pattern (Rule 117 fourteenth and
 fifteenth amendments; Rules 134-137). Splits (Rule 136): S11-03b (the import makes an entry), S11-08b (the other-locations warning on the
 Part Library page), S11-09b (the description warning counts an inactive location). New for v33: S11-19 (S11-R8 "Not Tracked" in the
-detail page's parts table) and S11-20 (S11-R9 grey "Inactive" tag there). S11-E3 (public API create) is NO MANUAL CASE (pc_common.py).
+detail page's parts table) and S11-20 (S11-R9 grey "Inactive" tag there). S11-E3 (public API create) is NO MANUAL CASE (requirement_map.py).
 The detail page has no left menu (board 7.2), so every move off it goes through Parts in the top bar."""
 from pllib import C, PO_HOLD, HOLD, DESIGN_HOLD
 from common import *

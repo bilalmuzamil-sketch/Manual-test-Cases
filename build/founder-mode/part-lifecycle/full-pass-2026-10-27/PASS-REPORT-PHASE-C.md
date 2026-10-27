@@ -202,7 +202,7 @@ From: PRD "Parts Lifecycle Update", Confluence 829227015, version 33 (23 Oct 202
  - S11-R3a: “Changing an entry's number or description on its detail page follows the part dialog's rules: S13-R12 to S13-R19, S13-N1, S13-N7, and S10-R23 to S10-R25.”
  - S13-N1: “If another Part Library entry already has exactly the typed number, with the same characters and the same upper and lower case, the save is refused, the dialog stays open, and the system shows "Part number {number} already belongs to another part in the Part Library."”
  - Key Decisions: “A rename follows the same match rule as linking. A rename is refused only when another Part Library entry has exactly the typed number: the same characters, with the same upper and lower case.”
- - Story 13, context note: “Context note: every refusal sent by the system, the rows that fade after 3 seconds, also shows a second, smaller line under the message: "Please try to resolve this." Messages the screen builds itself carry their own second line, as listed, or none.*”
+ - Story 13, context note: “Context note: every refusal sent by the system, the rows that fade after 3 seconds, also shows a second, smaller line under the message: "Please try to resolve this." Messages the screen builds itself carry their own second line, as listed, or none.”
  - User Feedback Summary: “Part number already belongs to another entry | "Part number {number} already belongs to another part in the Part Library." | Error toast, fades after 3 seconds; the dialog stays open”
  - S12-R3: “The dialog for editing a Part Library entry is titled "Edit Library Part".”
 The build is not yet available to check this case against.

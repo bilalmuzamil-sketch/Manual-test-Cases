@@ -2,8 +2,8 @@
 proposals.json until then). Keys D-01 … D-49; every title starts "Design: " (Rule 117 twelfth amendment); sec="DESIGN".
 Phase D, 27 Oct 2026, from ../full-pass-2026-10-27/design/DESIGN-CASE-PLAN.md (the design drive proof is DESIGN-DRIVE-PROOF.md there).
 The expected look comes from PRD v33 where it speaks and from the named board where the PRD is silent (Rule 126 point 5). Two held
-design-version cases (Rule 130 item 5): D-33 (long Part History entries wrap in the design, the tech plan cuts them off: question DQ-03)
-and D-49 (the close X the design draws on every status confirmation: question DQ-01). D-47 and D-48 check PRD look sentences the design
+design-version cases (Rule 130 item 5): D-33 (long Part History entries wrap in the design, the tech plan cuts them off: question Q10)
+and D-49 (the close X the design draws on every status confirmation: question Q8). D-47 and D-48 check PRD look sentences the design
 does not draw (skill 21 §6d item 7); the coordinator drops them only if Phase B/C cases check the same look."""
 from pllib import C, DESIGN_HOLD, HOLD, PO_HOLD
 from common import *
@@ -18,7 +18,7 @@ def PIC(*boards):
     s = ("boards " + ", ".join(b[:-1]) + " and " + b[-1]) if len(b) > 1 else ("board " + b[0])
     return f"Open the attached design picture{'s' if len(b) > 1 else ''} of {s} at 100% zoom, so you can compare the screen with {'them' if len(b) > 1 else 'it'}."
 X_NOTE = ("The design also draws a grey close X at the right end of this confirmation's title row; the PRD lists only a title, a message, "
-          "an optional note, Cancel and a confirm button. That difference is asked of Product (question DQ-01) and checked by the held "
+          "an optional note, Cancel and a confirm button. That difference is asked of Product (question Q8) and checked by the held "
           "design case \"Design: Status confirmation has a close X in its title row\"; this case follows the PRD and does not check the X.")
 D24_COUNT = ("TECH", "Tech plan, §3 Technical Decisions, D24", 'Show "N records selected." under the table in bulk mode (boards 4.3, 4.9).')
 D24_NEW = ("TECH", "Tech plan, §3 Technical Decisions, D24", 'Keep "New Inventory Part" visible in bulk mode (4.3, 4.8).')
@@ -490,12 +490,12 @@ C("D-33", S, "Design: Part History keeps column widths when events are long",
     "The \"Part number updated | Original number: … | New number: … | Changed at: …\" entry wraps onto a second line inside the Event column.",
     "No column narrows, and the end of the entry, the test location's name, is readable: it is not cut off with \"...\"."]],
   ["S10-R21", "S10-R25", ("TECH", "Tech plan, Phase 8, PartHistory.vue", "S10-R21: fixed headerStyle widths on Staff/Date/Time, Event elastic, table-layout: fixed + ellipsis (the Inventory list approach)")],
-  marker=PO_HOLD("DQ-03", "the design wraps long Part History entries, the tech plan cuts them off; not run until answered"),
+  marker=PO_HOLD("Q10", "the design wraps long Part History entries, the tech plan cuts them off; not run until answered"),
   design=dict(boards=["2.4", "2.6"], pictures=["correct-04-p2-4-history-here.png", "board-2.6-part-history-at-lethbridge-redrawn-table.png"],
               words=[note("The entries are written at Lethbridge too")],
               note=("Held design-version case (Rule 130): board 2.6 redraws the table over the build screenshot and its note says a long "
                     "Event wraps onto a second line, while the tech plan cuts it off with an ellipsis; the PRD does not say which. "
-                    "Question DQ-03 to Product. Compare with the attached redrawn table, not with the board's raw screenshot.")))
+                    "Question Q10 to Product. Compare with the attached redrawn table, not with the board's raw screenshot.")))
 
 C("D-34", S, "Design: Part History search with a term looks as in the design",
   [ADMIN, "Have an inactive part, part A, deactivated with the note Superseded by a newer part, so its Part History has a Deactivated entry with a reason.",
@@ -618,7 +618,7 @@ C("D-42", S, "Design: Part Library entry page looks as in the design",
   ["S11-R3", "S12-R12"],
   design=dict(boards=["7.2"], words=[note("Clicking a row opens the entry")],
               note=("The board's note above still says the entry can be deleted on this page; the PRD (S11-R3) says the page has no Delete "
-                    "button and the board's picture shows none. This case follows the PRD; question DQ-02 asks Product to confirm the note is "
+                    "button and the board's picture shows none. This case follows the PRD; question Q9 asks Product to confirm the note is "
                     "out of date.")))
 
 # ---------------------------------------------------------------- Widths (Rule 126 point 2; PRD form factor)
@@ -709,5 +709,5 @@ C("D-49", S, "Design: Status confirmation has a close X in its title row",
   marker=DESIGN_HOLD,
   design=dict(boards=["3.3", "3.7", "4.4", "4.7"], words=[note("Save raises \"Deactivate part?\"")],
               note=("Held design-version case (Rule 130): every status confirmation on the boards has a close X in its title row; the PRD "
-                    "lists a title, a message, an optional note, Cancel and a confirm button only. Question DQ-01 to Product. Not run "
+                    "lists a title, a message, an optional note, Cancel and a confirm button only. Question Q8 to Product. Not run "
                     "until Product rules; if the PRD wins, this case is deleted.")))

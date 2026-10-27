@@ -1,5 +1,5 @@
 {
- "_about": "Design-vs-PRD differences for Parts Lifecycle (Rule 130). Format of build/testing-tools/spec_to_design_check.py: \"<code>|<words>\" -> {outcome QUESTION-SENT / PO-RULED / QA-LEAD-RULED / DESIGN-SILENT / SHOWN-WHEN-DRIVEN, where, cases}. Carried 27 Oct 2026 (Phase A) from the 8 Oct and 13 Oct design checks: 6 rows, all ruled on 9 Oct 2026, and the 13 Oct design matches the PRD on all six. The 13 Oct text inventory found 0 SPEC-CONFLICT. The design canvas is unchanged since 13 Oct (re-read 27 Oct). Phase D adds every new difference from its both-ways check (PRD v33 against the design) here, each with a held design-version case and a question in full-pass-2026-10-27/QUESTIONS.json. Open rows now: 0.",
+ "_about": "Design-vs-PRD differences for Parts Lifecycle (Rule 130). Format of build/testing-tools/spec_to_design_check.py: \"<code>|<words>\" -> {outcome QUESTION-SENT / PO-RULED / QA-LEAD-RULED / DESIGN-SILENT / SHOWN-WHEN-DRIVEN, where, cases}. Carried 27 Oct 2026 (Phase A) from the 8 Oct and 13 Oct design checks: 6 rows, all ruled on 9 Oct 2026, and the 13 Oct design matches the PRD on all six. The 13 Oct text inventory found 0 SPEC-CONFLICT. The design canvas is unchanged since 13 Oct (re-read 27 Oct). Phase D adds every new difference from its both-ways check (PRD v33 against the design) here, each with a held design-version case and a question in full-pass-2026-10-27/QUESTIONS.json. Integration step, 27 Oct 2026: Phase D's rows merged (68 PRD-word rows for the 69 findings of spec_to_design_check.py, one key found twice: 65 DESIGN-SILENT and 3 SHOWN-WHEN-DRIVEN, all closed; the check run over Phase D's board transcription and the board 2.6 file gives 0 open; and 3 hand rows DV-01..DV-03, QUESTION-READY, open until questions Q8, Q9, Q10 are sent, then QUESTION-SENT with the sheet row and date). Open rows now: 3 (DV-01, DV-02, DV-03).",
  "S4-R3|Inventory Tracking hover text (board 5.1 lacked the Inventory Value sentence)": {
   "outcome": "PO-RULED",
   "where": "Chris Ward, question sheet of 9 Oct 2026 (https://docs.google.com/spreadsheets/d/1qVNQ2RtjBUJP7hor79Pjo9Y5mKmYaGM55W3rLgkme7k/edit), answer 2: \"A) The PRD is right on all five. The design will be updated.\" Design redrawn by 13 Oct 2026: board 5.1 now shows all three sentences (sources/design-2026-10-13-artifact/DESIGN-CHANGES-2026-10-13.md).",
@@ -68,5 +68,457 @@
   "ruled": "2026-10-09",
   "design_matches_prd_since": "2026-10-13",
   "carried_from": "8 Oct / 13 Oct 2026 design checks"
+ },
+ "S1-R9b|Empty export": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S2-R8|Tick the parts to deactivate": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S2-R9|Clear selection": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S2-N3|A core follows its part. Activate or deactivate the part instead.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S3-R3|Tick the parts to activate": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S4-N1|At least one bin must be provided.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S4-N2|At least one bin must be marked as default.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S5-N1|At least one bin must be provided.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S7-R9|Part created. Linked to N68SL-356 in the Part Library. Its description ": {
+  "outcome": "SHOWN-WHEN-DRIVEN",
+  "where": "The design shows the same message with its own example data (board 1.4: \"Part created. Linked to F40010212 in the Part Library. Its description \\\"Slack Adjuster\\\" was kept.\"); checked by viewing the boards 27 Oct 2026",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S7-N5|the same number": {
+  "outcome": "SHOWN-WHEN-DRIVEN",
+  "where": "PRD definition in quotes, not on-screen words; checked by viewing the boards 27 Oct 2026",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S7-N6|Description is required.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S7-N6|Part number is required.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S9-R10c|These parts are inactive and were not added: AB-100, FF-5507.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S9-R10a|The {fee} fee for {part number} was not added.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S10-R4|1 part selected.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S10-R5| With exactly one part ticked, the lines read ": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S10-R8|This part ...": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S10-R8|... that use it ...": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S10-R9|Existing records that use ...": {
+  "outcome": "SHOWN-WHEN-DRIVEN",
+  "where": "The design shows \"Existing records that use them stay as they are.\" (4.4, 4.7) and \"... use it ...\" (3.3); the PRD's own words are a fragment with \"...\"; checked by viewing the boards 27 Oct 2026",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S10-R13a|A core follows its part. Activate or deactivate the part instead.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S10-R13a|Part not found.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S10-R13a|Part is already in that state.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S10-R17|Activated": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S10-R17|Activated | Reason: {note}": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S10-R22a|Min/Max updated | {changes} | Source: {source}": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S10-R22a|Min: {old} → {new}": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S10-R22a|Max: {old} → {new}": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S10-R22a|Edit Part": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S10-R22a|Import": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S10-R25a|| Changed through: Public API": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S10-R26|Core for {description}": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S10-N3|A note cannot be longer than 255 characters.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S10-N4|Select at least one part.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S11-R3|Edit Library Part": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S11-R3c|Part cannot be deleted. Please delete related parts first.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S11-R4|Set category": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S11-E4|Part Library entry not found.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S12-R3|Edit Library Part": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S12-R4|Failed to save library part.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S12-R5|Library part deleted successfully.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S12-R6|Part Library and Inventory": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S12-R7|Manage the parts library and inventory levels.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S12-R8|Manage parts inventory, part library, sales, and vendor operations.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S12-R9|Part Library & Inventory — View": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S12-R9|Part Library & Inventory — Create & Edit": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S12-R9|Part Library & Inventory — Delete": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S12-R11|This Part Library entry is in use and cannot be deleted.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S12-R11|Part Library entry not found.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S12-R11|Part Library entry not found": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S12-R11|Part Library entry not found for ID: {id}.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S12-R11|Part Library entry not found for part number: {part number}.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S12-R11|Part Library entry missing category.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S12-R11|A part from the Part Library must have Vendor as its source.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S12-R12|Library Part": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S12-R13|Are you sure you want to delete this library part?": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S12-R14|Part Library · {vendor}": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S13-R15|Core for {description}": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S13-R22|Part activated.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S13-R27|Please delete related work order parts first.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S13-R28|Please complete or cancel the related return or credit first.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S13-N1|Part number {number} already belongs to another part in the Part Library.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S13-N1b|A core follows its part. Rename the part instead.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S13-N4|This part could not be deactivated": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S13-N4|This part could not be activated": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S13-N6|Inventory part that has a work order part cannot be deleted.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S13-N6|Inventory part with an open return or a pending credit cannot be deleted.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S13-N7|Part number can't be longer than 50 characters while it's on an open part request.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "S13-N8|A part can't be moved to a different Part Library entry.": {
+  "outcome": "DESIGN-SILENT",
+  "where": "the design draws no screen or state with these words (all 47 board images viewed and the 59 notes read, 27 Oct 2026)",
+  "cases": [],
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
+ },
+ "DV-01|Boards 3.3, 3.7, 4.4, 4.7 (every status confirmation)": {
+  "outcome": "QUESTION-READY",
+  "where": "question Q8 drafted 27 Oct 2026, NOT sent (Phase D draft; no Google writes)",
+  "design": "Each confirmation has a grey close X at the right of its title row.",
+  "prd": "§4 Key decisions: \"Every confirmation is the application's standard dialog. A title, a message, an optional note, Cancel and a confirm button. There is no confirmation word to type.\" (S10-R2: \"The confirmation is the application's standard confirmation dialog.\")",
+  "cases": [
+   "C154794",
+   "C154795",
+   "C425761",
+   "C154799",
+   "C154800"
+  ],
+  "held_case": "D-49",
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)",
+  "question": "Q8"
+ },
+ "DV-02|Board 7.2 canvas note": {
+  "outcome": "QUESTION-READY",
+  "where": "question Q9 drafted 27 Oct 2026, NOT sent (Phase D draft; no Google writes)",
+  "design": "Note: \"Clicking a row opens the entry, where it can be edited and deleted (S11-R3).\" (the board itself shows no Delete button)",
+  "prd": "S11-R3: \"Clicking a row opens that entry's detail page. The pencil beside the entry's name opens the \\\"Edit Library Part\\\" window, where the entry is edited and where its Delete button sits, bottom left. The detail page itself has no Delete button.\"",
+  "cases": [
+   "C154829",
+   "C425619",
+   "C573671"
+  ],
+  "held_case": null,
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)",
+  "question": "Q9"
+ },
+ "DV-03|Board 2.6 (redrawn table) and its note; tech plan Phase 8": {
+  "outcome": "QUESTION-READY",
+  "where": "question Q10 drafted 27 Oct 2026, NOT sent (Phase D draft; no Google writes)",
+  "design": "Note: \"Staff, Date and Time keep their production widths; a long Event wraps onto a second line.\" The board's table wraps long events.",
+  "prd": "S10-R21: \"The Part History table keeps its column layout whatever an entry says. A short entry does not widen the Staff, Date or Time columns.\" (silent on wrap or cut-off). Tech plan Phase 8 (PartHistory.vue): \"fixed headerStyle widths on Staff/Date/Time, Event elastic, table-layout: fixed + ellipsis\" (cuts a long event off).",
+  "cases": [
+   "C154798",
+   "C425774",
+   "C425775"
+  ],
+  "held_case": "D-33",
+  "added": "27 Oct 2026, Phase D design drive (merged by the integration step)",
+  "question": "Q10"
  }
 }

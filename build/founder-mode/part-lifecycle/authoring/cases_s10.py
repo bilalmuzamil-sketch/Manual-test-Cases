@@ -5,21 +5,13 @@ SV-10823, 23 Oct 2026): S10-25 (both changed, from the window), S10-25b (split, 
 S10-26 (only Min changed, through the import).
 Held on Q1 (how a core's own Part History page is opened): S10-22, S10-29.
 No manual case: S10-N3 (a note over 255 characters: the field stops at 255), S10-N4 (a change with no parts: the button is disabled),
-S10-R25a (public API); feedback rows 29 (server error), 38, 39."""
+S10-R25a (public API); feedback rows 29 (server error), 38, 39 (requirement_map.py)."""
 from pllib import C, PO_HOLD, HOLD, DESIGN_HOLD
 from common import *
-from cases_s6 import B_NO_MANUAL, TYPE_A, ROW_A, SAVE, DEACT_CONF, ACT_CONF, PH
+from cases_s6 import TYPE_A, ROW_A, SAVE, DEACT_CONF, ACT_CONF, PH
 
 WRITTEN = True
 
-B_NO_MANUAL(
-    {"S10-N3": "The note field stops accepting input at 255 characters (S10-R10, checked by S10-09), so a longer note can reach the system "
-               "only by a request sent outside the screens. Developers' check (tech plan §5, PartLifecycleNote).",
-     "S10-N4": "The Deactivate and Activate buttons are disabled while nothing is ticked (S2-N1, S3-N1, checked by S10-34), so a change with no "
-               "parts can reach the system only by a request sent outside the screens. Developers' check (tech plan §5).",
-     "S10-R25a": "A change made through the public API; no screen makes it. Developers' check (tech plan Phase 6, OpenApiPartRenameTest)."},
-    {"UFS-29": "A server error during a bulk change; a manual tester cannot cause one (the old case C425602 was deleted for this reason).",
-     "UFS-38": "S10-N3's refusal; see S10-N3.", "UFS-39": "S10-N4's refusal; see S10-N4."})
 
 DEACT_BAR = "Click Deactivate on the dark bar."
 ACT_BAR = "Click Activate on the dark bar."

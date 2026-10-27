@@ -15,10 +15,36 @@ NO_MANUAL = {
     "S4-N2": "As S4-N1: the window never lets a tracked part lose its default bin, so the refusal comes only from outside the window.",
     "S5-N1": "The window never sends a turn-on without a bin (S5-R7); the refusal is reachable only from outside the window.",
     "S5-E1a": "A stock adjustment sent through the public API; no screen sends it. Developers' check.",
+    # ---- Phase B (Stories 6-10), merged 27 Oct 2026 from cases_s6.B_NO_MANUAL (PHASE-B-REQUESTS.json)
+    'S7-N6': "The New Inventory Part and Edit Inventory Part windows never send a blank description or part number (S7-N1, S7-N2), and the parts import skips or keeps them (S7-N7 to S7-N9); the refusal is reachable only by a request sent outside the screens. Developers' check (tech plan Phase 6, CreatePartByTypingTest).",
+    'S9-E9': "The public API create refusal: no screen sends it (the New Inventory Part window refuses a number stocked here with S7-N3/S7-N4 instead). Developers' check (tech plan §5: public API POST /api/v1/parts unchanged, its 409).",
+    'S10-N3': "The note field stops accepting input at 255 characters (S10-R10, checked by S10-09), so a longer note can reach the system only by a request sent outside the screens. Developers' check (tech plan §5, PartLifecycleNote).",
+    'S10-N4': "The Deactivate and Activate buttons are disabled while nothing is ticked (S2-N1, S3-N1, checked by S10-34), so a change with no parts can reach the system only by a request sent outside the screens. Developers' check (tech plan §5).",
+    'S10-R25a': "A change made through the public API; no screen makes it. Developers' check (tech plan Phase 6, OpenApiPartRenameTest).",
+    # ---- Phase C (Stories 11-13), merged 27 Oct 2026 from pc_common.py section 1 (PHASE-C-REQUESTS.json)
+    'S11-E3': "The public API create is a separate integration with no screen (S11-E3, tech plan §5: POST /api/v1/parts unchanged). Developers' check.",
+    'S13-R19d': "A number or description change made through the public API; no screen sends it. Developers' check (tech plan Phase 6 OpenApiPartRenameTest). The part dialog's own rules are tested by the Story 13 cases.",
+    'S13-N1b': "A core has no row of its own on the Inventory list, in Export or on the Part Library list (S5-E3), so no screen can rename a core on its own; the refusal comes only from the public API or a request sent outside the screens (Chris Ward on SV-10826, 23 Oct 2026, Q2). Developers' check.",
+    'S13-N8': "The part dialog has no Part Library selector (S13-E1, S13-40 checks it) and the Part Library page edits the entry, not the part it points at, so a re-point reaches the system only from outside the screens. Developers' check (tech plan Phase 6 RepointRefusedTest).",
 }
 NO_MANUAL_UFS = {
     "UFS-02": "S4-N1's refusal; see S4-N1.", "UFS-03": "S4-N2's refusal; see S4-N2.",
     "UFS-35": "S2-N3's refusal reason; see S2-N3 (a core has no row, so no screen can send it).",
+    # ---- Phase B
+    'UFS-06': "S7-N6's refusal; see S7-N6.",
+    'UFS-07': "S7-N6's refusal; see S7-N6.",
+    'UFS-29': 'A server error during a bulk change; a manual tester cannot cause one (the old case C425602 was deleted for this reason).',
+    'UFS-38': "S10-N3's refusal; see S10-N3.",
+    'UFS-39': "S10-N4's refusal; see S10-N4.",
+    # ---- Phase C
+    'UFS-15': "S13-N1b's refusal; see S13-N1b (a core cannot be renamed on its own from any screen).",
+    'UFS-17': "S13-N8's refusal; see S13-N8 (no screen points a part at another Part Library entry).",
+    'UFS-18': 'A server error while saving a part; a manual tester cannot cause one.',
+    'UFS-19': 'A server error while deleting a part; a manual tester cannot cause one.',
+    'UFS-27': 'A server error while the part dialog changes a status; a manual tester cannot cause one.',
+    'UFS-47': 'Its first message, "Part Library entry not found.", is tested word for word by S12-07 (S11-E4). No source names a screen action that shows the "... for ID: {id}." or "... for part number: {part number}." variants (question Q13).',
+    'UFS-48': 'No source names a screen action that starts a part request from a Part Library entry with no category (question Q13).',
+    'UFS-49': 'No source names a screen action that starts a part request from a Part Library entry with a source other than Vendor (question Q13).',
 }
 # A code covered by a case that lives in another story's section (the case quotes the code; checked once that section is written).
 OTHER_STORY = {

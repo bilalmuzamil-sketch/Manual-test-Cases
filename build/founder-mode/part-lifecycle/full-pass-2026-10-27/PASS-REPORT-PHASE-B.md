@@ -359,7 +359,7 @@ Exact quotes from the source (for reproducibility)
 From: PRD "Parts Lifecycle Update", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 · Epic SV-10647, story SV-10822 (Story 9, Inactive Parts Cannot Be Added to New Work)
  - S9-R1: “Part lookup on a work order line does not return inactive parts.”
  - S9-E10: “If ShopView adds a way to raise a part request from a purchase order, it uses the purchase order's part lookup, which leaves inactive parts out (S9-R5). Today part requests are raised on the work order (S9-R1).”
- - Story 9, context note: “Context note: S9-R1 to S9-R8 are the point of the feature. The customer evidence in PRD 462 is a shop whose technicians could still select a retired number and bill it. S9-R16 and S9-R17 close the way round it: typing the retired number by hand as a special order.*”
+ - Story 9, context note: “Context note: S9-R1 to S9-R8 are the point of the feature. The customer evidence in PRD 462 is a shop whose technicians could still select a retired number and bill it. S9-R16 and S9-R17 close the way round it: typing the retired number by hand as a special order.”
 From: Jira tickets and comments under epic SV-10647 (saved in sources/jira-2026-10-27/ALL-TICKETS-2026-10-27.md), read 27 Oct 2026
  - SV-10822 acceptance criteria: “Given GREASETUBE is inactive, when the user searches "GREASE" on a work order, estimate, part sale, purchase order or technician charge-out, then it is not offered, neither as an inventory part nor as a Part Library entry.”
 The build is not yet available to check this case against.

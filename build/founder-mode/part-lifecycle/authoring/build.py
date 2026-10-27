@@ -21,6 +21,8 @@ Gates (each prints its own counts; every failure is a PROBLEM line):
     described in the preconditions as made for this test (or as from before the release).
 Writes proposals.json (read by build/testing-tools/tester_readiness_check.py) and ../REQUIREMENT-MAP.json."""
 import sys, os, json, re, csv, glob, importlib, html as _html
+import signal
+signal.signal(signal.SIGPIPE, signal.SIG_DFL)   # piping the output (| head) ends quietly instead of a BrokenPipeError traceback
 from collections import Counter, defaultdict
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import pllib as L

@@ -8,7 +8,8 @@ with the QA lead's explicit go-ahead (Rule 6). Without --apply it only prints th
     1. UPDATE each mapped case, under an edit lock: the live case must still equal our 14 Oct read-back (same updated_on, updated_by
        us), else that case is skipped and listed (Rules 87, 123); a before-copy and a read-back are kept per case;
     2. ADD each new key to its section (refused for DESIGN until the coordinator has created "Design — how it looks" and put its id in
-       ../section-map.json as "DESIGN"); the new C-id is appended to ../testrail-id-map.csv;
+       ../section-map.json as "DESIGN", then re-run build.py so proposals.json carries it; this script never creates a section); the new
+       C-id is appended to ../testrail-id-map.csv;
     3. upload each case's design pictures (idempotent, read back).
   Held cases (marker other than the standard HOLD) are written like the others (they are in the suite) but are NOT added to a run.
   Runs: the cases live in the automatic Nightly runs (QA lead, 13 Oct: no dedicated run); any run sync is union only (Rule 34)."""
@@ -17,6 +18,29 @@ D = os.path.dirname(os.path.abspath(__file__)); P = os.path.dirname(D)
 PROP = json.load(open(f"{D}/proposals.json")); MAP = {r["key"]: r for r in csv.DictReader(open(f"{P}/testrail-id-map.csv"))}
 upd = [k for k in PROP if k in MAP]; new = [k for k in PROP if k not in MAP]
 print(f"UPDATE {len(upd)} live cases | ADD {len(new)} new cases | sections", sorted({PROP[k]['sec'] for k in PROP}))
+# ---- the plan in full (integration step, 27 Oct 2026): per section, the new section, moves, deletes, read-backs, held cases
+from collections import Counter
+ORDER = [f"S{i}" for i in range(1, 14)] + ["IV", "DESIGN"]
+print("per section (UPDATE in place / ADD: split parts + new behaviour / held):")
+for sec in ORDER:
+    ks = [k for k in PROP if PROP[k]["sec"] == sec]
+    if not ks: continue
+    a = [k for k in ks if k not in MAP]
+    print(f"  {sec:6} section {PROP[ks[0]]['section_id']}: UPDATE {len([k for k in ks if k in MAP]):3} | ADD {len(a):3} "
+          f"(splits {len([k for k in a if PROP[k]['part_of']])}, new {len([k for k in a if not PROP[k]['part_of']])}) | held {len([k for k in ks if PROP[k]['held']])}")
+design_id = PROP[next(k for k in PROP if PROP[k]["sec"] == "DESIGN")]["section_id"] if any(PROP[k]["sec"] == "DESIGN" for k in PROP) else None
+print("new section 'Design — how it looks' under Part Lifecycle 20439:", f"id {design_id} (from ../section-map.json)" if design_id else
+      "NOT CREATED YET - this script never creates a section: the coordinator creates it in TestRail, writes its id into "
+      "../section-map.json as \"DESIGN\", re-runs build.py; until then the design cases are skipped by --apply")
+moves = [(k, MAP[k]["section_id"], PROP[k]["section_id"]) for k in upd if str(MAP[k]["section_id"]) != str(PROP[k]["section_id"])]
+print("cases that would MOVE section:", len(moves), moves[:5])
+print("cases this script would DELETE: 0 (it has no delete operation; the 12 'Retire OR retest' deletions are the coordinator's, separately)")
+nob = [k for k in upd if not os.path.exists(f"{P}/update-2026-10-14/applied/C{MAP[k]['case_id']}-after.json")]
+print("updates with no 14 Oct read-back to lock against:", len(nob), nob[:5])
+dup = [c for c, n in Counter(MAP[k]["case_id"] for k in upd).items() if n > 1]
+print("C-ids updated by more than one key:", len(dup))
+print("held cases (written, not added to any run):", len([k for k in PROP if PROP[k]["held"]]),
+      sorted(k for k in PROP if PROP[k]["held"]))
 if "--apply" not in sys.argv: sys.exit(0)
 b = subprocess.run([sys.executable, f"{D}/build.py"], capture_output=True, text=True)
 if b.returncode != 0 or "PROBLEM lines: 0" not in b.stdout: sys.exit("REFUSED: build.py has PROBLEM lines")

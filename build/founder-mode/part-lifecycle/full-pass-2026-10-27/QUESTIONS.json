@@ -1,5 +1,5 @@
 {
- "_about": "Open questions for the Parts Lifecycle full pass (27 Oct 2026). Plain words, one row each, with the case keys held on it. Not sent: the coordinator adds the OPEN rows at the bottom of the existing question sheet in a new colour (Rule 131) and lists them in build/PO-QUESTIONS-OPEN.md (Rule 132). Phases B, C and D append rows Q8 onward.",
+ "_about": "Open questions for the Parts Lifecycle full pass (27 Oct 2026). Plain words, one row each, with the case keys held on it. Not sent: the coordinator adds the OPEN rows at the bottom of the existing question sheet in a new colour (Rule 131) and lists them in build/PO-QUESTIONS-OPEN.md (Rule 132). Integration step, 27 Oct 2026: Phase D's DQ-01..DQ-03 became Q8-Q10, Phase B's Q-B1, Q-B2 became Q11, Q12, Phase C's Q-C1..Q-C3 became Q13-Q15, and Q16 (a page opened before a role change) was added; every case marker and note now names the new number (\"was\" keeps the old id).",
  "questions": [
   {
    "id": "Q1",
@@ -21,14 +21,10 @@
      "case": "C573677"
     },
     {
-     "key": "S13-03",
-     "case": "C154838",
-     "phase": "C"
-    },
-    {
-     "key": "S13-13",
-     "case": "C425691",
-     "phase": "C"
+     "key": "S13-03b",
+     "case": null,
+     "phase": "C",
+     "split_from": "S13-03 (C154838)"
     },
     {
      "key": "S10-22",
@@ -57,9 +53,20 @@
     {
      "key": "S5-09",
      "case": "C425635"
+    },
+    {
+     "key": "S13-03",
+     "case": "C154838",
+     "note": "no longer held: its core step moved to the split S13-03b"
+    },
+    {
+     "key": "S13-13",
+     "case": "C425691",
+     "note": "no longer held: its core step is S5-18's"
     }
    ],
-   "v33_check": "v33 has the same S5-E3 text as v29 (no route named). Still open."
+   "v33_check": "v33 has the same S5-E3 text as v29 (no route named). Still open.",
+   "integration_27oct": "Held keys change: S13-03 (C154838) is no longer held (its core step moved to new split S13-03b, held on Q1); S13-13 (C425691) is no longer held (its core step is S5-18's, held on Q1). Held now: S5-18, S13-03b, plus Phase B's S10-22, S10-29. v33 unchanged on S5-E3. Phase B: Phase B: S10-22 (C425769) and S10-29 (C425777) are written and held on Q1, as listed."
   },
   {
    "id": "Q2",
@@ -102,7 +109,8 @@
      "phase": "C"
     }
    ],
-   "v33_check": "v33 unchanged (S11-R3c says nothing about refresh). Still open."
+   "v33_check": "v33 unchanged (S11-R3c says nothing about refresh). Still open.",
+   "integration_27oct": "Still open (v33 S11-R3c says nothing about refresh). S12-06 (C425620) held on it."
   },
   {
    "id": "Q4",
@@ -124,7 +132,8 @@
      "phase": "B"
     }
    ],
-   "v33_check": "v33 S7-N10 still speaks of \"an import row that adds a tracked part\" without saying how a row is tracked. The tech plan says the import never writes the tracking flag (so a new part would take the default, tracked); the tech plan informs and never overrules, so this stays a question."
+   "v33_check": "v33 S7-N10 still speaks of \"an import row that adds a tracked part\" without saying how a row is tracked. The tech plan says the import never writes the tracking flag (so a new part would take the default, tracked); the tech plan informs and never overrules, so this stays a question.",
+   "integration_27oct": "Phase B: S7-25 (C573682) is written and held on Q4(a). Q4(b) (is the template's name column the description?) is not held: S7-22, S7-23, S7-24 say 'the description cell', and the setup-file line (claude=) names the name column as the open question."
   },
   {
    "id": "Q5",
@@ -138,7 +147,8 @@
     "PRD v33 S9-N3a",
     "Jira SV-10822 comment, Chris Ward, 23 Oct 2026"
    ],
-   "held": []
+   "held": [],
+   "integration_27oct": "Phase B rewrote S9-28 (C425746), S9-41 (C573685) and S9-42 (C573686) to the reworded S9-N3a, as Q5's answer said; the remaining gap (what 'today's access' is) is new question Q11."
   },
   {
    "id": "Q6",
@@ -177,7 +187,203 @@
     "Jira SV-10380 description (Expected behavior: Keep the shop-floor availability calculation unchanged)"
    ],
    "held": [],
-   "v33_check": "Not in the PRD; the ticket text is unchanged. Still open (Phase C)."
+   "v33_check": "Not in the PRD; the ticket text is unchanged. Still open (Phase C).",
+   "integration_27oct": "Still open as a confirmation, not held: IV-05 (C425664) expects \"5 Available\" from the ticket's own words (Expected behavior 'Keep the shop-floor availability calculation unchanged'; Summary 'positive-bin availability'; acceptance 'available-to-pick quantity ... retain their existing behavior'). v33 silent."
+  },
+  {
+   "id": "Q8",
+   "was": "DQ-01",
+   "status": "OPEN",
+   "phase": "D",
+   "topic": "Part Lifecycle: the close X on status confirmations",
+   "question": "The design draws a close X at the top right of every status confirmation (Deactivate part?, Activate part?, Deactivate parts?, Activate parts?). The PRD lists only a title, a message, an optional note, Cancel and a confirm button. (a) Should the X be there? (b) If yes, does clicking it do the same as Cancel (nothing changes, and from the part window the picked status is kept)?",
+   "options": "A) Keep the X; it acts as Cancel.\nB) No X: title, message, note, Cancel and the confirm button only.",
+   "sources": [
+    "PRD v33 §4 Key Decisions: \"Every confirmation is the application's standard dialog. A title, a message, an optional note, Cancel and a confirm button.\"",
+    "Design boards 3.3, 3.7, 4.4, 4.7 (X drawn)",
+    "SV-10823 UI/UX: \"Standard confirmation with title, message lines, optional note, Cancel and a red Deactivate or blue Activate button.\""
+   ],
+   "held": [
+    {
+     "key": "D-49",
+     "case": null
+    }
+   ],
+   "divergence": "DV-01"
+  },
+  {
+   "id": "Q9",
+   "was": "DQ-02",
+   "status": "OPEN",
+   "phase": "D",
+   "topic": "Part Lifecycle: the note on design board 7.2",
+   "question": "The note on design board 7.2 still says a Part Library entry \"can be edited and deleted\" on its page, while the PRD (S11-R3) says the page itself has no Delete button and Delete sits in the Edit Library Part window. The board's picture shows no Delete. Can you confirm the PRD is right and the note is out of date? Our cases follow the PRD.",
+   "options": "A) The PRD is right; the note is out of date.\nB) The page should have a Delete button.",
+   "sources": [
+    "PRD v33 S11-R3",
+    "Design board 7.2 note: \"Clicking a row opens the entry, where it can be edited and deleted (S11-R3).\""
+   ],
+   "held": [],
+   "divergence": "DV-02"
+  },
+  {
+   "id": "Q10",
+   "was": "DQ-03",
+   "status": "OPEN",
+   "phase": "D",
+   "topic": "Part Lifecycle: long Part History entries",
+   "question": "When a Part History entry is long (for example a part number change ending \"| Changed at: <location>\"), the design (board 2.6) wraps it onto a second line inside the Event column. The engineering plan cuts the Event text off with \"...\" instead. Which is right: (a) wrap onto more lines, or (b) cut off with \"...\"? If (b), how does a user read the full entry?",
+   "options": "A) Wrap onto more lines (as the design).\nB) Cut off with \"...\" (as the tech plan).",
+   "sources": [
+    "PRD v33 S10-R21 (silent on wrap or cut-off)",
+    "Design board 2.6 note: \"Staff, Date and Time keep their production widths; a long Event wraps onto a second line.\"",
+    "Tech plan Phase 8, PartHistory.vue: \"S10-R21: fixed headerStyle widths on Staff/Date/Time, Event elastic, table-layout: fixed + ellipsis (the Inventory list approach)\""
+   ],
+   "held": [
+    {
+     "key": "D-33",
+     "case": null
+    }
+   ],
+   "divergence": "DV-03"
+  },
+  {
+   "id": "Q11",
+   "was": "Q-B1",
+   "status": "OPEN",
+   "phase": "B",
+   "topic": "Part Lifecycle: who can open Parts → Returns and start a vendor return today",
+   "question": "The spec now says opening Parts → Returns and starting a vendor return \"keep the access today's 'Vendor Order Management' settings give\" (S9-N3a), without naming that access. So the tests compare the build with production. Please state today's access so the tests can say it directly: (a) Can a role with no Vendor Order Management permission open Parts → Returns? (b) Can a role with Vendor Order Management → View, but not Create & Edit, start a vendor return? (c) Which role, if any, reaches a return's or a vendor credit's part search without Part Library & Inventory → View, so the standard access error of S9-N3 can be seen? (Vendor Order Management → Create & Edit includes Part Library & Inventory → View, S9-N3a.)",
+   "options": "(a) A) Yes. B) No.\n(b) A) Yes. B) No, the button is hidden. C) No, it is greyed out.\n(c) A) A role with Vendor Order Management → View only. B) No role on screen today (the error is reached only outside the screens).",
+   "sources": [
+    "PRD v33 S9-N3a",
+    "PRD v33 S9-N3",
+    "PRD v33 S12-N1",
+    "Jira SV-10822, Nemanja Djuric and Chris Ward, 23 Oct 2026"
+   ],
+   "held": [],
+   "depends_not_held": [
+    {
+     "key": "S9-41",
+     "case": "C573685"
+    },
+    {
+     "key": "S9-42",
+     "case": "C573686"
+    },
+    {
+     "key": "S9-28",
+     "case": "C425746"
+    }
+   ],
+   "note": "Not held: S9-41 and S9-42 run today as a side-by-side comparison with production (S12-N1: every user's access on release day is identical to the day before). If the answer to (c) is B, S9-N3's access error is a NO MANUAL CASE."
+  },
+  {
+   "id": "Q12",
+   "was": "Q-B2",
+   "status": "OPEN",
+   "phase": "B (C owns S13-N1a)",
+   "topic": "Part Lifecycle: renaming a part to a look-alike of another part at the same location",
+   "question": "A part's number is changed, in Edit Inventory Part, to one that matches another part at the SAME location once case and punctuation are ignored (for example AB-100 is stocked here and another part is renamed to ab 100). Story 7 says the save is refused with \"AB-100 already exists at this location.\" (S7-N3, S7-N5b). The new S13-N1a refuses a rename that matches a part \"at any location that stocks this part\" with \"AB-100 already exists at Staging Heavy Duty.\" (\"{existing part number} already exists at {location}.\"). Which message shows when the look-alike is at this same location?",
+   "options": "A) Story 7's: \"AB-100 already exists at this location.\"\nB) S13-N1a's: \"AB-100 already exists at <this location's name>.\"",
+   "sources": [
+    "PRD v33 S7-N3",
+    "PRD v33 S7-N5b",
+    "PRD v33 S13-N1a",
+    "Jira SV-10826, Chris Ward, 23 Oct 2026"
+   ],
+   "held": [
+    {
+     "key": "S7-17",
+     "case": "C425681"
+    }
+   ]
+  },
+  {
+   "id": "Q13",
+   "was": "Q-C1",
+   "status": "OPEN",
+   "phase": "C",
+   "topic": "Part Library: when do the other Part Library refusals show?",
+   "question": "The spec renames six refusals that name the shared list (S12-R11). We can test \"This Part Library entry is in use and cannot be deleted.\" and \"Part Library entry not found.\" on screen. For the others, which screen action shows them, if any: (a) \"Part Library entry not found\" (no full stop); (b) \"Part Library entry not found for ID: {id}.\" and \"... for part number: {part number}.\"; (c) \"Part Library entry missing category.\" (a part request from an entry with no category); (d) \"A part from the Part Library must have Vendor as its source.\"?",
+   "options": "For each: A) It shows on screen when you ... (please say how). B) Only from outside the screens (no manual test).",
+   "sources": [
+    "PRD v33 S12-R11",
+    "PRD v33 §8 rows 'Part Library entry missing', 'Part request from a Part Library entry with no category', '... with a source other than Vendor'"
+   ],
+   "held": [],
+   "listed_no_manual": [
+    "UFS-47 (variants)",
+    "UFS-48",
+    "UFS-49"
+   ]
+  },
+  {
+   "id": "Q14",
+   "was": "Q-C2",
+   "status": "OPEN",
+   "phase": "C",
+   "topic": "Part Library: where the special order's cost shows",
+   "question": "S12-R14b now says a special-order result from two vendors uses the most recent delivery's vendor AND cost. Our test reads the cost in the Cost field after the result is picked in New Part Request. Is that where the cost of the result shows?",
+   "options": "A) Yes, the Cost field fills with that delivery's cost.\nB) It shows somewhere else (please say where).",
+   "sources": [
+    "PRD v33 S12-R14b"
+   ],
+   "held": [],
+   "depends_not_held": [
+    {
+     "key": "S12-14",
+     "case": "C573674"
+    }
+   ]
+  },
+  {
+   "id": "Q15",
+   "was": "Q-C3",
+   "status": "OPEN",
+   "phase": "C",
+   "topic": "Part dialog: a renamed part on an open work order line",
+   "question": "After a part is renamed, what number does a line that already holds the part (picked onto an open work order) show? The spec keeps the line (S13-R18) and lists the open work that takes the new number (S13-R19: purchase order lines, part requests, canned jobs, returns), but not work order part lines; the tech plan leaves those lines unchanged.",
+   "options": "A) The line keeps the old number.\nB) The line shows the new number.",
+   "sources": [
+    "PRD v33 S13-R18",
+    "PRD v33 S13-R19",
+    "PRD v33 Story 13 context note",
+    "Tech plan Phase 6 (work_order_part left alone)"
+   ],
+   "held": [],
+   "note": "No case asserts either answer now (the 14 Oct S13-20 line that expected the old number was removed: no PRD sentence supports it)."
+  },
+  {
+   "id": "Q16",
+   "was": null,
+   "status": "OPEN",
+   "phase": "Integration (Story 8 cases written by B)",
+   "topic": "Part Lifecycle: a page opened before the user's role lost the Delete permission",
+   "question": "Three tests open a part page as user D while user D's role still has 'Part Library & Inventory → Delete', then an Admin takes that permission off the role in another window, then user D carries on in the page that was already open: a bulk status change and a delete (S8-N3), turning tracking off (S8-N2), and saving a new untracked part (S8-N1). The tests expect the open page to keep showing its old controls (Delete Part, Part Status, the tracking switch) until it is reloaded, and the save to be refused with the access denied error. Does a page that was loaded before a role change keep showing its old controls until the user reloads it?",
+   "options": "A) Yes: the open page keeps its controls until it is reloaded, and the save is refused with the access denied error.\nB) No: the open page updates at once and hides the controls, so the refusal can only be reached from outside the screens (the three tests become developers' checks).",
+   "sources": [
+    "PRD v33 S8-N1",
+    "PRD v33 S8-N2",
+    "PRD v33 S8-N3",
+    "PRD v33 Story 8 context note (\"The system checks that access itself, so hiding the controls is not the only protection.\")"
+   ],
+   "held": [],
+   "depends_not_held": [
+    {
+     "key": "S8-04",
+     "case": "C154783"
+    },
+    {
+     "key": "S8-13",
+     "case": "C425654"
+    },
+    {
+     "key": "S8-14",
+     "case": "C425655"
+    }
+   ],
+   "note": "Not held: no source says an open page changes when a role changes, so the tests are written for answer A. If the answer is B, S8-N1, S8-N2 and S8-N3 move to No manual case and these three tests are deleted or rewritten."
   }
  ]
 }

@@ -5,7 +5,7 @@ S13-04b / S13-12b (the singular message and the one-location part), S13-18b (rec
 S13-18c (a hand-typed line keeps its number), S13-22b (a hand-typed line is received under its own number). S13-13 no longer checks the
 core (S5-18 does, held on Q1), so it is not held. New: S13-45 (v33 S13-N1a look-alike rename at another location, Chris Ward 23 Oct),
 S13-46 ("This part could not be activated", feedback row 26), S13-47 (Story 13 context note: Inventory Value for a date before a rename
-shows the old number). NO MANUAL CASE (pc_common.py): S13-R19d (public API), S13-N1b (core renamed on its own), S13-N8 (re-point).
+shows the old number). NO MANUAL CASE (requirement_map.py): S13-R19d (public API), S13-N1b (core renamed on its own), S13-N8 (re-point).
 The 14 Oct "not checked by hand" lines are gone (L-14)."""
 from pllib import C, PO_HOLD, HOLD, DESIGN_HOLD
 from common import *

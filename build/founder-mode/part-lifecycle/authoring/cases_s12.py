@@ -3,7 +3,7 @@ Phase C, 27 Oct 2026: every live case rewritten top to bottom against PRD v33 in
 fifteenth amendments; Rules 134-137). Changed code S12-R14b (v30, 19 Oct: the result also uses the most recent delivery's cost) is in
 S12-14. S12-06 stays held on question Q3 (does an open Edit Library Part window update its Delete button without a reload). The
 "Part Library entry not found for ID / for part number", "Part Library entry missing category." and Vendor-source refusals of S12-R11
-have no screen route named by any source: NO MANUAL in pc_common.py, question Q-C1. "Not received" and "other location" cases now carry
+have no screen route named by any source: NO MANUAL in requirement_map.py, question Q13. "Not received" and "other location" cases now carry
 a control the tester can see (a received number that IS offered with its vendor), lesson L-15."""
 from pllib import C, PO_HOLD, HOLD, DESIGN_HOLD
 from common import *
@@ -216,4 +216,4 @@ C("S12-14", "S12", "The special-order result uses the vendor and cost of the lat
    ["The window closes, and work order 1's line shows no new part request."]],
   ["S12-R14b", "S12-R14a", "S12-R14", PO14_2],
   design=dict(boards=["6.1"]),
-  claude=["Where the cost shows is our reading of S12-R14b (\"uses that delivery's cost\"): the picked result fills Cost. Question Q-C2 asks Product to confirm."])
+  claude=["Where the cost shows is our reading of S12-R14b (\"uses that delivery's cost\"): the picked result fills Cost. Question Q14 asks Product to confirm."])

@@ -18,7 +18,7 @@ from pc_common import *
 
 WRITTEN = True
 SECTION = "IV"
-S0 = [0]                                   # no PRD story: the From line names bug SV-10380 (pc_common.py)
+S0 = [0]                                   # no PRD story: the From line names bug SV-10380 (pllib.IV_BUG)
 J = "SV-10380, description, "
 AC_MIX = ("JIRA", J + "Acceptance criteria", "At $10 unit cost, +5 and -2 bins produce quantity 3 and cost value $30.")
 AC_NEG = ("JIRA", J + "Acceptance criteria", "A -2-only part appears with quantity -2 and cost value -$20 and reduces report totals accordingly.")

@@ -96,7 +96,7 @@ for line in PRD_MD.split("\n"):
     m = re.match(r"^### Story (\d+):", line)
     if m: _story = int(m.group(1)); continue
     if line.startswith(">") and "Context note" in line:
-        t = ws(md_to_text(line)).lstrip("* ").strip()
+        t = ws(md_to_text(line)).lstrip("* ").rstrip("*").strip()   # v33 wraps each note in Markdown italics: no stray "*" at either end
         _cn[_story] = _cn.get(_story, 0) + 1
         _n(f"CN-S{_story}-{_cn[_story]}", f"Story {_story}, context note", t)
 # User Feedback Summary rows ("UFS-01" ...), quoted as "Trigger | Message | Behavior"
@@ -202,6 +202,15 @@ def design_of(c):
         d["pictures"] = [BOARD_FILE[board(b)] for b in d["boards"]]
     return d
 
+def held_on_design(c):
+    """A held design-version case (Rule 130): DESIGN_HOLD, or a PO hold on a design question."""
+    return c["marker"] == DESIGN_HOLD or (c["marker"] != MARKER and any(f"question {q}:" in c["marker"] for q in DESIGN_QUESTIONS))
+DESIGN_QUESTIONS = ("Q8", "Q9", "Q10")     # the design-vs-PRD / design-vs-tech-plan questions (Phase D's DQ-01..DQ-03)
+def source_sentence(c):
+    if c["sec"] != "DESIGN": return "the expected results above come from the quotes above."
+    if held_on_design(c): return "the expected results above come from the quotes above, except where this held design case follows the design."
+    return ("the expected results above come from the quotes above where the PRD speaks, and from the board pictures where it is silent "
+            "about the look.")
 def design_block(c):
     """Rule 117 tenth amendment: design references in their own block below the quotes."""
     d = design_of(c)
@@ -209,8 +218,7 @@ def design_block(c):
     if d["boards"]:
         t = (f'Design canvas "Parts Lifecycle Update" ({DESIGN_URL}), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: board'
              + ("s " if len(d["boards"]) > 1 else " ") + ", ".join(f'"{board(b)}"' for b in d["boards"])
-             + ". Compare the screen with the pictures below; the expected results above come from the quotes above"
-             + (", except where this held design case follows the design." if c["sec"] == "DESIGN" else "."))
+             + ". Compare the screen with the pictures below; " + source_sentence(c))
         h += "<p>" + e(t) + "</p>"
         if d["note"]: h += "<p>" + e(d["note"]) + "</p>"
         if d["pictures"]:
@@ -223,10 +231,12 @@ def design_block(c):
         h += "<p>" + e(t) + "</p>"
     return h + "<p></p>"
 
+IV_BUG = "bug SV-10380 (Inventory Value report ignores negative bins and overstates net inventory value; ships with this epic)"
 def quotes_block(c):
     groups = {}
     for doc, label, text in quotes(c): groups.setdefault(doc, []).append((label, text))
     sto = ", ".join(f"story {STORY_JIRA[n]} (Story {n}, {STORY_TITLE[n]})" for n in story_nums(c) if n in STORY_JIRA)
+    if not sto and c["sec"] == "IV": sto = IV_BUG      # an Inventory Value case quotes no story (stories=[0]): name the bug instead
     h = "<p><strong>Exact quotes from the source (for reproducibility)</strong></p>"
     first = True
     for doc in ("PRD", "PO", "JIRA", "TECH"):
@@ -268,7 +278,9 @@ def two_actions(step):
 
 VAGUE = re.compile(r"\bnative\b|as described\b|looks right|the same style\b|as designed\b|as in the layout being checked|as before\b|"
                    r"looks as it did|as expected\b", re.I)
-JARGON = re.compile(r"\b(API|HTTP|endpoint|database|devtools|DevTools|console|SQL|JSON|request)\b")
+# "request" is refused as a technical word, but "part request" is the screen's own phrase ("New Part Request", PRD feedback row 16
+# "... while it's on an open part request."); merged 27 Oct 2026 from Phase C's pc_common.py
+JARGON = re.compile(r"\b(API|HTTP|endpoint|database|devtools|DevTools|console|SQL|JSON)\b|(?<![Pp]art )\brequest\b")
 KEYREF = re.compile(r"\b(?:S\d{1,2}-\d{2}[b-e]?|IV-\d{2}[b-e]?|D-\d{2}[b-e]?|C\d{5,6})\b")
 BLOCKED_RX = re.compile(r"mark this test Blocked|If you cannot set up any of the above|If any record above is missing|setup not done", re.I)
 OLD_LAYOUT = re.compile(r"[{}]|for example|For example|Scenario:|docs\.google\.com|Setup file|setup file|ZZAUTOTEST|ask your|QA lead")
@@ -328,7 +340,10 @@ def check(c):
 MAP_FILE = f"{P}/testrail-id-map.csv"
 def id_map():
     return {r["key"]: r for r in csv.DictReader(open(MAP_FILE))} if os.path.exists(MAP_FILE) else {}
-SECTIONS = json.load(open(f"{P}/section-map.json")); SECTIONS["IV"] = 54274; SECTIONS["DESIGN"] = None   # DESIGN: the coordinator creates it
+SECTIONS = json.load(open(f"{P}/section-map.json")); SECTIONS["IV"] = 54274
+# DESIGN: "Design — how it looks" under Part Lifecycle 20439. The coordinator creates it in TestRail and writes its id into
+# ../section-map.json as "DESIGN"; until then it is None and apply.py adds no design case (it never creates the section itself).
+SECTIONS["DESIGN"] = SECTIONS.get("DESIGN") or None
 DELETED = {"C425659": "dashboard inventory figure (removed in PRD v29, Product answer 7 of 14 Oct)",
            "C425758": "dashboard inventory figure (removed in PRD v29, Product answer 7 of 14 Oct)",
            "C425639": "dashboard Critical Reorder list (S5-R14 removed in PRD v27, Product answer 13 of 9 Oct)",

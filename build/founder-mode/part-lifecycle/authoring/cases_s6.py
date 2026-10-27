@@ -3,12 +3,10 @@ Phase B, 27 Oct 2026: every live case rewritten top to bottom against PRD v33 in
 fifteenth amendments, Rules 134-137); new cases S6-09 and S6-10 for the new code S6-R1a (the tracking words also work in the vendor
 return and vendor credit part search; Chris Ward confirmed option A on SV-10819, 23 Oct 2026).
 
-This module also holds the small shared helpers Phase B uses in cases_s6 ... cases_s10 (Phase B may not edit common.py), and
-B_NO_MANUAL(), which adds Phase B's "No manual case" rows to requirement_map at build time (the same rows are listed in
-full-pass-2026-10-27/PHASE-B-REQUESTS.json for the coordinator to merge into requirement_map.py)."""
+This module also holds the small shared helpers Phase B uses in cases_s6 ... cases_s10 (Phase B may not edit common.py). Phase B's
+"No manual case" rows live in requirement_map.py (merged there 27 Oct 2026 by the integration step; the one source)."""
 from pllib import C, PO_HOLD, HOLD, DESIGN_HOLD
 from common import *
-import requirement_map as RM
 
 WRITTEN = True
 
@@ -23,12 +21,6 @@ SAVE = "Click Save."
 DEACT_CONF = "Click Deactivate in the confirmation."
 ACT_CONF = "Click Activate in the confirmation."
 GS_OPEN = "Click the Search box in the top bar."
-
-
-def B_NO_MANUAL(codes, ufs=None):
-    """Phase B's NO MANUAL CASE rows (L-14), added to requirement_map at build time; mirrored in PHASE-B-REQUESTS.json."""
-    RM.NO_MANUAL.update(codes)
-    RM.NO_MANUAL_UFS.update(ufs or {})
 
 
 CHRIS_S6 = ("JIRA", "SV-10819, Chris Ward, 23 Oct 2026",

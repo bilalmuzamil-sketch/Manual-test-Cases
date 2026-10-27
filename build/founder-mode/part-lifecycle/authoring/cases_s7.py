@@ -2,19 +2,14 @@
 Phase B, 27 Oct 2026: every live case rewritten top to bottom against PRD v33 (Rule 134) in the QA lead's pattern.
 Splits (Rule 136): S7-09b (S7-R6c changed in v31: a linked entry with NO category now takes the dialog's category; Chris Ward on
 SV-10820, 23 Oct 2026) and S7-21b (an import row whose number differs only in case and punctuation).
-Held: S7-17 on Q-B2 (renaming to a look-alike of a part at this same location: S7-N3's message or S13-N1a's?), S7-25 on Q4(a)
-(is a part the import adds tracked?). No manual case: S7-N6 (a blank number or description reaching the system by another route)."""
+Held: S7-17 on Q12 (renaming to a look-alike of a part at this same location: S7-N3's message or S13-N1a's?), S7-25 on Q4(a)
+(is a part the import adds tracked?). No manual case: S7-N6 (a blank number or description reaching the system by another route; requirement_map.py)."""
 from pllib import C, PO_HOLD, HOLD, DESIGN_HOLD
 from common import *
-from cases_s6 import B_NO_MANUAL, TYPE_A, ROW_A, SAVE
+from cases_s6 import TYPE_A, ROW_A, SAVE
 
 WRITTEN = True
 
-B_NO_MANUAL(
-    {"S7-N6": "The New Inventory Part and Edit Inventory Part windows never send a blank description or part number (S7-N1, S7-N2), and the "
-              "parts import skips or keeps them (S7-N7 to S7-N9); the refusal is reachable only by a request sent outside the screens. "
-              "Developers' check (tech plan Phase 6, CreatePartByTypingTest)."},
-    {"UFS-06": "S7-N6's refusal; see S7-N6.", "UFS-07": "S7-N6's refusal; see S7-N6."})
 
 NEWP = "Click New Inventory Part."
 CAT = "Pick any category in the Category field."
@@ -256,7 +251,7 @@ C("S7-17", "S7", "Changing a part's number to one already stocked here is refuse
     "It goes away after about 3 seconds, and the window stays open."],
    ["The window closes."], ["Part B is still listed under its own part number: it kept its number."]],
   ["S7-N5b", "S7-N3", "S7-N5", "UFS-08", "CN-S13-3"],
-  marker=PO_HOLD("Q-B2", "a rename to a look-alike of a part at this same location: S7-N3's message or S13-N1a's"), design=D15)
+  marker=PO_HOLD("Q12", "a rename to a look-alike of a part at this same location: S7-N3's message or S13-N1a's"), design=D15)
 
 C("S7-18", "S7", "A description or part number of only spaces is refused on its own",
   [ADMIN, "Use a part number for a new part, part A, that no part or Part Library entry uses yet.", START],

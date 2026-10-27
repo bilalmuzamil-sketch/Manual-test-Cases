@@ -6,7 +6,7 @@ D = os.path.dirname(os.path.abspath(__file__)); P = os.path.dirname(D)
 EXPECT = {"blocked": "Blocked line", "placeholder": "old-layout", "forexample": "old-layout", "twoactions": "two UI actions",
           "readstep": "only reads", "results": "result groups", "quote": "not verbatim", "vague": "vague look", "keyref": "case key",
           "relevance": "relevance:", "independence": "independence:", "coverage": "S1-E1", "lost": "S1-05", "notmanual": "manual tester cannot make",
-          "title": "title"}
+          "title": "title", "jargon": "technical term in tester text: request"}
 def snap(): return {f: hashlib.md5(open(f, "rb").read()).hexdigest() for f in glob.glob(f"{P}/**/*", recursive=True) if os.path.isfile(f) and "__pycache__" not in f and "/full-pass-2026-10-27/design/" not in f}  # design/: the Phase D worker writes there
 before = snap(); bad = 0
 for name, want in EXPECT.items():
