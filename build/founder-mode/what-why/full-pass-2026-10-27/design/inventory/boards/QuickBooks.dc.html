@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap">
+  <style>
+    body { margin: 0; font-family: 'Nunito Sans', system-ui, sans-serif; background: #f4f6f8; }
+    a { color: #175cd3; } a:hover { color: #123f92; }
+    .cell { font-size: 13px; color: #1d2129; padding: 10px 12px; border-bottom: 1px solid #e3e7ec; line-height: 1.45; }
+    .head { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6472; padding: 8px 12px; border-bottom: 1px solid #c6ccd4; }
+    .mono { font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace; font-size: 12.5px; }
+  </style>
+</helmet>
+
+<div style="padding: 28px; display: flex; flex-direction: column; gap: 20px;">
+
+  <div style="display: flex; flex-direction: column; gap: 4px;">
+    <div style="font-size: 17px; font-weight: 700; color: #1d2129;">The line a bookkeeper reads</div>
+    <div style="font-size: 13px; color: #5b6472;">One builder feeds both routes: the live QuickBooks sync and the downloadable Customer Invoice report &middot; S3-R1 to S3-R4</div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 10px;">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <div style="width: 8px; height: 8px; border-radius: 50%; background: #C10015;"></div>
+      <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #C10015;">Before</div>
+    </div>
+    <div style="background: #ffffff; border: 1px solid #e3e7ec; border-radius: 6px; overflow: hidden;">
+      <div style="display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 1fr) minmax(0, 1fr);">
+        <div class="head">Description</div>
+        <div class="head" style="text-align: right;">Qty</div>
+        <div class="head" style="text-align: right;">Amount</div>
+        <div class="cell mono" style="color: #7a1020;">What are you doing?: Replace tie rod;Why are you doing it?: excessive play;Tech Story: Both outer ends worn, replaced and aligned</div>
+        <div class="cell" style="text-align: right;">1</div>
+        <div class="cell" style="text-align: right;">285.00</div>
+        <div class="cell mono" style="color: #7a1020; border-bottom: none;">What are you doing?: Front brake pads;Why are you doing it?: Customer reports grinding;Tech Story: Pads at 2mm, rotors turned, bed-in road test</div>
+        <div class="cell" style="text-align: right; border-bottom: none;">1</div>
+        <div class="cell" style="text-align: right; border-bottom: none;">412.50</div>
+      </div>
+    </div>
+    <div style="font-size: 12px; color: #5b6472;">Two customers asked us in writing to remove this: NCCHD (SV-6862) and KMS Mechanics (SV-6582).</div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 10px;">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <div style="width: 8px; height: 8px; border-radius: 50%; background: #21BA45;"></div>
+      <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #21BA45;">After</div>
+    </div>
+    <div style="background: #ffffff; border: 1px solid #e3e7ec; border-radius: 6px; overflow: hidden;">
+      <div style="display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 1fr) minmax(0, 1fr);">
+        <div class="head">Description</div>
+        <div class="head" style="text-align: right;">Qty</div>
+        <div class="head" style="text-align: right;">Amount</div>
+        <div class="cell mono">Replace tie rod - excessive play - Both outer ends worn, replaced and aligned</div>
+        <div class="cell" style="text-align: right;">1</div>
+        <div class="cell" style="text-align: right;">285.00</div>
+        <div class="cell mono" style="border-bottom: none;">Front brake pads - Customer reports grinding - Pads at 2mm, rotors turned, bed-in road test</div>
+        <div class="cell" style="text-align: right; border-bottom: none;">1</div>
+        <div class="cell" style="text-align: right; border-bottom: none;">412.50</div>
+      </div>
+    </div>
+    <div style="font-size: 12px; color: #5b6472;">Title, description, then the technician&#39;s narrative, each separated by a spaced hyphen. No semicolons and no field names of ours anywhere in the field.</div>
+  </div>
+
+  <div style="background: #ffffff; border: 1px solid #e3e7ec; border-radius: 6px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px;">
+    <div style="font-size: 12px; font-weight: 700; color: #1d2129;">Why the narrative carries no label</div>
+    <div style="font-size: 12.5px; color: #3d4654; line-height: 1.55;">Because the two invoice views disagree about the label and agree about everything else. Legacy prints the narrative as a plain paragraph under the description with no label at all. Modern prints it under a &ldquo;Scope of work&rdquo; heading. Both print the title and the description with no labels, both put the narrative last, and both drop it entirely when it is empty or reads &ldquo;Tech story missing.&rdquo; Printing no label is the only choice that matches what a customer sees in either view.</div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
+      <div style="border: 1px solid #e8eaed; border-radius: 5px; overflow: hidden;">
+        <div style="background: #f6f8fa; padding: 7px 10px; font-size: 11.5px; font-weight: 700; color: #1d2129;">Legacy invoice</div>
+        <div style="padding: 10px; display: flex; flex-direction: column; gap: 4px;">
+          <div style="font-size: 12.5px; font-weight: 700; color: #1d2129;">Replace tie rod</div>
+          <div style="font-size: 12.5px; color: #3f4a5a;">excessive play</div>
+          <div style="font-size: 12.5px; color: #3f4a5a;">Both outer ends worn, replaced and aligned</div>
+        </div>
+      </div>
+      <div style="border: 1px solid #e8eaed; border-radius: 5px; overflow: hidden;">
+        <div style="background: #f6f8fa; padding: 7px 10px; font-size: 11.5px; font-weight: 700; color: #1d2129;">Modern invoice</div>
+        <div style="padding: 10px; display: flex; flex-direction: column; gap: 4px;">
+          <div style="font-size: 12.5px; font-weight: 700; color: #1d2129;">Replace tie rod</div>
+          <div style="font-size: 12.5px; color: #3f4a5a;">excessive play</div>
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #8b95a3; margin-top: 4px;">Scope of work</div>
+          <div style="font-size: 12.5px; color: #3f4a5a;">Both outer ends worn, replaced and aligned</div>
+        </div>
+      </div>
+    </div>
+    <div style="font-size: 12px; color: #7b8595; line-height: 1.5;">Drawn from the templates rather than from memory: legacy at batch-invoice.html.twig lines 679 to 690, modern at invoice.html.twig lines 1549 to 1557.</div>
+  </div>
+
+  <div style="background: #ffffff; border: 1px solid #e3e7ec; border-radius: 6px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+    <div style="font-size: 12px; font-weight: 700; color: #1d2129;">Whether a line has a narrative at all is a shop setting</div>
+    <div style="font-size: 12.5px; color: #3d4654; line-height: 1.5;">Administration, Work Order Settings, <strong>Require Tech Story</strong>: &ldquo;Tech story will be a required field before a line can be completed on a work order.&rdquo; With it on, the completion flow stops on a gate and refuses an empty value, so every invoiced line carries one and the two rows above are what a bookkeeper sees. With it off, a line is completed and invoiced with nothing there, and the line has to end cleanly after the description.</div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 2px;">
+      <div style="border: 1px solid #e8eaed; border-radius: 5px; overflow: hidden;">
+        <div style="background: #f6f8fa; padding: 7px 10px; font-size: 11.5px; font-weight: 700; color: #1d2129;">Require Tech Story ON</div>
+        <div class="mono" style="padding: 10px; font-size: 12px;">Replace tie rod - excessive play - Both outer ends worn, replaced and aligned</div>
+      </div>
+      <div style="border: 1px solid #e8eaed; border-radius: 5px; overflow: hidden;">
+        <div style="background: #f6f8fa; padding: 7px 10px; font-size: 11.5px; font-weight: 700; color: #1d2129;">Require Tech Story OFF, none written</div>
+        <div class="mono" style="padding: 10px; font-size: 12px;">Replace tie rod - excessive play</div>
+      </div>
+    </div>
+    <div style="font-size: 12px; color: #7b8595; line-height: 1.5;">No trailing hyphen and no trailing space. A separator appears only when there is something on both sides of it, which is the same rule the description already follows.</div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

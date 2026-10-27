@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap">
+  <style>
+    body { margin: 0; font-family: 'Nunito Sans', system-ui, sans-serif; background: #f4f6f8; }
+    a { color: #175cd3; } a:hover { color: #123f92; }
+    .mono { font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace; font-size: 12.5px; line-height: 1.5; }
+    .lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #8b95a3; }
+    .card { background: #ffffff; border: 1px solid #e3e7ec; border-radius: 6px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+    .rule { font-size: 11px; font-weight: 700; color: #2276DA; }
+    .out { background: #f6f8fa; padding: 8px 10px; border-radius: 4px; }
+  </style>
+</helmet>
+
+<div style="padding: 28px; display: flex; flex-direction: column; gap: 18px;">
+
+  <div style="display: flex; flex-direction: column; gap: 4px;">
+    <div style="font-size: 17px; font-weight: 700; color: #1d2129;">Extreme cases</div>
+    <div style="font-size: 13px; color: #5b6472;">What the joined line reads when the inputs are awkward. Three segments, one separator, and a separator only ever appears between two things that are both present.</div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px;">
+
+    <div class="card">
+      <div class="rule">S3-R3 &middot; no description</div>
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <div class="lbl">Title</div><div class="mono">Replace tie rod</div>
+        <div class="lbl">Description</div><div class="mono" style="color: #8b95a3;">(empty)</div>
+        <div class="lbl">Tech story</div><div class="mono">Both outer ends worn, replaced and aligned</div>
+      </div>
+      <div style="height: 1px; background: #eef1f4;"></div>
+      <div class="lbl">Line reads</div>
+      <div class="mono out">Replace tie rod - Both outer ends worn, replaced and aligned</div>
+      <div style="font-size: 12px; color: #5b6472;">One separator, not two. The empty description leaves no gap and no double hyphen behind it.</div>
+    </div>
+
+    <div class="card">
+      <div class="rule">S3-R9 &middot; the title already contains a hyphen</div>
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <div class="lbl">Title</div><div class="mono">Replace tie rod - passenger side</div>
+        <div class="lbl">Description</div><div class="mono">excessive play - customer waiting</div>
+        <div class="lbl">Tech story</div><div class="mono">Torqued to 74 ft-lb, alignment set</div>
+      </div>
+      <div style="height: 1px; background: #eef1f4;"></div>
+      <div class="lbl">Line reads</div>
+      <div class="mono out">Replace tie rod - passenger side - excessive play - customer waiting - Torqued to 74 ft-lb, alignment set</div>
+      <div style="font-size: 12px; color: #5b6472;">Carried as written. Nothing is escaped or quoted, so a reader cannot tell our separator from theirs. This is the cost of the choice and it is accepted deliberately: the alternative is printing a field name to mark the join, which is the thing two customers asked us to stop doing.</div>
+    </div>
+
+    <div class="card">
+      <div class="rule">The four flavours of tech story that reach the books</div>
+      <div style="display: flex; flex-direction: column; gap: 9px;">
+        <div style="display: flex; flex-direction: column; gap: 3px;">
+          <div class="lbl">Written at the completion gate &middot; Require Tech Story ON</div>
+          <div class="mono out">Replace tie rod - excessive play - Both outer ends worn, replaced and aligned</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 3px;">
+          <div class="lbl">Require Tech Story OFF &middot; the shop never wrote one</div>
+          <div class="mono out">Replace tie rod - excessive play</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 3px;">
+          <div class="lbl">The &ldquo;Tech story missing.&rdquo; placeholder &middot; suppressed, as both invoice views suppress it</div>
+          <div class="mono out">Replace tie rod - excessive play</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 3px;">
+          <div class="lbl">Imported from a previous system &middot; may be empty</div>
+          <div class="mono out">Replace tie rod - excessive play</div>
+        </div>
+      </div>
+      <div style="font-size: 12px; color: #5b6472;">Three of these four end after the description, and none of them leaves a trailing hyphen. The placeholder case is the one worth arguing about: &ldquo;Tech story missing.&rdquo; is written by the line dialog when nothing was typed, and both invoice views already refuse to print it to a customer. The books should not be the one place it shows up.</div>
+    </div>
+
+    <div class="card" style="border-color: #cfe3cf; background: #f7fcf7;">
+      <div class="rule" style="color: #1b7a33;">Closed by this change &middot; a semicolon typed inside a description</div>
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <div class="lbl">Title</div><div class="mono">Replace tie rod</div>
+        <div class="lbl">Description</div><div class="mono">excessive play; also checked the drag link</div>
+        <div class="lbl">Tech story</div><div class="mono">Drag link within spec</div>
+      </div>
+      <div style="height: 1px; background: #cfe3cf;"></div>
+      <div class="lbl">Line reads</div>
+      <div class="mono" style="background: #ffffff; padding: 8px 10px; border-radius: 4px; border: 1px solid #cfe3cf;">Replace tie rod - excessive play; also checked the drag link - Drag link within spec</div>
+      <div style="font-size: 12px; color: #1b7a33;">This was an open question while the semicolon was the separator: a typed one was indistinguishable from a new segment, and anything splitting on it broke. With the semicolon gone, a typed semicolon is ordinary punctuation and carries through untouched. The question does not need answering any more.</div>
+    </div>
+
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

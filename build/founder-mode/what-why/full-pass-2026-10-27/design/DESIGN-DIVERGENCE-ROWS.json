@@ -1,0 +1,99 @@
+{
+ "S1-R6|Title is a required field": {
+  "outcome": "DESIGN-SILENT",
+  "where": "design draws no error state; board 1.2 shows New Line at rest only. Checked 27 Oct 2026 in all 7 boards and the sweep (44 elements hovered and clicked, nothing exposed a message)",
+  "cases": [
+   "C154709",
+   "C549075"
+  ]
+ },
+ "S1-R6|Line Name is a required field": {
+  "outcome": "DESIGN-SILENT",
+  "where": "design draws no error state; board 1.2 shows New Line at rest only. Checked 27 Oct 2026 in all 7 boards and the sweep (44 elements hovered and clicked, nothing exposed a message)",
+  "cases": [
+   "C154709",
+   "C549075"
+  ]
+ },
+ "S1-R6|X is a required field": {
+  "outcome": "DESIGN-SILENT",
+  "where": "design draws no error state; board 1.2 shows New Line at rest only. Checked 27 Oct 2026 in all 7 boards and the sweep (44 elements hovered and clicked, nothing exposed a message)",
+  "cases": [
+   "C154709",
+   "C549075"
+  ]
+ },
+ "S4-R2|\\\\\\*Line Title": {
+  "outcome": "DESIGN-SILENT",
+  "where": "design has no board for Story 4 (the Invoices import); checked 27 Oct 2026, all 7 boards and both pages",
+  "cases": [
+   "C154723",
+   "C549089"
+  ]
+ },
+ "S4-R2|Line Description": {
+  "outcome": "DESIGN-SILENT",
+  "where": "design has no board for Story 4 (the Invoices import); checked 27 Oct 2026, all 7 boards and both pages",
+  "cases": [
+   "C154723",
+   "C549089"
+  ]
+ },
+ "S4-R2|\\\\\\*Line Title - What are you doing": {
+  "outcome": "DESIGN-SILENT",
+  "where": "design has no board for Story 4 (the Invoices import); checked 27 Oct 2026, all 7 boards and both pages",
+  "cases": [
+   "C154723",
+   "C549089"
+  ]
+ },
+ "S4-R2|Line Description - Why are you doing it": {
+  "outcome": "DESIGN-SILENT",
+  "where": "design has no board for Story 4 (the Invoices import); checked 27 Oct 2026, all 7 boards and both pages",
+  "cases": [
+   "C154723",
+   "C549089"
+  ]
+ },
+ "S2-R1/S2-R2|ShopCoach line builder (hand row)": {
+  "outcome": "DESIGN-SILENT",
+  "where": "no ShopCoach board (tech plan: Story 2 text-only); the tool cannot see this because \"Title\"/\"Description\" appear on the dialog boards. Checked by hand 27 Oct 2026",
+  "cases": [
+   "C154711",
+   "C549079"
+  ]
+ },
+ "DV-01|Require Tech Story off by default (canvas note-format)": {
+  "outcome": "PO-RULED",
+  "where": "Chris Ward answer 8 (14 Oct 2026, Google Doc 1QcT7FRZci6AhYcI33HUac-Oob03-gCnCOKn2NFHMLjA): shops since June 2025 start off, older shops on; PRD v14/v15 S3-R6a. Design note text only, no screen differs",
+  "cases": [
+   "C154716",
+   "C154713"
+  ],
+  "held_case": null
+ },
+ "DV-02|\"Tech story missing.\" written by the line dialog when nothing was typed (board 2.1 note)": {
+  "outcome": "PO-RULED",
+  "where": "Chris Ward answer 6 (14 Oct 2026): written when an existing line with no tech story is saved from Edit Line; New Line keeps it empty; PRD v14/v15 S3-R6. PRD §3 still carries the broader sentence the note repeats; no screen differs",
+  "cases": [
+   "C549082"
+  ],
+  "held_case": null
+ },
+ "DV-03|\"Title *\" with a star on board 1.2 (13 Oct copy)": {
+  "outcome": "PO-RULED",
+  "where": "PRD v14 S1-R1 'with no asterisk' (14 Oct, our FYI); design re-published by 27 Oct with \"Title\" (Main.dc.html, only change since 13 Oct). Closed: design and PRD agree",
+  "cases": [
+   "C154707"
+  ],
+  "held_case": "D-01 checks it"
+ },
+ "DV-04|Imported historical invoice line among the texts that 'reach the books' (board 2.1)": {
+  "outcome": "QUESTION-READY",
+  "where": "draft DQ-01 (QUESTIONS-DESIGN.json); not sent (Phase D makes no Google writes). Goes to the What/Why question sheet for Chris Ward (Rule 131: same file 1QcT7FRZ…, new rows at the bottom, new colour)",
+  "cases": [
+   "C549085"
+  ],
+  "held_case": "D-15"
+ }
+}
