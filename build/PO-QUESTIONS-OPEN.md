@@ -10,3 +10,10 @@ Read every sheet's answer column before each report. Remove a row only when the 
 Answered and closed: A/R and A/P Report Sorting questions 1-16 (Chris Ward, by 26 Oct 2026, PRD v9; acted on 26 Oct 2026: full pass, 5 design-version cases deleted, 5 held cases released, run 549 = 357); WO Board question 35 (Chris Ward, by 26 Oct 2026, PRD v75: the leftover "both views" density sentences now say Tech View only; our density cases already test Tech View only since 20 Oct, so no case change; WO Board not worked further on the QA lead's 22 Oct instruction); Splitting Sales Representatives question 41 (Chris Ward, 23 Oct 2026, PRD v13; acted on 23 Oct 2026: 5 cases rewritten, C724219 and C724220 added to run 547); Splitting Sales Representatives questions 39 and 40 (Chris Ward, 21 Oct 2026; PRD v11 S5-R15b and the S1-R6a context note; acted on 22 Oct 2026: C690660 released, C690665 deleted, suite moved to PRD v11); WO design-difference sheet 1coGNz1Z… (19 questions, 19 Oct 2026); Splitting Sales Representatives questions 1-38 (19 Oct 2026); WO sheet 1gBGmNB4… questions 1-34 (latest, 34, on 20 Oct 2026).
 
 Stopped by the QA lead, 22 Oct 2026 ("Forget the wo board and tech view now and dont remind about it again we are releasing it today"): WO Board question 35 (sheet 1gBGmNB4…, row 42) is no longer reminded.
+
+## Parts Lifecycle (Chris Ward) — 15 open, NOT YET SENT (27 Oct 2026)
+- File for the questions: the 13 Oct Google Doc https://docs.google.com/document/d/1pkAPGqWVTdtYorNN4SVNl9HkHxuuB9czro_y2DbUeEM/edit
+  (Rule 131: new rows at the bottom, new colour) — waiting on the QA lead's yes before they are added.
+- Open: Q1, Q2, Q3, Q4, Q6, Q7, Q8, Q9, Q10, Q11, Q12, Q13, Q14, Q15, Q16 (`build/founder-mode/part-lifecycle/full-pass-2026-10-27/QUESTIONS.json`).
+- Held on them: S5-18 C573677, S10-22 C425769, S10-29 C425777, S13-03b C839442 (Q1); S5-01 C154770 (Q2); S12-06 C425620 (Q3);
+  S7-25 C573682 (Q4); D-49 C839502 (Q8); D-33 C839486 (Q10); S7-17 C425681 (Q12).

@@ -17,7 +17,27 @@ Catalog→Part Library rename, editable part number.
   `full-pass-2026-10-27/QUESTIONS.json` (Q1-Q7), Stories 1-5 written: 73 cases (62 rewritten keeping C-ids, 10 split parts, 1 new). Handoff for
   Phases B, C, D: `PHASE-A-HANDOFF.md`. Pass record: `full-pass-2026-10-27/PASS-REPORT-PHASE-A.md`.
 
-## 🟢 CURRENT STATE — 14 Oct 2026 (PRD v29 + Product's answers) — read this first
+## 🟢 CURRENT STATE — 27 Oct 2026 (full pass: PRD v33, design look, QA lead's pattern) — read this first
+- **QA lead, 27 Oct:** "Parts lifecycle is the next, we need to make sure it is fully covered with the test cases and design";
+  chose **Full pass** and **Delete all 12** ("Retire OR retest").
+- **Sources:** PRD Confluence 829227015 **v33** (23 Oct; 311 codes, v29 → v33: 9 new, 4 changed), re-checked just before the writes;
+  tech plan 7 Oct (re-shared 27 Oct, byte-identical); 24 tickets under SV-10647 read 27 Oct (`sources/jira-2026-10-27/`,
+  `TICKET-LEDGER.json`, `ticket_sweep.py` exit 0); design canvas unchanged since 13 Oct (53 files identical), driven end to end
+  27 Oct (`full-pass-2026-10-27/design/DESIGN-DRIVE-PROOF.md`; text 783 / visual 193 rows, 0 unclassified).
+- **TestRail (all read back):** 364 cases = **274 rewritten in place** (C-ids kept) + **90 new** (25 split parts, 16 new behaviour,
+  49 design). New section **105854 "Design — how it looks"**. 357 design pictures attached. The 12 "Retire OR retest" cases deleted
+  (no results in 308 Nightly runs; snapshots in `full-pass-2026-10-27/deleted/`); section 54275 is now empty.
+- **Coverage:** 311/311 codes — 297 covered, 14 "No manual case" (`authoring/requirement_map.py`). 958 PRD quotes verbatim (v33).
+- **Library:** `authoring/` (model: Credit terms); `build.py` PROBLEM lines 0; `gate_selftest.py` 0; readiness check 0 on the live
+  cases; `apply.py` (Rule 138 guard, edit lock on the latest read-back, idempotent picture upload). Setup file
+  `PARTS-LIFECYCLE-SETUP-FILE.md`. The 274 per-case Google setup Docs are no longer linked from any case.
+- **Runs:** none dedicated (QA lead 13 Oct "NO"); the open Nightly runs are include_all, so the cases appear there.
+- **Held (10):** S5-01, S5-18, S7-17, S7-25, S10-22, S10-29, S12-06, S13-03b, D-33, D-49 — on questions Q1-Q4, Q8, Q10, Q12.
+- **Questions (not sent):** 16 in `full-pass-2026-10-27/QUESTIONS.json`; 15 open (Q5 answered by v33). See `build/PO-QUESTIONS-OPEN.md`.
+- **Build:** none yet (Rule 85: source-verified only).
+- Record: `full-pass-2026-10-27/INTEGRATION-REPORT.md`, `PASS-REPORT-PHASE-A/B/C.md`, `applied-2026-10-27/apply-log.jsonl`.
+
+## (SUPERSEDED 27 Oct) 🟢 CURRENT STATE — 14 Oct 2026 (PRD v29 + Product's answers) — read this first
 - PRD v29 (Chris Ward wrote his 13 Oct answers into it): 302 codes. All 262 cases re-read and re-written, 19 new (C573668–C573686); 302/302 covered; 57 new setup docs (224 kept). Retire proposals: C425659, C425758 (dashboard figure removed). All 281 in Nightly run 539. Record: `update-2026-10-14/FULL-UPDATE-2026-10-14.md`.
 
 ## (SUPERSEDED 14 Oct) STATE — 13 Oct 2026 (full update against PRD v27, Rule 122) — read this first
