@@ -20,7 +20,8 @@ for k, v in prop.items():
     if MARK not in old or MARK not in new: bad.append((k, "no quotes block")); continue
     o, n = old[old.index(MARK):], new[new.index(MARK):]
     if o == n:
-        if k in ADDED_QUOTE: bad.append((k, "listed as added-quote but unchanged"))
+        # 27 Oct 2026: once the case is written, the read-back holds the added quote too; identical is then the right state
+        if k in ADDED_QUOTE and f"<strong>{ADDED_QUOTE[k]}:</strong>" not in o: bad.append((k, "listed as added-quote but the quote is in neither side"))
         else: same += 1
         continue
     if k not in ADDED_QUOTE: bad.append((k, "quotes block onward differs")); continue

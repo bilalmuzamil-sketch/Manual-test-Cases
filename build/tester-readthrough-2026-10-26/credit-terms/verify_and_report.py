@@ -51,7 +51,9 @@ for c in L.CASES:
     for fld in ("custom_preconds", "custom_steps", "custom_expected"):
         if BL.search(html.unescape(f[fld])): probs.append(f"{k}: Blocked line still in {fld}")
     old_t, new_t = a["custom_expected"][a["custom_expected"].index(TAIL):], f["custom_expected"][f["custom_expected"].index(TAIL):]
-    if k in RT.ADD_Q:
+    if k in RT.ADD_Q and new_t == old_t:
+        same += 1  # 27 Oct 2026: already written; the read-back holds the added quote too
+    elif k in RT.ADD_Q:
         t = new_t
         for code in RT.ADD_Q[k]:
             lab, txt = (code, L.CODE[code]) if code in L.CODE else L.NAMED[code]
@@ -158,7 +160,8 @@ for k, cid, c, po, pn in rows:
     A("```"); A("OLD"); R.extend(plain(po)); A(""); A("NEW"); R.extend(plain(pn)); A("```")
 A("")
 A("Cases whose only change is the removed Blocked line are not repeated here: in each, the old preconditions are the new ones plus that last line.")
-open(f"{HERE}/READTHROUGH-REPORT.md", "w").write("\n".join(R) + "\n")
+# 27 Oct 2026: a check must never overwrite the committed record of a pass; rewrite the report only when asked
+if "--write-report" in sys.argv: open(f"{HERE}/READTHROUGH-REPORT.md", "w").write("\n".join(R) + "\n")
 print("cases", len(rows), "| quotes onward identical", same, "| identical once the added quote is removed", changed_tail, "| further fixes", len(more), "| only check 7", len(only7))
 print("identity problems:", len(probs)); [print("PROBLEM", p) for p in probs]
 sys.exit(1 if probs else 0)
