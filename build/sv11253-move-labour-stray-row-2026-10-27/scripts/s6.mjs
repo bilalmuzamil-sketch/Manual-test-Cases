@@ -1,0 +1,17 @@
+import {sess,st} from './lib.mjs'; import fs from 'fs';
+const W=JSON.parse(fs.readFileSync('../data/wo1.json'));
+const t=await sess('tech');
+let r=await t.api('/api/technician-tasks/my-current-task'); t.L('tech current',r);
+await t.go(`/workorders/${W.wo}/lines`); await t.waitFor('button_clock_toggle_task_'+W.lines[0]);
+let b=await t.box('button_clock_toggle_task_'+W.lines[0]); await t.page.mouse.click(b.x,b.y); await t.page.waitForTimeout(3000);
+console.log(t.writes.join('\n'));
+await t.page.screenshot({path:'../ev/raw-1-tech-start.png'});
+await t.browser.close();
+const s=await sess(); console.log(JSON.stringify((await s.rows(W.wo)).map(l=>[l.line,l.tasks.map(x=>x.name+'/'+x.time+'/'+x.id.slice(0,8))])));
+await s.go(`/workorders/${W.wo}/lines`); await s.waitFor('button_add_labor_adjustment_'+W.lines[0]);
+const menus=await s.page.evaluate(()=>[...document.querySelectorAll('[data-test-id]')].map(e=>e.dataset.testId).filter(x=>/labor|task|move/i.test(x)));
+console.log(menus.join(' | '));
+b=await s.box('button_add_labor_adjustment_'+W.lines[0]); await s.page.mouse.click(b.x,b.y); await s.page.waitForTimeout(800);
+console.log(await s.page.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].map(e=>(e.dataset.testId||'')+' :: '+e.innerText.trim().replace(/\n/g,' ')).join('\n')));
+await s.page.screenshot({path:'/tmp/qa11685/w/l4.png'});
+await s.browser.close(); process.exit(0);

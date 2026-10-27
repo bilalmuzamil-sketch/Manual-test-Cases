@@ -1,0 +1,13 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const W=JSON.parse(fs.readFileSync('../../data/prod-wo.json')); const [A,B,C]=W.lines;
+const s=await open({env:'prod',user:'bilal.muzamil@shopview.com',dir:'/tmp/qa21',vp:{width:1600,height:1100}});
+const J=(p,b)=>s.api(p,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)});
+const wps=(await s.api('/api/staff/my-workplaces')).json.data.collection; const wp=wps.find(w=>w.id===W.workplace);
+let r=await J('/api/iam/change-location',{workplace_id:wp.id,workplace_timezone:wp.timezone||wp.workplace_timezone||'America/Edmonton'}); console.log('loc',r.status);
+const rows=async tag=>{const q=await s.api('/api/work-orders/lines/'+W.wo); console.log('['+tag+']'); for(const l of q.json.data.collection) console.log('  '+l.line_name.trim()+': '+l.tasks.map(t=>((t.first_name||'')+' '+(t.last_name||'')).trim()+' '+t.logged_time_decimal+'h').join(', '));};
+const click=async tid=>{const b=await s.box(tid); if(!b) throw new Error('no '+tid); await s.page.mouse.click(b.x,b.y);};
+await s.go(`/workorders/${W.wo}/lines`); await s.waitFor('button_clock_toggle_task_'+A);
+await click('button_clock_toggle_task_'+A); await s.page.waitForTimeout(3000);
+await rows('1 after Start on line 1'); await s.page.screenshot({path:'../../ev/prod-1-start.png'});
+fs.writeFileSync('../../data/prod-writes-1.txt',s.writes.join('\n'));
+await s.browser.close(); process.exit(0);

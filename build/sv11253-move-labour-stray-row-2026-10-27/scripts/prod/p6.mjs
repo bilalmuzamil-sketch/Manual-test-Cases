@@ -1,0 +1,11 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const W=JSON.parse(fs.readFileSync('../../data/prod-wo.json'));
+const s=await open({env:'prod',user:'bilal.muzamil@shopview.com',dir:'/tmp/qa21',vp:{width:1600,height:1100}});
+await s.go(`/workorders/${W.wo}/timesheets`); await s.page.waitForTimeout(2500);
+const tr=s.page.locator('tr').filter({hasText:'Bilal'}).first(); await tr.hover(); await s.page.waitForTimeout(600);
+console.log('row ids',await s.page.evaluate(()=>[...document.querySelectorAll('tr [data-test-id]')].filter(e=>e.offsetParent).map(e=>e.dataset.testId).join(' | ')));
+const eb=await s.page.evaluate(()=>{const e=[...document.querySelectorAll('[data-test-id="button_edit_timesheet"]')].find(x=>x.offsetParent); if(!e)return null; const r=e.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2};});
+console.log('edit',eb); await s.page.mouse.click(eb.x,eb.y); await s.page.waitForTimeout(2500);
+console.log('dialog',await s.page.evaluate(()=>[...document.querySelectorAll('.q-dialog [data-test-id]')].map(e=>e.dataset.testId+'«'+(e.innerText||'').slice(0,30).replace(/\n/g,' ')+'»').join(' | ')));
+await s.page.screenshot({path:'../../ev/prod-6-edit-timesheet.png'});
+await s.browser.close(); process.exit(0);

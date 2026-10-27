@@ -1,0 +1,10 @@
+import {sess} from './lib.mjs'; import fs from 'fs';
+const s=await sess(); const W=JSON.parse(fs.readFileSync('../data/wo1.json')); const B=W.lines[1];
+await s.go(`/workorders/${W.wo}/lines`); await s.waitFor('line_number_'+B);
+let b=await s.box('line_number_'+B); await s.page.mouse.click(b.x+250,b.y,{button:'right'}); await s.page.waitForTimeout(900);
+console.log(await s.page.evaluate(()=>[...document.querySelectorAll('.q-menu [data-test-id]')].map(e=>e.dataset.testId+' :: '+e.innerText.trim().replace(/\n/g,' ')).join('\n')));
+await s.page.screenshot({path:'/tmp/qa11685/w/l8.png'});
+b=await s.box('menu-item_edit_labor'); await s.page.mouse.click(b.x,b.y); await s.page.waitForTimeout(1500);
+console.log('dialog:',await s.page.evaluate(()=>[...document.querySelectorAll('.q-dialog [data-test-id]')].map(e=>e.dataset.testId+' «'+(e.innerText||'').trim().slice(0,40).replace(/\n/g,' ')+'»').join(' | ')));
+await s.page.screenshot({path:'/tmp/qa11685/w/l9.png'});
+await s.browser.close(); process.exit(0);

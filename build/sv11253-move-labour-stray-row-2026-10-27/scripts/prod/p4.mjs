@@ -1,0 +1,21 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const W=JSON.parse(fs.readFileSync('../../data/prod-wo.json')); const [A,B,C]=W.lines;
+const s=await open({env:'prod',user:'bilal.muzamil@shopview.com',dir:'/tmp/qa21',vp:{width:1600,height:1100}});
+const rows=async tag=>{const q=await s.api('/api/work-orders/lines/'+W.wo); console.log('['+tag+']'); for(const l of q.json.data.collection) console.log('  '+l.line_name.trim().slice(0,30)+': '+l.tasks.map(t=>((t.first_name||'')+' '+(t.last_name||'')).trim()+' '+t.logged_time_decimal+'h').join(', '));};
+const click=async tid=>{const b=await s.box(tid); if(!b) throw new Error('no '+tid); await s.page.mouse.click(b.x,b.y);};
+const pick=async re=>{await s.page.waitForTimeout(900); const bb=await s.page.evaluate(src=>{const re=new RegExp(src); const e=[...document.querySelectorAll('.q-menu .q-item')].find(x=>x.offsetParent&&re.test(x.innerText)); if(!e)return null; const r=e.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2,t:e.innerText};},re.source); console.log('option',bb?.t?.replace(/\n/g,' ')); await s.page.mouse.click(bb.x,bb.y);};
+await s.go(`/workorders/${W.wo}/lines`); await s.waitFor('line_number_'+A);
+let b=await s.box('line_number_'+A); await s.page.mouse.click(b.x+250,b.y,{button:'right'}); await s.page.waitForTimeout(800);
+await s.page.screenshot({path:'../../ev/prod-2-context-menu.png'});
+await click('menu-item_move_labor'); await s.page.waitForTimeout(1500);
+const dlg=await s.page.evaluate(()=>[...document.querySelectorAll('.q-dialog [data-test-id]')].map(e=>e.dataset.testId)); console.log('dialog ids',dlg.join(' | '));
+// Technician select = first .q-select in dialog
+const sel=await s.page.evaluate(()=>[...document.querySelectorAll('.q-dialog .q-select, .q-dialog .q-field')].map(e=>{const r=e.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2,t:e.innerText.slice(0,30)};})); console.log('fields',JSON.stringify(sel));
+await s.page.mouse.click(sel[0].x,sel[0].y); await pick(/Bilal/); await s.page.keyboard.press('Escape').catch(()=>{}); await s.page.waitForTimeout(500);
+await click('select_move_labour_target_line'); await pick(/Fixed Line Test/);
+await s.page.waitForTimeout(500); await s.page.screenshot({path:'../../ev/prod-3-move-dialog.png'});
+const conf=dlg.find(x=>/confirm|submit|save/i.test(x)) ; console.log('confirm id',conf);
+await click(conf); await s.page.waitForTimeout(3000);
+await rows('4 after Move labor line 1 -> line 2'); console.log(s.writes.filter(w=>/move/.test(w)).join('\n'));
+await s.page.screenshot({path:'../../ev/prod-4-after-move.png'});
+await s.browser.close(); process.exit(0);
