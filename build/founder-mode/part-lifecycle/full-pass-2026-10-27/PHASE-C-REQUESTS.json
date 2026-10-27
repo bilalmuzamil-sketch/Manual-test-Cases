@@ -1,0 +1,131 @@
+{
+ "_about": "Phase C (Stories 11-13, SV-10380, SV-11756) requests for the coordinator, 27 Oct 2026. Phase C edited only authoring/cases_s11.py, cases_s12.py, cases_s13.py, cases_iv.py and created authoring/pc_common.py (Phase C's own shared strings plus three narrow import-time adjustments, listed below, which the coordinator may move into the shared files and then delete from pc_common.py). Nothing was written to TestRail, Jira, Slack or Google; nothing was committed.",
+ "new_module": {
+  "file": "authoring/pc_common.py",
+  "registration": "none needed: it holds no cases and is imported by Phase C's four case modules (already in build.py MODS)."
+ },
+ "requirement_map_rows": {
+  "NO_MANUAL": [
+   "S11-E3",
+   "S13-R19d",
+   "S13-N1b",
+   "S13-N8"
+  ],
+  "NO_MANUAL_UFS": [
+   "UFS-15",
+   "UFS-17",
+   "UFS-18",
+   "UFS-19",
+   "UFS-27",
+   "UFS-47",
+   "UFS-48",
+   "UFS-49"
+  ],
+  "where": "currently added at import time by pc_common.py section 1 (reasons there, verbatim); move into requirement_map.py NO_MANUAL / NO_MANUAL_UFS and delete pc_common section 1"
+ },
+ "library_fixes": [
+  {
+   "file": "pllib.py",
+   "what": "JARGON refuses the word 'request' everywhere, but 'part request' is the screen's own phrase and PRD feedback row 16 (\"Part number can't be longer than 50 characters while it's on an open part request.\") must appear word for word. Proposed pattern: r\"\\b(API|HTTP|endpoint|database|devtools|DevTools|console|SQL|JSON)\\b|(?<![Pp]art )\\brequest\\b\". Applied now by pc_common section 2 (affects every phase's check, only loosening 'part request'). Phase B (Story 9 part requests) needs it too."
+  },
+  {
+   "file": "pllib.py",
+   "what": "quotes_block: a case with no story (IV section) printed 'Epic SV-10647, ' with an empty tail. Proposed: for sec == 'IV' put 'bug SV-10380 (Inventory Value report ignores negative bins and overstates net inventory value; ships with this epic)' there. Applied now by pc_common section 3 for IV only; IV cases pass stories=[0] so story_nums does not fall back to Story 13."
+  },
+  {
+   "file": "pllib.py",
+   "what": "cosmetic: NAMED context notes keep a trailing '*' from the Markdown italics (e.g. CN-S13-3 renders '... or none.*'). Strip a trailing '*' in the CN parser; the gates still match (the quote check ignores '**' only). Affects Phase A cases too, so re-run every phase's build after the fix."
+  },
+  {
+   "file": "ledger.py",
+   "what": "SV-10380's cases come from live_cases('IV') (mapped rows only), so the three new IV cases (IV-08b, IV-12, IV-13) are not listed; use cases_for-style listing for the IV section once written."
+  }
+ ],
+ "ledger_outcomes": {
+  "SV-10824": [
+   "NEW-CASES",
+   "Story 11 rewritten to PRD v33 (Phase C): 18 live cases rewritten keeping C-ids, 3 split parts (S11-03b, S11-08b, S11-09b), 2 new cases for S11-R8 / S11-R9 (PRD v30, 19 Oct): S11-19, S11-20. S11-E3 (public API create) NO MANUAL CASE. Ticket text unchanged since 9 Oct (its S11-R3 still says the detail page deletes; the PRD v29+ wording, Delete in the Edit Library Part window, is followed)."
+  ],
+  "SV-10825": [
+   "COVERED",
+   "Story 12 rewritten to PRD v33 (Phase C): 14 live cases rewritten keeping C-ids. Changed S12-R14b (v30: uses the most recent delivery's cost) is in S12-14 (C573674). S12-06 (C425620) held on Q3. Three S12-R11 refusals with no named screen route: NO MANUAL (rows 47 variants, 48, 49), question Q-C1."
+  ],
+  "SV-10826": [
+   "NEW-CASES",
+   "Story 13 rewritten to PRD v33 (Phase C): 44 live cases rewritten keeping C-ids, 6 split parts, 3 new: S13-45 (S13-N1a look-alike rename at another location, Chris Ward's 23 Oct answer Q1 = B), S13-46 (\"This part could not be activated\"), S13-47 (Story 13 context note: Inventory Value for a date before a rename shows the old number). S13-N1b (23 Oct answer Q2 = A, core renamed on its own), S13-R19d (public API) and S13-N8 (re-point) NO MANUAL CASE."
+  ],
+  "SV-10380": [
+   "NEW-CASES",
+   "11 live cases rewritten keeping C-ids (IV-01..IV-11), 1 split (IV-08b, PDF download parity) and 2 new for Chris Ward's 23 Oct comment (footer Margin % is the true aggregate, total margin / total sell, above 100% or below 0; a single negative row shows the dash): IV-12 (200.0%) and IV-13 (-25.0%). Rule 116: every figure computed from known inputs."
+  ],
+  "SV-11756": [
+   "NO-CASE",
+   "The duplicate-part merge tool is a console command an operator runs (app:inventory:delete-duplicate-part, SV-10939); no screen runs it, so a manual tester cannot reach the behaviour. Chris Ward, 26 Oct 2026: Parts Lifecycle ships without the fix and the tool is not to be run where the two copies have different tracking. Developers' check (its own acceptance: tracked 5/$50 + untracked 3/$30 leaves $50 in both directions; app and SQL agree). Related manual coverage that stays: past-date Inventory Value leaves out untracked parts (S5-14, ACC-3) and saved past figures are kept (IV-11, ACC-4)."
+  ]
+ },
+ "jira_sweep": "Live JQL 27 Oct 2026 (parent = SV-10647 AND updated >= 2026-10-26): 11 tickets, every 'updated' timestamp identical to sources/jira-2026-10-27/ (SV-10380 03:53:48, SV-11038..11046 03:53, SV-11756 26 Oct 08:54); no new ticket under the epic.",
+ "questions_to_append": [
+  {
+   "id": "Q-C1",
+   "status": "OPEN",
+   "phase": "C",
+   "topic": "Part Library: when do the other Part Library refusals show?",
+   "question": "The spec renames six refusals that name the shared list (S12-R11). We can test \"This Part Library entry is in use and cannot be deleted.\" and \"Part Library entry not found.\" on screen. For the others, which screen action shows them, if any: (a) \"Part Library entry not found\" (no full stop); (b) \"Part Library entry not found for ID: {id}.\" and \"... for part number: {part number}.\"; (c) \"Part Library entry missing category.\" (a part request from an entry with no category); (d) \"A part from the Part Library must have Vendor as its source.\"?",
+   "options": "For each: A) It shows on screen when you ... (please say how). B) Only from outside the screens (no manual test).",
+   "sources": [
+    "PRD v33 S12-R11",
+    "PRD v33 §8 rows 'Part Library entry missing', 'Part request from a Part Library entry with no category', '... with a source other than Vendor'"
+   ],
+   "held": [],
+   "listed_no_manual": [
+    "UFS-47 (variants)",
+    "UFS-48",
+    "UFS-49"
+   ]
+  },
+  {
+   "id": "Q-C2",
+   "status": "OPEN",
+   "phase": "C",
+   "topic": "Part Library: where the special order's cost shows",
+   "question": "S12-R14b now says a special-order result from two vendors uses the most recent delivery's vendor AND cost. Our test reads the cost in the Cost field after the result is picked in New Part Request. Is that where the cost of the result shows?",
+   "options": "A) Yes, the Cost field fills with that delivery's cost.\nB) It shows somewhere else (please say where).",
+   "sources": [
+    "PRD v33 S12-R14b"
+   ],
+   "held": [],
+   "depends_not_held": [
+    {
+     "key": "S12-14",
+     "case": "C573674"
+    }
+   ]
+  },
+  {
+   "id": "Q-C3",
+   "status": "OPEN",
+   "phase": "C",
+   "topic": "Part dialog: a renamed part on an open work order line",
+   "question": "After a part is renamed, what number does a line that already holds the part (picked onto an open work order) show? The spec keeps the line (S13-R18) and lists the open work that takes the new number (S13-R19: purchase order lines, part requests, canned jobs, returns), but not work order part lines; the tech plan leaves those lines unchanged.",
+   "options": "A) The line keeps the old number.\nB) The line shows the new number.",
+   "sources": [
+    "PRD v33 S13-R18",
+    "PRD v33 S13-R19",
+    "PRD v33 Story 13 context note",
+    "Tech plan Phase 6 (work_order_part left alone)"
+   ],
+   "held": [],
+   "note": "No case asserts either answer now (the 14 Oct S13-20 line that expected the old number was removed: no PRD sentence supports it)."
+  }
+ ],
+ "question_updates": {
+  "Q1": "Held keys change: S13-03 (C154838) is no longer held (its core step moved to new split S13-03b, held on Q1); S13-13 (C425691) is no longer held (its core step is S5-18's, held on Q1). Held now: S5-18, S13-03b, plus Phase B's S10-22, S10-29. v33 unchanged on S5-E3.",
+  "Q3": "Still open (v33 S11-R3c says nothing about refresh). S12-06 (C425620) held on it.",
+  "Q7": "Still open as a confirmation, not held: IV-05 (C425664) expects \"5 Available\" from the ticket's own words (Expected behavior 'Keep the shop-floor availability calculation unchanged'; Summary 'positive-bin availability'; acceptance 'available-to-pick quantity ... retain their existing behavior'). v33 silent."
+ },
+ "setup_file": "render_setup.py not run by Phase C (the setup file is the coordinator's). Run it after merging: Phase C claude= lines are on S11-03b, S11-12, S12-14, S13-39, S13-45, IV-05.",
+ "gate_notes": [
+  "build.py: PROBLEM lines 0 with all sections written (27 Oct, after Phase B's modules landed).",
+  "gate_selftest.py: 'gate self-test problems: 0' on the final run (an earlier run showed a MISS while Phase B was writing cases_s8.py / cases_s9.py)."
+ ]
+}
