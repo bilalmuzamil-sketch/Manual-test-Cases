@@ -156,3 +156,23 @@ Key holder: the QA lead's own key (TMS user **id 4**, role `user`). Stored only 
   **Not yet explained:** whether the 404s / title differences come from the import, from later TestRail edits
   our id-maps never picked up, or from deletions. **TestRail could not be read this session (no TestRail
   credentials present), so the cause is UNVERIFIED** — a full scripted reconciliation per project is the next step.
+
+## 7 · [LIVE] TestRail group 91454 "Credit Terms" vs TMS — compared 2026-10-27 (read-only, every case)
+
+- **Same folder, same ids.** TestRail 91454 = TMS 91454 (*Founder Mode (September 2026) > Credit Terms*), 15 sections both sides.
+- **All 332 TestRail cases exist in TMS** (same ids C723865–C724209). **TMS also holds 12 cases TestRail does not**
+  (C723891, C723892, C723935, C723963, C723964, C723994, C723998, C724023, C724025, C724125, C724126, C724185) —
+  TestRail answers `400 "not a valid test case"` for each, i.e. they no longer exist there.
+- **🔴 TMS holds STALE text for all 332.** Every case in TMS is still version 1, timestamped
+  2026-10-23 03:34–06:39 UTC (TestRail's creation times). **All 332 were then edited in TestRail on
+  2026-10-26 17:07–17:35 UTC** (by our TestRail user, id 3), and **none of those edits reached TMS**:
+  preconditions differ on 332, expected on 332, steps on 224. Example: TMS still has the
+  *"Setup file (for Claude sessions…)"* block and `{Location-A}` / `{Term-A}` placeholders in all 332;
+  TestRail has neither.
+- **⇒ The import is a ONE-TIME SNAPSHOT, not a sync.** Any TestRail write after the import date is
+  missing from TMS until it is re-imported or re-written there.
+- **🛑 TRAP — `GET /projects/{id}/cases` (the list) does NOT return case text:** `preconditions`,
+  `steps` and `expected` come back `null` in the list. Read text only with `GET /cases/{id}`. A compare
+  built on the list reports every case as blank (this one did, and was caught on re-check — Rule 110).
+- **`GET /projects/{id}/cases?section_id=N` works** as a filter (one section, no subsections).
+- `refs` differ only by spaces after commas (`SV-11670,SV-11680` vs `SV-11670, SV-11680`).
