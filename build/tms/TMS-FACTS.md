@@ -176,3 +176,21 @@ Key holder: the QA lead's own key (TMS user **id 4**, role `user`). Stored only 
   built on the list reports every case as blank (this one did, and was caught on re-check — Rule 110).
 - **`GET /projects/{id}/cases?section_id=N` works** as a filter (one section, no subsections).
 - `refs` differ only by spaces after commas (`SV-11670,SV-11680` vs `SV-11670, SV-11680`).
+
+## 8 · [LIVE] Milestone 5 and its runs — synced TestRail → TMS 2026-10-27
+
+- **Milestone ids are preserved by the import**: TestRail milestone 5 = TMS milestone 5 (*"Next Release -
+  More Test Runs To Be Added (Oct 2026)"*). TMS description was missing *"on the QA lead's order: the next
+  milestone;"* — the only phrase containing an apostrophe (possible import defect, seen once). Synced from TestRail.
+- **Run ids are NOT preserved** — TMS numbers runs 1, 2, 3… **Run map (TestRail → TMS):**
+
+| TestRail run | TMS run | Cases | Note |
+|---|---|---|---|
+| 547 Splitting Sales Representatives - Execution | **6** | 176/176 | created 2026-10-27, `external_key` `testrail-run-547` |
+| 549 A/R and A/P Report Sorting, Export and Location Filter - Execution | **7** | 349/356 | **7 cases not in TMS** (C797940–C797946) — add once those cases exist |
+| 551 Credit terms - Execution | **8** | 323/323 | created 2026-10-27 |
+| 552 Maintenance reminder (Chunk1 and 2) | **4** "Mantenence Reminders" | 299/299 same set | pre-existing TMS-native run; **TMS holds results (38 P / 34 F / 2 B) that TestRail does not** |
+
+- Runs are created with `external_key = testrail-run-<id>` so a re-run returns the existing run (idempotent, [API-DOC]).
+- TestRail user 3 = TMS user 4 (same email).
+- Text the API stores is HTML-entity-encoded (`'` → `&#039;`); compare rendered text.
