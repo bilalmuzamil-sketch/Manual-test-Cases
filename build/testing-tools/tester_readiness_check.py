@@ -29,6 +29,12 @@ HARD = {
     "Make sure for a record this test makes": r"Make sure [^.]{0,120}\b(was created|is new|created today)\b",
     "case id in tester text": r"\bC\d{5,6}\b|\b(S\d{1,2}|D|DATA|REL|DR)-\d{1,3}[a-c]?\b",
     "who to ask": r"ask your (QA lead|lead|manager)|ask the QA lead|tell the QA lead",
+    # 27 Oct 2026: the old (8-16 Oct) layouts, forbidden in TestRail by Rule 117's fourteenth amendment; the readiness check had
+    # passed 274 Parts Lifecycle cases still in that layout
+    "old layout (placeholder)": r"\{[A-Z][A-Za-z]*(?:-[A-Za-z0-9]+)*\}",
+    "old layout (For example line)": r"(?m)^\s*-?\s*For example:",
+    "old layout (Scenario line)": r"(?m)^\s*-?\s*Scenario:",
+    "old layout (setup document link)": r"docs\.google\.com/document|Setup \(manual QA tester and Claude session\)|Setup for claude session",
 }
 NEG = r"\b(does not|doesn't|is not|isn't|never|no longer|nothing|not shown|not listed|not sent|is gone|stays? unchanged)\b"
 
@@ -57,9 +63,10 @@ def main():
     for k, v in P.items():
         f = v.get("fields", v); t = tester_text(f); T[k] = t
         body = "\n".join(t.values()); inner = "\n".join([t["pre"], t["steps"], t["exp"]])
+        raw = "\n".join(f.get(x) or "" for x in ("custom_preconds", "custom_steps"))  # a link's address is lost when tags are stripped
         for name, pat in HARD.items():
             # a look word inside a quoted design name ("The native Location menu") or in a design title is not the check itself
-            src = re.sub(r'\S+\.png', '', re.sub(r'"[^"\n]*"|“[^”]*”', '""', inner)) if name == "vague look" else (inner if name == "case id in tester text" else body)
+            src = re.sub(r'\S+\.png', '', re.sub(r'"[^"\n]*"|“[^”]*”', '""', inner)) if name == "vague look" else (inner if name == "case id in tester text" else (body + "\n" + raw if "link" in name else body))
             m = re.search(pat, src, re.I if name != "case id in tester text" else 0)
             if m: hard.append(f"{k}: {name}: …{src[max(0, m.start() - 60):m.end() + 40]}…".replace("\n", " "))
         for line in t["exp"].splitlines():

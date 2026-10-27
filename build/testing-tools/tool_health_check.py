@@ -88,7 +88,11 @@ FAULTS = {"Blocked line": ("custom_preconds", '<ul><li>If you cannot set up any 
           "vague look": ("custom_expected", "<p>Step 1:</p><ul><li>The table looks native.</li></ul>"),
           "Make sure for a record this test makes": ("custom_preconds", "<ul><li>Make sure invoice A was created today.</li></ul>"),
           "case id in tester text": ("custom_steps", "<ol><li>Repeat what C723901 did.</li></ol>"),
-          "who to ask": ("custom_preconds", "<ul><li>Ask your QA lead for the login.</li></ul>")}
+          "who to ask": ("custom_preconds", "<ul><li>Ask your QA lead for the login.</li></ul>"),
+          "old layout (placeholder)": ("custom_preconds", "<ul><li>Part {Part-A} is active.</li></ul>"),
+          "old layout (For example line)": ("custom_preconds", "<p>For example: ZZAUTOTEST part</p>"),
+          "old layout (Scenario line)": ("custom_preconds", "<p>Scenario: a shop retires a part.</p>"),
+          "old layout (setup document link)": ("custom_preconds", '<p><a href="https://docs.google.com/document/d/x">Setup</a></p>')}
 src = json.load(open(f"{B}/credit-terms/authoring/proposals.json")); k0 = sorted(src)[0]
 for name, (field, bad) in FAULTS.items():
     tmp = tempfile.mkdtemp(); os.makedirs(f"{tmp}/authoring")
