@@ -672,3 +672,5 @@ satisfies it. Prefer seeded `ZZAUTOTEST` data for the example; where the record 
 put the fallback in the same step. **Steps and preconditions only — `custom_expected` is never
 edited (Rule 114).** Full text and the worked rewrites: `build/rules/RULES-61-ONWARD.md` rule 117.
 
+
+> **Rule 137 (QA lead 2026-10-27):** a test and its defect say what the PRD says, in the PRD's own logic. Before writing an Expected line or a ticket's "What the PRD requires", put it beside the live source sentence and ask: does it forbid more, allow more, or say something no correct build can meet? If so, rewrite it to the sentence's logic, and write what does NOT fail as well as what fails. The test and the ticket state the same rule with the same scope. Existing Expected still changes only under 114(c)/136; otherwise report both wordings. Full text: `build/rules/RULES-61-ONWARD.md` rule 137 (worked example C97027).
