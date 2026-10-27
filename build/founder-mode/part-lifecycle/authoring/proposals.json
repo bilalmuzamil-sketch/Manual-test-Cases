@@ -1,0 +1,1201 @@
+{
+ "S1-01": {
+  "sec": "S1",
+  "section_id": 20468,
+  "case_id": 154752,
+  "part_of": null,
+  "title": "Inventory opens on the Active tab, with the Inactive tab beside it",
+  "refs": "SV-10814",
+  "codes": [
+   "S1-R1",
+   "S1-R2",
+   "S1-R3",
+   "S1-R4",
+   "S1-R8"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "retire-05-p3-5-inactive-tab.png",
+   "bulk-01-p4-1-actions-menu.png"
+  ],
+  "fields": {
+   "title": "Inventory opens on the Active tab, with the Inactive tab beside it",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10814",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an active part, part A, at the test location.</li><li>Start on any page other than Inventory, so you can watch the Inventory page open.</li></ul>",
+   "custom_steps": "<ol><li>Click Parts in the top bar.</li><li>Click Inventory in the left menu.</li><li>Type part A's part number in the Search box.</li><li>Click the Inactive tab.</li><li>Click the Active tab.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Parts left menu shows Inventory.</li></ul><p>Step 2:</p><ul><li>The Inventory page opens with two tabs, \"Active\" and \"Inactive\".</li><li>\"Active\" is the selected tab (blue text) without you clicking it.</li><li>The two tabs sit on their own line directly under the page title \"Inventory\".</li><li>The search and filter row (Search, Bin Location, Category, Supply, the columns button, the three-dot actions button and New Inventory Part) sits below the tabs, not on the same line.</li></ul><p>Step 3:</p><ul><li>Part A is listed on the Active tab.</li></ul><p>Step 4:</p><ul><li>\"Inactive\" becomes the selected tab.</li><li>Part A is not listed.</li></ul><p>Step 5:</p><ul><li>\"Active\" is the selected tab again.</li><li>Part A is listed again.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10814 (Story 1, Active and Inactive Tabs on the Inventory List)</p><ul><li><strong>S1-R1:</strong> &ldquo;The Inventory list shows two tabs, Active and Inactive.&rdquo;</li><li><strong>S1-R2:</strong> &ldquo;Active is the selected tab when the page opens.&rdquo;</li><li><strong>S1-R3:</strong> &ldquo;The Active tab lists only parts that are active at the current location.&rdquo;</li><li><strong>S1-R4:</strong> &ldquo;The Inactive tab lists only parts that are inactive at the current location.&rdquo;</li><li><strong>S1-R8:</strong> &ldquo;The Active and Inactive tabs sit on their own line under the page title, above the search and filter row.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: boards \"3.5 The Inactive tab\", \"4.1 The actions menu\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>retire-05-p3-5-inactive-tab.png</li><li>bulk-01-p4-1-actions-menu.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;The part is listed on the Inactive tab, which lists only parts that are inactive at this location (S1-R4).&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S1-02": {
+  "sec": "S1",
+  "section_id": 20468,
+  "case_id": 154753,
+  "part_of": null,
+  "title": "Parts from before the release are active and tracked",
+  "refs": "SV-10814,SV-10826,SV-10817",
+  "codes": [
+   "CN-S1-1",
+   "S1-R5",
+   "S1-R5a",
+   "S13-R20",
+   "S13-R3",
+   "S4-R8"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "retire-01-p3-1-dialog-active.png",
+   "tracking-02-p5-3-list-not-tracked.png"
+  ],
+  "fields": {
+   "title": "Parts from before the release are active and tracked",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10814,SV-10826,SV-10817",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use three parts, part A, part B and part C, that were at the test location before this release was installed and that nobody has changed since.</li><li>Use a part B that has stock on hand and a saved Min and Max, so its tracking can be seen in its window.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Type part A's part number in the Search box.</li><li>Replace the search text with part B's part number.</li><li>Replace the search text with part C's part number.</li><li>Click the Inactive tab.</li><li>Type part A's part number in the Search box.</li><li>Replace the search text with part B's part number.</li><li>Replace the search text with part C's part number.</li><li>Click the Active tab.</li><li>Type part B's part number in the Search box.</li><li>Click the part B row.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Part A is listed on the Active tab.</li><li>Its Total Qty cell shows a quantity, not \"Not Tracked\".</li></ul><p>Step 2:</p><ul><li>Part B is listed on the Active tab.</li><li>Its Total Qty cell shows a quantity, not \"Not Tracked\".</li></ul><p>Step 3:</p><ul><li>Part C is listed on the Active tab.</li><li>Its Total Qty cell shows a quantity, not \"Not Tracked\".</li></ul><p>Step 4:</p><ul><li>The Inactive tab is selected.</li></ul><p>Step 5:</p><ul><li>Part A is not listed on the Inactive tab.</li></ul><p>Step 6:</p><ul><li>Part B is not listed on the Inactive tab.</li></ul><p>Step 7:</p><ul><li>Part C is not listed on the Inactive tab.</li></ul><p>Step 8:</p><ul><li>The Active tab is selected.</li></ul><p>Step 9:</p><ul><li>Part B is listed.</li></ul><p>Step 10:</p><ul><li>Edit Inventory Part opens with a green \"Active\" pill in the title row.</li><li>Part Status is set to Active.</li><li>The \"Track quantities and cost of goods\" switch is on.</li><li>Min and Max show the values part B had before the release.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10814 (Story 1, Active and Inactive Tabs on the Inventory List), story SV-10826 (Story 13, The Part Dialog), story SV-10817 (Story 4, Create an Untracked Part)</p><ul><li><strong>S1-R5:</strong> &ldquo;Every part that exists on the day of release is active.&rdquo;</li><li><strong>S1-R5a:</strong> &ldquo;Every part that exists on the day of release is tracked.&rdquo;</li><li><strong>Story 1, context note:</strong> &ldquo;Context note: S1-R5 describes the data on release day, not a rule the system keeps enforcing. Nothing makes a part active again on its own.*&rdquo;</li><li><strong>S13-R3:</strong> &ldquo;When editing, the title row shows the part's saved status as a pill beside the close X: \"Active\" in green, or \"Inactive\" in grey.&rdquo;</li><li><strong>S13-R20:</strong> &ldquo;When editing, a \"Part Status\" choice offers two options, Active and Inactive, set to the part's saved status. A user without the 'Part Library &amp; Inventory → Delete' permission sees the choice disabled.&rdquo;</li><li><strong>S4-R8:</strong> &ldquo;An untracked part shows \"Not Tracked\" in the Inventory list's Total Qty column instead of a quantity.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: boards \"3.1 Part Status in the dialog\", \"5.3 The list says Not Tracked\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>retire-01-p3-1-dialog-active.png</li><li>tracking-02-p5-3-list-not-tracked.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S1-02b": {
+  "sec": "S1",
+  "section_id": 20468,
+  "case_id": null,
+  "part_of": "S1-02",
+  "title": "No setting turns part status or tracking on or off",
+  "refs": "SV-10814",
+  "codes": [
+   "S1-R5b"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [],
+  "fields": {
+   "title": "No setting turns part status or tracking on or off",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10814",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin who can switch between two locations: the test location and location B.</li><li>Start on the Settings page of the test location.</li></ul>",
+   "custom_steps": "<ol><li>Open each group of the Settings menu, Parts and Roles &amp; Permissions included.</li><li>Pick location B in the location selector at the top right.</li><li>Click Parts in the top bar.</li><li>Click Inventory in the left menu.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>No setting in any group turns the Active and Inactive tabs, part status or part tracking on or off.</li></ul><p>Step 2:</p><ul><li>The location selector shows location B.</li></ul><p>Step 3:</p><ul><li>The Parts left menu shows Inventory.</li></ul><p>Step 4:</p><ul><li>Location B's Inventory page also shows the Active and Inactive tabs, with Active selected: the feature is on there too, with no setting.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10814 (Story 1, Active and Inactive Tabs on the Inventory List)</p><ul><li><strong>S1-R5b:</strong> &ldquo;The feature is on for every shop on the day of release. There is no rollout setting.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: no board draws the Settings page; the expected results above come from the quote above.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S1-03": {
+  "sec": "S1",
+  "section_id": 20468,
+  "case_id": 425585,
+  "part_of": null,
+  "title": "Each tab lists only the parts with that status at its location",
+  "refs": "SV-10814",
+  "codes": [
+   "FO-2",
+   "KD-1",
+   "S1-R3",
+   "S1-R4"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "retire-05-p3-5-inactive-tab.png",
+   "correct-05-p2-5-list-other-location.png"
+  ],
+  "fields": {
+   "title": "Each tab lists only the parts with that status at its location",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10814",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin who can switch between two locations: the test location and location B.</li><li>Create part A for this test at the test location only, and leave it active.</li><li>Create part B for this test at both locations under the same part number, inactive at the test location and active at location B.</li><li>Give parts A and B part numbers that start with the same text, so one search lists all 13.</li><li>Start on the test location's Inventory page, on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Type the shared start of the part numbers in the Search box.</li><li>Click the Inactive tab.</li><li>Type the shared start of the part numbers in the Search box again.</li><li>Pick location B in the location selector at the top right.</li><li>Click Parts in the top bar.</li><li>Click Inventory in the left menu.</li><li>Type the shared start of the part numbers in the Search box.</li><li>Click the Inactive tab.</li><li>Type the shared start of the part numbers in the Search box again.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Part A is listed on the Active tab.</li><li>Part B is not listed.</li></ul><p>Step 2:</p><ul><li>The Inactive tab is selected.</li></ul><p>Step 3:</p><ul><li>Part B is listed on the Inactive tab.</li><li>Part A is not listed.</li></ul><p>Step 4:</p><ul><li>The location selector shows location B.</li></ul><p>Step 5:</p><ul><li>The Parts left menu shows Inventory.</li></ul><p>Step 6:</p><ul><li>Location B's Inventory page opens on the Active tab.</li></ul><p>Step 7:</p><ul><li>Part B is listed on location B's Active tab, because it is still active there.</li><li>Part A is not listed, because it is not stocked at location B.</li></ul><p>Step 8:</p><ul><li>The Inactive tab is selected.</li></ul><p>Step 9:</p><ul><li>Neither part A nor part B is listed on location B's Inactive tab: making part B inactive at the test location did not change it at location B.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10814 (Story 1, Active and Inactive Tabs on the Inventory List)</p><ul><li><strong>S1-R3:</strong> &ldquo;The Active tab lists only parts that are active at the current location.&rdquo;</li><li><strong>S1-R4:</strong> &ldquo;The Inactive tab lists only parts that are inactive at the current location.&rdquo;</li><li><strong>Feature Overview, Core functionality:</strong> &ldquo;Both states belong to the part at one location. The same part at another location keeps its own states.&rdquo;</li><li><strong>Key Decisions:</strong> &ldquo;Active and tracked are set per location. A part is stocked at a location, and whether the shop still sells it, or counts it, is that location's call. Changing either state at one location never changes the same part at another location.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: boards \"3.5 The Inactive tab\", \"2.5 Lethbridge: renamed there too\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>retire-05-p3-5-inactive-tab.png</li><li>correct-05-p2-5-list-other-location.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S1-04": {
+  "sec": "S1",
+  "section_id": 20468,
+  "case_id": 425586,
+  "part_of": null,
+  "title": "Switching tabs ends bulk mode and clears the ticked rows",
+  "refs": "SV-10814,SV-10815",
+  "codes": [
+   "S1-R6",
+   "S2-R16"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-02-p4-2-mode-on.png",
+   "bulk-06-p4-6-activate-ticked.png"
+  ],
+  "fields": {
+   "title": "Switching tabs ends bulk mode and clears the ticked rows",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10814,SV-10815",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have two active parts, part A and part B, and one inactive part, part C.</li><li>Give parts A, B and C part numbers that start with the same text, so one search lists all 3.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Type the shared start of the part numbers in the Search box.</li><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Deactivate parts.</li><li>Click the part A row.</li><li>Click the part B row.</li><li>Click the Inactive tab.</li><li>Type the shared start of the part numbers in the Search box again.</li><li>Click the three-dot actions button (⋮).</li><li>Click Activate parts.</li><li>Click the part C row.</li><li>Click the Active tab.</li><li>Click the Inactive tab.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Parts A and B are listed; part C is not.</li></ul><p>Step 2:</p><ul><li>The menu opens.</li></ul><p>Step 3:</p><ul><li>A checkbox column appears at the left of the table and a dark bar appears under the tabs.</li></ul><p>Step 4:</p><ul><li>The part A row is ticked and the bar reads 1 selected.</li></ul><p>Step 5:</p><ul><li>The part B row is ticked and the bar reads 2 selected.</li></ul><p>Step 6:</p><ul><li>The Inactive tab opens with no dark bar and no checkbox column: bulk mode has ended and nothing is ticked.</li></ul><p>Step 7:</p><ul><li>Part C is listed, with no checkbox.</li></ul><p>Step 8:</p><ul><li>The menu opens.</li></ul><p>Step 9:</p><ul><li>The checkbox column and the dark bar appear on the Inactive tab.</li></ul><p>Step 10:</p><ul><li>The part C row is ticked and the bar reads 1 selected.</li></ul><p>Step 11:</p><ul><li>The Active tab shows no dark bar and no checkbox column.</li></ul><p>Step 12:</p><ul><li>The Inactive tab shows no dark bar and no checkbox column: switching tabs ended bulk mode again.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10814 (Story 1, Active and Inactive Tabs on the Inventory List), story SV-10815 (Story 2, Deactivate Parts in Bulk)</p><ul><li><strong>S1-R6:</strong> &ldquo;Switching tabs clears any rows the user had ticked.&rdquo;</li><li><strong>S2-R16:</strong> &ldquo;Switching between the Active and Inactive tabs ends the mode and clears the selection.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: boards \"4.2 Mode on\", \"4.6 Inactive tab, Activate parts\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-02-p4-2-mode-on.png</li><li>bulk-06-p4-6-activate-ticked.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S1-05": {
+  "sec": "S1",
+  "section_id": 20468,
+  "case_id": 425587,
+  "part_of": null,
+  "title": "Search, filters and sort work the same way on the Inactive tab",
+  "refs": "SV-10814",
+  "codes": [
+   "S1-R7"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "retire-05-p3-5-inactive-tab.png"
+  ],
+  "fields": {
+   "title": "Search, filters and sort work the same way on the Inactive tab",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10814",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have two active parts, part A in category A and part B in category B, so the category A filter leaves part B out.</li><li>Have two inactive parts, part C in category A and part D in category B, so the category A filter leaves part D out.</li><li>Give parts A, B, C and D part numbers that start with the same text, so one search lists them, and descriptions that run A to Z in the order part A, part B, part C, part D.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Type the shared start of the part numbers in the Search box.</li><li>Pick category A in the Category filter.</li><li>Pick All categories in the Category filter.</li><li>Click the Description column heading.</li><li>Click the Description column heading again.</li><li>Click the Inactive tab.</li><li>Type the shared start of the part numbers in the Search box again.</li><li>Pick category A in the Category filter.</li><li>Pick All categories in the Category filter.</li><li>Click the Description column heading.</li><li>Click the Description column heading again.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Active tab lists parts A and B: 2 rows.</li></ul><p>Step 2:</p><ul><li>Only part A is listed.</li></ul><p>Step 3:</p><ul><li>Parts A and B are listed again.</li></ul><p>Step 4:</p><ul><li>The rows are ordered by Description.</li></ul><p>Step 5:</p><ul><li>The order of parts A and B reverses.</li></ul><p>Step 6:</p><ul><li>The Inactive tab is selected.</li></ul><p>Step 7:</p><ul><li>The Inactive tab lists parts C and D: 2 rows.</li></ul><p>Step 8:</p><ul><li>Only part C is listed, just as the same filter left only the category A part on the Active tab.</li></ul><p>Step 9:</p><ul><li>Parts C and D are listed again.</li></ul><p>Step 10:</p><ul><li>The rows are ordered by Description.</li></ul><p>Step 11:</p><ul><li>The order of parts C and D reverses, as it did on the Active tab.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10814 (Story 1, Active and Inactive Tabs on the Inventory List)</p><ul><li><strong>S1-R7:</strong> &ldquo;Search, filters and sort work the same way on both tabs.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: board \"3.5 The Inactive tab\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>retire-05-p3-5-inactive-tab.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S1-06": {
+  "sec": "S1",
+  "section_id": 20468,
+  "case_id": 425588,
+  "part_of": null,
+  "title": "Export from each tab holds only that tab's parts",
+  "refs": "SV-10814",
+  "codes": [
+   "S1-R9",
+   "S1-R9b"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-01-p4-1-actions-menu.png"
+  ],
+  "fields": {
+   "title": "Export from each tab holds only that tab's parts",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10814",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have two active parts, part A and part B, and one inactive part, part C.</li><li>Give parts A, B and C part numbers that start with the same text, so one search lists all 3.</li><li>Use a computer that can open the exported file in a spreadsheet program.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Type the shared start of the part numbers in the Search box.</li><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Export.</li><li>Open the downloaded file.</li><li>Click the Inactive tab.</li><li>Type the shared start of the part numbers in the Search box again.</li><li>Click the three-dot actions button (⋮).</li><li>Click Export.</li><li>Open the second downloaded file.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Parts A and B are listed.</li></ul><p>Step 2:</p><ul><li>The menu lists Cycle count, Deactivate parts and Export.</li></ul><p>Step 3:</p><ul><li>A file downloads.</li></ul><p>Step 4:</p><ul><li>The file holds exactly two parts, part A and part B, the parts the search lists on the Active tab.</li><li>Part C is not in the file.</li></ul><p>Step 5:</p><ul><li>The Inactive tab is selected.</li></ul><p>Step 6:</p><ul><li>Part C is listed.</li></ul><p>Step 7:</p><ul><li>The menu lists Cycle count, Activate parts and Export.</li></ul><p>Step 8:</p><ul><li>A second file downloads.</li></ul><p>Step 9:</p><ul><li>The second file holds exactly one part, part C.</li><li>Parts A and B are not in it.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10814 (Story 1, Active and Inactive Tabs on the Inventory List)</p><ul><li><strong>S1-R9:</strong> &ldquo;Export in the actions menu exports the parts on the tab that shows: active parts from the Active tab, inactive parts from the Inactive tab.&rdquo;</li><li><strong>S1-R9b:</strong> &ldquo;The export includes every part on that tab that matches the current search, filters and Supply filter, including parts not yet scrolled into view. With nothing matching, the message \"Empty export\" shows and no file is made.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: board \"4.1 The actions menu\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-01-p4-1-actions-menu.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S1-07": {
+  "sec": "S1",
+  "section_id": 20468,
+  "case_id": 425589,
+  "part_of": null,
+  "title": "Export shows Not Tracked for an untracked part and has no status column",
+  "refs": "SV-10814,SV-10817",
+  "codes": [
+   "S1-R9a",
+   "S4-R8"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "tracking-02-p5-3-list-not-tracked.png"
+  ],
+  "fields": {
+   "title": "Export shows Not Tracked for an untracked part and has no status column",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10814,SV-10817",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an active tracked part, part A, with 6 in its default bin.</li><li>Have an active untracked part, part B, with 4 in its bin.</li><li>Give parts A and B part numbers that start with the same text, so one search lists all 13.</li><li>Use a computer that can open the exported file in a spreadsheet program.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Type the shared start of the part numbers in the Search box.</li><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Export.</li><li>Open the downloaded file.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Parts A and B are listed.</li></ul><p>Step 2:</p><ul><li>The menu opens.</li></ul><p>Step 3:</p><ul><li>A file downloads.</li></ul><p>Step 4:</p><ul><li>In the quantity column, part B's row reads \"Not Tracked\" and part A's row reads 6.</li><li>The column headings include the part number and the quantity, and none of them is a status (no Status, Active or Inactive column).</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10814 (Story 1, Active and Inactive Tabs on the Inventory List), story SV-10817 (Story 4, Create an Untracked Part)</p><ul><li><strong>S1-R9a:</strong> &ldquo;An untracked part exports \"Not Tracked\" in the quantity column. The export has no status column.&rdquo;</li><li><strong>S4-R8:</strong> &ldquo;An untracked part shows \"Not Tracked\" in the Inventory list's Total Qty column instead of a quantity.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: board \"5.3 The list says Not Tracked\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>tracking-02-p5-3-list-not-tracked.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S1-08": {
+  "sec": "S1",
+  "section_id": 20468,
+  "case_id": 425590,
+  "part_of": null,
+  "title": "Cycle count on the Inactive tab counts only the inactive parts",
+  "refs": "SV-10814",
+  "codes": [
+   "S1-R10"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "tracking-06-p5-7-cycle-count-untracked.png"
+  ],
+  "fields": {
+   "title": "Cycle count on the Inactive tab counts only the inactive parts",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10814",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an active tracked part, part A, with 5 in its bin.</li><li>Have two inactive tracked parts, part B and part C, with 5 each.</li><li>Give parts A, B and C part numbers that start with the same text, so one search lists all 3.</li><li>Make sure no Cycle count is running on the Inventory list.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Click the Inactive tab.</li><li>Type the shared start of the part numbers in the Search box.</li><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Cycle count.</li><li>Click the printer icon in the count toolbar.</li><li>Close the print preview without printing.</li><li>Click Cancel in the count toolbar.</li><li>Click the Active tab.</li><li>Type the shared start of the part numbers in the Search box again.</li><li>Click the three-dot actions button (⋮).</li><li>Click Cycle count.</li><li>Click Cancel in the count toolbar.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Inactive tab is selected.</li></ul><p>Step 2:</p><ul><li>Parts B and C are listed.</li></ul><p>Step 3:</p><ul><li>The menu on the Inactive tab offers Cycle count.</li></ul><p>Step 4:</p><ul><li>The count starts on the Inactive tab: parts B and C are listed, each with an empty Count box.</li><li>Part A is not listed.</li></ul><p>Step 5:</p><ul><li>The count sheet lists parts B and C.</li><li>Part A is not on it.</li></ul><p>Step 6:</p><ul><li>The print preview closes and the count is still running.</li></ul><p>Step 7:</p><ul><li>The count ends without saving: parts B and C still show 5 Available.</li></ul><p>Step 8:</p><ul><li>The Active tab is selected.</li></ul><p>Step 9:</p><ul><li>Part A is listed.</li></ul><p>Step 10:</p><ul><li>The menu opens.</li></ul><p>Step 11:</p><ul><li>The count lists part A with a Count box.</li><li>Parts B and C are not listed.</li></ul><p>Step 12:</p><ul><li>The count ends without saving.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10814 (Story 1, Active and Inactive Tabs on the Inventory List)</p><ul><li><strong>S1-R10:</strong> &ldquo;Cycle count is offered on both tabs. It counts the parts on the tab that shows, and the printed count sheet lists those parts.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: board \"5.7 Cycle count leaves it out\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>tracking-06-p5-7-cycle-count-untracked.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S1-09": {
+  "sec": "S1",
+  "section_id": 20468,
+  "case_id": 425591,
+  "part_of": null,
+  "title": "An empty Inactive tab says No inactive parts at this location.",
+  "refs": "SV-10814,SV-10826",
+  "codes": [
+   "S1-N1",
+   "S13-R21",
+   "S13-R22",
+   "UFS-40"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-10-p4-8-empty-inactive.png"
+  ],
+  "fields": {
+   "title": "An empty Inactive tab says No inactive parts at this location.",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10814,SV-10826",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at a location that has no inactive parts at all, such as a newly created location.</li><li>Create an active part, part A, at that location for this test.</li><li>Start on that location's Inventory page, on the Active tab, with the Search box empty and Bin Location and Category set to All.</li></ul>",
+   "custom_steps": "<ol><li>Click the Inactive tab.</li><li>Click the Active tab.</li><li>Click the part A row.</li><li>Click Inactive under Part Status.</li><li>Click Save.</li><li>Click Deactivate in the confirmation.</li><li>Click the Inactive tab.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>In place of the list, the Inactive tab shows \"No inactive parts at this location.\" and no rows.</li></ul><p>Step 2:</p><ul><li>The Active tab lists part A.</li></ul><p>Step 3:</p><ul><li>Edit Inventory Part opens for part A.</li></ul><p>Step 4:</p><ul><li>Inactive is picked under Part Status.</li></ul><p>Step 5:</p><ul><li>The \"Deactivate part?\" confirmation opens.</li></ul><p>Step 6:</p><ul><li>The window closes with a \"Part deactivated.\" message, and part A leaves the Active tab.</li></ul><p>Step 7:</p><ul><li>The Inactive tab lists part A.</li><li>\"No inactive parts at this location.\" is no longer shown.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10814 (Story 1, Active and Inactive Tabs on the Inventory List), story SV-10826 (Story 13, The Part Dialog)</p><ul><li><strong>S1-N1:</strong> &ldquo;If there are no inactive parts at the location and no search or filter is narrowing the list, the Inactive tab shows \"No inactive parts at this location.\"&rdquo;</li><li><strong>User Feedback Summary:</strong> &ldquo;Inactive tab with no parts, nothing narrowing it | \"No inactive parts at this location.\" | In place of the list&rdquo;</li><li><strong>S13-R21:</strong> &ldquo;Picking a different status changes nothing until Save. When Save is pressed with a different status picked, the confirmation of Story 10 opens first.&rdquo;</li><li><strong>S13-R22:</strong> &ldquo;Confirming saves every change in the dialog, then applies the status, and closes the dialog with \"Part deactivated.\" or \"Part activated.\".&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: board \"4.10 Branch: no inactive parts\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-10-p4-8-empty-inactive.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;At a location with no inactive parts, with nothing narrowing the list, the Inactive tab says \"No inactive parts at this location.\" (S1-N1). Shown at Staging Lethbridge.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S1-10": {
+  "sec": "S1",
+  "section_id": 20468,
+  "case_id": 425592,
+  "part_of": null,
+  "title": "An Inactive tab emptied by a search shows the usual no-match result",
+  "refs": "SV-10814",
+  "codes": [
+   "S1-N1",
+   "S1-N2"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-10-p4-8-empty-inactive.png"
+  ],
+  "fields": {
+   "title": "An Inactive tab emptied by a search shows the usual no-match result",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10814",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an inactive part, part A, in category A, so the category B filter leaves it out.</li><li>Use a second category, category B, that part A is not in.</li><li>Use a search text that matches no part at the test location, active or inactive.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Type the search text that matches no part in the Search box.</li><li>Click the Inactive tab.</li><li>Type the search text that matches no part in the Search box again.</li><li>Replace the search text with part A's part number.</li><li>Pick category B in the Category filter.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Active tab shows the list's usual empty result for a search that matches nothing (write its wording in the result comment).</li></ul><p>Step 2:</p><ul><li>The Inactive tab is selected.</li></ul><p>Step 3:</p><ul><li>The Inactive tab shows the same empty result as the Active tab did in step 1.</li><li>It does not say \"No inactive parts at this location.\"</li></ul><p>Step 4:</p><ul><li>Part A is listed.</li></ul><p>Step 5:</p><ul><li>With the search and the category B filter leaving nothing, the Inactive tab again shows the usual empty result.</li><li>It does not say \"No inactive parts at this location.\"</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10814 (Story 1, Active and Inactive Tabs on the Inventory List)</p><ul><li><strong>S1-N2:</strong> &ldquo;If a search or filter leaves the Inactive tab empty, it shows the list's standard filtered empty state.&rdquo;</li><li><strong>S1-N1:</strong> &ldquo;If there are no inactive parts at the location and no search or filter is narrowing the list, the Inactive tab shows \"No inactive parts at this location.\"&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: board \"4.10 Branch: no inactive parts\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-10-p4-8-empty-inactive.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S1-11": {
+  "sec": "S1",
+  "section_id": 20468,
+  "case_id": 573668,
+  "part_of": null,
+  "title": "Export holds every part the search matches, even rows not yet loaded",
+  "refs": "SV-10814,SV-10815",
+  "codes": [
+   "S1-R9",
+   "S1-R9b",
+   "S2-R6"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-01-p4-1-actions-menu.png"
+  ],
+  "fields": {
+   "title": "Export holds every part the search matches, even rows not yet loaded",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10814,SV-10815",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create 35 active parts for this test whose part numbers start with the same text, so one search lists all 35.</li><li>Have another active part, part A, whose part number does not start with that text.</li><li>Use a computer that can open the exported file in a spreadsheet program.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Type the shared start of the part numbers in the Search box.</li><li>Do not scroll the list.</li><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Export.</li><li>Open the downloaded file.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The 35 parts are listed (the list loads 30 rows until you scroll).</li></ul><p>Step 2:</p><ul><li>The list stays at its first rows.</li></ul><p>Step 3:</p><ul><li>The menu opens.</li></ul><p>Step 4:</p><ul><li>A file downloads.</li></ul><p>Step 5:</p><ul><li>The file holds 35 part rows, one for each part the search matches, so it also holds the 5 rows not yet loaded (35 − 30 = 5).</li><li>Part A is not in the file, because the search does not match it.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10814 (Story 1, Active and Inactive Tabs on the Inventory List), story SV-10815 (Story 2, Deactivate Parts in Bulk)</p><ul><li><strong>S1-R9b:</strong> &ldquo;The export includes every part on that tab that matches the current search, filters and Supply filter, including parts not yet scrolled into view. With nothing matching, the message \"Empty export\" shows and no file is made.&rdquo;</li><li><strong>S1-R9:</strong> &ldquo;Export in the actions menu exports the parts on the tab that shows: active parts from the Active tab, inactive parts from the Inactive tab.&rdquo;</li><li><strong>S2-R6:</strong> &ldquo;The checkbox in the header ticks or clears every row loaded in the list. The list loads 30 parts at a time as the user scrolls, so it ticks only the rows loaded so far. The count in the bar shows exactly how many parts will change.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: board \"4.1 The actions menu\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-01-p4-1-actions-menu.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S1-12": {
+  "sec": "S1",
+  "section_id": 20468,
+  "case_id": 573669,
+  "part_of": null,
+  "title": "Export follows the Category filter",
+  "refs": "SV-10814",
+  "codes": [
+   "S1-R9b"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-01-p4-1-actions-menu.png"
+  ],
+  "fields": {
+   "title": "Export follows the Category filter",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10814",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an active part, part A, in category A, and an active part, part B, in category B, so the category A filter leaves part B out.</li><li>Give parts A and B part numbers that start with the same text, so one search lists all 13.</li><li>Use a computer that can open the exported file in a spreadsheet program.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Type the shared start of the part numbers in the Search box.</li><li>Pick category A in the Category filter.</li><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Export.</li><li>Open the downloaded file.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Parts A and B are listed.</li></ul><p>Step 2:</p><ul><li>Only part A is listed.</li></ul><p>Step 3:</p><ul><li>The menu opens.</li></ul><p>Step 4:</p><ul><li>A file downloads.</li></ul><p>Step 5:</p><ul><li>The file holds part A.</li><li>Part B is not in the file.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10814 (Story 1, Active and Inactive Tabs on the Inventory List)</p><ul><li><strong>S1-R9b:</strong> &ldquo;The export includes every part on that tab that matches the current search, filters and Supply filter, including parts not yet scrolled into view. With nothing matching, the message \"Empty export\" shows and no file is made.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: board \"4.1 The actions menu\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-01-p4-1-actions-menu.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S1-12b": {
+  "sec": "S1",
+  "section_id": 20468,
+  "case_id": null,
+  "part_of": "S1-12",
+  "title": "Export follows the Supply filter and leaves out an untracked part",
+  "refs": "SV-10814,SV-10819",
+  "codes": [
+   "S1-R9b",
+   "S6-R10"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-01-p4-1-actions-menu.png"
+  ],
+  "fields": {
+   "title": "Export follows the Supply filter and leaves out an untracked part",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10814,SV-10819",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an active tracked part, part A, holding 1, with Min 5 and Max 10, so it is under-supplied.</li><li>Have an active untracked part, part B, with 1 in its bin and a saved Min 5 and Max 10.</li><li>Give parts A and B part numbers that start with the same text, so one search lists all 13.</li><li>Use a computer that can open the exported file in a spreadsheet program.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Type the shared start of the part numbers in the Search box.</li><li>Pick Under-supplied in the Supply filter.</li><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Export.</li><li>Open the downloaded file.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Parts A and B are listed.</li></ul><p>Step 2:</p><ul><li>Part A is listed.</li><li>Part B is not listed: an untracked part shows only under All.</li></ul><p>Step 3:</p><ul><li>The menu opens.</li></ul><p>Step 4:</p><ul><li>A file downloads.</li></ul><p>Step 5:</p><ul><li>The file holds part A.</li><li>Part B is not in the file.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10814 (Story 1, Active and Inactive Tabs on the Inventory List), story SV-10819 (Story 6, Search and Sort the Inventory List by Tracking State)</p><ul><li><strong>S1-R9b:</strong> &ldquo;The export includes every part on that tab that matches the current search, filters and Supply filter, including parts not yet scrolled into view. With nothing matching, the message \"Empty export\" shows and no file is made.&rdquo;</li><li><strong>S6-R10:</strong> &ldquo;In the Supply filter, an untracked part shows only under \"All\". Under-supplied, Well-supplied and Over-supplied leave it out.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: board \"4.1 The actions menu\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-01-p4-1-actions-menu.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S1-13": {
+  "sec": "S1",
+  "section_id": 20468,
+  "case_id": 573670,
+  "part_of": null,
+  "title": "Export with nothing matching shows Empty export and saves no file",
+  "refs": "SV-10814",
+  "codes": [
+   "S1-R9b"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [],
+  "fields": {
+   "title": "Export with nothing matching shows Empty export and saves no file",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10814",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a search text that matches no part at the test location, active or inactive.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Type the search text that matches no part in the Search box.</li><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Export.</li><li>Wait 5 seconds.</li><li>Click the Inactive tab.</li><li>Type the search text that matches no part in the Search box again.</li><li>Click the three-dot actions button (⋮).</li><li>Click Export.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Active tab lists no parts.</li></ul><p>Step 2:</p><ul><li>The menu opens.</li></ul><p>Step 3:</p><ul><li>A message reading \"Empty export\" appears.</li></ul><p>Step 4:</p><ul><li>No file has downloaded: the browser shows no new download.</li></ul><p>Step 5:</p><ul><li>The Inactive tab is selected.</li></ul><p>Step 6:</p><ul><li>The Inactive tab lists no parts.</li></ul><p>Step 7:</p><ul><li>The menu opens.</li></ul><p>Step 8:</p><ul><li>The same message, \"Empty export\", appears, and no file downloads.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10814 (Story 1, Active and Inactive Tabs on the Inventory List)</p><ul><li><strong>S1-R9b:</strong> &ldquo;The export includes every part on that tab that matches the current search, filters and Supply filter, including parts not yet scrolled into view. With nothing matching, the message \"Empty export\" shows and no file is made.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: no board draws an empty export; the expected results above come from the quote above.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S1-14": {
+  "sec": "S1",
+  "section_id": 20468,
+  "case_id": null,
+  "part_of": null,
+  "title": "Switching tabs during a cycle count drops the counts typed so far",
+  "refs": "SV-10814",
+  "codes": [
+   "S1-E1",
+   "S1-R10"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "tracking-06-p5-7-cycle-count-untracked.png"
+  ],
+  "fields": {
+   "title": "Switching tabs during a cycle count drops the counts typed so far",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10814",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create an active tracked part, part A, for this test with 5 in its bin.</li><li>Make sure no Cycle count is running on the Inventory list.</li><li>Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box.</li></ul>",
+   "custom_steps": "<ol><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Cycle count.</li><li>Type 7 in part A's Count box.</li><li>Click the Inactive tab.</li><li>Click the Active tab.</li><li>Type part A's part number in the Search box again.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The menu opens.</li></ul><p>Step 2:</p><ul><li>The count starts: part A has an empty Count box, and the Active and Inactive tabs are still shown.</li></ul><p>Step 3:</p><ul><li>Part A's Count box shows 7.</li></ul><p>Step 4:</p><ul><li>The Inactive tab opens straight away: no question or warning about unsaved counts appears.</li></ul><p>Step 5:</p><ul><li>The Active tab is selected.</li></ul><p>Step 6:</p><ul><li>Part A is listed with 5 Available: the 7 typed before switching tabs was dropped and nothing was counted.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10814 (Story 1, Active and Inactive Tabs on the Inventory List)</p><ul><li><strong>S1-E1:</strong> &ldquo;The tabs stay available during a Cycle count. Switching tabs before saving drops the counts typed so far, without asking, the same as changing the search or a filter during a count.&rdquo;</li><li><strong>S1-R10:</strong> &ldquo;Cycle count is offered on both tabs. It counts the parts on the tab that shows, and the printed count sheet lists those parts.&rdquo;</li></ul><p>From: Jira tickets and comments under epic SV-10647 (saved in sources/jira-2026-10-27/ALL-TICKETS-2026-10-27.md), read 27 Oct 2026</p><ul><li><strong>SV-10814, Chris Ward, 23 Oct 2026:</strong> &ldquo;Switching tabs during a cycle count drops the unsaved counts without asking, the same as changing search or a filter in count mode today. Keep the tabs enabled during a count, as board 5.7 shows.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: board \"5.7 Cycle count leaves it out\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>tracking-06-p5-7-cycle-count-untracked.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-01": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": 154754,
+  "part_of": null,
+  "title": "The actions menu offers Deactivate parts between Cycle count and Export",
+  "refs": "SV-10815,SV-10816",
+  "codes": [
+   "S2-R1",
+   "S2-R2",
+   "S3-R1"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-01-p4-1-actions-menu.png",
+   "bulk-06-p4-6-activate-ticked.png"
+  ],
+  "fields": {
+   "title": "The actions menu offers Deactivate parts between Cycle count and Export",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10815,SV-10816",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Press Escape.</li><li>Click the Inactive tab.</li><li>Click the three-dot actions button (⋮).</li><li>Press Escape.</li><li>Click the Active tab.</li><li>Click the three-dot actions button (⋮).</li><li>Click Deactivate parts.</li><li>Click the X at the right end of the dark bar.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The menu lists, from top to bottom, \"Cycle count\", \"Deactivate parts\" and \"Export\" (3 entries).</li><li>\"Activate parts\" is not in it.</li></ul><p>Step 2:</p><ul><li>The menu closes.</li></ul><p>Step 3:</p><ul><li>The Inactive tab is selected.</li></ul><p>Step 4:</p><ul><li>The menu lists \"Cycle count\", \"Activate parts\" and \"Export\".</li><li>\"Deactivate parts\" is not in it.</li></ul><p>Step 5:</p><ul><li>The menu closes.</li></ul><p>Step 6:</p><ul><li>The Active tab is selected.</li></ul><p>Step 7:</p><ul><li>The menu again lists \"Cycle count\", \"Deactivate parts\" and \"Export\".</li></ul><p>Step 8:</p><ul><li>Bulk mode turns on: a dark bar appears under the tabs and a checkbox column appears at the left of the list.</li></ul><p>Step 9:</p><ul><li>Bulk mode ends: the bar and the checkbox column disappear.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10815 (Story 2, Deactivate Parts in Bulk), story SV-10816 (Story 3, Activate Parts in Bulk)</p><ul><li><strong>S2-R1:</strong> &ldquo;Bulk deactivation is a mode. The user turns it on from the Inventory actions menu, the three-dot button in the toolbar that holds Cycle count and Export.&rdquo;</li><li><strong>S2-R2:</strong> &ldquo;The menu entry reads \"Deactivate parts\" while the Active tab shows and \"Activate parts\" while the Inactive tab shows. Only one of the two shows at a time. It sits between Cycle count and Export.&rdquo;</li><li><strong>S3-R1:</strong> &ldquo;Reactivation uses the same mode as Story 2. On the Inactive tab the actions menu entry reads \"Activate parts\", and turning it on shows the same checkbox column and the same bulk bar.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: boards \"4.1 The actions menu\", \"4.6 Inactive tab, Activate parts\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-01-p4-1-actions-menu.png</li><li>bulk-06-p4-6-activate-ticked.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;\"Deactivate parts\" sits between Cycle count and Export while the Active tab shows (S2-R1, S2-R2). A user without the Delete permission does not see it (S8-R3).&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-02": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": 154755,
+  "part_of": null,
+  "title": "Outside bulk mode the list has no checkboxes and a row click opens the part",
+  "refs": "SV-10815",
+  "codes": [
+   "KD-9",
+   "S2-N2",
+   "S2-R3"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-00-list-production.png",
+   "retire-06-p3-6-dialog-inactive.png"
+  ],
+  "fields": {
+   "title": "Outside bulk mode the list has no checkboxes and a row click opens the part",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10815",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an active part, part A, and an inactive part, part B.</li><li>Give parts A and B part numbers that start with the same text, so one search lists all 13.</li><li>Make sure bulk mode is off: no dark bar shows on the Inventory list.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Type the shared start of the part numbers in the Search box.</li><li>Click part A's description in its row.</li><li>Click Cancel.</li><li>Click the Inactive tab.</li><li>Type the shared start of the part numbers in the Search box again.</li><li>Click the part B row.</li><li>Click Cancel.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Part A is listed.</li><li>There is no checkbox column and no checkbox in the header row, so no part can be ticked.</li></ul><p>Step 2:</p><ul><li>Edit Inventory Part opens for part A: its Part Number field holds part A's part number.</li><li>Nothing is ticked.</li></ul><p>Step 3:</p><ul><li>The window closes without changes.</li></ul><p>Step 4:</p><ul><li>The Inactive tab is selected.</li></ul><p>Step 5:</p><ul><li>Part B is listed, with no checkbox column.</li></ul><p>Step 6:</p><ul><li>Edit Inventory Part opens for part B.</li></ul><p>Step 7:</p><ul><li>The window closes without changes.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10815 (Story 2, Deactivate Parts in Bulk)</p><ul><li><strong>S2-R3:</strong> &ldquo;Outside the mode the Inventory list has no checkbox column, and a row click opens the part.&rdquo;</li><li><strong>S2-N2:</strong> &ldquo;Outside the mode there is no checkbox column, so no part can be ticked from the default list.&rdquo;</li><li><strong>Key Decisions:</strong> &ldquo;Bulk status change is a mode. A row click on the Inventory list opens the part. Bulk status uses the same pattern as Cycle count: the user turns the mode on from the actions menu, checkboxes appear, search and filtering keep working, and the X on the bulk bar leaves the mode.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: boards \"4.0 Before: the Inventory list today\", \"3.6 Opening the inactive part\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-00-list-production.png</li><li>retire-06-p3-6-dialog-inactive.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-03": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": 154756,
+  "part_of": null,
+  "title": "In bulk mode a click anywhere on a row ticks it instead of opening it",
+  "refs": "SV-10815",
+  "codes": [
+   "S2-R5"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-03-p4-3-ticked.png"
+  ],
+  "fields": {
+   "title": "In bulk mode a click anywhere on a row ticks it instead of opening it",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10815",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have two active parts, part A and part B.</li><li>Give parts A and B part numbers that start with the same text, so one search lists all 13.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Type the shared start of the part numbers in the Search box.</li><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Deactivate parts.</li><li>Click part A's description in its row.</li><li>Click part A's Category cell.</li><li>Click part B's Part Number cell.</li><li>Click the checkbox at the left of the part B row.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Parts A and B are listed.</li></ul><p>Step 2:</p><ul><li>The menu opens.</li></ul><p>Step 3:</p><ul><li>The bar shows 0 in its round badge, followed by \"selected\", and every row has an empty checkbox.</li></ul><p>Step 4:</p><ul><li>The part A row is ticked and the badge reads 1.</li><li>No part window opens.</li></ul><p>Step 5:</p><ul><li>The part A row is unticked and the badge reads 0.</li><li>No window opens.</li></ul><p>Step 6:</p><ul><li>The part B row is ticked and the badge reads 1.</li><li>No window opens.</li></ul><p>Step 7:</p><ul><li>The part B row is unticked and the badge reads 0.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10815 (Story 2, Deactivate Parts in Bulk)</p><ul><li><strong>S2-R5:</strong> &ldquo;While the mode is on, a click anywhere on a row ticks or unticks that row instead of opening the part.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: board \"4.3 Two rows ticked\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-03-p4-3-ticked.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;A click anywhere on a row ticks it instead of opening the part (S2-R5). The count reads 2.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-04": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": 154757,
+  "part_of": null,
+  "title": "The bulk bar sits under the tabs and counts the ticked rows",
+  "refs": "SV-10815",
+  "codes": [
+   "S2-R7",
+   "S2-R7b",
+   "S2-R9",
+   "TERM-5"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-02-p4-2-mode-on.png",
+   "bulk-03-p4-3-ticked.png"
+  ],
+  "fields": {
+   "title": "The bulk bar sits under the tabs and counts the ticked rows",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10815",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have two active parts, part A and part B.</li><li>Give parts A and B part numbers that start with the same text, so one search lists all 13.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Type the shared start of the part numbers in the Search box.</li><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Deactivate parts.</li><li>Click the part A row.</li><li>Click the part B row.</li><li>Click the part A row again.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Parts A and B are listed, and the search and filter row sits directly under the Active and Inactive tabs.</li></ul><p>Step 2:</p><ul><li>The menu opens.</li></ul><p>Step 3:</p><ul><li>A dark bar appears directly under the Active and Inactive tabs, across the full width of the list.</li><li>The search and filter row moves down and now sits under the bar.</li><li>From left to right the bar shows a round badge reading 0 followed by the word \"selected\", a thin divider, and a blue \"Deactivate\" button, with an X at the right end.</li><li>The New Inventory Part button is still shown.</li></ul><p>Step 4:</p><ul><li>The badge reads 1.</li></ul><p>Step 5:</p><ul><li>The badge reads 2, and the line under the table reads \"2 records selected.\"</li></ul><p>Step 6:</p><ul><li>The badge reads 1.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10815 (Story 2, Deactivate Parts in Bulk)</p><ul><li><strong>S2-R7:</strong> &ldquo;While the mode is on, the bulk bar spans the full width of the list directly under the Active and Inactive tabs, and the search and filter row moves down under it.&rdquo;</li><li><strong>S2-R7b:</strong> &ldquo;From left to right the bar shows: the number of ticked rows in a round badge followed by the word \"selected\", a thin divider, and a blue button reading \"Deactivate\". The number updates as the user ticks.&rdquo;</li><li><strong>S2-R9:</strong> &ldquo;An X button sits at the right end of the bar. Hovering it shows \"Clear selection\", which is also its screen reader label.&rdquo;</li><li><strong>Terminology:</strong> &ldquo;Bulk bar → The dark bar across the Inventory list, under the Active and Inactive tabs, while bulk status mode is on. It is the same bar work order lines show for ticked lines.&rdquo;</li></ul><p>From: Tech plan \"Parts Lifecycle Update — Technical Implementation Plan\" (7 Oct 2026, written against PRD v22; re-shared by the QA lead on 27 Oct 2026, unchanged), read 27 Oct 2026</p><ul><li><strong>§3 Technical Decisions, D24:</strong> &ldquo;design boards settle what the PRD is silent on. Show \"N records selected.\" under the table in bulk mode (boards 4.3, 4.9). Keep \"New Inventory Part\" visible in bulk mode (4.3, 4.8).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: boards \"4.2 Mode on\", \"4.3 Two rows ticked\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-02-p4-2-mode-on.png</li><li>bulk-03-p4-3-ticked.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;A checkbox column appears at the left (S2-R4). The bulk bar spans the list under the tabs, and the search and filter row moves under it (S2-R7). The bar shows the count, \"selected\" and the Deactivate button, disabled until a row is ticked (S2-R7b, S2-R8).&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-05": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": 154758,
+  "part_of": null,
+  "title": "Hovering the bulk bar's X shows Clear selection, also read aloud",
+  "refs": "SV-10815",
+  "codes": [
+   "S2-R9"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-02-p4-2-mode-on.png"
+  ],
+  "fields": {
+   "title": "Hovering the bulk bar's X shows Clear selection, also read aloud",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10815",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Use a computer with a screen reader you can turn on (Narrator on Windows, VoiceOver on a Mac).</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Deactivate parts.</li><li>Hover over the X at the right end of the dark bar.</li><li>Turn on the screen reader.</li><li>Press Tab until the X has focus.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The menu opens.</li></ul><p>Step 2:</p><ul><li>Bulk mode turns on and the dark bar shows, with an X at its right end.</li></ul><p>Step 3:</p><ul><li>A hover text reading \"Clear selection\" appears.</li></ul><p>Step 4:</p><ul><li>The screen reader starts reading the page.</li></ul><p>Step 5:</p><ul><li>The screen reader reads the X as \"Clear selection\".</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10815 (Story 2, Deactivate Parts in Bulk)</p><ul><li><strong>S2-R9:</strong> &ldquo;An X button sits at the right end of the bar. Hovering it shows \"Clear selection\", which is also its screen reader label.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: board \"4.2 Mode on\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-02-p4-2-mode-on.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-05b": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": null,
+  "part_of": "S2-05",
+  "title": "The X on the bulk bar leaves bulk mode and clears the ticks",
+  "refs": "SV-10815",
+  "codes": [
+   "S2-R9a"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-03-p4-3-ticked.png"
+  ],
+  "fields": {
+   "title": "The X on the bulk bar leaves bulk mode and clears the ticks",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10815",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have two active parts, part A and part B.</li><li>Give parts A and B part numbers that start with the same text, so one search lists all 13.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Type the shared start of the part numbers in the Search box.</li><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Deactivate parts.</li><li>Click the part A row.</li><li>Click the part B row.</li><li>Click the X at the right end of the dark bar.</li><li>Click the three-dot actions button (⋮).</li><li>Press Escape.</li><li>Click the part A row.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Parts A and B are listed.</li></ul><p>Step 2:</p><ul><li>The menu opens.</li></ul><p>Step 3:</p><ul><li>Bulk mode turns on.</li></ul><p>Step 4:</p><ul><li>The part A row is ticked.</li></ul><p>Step 5:</p><ul><li>The bar reads 2 selected.</li></ul><p>Step 6:</p><ul><li>Bulk mode ends: the dark bar and the checkbox column disappear, nothing is ticked, and the search and filter row is back directly under the tabs.</li></ul><p>Step 7:</p><ul><li>The menu is back to normal: \"Cycle count\", \"Deactivate parts\", \"Export\".</li></ul><p>Step 8:</p><ul><li>The menu closes.</li></ul><p>Step 9:</p><ul><li>Edit Inventory Part opens for part A (the row is not ticked), and parts A and B are still on the Active tab.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10815 (Story 2, Deactivate Parts in Bulk)</p><ul><li><strong>S2-R9a:</strong> &ldquo;The X leaves the mode, clears the selection and puts the toolbar back to its normal state.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: board \"4.3 Two rows ticked\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-03-p4-3-ticked.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-06": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": 154759,
+  "part_of": null,
+  "title": "Confirming Deactivate moves the ticked parts to the Inactive tab",
+  "refs": "SV-10815,SV-10823",
+  "codes": [
+   "S10-R12",
+   "S10-R3",
+   "S10-R4",
+   "S2-R11",
+   "S2-R12",
+   "S2-R13",
+   "S2-R14",
+   "UFS-28"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-03-p4-3-ticked.png",
+   "bulk-04-p4-4-confirm.png",
+   "bulk-05-p4-5-result.png"
+  ],
+  "fields": {
+   "title": "Confirming Deactivate moves the ticked parts to the Inactive tab",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10815,SV-10823",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create three active parts for this test, part A, part B and part C.</li><li>Give parts A, B and C part numbers that start with the same text, so one search lists all 3.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Type the shared start of the part numbers in the Search box.</li><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Deactivate parts.</li><li>Click the part A row.</li><li>Click the part B row.</li><li>Click Deactivate on the dark bar.</li><li>Click Deactivate in the confirmation.</li><li>Wait 10 seconds without refreshing the page.</li><li>Click the Inactive tab.</li><li>Type the shared start of the part numbers in the Search box again.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Parts A, B and C are listed.</li></ul><p>Step 2:</p><ul><li>The menu opens.</li></ul><p>Step 3:</p><ul><li>Bulk mode turns on.</li></ul><p>Step 4:</p><ul><li>The part A row is ticked.</li></ul><p>Step 5:</p><ul><li>The bar reads 2 selected.</li></ul><p>Step 6:</p><ul><li>The \"Deactivate parts?\" confirmation opens and reads \"2 parts selected.\"</li></ul><p>Step 7:</p><ul><li>A green message reads \"2 parts updated.\"</li><li>Parts A and B leave the Active list at once, without a page reload, and part C is still listed.</li><li>The dark bar and the checkbox column disappear: bulk mode has ended and nothing is ticked.</li></ul><p>Step 8:</p><ul><li>The green message has closed on its own.</li></ul><p>Step 9:</p><ul><li>The Inactive tab is selected.</li></ul><p>Step 10:</p><ul><li>The Inactive tab lists parts A and B.</li><li>Part C is not listed.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10815 (Story 2, Deactivate Parts in Bulk), story SV-10823 (Story 10, Confirming and Recording a Status Change)</p><ul><li><strong>S2-R11:</strong> &ldquo;When the user confirms (Story 10), every ticked part becomes inactive.&rdquo;</li><li><strong>S2-R12:</strong> &ldquo;The deactivated parts leave the Active tab without a page reload.&rdquo;</li><li><strong>S2-R13:</strong> &ldquo;The deactivated parts appear on the Inactive tab.&rdquo;</li><li><strong>S2-R14:</strong> &ldquo;When every ticked part changes, the mode ends and the selection clears.&rdquo;</li><li><strong>S10-R3:</strong> &ldquo;Raised from the bulk bar, the confirmation is titled \"Deactivate parts?\" or \"Activate parts?\". Raised from the part dialog, it is titled \"Deactivate part?\" or \"Activate part?\".&rdquo;</li><li><strong>S10-R4:</strong> &ldquo;Raised from the bulk bar, the confirmation opens with \"{n} parts selected.\", or \"1 part selected.\" for one. Raised from the part dialog, it opens with the part number followed by the description, as they stand in the form, with spaces before and after removed.&rdquo;</li><li><strong>S10-R12:</strong> &ldquo;After a bulk change, the system shows how many parts changed and how many failed.&rdquo;</li><li><strong>User Feedback Summary:</strong> &ldquo;Bulk change, every part changed | \"{n} parts updated.\" (\"1 part updated.\" for one) | Success toast, fades on its own&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: boards \"4.3 Two rows ticked\", \"4.4 Confirm\", \"4.5 Done\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-03-p4-3-ticked.png</li><li>bulk-04-p4-4-confirm.png</li><li>bulk-05-p4-5-result.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;\"2 parts updated.\" (S10-R12). The parts leave the Active tab without a page reload, the mode ends and the selection clears (S2-R12, S2-R14).&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-06b": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": null,
+  "part_of": "S2-06",
+  "title": "Deactivating one part says 1 part selected and 1 part updated",
+  "refs": "SV-10823,SV-10815",
+  "codes": [
+   "S10-R4",
+   "S2-R12",
+   "S2-R14",
+   "UFS-28"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-04-p4-4-confirm.png",
+   "bulk-05-p4-5-result.png"
+  ],
+  "fields": {
+   "title": "Deactivating one part says 1 part selected and 1 part updated",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10823,SV-10815",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create an active part, part A, for this test.</li><li>Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box.</li></ul>",
+   "custom_steps": "<ol><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Deactivate parts.</li><li>Click the part A row.</li><li>Click Deactivate on the dark bar.</li><li>Click Deactivate in the confirmation.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The menu opens.</li></ul><p>Step 2:</p><ul><li>Bulk mode turns on.</li></ul><p>Step 3:</p><ul><li>The bar reads 1 selected.</li></ul><p>Step 4:</p><ul><li>The \"Deactivate parts?\" confirmation opens and reads \"1 part selected.\"</li></ul><p>Step 5:</p><ul><li>A green message reads \"1 part updated.\"</li><li>Part A leaves the Active list without a page reload, and bulk mode ends.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10823 (Story 10, Confirming and Recording a Status Change), story SV-10815 (Story 2, Deactivate Parts in Bulk)</p><ul><li><strong>S10-R4:</strong> &ldquo;Raised from the bulk bar, the confirmation opens with \"{n} parts selected.\", or \"1 part selected.\" for one. Raised from the part dialog, it opens with the part number followed by the description, as they stand in the form, with spaces before and after removed.&rdquo;</li><li><strong>User Feedback Summary:</strong> &ldquo;Bulk change, every part changed | \"{n} parts updated.\" (\"1 part updated.\" for one) | Success toast, fades on its own&rdquo;</li><li><strong>S2-R12:</strong> &ldquo;The deactivated parts leave the Active tab without a page reload.&rdquo;</li><li><strong>S2-R14:</strong> &ldquo;When every ticked part changes, the mode ends and the selection clears.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: boards \"4.4 Confirm\", \"4.5 Done\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-04-p4-4-confirm.png</li><li>bulk-05-p4-5-result.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-07": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": 154760,
+  "part_of": null,
+  "title": "When some parts fail, only the failed parts stay ticked",
+  "refs": "SV-10815,SV-10823",
+  "codes": [
+   "CN-S2-1",
+   "S10-R13",
+   "S10-R13a",
+   "S2-R15",
+   "UFS-30",
+   "UFS-37"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-03-p4-3-ticked.png",
+   "bulk-04-p4-4-confirm.png"
+  ],
+  "fields": {
+   "title": "When some parts fail, only the failed parts stay ticked",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10815,SV-10823",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create two active parts for this test, part A and part B.</li><li>Give parts A and B part numbers that start with the same text, so one search lists all 13.</li><li>Use a desktop browser that can open a second tab on the same ShopView address, signed in as the same user.</li><li>Start in browser tab 1 on the Inventory page, on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Type the shared start of the part numbers in the Search box.</li><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Deactivate parts.</li><li>Click the part A row.</li><li>Click the part B row.</li><li>Open a second browser tab on the same ShopView address.</li><li>In tab 2, click Parts in the top bar.</li><li>In tab 2, click Inventory in the left menu.</li><li>In tab 2, type part B's part number in the Search box.</li><li>In tab 2, click the part B row.</li><li>In tab 2, click Inactive under Part Status.</li><li>In tab 2, click Save.</li><li>In tab 2, click Deactivate in the confirmation.</li><li>Switch back to tab 1 without reloading it.</li><li>In tab 1, click Deactivate on the dark bar.</li><li>In tab 1, click Deactivate in the confirmation.</li><li>Wait 15 seconds.</li><li>Click Close on the red message.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Parts A and B are listed.</li></ul><p>Step 2:</p><ul><li>The menu opens.</li></ul><p>Step 3:</p><ul><li>Bulk mode turns on.</li></ul><p>Step 4:</p><ul><li>The part A row is ticked.</li></ul><p>Step 5:</p><ul><li>The bar reads 2 selected.</li></ul><p>Step 6:</p><ul><li>A second tab opens.</li></ul><p>Step 7:</p><ul><li>Tab 2 shows the Parts left menu.</li></ul><p>Step 8:</p><ul><li>Tab 2 shows the Inventory page.</li></ul><p>Step 9:</p><ul><li>Part B is listed in tab 2.</li></ul><p>Step 10:</p><ul><li>Edit Inventory Part opens for part B in tab 2.</li></ul><p>Step 11:</p><ul><li>Inactive is picked under Part Status.</li></ul><p>Step 12:</p><ul><li>The \"Deactivate part?\" confirmation opens in tab 2.</li></ul><p>Step 13:</p><ul><li>Tab 2 shows \"Part deactivated.\": part B is now inactive.</li></ul><p>Step 14:</p><ul><li>Tab 1 still shows bulk mode with parts A and B ticked.</li></ul><p>Step 15:</p><ul><li>The \"Deactivate parts?\" confirmation reads \"2 parts selected.\"</li></ul><p>Step 16:</p><ul><li>A red message reads \"1 part updated, 1 could not be changed.\" and lists part B with the reason \"Part is already in that state.\"</li><li>Bulk mode stays on and only the failed part stays ticked: the bar reads 1 selected and the part B row is ticked.</li><li>Part A has left the Active list.</li></ul><p>Step 17:</p><ul><li>The red message is still on screen after 15 seconds: it stays until closed.</li></ul><p>Step 18:</p><ul><li>The red message closes.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10815 (Story 2, Deactivate Parts in Bulk), story SV-10823 (Story 10, Confirming and Recording a Status Change)</p><ul><li><strong>S2-R15:</strong> &ldquo;When some parts fail, the mode stays on and the selection keeps only the parts that failed.&rdquo;</li><li><strong>Story 2, context note:</strong> &ldquo;Context note: S2-R15 lets the user retry the failures by pressing the button again, instead of finding them by hand. S2-R5 is the reason the mode exists: the row has one click, and the mode changes what that click means. A single part is deactivated from its part dialog (Story 13).*&rdquo;</li><li><strong>S10-R13:</strong> &ldquo;For each part that failed, the system names the part by its number and gives the reason.&rdquo;</li><li><strong>S10-R13a:</strong> &ldquo;The reasons are \"A core follows its part. Activate or deactivate the part instead.\", \"Part not found.\" and \"Part is already in that state.\"&rdquo;</li><li><strong>User Feedback Summary:</strong> &ldquo;Bulk change, some parts failed | \"{n} parts updated, {m} could not be changed.\" (\"1 part updated, {m} could not be changed.\" for one) | Error toast, stays until closed, lists each failed part and its reason&rdquo;</li><li><strong>User Feedback Summary:</strong> &ldquo;A part already in the requested state | \"Part is already in that state.\" | Listed as the failure reason&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: boards \"4.3 Two rows ticked\", \"4.4 Confirm\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-03-p4-3-ticked.png</li><li>bulk-04-p4-4-confirm.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-08": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": 154762,
+  "part_of": null,
+  "title": "With nothing ticked Deactivate is disabled and its hover text says why",
+  "refs": "SV-10815",
+  "codes": [
+   "S2-N1",
+   "S2-R8",
+   "UFS-32"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-02-p4-2-mode-on.png"
+  ],
+  "fields": {
+   "title": "With nothing ticked Deactivate is disabled and its hover text says why",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10815",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an active part, part A.</li><li>Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box.</li></ul>",
+   "custom_steps": "<ol><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Deactivate parts.</li><li>Hover over Deactivate on the dark bar.</li><li>Click Deactivate.</li><li>Click the part A row.</li><li>Hover over Deactivate.</li><li>Click the part A row again.</li><li>Hover over Deactivate.</li><li>Click the X at the right end of the dark bar.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The menu opens.</li></ul><p>Step 2:</p><ul><li>Bulk mode turns on with nothing ticked.</li></ul><p>Step 3:</p><ul><li>The Deactivate button is shown but dimmed (disabled), and hovering it shows \"Tick the parts to deactivate\".</li></ul><p>Step 4:</p><ul><li>Nothing opens: no \"Deactivate parts?\" confirmation appears.</li></ul><p>Step 5:</p><ul><li>The bar reads 1 selected.</li></ul><p>Step 6:</p><ul><li>With 1 row ticked the button is bright blue (enabled) and no hover text appears.</li></ul><p>Step 7:</p><ul><li>The bar reads 0 selected.</li></ul><p>Step 8:</p><ul><li>The button is disabled again and hovering it shows \"Tick the parts to deactivate\".</li></ul><p>Step 9:</p><ul><li>Bulk mode ends and part A is still listed on the Active tab.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10815 (Story 2, Deactivate Parts in Bulk)</p><ul><li><strong>S2-R8:</strong> &ldquo;The Deactivate button is disabled while no row is ticked. Hovering it then shows \"Tick the parts to deactivate\".&rdquo;</li><li><strong>S2-N1:</strong> &ldquo;With nothing ticked, the Deactivate button is visible but disabled, so the confirmation cannot open.&rdquo;</li><li><strong>User Feedback Summary:</strong> &ldquo;Deactivate hovered with nothing ticked | \"Tick the parts to deactivate\" | Tooltip on the disabled button&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: board \"4.2 Mode on\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-02-p4-2-mode-on.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;A checkbox column appears at the left (S2-R4). The bulk bar spans the list under the tabs, and the search and filter row moves under it (S2-R7). The bar shows the count, \"selected\" and the Deactivate button, disabled until a row is ticked (S2-R7b, S2-R8).&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-09": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": 154763,
+  "part_of": null,
+  "title": "A part on an open work order can still be deactivated",
+  "refs": "SV-10815,SV-10823",
+  "codes": [
+   "S10-R14",
+   "S10-R16",
+   "S10-R17",
+   "S2-E1",
+   "S2-E2",
+   "S2-E3"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-04-p4-4-confirm.png",
+   "bulk-05-p4-5-result.png",
+   "retire-08-p3-8-history-search.png"
+  ],
+  "fields": {
+   "title": "A part on an open work order can still be deactivated",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10815,SV-10823",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create an active tracked part, part A, for this test, with 5 in its bin.</li><li>Create an open work order, work order 1, for this test, with a line that holds part A, quantity 1.</li><li>Write down what part A's row on work order 1 shows: part number, description, quantity, price and total.</li><li>Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box.</li></ul>",
+   "custom_steps": "<ol><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Deactivate parts.</li><li>Click the part A row.</li><li>Click Deactivate on the dark bar.</li><li>Click Deactivate in the confirmation.</li><li>Click Work Orders in the top bar.</li><li>Open work order 1.</li><li>Click Parts in the top bar.</li><li>Click Inventory in the left menu.</li><li>Click the Inactive tab.</li><li>Type part A's part number in the Search box.</li><li>Click the clock icon (Part History) at the left of the part A row.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The menu opens.</li></ul><p>Step 2:</p><ul><li>Bulk mode turns on.</li></ul><p>Step 3:</p><ul><li>The bar reads 1 selected.</li></ul><p>Step 4:</p><ul><li>The \"Deactivate parts?\" confirmation opens.</li></ul><p>Step 5:</p><ul><li>The change goes through even though part A is on an open work order: a green message reads \"1 part updated.\" and part A leaves the Active tab.</li></ul><p>Step 6:</p><ul><li>The work order list opens.</li></ul><p>Step 7:</p><ul><li>Part A is still on its line, exactly as you wrote down: same part number, description, quantity, price and total.</li></ul><p>Step 8:</p><ul><li>The Parts left menu shows Inventory.</li></ul><p>Step 9:</p><ul><li>The Inventory page opens.</li></ul><p>Step 10:</p><ul><li>The Inactive tab is selected.</li></ul><p>Step 11:</p><ul><li>Part A is listed on the Inactive tab.</li></ul><p>Step 12:</p><ul><li>Part History shows a new entry \"Deactivated\", with your name under Staff and today's date and time.</li><li>The entries that were there before are unchanged.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10815 (Story 2, Deactivate Parts in Bulk), story SV-10823 (Story 10, Confirming and Recording a Status Change)</p><ul><li><strong>S2-E1:</strong> &ldquo;If a part being set inactive sits on an open work order, the change still goes through.&rdquo;</li><li><strong>S2-E2:</strong> &ldquo;That part stays on the open work order.&rdquo;</li><li><strong>S2-E3:</strong> &ldquo;The part's work order and invoice history does not change. The status change is recorded in the part's own history (Story 10).&rdquo;</li><li><strong>S10-R14:</strong> &ldquo;Every status change records the user who made it, and the date and time.&rdquo;</li><li><strong>S10-R16:</strong> &ldquo;Every status change is written to the part's Part History as its own entry. A part deactivated and later reactivated keeps both entries, each with its own note.&rdquo;</li><li><strong>S10-R17:</strong> &ldquo;The entry reads \"Deactivated\" or \"Activated\". When the user gave a note it reads \"Deactivated | Reason: {note}\" or \"Activated | Reason: {note}\". With no note it reads \"Deactivated\" or \"Activated\" and nothing more.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: boards \"4.4 Confirm\", \"4.5 Done\", \"3.8 Finding it in Part History\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-04-p4-4-confirm.png</li><li>bulk-05-p4-5-result.png</li><li>retire-08-p3-8-history-search.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-10": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": 425593,
+  "part_of": null,
+  "title": "Turning on Deactivate parts adds a checkbox column at the left edge",
+  "refs": "SV-10815",
+  "codes": [
+   "S2-R4"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-02-p4-2-mode-on.png"
+  ],
+  "fields": {
+   "title": "Turning on Deactivate parts adds a checkbox column at the left edge",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10815",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have at least one active part at the test location.</li><li>Make sure every column is switched on in the columns button.</li><li>Use a desktop browser window about 1280 pixels wide, so the Inventory table scrolls sideways.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Drag the table's sideways scrollbar all the way to the right.</li><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Deactivate parts.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The table shows its right-most columns, and the Description column is out of view.</li></ul><p>Step 2:</p><ul><li>The menu opens.</li></ul><p>Step 3:</p><ul><li>The table scrolls back to its left edge on its own, and a new narrow column with a checkbox on every row, and one in the header, is the first column, in view.</li><li>Side by side with design board 4.2 at 100% zoom, the checkbox column is as narrow as the one drawn there (the PRD sets it at 44 pixels).</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10815 (Story 2, Deactivate Parts in Bulk)</p><ul><li><strong>S2-R4:</strong> &ldquo;Turning the mode on adds a checkbox column, 44px wide, at the left of the table, and scrolls the table back to its left edge so the column is in view.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: board \"4.2 Mode on\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-02-p4-2-mode-on.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-11": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": 425594,
+  "part_of": null,
+  "title": "The header checkbox ticks only the rows loaded so far",
+  "refs": "SV-10815",
+  "codes": [
+   "S2-R6"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-06-p4-6-activate-ticked.png",
+   "bulk-09-p4-10-cap.png"
+  ],
+  "fields": {
+   "title": "The header checkbox ticks only the rows loaded so far",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10815",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create 35 active parts for this test whose part numbers start with the same text, so one search lists all 35.</li><li>Use a browser window no more than 1080 pixels tall, so the 30 rows the list loads first do not all fit on screen.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Type the shared start of the part numbers in the Search box.</li><li>Do not scroll the list.</li><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Deactivate parts.</li><li>Click the checkbox in the header row.</li><li>Click the checkbox in the header row again.</li><li>Click the checkbox in the header row once more.</li><li>Scroll the list to the bottom until no more rows load.</li><li>Click the X at the right end of the dark bar.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The 35 parts are listed (30 loaded until you scroll).</li></ul><p>Step 2:</p><ul><li>The list stays at its first rows.</li></ul><p>Step 3:</p><ul><li>The menu opens.</li></ul><p>Step 4:</p><ul><li>Bulk mode turns on.</li></ul><p>Step 5:</p><ul><li>The bar reads 30 selected: the list loads 30 parts at a time, so only the 30 rows loaded so far are ticked.</li><li>The line under the table reads \"30 records selected.\"</li></ul><p>Step 6:</p><ul><li>The bar reads 0 selected and no row is ticked.</li></ul><p>Step 7:</p><ul><li>The bar reads 30 selected again.</li></ul><p>Step 8:</p><ul><li>The other 5 parts load (35 rows in all) and are not ticked.</li><li>The bar still reads 30 selected, exactly the number of ticked rows (35 loaded − 5 unticked = 30).</li></ul><p>Step 9:</p><ul><li>Bulk mode ends and no part changed status: all 35 are still on the Active tab.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10815 (Story 2, Deactivate Parts in Bulk)</p><ul><li><strong>S2-R6:</strong> &ldquo;The checkbox in the header ticks or clears every row loaded in the list. The list loads 30 parts at a time as the user scrolls, so it ticks only the rows loaded so far. The count in the bar shows exactly how many parts will change.&rdquo;</li></ul><p>From: Tech plan \"Parts Lifecycle Update — Technical Implementation Plan\" (7 Oct 2026, written against PRD v22; re-shared by the QA lead on 27 Oct 2026, unchanged), read 27 Oct 2026</p><ul><li><strong>§3 Technical Decisions, D24:</strong> &ldquo;design boards settle what the PRD is silent on. Show \"N records selected.\" under the table in bulk mode (boards 4.3, 4.9). Keep \"New Inventory Part\" visible in bulk mode (4.3, 4.8).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: boards \"4.6 Inactive tab, Activate parts\", \"4.9 Branch: more than 200 ticked\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-06-p4-6-activate-ticked.png</li><li>bulk-09-p4-10-cap.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-12": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": 425595,
+  "part_of": null,
+  "title": "The bulk bar is near-black in the light theme and white in the dark theme",
+  "refs": "SV-10815",
+  "codes": [
+   "S2-R7a"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-03-p4-3-ticked.png"
+  ],
+  "fields": {
+   "title": "The bulk bar is near-black in the light theme and white in the dark theme",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10815",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an active part, part A.</li><li>Make sure the app is in the Light theme.</li><li>Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box.</li></ul>",
+   "custom_steps": "<ol><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Deactivate parts.</li><li>Click the part A row.</li><li>Click your avatar at the top right.</li><li>Click Dark.</li><li>Click your avatar at the top right again.</li><li>Click Light.</li><li>Click the X at the right end of the dark bar.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The menu opens.</li></ul><p>Step 2:</p><ul><li>Bulk mode turns on.</li></ul><p>Step 3:</p><ul><li>In the light theme the bar is near-black, the count 1 is white, the word \"selected\" is light grey, and the bar's corners are rounded.</li><li>Side by side with design board 4.3 at 100% zoom, the bar's colour and corner rounding match the board (the PRD gives #121926 and 8 pixels).</li></ul><p>Step 4:</p><ul><li>The avatar menu opens with the theme choices.</li></ul><p>Step 5:</p><ul><li>In the dark theme the bar is white and its text is dark, and its corners are still rounded.</li></ul><p>Step 6:</p><ul><li>The avatar menu opens.</li></ul><p>Step 7:</p><ul><li>The bar is near-black again.</li></ul><p>Step 8:</p><ul><li>Bulk mode ends.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10815 (Story 2, Deactivate Parts in Bulk)</p><ul><li><strong>S2-R7a:</strong> &ldquo;In the light theme the bulk bar is near-black (#121926), the count is white, and the word \"selected\" is light grey. In the dark theme the bar is white and its text is dark. Its corners are rounded 8px.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: board \"4.3 Two rows ticked\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-03-p4-3-ticked.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-13": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": 425596,
+  "part_of": null,
+  "title": "More than 200 ticked parts disables Deactivate",
+  "refs": "SV-10815,SV-10823",
+  "codes": [
+   "S10-R4",
+   "S2-R6",
+   "S2-R8a",
+   "UFS-34"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-09-p4-10-cap.png"
+  ],
+  "fields": {
+   "title": "More than 200 ticked parts disables Deactivate",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10815,SV-10823",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create 201 active parts for this test whose part numbers start with the same text, so one search lists all 201.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Type the shared start of the part numbers in the Search box.</li><li>Scroll the list down until no more rows load.</li><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Deactivate parts.</li><li>Click the checkbox in the header row.</li><li>Hover over Deactivate on the dark bar.</li><li>Click Deactivate.</li><li>Click any one ticked row.</li><li>Hover over Deactivate.</li><li>Click Deactivate.</li><li>Click Deactivate in the confirmation.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The first parts are listed.</li></ul><p>Step 2:</p><ul><li>All 201 parts are listed (the list loads 30 at a time, so this takes 7 loads).</li></ul><p>Step 3:</p><ul><li>The menu opens.</li></ul><p>Step 4:</p><ul><li>Bulk mode turns on.</li></ul><p>Step 5:</p><ul><li>The bar reads 201 selected, and the line under the table reads \"201 records selected.\"</li></ul><p>Step 6:</p><ul><li>The Deactivate button is dimmed (disabled) and hovering it shows \"Select 200 parts or fewer.\"</li></ul><p>Step 7:</p><ul><li>Nothing opens.</li></ul><p>Step 8:</p><ul><li>The bar reads 200 selected (201 − 1 = 200).</li></ul><p>Step 9:</p><ul><li>The Deactivate button is bright blue (enabled) and no hover text appears: 200 is allowed, only more than 200 is refused.</li></ul><p>Step 10:</p><ul><li>The \"Deactivate parts?\" confirmation opens and reads \"200 parts selected.\"</li></ul><p>Step 11:</p><ul><li>A green message reads \"200 parts updated.\"</li><li>The 200 parts leave the Active tab without a page reload and bulk mode ends.</li><li>Only the 1 part you unticked is still listed.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10815 (Story 2, Deactivate Parts in Bulk), story SV-10823 (Story 10, Confirming and Recording a Status Change)</p><ul><li><strong>S2-R8a:</strong> &ldquo;One change takes at most 200 parts. With more than 200 rows ticked, the Deactivate button is disabled, and hovering it shows \"Select 200 parts or fewer.\"&rdquo;</li><li><strong>User Feedback Summary:</strong> &ldquo;Deactivate or Activate hovered with more than 200 ticked | \"Select 200 parts or fewer.\" | Tooltip on the disabled button&rdquo;</li><li><strong>S2-R6:</strong> &ldquo;The checkbox in the header ticks or clears every row loaded in the list. The list loads 30 parts at a time as the user scrolls, so it ticks only the rows loaded so far. The count in the bar shows exactly how many parts will change.&rdquo;</li><li><strong>S10-R4:</strong> &ldquo;Raised from the bulk bar, the confirmation opens with \"{n} parts selected.\", or \"1 part selected.\" for one. Raised from the part dialog, it opens with the part number followed by the description, as they stand in the form, with spaces before and after removed.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: board \"4.9 Branch: more than 200 ticked\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-09-p4-10-cap.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;One change takes at most 200 parts. Here the header checkbox ticked the 630 rows loaded so far (S2-R6), so Deactivate is disabled and hovering it shows \"Select 200 parts or fewer.\" (S2-R8a).&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-13b": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": null,
+  "part_of": "S2-13",
+  "title": "More than 200 ticked parts disables Activate on the Inactive tab",
+  "refs": "SV-10816,SV-10815",
+  "codes": [
+   "S2-R8a",
+   "S3-R3",
+   "UFS-34"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-09-p4-10-cap.png",
+   "bulk-06-p4-6-activate-ticked.png"
+  ],
+  "fields": {
+   "title": "More than 200 ticked parts disables Activate on the Inactive tab",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10816,SV-10815",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create 201 parts for this test whose part numbers start with the same text, so one search lists all 201, and set all 201 inactive.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Inactive tab.</li></ul>",
+   "custom_steps": "<ol><li>Type the shared start of the part numbers in the Search box.</li><li>Scroll the list down until no more rows load.</li><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Activate parts.</li><li>Click the checkbox in the header row.</li><li>Hover over Activate on the dark bar.</li><li>Click any one ticked row.</li><li>Hover over Activate.</li><li>Click the X at the right end of the dark bar.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The first parts are listed.</li></ul><p>Step 2:</p><ul><li>All 201 parts are listed.</li></ul><p>Step 3:</p><ul><li>The menu opens.</li></ul><p>Step 4:</p><ul><li>Bulk mode turns on with an Activate button.</li></ul><p>Step 5:</p><ul><li>The bar reads 201 selected.</li></ul><p>Step 6:</p><ul><li>The Activate button is dimmed (disabled) and hovering it shows \"Select 200 parts or fewer.\"</li></ul><p>Step 7:</p><ul><li>The bar reads 200 selected.</li></ul><p>Step 8:</p><ul><li>The Activate button is bright blue (enabled) and no hover text appears.</li></ul><p>Step 9:</p><ul><li>Bulk mode ends and all 201 parts are still on the Inactive tab.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10816 (Story 3, Activate Parts in Bulk), story SV-10815 (Story 2, Deactivate Parts in Bulk)</p><ul><li><strong>S3-R3:</strong> &ldquo;S2-R3 to S2-R10b, S2-R14 to S2-R17 and S2-N3 apply on the Inactive tab exactly as on the Active tab, with \"deactivate\" read as \"activate\". The disabled button's hover text is \"Tick the parts to activate\".&rdquo;</li><li><strong>S2-R8a:</strong> &ldquo;One change takes at most 200 parts. With more than 200 rows ticked, the Deactivate button is disabled, and hovering it shows \"Select 200 parts or fewer.\"&rdquo;</li><li><strong>User Feedback Summary:</strong> &ldquo;Deactivate or Activate hovered with more than 200 ticked | \"Select 200 parts or fewer.\" | Tooltip on the disabled button&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: boards \"4.9 Branch: more than 200 ticked\", \"4.6 Inactive tab, Activate parts\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-09-p4-10-cap.png</li><li>bulk-06-p4-6-activate-ticked.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-14": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": 425597,
+  "part_of": null,
+  "title": "Search, filters, sorting and scrolling keep working in bulk mode",
+  "refs": "SV-10815",
+  "codes": [
+   "S2-R10",
+   "S2-R6"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-02-p4-2-mode-on.png",
+   "bulk-03-p4-3-ticked.png"
+  ],
+  "fields": {
+   "title": "Search, filters, sorting and scrolling keep working in bulk mode",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10815",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have three active parts: part A and part C in category A, and part B in category B.</li><li>Give parts A, B and C part numbers that start with the same text, so one search lists them, and descriptions that run A to Z in the order part A, part B, part C.</li><li>Make sure the test location has more than 30 active parts, so the list loads more rows as you scroll.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Deactivate parts.</li><li>Type the shared start of the part numbers in the Search box.</li><li>Pick category A in the Category filter.</li><li>Pick All categories in the Category filter.</li><li>Click the Description column heading.</li><li>Click the Description column heading again.</li><li>Clear the Search box.</li><li>Scroll the list to the bottom.</li><li>Click the X at the right end of the dark bar.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The menu opens.</li></ul><p>Step 2:</p><ul><li>Bulk mode turns on.</li></ul><p>Step 3:</p><ul><li>The search works with the bar still on screen: parts A, B and C are listed, each with a checkbox.</li></ul><p>Step 4:</p><ul><li>The filter works: only parts A and C are listed.</li></ul><p>Step 5:</p><ul><li>All three are listed again.</li></ul><p>Step 6:</p><ul><li>The rows are ordered by Description: part A, part B, part C, or the other way round.</li></ul><p>Step 7:</p><ul><li>The order reverses.</li></ul><p>Step 8:</p><ul><li>The list shows the location's other active parts too, each with a checkbox.</li></ul><p>Step 9:</p><ul><li>More rows load as you scroll (30 at a time), each with a checkbox, and the bar stays on screen.</li></ul><p>Step 10:</p><ul><li>Bulk mode ends and no part changed status.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10815 (Story 2, Deactivate Parts in Bulk)</p><ul><li><strong>S2-R10:</strong> &ldquo;Search, the filter bar, sorting and paging keep working while the mode is on, as they do in Cycle count.&rdquo;</li><li><strong>S2-R6:</strong> &ldquo;The checkbox in the header ticks or clears every row loaded in the list. The list loads 30 parts at a time as the user scrolls, so it ticks only the rows loaded so far. The count in the bar shows exactly how many parts will change.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: boards \"4.2 Mode on\", \"4.3 Two rows ticked\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-02-p4-2-mode-on.png</li><li>bulk-03-p4-3-ticked.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-15": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": 425598,
+  "part_of": null,
+  "title": "Changing the search or a filter clears the ticks but sorting keeps them",
+  "refs": "SV-10815",
+  "codes": [
+   "S2-R10a"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-03-p4-3-ticked.png"
+  ],
+  "fields": {
+   "title": "Changing the search or a filter clears the ticks but sorting keeps them",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10815",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have three active parts: part A and part B in category A, and part C in category B.</li><li>Give parts A, B and C part numbers that start with the same text, so one search lists all 3.</li><li>Use a longer search text that still matches all three part numbers.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Type the shared start of the part numbers in the Search box.</li><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Deactivate parts.</li><li>Click the part A row.</li><li>Click the part B row.</li><li>Click the Description column heading.</li><li>Click the Description column heading again.</li><li>Replace the search text with the longer search text.</li><li>Click the part A row.</li><li>Click the part B row.</li><li>Pick category A in the Category filter.</li><li>Click the X at the right end of the dark bar.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Parts A, B and C are listed.</li></ul><p>Step 2:</p><ul><li>The menu opens.</li></ul><p>Step 3:</p><ul><li>Bulk mode turns on.</li></ul><p>Step 4:</p><ul><li>The part A row is ticked.</li></ul><p>Step 5:</p><ul><li>The bar reads 2 selected.</li></ul><p>Step 6:</p><ul><li>The order of the rows changes, and parts A and B stay ticked: the bar still reads 2 selected.</li></ul><p>Step 7:</p><ul><li>The order reverses, and the bar still reads 2 selected.</li></ul><p>Step 8:</p><ul><li>Parts A, B and C are still listed, but the ticks are cleared: no row is ticked and the bar reads 0 selected.</li></ul><p>Step 9:</p><ul><li>The part A row is ticked.</li></ul><p>Step 10:</p><ul><li>The bar reads 2 selected again.</li></ul><p>Step 11:</p><ul><li>Only parts A and B are listed, and the ticks are cleared: the bar reads 0 selected.</li></ul><p>Step 12:</p><ul><li>Bulk mode ends and no part changed status.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10815 (Story 2, Deactivate Parts in Bulk)</p><ul><li><strong>S2-R10a:</strong> &ldquo;Changing the search term or a filter clears the ticks, so the user only ever changes parts they can see. Sorting keeps them.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: board \"4.3 Two rows ticked\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-03-p4-3-ticked.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-16": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": 425599,
+  "part_of": null,
+  "title": "In bulk mode the actions menu offers only Export",
+  "refs": "SV-10815",
+  "codes": [
+   "S2-E4",
+   "S2-R10b"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-08-p4-9-menu-in-mode.png"
+  ],
+  "fields": {
+   "title": "In bulk mode the actions menu offers only Export",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10815",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have at least one active part at the test location, so Export has a part to export.</li><li>Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Deactivate parts.</li><li>Click the three-dot actions button (⋮).</li><li>Click Export.</li><li>Click the X at the right end of the dark bar.</li><li>Click the three-dot actions button (⋮).</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The menu opens.</li></ul><p>Step 2:</p><ul><li>Bulk mode turns on.</li></ul><p>Step 3:</p><ul><li>The menu holds a single entry, \"Export\".</li><li>\"Cycle count\" and \"Deactivate parts\" are not offered.</li></ul><p>Step 4:</p><ul><li>A file downloads, and the dark bar is still shown: bulk mode stays on.</li></ul><p>Step 5:</p><ul><li>Bulk mode ends.</li></ul><p>Step 6:</p><ul><li>With bulk mode ended, the menu again lists \"Cycle count\", \"Deactivate parts\" and \"Export\".</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10815 (Story 2, Deactivate Parts in Bulk)</p><ul><li><strong>S2-R10b:</strong> &ldquo;While the mode is on, the actions menu offers only Export. Cycle count and the bulk entry come back when the mode ends.&rdquo;</li><li><strong>S2-E4:</strong> &ldquo;Cycle count and bulk status mode cannot both be on. While Cycle count runs, the actions menu is replaced by the count controls, so the bulk status entry cannot be reached until the count is saved or discarded. While bulk status mode is on, the menu does not offer Cycle count (S2-R10b).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: board \"4.8 Branch: the menu while the mode is on\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-08-p4-9-menu-in-mode.png</li></ul><p>The design's own words:</p><ul><li>&ldquo;While bulk status mode is on, the actions menu offers only Export. Cycle count and the bulk entry come back when the mode ends (S2-R10b, S2-E4).&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-17": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": 425600,
+  "part_of": null,
+  "title": "Bulk mode cannot be turned on while a cycle count is running",
+  "refs": "SV-10815",
+  "codes": [
+   "S2-E4"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "tracking-06-p5-7-cycle-count-untracked.png",
+   "bulk-01-p4-1-actions-menu.png"
+  ],
+  "fields": {
+   "title": "Bulk mode cannot be turned on while a cycle count is running",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10815",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create an active tracked part, part A, for this test, with 5 in its bin.</li><li>Make sure no Cycle count is running on the Inventory list.</li><li>Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box.</li></ul>",
+   "custom_steps": "<ol><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Cycle count.</li><li>Click Cancel in the count toolbar.</li><li>Click the three-dot actions button (⋮).</li><li>Click Cycle count.</li><li>Type 5 in part A's Count box.</li><li>Click Save in the count toolbar.</li><li>Click the three-dot actions button (⋮).</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The menu opens.</li></ul><p>Step 2:</p><ul><li>The count starts: the toolbar shows the count controls (the printer icon, Save, Cancel and \"Count changes available\") and part A has a Count box.</li><li>The three-dot actions button is not shown while the count runs, so Deactivate parts cannot be reached, and no checkbox column appears.</li></ul><p>Step 3:</p><ul><li>The count ends without saving and the three-dot actions button is back.</li></ul><p>Step 4:</p><ul><li>The menu lists \"Cycle count\", \"Deactivate parts\" and \"Export\".</li></ul><p>Step 5:</p><ul><li>The count starts again and the three-dot actions button is not shown.</li></ul><p>Step 6:</p><ul><li>Part A's Count box shows 5.</li></ul><p>Step 7:</p><ul><li>The count is saved and ends; part A still shows 5 Available.</li></ul><p>Step 8:</p><ul><li>The menu is back with \"Cycle count\", \"Deactivate parts\" and \"Export\".</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10815 (Story 2, Deactivate Parts in Bulk)</p><ul><li><strong>S2-E4:</strong> &ldquo;Cycle count and bulk status mode cannot both be on. While Cycle count runs, the actions menu is replaced by the count controls, so the bulk status entry cannot be reached until the count is saved or discarded. While bulk status mode is on, the menu does not offer Cycle count (S2-R10b).&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: boards \"5.7 Cycle count leaves it out\", \"4.1 The actions menu\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>tracking-06-p5-7-cycle-count-untracked.png</li><li>bulk-01-p4-1-actions-menu.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-18": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": 425601,
+  "part_of": null,
+  "title": "When every ticked part fails, nothing changes and the ticks stay",
+  "refs": "SV-10815,SV-10823",
+  "codes": [
+   "S10-N2",
+   "S10-R13a",
+   "S2-R15",
+   "UFS-31",
+   "UFS-37"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [
+   "bulk-04-p4-4-confirm.png"
+  ],
+  "fields": {
+   "title": "When every ticked part fails, nothing changes and the ticks stay",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10815,SV-10823",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create two active parts for this test, part A and part B.</li><li>Give parts A and B part numbers that start with the same text, so one search lists all 13.</li><li>Use a desktop browser that can open a second tab on the same ShopView address, signed in as the same user.</li><li>Start in browser tab 1 on the Inventory page, on the Active tab.</li></ul>",
+   "custom_steps": "<ol><li>Type the shared start of the part numbers in the Search box.</li><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Deactivate parts.</li><li>Click the part A row.</li><li>Click the part B row.</li><li>Open a second browser tab on the same ShopView address.</li><li>In tab 2, click Parts in the top bar.</li><li>In tab 2, click Inventory in the left menu.</li><li>In tab 2, type the shared start of the part numbers in the Search box.</li><li>In tab 2, click the three-dot actions button (⋮).</li><li>In tab 2, click Deactivate parts.</li><li>In tab 2, click the checkbox in the header row.</li><li>In tab 2, click Deactivate on the dark bar.</li><li>In tab 2, click Deactivate in the confirmation.</li><li>Switch back to tab 1 without reloading it.</li><li>In tab 1, click Deactivate on the dark bar.</li><li>In tab 1, click Deactivate in the confirmation.</li><li>Wait 15 seconds.</li><li>Click Close on the red message.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>Parts A and B are listed.</li></ul><p>Step 2:</p><ul><li>The menu opens.</li></ul><p>Step 3:</p><ul><li>Bulk mode turns on.</li></ul><p>Step 4:</p><ul><li>The part A row is ticked.</li></ul><p>Step 5:</p><ul><li>The bar reads 2 selected.</li></ul><p>Step 6:</p><ul><li>A second tab opens.</li></ul><p>Step 7:</p><ul><li>Tab 2 shows the Parts left menu.</li></ul><p>Step 8:</p><ul><li>Tab 2 shows the Inventory page.</li></ul><p>Step 9:</p><ul><li>Parts A and B are listed in tab 2.</li></ul><p>Step 10:</p><ul><li>The menu opens in tab 2.</li></ul><p>Step 11:</p><ul><li>Bulk mode turns on in tab 2.</li></ul><p>Step 12:</p><ul><li>Tab 2's bar reads 2 selected.</li></ul><p>Step 13:</p><ul><li>The confirmation opens in tab 2.</li></ul><p>Step 14:</p><ul><li>Tab 2 shows a green message \"2 parts updated.\"</li></ul><p>Step 15:</p><ul><li>Tab 1 still shows bulk mode with parts A and B ticked.</li></ul><p>Step 16:</p><ul><li>The \"Deactivate parts?\" confirmation opens in tab 1.</li></ul><p>Step 17:</p><ul><li>A red message reads \"No parts were changed.\" and lists parts A and B, each with the reason \"Part is already in that state.\"</li><li>The list stays on screen, bulk mode stays on, and both rows stay ticked: the bar reads 2 selected, so the change could be tried again.</li></ul><p>Step 18:</p><ul><li>The red message is still on screen after 15 seconds: it stays until closed.</li></ul><p>Step 19:</p><ul><li>The red message closes.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10815 (Story 2, Deactivate Parts in Bulk), story SV-10823 (Story 10, Confirming and Recording a Status Change)</p><ul><li><strong>S2-R15:</strong> &ldquo;When some parts fail, the mode stays on and the selection keeps only the parts that failed.&rdquo;</li><li><strong>S10-N2:</strong> &ldquo;If every part in a bulk change fails, the list stays on screen and the selection is kept, so the user can retry.&rdquo;</li><li><strong>S10-R13a:</strong> &ldquo;The reasons are \"A core follows its part. Activate or deactivate the part instead.\", \"Part not found.\" and \"Part is already in that state.\"&rdquo;</li><li><strong>User Feedback Summary:</strong> &ldquo;Bulk change, every part failed | \"No parts were changed.\" | Error toast, stays until closed, lists each failed part and its reason&rdquo;</li><li><strong>User Feedback Summary:</strong> &ldquo;A part already in the requested state | \"Part is already in that state.\" | Listed as the failure reason&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: board \"4.4 Confirm\". Compare the screen with the pictures below; the expected results above come from the quotes above.</p><p>Design pictures attached to this case:</p><ul><li>bulk-04-p4-4-confirm.png</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-19": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": 425603,
+  "part_of": null,
+  "title": "Deactivating a part that has a core charge also deactivates its core",
+  "refs": "SV-10815,SV-10823,SV-10818,SV-10822",
+  "codes": [
+   "FO-10",
+   "S10-R12a",
+   "S2-R17",
+   "S5-E3",
+   "S9-R18"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [],
+  "fields": {
+   "title": "Deactivating a part that has a core charge also deactivates its core",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10815,SV-10823,SV-10818,SV-10822",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create an active part, part A, for this test, with a Core Charge above $0, so it has a core.</li><li>Make sure the Search box in the top bar is the global search, which lists inventory parts.</li><li>Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box.</li></ul>",
+   "custom_steps": "<ol><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Deactivate parts.</li><li>Click the part A row.</li><li>Click Deactivate on the dark bar.</li><li>Click Deactivate in the confirmation.</li><li>Click the Search box in the top bar.</li><li>Type Core for followed by part A's description.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The menu opens.</li></ul><p>Step 2:</p><ul><li>Bulk mode turns on and one row is listed, for part A: its core has no row of its own, so it cannot be ticked.</li></ul><p>Step 3:</p><ul><li>The bar reads 1 selected.</li></ul><p>Step 4:</p><ul><li>The \"Deactivate parts?\" confirmation opens.</li></ul><p>Step 5:</p><ul><li>A green message reads \"1 part updated.\": only the part you ticked is counted, not its core, and no failure is listed.</li><li>Part A leaves the Active tab.</li></ul><p>Step 6:</p><ul><li>The global search opens.</li></ul><p>Step 7:</p><ul><li>The result for part A's core (\"Core for\" and part A's description) carries the grey \"Inactive\" tag: the core became inactive together with part A.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10815 (Story 2, Deactivate Parts in Bulk), story SV-10823 (Story 10, Confirming and Recording a Status Change), story SV-10818 (Story 5, Change Tracking on an Existing Part), story SV-10822 (Story 9, Inactive Parts Cannot Be Added to New Work)</p><ul><li><strong>S2-R17:</strong> &ldquo;A part's core becomes inactive together with the part, in the same change.&rdquo;</li><li><strong>S10-R12a:</strong> &ldquo;The counts include only the parts the user selected. A core that changes with its part is not counted, so changing 2 parts that both have a core reads \"2 parts updated.\"&rdquo;</li><li><strong>S5-E3:</strong> &ldquo;A core has no row of its own on the Inventory list, in Export or on the Part Library list, so it cannot be ticked for a bulk change. Its name (S13-R15) and its history show on the core's own Part History page. The core reason in S10-R13a applies when a core reaches a status change by any other route.&rdquo;</li><li><strong>Feature Overview, Core functionality:</strong> &ldquo;A core always has the same active state and the same tracking state as the part it belongs to.&rdquo;</li><li><strong>S9-R18:</strong> &ldquo;Global search lists inactive parts at the current location. Each carries the grey \"Inactive\" tag.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: no board draws a core; the expected results above come from the quotes above.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-19b": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": null,
+  "part_of": "S2-19",
+  "title": "Activating a part that has a core charge also activates its core",
+  "refs": "SV-10816,SV-10815,SV-10823,SV-10822",
+  "codes": [
+   "FO-10",
+   "S10-R12a",
+   "S2-R17",
+   "S3-R3",
+   "S9-R18"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [],
+  "fields": {
+   "title": "Activating a part that has a core charge also activates its core",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10816,SV-10815,SV-10823,SV-10822",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create a part, part A, for this test, with a Core Charge above $0, so it has a core, and set it inactive.</li><li>Make sure the Search box in the top bar is the global search, which lists inventory parts.</li><li>Start on the Inventory page, on the Inactive tab, with part A's part number typed in the Search box.</li></ul>",
+   "custom_steps": "<ol><li>Click the three-dot actions button (⋮) in the toolbar, to the left of New Inventory Part.</li><li>Click Activate parts.</li><li>Click the part A row.</li><li>Click Activate on the dark bar.</li><li>Click Activate in the confirmation.</li><li>Click the Search box in the top bar.</li><li>Type Core for followed by part A's description.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The menu opens.</li></ul><p>Step 2:</p><ul><li>Bulk mode turns on and one row is listed, for part A, with no separate row for its core.</li></ul><p>Step 3:</p><ul><li>The bar reads 1 selected.</li></ul><p>Step 4:</p><ul><li>The \"Activate parts?\" confirmation opens.</li></ul><p>Step 5:</p><ul><li>A green message reads \"1 part updated.\" and part A leaves the Inactive tab.</li></ul><p>Step 6:</p><ul><li>The global search opens.</li></ul><p>Step 7:</p><ul><li>The result for part A's core no longer carries the grey \"Inactive\" tag: the core became active together with part A.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10816 (Story 3, Activate Parts in Bulk), story SV-10815 (Story 2, Deactivate Parts in Bulk), story SV-10823 (Story 10, Confirming and Recording a Status Change), story SV-10822 (Story 9, Inactive Parts Cannot Be Added to New Work)</p><ul><li><strong>S3-R3:</strong> &ldquo;S2-R3 to S2-R10b, S2-R14 to S2-R17 and S2-N3 apply on the Inactive tab exactly as on the Active tab, with \"deactivate\" read as \"activate\". The disabled button's hover text is \"Tick the parts to activate\".&rdquo;</li><li><strong>S2-R17:</strong> &ldquo;A part's core becomes inactive together with the part, in the same change.&rdquo;</li><li><strong>S10-R12a:</strong> &ldquo;The counts include only the parts the user selected. A core that changes with its part is not counted, so changing 2 parts that both have a core reads \"2 parts updated.\"&rdquo;</li><li><strong>Feature Overview, Core functionality:</strong> &ldquo;A core always has the same active state and the same tracking state as the part it belongs to.&rdquo;</li><li><strong>S9-R18:</strong> &ldquo;Global search lists inactive parts at the current location. Each carries the grey \"Inactive\" tag.&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: no board draws a core; the expected results above come from the quotes above.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ },
+ "S2-20": {
+  "sec": "S2",
+  "section_id": 20469,
+  "case_id": 425604,
+  "part_of": null,
+  "title": "The work order lines bulk bar is unchanged and its X shows Clear selection",
+  "refs": "SV-10815",
+  "codes": [
+   "S2-R9",
+   "TERM-5"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified (no build yet)",
+  "held": false,
+  "pictures": [],
+  "fields": {
+   "title": "The work order lines bulk bar is unchanged and its X shows Clear selection",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10815",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create an open work order, work order 1, for this test, with two lines.</li><li>Have screenshots of the work order lines bulk bar from the build before this one, in the light and the dark theme, so the bar can be compared.</li><li>Make sure the app is in the Light theme.</li><li>Start on work order 1, on its Lines tab.</li></ul>",
+   "custom_steps": "<ol><li>Tick the checkbox of the first line.</li><li>Tick the checkbox of the second line.</li><li>Hover over the X at the right end of the bar.</li><li>Click your avatar at the top right.</li><li>Click Dark.</li><li>Click your avatar at the top right again.</li><li>Click Light.</li><li>Click the X at the right end of the bar.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>A bulk bar appears, with a round badge reading 1.</li></ul><p>Step 2:</p><ul><li>The badge reads 2, followed by \"selected\".</li><li>The bar's colours, buttons and their order match the light-theme screenshot from the earlier build.</li></ul><p>Step 3:</p><ul><li>A hover text reading \"Clear selection\" appears (this hover text is new on this build).</li></ul><p>Step 4:</p><ul><li>The avatar menu opens.</li></ul><p>Step 5:</p><ul><li>The bar's colours and text match the dark-theme screenshot from the earlier build.</li></ul><p>Step 6:</p><ul><li>The avatar menu opens.</li></ul><p>Step 7:</p><ul><li>The bar is back in the light theme.</li></ul><p>Step 8:</p><ul><li>The bar disappears and both lines are unticked.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Parts Lifecycle Update\", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-10647, story SV-10815 (Story 2, Deactivate Parts in Bulk)</p><ul><li><strong>S2-R9:</strong> &ldquo;An X button sits at the right end of the bar. Hovering it shows \"Clear selection\", which is also its screen reader label.&rdquo;</li><li><strong>Terminology:</strong> &ldquo;Bulk bar → The dark bar across the Inventory list, under the Active and Inactive tabs, while bulk status mode is on. It is the same bar work order lines show for ticked lines.&rdquo;</li></ul><p>From: Tech plan \"Parts Lifecycle Update — Technical Implementation Plan\" (7 Oct 2026, written against PRD v22; re-shared by the QA lead on 27 Oct 2026, unchanged), read 27 Oct 2026</p><ul><li><strong>§6 Phase 1, Verification (browser-walk):</strong> &ldquo;a work order with ticked lines, light and dark theme. The bulk bar must look and behave exactly as before, except that hovering the X now shows \"Clear selection\".&rdquo;</li></ul><p>The build is not yet available to check this case against.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"Parts Lifecycle Update\" (https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE), 13 Oct 2026 copy, unchanged when re-read on 27 Oct 2026: no board draws the work order lines bar; the expected results above come from the quotes above.</p><p></p><p>AUTOMATION: HOLD - not yet build-verified (no build yet)</p>"
+  }
+ }
+}
