@@ -1,0 +1,27 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const ENV=process.argv[2]||'branch'; const M=JSON.parse(fs.readFileSync(`../data/matrix-${ENV}.json`)); const out=[];
+const s=await open({env:ENV==='branch'?'branch':'staging',ticket:'11565',cookies:JSON.parse(fs.readFileSync('/tmp/qa11685/cookies.json')),quick:'admin',dir:'/tmp/qa21',vp:{width:1400,height:900}});
+const J=(p,b)=>s.api(p,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)});
+const rec=(tag,r)=>{const b=r.json??r.text; console.log(`${tag} -> ${r.status} ${JSON.stringify(b).slice(0,160)}`); out.push({tag,status:r.status,body:b});};
+const U='11111111-2222-4333-8444-555555555555';
+// state proof
+const depts=(await s.api('/api/departments')).json.data.collection; console.log('deleted dept present?',depts.some(d=>d.id===M.deleted_dept));
+const w1=(await s.api('/api/work-orders/view/'+M.W1.w)); const lines=JSON.stringify(w1.json?.data?.work_order?.lines||w1.json); console.log('W1',w1.status,'l1 present',lines.includes(M.W1.l1),'l2 present',lines.includes(M.W1.l2));
+rec('W2 view (deleted WO)',await s.api('/api/work-orders/view/'+M.W2.w));
+const me=(await s.api('/api/auth/me')).json; const tech=ENV==='branch'?'7f85bc58-9ff5-4b50-b3f3-d85821069066':(me?.data?.staff?.id||me?.data?.staff_id);
+const cnt=async()=>{const r=await s.api('/api/technician-tasks/list?page=1&rowsPerPage=1'); return r.json?.data?.total??r.json?.data?.pagination?.total??JSON.stringify(r.json).slice(0,80);};
+const before=await cnt(); console.log('entries before',before);
+let t=20; const tm=()=>{t+=10; return {start_date:`26/10/2026 ${String(Math.floor(t/60)+11).padStart(2,'0')}:${String(t%60).padStart(2,'0')}`,end_date:`26/10/2026 ${String(Math.floor(t/60)+11).padStart(2,'0')}:${String(t%60+5).padStart(2,'0')}`};};
+const base=()=>({...tm(),tech_assigned_id:tech,resolve_overlaps:true});
+rec('C1 create, unknown department',await J('/api/technician-tasks/create',{...base(),department_id:U}));
+rec('C2 create, deleted department',await J('/api/technician-tasks/create',{...base(),department_id:M.deleted_dept}));
+rec('C3 create, unknown work order',await J('/api/technician-tasks/create',{...base(),work_order_id:U,line_id:M.W1.l1}));
+rec('C4 create, unknown line',await J('/api/technician-tasks/create',{...base(),work_order_id:M.W1.w,line_id:U}));
+rec('C5 create, deleted line',await J('/api/technician-tasks/create',{...base(),work_order_id:M.W1.w,line_id:M.W1.l2}));
+rec('C6 create, deleted work order',await J('/api/technician-tasks/create',{...base(),work_order_id:M.W2.w,line_id:M.W2.l1}));
+const mid=await cnt(); console.log('entries after refused creates',mid);
+rec('K1 department clock-in, unknown department',await J('/api/technician-tasks/department-clock-in',{department_id:U}));
+rec('K2 department clock-in, deleted department',await J('/api/technician-tasks/department-clock-in',{department_id:M.deleted_dept}));
+console.log('entries after refused clock-ins',await cnt());
+fs.writeFileSync(`../data/k1-${ENV}.json`,JSON.stringify({before,mid,out},null,1));
+await s.browser.close(); process.exit(0);

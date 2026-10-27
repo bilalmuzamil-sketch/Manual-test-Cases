@@ -1,0 +1,105 @@
+{
+ "before": "{\"data\":{\"collection\":[{\"id\":\"966a64ff-0470-439b-a11e-56d723c0f4bf\",\"task_id\":\"6",
+ "mid": "{\"data\":{\"collection\":[{\"id\":\"966a64ff-0470-439b-a11e-56d723c0f4bf\",\"task_id\":\"6",
+ "out": [
+  {
+   "tag": "W2 view (deleted WO)",
+   "status": 400,
+   "body": {
+    "errors": [
+     {
+      "workOrderId": "Not found"
+     }
+    ]
+   }
+  },
+  {
+   "tag": "C1 create, unknown department",
+   "status": 404,
+   "body": {
+    "errors": [
+     {
+      "error": "'Department' was not found."
+     }
+    ]
+   }
+  },
+  {
+   "tag": "C2 create, deleted department",
+   "status": 404,
+   "body": {
+    "errors": [
+     {
+      "error": "'Department' was not found."
+     }
+    ]
+   }
+  },
+  {
+   "tag": "C3 create, unknown work order",
+   "status": 404,
+   "body": {
+    "errors": [
+     {
+      "error": "'Work Order' was not found."
+     }
+    ]
+   }
+  },
+  {
+   "tag": "C4 create, unknown line",
+   "status": 404,
+   "body": {
+    "errors": [
+     {
+      "error": "'Line' was not found."
+     }
+    ]
+   }
+  },
+  {
+   "tag": "C5 create, deleted line",
+   "status": 404,
+   "body": {
+    "errors": [
+     {
+      "error": "'Line' was not found."
+     }
+    ]
+   }
+  },
+  {
+   "tag": "C6 create, deleted work order",
+   "status": 404,
+   "body": {
+    "errors": [
+     {
+      "error": "'Work Order' was not found."
+     }
+    ]
+   }
+  },
+  {
+   "tag": "K1 department clock-in, unknown department",
+   "status": 404,
+   "body": {
+    "errors": [
+     {
+      "error": "'Department' was not found."
+     }
+    ]
+   }
+  },
+  {
+   "tag": "K2 department clock-in, deleted department",
+   "status": 404,
+   "body": {
+    "errors": [
+     {
+      "error": "'Department' was not found."
+     }
+    ]
+   }
+  }
+ ]
+}

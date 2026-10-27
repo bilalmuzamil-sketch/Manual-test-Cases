@@ -1,0 +1,10 @@
+import {sess} from './lib.mjs';
+const s=await sess(); const D='70d5d069-83cf-4c94-9b13-41b967c4afe9';
+s.L('current before',await s.api('/api/technician-tasks/my-current-task'));
+const r=await s.J('/api/technician-tasks/department-clock-in',{department_id:D}); s.L('K3 clock-in Administration',r);
+const cur=await s.api('/api/technician-tasks/my-current-task'); s.L('current after',cur);
+const tid=r.json?.data?.task_id||r.json?.data?.id||cur.json?.data?.id||cur.json?.data?.task_id;
+await s.page.waitForTimeout(61000);
+s.L('K4 clock-out',await s.J('/api/technician-tasks/department-clock-out',{task_id:tid,description:'ZZAUTOTEST SV-11565 clock-in check'}));
+s.L('current end',await s.api('/api/technician-tasks/my-current-task'));
+await s.browser.close(); process.exit(0);

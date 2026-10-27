@@ -66,3 +66,39 @@ it covered only by his automated test. Ticket TESTING QA → **Blocked**. Mentio
   work order and one line on sv11565 and name them; said we'll run create / change / move / clock-in against them and also
   finish create + clock-in with unknown/deleted references. Ticket stays **Blocked**.
 - Needed: fresh `.qa.shopview.com` cookies; Slavcho's prepared records.
+
+## 27 Oct ~09:05 Edmonton — create + department clock-in with unknown / deleted references (the gap from 79555)
+Fresh cookies arrived. Build `v26.43.1-baa44e3` unchanged. Request shapes captured from the screen first (Rule 88):
+Reports → Timesheet Activities → **New** → "New Timesheet" dialog (Select Staff / Select Department / Work Order / Line /
+Start / End / Create; dates typed as "Oct 26, 2026 08:10 AM", future dates refused with "Start date cannot be set in the
+future"; the admin's department list offers only "Administration").
+- Department entry: `POST /api/technician-tasks/create {start_date, end_date, tech_assigned_id, department_id,
+  resolve_overlaps:true}` → **201** (entry 71d8f5fc, Administration, 26 Oct 08:10–08:15).
+- Work-order entry: same + `work_order_id, line_id` (no department) → **201** (entry a5e9eaf2, S11565-17582 line 1 "Service -
+  Full Grease Service", 09:10–09:15).
+
+State proven before use: deleted department fc5d1ccf absent from the department list; W1 (S11565-17582) Lines tab carries
+line l1 fca24719 and NOT l2 5ebd88d1 (deleted on screen in the earlier pass); W2 ab41359d → 400 "Not found".
+
+| # | Request | sv11565 (fix) | staging (before) |
+|---|---|---|---|
+| C1 | create, unknown department | 404 'Department' was not found. | 404 same |
+| C2 | create, deleted department | 404 'Department' was not found. | 404 same |
+| C3 | create, unknown work order | 404 'Work Order' was not found. | 404 same |
+| C4 | create, unknown line | 404 'Line' was not found. | 404 same |
+| C5 | create, deleted line | 404 'Line' was not found. | not sent (staging l2 delete had failed — the line may still exist) |
+| C6 | create, deleted work order | 404 'Work Order' was not found. | 404 same |
+| K1 | department clock-in, unknown department | 404 'Department' was not found. | not sent — staging Admin already clocked in (S-38095 since 26 Oct 22:00); not clocked out because it may be another tester's live session |
+| K2 | department clock-in, deleted department | 404 'Department' was not found. | not sent (same) |
+| K3 | department clock-in, Administration (regression) | 201; header shows running timer "Administra.."; Clock Out from the header dialog "Stop working on Administration" → `department-clock-out {task_id, description}` 201 | — |
+
+Nothing saved by the refused creates: on Timesheet Activities the only Admin entries for 26 Oct are the six earlier
+ZZAUTOTEST ones plus the two created on screen today (08:10, 09:10); none at 11:30–12:20 (the times the refused requests
+used). Evidence: ev/n2-after.png, ev/n3-after.png, ev/k4-w1-lines.png, ev/k4-timesheet-after.png, ev/k7-header-clocked-in.png;
+data/k1-branch.json, data/k8-staging.json. (My own first clock-out attempt by API returned 400 "ID is missing." because my
+script read the wrong field from the clock-in response and sent an empty id — not a product fault; the screen's identical
+request succeeded.)
+Staging note: a first staging run used throwaway staff Wes Hover and got "'Staff' was not found." before any reference check
+— not comparable, discarded; re-run with Admin's own staff id (above).
+**Still open:** the ticket's own case — a department / work order / line whose organization is empty — waits on Slavcho
+naming the records he empties on sv11565 (79555). Ticket stays Blocked; nothing posted.

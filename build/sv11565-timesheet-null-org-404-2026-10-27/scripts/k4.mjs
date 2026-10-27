@@ -1,0 +1,12 @@
+import {sess} from './lib.mjs'; import fs from 'fs';
+const s=await sess('admin',{vp:{width:1700,height:1300}}); const M=JSON.parse(fs.readFileSync('../data/matrix-branch.json')); const P=s.page;
+await s.go(`/workorders/${M.W1.w}/lines`); await P.waitForTimeout(4500);
+const html=await P.content(); console.log('lines tab: l1',html.includes(M.W1.l1),'l2',html.includes(M.W1.l2));
+console.log('line names',JSON.stringify(await P.evaluate(()=>document.body.innerText.match(/\n\d+ - [^\n]+/g))));
+await P.screenshot({path:'../ev/k4-w1-lines.png'});
+await s.go('/reports/punch-clock-activities'); await P.waitForTimeout(4000);
+const rows=await P.evaluate(()=>[...document.querySelectorAll('tbody tr')].map(r=>r.innerText.replace(/\s+/g,' ').trim()));
+const mine=rows.filter(r=>/Oct 26 2026 Admin ShopView/.test(r)); console.log('Admin 26 Oct rows',mine.length); mine.forEach(r=>console.log(' ',r.slice(0,110)));
+console.log('any 11:xx/12:xx AM-PM row?',mine.some(r=>/ (11|12):\d\d (AM|PM) /.test(r)));
+await P.screenshot({path:'../ev/k4-timesheet-after.png',fullPage:true});
+await s.browser.close(); process.exit(0);
