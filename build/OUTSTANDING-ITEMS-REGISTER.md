@@ -60,7 +60,7 @@ else owes).
 ## 2026-10-27, ~11:30 UTC. **THREE TICKETS BLOCKED ON YOUR INSTRUCTION, EACH WITH A QUESTION TO ITS DEVELOPER.**
 | Ticket | Waiting on | What it blocks | Since |
 |---|---|---|---|
-| SV-11253 (comment 79547, Blocked) | Slavcho Mitrov — why the **Move labor** permission does not stay on for any role on sv11253 (your video attached) | The whole branch test: labor cannot be moved, so the fix cannot be checked. Production repro already done (S2-1763) | 27 Oct |
+| SV-11253 (79547, Slavcho answered 79552, Blocked) | Slavcho / devops — run the Move labor permission commands on sv11253 (he has asked for it); plus fresh `.qa.shopview.com` cookies from you. Then log in again, switch Move labor on for Admin, finish the test | The whole branch test: labor cannot be moved. Production repro already done (S2-1763) | 27 Oct |
 | SV-11565 (79548, Slavcho answered 79553, our reply 79555, Blocked) | Slavcho Mitrov — empty the organization on one test department, one work order and one line on sv11565 and name them (he offered); plus fresh `.qa.shopview.com` cookies from you | The ticket's own failing case, and the create + department clock-in checks (my earlier matrix covered change and move only) | 27 Oct |
 | SV-11685 check 13 (comment 79549, Blocked) | Milomir Kotlajic — a QA branch with QuickBooks connected, or remove the QuickBooks requirement for adding fees/discounts on sv11685 | Check 13 (fee/discount rows under Labor); the other checks are posted in 79544 | 27 Oct |
 | SV-11565 staging side effect (disclosed) | nothing — for your information | Brett Guerra's 28 Jan 2025 timesheet entry (S-4011) now sits on my test work order S2-38096 on staging; times and description restored, its original line no longer exists | 27 Oct |

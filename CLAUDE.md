@@ -5593,8 +5593,13 @@ deliver the 7-tab management report.
     re-read, may it be reported as unavailable** — with screenshots of the role screen both times. A count of a permission
     catalogue, a missing code in an API list, or a 403 is NOT proof on its own. Rule 105 still applies (reset to template
     first when ASSIGNING a role; this rule is about turning on one permission the test needs).
-    **RATIONALE, 2026-10-27 (SV-11253, my miss):** I reported the branch as missing the Move labor permission and the ticket
-    as blocked. The admin role simply had **Move labor** switched off; the QA lead switched it on in one click. Ties to Rules
+    **RATIONALE, 2026-10-27 (SV-11253):** I reported the branch as missing the Move labor permission from a catalogue count,
+    without first opening the role on screen and trying the toggle. The QA lead saw the toggle off on the Admin role and
+    switched it on. Done in the right order, the toggle still came back off — and the developer then confirmed (SV-11253
+    comment 79552) the permission genuinely did not exist on the QA database template (production got it from one-off
+    commands the QA template never ran). **So the conclusion was right but the evidence was not enough to state it; the
+    rule is about the ORDER of checks and the evidence a "not available" claim must carry, not about who was right.** Once
+    proven missing after the role check, say so with the role-screen screenshots and ask the developer. Ties to Rules
     12, 14, 26, 85, 87 and 105.
 
 ## Project purpose (Custom Roles project)

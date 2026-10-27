@@ -48,3 +48,14 @@ S2500-137 open entry (Confirm Overwrite) — test org.
   same on Admin and on a brand-new role.
 - Posted comment **79547** tagging Slavcho Mitrov with the video; ticket moved TESTING QA → **Blocked**. Read back: 5 steps,
   1 video (1280×720), mention resolved.
+
+## 27 Oct — Slavcho's answer (79552)
+"This is the QA environment, not this branch. Move labor has been its own permission since SV-8911. Production got it from
+a one-off set of console commands, which the QA database template never ran. So on sv11253 the permission doesn't exist:
+the toggle saves without an error, but there's nothing to store, and it reads back off. I've asked for the commands to be
+run on sv11253. Once they have been, log out and back in (permissions load at login), switch Move labor on for Admin, and
+the test can continue."
+- Confirms the catalogue finding (59 vs 61). No reply posted (nothing to ask). Next: once the commands run — check
+  `GET /api/fe-permissions` includes `woMoveLabor`, fresh login, switch Move labor on for Admin, re-read the role, then run
+  the move → timesheet move → stray-row check on S11253-17580 + the variants. Blocked now on (1) the commands and (2) fresh
+  `.qa.shopview.com` cookies (sso_required since ~08:38 UTC).
