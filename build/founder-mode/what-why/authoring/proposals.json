@@ -1,0 +1,285 @@
+{
+ "S1-01": {
+  "sec": "S1",
+  "section_id": 20461,
+  "case_id": 154707,
+  "part_of": null,
+  "title": "New Line shows the fields Title and Description with grey question prompts",
+  "refs": "SV-10130",
+  "codes": [
+   "PRE-S1-1",
+   "S1-R1",
+   "S1-R2",
+   "S1-R3",
+   "S1-R5"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [],
+  "fields": {
+   "title": "New Line shows the fields Title and Description with grey question prompts",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10130",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an open work order, work order 1, that is not invoiced, so you can add a line to it.</li><li>Start on work order 1, on its Lines tab.</li></ul>",
+   "custom_steps": "<ol><li>Click New Line.</li><li>Click the Description box.</li><li>Type \"excessive play\".</li><li>Click the Title box.</li><li>Type \"Replace tie rod\".</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The New Line window opens over work order 1, with the cursor already in the first field.</li><li>The first field is labeled exactly \"Title\", with no asterisk, and the label sits at the top of the box.</li><li>The grey prompt \"What are you doing?\" shows inside the Title box, under the label.</li><li>The second field is labeled exactly \"Description\", with the label at the top of the box.</li><li>The grey prompt \"Why are you doing it?\" shows inside the Description box, under the label.</li></ul><p>Step 2:</p><ul><li>The Description label stays at the top of the box.</li><li>The grey prompt \"Why are you doing it?\" still shows, because the box is empty.</li></ul><p>Step 3:</p><ul><li>The prompt \"Why are you doing it?\" is gone and only \"excessive play\" shows in the box.</li><li>The label still reads \"Description\", at the top of the box.</li></ul><p>Step 4:</p><ul><li>The Title label stays at the top of the box.</li><li>The grey prompt \"What are you doing?\" still shows, because the box is empty.</li></ul><p>Step 5:</p><ul><li>The prompt \"What are you doing?\" is gone and only \"Replace tie rod\" shows in the box.</li><li>The label still reads \"Title\", at the top of the box.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10130 (Story 1, The Work Order Line Dialog)</p><ul><li><strong>S1-R1:</strong> &ldquo;The first field is labeled exactly \"Title\", with no asterisk.&rdquo;</li><li><strong>S1-R2:</strong> &ldquo;The second field is labeled exactly \"Description\".&rdquo;</li><li><strong>S1-R3:</strong> &ldquo;The Title box carries the placeholder \"What are you doing?\" and the Description box carries \"Why are you doing it?\". Placeholder text shows while the box is empty and disappears as soon as there is a value. The labels Title and Description always sit at the top of their boxes, empty or filled, with the placeholder underneath; in production the label sat inside the empty box. This is the one layout change in the dialog.&rdquo;</li><li><strong>S1-R5:</strong> &ldquo;The canned-line picker at the top of the dialog is labeled \"Title\" and carries the placeholder \"What are you doing?\" in its typeahead box, the same as the free-text Title field. The dialog focuses this field on open, so the placeholder is visible the moment the dialog appears and clears as soon as the user types or picks a canned line. (Corrected 2026-09-10: the first build gave the picker no placeholder, so the prompt never appeared on a new line.)&rdquo;</li><li><strong>Story 1, Prerequisites:</strong> &ldquo;User is adding or editing a line on a work order.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): board \"New Line - after\". Compare the screen with the board; the expected results above come from the quotes above.</p><p>The design's own words:</p><ul><li>&ldquo;The only two things that change The field is now named Title and the question moves inside it as the prompt, in sentence case: “What are you doing?”. Same for Description . The name stays put whether the picker is empty or filled, which replaces a label that swapped between the question and “Title” depending on state.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ },
+ "S1-02": {
+  "sec": "S1",
+  "section_id": 20461,
+  "case_id": 154708,
+  "part_of": null,
+  "title": "The Title label stays Title when a canned line is picked or cleared",
+  "refs": "SV-10130",
+  "codes": [
+   "S1-R3",
+   "S1-R4",
+   "S1-R5"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [],
+  "fields": {
+   "title": "The Title label stays Title when a canned line is picked or cleared",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10130",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an open work order, work order 1, that is not invoiced, so you can add a line to it.</li><li>Have a canned line, canned line A, at the test location (Settings, then Canned Lines).</li><li>Start on work order 1, on its Lines tab.</li></ul>",
+   "custom_steps": "<ol><li>Click New Line.</li><li>Type the first three letters of canned line A's name.</li><li>Click canned line A in the list.</li><li>Click the clear button (x) at the right end of the Title field.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The New Line window opens over work order 1, with the cursor in the field labeled \"Title\".</li><li>The grey prompt \"What are you doing?\" shows inside the Title box, under the label.</li></ul><p>Step 2:</p><ul><li>The prompt is gone and only the three letters show.</li><li>The label still reads \"Title\".</li><li>Canned line A is offered in the list.</li></ul><p>Step 3:</p><ul><li>The field shows canned line A's name.</li><li>The label still reads \"Title\", not a question such as \"What are you doing?\".</li><li>No grey prompt sits beside the picked name.</li></ul><p>Step 4:</p><ul><li>The Title field is empty again.</li><li>The label still reads \"Title\" and the grey prompt \"What are you doing?\" shows again.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10130 (Story 1, The Work Order Line Dialog)</p><ul><li><strong>S1-R4:</strong> &ldquo;The label does not change with the state of the field. It reads \"Title\" whether the canned-line picker is empty or filled, which replaces a rule that swapped the label between the question and \"Title\" depending on that state.&rdquo;</li><li><strong>S1-R5:</strong> &ldquo;The canned-line picker at the top of the dialog is labeled \"Title\" and carries the placeholder \"What are you doing?\" in its typeahead box, the same as the free-text Title field. The dialog focuses this field on open, so the placeholder is visible the moment the dialog appears and clears as soon as the user types or picks a canned line. (Corrected 2026-09-10: the first build gave the picker no placeholder, so the prompt never appeared on a new line.)&rdquo;</li><li><strong>S1-R3:</strong> &ldquo;The Title box carries the placeholder \"What are you doing?\" and the Description box carries \"Why are you doing it?\". Placeholder text shows while the box is empty and disappears as soon as there is a value. The labels Title and Description always sit at the top of their boxes, empty or filled, with the placeholder underneath; in production the label sat inside the empty box. This is the one layout change in the dialog.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): board \"New Line - after\". Compare the screen with the board; the expected results above come from the quotes above.</p><p>The design's own words:</p><ul><li>&ldquo;The only two things that change The field is now named Title and the question moves inside it as the prompt, in sentence case: “What are you doing?”. Same for Description . The name stays put whether the picker is empty or filled, which replaces a label that swapped between the question and “Title” depending on state.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ },
+ "S1-03": {
+  "sec": "S1",
+  "section_id": 20461,
+  "case_id": 154709,
+  "part_of": null,
+  "title": "New Line will not save without a Title and says \"Title is a required field\"",
+  "refs": "SV-10130",
+  "codes": [
+   "S1-R6",
+   "S1-R7"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [],
+  "fields": {
+   "title": "New Line will not save without a Title and says \"Title is a required field\"",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10130",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create an open work order for this test, work order 1, so that a wrongly saved line would not touch other work.</li><li>Start on work order 1, on its Lines tab.</li></ul>",
+   "custom_steps": "<ol><li>Click New Line.</li><li>Click the Description box.</li><li>Type \"no title\".</li><li>Click Save &amp; Close.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The New Line window opens over work order 1, with an empty Title field.</li></ul><p>Step 2:</p><ul><li>You have left the empty Title field: \"Title is a required field\" shows under the Title box (not \"Line Name is a required field\").</li></ul><p>Step 3:</p><ul><li>\"no title\" shows in the Description box.</li></ul><p>Step 4:</p><ul><li>The window stays open and the line is not saved.</li><li>\"Title is a required field\" shows under the Title box (not \"Line Name is a required field\").</li><li>The Description box still holds \"no title\".</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10130 (Story 1, The Work Order Line Dialog)</p><ul><li><strong>S1-R6:</strong> &ldquo;Leaving Title empty blocks the save with the message \"Title is a required field\", replacing \"Line Name is a required field\". Every required-field message in the app uses the \"X is a required field\" form, and this one keeps it. The message shows under the Title box whenever Title is in error, including when the user leaves it empty, the same as every other field in the dialog (SV-10916).&rdquo;</li><li><strong>S1-R7:</strong> &ldquo;Nothing else about the dialog changes, other than the label position in S1-R3: same fields in the same order, same validation, same values saved.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): board \"New Line - after\". Compare the screen with the board; the expected results above come from the quotes above.</p><p>The design's own words:</p><ul><li>&ldquo;The only two things that change The field is now named Title and the question moves inside it as the prompt, in sentence case: “What are you doing?”. Same for Description . The name stays put whether the picker is empty or filled, which replaces a label that swapped between the question and “Title” depending on state.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ },
+ "S1-03b": {
+  "sec": "S1",
+  "section_id": 20461,
+  "case_id": null,
+  "part_of": "S1-03",
+  "title": "Leaving the Title empty shows \"Title is a required field\" under it",
+  "refs": "SV-10130",
+  "codes": [
+   "S1-R3",
+   "S1-R6"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [],
+  "fields": {
+   "title": "Leaving the Title empty shows \"Title is a required field\" under it",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10130",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an open work order, work order 1, that is not invoiced, so you can add a line to it.</li><li>Start on work order 1, on its Lines tab.</li></ul>",
+   "custom_steps": "<ol><li>Click New Line.</li><li>Press Tab.</li><li>Click the Title box.</li><li>Type \"Replace tie rod\".</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The New Line window opens over work order 1, with the cursor in the empty Title field.</li></ul><p>Step 2:</p><ul><li>The cursor leaves the Title field.</li><li>\"Title is a required field\" shows under the Title box (not \"Line Name is a required field\").</li><li>The label still reads \"Title\", at the top of the box, and the grey prompt \"What are you doing?\" stays inside the box.</li></ul><p>Step 3:</p><ul><li>The cursor is back in the Title field and the message is still shown, because Title is still empty.</li></ul><p>Step 4:</p><ul><li>\"Replace tie rod\" shows in the Title box.</li><li>The message \"Title is a required field\" is gone, because Title is no longer empty.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10130 (Story 1, The Work Order Line Dialog)</p><ul><li><strong>S1-R6:</strong> &ldquo;Leaving Title empty blocks the save with the message \"Title is a required field\", replacing \"Line Name is a required field\". Every required-field message in the app uses the \"X is a required field\" form, and this one keeps it. The message shows under the Title box whenever Title is in error, including when the user leaves it empty, the same as every other field in the dialog (SV-10916).&rdquo;</li><li><strong>S1-R3:</strong> &ldquo;The Title box carries the placeholder \"What are you doing?\" and the Description box carries \"Why are you doing it?\". Placeholder text shows while the box is empty and disappears as soon as there is a value. The labels Title and Description always sit at the top of their boxes, empty or filled, with the placeholder underneath; in production the label sat inside the empty box. This is the one layout change in the dialog.&rdquo;</li></ul><p>From: Jira tickets and comments under epic SV-11257, and bug SV-11850 (saved in sources/jira-2026-10-27/ALL-TICKETS-2026-10-27.md), read 27 Oct 2026</p><ul><li><strong>SV-10130, Nemanja Djuric, 19 Oct 2026 (QA update, PRD v14):</strong> &ldquo;New Line: tab away from the empty Title. \"Title is a required field\" shows under Title; the label still reads \"Title\" and the prompt stays inside the box.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): board \"New Line - after\". Compare the screen with the board; the expected results above come from the quotes above.</p><p>The design's own words:</p><ul><li>&ldquo;The only two things that change The field is now named Title and the question moves inside it as the prompt, in sentence case: “What are you doing?”. Same for Description . The name stays put whether the picker is empty or filled, which replaces a label that swapped between the question and “Title” depending on state.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ },
+ "S1-04": {
+  "sec": "S1",
+  "section_id": 20461,
+  "case_id": 154710,
+  "part_of": null,
+  "title": "New Line keeps its other fields, their order and its three buttons",
+  "refs": "SV-10130",
+  "codes": [
+   "FO-6",
+   "S1-R3",
+   "S1-R7"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [],
+  "fields": {
+   "title": "New Line keeps its other fields, their order and its three buttons",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10130",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create an open work order for this test, work order 1, so a saved line can be added to it.</li><li>Have a canned line, canned line A, at the test location (Settings, then Canned Lines).</li><li>Start on work order 1, on its Lines tab.</li></ul>",
+   "custom_steps": "<ol><li>Click New Line.</li><li>Type the first three letters of canned line A's name.</li><li>Click canned line A in the list.</li><li>Click Save &amp; Close.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The New Line window opens over work order 1.</li><li>From top to bottom it shows: the AI SHOPCOACH LINE BUILDER link, Title, Description, Technicians with Add Technician, Labor Rate, Estimated Time and Tech Time.</li><li>The buttons at the bottom are Save &amp; Add Part, Save &amp; Add Line and Save &amp; Close.</li><li>Only the first two field names (Title and Description) and their grey prompts are new; nothing is added, removed or moved.</li></ul><p>Step 2:</p><ul><li>Canned line A is offered in the list.</li></ul><p>Step 3:</p><ul><li>The window fills in canned line A's title and description.</li></ul><p>Step 4:</p><ul><li>The window closes and work order 1's Lines tab lists a new line with canned line A's title and description, exactly as the canned line holds them.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10130 (Story 1, The Work Order Line Dialog)</p><ul><li><strong>S1-R7:</strong> &ldquo;Nothing else about the dialog changes, other than the label position in S1-R3: same fields in the same order, same validation, same values saved.&rdquo;</li><li><strong>S1-R3:</strong> &ldquo;The Title box carries the placeholder \"What are you doing?\" and the Description box carries \"Why are you doing it?\". Placeholder text shows while the box is empty and disappears as soon as there is a value. The labels Title and Description always sit at the top of their boxes, empty or filled, with the placeholder underneath; in production the label sat inside the empty box. This is the one layout change in the dialog.&rdquo;</li><li><strong>Feature Overview, Core functionality:</strong> &ldquo;Nothing about the values changes: same fields, same storage, same customer documents.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): board \"New Line - after\". Compare the screen with the board; the expected results above come from the quotes above.</p><p>The design's own words:</p><ul><li>&ldquo;Everything else on this dialog is untouched: the field set, the technician and labor rows, and all three button labels.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ },
+ "S1-04b": {
+  "sec": "S1",
+  "section_id": 20461,
+  "case_id": null,
+  "part_of": "S1-04",
+  "title": "Edit Line keeps its other fields, their order and its buttons",
+  "refs": "SV-10130",
+  "codes": [
+   "S1-R1",
+   "S1-R2",
+   "S1-R3",
+   "S1-R7"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [],
+  "fields": {
+   "title": "Edit Line keeps its other fields, their order and its buttons",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10130",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an open work order, work order 1, with a line, line 1, that has a title and a description.</li><li>Start on work order 1, on its Lines tab.</li></ul>",
+   "custom_steps": "<ol><li>Click line 1's title.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Edit Line window opens for line 1 of work order 1, with no canned-line picker.</li><li>From top to bottom it shows: Title, Description, Status, Technicians with Add Technician, Labor Rate, Estimated Time, Tech Time and the SHOPCOACH LABOR GUIDE link.</li><li>The buttons at the bottom are Delete and Save &amp; Close.</li><li>Title and Description show line 1's saved title and description, and their labels sit at the top of the boxes.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10130 (Story 1, The Work Order Line Dialog)</p><ul><li><strong>S1-R7:</strong> &ldquo;Nothing else about the dialog changes, other than the label position in S1-R3: same fields in the same order, same validation, same values saved.&rdquo;</li><li><strong>S1-R1:</strong> &ldquo;The first field is labeled exactly \"Title\", with no asterisk.&rdquo;</li><li><strong>S1-R2:</strong> &ldquo;The second field is labeled exactly \"Description\".&rdquo;</li><li><strong>S1-R3:</strong> &ldquo;The Title box carries the placeholder \"What are you doing?\" and the Description box carries \"Why are you doing it?\". Placeholder text shows while the box is empty and disappears as soon as there is a value. The labels Title and Description always sit at the top of their boxes, empty or filled, with the placeholder underneath; in production the label sat inside the empty box. This is the one layout change in the dialog.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): board \"Edit Line - after\". Compare the screen with the board; the expected results above come from the quotes above.</p><p>The design's own words:</p><ul><li>&ldquo;Status, Technicians, the labor row, the ShopCoach link, Delete and Save &amp; Close are all untouched. Edit mode has no canned-line picker, so the state-dependent label S1-R4 removes was a New Line problem only.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ },
+ "S1-05": {
+  "sec": "S1",
+  "section_id": 20461,
+  "case_id": 549075,
+  "part_of": null,
+  "title": "Edit Line will not save an emptied Title and says it is required",
+  "refs": "SV-10130",
+  "codes": [
+   "S1-R3",
+   "S1-R6",
+   "S1-R7"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [],
+  "fields": {
+   "title": "Edit Line will not save an emptied Title and says it is required",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10130",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create a work order for this test, work order 1, with one labor line, line 1, titled \"Replace tie rod\" with the description \"excessive play\".</li><li>Start on work order 1, on its Lines tab.</li></ul>",
+   "custom_steps": "<ol><li>Click line 1's title.</li><li>Delete all the text in the Title box.</li><li>Press Tab.</li><li>Click Save &amp; Close.</li><li>Close the Edit Line window without saving.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Edit Line window opens; Title shows \"Replace tie rod\" and Description shows \"excessive play\".</li></ul><p>Step 2:</p><ul><li>The Title box is empty; the label \"Title\" stays at the top of the box and the grey prompt \"What are you doing?\" shows.</li></ul><p>Step 3:</p><ul><li>\"Title is a required field\" shows under the Title box (not \"Line Name is a required field\").</li></ul><p>Step 4:</p><ul><li>The window stays open and the change is not saved.</li><li>\"Title is a required field\" still shows under the Title box.</li></ul><p>Step 5:</p><ul><li>The window closes.</li><li>Work order 1's Lines tab still lists line 1 as \"Replace tie rod\" with \"excessive play\": nothing was changed.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10130 (Story 1, The Work Order Line Dialog)</p><ul><li><strong>S1-R6:</strong> &ldquo;Leaving Title empty blocks the save with the message \"Title is a required field\", replacing \"Line Name is a required field\". Every required-field message in the app uses the \"X is a required field\" form, and this one keeps it. The message shows under the Title box whenever Title is in error, including when the user leaves it empty, the same as every other field in the dialog (SV-10916).&rdquo;</li><li><strong>S1-R7:</strong> &ldquo;Nothing else about the dialog changes, other than the label position in S1-R3: same fields in the same order, same validation, same values saved.&rdquo;</li><li><strong>S1-R3:</strong> &ldquo;The Title box carries the placeholder \"What are you doing?\" and the Description box carries \"Why are you doing it?\". Placeholder text shows while the box is empty and disappears as soon as there is a value. The labels Title and Description always sit at the top of their boxes, empty or filled, with the placeholder underneath; in production the label sat inside the empty box. This is the one layout change in the dialog.&rdquo;</li></ul><p>From: Jira tickets and comments under epic SV-11257, and bug SV-11850 (saved in sources/jira-2026-10-27/ALL-TICKETS-2026-10-27.md), read 27 Oct 2026</p><ul><li><strong>SV-10130, Nemanja Djuric, 19 Oct 2026 (QA update, PRD v14):</strong> &ldquo;Edit Line: clear the Title and tab away. The same message shows. Close without saving: the line is unchanged.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): board \"Edit Line - after\". Compare the screen with the board; the expected results above come from the quotes above.</p><p>The design's own words:</p><ul><li>&ldquo;Two labels, nothing else The floating labels now read Title and Description , so a filled field is named rather than interrogated. The empty Description still prompts with “Why are you doing it?” in sentence case.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ },
+ "S1-06": {
+  "sec": "S1",
+  "section_id": 20461,
+  "case_id": 549076,
+  "part_of": null,
+  "title": "A line saved before this change opens with the same title and description",
+  "refs": "SV-10130",
+  "codes": [
+   "FO-6",
+   "S1-N1",
+   "S1-R7"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [],
+  "fields": {
+   "title": "A line saved before this change opens with the same title and description",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10130",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have a work order made before this release, work order 1, with a line, line 1, that has a title and a description.</li><li>Start on work order 1, on its Lines tab.</li></ul>",
+   "custom_steps": "<ol><li>Click line 1's title.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Edit Line window opens for line 1.</li><li>The Title box shows exactly the title line 1 shows on work order 1's Lines tab, character for character, under the label \"Title\".</li><li>The Description box shows exactly line 1's description, under the label \"Description\".</li><li>Neither value has \"What are you doing?\", \"Why are you doing it?\" or any other words added in front of it.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10130 (Story 1, The Work Order Line Dialog)</p><ul><li><strong>S1-N1:</strong> &ldquo;No existing line is altered. The rename is on the labels, not on the data.&rdquo;</li><li><strong>S1-R7:</strong> &ldquo;Nothing else about the dialog changes, other than the label position in S1-R3: same fields in the same order, same validation, same values saved.&rdquo;</li><li><strong>Feature Overview, Core functionality:</strong> &ldquo;Nothing about the values changes: same fields, same storage, same customer documents.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): board \"Edit Line - after\". Compare the screen with the board; the expected results above come from the quotes above.</p><p>The design's own words:</p><ul><li>&ldquo;Two labels, nothing else The floating labels now read Title and Description , so a filled field is named rather than interrogated. The empty Description still prompts with “Why are you doing it?” in sentence case.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ },
+ "S1-07": {
+  "sec": "S1",
+  "section_id": 20461,
+  "case_id": 549077,
+  "part_of": null,
+  "title": "Edit Line names its fields Title and Description and prompts when emptied",
+  "refs": "SV-10130",
+  "codes": [
+   "S1-R1",
+   "S1-R2",
+   "S1-R3",
+   "S1-R4"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [],
+  "fields": {
+   "title": "Edit Line names its fields Title and Description and prompts when emptied",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10130",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Create a work order for this test, work order 1, with one labor line, line 1, titled \"Replace tie rod\" with the description \"excessive play\".</li><li>Start on work order 1, on its Lines tab.</li></ul>",
+   "custom_steps": "<ol><li>Click line 1's title.</li><li>Delete all the text in the Description box.</li><li>Delete all the text in the Title box.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The Edit Line window opens for line 1 of work order 1.</li><li>The first field is labeled exactly \"Title\", with no asterisk, at the top of the box, and shows \"Replace tie rod\".</li><li>The second field is labeled exactly \"Description\", at the top of the box, and shows \"excessive play\".</li></ul><p>Step 2:</p><ul><li>The label still reads \"Description\", at the top of the box.</li><li>The grey prompt \"Why are you doing it?\" shows inside the Description box, under the label.</li></ul><p>Step 3:</p><ul><li>The label still reads \"Title\", at the top of the box.</li><li>The grey prompt \"What are you doing?\" shows inside the Title box, under the label.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10130 (Story 1, The Work Order Line Dialog)</p><ul><li><strong>S1-R1:</strong> &ldquo;The first field is labeled exactly \"Title\", with no asterisk.&rdquo;</li><li><strong>S1-R2:</strong> &ldquo;The second field is labeled exactly \"Description\".&rdquo;</li><li><strong>S1-R3:</strong> &ldquo;The Title box carries the placeholder \"What are you doing?\" and the Description box carries \"Why are you doing it?\". Placeholder text shows while the box is empty and disappears as soon as there is a value. The labels Title and Description always sit at the top of their boxes, empty or filled, with the placeholder underneath; in production the label sat inside the empty box. This is the one layout change in the dialog.&rdquo;</li><li><strong>S1-R4:</strong> &ldquo;The label does not change with the state of the field. It reads \"Title\" whether the canned-line picker is empty or filled, which replaces a rule that swapped the label between the question and \"Title\" depending on that state.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): board \"Edit Line - after\". Compare the screen with the board; the expected results above come from the quotes above.</p><p>The design's own words:</p><ul><li>&ldquo;Two labels, nothing else The floating labels now read Title and Description , so a filled field is named rather than interrogated. The empty Description still prompts with “Why are you doing it?” in sentence case.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ },
+ "S1-08": {
+  "sec": "S1",
+  "section_id": 20461,
+  "case_id": 549078,
+  "part_of": null,
+  "title": "At phone width the line window shows the same Title and Description words",
+  "refs": "SV-10130",
+  "codes": [
+   "FF-1",
+   "S1-R1",
+   "S1-R2",
+   "S1-R3"
+  ],
+  "automation": "AUTOMATION: HOLD - not yet build-verified on the What/Why QA build",
+  "held": false,
+  "pictures": [],
+  "fields": {
+   "title": "At phone width the line window shows the same Title and Description words",
+   "template_id": 1,
+   "type_id": 7,
+   "priority_id": 2,
+   "refs": "SV-10130",
+   "custom_automation_type": 2,
+   "custom_atmstatus": 1,
+   "custom_preconds": "<p><strong>Preconditions</strong></p><ul><li>Sign in as an Admin at the test location.</li><li>Have an open work order, work order 1, with a line, line 1, that has a title and a description.</li><li>Use a phone, or a desktop browser window narrowed to 600 pixels wide or less.</li><li>Start on work order 1, on its Lines tab.</li></ul>",
+   "custom_steps": "<ol><li>Click New Line.</li><li>Close the New Line window without saving.</li><li>Click line 1's title.</li></ol>",
+   "custom_expected": "<p><strong>Expected Result</strong></p><p>Step 1:</p><ul><li>The New Line window opens over work order 1.</li><li>The first field reads \"Title\" with the grey prompt \"What are you doing?\" in the box.</li><li>The second field reads \"Description\" with the grey prompt \"Why are you doing it?\" in the box.</li></ul><p>Step 2:</p><ul><li>The New Line window closes and work order 1's Lines tab shows again.</li></ul><p>Step 3:</p><ul><li>The Edit Line window opens for line 1.</li><li>Its fields read \"Title\" and \"Description\" and show line 1's saved title and description.</li></ul><p></p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"What Are You Doing / Why Are You Doing It?\" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026 &middot; Epic SV-11257, story SV-10130 (Story 1, The Work Order Line Dialog)</p><ul><li><strong>Form Factor:</strong> &ldquo;The work order line dialog is a core work-order surface and is used on a phone by technicians, so it carries a mobile variant already. This spec changes two labels and two placeholders inside it and nothing else: the mobile variant shows the same words, in the same fields, with no separate design work owed. Every other surface here is either a downloaded file or a background sync, neither of which has a form factor.&rdquo;</li><li><strong>S1-R1:</strong> &ldquo;The first field is labeled exactly \"Title\", with no asterisk.&rdquo;</li><li><strong>S1-R2:</strong> &ldquo;The second field is labeled exactly \"Description\".&rdquo;</li><li><strong>S1-R3:</strong> &ldquo;The Title box carries the placeholder \"What are you doing?\" and the Description box carries \"Why are you doing it?\". Placeholder text shows while the box is empty and disappears as soon as there is a value. The labels Title and Description always sit at the top of their boxes, empty or filled, with the placeholder underneath; in production the label sat inside the empty box. This is the one layout change in the dialog.&rdquo;</li></ul><p>From: Jira tickets and comments under epic SV-11257, and bug SV-11850 (saved in sources/jira-2026-10-27/ALL-TICKETS-2026-10-27.md), read 27 Oct 2026</p><ul><li><strong>SV-10130, Nemanja Djuric, 8 Oct 2026 (Ready for QA testing):</strong> &ldquo;Phone width (≤ 600px): the same labels, prompts and message.&rdquo;</li></ul><p>Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) and staging carry this change, and this case has not been run on either.</p><p></p><p><strong>References from Design</strong></p><p>Design canvas \"What Are You Doing / Why Are You Doing It?\" (https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6), copy re-read on 27 Oct 2026 (its one change since 13 Oct: the New Line board's \"Title *\" now reads \"Title\"): board \"New Line - after\". Compare the screen with the board; the expected results above come from the quotes above.</p><p>The design's own words:</p><ul><li>&ldquo;The only two things that change The field is now named Title and the question moves inside it as the prompt, in sentence case: “What are you doing?”. Same for Description . The name stays put whether the picker is empty or filled, which replaces a label that swapped between the question and “Title” depending on state.&rdquo;</li></ul><p></p><p>AUTOMATION: HOLD - not yet build-verified on the What/Why QA build</p>"
+  }
+ }
+}
