@@ -1,30 +1,364 @@
 """Story 11 — The Part Library Is Browse and Edit Only (SV-10824). Section 20478.
-PHASE C STUB (written by Phase A, 27 Oct 2026). Rewrite every case below top to bottom (Rule 134) in the QA lead's pattern,
-keeping its key (and so its C-id); add new keys for new requirements (next free number) and split parts as <key>b, <key>c with
-part_of=<original key> (Rule 136). Then set WRITTEN = True: build.py then enforces coverage of this story's codes and its
-User Feedback Summary messages. Read ../PHASE-A-HANDOFF.md first.
-
-Live cases to rewrite (key, C-id, title on 14 Oct 2026):
-  S11-01  C154828  The Part Library page has no button that creates an entry
-  S11-02  C154829  Clicking a Part Library row opens the entry's detail page
-  S11-03  C154830  A new Part Library entry appears only when a new part number is used
-  S11-04  C154831  Part Library entries from before the release stay listed
-  S11-05  C425607  Users with and without Create & Edit see the same Part Library toolbar
-  S11-06  C425608  Part Library rows can still be ticked and changed with Set category
-  S11-07  C425609  Part Library search, filters, sorting and columns still work
-  S11-08  C425610  Changing an entry's number on the Part Library page renames the part
-  S11-09  C425611  Changing an entry's description on the Part Library page reaches every location
-  S11-10  C425612  The Part Library page refuses a number that another entry already has
-  S11-11  C425613  A number changed on the Part Library page reaches an open part request
-  S11-12  C425614  A Part Library number over 50 characters is refused while on an open request
-  S11-13  C425615  The Part Library page keeps upper and lower case in a typed part number
-  S11-14  C425616  A part requested from a vendor reaches the Part Library when it is received
-  S11-15  C425617  Spaces around a typed part number do not create a second Part Library entry
-  S11-16  C425618  An entry with no part behind it can be edited and a new part links to it
-  S11-17  C540877  Receiving a typed purchase order line adds its number to the Part Library
-  S11-18  C573671  Delete is disabled while a part still uses the Part Library entry
-"""
+Phase C, 27 Oct 2026: every live case rewritten top to bottom against PRD v33 in the QA lead's pattern (Rule 117 fourteenth and
+fifteenth amendments; Rules 134-137). Splits (Rule 136): S11-03b (the import makes an entry), S11-08b (the other-locations warning on the
+Part Library page), S11-09b (the description warning counts an inactive location). New for v33: S11-19 (S11-R8 "Not Tracked" in the
+detail page's parts table) and S11-20 (S11-R9 grey "Inactive" tag there). S11-E3 (public API create) is NO MANUAL CASE (pc_common.py).
+The detail page has no left menu (board 7.2), so every move off it goes through Parts in the top bar."""
 from pllib import C, PO_HOLD, HOLD, DESIGN_HOLD
 from common import *
+from pc_common import *
 
-WRITTEN = False
+WRITTEN = True
+TECH_Q11 = ("TECH", "§1 Clarifications, Q11 Part request entry timing", "PRD corrected: entry created when the requested part is received (S11-R6)")
+NO_LIB_BOARD = "no board draws this flow; the expected results above come from the quotes above."
+R72 = ["7.2"]
+
+C("S11-01", "S11", "The Part Library page has no button that creates an entry",
+  [ADMIN, "Have a part, part A, at the test location, so the Part Library lists its entry.", START_PL],
+  [TYPE_A, "Click the checkbox of the part A row.", "Click the three-dot icon (⋮) at the left end of the table's header row.", "Press Escape.",
+   "Click the part A row, away from its checkbox.", PENCIL, CANCEL],
+  [["Part A's entry is listed.",
+    "The title row reads \"Part Library\", with Search, \"Manufacturer: All manufacturers\" and \"Category: All categories\" to its right.",
+    "No button or link on the page creates an entry: there is no \"New Catalog Part\", \"New Library Part\", \"New\", \"Add\" or \"+\" control."],
+   ["The part A row is ticked."],
+   ["The menu offers actions for the ticked rows, such as Set category, and nothing that creates an entry."],
+   ["The menu closes."],
+   ["The entry's detail page opens, with a Part details panel on the left and a Parts table on the right: no window for creating an entry opens."],
+   ["The \"Edit Library Part\" window opens, holding part A's part number: it edits this entry."],
+   ["The window closes and the entry is unchanged."]],
+  ["S11-R1", "S11-R2", "S11-R3", "KD-17"],
+  design=dict(boards=["7.1", "7.2"], words=[note("Called Part Library in the side menu"), note("Clicking a row opens the entry")]))
+
+C("S11-02", "S11", "Clicking a Part Library row opens the entry's detail page",
+  [ADMIN, "Create a part, part A, for this test at the test location only, so its entry's detail page lists one location and one part.", START_PL],
+  [TYPE_A, ROW_A, PENCIL, CANCEL],
+  [["Part A's entry is listed."],
+   ["The entry's detail page opens.",
+    "The Part details panel shows the entry's description with a pencil icon beside it, then \"Part number\" with part A's number, Category, "
+    "Manufacturer, Measurement and \"Total parts\" 1.",
+    "The Parts table lists one row, under Workplace, for the test location.",
+    "No Delete button is shown anywhere on the detail page: the pencil is the page's only edit control."],
+   ["The \"Edit Library Part\" window opens, holding the entry's values.",
+    "A Delete button sits at the bottom left of the window. It is dimmed, because part A uses the entry."],
+   ["The window closes and the entry is unchanged."]],
+  ["S11-R3", "S11-R3c", "S12-R3", PO12],
+  design=dict(boards=R72, words=[note("Clicking a row opens the entry")]))
+
+C("S11-03", "S11", "Creating a part with a new number adds one Part Library entry",
+  [ADMIN, "Use a new part number that no Part Library entry has yet, so saving the part must make a new entry.", START],
+  ["Click New Inventory Part.", "Type a description in Description.", "Type the new part number in Part Number.", "Pick any category in Category.",
+   "Type 10.00 in Cost.", SAVE, TO_PL, "Type the new part number in the Search box.", "Click the new entry's row."],
+  [["The \"New Inventory Part\" window opens."], ["Description shows what you typed."], ["Part Number shows the new number."],
+   ["Category shows the category you picked."], ["Cost shows 10.00."],
+   ["The window closes and the part is saved.",
+    "No message about the Part Library appears, because a new entry was made and no existing one was linked."],
+   ["The Part Library page opens."],
+   ["Exactly one entry is listed for the new part number, with the description you typed."],
+   ["Its detail page shows \"Total parts\" 1, with one Workplace row for the test location: the new inventory part is behind it."]],
+  ["S11-R6", "S7-R7", "S7-R10", "S11-N1", "KD-17"],
+  design=dict(boards=["1.3", "7.1"]))
+
+C("S11-03b", "S11", "The parts import adds a Part Library entry for a new part number",
+  [ADMIN, "Use a new part number that no Part Library entry has yet.",
+   "Have a parts import file with one row for the new part number, with a description, a category, a cost of 10.00 and a quantity of 2, so the import adds a part.",
+   START_IMPORT],
+  ["Upload the file.", "Run the import.", PARTS, TO_PL, "Type the new part number in the Search box.", "Click the new entry's row."],
+  [["The file is ready to import."], ["The import finishes with no error for the row."], ["The Parts left menu shows Part Library."],
+   ["The Part Library page opens."],
+   ["Exactly one entry is listed for the new part number: the parts import made it from the imported row."],
+   ["Its detail page shows \"Total parts\" 1, with one Workplace row for the test location: the imported part is behind it."]],
+  ["S11-R6", "S11-N1"], part_of="S11-03",
+  design=dict(note="no board draws the import; the expected results above come from the quotes above."),
+  claude=["Import file: the template from Settings → Data Import → Inventory (columns name, part_number, uom, quantity, min_qty, max_qty, "
+          "grid_location, purchase_price, core_price, vendor, manufacturer, category, tags), one row with part_number "
+          "ZZAUTOTEST-PL-S11-03b-A, name ZZAUTOTEST PL S11-03b, category Uncategorized, purchase_price 10.00, quantity 2."])
+
+C("S11-04", "S11", "Part Library entries from before the release stay listed",
+  [ADMIN, "Have a Part Library entry from before this release, entry A, that no part uses (\"Total parts\" 0).",
+   "Have a second Part Library entry from before this release, entry B, that a part uses.", START_PL],
+  ["Type entry A's part number in the Search box.", "Click the entry A row.", PARTS, TO_PL, "Type entry B's part number in the Search box."],
+  [["Entry A is still listed, although nothing uses it."],
+   ["Its detail page opens and shows \"Total parts\" 0: the release neither deleted nor hid it."],
+   ["The Parts left menu shows Part Library."], ["The Part Library page opens."], ["Entry B is still listed."]],
+  ["S11-E1", "CN-S11-1"],
+  design=dict(boards=["7.1", "7.2"]))
+
+C("S11-05", "S11", "Users with and without Create & Edit see the same Part Library toolbar",
+  ["Sign in as an Admin at the test location in one browser.",
+   "Use a second browser, or a private window, signed in at the test location as user B, whose role has only 'Part Library & Inventory → View' "
+   "in the Part Library and Inventory group (no Create & Edit, no Delete)."],
+  ["In browser 1, click Parts in the top bar.", "In browser 1, click Part Library in the left menu.", "In browser 2, as user B, click Parts in the top bar.",
+   "In browser 2, click Part Library in the left menu."],
+  [["The Parts left menu shows Part Library."],
+   ["The Admin sees the title \"Part Library\" with Search, \"Manufacturer: All manufacturers\" and \"Category: All categories\", and no control that creates an entry."],
+   ["User B's Parts left menu shows Part Library."],
+   ["User B sees exactly the same title and toolbar: \"Part Library\", Search, \"Manufacturer: All manufacturers\" and \"Category: All categories\".",
+    "Nothing is added or missing for either user."]],
+  ["S11-R7", "S11-R1"],
+  design=dict(boards=["7.1"]))
+
+C("S11-06", "S11", "Part Library rows can still be ticked and given a category with Set category",
+  [ADMIN, "Create two parts for this test, part A and part B, both in category A.", SHARED("parts A and B"),
+   "Make sure a second category, category B, exists.", START_PL],
+  [TYPE_SHARED, "Click the checkbox of the part A row.", "Click the checkbox of the part B row.",
+   "Click the three-dot icon (⋮) at the left end of the table's header row.", "Click Set category.", "Pick category B.",
+   "Confirm the new category in the Set category window."],
+  [["Parts A and B are listed, both showing category A."], ["The part A row is ticked."], ["The part B row is ticked too."],
+   ["The menu offers \"Set category\"."], ["The Set category window opens."], ["Category B is picked."],
+   ["The window closes and parts A and B now show category B in the Category column."]],
+  ["S11-R4"],
+  design=dict(boards=["7.1"], words=[note("Called Part Library in the side menu")]))
+
+C("S11-07", "S11", "Part Library search, filters, sorting and columns still work",
+  [ADMIN, "Create two parts for this test with no manufacturer: part A in category A and part B in category B, with descriptions that sort A to Z with part A's first.",
+   SHARED("parts A and B"), "Make sure at least one manufacturer exists, manufacturer A.", START_PL],
+  [TYPE_SHARED, "Pick category A in the Category filter.", "Pick All categories in the Category filter.", "Pick manufacturer A in the Manufacturer filter.",
+   "Pick All manufacturers in the Manufacturer filter.", "Click the Description column heading.", "Click the Description column heading again."],
+  [["Parts A and B are listed (2 rows).",
+    "The columns are Description, Part Number, Tags, Category, Manufacturer, Measurement and Size."],
+   ["Only part A is listed: part B, in category B, is left out."], ["Parts A and B are listed again."],
+   ["Neither part is listed, because neither has a manufacturer: the Manufacturer filter narrows the list."],
+   ["Parts A and B are listed again."], ["The rows are ordered by Description: part A above part B."],
+   ["The order is reversed: part B above part A."]],
+  ["S11-R5"],
+  design=dict(boards=["7.1"]))
+
+C("S11-08", "S11", "Changing an entry's number on the Part Library page renames the part",
+  [ADMIN_TWO, "Create a part, part A, for this test at the test location and at location B under the same part number, so both share one Part Library entry.",
+   NEWNUM, START_PL],
+  [TYPE_A, ROW_A, PENCIL, "Replace the Part Number with the new number.", SAVE, PARTS, TO_PL, "Type part A's old part number in the Search box.",
+   "Replace the search text with the new number.", PARTS, TO_INV, "Type the new number in the Search box.", CLOCK_A, TO_B, PARTS, TO_INV,
+   "Type the new number in the Search box.", CLOCK_A],
+  [["Part A's entry is listed."], ["The entry's detail page opens."], ["The \"Edit Library Part\" window opens."],
+   ["Under the Part Number field the window shows \"This also changes the part number at 1 other location.\""],
+   ["The window closes and the detail page shows the new number."],
+   ["The Parts left menu shows Part Library."], ["The Part Library page opens."],
+   ["No entry is listed for the old number: no new entry was made for it."],
+   ["One entry is listed, with the new number."],
+   ["The Parts left menu shows Inventory."], ["The Inventory page opens."],
+   ["Part A is listed under the new number, with the same bin and quantity it had before the rename."],
+   ["Part History has a new entry \"Part number updated | Original number:\" with the old number, then \"| New number:\" with the new number, "
+    "with your name, today's date and time, and nothing after the new number."],
+   ["The location selector shows location B."], ["The Parts left menu shows Inventory."], ["Location B's Inventory page opens."],
+   ["Part A is listed at location B under the new number too."],
+   ["Location B's Part History has the same entry, ending \"| Changed at:\" followed by the test location's name as the location selector shows it."]],
+  ["S11-R3a", "S13-R16", "S13-R18", "S10-R23", "S10-R25", "UFS-12"],
+  design=dict(boards=["7.2", "2.4", "2.6"], words=[note("The entries are written at Lethbridge too.")]))
+
+C("S11-08b", "S11", "The Part Library window warns while a new number differs from the saved one",
+  [ADMIN_TWO, "Have a part, part A, at the test location and at location B under the same part number, so its entry is shared with one other location.",
+   START_PL],
+  [TYPE_A, ROW_A, PENCIL, "Click at the end of the Part Number.", "Type X.", "Press Backspace once.", "Click at the start of the Part Number.",
+   "Type two spaces.", CANCEL],
+  [["Part A's entry is listed."], ["The entry's detail page opens."], ["The \"Edit Library Part\" window opens with no message under Part Number."],
+   ["The cursor is at the end of the part number."],
+   ["Under Part Number the window shows \"This also changes the part number at 1 other location.\": location B stocks the same entry."],
+   ["The number reads as saved again and the message goes away."], ["The cursor is at the start of the part number."],
+   ["No message shows: spaces before the number are not a change."],
+   ["The window closes without saving."]],
+  ["S11-R3a", "S13-R16", "S13-R17", "UFS-12"], part_of="S11-08",
+  design=dict(boards=["7.2", "2.2"], words=[note("Description becomes")]))
+
+C("S11-09", "S11", "Changing an entry's description on the Part Library page reaches every location",
+  [ADMIN_TWO, "Create a part, part A, for this test at the test location (active) and at location B (inactive there) under the same part number, with description 1.",
+   "Use a new description, description 2.", START_PL],
+  [TYPE_A, ROW_A, PENCIL, "Replace the Description with description 2.", SAVE, PARTS, TO_INV, TYPE_A, CLOCK_A, TO_B, PARTS, TO_INV,
+   "Click the Inactive tab.", TYPE_A, CLOCK_A],
+  [["Part A's entry is listed."], ["The entry's detail page opens."], ["The \"Edit Library Part\" window opens with description 1."],
+   ["The Description field shows description 2."],
+   ["The window closes and the detail page shows description 2."],
+   ["The Parts left menu shows Inventory."], ["The Inventory page opens."], ["Part A is listed with description 2."],
+   ["Part History has a new entry \"Description updated | Original description:\" with description 1, then \"| New description:\" with "
+    "description 2, and nothing after it."],
+   ["The location selector shows location B."], ["The Parts left menu shows Inventory."], ["Location B's Inventory page opens."],
+   ["The Inactive tab is selected."], ["Part A, inactive at location B, is listed with description 2."],
+   ["Location B's Part History has the same entry, ending \"| Changed at:\" followed by the test location's name as the location selector shows it."]],
+  ["S11-R3a", "S13-R14", "S10-R24", "S10-R25", "OOS-5"],
+  design=dict(boards=["7.2", "2.4", "2.6"], words=[note("A \"Description updated\" entry")]))
+
+C("S11-09b", "S11", "The description warning counts a location where the part is inactive",
+  [ADMIN_TWO, "Have a part, part A, active at the test location and inactive at location B under the same part number, so the only other location that stocks it has it inactive.",
+   START_PL],
+  [TYPE_A, ROW_A, PENCIL, "Click at the end of the Description.", "Type X.", "Press Backspace once.", "Type two spaces.", CANCEL],
+  [["Part A's entry is listed."], ["The entry's detail page opens."], ["The \"Edit Library Part\" window opens with no message under Description."],
+   ["The cursor is at the end of the description."],
+   ["Under Description the window shows \"This also changes the description at 1 other location.\": location B counts although part A is inactive there."],
+   ["The description reads as saved again and the message goes away."],
+   ["No message shows: spaces after the text are not a change."],
+   ["The window closes without saving."]],
+  ["S11-R3a", "S13-R12", "S13-R13", "UFS-11",
+   ("PO", "Chris Ward, 9 Oct 2026, answer 5", "A) Yes, count inactive parts too, same as part numbers. Added to S13-R13.")],
+  part_of="S11-09", design=dict(boards=["7.2", "2.2"], words=[note("Description becomes")]))
+
+C("S11-10", "S11", "The Part Library page refuses a number another entry has exactly",
+  [ADMIN_TWO, "Create a part, part A, for this test at the test location only.",
+   "Create a part, part B, for this test at location B only, with its part number in capital letters, so it is a separate Part Library entry the test location does not stock.",
+   START_PL],
+  [TYPE_A, ROW_A, PENCIL, "Replace the Part Number with part B's number, with the same capital letters.", SAVE, WAIT5,
+   "Replace the Part Number with part B's number in small letters.", SAVE, PARTS, TO_PL, TYPE_B],
+  [["Part A's entry is listed."], ["The entry's detail page opens."], ["The \"Edit Library Part\" window opens."],
+   ["Part Number shows part B's number."],
+   ["The save is refused and the window stays open.",
+    "A red message reads \"Part number\" followed by part B's number and \"already belongs to another part in the Part Library.\", with a smaller second line \"Please try to resolve this.\""],
+   ["The red message has closed on its own after about 3 seconds, and the window is still open."],
+   ["Part Number shows part B's number in small letters."],
+   ["The save goes through, because the number differs from part B's in upper and lower case: the detail page shows the small-letter number exactly as typed."],
+   ["The Parts left menu shows Part Library."], ["The Part Library page opens."],
+   ["Two entries are listed: part B's (stocked at location B), still in capital letters with its own description, and the renamed one in small letters with part A's description. The two were not merged."]],
+  ["S11-R3a", "S13-N1", "KD-6", "CN-S13-3", "UFS-13", "S12-R3"],
+  design=dict(boards=R72))
+
+C("S11-11", "S11", "A number changed on the Part Library page reaches an open part request",
+  [ADMIN, "Create a part, part A, for this test at the test location.",
+   "Create a work order for this test, work order 1, with a line holding a part request for part A, quantity 1, not yet received.", NEWNUM, START_PL],
+  [TYPE_A, ROW_A, PENCIL, "Replace the Part Number with the new number.", SAVE, "Click Work Orders in the top bar.", "Open work order 1.",
+   "Click the Parts tab of work order 1."],
+  [["Part A's entry is listed."], ["The entry's detail page opens."], ["The \"Edit Library Part\" window opens."], ["Part Number shows the new number."],
+   ["The window closes and the detail page shows the new number."], ["The Work Orders list opens."],
+   ["Work order 1 opens, and the part request on its line shows the new number, with the same description and quantity 1."],
+   ["The Parts tab lists the part request under the new number, and the old number is not shown."]],
+  ["S11-R3a", "S13-R19", "TERM-6"],
+  design=dict(boards=["7.2", "2.3"]))
+
+C("S11-12", "S11", "A Part Library number over 50 characters is refused on an open part request",
+  [ADMIN, "Create a part, part A, for this test at the test location.",
+   "Create a work order for this test, work order 1, with a line holding a part request for part A, not yet received, so part A sits on an open part request.",
+   "Use two new part numbers that no Part Library entry has, one exactly 51 characters long and one exactly 50 characters long.", START_PL],
+  [TYPE_A, ROW_A, PENCIL, "Replace the Part Number with the 51-character number.", SAVE, WAIT5, "Replace the Part Number with the 50-character number.",
+   SAVE, "Click Work Orders in the top bar.", "Open work order 1."],
+  [["Part A's entry is listed."], ["The entry's detail page opens."], ["The \"Edit Library Part\" window opens."],
+   ["Part Number shows the 51-character number."],
+   ["The save is refused and the window stays open.",
+    "A red message reads \"Part number can't be longer than 50 characters while it's on an open part request.\", with a smaller second line \"Please try to resolve this.\""],
+   ["The red message has closed on its own after about 3 seconds."], ["Part Number shows the 50-character number."],
+   ["The save goes through, because only more than 50 characters is refused: the detail page shows the 50-character number."],
+   ["The Work Orders list opens."], ["The part request on work order 1's line shows the 50-character number."]],
+  ["S11-R3a", "S13-N7", "UFS-16", "CN-S13-3"],
+  design=dict(boards=R72),
+  claude=["51 characters: ZZAUTOTEST-PL-S11-12-A-XXXXXXXXXXXXXXXXXXXXXXXXXXXX (count it); 50 characters: one X fewer."])
+
+C("S11-13", "S11", "The Part Library page keeps upper and lower case in a typed part number",
+  [ADMIN, "Create a part, part A, for this test at the test location.",
+   "Use a new part number written in mixed capitals and small letters that no Part Library entry has.", START_PL],
+  [TYPE_A, ROW_A, PENCIL, "Replace the Part Number with the mixed-case number, typing its capitals and small letters exactly.", SAVE, PARTS, TO_INV,
+   "Type the mixed-case number in the Search box."],
+  [["Part A's entry is listed."], ["The entry's detail page opens."], ["The \"Edit Library Part\" window opens."],
+   ["The field shows the letters exactly as typed: small letters are not turned into capitals."],
+   ["The window closes and the detail page's \"Part number\" reads the mixed-case number exactly as typed."],
+   ["The Parts left menu shows Inventory."], ["The Inventory page opens."],
+   ["Part A is listed with the same mix of capitals and small letters."]],
+  ["S11-R3b"],
+  design=dict(boards=R72))
+
+C("S11-14", "S11", "A part requested from a vendor reaches the Part Library when it is received",
+  [ADMIN, "Use a new part number that no Part Library entry has and no inventory part uses.", "Have a vendor, vendor A.",
+   "Create a work order for this test, work order 1, with an approved line.",
+   "Start on work order 1 (Work Orders in the top bar, then open work order 1)."],
+  ["In the Parts row of the line, click + Add Part.", "Type the new part number in Part Number.",
+   "Pick the offer to add the typed number as a new part, not an existing result.", "Pick Vendor in Source.", "Pick any category in Category.",
+   "Pick vendor A in Vendor.", "Type 10.00 in Cost.", "Type 20.00 in Sell Price.", "Click Save Part.", PARTS, TO_PL,
+   "Type the new part number in the Search box.", "Click Work Orders in the top bar.", "Open work order 1.", "Click the Parts tab.",
+   "Click Order on the new part request's row.", PARTS, "Click Purchase Orders in the left menu.", "Open vendor A's purchase order that holds the new part number.",
+   "Click Receive.", "Type an invoice number in the invoice number field.", "Type 1 as the received quantity.", "Click Receive on the Receive screen.",
+   PARTS, TO_PL, "Type the new part number in the Search box."],
+  [["The \"New Part Request\" window opens."], ["The typed number is offered to be added as a new part."], ["The new part number is picked."],
+   ["Source shows Vendor."], ["Category shows the category you picked."], ["Vendor shows vendor A."], ["Cost shows 10.00."], ["Sell Price shows 20.00."],
+   ["The window closes and the part request is saved on the line with the new part number."],
+   ["The Parts left menu shows Part Library."], ["The Part Library page opens."],
+   ["No entry is listed for the new part number: a part request alone does not make one."],
+   ["The Work Orders list opens."], ["Work order 1 opens."], ["The Parts tab lists the new part request."],
+   ["The part request is ordered from vendor A."], ["The Parts left menu shows Purchase Orders."], ["The Purchase Orders list opens."],
+   ["The purchase order opens with a line for the new part number."], ["The Receive screen opens."], ["The invoice number shows what you typed."],
+   ["The received quantity shows 1."], ["The line is received."], ["The Parts left menu shows Part Library."], ["The Part Library page opens."],
+   ["One entry is now listed for the new part number: it was made when the requested part was received."]],
+  ["S11-R6", "S11-N1", TECH_Q11],
+  design=dict(boards=["7.1"]))
+
+C("S11-15", "S11", "Spaces around a typed part number do not create a second Part Library entry",
+  [ADMIN_TWO, "Create a part, part A, for this test at the test location only.",
+   "Start at location B on the Inventory page (pick location B in the location selector, then Parts, then Inventory)."],
+  ["Click New Inventory Part.", "Type part A's description in Description.", "Type two spaces, part A's part number and two spaces in Part Number.",
+   "Pick any category in Category.", "Type 10.00 in Cost.", SAVE, TYPE_A, TO_PL, TYPE_A, ROW_A],
+  [["The \"New Inventory Part\" window opens at location B."], ["Description shows part A's description."], ["Part Number shows the number with the spaces."],
+   ["Category shows the category you picked."], ["Cost shows 10.00."],
+   ["The window closes and the part is saved, with no message about the Part Library, because the descriptions match."],
+   ["At location B, part A is listed with no spaces before or after its number."],
+   ["The Part Library page opens."], ["Exactly one entry is listed for part A: no second entry with spaces was made."],
+   ["Its detail page shows \"Total parts\" 2, with Workplace rows for the test location and location B: the new part was linked to the existing entry."]],
+  ["S11-R6a", "S7-R3", "S7-R4", "S7-R5", "S7-R10"],
+  design=dict(boards=["1.3", "7.2"]))
+
+C("S11-16", "S11", "An entry with no part behind it can be edited and a new part links to it",
+  [ADMIN, "Create a Part Library entry with no part behind it for this test, entry A: create a part at the test location, then delete it, so its entry stays with \"Total parts\" 0.",
+   "Use two descriptions that differ from each other and from entry A's, description 1 and description 2.", START_PL],
+  ["Type entry A's part number in the Search box.", "Click the entry A row.", PENCIL, "Replace the Description with description 1.", SAVE, PARTS, TO_INV,
+   "Click New Inventory Part.", "Type description 2 in Description.", "Type entry A's part number in Part Number, exactly as the entry has it.",
+   "Pick any category in Category.", "Type 10.00 in Cost.", SAVE, TO_PL, "Type entry A's part number in the Search box.", "Click the entry A row."],
+  [["Entry A is listed."], ["Its detail page opens and shows \"Total parts\" 0."], ["The \"Edit Library Part\" window opens."],
+   ["The Description field shows description 1."],
+   ["The window closes and the detail page shows description 1: an entry with nothing behind it can be edited."],
+   ["The Parts left menu shows Inventory."], ["The Inventory page opens."], ["The \"New Inventory Part\" window opens."],
+   ["Description shows description 2."], ["Part Number shows entry A's number."], ["Category shows the category you picked."], ["Cost shows 10.00."],
+   ["The part is saved and linked to entry A: a green message reads \"Part created. Linked to\" with entry A's number, \"in the Part Library. Its description\" "
+    "with description 1 in quotation marks, and \"was kept.\""],
+   ["The Part Library page opens."], ["Still exactly one entry is listed for entry A's number: no second entry was made."],
+   ["The detail page keeps description 1 and now shows \"Total parts\" 1."]],
+  ["S11-E2", "S7-R5", "S7-R6", "S7-R9", QA4],
+  design=dict(boards=["1.4", "7.2"], words=[note("Exactly one Part Library entry has the number typed")]))
+
+C("S11-17", "S11", "Receiving a typed purchase order line adds its number to the Part Library",
+  [ADMIN, "Use a new part number that no Part Library entry has and no inventory part uses.", "Have a vendor, vendor A.",
+   "Start on the Purchase Orders page (Parts in the top bar, then Purchase Orders in the left menu)."],
+  ["Click New Purchase Order.", "Pick vendor A as the vendor.", "Type the new part number in Part Number on the first line.",
+   "Pick the offer to add the typed number as a new part, not an existing result.", "Type 1 as the quantity.", "Type 10.00 as the cost.",
+   "Save the purchase order.", TO_PL, "Type the new part number in the Search box.", "Click Purchase Orders in the left menu.",
+   "Open the purchase order you saved.", "Click Receive.", "Type an invoice number in the invoice number field.", "Type 1 as the received quantity.",
+   "Click Receive on the Receive screen.", TO_PL, "Type the new part number in the Search box."],
+  [["A new purchase order opens."], ["Vendor A is picked."], ["The typed number is offered to be added as a new part."], ["The new part number is on the first line."],
+   ["The quantity shows 1."], ["The cost shows 10.00."], ["The purchase order is saved with a line for the new part number."],
+   ["The Part Library page opens."], ["No entry is listed for the new part number: a purchase order line alone does not make one."],
+   ["The Purchase Orders list opens."], ["The purchase order opens."], ["The Receive screen opens."], ["The invoice number shows what you typed."],
+   ["The received quantity shows 1."], ["The line is received."], ["The Part Library page opens."],
+   ["One entry is now listed for the new part number: the delivery receipt made it."]],
+  ["S11-R6", "S11-N1"],
+  design=dict(boards=["7.1"]))
+
+C("S11-18", "S11", "Delete is disabled while a part still uses the Part Library entry",
+  [ADMIN, "Create a part, part A, for this test at the test location only, on no work order and with no open return or credit, so it can be deleted later in the test.",
+   START_PL],
+  [TYPE_A, ROW_A, PENCIL, "Hover over the Delete button at the bottom left of the window.", "Click the Delete button.", CANCEL, PARTS, TO_INV, TYPE_A,
+   ROW_A, "Click Delete Part.", TO_PL, TYPE_A, ROW_A, PENCIL, "Hover over the Delete button.", CANCEL],
+  [["Part A's entry is listed."], ["The entry's detail page opens and shows \"Total parts\" 1."],
+   ["The \"Edit Library Part\" window opens.", "A Delete button sits at the bottom left of the window, dimmed (disabled)."],
+   ["Hovering it shows \"Part cannot be deleted. Please delete related parts first.\""],
+   ["Nothing happens: no \"Are you sure you want to delete this library part?\" question opens and the window stays open."],
+   ["The window closes and the entry is still there."], ["The Parts left menu shows Inventory."], ["The Inventory page opens."], ["Part A is listed."],
+   ["Edit Inventory Part opens for part A."], ["The window closes and part A leaves the Inventory list: it is deleted."],
+   ["The Part Library page opens."], ["Part A's entry is still listed, although its part was deleted."],
+   ["The detail page shows \"Total parts\" 0: no part uses the entry any more."],
+   ["The \"Edit Library Part\" window opens and its Delete button is now enabled."],
+   ["No hover text appears on the enabled Delete button."], ["The window closes."]],
+  ["S11-R3c", "S11-R3", "S12-R13", "UFS-01", PO12, QA4],
+  design=dict(boards=R72))
+
+C("S11-19", "S11", "The entry's Parts table shows Not Tracked for a location that does not count it",
+  [ADMIN_TWO, "Have a part, part A, stocked at the test location and at location B under the same part number: tracked at the test location with 4 in its bin, "
+   "and untracked at location B with 3 in its bin.", START_PL],
+  [TYPE_A, ROW_A],
+  [["Part A's entry is listed."],
+   ["The entry's detail page opens and its Parts table lists two rows under Workplace: the test location and location B.",
+    "The test location's row reads 4.00 in the Remaining Quantity column.",
+    "Location B's row reads \"Not Tracked\" in the Remaining Quantity column, in place of its 3."]],
+  ["S11-R8"],
+  design=dict(boards=R72, note="Board 7.2 draws the Parts table with one tracked, active row (Remaining Quantity 4.00); it draws no \"Not Tracked\" value and no \"Inactive\" tag, which PRD v33 added on 19 Oct."))
+
+C("S11-20", "S11", "The entry's Parts table tags a location where the part is inactive",
+  [ADMIN_TWO, "Have a part, part A, tracked at the test location and at location B under the same part number: active at the test location with 4 in its bin, "
+   "and inactive at location B with 2 in its bin.", START_PL],
+  [TYPE_A, ROW_A],
+  [["Part A's entry is listed."],
+   ["The entry's detail page opens and its Parts table lists two rows under Workplace: the test location and location B.",
+    "The test location's row reads 4.00 in the Remaining Quantity column, with no tag.",
+    "Location B's row shows the grey \"Inactive\" tag in the Remaining Quantity column, before its value 2.00."]],
+  ["S11-R9"],
+  design=dict(boards=R72, note="Board 7.2 draws the Parts table with one tracked, active row (Remaining Quantity 4.00); it draws no \"Not Tracked\" value and no \"Inactive\" tag, which PRD v33 added on 19 Oct."))

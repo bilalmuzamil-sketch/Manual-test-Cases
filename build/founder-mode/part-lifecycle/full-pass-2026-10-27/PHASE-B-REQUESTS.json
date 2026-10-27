@@ -1,0 +1,122 @@
+{
+ "_about": "Phase B (Stories 6-10) requests for the coordinator, 27 Oct 2026. Phase B edited only authoring/cases_s6.py ... cases_s10.py. The NO_MANUAL rows below are already added at build time by cases_s6.B_NO_MANUAL() (so build.py passes today); please move them into requirement_map.py and the ledger outcomes into ledger.py OUTCOME, then re-run ledger.py and render_setup.py (Phase B did not run either, because they write TICKET-LEDGER.json and the setup file).",
+ "requirement_map": {
+  "NO_MANUAL": {
+   "S7-N6": "The New Inventory Part and Edit Inventory Part windows never send a blank description or part number (S7-N1, S7-N2), and the parts import skips or keeps them (S7-N7 to S7-N9); the refusal is reachable only by a request sent outside the screens. Developers' check (tech plan Phase 6, CreatePartByTypingTest).",
+   "S9-E9": "The public API create refusal: no screen sends it (the New Inventory Part window refuses a number stocked here with S7-N3/S7-N4 instead). Developers' check (tech plan §5: public API POST /api/v1/parts unchanged, its 409).",
+   "S10-N3": "The note field stops accepting input at 255 characters (S10-R10, checked by S10-09), so a longer note can reach the system only by a request sent outside the screens. Developers' check (tech plan §5, PartLifecycleNote).",
+   "S10-N4": "The Deactivate and Activate buttons are disabled while nothing is ticked (S2-N1, S3-N1, checked by S10-34), so a change with no parts can reach the system only by a request sent outside the screens. Developers' check (tech plan §5).",
+   "S10-R25a": "A change made through the public API; no screen makes it. Developers' check (tech plan Phase 6, OpenApiPartRenameTest)."
+  },
+  "NO_MANUAL_UFS": {
+   "UFS-06": "S7-N6's refusal; see S7-N6.",
+   "UFS-07": "S7-N6's refusal; see S7-N6.",
+   "UFS-29": "A server error during a bulk change; a manual tester cannot cause one (the old case C425602 was deleted for this reason).",
+   "UFS-38": "S10-N3's refusal; see S10-N3.",
+   "UFS-39": "S10-N4's refusal; see S10-N4."
+  }
+ },
+ "ledger_OUTCOME": {
+  "SV-10819": [
+   "COVERED",
+   "Story 6 rewritten to PRD v33 (Phase B): 8 live cases rewritten, new S6-09 (vendor return) and S6-10 (vendor credit) for S6-R1a, the 23 Oct comment (answer A, quoted)."
+  ],
+  "SV-10820": [
+   "COVERED",
+   "Story 7 rewritten to PRD v33 (Phase B). 23 Oct comment (answer B: a linked entry with no category takes the dialog's) is the changed S7-R6c: S7-09 (entry with a category keeps it) and new split S7-09b (entry with no category takes the one picked), both quoting the comment. S7-N6 NO MANUAL CASE. S7-17 held on Q-B2, S7-25 held on Q4."
+  ],
+  "SV-10821": [
+   "COVERED",
+   "Story 8 rewritten to PRD v33 (Phase B); S8-03 split per default role (S8-03b Parts Manager, S8-03c Service Advisor). S8-N1 to S8-N3 checked by hand with a screen opened before the role was cut to View only (S8-04, S8-13, S8-14)."
+  ],
+  "SV-10822": [
+   "COVERED",
+   "Story 9 rewritten to PRD v33 (Phase B). 23 Oct comment (answer A, bundles unchanged) is the reworded S9-N3a: S9-28 (Vendor Order Management Create & Edit can search parts on a return), S9-41 and S9-42 (Returns access compared with production, today's app). New S9-43 to S9-46 (S9-R21) and S9-47, S9-48 (S9-R22). S9-E9 NO MANUAL CASE."
+  ],
+  "SV-10823": [
+   "COVERED",
+   "Story 10 rewritten to PRD v33 (Phase B). 23 Oct comment (answer A, only the changed Min/Max pair) is the changed S10-R22a: S10-25 (both pairs), new split S10-25b (only Max; no entry when neither changed), S10-26 (only Min, import). S10-N3, S10-N4, S10-R25a NO MANUAL CASE. S10-22 and S10-29 held on Q1."
+  ]
+ },
+ "questions_append": [
+  {
+   "id": "Q-B1",
+   "status": "OPEN",
+   "phase": "B",
+   "topic": "Part Lifecycle: who can open Parts → Returns and start a vendor return today",
+   "question": "The spec now says opening Parts → Returns and starting a vendor return \"keep the access today's 'Vendor Order Management' settings give\" (S9-N3a), without naming that access. So the tests compare the build with production. Please state today's access so the tests can say it directly: (a) Can a role with no Vendor Order Management permission open Parts → Returns? (b) Can a role with Vendor Order Management → View, but not Create & Edit, start a vendor return? (c) Which role, if any, reaches a return's or a vendor credit's part search without Part Library & Inventory → View, so the standard access error of S9-N3 can be seen? (Vendor Order Management → Create & Edit includes Part Library & Inventory → View, S9-N3a.)",
+   "options": "(a) A) Yes. B) No.\n(b) A) Yes. B) No, the button is hidden. C) No, it is greyed out.\n(c) A) A role with Vendor Order Management → View only. B) No role on screen today (the error is reached only outside the screens).",
+   "sources": [
+    "PRD v33 S9-N3a",
+    "PRD v33 S9-N3",
+    "PRD v33 S12-N1",
+    "Jira SV-10822, Nemanja Djuric and Chris Ward, 23 Oct 2026"
+   ],
+   "held": [],
+   "depends_not_held": [
+    {
+     "key": "S9-41",
+     "case": "C573685"
+    },
+    {
+     "key": "S9-42",
+     "case": "C573686"
+    },
+    {
+     "key": "S9-28",
+     "case": "C425746"
+    }
+   ],
+   "note": "Not held: S9-41 and S9-42 run today as a side-by-side comparison with production (S12-N1: every user's access on release day is identical to the day before). If the answer to (c) is B, S9-N3's access error is a NO MANUAL CASE."
+  },
+  {
+   "id": "Q-B2",
+   "status": "OPEN",
+   "phase": "B (C owns S13-N1a)",
+   "topic": "Part Lifecycle: renaming a part to a look-alike of another part at the same location",
+   "question": "A part's number is changed, in Edit Inventory Part, to one that matches another part at the SAME location once case and punctuation are ignored (for example AB-100 is stocked here and another part is renamed to ab 100). Story 7 says the save is refused with \"AB-100 already exists at this location.\" (S7-N3, S7-N5b). The new S13-N1a refuses a rename that matches a part \"at any location that stocks this part\" with \"AB-100 already exists at Staging Heavy Duty.\" (\"{existing part number} already exists at {location}.\"). Which message shows when the look-alike is at this same location?",
+   "options": "A) Story 7's: \"AB-100 already exists at this location.\"\nB) S13-N1a's: \"AB-100 already exists at <this location's name>.\"",
+   "sources": [
+    "PRD v33 S7-N3",
+    "PRD v33 S7-N5b",
+    "PRD v33 S13-N1a",
+    "Jira SV-10826, Chris Ward, 23 Oct 2026"
+   ],
+   "held": [
+    {
+     "key": "S7-17",
+     "case": "C425681"
+    }
+   ]
+  }
+ ],
+ "questions_update": {
+  "Q4": "Phase B: S7-25 (C573682) is written and held on Q4(a). Q4(b) (is the template's name column the description?) is not held: S7-22, S7-23, S7-24 say 'the description cell', and the setup-file line (claude=) names the name column as the open question.",
+  "Q5": "Phase B rewrote S9-28 (C425746), S9-41 (C573685) and S9-42 (C573686) to the reworded S9-N3a, as Q5's answer said; the remaining gap (what 'today's access' is) is new question Q-B1.",
+  "Q1": "Phase B: S10-22 (C425769) and S10-29 (C425777) are written and held on Q1, as listed."
+ },
+ "library_notes": [
+  "build.py: piping its output to head ends it with BrokenPipeError before proposals.json is written; harmless, but run it without a pipe (or add signal.signal(SIGPIPE, SIG_DFL) as tester_readiness_check.py does).",
+  "pllib.JARGON blocks the lowercase word 'request', so tester text writes 'Part Request' (the screen's 'New Part Request'); Phase B cases follow that."
+ ],
+ "over_target_kept_whole": [
+  "S7-05",
+  "S8-04",
+  "S8-06",
+  "S8-14",
+  "S9-21",
+  "S9-22",
+  "S9-23",
+  "S10-02",
+  "S10-04",
+  "S10-05",
+  "S10-06",
+  "S10-11",
+  "S10-12",
+  "S10-13",
+  "S10-16",
+  "S10-17",
+  "S10-18",
+  "S10-33"
+ ]
+}
