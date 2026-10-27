@@ -243,7 +243,11 @@ def main():
     build_claim, deferred = [], []
     for c in cases:
         e = flat(c.get('custom_expected'))
-        if not re.search(r'as per epic|Source:\s*\S', e, re.I):
+        # 2026-10-27: also accept the "Source — where this behaviour comes from" heading the WO Board
+        # and Tech View cases use (flat() has already turned &mdash; into an em dash). Before this, all
+        # those cases were reported as "invented", 19 of 23 falsely on section 73780. Additive only:
+        # every case the old pattern accepted is still accepted.
+        if not re.search(r'as per epic|Source:\s*\S|Source\s*[\u2014\u2013-]\s*where this behaviou?r comes from', e, re.I):
             no_source.append(c['id'])
         ms = [l.strip() for l in e.split('\n') if l.strip().upper().startswith('AUTOMATION:')]
         if len(ms) != 1:
@@ -331,11 +335,11 @@ def main():
             # the actual exception unread. If a child crashed, its last stderr lines say why.
             if not tail and err:
                 fails.append(f'{label} gate CRASHED (exit {r.returncode}). Last error line:\n     '
-                             + err[-1][:200] + '\n     re-run: ' + ' '.join(cmd[:3]) + ' --cases …')
+                             + err[-1][:200] + '\n     re-run: ' + ' '.join(cmd[:2]) + ' --cases …')
                 for l in err[-4:]:
                     print('     ! ' + l.strip()[:150])
             else:
-                fails.append(f'{label} gate failed - run it directly for the detail:\n     ' + ' '.join(cmd[:3]) + ' --cases …')
+                fails.append(f'{label} gate failed - run it directly for the detail:\n     ' + ' '.join(cmd[:2]) + ' --cases …')
                 for l in tail:
                     if re.match(r'\s*(C\d+|-|🛑|\d+ case)', l):
                         print('     ' + l.strip()[:150])

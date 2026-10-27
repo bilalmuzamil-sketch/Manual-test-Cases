@@ -44,6 +44,23 @@ ROOT = os.getcwd()
 # corpus is correct regardless of what the files are called.
 RULEFILES = sorted(os.path.relpath(p, ROOT) for p in
                    glob.glob(os.path.join(ROOT, 'build/rules/RULES-*.md')))
+# 2026-10-27 — TWO OPTIONAL SWITCHES, BOTH OFF BY DEFAULT (a run without them behaves exactly as before):
+#   --rules A.md,B.md   sweep only these rule files. For a checkout that holds more than one session's
+#                       rule files, where only some of them are this session's own rule book.
+#   --expect-gap 97-108 a numbering gap this rule book has ON PURPOSE (it is not reported as missing).
+#                       Any OTHER gap still fails the corpus check, loudly.
+EXPECT_GAP = set()
+_argv = sys.argv[1:]
+for _k, _a in enumerate(_argv):
+    if _a == '--rules' and _k + 1 < len(_argv):
+        RULEFILES = [x.strip() for x in _argv[_k + 1].split(',') if x.strip()]
+        for _p in RULEFILES:
+            if not os.path.exists(os.path.join(ROOT, _p)):
+                sys.exit('FATAL: --rules names a file that does not exist: %s' % _p)
+    if _a == '--expect-gap' and _k + 1 < len(_argv):
+        for _part in _argv[_k + 1].split(','):
+            _lo, _, _hi = _part.partition('-')
+            EXPECT_GAP |= set(range(int(_lo), int(_hi or _lo) + 1))
 NAMES = ['Mudassir', 'Qamar', 'Viktoria', 'Videnovic', 'Vladimir Tomovic',
          'Sasha', 'Grosman', 'Grossman', 'Branko', 'Chris Ward', 'Milos']
 AMEND = ['amend', 'corrected', 'correction', 'supersede', 'clarif', 'carve-out',
@@ -85,8 +102,22 @@ for f in RULEFILES:
     # ANCHORING: the width is unbounded but the SHAPE is not - `^`, then digits, then a literal
     # '. ' and the '**' that opens every rule headline. A date, a version string or a bare
     # number cannot satisfy that, so widening the count adds no false positives.
-    st = [(int(m.group(1)), i) for i, l in enumerate(lines)
-          for m in [re.match(r'^(\d+)\.\s+\*\*', l)] if m]
+    # 2026-10-27: a rule may also open with a markdown heading "## 111 · TITLE". Inside such a rule a
+    # line "1. **...**" is a numbered LIST ITEM, not a rule (it is lower than the rule it sits in).
+    # Files with no "## <n> ·" headings are parsed exactly as before, so a real duplicate there is
+    # still caught.
+    st, _last, _in_hash = [], 0, False
+    for i, l in enumerate(lines):
+        mh = re.match(r'^##\s+(\d+)\s*[\u00b7.:\u2014-]\s', l)
+        if mh:
+            st.append((int(mh.group(1)), i)); _last = int(mh.group(1)); _in_hash = True
+            continue
+        m = re.match(r'^(\d+)\.\s+\*\*', l)
+        if m:
+            n = int(m.group(1))
+            if _in_hash and n <= _last:
+                continue
+            st.append((n, i)); _last = n; _in_hash = False
     for k, (n, i) in enumerate(st):
         end = st[k + 1][1] if k + 1 < len(st) else len(lines)
         raw = '\n'.join(lines[i:end])
@@ -109,7 +140,7 @@ if not bodies:
              '       "<n>. **<TITLE>" in build/rules/RULES-*.md. Nothing swept.'
              % (', '.join(RULEFILES) or 'build/rules/RULES-*.md'))
 RULE_MAX = max(bodies)
-missing = [n for n in range(1, RULE_MAX + 1) if n not in bodies]
+missing = [n for n in range(1, RULE_MAX + 1) if n not in bodies and n not in EXPECT_GAP]
 
 # A gap or a duplicate means a rule body is absent or double-counted, so every
 # "carried / not carried" verdict below is computed over a corpus we cannot vouch
@@ -124,6 +155,10 @@ if missing or dupes:
               % ', '.join(str(n) for n in missing))
     for n, first, second in dupes:
         print('DUPLICATE — rule %d has bodies at %s and %s' % (n, first, second))
+    if any(a.split(':')[0] != b.split(':')[0] for _, a, b in dupes):
+        print('HINT — the same rule number is in two different rule files. If only some of these files are\n'
+              '       this session\'s own rule book, sweep just those: --rules <file>,<file>  (and --expect-gap\n'
+              '       <a>-<b> for a numbering gap the rule book has on purpose).')
     sys.exit('REFUSING TO SWEEP: the rule corpus is incomplete, so no result '
              'from this tool would be trustworthy. Fix the corpus, then re-run.')
 
@@ -270,6 +305,8 @@ rows = []
 # and would have skipped rule 100 the day it landed, while still printing
 # "missing: NONE" — the newest rule is the one most likely to be un-backfilled.
 for n in range(1, RULE_MAX + 1):
+    if n in EXPECT_GAP and n not in bodies:
+        continue  # a gap the rule book has on purpose (--expect-gap); any other gap already failed above
     bn = bodies[n]['norm']
     srcs = [('CLAUDE.md §1 L%d' % b['line'], b['raw'], 'S1')
             for b in bullets if n in b['primary']]
