@@ -1,0 +1,21 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const ENV=process.argv[2]||'branch';
+const s=await open({env:ENV==='branch'?'branch':'staging',ticket:'11565',cookies:JSON.parse(fs.readFileSync('/tmp/qa11685/cookies.json')),quick:'admin',dir:'/tmp/qa21',vp:{width:1600,height:1000}});
+const J=(p,b)=>s.api(p,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)});
+const M=JSON.parse(fs.readFileSync(`../data/matrix-${ENV}.json`)); const W1=M.W1; const CFG=JSON.parse(fs.readFileSync(`../data/entry-${ENV}.json`));
+const base={id:CFG.id,start_date:CFG.start_date,end_date:CFG.end_date,tech_assigned_id:CFG.tech_assigned_id,description:CFG.description};
+const cl=((await s.api('/api/work-orders/canned-lines?limit=200')).json.data.collection||[]).filter(c=>!c.fixed_price&&c.labour_type_id&&!c.total_parts);
+const l3=(await J(`/api/work-orders/${W1.w}/lines/create-from-canned-line`,{canned_line_id:cl[2].id,status:'authorized'})).json.data.line_id; W1.l2=l3; console.log('fresh line',l3);
+const bodies=[]; s.page.on('response',async q=>{if(/lines\/delete|delete-lines/.test(q.url())) bodies.push(q.url().replace(/https:\/\/[^/]+/,'')+' :: '+q.request().postData()+' -> '+q.status()+' '+(await q.text().catch(()=>'')).slice(0,200));});
+await s.go(`/workorders/${W1.w}/lines`); await s.waitFor('line_number_'+W1.l2);
+let b=await s.box('line_number_'+W1.l2); await s.page.mouse.click(b.x+250,b.y,{button:'right'}); await s.page.waitForTimeout(800);
+b=await s.box('menu-item_delete_line_'+W1.l2); await s.page.mouse.click(b.x,b.y); await s.page.waitForTimeout(800);
+const r1=await s.confirm?null:null;
+for(let i=0;i<3;i++){ const btn=await s.page.evaluate(()=>{const e=[...document.querySelectorAll('.q-dialog button, .q-menu .q-item')].filter(x=>x.offsetParent).map(x=>({t:x.innerText.trim(),id:x.dataset.testId||'',r:x.getBoundingClientRect()})); return e;}); 
+  console.log('step',i,btn.map(x=>x.id+':'+x.t).join(' | ')); const c=btn.find(x=>/^(Yes|Delete|Are You Sure\?|Confirm)$/i.test(x.t)||/confirm|delete_line/.test(x.id)); if(!c) break; await s.page.mouse.click(c.r.x+c.r.width/2,c.r.y+c.r.height/2); await s.page.waitForTimeout(2000); if(bodies.length) break; }
+await s.page.waitForTimeout(1500);
+console.log(bodies.join('\n'));
+const L=(await s.api('/api/work-orders/lines/'+W1.w)).json.data.collection.map(l=>l.line_id); console.log('line still there?',L.includes(W1.l2));
+const r=await J('/api/technician-tasks/change',{...base,work_order_id:W1.w,line_id:W1.l2}); console.log('I deleted line id ->',r.status,JSON.stringify(r.json));
+M.out.push({tag:'I deleted line id (deleted on screen)',status:r.status,body:r.json}); fs.writeFileSync(`../data/matrix-${ENV}.json`,JSON.stringify(M,null,1));
+await s.browser.close(); process.exit(0);

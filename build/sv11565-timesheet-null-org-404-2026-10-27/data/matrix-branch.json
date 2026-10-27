@@ -1,0 +1,194 @@
+{
+ "ENV": "branch",
+ "tid": "9e74e6e7-7b90-4884-946b-c9f49ee349f7",
+ "dept": "70d5d069-83cf-4c94-9b13-41b967c4afe9",
+ "deleted_dept": "fc5d1ccf-2d0d-49ae-b0db-c4628c8aff56",
+ "W1": {
+  "w": "5716c49b-6ce0-45f4-837d-2992a8318fbf",
+  "l1": "fca24719-fd84-4104-8084-c1db596f6ed4",
+  "l2": "5ebd88d1-a9de-43ae-9ad2-23c249ded5ce"
+ },
+ "W2": {
+  "w": "ab41359d-c781-4b2a-b2ea-30c94e884ab3",
+  "l1": "6322037f-c8a5-402e-9482-b2df7c2c6c98",
+  "l2": "74c221cf-fb6e-4ef8-8481-06cb2e2e9fcb"
+ },
+ "out": [
+  {
+   "tag": "A valid department (normal save)",
+   "status": 201,
+   "body": {
+    "data": {
+     "technician_task_id": "9e74e6e7-7b90-4884-946b-c9f49ee349f7"
+    }
+   }
+  },
+  {
+   "tag": "B unknown department id",
+   "status": 404,
+   "body": {
+    "errors": [
+     {
+      "error": "'Department' was not found."
+     }
+    ]
+   }
+  },
+  {
+   "tag": "create dept",
+   "status": 201,
+   "body": {
+    "data": {
+     "department_id": "fc5d1ccf-2d0d-49ae-b0db-c4628c8aff56"
+    }
+   }
+  },
+  {
+   "tag": "delete dept",
+   "status": 201,
+   "body": {
+    "data": {
+     "department_id": "fc5d1ccf-2d0d-49ae-b0db-c4628c8aff56"
+    }
+   }
+  },
+  {
+   "tag": "C deleted department id",
+   "status": 404,
+   "body": {
+    "errors": [
+     {
+      "error": "'Department' was not found."
+     }
+    ]
+   }
+  },
+  {
+   "tag": "D move to unknown department",
+   "status": 404,
+   "body": {
+    "errors": [
+     {
+      "error": "'Department' was not found."
+     }
+    ]
+   }
+  },
+  {
+   "tag": "E move to deleted department",
+   "status": 404,
+   "body": {
+    "errors": [
+     {
+      "error": "'Department' was not found."
+     }
+    ]
+   }
+  },
+  {
+   "tag": "F valid work order + line (normal save)",
+   "status": 201,
+   "body": {
+    "data": {
+     "technician_task_id": "9e74e6e7-7b90-4884-946b-c9f49ee349f7"
+    }
+   }
+  },
+  {
+   "tag": "G unknown work order id",
+   "status": 404,
+   "body": {
+    "errors": [
+     {
+      "error": "'Work Order' was not found."
+     }
+    ]
+   }
+  },
+  {
+   "tag": "H unknown line id",
+   "status": 404,
+   "body": {
+    "errors": [
+     {
+      "error": "'Line' was not found."
+     }
+    ]
+   }
+  },
+  {
+   "tag": "delete line l2",
+   "status": 500,
+   "body": {
+    "errors": [
+     {
+      "error": "An error occurred. We're sorry for this inconvenience, please try again a bit later."
+     },
+     {
+      "requestId": "fcd9fcb4-508d-4205-86f2-9e964a5c2964"
+     }
+    ]
+   }
+  },
+  {
+   "tag": "I deleted line id",
+   "status": 201,
+   "body": {
+    "data": {
+     "technician_task_id": "9e74e6e7-7b90-4884-946b-c9f49ee349f7"
+    }
+   }
+  },
+  {
+   "tag": "delete WO W2",
+   "status": 201,
+   "body": {
+    "data": {
+     "work_order_id": "ab41359d-c781-4b2a-b2ea-30c94e884ab3"
+    }
+   }
+  },
+  {
+   "tag": "J deleted work order id",
+   "status": 404,
+   "body": {
+    "errors": [
+     {
+      "error": "'Work Order' was not found."
+     }
+    ]
+   }
+  },
+  {
+   "tag": "K move to deleted line",
+   "status": 404,
+   "body": {
+    "errors": [
+     {
+      "error": "'Department' was not found."
+     }
+    ]
+   }
+  },
+  {
+   "tag": "I deleted line id (deleted on screen)",
+   "status": 201,
+   "body": {
+    "data": {
+     "technician_task_id": "9e74e6e7-7b90-4884-946b-c9f49ee349f7"
+    }
+   }
+  },
+  {
+   "tag": "I deleted line id (deleted on screen)",
+   "status": 404,
+   "body": {
+    "errors": [
+     {
+      "error": "'Line' was not found."
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,10 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const s=await open({env:'staging',cookies:JSON.parse(fs.readFileSync('/tmp/qa11685/cookies.json')),quick:'admin',dir:'/tmp/qa21',vp:{width:2000,height:1100}});
+const J=(p,b)=>s.api(p,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)});
+let r=await s.api('/api/technician-tasks/my-current-task'); console.log('current',JSON.stringify(r.json).slice(0,150));
+r=await s.api('/api/departments'); const d0=r.json.data.collection.find(d=>d.enable_time_clock); console.log('dept',d0.name);
+r=await J('/api/technician-tasks/department-clock-in',{department_id:d0.id}); console.log('in',r.status,JSON.stringify(r.json).slice(0,150)); const tid=r.json?.data?.technician_task_id;
+await s.page.waitForTimeout(61000);
+r=await J('/api/technician-tasks/department-clock-out',{task_id:tid,description:'ZZAUTOTEST SV-11565 staging'}); console.log('out',r.status);
+fs.writeFileSync('../data/staging-tid.txt',tid);
+await s.browser.close(); process.exit(0);

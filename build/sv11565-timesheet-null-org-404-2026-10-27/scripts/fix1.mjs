@@ -1,0 +1,10 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const s=await open({env:'staging',cookies:JSON.parse(fs.readFileSync('/tmp/qa11685/cookies.json')),quick:'admin',dir:'/tmp/qa21',vp:{width:1400,height:900}});
+const J=(p,b)=>s.api(p,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(b)});
+const find=async()=>{for(let pg=1;pg<4;pg++){const L=(await s.api(`/api/technician-tasks/list?pagination[page]=${pg}&pagination[rowsPerPage]=100`)).json?.data?.collection||[]; const e=L.find(x=>x.id==='7a42170f-9461-40cb-8f1a-ecba3307ea7e'); if(e) return e;} return null;};
+let e=await find(); console.log('now',JSON.stringify({wo:e?.work_order_id,line:e?.line_id,s:e?.start_date,e:e?.end_date,d:e?.description,label:e?.label}));
+const orig={id:'7a42170f-9461-40cb-8f1a-ecba3307ea7e',start_date:'28/01/2025 14:27',end_date:'28/01/2025 15:22',tech_assigned_id:'d1239cdd-8ad9-4605-95be-ff3ef6a8f3df',description:null,work_order_id:'f90ee121-2b16-4846-9939-2bb0451fbc34',line_id:'8f41bb60-e86c-4205-b9a8-ee08600186c2'};
+let r=await J('/api/technician-tasks/change',orig); console.log('change',r.status,JSON.stringify(r.json));
+r=await J('/api/technician-tasks/move',{id:orig.id,line_id:orig.line_id,work_order_id:orig.work_order_id}); console.log('move',r.status,JSON.stringify(r.json));
+e=await find(); console.log('after',JSON.stringify({wo:e?.work_order_id,line:e?.line_id,s:e?.start_date,e:e?.end_date,d:e?.description,label:e?.label,last_edit:e?.last_edit}));
+await s.browser.close(); process.exit(0);
