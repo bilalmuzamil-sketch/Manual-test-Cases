@@ -1,0 +1,13 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const s=await open({env:'branch',ticket:'11685',cookies:JSON.parse(fs.readFileSync('/tmp/qa11685/cookies.json')),quick:'admin',dir:'/tmp/qa21',vp:{width:1440,height:1000},dpr:1});
+const p=s.page; const reqs=[]; p.on('request',r=>{const u=r.url(); if(/\/api\//.test(u)) reqs.push(r.method()+' '+u.replace(/https:\/\/[^/]+/,'').slice(0,140)); if(/\/js\/.*\.js/.test(u)) reqs.push('JS '+u.replace(/https:\/\/[^/]+/,''));});
+await s.go('/workorders/d973d775-8e53-443b-912d-a56f6dafd54d/lines'); await p.waitForTimeout(6000);
+await p.click('[data-test-id="button_add_labor_adjustment_741ee1b2-1445-4e23-b63b-14e46ceafb2f"]'); await p.waitForTimeout(1200);
+await p.click('[data-test-id="menu_item_add_labor_adjustment_741ee1b2-1445-4e23-b63b-14e46ceafb2f"]'); await p.waitForTimeout(2000);
+console.log('href',await p.getAttribute('[data-test-id="link_qb_settings"]','href').catch(()=>null)); reqs.length=0;
+await p.click('[data-test-id="link_qb_settings"]'); await p.waitForTimeout(7000);
+console.log('url',p.url()); console.log('text',(await p.evaluate(()=>document.body.innerText)).replace(/\s+/g,' ').slice(0,1500));
+console.log([...new Set(reqs)].filter(x=>!/collect/.test(x)).join('\n'));
+await p.screenshot({path:'/tmp/qa11685/w/fee/qb-settings.png',fullPage:true});
+console.log('ids',JSON.stringify(await p.evaluate(()=>[...new Set([...document.querySelectorAll('[data-test-id]')].map(e=>e.getAttribute('data-test-id')))].filter(t=>/qb|quick|book|fee|disc|map|connect|sync|item/i.test(t)))));
+process.exit(0);

@@ -1,0 +1,10 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const all=JSON.parse(fs.readFileSync('/tmp/qa11685/cookies.json')); const ck={}; for(const k of Object.keys(all)) if(k!=='PHPSESSID') ck[k]=all[k];
+const s=await open({env:'branch',ticket:'11685',cookies:ck,quick:'none',dir:'/tmp/qa21',vp:{width:1440,height:1000},dpr:1});
+const E='bilal.muzamil+sv11685org2@shopview.com', PW=fs.readFileSync('/tmp/qa11685/org2-pw.txt','utf8').trim(), TOK=fs.readFileSync('/tmp/qa11685/org2-token.txt','utf8').trim();
+const J=(p,b,m='POST')=>s.api(p,{method:m,headers:{'content-type':'application/json'},body:b?JSON.stringify(b):undefined});
+let r=await J('/api/reset-password?username='+encodeURIComponent(E)+'&token='+TOK,{new_password:PW,confirmed_password:PW}); console.log('reset',r.status,JSON.stringify(r.json||r.text).slice(0,200));
+r=await J('/api/login',{username:E,password:PW}); console.log('login',r.status,JSON.stringify(r.json||r.text).slice(0,300));
+r=await s.api('/api/organizations/settings'); const org=r.json?.data?.organization_id||r.json?.data?.id; console.log('settings',r.status,JSON.stringify(r.json).slice(0,300));
+fs.writeFileSync('/tmp/qa11685/org2-settings.json',JSON.stringify(r.json));
+await s.browser.close(); process.exit(0);
