@@ -1,0 +1,10 @@
+{panel:bgColor=#fffae6}*OVERALL QA STATUS: BLOCKED*{panel}
+[~accountid:712020:1b27a800-7b5a-43f3-982a-81e7071a4fdb] I'm blocking this ticket until I know how to create the record it needs.
+
+This fix is for saving a timesheet entry whose department, work order or line has no organization. I could not create a department, work order or line without an organization on sv11565: no screen creates one, and deleting a department, work order or line does not leave one behind (the saved entry is then simply refused as "not found").
+
+*What I could check on sv11565 works:*
+* Saving a timesheet entry with an unknown or deleted department, work order or line is refused with a "was not found" message (Department / Work Order / Line).
+* Normal timesheet saves still work: Reports → Timesheet Activities → Edit Timesheet → change the department → Save.
+
+*Question:* how can I create a department, work order or line with no organization on sv11565, so I can test the case this ticket fixes? Or is that case only covered by your automated test?

@@ -57,6 +57,14 @@ else owes).
 
 ---
 
+## 2026-10-27, ~11:30 UTC. **THREE TICKETS BLOCKED ON YOUR INSTRUCTION, EACH WITH A QUESTION TO ITS DEVELOPER.**
+| Ticket | Waiting on | What it blocks | Since |
+|---|---|---|---|
+| SV-11253 (comment 79547, Blocked) | Slavcho Mitrov — why the **Move labor** permission does not stay on for any role on sv11253 (your video attached) | The whole branch test: labor cannot be moved, so the fix cannot be checked. Production repro already done (S2-1763) | 27 Oct |
+| SV-11565 (comment 79548, Blocked) | Slavcho Mitrov — how to create a department / work order / line with no organization on sv11565, or is it covered only by his automated test | The ticket's own failing case; everything else reachable passes | 27 Oct |
+| SV-11685 check 13 (comment 79549, Blocked) | Milomir Kotlajic — a QA branch with QuickBooks connected, or remove the QuickBooks requirement for adding fees/discounts on sv11685 | Check 13 (fee/discount rows under Labor); the other checks are posted in 79544 | 27 Oct |
+| SV-11565 staging side effect (disclosed) | nothing — for your information | Brett Guerra's 28 Jan 2025 timesheet entry (S-4011) now sits on my test work order S2-38096 on staging; times and description restored, its original line no longer exists | 27 Oct |
+
 ## 2026-10-20, ~15:30 UTC. **Six staging tickets re-tested and posted (SV-11541, SV-11498, SV-11454, SV-11422, SV-11326, SV-11119), all PASSED. Staging redeployed twice during the pass (3312e15 → 9c75418 → 0509710).**
 
 | Category | Item | Owner | Blocks | Since |

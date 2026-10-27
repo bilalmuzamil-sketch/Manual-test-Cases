@@ -38,3 +38,13 @@ S2500-137 open entry (Confirm Overwrite) — test org.
 
 ## Learning check
 - Playbook §AT addendum: Move labour to line path + the missing-permission check. Lessons index row added.
+
+## 27 Oct follow-up — Rule 114 check, then BLOCKED (comment 79547)
+- The QA lead switched **Move labor** on for the Admin role (`73f72525-…`). Re-read on a fresh load: **off**. I switched it on,
+  saved (Edit Anyway → Confirm): `PUT /api/roles/{id}` 200, the payload carries 57 permission ids (none for Move labor),
+  reopen → **off** (`ev/branch-0-role-movelabor.png`, `ev/branch-0b-role-movelabor-on.png`). The line menu on S11253-17580
+  still has no Move labor item (`ev/branch-1-context-menu.png`).
+- QA lead's video (`/tmp`, uploaded to Jira as SV-11253-Move-labor-does-not-stay-on.webm; frame grid `ev/lead/grid.png`):
+  same on Admin and on a brand-new role.
+- Posted comment **79547** tagging Slavcho Mitrov with the video; ticket moved TESTING QA → **Blocked**. Read back: 5 steps,
+  1 video (1280×720), mention resolved.

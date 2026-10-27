@@ -1,0 +1,18 @@
+{panel:bgColor=#fffae6}*OVERALL QA STATUS: BLOCKED*{panel}
+[~accountid:712020:1b27a800-7b5a-43f3-982a-81e7071a4fdb] This ticket is blocked on sv11253: the *Move labor* permission cannot be turned on for any role on this branch, so the ticket's step (moving a technician's labor to another line with Move labor) cannot be done here.
+
+*What happens (video below):*
+# Go to Settings → Roles & Permissions and click the pencil on the {{Admin}} role.
+# In the Work orders block, switch {{Move labor}} on (it is under {{Receive later}}).
+# Click {{Save}}, then {{Edit Anyway}}, then {{Confirm}}. The message "Role updated successfully" appears.
+# Open the {{Admin}} role again: {{Move labor}} is switched off again.
+# The same happens on a brand-new role created with {{Move labor}} switched on: after it is created, the toggle is off.
+
+Because of this, right-clicking a line on work order S11253-17580 shows no {{Move labor}} item, so the labor cannot be moved and the fix cannot be checked.
+
+For reference, on production the {{Move labor}} item is there, and the bug in this ticket still reproduces (work order S2-1763: after moving the labor and changing the timesheet line, an extra empty row is left on the line).
+
+Could you look at why the {{Move labor}} permission is not being saved on sv11253? I will finish the test as soon as it can be switched on. Moving the ticket to Blocked.
+
+*Video:* switching {{Move labor}} on, saving, and reopening the role on sv11253 (27 October 2026).
+!SV-11253-Move-labor-does-not-stay-on.webm|width=1280,height=720!

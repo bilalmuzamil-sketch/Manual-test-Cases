@@ -1,0 +1,10 @@
+{panel:bgColor=#fffae6}*OVERALL QA STATUS: BLOCKED (check 13)*{panel}
+[~accountid:712020:655c2bc0-ee59-46d8-9da3-f61e54739e55] Check 13 (fee and discount rows under Labor on the estimate and invoice) is blocked on sv11685.
+
+To test it I need a work order with a fee or a discount on a labor line. No work order on sv11685 has one (I went through all 3,262), and I cannot add one: adding a fee or discount is refused on this branch until a QuickBooks item is mapped, and the branch has no QuickBooks connection.
+
+Could you either:
+* give me a QA branch that has QuickBooks connected (or a QuickBooks sandbox login for sv11685), or
+* remove the need to connect QuickBooks before a fee or discount can be added on sv11685,
+
+so I can add a fee and a discount to a labor line and finish check 13? Moving the ticket to Blocked until then.

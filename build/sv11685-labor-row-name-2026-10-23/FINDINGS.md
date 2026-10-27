@@ -100,3 +100,7 @@ Remaining: only the line fee/discount (↳) rows — with Chris and Milomir in c
   request's bare date vs the Edmonton location; bucket (c), unrelated to the ticket.
 - Posted **79544** (yellow PARTIALLY PASSED, quote of 79419, pictures 4–5, 11-row table, 5 steps). Read back: 2 media, 12 table
   rows, ol 5. Old comments untouched (Rule 112).
+
+## 27 Oct — check 13 BLOCKED, asked Milomir (comment 79549)
+Posted 79549 tagging Milomir Kotlajic: a QA branch with QuickBooks connected (or a sandbox login), or remove the QuickBooks
+requirement for adding fees/discounts on sv11685. Ticket In Progress → **Blocked**. Mention read back.

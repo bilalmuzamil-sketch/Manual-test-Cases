@@ -50,3 +50,7 @@ refuses to point it back ("Line was not found"), so the entry stays on S2-38096.
 
 Test data: sv11565 departments created + deleted, work orders (W1 kept, W2 deleted); staging dept a3e82c8a created + deleted,
 work orders S2-38096 (kept, holds Brett's entry) and a deleted one.
+
+## 27 Oct — BLOCKED, question to Slavcho (comment 79548)
+Posted 79548 tagging Slavcho Mitrov: how to create a department / work order / line with no organization on sv11565, or is
+it covered only by his automated test. Ticket TESTING QA → **Blocked**. Mention read back.
