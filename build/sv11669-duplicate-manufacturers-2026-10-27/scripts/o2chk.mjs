@@ -1,0 +1,1 @@
+import {sess} from './lib.mjs'; const s=await sess(); const m=await s.api('/api/parts-catalogue/manufacturers'); console.log('who: manufacturers',m.status,(Object.values(m.json?.data||{}).find(Array.isArray)||[]).length); await s.browser.close(); process.exit(0);

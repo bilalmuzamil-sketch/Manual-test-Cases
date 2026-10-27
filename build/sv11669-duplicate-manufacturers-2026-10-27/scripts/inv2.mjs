@@ -1,0 +1,13 @@
+import {sess} from './lib.mjs'; import fs from 'fs';
+const s=await sess('none',{vp:{width:1400,height:950},dpr:2}); const P=s.page; const log=[];
+P.on('response',async r=>{const u=r.url(); if(/\/api\//.test(u)&&r.request().method()!=='GET'&&!/envelope|google|sentry|touch/.test(u)) log.push(r.request().method()+' '+r.status()+' '+u.split('/api')[1].slice(0,80)+' '+(await r.text().catch(()=>'')).slice(0,200));});
+const link=fs.readFileSync('/tmp/qa21/invite.txt','utf8').replace('http://','https://'); const pw=fs.readFileSync('/tmp/qa21/org2-pass.txt','utf8');
+await P.goto(link,{waitUntil:'domcontentloaded',timeout:60000}); await s.waitFor('input_password');
+await P.locator('input[data-test-id="input_password"], [data-test-id="input_password"] input').first().fill(pw);
+await P.locator('input[data-test-id="input_repeat_password"], [data-test-id="input_repeat_password"] input').first().fill(pw);
+const b=await s.box('button_login'); await P.mouse.click(b.x,b.y); await P.waitForTimeout(7000);
+console.log('url',P.url().split('?')[0]); console.log(log.join('\n').slice(0,1200));
+const m=await s.api('/api/parts-catalogue/manufacturers'); const a=Object.values(m.json?.data||{}).find(Array.isArray)||[]; console.log('org2 manufacturers',m.status,a.length,JSON.stringify(a.slice(0,5).map(x=>x.label)));
+const o=await s.api('/api/organizations'); console.log('org2 sees orgs',JSON.stringify((o.json?.data?.organizations||[]).map(x=>x.name)));
+fs.writeFileSync('/tmp/qa21/org2-cookies.json',JSON.stringify(await P.context().cookies()));
+await P.screenshot({path:'../ev/inv2-after-login.png'}); await s.browser.close(); process.exit(0);

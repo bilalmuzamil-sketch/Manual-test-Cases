@@ -1,0 +1,13 @@
+import {sess2} from './lib2.mjs'; const s=await sess2(); const P=s.page; const log=[];
+P.on('response',async r=>{const u=r.url(); if(/\/api\//.test(u)&&r.request().method()!=='GET'&&!/envelope|touch/.test(u)) log.push('RES '+r.status()+' '+u.split('/api')[1]+' '+(await r.text().catch(()=>'')).slice(0,250));});
+await s.go('/administration/locations'); await P.waitForTimeout(2500);
+let b=await s.box('button_add_workplace'); await P.mouse.click(b.x,b.y); await s.waitFor('input_name'); await P.waitForTimeout(600);
+const fill=async(t,v)=>P.locator(`[data-test-id="${t}"] input, input[data-test-id="${t}"]`).first().fill(v);
+const pick=async(t,txt)=>{const bb=await s.box(t); await P.mouse.click(bb.x,bb.y); await P.waitForTimeout(1200); console.log(t,'opts',JSON.stringify(await P.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].map(e=>e.innerText.trim()).slice(0,8)))); if(!(await P.locator('.q-menu .q-item').filter({hasText:txt}).count())){await P.keyboard.type(txt,{delay:50}); await P.waitForTimeout(1200);} const o=P.locator('.q-menu .q-item').filter({hasText:txt}).first(); if(await o.count()){await o.click();} else console.log('no option',t,txt, JSON.stringify(await P.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].map(e=>e.innerText.trim()).slice(0,5)))); await P.waitForTimeout(600);};
+await fill('input_name','ZZAUTOTEST Org2 Shop'); await fill('input_shop_id','2001'); await fill('input_address_1','1 Test Road'); await fill('input_city','Calgary'); await fill('input_postal_code','T2P 1J9'); await fill('input_telephone','4035550100');
+await pick('select_country_code','Canada'); await pick('select_state_or_province','Alberta'); await pick('select_timezone','Edmonton');
+await P.screenshot({path:'../ev/loc2-filled.png'});
+b=await s.box('button_save_workplace'); await P.mouse.click(b.x,b.y); await P.waitForTimeout(4000);
+console.log(log.join('\n').slice(0,1200)); console.log('dialog open',await P.evaluate(()=>!!document.querySelector('.q-dialog')), await P.evaluate(()=>[...document.querySelectorAll('.q-dialog [role=alert], .q-field--error .q-field__messages')].map(e=>e.innerText).join(' | ')));
+const w=await s.api('/api/staff/my-workplaces'); console.log('workplaces',JSON.stringify((w.json?.data?.collection||[]).map(x=>[x.id,x.name,x.timezone])));
+await s.browser.close(); process.exit(0);

@@ -1,0 +1,12 @@
+import {sess} from './lib.mjs'; import fs from 'fs'; const s=await sess(); const P=s.page; const log=[];
+const me={email:'bilal.muzamil+sv11669@shopview.com',first_name:'QA',last_name:'SecondOrg'}; console.log('admin',me.email);
+P.on('request',q=>{if(q.method()!=='GET'&&/\/api\//.test(q.url())&&!/envelope|touch/.test(q.url())) log.push('REQ '+q.url().split('/api')[1]+' '+q.postData());});
+P.on('response',async r=>{if(r.request().method()!=='GET'&&/\/api\//.test(r.url())&&!/envelope|touch/.test(r.url())) log.push('RES '+r.status()+' '+r.url().split('/api')[1]+' '+(await r.text().catch(()=>'')).slice(0,300));});
+await s.go('/register'); await P.waitForTimeout(2500);
+const f=async(t,v)=>P.locator(`[data-test-id="${t}"] input, input[data-test-id="${t}"]`).first().fill(v);
+await f('input_administrator_email',me.email); await f('input_administrator_first_name',me.first_name||'Admin'); await f('input_administrator_last_name',me.last_name||'ShopView');
+await f('input_company_name','ZZAUTOTEST SV-11669 Second Org'); await f('input_work_order_start_number','1000');
+const b=await s.box('button_register'); await P.mouse.click(b.x,b.y); await P.waitForTimeout(6000);
+console.log(log.join('\n')); console.log('url',P.url(),'text',await P.evaluate(()=>document.body.innerText.replace(/\n+/g,' | ').slice(0,300)));
+const o=await s.api('/api/organizations'); console.log('orgs',JSON.stringify((o.json.data.organizations||[]).map(x=>[x.id,x.name])));
+await P.screenshot({path:'../ev/reg-after.png'}); await s.browser.close(); process.exit(0);

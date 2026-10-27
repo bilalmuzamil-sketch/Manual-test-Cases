@@ -1,0 +1,10 @@
+import {sess} from './lib.mjs'; import fs from 'fs';
+const s=await sess('none'); const P=s.page; const log=[];
+P.on('response',async r=>{const u=r.url(); if(/\/api\//.test(u)&&!/envelope|google|sentry/.test(u)) log.push(r.request().method()+' '+r.status()+' '+u.split('/api')[1].slice(0,100)+' '+(await r.text().catch(()=>'')).slice(0,160));});
+const link=fs.readFileSync('/tmp/qa21/invite.txt','utf8').replace('http://','https://');
+await P.goto(link,{waitUntil:'domcontentloaded',timeout:60000}).catch(e=>console.log('goto err',e.message.slice(0,120))); await P.waitForTimeout(5000);
+console.log('url',P.url().replace(/token=[^&]+/,'token=…').replace(/signature=[^&]+/,'signature=…'));
+console.log(await P.evaluate(()=>document.body.innerText.replace(/\n+/g,' | ').slice(0,400)));
+console.log(await P.evaluate(()=>[...document.querySelectorAll('[data-test-id], input')].map(e=>(e.dataset.testId||e.name||e.type)).join(' | ')));
+console.log(log.join('\n').slice(0,1500)); await P.screenshot({path:'../ev/inv1.png'});
+await s.browser.close(); process.exit(0);

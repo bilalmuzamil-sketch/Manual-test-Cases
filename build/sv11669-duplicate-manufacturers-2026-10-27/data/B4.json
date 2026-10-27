@@ -1,0 +1,36 @@
+{
+ "tag": "B4",
+ "desc": "QA Air Filter",
+ "pn": "QA-11669-08",
+ "typed": "Accu",
+ "how": "pickexisting",
+ "before_total": 145,
+ "options": [
+  "check Accutek",
+  "check Accuride"
+ ],
+ "field_shows": "Manufacturer | Accutek | arrow_drop_down || input=",
+ "field_box": {
+  "x": 405,
+  "y": 489.21875,
+  "w": 574,
+  "h": 56
+ },
+ "writes": [
+  "/parts-catalogue/add-catalogue-part :: {\"name\":\"QA Air Filter\",\"part_number\":\"QA-11669-08\",\"size\":\"\",\"category\":null,\"measurement\":null,\"manufacturer_id\":\"21e56ae0-fb54-4141-910c-f0d653e2b496\",\"tags\":[],\"category_id\":null}",
+  "-> 201 {\"data\":{\"catalogue_part_id\":\"73a5094b-c475-4785-9935-271119158053\"}}",
+  "undefined :: null",
+  "-> 204 "
+ ],
+ "dialog_open_after_save": false,
+ "after_total": 145,
+ "matching_after": [],
+ "blank_after": 0,
+ "part": [
+  {
+   "pn": "QA-11669-08",
+   "manufacturer": "Accutek",
+   "mid": "21e56ae0-fb54-4141-910c-f0d653e2b496"
+  }
+ ]
+}

@@ -1,0 +1,156 @@
+{
+ "tag": "I2",
+ "before": {
+  "total": 148,
+  "blank": 0,
+  "dupes": [],
+  "accuride": 1,
+  "dayco": 1,
+  "hdb": 1,
+  "hdb_labels": [
+   "\"Heavy Duty Brand\""
+  ]
+ },
+ "preview": "Inventory Import Preview | cloud_upload | SV-11669-Import.Csv | cloud_download | Download Template | Submit File | To do a inventory import, you should first do the vendor import. You can still import inventory without vendors. And then you need to have a csv file with following columns: name, part_number, uom, quantity, min_qty, max_qty, grid_location, purchase_price, core_price, vendor, manufacturer, category, tags. | The tags column is optional. Multiple tags should be separated by commas within the same cell (e.g. \"TAG1, TAG2\"). Tags will be automatically converted to uppercase. | Your file's first row must contain these columns. Also, new line separator is used for new row, comma for columns. | To assign multiple bin locations to a single part, add multiple rows with the same part number. Each row's grid_location specifies the bin location name, and quantity specifies the amount in that bin. If grid_location is left empty, the part will be assigned to the Unassigned bin. | Don't worry if your csv file doesn't contain all the values in a row, your data will be imported anyway. | Empty bays, endless possibilities. Get Going!",
+ "step2": "Inventory Import Preview | Clear File | Import Inventory | To do a inventory import, you should first do the vendor import. You can still import inventory without vendors. And then you need to have a csv file with following columns: name, part_number, uom, quantity, min_qty, max_qty, grid_location, purchase_price, core_price, vendor, manufacturer, category, tags. | The tags column is optional. Multiple tags should be separated by commas within the same cell (e.g. \"TAG1, TAG2\"). Tags will be automatically converted to uppercase. | Your file's first row must contain these columns. Also, new line separator is used for new row, comma for columns. | To assign multiple bin locations to a single part, add multiple rows with the same part number. Each row's grid_location specifies the bin location name, and quantity specifies the amount in that bin. If grid_location is left empty, the part will be assigned to the Unassigned bin. | Don't worry if your csv file doesn't contain all the values in a row, your data will be imported anyway. | Name\tPart_number\tUom\tQuantity\tMin_qty\tMax_qty\tGrid_location\tPurchase_price\tCore_price\tVendor\tManufacturer\tCategory | QA Import Seal 1\tQA-11669-IMP-1\tea\t5\t1\t10\tA1A\t$10.00\t\t5 Star Truck Repair\tAccuride\tUncategorized | QA Import Seal 2\tQA-11669-IMP-2\tea\t5\t1\t10\tA1A\t$10.00\t\t5 Star Truck Repair\tACCURIDE\tUncategorized | QA Import Seal 3\tQA-11669-IMP-3\tea\t5\t1\t10\tA1A\t$10.00\t\t5 Star Truck Repair\tAccuride\tUncategorized | QA Import Hose 1\tQA-11669-IMP-4\tea\t5\t1\t10\t",
+ "import_button": true,
+ "sent": [
+  "https://sv11669api.qa.shopview.com/api/data-import/import-inventory inventory=FILE:\"name,part_number,uom,quantity,min_qty,max_qty,grid_location,purchase_price,core_price,vendor,manufacturer,category\\n\\\"QA Import Seal 1\\\",QA-11669-IMP-1,ea,5,1,10,A1A,$10.00,,\\\"5 Star Truck Repair\\\",\\\"Accuride\\\",\\\"Uncategorized\\\"\\n\\\"QA Import Seal 2\\\",QA-11669-IMP-2,ea,5,1,10,A1A,$10.00,,\\\"5 Star Truck Repair\\\",\\\"ACCURIDE\\\",\\\"Uncategorized\\\"\\n\\\"QA Import Seal 3\\\",QA-11669-IMP-3,ea,5,1,10,A1A,$10.00,,\\\"5 Star Truck Repair\\\",\\\"  Accuride  \\\",\\\"Uncategorized\\\"\\n\\\"QA Import Hose 1\\\",QA-11669-IMP-4,ea,5,1,10,A1A,$10.00,,\\\"5 Star Truck Repair\\\",\\\"Dayco\\\",\\\"Uncategorized\\\"\\n\\\"QA Import Hose 2\\\",QA-11669-IMP-5,ea,5,1,10,A1A,$10.00,,\\\"5 Star Truck Repair\\\",\\\"dayco \\\",\\\"Uncategorized\\\"\\n\\\"QA Import Rag\\\",QA-11669-IMP-6,ea,5,1,10,A1A,$10.00,,\\\"5 Star Truck Repair\\\",\\\"   \\\",\\\"Uncategorized\\\"\\n\\\"QA Import Hose 3\\\",QA-11669-IMP-7,ea,5,1,10,A1A,$10.00,,\\\"5 Star Truck Repair\\\",\\\"  dAyCo\\\",\\\"Uncategorized\\\"\\n\\\"QA Import Belt 1\\\",QA-11669-IMP-8,ea,5,1,10,A1A,$10.00,,\\\"5 Star Truck Repair\\\",\\\"Heavy  Duty   Brand\\\",\\\"Uncategorized\\\"\\n\\\"QA Import Belt 2\\\",QA-11669-IMP-9,ea,5,1,10,A1A,$10.00,,\\\"5 Star Truck Repair\\\",\\\"heavy duty brand\\\",\\\"Uncategorized\\\"\\n\"",
+  "https://www.google-analytics.com/g/collect?v=2&tid=G-CMYCXL13C9&gtm=45je6an1v9250300735za200zd9250300735xf1&_p=1793099679335&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAAAQ&are=1&cid=1752716875.1793099671&frm=0&ngs=1&pscdl=noapi&rcb=6&sr=1400x950&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.44&uaw=0&ul=en-us&tag_exp=115938465~115938469~118897920~118897930~120213116~120385423~120412526~120469145~120469153~121246026~121246034&sid=1793099670&sct=1&seg=1&dl=https%3A%2F%2Fsv11669.qa.shopview.com%2Fadministration%2Finventory-import&dt=Inventory%20Import%20%7C%20ShopView&uid=6d71382d-4ddb-4707-a0f3-33b4bb78b0b8&_s=3&tfd=31466 en=data_import_submit&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=button&ep.element_location=page&ep.element_label=submit_file&_et=25893\r\nen=data_import_confirm&_ee=1&ep.debug_mode=true&ep.page_type=administration&ep.element_type=button&ep.element_location=page&ep.element_label=import&_et=3293"
+ ],
+ "responses": [
+  "201 /data-import/import-inventory {\"data\":{\"warnings\":[],\"warningsCount\":0}}",
+  "204 undefined "
+ ],
+ "after_text": "Inventory Import Preview | cloud_upload | Select CSV File | cloud_download | Download Template | Submit File | To do a inventory import, you should first do the vendor import. You can still import inventory without vendors. And then you need to have a csv file with following columns: name, part_number, uom, quantity, min_qty, max_qty, grid_location, purchase_price, core_price, vendor, manufacturer, category, tags. | The tags column is optional. Multiple tags should be separated by commas within the same cell (e.g. \"TAG1, TAG2\"). Tags will be automatically converted to uppercase. | Your file's ",
+ "after": {
+  "total": 148,
+  "blank": 0,
+  "dupes": [],
+  "accuride": 1,
+  "dayco": 1,
+  "hdb": 1,
+  "hdb_labels": [
+   "\"Heavy Duty Brand\""
+  ]
+ },
+ "parts": [
+  {
+   "pn": "QA-11669-IMP-1",
+   "count": 1,
+   "manufacturer": [
+    "Accuride"
+   ],
+   "mid": [
+    "808763a4"
+   ],
+   "category": [
+    "Uncategorized"
+   ]
+  },
+  {
+   "pn": "QA-11669-IMP-2",
+   "count": 1,
+   "manufacturer": [
+    "Accuride"
+   ],
+   "mid": [
+    "808763a4"
+   ],
+   "category": [
+    "Uncategorized"
+   ]
+  },
+  {
+   "pn": "QA-11669-IMP-3",
+   "count": 1,
+   "manufacturer": [
+    "Accuride"
+   ],
+   "mid": [
+    "808763a4"
+   ],
+   "category": [
+    "Uncategorized"
+   ]
+  },
+  {
+   "pn": "QA-11669-IMP-4",
+   "count": 1,
+   "manufacturer": [
+    "Dayco"
+   ],
+   "mid": [
+    "21b311b7"
+   ],
+   "category": [
+    "Uncategorized"
+   ]
+  },
+  {
+   "pn": "QA-11669-IMP-5",
+   "count": 1,
+   "manufacturer": [
+    "Dayco"
+   ],
+   "mid": [
+    "21b311b7"
+   ],
+   "category": [
+    "Uncategorized"
+   ]
+  },
+  {
+   "pn": "QA-11669-IMP-6",
+   "count": 1,
+   "manufacturer": [
+    null
+   ],
+   "mid": [
+    ""
+   ],
+   "category": [
+    "Uncategorized"
+   ]
+  },
+  {
+   "pn": "QA-11669-IMP-7",
+   "count": 1,
+   "manufacturer": [
+    "Dayco"
+   ],
+   "mid": [
+    "21b311b7"
+   ],
+   "category": [
+    "Uncategorized"
+   ]
+  },
+  {
+   "pn": "QA-11669-IMP-8",
+   "count": 1,
+   "manufacturer": [
+    "Heavy Duty Brand"
+   ],
+   "mid": [
+    "3a510b1a"
+   ],
+   "category": [
+    "Uncategorized"
+   ]
+  },
+  {
+   "pn": "QA-11669-IMP-9",
+   "count": 1,
+   "manufacturer": [
+    "Heavy Duty Brand"
+   ],
+   "mid": [
+    "3a510b1a"
+   ],
+   "category": [
+    "Uncategorized"
+   ]
+  }
+ ]
+}
