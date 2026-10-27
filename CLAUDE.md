@@ -103,6 +103,7 @@
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
 > - **BEFORE GIVING ANY ROLE TO ANY STAFF, RESET THAT ROLE TO TEMPLATE FIRST (Standing Rule 105).**
+> - **BEFORE CALLING A PERMISSION UNAVAILABLE, OPEN THE USER'S ROLE, SWITCH IT ON, SAVE, RE-CHECK (Standing Rule 114).**
 > - **NO VERDICT (OR VERDICT QUESTION) UNTIL EVERY POINT'S MATRIX IS FINISHED, AND A FAILING EXAMPLE MUST BE ONE A USER CAN BUILD ON SCREEN (Standing Rule 106).** Write down how each failing example was made; if any step was a server-only request, it proves nothing against the ticket.
 > - **AFTER ANY CONFIRM CLICK, RE-READ THE DIALOG — ShopView often asks twice ("Yes" → orange "Are You Sure?") (Standing Rule 102); never call a control "does nothing" before that.**
 > - **BEFORE CALLING A TICKET OUTSTANDING, RE-OPEN IT LIVE: status + last comment (Standing Rule 103).**
@@ -5578,6 +5579,23 @@ deliver the 7-tab management report.
     one annotated before/after picture per visible point, no recording or technical section unless asked.** Nothing is skipped in either
     mode. Ask again on every ticket. Method: `build/TEST-MODE-API-OR-CONVENTIONAL.md`. Ties to Rules 50, 63, 64, 72, 84, 85, 86, 89, 91,
     96 and 104.
+
+114. **BEFORE SAYING A PERMISSION IS NOT AVAILABLE TO A USER, CHECK THAT USER'S ROLE AND SWITCH THE PERMISSION ON FIRST —
+    THEN RE-CHECK (all projects).**
+    USER DIRECTIVE (2026-10-27, verbatim): *"The admin had MOve labor disabled for his role. I have gone ahead and enabled it,
+    now you can start and test that part . Also save this in your lesson that before you assume that some permission is not
+    available for someone make sure that you check the role for that user and enable he permiossion if that is disabled for
+    that user first and then recheck."*
+    **THE ORDER IS FIXED:** (1) find which role the user has (Settings → Staff); (2) open that role on screen (Settings →
+    Roles & Permissions → pencil) and find the toggle by its label; (3) if it is off, switch it ON and save (accept "Edit
+    Anyway" and "Confirm Permission Updates"); (4) re-read the role (screen and `GET /api/roles/{id}`); (5) log in again as
+    that user and re-check the control. **Only if the toggle is genuinely not on the screen, or stays off after a save and
+    re-read, may it be reported as unavailable** — with screenshots of the role screen both times. A count of a permission
+    catalogue, a missing code in an API list, or a 403 is NOT proof on its own. Rule 105 still applies (reset to template
+    first when ASSIGNING a role; this rule is about turning on one permission the test needs).
+    **RATIONALE, 2026-10-27 (SV-11253, my miss):** I reported the branch as missing the Move labor permission and the ticket
+    as blocked. The admin role simply had **Move labor** switched off; the QA lead switched it on in one click. Ties to Rules
+    12, 14, 26, 85, 87 and 105.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
