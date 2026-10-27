@@ -10,7 +10,7 @@ Pixel values a person cannot judge by eye are compared side by side with the boa
 
 **49 cases** · 47 to release when written · 2 held design-version cases (D-33, D-49), marker `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO` (D-33: the design and the tech plan differ, waiting on the PO).
 
-Boards attached at least once: every one of the 47 target boards (1.1–7.2); the 5 Before boards (1.0/3.0, 2.0, 4.0, 6.0,
+Boards attached at least once: every one of the 46 target boards (1.1–7.2); the 5 Before boards (1.0/3.0, 2.0, 4.0, 6.0,
 7.0) are today's screens and are not a target, except 4.0's column set, which D-01 uses as today's default columns.
 
 ## D-01 · Design: Inventory list page looks as in the design  (50 chars)
@@ -303,7 +303,7 @@ Boards attached at least once: every one of the 47 target boards (1.1–7.2); th
   - Tracked parts in the same column show coloured "<n> Available" badges
   - The Bin Location / Quantity cell still shows the outlined chip with the bin and its quantity
   - Min and Max still show numbers
-  - Searching "not tracked" lists the untracked part in the same style
+  - Searching "not tracked" lists the untracked part, with the same grey "Not Tracked" text in Total Qty
 - **Backed by:** S4-R8; S4-R8a; S4-R8b; S6-R1
 - **Existing live cases that already check part of it:** C154768; C154774
 

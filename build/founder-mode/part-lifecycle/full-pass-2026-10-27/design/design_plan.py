@@ -245,7 +245,7 @@ CASES = [
               "Tracked parts in the same column show coloured \"<n> Available\" badges",
               "The Bin Location / Quantity cell still shows the outlined chip with the bin and its quantity",
               "Min and Max still show numbers",
-              "Searching \"not tracked\" lists the untracked part in the same style"],
+              "Searching \"not tracked\" lists the untracked part, with the same grey \"Not Tracked\" text in Total Qty"],
       backing=["S4-R8", "S4-R8a", "S4-R8b", "S6-R1"],
       existing=["C154768", "C154774"]),
  dict(key="D-31", title="Design: Cycle count with an untracked part looks as in the design",

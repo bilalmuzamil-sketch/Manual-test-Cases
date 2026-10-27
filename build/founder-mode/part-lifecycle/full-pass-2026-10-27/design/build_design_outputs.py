@@ -217,7 +217,7 @@ with open(os.path.join(HERE, "DESIGN-CASE-PLAN.md"), "w") as o:
     o.write(f"**{len(P.CASES)} cases** · {len(P.CASES) - len(held)} to release when written · {len(held)} held design-version cases "
             f"({', '.join(c['key'] for c in held)}), marker `AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO` (D-33: "
             "the design and the tech plan differ, waiting on the PO).\n\n")
-    o.write("Boards attached at least once: every one of the 47 target boards (1.1–7.2); the 5 Before boards (1.0/3.0, 2.0, 4.0, 6.0,\n"
+    o.write("Boards attached at least once: every one of the 46 target boards (1.1–7.2); the 5 Before boards (1.0/3.0, 2.0, 4.0, 6.0,\n"
             "7.0) are today's screens and are not a target, except 4.0's column set, which D-01 uses as today's default columns.\n\n")
     for c in P.CASES:
         o.write(f"## {c['key']} · {c['title']}  ({len(c['title'])} chars)\n")
