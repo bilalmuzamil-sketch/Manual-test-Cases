@@ -58,6 +58,23 @@ manufacturers they created.
 Self-healing bridge in `qa-session.mjs`; one-session runners; bundle route list read once; whole-list snapshots + diff.
 Lessons index row + playbook §AU.
 
-## Status
-All handoff checks PASS on the branch. Holding the comment for the QA lead's answer on E3 (Edit + spaces keeps the old
-manufacturer; production removes it).
+## Status — QA lead's ruling and what was posted (27 Oct)
+QA lead on E3, verbatim: "Mark this ticket as passed for the other issue found create a follow-up ticket".
+- Follow-up **SV-11834** "Catalog part edit: typing only spaces in Manufacturer keeps the old one" — Bug, Medium, Product Area
+  Administration, label bug-report, no parent (SV-11669 has none), Relates SV-11669. Pre-ticket check: Jira searched (no
+  duplicate; nearest SV-5002 / SV-10826 are different topics); SV-11669 re-read live (no new comments after 79559);
+  reproduced on fresh parts QA-11669-FU-01 (Dayco) and FU-02 (Bendix) + QA-11669-06 (Haldex) = 3/3 on the branch, production
+  removes it (PB-02); step 5 walked exactly as written (select name, type spaces, Tab) before filing. Read back: 7 numbered
+  steps, image 1 inside step 5 (635x607), image 2 (530x908), 5-row table, link, Medium, Administration.
+  Labels: copied only "bug-report" — the source's "source-intercom", "ai-unverified-repro" and "powertools-unassigned"
+  describe the customer's original report and would mislabel a QA-found ticket.
+- SV-11669 comment **79582**: OVERALL QA STATUS: PASSED, before/after picture, 16 checks, dialog picture, "Separate issue raised"
+  SV-11834, Public API not checked (dev-verified; Open API off). Gate: branch build re-read v26.43.2-64183b8, ticket re-read
+  (TESTING QA, 79559 last), read back: PASSED first, 2 attachments 1416x1383 / 1935x1325, 17 table rows.
+  Ticket status left as is for the QA lead.
+- Not raised (told to the QA lead instead): the handoff's setup step says a new name shows as a list entry to pick; the list
+  shows "No results" and Tab is the way — same on production, so it is handoff wording, not a defect.
+
+## Learning check
+- Playbook: `/rest/api/2/search` is retired here (returns nothing) — use `/rest/api/3/search/jql`.
+- Ticket standard §2: copy the source ticket's labels **except provenance labels** (source-*, ai-*, powertools-*).

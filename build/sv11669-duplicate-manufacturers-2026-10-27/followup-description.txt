@@ -1,0 +1,40 @@
+Found while testing [SV-11669|https://shopview.atlassian.net/browse/SV-11669]
+
+h3. Summary
+On a part's *Edit Catalog Part* window, typing only spaces in *Manufacturer* makes the field look empty, but after *Save* the part still has its old manufacturer.
+There is no other way to remove a manufacturer from a part (deleting the name just brings it back), so with this change a manufacturer can no longer be removed at all.
+On production today, the same steps remove the manufacturer.
+
+h3. Steps to reproduce
+Open the QA branch to reproduce the issue: [https://sv11669.qa.shopview.com|https://sv11669.qa.shopview.com] (Admin, location Staging Heavy Duty - 9919).
+# In the top menu, click {{Parts}}. In the left menu, click {{Catalog}}.
+# Above the list, click {{Search}} and type {{QA-11669-FU-01}}.
+# Click the row {{QA Follow-up Part 1}}. The part page shows *Manufacturer: Dayco*.
+# At the top right of the part card (next to the part name), click the blue edit icon. The {{Edit Catalog Part}} window opens.
+# Click in the {{Manufacturer}} field, select the text {{Dayco}}, type three spaces and press {{Tab}}. The field now looks empty:
+!01-manufacturer-field-looks-empty-hd.png|width=635,height=607!
+# Click {{Save}}.
+# Look at the part page again: it still shows *Manufacturer: Dayco*.
+
+*Fastest way to see it:* open [QA-11669-FU-01|https://sv11669.qa.shopview.com/parts-catalogue/b15b1086-0d09-4231-86bc-0012c3f77f18], then do steps 4 to 7.
+
+h3. Expected behaviour
+When the Manufacturer field is left empty (only spaces typed) and the part is saved, the part has no manufacturer, as the field shows.
+*Where this comes from:*
+* [SV-11669|https://shopview.atlassian.net/browse/SV-11669], Dipesh's Ready-for-QA note (comment 79556), which covers both New and Edit Catalog Part — _"spaces-only input leaves Manufacturer empty."_
+
+h3. Current behaviour
+The field looks empty, but the saved part keeps its old manufacturer. On production the same steps remove it.
+!02-old-manufacturer-kept-vs-production-hd.png|width=530,height=908!
+
+It happened on all 4 tries:
+||Where||Part||Manufacturer before||After typing spaces and saving||
+|QA branch sv11669|QA-11669-06|Haldex|Haldex (kept)|
+|QA branch sv11669|QA-11669-FU-01|Dayco|Dayco (kept)|
+|QA branch sv11669|QA-11669-FU-02|Bendix|Bendix (kept)|
+|Production|QA-11669-PB-02|Accuride|empty (removed)|
+
+Deleting the name with Backspace instead of typing spaces brings the old name back on both the QA branch and production.
+New Catalog Part is not affected: typing only spaces there saves the part with no manufacturer, as expected.
+
+Tested on QA branch sv11669 (build v26.43.2-64183b8) and production (build v26.43.2-537378f), 27 October 2026.

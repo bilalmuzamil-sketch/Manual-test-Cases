@@ -51,7 +51,7 @@ The three corrections that shaped SV-10804, so they are never needed again:
 | Type | **Bug** |
 | Priority | **Medium**, always (the PO raises or lowers it) |
 | Product Area (`customfield_10153`) | **Required — create fails without it.** Copy the source ticket's value (e.g. Accounting = id 10533) |
-| Labels | copy the source ticket's |
+| Labels | copy the source ticket's — **except provenance labels** that describe where the *original* report came from (`source-intercom`, `ai-unverified-repro`, `powertools-*`): they would mislabel a ticket QA found (SV-11834, 27 Oct 2026) |
 | Parent | the epic, where the source ticket has one; if the source ticket is parentless, leave it parentless and say so in your notes (Rule 52) |
 | Links | **Relates** → the ticket you were testing, plus any ticket that will own the fix |
 | Title | the problem in plain words, ≤ ~80 characters (Rule 69). SV-10804: *"Vendor credit puts its tax into Parts Inventory instead of Sales Tax Expense"* |

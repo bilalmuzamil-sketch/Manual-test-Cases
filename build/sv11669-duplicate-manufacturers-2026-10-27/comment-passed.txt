@@ -1,0 +1,45 @@
+{panel:bgColor=#e3fcef}*OVERALL QA STATUS: PASSED*{panel}
+The fix is working:
+* Typing a manufacturer that already exists (any letter case, extra spaces) now uses the existing one instead of making a copy.
+* The inventory import no longer makes copies for names that differ only in case or spaces, and no longer makes empty entries.
+* Re-importing the same file adds nothing, and each organization still only sees its own manufacturers.
+
+*Before (production) and after (QA branch), same steps:*
+!01-before-after-manufacturer-list.png|width=1416,height=1383!
+
+h3. What was checked
+Tested on the QA branch [sv11669|https://sv11669.qa.shopview.com] (build v26.43.2-64183b8) on 27 October 2026, following the QA handoff. {{Dorman}} and {{Gates}} already existed on the branch, so I used {{Haldex}} and {{Dayco}} instead, as the handoff allows.
+
+||#||Check||Status||
+|1|New Catalog Part, new name {{Accuride}} typed and Tab: one Accuride is created (QA-11669-01)|PASSED|
+|2|New part, {{accuride}} typed in lower case and Tab without clicking the option: the field shows {{Accuride}}, and the part uses the existing one (QA-11669-02)|PASSED|
+|3|New part, {{  ACCURIDE  }} typed, then a click on Description: the field shows {{Accuride}}, no copy (QA-11669-03)|PASSED|
+|4|Manufacturer filter lists Accuride once; filtering by it lists every Accuride part|PASSED|
+|5|Typing quickly and pressing Tab right after the last letter (tried with Tab at 0, 100, 250 and 500 ms): the field always shows {{Accuride}}|PASSED|
+|6|New name {{Haldex}} and Tab creates it once; {{haldex }} (trailing space) on the next part reuses it (QA-11669-05, -06)|PASSED|
+|7|Only spaces typed and Tab: the part is saved with an empty Manufacturer and no empty entry appears in the filter (QA-11669-07)|PASSED|
+|8|Regression: picking a manufacturer from the list still works (QA-11669-08, -08B)|PASSED|
+|9|Edit Catalog Part on QA-11669-05: {{Haldex}} replaced with typed {{ACCURIDE}} and Tab: the field and the part page show {{Accuride}}; the list did not grow|PASSED|
+|10|Editing only the Description keeps the Manufacturer unchanged|PASSED|
+|11|Edit with a brand-new name ({{Bendix}}) creates it once|PASSED|
+|12|Inventory import (Administration → Import → Inventory) with {{Accuride}}, {{ACCURIDE}}, {{  Accuride  }}, {{Dayco}}, {{dayco }}, {{  dAyCo}}, a spaces-only cell, {{Heavy  Duty   Brand}} and {{heavy duty brand}}: completes with no warnings; Accuride, Dayco and Heavy Duty Brand each appear once; the spaces-only row has an empty Manufacturer; no empty entry|PASSED|
+|13|Importing the same file again: no new manufacturers|PASSED|
+|14|Regression: the imported vendor, bin, quantity, cost and min/max are correct, and re-importing does not double the quantity|PASSED|
+|15|Second organization: in a new test organization, typing {{Accuride}} creates that organization's own Accuride; it does not see the first organization's manufacturers or parts|PASSED|
+|16|Whole list on the branch at the end: 148 manufacturers, 148 different names, no empty entry|PASSED|
+
+On production (app.shopview.com, build v26.43.2-537378f) the same steps still make copies:
+* {{accuride}} and {{  ACCURIDE  }} each created a new Accuride.
+* The same import added another Accuride, three Daycos, two Heavy Duty Brands and an empty entry.
+* The production list ended with 18 entries, but only 6 different names.
+
+*The dialog checks on the branch:*
+!02-dialog-checks.png|width=1935,height=1325!
+
+h3. Separate issue raised
+[SV-11834|https://shopview.atlassian.net/browse/SV-11834] — Catalog part edit: typing only spaces in Manufacturer keeps the old one.
+* On Edit Catalog Part, typing only spaces makes the field look empty, but the saved part keeps its old manufacturer.
+* On production the same steps remove it.
+
+h3. What could not be checked
+* The Public API was not checked. The handoff says it was verified by the developer, and the Open API feature is not switched on for the QA branch organization.

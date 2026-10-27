@@ -1013,6 +1013,7 @@ ourselves once by asking a question a source had already answered."*
 
 | Item | Project | How it was satisfied | Cleared |
 |---|---|---|---|
+| SV-11669 — duplicate manufacturers (Powertools test plan, Edit-spaces question) | ShopView tickets | Handoff pasted; you ruled "Mark this ticket as passed ... create a follow-up ticket"; PASSED posted 79582, follow-up SV-11834 filed | 27 Oct 2026 |
 | SV-11253 — Move labor missing on sv11253 (79547) | ShopView tickets | Slavcho set it up on the branch (79558); retested V1–V6 → **PASSED**, comment 79561 | 27 Oct 2026 |
 | SV-11565 — empty-organization records from Slavcho (79555) | ShopView tickets | Not needed: you moved the ticket to Ready for Production (label QAcomplete) on Slavcho's 79553 | 27 Oct 2026 |
 | **Whether Branko returned the Filters tech-plan sheet — and whether he answered ANY of it** | Filters | **✅ YES, on the FOURTH pull: 9 of 9 answered.** Supersedes the three "established, negatively" entries below. Drive `1fkjdt9hoYSGv2MToXUFJ_4tTMzP7a7X2`, 13 290 bytes, md5 `99bf011cc462ca81bc55a7d6532e91e3`; three endpoints agree; every answer cell is now a shared-string cell **with a value** (`<c r="F4" s="5" t="s"><v>11</v></c>`) where the blank captures had `<c r="Fn" s="4"/>` with **no value element**. He altered none of our text and added no row. Ingest: `build/filters/branko-answers-2026-08-04/answers-ingested.md`. | **2026-08-04** |
