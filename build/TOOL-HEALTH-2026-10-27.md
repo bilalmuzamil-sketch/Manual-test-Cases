@@ -17,8 +17,8 @@ Asked by the QA lead after another session found its shared checkers failing. Th
 | `ensure_bridge.sh` | WORKS | restarted, OK |
 | `staging-boot2.mjs` | WORKS | stops correctly: the saved staging sign-in is still the expired one; a fresh one is needed |
 | All `.mjs` / `.py` in `build/testing-tools/` | OK | every file passes a syntax/compile check |
-| **`check_precond_labels.py`** | **BROKEN** | crashes `KeyError: 'email'` — reads `c['email']` but `/tmp/testrail/creds.json` names the field `user` (the shared `load_creds.py` accepts both). Proven: with a temporary copy that adds `email`, it runs and gives real verdicts. Not fixed — awaiting the QA lead (another session was told not to change shared checkers). |
-| `verify_suite.py` | WORKS except check 8 | check 8 inherits the crash above; its "re-run:" hint prints `--cases` twice (cosmetic only — the real call is correct) |
+| **`check_precond_labels.py`** | **FIXED 27 Oct (QA lead: option a)** — was BROKEN | crashes `KeyError: 'email'` — reads `c['email']` but `/tmp/testrail/creds.json` names the field `user` (the shared `load_creds.py` accepts both). Proven: with a temporary copy that adds `email`, it runs and gives real verdicts. Fix: line 95 now reads `c.get('email') or c['user']` — this branch's copy only; files with `email` still work. Re-run with the normal creds file: runs, real verdicts, and `verify_suite.py` check 8 no longer crashes. |
+| `verify_suite.py` | WORKS | check 8 crashed until the fix above; its "re-run:" hint prints `--cases` twice (cosmetic only — the real call is correct) |
 
 ## Suite findings seen in passing (WO Board and Tech View, section 13204) — not tool faults
 

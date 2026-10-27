@@ -92,7 +92,7 @@ def main():
     ap.add_argument('--creds', default='/tmp/testrail/creds.json')
     a = ap.parse_args()
     c = json.load(open(a.creds))
-    auth = base64.b64encode(f"{c['email']}:{c['password']}".encode()).decode()
+    auth = base64.b64encode(f"{c.get('email') or c['user']}:{c['password']}".encode()).decode()
 
     observed = open(a.observed, encoding='utf-8').read()
     # the observed file is prose + tables; a label counts as seen if it appears anywhere in it
