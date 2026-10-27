@@ -5737,6 +5737,12 @@ regression / bug-fix re-testing.
   sessions and other testers depend on their state (Standing Rule 26 drift).
 - **NEVER CLEAN UP TEST DATA — ON PRODUCTION OR ON QA BRANCHES (QA-lead ruling 2026-10-13, verbatim: *"You never need to clean the test data on production or on QA branch."*).** Work orders, parts, part requests, inventory/catalog parts, invoices and other records created for a test are LEFT in place on production (`app.shopview.com`, test org 72b2cc90…) as well as on per-ticket QA branches — do not delete them, reverse them or reset their values, and never spend a pass on it. Tag them ZZAUTOTEST and name them in the findings doc. **This supersedes the production half of the restore-after discipline for TEST DATA only**: a ROLE given to a real user or an ORG SETTING changed for a test is still put back (Rule 105 resets the role first), because those change how the account behaves for everyone.
 - **DO NOT TEST ACCOUNTING (AccountingHub) TICKETS FOR NOW — engineering-manager instruction relayed by the QA lead, 2026-10-08.** Stefan Mitrovic, verbatim: *"we don't need anyone testing Accounting tickets for now, because that is more or less MVP for now and it's not being released to everyone, so until we finish with MVP it will be like this. We expect once we're done with MVP to have 1 QA, 1 Dev and 1 PM dedicated for Accounting full time."* If an Accounting ticket is handed over, say so and confirm with the QA lead before testing. Stopped mid-way under this ruling: SV-10624 (nothing posted; state in `build/sv10624-copy-inactive-references-2026-10-08/FINDINGS.md`) and SV-10975/SV-10976 (already Done).
+- **BEFORE TESTING ANY TICKET HANDED TO ME, CHECK ITS LABELS AND ITS QA ASSIGNEE — AND ASK IF EITHER FLAGS IT (QA-lead
+  ruling 2026-10-27, verbatim: *"Note that any ticket which I give you to test and it has the label "accounting" or if it
+  assigned to someone else as a QA assignee ask me to confirm if I really want that ticket to be tested."*).** Read the
+  ticket live first (labels + the QA Assignee field). If it carries the label **`accounting`**, OR its **QA assignee is
+  anyone other than Bilal Muzamil**, STOP and ask the QA lead to confirm he really wants it tested — naming which of the two
+  applies and who the QA assignee is. Test only after his yes. A yes on one ticket is never a yes on the next.
 - Currently **ignore** Digital Inspections, Regression Suite (Minja's API file),
   and Backend API & Security in the Custom Roles execution scope (unless told
   otherwise).
