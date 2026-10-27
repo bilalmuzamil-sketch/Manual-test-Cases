@@ -691,3 +691,9 @@
 - **How to apply going forward:** before writing any Expected line or defect "What the PRD requires", put it next to the PRD sentence and ask: does it forbid or require anything the sentence does not? Is it true for everything the product legitimately sends or shows? A test and its defect must state the same rule in the PRD's own logic.
 - Trap: `served_page_scan.mjs` fails with a navigation error when the browser bridge is down — `source build/testing-tools/ensure_bridge.sh` first.
 #prd-logic #expected #114c #analytics → L0588
+
+## L0590 — 2026-10-27 — Analytics read-through (QA lead "B"): five tests still do density in Board View — the 22–23 Oct sweep went by rule id, not by topic
+- 14 analytics tests read against PRD v77 (live): **5 IMPOSSIBLE** — C97026, C97029 (step 2), C97034, C690648, C97028 still set or read density in Board View; S6-R3 "Density belongs to Tech View only." (S3-R11, S6-R1). They passed on 15/20 Oct, before PRD v73/v75 removed Board View density, and were missed when the others were moved to Tech View because they cite S12 rules, not S3-R11/S6-R1. **1 unsettled** — C97023 step 7 (narrowing below 1024 px forces List, S1-R14; whether that is a "display switch" under S12-R1 is not said). 8 match. Table: `build/wo-board-tech-view/source-verify-2026-10-27-analytics-logic/ANALYTICS-LOGIC-READ.md`.
+- Recorded as Rule 137 amendment (6) at his "save it as a rule for future": area read-through after any off-PRD line; and after a PRD change, find tests by the topic's own words, not only by the rule id they cite.
+- The PRD's "filter view" means the tabs (Terminology + S1-R12), so a Status filter or search is not a new display view under S12-R1.
+#prd-logic #analytics #density #read-through → L0589

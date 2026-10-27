@@ -5229,3 +5229,12 @@ Verbatim: *"make a permanent rule that whenever you test the tickets against the
 (5) **Unchanged:** 114(a) — the Expected still carries the source's sentence verbatim with document, version and rule id; Rule 58 — a source that is ambiguous is asked about, never settled by the build; Rule 62 — no ticket is filed without his yes.
 
 **Worked example:** C97027, 27 Oct 2026 — `build/wo-board-tech-view/fix-verify-2026-10-26/case-updates/C97027/new-expected-1027.json`; learnings L0588, L0589.
+
+## RULE 137 — AMENDMENT 2026-10-27 (same day): (6) THE READ-THROUGH — WHEN ONE LINE IS FOUND OFF THE PRD, READ THE REST OF ITS AREA; WHEN THE PRD CHANGES, FIND THE TESTS BY TOPIC, NOT ONLY BY RULE NUMBER
+
+**His words:** asked to choose between reading all 343 Work Orders tests or only the 14 analytics tests against the PRD for the same kind of fault, he chose *"B"* (the area) and added *"And save it as a rule for future"*.
+
+**(6a) Area read-through.** When a test or a defect is found saying something the PRD does not (Rule 137), read every other test in the SAME AREA (the feature group the faulty one belongs to — e.g. the analytics tests) against the live PRD the same pass, sorting each line as **stricter** (a correct product fails), **looser** (a broken product passes) or **impossible** (no product can meet it). Output: one table per case — our wording, the PRD sentence verbatim (version, rule id), the kind, the fix that would follow the PRD — plus any line the PRD does not settle (Rule 58), and the list of cases that match. Saved in `build/<project>/source-verify-<date>-<area>-logic/`. **Nothing is changed by the read-through itself**: Expected changes only for the cases he names (114(c)); steps and preconditions are changed with them so the case stays whole. The whole suite is read only if he asks.
+(6b) **When the PRD changes a rule, find the tests by TOPIC as well as by rule id.** The 27 Oct read-through found five analytics tests still doing density in Board View six days after PRD v73/v75 moved density to Tech View only — the earlier sweep had gone by the cases citing S3-R11/S6-R1, and these five cite S12 rules while saying "density". Search titles, set-up, steps and expected for the topic's own words (here: density, Compact, Comfortable, Regular) and the screen it now lives on.
+
+**Worked example:** `build/wo-board-tech-view/source-verify-2026-10-27-analytics-logic/ANALYTICS-LOGIC-READ.md`.
