@@ -21,6 +21,6 @@ out.sent=await P.evaluate(()=>window.__sent); out.responses=resp;
 out.after_text=(await P.evaluate(()=>[...document.querySelectorAll('.q-notification,.q-dialog,.q-page')].map(e=>e.innerText).join(' | '))).replace(/\n+/g,' | ').slice(0,600);
 await P.screenshot({path:`../ev/${tag}-3-after.png`});
 out.after=summ(await list());
-const parts=[]; for(let i=1;i<=9;i++){const pn='QA-11669-IMP-'+i; const p=await s.api(`/api/parts-catalogue/catalogue-parts?pagination[rowsPerPage]=5&pagination[page]=1&search=${pn}`); const r=(Object.values(p.json?.data||{}).find(Array.isArray)||[]).filter(x=>x.part_number===pn); parts.push({pn,count:r.length,manufacturer:r.map(x=>x.manufacturer_name),mid:r.map(x=>(x.manufacturer_id||'').slice(0,8)),category:r.map(x=>x.category_label)});}
+const parts=[]; for(let i=1;i<=9;i++){const pn=(process.env.PNPFX||'QA-11669-IMP-')+i; const p=await s.api(`/api/parts-catalogue/catalogue-parts?pagination[rowsPerPage]=5&pagination[page]=1&search=${pn}`); const r=(Object.values(p.json?.data||{}).find(Array.isArray)||[]).filter(x=>x.part_number===pn); parts.push({pn,count:r.length,manufacturer:r.map(x=>x.manufacturer_name),mid:r.map(x=>(x.manufacturer_id||'').slice(0,8)),category:r.map(x=>x.category_label)});}
 out.parts=parts; console.log(JSON.stringify(out,null,1).slice(0,5000)); fs.writeFileSync(`../data/${tag}.json`,JSON.stringify(out,null,1));
 await s.browser.close(); process.exit(0);

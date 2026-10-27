@@ -1,0 +1,10 @@
+import {sess} from './lib.mjs'; const s=await sess('admin',{vp:{width:1300,height:900},dpr:2}); const P=s.page;
+await s.go('/parts/parts-catalogue'); await P.waitForTimeout(3000);
+let b=await s.box('filter_chip_manufacturer'); await P.mouse.click(b.x,b.y); await P.waitForTimeout(1200);
+console.log(JSON.stringify(await P.evaluate(()=>[...document.querySelectorAll('.q-menu')].map(m=>{const r=m.getBoundingClientRect(); return {cls:m.className.slice(0,60),y:Math.round(r.y),h:Math.round(r.height),n:m.querySelectorAll('[data-test-id^="filter_option_manufacturer_"]').length};}))));
+const sa=await P.evaluate(()=>{const e=document.querySelector('[data-test-id="filter_select_all_manufacturer"]'); const r=e.getBoundingClientRect(); return {t:e.innerText.replace(/\n/g,' '),x:r.x,y:r.y,w:r.width,h:r.height,tag:e.tagName,cb:!!e.querySelector('.q-checkbox')};}); console.log('select all',JSON.stringify(sa));
+const allBtn=await P.evaluate(()=>{const e=[...document.querySelectorAll('.q-menu *')].find(x=>x.children.length===0&&x.innerText&&x.innerText.trim()==='All manufacturers'); const r=e.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2};});
+await P.mouse.click(allBtn.x,allBtn.y); await P.waitForTimeout(1500);
+console.log('after click',await P.evaluate(()=>document.querySelector('[data-test-id="filter_select_all_manufacturer"]').innerText.replace(/\n/g,' ')), await P.evaluate(()=>document.querySelector('[data-test-id="filter_chip_manufacturer"]').innerText.replace(/\n/g,' ')));
+await P.keyboard.press('Escape'); await P.waitForTimeout(1500); console.log('chip after esc',await P.evaluate(()=>document.querySelector('[data-test-id="filter_chip_manufacturer"]').innerText.replace(/\n/g,' ')));
+await s.browser.close(); process.exit(0);

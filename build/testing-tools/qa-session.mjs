@@ -1,3 +1,4 @@
+import {spawnSync} from 'child_process';
 // Reusable QA session harness. ONE login per environment, held open for the whole pass.
 // Replaces the "one script per question, full login each time" pattern that cost ~41s of
 // fixed sleeping per probe. See APP-ACTIONS-PLAYBOOK.md §U.2.
@@ -20,7 +21,15 @@ const branch=t=>({app:`https://sv${t}.qa.shopview.com`, api:`https://sv${t}api.q
 // silently authenticates nothing and the app just redirects to login.
 const cookieDomain = env => env==='branch' ? '.qa.shopview.com' : '.shopview.com';
 
-function port(dir){ return fs.readFileSync(dir+'/port.txt','utf8').trim(); }
+// Self-healing bridge (2026-10-27): a dead MITM bridge used to fail every run with ERR_PROXY_CONNECTION_FAILED
+// until it was restarted by hand. Check the port is alive before each run; if not, start a fresh bridge.
+function port(dir){
+  const alive=p=>p&&spawnSync('bash',['-c',`(echo > /dev/tcp/127.0.0.1/${p}) 2>/dev/null`]).status===0;
+  let p=fs.existsSync(dir+'/port.txt')?fs.readFileSync(dir+'/port.txt','utf8').trim():'';
+  if(alive(p)) return p;
+  const here=new URL('.',import.meta.url).pathname;
+  spawnSync('bash',['-c',`cd ${here} && setsid nohup node staging-bridge.mjs > ${dir}/bridge.log 2>&1 < /dev/null & for i in 1 2 3 4 5 6 7 8; do sleep 1; P=$(grep -o 'BRIDGE_LISTENING 127.0.0.1:[0-9]*' ${dir}/bridge.log | cut -d: -f2); [ -n "$P" ] && break; done; echo -n $P > ${dir}/port.txt`],{stdio:'ignore',timeout:20000});
+  p=fs.readFileSync(dir+'/port.txt','utf8').trim(); if(!alive(p)) throw new Error('bridge could not be started; see '+dir+'/bridge.log'); return p; }
 
 export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, pw=(process.env.SV_PROD_PW||(()=>{try{return fs.readFileSync('/tmp/sv-prod-pw.txt','utf8').trim()}catch(e){return ''}})()),
                             cookies=null, vp={width:1900,height:1100}, dpr=1, quiet=true, record=null, quick='admin', tz=null,
