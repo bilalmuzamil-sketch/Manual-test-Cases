@@ -38,6 +38,18 @@ TEXT = [("custom_preconds", "preconditions"), ("custom_steps", "steps"), ("custo
 SCALAR = [("title", "title"), ("template_id", "template"), ("priority_id", "priority"), ("type_id", "type"),
           ("custom_atmstatus", "automation_status"), ("custom_automation_type", "automation_type")]
 TMS_LINK = "https://tms.shopview.com/cases/%d"
+MAP_CSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "tms", "tr-tms-case-map.csv")
+
+
+def id_map():
+    """TestRail id -> TMS id for cases whose numbers differ (created in TMS via the API).
+    Imported cases keep their TestRail number and need no entry."""
+    import csv
+    try:
+        return {int(r["testrail_case_id"].lstrip("C")): int(r["tms_case_id"].lstrip("C"))
+                for r in csv.DictReader(open(MAP_CSV))}
+    except OSError:
+        return {}
 TR_LINK = "https://shopview.testrail.io/index.php?/cases/view/%d"
 
 
@@ -115,13 +127,15 @@ def plan(section):
     for sid in sections:
         listed += tms.get_all("/projects/1/cases", {"section_id": sid})
     tmc = {}
+    back = {v: k for k, v in id_map().items()}
     for c in listed:  # full read: the list omits the text fields
         d = tms.case(c["id"])
-        tmc[c["id"]] = d.get("data", d)
+        tmc[back.get(c["id"], c["id"])] = d.get("data", d)  # keyed by TestRail number
     rows = []
     for cid in sorted(set(trc) | set(tmc)):
         tr, tm = trc.get(cid), tmc.get(cid)
-        row = {"id": cid, "title": (tr or tm)["title"], "tms_link": TMS_LINK % cid}
+        tms_id = tm["id"] if tm else cid
+        row = {"id": cid, "tms_id": tms_id, "title": (tr or tm)["title"], "tms_link": TMS_LINK % tms_id}
         if tr is None:
             row.update(action="TMS_EXTRA", section=tm["section_id"])
         elif tm is None:
@@ -170,7 +184,7 @@ def apply(rows, tms, limit):
     for r in rows:
         if r["action"] not in ("UPDATE", "MOVE") or (limit and done >= limit):
             continue
-        cid = r["id"]
+        cid = r["tms_id"]
         if r["action"] == "UPDATE":
             code, _ = tms.update_case(cid, r["body"])
             if code >= 400:
