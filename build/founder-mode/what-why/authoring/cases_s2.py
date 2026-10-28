@@ -65,7 +65,7 @@ C("S2-03", "S2", "Empty ShopCoach title and description show the question prompt
    ["The empty Description editor shows the grey prompt \"Why are you doing it?\"."],
    ["The emptied cells read \"What are you doing?\" and \"Why are you doing it?\" in grey italic, with only the first letter a capital.",
     "The two cells are the same height and width as the other cells of the table: nothing grows or shifts."]],
-  ["S2-R2", "S1-R3", "S2-R1", DEV_CELLS, PATH, BUG], note=FAIL_NOTE, marker=SV11850,
+  ["S2-R2", "S2-R2a", "S1-R3", "S2-R1", DEV_CELLS, PATH, BUG], note=FAIL_NOTE, marker=SV11850,
   design=dict(boards=[], words=[note("Staging renders the questions in Title Case.")],
               note="no board draws the ShopCoach line builder; the canvas note below gives the sentence case the after boards use."))
 

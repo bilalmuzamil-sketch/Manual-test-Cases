@@ -1,11 +1,15 @@
 {
- "prd": "Confluence 845348896 version 15",
+ "prd": "Confluence 845348896 version 16",
  "built": "by authoring/build.py",
  "counts": {
-  "COVERED": 41
+  "COVERED": 44
  },
- "deleted_cases": {},
+ "deleted_cases": {
+  "C839525": "D-15, held design version of DV-04; deleted 28 Oct 2026 with the QA lead's go-ahead after Product answer 12 (27 Oct)"
+ },
  "part_manual": {
+  "S3-R8a": "Covered by S3-25 (report: =, +, - and @) and S3-26 (QuickBooks: no apostrophe). A line starting with a tab or a carriage return cannot be typed as a Title by hand; developers' check.",
+  "S4-R8": "Covered by S4-09 (an empty *Line Title on a Labor row). \"Rows that need no title (shop supplies, misc and credit memo rows) are unaffected\" is today's behaviour and is not tested separately.",
   "S3-R6a": "Covered in both states (on: S3-01, S3-03, S3-06, S3-11, S3-12; off: S3-02, S3-04, S3-05 ...). Not by hand: the default for a shop created since June 2025 (a manual tester cannot create a new shop); developers' check.",
   "S3-R4": "Covered by S3-03 and S3-14 (the same line on both routes) and S3-23 (an old invoice). \"Built at the same moment\" is approached by downloading the report right after the sync; the builder being one piece of code is the developers' check (tech plan: InvoiceCreateSyncServiceTest).",
   "S3-R11": "Covered by S3-08 over every report the Export Reports dialog lists. Reports or exports outside that dialog are the developers' check (tech plan FR-010: nothing else reads the text).",
@@ -27,10 +31,10 @@
     "S1-08"
    ],
    "case_ids": [
-    null,
-    null,
+    "839511",
+    "839514",
     "154707",
-    null,
+    "839504",
     "549077",
     "549078"
    ]
@@ -49,10 +53,10 @@
     "S1-08"
    ],
    "case_ids": [
-    null,
-    null,
+    "839512",
+    "839515",
     "154707",
-    null,
+    "839504",
     "549077",
     "549078"
    ]
@@ -83,20 +87,20 @@
     "S2-03"
    ],
    "case_ids": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
+    "839511",
+    "839512",
+    "839514",
+    "839515",
+    "839517",
+    "839518",
+    "839519",
+    "839520",
+    "839526",
     "154707",
     "154708",
-    null,
+    "839503",
     "154710",
-    null,
+    "839504",
     "549075",
     "549077",
     "549078",
@@ -129,8 +133,8 @@
     "S1-02"
    ],
    "case_ids": [
-    null,
-    null,
+    "839511",
+    "839513",
     "154707",
     "154708"
    ]
@@ -138,17 +142,21 @@
   "S1-R6": {
    "story": 1,
    "jira": "SV-10130",
-   "text": "Leaving Title empty blocks the save with the message \"Title is a required field\", replacing \"Line Name is a required field\". Every required-field message in the app uses the \"X is a required field\" form, and this one keeps it. The message shows under the Title box whenever Title is in error, including when the user leaves it empty, the same as every other field in the dialog (SV-10916).",
+   "text": "Leaving Title empty blocks the save with the message \"Title is a required field\", replacing \"Line Name is a required field\". Every required-field message in the app uses the \"X is a required field\" form, and this one keeps it. The message shows under the Title box whenever Title is in error, including when the user leaves it empty, the same as every other field in the dialog (SV-10916). A Title longer than 255 characters shows \"Title cannot be longer than 255 characters\" from the 256th character, replacing \"Line name cannot be longer than 255 characters long\", and the line cannot be saved while it shows.",
    "status": "COVERED",
    "keys": [
     "S1-03",
     "S1-03b",
-    "S1-05"
+    "S1-05",
+    "S1-09",
+    "S1-10"
    ],
    "case_ids": [
     "154709",
+    "839503",
+    "549075",
     null,
-    "549075"
+    null
    ]
   },
   "S1-R7": {
@@ -167,20 +175,22 @@
     "S1-04",
     "S1-04b",
     "S1-05",
-    "S1-06"
+    "S1-06",
+    "S1-10"
    ],
    "case_ids": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
+    "839513",
+    "839516",
+    "839517",
+    "839518",
+    "839519",
+    "839520",
     "154709",
     "154710",
-    null,
+    "839504",
     "549075",
-    "549076"
+    "549076",
+    null
    ]
   },
   "S1-N1": {
@@ -207,7 +217,7 @@
     "S2-03"
    ],
    "case_ids": [
-    null,
+    "839526",
     "154711",
     "154712",
     "549079"
@@ -224,8 +234,20 @@
     "S2-03"
    ],
    "case_ids": [
-    null,
-    null,
+    "839526",
+    "839527",
+    "549079"
+   ]
+  },
+  "S2-R2a": {
+   "story": 2,
+   "jira": "SV-10131",
+   "text": "In the builder's table, an empty Title cell shows \"What are you doing?\" and an empty Description cell shows \"Why are you doing it?\", both in grey italic, the look the Description cell already had. Before, the empty Title cell showed \"What Are You Doing?\" in normal text.",
+   "status": "COVERED",
+   "keys": [
+    "S2-03"
+   ],
+   "case_ids": [
     "549079"
    ]
   },
@@ -274,7 +296,7 @@
    ],
    "case_ids": [
     "154713",
-    null
+    "839508"
    ]
   },
   "S3-R3": {
@@ -298,15 +320,15 @@
     "154716",
     "549081",
     "549086",
-    null,
-    null,
-    null
+    "839505",
+    "839506",
+    "839507"
    ]
   },
   "S3-R4": {
    "story": 3,
    "jira": "SV-10132",
-   "text": "The same text is used by the live QuickBooks sync and by the downloadable Customer Invoice report. Built at the same moment, the two never show different text for the same line. An invoice already in QuickBooks keeps its old text there (S3-N1, S3-E4).",
+   "text": "The same text is used by the live QuickBooks sync and by the downloadable Customer Invoice report. Built at the same moment, the two never show different text for the same line, apart from the leading apostrophe the report adds in S3-R8a. An invoice already in QuickBooks keeps its old text there (S3-N1, S3-E4).",
    "status": "COVERED",
    "keys": [
     "S3-03",
@@ -315,7 +337,9 @@
     "S3-09",
     "S3-13",
     "S3-14",
-    "S3-23"
+    "S3-23",
+    "S3-25",
+    "S3-26"
    ],
    "case_ids": [
     "154715",
@@ -324,6 +348,8 @@
     "154721",
     "549083",
     "549084",
+    "839509",
+    null,
     null
    ],
    "part_manual": "Covered by S3-03 and S3-14 (the same line on both routes) and S3-23 (an old invoice). \"Built at the same moment\" is approached by downloading the report right after the sync; the builder being one piece of code is the developers' check (tech plan: InvoiceCreateSyncServiceTest)."
@@ -356,12 +382,12 @@
     "S3-20"
    ],
    "case_ids": [
-    null,
-    null,
+    "839523",
+    "839524",
     "549080",
     "154716",
     "549082",
-    null
+    "839506"
    ]
   },
   "S3-R6a": {
@@ -413,20 +439,37 @@
   "S3-R8": {
    "story": 3,
    "jira": "SV-10132",
-   "text": "The values themselves are unchanged. Nothing is trimmed, truncated, re-cased or escaped that is not trimmed, truncated, re-cased or escaped today, other than the shortening described in S3-R7 and the removal of spaces and line breaks at the very end of the whole line (S3-R3).",
+   "text": "The values themselves are unchanged. Nothing is trimmed, truncated, re-cased or escaped that is not trimmed, truncated, re-cased or escaped today, other than the shortening described in S3-R7 and the removal of spaces and line breaks at the very end of the whole line (S3-R3), and the apostrophe in S3-R8a.",
    "status": "COVERED",
    "keys": [
     "S3-05",
     "S3-06",
     "S3-21",
-    "S3-22"
+    "S3-22",
+    "S3-25"
    ],
    "case_ids": [
     "154717",
     "154718",
-    null,
+    "839507",
+    "839508",
     null
    ]
+  },
+  "S3-R8a": {
+   "story": 3,
+   "jira": "SV-10132",
+   "text": "In the downloadable Customer Invoice report only, a line text that starts with =, +, -, @, a tab or a carriage return gets one apostrophe in front of it, so a spreadsheet opens it as text and never as a formula. This is the same guard the newer report downloads already use. The old line always started with \"What are you doing?: \", so it could not open as a formula; a line that now starts with the Title can. The live QuickBooks sync never carries the apostrophe.",
+   "status": "COVERED",
+   "keys": [
+    "S3-25",
+    "S3-26"
+   ],
+   "case_ids": [
+    null,
+    null
+   ],
+   "part_manual": "Covered by S3-25 (report: =, +, - and @) and S3-26 (QuickBooks: no apostrophe). A line starting with a tab or a carriage return cannot be typed as a Title by hand; developers' check."
   },
   "S3-R9": {
    "story": 3,
@@ -480,15 +523,15 @@
   "S3-R12": {
    "story": 3,
    "jira": "SV-10132",
-   "text": "An imported historical invoice never reaches the live QuickBooks sync, so its line text is unaffected whatever the import wrote into it.",
+   "text": "An imported historical invoice never reaches the live QuickBooks sync, so its line text is unaffected whatever the import wrote into it. It never appears in the downloadable Customer Invoice report either, which lists invoices created in ShopView only.",
    "status": "COVERED",
    "keys": [
-    "D-15",
-    "S3-15"
+    "S3-15",
+    "S3-24"
    ],
    "case_ids": [
-    null,
-    "549085"
+    "549085",
+    null
    ]
   },
   "S3-N1": {
@@ -516,7 +559,7 @@
    ],
    "case_ids": [
     "549086",
-    null
+    "839509"
    ]
   },
   "S3-N3": {
@@ -542,7 +585,7 @@
    ],
    "case_ids": [
     "549081",
-    null
+    "839505"
    ]
   },
   "S3-E2": {
@@ -578,7 +621,7 @@
     "S3-23"
    ],
    "case_ids": [
-    null
+    "839509"
    ]
   },
   "S4-R1": {
@@ -622,7 +665,7 @@
    "case_ids": [
     "154724",
     "549090",
-    null
+    "839510"
    ]
   },
   "S4-R4": {
@@ -650,7 +693,7 @@
    "case_ids": [
     "154724",
     "549090",
-    null
+    "839510"
    ]
   },
   "S4-R6": {
@@ -680,6 +723,19 @@
     "154725",
     "549091"
    ]
+  },
+  "S4-R8": {
+   "story": 4,
+   "jira": "SV-10133",
+   "text": "A row whose *Line Title is empty is refused with \"Line Title cannot be empty.\", replacing \"Line name cannot be empty.\". Rows that need no title (shop supplies, misc and credit memo rows) are unaffected, and every other import message is unchanged.",
+   "status": "COVERED",
+   "keys": [
+    "S4-09"
+   ],
+   "case_ids": [
+    null
+   ],
+   "part_manual": "Covered by S4-09 (an empty *Line Title on a Labor row). \"Rows that need no title (shop supplies, misc and credit memo rows) are unaffected\" is today's behaviour and is not tested separately."
   },
   "S4-N1": {
    "story": 4,

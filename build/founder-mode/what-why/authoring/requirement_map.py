@@ -8,6 +8,10 @@ the coverage record is honest)."""
 
 NO_MANUAL = {}
 PART_MANUAL = {
+    "S3-R8a": "Covered by S3-25 (report: =, +, - and @) and S3-26 (QuickBooks: no apostrophe). A line starting with a tab or a carriage "
+              "return cannot be typed as a Title by hand; developers' check.",
+    "S4-R8": "Covered by S4-09 (an empty *Line Title on a Labor row). \"Rows that need no title (shop supplies, misc and credit memo rows) "
+             "are unaffected\" is today's behaviour and is not tested separately.",
     "S3-R6a": "Covered in both states (on: S3-01, S3-03, S3-06, S3-11, S3-12; off: S3-02, S3-04, S3-05 ...). Not by hand: the default "
               "for a shop created since June 2025 (a manual tester cannot create a new shop); developers' check.",
     "S3-R4": "Covered by S3-03 and S3-14 (the same line on both routes) and S3-23 (an old invoice). \"Built at the same moment\" is "
@@ -23,6 +27,7 @@ PART_MANUAL = {
 # Words the PRD quotes in a requirement line that a written story's cases must use word for word (build.py's messages gate),
 # except these, which are not words a tester sees on a screen in this feature:
 NOT_SCREEN_WORDS = {
+    "What are you doing?: ": "S3-R8a names the old line's start to explain the guard; S3-09 and S3-17 check old invoices start with it",
     "X is a required field": "the PRD's name for the app-wide message form, not a message",
 }
 OTHER_STORY = {}

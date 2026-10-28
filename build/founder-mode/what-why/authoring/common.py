@@ -60,3 +60,14 @@ def note(start):
     for n in L.CANVAS["annotations"]:
         if L.ws(n["text"]).startswith(start): return L.ws(n["text"])
     raise KeyError(start)
+
+# 28 Oct 2026: Product's answers 9-14 of 27 Oct, word for word from po-answers-2026-10-27/ (quoted with a PRD line, never alone)
+import re as _re
+def _po2():
+    t = open(f"{L.P}/po-answers-2026-10-27/ANSWERS-Chris-Ward-2026-10-27.md").read()
+    out = {}
+    for m in _re.finditer(r"^\*\*Answer: (\d+)\. (.*?)\*\*$", t, _re.M):
+        out[int(m.group(1))] = ("PO2", f"Answer {m.group(1)}", L.ws(f"{m.group(1)}. {m.group(2)}"))
+    return out
+PO_ANS = _po2()
+assert sorted(PO_ANS) == [9, 10, 11, 12, 13, 14], sorted(PO_ANS)

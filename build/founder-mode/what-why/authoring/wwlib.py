@@ -41,15 +41,26 @@ def md_to_text(md):
     return "\n".join(out)
 
 # ---------------------------------------------------------------- PRD v15
-PRD_FILE = f"{P}/sources/CONFLUENCE-845348896-v15-2026-10-27.md"
+PRD_FILE = f"{P}/sources/CONFLUENCE-845348896-v16-2026-10-28.md"   # 28 Oct 2026: v16 (Chris's answers 9-14)
 PRD_ALL = open(PRD_FILE).read()
 PRD_MD = PRD_ALL.split("## 8. Change Log")[0]            # the Change Log is never a source of a requirement or a quote
 PRD_TXT = md_to_text(PRD_MD)
 PRDW = ws(PRD_TXT)
-PRD_NAME = ('PRD "What Are You Doing / Why Are You Doing It?" (Title and Description), Confluence 845348896, version 15 '
-            '(14 Oct 2026, owner Chris Ward)')
-PRD_VERSION = 15
+PRD_NAME = ('PRD "What Are You Doing / Why Are You Doing It?" (Title and Description), Confluence 845348896, version 16 '
+            '(27 Oct 2026, owner Chris Ward)')
+PRD_VERSION = 16
 READ = "read 27 Oct 2026"
+# 28 Oct 2026, QA lead: "Named set" (Rule 122 amendment). Only the cases in NAMED_SET (and new cases) are rewritten to v16; every
+# other case keeps its live 27 Oct text, whose PRD quotes are word for word the same in v16, so its From line keeps version 15.
+PRD15_NAME = ('PRD "What Are You Doing / Why Are You Doing It?" (Title and Description), Confluence 845348896, version 15 '
+              '(14 Oct 2026, owner Chris Ward)')
+READ16 = "read 28 Oct 2026"
+NAMED_SET = {"S1-03", "S1-03b", "S1-05", "S2-03", "S3-03", "S3-05", "S3-06", "S3-08", "S3-09", "S3-13", "S3-14", "S3-15", "S3-21",
+             "S3-22", "S3-23"}
+def on_v16(c):
+    import csv as _c
+    m = {r["key"] for r in _c.DictReader(open(f"{P}/testrail-id-map.csv"))}
+    return c["key"] in NAMED_SET or c["key"] not in m
 EPIC = "SV-11257"
 DESIGN_URL = "https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6"
 NOBUILD = ("Not yet checked against a build by us: the QA build (sv10130.qa.shopview.com, QuickBooks host qb1.qa.shopview.com) "
@@ -76,12 +87,12 @@ for line in PRD_MD.split("\n"):
 STORY_JIRA = {1: "SV-10130", 2: "SV-10131", 3: "SV-10132", 4: "SV-10133"}
 for n, k in STORY_JIRA.items():
     if f"[{k}](https://shopview.atlassian.net/browse/{k})" not in PRD_MD: raise SystemExit(f"Story {n} is not {k} in the PRD")
-if len(CODE) != 41: raise SystemExit(f"PRD v15 has {len(CODE)} requirement codes; this library was written for 41")
+if len(CODE) != 44: raise SystemExit(f"PRD v16 has {len(CODE)} requirement codes; this library was written for 44 (v15 had 41; v16 added S2-R2a, S3-R8a, S4-R8)")
 
 # ---- named PRD items with no code (quotable; each a full bullet / row / note, verbatim)
 NAMED = {}
 def _n(key, label, text):
-    if ws(text) not in PRDW: raise SystemExit(f"NAMED {key} not verbatim in PRD v15: {text[:80]}")
+    if ws(text) not in PRDW: raise SystemExit(f"NAMED {key} not verbatim in PRD v16: {text[:80]}")
     NAMED[key] = (label, ws(text))
 def _section(title):
     m = re.search(r"^## " + re.escape(title) + r".*?$(.*?)^## ", PRD_MD, re.M | re.S)
@@ -150,7 +161,12 @@ def board_png(stem):
     """'Main' -> 'board-1.2-new-line-after.png' when the Phase D render exists, else None."""
     name = f"board-{BOARD_NO[stem]}-" + re.sub(r"[^a-z0-9]+", "-", BOARD_BY_STEM[stem].lower()).strip("-") + ".png"
     return name if any(os.path.isfile(os.path.join(x, name)) for x in PNG_DIRS) else None
+PO2_FILE = f"{P}/po-answers-2026-10-27/ANSWERS-Chris-Ward-2026-10-27.md"
+POW2 = ws(open(PO2_FILE).read())
+PO2_NAME = ("Product's answers to our questions 9-14 (Chris Ward, 27 Oct 2026, Google Doc 1QcT7FRZci6AhYcI33HUac-Oob03-gCnCOKn2NFHMLjA, "
+            "saved in po-answers-2026-10-27/)")
 DOCS = {"PRD": (PRD_NAME, lambda t: ws(t) in PRDW or ws(t) in PRD_ROWSW),
+        "PO2": (PO2_NAME, lambda t: ws(t) in POW2),
         "PO": (PO_NAME, lambda t: ws(t) in POW),
         "JIRA": (JIRA_NAME, lambda t: ws(t) in JIRAW),
         "TECH": (TECH_NAME, lambda t: ws(t) in TECHW)}
@@ -278,9 +294,12 @@ def quotes_block(c):
     sto = ", ".join(f"story {STORY_JIRA[n]} (Story {n}, {STORY_TITLE[n]})" for n in story_nums(c) if n in STORY_JIRA)
     h = "<p><strong>Exact quotes from the source (for reproducibility)</strong></p>"
     first = True
-    for doc in ("PRD", "PO", "JIRA", "TECH"):
+    for doc in ("PRD", "PO", "PO2", "JIRA", "TECH"):
         if doc not in groups: continue
-        h += f"<p>From: {e(DOCS[doc][0])}, {READ}" + (f" &middot; Epic {EPIC}, {e(sto)}" if first else "") + "</p>"
+        name, read = DOCS[doc][0], READ
+        if doc == "PRD": name, read = (PRD_NAME, READ16) if on_v16(c) else (PRD15_NAME, READ)
+        if doc == "PO2": read = READ16
+        h += f"<p>From: {e(name)}, {read}" + (f" &middot; Epic {EPIC}, {e(sto)}" if first else "") + "</p>"
         h += "<ul>" + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in groups[doc]) + "</ul>"
         first = False
     return h + f"<p>{e(NOBUILD)}</p>"
@@ -389,4 +408,4 @@ SECTIONS = json.load(open(f"{P}/section-map.json"))
 # DESIGN: "Design — how it looks" under What/Why 20437. The coordinator creates it in TestRail and writes its id into ../section-map.json
 # as "DESIGN"; until then it is None and apply.py adds no design case (it never creates the section itself).
 SECTIONS["DESIGN"] = SECTIONS.get("DESIGN") or None
-DELETED = {}     # no What/Why case is retired in this pass (every one of the 37 live cases maps to a key)
+DELETED = {"C839525": "D-15, held design version of DV-04; deleted 28 Oct 2026 with the QA lead's go-ahead after Product answer 12 (27 Oct)"}

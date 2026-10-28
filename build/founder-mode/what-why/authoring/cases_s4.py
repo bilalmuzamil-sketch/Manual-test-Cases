@@ -106,3 +106,18 @@ C("S4-08", "S4", "Old column names in other capitals or with spaces around them 
   ["S4-R3", "S4-R5", ("JIRA", "SV-10133, Nemanja Djuric, 19 Oct 2026 (QA update, PRD v14)",
                       "Old column names in any capitals, or with spaces around them (for example \"*line title - WHAT ARE YOU DOING\" or \" Line Description - Why are you doing it \"), import the same as the new names (S4-R3)."), WHERE],
   design=NOBOARD)
+
+# ---------------------------------------------------------------- 28 Oct 2026 named set (PRD v16 S4-R8, Product answer 10)
+C("S4-09", "S4", "An import row with an empty *Line Title says \"Line Title cannot be empty.\"",
+  [ADMIN, "Create an import file for this test, file A, from the downloaded Invoices import template, with one Labor row for an "
+          "existing customer: a new invoice number, invoice A, the *Line Title cell left empty and Line Description \"excessive play\".",
+   "Write down invoice A's number.", START_IMPORT],
+  ["Upload file A.", "Click Work Orders in the top bar.", "Click the All tab.", "Switch the list to List view.",
+   "Pick Imported in the Status filter.", "Type invoice A's number in the Search box."],
+  [["\"Line Title cannot be empty.\" shows for file A's row (not \"Line name cannot be empty.\").", "The row is not imported."],
+   ["The Work Orders page opens."], ["The All tab is shown."], ["The work orders show as a list."],
+   ["Only imported work orders are listed."], ["No work order is listed: invoice A was not imported."]],
+  ["S4-R8", PO_ANS[10], WHERE], design=NOBOARD,
+  claude=["New 28 Oct 2026 (PRD v16 S4-R8, Product answer 10). Product says the build still says \"Line name cannot be empty.\"; a "
+          "ticket is filed only after two reproductions on the QA build (Rule 94), then this case gets EXPECT FAIL. Rows that need no "
+          "title (shop supplies, misc and credit memo rows) are not tested separately here (requirement_map PART_MANUAL)."])

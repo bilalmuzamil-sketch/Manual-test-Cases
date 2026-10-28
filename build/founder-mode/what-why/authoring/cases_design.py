@@ -226,27 +226,8 @@ C("D-14", "DESIGN", "Design: Modern invoice leaves out \"Tech story missing.\"",
   claude=["Not asserted: whether the \"Scope of work\" heading still prints with no tech story (no source; proposed question DQ-03)."])
 
 # ================================================================ held design-version case, board 2.1 (DV-04, DQ-01)
-C("D-15", "DESIGN", "Design: An imported invoice line reads title - description in the report",
-  ["Sign in as an Admin at the test location, with Invoicing & payments - View.",
-   'Import a file made for this test, file A, from the downloaded Invoices import template (Settings, then Invoices under Data Import), '
-   'with one Labor row dated today: a new invoice number (invoice A), an existing customer, *Line Title "Replace tie rod", '
-   'Line Description "excessive play" and Tech Story left empty, so invoice A exists only as an imported invoice.',
-   SHEETS, START_EXPORT],
-  REPORT + [OPEN_SHEET],
-  [[R_PICK], [R_TODAY], [R_DOWNLOAD],
-   ["Invoice A's labor row is in the file, and its ItemDescription cell reads exactly \"Replace tie rod - excessive play\", "
-    "with nothing after \"excessive play\", as board 2.1 shows for a line imported from a previous system."]],
-  ["S3-R12", "PRE-S3-1"],
-  marker=DESIGN_HOLD,
-  note=("This case follows the design, which differs from the page: it is held and is not run until Product answers whether an "
-        "imported invoice appears in the downloaded Customer Invoice report and how its line reads."),
-  design=dict(boards=["EdgeCases"], words=[FOUR, IMPORTED],
-              note="Board 2.1 lists a line \"Imported from a previous system\" among the tech-story cases that reach the books and "
-                   "shows it as \"Replace tie rod - excessive play\"; the PRD says only that an imported invoice never reaches the live "
-                   "sync and its text is unaffected whatever the import wrote (question 12, divergence DV-04)."),
-  claude=["Held design-version case (Rule 130 item 5): DV-04 / DQ-01 (the coordinator numbers it Q12). Release it if Product says the "
-          "report shows imported invoices with the joined text; delete it (with the go-ahead) if not. Imported invoices are found under "
-          "Work Orders → All → Status → Imported (List view)."])
+# D-15 (C839525, held design version of DV-04) deleted 28 Oct 2026 with the QA lead's go-ahead: Product answer 12 (27 Oct) says an
+# imported invoice never appears in the report and the board's example is illustrative; S3-24 now covers S3-R12's new sentence.
 
 # ================================================================ ShopCoach (no board; Build Lines meets SV-11850 on staging)
 C("D-16", "DESIGN", "Design: An emptied ShopCoach editor shows its label above the prompt",
@@ -275,3 +256,20 @@ C("D-17", "DESIGN", "Design: ShopCoach table rows keep their size when a cell sh
   note=FAIL_NOTE, marker=SV11850, design=SHOPCOACH_TABLE,
   claude=["Source: tech plan Phase 3 browser-walk step 5 (risk R2) and SV-10391's checklist; the PRD and the design are silent on "
           "the table. The grey italic look (developer note on SV-10131) is not asserted here (proposed question DQ-02)."])
+
+# ================================================================ 28 Oct 2026 named set (Product answer 14): no heading without a tech story
+C("D-18", "DESIGN", "Design: Modern invoice prints no Scope of work heading without a tech story",
+  [ADMIN, LEG_OFF, TS_OFF,
+   'Create a work order for this test, work order 1, with two labor lines: line 1 titled "Replace tie rod" with the description '
+   '"excessive play", and line 2 titled "Align front axle" with the description "pulls left".',
+   'Have line 1 completed with no tech story and line 2 completed with the tech story "Aligned to spec", and work order 1 completed '
+   'and invoiced today as invoice A.', START_WO],
+  FIN,
+  [R_FIN,
+   ["Invoice A shows in the modern layout.",
+    "Line 1 prints \"Replace tie rod\" in bold, then \"excessive play\", and nothing under it: no \"SCOPE OF WORK\" heading.",
+    "Line 2 prints \"Align front axle\" in bold, then \"pulls left\", then the small grey heading \"SCOPE OF WORK\" and \"Aligned to spec\": "
+    "the heading shows only for the line that has a tech story."]],
+  INV_Q + [PO_ANS[14]], stories=[3], design=dict(boards=["QuickBooks"], words=[INVOICE_VIEWS, MODERN], note=INV_NOTE),
+  claude=["New 28 Oct 2026 (Product answer 14). Product: a tech story of only spaces prints the heading over a blank block, an existing "
+          "invoice bug to be ticketed on its own and kept out of these cases."])

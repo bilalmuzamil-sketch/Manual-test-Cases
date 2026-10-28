@@ -1,6 +1,6 @@
 # What/Why (Title and Description) — setup file for Claude sessions (a tester does not need it)
 
-Built by `authoring/render_setup.py` from the case library (62 cases). Sources: PRD "What Are You Doing / Why Are You Doing It?" (Title and Description), Confluence 845348896, version 15 (14 Oct 2026, owner Chris Ward), read 27 Oct 2026; Product's answers of 14 Oct 2026; tech plan of 23 Sep 2026; Jira epic SV-11257 read 27 Oct 2026; design canvas https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6 (27 Oct copy). No credential, cookie or session data is written here.
+Built by `authoring/render_setup.py` from the case library (68 cases). Sources: PRD "What Are You Doing / Why Are You Doing It?" (Title and Description), Confluence 845348896, version 16 (27 Oct 2026, owner Chris Ward), read 27 Oct 2026; Product's answers of 14 Oct 2026; tech plan of 23 Sep 2026; Jira epic SV-11257 read 27 Oct 2026; design canvas https://claude.ai/artifact/Pz1Q6BfvreYFpQwVQZPTE6 (27 Oct copy). No credential, cookie or session data is written here.
 
 ## 1 · Accounts and places (slots)
 | Slot | What it is | Notes |
@@ -52,15 +52,15 @@ State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create an open work order for this test, work order 1, so that a wrongly saved line would not touch other work.
 - Start on work order 1, on its Lines tab.
-- Product asked (answer 7, 14 Oct) for a bug if the message shows only after a blocked save; the QA lead chose "Not now" (27 Oct). The developer's 19 Oct note says the build now shows it on leaving the field. No EXPECT FAIL (no ticket).
+- Product asked (answer 7, 14 Oct) for a bug if the message shows only after a blocked save. The developer's 19 Oct note says the build now shows it on leaving the field. 28 Oct: the QA lead approved filing it; it is filed only after two reproductions on the QA build (Rule 94), and then this case gets the EXPECT FAIL marker.
 Quotes: S1-R6, S1-R7. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
-### S1-03b · new case (split from S1-03) · Leaving the Title empty shows "Title is a required field" under it
+### S1-03b · C839503 (split from S1-03) · Leaving the Title empty shows "Title is a required field" under it
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an open work order, work order 1, that is not invoiced, so you can add a line to it.
 - Start on work order 1, on its Lines tab.
-- Split from S1-03 (C154709) for the v14 S1-R6 sentence (SV-10916). Answer 7 of 14 Oct asked for a bug if the build shows the message only after a blocked save; the QA lead said "Not now" (27 Oct), so this case keeps the PRD's expectation.
+- Split from S1-03 (C154709) for the v14 S1-R6 sentence (SV-10916). Answer 7 of 14 Oct asked for a bug if the build shows the message only after a blocked save; 28 Oct the QA lead approved filing it after two reproductions (Rule 94). The case keeps the PRD's expectation.
 Quotes: S1-R6, S1-R3, SV-10130, Nemanja Djuric, 19 Oct 2026 (QA update, PRD v14). Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
 ### S1-04 · C154710 · New Line keeps its other fields, their order and its three buttons
@@ -71,7 +71,7 @@ State the tester sets up:
 - Start on work order 1, on its Lines tab.
 Quotes: S1-R7, S1-R3, FO-6. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
-### S1-04b · new case (split from S1-04) · Edit Line keeps its other fields, their order and its buttons
+### S1-04b · C839504 (split from S1-04) · Edit Line keeps its other fields, their order and its buttons
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an open work order, work order 1, with a line, line 1, that has a title and a description.
@@ -108,6 +108,22 @@ State the tester sets up:
 - Start on work order 1, on its Lines tab.
 Quotes: FF-1, S1-R1, S1-R2, S1-R3, SV-10130, Nemanja Djuric, 8 Oct 2026 (Ready for QA testing). Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
+### S1-09 · C847719 · New Line says "Title cannot be longer than 255 characters" at 256
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Create an open work order for this test, work order 1, so a saved line can be added to it.
+- Start on work order 1, on its Lines tab.
+- New 28 Oct 2026 (PRD v16 S1-R6, Product answer 9 of 27 Oct). 255-character text: "0123456789" * 25 + "01234".
+Quotes: S1-R6, SV-10130, Nemanja Djuric, 19 Oct 2026 (QA update, PRD v14), Answer 9. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
+
+### S1-10 · C847720 · Edit Line says "Title cannot be longer than 255 characters" at 256
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Create a work order for this test, work order 1, with one labor line, line 1, titled "Replace tie rod" with the description "excessive play".
+- Start on work order 1, on its Lines tab.
+- New 28 Oct 2026 (PRD v16 S1-R6, Product answer 9 of 27 Oct).
+Quotes: S1-R6, S1-R7, SV-10130, Nemanja Djuric, 19 Oct 2026 (QA update, PRD v14), Answer 9. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
+
 ### S2-01 · C154711 · ShopCoach line builder labels its editors Title and Description
 State the tester sets up:
 - Sign in as an Admin at the test location.
@@ -128,7 +144,7 @@ State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an open work order, work order 1, that is not invoiced, for an asset with its year, make and model filled in, so ShopCoach can suggest lines for it.
 - Start on work order 1, on its Lines tab.
-Quotes: S2-R2, S1-R3, S2-R1, SV-10131, Nemanja Djuric, 8 Oct 2026 (Ready for QA testing), SV-10131, Nemanja Djuric, 8 Oct 2026 (Ready for QA testing), SV-11850, Mudassir Qamar, 27 Oct 2026 (Actual). Marker: AUTOMATION: READY - EXPECT FAIL (SV-11850).
+Quotes: S2-R2, S2-R2a, S1-R3, S2-R1, SV-10131, Nemanja Djuric, 8 Oct 2026 (Ready for QA testing), SV-10131, Nemanja Djuric, 8 Oct 2026 (Ready for QA testing), SV-11850, Mudassir Qamar, 27 Oct 2026 (Actual). Marker: AUTOMATION: READY - EXPECT FAIL (SV-11850).
 
 ### S2-04 · C549080 · A ShopCoach line reads Title - Description in the Customer Invoice report
 State the tester sets up:
@@ -350,7 +366,7 @@ State the tester sets up:
 - Start on Reports, then Export Reports in the Reports left menu, with the Export Report dialog open.
 Quotes: PRE-S3-3. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
-### S3-19 · new case · A description of only spaces is left out: the title joins the tech story
+### S3-19 · C839505 · A description of only spaces is left out: the title joins the tech story
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Make sure Require Tech Story is on (Settings, then the Work Orders tab).
@@ -361,7 +377,7 @@ State the tester sets up:
 - Typed values: title 'Replace tie rod', description '   ', tech story 'Both outer ends worn, replaced and align'… → line text by the PRD's rule: 60 characters, 60 bytes: 'Replace tie rod - Both outer ends worn, replaced and aligned'.
 Quotes: S3-R3, S3-E1, Chris Ward, 14 Oct 2026, answer 1. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
-### S3-20 · new case · A tech story of only spaces is left out: the line ends after the description
+### S3-20 · C839506 · A tech story of only spaces is left out: the line ends after the description
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Make sure Require Tech Story is off (Settings, then the Work Orders tab).
@@ -372,7 +388,7 @@ State the tester sets up:
 - Typed values: title 'Replace tie rod', description 'excessive play', tech story '   ' → line text by the PRD's rule: 32 characters, 32 bytes: 'Replace tie rod - excessive play'.
 Quotes: S3-R6, S3-R3. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
-### S3-21 · new case · Spaces and an empty line at the end of the tech story do not reach the report
+### S3-21 · C839507 · Spaces and an empty line at the end of the tech story do not reach the report
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Make sure Require Tech Story is on (Settings, then the Work Orders tab).
@@ -383,7 +399,7 @@ State the tester sets up:
 - Typed values: title 'Replace tie rod', description 'excessive play', tech story 'Both outer ends worn, replaced and align'… → line text by the PRD's rule: 77 characters, 77 bytes: 'Replace tie rod - excessive play - Both outer ends worn, replaced and aligned'.
 Quotes: S3-R8, S3-R3, SV-10132, Nemanja Djuric, 19 Oct 2026 (QA update, PRD v14). Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
-### S3-22 · new case · A space typed at the end of the title is kept before the separator
+### S3-22 · C839508 · A space typed at the end of the title is kept before the separator
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Make sure Require Tech Story is off (Settings, then the Work Orders tab).
@@ -395,7 +411,7 @@ State the tester sets up:
 - The QA's 23 Oct pass, case 6 ("Replace - Rear ramp handles␣␣- Broken off"); the developer and the QA agreed it is by design.
 Quotes: S3-R8, S3-R2, SV-10132, Nemanja Djuric, 23 Oct 2026. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
-### S3-23 · new case · An invoice made before the release shows the new text in the downloaded report
+### S3-23 · C839509 · An invoice made before the release shows the new text in the downloaded report
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an invoice made before this release, invoice A, whose labor line, line 1, has a title, a description and a tech story.
@@ -404,6 +420,45 @@ State the tester sets up:
 - Start on Reports, then Export Reports in the Reports left menu, with the Export Report dialog open.
 - QuickBooks keeps invoice A's old text (S3-N1); that half is checked by the QuickBooks case for old invoices.
 Quotes: S3-E4, S3-R4, S3-N2. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
+
+### S3-24 · C847721 · An imported invoice never appears in the Customer Invoice report
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Make sure Require Tech Story is off (Settings, then the Work Orders tab).
+- Create a work order for this test, work order 1, with one labor line, line 1, titled "Replace tie rod" with the description "excessive play".
+- Have line 1 completed with no tech story, and work order 1 completed and invoiced today as invoice A.
+- Import a file made for this test, file A, from the downloaded Invoices import template (Settings, then Invoices under Data Import), with one Labor row dated today: a new invoice number (invoice B), an existing customer, *Line Title "Replace tie rod" and Line Description "excessive play", so invoice B exists only as an imported invoice.
+- Write down the numbers of invoice A and invoice B.
+- Use Google Sheets (File, then Import, then Upload) to open downloaded files, so accented letters and character counts read correctly.
+- Start on Reports, then Export Reports in the Reports left menu, with the Export Report dialog open.
+- Typed values: title 'Replace tie rod', description 'excessive play', tech story '' → line text by the PRD's rule: 32 characters, 32 bytes: 'Replace tie rod - excessive play'.
+- New 28 Oct 2026 (PRD v16 S3-R12, Product answer 12). Replaces the held design case D-15 (C839525, deleted 28 Oct with the QA lead's go-ahead). Imported invoices are found under Work Orders → All → Status → Imported (List view).
+Quotes: S3-R12, PRE-S3-1, Answer 12. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
+
+### S3-25 · C847722 · The report puts one apostrophe before a line starting with =, +, - or @
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Make sure Require Tech Story is off (Settings, then the Work Orders tab).
+- Create a work order for this test, work order 1, with five labor lines, each with the description "leaking": line 1 titled "=Replace hose", line 2 titled "+Replace hose", line 3 titled "-Replace hose", line 4 titled "@Replace hose" and line 5 titled "Replace hose".
+- Have lines 1 to 5 completed with no tech story, and work order 1 completed and invoiced today as invoice A.
+- Use a plain text editor (Notepad on Windows, or TextEdit set to plain text on a Mac) to open the downloaded file, so you see its text exactly as it was written.
+- Use Google Sheets (File, then Import, then Upload) to open downloaded files, so accented letters and character counts read correctly.
+- Start on Reports, then Export Reports in the Reports left menu, with the Export Report dialog open.
+- New 28 Oct 2026 (PRD v16 S3-R8a, Product answer 11). A line starting with a tab or a carriage return cannot be typed as a Title by hand; that part of S3-R8a is the developers' check (requirement_map PART_MANUAL). Product says the build has no guard yet; a ticket is filed only after two reproductions on the QA build (Rule 94), then this case gets EXPECT FAIL.
+Quotes: S3-R8a, S3-R4, S3-R8, Answer 11. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
+
+### S3-26 · C847723 · QuickBooks Online gets no apostrophe before a line starting with =
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Use a test location whose QuickBooks Online connection is active, linked to a QuickBooks sandbox company you can sign in to.
+- Make sure Require Tech Story is off (Settings, then the Work Orders tab).
+- Create a work order for this test, work order 1, with one labor line, line 1, titled "=Replace hose" with the description "leaking".
+- Have line 1 completed with no tech story, and work order 1 completed and invoiced today as invoice A, which reaches the QuickBooks sandbox.
+- Write down invoice A's number.
+- Keep the QuickBooks sandbox company open in a second browser tab.
+- Typed values: title '=Replace hose', description 'leaking', tech story '' → line text by the PRD's rule: 23 characters, 23 bytes: '=Replace hose - leaking'.
+- New 28 Oct 2026 (PRD v16 S3-R8a, Product answer 11). QuickBooks host: qb1.qa.shopview.com.
+Quotes: S3-R8a, S3-R4, Answer 11. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
 ### S4-01 · C154723 · The Invoices import lists the columns Line Title and Line Description
 State the tester sets up:
@@ -457,7 +512,7 @@ State the tester sets up:
 - Start on Settings, then Invoices under Data Import in the Settings left menu.
 Quotes: S4-N1, SV-10133, Nemanja Djuric, 8 Oct 2026 (Ready for QA testing). Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
-### S4-08 · new case · Old column names in other capitals or with spaces around them still import
+### S4-08 · C839510 · Old column names in other capitals or with spaces around them still import
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create two import files for this test from the downloaded Invoices import template, each with one Labor row for an existing customer, *Line Title "Replace tie rod" and Line Description "excessive play": file A keeps the template's headers, with a new invoice number, invoice A; file B is the same, with its two headers changed to " Line Description - Why are you doing it " (a space before and after) in column 17 and "*line title - WHAT ARE YOU DOING" in column 16, with another new invoice number, invoice B.
@@ -465,7 +520,16 @@ State the tester sets up:
 - Start on Settings, then Invoices under Data Import in the Settings left menu.
 Quotes: S4-R3, S4-R5, SV-10133, Nemanja Djuric, 19 Oct 2026 (QA update, PRD v14), SV-10133, Nemanja Djuric, 21 Oct 2026. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
-### D-01 · new case · Design: New Line opens with the Title box ready and its grey prompt
+### S4-09 · C847724 · An import row with an empty *Line Title says "Line Title cannot be empty."
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Create an import file for this test, file A, from the downloaded Invoices import template, with one Labor row for an existing customer: a new invoice number, invoice A, the *Line Title cell left empty and Line Description "excessive play".
+- Write down invoice A's number.
+- Start on Settings, then Invoices under Data Import in the Settings left menu.
+- New 28 Oct 2026 (PRD v16 S4-R8, Product answer 10). Product says the build still says "Line name cannot be empty."; a ticket is filed only after two reproductions on the QA build (Rule 94), then this case gets EXPECT FAIL. Rows that need no title (shop supplies, misc and credit memo rows) are not tested separately here (requirement_map PART_MANUAL).
+Quotes: S4-R8, Answer 10, SV-10133, Nemanja Djuric, 21 Oct 2026. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
+
+### D-01 · C839511 · Design: New Line opens with the Title box ready and its grey prompt
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an open work order, work order 1, that is not invoiced, so you can add a line to it.
@@ -474,7 +538,7 @@ State the tester sets up:
 - The grey fill and the dark red bottom line are the focused picker as both New Line boards draw it (#d9d9d9 background, 2 px #8b0f1d line; label #8b0f1d 10 px; prompt #8b95a3 14 px). Nothing is saved; close the window afterwards.
 Quotes: S1-R1, S1-R3, S1-R5. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
-### D-02 · new case · Design: New Line shows Description above its grey prompt
+### D-02 · C839512 · Design: New Line shows Description above its grey prompt
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an open work order, work order 1, that is not invoiced, so you can add a line to it.
@@ -483,7 +547,7 @@ State the tester sets up:
 - Description box as drawn: 1 px #c6ccd4 border, 4 px corners, label #7b8595 10 px, prompt #8b95a3 14 px.
 Quotes: S1-R2, S1-R3. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
-### D-03 · new case · Design: New Line keeps its header, other fields and buttons as drawn
+### D-03 · C839513 · Design: New Line keeps its header, other fields and buttons as drawn
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an open work order, work order 1, that is not invoiced, so you can add a line to it.
@@ -492,7 +556,7 @@ State the tester sets up:
 - Header: title 17 px bold #1d2129; AI tag #9C27B0; link #2276DA 11 px 600; X #5b6472. Buttons: outlined #2276DA; Save & Close filled #2276DA.
 Quotes: S1-R7, S1-R5. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
-### D-04 · new case · Design: Edit Line shows Title above the saved title
+### D-04 · C839514 · Design: Edit Line shows Title above the saved title
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an open work order, work order 1, with a line, line 1, titled "Replace tie rod" with the description "excessive play".
@@ -501,7 +565,7 @@ State the tester sets up:
 - Any line works; nothing is saved. Edit Line has no canned-line picker, so its Title box is a plain outlined box.
 Quotes: S1-R1, S1-R3. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
-### D-05 · new case · Design: Edit Line shows Description above the grey prompt when empty
+### D-05 · C839515 · Design: Edit Line shows Description above the grey prompt when empty
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an open work order, work order 1, with a line, line 1, titled "Replace tie rod" with no description.
@@ -510,7 +574,7 @@ State the tester sets up:
 - Line 1 is made with a title and no description, as board 1.5 draws it.
 Quotes: S1-R2, S1-R3. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
-### D-06 · new case · Design: Edit Line keeps Status, labor row, link and buttons as drawn
+### D-06 · C839516 · Design: Edit Line keeps Status, labor row, link and buttons as drawn
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an open work order, work order 1, with a line, line 1, titled "Replace tie rod" with the description "excessive play".
@@ -519,7 +583,7 @@ State the tester sets up:
 - X #2276DA; Delete #C10015; Save & Close #2276DA; labor guide link #2276DA 11 px 600 beside the #9C27B0 AI tag.
 Quotes: S1-R7. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
-### D-07 · new case · Design: New Line shows every label and button whole at 1440 pixels
+### D-07 · C839517 · Design: New Line shows every label and button whole at 1440 pixels
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an open work order, work order 1, that is not invoiced, so you can add a line to it.
@@ -528,7 +592,7 @@ State the tester sets up:
 - Window width 1440 px (browser window, not the screen). The board draws the window 455 px wide; no overlap or clipping was found in the board at 1440 or 1536 px (design/inventory/VISUAL-INVENTORY-2026-10-27.md).
 Quotes: S1-R3, S1-R7. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
-### D-08 · new case · Design: New Line shows every label and button whole at 1536 pixels
+### D-08 · C839518 · Design: New Line shows every label and button whole at 1536 pixels
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an open work order, work order 1, that is not invoiced, so you can add a line to it.
@@ -537,7 +601,7 @@ State the tester sets up:
 - Window width 1536 px (browser window, not the screen). The board draws the window 455 px wide; no overlap or clipping was found in the board at 1440 or 1536 px (design/inventory/VISUAL-INVENTORY-2026-10-27.md).
 Quotes: S1-R3, S1-R7. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
-### D-09 · new case · Design: Edit Line shows every label and button whole at 1440 pixels
+### D-09 · C839519 · Design: Edit Line shows every label and button whole at 1440 pixels
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an open work order, work order 1, with a line, line 1, titled "Replace tie rod" with no description.
@@ -546,7 +610,7 @@ State the tester sets up:
 - Window width 1440 px. Line 1 has no description so the grey prompt is on screen.
 Quotes: S1-R3, S1-R7. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
-### D-10 · new case · Design: Edit Line shows every label and button whole at 1536 pixels
+### D-10 · C839520 · Design: Edit Line shows every label and button whole at 1536 pixels
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an open work order, work order 1, with a line, line 1, titled "Replace tie rod" with no description.
@@ -555,7 +619,7 @@ State the tester sets up:
 - Window width 1536 px. Line 1 has no description so the grey prompt is on screen.
 Quotes: S1-R3, S1-R7. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
-### D-11 · new case · Design: Legacy invoice prints title, description and tech story with no labels
+### D-11 · C839521 · Design: Legacy invoice prints title, description and tech story with no labels
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Make sure Legacy invoice layout is on (Settings, then Invoice), so work order 1's invoice prints in the legacy layout.
@@ -565,7 +629,7 @@ State the tester sets up:
 - Legacy invoice layout: Settings → Invoice toggle (off = modern, on = legacy), a fact from the Invoice UI refresh suite; an invoice keeps the layout it was created with, so set the toggle before invoicing. Screen label to confirm on the build.
 Quotes: KD-4, OOS-1. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
-### D-12 · new case · Design: Modern invoice prints the tech story under Scope of work
+### D-12 · C839522 · Design: Modern invoice prints the tech story under Scope of work
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Make sure Legacy invoice layout is off (Settings, then Invoice), so work order 1's invoice prints in the modern layout.
@@ -575,7 +639,7 @@ State the tester sets up:
 - Modern layout = Legacy invoice layout off. The heading is drawn as 11 px bold capitals #8b95a3 (board 1.3).
 Quotes: KD-4, OOS-1. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
-### D-13 · new case · Design: Legacy invoice leaves out "Tech story missing."
+### D-13 · C839523 · Design: Legacy invoice leaves out "Tech story missing."
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Make sure Legacy invoice layout is on (Settings, then Invoice), so work order 1's invoice prints in the legacy layout.
@@ -587,7 +651,7 @@ State the tester sets up:
 - Line 1 holds the placeholder because it was saved once from Edit Line with no tech story (PRD S3-R6, answer 6 of 14 Oct).
 Quotes: KD-4, KD-7, S3-R6, OOS-1. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
-### D-14 · new case · Design: Modern invoice leaves out "Tech story missing."
+### D-14 · C839524 · Design: Modern invoice leaves out "Tech story missing."
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Make sure Legacy invoice layout is off (Settings, then Invoice), so work order 1's invoice prints in the modern layout.
@@ -599,16 +663,7 @@ State the tester sets up:
 - Not asserted: whether the "Scope of work" heading still prints with no tech story (no source; proposed question DQ-03).
 Quotes: KD-4, KD-7, S3-R6, OOS-1. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.
 
-### D-15 · new case · Design: An imported invoice line reads title - description in the report
-State the tester sets up:
-- Sign in as an Admin at the test location, with Invoicing & payments - View.
-- Import a file made for this test, file A, from the downloaded Invoices import template (Settings, then Invoices under Data Import), with one Labor row dated today: a new invoice number (invoice A), an existing customer, *Line Title "Replace tie rod", Line Description "excessive play" and Tech Story left empty, so invoice A exists only as an imported invoice.
-- Use Google Sheets (File, then Import, then Upload) to open downloaded files, so accented letters and character counts read correctly.
-- Start on Reports, then Export Reports in the Reports left menu, with the Export Report dialog open.
-- Held design-version case (Rule 130 item 5): DV-04 / DQ-01 (the coordinator numbers it Q12). Release it if Product says the report shows imported invoices with the joined text; delete it (with the go-ahead) if not. Imported invoices are found under Work Orders → All → Status → Imported (List view).
-Quotes: S3-R12, PRE-S3-1. Marker: AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO.
-
-### D-16 · new case · Design: An emptied ShopCoach editor shows its label above the prompt
+### D-16 · C839526 · Design: An emptied ShopCoach editor shows its label above the prompt
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an open work order, work order 1, that is not invoiced, for an asset with its year, make and model filled in, so ShopCoach can suggest lines for it.
@@ -616,10 +671,21 @@ State the tester sets up:
 - Tech plan D5: stack-label on all five fields (picker, Title, Description, and the two ShopCoach editors).
 Quotes: S2-R1, S2-R2, S1-R3, D5 (stack-label on all five fields), FR-006 (SV-10131), SV-10131, Nemanja Djuric, 8 Oct 2026 (Ready for QA testing), SV-10391, Milan Zivanovic, 23 Sep 2026 (Checklist), SV-10131, Nemanja Djuric, 8 Oct 2026 (Ready for QA testing). Marker: AUTOMATION: READY - EXPECT FAIL (SV-11850).
 
-### D-17 · new case · Design: ShopCoach table rows keep their size when a cell shows its prompt
+### D-17 · C839527 · Design: ShopCoach table rows keep their size when a cell shows its prompt
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an open work order, work order 1, that is not invoiced, for an asset with its year, make and model filled in, so ShopCoach can suggest lines for it.
 - Start on work order 1, on its Lines tab.
 - Source: tech plan Phase 3 browser-walk step 5 (risk R2) and SV-10391's checklist; the PRD and the design are silent on the table. The grey italic look (developer note on SV-10131) is not asserted here (proposed question DQ-02).
 Quotes: S2-R2, FR-006 (SV-10131), Phase 3, browser-walk step 5, SV-10391, Milan Zivanovic, 23 Sep 2026 (Checklist), SV-10131, Nemanja Djuric, 8 Oct 2026 (Ready for QA testing). Marker: AUTOMATION: READY - EXPECT FAIL (SV-11850).
+
+### D-18 · C847725 · Design: Modern invoice prints no Scope of work heading without a tech story
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Make sure Legacy invoice layout is off (Settings, then Invoice), so work order 1's invoice prints in the modern layout.
+- Make sure Require Tech Story is off (Settings, then the Work Orders tab), so line 1 can be completed without a tech story.
+- Create a work order for this test, work order 1, with two labor lines: line 1 titled "Replace tie rod" with the description "excessive play", and line 2 titled "Align front axle" with the description "pulls left".
+- Have line 1 completed with no tech story and line 2 completed with the tech story "Aligned to spec", and work order 1 completed and invoiced today as invoice A.
+- Start on work order 1.
+- New 28 Oct 2026 (Product answer 14). Product: a tech story of only spaces prints the heading over a blank block, an existing invoice bug to be ticketed on its own and kept out of these cases.
+Quotes: KD-4, OOS-1, Answer 14. Marker: AUTOMATION: HOLD - not yet build-verified on the What/Why QA build.

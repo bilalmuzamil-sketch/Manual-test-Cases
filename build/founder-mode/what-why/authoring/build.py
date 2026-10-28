@@ -71,8 +71,10 @@ for k in new_keys:
     if c["part_of"]:
         if c["part_of"] not in MAP: P(f"{k}: part_of {c['part_of']} is not a mapped case")
         elif c["part_of"].rsplit("-", 1)[0] != c["sec"]: P(f"{k}: a split part must stay in its original's section (Rule 136)")
+# split parts the 27 Oct write added (apply-log add_case): mapped now, and still split parts of their originals
+ADDED_27 = {json.loads(x)["key"] for x in open(f"{L.P}/applied-2026-10-27/apply-log.jsonl") if json.loads(x).get("op") == "add_case"}
 for k in keys:
-    if k in MAP and BYKEY[k]["part_of"]: P(f"{k}: a mapped case cannot be a split part")
+    if k in MAP and BYKEY[k]["part_of"] and k not in ADDED_27: P(f"{k}: a mapped case cannot be a split part")
 splits = [k for k in new_keys if BYKEY[k]["part_of"]]
 print("map rows", len(MAP), "| cases updating a live case", len([k for k in keys if k in MAP]), "| new cases", len(new_keys),
       f"(splits {len(splits)}, new behaviour {len(new_keys) - len(splits)})")
@@ -158,7 +160,8 @@ for c in L.CASES:
     q = ex.split("Exact quotes from the source")[1].split("References from Design")[0]
     if not q.split("</strong></p>", 1)[1].startswith("<p>From: "): P(f"{k}: quotes do not start with a From line")
     if q.count("<p>From: ") != q.count("<ul>"): P(f"{k}: a quote group without its own From line")
-    if f"Epic {L.EPIC}" not in q or L.e(L.NOBUILD) not in q or "version 15" not in q: P(f"{k}: epic, version 15 or build line missing")
+    if f"Epic {L.EPIC}" not in q or L.e(L.NOBUILD) not in q or ("version 16" if L.on_v16(c) else "version 15") not in q:
+        P(f"{k}: epic, version (16 for the 28 Oct named set and new cases, else 15) or build line missing")
     if "claude.ai/artifact" in ex.split("References from Design")[0]: P(f"{k}: a design reference above References from Design")
     if "<p></p><p><strong>References from Design</strong></p>" not in ex: P(f"{k}: no References from Design block")
     if L.BLOCKED_RX.search(_html.unescape(pre + st + ex)): P(f"{k}: the Blocked line (fifteenth amendment)")

@@ -53,8 +53,9 @@ C("S1-03", "S1", "New Line will not save without a Title and says \"Title is a r
    ["\"no title\" shows in the Description box."],
    ["The window stays open and the line is not saved.", MSG, "The Description box still holds \"no title\"."]],
   ["S1-R6", "S1-R7"], design=MAIN,
-  claude=["Product asked (answer 7, 14 Oct) for a bug if the message shows only after a blocked save; the QA lead chose \"Not now\" "
-          "(27 Oct). The developer's 19 Oct note says the build now shows it on leaving the field. No EXPECT FAIL (no ticket)."])
+  claude=["Product asked (answer 7, 14 Oct) for a bug if the message shows only after a blocked save. The developer's 19 Oct note says "
+          "the build now shows it on leaving the field. 28 Oct: the QA lead approved filing it; it is filed only after two reproductions on "
+          "the QA build (Rule 94), and then this case gets the EXPECT FAIL marker."])
 
 C("S1-03b", "S1", "Leaving the Title empty shows \"Title is a required field\" under it",
   [ADMIN, WO_OPEN, START_LINES],
@@ -65,7 +66,8 @@ C("S1-03b", "S1", "Leaving the Title empty shows \"Title is a required field\" u
    ["\"Replace tie rod\" shows in the Title box.", "The message \"Title is a required field\" is gone, because Title is no longer empty."]],
   ["S1-R6", "S1-R3", DEV_LEAVE], design=MAIN, part_of="S1-03",
   claude=["Split from S1-03 (C154709) for the v14 S1-R6 sentence (SV-10916). Answer 7 of 14 Oct asked for a bug if the build shows "
-          "the message only after a blocked save; the QA lead said \"Not now\" (27 Oct), so this case keeps the PRD's expectation."])
+          "the message only after a blocked save; 28 Oct the QA lead approved filing it after two reproductions (Rule 94). The case "
+          "keeps the PRD's expectation."])
 
 C("S1-04", "S1", "New Line keeps its other fields, their order and its three buttons",
   [ADMIN, "Create an open work order for this test, work order 1, so a saved line can be added to it.", CANNED, START_LINES],
@@ -130,3 +132,37 @@ C("S1-08", "S1", "At phone width the line window shows the same Title and Descri
   ["FF-1", "S1-R1", "S1-R2", "S1-R3", ("JIRA", "SV-10130, Nemanja Djuric, 8 Oct 2026 (Ready for QA testing)",
                                          "Phone width (≤ 600px): the same labels, prompts and message.")],
   design=MAIN)
+
+# ---------------------------------------------------------------- 28 Oct 2026 named set (PRD v16, Product answer 9): the Title length message
+LONG255 = "0123456789 written 25 times in a row, then 01234 (255 characters; paste it in)"
+MSG_LONG = "\"Title cannot be longer than 255 characters\" shows under the Title box (not \"Line name cannot be longer than 255 characters long\")."
+DEV_LONG = ("JIRA", "SV-10130, Nemanja Djuric, 19 Oct 2026 (QA update, PRD v14)",
+            "New Line and Edit Line: type 256 characters into Title. \"Title cannot be longer than 255 characters\" shows and Save & Close is blocked; delete one character and it clears.")
+PO_LONG = PO_ANS[9]
+
+C("S1-09", "S1", "New Line says \"Title cannot be longer than 255 characters\" at 256",
+  [ADMIN, "Create an open work order for this test, work order 1, so a saved line can be added to it.", START_LINES],
+  [NEW_LINE, "Paste a 255-character title into the Title box: " + LONG255 + ".", 'Type "5" at the end of the title.',
+   SAVE_CLOSE, "Press Backspace.", SAVE_CLOSE],
+  [["The New Line window opens over work order 1, with an empty Title field."],
+   ["The Title box holds the 255 characters, ending in \"01234\".", "No message shows under the Title box."],
+   ["The title now has 256 characters, ending in \"012345\".", MSG_LONG],
+   ["The window stays open and the line is not saved.", "\"Title cannot be longer than 255 characters\" still shows under the Title box."],
+   ["The last \"5\" is removed, so the title has 255 characters again.", "The message under the Title box is gone."],
+   ["The window closes.", "Work order 1's Lines tab lists the new line, whose title ends in \"01234\": 255 characters can be saved."]],
+  ["S1-R6", DEV_LONG, PO_LONG], design=MAIN,
+  claude=["New 28 Oct 2026 (PRD v16 S1-R6, Product answer 9 of 27 Oct). 255-character text: \"0123456789\" * 25 + \"01234\"."])
+
+C("S1-10", "S1", "Edit Line says \"Title cannot be longer than 255 characters\" at 256",
+  [ADMIN, wo_line(), START_LINES],
+  [CLICK_LINE1, "Delete all the text in the Title box.",
+   "Paste a 256-character title into the Title box: 0123456789 written 25 times in a row, then 012345 (256 characters; paste it in).",
+   SAVE_CLOSE, "Press Backspace.", "Close the Edit Line window without saving."],
+  [["The Edit Line window opens; Title shows \"Replace tie rod\" and Description shows \"excessive play\"."],
+   ["The Title box is empty."],
+   ["The Title box holds the 256 characters, ending in \"012345\".", MSG_LONG],
+   ["The window stays open and the change is not saved.", "\"Title cannot be longer than 255 characters\" still shows under the Title box."],
+   ["The last \"5\" is removed, so the title has 255 characters.", "The message \"Title cannot be longer than 255 characters\" is gone."],
+   ["The window closes.", "Work order 1's Lines tab still lists line 1 as \"Replace tie rod\" with \"excessive play\": nothing was changed."]],
+  ["S1-R6", "S1-R7", DEV_LONG, PO_LONG], design=EDIT,
+  claude=["New 28 Oct 2026 (PRD v16 S1-R6, Product answer 9 of 27 Oct)."])

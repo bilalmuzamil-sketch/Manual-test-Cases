@@ -9,7 +9,25 @@ Title / Description and strip our field names from the text that reaches QuickBo
 **Branch:** `claude/slack-session-setup-7v5itm`
 **Build:** ❌ No QA branch yet → every case `AUTOMATION: HOLD`, source-verified only (Rule 85).
 
-## 🟢 CURRENT STATE — 27 Oct 2026 (full pass WRITTEN to TestRail) — read this first
+## 🟢 CURRENT STATE — 28 Oct 2026 (named-set update to PRD v16 WRITTEN) — read this first
+- Chris Ward answered Doc questions 9-14 on 27 Oct and folded them into **PRD v16** (27 Oct; `sources/CONFLUENCE-845348896-v16-2026-10-28.md`,
+  verified paragraph by paragraph against the page). Answers saved word for word: `po-answers-2026-10-27/ANSWERS-Chris-Ward-2026-10-27.md`.
+- QA lead 28 Oct: "Named set" (Rule 122 amendment), "Delete it" (D-15), and file the four bugs Chris asked for.
+- **Written 28 Oct:** 15 cases rewritten to v16 (S1-03, S1-03b, S1-05, S2-03, S3-03, S3-05, S3-06, S3-08, S3-09, S3-13, S3-14, S3-15,
+  S3-21, S3-22, S3-23); 7 new: S1-09 C847719, S1-10 C847720 (Title length message), S3-24 C847721 (imported invoice not in the report),
+  S3-25 C847722, S3-26 C847723 (apostrophe guard, report / QuickBooks), S4-09 C847724 (import "Line Title cannot be empty."), D-18 C847725
+  (no Scope of work heading without a tech story). **D-15 C839525 deleted** (no results in 346 open runs; read-back 400).
+  The other 46 cases are unchanged (their page quotes are word for word in v16; their From line keeps version 15).
+- **Suite (live): 68 cases** = map 68; readiness 0 on the live text; 44/44 v16 codes covered or PART_MANUAL. Log `applied-2026-10-27/apply-log.jsonl`
+  (28 Oct entries), before-copies `applied-2026-10-28/before/`.
+- **No open PO question.** Design-divergence register: every row closed (DV-04 ruled by answer 12).
+- **Bugs to file (QA lead approved 28 Oct):** S1-R6 message timing, S3-R8a apostrophe guard, S4-R8 import message, and the separate
+  invoice bug (a spaces-only tech story prints the Scope of work heading over a blank block). Rule 94 A1 needs two reproductions on the QA
+  build first; **blocked**: this container's network policy refuses sv10130.qa.shopview.com, api.sv10130.qa.shopview.com and staging, and
+  the QA build needs browser cookies from a Google sign-in. Once filed, S1-03b, S3-25 and S4-09 get EXPECT FAIL markers.
+- Build verification: not started (same blocker).
+
+## (HISTORY) STATE — 27 Oct 2026 (full pass WRITTEN to TestRail) — read this first
 - QA lead 27 Oct: "OK now we do the same for WHy and WHY what you did for Parts life cycle" → "Full pass"; "Not now" to filing the S1-R6 bug of Chris Ward's answer 7.
 - **Epic SV-11257** · PRD 845348896 **v15** (14 Oct; v14 holds Chris's 8 answers; re-checked unchanged just before the write, Rule 59) · Jira read 27 Oct (`sources/jira-2026-10-27/`), incl. open bug **SV-11850** (ShopCoach Build Lines shows nothing on staging) · tech plan unchanged · design 27 Oct copy (only change "Title *" → "Title").
 - **Suite (live): 62 cases** = 37 rewritten in place (same C-ids) + 25 new (2 splits, 6 new story cases, 17 design cases in the new section **"Design — how it looks" 105855**). Map `testrail-id-map.csv` (62 rows). Every case in the QA lead's pattern; tester-readiness check 0 problems before the write (Rule 138); all 62 read back identical; design pictures attached (log `applied-2026-10-27/apply-log.jsonl`).

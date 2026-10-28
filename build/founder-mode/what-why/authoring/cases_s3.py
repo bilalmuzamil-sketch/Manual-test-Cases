@@ -344,3 +344,62 @@ C("S3-23", "S3", "An invoice made before the release shows the new text in the d
     "exactly as written down: the new form, although invoice A was made before the release.", NO_LABELS]],
   ["S3-E4", "S3-R4", "S3-N2"], design=QB,
   claude=["QuickBooks keeps invoice A's old text (S3-N1); that half is checked by the QuickBooks case for old invoices."])
+
+# ================================================================ 28 Oct 2026 named set (PRD v16, Product answers 11 and 12)
+# S3-R12 (v16): an imported invoice never appears in the downloaded report (answer 12; held design case D-15 deleted)
+X24 = joined(T1, D1)
+C("S3-24", "S3", "An imported invoice never appears in the Customer Invoice report",
+  [ADMIN, TECH_OFF, wo_line(), invoiced(),
+   'Import a file made for this test, file A, from the downloaded Invoices import template (Settings, then Invoices under Data Import), '
+   'with one Labor row dated today: a new invoice number (invoice B), an existing customer, *Line Title "Replace tie rod" and '
+   'Line Description "excessive play", so invoice B exists only as an imported invoice.',
+   "Write down the numbers of invoice A and invoice B.", SHEETS, START_EXPORT],
+  REPORT + [OPEN_SHEET, "Search the sheet for invoice A's number with Find (Ctrl+F, or Cmd+F on a Mac).",
+            "Search the sheet for invoice B's number with Find."],
+  [[R_PICK], [R_TODAY], [R_DOWNLOAD], ["The file opens in Google Sheets."],
+   ["Invoice A's row is found: today's invoices made in ShopView are in the file.", cell(X24)],
+   ["No cell holds invoice B's number: the imported invoice is not in the report, although it is dated today."]],
+  ["S3-R12", "PRE-S3-1", PO_ANS[12]], inputs=(T1, D1, ""),
+  design=dict(boards=["EdgeCases"], words=[words("EdgeCases", "Imported from a previous system · may be empty", "Replace tie rod - excessive play")],
+              note="Board 2.1 lists a line \"Imported from a previous system\" among the lines that reach the books; Product ruled on "
+                   "27 Oct 2026 (answer 12) that the board's example is only an illustration and the page wins."),
+  claude=["New 28 Oct 2026 (PRD v16 S3-R12, Product answer 12). Replaces the held design case D-15 (C839525, deleted 28 Oct with the "
+          "QA lead's go-ahead). Imported invoices are found under Work Orders → All → Status → Imported (List view)."])
+
+# S3-R8a (v16): the downloaded report puts one apostrophe before a line starting with =, +, - or @ (answer 11)
+HOSE = [("=Replace hose", "line 1"), ("+Replace hose", "line 2"), ("-Replace hose", "line 3"), ("@Replace hose", "line 4")]
+TEXT_EDITOR = ("Use a plain text editor (Notepad on Windows, or TextEdit set to plain text on a Mac) to open the downloaded file, so you "
+               "see its text exactly as it was written.")
+C("S3-25", "S3", "The report puts one apostrophe before a line starting with =, +, - or @",
+  [ADMIN, TECH_OFF,
+   'Create a work order for this test, work order 1, with five labor lines, each with the description "leaking": line 1 titled '
+   '"=Replace hose", line 2 titled "+Replace hose", line 3 titled "-Replace hose", line 4 titled "@Replace hose" and line 5 titled '
+   '"Replace hose".',
+   "Have lines 1 to 5 completed with no tech story, and work order 1 completed and invoiced today as invoice A.",
+   TEXT_EDITOR, SHEETS, START_EXPORT],
+  REPORT + ["Open the downloaded file in the plain text editor.", "Search the file for \"Replace hose\".", OPEN_SHEET],
+  [[R_PICK], [R_TODAY], [R_DOWNLOAD], ["The file opens as plain text."],
+   ["Five lines of work order 1's invoice A are found (a line's text may sit inside double quotes, which belong to the file format)."]
+   + [f"{n.capitalize()}'s text starts with one apostrophe and then \"{t} - leaking\"." for t, n in HOSE]
+   + ["Line 5's text starts with \"Replace hose - leaking\", with no apostrophe in front.",
+      "None of the five has two apostrophes in front."],
+   ["In Google Sheets, each of lines 1 to 4's ItemDescription cells holds text that includes \"Replace hose - leaking\".",
+    "None of the four cells shows a calculated value or an error such as #ERROR! or #NAME?."]],
+  ["S3-R8a", "S3-R4", "S3-R8", PO_ANS[11]],
+  design=dict(boards=[], note="no board draws the downloaded report's apostrophe guard (new in PRD v16), so no design picture is "
+                              "attached; the expected results above come from the quotes above."),
+  claude=["New 28 Oct 2026 (PRD v16 S3-R8a, Product answer 11). A line starting with a tab or a carriage return cannot be typed as a "
+          "Title by hand; that part of S3-R8a is the developers' check (requirement_map PART_MANUAL). Product says the build has no "
+          "guard yet; a ticket is filed only after two reproductions on the QA build (Rule 94), then this case gets EXPECT FAIL."])
+
+X26 = joined("=Replace hose", "leaking")
+C("S3-26", "S3", "QuickBooks Online gets no apostrophe before a line starting with =",
+  [ADMIN, QBO, TECH_OFF, 'Create a work order for this test, work order 1, with one labor line, line 1, titled "=Replace hose" with the description "leaking".',
+   invoiced()[:-1] + ", which reaches the QuickBooks sandbox.", "Write down invoice A's number.", QBO_TAB],
+  ["In the QuickBooks tab, search for invoice A's number.", "Open invoice A."],
+  [["QuickBooks lists invoice A (work order 1's invoice) for its customer."],
+   ["Invoice A opens.", f"Line 1's Description in QuickBooks reads exactly \"{X26}\".",
+    "No apostrophe sits in front of \"=\": the apostrophe is only for the downloaded report."]],
+  ["S3-R8a", "S3-R4", PO_ANS[11]], inputs=("=Replace hose", "leaking", ""),
+  design=dict(boards=[], note="no board draws this, so no design picture is attached; the expected results above come from the quotes above."),
+  claude=["New 28 Oct 2026 (PRD v16 S3-R8a, Product answer 11). QuickBooks host: qb1.qa.shopview.com."])
