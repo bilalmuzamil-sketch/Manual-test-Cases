@@ -1,0 +1,14 @@
+{
+ "env": "prod",
+ "M1": "7bd26766-c699-4b0b-98ad-4c6069b0b9e3",
+ "M2": "221b66e5-614e-4d96-abef-d01f66d5309d",
+ "popup": [
+  "warning Manual return 221b66e5-614e-4d96-abef-d01f66d5309d belongs to a different vendor than this return. Please try to resolve this. Close",
+  "warning Failed to post credit An error occurred while processing the return. Please try again or contact support. Close"
+ ],
+ "requests": [
+  "200 /api/part/manual-return-request/221b66e5-614e-4d96-abef-d01f66d5309d/update {\"vendorId\":\"052d6190-96e9-4ac9-b560-5211a5956911\",\"packagingSlip\":\"ZZ79552\"} => {\"data\":{\"id\":\"221b66e5-614e-4d96-abef-d01f66d5309d\",\"status\":\"returned\",\"createdAt\":\"2026-10-28T17:29:45Z\",\"vendorId\":\"052d6190-96e9-4ac9-b560-5211a5956911\",\"vendorName\":null,\"staffId\":\"3d2a9387-643f-463d-a1a5-6e10d061a7a4\",\"staffName\":null,\"packagingSlip\":\"ZZ79552\",\"totalDecimal\":12.5,\"totalRestoc",
+  "400 /api/part/manual-return/221b66e5-614e-4d96-abef-d01f66d5309d/create {\"creditMemoNumber\":\"ZZCM19228\",\"creditDate\":\"2026-10-28T17:35:30.932Z\",\"tax\":1.871875,\"note\":null} => {\"errors\":[{\"error\":\"There is already return with credit memo number: ZZCM19228\"}]}",
+  "400 /api/inventory/returns/create {\"vendor_id\":\"1af18ec6-e02c-42fd-aaa8-9535b37f8e5a\",\"vendor_label\":\"ZZAUTOTEST V10928 prod 081113\",\"packaging_slip\":\"ZZ72598\",\"credit_memo_number\":\"ZZCMA20934\",\"note\":null,\"items\":[],\"tax\":53,\"sub_tot => {\"errors\":[{\"error\":\"Manual return 221b66e5-614e-4d96-abef-d01f66d5309d belongs to a different vendor than this return.\"}]}"
+ ]
+}

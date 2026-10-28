@@ -1,0 +1,14 @@
+{
+ "env": "branch",
+ "M1": "6a6618a9-7dcd-4832-93c2-265eb675ee91",
+ "M2": "56367f65-f0e4-4788-8cad-4599b0d4595f",
+ "popup": [
+  "warning Manual return with packing slip ZZ58626 belongs to a different vendor than this return. Please try to resolve this. Close",
+  "warning Failed to post credit An error occurred while processing the return. Please try again or contact support. Close"
+ ],
+ "requests": [
+  "200 /api/part/manual-return-request/56367f65-f0e4-4788-8cad-4599b0d4595f/update {\"vendorId\":\"24fb5ef7-57a1-4a62-9af4-5e1adc16a60c\",\"packagingSlip\":\"ZZ58626\"} => {\"data\":{\"id\":\"56367f65-f0e4-4788-8cad-4599b0d4595f\",\"status\":\"returned\",\"createdAt\":\"2026-10-28T17:24:25Z\",\"vendorId\":\"24fb5ef7-57a1-4a62-9af4-5e1adc16a60c\",\"vendorName\":null,\"staffId\":\"7f85bc58-9ff5-4b50-b3f3-d85821069066\",\"staffName\":null,\"packagingSlip\":\"ZZ58626\",\"totalDecimal\":12.5,\"totalRestoc",
+  "400 /api/part/manual-return/56367f65-f0e4-4788-8cad-4599b0d4595f/create {\"creditMemoNumber\":\"ZZCM49620\",\"creditDate\":\"2026-10-28T17:26:01.611Z\",\"tax\":0.625,\"note\":null} => {\"errors\":[{\"error\":\"There is already return with credit memo number: ZZCM49620\"}]}",
+  "400 /api/inventory/returns/create {\"vendor_id\":\"5a4297e2-00d2-4ba1-867b-f28f638928f3\",\"vendor_label\":\"Worrill Heavy Duty Repair LLC\",\"packaging_slip\":\"ZZ11196\",\"credit_memo_number\":\"ZZCMA51720\",\"note\":null,\"items\":[],\"tax\":1.25,\"sub_t => {\"errors\":[{\"error\":\"Manual return with packing slip ZZ58626 belongs to a different vendor than this return.\"}]}"
+ ]
+}
