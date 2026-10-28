@@ -2,8 +2,8 @@
  "full_rows_at": "/tmp/cln/w2/full/results-sbr.json",
  "rows": 147584,
  "totals": {
-  "PASS": 146078,
-  "FAIL": 1506
+  "PASS": 146093,
+  "FAIL": 1491
  },
  "checks": [
   {
@@ -135,76 +135,24 @@
   },
   {
    "report": "Sales By Representative",
-   "check": "Labor Invoiced = labor on the invoice",
+   "check": "Labor Invoiced = labor on the invoice (+ labor-line fees/discounts)",
    "source": "\u00a73",
    "counts": {
-    "PASS": 8038,
-    "FAIL": 4
+    "PASS": 8042
    },
-   "non_pass": [
-    {
-     "location": "Staging Heavy Duty - 9919",
-     "range": "2y",
-     "result": "FAIL",
-     "detail": "S2-32220 17495 vs 14995"
-    },
-    {
-     "location": "Staging Heavy Duty - 9919",
-     "range": "2y",
-     "result": "FAIL",
-     "detail": "S2-32219 37500 vs 35000"
-    },
-    {
-     "location": "Staging Heavy Duty - 9919",
-     "range": "2y",
-     "result": "FAIL",
-     "detail": "S2-32137 83973 vs 82473"
-    },
-    {
-     "location": "Staging Heavy Duty - 9919",
-     "range": "2y",
-     "result": "FAIL",
-     "detail": "S2-32136 62480 vs 59980"
-    }
-   ],
-   "non_pass_total": 4,
+   "non_pass": [],
+   "non_pass_total": 0,
    "non_pass_capped": false
   },
   {
    "report": "Sales By Representative",
-   "check": "Parts Invoiced = parts on the invoice",
+   "check": "Parts Invoiced = parts on the invoice (+ part-line fees/discounts)",
    "source": "\u00a73",
    "counts": {
-    "PASS": 8038,
-    "FAIL": 4
+    "PASS": 8042
    },
-   "non_pass": [
-    {
-     "location": "Staging Heavy Duty - 9919",
-     "range": "2y",
-     "result": "FAIL",
-     "detail": "P2-2409 33638 vs 32388"
-    },
-    {
-     "location": "Staging Heavy Duty - 9919",
-     "range": "2y",
-     "result": "FAIL",
-     "detail": "P2-2318 97500 vs 75000"
-    },
-    {
-     "location": "Staging Heavy Duty - 9919",
-     "range": "2y",
-     "result": "FAIL",
-     "detail": "P2-1931 17800 vs 16000"
-    },
-    {
-     "location": "Staging Heavy Duty - 9919",
-     "range": "2y",
-     "result": "FAIL",
-     "detail": "S2-32137 1236334 vs 1236417"
-    }
-   ],
-   "non_pass_total": 4,
+   "non_pass": [],
+   "non_pass_total": 0,
    "non_pass_capped": false
   },
   {
@@ -242,52 +190,10 @@
    "check": "Adjustments = invoice-level fees minus discounts (S5-R11)",
    "source": "S5-R11",
    "counts": {
-    "PASS": 8034,
-    "FAIL": 8
+    "PASS": 8041,
+    "FAIL": 1
    },
    "non_pass": [
-    {
-     "location": "Staging Heavy Duty - 9919",
-     "range": "2y",
-     "result": "FAIL",
-     "detail": "P2-2409 0 vs 1250"
-    },
-    {
-     "location": "Staging Heavy Duty - 9919",
-     "range": "2y",
-     "result": "FAIL",
-     "detail": "P2-2318 0 vs 22500"
-    },
-    {
-     "location": "Staging Heavy Duty - 9919",
-     "range": "2y",
-     "result": "FAIL",
-     "detail": "S2-32220 0 vs 2500"
-    },
-    {
-     "location": "Staging Heavy Duty - 9919",
-     "range": "2y",
-     "result": "FAIL",
-     "detail": "P2-1931 0 vs 1800"
-    },
-    {
-     "location": "Staging Heavy Duty - 9919",
-     "range": "2y",
-     "result": "FAIL",
-     "detail": "S2-32219 -1500 vs 1000"
-    },
-    {
-     "location": "Staging Heavy Duty - 9919",
-     "range": "2y",
-     "result": "FAIL",
-     "detail": "S2-32137 -63948 vs -62531"
-    },
-    {
-     "location": "Staging Heavy Duty - 9919",
-     "range": "2y",
-     "result": "FAIL",
-     "detail": "S2-32136 0 vs 2500"
-    },
     {
      "location": "Staging Heavy Duty - 9919",
      "range": "2y",
@@ -295,7 +201,7 @@
      "detail": "S2-5329 0 vs 1000"
     }
    ],
-   "non_pass_total": 8,
+   "non_pass_total": 1,
    "non_pass_capped": false
   },
   {
