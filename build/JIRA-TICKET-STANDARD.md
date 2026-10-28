@@ -235,3 +235,14 @@ When approved, the QA comment — **PASSED, FAILED or PARTIALLY PASSED** — end
 - Behaviour now follows the PRD (or the PRD changed so it no longer asks for it) → green **OVERALL QA STATUS: PASSED**, a plain line saying the ticket is QA passed and why, annotated screenshots (Production vs Staging where production is the same), the PRD text quoted verbatim with its version, steps to see it → add the existing project label → move to Done (`jira_to_status.py`).
 - Still fails → reopen, add the label, red **FAILED** comment tagging the developer (Rule 90 order).
 - Never a neutral "re-check" comment that leaves the reader to decide. An earlier one is edited in place with a dated note.
+
+
+## 13. Not a full pass? Two comments — failed/blocked ABOVE, passed BELOW (QA lead 2026-10-27, Standing Rule 115)
+1. **Comment 1 (post first):** red FAILED / non-green PARTIALLY PASSED panel → one line: "This comment lists what failed or is
+   blocked; the next comment lists everything that passed." → each failed item, each blocked item, then any question / smaller point,
+   each with a plain one-sentence explanation of the requirement, an annotated picture, steps, and the requirement quoted.
+2. **Comment 2 (post second):** green panel starting **"WHAT PASSED — everything that passed is below. Everything that failed or is
+   blocked is in the comment above."** → before/after picture of what got fixed → table of passed checks only.
+3. Write for someone seeing the ticket for the first time: plain words before every requirement ID, no internal shorthand, the
+   date Jira shows (Central time). A full pass stays one green comment.
+Canonical example: SV-11631 comments 79620 + 79621.

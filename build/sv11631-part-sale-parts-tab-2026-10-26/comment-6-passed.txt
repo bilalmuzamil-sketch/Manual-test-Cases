@@ -1,0 +1,41 @@
+{panel:bgColor=#e3fcef}
+*WHAT PASSED — everything that passed is below.*
+Everything that failed or is blocked is in the comment above.
+{panel}
+Tested on the QA branch [sv11631|https://sv11631.qa.shopview.com] (build v26.43.2-3ed5bdc) on 27 October 2026.
+
+h3. Fixed since my test on 26 October
+!SV-11631-retest-what-was-fixed-before-after.png|width=1170,height=2208!
+_Part sale P2-109 at 1440 wide. The two pictures on top are from 26 October; the bottom two are from today._
+
+* *Long part numbers now show in full.* {{WK4707Q-23KW}} and {{ZZ12CHARPN01}} used to show as {{WK4707Q-23...}}. They now fit at every screen width.
+* *The table fits on a 1440-wide screen.* A part with status {{Requested}} used to push the table wider than the screen. Its badge also slid under the {{Actions}} column. Both are fixed.
+* *The four smaller points from my last comment are fixed:*
+** {{HD-Filters}} now shows in full.
+** The {{Actions}} heading is centred.
+** At 1024 wide, the {{Sell Price}} box no longer runs under {{Actions}}.
+** The description tooltip no longer covers the open dropdown.
+
+h3. All checks that passed
+||#||What the ticket asks for||What I saw||Status||
+|R1|One field style, compact rows, no labels inside the boxes|Every box is the same height (32 px), rows are 41 px, no labels inside|PASSED|
+|R2|No number or part number is cut off|Part numbers up to 12 characters and prices like $9,999.99 show in full at 1440, 1024, 768 and on a phone|PASSED (fixed)|
+|R4|Cost shows 2 decimals; the full value while editing; the stored value never changes|Shows {{7,123.46}}, shows {{7,123.45670}} while editing, nothing is saved when you click away|PASSED|
+|R5|Margin reads like "27.00%"|Shows {{28.77%}}|PASSED|
+|R6|Category and Vendor show in full when they fit, otherwise "..." with the full text on hover|{{HD-Filters}} and {{Off-Road}} now fit; longer names end in "..." and show in full when you point at them|PASSED|
+|R7|Columns stay in the same order|Same order|PASSED|
+|R8|"Quantity" heading reads "Qty"|Reads {{Qty}}|PASSED|
+|R10|Fees & Discounts column hidden when no row has a fee or discount|Hidden (the other half is blocked — see the comment above)|PASSED (first half)|
+|R11|Actions column pinned on the right, as narrow as its buttons, with a visible left edge and a centred heading|All four, and the heading is now centred|PASSED|
+|R12|At 1440 wide the whole table fits with no sideways scroll|Fits, including with a {{Requested}} part|PASSED (fixed)|
+|R13|At 1024 and 768, Description to Sell Price show without scrolling|They do (see the smaller point about Description's width in the comment above)|PASSED|
+|R14|When the table scrolls sideways, a scrollbar and an edge shadow show it|Both show at 1024 and 768; on a phone, a shadow on the right edge|PASSED|
+|R15|On phones nothing is pinned; the table scrolls as one piece|Nothing pinned|PASSED|
+|R16|The "Requested by" box belongs to the avatar only and closes when you move away or scroll|Closes when the pointer leaves, and on scrolling up/down or sideways|PASSED|
+|R17|Options in the Description dropdown don't print over each other|30 options, none overlapping|PASSED|
+|N1|The work order Parts tab stays exactly as it is|Same headings, labels and box sizes as production (a long category name makes the box two lines tall on both)|PASSED|
+|N2|Column order, stored values, totals and every action work as before|Pick, Return, delete and the row menu work. P2-162's 8 parts add up to the Parts total, $817.30. {{Return}} on a part taken from stock puts it straight back on the shelf; on an ordered part it opens the return form. Production does the same.|PASSED|
+
+R3 and R9 (tapping on a phone) are not in this list because they failed — see the comment above.
+
+_Edited on 27 October 2026, 23:42 CDT: this comment now holds only what passed. The failures, the blocked check and the smaller point for Milomir are in the comment above._

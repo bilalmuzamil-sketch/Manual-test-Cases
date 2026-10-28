@@ -1,0 +1,50 @@
+{panel:bgColor=#ffebe6}
+*OVERALL QA STATUS: FAILED*
+{panel}
+I retested this on the QA branch [sv11631|https://sv11631.qa.shopview.com] (build v26.43.2-3ed5bdc) on 27 October 2026.
+* *This comment* lists what still fails, what is blocked, and one smaller point for Milomir.
+* *The next comment* lists everything that passed, with before-and-after pictures.
+
+h3. 1. FAILED: on a phone, tapping a shortened name or the avatar shows nothing
+When text in the parts table is too long, it ends in "...". The ticket asks that the full text appears when you point at it with a mouse, *or when you tap it on a phone*.
+With a mouse it works. On a phone, nothing appears.
+
+!SV-11631-retest-02-phone-tap-still-missing.png|width=570,height=1295!
+_Top two pictures: on a phone, tapping the shortened description and then the round avatar shows nothing. Bottom picture: with a mouse, pointing at the same avatar shows "Requested by Jeffrey Jordan on Jul 24, 2026"._
+
+*Steps to see it*
+# On a phone, open [part sale P2-162|https://sv11631.qa.shopview.com/parts/part-sale/90a95f29-f405-4763-834d-6e3a237f8c33/part-requests]. A computer browser made 390 wide with touch turned on also works.
+# In the parts table, find the row whose {{Part Number}} is {{LF3706}}. Its {{Description}} box shows {{Engi...}}.
+# Tap that {{Description}} box. *Nothing appears.* It should show "Engine Oil Filter, Kubota V2403".
+# Tap the round {{JJ}} avatar at the left end of the same row. *Nothing appears.* It should show "Requested by Jeffrey Jordan on Jul 24, 2026".
+
+*What the ticket asks for*
+{quote}R3: A long name ends in "..." and shows in full on hover, or on tap on a touch screen.{quote}
+{quote}R9: The Requested At column is removed. Its date moves into the avatar hover: "Requested by {name} on {date}".{quote}
+The design adds for R9: "(tap on touch). Approved."
+
+I tried two different kinds of tap, on two part sales (P2-162 and P2-109). Nothing appeared either way.
+
+h3. 2. BLOCKED: the Fees & Discounts column could not be checked when a fee is present
+{quote}R10: The Fees & Discounts column shows only when at least one row has a fee or discount. When it shows, no other column gets narrower; the table scrolls sideways instead.{quote}
+* *Checked:* with no fee or discount, the column is hidden, as asked.
+* *Not checked:* the case where a row has a fee or discount. On this QA branch a fee or discount can't be added, because QuickBooks has no company connected, so there is no fee item to link it to. None of the 317 parts on the branch has one either.
+
+[~accountid:712020:655c2bc0-ee59-46d8-9da3-f61e54739e55], could you either link a fee item and a discount item, or switch the QuickBooks feature off for this branch's organization? Then I can finish this check.
+
+h3. 3. For Milomir: the Description column is now narrower than the design (smaller point, not counted as a failure)
+!SV-11631-retest-03-description-88-vs-108.png|width=760,height=935!
+_Box 1: the Description column is 88 px wide. Boxes 2–4: short names that used to fit are now shortened._
+
+# Open [part sale P2-109|https://sv11631.qa.shopview.com/parts/part-sale/48ba5757-175a-4701-8c4a-810791ac2ede/part-requests] in a browser window 1024 wide.
+# Look at the {{Description}} column.
+
+*What has changed:*
+* The column is now 88 px wide. On 26 October it was 108 px, which matches the design.
+* The Part Number and Status columns got wider (that is what fixed the cut-off part numbers), and Description seems to have given up the space.
+* Short names that used to fit are now shortened: {{Bolt, M20}}, {{Cotter Pin}} and {{Nut, M20}}.
+
+The full name still appears when you point at it, and the columns from Description to Sell Price still fit without scrolling. That is why I have not counted it as a failure.
+{quote}R13: At 1024px and 768px, Description narrows (108px in the design) so Description, Part Number, Qty, Cost, Core and Sell Price show without scrolling.{quote}
+
+_Edited on 27 October 2026, 23:42 CDT: split into two comments so that this one holds what failed or is blocked, and the next one holds what passed. The smaller point for Milomir was moved here from the next comment._

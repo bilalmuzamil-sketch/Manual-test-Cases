@@ -102,6 +102,7 @@
 >   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
+> - **NOT A FULL PASS? TWO COMMENTS: FAILED/BLOCKED FIRST (above), PASSED SECOND (below, opening "everything that passed is below; failed or blocked is in the comment above"), written for a first-time reader (Standing Rule 115).**
 > - **BEFORE GIVING ANY ROLE TO ANY STAFF, RESET THAT ROLE TO TEMPLATE FIRST (Standing Rule 105).**
 > - **BEFORE CALLING A PERMISSION UNAVAILABLE, OPEN THE USER'S ROLE, SWITCH IT ON, SAVE, RE-CHECK (Standing Rule 114).**
 > - **NO VERDICT (OR VERDICT QUESTION) UNTIL EVERY POINT'S MATRIX IS FINISHED, AND A FAILING EXAMPLE MUST BE ONE A USER CAN BUILD ON SCREEN (Standing Rule 106).** Write down how each failing example was made; if any step was a server-only request, it proves nothing against the ticket.
@@ -5601,6 +5602,29 @@ deliver the 7-tab management report.
     rule is about the ORDER of checks and the evidence a "not available" claim must carry, not about who was right.** Once
     proven missing after the role check, say so with the role-screen screenshots and ask the developer. Ties to Rules
     12, 14, 26, 85, 87 and 105.
+
+115. **WHEN NOT EVERYTHING PASSED, THE QA RESULT IS TWO COMMENTS: FAILED/BLOCKED FIRST, PASSED SECOND — and both are written
+    for someone opening the ticket for the first time (all projects).**
+    USER DIRECTIVE (2026-10-27 CDT, verbatim): *"ALways keep in a separate comment what is passed and in that comment say at the
+    top that everything which has passed is below and everything which is failed or blocked is posted in the comment above, keep
+    your comments human readable and easily understandable for the person who is looking at th eticket for the first time."*
+    **(a) COMMENT 1 (posted first, so it sits above):** the red `OVERALL QA STATUS: FAILED` (or non-green `PARTIALLY PASSED`) panel,
+    one line saying this comment holds what failed / is blocked and the next comment holds what passed, then **every FAILED item,
+    every BLOCKED item, and any question or smaller point for the PO/developer** — each with its annotated picture, steps, and the
+    requirement quoted (Rules 83/97). **(b) COMMENT 2 (posted second, so it sits below):** a green panel whose first words are
+    **"WHAT PASSED — everything that passed is below. Everything that failed or is blocked is in the comment above."**, then the
+    before/after picture of what got fixed and the table of passed checks only (a partly-checked item may appear with what passed
+    and a pointer to the blocked half above). **Nothing failed or blocked lives in the passed comment beyond that pointer.**
+    **(c) HUMAN-READABLE FOR A FIRST-TIME READER:** explain each requirement in one plain sentence before its ID ("When text is too
+    long it ends in '...'; the ticket asks that tapping it on a phone shows the full text"), say what the reader will see at each
+    step, avoid internal shorthand (no "E1–E4", no "N2" without words), and use the date the reader sees in Jira (Central time).
+    **(d) A FULL PASS stays ONE green comment** (nothing to split). This **supersedes Rule 90's single-comment layout and Rule
+    97(b)/(c)'s "remaining issues in a separate comment" wording** where they differ: the split is failed/blocked ABOVE, passed BELOW.
+    **(e) THE PRE-POST GATE (Rule 72) CHECKS IT:** two comments, correct order, the passed comment's opening line, no failed/blocked
+    item in the passed comment, read back from Jira.
+    **RATIONALE (2026-10-27, SV-11631):** the retest went out as one FAILED comment mixing failures, a blocked check and the passed
+    table, plus a separate comment for a smaller point — the QA lead had them split and rewritten for a first-time reader. Canonical
+    example: SV-11631 comments 79620 (failed/blocked) and 79621 (passed). Ties to Rules 7, 64, 65, 72, 83, 90, 97, 100 and 112.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

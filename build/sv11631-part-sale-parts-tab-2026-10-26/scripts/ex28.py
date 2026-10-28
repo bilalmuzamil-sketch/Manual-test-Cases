@@ -7,7 +7,7 @@ def labelled(path, label, col, width):
     im=Image.open(path).convert('RGB'); im=im.resize((width,int(im.height*width/im.width)))
     out=Image.new('RGB',(width,im.height+70),'white'); d=ImageDraw.Draw(out); d.rectangle([0,0,width,70],fill=col)
     d.text((24,14),label,font=font(34,True),fill='white'); out.paste(im,(0,70)); return out
-after=panel(C+'A-1440-p2109.png',crop=(250,130,1420,300),title='AFTER: QA branch sv11631, build v26.43.2-3ed5bdc, 28 October 2026 (P2-109, 1440 wide)',
+after=panel(C+'A-1440-p2109.png',crop=(250,130,1420,300),title='AFTER: QA branch sv11631, build v26.43.2-3ed5bdc, 27 October 2026 (P2-109, 1440 wide)',
   boxes=[(543,180,651,212,GRN,1),(1215,185,1293,207,GRN,2)],
   notes=[(1,GRN,'WK4707Q-23KW now shows in full (the box is 108 px; it was 98 px and cut to "WK4707Q-23..."). ZZ12CHARPN01 two rows down also shows in full.'),
          (2,GRN,'The "Requested" badge now ends before the Actions column instead of sliding under it.'),

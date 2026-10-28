@@ -85,3 +85,11 @@ Washer M20 deleted (P2-109). Production: S2-889 part 1 category set to "ZZAUTOTE
 - Wait on process exit, never on expected output text — a wait keyed to output that never comes cost ~10 minutes.
 - Saved scripts that find a row by text must skip a missing row (test data moves between passes).
 - A retest is: re-read ticket + marker → re-run saved scripts → diff against saved data → only new scripts for what changed.
+
+### Comments corrected (27 Oct 2026, 23:42 CDT) — QA lead: passed in a separate comment, failed/blocked above
+- **79620** rewritten = FAILED/BLOCKED: R3+R9 phone tap (picture + steps + quotes), R10 blocked (ask to Milomir, mention kept),
+  and the Description-width smaller point moved here from 79621. Read back: FAILED first, 2 media (phone tap, Description).
+- **79621** rewritten = PASSED: opens "WHAT PASSED — everything that passed is below. Everything that failed or is blocked is in
+  the comment above."; before/after picture re-uploaded with the Central-time date (attachment 63092,
+  `SV-11631-retest-what-was-fixed-before-after.png`); 17-row passed table. Read back: 1 media, 18 table rows incl. header.
+- Both carry a dated edit note (Rule 100). Learning saved: Standing Rule 115, ticket standard §13, lessons index row.
