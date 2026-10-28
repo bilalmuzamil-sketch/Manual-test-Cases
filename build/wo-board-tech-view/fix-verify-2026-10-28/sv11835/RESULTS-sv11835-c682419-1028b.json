@@ -1,0 +1,28 @@
+{
+ "pass_meta": {
+  "env": "QA branch sv11835",
+  "build": "v26.43.2-5edf9c2",
+  "date": "28 October 2026",
+  "note": "C682419 re-recorded: step 8 reason corrected (no chat bubble on the QA branch)"
+ },
+ "results": {
+  "C682419": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 8: no chat bubble shows on the QA branch, so it cannot be compared with the minimap here",
+   "bold_steps": [
+    8
+   ],
+   "observed": [
+    "This test was rewritten today for the minimap that replaces the sideways scroll bar (SV-11835 passed QA on its QA branch sv11835).",
+    "Step 8: on the QA branch sv11835 no chat bubble shows at all - not on Board View and not on a work order page - although the chat service loads (checked again at 14:11 UTC with nothing blocked). Correction: the earlier note said the test machine blocked the chat; that block was in my own test tool, not the site.",
+    "Steps 1 to 7 and 9 match the test (pictures)."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-28/sv11835/SV-11835-minimap.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-28/sv11835/C682419-pic-2.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-28/sv11835/SV-11835-fits.png"
+   ],
+   "todo": "What needs to be done: once the minimap is on staging, open Work Orders > All > Board View at a location wider than the screen, check the chat bubble sits above the minimap without covering it, and mark this test Passed."
+  }
+ }
+}
