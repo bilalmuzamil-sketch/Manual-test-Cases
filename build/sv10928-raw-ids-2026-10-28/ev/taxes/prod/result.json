@@ -1,0 +1,53 @@
+{
+ "env": "prod",
+ "name": "ZZAUTOTEST T10928 prod 084131",
+ "tidsA": [
+  "dialog_title",
+  "button_close_dialog",
+  "input_tax_name",
+  "input_rate_name_0",
+  "input_rate_percentage_0",
+  "button_remove_rate_0",
+  "input_rate_name_1",
+  "input_rate_percentage_1",
+  "button_remove_rate_1",
+  "button_add_rate",
+  "toggle_tax_labor",
+  "toggle_tax_parts",
+  "toggle_tax_shop_supplies",
+  "button_delete_tax",
+  "button_save_tax"
+ ],
+ "tidsB": [
+  "dialog_title",
+  "button_close_dialog",
+  "input_tax_name",
+  "input_rate_name_0",
+  "input_rate_percentage_0",
+  "button_remove_rate_0",
+  "input_rate_name_1",
+  "input_rate_percentage_1",
+  "button_remove_rate_1",
+  "button_add_rate",
+  "toggle_tax_labor",
+  "toggle_tax_parts",
+  "toggle_tax_shop_supplies",
+  "button_delete_tax",
+  "button_save_tax"
+ ],
+ "rm": "button_remove_rate_1",
+ "afterRemove": {
+  "dialogs": [
+   "Edit Tax close Name Rate Name Rate % Add Rate add Tax Labor Tax Parts Tax Shop Supplies Delete Save"
+  ],
+  "save": null
+ },
+ "toasts": [
+  "warning Tax rate with ID [11351681-0d24-4d2d-8035-e952dbca94b4] not found. Please try to resolve this. Close",
+  "warning Failed to update tax. Please try again. Close"
+ ],
+ "requests": [
+  "200 /api/taxes/30ffdc36-94ff-4b33-8486-3c28c7da9e7a :: {\"data\":{\"id\":\"30ffdc36-94ff-4b33-8486-3c28c7da9e7a\",\"name\":\"ZZAUTOTEST T10928 prod 084131\",\"isEnabledLabor\":false,\"isEnabledParts\":false,\"isEnabledShopSupplies\":false,\"isDefault\":false,\"isDeletable\":true,\"rates\":[{\"id\":\"99e727d0-cadd-4571-848d-20adb1a13c04\",\"name\":\"ZZ Rate One\",\"percentage\":1,\"amou",
+  "400 /api/taxes/30ffdc36-94ff-4b33-8486-3c28c7da9e7a :: {\"errors\":[{\"error\":\"Tax rate with ID [11351681-0d24-4d2d-8035-e952dbca94b4] not found.\"}]}"
+ ]
+}

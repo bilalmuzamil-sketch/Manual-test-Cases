@@ -1,0 +1,53 @@
+{
+ "env": "branch",
+ "name": "ZZAUTOTEST T10928 branch 083925",
+ "tidsA": [
+  "dialog_title",
+  "button_close_dialog",
+  "input_tax_name",
+  "input_rate_name_0",
+  "input_rate_percentage_0",
+  "button_remove_rate_0",
+  "input_rate_name_1",
+  "input_rate_percentage_1",
+  "button_remove_rate_1",
+  "button_add_rate",
+  "toggle_tax_labor",
+  "toggle_tax_parts",
+  "toggle_tax_shop_supplies",
+  "button_delete_tax",
+  "button_save_tax"
+ ],
+ "tidsB": [
+  "dialog_title",
+  "button_close_dialog",
+  "input_tax_name",
+  "input_rate_name_0",
+  "input_rate_percentage_0",
+  "button_remove_rate_0",
+  "input_rate_name_1",
+  "input_rate_percentage_1",
+  "button_remove_rate_1",
+  "button_add_rate",
+  "toggle_tax_labor",
+  "toggle_tax_parts",
+  "toggle_tax_shop_supplies",
+  "button_delete_tax",
+  "button_save_tax"
+ ],
+ "rm": "button_remove_rate_1",
+ "afterRemove": {
+  "dialogs": [
+   "Edit Tax close Name Rate Name Rate % Add Rate add Tax Labor Tax Parts Tax Shop Supplies Delete Save"
+  ],
+  "save": null
+ },
+ "toasts": [
+  "warning Tax rate [ZZ Rate Two] not found. Please try to resolve this. Close",
+  "warning Failed to update tax. Please try again. Close"
+ ],
+ "requests": [
+  "200 /api/taxes/beaddc5c-3cf1-4fb7-b686-a3da12b5f973 :: {\"data\":{\"id\":\"beaddc5c-3cf1-4fb7-b686-a3da12b5f973\",\"name\":\"ZZAUTOTEST T10928 branch 083925\",\"isEnabledLabor\":false,\"isEnabledParts\":false,\"isEnabledShopSupplies\":false,\"isDefault\":false,\"isDeletable\":true,\"rates\":[{\"id\":\"a45c2033-1c67-4e59-8a8d-3fb91d4b0d08\",\"name\":\"ZZ Rate One\",\"percentage\":1,\"am",
+  "400 /api/taxes/beaddc5c-3cf1-4fb7-b686-a3da12b5f973 :: {\"errors\":[{\"error\":\"Tax rate [ZZ Rate Two] not found.\"}]}"
+ ]
+}

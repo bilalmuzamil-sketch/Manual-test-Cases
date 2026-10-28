@@ -1,0 +1,52 @@
+   action error no Receive button
+  base: 0 id(s) | shown: [[]]
+   action error no Receive button
+  delay1 [/api/work-orders/:id/inspections]: 0 id(s) | shown: [[]]
+  delay2 [/api/sales-reps]: 0 id(s) | shown: [["Vendor ZZAUTOTEST V10928 Branch 082057 arrow_drop_","Vendor Invoice Number","event Invoice Date","Delivery Note"]]
+   action error no Receive button
+  shell [/api/reporting/individual-punch-clock/today]: 0 id(s) | shown: [[]]
+   action error no Receive button
+  all: 0 id(s) | shown: [[]]
+  slow4g1: 0 id(s) | shown: [["Vendor ZZAUTOTEST V10928 Branch 082057 arrow_drop_","Vendor Invoice Number","event Invoice Date","Delivery Note"]]
+  slow4g2: 0 id(s) | shown: [["Vendor ZZAUTOTEST V10928 Branch 082057 arrow_drop_","Vendor Invoice Number","event Invoice Date","Delivery Note"]]
+  slow4g3: 0 id(s) | shown: [["Vendor ZZAUTOTEST V10928 Branch 082057 arrow_drop_","Vendor Invoice Number","event Invoice Date","Delivery Note"]]
+receiveParts: 8 loads, 0 with an ID on screen
+  base: 0 id(s) | shown: [[],["Part number","Description *","Qty *","Category Uncategorized expand_more"]]
+   action error not found button_add_part
+  delay1 [/api/work-orders/part/request/inventory-parts-as-o]: 0 id(s) | shown: [[],[]]
+   action error not found button_add_part
+  all: 0 id(s) | shown: [[],[]]
+  slow4g1: 0 id(s) | shown: [[],["Part number","Description *","Qty *","Category Uncategorized expand_more"]]
+  slow4g2: 0 id(s) | shown: [[],["Part number","Description *","Qty *","Category Uncategorized expand_more"]]
+  slow4g3: 0 id(s) | shown: [[],["Part number","Description *","Qty *","Category Uncategorized expand_more"]]
+linesAddPart: 6 loads, 0 with an ID on screen
+   action error not found button_edit_part_
+  base: 0 id(s) | shown: [[]]
+   action error not found button_edit_part_
+  all: 0 id(s) | shown: [[]]
+  slow4g1: 0 id(s) | shown: [["Part Number","Description","Quantity","Source Vendor arrow_drop_down"]]
+  slow4g2: 0 id(s) | shown: [["Part Number arrow_drop_down","Description","Source Inventory arrow_drop_down","Category HD-Filters arrow_drop_down"]]
+  slow4g3: 0 id(s) | shown: [["Part Number arrow_drop_down","Description","Source Inventory arrow_drop_down","Category HD-Filters arrow_drop_down"]]
+linesEditPart: 5 loads, 0 with an ID on screen
+  base: 0 id(s) | shown: [["VIN/Serial # car_rental","Year","Make * arrow_drop_down","Model arrow_drop_down"]]
+  delay1 [/api/organizations/vehicle-types]: 0 id(s) | shown: [["VIN/Serial # car_rental","Year","Make * arrow_drop_down","Model arrow_drop_down"]]
+  delay2 [/api/vehicle-makers]: 0 id(s) | shown: [["VIN/Serial # car_rental","Year","Make * arrow_drop_down","Model arrow_drop_down"]]
+  all: 0 id(s) | shown: [["VIN/Serial # car_rental","Year","Make * arrow_drop_down","Model arrow_drop_down"]]
+  slow4g1: 0 id(s) | shown: [["VIN/Serial # car_rental","Year","Make * arrow_drop_down","Model arrow_drop_down"]]
+   action error not found button_edit_vehicle
+  slow4g2: 0 id(s) | shown: [[]]
+   action error not found button_edit_vehicle
+  slow4g3: 0 id(s) | shown: [[]]
+vehicleEdit: 7 loads, 0 with an ID on screen
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+page.evaluate: TypeError: Failed to fetch
+    at eval (eval at evaluate (:290:30), <anonymous>:1:29)
+    at UtilityScript.evaluate (<anonymous>:292:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+    at Object.marker (/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs:135:30)
+    at /home/user/Manual-test-Cases/build/sv10928-raw-ids-2026-10-28/scripts/run.mjs:40:36
+
+Node.js v22.22.2

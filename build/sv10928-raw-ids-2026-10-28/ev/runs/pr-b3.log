@@ -1,0 +1,64 @@
+  base: 1 id(s) | shown: [["Line 3 EMpty LIne arrow_drop_down"],["Select Department arrow_drop_down"],[]]
+  delay1 [/api/work-orders/simple-list]: 1 id(s) | shown: [["Line 3 EMpty LIne arrow_drop_down"],["Select Department arrow_drop_down"],[]]
+  delay2 [/api/reporting/all-departments]: 1 id(s) | shown: [["Line 3 EMpty LIne arrow_drop_down"],["Select Department arrow_drop_down"],[]]
+  delay3 [/api/work-orders/lines/:id]: 1 id(s) | shown: [["Line 3 EMpty LIne arrow_drop_down"],["Select Department arrow_drop_down"],[]]
+  all: 1 id(s) | shown: [["Line 3 EMpty LIne arrow_drop_down"],["Select Department arrow_drop_down"],[]]
+  slow4g1: 1 id(s) | shown: [["Line 3 EMpty LIne arrow_drop_down"],["Select Department arrow_drop_down"],[]]
+  slow4g2: 1 id(s) | shown: [["Line 3 EMpty LIne arrow_drop_down"],["Select Department arrow_drop_down"],[]]
+  slow4g3: 1 id(s) | shown: [["Line 3 EMpty LIne arrow_drop_down"],["Select Department arrow_drop_down"],[]]
+timesheetEdit: 8 loads, 8 with an ID on screen
+    base  35795c4c-cc7c-4a4e-b8e7-517747e69ed1 @_control-container.col>[select_timesheet_line]>span.ellipsis
+    delay1 /api/work-orders/simple-list 35795c4c-cc7c-4a4e-b8e7-517747e69ed1 @_control-container.col>[select_timesheet_line]>span.ellipsis
+    delay2 /api/reporting/all-departments 35795c4c-cc7c-4a4e-b8e7-517747e69ed1 @_control-container.col>[select_timesheet_line]>span.ellipsis
+    delay3 /api/work-orders/lines/:id 35795c4c-cc7c-4a4e-b8e7-517747e69ed1 @_control-container.col>[select_timesheet_line]>span.ellipsis
+    all every request 35795c4c-cc7c-4a4e-b8e7-517747e69ed1 @_control-container.col>[select_timesheet_line]>span.ellipsis
+    slow4g1 Slow 4G 35795c4c-cc7c-4a4e-b8e7-517747e69ed1 @_control-container.col>[select_timesheet_line]>span.ellipsis
+    slow4g2 Slow 4G 35795c4c-cc7c-4a4e-b8e7-517747e69ed1 @_control-container.col>[select_timesheet_line]>span.ellipsis
+    slow4g3 Slow 4G 35795c4c-cc7c-4a4e-b8e7-517747e69ed1 @_control-container.col>[select_timesheet_line]>span.ellipsis
+  base: 0 id(s) | shown: [["Vendor ZZAUTOTEST V10928 Prod 081923 arrow_drop_do","Vendor Invoice Number","event Invoice Date","Delivery Note"]]
+  delay1 [/api/work-orders/:id/receive-modal]: 0 id(s) | shown: [["Vendor ZZAUTOTEST V10928 Prod 081923 arrow_drop_do","Vendor Invoice Number","event Invoice Date","Delivery Note"]]
+  delay2 [/api/parts-catalogue/options]: 1 id(s) | shown: [["Vendor ZZAUTOTEST V10928 Prod 081923 arrow_drop_do","Vendor Invoice Number","event Invoice Date","Delivery Note"]]
+   action error no Receive button
+  all: 0 id(s) | shown: [[]]
+   action error no Receive button
+  slow4g1: 0 id(s) | shown: [[]]
+   action error no Receive button
+  slow4g2: 0 id(s) | shown: [[]]
+   action error no Receive button
+  slow4g3: 0 id(s) | shown: [[]]
+receiveParts: 7 loads, 1 with an ID on screen
+    delay2 /api/parts-catalogue/options ab730b89-1049-44e4-a344-445e0ee7b7c2 @_control-container.col>div.q-field__native.row>span.ellipsis
+   action error not found button_add_part
+  base: 0 id(s) | shown: [[],[]]
+   action error not found button_add_part
+  all: 0 id(s) | shown: [[],[]]
+   action error not found button_add_part
+  slow4g1: 0 id(s) | shown: [[],[]]
+   action error not found button_add_part
+  slow4g2: 0 id(s) | shown: [[],[]]
+   action error not found button_add_part
+  slow4g3: 0 id(s) | shown: [[],[]]
+linesAddPart: 5 loads, 0 with an ID on screen
+   action error not found button_edit_part_
+  base: 0 id(s) | shown: [[]]
+   action error not found button_edit_part_
+  all: 0 id(s) | shown: [[]]
+   action error not found button_edit_part_
+  slow4g1: 0 id(s) | shown: [[]]
+   action error not found button_edit_part_
+  slow4g2: 0 id(s) | shown: [[]]
+   action error not found button_edit_part_
+  slow4g3: 0 id(s) | shown: [[]]
+linesEditPart: 5 loads, 0 with an ID on screen
+   action error not found button_edit_vehicle
+  base: 0 id(s) | shown: [[]]
+   action error not found button_edit_vehicle
+  all: 0 id(s) | shown: [[]]
+   action error not found button_edit_vehicle
+  slow4g1: 0 id(s) | shown: [[]]
+   action error not found button_edit_vehicle
+  slow4g2: 0 id(s) | shown: [[]]
+   action error not found button_edit_vehicle
+  slow4g3: 0 id(s) | shown: [[]]
+vehicleEdit: 5 loads, 0 with an ID on screen
+{"version":"v26.43.2-537378f","lastModified":"Tue, 27 Oct 2026 09:11:44 GMT","etag":"W/\"ec33b02435f2f8656bec0b20aa1c1e4e\""}
