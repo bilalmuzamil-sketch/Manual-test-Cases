@@ -1,9 +1,9 @@
 {
- "prd": "Confluence 829227015 version 33",
+ "prd": "Confluence 829227015 version 35",
  "built": "by authoring/build.py",
  "counts": {
-  "COVERED": 297,
-  "NO MANUAL CASE": 14
+  "COVERED": 300,
+  "NO MANUAL CASE": 17
  },
  "deleted_cases": {
   "C425659": "dashboard inventory figure (removed in PRD v29, Product answer 7 of 14 Oct)",
@@ -33,9 +33,9 @@
   "UFS-18": "A server error while saving a part; a manual tester cannot cause one.",
   "UFS-19": "A server error while deleting a part; a manual tester cannot cause one.",
   "UFS-27": "A server error while the part dialog changes a status; a manual tester cannot cause one.",
-  "UFS-47": "Its first message, \"Part Library entry not found.\", is tested word for word by S12-07 (S11-E4). No source names a screen action that shows the \"... for ID: {id}.\" or \"... for part number: {part number}.\" variants (question Q13).",
-  "UFS-48": "No source names a screen action that starts a part request from a Part Library entry with no category (question Q13).",
-  "UFS-49": "No source names a screen action that starts a part request from a Part Library entry with a source other than Vendor (question Q13)."
+  "UFS-47": "Its first message, \"Part Library entry not found.\", is tested word for word by S12-07 (S11-E4), and \"... for ID: {id}.\" by S12-15 (opening the address of a deleted entry, PRD v35 S12-R11a, answer 24 of 27 Oct 2026). \"... for part number: {part number}.\" is not raised today (S12-R11a): verified in code review, not on screen.",
+  "UFS-48": "\"Part Library entry missing category.\" appears only with damaged or legacy data (PRD v35 S12-R11a, answer 24 of 27 Oct 2026): verified in code review, not on screen.",
+  "UFS-49": "\"A part from the Part Library must have Vendor as its source.\" is not raised today (PRD v35 S12-R11a, answer 24 of 27 Oct 2026): verified in code review, not on screen."
  },
  "codes": {
   "S1-R1": {
@@ -48,7 +48,7 @@
     "S1-01"
    ],
    "case_ids": [
-    null,
+    "839454",
     "154752"
    ]
   },
@@ -91,7 +91,7 @@
     "S1-03"
    ],
    "case_ids": [
-    null,
+    "839455",
     "154752",
     "425585"
    ]
@@ -129,7 +129,7 @@
     "S1-02b"
    ],
    "case_ids": [
-    null
+    "839413"
    ]
   },
   "S1-R6": {
@@ -154,7 +154,7 @@
     "S1-05"
    ],
    "case_ids": [
-    null,
+    "839455",
     "425587"
    ]
   },
@@ -170,9 +170,9 @@
     "S1-01"
    ],
    "case_ids": [
-    null,
-    null,
-    null,
+    "839454",
+    "839496",
+    "839497",
     "154752"
    ]
   },
@@ -207,7 +207,7 @@
     "425588",
     "573668",
     "573669",
-    null,
+    "839414",
     "573670",
     "573676"
    ]
@@ -235,7 +235,7 @@
    ],
    "case_ids": [
     "425590",
-    null
+    "839415"
    ]
   },
   "S1-N1": {
@@ -250,8 +250,8 @@
     "S1-10"
    ],
    "case_ids": [
-    null,
-    null,
+    "839456",
+    "839457",
     "425591",
     "425592"
    ]
@@ -267,8 +267,8 @@
     "S1-10"
    ],
    "case_ids": [
-    null,
-    null,
+    "839457",
+    "839479",
     "425592"
    ]
   },
@@ -282,8 +282,8 @@
     "S1-14"
    ],
    "case_ids": [
-    null,
-    null
+    "839484",
+    "839415"
    ]
   },
   "S2-R1": {
@@ -296,7 +296,7 @@
     "S2-01"
    ],
    "case_ids": [
-    null,
+    "839458",
     "154754"
    ]
   },
@@ -310,7 +310,7 @@
     "S2-01"
    ],
    "case_ids": [
-    null,
+    "839458",
     "154754"
    ]
   },
@@ -325,7 +325,7 @@
     "S3-04"
    ],
    "case_ids": [
-    null,
+    "839454",
     "154755",
     "425606"
    ]
@@ -340,7 +340,7 @@
     "S2-10"
    ],
    "case_ids": [
-    null,
+    "839460",
     "425593"
    ]
   },
@@ -355,7 +355,7 @@
     "S3-04"
    ],
    "case_ids": [
-    null,
+    "839461",
     "154756",
     "425606"
    ]
@@ -377,8 +377,8 @@
     "S5-17"
    ],
    "case_ids": [
-    null,
-    null,
+    "839462",
+    "839463",
     "573668",
     "425768",
     "425594",
@@ -400,9 +400,9 @@
     "S2-04"
    ],
    "case_ids": [
-    null,
-    null,
-    null,
+    "839460",
+    "839496",
+    "839497",
     "154757"
    ]
   },
@@ -416,7 +416,7 @@
     "S2-12"
    ],
    "case_ids": [
-    null,
+    "839460",
     "425595"
    ]
   },
@@ -431,8 +431,8 @@
     "S2-04"
    ],
    "case_ids": [
-    null,
-    null,
+    "839460",
+    "839461",
     "154757"
    ]
   },
@@ -447,7 +447,7 @@
     "S2-08"
    ],
    "case_ids": [
-    null,
+    "839460",
     "425782",
     "154762"
    ]
@@ -463,9 +463,9 @@
     "S2-13b"
    ],
    "case_ids": [
-    null,
+    "839463",
     "425596",
-    null
+    "839418"
    ]
   },
   "S2-R9": {
@@ -481,11 +481,11 @@
     "S3-04c"
    ],
    "case_ids": [
-    null,
+    "839460",
     "154757",
     "154758",
     "425604",
-    null
+    "839421"
    ]
   },
   "S2-R9a": {
@@ -499,9 +499,9 @@
     "S3-04c"
    ],
    "case_ids": [
-    null,
-    null,
-    null
+    "839459",
+    "839416",
+    "839421"
    ]
   },
   "S2-R10": {
@@ -527,7 +527,7 @@
    ],
    "case_ids": [
     "425598",
-    null
+    "839420"
    ]
   },
   "S2-R10b": {
@@ -541,9 +541,9 @@
     "S3-04b"
    ],
    "case_ids": [
-    null,
+    "839459",
     "425599",
-    null
+    "839420"
    ]
   },
   "S2-R11": {
@@ -569,9 +569,9 @@
     "S2-06b"
    ],
    "case_ids": [
-    null,
+    "839466",
     "154759",
-    null
+    "839417"
    ]
   },
   "S2-R13": {
@@ -597,9 +597,9 @@
     "S2-06b"
    ],
    "case_ids": [
-    null,
+    "839466",
     "154759",
-    null
+    "839417"
    ]
   },
   "S2-R15": {
@@ -617,7 +617,7 @@
     "154790",
     "154760",
     "425601",
-    null
+    "839422"
    ]
   },
   "S2-R16": {
@@ -645,7 +645,7 @@
    "case_ids": [
     "425769",
     "425603",
-    null
+    "839419"
    ]
   },
   "S2-N1": {
@@ -742,7 +742,7 @@
     "S3-01"
    ],
    "case_ids": [
-    null,
+    "839462",
     "154754",
     "154764"
    ]
@@ -757,7 +757,7 @@
     "S3-01"
    ],
    "case_ids": [
-    null,
+    "839462",
     "154764"
    ]
   },
@@ -776,13 +776,13 @@
     "S3-04d"
    ],
    "case_ids": [
-    null,
-    null,
+    "839418",
+    "839419",
     "425605",
     "425606",
-    null,
-    null,
-    null
+    "839420",
+    "839421",
+    "839422"
    ]
   },
   "S3-R4": {
@@ -831,7 +831,7 @@
     "S4-01"
    ],
    "case_ids": [
-    null,
+    "839467",
     "154766"
    ]
   },
@@ -845,7 +845,7 @@
     "S4-01"
    ],
    "case_ids": [
-    null,
+    "839467",
     "154766"
    ]
   },
@@ -860,8 +860,8 @@
     "S4-05"
    ],
    "case_ids": [
-    null,
-    null,
+    "839467",
+    "839480",
     "425627"
    ]
   },
@@ -875,7 +875,7 @@
     "S4-01"
    ],
    "case_ids": [
-    null,
+    "839467",
     "154766"
    ]
   },
@@ -889,7 +889,7 @@
     "S4-02"
    ],
    "case_ids": [
-    null,
+    "839470",
     "154767"
    ]
   },
@@ -904,7 +904,7 @@
     "S4-06"
    ],
    "case_ids": [
-    null,
+    "839470",
     "154767",
     "425628"
    ]
@@ -947,8 +947,8 @@
     "S4-06"
    ],
    "case_ids": [
-    null,
-    null,
+    "839454",
+    "839483",
     "154753",
     "425589",
     "154768",
@@ -965,7 +965,7 @@
     "S4-03"
    ],
    "case_ids": [
-    null,
+    "839483",
     "154768"
    ]
   },
@@ -980,7 +980,7 @@
     "S5-02"
    ],
    "case_ids": [
-    null,
+    "839483",
     "154768",
     "154771"
    ]
@@ -1052,7 +1052,7 @@
     "S5-04"
    ],
    "case_ids": [
-    null,
+    "839481",
     "154771",
     "154773"
    ]
@@ -1067,7 +1067,7 @@
     "S5-04"
    ],
    "case_ids": [
-    null,
+    "839481",
     "154773"
    ]
   },
@@ -1081,7 +1081,7 @@
     "S5-02"
    ],
    "case_ids": [
-    null,
+    "839482",
     "154771"
    ]
   },
@@ -1096,7 +1096,7 @@
     "S5-03"
    ],
    "case_ids": [
-    null,
+    "839481",
     "425771",
     "154772"
    ]
@@ -1163,7 +1163,7 @@
     "S5-10"
    ],
    "case_ids": [
-    null,
+    "839484",
     "425636"
    ]
   },
@@ -1229,11 +1229,13 @@
    "status": "COVERED",
    "keys": [
     "S10-26",
-    "S5-13"
+    "S5-13",
+    "S7-27"
    ],
    "case_ids": [
     "425773",
-    "425640"
+    "425640",
+    null
    ]
   },
   "S5-E1a": {
@@ -1246,7 +1248,7 @@
   "S5-E2": {
    "story": 5,
    "jira": "SV-10818",
-   "text": "A part reaches S5-R8 with bin locations and no default in two ways: the bin location that was its default is deleted in Administration → Bin Locations while the part holds 0 there, or an untracked part is saved with bin locations and none marked default.",
+   "text": "A part reaches S5-R8 with bin locations and no default in two ways: the bin location that was its default is deleted in Settings → Parts → Bin Locations while the part holds 0 there, or an untracked part is saved with bin locations and none marked default.",
    "status": "COVERED",
    "keys": [
     "S5-05",
@@ -1260,7 +1262,7 @@
   "S5-E3": {
    "story": 5,
    "jira": "SV-10818",
-   "text": "A core has no row of its own on the Inventory list, in Export or on the Part Library list, so it cannot be ticked for a bulk change. Its name (S13-R15) and its history show on the core's own Part History page. The core reason in S10-R13a applies when a core reaches a status change by any other route.",
+   "text": "A core has no row of its own on the Inventory list, in Export or on the Part Library list, so it cannot be ticked for a bulk change. Its name (S13-R15) and its history are recorded on the core's own Part History page, which has no link on screen in this release. The core reason in S10-R13a applies when a core reaches a status change by any other route.",
    "status": "COVERED",
    "keys": [
     "S10-19",
@@ -1276,10 +1278,10 @@
     "425766",
     "425769",
     "425777",
-    null,
+    "839442",
     "425603",
     "573676",
-    null,
+    "839423",
     "573677"
    ]
   },
@@ -1295,10 +1297,10 @@
     "S6-10"
    ],
    "case_ids": [
-    null,
+    "839483",
     "154774",
-    null,
-    null
+    "839424",
+    "839425"
    ]
   },
   "S6-R1a": {
@@ -1311,8 +1313,8 @@
     "S6-10"
    ],
    "case_ids": [
-    null,
-    null
+    "839424",
+    "839425"
    ]
   },
   "S6-R2": {
@@ -1421,7 +1423,7 @@
     "S6-07"
    ],
    "case_ids": [
-    null,
+    "839414",
     "425645"
    ]
   },
@@ -1448,8 +1450,8 @@
     "S7-01"
    ],
    "case_ids": [
-    null,
-    null,
+    "839467",
+    "839468",
     "154776"
    ]
   },
@@ -1553,7 +1555,7 @@
    "case_ids": [
     "425671",
     "425672",
-    null,
+    "839426",
     "573683"
    ]
   },
@@ -1584,7 +1586,7 @@
    ],
    "case_ids": [
     "425673",
-    null
+    "839426"
    ]
   },
   "S7-R7": {
@@ -1627,7 +1629,7 @@
     "S7-10"
    ],
    "case_ids": [
-    null,
+    "839471",
     "425618",
     "154777",
     "425674"
@@ -1676,7 +1678,7 @@
     "S7-18"
    ],
    "case_ids": [
-    null,
+    "839469",
     "154779",
     "425682"
    ]
@@ -1692,7 +1694,7 @@
     "S7-18"
    ],
    "case_ids": [
-    null,
+    "839469",
     "154779",
     "425682"
    ]
@@ -1709,7 +1711,7 @@
     "S7-17"
    ],
    "case_ids": [
-    null,
+    "839472",
     "425677",
     "425679",
     "425681"
@@ -1721,10 +1723,12 @@
    "text": "If a part with the same number is already stocked at this location and is inactive, the save is refused with \"{part number} already exists at this location and is inactive. Activate it from the Inactive tab.\"",
    "status": "COVERED",
    "keys": [
-    "S7-14"
+    "S7-14",
+    "S7-17b"
    ],
    "case_ids": [
-    "425678"
+    "425678",
+    null
    ]
   },
   "S7-N5": {
@@ -1737,14 +1741,16 @@
     "S7-13",
     "S7-14",
     "S7-15",
-    "S7-17"
+    "S7-17",
+    "S7-17b"
    ],
    "case_ids": [
-    null,
+    "839472",
     "425677",
     "425678",
     "425679",
-    "425681"
+    "425681",
+    null
    ]
   },
   "S7-N5a": {
@@ -1768,12 +1774,14 @@
     "S13-16",
     "S7-16",
     "S7-17",
+    "S7-17b",
     "S7-20"
    ],
    "case_ids": [
     "425694",
     "425680",
     "425681",
+    null,
     "540880"
    ]
   },
@@ -1813,7 +1821,7 @@
     "425721",
     "425640",
     "573678",
-    null
+    "839427"
    ]
   },
   "S7-N8": {
@@ -1854,6 +1862,20 @@
     "573682"
    ]
   },
+  "S7-N11": {
+   "story": 7,
+   "jira": "SV-10820",
+   "text": "A part the import adds is tracked. The import has no tracking column and never changes an existing part's tracking. The import template's \"name\" column is the part's description.",
+   "status": "COVERED",
+   "keys": [
+    "S7-25",
+    "S7-27"
+   ],
+   "case_ids": [
+    "573682",
+    null
+   ]
+  },
   "S8-R1": {
    "story": 8,
    "jira": "SV-10821",
@@ -1884,10 +1906,12 @@
    "text": "A user without that permission does not see the \"Deactivate parts\" entry in the Inventory actions menu.",
    "status": "COVERED",
    "keys": [
-    "S8-01"
+    "S8-01",
+    "S8-04"
    ],
    "case_ids": [
-    "154780"
+    "154780",
+    "154783"
    ]
   },
   "S8-R4": {
@@ -1909,11 +1933,17 @@
    "status": "COVERED",
    "keys": [
     "S8-01",
-    "S8-05"
+    "S8-04",
+    "S8-05",
+    "S8-13",
+    "S8-14"
    ],
    "case_ids": [
     "154780",
-    "425646"
+    "154783",
+    "425646",
+    "425654",
+    "425655"
    ]
   },
   "S8-R6": {
@@ -1938,10 +1968,12 @@
    "text": "Creating a part with tracking off requires the 'Part Library & Inventory → Delete' permission.",
    "status": "COVERED",
    "keys": [
-    "S8-07"
+    "S8-07",
+    "S8-14"
    ],
    "case_ids": [
-    "425648"
+    "425648",
+    "425655"
    ]
   },
   "S8-R8": {
@@ -1950,10 +1982,12 @@
    "text": "Changing an existing part's tracking, in either direction, requires the same permission.",
    "status": "COVERED",
    "keys": [
-    "S8-02"
+    "S8-02",
+    "S8-13"
    ],
    "case_ids": [
-    "154781"
+    "154781",
+    "425654"
    ]
   },
   "S8-R9": {
@@ -2006,7 +2040,7 @@
    "case_ids": [
     "425625",
     "425689",
-    null,
+    "839429",
     "425650"
    ]
   },
@@ -2036,8 +2070,8 @@
    ],
    "case_ids": [
     "154782",
-    null,
-    null
+    "839428",
+    "839429"
    ]
   },
   "S8-R15": {
@@ -2072,13 +2106,8 @@
    "story": 8,
    "jira": "SV-10821",
    "text": "If a user without the 'Part Library & Inventory → Delete' permission tries to create an untracked part by any route, the request is refused with an access denied error.",
-   "status": "COVERED",
-   "keys": [
-    "S8-14"
-   ],
-   "case_ids": [
-    "425655"
-   ]
+   "status": "NO MANUAL CASE",
+   "reason": "Answer 27 (27 Oct 2026): a role change logs the user out on their next action with \"Session expired, please log in again.\", and after signing in again the controls follow the new role (S8-R7, S8-R9: the switch is disabled). So no screen sends an untracked part from a user without the right; the access error comes only from a request sent outside the screens. S8-14 checks what a tester sees instead. Developers' check."
   },
   "S8-N1a": {
    "story": 8,
@@ -2096,25 +2125,15 @@
    "story": 8,
    "jira": "SV-10821",
    "text": "If that user tries to change a part's tracking by any route, the request is refused with an access denied error.",
-   "status": "COVERED",
-   "keys": [
-    "S8-13"
-   ],
-   "case_ids": [
-    "425654"
-   ]
+   "status": "NO MANUAL CASE",
+   "reason": "As S8-N1 (answer 27): an open page logs out at the next action and the new role sees the switch disabled (S8-R9); the access error comes only from outside the screens. S8-13 checks what a tester sees instead. Developers' check."
   },
   "S8-N3": {
    "story": 8,
    "jira": "SV-10821",
    "text": "If that user tries to set a part active or inactive by any route, the request is refused with an access denied error.",
-   "status": "COVERED",
-   "keys": [
-    "S8-04"
-   ],
-   "case_ids": [
-    "154783"
-   ]
+   "status": "NO MANUAL CASE",
+   "reason": "As S8-N1 (answer 27): an open page logs out at the next action and the new role sees no status controls (S8-R3, S8-R4, S8-R6); the access error comes only from outside the screens. S8-04 checks what a tester sees instead. Developers' check."
   },
   "S9-R1": {
    "story": 9,
@@ -2127,8 +2146,8 @@
     "S9-01"
    ],
    "case_ids": [
-    null,
-    null,
+    "839488",
+    "839489",
     "154784"
    ]
   },
@@ -2229,7 +2248,7 @@
     "S9-40"
    ],
    "case_ids": [
-    null,
+    "839491",
     "425730",
     "573684"
    ]
@@ -2259,7 +2278,7 @@
     "S9-40"
    ],
    "case_ids": [
-    null,
+    "839491",
     "425730",
     "425731",
     "425732",
@@ -2319,7 +2338,7 @@
     "S9-16"
    ],
    "case_ids": [
-    null,
+    "839492",
     "425733",
     "425734"
    ]
@@ -2335,7 +2354,7 @@
     "S9-16"
    ],
    "case_ids": [
-    null,
+    "839492",
     "425733",
     "425734"
    ]
@@ -2351,7 +2370,7 @@
     "S9-18"
    ],
    "case_ids": [
-    null,
+    "839493",
     "425735",
     "425736"
    ]
@@ -2367,7 +2386,7 @@
     "S9-02"
    ],
    "case_ids": [
-    null,
+    "839474",
     "154836",
     "154785"
    ]
@@ -2398,7 +2417,7 @@
     "S9-20"
    ],
    "case_ids": [
-    null,
+    "839490",
     "425725",
     "425726",
     "425727",
@@ -2433,13 +2452,27 @@
     "S2-19",
     "S2-19b",
     "S9-24",
-    "S9-25"
+    "S9-25",
+    "S9-49"
    ],
    "case_ids": [
     "425603",
-    null,
+    "839419",
     "425742",
-    "425743"
+    "425743",
+    null
+   ]
+  },
+  "S9-R18a": {
+   "story": 9,
+   "jira": "SV-10822",
+   "text": "Global search never lists a core, active or inactive, tracked or untracked, as today.",
+   "status": "COVERED",
+   "keys": [
+    "S9-49"
+   ],
+   "case_ids": [
+    null
    ]
   },
   "S9-R19": {
@@ -2463,13 +2496,15 @@
     "S5-08",
     "S5-09",
     "S6-08",
-    "S9-26"
+    "S9-26",
+    "S9-49"
    ],
    "case_ids": [
     "425634",
     "425635",
     "425656",
-    "425744"
+    "425744",
+    null
    ]
   },
   "S9-R21": {
@@ -2485,11 +2520,11 @@
     "S9-46"
    ],
    "case_ids": [
-    null,
-    null,
-    null,
-    null,
-    null
+    "839501",
+    "839430",
+    "839431",
+    "839432",
+    "839433"
    ]
   },
   "S9-R22": {
@@ -2502,8 +2537,8 @@
     "S9-48"
    ],
    "case_ids": [
-    null,
-    null
+    "839434",
+    "839435"
    ]
   },
   "S9-N1": {
@@ -2533,19 +2568,21 @@
   "S9-N3": {
    "story": 9,
    "jira": "SV-10822",
-   "text": "Picking parts on a vendor return or a vendor credit needs the 'Part Library & Inventory → View' permission, as it does today. Without it the part search there shows the standard access error.",
+   "text": "Picking parts on a vendor return or a vendor credit needs the 'Part Library & Inventory → View' permission, or another setting that carries part search access today, as it does today. Without it the part search there shows the standard access error.",
    "status": "COVERED",
    "keys": [
-    "S9-28"
+    "S9-28",
+    "S9-42"
    ],
    "case_ids": [
-    "425746"
+    "425746",
+    "573686"
    ]
   },
   "S9-N3a": {
    "story": 9,
    "jira": "SV-10822",
-   "text": "Opening Parts → Returns and starting a vendor return keep the access today's 'Vendor Order Management' settings give. This feature adds, removes and changes no permission (S12-N1). 'Vendor Order Management → Create & Edit' includes 'Part Library & Inventory → View', so a role with it can search for parts on a return.",
+   "text": "Opening Parts → Returns and starting a vendor return keep the access today's 'Vendor Order Management' settings give. This feature adds, removes and changes no permission (S12-N1). 'Vendor Order Management → Create & Edit' carries part search access, so a role with it can search for parts on a return even though its 'Part Library & Inventory → View' box is not ticked. No on-screen route reaches S9-N3, because every role that can start a return has part search access; the access error shows only when the Create Return page is opened by its address, by a role with 'Vendor Order Management → View' and no setting that carries part search access.",
    "status": "COVERED",
    "keys": [
     "S9-28",
@@ -2744,8 +2781,8 @@
     "S10-01"
    ],
    "case_ids": [
-    null,
-    null,
+    "839464",
+    "839502",
     "154789"
    ]
   },
@@ -2765,10 +2802,10 @@
     "S3-02"
    ],
    "case_ids": [
-    null,
-    null,
-    null,
-    null,
+    "839464",
+    "839465",
+    "839477",
+    "839478",
     "154794",
     "425760",
     "154759",
@@ -2788,20 +2825,22 @@
     "S10-06",
     "S10-08",
     "S10-13",
+    "S10-36",
     "S2-06",
     "S2-06b",
     "S2-13"
    ],
    "case_ids": [
-    null,
-    null,
-    null,
-    null,
+    "839464",
+    "839465",
+    "839477",
+    "839478",
     "154794",
     "154796",
     "425760",
-    "154759",
     null,
+    "154759",
+    "839417",
     "425596"
    ]
   },
@@ -2815,7 +2854,7 @@
     "S10-07"
    ],
    "case_ids": [
-    null,
+    "839464",
     "154795"
    ]
   },
@@ -2829,7 +2868,7 @@
     "S10-14"
    ],
    "case_ids": [
-    null,
+    "839477",
     "425761"
    ]
   },
@@ -2843,7 +2882,7 @@
     "S10-08"
    ],
    "case_ids": [
-    null,
+    "839478",
     "154796"
    ]
   },
@@ -2859,7 +2898,7 @@
     "S3-02"
    ],
    "case_ids": [
-    null,
+    "839465",
     "425762",
     "425763",
     "154765"
@@ -2877,9 +2916,9 @@
     "S10-16"
    ],
    "case_ids": [
-    null,
-    null,
-    null,
+    "839464",
+    "839465",
+    "839477",
     "425763"
    ]
   },
@@ -2896,10 +2935,10 @@
     "S10-09"
    ],
    "case_ids": [
-    null,
-    null,
-    null,
-    null,
+    "839464",
+    "839465",
+    "839477",
+    "839478",
     "154797"
    ]
   },
@@ -2920,15 +2959,29 @@
     "S3-02"
    ],
    "case_ids": [
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
+    "839464",
+    "839465",
+    "839477",
+    "839478",
+    "839498",
+    "839499",
     "154796",
     "154799",
     "154765"
+   ]
+  },
+  "S10-R11a": {
+   "story": 10,
+   "jira": "SV-10823",
+   "text": "The close X at the top right of the confirmation does the same as Cancel: nothing changes, and from the part dialog the user returns to the dialog with the picked status kept. Pressing Esc or clicking outside the confirmation does not close it.",
+   "status": "COVERED",
+   "keys": [
+    "D-49",
+    "S10-36"
+   ],
+   "case_ids": [
+    "839502",
+    null
    ]
   },
   "S10-R12": {
@@ -2944,7 +2997,7 @@
     "S2-06"
    ],
    "case_ids": [
-    null,
+    "839466",
     "154790",
     "425764",
     "540883",
@@ -2964,7 +3017,7 @@
    "case_ids": [
     "540883",
     "425603",
-    null
+    "839419"
    ]
   },
   "S10-R13": {
@@ -3000,7 +3053,7 @@
     "154790",
     "425765",
     "425711",
-    null,
+    "839449",
     "154760",
     "425601"
    ]
@@ -3060,7 +3113,7 @@
     "S2-09"
    ],
    "case_ids": [
-    null,
+    "839487",
     "154791",
     "154792",
     "154793",
@@ -3103,21 +3156,21 @@
     "S10-23"
    ],
    "case_ids": [
-    null,
+    "839485",
     "425770"
    ]
   },
   "S10-R21": {
    "story": 10,
    "jira": "SV-10823",
-   "text": "The Part History table keeps its column layout whatever an entry says. A short entry does not widen the Staff, Date or Time columns.",
+   "text": "The Part History table keeps its column layout whatever an entry says. A short entry does not widen the Staff, Date or Time columns. A long entry wraps onto more lines within its column and is never cut short.",
    "status": "COVERED",
    "keys": [
     "D-33",
     "S10-10"
    ],
    "case_ids": [
-    null,
+    "839486",
     "154798"
    ]
   },
@@ -3132,7 +3185,7 @@
     "S5-12"
    ],
    "case_ids": [
-    null,
+    "839485",
     "425771",
     "425638"
    ]
@@ -3150,7 +3203,7 @@
    ],
    "case_ids": [
     "425772",
-    null,
+    "839436",
     "425773",
     "425640"
    ]
@@ -3200,7 +3253,7 @@
     "S11-09"
    ],
    "case_ids": [
-    null,
+    "839486",
     "425774",
     "425775",
     "425610",
@@ -3226,7 +3279,7 @@
    ],
    "case_ids": [
     "425777",
-    null,
+    "839442",
     "573677"
    ]
   },
@@ -3241,7 +3294,7 @@
     "S10-30"
    ],
    "case_ids": [
-    null,
+    "839487",
     "425770",
     "425778"
    ]
@@ -3282,15 +3335,17 @@
     "S10-12",
     "S10-13",
     "S10-14",
+    "S10-36",
     "S13-30"
    ],
    "case_ids": [
-    null,
-    null,
-    null,
+    "839464",
+    "839465",
+    "839502",
     "154800",
     "425760",
     "425761",
+    null,
     "425709"
    ]
   },
@@ -3333,7 +3388,7 @@
     "S11-05"
    ],
    "case_ids": [
-    null,
+    "839494",
     "154828",
     "425607"
    ]
@@ -3364,7 +3419,7 @@
     "S12-05"
    ],
    "case_ids": [
-    null,
+    "839495",
     "154828",
     "154829",
     "573671",
@@ -3375,16 +3430,18 @@
   "S11-R3c": {
    "story": 11,
    "jira": "SV-10824",
-   "text": "While a part still uses the entry, the Delete button is disabled and hovering it shows \"Part cannot be deleted. Please delete related parts first.\"",
+   "text": "While an inventory part, an open part request or a part return still uses the entry, the Delete button is disabled and hovering it shows \"Part cannot be deleted. Please delete related parts first.\"",
    "status": "COVERED",
    "keys": [
     "S11-02",
     "S11-18",
+    "S11-21",
     "S12-06"
    ],
    "case_ids": [
     "154829",
     "573671",
+    null,
     "425620"
    ]
   },
@@ -3400,16 +3457,18 @@
     "S11-09b",
     "S11-10",
     "S11-11",
-    "S11-12"
+    "S11-12",
+    "S13-49"
    ],
    "case_ids": [
     "425610",
-    null,
+    "839438",
     "425611",
-    null,
+    "839439",
     "425612",
     "425613",
-    "425614"
+    "425614",
+    null
    ]
   },
   "S11-R3b": {
@@ -3434,7 +3493,7 @@
     "S11-06"
    ],
    "case_ids": [
-    null,
+    "839494",
     "425608"
    ]
   },
@@ -3448,7 +3507,7 @@
     "S11-07"
    ],
    "case_ids": [
-    null,
+    "839494",
     "425609"
    ]
   },
@@ -3467,7 +3526,7 @@
    ],
    "case_ids": [
     "154830",
-    null,
+    "839437",
     "425616",
     "540877",
     "573673",
@@ -3510,8 +3569,8 @@
     "S11-19"
    ],
    "case_ids": [
-    null,
-    null
+    "839500",
+    "839440"
    ]
   },
   "S11-R9": {
@@ -3524,8 +3583,8 @@
     "S11-20"
    ],
    "case_ids": [
-    null,
-    null
+    "839500",
+    "839441"
    ]
   },
   "S11-N1": {
@@ -3541,7 +3600,7 @@
    ],
    "case_ids": [
     "154830",
-    null,
+    "839437",
     "425616",
     "540877"
    ]
@@ -3589,6 +3648,20 @@
     "425621"
    ]
   },
+  "S11-E5": {
+   "story": 11,
+   "jira": "SV-10824",
+   "text": "The Delete button in the \"Edit Library Part\" window reflects the entry as it was when its detail page opened. If the last part, part request or part return using the entry goes away elsewhere, Delete becomes enabled after the page is reloaded.",
+   "status": "COVERED",
+   "keys": [
+    "S11-21",
+    "S12-06"
+   ],
+   "case_ids": [
+    null,
+    "425620"
+   ]
+  },
   "S12-R1": {
    "story": 12,
    "jira": "SV-10825",
@@ -3600,8 +3673,8 @@
     "S12-01"
    ],
    "case_ids": [
-    null,
-    null,
+    "839454",
+    "839494",
     "154832"
    ]
   },
@@ -3616,7 +3689,7 @@
     "S12-04"
    ],
    "case_ids": [
-    null,
+    "839494",
     "154832",
     "154835"
    ]
@@ -3656,17 +3729,19 @@
    "status": "COVERED",
    "keys": [
     "S12-02",
-    "S12-07"
+    "S12-07",
+    "S12-15"
    ],
    "case_ids": [
     "154833",
-    "425621"
+    "425621",
+    null
    ]
   },
   "S12-R6": {
    "story": 12,
    "jira": "SV-10825",
-   "text": "On Administration → Roles & Permissions → Edit Role, the permission group is titled \"Part Library and Inventory\".",
+   "text": "On Settings → Roles & Permissions → Edit Role, the permission group is titled \"Part Library and Inventory\".",
    "status": "COVERED",
    "keys": [
     "S12-03",
@@ -3725,7 +3800,7 @@
     "S9-19"
    ],
    "case_ids": [
-    null,
+    "839488",
     "425623",
     "573673",
     "425737"
@@ -3738,11 +3813,27 @@
    "status": "COVERED",
    "keys": [
     "S12-06",
-    "S12-07"
+    "S12-07",
+    "S12-15"
    ],
    "case_ids": [
     "425620",
-    "425621"
+    "425621",
+    null
+   ]
+  },
+  "S12-R11a": {
+   "story": 12,
+   "jira": "SV-10825",
+   "text": "Of the S12-R11 refusals, normal screen use reaches \"This Part Library entry is in use and cannot be deleted.\", \"Part Library entry not found.\" (S11-E4) and \"Part Library entry not found for ID: {id}.\" (opening the address of a deleted entry). \"Part Library entry not found\" and \"Part Library entry missing category.\" appear only with damaged or legacy data, and the \"for part number\" and \"must have Vendor as its source\" refusals are not raised today. All are renamed so no old wording remains; the unreachable ones are verified in code review, not on screen.",
+   "status": "COVERED",
+   "keys": [
+    "S12-06",
+    "S12-15"
+   ],
+   "case_ids": [
+    "425620",
+    null
    ]
   },
   "S12-R12": {
@@ -3755,7 +3846,7 @@
     "S12-01"
    ],
    "case_ids": [
-    null,
+    "839495",
     "154832"
    ]
   },
@@ -3767,12 +3858,14 @@
    "keys": [
     "S11-18",
     "S12-02",
-    "S12-06"
+    "S12-06",
+    "S12-15"
    ],
    "case_ids": [
     "573671",
     "154833",
-    "425620"
+    "425620",
+    null
    ]
   },
   "S12-R14": {
@@ -3814,7 +3907,7 @@
   "S12-R14b": {
    "story": 12,
    "jira": "SV-10825",
-   "text": "When more than one vendor delivered that number in the last 12 months, the result names the vendor of the most recent delivery and uses that delivery's cost.",
+   "text": "When more than one vendor delivered that number in the last 12 months, the result names the vendor of the most recent delivery and uses that delivery's cost. Picking it fills the line's Cost and Vendor from that delivery.",
    "status": "COVERED",
    "keys": [
     "S12-14"
@@ -3877,8 +3970,8 @@
     "S4-01"
    ],
    "case_ids": [
-    null,
-    null,
+    "839467",
+    "839473",
     "154836",
     "154766"
    ]
@@ -3896,10 +3989,10 @@
     "S13-01"
    ],
    "case_ids": [
-    null,
-    null,
-    null,
-    null,
+    "839467",
+    "839473",
+    "839498",
+    "839499",
     "154836"
    ]
   },
@@ -3919,10 +4012,10 @@
     "S9-02"
    ],
    "case_ids": [
-    null,
-    null,
-    null,
-    null,
+    "839473",
+    "839474",
+    "839498",
+    "839499",
     "154753",
     "154836",
     "425649",
@@ -3943,9 +4036,9 @@
     "S13-44"
    ],
    "case_ids": [
-    null,
-    null,
-    null,
+    "839467",
+    "839468",
+    "839473",
     "425684",
     "425685",
     "540881"
@@ -3975,7 +4068,7 @@
     "S13-06"
    ],
    "case_ids": [
-    null,
+    "839467",
     "425684"
    ]
   },
@@ -3990,8 +4083,8 @@
     "S13-09"
    ],
    "case_ids": [
-    null,
-    null,
+    "839467",
+    "839473",
     "425687"
    ]
   },
@@ -4005,7 +4098,7 @@
     "S13-09"
    ],
    "case_ids": [
-    null,
+    "839473",
     "425687"
    ]
   },
@@ -4021,8 +4114,8 @@
     "S13-10"
    ],
    "case_ids": [
-    null,
-    null,
+    "839467",
+    "839473",
     "425687",
     "425688"
    ]
@@ -4038,8 +4131,8 @@
     "S13-09"
    ],
    "case_ids": [
-    null,
-    null,
+    "839467",
+    "839473",
     "425687"
    ]
   },
@@ -4054,7 +4147,7 @@
     "S8-09"
    ],
    "case_ids": [
-    null,
+    "839467",
     "425689",
     "425650"
    ]
@@ -4084,10 +4177,10 @@
     "S8-10"
    ],
    "case_ids": [
-    null,
-    null,
+    "839476",
+    "839439",
     "425690",
-    null,
+    "839444",
     "425651"
    ]
   },
@@ -4101,7 +4194,7 @@
     "S13-12"
    ],
    "case_ids": [
-    null,
+    "839439",
     "425690"
    ]
   },
@@ -4146,11 +4239,11 @@
     "S13-04b"
    ],
    "case_ids": [
-    null,
+    "839476",
     "425610",
-    null,
+    "839438",
     "154839",
-    null
+    "839443"
    ]
   },
   "S13-R17": {
@@ -4163,7 +4256,7 @@
     "S13-04"
    ],
    "case_ids": [
-    null,
+    "839438",
     "154839"
    ]
   },
@@ -4183,8 +4276,8 @@
     "425777",
     "425610",
     "154838",
-    null,
-    null
+    "839442",
+    "839450"
    ]
   },
   "S13-R19": {
@@ -4203,7 +4296,7 @@
    "case_ids": [
     "425613",
     "425696",
-    null,
+    "839446",
     "425697",
     "425698",
     "425699"
@@ -4219,8 +4312,8 @@
     "S13-22b"
    ],
    "case_ids": [
-    null,
-    null
+    "839446",
+    "839447"
    ]
   },
   "S13-R19b": {
@@ -4232,7 +4325,7 @@
     "S13-18b"
    ],
    "case_ids": [
-    null
+    "839445"
    ]
   },
   "S13-R19c": {
@@ -4246,7 +4339,7 @@
    ],
    "case_ids": [
     "425700",
-    null
+    "839447"
    ]
   },
   "S13-R19d": {
@@ -4255,6 +4348,20 @@
    "text": "A change to a part's number or description made through the public API follows the same rules as the part dialog: S13-R14, S13-R15, S13-R18, S13-R19, S13-N1, S13-N7 and S10-R23 to S10-R25.",
    "status": "NO MANUAL CASE",
    "reason": "A number or description change made through the public API; no screen sends it. Developers' check (tech plan Phase 6 OpenApiPartRenameTest). The part dialog's own rules are tested by the Story 13 cases."
+  },
+  "S13-R19e": {
+   "story": 13,
+   "jira": "SV-10826",
+   "text": "A part already received onto a work order or part sale line, open or not, keeps the number it was added with. Only a part request that is not yet received or returned takes the new number (S13-R19).",
+   "status": "COVERED",
+   "keys": [
+    "S13-19",
+    "S13-48"
+   ],
+   "case_ids": [
+    "425697",
+    null
+   ]
   },
   "S13-R20": {
    "story": 13,
@@ -4269,7 +4376,7 @@
     "S8-08"
    ],
    "case_ids": [
-    null,
+    "839473",
     "154753",
     "425702",
     "425703",
@@ -4289,7 +4396,7 @@
     "S13-27"
    ],
    "case_ids": [
-    null,
+    "839475",
     "425591",
     "154789",
     "425704",
@@ -4309,7 +4416,7 @@
     "S13-32"
    ],
    "case_ids": [
-    null,
+    "839479",
     "425591",
     "425707",
     "425708",
@@ -4325,12 +4432,14 @@
     "D-24",
     "D-49",
     "S10-12",
+    "S10-36",
     "S13-30"
    ],
    "case_ids": [
-    null,
-    null,
+    "839477",
+    "839502",
     "154800",
+    null,
     "425709"
    ]
   },
@@ -4357,8 +4466,8 @@
     "S13-26"
    ],
    "case_ids": [
-    null,
-    null,
+    "839475",
+    "839478",
     "425705"
    ]
   },
@@ -4419,12 +4528,18 @@
   "S13-N1a": {
    "story": 13,
    "jira": "SV-10826",
-   "text": "The save is also refused when another part, at any location that stocks this part, has a number that matches the typed one, ignoring upper and lower case, hyphens, asterisks, periods and spaces. The dialog stays open, and the system shows \"{existing part number} already exists at {location}.\"",
+   "text": "The save is also refused when another part, at any other location that stocks this part, has a number that matches the typed one, ignoring upper and lower case, hyphens, asterisks, periods and spaces. The dialog stays open, and the system shows \"{existing part number} already exists at {location}.\" A match at the part's own location is refused with S7-N3 or S7-N4 instead. On the Part Library detail page, which has no current location, S13-N1a applies at every location.",
    "status": "COVERED",
    "keys": [
-    "S13-45"
+    "S13-45",
+    "S13-49",
+    "S7-17",
+    "S7-17b"
    ],
    "case_ids": [
+    "839448",
+    null,
+    "425681",
     null
    ]
   },
@@ -4482,7 +4597,7 @@
    ],
    "case_ids": [
     "425711",
-    null
+    "839449"
    ]
   },
   "S13-N5": {
@@ -4557,7 +4672,7 @@
    "case_ids": [
     "425721",
     "573678",
-    null
+    "839427"
    ]
   },
   "S13-E1": {

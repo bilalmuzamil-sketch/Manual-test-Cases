@@ -1,0 +1,119 @@
+{
+ "_about": "Cases a manual tester cannot set up or reach after Chris Ward's answers 13-27 (27 Oct 2026, https://docs.google.com/document/d/1pkAPGqWVTdtYorNN4SVNl9HkHxuuB9czro_y2DbUeEM/edit, saved in ANSWERS-13-27-2026-10-27.md) and PRD v35. Written by the 28 Oct 2026 named-set worker for the coordinator to put to the QA lead. Every case listed here is UNCHANGED in the library (body, marker and version stamp), as the brief ordered; nothing is deleted or released. Decision wanted per row: delete the case, keep it held, or keep it as a developers' check, and whether the codes it alone covers move to 'No manual case'.",
+ "proposals": [
+  {
+   "id": "P1",
+   "cases": [
+    {
+     "key": "S5-01",
+     "case": "C154770",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/154770"
+    }
+   ],
+   "codes": [
+    "S5-R7"
+   ],
+   "answer": "Doc 14 (Q2)",
+   "reason": "Answer 14: \"No screen leaves a part with no bin location... To test S5-R7, create an untracked part with no bins through a direct system request (ask Nemanja for it)\". A manual tester cannot make the starting part; only a developer's direct request can. S5-R7 is quoted by no other case.",
+   "proposal": "Move S5-R7 to No manual case (developers' check), and delete C154770; or keep it held until a developer creates the part for the tester each run.",
+   "current_state": "held: AUTOMATION: HOLD - waiting on the PO (question Q2 ...), body as written 27 Oct (v33)."
+  },
+  {
+   "id": "P2",
+   "cases": [
+    {
+     "key": "S5-18",
+     "case": "C573677",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/573677"
+    },
+    {
+     "key": "S10-22",
+     "case": "C425769",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/425769"
+    },
+    {
+     "key": "S10-29",
+     "case": "C425777",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/425777"
+    },
+    {
+     "key": "S13-03b",
+     "case": "C839442",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/839442"
+    }
+   ],
+   "codes": [
+    "S10-R19 (only S10-22 quotes it)",
+    "S10-R26 (S5-18, S10-29, S13-03b)",
+    "S13-R15 core rename (S5-18, S10-29; S13-R15 also covered for the part elsewhere? no: S5-18 and S10-29 only)",
+    "S5-E3 history sentence"
+   ],
+   "answer": "Doc 13(a) (Q1)",
+   "reason": "Answer 13(a): \"A core's Part History page has no link on screen in this release. Its entries are recorded (S5-E3), and you can check them by opening the core's Part History address directly.\" PRD v35 S5-E3: the page \"has no link on screen in this release\". The core has no row on the Inventory list, in Export or on the Part Library list, and global search never lists a core (S9-R18a), so a tester has no way to learn the core's page address from the screen. Each case's only check is on that page.",
+   "proposal": "Move the core's own Part History entries (S10-R19, S10-R26, the core part of S13-R15) to No manual case (developers' check, or a check by someone given the core's address), and delete the four cases.",
+   "current_state": "held on Q1, bodies as written 27 Oct (v33); their S5-E3 quote is the v33 sentence."
+  },
+  {
+   "id": "P3",
+   "cases": [
+    {
+     "key": "S2-19",
+     "case": "C425603",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/425603"
+    },
+    {
+     "key": "S2-19b",
+     "case": "C839419",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/839419"
+    },
+    {
+     "key": "S5-08",
+     "case": "C425634",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/425634"
+    },
+    {
+     "key": "S5-09",
+     "case": "C425635",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/425635"
+    }
+   ],
+   "codes": [
+    "S2-R17 (S2-19, S2-19b, S10-22)",
+    "S5-R9 (only S5-08, S5-09)"
+   ],
+   "answer": "Doc 13(b) (Q1) and PRD v35 S9-R18a",
+   "reason": "These four cases see the core in the global search in the top bar (\"Type Core for followed by part A's description\", then the core's Inactive tag or Not Tracked). Answer 13(b) and v35 S9-R18a: \"Global search never lists a core, active or inactive, tracked or untracked, as today.\" No other screen shows a core's status or tracking (S5-E3), so the core half of S2-R17 and S5-R9 cannot be seen by hand. They were dependants of Q1, not held, and are LIVE AND RELEASED today with an expectation v35 now contradicts: a tester would mark them Failed.",
+   "proposal": "Hold them now (marker change only) and then delete them, moving the core half of S2-R17 and S5-R9 to No manual case; the part halves are covered by S10-35 (counts exclude cores), S5-17 (no core row) and the Story 5 tracking cases. New case S9-49 checks that global search lists no core.",
+   "current_state": "released (AUTOMATION: HOLD - not yet build-verified), bodies as written 27 Oct (v33); not in the named set, so not touched."
+  },
+  {
+   "id": "P4",
+   "cases": [
+    {
+     "key": "S8-04",
+     "case": "C154783",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/154783"
+    },
+    {
+     "key": "S8-13",
+     "case": "C425654",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/425654"
+    },
+    {
+     "key": "S8-14",
+     "case": "C425655",
+     "link": "https://shopview.testrail.io/index.php?/cases/view/425655"
+    }
+   ],
+   "codes": [
+    "S8-N1",
+    "S8-N2",
+    "S8-N3"
+   ],
+   "answer": "Doc 27 (Q16)",
+   "reason": "Answer 27: \"Changing a user's role logs that user out on their next action, with \\\"Session expired, please log in again.\\\" Until then the old controls stay on screen. After logging back in, they follow the new role.\" The only screen route the three cases used (a page opened before the role was cut) now ends in a sign-out, never in the access error; after signing in again the controls are hidden (S8-R3, S8-R5, S8-R9). The access error of S8-N1 to S8-N3 therefore comes only from a request sent outside the screens.",
+   "proposal": "DONE IN THE LIBRARY, PLEASE CONFIRM: the three cases (in the named set) are rewritten to what a tester now sees (signed out with the message, nothing changed, the new role's screen), with role D lacking every setting answer 27 names; S8-N1, S8-N2 and S8-N3 are listed as No manual case in authoring/requirement_map.py. If the QA lead prefers, revert those three NO_MANUAL rows and hold the cases instead.",
+   "current_state": "rewritten (prd=35), standard marker."
+  }
+ ]
+}

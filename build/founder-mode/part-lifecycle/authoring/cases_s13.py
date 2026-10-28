@@ -6,7 +6,12 @@ S13-18c (a hand-typed line keeps its number), S13-22b (a hand-typed line is rece
 core (S5-18 does, held on Q1), so it is not held. New: S13-45 (v33 S13-N1a look-alike rename at another location, Chris Ward 23 Oct),
 S13-46 ("This part could not be activated", feedback row 26), S13-47 (Story 13 context note: Inventory Value for a date before a rename
 shows the old number). NO MANUAL CASE (requirement_map.py): S13-R19d (public API), S13-N1b (core renamed on its own), S13-N8 (re-point).
-The 14 Oct "not checked by hand" lines are gone (L-14)."""
+The 14 Oct "not checked by hand" lines are gone (L-14).
+28 Oct 2026 named set (PRD v35 S13-N1a scoped to other locations, S13-R19e new; Chris Ward's answers 23 and 26 of 27 Oct 2026): S13-45
+re-quoted; S13-19 now also quotes S13-R19e (a part request already received onto the line keeps its number); new S13-48 (S13-R19e on part
+sale lines, open and completed) and S13-49 (S13-N1a on the Part Library page, which has no current location: the message names the
+location). S13-03b (the core's own Part History page, which has no link on screen, answer 13) is kept unchanged and listed in
+../full-pass-2026-10-27/NO-MANUAL-PROPOSAL.json."""
 from pllib import C, PO_HOLD, HOLD, DESIGN_HOLD
 from common import *
 from pc_common import *
@@ -303,7 +308,7 @@ C("S13-18c", "S13", "A purchase order line typed by hand with the old number kee
   ["S13-R19a", "S13-R19"], part_of="S13-18",
   design=dict(note=NOBOARD))
 
-C("S13-19", "S13", "A rename carries over to open part requests",
+C("S13-19", "S13", "A rename carries over to open part requests but not to received ones",
   [ADMIN, "Create a part, part A, for this test with 5 on hand.",
    "Create a work order for this test, work order 1, with a line holding two part requests for part A: one requested from the Part Library result and not yet received, "
    "and one picked from stock, so it is received.", NEWNUM_X, START],
@@ -311,11 +316,12 @@ C("S13-19", "S13", "A rename carries over to open part requests",
    PARTS, PO_LINE, "Open the newest purchase order."],
   [["Part A is listed."], ["Edit Inventory Part opens for part A."], ["Part Number shows the new number."], ["The rename is saved and the window closes."],
    ["The Work Orders list opens."], ["Work order 1 opens."],
-   ["The open part request reads the new number, and the one picked from stock, already received, still reads the old number."],
+   ["The open part request, not yet received, reads the new number.",
+    "The part request picked from stock, already received onto the line, still reads the old number: it keeps the number it was added with."],
    ["Ordering finds the renamed part and goes through."], ["The Parts left menu shows Purchase Orders."], ["The Purchase Orders list opens."],
    ["The new purchase order's line reads the new number."]],
-  ["S13-R19", "TERM-6", "CN-S13-2"],
-  design=dict(note=NOBOARD))
+  ["S13-R19", "S13-R19e", "TERM-6", "CN-S13-2", A26],
+  design=dict(note=NOBOARD), prd=35)
 
 C("S13-20", "S13", "A rename carries over to canned jobs that hold the part",
   [ADMIN, "Create a part, part A, for this test with 5 on hand.", "Create a work order for this test, work order 1, with a line holding part A picked from stock.",
@@ -653,8 +659,8 @@ C("S13-45", "S13", "A new number that looks like a part at another location is r
    ["The window closes and part A is still listed under its old number."],
    ["The location selector shows location B."], ["The Parts left menu shows Inventory."], ["Location B's Inventory page opens."],
    ["Part B is listed at location B with its own number, unchanged."]],
-  ["S13-N1a", "UFS-14", "CN-S13-3", JIRA_N1A],
-  design=dict(note="no board draws this refusal (it was added on 23 Oct 2026, after the 13 Oct design); the expected results above come from the quotes above."),
+  ["S13-N1a", "UFS-14", "CN-S13-3", JIRA_N1A, A23],
+  design=dict(note="no board draws this refusal (it was added on 23 Oct 2026, after the 13 Oct design); the expected results above come from the quotes above."), prd=35,
   claude=["Example (the SV-10939 shape from the Jira comment): part A ZZPL-S13-45-1, part B ZZPLS13451 at location B, look-alike number ZZPL.S13.45.1."])
 
 C("S13-46", "S13", "An activation refused after the save keeps the confirmation open",
@@ -687,3 +693,30 @@ C("S13-47", "S13", "Inventory Value for a date before a rename shows the old par
    ["For today part A is listed under the new number, with Qty 4.00 and Total Cost $40.00."]],
   ["CN-S13-2", "S13-R18", "ACC-3"],
   design=dict(note="no board draws the Inventory Value report; the expected results above come from the quotes above."))
+
+C("S13-48", "S13", "A rename leaves the old number on part sale lines that hold the part",
+  [ADMIN, "Create a part, part A, for this test with 5 on hand.",
+   "Create an open part sale for this test, part sale A, with a line holding 1 of part A picked from stock.",
+   "Create a part sale for this test, part sale B, with a line holding 1 of part A picked from stock, and invoice it so it is completed.",
+   NEWNUM_X, START],
+  [TYPE_A, ROW_A, REPLACE_NEW, SAVE, "Click Part Sales in the left menu.", "Open part sale A.", "Click Part Sales in the left menu.", "Open part sale B."],
+  [["Part A is listed."], ["Edit Inventory Part opens for part A."], ["Part Number shows the new number."],
+   ["The rename is saved, the window closes and part A's row shows the new number."], ["The Part Sales list opens."],
+   ["Part sale A, still open, shows its line for part A with the old number: a part already on a part sale line keeps the number it was added with."],
+   ["The Part Sales list opens."], ["Part sale B, completed, also shows its line for part A with the old number."]],
+  ["S13-R19e", "CN-S13-2", A26], design=dict(note=NOBOARD), prd=35)
+
+C("S13-49", "S13", "A look-alike rename on the Part Library page names the location it clashes with",
+  [ADMIN, "Create two parts for this test at the test location, part A and part B, with a hyphen in part B's part number.",
+   "Use a number to type, number 1: part B's number in lower case with spaces in place of its hyphens, which no Part Library entry has exactly.",
+   START_PL],
+  [TYPE_A, ROW_A, PENCIL, "Replace the Part Number with number 1.", SAVE, WAIT5, CANCEL, PARTS, TO_PL, TYPE_B],
+  [["Part A's entry is listed."], ["The entry's detail page opens."], ["The \"Edit Library Part\" window opens, holding part A's part number."],
+   ["Part Number shows number 1."],
+   ["The save is refused and the window stays open.",
+    "A red message reads part B's part number, written as it was saved, followed by \"already exists at\" and the test location's name, then a full stop, with a smaller second line \"Please try to resolve this.\"",
+    "The message gives the location's name, not the words \"this location\": the Part Library page has no current location."],
+   ["The red message has gone on its own after about 3 seconds, and the window is still open."],
+   ["The window closes and the entry still shows part A's own number."], ["The Parts left menu shows Part Library."], ["The Part Library page opens."],
+   ["Part B's entry is listed with its own number, unchanged."]],
+  ["S13-N1a", "S11-R3a", "UFS-14", "CN-S13-3", A23], stories=[13, 11], design=dict(boards=["7.2"]), prd=35)

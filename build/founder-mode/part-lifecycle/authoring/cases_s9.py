@@ -5,7 +5,12 @@ Create & Edit includes Part Library & Inventory → View; Chris Ward on SV-10822
 search parts on a return; S9-41 and S9-42 compare the build with production (today's app) for the same role, since the PRD names no
 access beyond "today's" (question Q11 asks the PO to state it).
 New cases: S9-43 to S9-46 (S9-R21, "Not Tracked" in place of "Inventory Qty" in the part lookups) and S9-47, S9-48 (S9-R22, an
-untracked part keeps its "In Stock" badge). No manual case: S9-E9 (the public API create refusal; requirement_map.py)."""
+untracked part keeps its "In Stock" badge). No manual case: S9-E9 (the public API create refusal; requirement_map.py).
+28 Oct 2026 named set (PRD v35 S9-N3, S9-N3a, S9-R18a; Chris Ward's answers 13 and 22 of 27 Oct 2026): S9-28 re-quoted (part search
+access can come from other settings); S9-41 and S9-42 no longer compare with production, since answer 22 states today's access: no
+Vendor Order Management hides and refuses Parts → Returns (S9-41); Vendor Order Management → View only has no Create Return button, and
+the Create Return page opened by its address shows the S9-N3 access error in the part search (S9-42). New S9-49 (S9-R18a: global search
+never lists a core)."""
 from pllib import C, PO_HOLD, HOLD, DESIGN_HOLD
 from common import *
 from cases_s6 import TYPE_A, ROW_A, SAVE, DEACT_CONF, GS_OPEN
@@ -53,8 +58,6 @@ CJ_P = "Click the canned job A suggestion."
 CJ_S = "Click Save & Close."
 CREDIT = ["Click the Finance tab.", "Click the three-dot button on the invoice.", "Click Issue Credit.", "Tick Parts are being returned."]
 V, CE = "Part Library & Inventory — View", "Part Library & Inventory — Create & Edit"
-PROD = ("Have a ShopView account on production (app.shopview.com, which does not have this release yet) where you can create a role and a "
-        "staff member, so today's access can be seen beside the build's.")
 
 C("S9-01", "S9", "Work order part lookup no longer offers a part once it is inactive",
   [ADMIN] + INAB + [WO1, ST_WO1],
@@ -296,13 +299,13 @@ C("S9-28", "S9", "With Vendor Order Management Create & Edit, a return's part se
   [ADMIN, "Create a custom role for this test, role B, with Vendor Order Management — View and Vendor Order Management — Create & Edit ticked and every Part Library & Inventory box unticked, so user B reaches parts only through Vendor Order Management.",
    "Create a staff member for this test, user B, at the test location with role B, so the steps run with role B's permissions.", "Use a second browser window (a private window) signed in as user B.",
    "Have a vendor, vendor A, and an inactive part, part A, with vendor A."],
-  ["In the second window, click Parts in the top bar.", "Click Returns in the left menu.", "Click the button that starts a new return.", "Pick vendor A in the Vendor field.",
+  ["In the second window, click Parts in the top bar.", "Click Returns in the left menu.", "Click Create Return.", "Pick vendor A in the Vendor field.",
    "Type the first half of part A's part number in the Part Number field."],
-  [["The Parts left menu opens for user B."], ["The Returns list opens."], ["The Create Return page opens."], ["Vendor A is shown."],
-   ["Part A is offered, with its grey \"Inactive\" tag, and no access error appears: Create & Edit on Vendor Order Management includes viewing parts."]],
-  ["S9-N3a", "S9-N3", "S12-N1", ("JIRA", "SV-10822, Chris Ward, 23 Oct 2026",
+  [["The Parts left menu opens for user B, with Returns in it."], ["The Returns list opens, with the Create Return button."], ["The Create Return page opens."], ["Vendor A is shown."],
+   ["Part A is offered, with its grey \"Inactive\" tag, and no access error appears: Vendor Order Management — Create & Edit gives part search access although every Part Library & Inventory box is unticked."]],
+  ["S9-N3a", "S9-N3", "S12-N1", A22C, ("JIRA", "SV-10822, Chris Ward, 23 Oct 2026",
    "Confirmed: A. Leave the role bundles as they are. This epic adds, removes and re-keys no permissions (S12-N1). S9-N3a will be reworded to describe today's bundles, and any split of View vs Create & Edit for returns would be its own ticket.")],
-  stories=[9, 12], design=dict(boards=["6.6"]))
+  stories=[9, 12], design=dict(boards=["6.6"]), prd=35)
 
 C("S9-29", "S9", "A completed part sale with an inactive part keeps its totals",
   [ADMIN, "Create two active parts for this test, part A with Sell Price $20.00 and part B with Sell Price $15.00.",
@@ -415,27 +418,32 @@ C("S9-40", "S9", "The canned job warning lists inactive parts A to Z, separated 
    ("PO", "Chris Ward's answer 9 of 14 Oct 2026", "A to Z by part number, separated by \", \" (S9-R10c). Example: \"These parts are inactive and were not added: AB-100, FF-5507.\"")],
   design=D65)
 
-for key, title, role_text, steps, res in (
-        ("S9-41", "Without Vendor Order Management, Returns access is the same as today",
-         "with Part Library & Inventory — View and no Vendor Order Management permission",
-         ["In window 1, click Parts in the top bar.", "In window 2, click Parts in the top bar."],
-         [["The Parts left menu opens on the build for user B; note whether it offers Returns."],
-          ["Production's Parts left menu offers Returns for user B exactly when the build's does: both offer it or both leave it out."]]),
-        ("S9-42", "With Vendor Order Management View only, starting a return is as today",
-         "with Vendor Order Management — View, without Vendor Order Management — Create & Edit, and with Part Library & Inventory — View",
-         ["In window 1, click Parts in the top bar.", "In window 1, click Returns in the left menu.", "In window 2, click Parts in the top bar.",
-          "In window 2, click Returns in the left menu."],
-         [["The Parts left menu opens on the build for user B."],
-          ["The Returns list opens on the build; note whether the button that starts a new return is shown and usable, shown greyed out, or missing."],
-          ["Production's Parts left menu opens for user B."],
-          ["Production's Returns list opens, and its button that starts a new return is in the same state as on the build."]])):
-    C(key, "S9", title,
-      [ADMIN, PROD, f"Create the same custom role for this test on the build and on production, role B, {role_text}, so the two can be compared.",
-       "Create a staff member, user B, with role B on the build and on production, so the steps run with role B's permissions on both.",
-       "Use window 1 signed in as user B on the build and window 2 signed in as user B on production."],
-      steps, res,
-      ["S9-N3a", "S12-N1", "KD-14"], stories=[9, 12],
-      design=dict(note="no board draws the Returns access; the expected results above come from the quotes above."))
+USER_B9 = "Create a staff member for this test, user B, at the test location with role B, so the steps run with role B's permissions."
+WIN2 = "Use a second browser window (a private window) signed in as user B."
+C("S9-41", "S9", "Without Vendor Order Management, Returns is hidden and cannot be opened",
+  [ADMIN, "Create a custom role for this test, role B, with Part Library & Inventory — View and no Vendor Order Management permission, so user B can see parts but not vendor orders.",
+   USER_B9, WIN2,
+   "Write down the address of the Returns list: as the Admin, open Parts, then Returns, and copy the address from the browser's address bar."],
+  ["In the second window, click Parts in the top bar.", "Type the Returns list address you wrote down in the address bar.", "Press Enter."],
+  [["The Parts left menu opens for user B with Inventory in it, and it does not offer Returns."], ["The address is typed."],
+   ["The Returns list does not open for user B: no list of returns and no Create Return button are shown."]],
+  ["S9-N3a", "S12-N1", A22A], stories=[9, 12],
+  design=dict(note="no board draws the Returns access; the expected results above come from the quotes above."), prd=35)
+
+C("S9-42", "S9", "With Vendor Order Management View only, a return's part search is refused",
+  [ADMIN, "Create a custom role for this test, role B, with Vendor Order Management — View only: no Vendor Order Management — Create & Edit, no Part Library & Inventory box, no Part Sales — Create & Edit, no work order permission to pick parts, no Settings permission and no See Financial Data, so no setting gives user B part search access.",
+   USER_B9, WIN2, "Have a vendor, vendor A, and an active part, part A, with vendor A.",
+   "Write down the address of the Create Return page: as the Admin, open Parts, then Returns, click Create Return, and copy the address from the browser's address bar."],
+  ["In the second window, click Parts in the top bar.", "Click Returns in the left menu.", "Type the Create Return address you wrote down in the address bar.",
+   "Press Enter.", "Pick vendor A in the Vendor field.", "Type the first half of part A's part number in the Part Number field."],
+  [["The Parts left menu opens for user B, with Returns in it."],
+   ["The Returns list opens for user B, and it has no Create Return button: without Create & Edit a return cannot be started on screen."],
+   ["The address is typed."],
+   ["The Create Return page opens for user B, because its address was typed directly (as in today's app)."],
+   ["Vendor A is shown."],
+   ["The part search shows the app's standard access error instead of results, and part A is not offered."]],
+  ["S9-N3", "S9-N3a", "S12-N1", A22B, A22C], stories=[9, 12],
+  design=dict(note="no board draws the Returns access; the expected results above come from the quotes above."), prd=35)
 
 for key, where, start, add, pick in (
         ("S9-43", "work order", WO1, ADDP, "Type the shared start of the part numbers in the Part Number field."),
@@ -465,3 +473,17 @@ for key, where, rec, start, add in (
       [["The part lookup opens."], ["Part A is offered, reading \"Not Tracked\"."], ["Part A fills the row."], ["The quantity reads 2."],
        [f"Part A is added to {rec} with quantity 2 and carries its \"In Stock\" badge, although it has 0 on its shelf (0 − 2 = −2 below zero)."]],
       ["S9-R22", "FO-7"], design=dict(note="no board draws an untracked part on a work order or part sale; the expected results above come from the quotes above."))
+
+C("S9-49", "S9", "Global search never lists a part's core",
+  [ADMIN, "Create an active, tracked part, part A, for this test with a Core Charge of $25.00, so it has a core described Core for followed by part A's description.",
+   "Create a part, part B, for this test with a Core Charge of $25.00, then set it inactive and turn its tracking off, so its core is inactive and untracked too.",
+   GLOBAL],
+  [GS_OPEN, "Type Core for followed by part A's description.", "Replace the text with part A's part number.",
+   "Replace the text with Core for followed by part B's description.", "Replace the text with part B's part number."],
+  [["The global search opens."],
+   ["No result is listed for part A's core."],
+   ["Part A is listed once, as itself, with its stock badge: there is no second result for its core."],
+   ["No result is listed for part B's core, although it is inactive and untracked."],
+   ["Part B is listed once, with the grey \"Inactive\" tag and \"Not Tracked\": its core is not listed beside it."]],
+  ["S9-R18a", "S9-R18", "S9-R20", "FO-10", A13B],
+  design=dict(note="no board draws the global search; the expected results above come from the quotes above."), prd=35)

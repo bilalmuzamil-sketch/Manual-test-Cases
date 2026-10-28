@@ -4,7 +4,11 @@ Phase D, 27 Oct 2026, from ../full-pass-2026-10-27/design/DESIGN-CASE-PLAN.md (t
 The expected look comes from PRD v33 where it speaks and from the named board where the PRD is silent (Rule 126 point 5). Two held
 design-version cases (Rule 130 item 5): D-33 (long Part History entries wrap in the design, the tech plan cuts them off: question Q10)
 and D-49 (the close X the design draws on every status confirmation: question Q8). D-47 and D-48 check PRD look sentences the design
-does not draw (skill 21 §6d item 7); the coordinator drops them only if Phase B/C cases check the same look."""
+does not draw (skill 21 §6d item 7); the coordinator drops them only if Phase B/C cases check the same look.
+28 Oct 2026 named set (PRD v35; Chris Ward's answers 19, 20 and 21 of 27 Oct 2026): D-49 released (the close X stays and acts as
+Cancel: Key Decisions and S10-R11a), D-33 released (a long Part History entry wraps and is never cut short: S10-R21; the tech plan's
+ellipsis is overruled); D-11, D-12, D-24 and D-25 carry the new close-X note (the question is answered), and D-42's note says the board
+7.2 note is out of date (answer 20)."""
 from pllib import C, DESIGN_HOLD, HOLD, PO_HOLD
 from common import *
 
@@ -17,9 +21,9 @@ def PIC(*boards):
     b = list(boards)
     s = ("boards " + ", ".join(b[:-1]) + " and " + b[-1]) if len(b) > 1 else ("board " + b[0])
     return f"Open the attached design picture{'s' if len(b) > 1 else ''} of {s} at 100% zoom, so you can compare the screen with {'them' if len(b) > 1 else 'it'}."
-X_NOTE = ("The design also draws a grey close X at the right end of this confirmation's title row; the PRD lists only a title, a message, "
-          "an optional note, Cancel and a confirm button. That difference is asked of Product (question Q8) and checked by the held "
-          "design case \"Design: Status confirmation has a close X in its title row\"; this case follows the PRD and does not check the X.")
+X_NOTE = ("The design also draws a grey close X at the right end of this confirmation's title row. Product confirmed on 27 Oct 2026 "
+          "(answer 19) that the X stays and does what Cancel does (PRD v35, Key Decisions and S10-R11a); it is checked by the design case "
+          "\"Design: Status confirmation has a close X in its title row\", so this case does not check it.")
 D24_COUNT = ("TECH", "Tech plan, §3 Technical Decisions, D24", 'Show "N records selected." under the table in bulk mode (boards 4.3, 4.9).')
 D24_NEW = ("TECH", "Tech plan, §3 Technical Decisions, D24", 'Keep "New Inventory Part" visible in bulk mode (4.3, 4.8).')
 TOAST_BR = "The message box sits at the bottom right of the page."
@@ -179,7 +183,7 @@ C("D-11", S, "Design: Bulk deactivation confirmation looks as in the design",
     "A thin line runs above the footer; at the bottom right sit a white \"Cancel\" button with a grey outline, then a red \"Deactivate\" button."],
    ["The dialog closes, parts A and B are still ticked and the badge still reads 2: nothing changed."]],
   ["S10-R2", "S10-R3", "S10-R4", "S10-R5", "S10-R9", "S10-R10", "S10-R11", "S10-N1"],
-  design=dict(boards=["4.4"], words=[note("\"Deactivate parts?\", \"2 parts selected.\"")], note=X_NOTE))
+  design=dict(boards=["4.4"], words=[note("\"Deactivate parts?\", \"2 parts selected.\"")], note=X_NOTE), prd=35)
 
 C("D-12", S, "Design: Bulk reactivation confirmation looks as in the design",
   [ADMIN, "Create two inactive parts for this test, part A and part B.", SHARED("parts A and B"), NO_COUNT, LIGHT, WIDE, PIC("4.7"), START_INACTIVE],
@@ -195,7 +199,7 @@ C("D-12", S, "Design: Bulk reactivation confirmation looks as in the design",
     "A \"Note (Optional)\" box follows, then a white Cancel and a blue \"Activate\" button at the bottom right."],
    ["The dialog closes and parts A and B are still ticked on the Inactive tab: nothing changed."]],
   ["S10-R3", "S10-R4", "S10-R8", "S10-R9", "S10-R10", "S10-R11", "S10-N1"],
-  design=dict(boards=["4.7"], words=[note("\"Activate parts?\", \"2 parts selected.\"")], note=X_NOTE))
+  design=dict(boards=["4.7"], words=[note("\"Activate parts?\", \"2 parts selected.\"")], note=X_NOTE), prd=35)
 
 C("D-13", S, "Design: Bulk change success message looks as in the design",
   [ADMIN, "Create two active parts for this test, part A and part B.", SHARED("parts A and B"), NO_COUNT, LIGHT, WIDE, PIC("4.5"), START],
@@ -363,7 +367,7 @@ C("D-24", S, "Design: Deactivate part confirmation looks as in the design",
    ["The confirmation closes and Edit Inventory Part shows again with Inactive still picked and the green \"Active\" pill."],
    ["The window closes and part A is still listed on the Active tab."]],
   ["S10-R3", "S10-R4", "S10-R6", "S10-R9", "S10-R10", "S10-R11", "S13-R23"],
-  design=dict(boards=["3.3"], words=[note("Save raises \"Deactivate part?\"")], note=X_NOTE))
+  design=dict(boards=["3.3"], words=[note("Save raises \"Deactivate part?\"")], note=X_NOTE), prd=35)
 
 C("D-25", S, "Design: Activate part confirmation looks as in the design",
   [ADMIN, "Create an inactive part for this test, part A.", LIGHT, WIDE, PIC("3.7"), START_INACTIVE],
@@ -380,7 +384,7 @@ C("D-25", S, "Design: Activate part confirmation looks as in the design",
    ["The confirmation closes and Edit Inventory Part shows again with Active still picked."],
    ["The window closes and part A is still listed on the Inactive tab."]],
   ["S10-R3", "S10-R4", "S10-R7", "S10-R10", "S10-R11", "S13-R25"],
-  design=dict(boards=["3.7"], words=[note("Active picked, then Save")], note=X_NOTE))
+  design=dict(boards=["3.7"], words=[note("Active picked, then Save")], note=X_NOTE), prd=35)
 
 C("D-26", S, "Design: Part deactivated message looks as in the design",
   [ADMIN, "Create an active part for this test, part A.", LIGHT, WIDE, PIC("3.4"), START],
@@ -489,13 +493,12 @@ C("D-33", S, "Design: Part History keeps column widths when events are long",
    ["The Staff, Date and Time columns are as wide as on the test location's Part History page (compare with board 2.4).",
     "The \"Part number updated | Original number: … | New number: … | Changed at: …\" entry wraps onto a second line inside the Event column.",
     "No column narrows, and the end of the entry, the test location's name, is readable: it is not cut off with \"...\"."]],
-  ["S10-R21", "S10-R25", ("TECH", "Tech plan, Phase 8, PartHistory.vue", "S10-R21: fixed headerStyle widths on Staff/Date/Time, Event elastic, table-layout: fixed + ellipsis (the Inventory list approach)")],
-  marker=PO_HOLD("Q10", "the design wraps long Part History entries, the tech plan cuts them off; not run until answered"),
+  ["S10-R21", "S10-R25", A21],
   design=dict(boards=["2.4", "2.6"], pictures=["correct-04-p2-4-history-here.png", "board-2.6-part-history-at-lethbridge-redrawn-table.png"],
               words=[note("The entries are written at Lethbridge too")],
-              note=("Held design-version case (Rule 130): board 2.6 redraws the table over the build screenshot and its note says a long "
-                    "Event wraps onto a second line, while the tech plan cuts it off with an ellipsis; the PRD does not say which. "
-                    "Question Q10 to Product. Compare with the attached redrawn table, not with the board's raw screenshot.")))
+              note=("Board 2.6 redraws the table over the build screenshot and its note says a long Event wraps onto a second line. "
+                    "Product ruled on 27 Oct 2026 (answer 21) that a long entry wraps and is never cut short, and PRD v35 (S10-R21) now says "
+                    "so; the tech plan's ellipsis is overruled. Compare with the attached redrawn table, not with the board's raw screenshot.")), prd=35)
 
 C("D-34", S, "Design: Part History search with a term looks as in the design",
   [ADMIN, "Have an inactive part, part A, deactivated with the note Superseded by a newer part, so its Part History has a Deactivated entry with a reason.",
@@ -615,11 +618,10 @@ C("D-42", S, "Design: Part Library entry page looks as in the design",
     "At the left a white card reads \"Part details\", then part A's name in bold with a blue pencil-on-lines (edit) icon to its right, then Part number, Category, Manufacturer, Measurement and Total parts.",
     "To its right the title \"Parts\" heads a table with an arrow column, then Workplace, Bin location, Average cost, Sell price, Core charge, Remaining Quantity, Min and Max; the test location's row is listed.",
     "The page shows the pencil as its only edit control and has no Delete button anywhere."]],
-  ["S11-R3", "S12-R12"],
+  ["S11-R3", "S12-R12", A20],
   design=dict(boards=["7.2"], words=[note("Clicking a row opens the entry")],
-              note=("The board's note above still says the entry can be deleted on this page; the PRD (S11-R3) says the page has no Delete "
-                    "button and the board's picture shows none. This case follows the PRD; question Q9 asks Product to confirm the note is "
-                    "out of date.")))
+              note=("The board's note below says the entry can be deleted on this page. Product confirmed on 27 Oct 2026 (answer 20) that "
+                    "the note is out of date: the page has no Delete button, as the PRD (S11-R3) says and the board's picture shows.")), prd=35)
 
 # ---------------------------------------------------------------- Widths (Rule 126 point 2; PRD form factor)
 def WPC(w): return f"Use a computer whose screen is set to {w} pixels wide, with the browser window maximised and the page zoom at 100%."
@@ -705,9 +707,7 @@ C("D-49", S, "Design: Status confirmation has a close X in its title row",
    ["The \"Deactivate parts?\" confirmation opens with a grey X at the right end of its title row."],
    ["The confirmation closes; part B is still ticked and still listed on the Active tab."],
    ["The dark bar and the checkboxes disappear."]],
-  ["KD-11", "S10-R2", "S13-R23", "S10-N1"],
-  marker=DESIGN_HOLD,
+  ["KD-11", "S10-R11a", "S10-R2", "S13-R23", "S10-N1", A19],
   design=dict(boards=["3.3", "3.7", "4.4", "4.7"], words=[note("Save raises \"Deactivate part?\"")],
-              note=("Held design-version case (Rule 130): every status confirmation on the boards has a close X in its title row; the PRD "
-                    "lists a title, a message, an optional note, Cancel and a confirm button only. Question Q8 to Product. Not run "
-                    "until Product rules; if the PRD wins, this case is deleted.")))
+              note=("Every status confirmation on the boards has a close X in its title row. Product confirmed on 27 Oct 2026 (answer 19) "
+                    "that the X stays and does exactly what Cancel does, and PRD v35 now says so (Key Decisions, S10-R11a).")), prd=35)

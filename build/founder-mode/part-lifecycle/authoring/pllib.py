@@ -38,15 +38,78 @@ def md_to_text(md):
         else: out.append(t)
     return "\n".join(out)
 
-# ---------------------------------------------------------------- PRD v33
-PRD_FILE = f"{P}/sources/CONFLUENCE-829227015-PartLifecycle-v33-2026-10-27.md"
-PRD_ALL = open(PRD_FILE).read()
-PRD_MD = PRD_ALL.split("## 9. Change Log")[0]            # the Change Log is never a source of a requirement or a quote
-PRD_TXT = md_to_text(PRD_MD)
-PRDW = ws(PRD_TXT)
-PRD_NAME = 'PRD "Parts Lifecycle Update", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward)'
-PRD_VERSION = 33
-READ = "read 27 Oct 2026"
+# ---------------------------------------------------------------- PRD v33 and v35
+# 28 Oct 2026 (named set, Rule 122 amendment): the QA lead chose a NAMED SET, not a full pass. Cases in the set carry prd=35 and quote
+# PRD v35 (Confluence 829227015 version 35, edited 27 Oct 2026 by Chris Ward); every other case keeps prd=33 and renders exactly as it was
+# written on 27 Oct 2026 (quotes, From line and version stamp unchanged). Coverage (build.py) runs on the v35 codes.
+PRD_FILES = {33: f"{P}/sources/CONFLUENCE-829227015-PartLifecycle-v33-2026-10-27.md", 35: f"{P}/sources/CONFLUENCE-829227015-2026-10-28.md"}
+PRD_NAMES = {33: 'PRD "Parts Lifecycle Update", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward)',
+             35: 'PRD "Parts Lifecycle Update", Confluence 829227015, version 35 (edited 27 Oct 2026 by Chris Ward)'}
+PRD_READ = {33: "read 27 Oct 2026", 35: "read 28 Oct 2026"}
+
+def _parse(ver):
+    all_ = open(PRD_FILES[ver]).read()
+    md = all_.split("## 9. Change Log")[0]            # the Change Log is never a source of a requirement or a quote
+    W = ws(md_to_text(md))
+    code, code_story, story_title, named = {}, {}, {}, {}
+    story = None
+    for line in md.split("\n"):
+        m = re.match(r"^### Story (\d+): (.*)$", line)
+        if m: story = int(m.group(1)); story_title[story] = m.group(2).strip(); continue
+        m = re.match(r"^- \*\*(S\d+-[RNE]\d+[a-z]?):\*\* (.*)$", line)
+        if m:
+            c = m.group(1)
+            if c in code: raise SystemExit(f"v{ver}: code {c} appears twice as a requirement line")
+            code[c] = ws(md_to_text(m.group(2)))
+            code_story[c] = int(re.match(r"S(\d+)-", c).group(1))
+            if code_story[c] != story: raise SystemExit(f"v{ver}: {c} sits under Story {story}")
+    # ---- named PRD items with no code (quotable; each a full bullet / row / note, verbatim)
+    def _n(key, label, text):
+        if ws(text) not in W: raise SystemExit(f"NAMED {key} not verbatim in PRD v{ver}: {text[:80]}")
+        named[key] = (label, ws(text))
+    def _section(title):
+        m = re.search(r"^## " + re.escape(title) + r".*?$(.*?)^## ", md, re.M | re.S)
+        return m.group(1) if m else ""
+    def _bullets(block):
+        return [ws(md_to_text(x)) for x in re.findall(r"^- (.*)$", block, re.M)]
+    fo = _section("2. Feature Overview")
+    for head, pre in (("Core functionality", "FO"), ("Accounting", "ACC"), ("Form factor", "FF"), ("Out of scope", "OOS")):
+        m = re.search(r"\*\*" + head + r"\*\*(.*?)(?:\n\*\*|\Z)", fo, re.S)
+        for i, b in enumerate(_bullets(m.group(1)), 1): _n(f"{pre}-{i}", f"Feature Overview, {head}", b)
+    for i, b in enumerate(_bullets(_section("3. Jobs to be Done / Goals")), 1): _n(f"GOAL-{i}", "Goals", b)
+    for i, b in enumerate(_bullets(_section("4. Key Decisions")), 1): _n(f"KD-{i}", "Key Decisions", b)
+    for i, b in enumerate(_bullets(_section("5. Terminology")), 1): _n(f"TERM-{i}", "Terminology", b)
+    for i, b in enumerate(_bullets(_section("6. Assumptions")), 1): _n(f"ASSUME-{i}", "Assumptions", b)
+    # context notes, story by story ("CN-S<n>-<i>")
+    story = None; cn = {}
+    for line in md.split("\n"):
+        m = re.match(r"^### Story (\d+):", line)
+        if m: story = int(m.group(1)); continue
+        if line.startswith(">") and "Context note" in line:
+            t = ws(md_to_text(line)).lstrip("* ").rstrip("*").strip()   # each note is wrapped in Markdown italics: no stray "*" at either end
+            cn[story] = cn.get(story, 0) + 1
+            _n(f"CN-S{story}-{cn[story]}", f"Story {story}, context note", t)
+    # User Feedback Summary rows ("UFS-01" ...), quoted as "Trigger | Message | Behavior"
+    ufs = []
+    block = _section("8. User Feedback Summary") or md.split("## 8. User Feedback Summary")[1]
+    for line in block.split("\n"):
+        if line.startswith("| ") and not line.startswith("| **Trigger") and not line.startswith("| ---"):
+            ufs.append(" | ".join(ws(md_to_text(x)) for x in line.strip().strip("|").split("|")))
+    for i, row in enumerate(ufs, 1): named[f"UFS-{i:02d}"] = ("User Feedback Summary", row)
+    # the context note under the User Feedback Summary table is parsed above as CN-S13-3 (it sits after Story 13's heading)
+    return dict(ALL=all_, MD=md, W=W, ROWSW=ws(" ".join(ufs)), CODE=code, CODE_STORY=code_story, STORY_TITLE=story_title, NAMED=named, UFS=ufs)
+
+PRDV = {v: _parse(v) for v in PRD_FILES}
+if set(PRDV[33]["NAMED"]) != set(PRDV[35]["NAMED"]): raise SystemExit("v33 and v35 name different context notes, bullets or feedback rows")
+if set(PRDV[33]["CODE"]) - set(PRDV[35]["CODE"]): raise SystemExit("a v33 code is missing from v35")
+if PRDV[33]["STORY_TITLE"] != PRDV[35]["STORY_TITLE"]: raise SystemExit("story titles changed between v33 and v35")
+PRD_VERSION = 35                                         # coverage, the requirement map and new cases use v35
+_cur = PRDV[PRD_VERSION]
+PRD_FILE, PRD_ALL, PRD_MD, PRDW, PRD_ROWSW = PRD_FILES[PRD_VERSION], _cur["ALL"], _cur["MD"], _cur["W"], _cur["ROWSW"]
+CODE, CODE_STORY, STORY_TITLE, NAMED, UFS = _cur["CODE"], _cur["CODE_STORY"], _cur["STORY_TITLE"], _cur["NAMED"], _cur["UFS"]
+PRD_NAME, READ = PRD_NAMES[33], PRD_READ[33]             # the From line of every case NOT in the 28 Oct named set (unchanged)
+NEW_V35 = sorted(set(CODE) - set(PRDV[33]["CODE"]))     # S7-N11, S9-R18a, S10-R11a, S11-E5, S12-R11a, S13-R19e
+CHANGED_V35 = sorted(c for c in PRDV[33]["CODE"] if PRDV[33]["CODE"][c] != CODE[c])
 EPIC = "SV-10647"
 DESIGN_URL = "https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE"
 NOBUILD = "The build is not yet available to check this case against."
@@ -55,60 +118,9 @@ DESIGN_HOLD = "AUTOMATION: HOLD - the design differs from the PRD, waiting on th
 def PO_HOLD(n, why): return f"AUTOMATION: HOLD - waiting on the PO (question {n}: {why})"
 def HOLD(reason): return "AUTOMATION: HOLD - " + reason
 
-CODE, CODE_STORY = {}, {}
-_story = None
-STORY_TITLE = {}
-for line in PRD_MD.split("\n"):
-    m = re.match(r"^### Story (\d+): (.*)$", line)
-    if m: _story = int(m.group(1)); STORY_TITLE[_story] = m.group(2).strip(); continue
-    m = re.match(r"^- \*\*(S\d+-[RNE]\d+[a-z]?):\*\* (.*)$", line)
-    if m:
-        code = m.group(1)
-        if code in CODE: raise SystemExit(f"code {code} appears twice as a requirement line")
-        CODE[code] = ws(md_to_text(m.group(2)))
-        CODE_STORY[code] = int(re.match(r"S(\d+)-", code).group(1))
-        if CODE_STORY[code] != _story: raise SystemExit(f"{code} sits under Story {_story}")
 STORY_JIRA = {n: f"SV-{10813 + n}" for n in range(1, 14)}   # SV-10814 ... SV-10826, checked against the PRD "Jira:" lines below
 for n, k in STORY_JIRA.items():
     if f"**Jira:** {k}" not in PRD_MD: raise SystemExit(f"Story {n} is not {k} in the PRD")
-
-# ---- named PRD items with no code (quotable; each a full bullet / row / note, verbatim)
-NAMED = {}
-def _n(key, label, text):
-    if ws(text) not in PRDW: raise SystemExit(f"NAMED {key} not verbatim in PRD v33: {text[:80]}")
-    NAMED[key] = (label, ws(text))
-def _section(title):
-    m = re.search(r"^## " + re.escape(title) + r".*?$(.*?)^## ", PRD_MD, re.M | re.S)
-    return m.group(1) if m else ""
-def _bullets(block):
-    return [ws(md_to_text(x)) for x in re.findall(r"^- (.*)$", block, re.M)]
-_fo = _section("2. Feature Overview")
-for head, pre in (("Core functionality", "FO"), ("Accounting", "ACC"), ("Form factor", "FF"), ("Out of scope", "OOS")):
-    m = re.search(r"\*\*" + head + r"\*\*(.*?)(?:\n\*\*|\Z)", _fo, re.S)
-    for i, b in enumerate(_bullets(m.group(1)), 1): _n(f"{pre}-{i}", f"Feature Overview, {head}", b)
-for i, b in enumerate(_bullets(_section("3. Jobs to be Done / Goals")), 1): _n(f"GOAL-{i}", "Goals", b)
-for i, b in enumerate(_bullets(_section("4. Key Decisions")), 1): _n(f"KD-{i}", "Key Decisions", b)
-for i, b in enumerate(_bullets(_section("5. Terminology")), 1): _n(f"TERM-{i}", "Terminology", b)
-for i, b in enumerate(_bullets(_section("6. Assumptions")), 1): _n(f"ASSUME-{i}", "Assumptions", b)
-# context notes, story by story ("CN-S<n>-<i>")
-_story = None; _cn = {}
-for line in PRD_MD.split("\n"):
-    m = re.match(r"^### Story (\d+):", line)
-    if m: _story = int(m.group(1)); continue
-    if line.startswith(">") and "Context note" in line:
-        t = ws(md_to_text(line)).lstrip("* ").rstrip("*").strip()   # v33 wraps each note in Markdown italics: no stray "*" at either end
-        _cn[_story] = _cn.get(_story, 0) + 1
-        _n(f"CN-S{_story}-{_cn[_story]}", f"Story {_story}, context note", t)
-# User Feedback Summary rows ("UFS-01" ...), quoted as "Trigger | Message | Behavior"
-UFS = []
-_ufs = _section("8. User Feedback Summary") or PRD_MD.split("## 8. User Feedback Summary")[1]
-for line in _ufs.split("\n"):
-    if line.startswith("| ") and not line.startswith("| **Trigger") and not line.startswith("| ---"):
-        row = " | ".join(ws(md_to_text(x)) for x in line.strip().strip("|").split("|"))
-        UFS.append(row)
-PRD_ROWSW = ws(" ".join(UFS))
-for i, row in enumerate(UFS, 1): NAMED[f"UFS-{i:02d}"] = ("User Feedback Summary", row)
-# the context note under the User Feedback Summary table is parsed above as CN-S13-3 (it sits after Story 13's heading)
 # which story owns each User Feedback Summary row (the gate in build.py needs every message of a written story used word for word)
 UFS_STORY = {1: 11, 2: 4, 3: 4, 4: 7, 5: 7, 6: 7, 7: 7, 8: 7, 9: 7, 10: 7, 11: 13, 12: 13, 13: 13, 14: 13, 15: 13, 16: 13, 17: 13,
              18: 13, 19: 13, 20: 13, 21: 13, 22: 13, 23: 13, 24: 13, 25: 13, 26: 13, 27: 13, 28: 10, 29: 10, 30: 10, 31: 10, 32: 2,
@@ -131,15 +143,26 @@ PO_FILES = [f"{P}/po-answers-2026-10-09/ANSWERS-Chris-Ward-2026-10-09.md", f"{P}
             f"{P}/po-answers-2026-10-09/ANSWERS-QA-lead-test-setup-2026-10-09.md"]
 POW = ws(" ".join(open(f).read() for f in PO_FILES))
 PO_NAME = "Product's answers (Chris Ward, 9 Oct and 14 Oct 2026, saved in po-answers-2026-10-09/ and po-answers-2026-10-14/)"
+# Chris Ward's answers to Doc questions 13-27 (27 Oct 2026), copied word for word on 28 Oct 2026 (read only) from the question Doc
+PO27_FILE = f"{FP}/ANSWERS-13-27-2026-10-27.md"
+PO27W = ws(re.sub(r"<!--.*?-->", "", open(PO27_FILE).read(), flags=re.S))
+PO27_DOC = "https://docs.google.com/document/d/1pkAPGqWVTdtYorNN4SVNl9HkHxuuB9czro_y2DbUeEM/edit"
+PO27_NAME = (f"Product's answers to questions 13 to 27 (Chris Ward, 27 Oct 2026, Google Doc {PO27_DOC}, saved word for word in "
+             "full-pass-2026-10-27/ANSWERS-13-27-2026-10-27.md)")
+def PO27(n, text): return ("PO27", f"Chris Ward, 27 Oct 2026, answer {n}", text)
 CANVAS = json.load(open(f"{P}/sources/design-2026-10-13-artifact/files/canvas.json"))
 BOARD_FILE = {a["title"]: a["file"].replace(".dc.html", ".png") for a in CANVAS["artboards"]}
 BOARD_BY_NO = {a["title"].split(" ")[0]: a["title"] for a in CANVAS["artboards"]}
 PNG_DIR = f"{P}/sources/design-2026-10-13-artifact/png"
 NOTESW = [ws(n["text"]) for n in CANVAS["annotations"]]
 DOCS = {"PRD": (PRD_NAME, lambda t: ws(t) in PRDW or ws(t) in PRD_ROWSW),
+        "PO27": (PO27_NAME, lambda t: ws(t) in PO27W),
         "TECH": (TECH_NAME, lambda t: ws(t) in TECHW),
         "JIRA": (JIRA_NAME, lambda t: ws(t) in JIRAW),
         "PO": (PO_NAME, lambda t: ws(t) in POW)}
+def prd_ok(text, ver):
+    """A PRD quote is verbatim in the case's own PRD version (a requirement line, a named item or a feedback row)."""
+    return ws(text) in PRDV[ver]["W"] or ws(text) in PRDV[ver]["ROWSW"]
 
 def board(no):
     """'4.1' -> '4.1 The actions menu' (the design's own board title)."""
@@ -148,26 +171,28 @@ def board(no):
 
 # ---------------------------------------------------------------- the case model
 CASES = []
-def C(key, sec, title, pre, steps, res, q, note="", marker=None, design=None, stories=None, claude=None, part_of=None):
+def C(key, sec, title, pre, steps, res, q, note="", marker=None, design=None, stories=None, claude=None, part_of=None, prd=33):
     """key: library key (testrail-id-map.csv gives its C-id; a key with no row is a NEW case). sec: S1..S13, IV or DESIGN.
     pre: plain precondition bullets (tester text). steps: one UI action each. res: one entry per step, a list of bullets (or one str).
     q: quotes — a PRD code ("S1-R1"), a NAMED key ("UFS-40", "CN-S4-1", "FO-7"), or a tuple (doc, label, verbatim text) with doc in
        PRD / TECH / JIRA / PO. design: dict(boards=["4.1", ...], words=[verbatim canvas note text], pictures=[png names]) — boards
        default to none; pictures default to the boards' own pictures. claude: setup-file lines (examples, recipes) for Claude sessions
-       only. part_of: the key of the case this one was split from (Rule 136; the original keeps its C-id as part 1)."""
+       only. part_of: the key of the case this one was split from (Rule 136; the original keeps its C-id as part 1).
+    prd: the PRD version the case quotes (33, or 35 for a case in the 28 Oct 2026 named set and every case added then)."""
+    if prd not in PRDV: raise SystemExit(f"{key}: no PRD version {prd}")
     res = [[r] if isinstance(r, str) else list(r) for r in res]
     CASES.append(dict(key=key, sec=sec, title=title, pre=list(pre), steps=list(steps), res=res, q=list(q), note=note,
-                      marker=marker or MARKER, design=design or {}, stories=stories, claude=claude or [], part_of=part_of))
+                      marker=marker or MARKER, design=design or {}, stories=stories, claude=claude or [], part_of=part_of, prd=prd))
 
 def quotes(c):
     """[(doc, label, text)] for a case, each looked up or checked verbatim."""
-    out = []
+    out, v = [], PRDV[c.get("prd", 33)]
     for x in c["q"]:
         if isinstance(x, tuple):
             doc, label, text = x
             out.append((doc, label, ws(text)))
-        elif x in CODE: out.append(("PRD", x, CODE[x]))
-        elif x in NAMED: out.append(("PRD",) + NAMED[x])
+        elif x in v["CODE"]: out.append(("PRD", x, v["CODE"][x]))
+        elif x in v["NAMED"]: out.append(("PRD",) + v["NAMED"][x])
         else: raise KeyError(f"{c['key']}: unknown quote key {x}")
     return out
 
@@ -236,12 +261,15 @@ def quotes_block(c):
     groups = {}
     for doc, label, text in quotes(c): groups.setdefault(doc, []).append((label, text))
     sto = ", ".join(f"story {STORY_JIRA[n]} (Story {n}, {STORY_TITLE[n]})" for n in story_nums(c) if n in STORY_JIRA)
+    ver = c.get("prd", 33)
     if not sto and c["sec"] == "IV": sto = IV_BUG      # an Inventory Value case quotes no story (stories=[0]): name the bug instead
     h = "<p><strong>Exact quotes from the source (for reproducibility)</strong></p>"
     first = True
-    for doc in ("PRD", "PO", "JIRA", "TECH"):
+    for doc in ("PRD", "PO", "PO27", "JIRA", "TECH"):
         if doc not in groups: continue
-        h += f"<p>From: {e(DOCS[doc][0])}, {READ}" + (f" &middot; Epic {EPIC}, {e(sto)}" if first else "") + "</p>"
+        name = PRD_NAMES[ver] if doc == "PRD" else DOCS[doc][0]
+        read = PRD_READ[ver] if doc == "PRD" else (PRD_READ[35] if doc == "PO27" else READ)
+        h += f"<p>From: {e(name)}, {read}" + (f" &middot; Epic {EPIC}, {e(sto)}" if first else "") + "</p>"
         h += "<ul>" + "".join(f"<li><strong>{e(l)}:</strong> &ldquo;{e(t)}&rdquo;</li>" for l, t in groups[doc]) + "</ul>"
         first = False
     return h + f"<p>{e(NOBUILD)}</p>"
@@ -324,7 +352,8 @@ def check(c):
     if not c["q"]: p.append(f"{k}: no source quote (Rule 64)")
     for doc, label, text in quotes(c):
         if doc not in DOCS: p.append(f"{k}: unknown source document {doc}")
-        elif not DOCS[doc][1](text): p.append(f"{k}: quote {label} is not verbatim in {doc}")
+        elif doc == "PRD" and not prd_ok(text, c["prd"]): p.append(f"{k}: quote {label} is not verbatim in PRD v{c['prd']}")
+        elif doc != "PRD" and not DOCS[doc][1](text): p.append(f"{k}: quote {label} is not verbatim in {doc}")
     for w in design_of(c)["words"]:
         if ws(w) not in NOTESW and not any(ws(w) in n for n in NOTESW): p.append(f"{k}: design words not verbatim in the canvas notes: {w[:60]!r}")
     for b in design_of(c)["boards"]:

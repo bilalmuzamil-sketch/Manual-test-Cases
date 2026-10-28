@@ -5,7 +5,11 @@ SV-10823, 23 Oct 2026): S10-25 (both changed, from the window), S10-25b (split, 
 S10-26 (only Min changed, through the import).
 Held on Q1 (how a core's own Part History page is opened): S10-22, S10-29.
 No manual case: S10-N3 (a note over 255 characters: the field stops at 255), S10-N4 (a change with no parts: the button is disabled),
-S10-R25a (public API); feedback rows 29 (server error), 38, 39 (requirement_map.py)."""
+S10-R25a (public API); feedback rows 29 (server error), 38, 39 (requirement_map.py).
+28 Oct 2026 named set (PRD v35; Chris Ward's answers 13 and 19 of 27 Oct 2026): S10-01 re-quoted (the standard confirmation has the
+close X), S10-19 re-quoted (S5-E3); new S10-36 (S10-R11a: Esc and clicking outside do not close the confirmation; the X itself is
+checked by "Design: Status confirmation has a close X in its title row"). S10-22 and S10-29 (the core's own Part History page, which
+has no link on screen, answer 13) are kept unchanged and listed in ../full-pass-2026-10-27/NO-MANUAL-PROPOSAL.json."""
 from pllib import C, PO_HOLD, HOLD, DESIGN_HOLD
 from common import *
 from cases_s6 import TYPE_A, ROW_A, SAVE, DEACT_CONF, ACT_CONF, PH
@@ -39,9 +43,9 @@ C("S10-01", "S10", "Saving a different Part Status asks to confirm first",
   [ROW_A, PICK_IN, SAVE, CANCEL_CONF, "Click Cancel."],
   [["Edit Inventory Part opens with a green \"Active\" pill."], ["Inactive is picked, and nothing is applied yet: the pill still reads a green \"Active\"."],
    ["Before anything changes, a confirmation titled \"Deactivate part?\" opens over the part window.",
-    "It is the app's standard confirmation: a title, message lines, a \"Note (Optional)\" field, Cancel and a red Deactivate button, and there is no word to type to confirm."],
+    "It is the app's standard confirmation: a title with a close X at its right, message lines, a \"Note (Optional)\" field, Cancel and a red Deactivate button, and there is no word to type to confirm."],
    ["The confirmation closes."], ["The window closes and part A is still on the Active tab."]],
-  ["S10-R1", "S10-R2", "S13-R21", "KD-11"], stories=[10, 13], design=D33)
+  ["S10-R1", "S10-R2", "S13-R21", "KD-11"], stories=[10, 13], design=D33, prd=35)
 
 C("S10-02", "S10", "A bulk change that partly fails lists the failed part and its reason",
   [ADMIN, "Create two active parts for this test, part A and part B.", SHARED("parts A and B"), TWO_TABS, "Start in tab 1 on the Inventory page, on the Active tab."],
@@ -233,7 +237,7 @@ C("S10-19", "S10", "A core has no row of its own to tick in Deactivate parts",
   [MENU, "Click Deactivate parts.", "Type Core for followed by part A's description in the Search box.", "Replace the search text with part A's part number.", X],
   [R_MENU, R_MODE, ["No row is listed for the core: it has no row of its own, so there is nothing to tick for it."],
    ["Exactly one row is listed, part A's own, with its core charge in the Core column."], ["Bulk mode ends and nothing has changed."]],
-  ["S5-E3", "KD-8", "FO-10"], stories=[10, 5], design=dict(note="no board draws a core; the expected results above come from the quotes above."))
+  ["S5-E3", "KD-8", "FO-10"], stories=[10, 5], design=dict(note="no board draws a core; the expected results above come from the quotes above."), prd=35)
 
 C("S10-20", "S10", "A note of only spaces records no note",
   [ADMIN, "Create an active part, part A, for this test.", "Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box."],
@@ -403,3 +407,18 @@ C("S10-35", "S10", "The bulk change count does not count the cores that change w
   ["S10-R12", "S10-R12a", "UFS-28", ("JIRA", "SV-10823 acceptance criteria",
                                        "Given two parts that both have a core, when they are deactivated in bulk, then the message reads \"2 parts updated.\"")],
   design=D45)
+
+C("S10-36", "S10", "Pressing Esc or clicking outside does not close a status confirmation",
+  [ADMIN, "Create two active parts for this test, part A and part B.", SHARED("parts A and B"), NO_COUNT, START],
+  [TYPE_SHARED, ROW_A, PICK_IN, SAVE, "Press Esc.", "Click the page area outside the confirmation, away from any button.", CANCEL_CONF, "Click Cancel.",
+   MENU, "Click Deactivate parts.", "Click the part B row.", DEACT_BAR, "Press Esc.", "Click the page area outside the confirmation, away from any button.",
+   CANCEL_CONF, X],
+  [["Parts A and B are listed."], ["Edit Inventory Part opens for part A."], ["Inactive is picked."], ["The \"Deactivate part?\" confirmation opens."],
+   ["The confirmation stays open: Esc does not close it."], ["The confirmation still stays open: clicking outside it does not close it."],
+   ["The confirmation closes; Edit Inventory Part shows again with Inactive still picked and the green \"Active\" pill: nothing was saved."],
+   ["The window closes and part A is still listed on the Active tab."],
+   R_MENU, R_MODE, ["The bar reads 1 selected."], ["The \"Deactivate parts?\" confirmation opens, reading \"1 part selected.\""],
+   ["The confirmation stays open: Esc does not close it."], ["The confirmation still stays open: clicking outside it does not close it."],
+   ["The confirmation closes; part B is still ticked and still listed on the Active tab."], ["Bulk mode ends and part B is still listed on the Active tab."]],
+  ["S10-R11a", "S13-R23", "S10-N1", "S10-R4", A19], stories=[10, 13],
+  design=dict(boards=["3.3", "4.4"], words=[note("Save raises \"Deactivate part?\"")]), prd=35)

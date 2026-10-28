@@ -4,7 +4,12 @@ one case per default role (Rule 136): S8-03 Service Manager (keeps C154782), S8-
 The refusals of S8-N1 to S8-N3 are checked by hand the only way a manual tester can reach them: a screen opened while the user still
 had the right, then the role cut down to View only (with See Financial Data and every Settings permission off, so no role setting
 carries the right to delete behind the scenes, PRD context note S8-R14/S8-R15 and tech plan D14), then the action finished in the
-open screen. S8-04 also compares the status change with Delete Part for the same user in the same state (S8-R15)."""
+open screen. S8-04 also compares the status change with Delete Part for the same user in the same state (S8-R15).
+28 Oct 2026 named set (Chris Ward's answer 27 of 27 Oct 2026): a role change logs the user out on their next action with "Session
+expired, please log in again.", and after signing in again the screen follows the new role. So the open-page route above never shows
+the access error: S8-04, S8-13 and S8-14 are rewritten to what a tester now sees (signed out, nothing changed, the new role's screen),
+with role D cut to lack every setting answer 27 names; S8-N1, S8-N2 and S8-N3 (the access error itself) move to NO MANUAL CASE
+(requirement_map.py; listed for the QA lead in ../full-pass-2026-10-27/NO-MANUAL-PROPOSAL.json)."""
 from pllib import C, PO_HOLD, HOLD, DESIGN_HOLD
 from common import *
 from cases_s6 import TYPE_A, ROW_A, SAVE, DEACT_CONF, ACT_CONF
@@ -17,8 +22,8 @@ ROLE_B = (f"Create a custom role for this test, role B, with {V}, {CE} and See F
 USER_B = "Create a staff member for this test, user B, at the test location with role B, so the steps run with role B's permissions."
 WIN_B = "Use two browser windows: window 1 signed in as the Admin, window 2 (a private window) signed in as user B, so both users' screens can be seen side by side."
 START_B = "Start window 2 on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab."
-ROLE_D = (f"Create a custom role for this test, role D, with {V}, {CE}, {DL} and See Financial Data, so user D starts with the right "
-          "to delete parts.")
+ROLE_D = (f"Create a custom role for this test, role D, with {V}, {CE}, {DL} and See Financial Data, and with no Vendor Order Management, "
+          "Part Sales or Settings permission, so user D starts with the right to delete parts.")
 USER_D = "Create a staff member for this test, user D, at the test location with role D."
 WIN_D = "Use two browser windows: window 1 signed in as the Admin, window 2 (a private window) signed in as user D."
 START_D1 = "Start window 1 on role D's Edit Role page (Roles & Permissions), with nothing changed yet."
@@ -87,21 +92,23 @@ C("S8-03c", "S8", "The Service Advisor role has no status, tracking or delete co
    ["The window closes without saving."]],
   ["S8-R14", "KD-14", "S8-R12"], part_of="S8-03", design=NODES)
 
-C("S8-04", "S8", "A status change is refused once the user can no longer delete parts",
-  [ADMIN, ROLE_D, USER_D, WIN_D, "Create two active parts for this test, part A and part B, that sit on no work order and no return.",
-   SHARED("parts A and B"), START_D1,
-   "Start window 2 on the Inventory page, on the Active tab, with the shared start of the part numbers typed in the Search box."],
+EXPIRED = "In window 2 the message \"Session expired, please log in again.\" appears and user D is signed out: the role change ended the session at user D's next action."
+BACK = ["In window 2, sign in as user D.", "In window 2, click Parts in the top bar.", "In window 2, click Inventory in the left menu."]
+R_BACK = [["User D is signed in again in window 2."], ["Window 2 shows the Parts left menu."],
+          ["The Inventory page opens for user D with no three-dot actions button (⋮) in the toolbar: after signing in again the screen follows the new role, which has View only."]]
+Q27 = [A27, A27R]
+
+C("S8-04", "S8", "A role change signs the user out before a status change goes through",
+  [ADMIN, ROLE_D, USER_D, WIN_D, "Create an active part, part A, for this test.", START_D1,
+   "Start window 2 on the Inventory page, on the Active tab, with part A's part number typed in the Search box."],
   ["In window 2, click the three-dot actions button (⋮).", "In window 2, click Deactivate parts.", "In window 2, click the part A row.",
    "In window 2, click Deactivate on the dark bar."] + CUT +
-  ["In window 2, click Deactivate in the confirmation.", "In window 2, click the X at the right end of the dark bar.",
-   "In window 2, click the part B row.", "In window 2, click Delete Part."] + W1_INV + ["In window 1, type the shared start of the part numbers in the Search box."],
-  [["The menu opens for user D."], ["Bulk mode turns on."], ["The bar reads 1 selected."], ["The \"Deactivate parts?\" confirmation opens. Leave it open."]] + R_CUT +
-  [[f"{ACCESS} (access denied).", "No \"1 part updated.\" message appears."],
-   ["Bulk mode ends in window 2."],
-   ["Edit Inventory Part opens for part B, still showing Delete Part (the page was loaded before the role changed)."],
-   [f"{ACCESS} in the same way as for the status change, and the window stays open: the status change and the delete were refused alike for the same user."]] + R_W1_INV +
-  [["Part A and part B are both still listed on the Active tab: part A's status did not change and part B was not deleted."]],
-  ["S8-N3", "S8-R15", "CN-S8-1", "CN-S8-2"], design=NODES)
+  ["In window 2, click Deactivate in the confirmation."] + W1_INV + ["In window 1, type part A's part number in the Search box."] + BACK,
+  [["The menu opens for user D and lists Deactivate parts."], ["Bulk mode turns on."], ["The bar reads 1 selected."],
+   ["The \"Deactivate parts?\" confirmation opens. Leave it open: the old controls stay on screen until user D's next action."]] + R_CUT +
+  [[EXPIRED, "No \"1 part updated.\" message appears."]] + R_W1_INV +
+  [["Part A is still listed on the Active tab: its status did not change."]] + R_BACK,
+  Q27 + ["S8-R15", "S8-R3", "S8-R5"], design=NODES, prd=35)
 
 C("S8-05", "S8", "A user with only View sees no Inventory actions menu",
   [ADMIN, f"Create a custom role for this test, role C, with only {V} (no Create & Edit, no Delete, no See Financial Data and no Settings permission), so user C can only look at the list.",
@@ -205,25 +212,25 @@ C("S8-12", "S8", "Without Delete, an untracked part's price, bins and descriptio
     "Part A's row shows description 2, Sell Price $18.00, bin location A with 6, and still \"Not Tracked\"."]],
   ["S8-N1a"], design=dict(boards=["1.6"], words=[note("With the switch off, Min and Max are hidden")]))
 
-C("S8-13", "S8", "A tracking change is refused once the user can no longer delete parts",
+C("S8-13", "S8", "A role change signs the user out before a tracking change is saved",
   [ADMIN, ROLE_D, USER_D, WIN_D, "Create an active, tracked part, part A, for this test, with 2 on hand.", START_D1,
    "Start window 2 on the Inventory page, on the Active tab, with part A's part number typed in the Search box."],
   ["In window 2, click the part A row.", "In window 2, click the Track quantities and cost of goods switch."] + CUT +
-  ["In window 2, click Save."] + W1_INV + ["In window 1, type part A's part number in the Search box."],
-  [["Edit Inventory Part opens for part A, with the switch on."], ["The switch turns off. Do not save yet."]] + R_CUT +
-  [[f"{ACCESS} (access denied), and the change is not saved."]] + R_W1_INV +
-  [["Part A still shows 2 Available in Total Qty, not \"Not Tracked\": its tracking did not change."]],
-  ["S8-N2", "S8-R15", "CN-S8-1"], design=NODES)
+  ["In window 2, click Save."] + W1_INV + ["In window 1, type part A's part number in the Search box."] + BACK,
+  [["Edit Inventory Part opens for part A, with the switch on."], ["The switch turns off. Do not save yet: the old controls stay on screen until user D's next action."]] + R_CUT +
+  [[EXPIRED]] + R_W1_INV +
+  [["Part A still shows 2 Available in Total Qty, not \"Not Tracked\": its tracking did not change."]] + R_BACK,
+  Q27 + ["S8-R15", "S8-R8", "S8-R5"], design=NODES, prd=35)
 
-C("S8-14", "S8", "Creating an untracked part is refused once the user can no longer delete",
+C("S8-14", "S8", "A role change signs the user out before an untracked part is created",
   [ADMIN, ROLE_D, USER_D, WIN_D, "Use a part number for a new part, part A, that no part or Part Library entry uses yet.", START_D1,
    "Start window 2 on the Inventory page, on the Active tab."],
   ["In window 2, click New Inventory Part.", "In window 2, type a description in the Description field.",
    "In window 2, type part A's part number in the Part Number field.", "In window 2, pick any category in the Category field.",
    "In window 2, type 5.00 in the Cost field.", "In window 2, click the Track quantities and cost of goods switch."] + CUT +
-  ["In window 2, click Save."] + W1_INV + ["In window 1, type part A's part number in the Search box.", "In window 1, click the Inactive tab."],
+  ["In window 2, click Save."] + W1_INV + ["In window 1, type part A's part number in the Search box.", "In window 1, click the Inactive tab."] + BACK,
   [["New Inventory Part opens for user D."], ["Description holds the text."], ["Part Number reads part A's part number."], ["The category is picked."],
-   ["Cost reads $5.00."], ["The switch turns off and Min and Max are hidden. Do not save yet."]] + R_CUT +
-  [[f"{ACCESS} (access denied), and the part is not saved."]] + R_W1_INV +
-  [["No part A is listed on the Active tab."], ["No part A is listed on the Inactive tab either: no untracked part was created."]],
-  ["S8-N1", "S8-R15", "CN-S8-1"], design=NODES)
+   ["Cost reads $5.00."], ["The switch turns off and Min and Max are hidden. Do not save yet: the old controls stay on screen until user D's next action."]] + R_CUT +
+  [[EXPIRED]] + R_W1_INV +
+  [["No part A is listed on the Active tab."], ["No part A is listed on the Inactive tab either: no untracked part was created."]] + R_BACK,
+  Q27 + ["S8-R15", "S8-R7", "S8-R5"], design=NODES, prd=35)

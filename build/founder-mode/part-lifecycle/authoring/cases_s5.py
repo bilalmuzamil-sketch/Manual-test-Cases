@@ -1,14 +1,18 @@
 """Story 5 — Change tracking on an existing part (S5-R1 to S5-R13, S5-N1, S5-N2, S5-E1 to S5-E3, S5-E1a). Section 20472.
 Phase A, 27 Oct 2026: every existing case rewritten top to bottom against PRD v33; S5-17 split (Rule 136). S5-N1 and S5-E1a are
 NO MANUAL CASE; S5-N2 is covered by the permission cases in Story 8 (requirement_map.py). S5-01 is held on question Q2 (how a part
-with no bin location is made) and S5-18 on question Q1 (how a core's own Part History page is opened)."""
+with no bin location is made) and S5-18 on question Q1 (how a core's own Part History page is opened).
+28 Oct 2026 named set (PRD v35): S5-05, S5-16, S5-17, S5-17b rewritten to v35 (S5-E2 says Settings → Parts → Bin Locations; S5-E3
+says a core's Part History page has no link on screen). S5-01 (answer 14: only a direct system request makes a part with no bin) and
+S5-18 (answer 13: the core's Part History page has no on-screen link) are kept unchanged and listed in
+../full-pass-2026-10-27/NO-MANUAL-PROPOSAL.json for the QA lead; S5-08 and S5-09 (a core seen in global search, which S9-R18a now
+says never lists a core) are kept unchanged and listed there too."""
 from pllib import C, PO_HOLD
 from common import *
 
 WRITTEN = True
 START_A = "Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box."
 PO5a = ("PO", "Chris Ward, 14 Oct 2026, answer 5", "Save an untracked part with bins and none marked default, then turn tracking on.")
-PO5b = ("PO", "Chris Ward, 14 Oct 2026, answer 5", "Delete, in Administration → Bin Locations, the bin location that is the part's default while the part holds 0 there.")
 
 C("S5-01", "S5", "Turning tracking on gives a part with no bin the default bin at zero",
   [ADMIN, "Create an untracked part, part A, for this test with no bin location: its only bin location was deleted in Bin Locations (under Settings) while part A held 0 there, so its window shows no bin row.",
@@ -54,13 +58,14 @@ C("S5-04", "S5", "Turning tracking off keeps every bin quantity",
   design=dict(boards=["5.2"]))
 
 C("S5-05", "S5", "Turning tracking on marks the first bin as default when none is",
-  [ADMIN, "Create an untracked part, part A, for this test with 2 in bin location A (the first bin row) and 5 in bin location B, saved with neither bin marked Default.", START_A],
+  [ADMIN, "Have two bin locations at the test location, bin location A and bin location B.",
+   "Create an untracked part, part A, for this test with 2 in bin location A (the first bin row) and 5 in bin location B, saved with neither bin marked Default.", START_A],
   ["Click the part A row.", "Click the Track quantities and cost of goods switch.", "Click Save."],
   [["The Inventory section lists bin location A with 2 as the first row and bin location B with 5 as the second; neither row is marked Default."],
    ["The first bin row, bin location A, is now marked Default and bin location B is not.", "The quantities are unchanged: 2 and 5."],
    ["The window closes with no bin error.", "Part A's Total Qty shows 7 Available (2 + 5 = 7), and Bin Location / Quantity shows bin location A with 2 and bin location B with 5."]],
   ["S5-R8", "S5-E2", PO5a],
-  design=dict(boards=["5.6"]))
+  design=dict(boards=["5.6"]), prd=35)
 
 C("S5-06", "S5", "The list shows Not Tracked right after Save, without a page reload",
   [ADMIN, "Create an active tracked part, part A, for this test with 5 in its bin.", START_A],
@@ -200,13 +205,13 @@ C("S5-15", "S5", "Inventory Value before the release counts every part as tracke
 C("S5-16", "S5", "After its default bin is deleted, turning tracking on marks the remaining bin",
   [ADMIN, "Create two bin locations for this test, bin location A and bin location B, at the test location.",
    "Create an untracked part, part A, for this test with 0 in bin location A, marked Default, and 5 in bin location B.",
-   "Delete bin location A in Bin Locations (under Settings) while part A holds 0 there.", START_A],
+   f"Delete bin location A in {BINS} while part A holds 0 there.", START_A],
   ["Click the part A row.", "Click the Track quantities and cost of goods switch.", "Click Save."],
   [["The Inventory section lists only bin location B, with 5, and it is not marked Default; bin location A is gone."],
    ["Bin location B, the first bin row, is now marked Default; its quantity is still 5."],
    ["The window closes with no bin error.", "Part A's Total Qty shows 5 Available, and Bin Location / Quantity shows bin location B with 5."]],
-  ["S5-E2", "S5-R8", PO5b],
-  design=dict(boards=["5.6"]))
+  ["S5-E2", "S5-R8", A17],
+  design=dict(boards=["5.6"]), prd=35)
 
 C("S5-17", "S5", "A part's core has no row of its own on the Inventory list or in Export",
   [ADMIN, "Create an active tracked part, part A, for this test with 2 in its bin and a Core Charge of $25.00, so it has a core.", FILEAPP, START_A],
@@ -222,7 +227,7 @@ C("S5-17", "S5", "A part's core has no row of its own on the Inventory list or i
    ["The bar reads 1 selected: the header checkbox ticked part A only, because its core has no row that could be ticked."],
    ["Bulk mode ends and nothing was deactivated."]],
   ["S5-E3", "S1-R9b", "S2-R6"],
-  design=dict(note="no board draws a core; the expected results above come from the quotes above."))
+  design=dict(note="no board draws a core; the expected results above come from the quotes above."), prd=35)
 
 C("S5-17b", "S5", "A part's core has no row of its own on the Part Library list",
   [ADMIN, "Create a part, part A, for this test with a Core Charge of $25.00, so it has a core.",
@@ -231,7 +236,7 @@ C("S5-17b", "S5", "A part's core has no row of its own on the Part Library list"
   [["One entry is listed, with part A's description."],
    ["No entry is listed for the core."]],
   ["S5-E3"], part_of="S5-17",
-  design=dict(boards=["7.1"]))
+  design=dict(boards=["7.1"]), prd=35)
 
 C("S5-18", "S5", "A core's own Part History page shows its name and its own history",
   [ADMIN, "Create an active part, part A, for this test with a Core Charge of $25.00, so it has a core, then change part A's description once in its Edit Inventory Part window, from description 1 to description 2.",

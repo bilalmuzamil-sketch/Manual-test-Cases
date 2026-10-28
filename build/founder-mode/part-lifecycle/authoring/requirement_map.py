@@ -25,6 +25,11 @@ NO_MANUAL = {
     'S11-E3': "The public API create is a separate integration with no screen (S11-E3, tech plan §5: POST /api/v1/parts unchanged). Developers' check.",
     'S13-R19d': "A number or description change made through the public API; no screen sends it. Developers' check (tech plan Phase 6 OpenApiPartRenameTest). The part dialog's own rules are tested by the Story 13 cases.",
     'S13-N1b': "A core has no row of its own on the Inventory list, in Export or on the Part Library list (S5-E3), so no screen can rename a core on its own; the refusal comes only from the public API or a request sent outside the screens (Chris Ward on SV-10826, 23 Oct 2026, Q2). Developers' check.",
+    # ---- 28 Oct 2026 named set (Chris Ward's answer 27 of 27 Oct 2026) — PROPOSED, listed for the QA lead in
+    # ../full-pass-2026-10-27/NO-MANUAL-PROPOSAL.json
+    'S8-N1': "Answer 27 (27 Oct 2026): a role change logs the user out on their next action with \"Session expired, please log in again.\", and after signing in again the controls follow the new role (S8-R7, S8-R9: the switch is disabled). So no screen sends an untracked part from a user without the right; the access error comes only from a request sent outside the screens. S8-14 checks what a tester sees instead. Developers' check.",
+    'S8-N2': "As S8-N1 (answer 27): an open page logs out at the next action and the new role sees the switch disabled (S8-R9); the access error comes only from outside the screens. S8-13 checks what a tester sees instead. Developers' check.",
+    'S8-N3': "As S8-N1 (answer 27): an open page logs out at the next action and the new role sees no status controls (S8-R3, S8-R4, S8-R6); the access error comes only from outside the screens. S8-04 checks what a tester sees instead. Developers' check.",
     'S13-N8': "The part dialog has no Part Library selector (S13-E1, S13-40 checks it) and the Part Library page edits the entry, not the part it points at, so a re-point reaches the system only from outside the screens. Developers' check (tech plan Phase 6 RepointRefusedTest).",
 }
 NO_MANUAL_UFS = {
@@ -42,9 +47,9 @@ NO_MANUAL_UFS = {
     'UFS-18': 'A server error while saving a part; a manual tester cannot cause one.',
     'UFS-19': 'A server error while deleting a part; a manual tester cannot cause one.',
     'UFS-27': 'A server error while the part dialog changes a status; a manual tester cannot cause one.',
-    'UFS-47': 'Its first message, "Part Library entry not found.", is tested word for word by S12-07 (S11-E4). No source names a screen action that shows the "... for ID: {id}." or "... for part number: {part number}." variants (question Q13).',
-    'UFS-48': 'No source names a screen action that starts a part request from a Part Library entry with no category (question Q13).',
-    'UFS-49': 'No source names a screen action that starts a part request from a Part Library entry with a source other than Vendor (question Q13).',
+    'UFS-47': 'Its first message, "Part Library entry not found.", is tested word for word by S12-07 (S11-E4), and "... for ID: {id}." by S12-15 (opening the address of a deleted entry, PRD v35 S12-R11a, answer 24 of 27 Oct 2026). "... for part number: {part number}." is not raised today (S12-R11a): verified in code review, not on screen.',
+    'UFS-48': '"Part Library entry missing category." appears only with damaged or legacy data (PRD v35 S12-R11a, answer 24 of 27 Oct 2026): verified in code review, not on screen.',
+    'UFS-49': '"A part from the Part Library must have Vendor as its source." is not raised today (PRD v35 S12-R11a, answer 24 of 27 Oct 2026): verified in code review, not on screen.',
 }
 # A code covered by a case that lives in another story's section (the case quotes the code; checked once that section is written).
 OTHER_STORY = {

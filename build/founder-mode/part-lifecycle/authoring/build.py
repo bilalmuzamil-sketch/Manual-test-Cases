@@ -6,10 +6,10 @@ Gates (each prints its own counts; every failure is a PROBLEM line):
     (Rule 135); no read-only step (Rule 136 5a); no Blocked line (Rule 117 fifteenth amendment); no {placeholder}, "For example",
     Scenario, setup-file link, ZZAUTOTEST or who-to-ask in tester text (fourteenth amendment); no vague look word (L-16); no case key,
     C-id or requirement code in tester text (Rule 137); no wording of a check a manual tester cannot make (L-14); every quote verbatim
-    in its document (PRD v33 / tech plan / Jira / PO answers; Rule 113); design words verbatim in the canvas notes; marker present.
+    in its document (the case's own PRD version, v33 or v35 / tech plan / Jira / PO answers incl. answers 13-27; Rule 113); design words verbatim in the canvas notes; marker present.
   identity: keys unique and matching their section; every row of ../testrail-id-map.csv in a WRITTEN section has its case (no case is
     lost); no key maps to a deleted case; a split part (part_of) names a mapped case in its own section.
-  coverage: every PRD v33 code of a WRITTEN story is quoted by a case, or is NO_MANUAL / OTHER_STORY (requirement_map.py); codes of
+  coverage: every PRD v35 code (28 Oct 2026; was v33) of a WRITTEN story is quoted by a case, or is NO_MANUAL / OTHER_STORY (requirement_map.py); codes of
     stories not yet written are PENDING (planned keys from the 14 Oct read-backs), never silently dropped.
   messages: every User Feedback Summary message of a WRITTEN story is used word for word in some step or result (or NO_MANUAL_UFS).
   layout: "Preconditions" + bullets only; "Expected Result", "Step N:" + bullets per step, "<p></p>", the note, the quotes starting
@@ -68,7 +68,9 @@ for k in new_keys:
         if c["part_of"] not in MAP: P(f"{k}: part_of {c['part_of']} is not a mapped case")
         elif c["part_of"].rsplit("-", 1)[0] != c["sec"]: P(f"{k}: a split part must stay in its original's section (Rule 136)")
 for k in keys:
-    if k in MAP and BYKEY[k]["part_of"]: P(f"{k}: a mapped case cannot be a split part")
+    # 28 Oct 2026: after the 27 Oct write a split part has its own C-id; it must never share its original's C-id (Rule 136)
+    pk = BYKEY[k]["part_of"]
+    if k in MAP and pk and (pk not in MAP or MAP[pk]["case_id"] == MAP[k]["case_id"]): P(f"{k}: a split part maps to its original's C-id or its original is not mapped")
 splits = [k for k in new_keys if BYKEY[k]["part_of"]]
 print("map rows", len(MAP), "| cases updating a live case", len([k for k in keys if k in MAP]), "| new cases", len(new_keys),
       f"(splits {len(splits)}, new behaviour {len(new_keys) - len(splits)})")
@@ -97,16 +99,25 @@ for code in L.CODE:
         if RM.OTHER_STORY[code] in WRITTEN: P(f"{code}: OTHER_STORY {RM.OTHER_STORY[code]} is written but no case there quotes it")
     else:
         row.update(status="PENDING", planned_keys=sorted(planned.get(code, [])), phase={1: "A", 2: "A", 3: "A", 4: "A", 5: "A"}.get(st, "B" if st <= 10 else "C"))
-        if st in written_stories: P(f"PRD v33 code {code} (Story {st}, written) is covered by no case and is not NO_MANUAL / OTHER_STORY")
+        if st in written_stories: P(f"PRD v{L.PRD_VERSION} code {code} (Story {st}, written) is covered by no case and is not NO_MANUAL / OTHER_STORY")
         else: pending.append(code)
     if code in used and code in RM.NO_MANUAL: P(f"{code} is NO_MANUAL but quoted by {used[code]}")
     reqmap[code] = row
 for code in RM.NO_MANUAL:
-    if code not in L.CODE: P(f"NO_MANUAL names {code}, which is not a PRD v33 code")
+    if code not in L.CODE: P(f"NO_MANUAL names {code}, which is not a PRD v{L.PRD_VERSION} code")
 st_counts = Counter(r["status"] for r in reqmap.values())
-print("PRD v33 codes", len(L.CODE), dict(st_counts))
+print(f"PRD v{L.PRD_VERSION} codes", len(L.CODE), dict(st_counts))
 newcodes = ["S1-E1", "S5-E1a", "S6-R1a", "S9-R21", "S9-R22", "S11-R8", "S11-R9", "S13-N1a", "S13-N1b"]
 print("v29 -> v33 new codes:", {c: reqmap[c]["status"] for c in newcodes})
+print("v33 -> v35 new codes:", {c: reqmap[c]["status"] for c in L.NEW_V35}, "| changed:", L.CHANGED_V35)
+v35 = [c["key"] for c in L.CASES if c["prd"] == 35]
+print("cases quoting PRD v35 (the 28 Oct 2026 named set and its new cases):", len(v35), v35)
+# 28 Oct 2026: a case still on v33 must not quote a code whose text changed in v35 unless it is word for word in v35 too (else it
+# belongs in the named set); build.py lists any such case so it can never be missed
+for c in L.CASES:
+    if c["prd"] == 33:
+        for doc, label, text in L.quotes(c):
+            if doc == "PRD" and not L.prd_ok(text, 35): print(f"ON-V33 {c['key']}: quote {label} is no longer word for word in v35 (case kept unchanged on purpose)")
 # ---------------------------------------------------------------- User Feedback Summary messages of written stories, word for word
 tester_all = " ".join(" ".join(c["steps"] + [b for r in c["res"] for b in r]) for c in L.CASES)
 def msgs(row):
@@ -139,7 +150,7 @@ for c in L.CASES:
     q = ex.split("Exact quotes from the source")[1].split("References from Design")[0]
     if not q.split("</strong></p>", 1)[1].startswith("<p>From: "): P(f"{k}: quotes do not start with a From line")
     if q.count("<p>From: ") != q.count("<ul>"): P(f"{k}: a quote group without its own From line")
-    if f"Epic {L.EPIC}" not in q or L.NOBUILD not in q or "version 33" not in q: P(f"{k}: epic, version 33 or build line missing")
+    if f"Epic {L.EPIC}" not in q or L.NOBUILD not in q or f"version {c['prd']}" not in q: P(f"{k}: epic, version {c['prd']} or build line missing")
     if "claude.ai/artifact" in ex.split("References from Design")[0]: P(f"{k}: a design reference above References from Design")
     if "<p></p><p><strong>References from Design</strong></p>" not in ex: P(f"{k}: no References from Design block")
     if L.BLOCKED_RX.search(_html.unescape(pre + st + ex)): P(f"{k}: the Blocked line (fifteenth amendment)")

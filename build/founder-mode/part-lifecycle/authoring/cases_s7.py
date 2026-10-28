@@ -3,7 +3,11 @@ Phase B, 27 Oct 2026: every live case rewritten top to bottom against PRD v33 (R
 Splits (Rule 136): S7-09b (S7-R6c changed in v31: a linked entry with NO category now takes the dialog's category; Chris Ward on
 SV-10820, 23 Oct 2026) and S7-21b (an import row whose number differs only in case and punctuation).
 Held: S7-17 on Q12 (renaming to a look-alike of a part at this same location: S7-N3's message or S13-N1a's?), S7-25 on Q4(a)
-(is a part the import adds tracked?). No manual case: S7-N6 (a blank number or description reaching the system by another route; requirement_map.py)."""
+(is a part the import adds tracked?). No manual case: S7-N6 (a blank number or description reaching the system by another route; requirement_map.py).
+28 Oct 2026 named set (PRD v35, Chris Ward's answers 16 and 23 of 27 Oct 2026): S7-17 released (a look-alike at this same location gets
+S7-N3's message; S13-N1a now says so) with a new split S7-17b (the inactive look-alike gets S7-N4's message); S7-25 released (the import
+adds tracked parts, S7-N11; Bin Locations is under Settings → Parts); new S7-27 (S7-N11: an imported part is tracked, the template's
+"name" column is its description, and the import never changes an existing part's tracking)."""
 from pllib import C, PO_HOLD, HOLD, DESIGN_HOLD
 from common import *
 from cases_s6 import TYPE_A, ROW_A, SAVE
@@ -240,18 +244,30 @@ C("S7-16", "S7", "Saving a part with its number unchanged is never refused as a 
   ["S7-N5b", "KD-5", "CN-S7-3"],
   design=dict(note="no board draws a save with the number unchanged; the expected results above come from the quotes above."))
 
-C("S7-17", "S7", "Changing a part's number to one already stocked here is refused",
+C("S7-17", "S7", "Changing a part's number to a look-alike of one stocked here is refused",
   [ADMIN, "Create two active parts for this test at the test location, part A and part B, with a hyphen in part A's part number.",
    "Use a number to type, number 1: part A's number in lower case with spaces in place of its hyphens, which no Part Library entry has exactly.",
    "Start on the Inventory page, on the Active tab, with part B's part number typed in the Search box."],
   [ROW_A.replace("part A", "part B"), "Replace the Part Number with number 1.", SAVE, "Click Cancel.", "Type part B's part number in the Search box again."],
   [["Edit Inventory Part opens for part B."], ["Part Number reads number 1."],
    ["The change is not saved.",
-    "A red message reads part A's part number followed by \"already exists at this location.\", with \"Please try to resolve this.\" under it.",
+    "A red message reads part A's part number, written as it was saved (capitals and hyphens), followed by \"already exists at this location.\", with \"Please try to resolve this.\" under it.",
+    "The message says \"this location\" and does not give the location's name.",
     "It goes away after about 3 seconds, and the window stays open."],
    ["The window closes."], ["Part B is still listed under its own part number: it kept its number."]],
-  ["S7-N5b", "S7-N3", "S7-N5", "UFS-08", "CN-S13-3"],
-  marker=PO_HOLD("Q12", "a rename to a look-alike of a part at this same location: S7-N3's message or S13-N1a's"), design=D15)
+  ["S7-N5b", "S7-N3", "S7-N5", "UFS-08", "S13-N1a", "CN-S13-3", A23], design=D15, prd=35)
+
+C("S7-17b", "S7", "Changing a number to a look-alike of an inactive part here is refused",
+  [ADMIN, "Create two parts for this test at the test location: part A, set inactive, with a hyphen in its part number, and part B, active.",
+   "Use a number to type, number 1: part A's number in lower case with spaces in place of its hyphens, which no Part Library entry has exactly.",
+   "Start on the Inventory page, on the Active tab, with part B's part number typed in the Search box."],
+  [ROW_A.replace("part A", "part B"), "Replace the Part Number with number 1.", SAVE, "Click Cancel.", "Type part B's part number in the Search box again."],
+  [["Edit Inventory Part opens for part B."], ["Part Number reads number 1."],
+   ["The change is not saved.",
+    "A red message reads part A's part number, written as it was saved, followed by \"already exists at this location and is inactive. Activate it from the Inactive tab.\", with \"Please try to resolve this.\" under it.",
+    "It goes away after about 3 seconds, and the window stays open."],
+   ["The window closes."], ["Part B is still listed under its own part number on the Active tab: it kept its number."]],
+  ["S7-N4", "S7-N5b", "S7-N5", "UFS-09", "S13-N1a", "CN-S13-3", A23], part_of="S7-17", design=D15, prd=35)
 
 C("S7-18", "S7", "A description or part number of only spaces is refused on its own",
   [ADMIN, "Use a part number for a new part, part A, that no part or Part Library entry uses yet.", START],
@@ -353,18 +369,35 @@ C("S7-25", "S7", "An imported part with no bin location goes to an Unassigned bi
    "Use part numbers for two new parts, part A and part B, that no part or Part Library entry uses yet.",
    "Have a parts import file with two rows that add part A and part B, each with quantity 0 and an empty bin location cell.",
    "Start on that location's Inventory data import page (Settings, then Data Import, then Inventory)."],
-  ["Upload the file.", "Run the import.", "Click Bin Locations in the Settings menu.", TOPP, INV, TYPE_A, ROW_A, "Click Cancel.",
+  ["Upload the file.", "Run the import.", "Click Bin Locations under Parts in the Settings menu.", TOPP, INV, TYPE_A, ROW_A, "Click Cancel.",
    "Type part B's part number in the Search box.", ROW_A.replace("part A", "part B")],
   [["The file is ready to import."], ["The import finishes and adds both parts."],
-   ["The list holds exactly one bin location named \"Unassigned\" (0 before + 1 made by the import = 1)."],
+   ["The Bin Locations list holds exactly one bin location named \"Unassigned\" (0 before + 1 made by the import = 1)."],
    ["The Parts left menu shows Inventory."], ["The Inventory page opens."],
-   ["Part A is listed, and its Bin Location / Quantity cell shows Unassigned with 0."],
-   ["The Inventory section of the window shows one bin row: Bin Location \"Unassigned\", Quantity 0, marked Default."],
-   ["The window closes."], ["Part B is listed."],
-   ["Part B also shows one bin row: Bin Location \"Unassigned\", Quantity 0, marked Default."]],
-  ["S7-N10", ("PO", "Chris Ward's answer 3 a) of 14 Oct 2026",
-              "The part goes into a bin named \"Unassigned\", which the import creates if it's missing. On a new part that bin is the default (S7-N10).")],
-  marker=PO_HOLD("Q4", "is a part the import adds tracked or untracked"), design=NOIMP)
+   ["Part A is listed, and its Bin Location / Quantity cell shows Unassigned with 0.",
+    "Its Total Qty shows 0 Available, a quantity and not \"Not Tracked\": the import added part A as a tracked part."],
+   ["The window shows the Track quantities and cost of goods switch on.",
+    "The Inventory section of the window shows one bin row: Bin Location \"Unassigned\", Quantity 0, marked Default."],
+   ["The window closes."], ["Part B is listed, with 0 Available in Total Qty."],
+   ["Part B also shows the switch on and one bin row: Bin Location \"Unassigned\", Quantity 0, marked Default."]],
+  ["S7-N10", "S7-N11", ("PO", "Chris Ward's answer 3 a) of 14 Oct 2026",
+              "The part goes into a bin named \"Unassigned\", which the import creates if it's missing. On a new part that bin is the default (S7-N10)."), A16, A17],
+  design=NOIMP, prd=35)
+
+C("S7-27", "S7", "An imported part is tracked and takes its description from the name column",
+  [ADMIN, "Use a part number for a new part, part A, that no part or Part Library entry uses yet.",
+   "Use a description, description 1, that no part or Part Library entry has.",
+   "Create an untracked part, part B, for this test at the test location, with 4 in one bin location, bin location A.",
+   "Have a parts import file made from the Inventory import template with two rows: one that adds part A, with description 1 in the name column, quantity 2 and bin location A, and one for part B with quantity 6 in bin location A.",
+   IMP_START],
+  ["Upload the file.", "Run the import.", TOPP, INV, TYPE_A, "Type part B's part number in the Search box."],
+  [["The file is ready to import."], ["The import finishes without refusing either row."],
+   ["The Parts left menu shows Inventory."], ["The Inventory page opens."],
+   ["Part A is listed with description 1 in its Description column: the name column became its description.",
+    "Part A's Total Qty shows 2 Available, a quantity and not \"Not Tracked\": the import added it as a tracked part."],
+   ["Part B still reads \"Not Tracked\" in Total Qty, and its Bin Location / Quantity shows bin location A with 6: the import changed its quantity but not its tracking."]],
+  ["S7-N11", "S5-E1", A16], stories=[7, 5], design=NOIMP, prd=35,
+  claude=["Template columns: the description is the name column (answer 16(b), 27 Oct 2026); the part number is the part_number column."])
 
 C("S7-26", "S7", "A linked entry whose manufacturer no longer exists takes the one picked",
   [ADMIN,

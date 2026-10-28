@@ -3,7 +3,10 @@ Phase C, 27 Oct 2026: every live case rewritten top to bottom against PRD v33 in
 fifteenth amendments; Rules 134-137). Splits (Rule 136): S11-03b (the import makes an entry), S11-08b (the other-locations warning on the
 Part Library page), S11-09b (the description warning counts an inactive location). New for v33: S11-19 (S11-R8 "Not Tracked" in the
 detail page's parts table) and S11-20 (S11-R9 grey "Inactive" tag there). S11-E3 (public API create) is NO MANUAL CASE (requirement_map.py).
-The detail page has no left menu (board 7.2), so every move off it goes through Parts in the top bar."""
+The detail page has no left menu (board 7.2), so every move off it goes through Parts in the top bar.
+28 Oct 2026 named set (PRD v35 S11-R3c widened, S11-E5 new; Chris Ward's answers 15 and 20 of 27 Oct 2026): S11-02 and S11-18 re-quoted,
+with the board 7.2 note marked out of date (answer 20); new S11-21 (S11-E5: Delete in an open Edit Library Part window updates only
+after the page is reloaded)."""
 from pllib import C, PO_HOLD, HOLD, DESIGN_HOLD
 from common import *
 from pc_common import *
@@ -12,6 +15,10 @@ WRITTEN = True
 TECH_Q11 = ("TECH", "§1 Clarifications, Q11 Part request entry timing", "PRD corrected: entry created when the requested part is received (S11-R6)")
 NO_LIB_BOARD = "no board draws this flow; the expected results above come from the quotes above."
 R72 = ["7.2"]
+NOTE72 = ("The board 7.2 note quoted below says the entry \"can be edited and deleted\" on its page. Product confirmed on 27 Oct 2026 "
+          "(answer 20) that this note is out of date: the detail page has no Delete, and Delete is in the \"Edit Library Part\" window. "
+          "The expected results follow the PRD.")
+D72 = dict(boards=R72, words=[note("Clicking a row opens the entry")], note=NOTE72)
 
 C("S11-01", "S11", "The Part Library page has no button that creates an entry",
   [ADMIN, "Have a part, part A, at the test location, so the Part Library lists its entry.", START_PL],
@@ -41,8 +48,8 @@ C("S11-02", "S11", "Clicking a Part Library row opens the entry's detail page",
    ["The \"Edit Library Part\" window opens, holding the entry's values.",
     "A Delete button sits at the bottom left of the window. It is dimmed, because part A uses the entry."],
    ["The window closes and the entry is unchanged."]],
-  ["S11-R3", "S11-R3c", "S12-R3", PO12],
-  design=dict(boards=R72, words=[note("Clicking a row opens the entry")]))
+  ["S11-R3", "S11-R3c", "S12-R3", PO12, A20],
+  design=D72, prd=35)
 
 C("S11-03", "S11", "Creating a part with a new number adds one Part Library entry",
   [ADMIN, "Use a new part number that no Part Library entry has yet, so saving the part must make a new entry.", START],
@@ -338,8 +345,8 @@ C("S11-18", "S11", "Delete is disabled while a part still uses the Part Library 
    ["The detail page shows \"Total parts\" 0: no part uses the entry any more."],
    ["The \"Edit Library Part\" window opens and its Delete button is now enabled."],
    ["No hover text appears on the enabled Delete button."], ["The window closes."]],
-  ["S11-R3c", "S11-R3", "S12-R13", "UFS-01", PO12, QA4],
-  design=dict(boards=R72))
+  ["S11-R3c", "S11-R3", "S12-R13", "UFS-01", PO12, QA4, A20],
+  design=D72, prd=35)
 
 C("S11-19", "S11", "The entry's Parts table shows Not Tracked for a location that does not count it",
   [ADMIN_TWO, "Have a part, part A, stocked at the test location and at location B under the same part number: tracked at the test location with 4 in its bin, "
@@ -362,3 +369,27 @@ C("S11-20", "S11", "The entry's Parts table tags a location where the part is in
     "Location B's row shows the grey \"Inactive\" tag in the Remaining Quantity column, before its value 2.00."]],
   ["S11-R9"],
   design=dict(boards=R72, note="Board 7.2 draws the Parts table with one tracked, active row (Remaining Quantity 4.00); it draws no \"Not Tracked\" value and no \"Inactive\" tag, which PRD v33 added on 19 Oct."))
+
+C("S11-21", "S11", "Delete in Edit Library Part is enabled only after the page is reloaded",
+  [ADMIN, "Create a part, part A, for this test at the test location only, on no work order and with no open return, credit or part request, so it can be deleted later in the test.",
+   TWO_TABS, "Start in browser tab 1 on the Part Library page (Parts in the top bar, then Part Library in the left menu)."],
+  ["In tab 1, type part A's part number in the Search box.", "In tab 1, click the part A row.",
+   "In tab 1, click the pencil icon beside the entry's name in the Part details panel.", "Open a second browser tab on the same ShopView address.",
+   "In tab 2, click Parts in the top bar.", "In tab 2, click Inventory in the left menu.", "In tab 2, type part A's part number in the Search box.",
+   "In tab 2, click the part A row.", "In tab 2, click Delete Part.", "Switch back to tab 1 without reloading it.",
+   "In tab 1, hover over the Delete button at the bottom left of the window.", "In tab 1, click Cancel.",
+   "In tab 1, click the pencil icon beside the entry's name.", "In tab 1, click Cancel again.", "In tab 1, reload the page.",
+   "In tab 1, click the pencil icon beside the entry's name once more."],
+  [["Part A's entry is listed."], ["The entry's detail page opens and shows \"Total parts\" 1."],
+   ["The \"Edit Library Part\" window opens, and its Delete button, bottom left, is dimmed (disabled) because part A uses the entry."],
+   ["A second tab opens."], ["Tab 2 shows the Parts left menu."], ["Tab 2 shows the Inventory page."], ["Part A is listed in tab 2."],
+   ["Edit Inventory Part opens for part A."], ["The window closes in tab 2 and part A leaves the list: it is deleted."],
+   ["Tab 1 still shows the Edit Library Part window: it was not reloaded."],
+   ["The Delete button is still dimmed, and hovering it shows \"Part cannot be deleted. Please delete related parts first.\": it shows the entry as it was when the page opened."],
+   ["The window closes."],
+   ["The window opens again and its Delete button is still dimmed: closing and opening the window does not update it."],
+   ["The window closes."],
+   ["The detail page reloads and now shows \"Total parts\" 0."],
+   ["The \"Edit Library Part\" window opens and its Delete button is now enabled."]],
+  ["S11-E5", "S11-R3c", "UFS-01", A15],
+  design=D72, prd=35)

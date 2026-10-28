@@ -4,10 +4,15 @@ fifteenth amendments; Rules 134-137). Changed code S12-R14b (v30, 19 Oct: the re
 S12-14. S12-06 stays held on question Q3 (does an open Edit Library Part window update its Delete button without a reload). The
 "Part Library entry not found for ID / for part number", "Part Library entry missing category." and Vendor-source refusals of S12-R11
 have no screen route named by any source: NO MANUAL in requirement_map.py, question Q13. "Not received" and "other location" cases now carry
-a control the tester can see (a received number that IS offered with its vendor), lesson L-15."""
+a control the tester can see (a received number that IS offered with its vendor), lesson L-15.
+28 Oct 2026 named set (PRD v35 S11-R3c, S11-E5, S12-R6, S12-R11a; Chris Ward's answers 15 and 24 of 27 Oct 2026): S12-03 and S12-10
+re-quoted (Roles & Permissions is under Settings); S12-06 released (Delete stays as it was until the page is reloaded, S11-E5); new S12-15
+(S12-R11a: opening the address of a deleted entry shows "Part Library entry not found for ID: {id}."). The other S12-R11 refusals are
+verified in code review, not on screen (S12-R11a; requirement_map.py)."""
 from pllib import C, PO_HOLD, HOLD, DESIGN_HOLD
 from common import *
 from pc_common import *
+from cases_s11 import D72
 
 WRITTEN = True
 START_RP = "Start on Roles & Permissions (Settings, then Roles & Permissions)."
@@ -53,7 +58,7 @@ C("S12-03", "S12", "Roles & Permissions shows the Part Library and Inventory per
     "The word \"Catalog\" appears nowhere in the card or the group, which show the words above instead."],
    ["The page closes without saving and role A is unchanged."]],
   ["S12-R6", "S12-R7", "S12-R8", "S12-R9"],
-  design=dict(note="no board draws Roles & Permissions; the expected results above come from the quotes above."))
+  design=dict(note="no board draws Roles & Permissions; the expected results above come from the quotes above."), prd=35)
 
 C("S12-04", "S12", "An old bookmark to the Catalog page opens the Part Library",
   [ADMIN, "Have a bookmark, saved before this release, to the Catalog page (your ShopView address followed by /parts/parts-catalogue).",
@@ -90,15 +95,15 @@ C("S12-06", "S12", "Deleting a Part Library entry that a part now uses is refuse
    ["A second tab opens."], ["Tab 2 shows the Parts left menu."], ["Tab 2 shows the Inventory page."], ["The \"New Inventory Part\" window opens in tab 2."],
    ["Description shows entry A's description."], ["Part Number shows entry A's number."], ["Category shows the category you picked."], ["Cost shows 10.00."],
    ["The window closes in tab 2 and the part is saved."],
-   ["Tab 1 still shows the Edit Library Part window: it was not reloaded."],
+   ["Tab 1 still shows the Edit Library Part window: it was not reloaded.",
+    "Its Delete button is still enabled: it shows the entry as it was when the page opened, before tab 2 saved a part on it."],
    ["The confirmation asks \"Are you sure you want to delete this library part?\""],
    ["The delete is refused: a red message reads \"This Part Library entry is in use and cannot be deleted.\", with a smaller second line \"Please try to resolve this.\""],
    ["The red message has closed on its own after about 3 seconds."],
    ["Tab 1 shows the Parts left menu."], ["The Part Library page opens."], ["Entry A is still listed."],
    ["Its detail page shows \"Total parts\" 1: the part saved in tab 2 uses it."]],
-  ["S12-R11", "S12-R13", "UFS-46", "CN-S13-3", "S11-R3c", TECH_Q9],
-  marker=PO_HOLD("Q3", "whether an open Edit Library Part window updates its Delete button without a reload"),
-  design=dict(boards=["7.2"]))
+  ["S12-R11", "S12-R11a", "S12-R13", "UFS-46", "CN-S13-3", "S11-R3c", "S11-E5", TECH_Q9, A15, A24],
+  design=D72, prd=35)
 
 C("S12-07", "S12", "Saving a Part Library entry deleted in another tab is refused",
   [ADMIN, ENTRY_NO_PART, "Use a new description for entry A, description 1.", TWO_TABS,
@@ -159,7 +164,7 @@ C("S12-10", "S12", "Release day leaves every role's permissions as they were",
    ["User B can open the Inventory list, as on the day before the release."],
    ["The part window opens for user B without a Delete Part button, because role A still has no Delete."]],
   ["S12-N1", "S12-R6", "S8-R12"],
-  design=dict(note="no board draws Roles & Permissions; the expected results above come from the quotes above."))
+  design=dict(note="no board draws Roles & Permissions; the expected results above come from the quotes above."), prd=35)
 
 C("S12-11", "S12", "Release day keeps saved names that contain the word Catalog",
   [ADMIN, "Have a custom role from before this release, role A, whose name contains the word Catalog.",
@@ -217,3 +222,18 @@ C("S12-14", "S12", "The special-order result uses the vendor and cost of the lat
   ["S12-R14b", "S12-R14a", "S12-R14", PO14_2],
   design=dict(boards=["6.1"]),
   claude=["Where the cost shows is our reading of S12-R14b (\"uses that delivery's cost\"): the picked result fills Cost. Question Q14 asks Product to confirm."])
+
+C("S12-15", "S12", "Opening the address of a deleted Part Library entry says it is not found",
+  [ADMIN, ENTRY_NO_PART, START_PL],
+  ["Type entry A's part number in the Search box.", "Click the entry A row.", "Copy the page's address from the browser's address bar.", PENCIL,
+   "Click Delete at the bottom left of the window.", "Confirm the deletion.", "Paste the copied address into the browser's address bar.", "Press Enter.", WAIT5],
+  [["Entry A is listed."], ["Its detail page opens and shows \"Total parts\" 0."], ["The address is copied."],
+   ["The \"Edit Library Part\" window opens, with its Delete button enabled because no part uses the entry."],
+   ["A confirmation asks \"Are you sure you want to delete this library part?\""],
+   ["A green message reads \"Library part deleted successfully.\""],
+   ["The copied address is in the address bar."],
+   ["A red message reads \"Part Library entry not found for ID:\" followed by the entry's ID number and a full stop, with a smaller second line \"Please try to resolve this.\"",
+    "No message uses the word \"catalog\" or \"catalogue\"."],
+   ["The red message has closed on its own after about 3 seconds."]],
+  ["S12-R11a", "S12-R11", "UFS-47", "CN-S13-3", "S12-R5", "S12-R13", A24],
+  design=dict(boards=["7.2"]), prd=35)
