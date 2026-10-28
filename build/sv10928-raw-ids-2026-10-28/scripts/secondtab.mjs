@@ -26,7 +26,10 @@ if(!vid){ fs.writeFileSync(out+'/result.json',JSON.stringify(R,null,1)); await s
 // set-up (stands in for tab 2 adding the part): a vendor part request on an authorized line, then order it
 const api=(u,b)=>t2.evaluate(async([u,b,api])=>{ const r=await fetch(api+u,{method:b?'POST':'GET',credentials:'include',headers:{'content-type':'application/json'},body:b?JSON.stringify(b):undefined}); return {st:r.status,j:await r.json().catch(()=>null)}; },[u,b,s.host.api]);
 const lines=(await api(`/api/work-orders/lines/${WO}`)).j?.data?.collection||[]; const L=lines.find(l=>/authori/i.test(l.status||l.line_status||''))||lines[0];
-const prs=(await api(`/api/work-orders/${WO}/parts/list-requests-by-line`)).j; const cat=(JSON.stringify(prs).match(/"part_category_id":"([0-9a-f-]{36})"/)||[])[1]; R.cat=cat;
+const prs=(await api(`/api/work-orders/${WO}/parts/list-requests-by-line`)).j; let cat=(JSON.stringify(prs).match(/"part_category_id":"([0-9a-f-]{36})"/)||[])[1];
+if(process.env.NEWCAT==='1'){ const cname='ZZAUTOTEST Cat '+env+' '+Date.now()%100000; const ac=await api('/api/parts-catalogue/add-category',{name:cname,isTaxExempt:false}); R.newCat={st:ac.st,body:JSON.stringify(ac.j).slice(0,200),name:cname};
+  const cl=(await api('/api/parts-catalogue/categories-list?pagination%5BrowsPerPage%5D=500&pagination%5Bpage%5D=1')).j; const hit=JSON.stringify(cl).match(new RegExp('\\{[^{}]*'+cname+'[^{}]*\\}')); const cid=hit&&(hit[0].match(/"(?:id|value)":"([0-9a-f-]{36})"/)||[])[1]; if(cid) cat=cid; R.newCat.id=cid; console.log('new category',cname,ac.st,cid); }
+R.cat=cat;
 const mk=await api('/api/work-orders/part/make-request',{line:L.line_id,work_order:WO,description:'ZZAUTOTEST second-tab vendor part',quantity:1,part_source_type:'vendor',part_number:'ZZ10928-'+Date.now()%100000,price:12.5,part_category_id:cat,vendor_id:vid});
 R.make=mk.st; const prq=(JSON.stringify(mk.j).match(/"(?:part_request_id|id)":"([0-9a-f-]{36})"/)||[])[1]; R.prq=prq; console.log('make-request',mk.st,JSON.stringify(mk.j).slice(0,200));
 const ord=await api('/api/work-orders/part/perform-request-status-action',{part_request_id:prq}); R.order=ord.st; R.po=ord.j?.data?.orderId; console.log('order',ord.st,R.po);
