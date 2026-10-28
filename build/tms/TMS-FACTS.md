@@ -226,3 +226,19 @@ Key holder: the QA lead's own key (TMS user **id 4**, role `user`). Stored only 
 - **No What/Why run exists in TestRail.** Creating one there was NOT done — it was outside the instruction
   (TMS), and the write was stopped by the session's permission guard. Asked the QA lead.
 - **tms_sync.py** now walks **both** folder trees (a folder missing on either side is reported, never skipped).
+
+## 11 · 2026-10-28 decisions executed (QA lead: "1. Ok · 2. Yes · 3. Yes")
+
+- **TestRail run 553 "What/Why - Execution"** created in milestone 5 — 68 cases, run and all 68 tests assigned to
+  Mudassir Qamar (TestRail user 6). TMS run 10 assignment still waits for Mudassir's first TMS sign-in + an admin merge.
+- **Folders created in TMS:** TestRail 105855 → **TMS 10000000** (What/Why > Design — how it looks); TestRail 105854 →
+  **TMS 10000001** (Part Lifecycle > Design — how it looks). **TMS-created folders are numbered from 10,000,000, like
+  cases.** Map: `build/tms/tr-tms-section-map.csv`, read by `tms_sync.py` (`section_map()`).
+- **127 TestRail-only cases created in TMS** (31 What/Why + 96 Part Lifecycle), every one read back identical; numbers in
+  `build/tms/tr-tms-case-map.csv` (now 134 rows). The 31 What/Why cases were added to TMS run 10 → **68 items = TestRail run 553**.
+- **Re-check after:** What/Why 68/68 SAME, 0 folder gaps. Part Lifecycle 363/363 SAME; left open on purpose: the TMS-only
+  folder **54275 "Retire OR retest"** and the 19 TMS-only cases (question to the QA lead).
+- **About folder 54275**, from its own TMS description (written by Vladimir Tomovic, 2026-10-21): *"QA lead 2026-10-08:
+  cases a manual tester cannot fully run (server error, public API, requests the screen never sends). Kept, not deleted;
+  left out of manual runs. The 6 PRD requirements they cover (S4-N1, S4-N2, S5-N1, S9-E9, S13-R19d, S10-R25a) rely on the
+  developers' automated tests."*

@@ -41,6 +41,20 @@ TMS_LINK = "https://tms.shopview.com/cases/%d"
 MAP_CSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "tms", "tr-tms-case-map.csv")
 
 
+SECTION_MAP_CSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "tms", "tr-tms-section-map.csv")
+
+
+def section_map():
+    """TestRail section id -> TMS section id for folders created in TMS via the API (numbered from
+    10,000,000). Imported folders keep their TestRail number and need no entry."""
+    import csv
+    try:
+        return {int(r["testrail_section_id"]): int(r["tms_section_id"])
+                for r in csv.DictReader(open(SECTION_MAP_CSV))}
+    except OSError:
+        return {}
+
+
 def id_map():
     """TestRail id -> TMS id for cases whose numbers differ (created in TMS via the API).
     Imported cases keep their TestRail number and need no entry."""
@@ -134,14 +148,18 @@ def tms_subtree(tms, root):
 def plan(section):
     trapi, tms = TestRail(), TMS()
     sections, names = trapi.subtree(section)
+    smap = section_map()
+    tsec = lambda sid: smap.get(sid, sid)  # TestRail folder -> the TMS folder that mirrors it
+    names.update({tsec(k): v for k, v in list(names.items())})
     trc = {}
     for sid in sections:
         for c in trapi.paged("get_cases/1&suite_id=1&section_id=%d" % sid, "cases"):
             trc[c["id"]] = c
     # Walk BOTH trees: a folder missing on either side is reported, never silently skipped.
     tms_sections = tms_subtree(tms, section)
-    folders = {"tr_only": sorted(set(sections) - set(tms_sections)),
-               "tms_only": sorted(set(tms_sections) - set(sections))}
+    mirrored = {tsec(x) for x in sections}
+    folders = {"tr_only": sorted(x for x in sections if tsec(x) not in tms_sections),
+               "tms_only": sorted(set(tms_sections) - mirrored)}
     listed = []
     for sid in tms_sections:
         listed += tms.get_all("/projects/1/cases", {"section_id": sid})
@@ -158,11 +176,11 @@ def plan(section):
         if tr is None:
             row.update(action="TMS_EXTRA", section=tm["section_id"])
         elif tm is None:
-            row.update(action="TR_ONLY", section=tr["section_id"], tr_link=TR_LINK % cid)
+            row.update(action="TR_ONLY", section=tsec(tr["section_id"]), tr_link=TR_LINK % cid)
         else:
             diff = differences(tr, tm)
-            moved = tr["section_id"] != tm["section_id"]
-            row.update(section=tr["section_id"], diff=diff, tms_section=tm["section_id"])
+            moved = tsec(tr["section_id"]) != tm["section_id"]
+            row.update(section=tsec(tr["section_id"]), diff=diff, tms_section=tm["section_id"])
             if 3 in (tr.get("custom_atmstatus"), tm.get("automation_status")) and (diff or moved):
                 row["action"] = "HOLD_AUTO"
             elif diff and tms_time(tm["updated_at"]) > tr["updated_on"]:
