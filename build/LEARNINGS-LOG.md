@@ -387,3 +387,11 @@
 - 12:43 UTC: https://sv11567.qa.shopview.com → 200 (up). https://sv11835.qa.shopview.com → HTTP 403 from CloudFront/AmazonS3 (`<Code>AccessDenied</Code>`) and `sv11835api.qa.shopview.com` → 503: the site is half-deployed (bucket exists, no page yet) — treat as "not up yet", re-check later; not a sign-in problem.
 - The SV_SSO_SESSION the QA lead sent for sv11594 (10:41) still worked on sv11567 two hours later: quick-login 200 → copy `/tmp/shopview/sv11594.env` to `<branch>.env` before asking him for a new one.
 #qa-branch #site-state #sign-in → L0595
+
+## L0597 — 2026-10-28 — SV-11567 Undo first run on sv11567: four traps in my own instrument, none in the product
+- **WOB_EV must be ABSOLUTE**: `wob-run.sh` `cd`s into `build/global-search/e2e`, so a relative WOB_EV wrote every picture to `build/global-search/e2e/build/...` (moved back by hand). Use `WOB_EV=$PWD/build/...`.
+- **A refusal comes after the server answers**: C682428 read the screen 7 ms after clicking Undo — too early to see the "Couldn't undo" alert; the picture even showed the card optimistically back in A's column. Watch every message for ~6 s and read the column without a refresh at ~4 s (patched).
+- **The audit-log ⋮**: `button:has(i:text-is("more_vert")).last()` hits a part row's ⋮ (menu "Move / Add Part Fee / Discount"); take the ⋮ in the top bar by position (top < 200 px, right-most).
+- **Seed the precondition the toast depends on**: C682424 step 12 ("lead technician set to {B}") needs {B} on a line of W4 (S4-R5); the script never set it, so the run showed "assigned to" — not a product fault. And a board column is only drawn when pinned (L0430) — C847734 timed out waiting for A's column.
+- Observed fine on v26.43.2-539491f: Undo button + close on the white toast with green check; Undo restores column and order; "Assignment undone" with only ×; toast ~5 s, stays on hover; cleared shifts return with original times.
+#sv11567 #undo #instrument-traps → L0596

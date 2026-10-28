@@ -189,6 +189,8 @@ await run('C682423', async (o) => {
 
 await run('C682424', async (o) => {
   const A1 = await T('C682424', 'Ana'), B1 = await T('C682424', 'Ben'); const set = await mkSet('ZZAUTOTEST C682424 Toast Words', [{ co: 'W1', lead: null }, { co: 'W2', lead: A1 }, { co: 'W3', lead: A1 }, { co: 'W4', lead: A1 }]); o.data = set.w;
+  // 28 Oct: the case's precondition puts {Technician-B} on a line of {Work-order-4} (S4-R5 "lead technician set to"); the first run missed it
+  const l4 = await mkLine(set.w.W4.id, 2); o.w4LineTechB = (await a.put(`/api/work-orders/lines/${l4}/technicians`, { staffIds: [B1.staff_id] })).status;
   await pins([A1.staff_id, B1.staff_id]); await go('Board View', set.q);
   await dragTo(card(set, 'W1'), `[data-test-id="board_column_${A1.staff_id}"]`, 'C682424-v-s1'); o.s1_2 = { prompt: await shiftPrompt(p, 'Keep shifts'), toast: await waitToast() }; await shotC('C682424-v-s2-toast-board-drag'); await p.waitForTimeout(800); o.s1_2.col = await colOf(set, 'W1');
   await watchGone(p, 9000);
@@ -225,7 +227,9 @@ await run('C682426', async (o) => {
   await go('Tech View', set.q); o.s7_group = await grpOf(set, 'W4'); o.s7_lead = await leadName(set.w.W4.id); await shotC('C682426-v-s7-after-reload');
   o.w2_lead = await leadName(set.w.W2.id);
   await p.goto(APP + `/workorders/${set.w.W2.id}/lines`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000);
-  const more = p.locator('button').filter({ has: p.locator('i:text-is("more_vert")') }).last(); await more.click().catch(() => {}); await p.waitForTimeout(1000);
+  // 28 Oct: `.last()` hit a part row's ⋮; take the ⋮ in the top bar (next to "New Line"), by position
+  const mv = await p.evaluate(`(() => { const b = [...document.querySelectorAll('button')].filter(x => /more_vert/.test(x.innerText) || x.querySelector('i')?.textContent?.trim() === 'more_vert').map(x => x.getBoundingClientRect()).filter(r => r.width > 0 && r.top < 200).sort((a, b) => b.right - a.right); return b[0] ? { x: b[0].x + b[0].width / 2, y: b[0].y + b[0].height / 2 } : null; })()`) as any;
+  o.s8_menuBtn = mv; if (mv) await p.mouse.click(mv.x, mv.y); await p.waitForTimeout(1000);
   await p.locator('.q-menu .q-item').filter({ hasText: /Audit Log/i }).first().click().catch(() => {}); await p.waitForTimeout(3000);
   o.s8 = await p.evaluate(`(() => { const d = [...document.querySelectorAll('.q-dialog')].filter(e => e.getBoundingClientRect().width > 0).pop(); return d ? d.innerText.replace(/\\s+/g, ' ').slice(0, 900) : null; })()`); await shotC('C682426-v-s8-audit-log'); await p.keyboard.press('Escape');
 });
@@ -250,7 +254,14 @@ await run('C682428', async (o) => {
   await dragTo(card(set, 'W1'), `[data-test-id="board_column_${B1.staff_id}"]`, 'x'); await shiftPrompt(p, 'Keep shifts'); o.s1 = await waitToast(); const t1 = Date.now();
   const inv = await a.post('/api/invoices/create', { work_order_id: set.w.W1.id, issue_date: new Date().toISOString().slice(0, 10), due_date: new Date(Date.now() + 30 * 86400000).toISOString().slice(0, 10) });
   o.s2 = { invoice: say(inv), status: (await a.get(`/api/work-orders/view/${set.w.W1.id}`)).body?.data?.work_order?.status, ms: Date.now() - t1 };
-  o.s3_clicked = await clickUndo(); o.s3_ms = Date.now() - t1; o.s3 = await waitToast(p, 3000); await shotC('C682428-v-s3-after-undo'); await p.waitForTimeout(1500);
+  // 28 Oct: watch every message for 6 s after Undo (the server's refusal comes after the click; the first run looked at +7 ms)
+  o.s3_clicked = await clickUndo(); o.s3_ms = Date.now() - t1; const t3 = Date.now(); const seen: Record<string, number> = {};
+  while (Date.now() - t3 < 6000) { for (const x of await toastRead(p)) { const k = x.text; if (!(k in seen)) seen[k] = Date.now() - t3; }
+    for (const al of await p.evaluate(`[...document.querySelectorAll('.q-dialog, [role=alert], [role=alertdialog], .q-banner')].filter(e => e.getBoundingClientRect().width > 0).map(e => e.innerText.replace(/\\s+/g, ' ').trim()).filter(Boolean)`) as string[]) if (!(al in seen)) seen[al] = Date.now() - t3;
+    if (Date.now() - t3 > 1400 && !o.s3_shot1) { o.s3_shot1 = Date.now() - t3; await shotC('C682428-v-s3-after-undo-1s'); }
+    if (Date.now() - t3 > 3800 && !o.s3_shot2) { o.s3_shot2 = Date.now() - t3; await shotC('C682428-v-s3-after-undo-4s'); o.s3_colNoRefresh = await colOf(set, 'W1'); }
+    await p.waitForTimeout(150); }
+  o.s3_messages = seen;
   await go('Board View', set.q); o.s5 = { col: await colOf(set, 'W1'), lead: await leadName(set.w.W1.id) }; await shotC('C682428-v-s5-after-refresh');
 });
 
@@ -263,7 +274,7 @@ await run('C847734', async (o) => {
   const l2 = await mkLine(wo, 2); L[l2] = 'Line 2 Explicit'; o.l2set = (await a.put(`/api/work-orders/lines/${l2}/technicians`, { staffIds: [B1.staff_id] })).status;
   const l3 = await mkLine(wo, 3); L[l3] = 'Line 3 Complete'; o.l3complete = await completeLine(wo, l3);
   const num = (await workOrders(a, n))[0].number; o.wo = num; o.before = await lineTechs(wo, L);
-  await go('Board View', n); o.s2_inUnassigned = (await boardCols(p)).find((x) => x.id === 'unassigned')?.cards.includes(num);
+  await pins([A1.staff_id, B1.staff_id]); await go('Board View', n); // 28 Oct: Ana's column was not drawn without the pin (L0430) o.s2_inUnassigned = (await boardCols(p)).find((x) => x.id === 'unassigned')?.cards.includes(num);
   await dragTo(`[data-test-id="board_card_${wo}"]`, `[data-test-id="board_column_${A1.staff_id}"]`, 'C847734-v-s3');
   o.s3 = { prompt: await shiftPrompt(p, 'Keep shifts'), toast: await waitToast() }; await shotC('C847734-v-s3-moved');
   o.s4_clicked = await clickUndo(); o.s4 = await waitToast(p, 3000); await shotC('C847734-v-s4-undone'); await p.waitForTimeout(2500);
