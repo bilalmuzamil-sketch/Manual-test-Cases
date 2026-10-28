@@ -23,14 +23,15 @@ await page.getByText(/^Date:/).first().click(); await page.waitForTimeout(2500);
 const menu = page.locator('.q-menu').last();
 await menu.locator('button').filter({ hasText: new RegExp(`^${day}$`) }).first().click(); await page.waitForTimeout(10000);
 const dateLabel = await page.getByText(/^Date:/).first().innerText().catch(() => '');
+if (mode === 'unpaid') { await page.locator('tr').filter({ hasText: /\(\d+\)/ }).first().locator('i, button').first().click().catch(() => {}); await page.waitForTimeout(5000); }
 if (mode === 'detail') { await page.locator('tr').filter({ hasText: 'Current (' }).first().getByText('arrow_drop_down').click().catch(() => {}); await page.waitForTimeout(3500); }
 const B = b => b && { x: Math.round(b.x * 2), y: Math.round(b.y * 2), w: Math.round(b.width * 2), h: Math.round(b.height * 2) };
 const targets = JSON.parse(rowsJson);
 const r0 = page.locator('tr').filter({ hasText: targets[0] }).first(); await r0.evaluate(el => el.scrollIntoView({ block: 'center' })).catch(() => {}); await page.waitForTimeout(1200);
-const meta = { tag, path, location_tz: TZ, browser: browserTz, observed_at_utc: new Date().toISOString(), appVersion: await page.locator('meta[name="app-version"]').getAttribute('content').catch(() => null), url: page.url(), dateLabel, rows: {} };
+const meta = { tag, path, location_tz: TZ, process_TZ: process.env.TZ || null, process_zone: Intl.DateTimeFormat().resolvedOptions().timeZone, browser: browserTz, observed_at_utc: new Date().toISOString(), appVersion: await page.locator('meta[name="app-version"]').getAttribute('content').catch(() => null), url: page.url(), dateLabel, rows: {} };
 for (const r of targets) { const row = page.locator('tr').filter({ hasText: r }).first(); meta.rows[r] = { box: B(await row.boundingBox().catch(() => null)), text: (await row.innerText().catch(() => '')).replace(/\s+/g, ' | ') }; }
 meta.box_date = B(await page.getByText(/^Date:/).first().boundingBox().catch(() => null));
 await page.screenshot({ path: `${OUT}/${tag}.png` });
 fs.writeFileSync(`${OUT}/${tag}.json`, JSON.stringify(meta, null, 1));
-console.log(JSON.stringify({ tz: meta.browser, dateLabel, url: meta.url, ver: meta.appVersion, rows: Object.fromEntries(Object.entries(meta.rows).map(([k, v]) => [k, v.text])) }, null, 1));
+console.log(JSON.stringify({ proc: [meta.process_TZ, meta.process_zone], tz: meta.browser, dateLabel, url: meta.url, ver: meta.appVersion, rows: Object.fromEntries(Object.entries(meta.rows).map(([k, v]) => [k, v.text])) }, null, 1));
 await browser.close();

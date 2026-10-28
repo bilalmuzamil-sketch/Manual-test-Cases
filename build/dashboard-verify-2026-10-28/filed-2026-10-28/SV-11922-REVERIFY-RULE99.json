@@ -1,0 +1,59 @@
+{
+ "ticket": "SV-11922",
+ "rule": "Rule 99 \u2014 session, browser and process on the location zone",
+ "status_note": "QA lead marked SV-11922 Obsolete pending this re-verification (28 Oct 2026); ticket status NOT touched by us",
+ "runs": {
+  "RV-hd-detail": {
+   "location_tz": "Asia/Karachi",
+   "process_TZ": "Asia/Karachi",
+   "process_zone": "Asia/Karachi",
+   "browser": {
+    "tz": "Asia/Karachi",
+    "now": "Thu Oct 29 2026 03:56:31 GMT+0500 (Pakistan Standard Time)"
+   },
+   "observed_at_utc": "2026-10-28T22:56:49.598Z",
+   "appVersion": "v26.43.2-f8698cb",
+   "url": "https://app.staging.shopview.com/reports/ap-aging-detail",
+   "dateLabel": "Date:\u00a02026-10-29",
+   "rows": {
+    "SV10190-R3": "Sep | 30, | 2026 | Invoice | SV10190-R3 | 123 | Cannabis | Forestlawn | Staging | Heavy | Duty | - | 9919 | Oct | 30, | 2026 | 0 | $5.65 | $5.65",
+    "E2E-INV-1790684747987": "Sep | 29, | 2026 | Invoice | E2E-INV-1790684747987 | 4Refuel | Staging | Heavy | Duty | - | 9919 | Oct | 29, | 2026 | 0 | $30.00 | $30.00"
+   }
+  },
+  "RV-leth-detail": {
+   "location_tz": "America/Edmonton",
+   "process_TZ": "America/Edmonton",
+   "process_zone": "America/Edmonton",
+   "browser": {
+    "tz": "America/Edmonton",
+    "now": "Wed Oct 28 2026 16:57:14 GMT-0600 (Mountain Daylight Time)"
+   },
+   "observed_at_utc": "2026-10-28T22:57:32.477Z",
+   "appVersion": "v26.43.2-f8698cb",
+   "url": "https://app.staging.shopview.com/reports/ap-aging-detail",
+   "dateLabel": "Date:\u00a02026-10-28",
+   "rows": {
+    "SV10190-ST1": "Sep | 30, | 2026 | Invoice | SV10190-ST1 | 123 | Cannabis | Forestlawn | Staging | Lethbridge | - | 4310 | Oct | 30, | 2026 | -1 | $5.65 | $5.65",
+    "SV10190-ST2": "Sep | 30, | 2026 | Invoice | SV10190-ST2 | 123 | Cannabis | Forestlawn | Staging | Lethbridge | - | 4310 | Oct | 30, | 2026 | -1 | $5.65 | $5.65"
+   }
+  },
+  "RV-leth-unpaid": {
+   "location_tz": "America/Edmonton",
+   "process_TZ": "America/Edmonton",
+   "process_zone": "America/Edmonton",
+   "browser": {
+    "tz": "America/Edmonton",
+    "now": "Wed Oct 28 2026 17:01:10 GMT-0600 (Mountain Daylight Time)"
+   },
+   "observed_at_utc": "2026-10-28T23:01:29.998Z",
+   "appVersion": "v26.43.2-f8698cb",
+   "url": "https://app.staging.shopview.com/reports/ap-unpaid-invoices?asOfDate=2026-10-20&vendorId=68c72fe7-8fbe-4795-85aa-7e91fbb54c7e",
+   "dateLabel": "Date:\u00a02026-10-20",
+   "rows": {
+    "5363": "Sep | 23, | 2026 | Invoice | 5363 | 123 | Cannabis | Forestlawn | Staging | Heavy | Duty | - | 9919 | Oct | 23, | 2026 | -2 | $19.21 | $19.21",
+    "SV10190-ST1": "Sep | 30, | 2026 | Invoice | SV10190-ST1 | 123 | Cannabis | Forestlawn | Staging | Lethbridge | - | 4310 | Oct | 30, | 2026 | -9 | $5.65 | $5.65"
+   }
+  }
+ },
+ "verdict": "REPRODUCES in all three runs: SV10190-R3 0 (exp -1) at HD on 29 Oct; SV10190-ST1/ST2 -1 (exp -2) at Lethbridge on 28 Oct; 5363 -2 (exp -3), SV10190-ST1 -9 (exp -10) on A/P Unpaid Invoices at Lethbridge on 20 Oct."
+}
