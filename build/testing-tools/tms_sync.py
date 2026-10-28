@@ -55,6 +55,18 @@ def section_map():
         return {}
 
 
+ACCEPTED_CSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "tms", "accepted-differences.csv")
+
+
+def accepted():
+    """{(TestRail case id, field)} the QA lead decided to leave different. Reported as ACCEPTED, never re-asked."""
+    import csv
+    try:
+        return {(int(r["case_id"].lstrip("C")), r["field"]) for r in csv.DictReader(open(ACCEPTED_CSV))}
+    except OSError:
+        return set()
+
+
 def id_map():
     """TestRail id -> TMS id for cases whose numbers differ (created in TMS via the API).
     Imported cases keep their TestRail number and need no entry."""
@@ -168,6 +180,7 @@ def plan(section):
     for c in listed:  # full read: the list omits the text fields
         d = tms.case(c["id"])
         tmc[back.get(c["id"], c["id"])] = d.get("data", d)  # keyed by TestRail number
+    ok_diffs = accepted()
     rows = []
     for cid in sorted(set(trc) | set(tmc)):
         tr, tm = trc.get(cid), tmc.get(cid)
@@ -178,7 +191,7 @@ def plan(section):
         elif tm is None:
             row.update(action="TR_ONLY", section=tsec(tr["section_id"]), tr_link=TR_LINK % cid)
         else:
-            diff = differences(tr, tm)
+            diff = [f for f in differences(tr, tm) if (cid, f) not in ok_diffs]
             moved = tsec(tr["section_id"]) != tm["section_id"]
             row.update(section=tsec(tr["section_id"]), diff=diff, tms_section=tm["section_id"])
             if 3 in (tr.get("custom_atmstatus"), tm.get("automation_status")) and (diff or moved):
@@ -191,7 +204,7 @@ def plan(section):
             elif moved:
                 row["action"] = "MOVE"
             else:
-                row["action"] = "SAME"
+                row["action"] = "ACCEPTED" if any(k[0] == cid for k in ok_diffs) else "SAME"
             if row["action"] in ("UPDATE",) and moved:
                 row["also_move"] = True
         rows.append(row)

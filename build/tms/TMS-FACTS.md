@@ -271,3 +271,6 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
 - **🛑 TMS BEHAVIOUR — `automation_type` 0 (None) is silently ignored on an Automated case:** PATCH answers 200, the
   value stays 1 (E2E), no new version. Seen on all 3 above (twice on C682419). Undocumented in the OpenAPI. These 3
   will show as `HOLD_AUTO` with `automation_type` on every sync until TMS changes or TestRail sets a type.
+- **Decided 2026-10-28 (QA lead: "A" — leave as is):** the 3 cases' Automation type difference is recorded in
+  `build/tms/accepted-differences.csv`; `tms_sync.py` reports them as `ACCEPTED` (per field only — any other change
+  on them is still caught). No change list sent to Vlad for this suite (QA lead: *"No need to send list for this."*).
