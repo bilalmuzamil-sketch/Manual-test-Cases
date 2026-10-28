@@ -57,6 +57,12 @@ else owes).
 
 ---
 
+## 2026-10-28, ~08:55 UTC. **SV-11744 POSTED: PASSED (comment 79638). SV-10928 HALF DONE — BLOCKED ON FRESH QA COOKIES.**
+| What is missing | Who owes it | What it blocks | Since |
+|---|---|---|---|
+| Fresh `.qa.shopview.com` cookies (`sv_sso_session`, `PHPSESSID`, `cf_clearance`) — quick-login on sv10928 now returns 401 `sso_required` | QA lead | The rest of SV-10928 on the branch: timesheet, Receive Parts, Lines Add/Edit Part, Edit Asset (slow loading), bulk Pick in two tabs, catalog part deleted, manual returns, Bulk Receive / Process Return, manufacturer fields, ShopCoach, other error messages. Nothing can be posted on SV-10928 until these are run. | 28 Oct ~08:45 UTC |
+| Question: report the screen adding up "-$0.00" on the Invoices tab balance? (pre-existing, front end, not caused by SV-11744; steps in `sv11744-reversal-credit-share-2026-10-28/FINDINGS.md`) | QA lead | Nothing — whether to raise it | 28 Oct |
+
 ## 2026-10-27, ~11:30 UTC. **THREE TICKETS BLOCKED ON YOUR INSTRUCTION, EACH WITH A QUESTION TO ITS DEVELOPER.**
 | Ticket | Waiting on | What it blocks | Since |
 |---|---|---|---|
