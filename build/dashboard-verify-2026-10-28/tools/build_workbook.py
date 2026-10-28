@@ -36,18 +36,27 @@ def sheet(ws, header, rows, widths):
     ws.freeze_panes = 'A2'
 
 
+DOC = 'https://docs.google.com/document/d/1mEcB4cpsOqZXeim0vzmlbam2xSB02YshnyYRY0dk9s8/edit'
+
+
 def po_rows():
+    """Rows of the Chris Ward question doc (doc number, our id, title) — the doc is the PO sheet now."""
+    f = os.path.join(ROOT, 'questions-for-chris-2026-10-28', 'QUESTIONS-MAP.md')
     out = []
-    for p in sorted(os.listdir(os.path.join(ROOT, 'reports'))) + ['..dash']:
-        f = os.path.join(ROOT, 'defect-pack-2026-10-28', 'PO-QUESTIONS-2026-10-28.md') if p == '..dash' \
-            else os.path.join(ROOT, 'reports', p, 'PO-QUESTIONS.md')
-        if not os.path.isfile(f):
-            continue
-        for line in open(f, encoding='utf-8'):
-            cells = [c.strip() for c in line.strip().strip('|').split('|')]
-            if len(cells) >= 4 and re.match(r'^[A-Z]{1,3}Q-\d+$', cells[0]):
-                out.append([cells[0], cells[1], re.sub(r'\*\*', '', cells[2]), re.sub(r'\*\*', '', cells[3]),
-                            ' / '.join(cells[4:]) if len(cells) > 4 else '', ''])
+    for line in open(f, encoding='utf-8'):
+        c = [x.strip() for x in line.strip().strip('|').split('|')]
+        if len(c) == 3 and c[0].isdigit():
+            out.append([int(c[0]), c[1], c[2], DOC, ''])
+    return out
+
+
+def left_out_rows():
+    f = os.path.join(ROOT, 'questions-for-chris-2026-10-28', 'LEFT-OUT-NOT-ON-SCREEN.md')
+    out = []
+    for line in open(f, encoding='utf-8'):
+        c = [x.strip() for x in line.strip().strip('|').split('|')]
+        if len(c) == 3 and c[0] not in ('Item', '---'):
+            out.append(c)
     return out
 
 
@@ -85,11 +94,13 @@ def main():
                  f['files'], GH + f['files']] for f in FINDINGS if f['status'] == key]
         sheet(wb.create_sheet(name), ['#', 'Area', 'Report / tile', 'What is wrong', 'Evidence', 'Written source',
                                        'PO question', 'Draft / file', 'Link'], rows, [9, 12, 26, 48, 60, 36, 11, 40, 40])
-    sheet(wb.create_sheet('PO questions'), ['#', 'Project · feature', 'Question', 'Why we ask', 'Outcomes', 'Answer'],
-          po_rows(), [8, 30, 60, 70, 30, 14])
+    sheet(wb.create_sheet('Questions for Chris'), ['Doc #', 'Our id', 'Question (report and point)', 'Google Doc', 'Answer'],
+          po_rows(), [7, 9, 70, 50, 30])
+    sheet(wb.create_sheet('Left out - not on screen'), ['Item', 'What it was', 'Why a customer cannot reach it'],
+          left_out_rows(), [18, 60, 70])
     out = os.path.join(ROOT, 'ShopView-Dashboard-and-Reports-Full-Check-Findings-2026-10-28.xlsx')
     wb.save(out)
-    print(out, {k: sum(1 for f in FINDINGS if f['status'] == k) for k, _, _ in TABS}, 'PO rows', len(po_rows()))
+    print(out, {k: sum(1 for f in FINDINGS if f['status'] == k) for k, _, _ in TABS}, 'questions', len(po_rows()), 'left out', len(left_out_rows()))
 
 
 if __name__ == '__main__':

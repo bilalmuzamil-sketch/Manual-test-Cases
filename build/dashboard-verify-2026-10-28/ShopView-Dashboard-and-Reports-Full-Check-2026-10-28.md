@@ -38,7 +38,7 @@ Passed every admissibility check. Waits only for your go-ahead, one ticket at a 
 | PV-D2 | Parts Velocity | Demand counts a work order twice after the invoice is reversed and created again. | Parts Velocity spec, Confluence 620888066 v12 (2026-09-14), S5-R4 | — | `reports/W3-parts/defects/TICKET-D2-pv-demand-counts-reinvoice-twice.wiki` |
 | TAX1 | Sales Tax Collected | An invoice part-paid by a deposit shows Invoice Status "Paid", and the "Partially Paid" filter leaves it out. | SV-4573 (Done): "Invoice Status (, Partially Paid, Paid)" — quote re-read live by coordinator | — | `reports/W2-sales-advisor-tax/defects/TICKET-W2-6-sales-tax-status-deposit-paid.wiki` |
 
-## Held for PO (16)
+## Held for PO (15)
 
 Draft written. The written source is silent or can be read two ways, so the PO answers first.
 
@@ -56,7 +56,6 @@ Draft written. The written source is silent or can be read two ways, so the PO a
 | SBC1 | Sales By Customer | Margin % divides by Subtotal minus Shop Supplies; the SBC and SBR specs disagree on the base. | SBC spec Confluence 577634305 v22 (2026-10-19) vs SBR spec 585629698 v30 §3 | SQ-1 | `reports/W2-sales-advisor-tax/defects/TICKET-W2-1-sbc-margin-percent-base.wiki` |
 | DEC1 | SBC / SBR / Sales | Labor Delta and Margin % show 2 decimals (specs say 1); negative money shows "(-$2.50)". | SBC v22 / SBR v30 | SQ-2 | `reports/W2-sales-advisor-tax/defects/DEFECT-CANDIDATE-labor-delta-and-margin-decimals.md` |
 | SBR2 | Sales By Representative | A $0.00 invoice nobody paid shows "Paid". | SV-9217 vs SBR spec v30 §3 | SQ-3 | `reports/W2-sales-advisor-tax/RESULTS.md` |
-| FU1 | Follow Up (hidden page) | The hidden Follow Up page is blank and its data request fails (server error) on 12 of 12 reads. | No written source | SQ-5 | `reports/W2-sales-advisor-tax/defects/TICKET-W2-5-follow-up-report-server-error.wiki` |
 | TE1 | Technician Efficiency | A clock shorter than 0.01 h drops the line's whole technician time. | see candidate | SQ-6 | `reports/W2-sales-advisor-tax/defects/DEFECT-CANDIDATE-te-tiny-clock-drops-tech-time.md` |
 | DATE1 | SBC / SBR date options | The date options on screen match neither spec. | SBC v22 / SBR v30 | SQ-7 | `reports/W2-sales-advisor-tax/defects/DEFECT-CANDIDATE-date-filter-options.md` |
 | TAX2 | Sales Tax Collected | Unpaid invoices are not listed; credit-memo tax handling; $0.00 invoices listed "Paid" with no payment (643); deposit invoices dated by invoice not deposit (20). | SV-4573 | SQ-8, SQ-9, SQ-11 | `reports/W2-sales-advisor-tax/RESULTS.md` |
@@ -82,18 +81,23 @@ Raised before, closed as Obsolete, still on screen. You decide whether to reopen
 
 | # | Report / tile | What is wrong | Written source | PO question | Draft |
 |---|---|---|---|---|---|
-| IV-O1 | Inventory Value | First visit shows Margin and Total Sell (spec: hidden by default). | SV-8927 (closed Obsolete) | Reopen? | `reports/W3-parts/RESULTS.md` |
-| IV-O2 | Inventory Value | Totals row reads "Totals" (spec: "Total"). | SV-8926 (closed Obsolete) | Reopen? | `reports/W3-parts/RESULTS.md` |
-| IV-O3 | Inventory Value | Empty-state wording differs from the spec; header "Qty" vs "Qty on Hand". | SV-8930 (closed Obsolete) | Reopen? | `reports/W3-parts/RESULTS.md` |
-| SBR1 | Sales By Representative | Invoices on the same day are not ordered by invoice number. | SV-8974 (closed OBSOLETE 9 Aug 2026 without a fix) | Reopen? | `reports/W2-sales-advisor-tax/defects/DEFECT-CANDIDATE-sbr-same-day-invoice-order.md` |
+| IV-O1 | Inventory Value | First visit shows Margin and Total Sell (spec: hidden by default). | SV-8927 (closed Obsolete). Spec v. 13 Aug still S3-R12/S3-R13/S8-R3 word for word; no later decision found | Verdict: SAFE TO REOPEN | `reports/W3-parts/RESULTS.md` |
+| IV-O2 | Inventory Value | Totals row reads "Totals" (spec: "Total"). | SV-8926 (closed Obsolete). Spec still says "Total", but every other report screen says "Totals" | Verdict: DO NOT REOPEN — asked Chris (doc Q20) | `reports/W3-parts/RESULTS.md` |
+| IV-O3 | Inventory Value | Empty-state wording differs from the spec; header "Qty" vs "Qty on Hand". | SV-8930 (closed Obsolete). Original symptom (no message at all) is FIXED; only the words differ, and the suite now shows one shared message; precedent SV-9452 | Verdict: DO NOT REOPEN — asked Chris (doc Q21) | `reports/W3-parts/RESULTS.md` |
+| SBR1 | Sales By Representative | Invoices on the same day are not ordered by invoice number. | SV-8974 (closed OBSOLETE 9 Aug 2026 without a fix). SBR spec v30 (21 Oct) restates S6-R9 word for word | Verdict: SAFE TO REOPEN | `reports/W2-sales-advisor-tax/defects/DEFECT-CANDIDATE-sbr-same-day-invoice-order.md` |
 
-## Not a ticket (4)
+## Not a ticket (1)
 
 Only reachable through the API (screen blocks it, Rule 24), or rounding / observation.
 
 | # | Report / tile | What is wrong | Written source | PO question | Draft |
 |---|---|---|---|---|---|
-| F3/F5 | Billing Efficiency / Sales | Lines added to Paid/Invoiced work orders after invoicing change hours and the pending invoice. | — | — | `defect-pack-2026-10-28/NOT-FILED.md` |
-| W1-N1/N2 | WIP / Shop Efficiency | Fixed price + hourly rate valued at hours × rate; void invoice hours counted. | — | WQ-9 | `reports/W1-labor-wip/defects/NOT-FILED.md` |
 | SBC2 | Sales By Customer | Asset label follows SV-9459, not spec S8-R7; SBC/SBR differ from today's Stats tab after later clocks or credits. | SBC v22, SV-9459 | SQ-4, SQ-10 | `reports/W2-sales-advisor-tax/RESULTS.md` |
-| O4-W2 | Customer payment window | Void invoice S1-38207 still shows $135.00 owing in New Customer Payment; work order stays "Invoiced". | — | — | `reports/W2-sales-advisor-tax/RESULTS.md` |
+
+## Left out — a customer cannot reach these on screen
+
+Listed in `questions-for-chris-2026-10-28/LEFT-OUT-NOT-ON-SCREEN.md` (QA lead's rule, 28 Oct 2026). None of them is in the tabs above or in the question doc.
+
+## Questions for Chris Ward
+
+39 questions, in the same shape as the other session's Chris Ward docs: [Google Doc](https://docs.google.com/document/d/1mEcB4cpsOqZXeim0vzmlbam2xSB02YshnyYRY0dk9s8/edit) (source `questions-for-chris-2026-10-28/questions-for-chris-ward.html`, number map `QUESTIONS-MAP.md`). Not yet shared with Chris — the QA lead shares it.

@@ -105,21 +105,14 @@ FINDINGS = [
     # ---------------- QA LEAD DECISION ----------------
     dict(id='IV-O1', area='Reports', report='Inventory Value', status='QA-LEAD',
          finding='First visit shows Margin and Total Sell (spec: hidden by default).', evidence='Fresh browser, 28 Oct.',
-         source='SV-8927 (closed Obsolete)', question='Reopen?', files=W3 + 'RESULTS.md'),
+         source='SV-8927 (closed Obsolete). Spec v. 13 Aug still S3-R12/S3-R13/S8-R3 word for word; no later decision found' , question='Verdict: SAFE TO REOPEN', files=W3 + 'RESULTS.md'),
     dict(id='IV-O2', area='Reports', report='Inventory Value', status='QA-LEAD',
-         finding='Totals row reads "Totals" (spec: "Total").', evidence='Screen.', source='SV-8926 (closed Obsolete)', question='Reopen?', files=W3 + 'RESULTS.md'),
+         finding='Totals row reads "Totals" (spec: "Total").', evidence='Screen.', source='SV-8926 (closed Obsolete). Spec still says "Total", but every other report screen says "Totals"' , question='Verdict: DO NOT REOPEN — asked Chris (doc Q20)', files=W3 + 'RESULTS.md'),
     dict(id='IV-O3', area='Reports', report='Inventory Value', status='QA-LEAD',
          finding='Empty-state wording differs from the spec; header "Qty" vs "Qty on Hand".', evidence='Screen.',
-         source='SV-8930 (closed Obsolete)', question='Reopen?', files=W3 + 'RESULTS.md'),
+         source='SV-8930 (closed Obsolete). Original symptom (no message at all) is FIXED; only the words differ, and the suite now shows one shared message; precedent SV-9452' , question='Verdict: DO NOT REOPEN — asked Chris (doc Q21)', files=W3 + 'RESULTS.md'),
 
     # ---------------- NOT A TICKET ----------------
-    dict(id='F3/F5', area='Dashboard', report='Billing Efficiency / Sales', status='NOT-TICKET',
-         finding='Lines added to Paid/Invoiced work orders after invoicing change hours and the pending invoice.',
-         evidence='Only possible through the API (no New Line button on screen) → Rule 24 pass; API-hardening note.',
-         source='—', question='—', files=D + 'NOT-FILED.md'),
-    dict(id='W1-N1/N2', area='Reports', report='WIP / Shop Efficiency', status='NOT-TICKET',
-         finding='Fixed price + hourly rate valued at hours × rate; void invoice hours counted.',
-         evidence='Only reachable through the API → Rule 24.', source='—', question='WQ-9', files=W1 + 'defects/NOT-FILED.md'),
     # ---------------- W2 (sales, advisor, technician efficiency, tax, follow up) ----------------
     dict(id='TAX1', area='Reports', report='Sales Tax Collected', status='READY',
          finding='An invoice part-paid by a deposit shows Invoice Status "Paid", and the "Partially Paid" filter leaves it out.',
@@ -137,10 +130,6 @@ FINDINGS = [
     dict(id='SBR2', area='Reports', report='Sales By Representative', status='HELD',
          finding='A $0.00 invoice nobody paid shows "Paid".', evidence='645 invoices.', source='SV-9217 vs SBR spec v30 §3', question='SQ-3',
          files=W2 + 'RESULTS.md'),
-    dict(id='FU1', area='Reports', report='Follow Up (hidden page)', status='HELD',
-         finding='The hidden Follow Up page is blank and its data request fails (server error) on 12 of 12 reads.',
-         evidence='12/12 reads HTTP 500.', source='No written source', question='SQ-5',
-         files=W2 + 'defects/TICKET-W2-5-follow-up-report-server-error.wiki'),
     dict(id='TE1', area='Reports', report='Technician Efficiency', status='HELD',
          finding='A clock shorter than 0.01 h drops the line\'s whole technician time.', evidence='727 rows, 221 lines.',
          source='see candidate', question='SQ-6', files=W2 + 'defects/DEFECT-CANDIDATE-te-tiny-clock-drops-tech-time.md'),
@@ -152,16 +141,13 @@ FINDINGS = [
          evidence='See RESULTS §6.', source='SV-4573', question='SQ-8, SQ-9, SQ-11', files=W2 + 'RESULTS.md'),
     dict(id='SBR1', area='Reports', report='Sales By Representative', status='QA-LEAD',
          finding='Invoices on the same day are not ordered by invoice number.', evidence='8 checks; reproduced on screen twice.',
-         source='SV-8974 (closed OBSOLETE 9 Aug 2026 without a fix)', question='Reopen?',
+         source='SV-8974 (closed OBSOLETE 9 Aug 2026 without a fix). SBR spec v30 (21 Oct) restates S6-R9 word for word' , question='Verdict: SAFE TO REOPEN',
          files=W2 + 'defects/DEFECT-CANDIDATE-sbr-same-day-invoice-order.md'),
     dict(id='SALES-K1', area='Reports', report='Sales', status='KNOWN',
          finding='Margin shows "N/A" when parts are $0.', evidence='Screen.', source='SV-6147 (open)', question='—', files=W2 + 'RESULTS.md'),
     dict(id='SBC2', area='Reports', report='Sales By Customer', status='NOT-TICKET',
          finding='Asset label follows SV-9459, not spec S8-R7; SBC/SBR differ from today\'s Stats tab after later clocks or credits.',
          evidence='7,293 / 558 rows. Spec update (SQ-4) and design question (SQ-10).', source='SBC v22, SV-9459', question='SQ-4, SQ-10', files=W2 + 'RESULTS.md'),
-    dict(id='O4-W2', area='Outside reports', report='Customer payment window', status='NOT-TICKET',
-         finding='Void invoice S1-38207 still shows $135.00 owing in New Customer Payment; work order stays "Invoiced".',
-         evidence='The invoice was voided through the API only (no screen path) — passed to the payments owner as an observation.', source='—', question='—', files=W2 + 'RESULTS.md'),
 ]
 
 CHECKS = [

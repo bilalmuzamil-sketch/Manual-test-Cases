@@ -63,3 +63,9 @@ Earlier in the same thread: "I want everything in the dashboard to be correct ..
 - W2 question ids renamed RQ-n → SQ-n (clash with W4's RQ-n).
 - Consolidated: `ShopView-Dashboard-and-Reports-Full-Check-2026-10-28.md` + `…-Findings-2026-10-28.xlsx` (built by tools/build_workbook.py + build_report_md.py from tools/findings_data.py). 4 ready to file · 16 held for PO · 8 already reported · 4 QA-lead reopen decisions · 4 not tickets · 43 PO questions.
 - Nothing filed in Jira; nothing written to TestRail. Waiting on the QA lead.
+
+## 2026-10-28 late (2) — QA lead's four follow-ups
+1. Customer-on-screen rule applied: all 4 ready tickets were reproduced through the screen (AP1 existing bills, two locations; PV-D1 S1-38206 and PV-D2 S1-38206 made fully on screen; TAX1 S1-38214 fully on screen). 10 items a customer cannot reach removed from the pack → `questions-for-chris-2026-10-28/LEFT-OUT-NOT-ON-SCREEN.md`.
+2. Closed tickets reviewed → `CLOSED-TICKETS-REVIEW-2026-10-28.md` (SV-8974, SV-8927 safe to reopen; SV-8926, SV-8930 not — asked Chris).
+3. Chris question doc in the other session's shape (format only, read-only from origin/claude/slack-session-setup-7v5itm): Google Doc 1mEcB4cpsOqZXeim0vzmlbam2xSB02YshnyYRY0dk9s8, 39 questions; Drive turned three $…$ phrases into equations — repaired in place (Q5, Q23, Q33) and re-read clean. Not shared.
+4. "Payments owner" item withdrawn — it was API-only (left out under 1).
