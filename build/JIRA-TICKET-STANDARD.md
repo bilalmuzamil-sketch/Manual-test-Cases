@@ -237,12 +237,14 @@ When approved, the QA comment — **PASSED, FAILED or PARTIALLY PASSED** — end
 - Never a neutral "re-check" comment that leaves the reader to decide. An earlier one is edited in place with a dated note.
 
 
-## 13. Not a full pass? Two comments — failed/blocked ABOVE, passed BELOW (QA lead 2026-10-27, Standing Rule 115)
-1. **Comment 1 (post first):** red FAILED / non-green PARTIALLY PASSED panel → one line: "This comment lists what failed or is
-   blocked; the next comment lists everything that passed." → each failed item, each blocked item, then any question / smaller point,
-   each with a plain one-sentence explanation of the requirement, an annotated picture, steps, and the requirement quoted.
-2. **Comment 2 (post second):** green panel starting **"WHAT PASSED — everything that passed is below. Everything that failed or is
-   blocked is in the comment above."** → before/after picture of what got fixed → table of passed checks only.
+## 13. Not a full pass? Two comments — PASSED first, still-to-be-fixed LAST (QA lead 2026-10-27, Standing Rule 115)
+1. **Comment 1 (post first):** green panel starting **"WHAT PASSED — everything that passed is listed in this comment. What is
+   still to be fixed (failed or blocked) is in the next comment below."** → before/after picture of what got fixed → table of
+   passed checks only.
+2. **Comment 2 (post second, so it is the last comment):** red FAILED / non-green PARTIALLY PASSED panel → **"Everything that
+   passed has been posted separately in the previous comment. What is still to be fixed is below:"** → each failed item, each
+   blocked item, then any question / smaller point, each with a plain one-sentence explanation of the requirement, an annotated
+   picture, steps, and the requirement quoted.
 3. Write for someone seeing the ticket for the first time: plain words before every requirement ID, no internal shorthand, the
    date Jira shows (Central time). A full pass stays one green comment.
 Canonical example: SV-11631 comments 79620 + 79621.

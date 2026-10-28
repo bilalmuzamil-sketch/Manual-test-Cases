@@ -86,10 +86,20 @@ Washer M20 deleted (P2-109). Production: S2-889 part 1 category set to "ZZAUTOTE
 - Saved scripts that find a row by text must skip a missing row (test data moves between passes).
 - A retest is: re-read ticket + marker → re-run saved scripts → diff against saved data → only new scripts for what changed.
 
-### Comments corrected (27 Oct 2026, 23:42 CDT) — QA lead: passed in a separate comment, failed/blocked above
+### Comments corrected (27 Oct 2026, 23:42 CDT — order superseded at 23:56, see next section) — QA lead: passed in a separate comment, failed/blocked above
 - **79620** rewritten = FAILED/BLOCKED: R3+R9 phone tap (picture + steps + quotes), R10 blocked (ask to Milomir, mention kept),
   and the Description-width smaller point moved here from 79621. Read back: FAILED first, 2 media (phone tap, Description).
 - **79621** rewritten = PASSED: opens "WHAT PASSED — everything that passed is below. Everything that failed or is blocked is in
   the comment above."; before/after picture re-uploaded with the Central-time date (attachment 63092,
   `SV-11631-retest-what-was-fixed-before-after.png`); 17-row passed table. Read back: 1 media, 18 table rows incl. header.
 - Both carry a dated edit note (Rule 100). Learning saved: Standing Rule 115, ticket standard §13, lessons index row.
+
+### Order corrected (27 Oct 2026, 23:56 CDT) — QA lead: passed first, what is still to be fixed last
+- **79620** now = PASSED (`comment-7-passed-first.txt`): opens "WHAT PASSED — everything that passed is listed in this comment.
+  What is still to be fixed (failed or blocked) is in the next comment below." Read back: green opening, 1 media (before/after),
+  18 table rows incl. header.
+- **79621** now = still to be fixed, the last comment (`comment-8-failed-last.txt`): red FAILED panel, then "Everything that passed
+  has been posted separately in the previous comment. What is still to be fixed is below:". Read back: 2 media (phone tap,
+  Description), Milomir mention intact.
+- Both carry a dated edit note at 23:56 CDT. Old comments 79529/79530 (26 Oct) untouched (Rule 112).
+- Learning check: Standing Rule 115, its index line, ticket standard §13 and the lessons row corrected to the new order.
