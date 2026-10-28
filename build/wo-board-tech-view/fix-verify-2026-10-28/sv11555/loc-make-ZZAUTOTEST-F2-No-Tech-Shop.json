@@ -1,0 +1,67 @@
+{
+ "at": "2026-10-28T15:19:39.529Z",
+ "name": "ZZAUTOTEST F2 No Tech Shop",
+ "calls": [
+  {
+   "m": "POST",
+   "url": "/api/workplaces/create",
+   "status": 201,
+   "body": "{\"data\":{\"workplace_id\":\"c79ae1d8-0ffd-44c7-b014-3f2b2568113e\"}}",
+   "sent": "{\"name\":\"ZZAUTOTEST F2 No Tech Shop\",\"address_1\":\"3 ZZAUTOTEST Way\",\"city\":\"Las Vegas\",\"state_or_province\":\"Nevada\",\"postal_code\":\"89135\",\"country_code\":\"US\",\"telephone\":\"(702) 555 - 0199\",\"timezone\":\"Asia/Karachi\",\"color\":\"#2276DA\",\"shop_id\":null,\"remit_to\":null,\"shop_supplies_charge\":null,\"min_shop_supplies_charge\":null,\"max_shop_supplies_charge\":null,\"shopSupplyPercentageEnabled\":false,\"remit_t"
+  }
+ ],
+ "before": [
+  "ZZAUTOTEST Location Empty",
+  "Staging Lethbridge - 4310",
+  "Staging Heavy Duty - 9919"
+ ],
+ "fields": [
+  "Name *",
+  "Shop Id",
+  "Address 1",
+  "Address 2",
+  "City",
+  "State/Province arrow_drop_down",
+  "Country arrow_drop_down",
+  "ZIP/Postal Code",
+  "Timezone arrow_drop_down",
+  "Telephone",
+  "Remit To arrow_drop_down",
+  "% Shop Supplies Charge of labor",
+  "$ Min",
+  "$ Max",
+  "Taxes GST arrow_drop_down",
+  "Sales Tax Rounding Line By Line (Default) arrow_drop_down Ro",
+  "Default Color colorize"
+ ],
+ "errors": [],
+ "after": {
+  "id": "c79ae1d8-0ffd-44c7-b014-3f2b2568113e",
+  "name": "ZZAUTOTEST F2 No Tech Shop",
+  "address_1": "3 ZZAUTOTEST Way",
+  "address_2": null,
+  "state_or_province": "Nevada",
+  "postal_code": "89135",
+  "city": "Las Vegas",
+  "telephone": "(702) 555 - 0199",
+  "color": "#2276DA",
+  "tax": {
+   "id": "819f3c25-5d9b-4bc6-9ddc-4e284ebe2f6b",
+   "name": "GST"
+  },
+  "timezone": "Asia/Karachi",
+  "country_code": "US",
+  "organization_id": "d55bc308-e61a-438d-b5f1-c7a73c89d49f",
+  "shop_id": null,
+  "remit_to": "c79ae1d8-0ffd-44c7-b014-3f2b2568113e",
+  "ibs_location_id": null,
+  "shop_supplies_charge": 0,
+  "max_shop_supplies_charge": null,
+  "min_shop_supplies_charge": 0,
+  "bookkeeping_enabled": true,
+  "shopSupplyPercentageEnabled": false,
+  "remit_to_type": 1,
+  "remitToAddress": null,
+  "salesTaxRoundingMode": "line_by_line"
+ }
+}

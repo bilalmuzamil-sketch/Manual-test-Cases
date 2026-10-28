@@ -1,0 +1,10 @@
+{"pass_meta": {"env": "QA branch sv11555", "build": "v26.43.2-f8698cb", "date": "28 October 2026", "note": "SV-11555 verified on its QA branch; C682436 (Fast-follow) joins run 498 on passing"},
+ "results": {"C682436": {"verdict": "Passed", "observed": [
+  "Passed on the QA branch sv11555 (fix for SV-11555), every step as written.",
+  "Steps 1 to 3: at a location with no technicians and two Approved work orders, Tech View and Board View show only Unassigned, then the person icon, No technicians yet, its text and an Add Technician button (picture 1).",
+  "Step 4: Add Technician opens the Staff page in Settings.",
+  "Steps 5 to 7: at a location with no technicians and no work orders, Board View and Tech View read Nothing here yet, its text, Create Work Order and Add Technician.",
+  "Also checked (Chris Ward's ruling on SV-11555): on the Estimates tab of the first location, which has no work orders, the state reads Nothing here yet with both buttons (picture 2).",
+  "Steps 8 to 10: a user without Settings access sees Unassigned and No technicians yet with its text, and no Add Technician button (picture 3).",
+  "Ticket: https://shopview.atlassian.net/browse/SV-11555 (TESTING QA) - passed on its QA branch; QA Passed comment posted on the ticket."],
+  "pictures": ["/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-28/sv11555/SV-11555-no-techs.png", "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-28/sv11555/SV-11555-estimates-tab.png", "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-28/sv11555/SV-11555-no-settings-user.png"]}}}
