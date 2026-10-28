@@ -242,3 +242,13 @@ Key holder: the QA lead's own key (TMS user **id 4**, role `user`). Stored only 
   cases a manual tester cannot fully run (server error, public API, requests the screen never sends). Kept, not deleted;
   left out of manual runs. The 6 PRD requirements they cover (S4-N1, S4-N2, S5-N1, S9-E9, S13-R19d, S10-R25a) rely on the
   developers' automated tests."*
+
+## 12 · The 19 Part Lifecycle TMS-only cases — checked 2026-10-28 (read only)
+
+- **None exists in TestRail** — not by number (`get_case`) and **not by title** (all 7,414 TestRail cases compared).
+  TestRail has **no folder named like "Retire OR retest"**.
+- **All 19 came from TestRail originally**: their numbers (154761–573677) are below 10,000,000, i.e. TMS imported
+  them with their TestRail numbers. So they existed in TestRail and have since been **removed from TestRail**.
+- 12 sit in TMS folder *Founder Mode (September 2026) > Part Lifecycle > Retire OR retest*; 7 in
+  *… > Part Lifecycle > S2 Deactivate parts* (1), *S5 Edit tracking state* (4), *S10 Confirming & recording a status change* (2).
+- Mudassir Qamar is offline (QA lead, 2026-10-28); the TMS run 10 assignment waits for his sign-in.

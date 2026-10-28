@@ -34,3 +34,10 @@
 
 **Tool:** `build/testing-tools/tms_sync.py` (cases, TestRail → TMS). Dry run is the default;
 `--apply` writes.
+
+## Asking the QA lead — always name the system (2026-10-28)
+
+**QA lead, verbatim:** *"Always tell whether you ate asking for an actio. In TMS or on testrail."*
+Every question that leads to a write says **"Action in TMS"**, **"Action in TestRail"** or **"Action in both"**,
+and names folders by their **full path** (e.g. *Founder Mode (September 2026) > Part Lifecycle > S5 Edit tracking state*),
+never by a vague label.
