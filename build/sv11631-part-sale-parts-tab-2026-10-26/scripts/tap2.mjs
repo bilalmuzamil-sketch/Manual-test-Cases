@@ -9,6 +9,7 @@ for(const [name,id,sel,rowKey] of cases){
  const s=await open({env:'branch',ticket:'11631',cookies:ck,quick:'admin',dir:'/tmp/qa21',vp:{width:390,height:844},dpr:3,scrollbars:true,touch:true});
  const p=s.page; await s.go(`/parts/part-sale/${id}/part-requests`); await p.waitForTimeout(7000);
  const b=await p.evaluate(([sel,k])=>{ const r=[...document.querySelectorAll('.base-table tbody tr')].find(r=>r.innerText.includes(k)||[...r.querySelectorAll('input')].some(i=>i.value.includes(k))); if(!r) return null; const n=r.querySelector(sel); n.scrollIntoView({block:'center'}); const x=n.getBoundingClientRect(); const sp=[...n.children].find(c=>c.tagName!=='INPUT')||n; return {box:[x.x,x.y,x.width,x.height],text:sp.textContent.trim(),cut:sp.scrollWidth>sp.clientWidth+0.5}; },[sel,rowKey]);
+ if(!b){ out.push({name,missing:true}); continue; }
  await p.waitForTimeout(600); const b2=await p.evaluate(([sel,k])=>{const r=[...document.querySelectorAll('.base-table tbody tr')].find(r=>r.innerText.includes(k)||[...r.querySelectorAll('input')].some(i=>i.value.includes(k))); const x=r.querySelector(sel).getBoundingClientRect(); return [x.x,x.y,x.width,x.height]},[sel,rowKey]);
  const tx=Math.max(b2[0]+Math.min(b2[2]/2,30),1), ty=b2[1]+b2[3]/2;
  const pre=await p.evaluate(()=>document.querySelectorAll('.q-tooltip').length);

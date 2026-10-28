@@ -1,0 +1,9 @@
+[~accountid:712020:655c2bc0-ee59-46d8-9da3-f61e54739e55] one smaller point from today's retest (build v26.43.2-3ed5bdc, 28 October 2026).
+
+*The Description column is now narrower than the design at 1024 and 768 wide*
+!SV-11631-retest-03-description-88-vs-108.png|width=760,height=935!
+# Open [part sale P2-109|https://sv11631.qa.shopview.com/parts/part-sale/48ba5757-175a-4701-8c4a-810791ac2ede/part-requests] in a window 1024 wide.
+# Look at the {{Description}} column.
+It is now 88px wide. On 26 October it was 108px, which matches the design. Part Number got wider (114 → 124px) and Status got wider (64 → 81px), which fixed R2 and R12. Description seems to have given up that space.
+As a result, short names that used to fit are now cut: {{Bolt, M20}}, {{Cotter Pin}} and {{Nut, M20}}. Pointing at them still shows the full name, and Description to Sell Price still fit without scrolling.
+R13: "At 1024px and 768px, Description narrows (108px in the design) so Description, Part Number, Qty, Cost, Core and Sell Price show without scrolling."

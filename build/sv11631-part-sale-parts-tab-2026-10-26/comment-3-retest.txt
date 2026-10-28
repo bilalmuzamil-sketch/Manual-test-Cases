@@ -1,0 +1,60 @@
+{panel:bgColor=#ffebe6}
+*OVERALL QA STATUS: FAILED*
+{panel}
+Retested on the QA branch [sv11631|https://sv11631.qa.shopview.com] (build v26.43.2-3ed5bdc) on 28 October 2026.
+* R2 and R12 are now fixed, and so are all four smaller points from my earlier comment.
+* Two checks still fail: on a phone, tapping a cut-off description (R3) or the avatar (R9) still shows nothing.
+* R10's second half still could not be checked (see the end).
+
+h3. WHAT FAILED
+
+*1. R3 and R9: on a phone, a tap still shows nothing*
+!SV-11631-retest-02-phone-tap-still-missing.png|width=570,height=1295!
+_Picture 1: on a phone, tapping the cut-off description or the avatar shows nothing. With a mouse, pointing at the same avatar shows the "Requested by" text._
+# On a phone (or a browser window 390 wide with touch turned on), open [part sale P2-162|https://sv11631.qa.shopview.com/parts/part-sale/90a95f29-f405-4763-834d-6e3a237f8c33/part-requests].
+# In the parts table, find the row with part number {{LF3706}}. Its {{Description}} box reads {{Engi...}}.
+# Tap that {{Description}} box.
+# Tap the round {{JJ}} avatar at the left end of the same row.
+*Current:* nothing appears after either tap. On a computer, pointing the mouse at the same avatar shows "Requested by Jeffrey Jordan on Jul 24, 2026".
+*Expected:*
+* R3: "A long name ends in "..." and shows in full on hover, or on tap on a touch screen."
+* R9: "Its date moves into the avatar hover: "Requested by {name} on {date}"". The design says: "Requested At column removed … (tap on touch). Approved."
+I tried two different kinds of tap, on P2-162 and on P2-109. Neither showed the text.
+
+----
+
+h3. WHAT PASSED
+
+*Before (26 October) and after (28 October), part sale P2-109 at 1440 wide:*
+!SV-11631-retest-01-fixed-before-after.png|width=1170,height=2208!
+_Picture 2: the 12-character part number now shows in full, the "Requested" badge no longer slides under Actions, and the table no longer scrolls sideways._
+
+||#||Check||Status||
+|R1|Fields are the same height (32px), rows 41px, no labels inside the boxes|PASSED|
+|R2|{{WK4707Q-23KW}} and {{ZZ12CHARPN01}} show in full at 1440, 1024, 768 and 390 wide (the Part Number box is now 108px; it was 98px)|PASSED (fixed)|
+|R3|A cut-off description shows in full with a mouse; *on a phone a tap shows nothing*|FAILED|
+|R4|Cost shows {{7,123.46}}, shows {{7,123.45670}} while editing, nothing is saved when you click away|PASSED|
+|R5|Margin reads {{28.77%}}|PASSED|
+|R6|Category and Vendor show in full when they fit ({{HD-Filters}} and {{Off-Road}} now fit); longer ones end in "..." and show in full when you point at them|PASSED|
+|R7|Column order is unchanged|PASSED|
+|R8|The heading reads {{Qty}}|PASSED|
+|R9|The Requested At column is gone; pointing at the avatar shows "Requested by Admin ShopView on Oct 26, 2026"; *on a phone a tap shows nothing*|FAILED|
+|R10|With no fee or discount, the Fees & Discounts column is hidden. The "shown" half is not checked yet (see below)|PASSED for the hidden half|
+|R11|Actions stays pinned on the right with a visible left edge, and the "Actions" heading is now centred over it|PASSED|
+|R12|P2-109 (with a "Requested" part) and P2-162 both fit at 1440 wide with no sideways scrollbar|PASSED (fixed)|
+|R13|At 1024 and 768, Description to Sell Price show without scrolling|PASSED|
+|R14|At 1024 and 768 there is a scrollbar and an edge shadow; on a phone, an inner shadow on the right edge|PASSED|
+|R15|On a phone nothing is pinned; the table scrolls as one piece|PASSED|
+|R16|The "Requested by" text is attached to the avatar only and goes away when the pointer leaves or the page scrolls up/down or sideways|PASSED|
+|R17|The Description dropdown shows 30 options with none printed over each other|PASSED|
+|N1|Work order Parts tab: same headings, labels and box sizes as production. A long category name makes the box two lines tall on both (checked on production work order S2-889).|PASSED|
+|N2|Totals, Pick, Return, delete and the row menu ({{Add Part Fee / Discount}}) work as before. P2-162's 8 parts add up to the Parts figure, $817.30. Return on a part from stock puts it straight back on the shelf; on an ordered part it opens the return form (reason + quantity). Production does the same.|PASSED|
+
+The four smaller points from my earlier comment are fixed too:
+* {{HD-Filters}} now shows in full.
+* The "Actions" heading is centred.
+* At 1024 wide, the Sell Price box no longer goes under Actions (it now ends 11px before it).
+* The description tooltip no longer sits over the open dropdown.
+
+h3. What could not be checked
+* *R10, second half* (when a row has a fee or discount, the column shows and no other column gets narrower). On this branch a fee or discount can't be added: QuickBooks has no company connected, so there is no fee item to map, and none of the 317 parts on the branch has one. [~accountid:712020:655c2bc0-ee59-46d8-9da3-f61e54739e55], could you either map a fee and a discount item, or switch the QuickBooks feature off for this branch's organization? Then I can finish R10.

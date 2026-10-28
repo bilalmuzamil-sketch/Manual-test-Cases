@@ -6294,3 +6294,16 @@ This is the same embed teammates use (SV-10996, SV-9958) — Jira stores it as a
 - **Second organization on a QA branch:** `/register` ("Register your organization here") -> `POST /api/register {adminEmail, companyName, adminFirstName, adminLastName, workOrderStartNumber}` (an existing email -> 400 "User already exists"). Use a plus-address of the QA lead's inbox (`bilal.muzamil+<tag>@shopview.com`), read the "...has invited you to join them" email with the Gmail connector, take the **Accept Invitation** href (keep it in /tmp), open it -> "Set credentials" (`input_password`, `input_repeat_password`, `button_login`). Afterwards sign in through the normal form (`login_email_input`, `login_password_input`, `login_submit_button`) - cookies alone give API access but the screen stays on /login. A new org has **no location and an empty Country list** in New Location, so create one by API: `POST /api/workplaces/create {name, shop_id, address_1, city, state_or_province:'AB', postal_code, telephone, timezone:'America/Edmonton', country_code:'CA'}` 201.
 - **Open API page** (`settings .../open-api`) is gated by the org feature `openapi`; not on by default on QA branches and no feature-flag screen exists in these builds.
 - **Jira search (2026-10-27):** `GET /rest/api/2/search` returns no results on this site now — use `GET /rest/api/3/search/jql?jql=...&fields=...&maxResults=...` (cookie auth works the same).
+
+## AV. Retesting a FAILED / PARTIALLY PASSED ticket quickly (proven 2026-10-28, SV-11631)
+
+1. Re-read the ticket live (status, newest comments) and the branch build marker. A moved marker = re-check layers 1–3 only (Rule 60).
+2. Open the ticket's findings folder: the saved scripts ARE the test. Re-run them **one after another** (they share one bridge
+   dir; starting them in parallel makes each start its own bridge and they crash).
+3. Diff the new output against the saved `data/*.json` (SV-11631 `scripts/diff_meas.py`: match rows by a key such as part
+   number, never by position — row order changes between builds).
+4. Write new scripts only for what is new or changed; make saved row-finders skip a missing row.
+5. Wait on process exit (`until ! pgrep …`), never on an expected line of output.
+6. Before calling a changed behaviour a regression, read the deployed code for both environments (SV-11631 `scripts/bundle.mjs`:
+   loads the page, fetches its own JS chunks, prints the code around a test id) — that settled the Return button in one step.
+7. Post a NEW comment (Rule 112) with before/after pictures of what got fixed and the steps for what still fails.

@@ -52,3 +52,36 @@ P2-162: Engine Oil Filter picked; Ignition Switch return requested. Production P
   a scrollbar requirement cannot be checked without it) and `touch:true` (hasTouch + isMobile for tap checks; use a fresh
   page per tap so taps don't interfere). Recorded in the playbook and lessons index.
 - `jira_post_qa.py` reads the STAGING marker; on a per-ticket branch re-read the branch's own index.html separately.
+
+## Retest — 28 Oct 2026, build v26.43.2-3ed5bdc (index last-modified Wed 28 Oct 2026 01:41:44 GMT, etag b042466f…)
+Same mode as before (API, no recording, no technical section). Ticket re-read: TESTING QA, no comments after 79530.
+Method: re-ran the saved scripts (`meas`, `tap2`, `hov`, `menu`, `cap`, `scr2`, `edit`, `tot`, `act`, `ret`, `feescan`) and
+diffed against `data/*.json` with the new `scripts/diff_meas.py` (rows matched by part number — row order changed).
+New scripts: `tapcheck.mjs` (two tap methods + mouse control), `wopick.mjs`/`wocat.mjs`/`prodcat.mjs` (N1), `ret2.mjs` +
+`bundle.mjs` (Return wiring), `qbflag.mjs`/`qbmap.mjs` (R10 unblock attempts), `bottom.mjs`, `ex28.py`, `ex28q.py`.
+
+| # | 26 Oct | 28 Oct | Evidence |
+|---|---|---|---|
+| R2 | FAIL | **PASS** | Part Number column 114→124 px (box 98→108); WK4707Q-23KW + ZZ12CHARPN01 not cut at 1440/1024/768/390 |
+| R3 | FAIL | **FAIL** | 390 touch: tap on "Engine Oil Filter, Kubota V24…" (P2-162) and on P2-109 rows shows nothing, both tap methods; mouse hover shows full text |
+| R9 | FAIL | **FAIL** | 390 touch: tap on avatar shows nothing (both methods, both sales); mouse hover "Requested by Jeffrey Jordan on Jul 24, 2026" |
+| R12 | FAIL | **PASS** | P2-109 at 1440: 1130/1130, scrollbar 0; Requested badge right edge 1292 < Actions 1294 |
+| R10 | hidden half | hidden half | shown half still blocked: QB not configured (products-and-services 400 "Bookkeeping is not configured", integration offers Intuit authUrl), feature-flag POST 403 "Access denied." (needs admin-portal token, §AC.14), 0 of 317 parts on 93 sales have an adjustment. QA lead said "Try mapping myself" — tried, external dependency; asked Milomir in 79620 |
+| R13 | PASS | PASS + extra point | Description 108→88 px at 1024/768; Description–Sell Price still visible; "Bolt, M20", "Cotter Pin", "Nut, M20" now cut. QA lead: "Add as extra point" → 79621 |
+| E1–E4 | open | **fixed** | HD-Filters fits; Actions text centre 1359.57 vs column 1359.58; Sell Price ends 867 < Actions 878 at 1024; no tooltip over open dropdown |
+| R1,R4–R8,R11,R14–R17 | PASS | PASS | fields 32 / rows 41 / no labels; cost 7,123.46 → 7,123.45670 editing, no write, stored 7123.4567; 28.77%; order + Qty; scrollbars/shadows; nothing sticky at 390; tooltip hides on 18px + sideways scroll; 30 options 0 overlaps |
+| N1 | PASS | PASS | WO Parts tab same headers/labels/cell types; long category → 58 px box on BOTH (production S2-889 set to "ZZAUTOTEST NoMarkup" → 58 px) |
+| N2 | PASS | PASS | Pick 201, delete 200, row menu, totals $817.30; Return: stock part → removePart immediately, ordered part → return form (make-return-request 200). Production bundle has the identical split (`part_source_type==="inventory"?remove:dialog`) |
+
+Posted: **79620** (FAILED; R3/R9 with picture + steps; before/after picture; 20-row table; R10 ask to Milomir) and
+**79621** (@Milomir, Description 88 vs 108 px extra point). Gate: build re-read v26.43.2-3ed5bdc, ticket TESTING QA with no
+new comments, wording scan clean; read back 79620 panel FAILED, 2 media in order, 20 table rows; 79621 mention first, 1 media.
+Test data changed on the branch: Freight returned to stock, Fuel Filter return requested, Primary Engine Air Filter picked,
+Washer M20 deleted (P2-109). Production: S2-889 part 1 category set to "ZZAUTOTEST NoMarkup".
+
+### Learning check (retest speed)
+- Running several saved scripts at once made each start its own bridge (all used `/tmp/qa21`) and two crashed. Start the
+  bridge once, then run scripts one after another (or give each its own dir).
+- Wait on process exit, never on expected output text — a wait keyed to output that never comes cost ~10 minutes.
+- Saved scripts that find a row by text must skip a missing row (test data moves between passes).
+- A retest is: re-read ticket + marker → re-run saved scripts → diff against saved data → only new scripts for what changed.
