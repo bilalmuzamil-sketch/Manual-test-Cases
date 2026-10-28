@@ -32,3 +32,7 @@ Earlier in the same thread: "I want everything in the dashboard to be correct ..
 - 2026-10-28: session OK (59 perms). Workplaces: QB Location (Vancouver), Staging Heavy Duty - 9919 (Karachi), Staging Lethbridge - 4310 (Edmonton), DVI Test (Toronto).
 - Browser harness: boot2('admin') + localStorage `location` = JSON workplace id (without it the dashboard fetches nothing).
 - Early observation (to verify): techUtilizationKpi idle days 33.33 % and 2139.92 clocked vs 755.51 WO hrs this month on default workplace — matches open SV-11688 (Ready to Fix).
+- 2026-10-28 ~18:00 UTC — LAYER A (internal consistency, PRD structure): 1,185 checks, 1,181 PASS, 4 FAIL = "367-day custom range not refused" ×4 locations. NOT a defect: the reports accept the same 367 inclusive days (both test `diff->days > 366`), and the on-screen picker caps at 366 (code note) → Rule 24 pass; picker cap still to be observed in the browser.
+- LAYER B (S3-R1 parity, paired reads, SAA paged): 2,592 checks, 2,592 PASS — every tile, chart total, advisor/technician/customer row and every report preset-by-name equals its report, 4 locations × 9 presets + 6 custom ranges.
+- Harness lessons: SAA returns ≤1000 rows/page (page it); open never-clocked-out timesheets grow between reads → pair dashboard+report reads seconds apart; dashboard needs localStorage `location` in the browser.
+- NEXT: LAYER C independent recompute from raw records (WO list + invoice view + clock records) vs PRD; LAYER D seeded edge cases; LAYER L1 screen = data.
