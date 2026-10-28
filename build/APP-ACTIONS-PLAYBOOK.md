@@ -3330,3 +3330,9 @@ whereas an application-level JSON `{"error":"sso_required", …}` means the requ
   `testing-tools/staging-boot2.mjs` sets it from `opts.timezone`), and the process (`TZ=<zone> node …`). Read the browser's zone
   back with `Intl.DateTimeFormat().resolvedOptions().timeZone` and keep it in the evidence JSON. Staging zones: Heavy Duty
   Asia/Karachi · Lethbridge America/Edmonton · QB Location America/Vancouver · DVI Test America/Toronto. Origin: SV-11922.
+- **Jira through the Atlassian MCP (proven 2026-10-28, SV-11922):** `createJiraIssue` with `contentFormat: "html"`; no `<blockquote>`
+  inside `<li>` (ADF rejects it); Bugs need `Product Area` (SV-11839 → "Reports & Dashboards"). Pictures: `uploadAttachmentToJiraIssue`
+  phase 1 → run the returned curl (token is short-lived, never save it) → put `<figure data-type="media-single" data-width="100"
+  data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="<id>" data-collection="<collection>"></div></figure>`
+  in the HTML description via `editJiraIssue` (skip phase 2). Check sizes match and the attachment list after. Links: `createJiraIssueLink`
+  (`Relates`).

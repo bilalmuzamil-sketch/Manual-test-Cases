@@ -2371,3 +2371,27 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     and the session-timezone fact in `build/APP-ACTIONS-PLAYBOOK.md`.
     **RECORDED 2026-10-28 on the QA lead's instruction in the same message** (*"save the timezone thing in
     your permanent learning"*), which satisfies Rule 72 for this rule.
+
+100. **EVERY TICKET IS WRITTEN FOR A FIRST-TIME, NON-TECHNICAL READER — SHORT, CLEAR, PLAIN (all projects, permanent).**
+    **THE QA LEAD'S WORDS (2026-10-28, verbatim):** *"Always keep the issue clear which you file so that it can be understood by
+    a lay man or a non techical person or by a person who is look at the ticket for the first time."* · *"Save it as a rule for
+    yourself, correct the ticket with the goal of keeping it short concise and understandable for a peson who is looking at it
+    for the first time and is a lay man not technically strong."*
+    **THE RULE.** A ticket is read cold, by someone who has never seen the report and is not technical. So:
+    **(1) Say what the screen shows and what that number or word MEANS**, in one or two plain sentences, before anything else
+    (e.g. *"Past Due shows how many days a bill is overdue, or, as a negative number, how many days are left until it is due"*).
+    **(2) ONE clear example the reader can find**, named exactly as on screen (location, report, section, record, date), with
+    the arithmetic spelled out (*"28 Oct minus 30 Oct = -2"*). Further examples are one line each, or left out.
+    **(3) Say WHERE on the screen to look** — the section, tab or group it is in — and what is NOT affected, in one sentence,
+    so the reader does not look in the wrong place (lesson of SV-11922: the reader looked under "1–30 days past due" for a bill
+    that is in "Current").
+    **(4) Steps: one action per line, the exact on-screen labels, no API, no jargon.** Then Actual and Expected in one line each.
+    **(5) The source quote stays** (Rule 73 [5]/[6]): after a line break, verbatim, with version and date.
+    **(6) Screenshots: as few as prove it** (usually one per screen), annotated in plain sentences.
+    **(7) Technical detail is one short "For developers" note at the very end**, or nothing — never in the body.
+    **(8) No counts of thousands of rows, no internal check names, no session or worker vocabulary** in the ticket; those live in
+    the evidence files.
+    **(9) Before filing, read it as a stranger:** could someone who has never opened this report follow it and see the fault in
+    under two minutes? If not, cut and rewrite.
+    **TIES:** Rules 7/9 (plain wording), 52 (evidence bar), 73 [3]/[7] (runnable, concise), 99 (time zone stated in the ticket).
+    **RECORDED 2026-10-28 on the QA lead's instruction in the same message**, which satisfies Rule 72 for this rule.

@@ -803,3 +803,11 @@ script with `TZ=<zone>`; (4) record location zone, live browser zone and process
 *"browser and test machine set to the location's time zone (<zone>)"* in the ticket's Environment. A result seen with the zones
 unmatched or unrecorded is NOT VERIFIED and is never filed. Staging zones: Heavy Duty Asia/Karachi · Lethbridge America/Edmonton ·
 QB Location America/Vancouver · DVI Test America/Toronto. Full text: `build/rules/RULES-61-97.md` Rule 99.
+
+## 🔴 Rule 100 — write the ticket for a first-time, non-technical reader (added 2026-10-28)
+QA lead: *"keep the issue clear ... so that it can be understood by a lay man or a non techical person or by a person who is look at
+the ticket for the first time."* Shape: **What is wrong** (what the screen shows, what it means, what is NOT affected, which section to
+look in) → **Steps** (one action per line, exact labels) → **Actual / Expected** (one line each, sum spelled out) → line break →
+**Source** (verbatim quote, version, date) → **Screenshot(s)** (as few as prove it) → **Where it was seen** (build, environment, user,
+location time zone per Rule 99) → **For developers** (one or two lines, optional). No row counts, check names or internal vocabulary.
+Read it as a stranger before filing. Example: SV-11922 as rewritten 28 Oct 2026. Lessons: `build/LESSONS-2026-10-28.md`.
