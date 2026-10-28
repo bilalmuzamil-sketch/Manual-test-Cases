@@ -116,6 +116,21 @@ def tms_time(s):
     return datetime.datetime.fromisoformat(s.replace("Z", "+00:00")).timestamp()
 
 
+def tms_subtree(tms, root):
+    """Section ids of `root` and everything under it, from the TMS tree ([] if root is not in TMS)."""
+    def find(nodes):
+        for n in nodes:
+            if n["id"] == root:
+                return n
+            hit = find(n.get("children", []))
+            if hit:
+                return hit
+    def ids(n):
+        return [n["id"]] + [i for ch in n.get("children", []) for i in ids(ch)]
+    node = find(tms.tree(1))
+    return ids(node) if node else []
+
+
 def plan(section):
     trapi, tms = TestRail(), TMS()
     sections, names = trapi.subtree(section)
@@ -123,8 +138,12 @@ def plan(section):
     for sid in sections:
         for c in trapi.paged("get_cases/1&suite_id=1&section_id=%d" % sid, "cases"):
             trc[c["id"]] = c
+    # Walk BOTH trees: a folder missing on either side is reported, never silently skipped.
+    tms_sections = tms_subtree(tms, section)
+    folders = {"tr_only": sorted(set(sections) - set(tms_sections)),
+               "tms_only": sorted(set(tms_sections) - set(sections))}
     listed = []
-    for sid in sections:
+    for sid in tms_sections:
         listed += tms.get_all("/projects/1/cases", {"section_id": sid})
     tmc = {}
     back = {v: k for k, v in id_map().items()}
@@ -158,11 +177,12 @@ def plan(section):
             if row["action"] in ("UPDATE",) and moved:
                 row["also_move"] = True
         rows.append(row)
-    return rows, names, tms
+    return rows, names, tms, folders
 
 
-def report(rows, names, section, out):
+def report(rows, names, section, out, folders):
     cnt = collections.Counter(r["action"] for r in rows)
+    cnt.update({"FOLDER_TR_ONLY": len(folders["tr_only"]), "FOLDER_TMS_ONLY": len(folders["tms_only"])})
     lines = ["# TestRail → TMS case sync — section %d (%s)" % (section, names.get(section, "?")),
              "", "Generated %s UTC. " % datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M")
              + " · ".join("%s %d" % kv for kv in sorted(cnt.items())), ""]
@@ -173,7 +193,13 @@ def report(rows, names, section, out):
         if sel:
             lines += ["## %s (%d)" % (head, len(sel)), "", "| Case | Folder | Title | Link |", "|---|---|---|---|"]
             lines += ["| C%d | %s | %s | %s |" % (r["id"], names.get(r["section"], r["section"]),
-                                                 r["title"].replace("|", "/"), r["tms_link"]) for r in sel]
+                                                 r["title"].replace("|", "/"), r.get("tr_link") or r["tms_link"]) for r in sel]
+            lines.append("")
+    for key, head in (("tr_only", "Folders in TestRail but NOT in TMS — how to create?"),
+                      ("tms_only", "Folders in TMS but NOT in TestRail — your decision needed")):
+        if folders[key]:
+            lines += ["## %s (%d)" % (head, len(folders[key])), ""]
+            lines += ["- %d %s" % (f, names.get(f, "(TMS-only folder)")) for f in folders[key]]
             lines.append("")
     open(os.path.join(out, "report.md"), "w").write("\n".join(lines))
     return cnt
@@ -220,10 +246,10 @@ def main():
     a = ap.parse_args()
     out = a.out or "/tmp/tms/sync-%d" % a.section
     os.makedirs(out, exist_ok=True)
-    rows, names, tms = plan(a.section)
+    rows, names, tms, folders = plan(a.section)
     tms.log_path = os.path.join(out, "ops.jsonl")
-    json.dump(rows, open(os.path.join(out, "plan.json"), "w"))
-    cnt = report(rows, names, a.section, out)
+    json.dump({"rows": rows, "folders": folders}, open(os.path.join(out, "plan.json"), "w"))
+    cnt = report(rows, names, a.section, out, folders)
     print("plan:", dict(cnt), "| report:", os.path.join(out, "report.md"))
     if a.apply:
         print("applied:", apply(rows, tms, a.limit))
