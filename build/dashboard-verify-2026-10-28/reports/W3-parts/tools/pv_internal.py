@@ -76,7 +76,7 @@ for (wid, rng, typ), d in by.items():
     chk('S2-R1 Both = Inventory + Special Order (same rows)', set(A) == set(B), wid=wid, range=rng, only_both=len(set(A) - set(B)), only_parts=len(set(B) - set(A)))
     diff = [k for k in set(A) & set(B) if {x: A[k][x] for x in A[k] if x != 'last_sale'} != {x: B[k][x] for x in B[k] if x != 'last_sale'}]
     chk('S2-R1 Both rows carry same values as per-type reads', not diff, wid=wid, range=rng, n_diff=len(diff), sample=diff[:3])
-json.dump(res, open('../results-pv-internal.json', 'w'))
+import compact; compact.write('results-pv-internal.json', res)
 agg = collections.defaultdict(lambda: [0, 0])
 for (c, ok), n in summ.items(): agg[c][0 if ok else 1] += n
 for c, (p, f) in sorted(agg.items()): print(f'{c:75s} PASS {p:7d} FAIL {f}')

@@ -79,7 +79,7 @@ for wid, name, tz in WORKPLACES:
             else:
                 chk('B8 INV Units Sold (movement) = billed qty (expected equal unless drop-ship/neg stock)', abs(r['units_sold'] - x['units']) < 1e-6, **ctx, got=r['units_sold'], exp=x['units'])
                 chk('B9 INV Demand = distinct invoices billing the part', r['demand'] == len(x['invoices']), **ctx, got=r['demand'], exp=len(x['invoices']))
-json.dump({'unmatched_invoice_parts': {f'{a}|{b}': v for (a, b), v in unmatched.items()}, 'rows': res}, open('../results-pv-recompute.json', 'w'))
+import compact; compact.write('results-pv-recompute.json', res, {'unmatched_invoice_parts': {f'{a}|{b}': v for (a, b), v in unmatched.items()}})
 agg = collections.defaultdict(lambda: [0, 0])
 for (c, ok), n in summ.items(): agg[c][0 if ok else 1] += n
 for c, (p, f) in sorted(agg.items()): print(f'{c:90s} PASS {p:6d} FAIL {f}')

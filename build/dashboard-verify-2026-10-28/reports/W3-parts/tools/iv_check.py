@@ -100,7 +100,7 @@ for wid, name, tz in WORKPLACES:
         chk('S3-R5 Unit Sell = fixed price, else matrix markup on cost, else cost (recomputed)', abs(r['unit_sell'] - e * 100) <= 0.5 + 1e-6, **ctx, got=r['unit_sell'], exp=round(e * 100, 3), how=how, cost=cost)
         chk('S3-R14 Category / Vendor names', (r['category'] or None) == (p['category_label'] or None) and (r['vendor'] or None) == (p['vendor_name'] or None), **ctx, got=(r['category'], r['vendor']), exp=(p['category_label'], p['vendor_name']))
     chk('B every IV row exists in the parts list', set(rows) <= {p['id'] for p in P}, loc=name, extra=len(set(rows) - {p['id'] for p in P}))
-json.dump(res, open('../results-iv.json', 'w'))
+import compact; compact.write('results-iv.json', res)
 agg = collections.defaultdict(lambda: [0, 0])
 for (c, ok), n in summ.items(): agg[c][0 if ok else 1] += n
 for c, (p, f) in sorted(agg.items()): print(f'{c:100s} PASS {p:6d} FAIL {f}')
