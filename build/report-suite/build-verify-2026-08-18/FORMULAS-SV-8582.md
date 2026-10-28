@@ -1,3 +1,5 @@
+> **SUPERSEDED 2026-10-28** — replaced by `build/report-suite/ShopView-Reports-What-Every-Column-Calculates-2026-10-28.md` (all 25 reports + dashboard check, read from develop e8b3c4b31 = staging f8698cbc1). Kept for history; do not use for current verification.
+
 # CALC FORMULAS — epic SV-8582 comments (read live 2026-08-18)
 
 **Source:** `GET /rest/api/3/issue/SV-8582/comment` on `shopview.atlassian.net`, read via the
