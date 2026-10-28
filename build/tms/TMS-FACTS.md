@@ -252,3 +252,12 @@ Key holder: the QA lead's own key (TMS user **id 4**, role `user`). Stored only 
 - 12 sit in TMS folder *Founder Mode (September 2026) > Part Lifecycle > Retire OR retest*; 7 in
   *… > Part Lifecycle > S2 Deactivate parts* (1), *S5 Edit tracking state* (4), *S10 Confirming & recording a status change* (2).
 - Mudassir Qamar is offline (QA lead, 2026-10-28); the TMS run 10 assignment waits for his sign-in.
+
+## 13 · 2026-10-28 — Part Lifecycle TMS-only cases and folder deleted (Action in TMS)
+
+QA lead, verbatim: *"1. Is that folder deleted in testrail too then yes. 2. If they are deleted in testrail too then yes."*
+Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid section"*; `get_case` → 400 for all 19.
+- **19 cases soft-deleted in TMS** (restorable with `POST /cases/{id}/restore`), each read back as deleted. They were
+  only in the nightly runs 1/2/3/5/9, with no recorded results.
+- **Folder 54275 "Retire OR retest" deleted in TMS** once empty (204; now 404).
+- **Re-check:** Part Lifecycle 363/363 SAME, 0 folder gaps on either side. What/Why 68/68 SAME (earlier today).
