@@ -6322,3 +6322,13 @@ When the capture script didn't record `getBoundingClientRect()`, place boxes fro
 - text: `tesseract shot.png - --psm 11 tsv` gives each word's left/top/width/height (1× CSS px for a dpr:1 capture) — `build/sv10928-raw-ids-2026-10-28/scripts/ocrfind.py`. OCR can split or mis-read a long ID (`78ee…` read as `7Bee…`), so match on a middle fragment and widen the box by hand if the value is truncated with "…".
 - ShopView's red warning pop-up: mask `r>170, g<60, b<70`, take rows with >150 red pixels, split into runs, the first run is the top pop-up (`build_exhibits.py` `red_box`).
 - Check the screenshot actually holds the pop-up before relying on it — a capture taken after the toast faded has none (the tax two-tab shots).
+
+### §V.0 addendum (2026-10-28) — Jira images through the Atlassian MCP when no Jira cookies are held
+Proven on SV-11869 (comments 79700/79701). `executeWrite name=uploadAttachmentToJiraIssue {issueIdOrKey, filePath}` returns a curl
+`uploadCommand` with a short-lived media token (~20 min) for collection `upload-user-collection-<n>`. That **same token uploads more
+files** into the same collection — change only `name=` and `--data-binary @path`; each response gives `data.id`. Then post with
+`addOrEditJiraIssueComment contentFormat:"html"` and place each image where it belongs:
+`<figure data-type="media-single" data-layout="center" data-width="60" data-width-type="percentage"><div data-type="media" data-media-type="file" data-id="<id>" data-collection="<collection>" data-alt="<file>.png"></div></figure>`
+(always pair `data-width` with `data-width-type="percentage"`, or the image renders tiny). Do NOT also run phase 2 — the inline embed attaches the file.
+Panels: `<div data-type="panel-success|warning|error">`. Read back with `listJiraIssueComments` (the stored body drops `data-collection` — expected).
+Never commit the token.

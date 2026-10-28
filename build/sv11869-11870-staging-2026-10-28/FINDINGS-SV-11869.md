@@ -53,3 +53,10 @@ line texts as "What are you doing?: …" — so a line text can't start with = t
 Report InvoiceDate/DueDate read 10-29-2026 / 11-05-2026 while the Finance tab shows Invoice Date Oct 28, 2026 / Due Nov 4. Cause: location
 "Staging Heavy Duty - 9919" timezone = **Asia/Karachi** (UTC+5) — invoiced 19:05 UTC = 00:05 Oct 29 there. Production's report shows today's
 invoices as 10-28 (Trucks Hill 2). Report follows the location date; the invoice/Finance tab shows Oct 28. Left for the QA lead (Rule 97d) in the register.
+
+## Posted (28 Oct 2026, 16:09 CDT) — Rule 115 two comments
+- **79700** (green, WHAT PASSED): 3 exhibits as real Jira attachments (media ids fe9ea738…, 5d6ca153…, 32bd246c…), 12-row checks table.
+- **79701** (yellow, OVERALL QA STATUS: PARTIALLY PASSED, last comment): QuickBooks check blocked — needs a QuickBooks login for the staging company; steps given.
+- Unattended defaults (QA lead asleep): no screen recording, no technical section (Rules 104/84 asks not possible → default no).
+- **Pre-post gate:** build marker re-read 21:08 UTC = v26.43.2-f8698cb, last-modified Wed 28 Oct 14:06:20 GMT (unchanged); ticket TESTING STAGE, newest comment 79675 (Nemanja); voice scan clean; no technical section; read back: 79700 earlier than 79701, 3 file media in order, 12 rows, first lines correct.
+- Learning check: new recipe — Jira attachments via the Atlassian MCP (`uploadAttachmentToJiraIssue` phase-1 token is reusable for several files in the same collection for ~20 min) → playbook §V.0 addendum.
