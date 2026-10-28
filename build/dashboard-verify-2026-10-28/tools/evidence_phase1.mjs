@@ -8,6 +8,8 @@ const APP = 'https://app.staging.shopview.com';
 const MODES = {
   TE28: { wp: 'f8a8b802-7780-4b16-bf10-343caeb616b2', tz: 'America/Edmonton', loc: 'Staging Lethbridge - 4310' },
   F2: { wp: '39522bc6-abca-4f67-bd12-2840043c2d68', tz: 'America/Toronto', loc: 'DVI Test' },
+  TE28b: { wp: 'f8a8b802-7780-4b16-bf10-343caeb616b2', tz: 'America/Edmonton', loc: 'Staging Lethbridge - 4310' },
+  F2b: { wp: '39522bc6-abca-4f67-bd12-2840043c2d68', tz: 'America/Toronto', loc: 'DVI Test' },
   TU10: { wp: 'b3c8c820-f815-4cf1-8938-10956c5ee71a', tz: 'Asia/Karachi', loc: 'Staging Heavy Duty - 9919' },
 };
 const mode = process.argv[2]; const M = MODES[mode];
@@ -95,6 +97,26 @@ if (mode === 'TU10') {
   await rr.scrollIntoViewIfNeeded().catch(() => {}); await page.waitForTimeout(800);
   await shot('2-tu-report', { qa: { box: await box(rr), text: await txt(rr) }, first: await rfirst(), th: await box(rth), date: await txt(page.locator('button, .q-btn').filter({ hasText: 'Date:' })) , dateBox: await box(page.locator('button, .q-btn').filter({ hasText: 'Date:' })) });
   // the one clock record: work order S2-38042, line "E2E test labor line"
+}
+if (mode === 'TE28b') {
+  await page.goto(APP + '/reports/technician-efficiency', { waitUntil: 'domcontentloaded', timeout: 90000 }); await page.waitForTimeout(8000);
+  await page.locator('[data-test-id="filter_chip_range"]').click(); await page.waitForTimeout(1200);
+  await page.locator('[data-test-id="filter_preset_range_last_quarter"]').click(); await page.waitForTimeout(1000); await page.keyboard.press('Escape'); await page.waitForTimeout(8000);
+  const tech = page.locator('tr').filter({ hasText: 'Joseph Nelson' }).first();
+  await tech.locator('[data-test-id^="toggle_row_btn_"]').click(); await page.waitForTimeout(8000);
+  const line = page.locator('tr').filter({ hasText: 'Replace cabin air filter' }).filter({ hasText: 'S3-17383' }).first();
+  await line.scrollIntoViewIfNeeded(); await page.evaluate(() => window.scrollBy(0, -300)); await page.waitForTimeout(1000);
+  const cells = line.locator('td'); const c = []; for (let i = 0; i < await cells.count(); i++) c.push({ t: (await cells.nth(i).innerText()).trim(), box: await box(cells.nth(i)) });
+  await shot('4-te-report-line', { line: { box: await box(line), text: await txt(line) }, cells: c, heads: await page.locator('thead th').allInnerTexts().catch(() => []), chip: await txt(page.locator('[data-test-id="filter_chip_range"]')) });
+}
+if (mode === 'F2b') {
+  const WO = 'e70ab963-f6cd-4d43-9558-7fad3da94a1a';   // S1-38198, customer ZZAUTOTEST Dash F2
+  await page.goto(`${APP}/workorders/${WO}/lines`, { waitUntil: 'domcontentloaded', timeout: 90000 }); await page.waitForTimeout(10000);
+  const main = page.locator('main');
+  await shot('3-work-order-lines', { declined: await box(main.getByText('Declined', { exact: false })), complete: await box(main.getByText('Complete', { exact: true })),
+    l1: await box(main.getByText('Test DVI Line', { exact: true }).nth(0)), l2: await box(main.getByText('Test DVI Line', { exact: true }).nth(1)), text: (await txt(main)).slice(0, 2500) });
+  await page.getByText('Finance', { exact: true }).first().click(); await page.waitForTimeout(8000);
+  await shot('4-invoice', { labor: await box(main.getByText('Labor Total', { exact: false })), subtotal: await box(main.getByText('Subtotal', { exact: false })), text: (await txt(main)).slice(0, 2500) });
 }
 fs.writeFileSync(`${OUT}/meta.json`, JSON.stringify(meta, null, 1));
 console.log(JSON.stringify({ mode, v: meta.appVersion, browser_zone: meta.browser_zone, process_zone: meta.process_zone, shots: Object.fromEntries(Object.entries(meta.shots).map(([k, v]) => [k, Object.fromEntries(Object.entries(v).filter(([kk]) => /text|range_text|chip|heads/.test(kk) || kk.startsWith('row_')))])) }, null, 1).slice(0, 4000));
