@@ -1,0 +1,333 @@
+{
+ "case": {
+  "id": 590127,
+  "title": "Design: The Technician filter sits right after Assigned to me in both views",
+  "section_id": 73780,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 2,
+  "milestone_id": null,
+  "refs": "SV-10044,SV-11326",
+  "created_by": 3,
+  "created_on": 1792020954,
+  "updated_by": 3,
+  "updated_on": 1792511339,
+  "estimate": null,
+  "estimate_forecast": null,
+  "suite_id": 1,
+  "display_order": 18,
+  "is_deleted": 0,
+  "is_ai_generated": false,
+  "is_ai_automated": false,
+  "custom_ai_type": null,
+  "custom_ai_model": null,
+  "custom_automation_type": 2,
+  "custom_atmstatus": 1,
+  "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>The browser window is 1440 px wide with the zoom at 100%, and the design picture \"DC-18-tech-technician-chip-open-light-1440.png\" attached to this case is open beside it at 100% (actual size). Names, numbers and rank numbers in the pictures are sample data. The picture's Department filter is left out of this release.</li><li>Technician {Technician-A} is active at {Location-A} and leads the Approved work order {Work-order-1} of customer {Customer-A}.<br>For example: {Technician-A} is ZZAUTOTEST C590127 Yan, {Customer-A} is ZZAUTOTEST C590127 Technician Filter and {Work-order-1} is S10043-17850.</li><li>Starting screen: \"Work Orders\" &gt; \"All\" tab, \"Tech View\" shown, \"Search\" empty, no filter chosen, \"Assigned to me\" off, density \"Regular\".</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+  "custom_steps": "<ol><li>Look at the filter bar from left to right.</li><li>Click the \"Technician\" filter.</li><li>Look at the list that opens.</li><li>Tick {Technician-A}.</li><li>Press Escape.</li><li>Click \"Board View\" in the display switcher.</li><li>Click \"List\" in the display switcher.</li></ol>",
+  "custom_testrail_bdd_scenario": null,
+  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: the \"Technician\" filter sits directly after \"Assigned to me\", with the design's thin outline wrench icon, the word \"Technician\" and a down arrow, as in the picture. There is no Department filter.</li><li>Step 2: a list opens directly below the filter.</li><li>Step 3: the list starts with \"Unassigned\", then the location's technicians by first name then last name, each with a tick box.</li><li>Step 4: {Technician-A} is ticked.</li><li>Step 5: the list closes.</li><li>Step 6: Board View shows the same \"Technician\" filter in the same place, still with {Technician-A} chosen.</li><li>Step 7: List's filter bar has no \"Technician\" filter.</li></ul><p>Known problem (SV-11326, open: https://shopview.atlassian.net/browse/SV-11326): staging has no Technician filter yet. If you see no Technician filter, mark this test Blocked and raise nothing new.</p><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10044 (Story 1, Switch between display options); PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 61 (16 Oct 2026, Chris Ward), S1-R15, S1-R15b, S1-R9a and Out of Scope, read 16 Oct 2026. Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\" (the design pictures named in the preconditions were rendered from it), read 14 Oct 2026. Related tickets: SV-11326. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answer 12, read 15 Oct 2026. Source-verified 16 October 2026.</p><p>The design's Technician list has no Unassigned entry and filters by any assigned technician; this case follows the PRD (S1-R15, added in version 52). The design gives the filter a wrench icon; Chris Ward answered on 15 Oct 2026 (answer 12) that the filter chips use the design file's icons in every display option, and PRD version 61 still says so, so step 1 checks the wrench icon.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S1-R15:</strong> &ldquo;In Tech View and Board View the filter bar also offers a Technician filter, after Assigned to me. It is a multi-select listing Unassigned first, then the location\u2019s technicians (the same people who get a group or column, S9-R4), by first name then last name. Choosing one or more shows only those technicians\u2019 groups or columns; every other group or column, pinned ones included, is hidden. It filters by lead technician only.&rdquo;</li><li><strong>S1-R15b:</strong> &ldquo;List does not offer the Technician filter and stays as in production. Switching to List while technicians are chosen shows List as if none were chosen; switching back to Tech View or Board View brings the choice back. The choice is remembered the same way as the other filters.&rdquo;</li><li><strong>S1-R9a:</strong> &ldquo;The switcher uses the design\u2019s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View these icons are the design\u2019s: density (`row-height` in Tech View, `card-height` in Board View, custom icons in the design system\u2019s icon set), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and the empty state when there are no work orders at all (`clipboard-list`). The filtered no-results state is the List\u2019s, magnifier included (S1-N1). The filter chips and Search use the design file\u2019s icons in every display option, List included, each exactly as the design file draws it. The display switcher (new on every view, List included) shows the design\u2019s slate icons in every view, so it keeps one color as the user moves between views. These are the only changes to List. Every other List icon is unchanged.&rdquo;</li><li><strong>Out of Scope:</strong> &ldquo;A Department filter. The design shows one, but a work order\u2019s department is not shown or editable on any work order screen today, so users could not see why a work order matches. Revisit once the work order shows its department.&rdquo;</li><li><strong>Design \u2014 _ds_bundle.js (design library), Technician filter icon:</strong> &ldquo;ICON_WRENCH: lazyGlyph(\"wrench\"),&rdquo;</li></ul><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>",
+  "custom_steps_separated": null,
+  "custom_mission": null,
+  "custom_goals": null,
+  "ai_automated_test": null,
+  "labels": [],
+  "version": 10
+ },
+ "history": {
+  "offset": 0,
+  "limit": 250,
+  "size": 9,
+  "_links": {
+   "next": null,
+   "prev": null
+  },
+  "history": [
+   {
+    "id": 33328,
+    "type_id": 6,
+    "created_on": 1792021727,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong>Preconditions</strong></p><ul><li>You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders &gt; View, Work orders &gt; Create &amp; Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).</li><li>Your browser window is 1440 px wide, with the browser zoom at 100%.</li><li>The design picture DC-18-tech-technician-chip-open-light-1440.png is open beside the app at 100% zoom (actual size); it is attached to this case.</li><li>In the design pictures the names, numbers, dates and amounts are sample data, and the rank numbers (1, 2, 3 \u2026) beside rows and cards are left out of this release, so do not compare those.</li><li>The design picture also shows a Department filter, which is left out of this release; do not compare it.</li><li>Technician {Technician-A} (for example ZZAUTOTEST DC18 Yan Filter) is an active technician at {Location-A}.</li><li>Customer {Customer-A} (for example \"ZZAUTOTEST DC18 Technician Filter\") is used by this case only.</li><li>Approved work order {Work-order-1} (for example S10043-17850) for {Customer-A} is led by {Technician-A}.</li><li>On the Work Orders page nothing is chosen in any filter, Assigned to me is off, Search is empty and density is Regular (the default).</li></ul>",
+      "new_value": "<p><strong><a href=\"https://docs.google.com/document/d/1f-zVxZ4PE99_QeaCssjxa7TcD6b0j6XSW1-Drk_YX4M/edit\">Setup (manual QA tester and Claude session)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders &gt; View, Work orders &gt; Create &amp; Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).</li><li>Your browser window is 1440 px wide, with the browser zoom at 100%.</li><li>The design picture DC-18-tech-technician-chip-open-light-1440.png is open beside the app at 100% zoom (actual size); it is attached to this case.</li><li>In the design pictures the names, numbers, dates and amounts are sample data, and the rank numbers (1, 2, 3 \u2026) beside rows and cards are left out of this release, so do not compare those.</li><li>The design picture also shows a Department filter, which is left out of this release; do not compare it.</li><li>Technician {Technician-A} (for example ZZAUTOTEST DC18 Yan Filter) is an active technician at {Location-A}.</li><li>Customer {Customer-A} (for example \"ZZAUTOTEST DC18 Technician Filter\") is used by this case only.</li><li>Approved work order {Work-order-1} (for example S10043-17850) for {Customer-A} is led by {Technician-A}.</li><li>On the Work Orders page nothing is chosen in any filter, Assigned to me is off, Search is empty and density is Regular (the default).</li></ul>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 33351,
+    "type_id": 6,
+    "created_on": 1792032128,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong><a href=\"https://docs.google.com/document/d/1f-zVxZ4PE99_QeaCssjxa7TcD6b0j6XSW1-Drk_YX4M/edit\">Setup (manual QA tester and Claude session)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders &gt; View, Work orders &gt; Create &amp; Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).</li><li>Your browser window is 1440 px wide, with the browser zoom at 100%.</li><li>The design picture DC-18-tech-technician-chip-open-light-1440.png is open beside the app at 100% zoom (actual size); it is attached to this case.</li><li>In the design pictures the names, numbers, dates and amounts are sample data, and the rank numbers (1, 2, 3 \u2026) beside rows and cards are left out of this release, so do not compare those.</li><li>The design picture also shows a Department filter, which is left out of this release; do not compare it.</li><li>Technician {Technician-A} (for example ZZAUTOTEST DC18 Yan Filter) is an active technician at {Location-A}.</li><li>Customer {Customer-A} (for example \"ZZAUTOTEST DC18 Technician Filter\") is used by this case only.</li><li>Approved work order {Work-order-1} (for example S10043-17850) for {Customer-A} is led by {Technician-A}.</li><li>On the Work Orders page nothing is chosen in any filter, Assigned to me is off, Search is empty and density is Regular (the default).</li></ul>",
+      "new_value": "<p><strong><a href=\"https://docs.google.com/document/d/1f-zVxZ4PE99_QeaCssjxa7TcD6b0j6XSW1-Drk_YX4M/edit\">Setup (manual QA tester and Claude session)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders &gt; View, Work orders &gt; Create &amp; Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).</li><li>Your browser window is 1440 px wide, with the browser zoom at 100%.</li><li>The design picture DC-18-tech-technician-chip-open-light-1440.png is open beside the app at 100% zoom (actual size); it is attached to this case.</li><li>In the design pictures the names, numbers, dates and amounts are sample data, and the rank numbers (1, 2, 3 \u2026) beside rows and cards are left out of this release, so do not compare those.</li><li>The design picture also shows a Department filter, which is left out of this release; do not compare it.</li><li>Technician {Technician-A} (for example ZZAUTOTEST DC18 Yan Filter) is an active technician at {Location-A}.</li><li>Customer {Customer-A} (for example \"ZZAUTOTEST DC18 Technician Filter\") is used by this case only.</li><li>Approved work order {Work-order-1} (for example S10043-17850) for {Customer-A} is led by {Technician-A}.</li><li>On the Work Orders page nothing is chosen in any filter (if the Asset on Site chip shows Yes or No, click the x on the chip), Assigned to me is off, Search is empty and density is Regular (the default).</li></ul>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 33357,
+    "type_id": 6,
+    "created_on": 1792047823,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong><a href=\"https://docs.google.com/document/d/1f-zVxZ4PE99_QeaCssjxa7TcD6b0j6XSW1-Drk_YX4M/edit\">Setup (manual QA tester and Claude session)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders &gt; View, Work orders &gt; Create &amp; Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).</li><li>Your browser window is 1440 px wide, with the browser zoom at 100%.</li><li>The design picture DC-18-tech-technician-chip-open-light-1440.png is open beside the app at 100% zoom (actual size); it is attached to this case.</li><li>In the design pictures the names, numbers, dates and amounts are sample data, and the rank numbers (1, 2, 3 \u2026) beside rows and cards are left out of this release, so do not compare those.</li><li>The design picture also shows a Department filter, which is left out of this release; do not compare it.</li><li>Technician {Technician-A} (for example ZZAUTOTEST DC18 Yan Filter) is an active technician at {Location-A}.</li><li>Customer {Customer-A} (for example \"ZZAUTOTEST DC18 Technician Filter\") is used by this case only.</li><li>Approved work order {Work-order-1} (for example S10043-17850) for {Customer-A} is led by {Technician-A}.</li><li>On the Work Orders page nothing is chosen in any filter (if the Asset on Site chip shows Yes or No, click the x on the chip), Assigned to me is off, Search is empty and density is Regular (the default).</li></ul>",
+      "new_value": "<p><strong><a href=\"https://docs.google.com/document/d/1f-zVxZ4PE99_QeaCssjxa7TcD6b0j6XSW1-Drk_YX4M/edit\">Setup (manual QA tester and Claude session)</a></strong></p><p><br></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders &gt; View, Work orders &gt; Create &amp; Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).</li><li>Your browser window is 1440 px wide, with the browser zoom at 100%.</li><li>The design picture DC-18-tech-technician-chip-open-light-1440.png is open beside the app at 100% zoom (actual size); it is attached to this case.</li><li>In the design pictures the names, numbers, dates and amounts are sample data, and the rank numbers (1, 2, 3 \u2026) beside rows and cards are left out of this release, so do not compare those.</li><li>The design picture also shows a Department filter, which is left out of this release; do not compare it.</li><li>Technician {Technician-A} (for example ZZAUTOTEST DC18 Yan Filter) is an active technician at {Location-A}.</li><li>Customer {Customer-A} (for example \"ZZAUTOTEST DC18 Technician Filter\") is used by this case only.</li><li>Approved work order {Work-order-1} (for example S10043-17850) for {Customer-A} is led by {Technician-A}.</li><li>On the Work Orders page nothing is chosen in any filter (if the Asset on Site chip shows Yes or No, click the x on the chip), Assigned to me is off, Search is empty and density is Regular (the default).</li></ul>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Step 2: the Technician filter sits directly after Assigned to me, showing the word Technician and a down arrow, in the same style as the filters beside it, as in the design picture. There is no Department filter.</li><li>Step 4: a list opens directly below the filter, starting with Unassigned, then the location's technicians by first name then last name, each with a tick box, as in the design picture (the picture has no Unassigned entry; the PRD adds it).</li><li>Step 7: Board View shows the same Technician filter in the same place, still with {Technician-A} chosen.</li><li>Step 8: List's filter bar has no Technician filter.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10044 (Story 1, Switch between display options); PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 52 (14 Oct 2026, Chris Ward), S1-R15, S1-R15b and Out of Scope (Department filter), read 14 Oct 2026; Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\", states states__work-orders__tech-technician-chip__light__1440 (design pictures DC-18-tech-technician-chip-open-light-1440.png, rendered from that export at the width in the name), read 14 Oct 2026. Covers the design defects SV-11326 (reported 14 Oct 2026 by Chris Ward). Where the PRD says nothing about the look, the design is the source. Source-verified 14 October 2026. Not yet checked against a build.</p><p>The design's Technician list has no Unassigned entry and filters by any assigned technician; this case follows the PRD (S1-R15, version 52). The design gives the filter a wrench icon; whether the filters take the design's icons is open with the product owner (question PQ-V01, not yet answered), so the icon is not judged.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S1-R15:</strong> &ldquo;In Tech View and Board View the filter bar also offers a Technician filter, after Assigned to me. It is a multi-select listing Unassigned first, then the location\u2019s technicians (the same people who get a group or column, S9-R4), by first name then last name. Choosing one or more shows only those technicians\u2019 groups or columns; every other group or column, pinned ones included, is hidden. It filters by lead technician only.&rdquo;</li><li><strong>S1-R15b:</strong> &ldquo;List does not offer the Technician filter and stays as in production. Switching to List while technicians are chosen shows List as if none were chosen; switching back to Tech View or Board View brings the choice back. The choice is remembered the same way as the other filters.&rdquo;</li><li><strong>Out of Scope:</strong> &ldquo;A Department filter. The design shows one, but a work order\u2019s department is not shown or editable on any work order screen today, so users could not see why a work order matches. Revisit once the work order shows its department.&rdquo;</li><li><strong>Design \u2014 _ds_bundle.js (design library), Technician filter icon:</strong> &ldquo;ICON_WRENCH: lazyGlyph(\"wrench\"),&rdquo;</li></ul><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Step 2: the Technician filter sits directly after Assigned to me, showing the word Technician and a down arrow, in the same style as the filters beside it, as in the design picture. There is no Department filter.</li><li>Step 4: a list opens directly below the filter, starting with Unassigned, then the location's technicians by first name then last name, each with a tick box, as in the design picture (the picture has no Unassigned entry; the PRD adds it).</li><li>Step 7: Board View shows the same Technician filter in the same place, still with {Technician-A} chosen.</li><li>Step 8: List's filter bar has no Technician filter.</li></ul><p><strong>Source \u2014 where this behaviour comes from</strong><br>Epic SV-10043; story SV-10044 (Story 1, Switch between display options); PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 52 (14 Oct 2026, Chris Ward), S1-R15, S1-R15b and Out of Scope (Department filter), read 14 Oct 2026; Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\", states states__work-orders__tech-technician-chip__light__1440 (design pictures DC-18-tech-technician-chip-open-light-1440.png, rendered from that export at the width in the name), read 14 Oct 2026. Covers the design defects SV-11326 (reported 14 Oct 2026 by Chris Ward). Where the PRD says nothing about the look, the design is the source. Source-verified 14 October 2026. Not yet checked against a build.</p><p>The design's Technician list has no Unassigned entry and filters by any assigned technician; this case follows the PRD (S1-R15, version 52). The design gives the filter a wrench icon; whether the filters take the design's icons is open with the product owner (question PQ-V01, not yet answered), so the icon is not judged.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S1-R15:</strong> \u201cIn Tech View and Board View the filter bar also offers a Technician filter, after Assigned to me. It is a multi-select listing Unassigned first, then the location\u2019s technicians (the same people who get a group or column, S9-R4), by first name then last name. Choosing one or more shows only those technicians\u2019 groups or columns; every other group or column, pinned ones included, is hidden. It filters by lead technician only.\u201d</li><li><strong>S1-R15b:</strong> \u201cList does not offer the Technician filter and stays as in production. Switching to List while technicians are chosen shows List as if none were chosen; switching back to Tech View or Board View brings the choice back. The choice is remembered the same way as the other filters.\u201d</li><li><strong>Out of Scope:</strong> \u201cA Department filter. The design shows one, but a work order\u2019s department is not shown or editable on any work order screen today, so users could not see why a work order matches. Revisit once the work order shows its department.\u201d</li><li><strong>Design \u2014 _ds_bundle.js (design library), Technician filter icon:</strong> \u201cICON_WRENCH: lazyGlyph(\"wrench\"),\u201d</li></ul><p>AUTOMATION: Ready</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 33397,
+    "type_id": 6,
+    "created_on": 1792136814,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong><a href=\"https://docs.google.com/document/d/1f-zVxZ4PE99_QeaCssjxa7TcD6b0j6XSW1-Drk_YX4M/edit\">Setup (manual QA tester and Claude session)</a></strong></p><p><br></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders &gt; View, Work orders &gt; Create &amp; Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).</li><li>Your browser window is 1440 px wide, with the browser zoom at 100%.</li><li>The design picture DC-18-tech-technician-chip-open-light-1440.png is open beside the app at 100% zoom (actual size); it is attached to this case.</li><li>In the design pictures the names, numbers, dates and amounts are sample data, and the rank numbers (1, 2, 3 \u2026) beside rows and cards are left out of this release, so do not compare those.</li><li>The design picture also shows a Department filter, which is left out of this release; do not compare it.</li><li>Technician {Technician-A} (for example ZZAUTOTEST DC18 Yan Filter) is an active technician at {Location-A}.</li><li>Customer {Customer-A} (for example \"ZZAUTOTEST DC18 Technician Filter\") is used by this case only.</li><li>Approved work order {Work-order-1} (for example S10043-17850) for {Customer-A} is led by {Technician-A}.</li><li>On the Work Orders page nothing is chosen in any filter (if the Asset on Site chip shows Yes or No, click the x on the chip), Assigned to me is off, Search is empty and density is Regular (the default).</li></ul>",
+      "new_value": "<p><strong><a href=\"https://docs.google.com/document/d/1f-zVxZ4PE99_QeaCssjxa7TcD6b0j6XSW1-Drk_YX4M/edit\">Setup (manual QA tester and Claude session)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders &gt; View, Work orders &gt; Create &amp; Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).</li><li>Your browser window is 1440 px wide, with the browser zoom at 100%.</li><li>The design picture DC-18-tech-technician-chip-open-light-1440.png is open beside the app at 100% zoom (actual size); it is attached to this case.</li><li>In the design pictures the names, numbers, dates and amounts are sample data, and the rank numbers (1, 2, 3 \u2026) beside rows and cards are left out of this release, so do not compare those.</li><li>The design picture also shows a Department filter, which is left out of this release; do not compare it.</li><li>Technician {Technician-A} (for example ZZAUTOTEST DC18 Yan Filter) is an active technician at {Location-A}.</li><li>Customer {Customer-A} (for example \"ZZAUTOTEST DC18 Technician Filter\") is used by this case only.</li><li>Approved work order {Work-order-1} (for example S10043-17850) for {Customer-A} is led by {Technician-A}.</li><li>On the Work Orders page nothing is chosen in any filter (if the Asset on Site chip shows Yes or No, click the x on the chip), Assigned to me is off, Search is empty and density is Regular (the default).</li></ul>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Step 2: the Technician filter sits directly after Assigned to me, showing the word Technician and a down arrow, in the same style as the filters beside it, as in the design picture. There is no Department filter.</li><li>Step 4: a list opens directly below the filter, starting with Unassigned, then the location's technicians by first name then last name, each with a tick box, as in the design picture (the picture has no Unassigned entry; the PRD adds it).</li><li>Step 7: Board View shows the same Technician filter in the same place, still with {Technician-A} chosen.</li><li>Step 8: List's filter bar has no Technician filter.</li></ul><p><strong>Source \u2014 where this behaviour comes from</strong><br>Epic SV-10043; story SV-10044 (Story 1, Switch between display options); PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 52 (14 Oct 2026, Chris Ward), S1-R15, S1-R15b and Out of Scope (Department filter), read 14 Oct 2026; Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\", states states__work-orders__tech-technician-chip__light__1440 (design pictures DC-18-tech-technician-chip-open-light-1440.png, rendered from that export at the width in the name), read 14 Oct 2026. Covers the design defects SV-11326 (reported 14 Oct 2026 by Chris Ward). Where the PRD says nothing about the look, the design is the source. Source-verified 14 October 2026. Not yet checked against a build.</p><p>The design's Technician list has no Unassigned entry and filters by any assigned technician; this case follows the PRD (S1-R15, version 52). The design gives the filter a wrench icon; whether the filters take the design's icons is open with the product owner (question PQ-V01, not yet answered), so the icon is not judged.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S1-R15:</strong> \u201cIn Tech View and Board View the filter bar also offers a Technician filter, after Assigned to me. It is a multi-select listing Unassigned first, then the location\u2019s technicians (the same people who get a group or column, S9-R4), by first name then last name. Choosing one or more shows only those technicians\u2019 groups or columns; every other group or column, pinned ones included, is hidden. It filters by lead technician only.\u201d</li><li><strong>S1-R15b:</strong> \u201cList does not offer the Technician filter and stays as in production. Switching to List while technicians are chosen shows List as if none were chosen; switching back to Tech View or Board View brings the choice back. The choice is remembered the same way as the other filters.\u201d</li><li><strong>Out of Scope:</strong> \u201cA Department filter. The design shows one, but a work order\u2019s department is not shown or editable on any work order screen today, so users could not see why a work order matches. Revisit once the work order shows its department.\u201d</li><li><strong>Design \u2014 _ds_bundle.js (design library), Technician filter icon:</strong> \u201cICON_WRENCH: lazyGlyph(\"wrench\"),\u201d</li></ul><p>AUTOMATION: Ready</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Step 2: the Technician filter sits directly after Assigned to me, showing the design's thin outline wrench icon, the word Technician and a down arrow, in the same style as the filters beside it, as in the design picture. There is no Department filter.</li><li>Step 4: a list opens directly below the filter, starting with Unassigned, then the location's technicians by first name then last name, each with a tick box, as in the design picture (the picture has no Unassigned entry; the PRD adds it).</li><li>Step 7: Board View shows the same Technician filter in the same place, still with {Technician-A} chosen.</li><li>Step 8: List's filter bar has no Technician filter.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10044 (Story 1, Switch between display options); PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S1-R15, S1-R15b and Out of Scope (Department filter), read 15 Oct 2026; Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\", states states__work-orders__tech-technician-chip__light__1440 (design pictures DC-18-tech-technician-chip-open-light-1440.png, rendered from that export at the width in the name), read 14 Oct 2026. Covers the design defects SV-11326 (reported 14 Oct 2026 by Chris Ward). Where the PRD says nothing about the look, the design is the source. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answer 12, read 15 Oct 2026. Source-verified 15 October 2026. Not yet checked against a build.</p><p>The design's Technician list has no Unassigned entry and filters by any assigned technician; this case follows the PRD (S1-R15, added in version 52). The design gives the filter a wrench icon; Chris Ward answered on 15 Oct 2026 (answer 12) that the filter chips use the design file's icons in every display option, and PRD version 54 says so, so step 2 now checks the wrench icon.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S1-R15:</strong> &ldquo;In Tech View and Board View the filter bar also offers a Technician filter, after Assigned to me. It is a multi-select listing Unassigned first, then the location\u2019s technicians (the same people who get a group or column, S9-R4), by first name then last name. Choosing one or more shows only those technicians\u2019 groups or columns; every other group or column, pinned ones included, is hidden. It filters by lead technician only.&rdquo;</li><li><strong>S1-R15b:</strong> &ldquo;List does not offer the Technician filter and stays as in production. Switching to List while technicians are chosen shows List as if none were chosen; switching back to Tech View or Board View brings the choice back. The choice is remembered the same way as the other filters.&rdquo;</li><li><strong>S1-R9a:</strong> &ldquo;The switcher uses the design\u2019s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View these icons are the design\u2019s: density (`row-height` in Tech View, `card-height` in Board View, custom icons in the design system\u2019s icon set), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and the empty state when there are no work orders at all (`clipboard-list`). The filtered no-results state is the List\u2019s, magnifier included (S1-N1). The filter chips and Search use the design file\u2019s icons in every display option, List included, each exactly as the design file draws it; this is the only change to List. Every other List icon is unchanged.&rdquo;</li><li><strong>Out of Scope:</strong> &ldquo;A Department filter. The design shows one, but a work order\u2019s department is not shown or editable on any work order screen today, so users could not see why a work order matches. Revisit once the work order shows its department.&rdquo;</li><li><strong>Design \u2014 _ds_bundle.js (design library), Technician filter icon:</strong> &ldquo;ICON_WRENCH: lazyGlyph(\"wrench\"),&rdquo;</li></ul><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 33491,
+    "type_id": 6,
+    "created_on": 1792168736,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "field": "refs",
+      "old_value": null,
+      "new_value": "SV-10044,SV-11326"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong><a href=\"https://docs.google.com/document/d/1f-zVxZ4PE99_QeaCssjxa7TcD6b0j6XSW1-Drk_YX4M/edit\">Setup (manual QA tester and Claude session)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in as {User-A} (for example Admin ShopView), an Owner or Admin user whose role has Work orders &gt; View, Work orders &gt; Create &amp; Edit and See financial data, at {Location-A} (for example Staging Heavy Duty - 9919).</li><li>Your browser window is 1440 px wide, with the browser zoom at 100%.</li><li>The design picture DC-18-tech-technician-chip-open-light-1440.png is open beside the app at 100% zoom (actual size); it is attached to this case.</li><li>In the design pictures the names, numbers, dates and amounts are sample data, and the rank numbers (1, 2, 3 \u2026) beside rows and cards are left out of this release, so do not compare those.</li><li>The design picture also shows a Department filter, which is left out of this release; do not compare it.</li><li>Technician {Technician-A} (for example ZZAUTOTEST DC18 Yan Filter) is an active technician at {Location-A}.</li><li>Customer {Customer-A} (for example \"ZZAUTOTEST DC18 Technician Filter\") is used by this case only.</li><li>Approved work order {Work-order-1} (for example S10043-17850) for {Customer-A} is led by {Technician-A}.</li><li>On the Work Orders page nothing is chosen in any filter (if the Asset on Site chip shows Yes or No, click the x on the chip), Assigned to me is off, Search is empty and density is Regular (the default).</li></ul>",
+      "new_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at location \"Staging Heavy Duty - 9919\" (on another site: the location named in the test run).</li><li>The browser window is 1440 px wide with the zoom at 100%, and the design picture \"DC-18-tech-technician-chip-open-light-1440.png\" attached to this case is open beside it at 100% (actual size). Names, numbers and the rank numbers in the pictures are sample data. The picture's Department filter is left out of this release.</li><li>Technician \"ZZAUTOTEST C590127 Yan\" is active at this location and leads the Approved work order of customer \"ZZAUTOTEST C590127 Technician Filter\", unit \"C590127-U1\".</li><li>Starting screen: \"Work Orders\" &gt; \"All\" tab, \"Tech View\" shown, no filter chosen, \"Assigned to me\" off, \"Search\" empty, density \"Regular\".</li><li>If any record named above is missing, mark this test Blocked: \"setup not done\".</li></ul>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Open Work Orders, click the All tab and click Tech View in the display switcher.</li><li>Look at the filter bar from left to right.</li><li>Click the Technician filter.</li><li>Look at the list that opens.</li><li>Tick {Technician-A}.</li><li>Press Escape.</li><li>Click Board View in the display switcher and look at the filter bar.</li><li>Click List in the display switcher and look at the filter bar.</li></ol>",
+      "new_value": "<ol><li>Look at the filter bar from left to right.</li><li>Click the \"Technician\" filter.</li><li>Look at the list that opens.</li><li>Tick \"ZZAUTOTEST C590127 Yan\".</li><li>Press Escape.</li><li>Click \"Board View\" in the display switcher.</li><li>Click \"List\" in the display switcher.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p><strong>Expected results</strong></p><ul><li>Step 2: the Technician filter sits directly after Assigned to me, showing the design's thin outline wrench icon, the word Technician and a down arrow, in the same style as the filters beside it, as in the design picture. There is no Department filter.</li><li>Step 4: a list opens directly below the filter, starting with Unassigned, then the location's technicians by first name then last name, each with a tick box, as in the design picture (the picture has no Unassigned entry; the PRD adds it).</li><li>Step 7: Board View shows the same Technician filter in the same place, still with {Technician-A} chosen.</li><li>Step 8: List's filter bar has no Technician filter.</li></ul><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10044 (Story 1, Switch between display options); PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 54 (15 Oct 2026, Chris Ward), S1-R15, S1-R15b and Out of Scope (Department filter), read 15 Oct 2026; Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\", states states__work-orders__tech-technician-chip__light__1440 (design pictures DC-18-tech-technician-chip-open-light-1440.png, rendered from that export at the width in the name), read 14 Oct 2026. Covers the design defects SV-11326 (reported 14 Oct 2026 by Chris Ward). Where the PRD says nothing about the look, the design is the source. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answer 12, read 15 Oct 2026. Source-verified 15 October 2026. Not yet checked against a build.</p><p>The design's Technician list has no Unassigned entry and filters by any assigned technician; this case follows the PRD (S1-R15, added in version 52). The design gives the filter a wrench icon; Chris Ward answered on 15 Oct 2026 (answer 12) that the filter chips use the design file's icons in every display option, and PRD version 54 says so, so step 2 now checks the wrench icon.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S1-R15:</strong> &ldquo;In Tech View and Board View the filter bar also offers a Technician filter, after Assigned to me. It is a multi-select listing Unassigned first, then the location\u2019s technicians (the same people who get a group or column, S9-R4), by first name then last name. Choosing one or more shows only those technicians\u2019 groups or columns; every other group or column, pinned ones included, is hidden. It filters by lead technician only.&rdquo;</li><li><strong>S1-R15b:</strong> &ldquo;List does not offer the Technician filter and stays as in production. Switching to List while technicians are chosen shows List as if none were chosen; switching back to Tech View or Board View brings the choice back. The choice is remembered the same way as the other filters.&rdquo;</li><li><strong>S1-R9a:</strong> &ldquo;The switcher uses the design\u2019s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View these icons are the design\u2019s: density (`row-height` in Tech View, `card-height` in Board View, custom icons in the design system\u2019s icon set), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and the empty state when there are no work orders at all (`clipboard-list`). The filtered no-results state is the List\u2019s, magnifier included (S1-N1). The filter chips and Search use the design file\u2019s icons in every display option, List included, each exactly as the design file draws it; this is the only change to List. Every other List icon is unchanged.&rdquo;</li><li><strong>Out of Scope:</strong> &ldquo;A Department filter. The design shows one, but a work order\u2019s department is not shown or editable on any work order screen today, so users could not see why a work order matches. Revisit once the work order shows its department.&rdquo;</li><li><strong>Design \u2014 _ds_bundle.js (design library), Technician filter icon:</strong> &ldquo;ICON_WRENCH: lazyGlyph(\"wrench\"),&rdquo;</li></ul><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>",
+      "new_value": "<p>Step 1: the \"Technician\" filter sits directly after \"Assigned to me\", with the design's thin outline wrench icon, the word \"Technician\" and a down arrow, as in the picture. There is no Department filter.</p><p>Step 2: a list opens directly below the filter.</p><p>Step 3: the list starts with \"Unassigned\", then the location's technicians by first name then last name, each with a tick box.</p><p>Step 4: \"ZZAUTOTEST C590127 Yan\" is ticked.</p><p>Step 5: the list closes.</p><p>Step 6: Board View shows the same \"Technician\" filter in the same place, still with \"ZZAUTOTEST C590127 Yan\" chosen.</p><p>Step 7: List's filter bar has no \"Technician\" filter.</p><p>Known problem SV-11326: staging has no Technician filter yet. If you see no Technician filter, mark this test Blocked and raise nothing new.</p><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 33517,
+    "type_id": 6,
+    "created_on": 1792171346,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at location \"Staging Heavy Duty - 9919\" (on another site: the location named in the test run).</li><li>The browser window is 1440 px wide with the zoom at 100%, and the design picture \"DC-18-tech-technician-chip-open-light-1440.png\" attached to this case is open beside it at 100% (actual size). Names, numbers and the rank numbers in the pictures are sample data. The picture's Department filter is left out of this release.</li><li>Technician \"ZZAUTOTEST C590127 Yan\" is active at this location and leads the Approved work order of customer \"ZZAUTOTEST C590127 Technician Filter\", unit \"C590127-U1\".</li><li>Starting screen: \"Work Orders\" &gt; \"All\" tab, \"Tech View\" shown, no filter chosen, \"Assigned to me\" off, \"Search\" empty, density \"Regular\".</li><li>If any record named above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+      "new_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at {Location-A}.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>The browser window is 1440 px wide with the zoom at 100%, and the design picture \"DC-18-tech-technician-chip-open-light-1440.png\" attached to this case is open beside it at 100% (actual size). Names, numbers and rank numbers in the pictures are sample data. The picture's Department filter is left out of this release.</li><li>Technician {Technician-A} is active at {Location-A} and leads the Approved work order {Work-order-1} of customer {Customer-A}.<br>For example: {Technician-A} is ZZAUTOTEST C590127 Yan, {Customer-A} is ZZAUTOTEST C590127 Technician Filter and {Work-order-1} is S10043-17850.</li><li>Starting screen: \"Work Orders\" &gt; \"All\" tab, \"Tech View\" shown, \"Search\" empty, no filter chosen, \"Assigned to me\" off, density \"Regular\".</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Steps",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_steps",
+      "old_value": "<ol><li>Look at the filter bar from left to right.</li><li>Click the \"Technician\" filter.</li><li>Look at the list that opens.</li><li>Tick \"ZZAUTOTEST C590127 Yan\".</li><li>Press Escape.</li><li>Click \"Board View\" in the display switcher.</li><li>Click \"List\" in the display switcher.</li></ol>",
+      "new_value": "<ol><li>Look at the filter bar from left to right.</li><li>Click the \"Technician\" filter.</li><li>Look at the list that opens.</li><li>Tick {Technician-A}.</li><li>Press Escape.</li><li>Click \"Board View\" in the display switcher.</li><li>Click \"List\" in the display switcher.</li></ol>"
+     },
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Expected Result",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_expected",
+      "old_value": "<p>Step 1: the \"Technician\" filter sits directly after \"Assigned to me\", with the design's thin outline wrench icon, the word \"Technician\" and a down arrow, as in the picture. There is no Department filter.</p><p>Step 2: a list opens directly below the filter.</p><p>Step 3: the list starts with \"Unassigned\", then the location's technicians by first name then last name, each with a tick box.</p><p>Step 4: \"ZZAUTOTEST C590127 Yan\" is ticked.</p><p>Step 5: the list closes.</p><p>Step 6: Board View shows the same \"Technician\" filter in the same place, still with \"ZZAUTOTEST C590127 Yan\" chosen.</p><p>Step 7: List's filter bar has no \"Technician\" filter.</p><p>Known problem SV-11326: staging has no Technician filter yet. If you see no Technician filter, mark this test Blocked and raise nothing new.</p><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>",
+      "new_value": "<p><strong>Expected results</strong></p><ul><li>Step 1: the \"Technician\" filter sits directly after \"Assigned to me\", with the design's thin outline wrench icon, the word \"Technician\" and a down arrow, as in the picture. There is no Department filter.</li><li>Step 2: a list opens directly below the filter.</li><li>Step 3: the list starts with \"Unassigned\", then the location's technicians by first name then last name, each with a tick box.</li><li>Step 4: {Technician-A} is ticked.</li><li>Step 5: the list closes.</li><li>Step 6: Board View shows the same \"Technician\" filter in the same place, still with {Technician-A} chosen.</li><li>Step 7: List's filter bar has no \"Technician\" filter.</li></ul><p>Known problem (SV-11326, open: https://shopview.atlassian.net/browse/SV-11326): staging has no Technician filter yet. If you see no Technician filter, mark this test Blocked and raise nothing new.</p><p><strong>Source &mdash; where this behaviour comes from</strong><br>Epic SV-10043; story SV-10044 (Story 1, Switch between display options); PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 61 (16 Oct 2026, Chris Ward), S1-R15, S1-R15b, S1-R9a and Out of Scope, read 16 Oct 2026. Claude Design project \"Work Orders\" (Branko Cicovic), export of 14 Oct 2026, board \"Work Orders.dc.html\" (the design pictures named in the preconditions were rendered from it), read 14 Oct 2026. Related tickets: SV-11326. Product owner answers: Chris Ward, WO Board and Tech View question sheet (https://docs.google.com/spreadsheets/d/1gBGmNB4B1bRrD2ZJvBn1tuvbfxFPjcsKddz_I5H3CvU), answer 12, read 15 Oct 2026. Source-verified 16 October 2026.</p><p>The design's Technician list has no Unassigned entry and filters by any assigned technician; this case follows the PRD (S1-R15, added in version 52). The design gives the filter a wrench icon; Chris Ward answered on 15 Oct 2026 (answer 12) that the filter chips use the design file's icons in every display option, and PRD version 61 still says so, so step 1 checks the wrench icon.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><ul><li><strong>S1-R15:</strong> &ldquo;In Tech View and Board View the filter bar also offers a Technician filter, after Assigned to me. It is a multi-select listing Unassigned first, then the location\u2019s technicians (the same people who get a group or column, S9-R4), by first name then last name. Choosing one or more shows only those technicians\u2019 groups or columns; every other group or column, pinned ones included, is hidden. It filters by lead technician only.&rdquo;</li><li><strong>S1-R15b:</strong> &ldquo;List does not offer the Technician filter and stays as in production. Switching to List while technicians are chosen shows List as if none were chosen; switching back to Tech View or Board View brings the choice back. The choice is remembered the same way as the other filters.&rdquo;</li><li><strong>S1-R9a:</strong> &ldquo;The switcher uses the design\u2019s icons at 20px: List is Lucide `list`, Tech View is `user-round`, Board View is `square-kanban`. In Tech View and Board View these icons are the design\u2019s: density (`row-height` in Tech View, `card-height` in Board View, custom icons in the design system\u2019s icon set), collapse chevron (`chevron-down`), pin and unpin (`pin` / `pin-off`), Invoiced or Paid lock (`lock`), Unassigned avatar (`user-round`) and the empty state when there are no work orders at all (`clipboard-list`). The filtered no-results state is the List\u2019s, magnifier included (S1-N1). The filter chips and Search use the design file\u2019s icons in every display option, List included, each exactly as the design file draws it. The display switcher (new on every view, List included) shows the design\u2019s slate icons in every view, so it keeps one color as the user moves between views. These are the only changes to List. Every other List icon is unchanged.&rdquo;</li><li><strong>Out of Scope:</strong> &ldquo;A Department filter. The design shows one, but a work order\u2019s department is not shown or editable on any work order screen today, so users could not see why a work order matches. Revisit once the work order shows its department.&rdquo;</li><li><strong>Design \u2014 _ds_bundle.js (design library), Technician filter icon:</strong> &ldquo;ICON_WRENCH: lazyGlyph(\"wrench\"),&rdquo;</li></ul><p>AUTOMATION: HOLD - not yet build-verified on the Work Orders QA build</p>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 34032,
+    "type_id": 6,
+    "created_on": 1792432570,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "field": "title",
+      "old_value": "Technician filter sits after Assigned to me in Tech View and Board View",
+      "new_value": "Design: The Technician filter sits right after Assigned to me in both views"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 34322,
+    "type_id": 6,
+    "created_on": 1792479981,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "field": "title",
+      "old_value": "Design: The Technician filter sits right after Assigned to me in both views",
+      "new_value": "SV-11326 - Design: The Technician filter sits right after Assigned to me in both views"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 34461,
+    "type_id": 6,
+    "created_on": 1792511339,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "field": "title",
+      "old_value": "SV-11326 - Design: The Technician filter sits right after Assigned to me in both views",
+      "new_value": "Design: The Technician filter sits right after Assigned to me in both views"
+     }
+    ],
+    "comments": []
+   }
+  ]
+ }
+}

@@ -1,0 +1,102 @@
+{
+ "case": {
+  "id": 682445,
+  "title": "Two people reorder one column at once and each moved card keeps its place",
+  "section_id": 13244,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 2,
+  "milestone_id": null,
+  "refs": "SV-10043,SV-10052,SV-11119",
+  "created_by": 3,
+  "created_on": 1792447476,
+  "updated_by": 3,
+  "updated_on": 1792511340,
+  "estimate": null,
+  "estimate_forecast": null,
+  "suite_id": 1,
+  "display_order": 25,
+  "is_deleted": 0,
+  "is_ai_generated": false,
+  "is_ai_automated": false,
+  "custom_ai_type": null,
+  "custom_ai_model": null,
+  "custom_automation_type": 2,
+  "custom_atmstatus": 1,
+  "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at {Location-A} in two separate browsers (for example Chrome and a Chrome private window), each window at least 1024 px wide.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Technician {Technician-A} is active at {Location-A}.<br>For example: ZZAUTOTEST C682445 Ana.</li><li>Customer {Customer-A} has three Approved work orders led by {Technician-A}, and in Board View {Technician-A}'s column lists them in this order: {Work-order-1}, {Work-order-2}, {Work-order-3}.<br>For example: {Customer-A} is ZZAUTOTEST C682445 Two People, and the work orders are S2-37378, S2-37380 and S2-37377.</li><li>Starting screen, in both browsers: \"Work Orders\" &gt; \"All\" tab, \"Board View\" shown.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+  "custom_steps": "<ol><li>In browser 1, type the name of {Customer-A} in \"Search\".</li><li>In browser 2, type the name of {Customer-A} in \"Search\".</li><li>In browser 1, drag {Work-order-3} to the top of {Technician-A}'s column.</li><li>In browser 2, without refreshing, drag {Work-order-2} to the top of {Technician-A}'s column.</li><li>Refresh browser 1.</li><li>Refresh browser 2.</li><li>In browser 1, click \"Tech View\".</li></ol>",
+  "custom_testrail_bdd_scenario": null,
+  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: {Technician-A}'s column reads {Work-order-1}, {Work-order-2}, {Work-order-3}.</li><li>Step 2: browser 2 shows the same order: {Work-order-1}, {Work-order-2}, {Work-order-3}.</li><li>Step 3: browser 1 shows {Work-order-3}, {Work-order-1}, {Work-order-2}. No message appears.</li><li>Step 4: browser 2 shows {Work-order-2}, {Work-order-1}, {Work-order-3}. No message appears in either browser.</li><li>Step 5: browser 1 shows {Work-order-2}, {Work-order-3}, {Work-order-1}, with no warning.</li><li>Step 6: browser 2 shows the same order, {Work-order-2}, {Work-order-3}, {Work-order-1}, with no warning.</li><li>Step 7: {Technician-A}'s group in Tech View lists {Work-order-2}, {Work-order-3}, {Work-order-1}.</li></ul><p>Known problem (SV-11119, In Progress; Bilal Muzamil, staging builds v26.40.19-e435950 and v26.40.19-c850386, 19 Oct 2026, 5 of 5): after both refresh, both browsers show {Work-order-3}, {Work-order-2}, {Work-order-1}, so browser 2's move of {Work-order-2} to the top is lost. (1) If you see exactly that, mark this test Failed and raise nothing new. (2) If it fails in a different way, report it. (3) If both browsers show {Work-order-2}, {Work-order-3}, {Work-order-1}, mark it Passed and tell the QA lead: the fix has shipped.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 68 (19 Oct 2026, Chris Ward), read 19 Oct 2026 &middot; Epic SV-10043, story SV-10052 (Story 9, Drag to reorder work and technician groups/columns); ticket SV-11119</p><ul><li><strong>S9-R11:</strong> &ldquo;Save the manual order of work orders once per location. Everyone at the location sees the same order, in both Tech View and Board View. Each drop saves only the card that was moved, so if two people reorder at the same time, the later drop wins for the card it moved and the cards that person did not move keep the order the other person saved; each person sees the result on their next refresh and is not warned. A card dropped at the top of a column becomes first, one dropped at the bottom becomes last, and one dropped between two cards lands immediately before the card that was below it on that person\u2019s screen (S9-E2). Example: a column reads Alpha, Mid, Zeta; person 1 moves Zeta to the top (Zeta, Alpha, Mid); person 2, still seeing Alpha, Mid, Zeta, moves Mid to the top; after a refresh both see Mid, Zeta, Alpha.&rdquo;</li></ul><p>Not yet checked against a build.</p><p></p><p>AUTOMATION: READY - EXPECT FAIL (SV-11119)</p>",
+  "custom_steps_separated": null,
+  "custom_mission": null,
+  "custom_goals": null,
+  "ai_automated_test": null,
+  "labels": [],
+  "version": 4
+ },
+ "history": {
+  "offset": 0,
+  "limit": 250,
+  "size": 3,
+  "_links": {
+   "next": null,
+   "prev": null
+  },
+  "history": [
+   {
+    "id": 34057,
+    "type_id": 6,
+    "created_on": 1792447481,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 6,
+      "old_text": null,
+      "new_text": null,
+      "label": "Preconditions",
+      "options": {
+       "is_required": false,
+       "default_value": "",
+       "format": "markdown",
+       "rows": "7"
+      },
+      "field": "custom_preconds",
+      "old_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at {Location-A} in two separate browsers (for example Chrome and a Chrome private window), each window at least 1024 px wide.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Technician {Technician-A} is active at {Location-A}.<br>For example: ZZAUTOTEST C0 Ana.</li><li>Customer {Customer-A} has three Approved work orders led by {Technician-A}, and in Board View {Technician-A}'s column lists them in this order: {Work-order-1}, {Work-order-2}, {Work-order-3}.<br>For example: {Customer-A} is ZZAUTOTEST C0 Two People, and the work orders are S2-37378, S2-37380 and S2-37377.</li><li>Starting screen, in both browsers: \"Work Orders\" &gt; \"All\" tab, \"Board View\" shown.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+      "new_value": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at {Location-A} in two separate browsers (for example Chrome and a Chrome private window), each window at least 1024 px wide.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>Technician {Technician-A} is active at {Location-A}.<br>For example: ZZAUTOTEST C682445 Ana.</li><li>Customer {Customer-A} has three Approved work orders led by {Technician-A}, and in Board View {Technician-A}'s column lists them in this order: {Work-order-1}, {Work-order-2}, {Work-order-3}.<br>For example: {Customer-A} is ZZAUTOTEST C682445 Two People, and the work orders are S2-37378, S2-37380 and S2-37377.</li><li>Starting screen, in both browsers: \"Work Orders\" &gt; \"All\" tab, \"Board View\" shown.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 34316,
+    "type_id": 6,
+    "created_on": 1792479971,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "field": "title",
+      "old_value": "Two people reorder one column at once and each moved card keeps its place",
+      "new_value": "SV-11119 - Two people reorder one column at once and each moved card keeps its place"
+     }
+    ],
+    "comments": []
+   },
+   {
+    "id": 34462,
+    "type_id": 6,
+    "created_on": 1792511340,
+    "user_id": 3,
+    "changes": [
+     {
+      "type_id": 1,
+      "field": "title",
+      "old_value": "SV-11119 - Two people reorder one column at once and each moved card keeps its place",
+      "new_value": "Two people reorder one column at once and each moved card keeps its place"
+     }
+    ],
+    "comments": []
+   }
+  ]
+ }
+}

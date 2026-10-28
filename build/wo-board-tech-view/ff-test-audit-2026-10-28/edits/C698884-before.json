@@ -1,0 +1,47 @@
+{
+ "case": {
+  "id": 698884,
+  "title": "Board View has no Density control and Column Selection sits centred",
+  "section_id": 13238,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 2,
+  "milestone_id": null,
+  "refs": "SV-10043,SV-10046,SV-10049,SV-11580",
+  "created_by": 3,
+  "created_on": 1792522181,
+  "updated_by": 3,
+  "updated_on": 1792522181,
+  "estimate": null,
+  "estimate_forecast": null,
+  "suite_id": 1,
+  "display_order": 26,
+  "is_deleted": 0,
+  "is_ai_generated": false,
+  "is_ai_automated": false,
+  "custom_ai_type": null,
+  "custom_ai_model": null,
+  "custom_automation_type": 2,
+  "custom_atmstatus": 1,
+  "custom_preconds": "<p><strong><a href=\"https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/slack-session-setup-7v5itm/build/wo-board-tech-view/v61-pass-2026-10-16/two-audience/WO-BOARD-SETUP-FILE.md\">Setup file (for Claude sessions; a tester does not need it)</a></strong></p><p></p><p><strong>Preconditions</strong></p><ul><li>You are signed in with the \"Admin\" role at {Location-A}, in a browser window at least 1024 px wide.<br>For example: {Location-A} is Staging Heavy Duty - 9919.</li><li>{Location-A} has at least one technician and one work order.<br>For example: Esther Howard.</li><li>Starting screen: \"Work Orders\" &gt; \"All\" tab, \"Board View\" shown, \"Search\" empty, no filter chosen, \"Assigned to me\" off.</li><li>If any record above is missing, mark this test Blocked: \"setup not done\".</li></ul>",
+  "custom_steps": "<ol><li>Look at the toolbar between the filters and the display switcher.</li><li>Click \"Column Selection\".</li><li>Press Escape.</li><li>Click \"Tech View\" in the display switcher.</li><li>Click the density button in the toolbar.</li></ol>",
+  "custom_testrail_bdd_scenario": null,
+  "custom_expected": "<p><strong>Expected results</strong></p><ul><li>Step 1: there is no density button. \"Column Selection\" sits centred between the toolbar's two dividers, with no empty gap or double divider where the density button was.</li><li>Step 2: the picker of card fields opens, the same picker \"Fields to display\" opened before.</li><li>Step 3: the picker closes and the cards keep their usual spacing.</li><li>Step 4: Tech View shows, and its toolbar still has the density button.</li><li>Step 5: the menu offers \"Compact\", \"Regular\" and \"Comfortable\".</li></ul><p><strong>Known problem</strong> (SV-11580, Open): until it ships, Board View still shows the density button and the field picker is named \"Fields to display\". (1) If you see exactly that, mark this test Failed and raise nothing new. (2) If it fails in a different way, report it. (3) If it behaves as the expected results say, mark it Passed and tell the QA lead: the change has shipped.</p><p><strong>Exact quotes from the source (for reproducibility)</strong></p><p>From: PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 71 (20 Oct 2026, Chris Ward), read 20 Oct 2026 &middot; Epic SV-10043, stories SV-10046 (Story 3, Board View \u2014 board by lead technician), SV-10048 (Story 5, Column Selection) and SV-10049 (Story 6, Density); ticket SV-11580</p><ul><li><strong>S3-R11:</strong> &ldquo;Board View shows no Density control in this release (SV-11580). Column Selection sits centered between the toolbar\u2019s two dividers, with no empty gap where Density was. A Card size control as in the design (Compact and Detailed) follows as a fast follow (SV-11581).&rdquo;</li><li><strong>S5-R2:</strong> &ldquo;Board View offers a separate Column Selection picker in the same toolbar position and with the same interaction as the column chooser.&rdquo;</li><li><strong>S6-E1:</strong> &ldquo;Density applies to Tech View rows on Work Orders; Board View cards keep their current spacing in this release. List keeps today\u2019s row size, and other application tables are unchanged.&rdquo;</li><li><strong>S6-R1:</strong> &ldquo;Offer Compact, Regular, and Comfortable density in Tech View. Board View has no Density control in this release (S3-R11).&rdquo;</li><li><strong>PRD change log, 20 Oct 2026:</strong> &ldquo;Fields to display renamed Column Selection everywhere it appears, the same name the other views use. v71.&rdquo;</li></ul><p>Not yet checked against a build in this wording.</p><p></p><p>AUTOMATION: READY - EXPECT FAIL (SV-11580)</p>",
+  "custom_steps_separated": null,
+  "custom_mission": null,
+  "custom_goals": null,
+  "ai_automated_test": null,
+  "labels": [],
+  "version": 1
+ },
+ "history": {
+  "offset": 0,
+  "limit": 250,
+  "size": 0,
+  "_links": {
+   "next": null,
+   "prev": null
+  },
+  "history": []
+ }
+}
