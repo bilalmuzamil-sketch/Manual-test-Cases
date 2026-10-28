@@ -1,0 +1,47 @@
+{
+ "env": "prod",
+ "loc": "\"b617914c-16e9-4485-8e8b-193cd86aa416\"",
+ "pn": "ZZRC55933",
+ "po": "ea8dc9e6-3aca-46b5-9943-69b329f38952",
+ "poNumber": [
+  "S2-562",
+  "S2-562"
+ ],
+ "mineKeys": "order_item_id=7bdbd124,manufacturer_id=null,part_request_id=ada7735a,line_id=c48eba6b,work_order_id=0ecff689,parent_part_id=null,core_item_id=null",
+ "oid": "7bdbd124-0eed-4446-842b-11450e0b55e8",
+ "removeButtons": 1,
+ "Bdialog": [
+  "button_close_dialog|close ; button_cancel_dialog|Cancel ; button_confirm_dialog|Delete",
+  ""
+ ],
+ "orderAfter": 6,
+ "cardCount": 1,
+ "boxes": [
+  "on",
+  "on",
+  "on",
+  "on",
+  "on",
+  "MINE on",
+  "on"
+ ],
+ "cardInfo": {
+  "text": "Vendor ZZAUTOTEST V10928 Prod 152549 arrow_drop_down Vendor Invoice # * event Invoice Date * Receive parts Part number & description Cost Sell Qty ordered Qty received Total ZZ10928-58138 edit ZZAUTOTEST second-tab vendor part $0.00 1.00 $0.00 ZZRC55933 edit ZZAUTOTEST receive after removal $0.00 1.00 $0.00 Subtotal $0.00 Tax $ Total $0.00 Delivery note Receive Parts (1)",
+  "btn": [
+   "Receive Parts (1) disabled=null"
+  ],
+  "inv": [
+   "",
+   "ZZINV6367",
+   "10/28/2026",
+   "on"
+  ]
+ },
+ "clicked": "Receive Parts (1)",
+ "posts": [
+  "400 /api/orders/receive-requested-parts {\"errors\":[{\"error\":\"A part on this receive is not on the purchase order it names. Reload the page and try again.\"}]}"
+ ],
+ "toasts": [
+  "warning A part on this receive is not on the purchase order it names. Reload the page and try again. Please try to resolve this. Close"
+ ]
+}
