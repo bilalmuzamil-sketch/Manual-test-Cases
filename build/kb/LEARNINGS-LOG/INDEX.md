@@ -510,3 +510,62 @@
 - L0482 — 2026-10-20 — Any release copy that picks a lead on the WORK ORDER PAGE needs top-sorting technician names
 - L0483 — 2026-10-20 — A release copy's lead change is a DRAG or More actions > Unassign; the originals' scripts often used the lead dialog
 - L0484 — 2026-10-20 — CORRECTS L0479: today's build has no "Nothing here yet" and no "Add Technician" at all; plus three setup traps
+
+## build/kb/LEARNINGS-LOG/008-L0485-L0541.md
+- L0485 — 2026-10-20 — Three more set-up traps from the last run-498 batch (all were MY set-up, not the product)
+- L0486 — 2026-10-20 — Prefixing case titles on the QA lead's order: title-only update_case, read back, audit file
+- L0487 — 2026-10-20 — "Prefix every Failed case with its ticket": where the ticket comes from, and Automated cases are held
+- L0488 — 2026-10-20 — Rule 133 recorded and automated: ticket prefix on Failed/Retest/Blocked case titles
+- L0489 — 2026-10-20 — Rule 133 amended: a Passed test's ticket prefix comes off
+- L0490 — 2026-10-20 — Fixed-ticket retest of run 498: queue chaining trap, virtual-list readings, PRD v69, no-ticket prefix
+- L0491 — 2026-10-20 — Duplicate check before filing: a same-day ticket can be missed by text JQL; add_case HTML now renders without a UI save
+- L0492 — 2026-10-20 — A PO answer that asks "please log a bug" is not the QA lead's permission
+- L0493 — 2026-10-21 — Finding a fixed ticket's tests: title prefix + newest results AND the cases whose refs name the ticket
+- L0494 — 2026-10-21 — After a container restart: what is lost, and the quickest way back to TestRail, Jira and the runner
+- L0495 — 2026-10-21 — QA lead ruling: a test failing or blocked on a "fast-follow" ticket is not tested; it moves to the Fast-follow section and leaves the run
+- L0496 — 2026-10-21 — SV-11499 retest on sv11499: the location rows sit inside the profile menu; a first Google redirect on a QA branch can be a one-off
+- L0497 — 2026-10-21 — Settings > Staff shows the LOGIN ACCOUNT name, not the staff record name; my C707077 Failed was wrong
+- L0498 — 2026-10-21 — PRD v73 settles two of three observations; Escape-in-search defect prepared; C581895 re-run with same-name technicians
+- L0499 — 2026-10-21 — Filing a held Story Defect end to end, then the fast-follow move (SV-11627, C707079)
+- L0500 — 2026-10-21 — Moving a Story Defect under the Fast Follow epic (SV-11593): it becomes a Bug, and only the bulk-move API can do it
+- L0501 — 2026-10-21 — "Move them back to their native folders": get_history_for_case records every section move
+- L0502 — 2026-10-21 — Setting "QA Assignee" on an epic's stories
+- L0503 — 2026-10-21 — Labelling WO Board / Tech View's Done defects "QAcomplete"
+- L0504 — 2026-10-21 — A timed "test this within N hours" order: baseline first, then hourly check-ins that re-arm themselves
+- L0505 — 2026-10-22 — Running the WO Board suite on PRODUCTION: password sign-in in the harness, profile, and three traps
+- L0506 — 2026-10-22 — A long unattended run keeps writing evidence: autosave it, path-scoped, behind the secret scan
+- L0507 — 2026-10-22 — A new environment needs the suite's standard people first (seed-staff.mts + seed-staff-extra-1022.mts)
+- L0508 — 2026-10-22 — Rule 114(c) applied: rewriting named steps of a case to the current PRD (C590120)
+- L0509 — 2026-10-22 — "Assign" vs "Reassign lead technician": the menu item depends on whether the work order has a lead (S3-R14)
+- L0510 — 2026-10-22 — Production run: three set-up traps that look like product results ("me", the time zone, Office User)
+- L0511 — 2026-10-22 — Production: a second sign-in lands at the account's DEFAULT location and ends the first browser — tests that use one must run alone
+- L0512 — 2026-10-22 — Check a test is still IN the run before re-running it
+- L0513 — 2026-10-22 — A script that reaches the right END state by different steps is not a pass (C97006)
+- L0514 — 2026-10-22 — Board View has no Density control since PRD v73: older cases that ask for it are Blocked, never Failed
+- L0515 — 2026-10-22 — A script that boots its OWN sign-in ignores the environment switch
+- L0516 — 2026-10-22 — Location NAMES were hard-coded too: LOC1_NAME / LOC2_NAME from the profile
+- L0517 — 2026-10-22 — Production data the run 498 cases assume: make it, or reuse what another test made
+- L0518 — 2026-10-22 — Production has no "Service" department; a real sign-out/sign-in IS runnable there
+- L0519 — 2026-10-22 — On production a canned line's NAME is not the line's TITLE; and a found-but-unclickable list option
+- L0520 — 2026-10-22 — A "compare with production" case run ON production must not sign in to production again; and the timesheet time shift
+- L0521 — 2026-10-22 — Production fact: Create Invoice opens "New Customer Payment", and closing it with its X takes the invoice back off
+- L0522 — 2026-10-22 — Report Location filters need a two-location account; analytics cases with Board View density
+- L0523 — 2026-10-22 — Rule 134: a question he can't follow is not a question; a reminder repeats the whole question
+- L0524 — 2026-10-22 — Four more production traps: the auto "New Line" window, an all-Approved set-up, a hidden first open, a card off to the right
+- L0525 — 2026-10-22 — Production: Board View's field button is "Column Selection"; a brand-new user cannot really sign in unattended
+- L0526 — 2026-10-22 — A script can lag its own case: read the case before blaming it
+- L0527 — 2026-10-22 — Location names hide in PATTERNS too, not only in quoted strings
+- L0528 — 2026-10-22 — Scripts that measure MORE than their case can fail on the extra; cut the extra, keep the case
+- L0529 — 2026-10-22 — Production run, last stretch: three small traps
+- L0530 — 2026-10-22 — "Approve it" / "pin it" / "open it from the list" must be done on the screen, or the verdict is Unsure
+- L0531 — 2026-10-22 — A test that visits the second location breaks the NEXT test in the same script when it cannot come back
+- L0532 — 2026-10-22 — Production's New Location form needs a Country before State/Province
+- L0533 — 2026-10-22 — The stale "Change Location" field on production: go back through a third location
+- L0534 — 2026-10-22 — The draft scripts (C6147xx-stg.mts) write FLAT readings; wrap them before judging
+- L0535 — 2026-10-22 — A production failure that matches a known ticket: post Failed with that ticket, no new ask
+- L0536 — 2026-10-22 — A script can be shorter than its case: count the steps before trusting a clean run
+- L0537 — 2026-10-22 — Re-run queue on production: snapshot each entry's readings before the next one overwrites them
+- L0538 — 2026-10-22 — On production "me" has TWO names: ME_NAME for the staff list, a shorter one as a work order's lead
+- L0539 — 2026-10-22 — Production: renaming an account through account access ALSO renamed its staff record
+- L0540 — 2026-10-22 — A case's example record is staging-only; on production SEED it, don't scan for one
+- L0541 — 2026-10-22 — "Open the work order" is a step: open it from the List, never by its address
