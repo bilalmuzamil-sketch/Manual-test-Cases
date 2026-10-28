@@ -61,6 +61,7 @@ else owes).
 | What is missing | Who owes it | What it blocks | Since |
 |---|---|---|---|
 | Fresh `.qa.shopview.com` cookies (`sv_sso_session`, `PHPSESSID`, `cf_clearance`) — quick-login on sv10928 now returns 401 `sso_required` | QA lead | The rest of SV-10928 on the branch: timesheet, Receive Parts, Lines Add/Edit Part, Edit Asset (slow loading), bulk Pick in two tabs, catalog part deleted, manual returns, Bulk Receive / Process Return, manufacturer fields, ShopCoach, other error messages. Nothing can be posted on SV-10928 until these are run. | 28 Oct ~08:45 UTC |
+| Same cookies also needed for SV-11631: Dipesh turned QuickBooks off on sv11631 (comment 79622) so the blocked R10 check (Fees & Discounts column when a part has a fee or discount) can now be finished | QA lead | SV-11631 R10, and a fresh look at the phone-tap failure (R3/R9). The ticket is in REJECTED FROM TESTING. | 28 Oct |
 | Question: report the screen adding up "-$0.00" on the Invoices tab balance? (pre-existing, front end, not caused by SV-11744; steps in `sv11744-reversal-credit-share-2026-10-28/FINDINGS.md`) | QA lead | Nothing — whether to raise it | 28 Oct |
 
 ## 2026-10-27, ~11:30 UTC. **THREE TICKETS BLOCKED ON YOUR INSTRUCTION, EACH WITH A QUESTION TO ITS DEVELOPER.**
