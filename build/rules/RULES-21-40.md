@@ -89,6 +89,12 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     added a whole-WO fee via the API (201); per this rule that is a PASS with the "doable via
     API" flag, not a bug. Ties to Standing Rules 12/13 and the Custom Roles enforcement-model
     finding (BE enforces resource View/Edit; granular perms are FE gates).
+    **⇒ CARRIED INTO THIS RULE 2026-10-28 (no new ruling — a cross-reference to the QA lead's ruling
+    already recorded in Rule 10's AMENDMENT of 2026-08-11):** this rule decides *whether an FE-blocks /
+    BE-allows outcome is a defect* — it is not. It does not decide who grades the case: per Rule 10's
+    2026-08-11 amendment, *"The MANUAL QA TESTER observes the behaviour and marks the case passed or
+    failed."* So the case carries the plain tester note and the tester marks it. (Previously recorded only
+    in `build/skills/03-RUN-CHECK.md` §5.1 and `build/skills/COVERAGE-MATRIX.md` A12.)
 25. **Every DEVIATION call must cite the spec/ticket/story reference + the VERBATIM wording
     it deviates from (all projects).** Whenever I say something is a deviation (or a
     build-vs-case mismatch, or "the case expects X but the build does Y"), I MUST quote the
