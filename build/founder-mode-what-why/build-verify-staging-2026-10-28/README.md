@@ -24,7 +24,7 @@ build yet (never build-verified). Last edited 28 Oct 04:41 UTC by the test-writi
 
 PRD Confluence 845348896 **v16** saved 28 Oct (15 cases rewritten to it, 46 keep v15 quotes that are word-for-word
 in v16); epic SV-11257 and Jira read 27 Oct (incl. open bug SV-11850, ShopCoach Build Lines shows nothing on
-staging); design copy 27 Oct; tech plan 13 Oct. Rule 81 ask put to the QA lead 28 Oct — answer pending.
+staging); design copy 27 Oct; tech plan 13 Oct. Rule 81 ask put to the QA lead 28 Oct — answer **"Without re-checking"**; handover: **"It has finished"**.
 
 ## QA lead's rulings during the pass (28 Oct 2026)
 
@@ -39,3 +39,27 @@ staging); design copy 27 Oct; tech plan 13 Oct. Rule 81 ask put to the QA lead 2
   `capitalizeLineName`/`capitalizeDescription`, in the product since at least June 2026; observed: typed "excessive play",
   stored "Excessive play", probe 07). → Asked; answer **"Capitalise the examples"**: example text starts with a capital in
   the setup and in the matching example lines of the expected results; quotes from the documents are not touched.
+
+## Result (written 28 Oct 2026, apply.py → write-log.txt, 68/68 verify=OK)
+
+Every case: setup made concrete (Admin role and location Staging Heavy Duty - 9919 with how to check/change it; how to make
+the work order, the line, the tech story, complete and invoice; Settings routes with tab, heading, switch and Save button),
+steps worded to the build (Export not Download, Today in Date Range, Select CSV File / Import Invoices, IMPORTS not Data
+Import, Download Template, List button, Search, Estimate/Invoice), stamp "Last checked against build v26.43.1-f2d183d
+(staging) on 10/28/2026." Example text capitalised in 24 cases per the ruling (document quotes untouched).
+
+- READY (52): every case not listed below.
+- READY - EXPECT FAIL (SV-11850, open 28 Oct) kept (5): C154711 C154712 C549079 C839526 C839527.
+- HOLD (11), plain reason in the marker: QuickBooks side C154715 C154721 C549084 C549085 C549087 C847723 · ShopCoach line
+  needed (SV-11850) C549080 · second user with a custom role not confirmed C154719 C549088 · receiving a part not confirmed
+  C154722 · clear (x) button in Title after a canned line not seen C154708.
+
+Gates: check_tester_runnable PASS 68/68 · check_runnable_cases 63/68 (the 5 are held QuickBooks cases: "Open invoice A." inside
+QuickBooks, which cannot be seen) · check_precond_labels: one value not observed (the stored "tech story missing" text, C549082
+C839523 C839524) · on-screen display 68/68 fr-view (served-68.json).
+
+Seen in passing (no verdict, lane limit): the New Line window also shows "Line Approved" and, once a title is typed,
+"SHOPCOACH LABOR GUIDE" — C154710 and C839513 list the window's contents without them.
+
+Left on staging (ZZAUTOTEST, throwaway): work orders S2-38102 and S2-38103 (4 Star Truck Repair), invoiced; both sit in QB
+Unexported. The shared Admin's location was switched to 9919 once by API and put back to DVI Test (HTTP 200).
