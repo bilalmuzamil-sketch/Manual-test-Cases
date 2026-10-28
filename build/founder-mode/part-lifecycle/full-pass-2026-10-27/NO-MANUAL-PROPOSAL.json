@@ -45,12 +45,12 @@
    "codes": [
     "S10-R19 (only S10-22 quotes it)",
     "S10-R26 (S5-18, S10-29, S13-03b)",
-    "S13-R15 core rename (S5-18, S10-29; S13-R15 also covered for the part elsewhere? no: S5-18 and S10-29 only)",
-    "S5-E3 history sentence"
+    "S13-R15 (only S5-18 and S10-29 quote it)",
+    "S5-E3, its history sentence"
    ],
    "answer": "Doc 13(a) (Q1)",
    "reason": "Answer 13(a): \"A core's Part History page has no link on screen in this release. Its entries are recorded (S5-E3), and you can check them by opening the core's Part History address directly.\" PRD v35 S5-E3: the page \"has no link on screen in this release\". The core has no row on the Inventory list, in Export or on the Part Library list, and global search never lists a core (S9-R18a), so a tester has no way to learn the core's page address from the screen. Each case's only check is on that page.",
-   "proposal": "Move the core's own Part History entries (S10-R19, S10-R26, the core part of S13-R15) to No manual case (developers' check, or a check by someone given the core's address), and delete the four cases.",
+   "proposal": "Move S10-R19, S10-R26 and S13-R15 (all about the core's own name and history) to No manual case (developers' check, or a check by someone given the core's page address), and delete the four cases.",
    "current_state": "held on Q1, bodies as written 27 Oct (v33); their S5-E3 quote is the v33 sentence."
   },
   {
