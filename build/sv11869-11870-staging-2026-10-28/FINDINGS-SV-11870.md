@@ -29,13 +29,21 @@ Full 12-case result log: `ev/import/results-all-12-cases.txt` (second full run, 
 NOT captured: production needs a password and none was held after the container restart. The comment cites Nemanja's own
 confirmation (79655) of the old message and says plainly that no production screenshot was taken. OUTSTANDING.
 
-## Observation for the QA lead (Rule 93 bucket d — UNVERIFIED, not in the ticket)
-The "imported successfully" files (10 across two runs: ZZ11870-OK/SS/MI/CM/OF…) could NOT be found afterwards: top-bar search
-(`/api/search`) 0 results; Work Orders list by status (all 7 statuses) with search ZZ11870 → 0; both customers named
-"4 Star Truck Repair" (6a7b6afc… 162 orders, b3406baf… 54 orders) hold no such order; the customer's Work Orders count went
-161 → 162 only because of the Karachi test order. The success response carries only `{"duplicatedInvoices":[]}` (no created
-count), which may mean the import is queued in the background. Jira searched ("invoices import", "historical import") — no
-matching ticket. Asked the QA lead whether he wants it looked into; not part of SV-11870's message fix.
+## Imported invoices — CORRECTED 2026-10-28 22:15 UTC (my earlier "could NOT be found" was wrong)
+The earlier note said the successfully imported files could not be found. **Wrong:** imported invoices live under
+**Work Orders → `All` tab → `Status` filter → `Imported`** (`/workorders?status=imported`), which I did not check. Re-checked live
+on staging (build v26.43.2-f8698cb): all 9 ZZ11870 imports are listed — OF194324, OK213053, OF213053, SS213053, MI213053,
+OK194324, SS194324, MI194324, SS214505 (`ev/workorders-status-imported.png`, `scripts/imported.mjs`). Not a defect; the
+question to the QA lead is withdrawn. Root cause + fix: Standing Rule 117, playbook §AW, `build/testing-tools/recall.sh`.
+
+## Production before — captured 2026-10-28 22:05 UTC
+Production `app.shopview.com`, build **v26.43.2-537378f** (last-modified Tue 27 Oct 09:11:44 GMT), location Trucks Hill 2,
+customer Alpha Freight, password login. Same CSV shape as case 7 (old column names, Labor, *Line Title empty):
+`200 … {"errors":[{"rowNumber":2,"message":"Line name cannot be empty."}],"invoicesCreated":0,"invoicesFailed":1}` — the old
+message, on screen in Failed Rows (`ev/import/prod-old-header-empty-2-after-import.png`). The NEW-header file is refused on
+production with "Invalid file headers provided!" (expected: the rename has not shipped there). Exhibit
+`ev/SV-11870-00-before-after.png` (`scripts/beforeafter11870.py`) added to comment 79704 with a dated note (17:09 CDT);
+the paragraph saying no production screenshot was taken was removed. Read back from Jira: 5 media, before/after first.
 
 ## Posted
 **79704** (green OVERALL QA STATUS: PASSED), 11-row table, 4 annotated exhibits (real Jira attachments via the Atlassian MCP).

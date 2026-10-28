@@ -6332,3 +6332,17 @@ files** into the same collection — change only `name=` and `--data-binary @pat
 (always pair `data-width` with `data-width-type="percentage"`, or the image renders tiny). Do NOT also run phase 2 — the inline embed attaches the file.
 Panels: `<div data-type="panel-success|warning|error">`. Read back with `listJiraIssueComments` (the stored body drops `data-collection` — expected).
 Never commit the token.
+
+## AW. IMPORTED INVOICES — where they are after an Invoices import (proven 2026-10-28, SV-11870; first known 2026-08-28 SV-8504, 2026-10-21 SV-9818)
+- **Imported invoices are NOT ordinary work orders.** They do not appear in the top-bar search, the normal status tabs,
+  or the customer's Work Orders count. **Find them here:** **Work Orders → `All` tab → `Status` filter → tick `Imported`**
+  (URL `/workorders?status=imported`, data from `/api/work-orders-imported`). With Imported selected the other filters
+  grey out ("Not available while Imported is selected.") and the list shows Invoice Number, Customer, Invoiced Date.
+- **One imported invoice opens at `/imported-work-orders/{id}`** (not `/workorders/{id}`).
+- **Import itself:** Settings → Imports → Invoices (`/administration/invoices-import`) → `Select CSV File` → `Import
+  Invoices` → `POST /api/imports/work-order-historical`; a success answers `{"duplicatedInvoices":[]}` and the rows land
+  in the Imported list straight away (no background queue). Script: `build/sv11869-11870-staging-2026-10-28/scripts/imp.mjs`;
+  list check: `.../scripts/imported.mjs`.
+- **Production rejects the NEW template headers** ("Invalid file headers provided!") until the What/Why rename ships —
+  use the old headers (`*Line Title - What are you doing`, `Line Description - Why are you doing it`) there.
+- **A leftover "Status: Imported" filter persists per user** (SV-11576) — clear it with "Clear all filters" before other list work.

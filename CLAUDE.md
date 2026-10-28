@@ -102,6 +102,7 @@
 >   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
+> - **BEFORE SAYING "NOT FOUND", RUN `build/testing-tools/recall.sh <noun>` — it searches the playbook, lessons, rules AND every findings folder; and promote every navigation fact to the playbook the same turn (Standing Rule 117).**
 > - **NOTHING HALTS THE WORK (Standing Rule 116): never idle on a wait — background long runs and start the next independent check; one blocked item never stops the rest; fail small; no rediscovery; ask for access the moment it is needed.**
 > - **NOT A FULL PASS? TWO COMMENTS: PASSED FIRST, then WHAT IS STILL TO BE FIXED as the LAST comment (opening "everything that passed has been posted separately in the previous comment; what is still to be fixed is below"), written for a first-time reader (Standing Rule 115).**
 > - **BEFORE GIVING ANY ROLE TO ANY STAFF, RESET THAT ROLE TO TEMPLATE FIRST (Standing Rule 105).**
@@ -5650,6 +5651,29 @@ deliver the 7-tab management report.
     reason to pause.
     **HONESTY CLAUSE:** speed never buys a skipped check, a sample, or a weaker verdict — Rules 50, 85 and 91 still bind. This rule
     removes idle time and avoidable re-work; it never removes work.
+
+117. **NOTHING WE ALREADY LEARNED MAY BE LOST — SEARCH ALL SAVED KNOWLEDGE BEFORE "NOT FOUND", AND PROMOTE EVERY
+    NAVIGATION FACT TO THE PLAYBOOK THE SAME TURN (all projects).**
+    USER DIRECTIVE (2026-10-28, verbatim): *"See how you find imported invoices in the attached screenshot and save in your
+    playbook/learniingpath/lesson or wherever you save it so that you do not fail again. This is something you already knew
+    but you lost it, check how and why you lost this information and how you can make sure that you do not loose information
+    in future and fix this issue of loosing the leanring which you saved from the past and solve it forver."*
+    **WHY IT WAS LOST (the root cause, found by searching):** where imported invoices live (Work Orders → All → Status:
+    Imported) was written down FOUR times — SV-8164, SV-8504 (28 Aug), SV-9818 and SV-11576 (21 Oct) — but **only inside
+    dated findings folders**. It was never promoted to the playbook or the lessons index, and **nothing made me search the
+    findings folders before declaring "not found"**. Saved but unreachable is the same as lost.
+    **(a) RECALL BEFORE "NOT FOUND".** Before writing or saying *"not found"*, *"can't find"*, *"no screen for"*, *"no way
+    to"*, *"doesn't exist"*, or asking the QA lead where something is, run **`build/testing-tools/recall.sh <noun> [<other
+    words>]`** — it searches the playbook, the lessons index, CLAUDE.md + rule archives, **every findings folder** (newest
+    first), tools and test cases. Use the feature's nouns and the on-screen word (here: "imported", "Status: Imported").
+    Only after recall comes back empty does the normal unblock order start (screen → capture the app's request → probe).
+    **(b) PROMOTE THE SAME TURN.** Any **navigation fact** learned during a ticket — where a thing lives on screen, its URL,
+    its endpoint, a filter that reveals it, a control that hides it — goes into `build/APP-ACTIONS-PLAYBOOK.md` in the same
+    turn, not only into the ticket's findings doc. A findings doc is a record of a ticket; the playbook is memory.
+    **(c) THE PRE-POST GATE (Rule 72) CHECKS IT:** any "not found / could not be found" sentence in a deliverable must name
+    the recall search that was run and that it came back empty.
+    Ties to Standing Rules 12, 27 (reuse recorded recipes), 29, 82 (learning is automatic and retrievable — this rule is its
+    retrieval half), 93 (search Jira first — this is the same duty for our own notes), 116 (no rediscovery). Recipe: playbook §AW.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

@@ -78,3 +78,10 @@ QuickBooks login shared by the QA lead (Slack DM, 29 Apr) was tried: Intuit show
 "I'm not a robot" box was ticked once, and it escalated to a picture challenge ("select all images with a fire hydrant"). Not
 solved by script (bot-detection puzzle) → per the QA lead's instruction QuickBooks is set aside for this ticket.
 Evidence: `ev/qb/02-after-email.png`, `ev/qb/03-captcha-clicked.png`.
+
+## Close-out (2026-10-28, 22:15 UTC)
+- QA lead: "get past the puzzle thing, let's complete the tickets" — QuickBooks set aside for this ticket (Rule 91(c));
+  the sign-in holder was stopped. No QuickBooks observation was made.
+- Live re-read: SV-11869 and SV-11870 are both **Ready for Production** with label `QAcomplete` (moved by the QA lead under
+  our shared account). Comment 79701 (the yellow "still to check" comment) is no longer on SV-11869 — removed by the QA
+  lead; left as he has it (Rule 53 corollary). 79700 stands as the record.
