@@ -5252,3 +5252,13 @@ Every ask for a fresh sign-in (a QA branch, staging or production session) names
 ## RULE 136 — AMENDMENT 2026-10-28: A FAST-FOLLOW TEST THAT IS IN NO RUN GOES INTO THE RUN ONCE ITS TICKET AND TESTS PASS
 
 **His words, 28 Oct 2026:** *"Once the ticket and tests pass then move it to the test run and mark it as passed."* — asked where the results of the SV-11567 Undo tests should go, since the Fast-follow folder's tests sit in no run. When a ticket passes QA and its linked tests pass on its branch, add those tests to the project's current run (Work Orders board: run 498, union-only — Rule 34) and record them Passed with the usual comment and annotated screenshots. Before they pass, they stay out of the run (results and pictures are kept in the evidence folder).
+
+## RULE 139 — NOTHING HALTS ME OR WASTES TIME: AN OPEN QUESTION, A SLOW TOOL OR A WAIT BLOCKS ONLY ITS OWN ITEM, AND EVERYTHING ELSE KEEPS MOVING (QA lead 2026-10-28, permanent) — hardens Rules 105 and 107
+
+**His words, 28 Oct 2026:** *"Make sure that nothing should halt you or stop you or waste the time -> Make it a rule"* (said while a slow whole-repository search was running after the real secret check had already passed).
+
+(1) **A question to him blocks only the one item it is about.** Ask it (Rule 134, with my recommendation) and in the same turn carry on with every other item; never sit waiting for an answer. Prepare the held item fully (pictures, comment, result) so it is posted the moment he answers.
+(2) **A site that is not up, a sign-in that is missing, or a slow build blocks only the tests that need it.** Arm a timed check-in (send_later / routine) and move to the next ticket; never poll by hand.
+(3) **No redundant or slow checks.** Every command gets a timeout; anything over a couple of minutes runs in the background. Never repeat a check that already ran and passed in the same pass (e.g. a whole-repository grep for a secret after `scan_secrets.py --staged` passed); never search the whole repository when one file or one script answers it (Rule 128).
+(4) **Fix my own tooling at once and re-run** — a wrong selector or an off-screen element is my problem to fix in the same pass, never a reason to stop (Rule 104).
+(5) **Unchanged — these are holds he placed, not halts:** a Jira ticket needs his yes per ticket (62/113); the Expected is changed only under 114(c)/136; Vladimir's cases never (38); Automated cases (71); secrets never committed (82).
