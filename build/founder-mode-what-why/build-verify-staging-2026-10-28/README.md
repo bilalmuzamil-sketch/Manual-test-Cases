@@ -25,3 +25,17 @@ build yet (never build-verified). Last edited 28 Oct 04:41 UTC by the test-writi
 PRD Confluence 845348896 **v16** saved 28 Oct (15 cases rewritten to it, 46 keep v15 quotes that are word-for-word
 in v16); epic SV-11257 and Jira read 27 Oct (incl. open bug SV-11850, ShopCoach Build Lines shows nothing on
 staging); design copy 27 Oct; tech plan 13 Oct. Rule 81 ask put to the QA lead 28 Oct — answer pending.
+
+## QA lead's rulings during the pass (28 Oct 2026)
+
+- Scope split: *"QB testing: qb1.qa.shopview.com (sv10130 backend) — This is for Quickbooks"*. Checked on screen: qb1
+  (v26.43.2-27bb6a2, branch `qb1`) still shows the old labels "What are you doing?" / "Why are you doing it?" and calls
+  the sv11275 backend; its code still builds the old QuickBooks/report text. Blocker gate 7/7:
+  `BLOCKER-qb1-no-what-why.json`. Staging: invoices from Staging Heavy Duty - 9919 land in QB Unexported ("The Class mapped
+  in your Bookkeeping settings no longer exists in QuickBooks"), seen for our own throwaway invoices S2-38102 and S2-38103.
+  → Asked; answer **"Hold them for now"**: the six QuickBooks cases (C154715 C154721 C549084 C549085 C549087 C847723) get
+  their ShopView-side setup checked on staging and a plain HOLD reason.
+- Capitalisation: the line window capitalises the first letter of Title and Description on leaving the box (LineDialog
+  `capitalizeLineName`/`capitalizeDescription`, in the product since at least June 2026; observed: typed "excessive play",
+  stored "Excessive play", probe 07). → Asked; answer **"Capitalise the examples"**: example text starts with a capital in
+  the setup and in the matching example lines of the expected results; quotes from the documents are not touched.
