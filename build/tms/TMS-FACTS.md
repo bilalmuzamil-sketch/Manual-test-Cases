@@ -261,3 +261,13 @@ Conditions checked first: TestRail `get_section/54275` → 400 *"not a valid sec
   only in the nightly runs 1/2/3/5/9, with no recorded results.
 - **Folder 54275 "Retire OR retest" deleted in TMS** once empty (204; now 404).
 - **Re-check:** Part Lifecycle 363/363 SAME, 0 folder gaps on either side. What/Why 68/68 SAME (earlier today).
+
+## 14 · 2026-10-28 — WO Board and Tech View (13204) synced (Action in TMS)
+
+- 6 cases updated (allowed); **12 Automated cases updated on the QA lead's "Yes"** (Rules 65/71) — change list for Vlad:
+  `build/tms/sync-2026-10-28/VLAD-automated-changes-wo-board-tech-view.md`; **2 TMS-only cases deleted** on his "Yes"
+  (C96918, C154887 — both deleted from TestRail: 400 by number, no title match).
+- **Re-check:** 340/343 SAME, 0 folder gaps. The 3 left: C682419, C682420, C682421.
+- **🛑 TMS BEHAVIOUR — `automation_type` 0 (None) is silently ignored on an Automated case:** PATCH answers 200, the
+  value stays 1 (E2E), no new version. Seen on all 3 above (twice on C682419). Undocumented in the OpenAPI. These 3
+  will show as `HOLD_AUTO` with `automation_type` on every sync until TMS changes or TestRail sets a type.
