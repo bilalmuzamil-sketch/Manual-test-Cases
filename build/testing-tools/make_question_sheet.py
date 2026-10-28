@@ -17,7 +17,20 @@ LAYMAN RULES ENFORCED HERE (Rules 7 and 9), because a sheet that fails them is w
   * every question answerable by a non-technical person in one sitting, with OPTIONS offered
 """
 import re, sys, json
-import openpyxl
+try:
+    import openpyxl
+except ImportError:
+    # 2026-10-28: a fresh container does not have openpyxl, and this tool simply crashed. When (and only
+    # when) the import fails, install it once and carry on; if that is impossible, stop with a plain
+    # instruction. Where openpyxl is already installed nothing here runs, so behaviour is unchanged.
+    import subprocess
+    print('openpyxl is not installed - installing it once (python3 -m pip install openpyxl) ...', file=sys.stderr)
+    subprocess.run([sys.executable, '-m', 'pip', 'install', '-q', 'openpyxl'], check=False)
+    try:
+        import openpyxl
+    except ImportError:
+        sys.exit('STOP: openpyxl is not installed and could not be installed automatically.\n'
+                 'Run:  python3 -m pip install openpyxl   then run this tool again.')
 from openpyxl.styles import Font, Alignment, PatternFill
 from openpyxl.utils import get_column_letter
 
