@@ -22,7 +22,7 @@ app-shell group held, once with every request held, and three times on Chrome's 
 | Vendor invoice → Edit (Vendor) | 5 loads, 0 (screenshot: "Krebs Diesel Repair") | 5 loads, 0 — no flash with an existing vendor |
 | Purchase order → Receive page | 7 loads, 0 | 8 loads, 0 — no flash with an existing vendor |
 | Staff → Edit Staff Member (Location) | 9 loads, 0 (screenshot: "Staging Heavy Duty - 9919") | **7 of 8 loads** show Location `555206ea-2a33-4ca1-a29a-5431b0f7648c` (0.08 s normal; 3.4 s when `/api/staff/:id/enrolled-workplaces` is slow; ~0.5 s on Slow 4G) |
-| Customer with no contacts → Part Sales → New Part Sale (Customer) | 8 loads, 0 — shows "ZZAUTOTEST SV10928 Empty Branch" | not run (this build has no `button_new_part_sale` test-id) — to redo by label |
+| Customer with no contacts → Part Sales → New Part Sale (Customer) | 8 loads, 0 — shows "ZZAUTOTEST SV10928 Empty Branch" | **Customer field shows `78ee4daf-75be-4c27-9a7d-38770429c2e2`** (new customer "ZZAUTOTEST SV10928 Empty prod 48064", by label, `ev/other/prod-psnocontact/`) |
 | Customer with no contacts → New Work Order | **not reachable**: button disabled, tooltip "You need to create at least one contact" | same to check |
 | Inventory → New / Edit Inventory Part | 8 + 9 loads, 0 (Edit shows catalog part and vendor names) | not run (no test-ids on this build) — to redo by label |
 
@@ -103,3 +103,41 @@ Staff names can't be blanked (POST staff change with last_name null → 400 "Mis
 | Bin location deleted during pick/receive | **not reachable on screen**: a bin that still holds parts can't be deleted ("Bin location cannot be deleted until all parts are removed from it."), the pick then succeeds (201); and the Accept Delivery screen has no bin choice | — | — |
 | Delivery item not on the order (ReceivedItemNotOnOrderError) | back end, a real line at 0 plus an extra item | 201 on both — the extra item is dropped, so this message isn't reached this way (the on-screen two-tab version is the row above it) | 201 |
 Set-up for the credit check (left in place): branch part sale → invoice P10928-255 (inventory part ZZCM610726 + vendor part ZZCMV660470 ×2 received on screen, PO 80fe6041…); production part sale → invoice P2-88 (ZZCM241667 + ZZCMV291121 ×2, PO 688bd164…). Production PO I-34 was received by the not-on-order probe (test data).
+
+## Side observation checked against Jira (Rule 93)
+Save in New Part Sale for a customer with no contacts → "Customer not found" + "Error creating part sale" on **both** builds (production
+`ev/other/prod-psnocontact/2-after-save.png`). Already tracked: **SV-11256** "Imported Customer Name Displays as an ID When Creating a Part
+Sale Without a Contact" (TESTING QA). Bucket: already tracked — not raised.
+
+## Final checklist — Dusan's list (79648), branch v26.43.2-b517d96 vs production v26.43.2-537378f
+| # | Item | Branch | Production (before) | Verdict |
+|---|---|---|---|---|
+| 1 | Parts tab Vendor + Category (WO + part sale), vendor/category made in a 2nd tab | names, 0 IDs (19+21+18 loads; 2nd-tab vendor and category) | vendor ID on 19/21, 12/22, 18/18 loads; 2nd-tab vendor ID stays | PASSED |
+| 2 | Receive Parts window → vendor picker | 14+10 loads, 0 | 1 of 7 loads with an ID | PASSED |
+| 3 | Lines → Edit Part → Vendor (incl. catalog part whose vendor was made in a 2nd tab) | 9 loads 0; pick: blank ~0.6 s then name | 9/9 loads with an ID; pick: ID for the whole 9 s | PASSED |
+| 4 | Change Customer window | name kept, 0 IDs | name kept | PASSED (no-contact case not buildable on screen) |
+| 5 | Timesheets → Edit Timesheet (Line, Department) | 8 loads, 0 | 8/8 loads with an ID | PASSED |
+| 6 | ShopCoach failed line pop-up (failure forced in this browser only — comparison only) | "Failed to review line 1 - Service - Starter connections" | "Failed to review line 4b84c81b-…" | PASSED |
+| 7 | New Work Order from customer/asset page, no contacts | not reachable: button disabled ("You need to create at least one contact"); a contact with assets can't be deleted | same | N/A (not reachable) |
+| 8 | Part Sales tab → New Part Sale, no contacts | customer name | customer ID `78ee4daf-…` | PASSED |
+| 9 | Edit Asset → Type | 7 loads, 0 | 7/7 loads with an ID | PASSED |
+| 10 | PO linked to WO → Receive → vendor picker | 0 IDs, 2nd-tab vendor by name | 2nd-tab vendor shows its ID | PASSED |
+| 11 | Bulk Receive → vendor picker (2nd-tab vendor) | 0 IDs | vendor ID `70f86c4a-…` | PASSED |
+| 12 | Vendor Invoice → Edit → Vendor | 5 loads 0 | 5 loads 0 | PASSED |
+| 13 | Process Return → Vendor (2nd-tab vendor) | vendor name | vendor ID `70f86c4a-…` | PASSED |
+| 14 | PO → Edit Order Item → Manufacturer | "Magnum" from first frame (3/3 opens, 10 loads incl. Slow 3G) | ID 0.4–0.6 s on 3/3 opens | PASSED |
+| 15 | Inventory → Edit / New Inventory Part → Manufacturer | 0 IDs (8+9 loads, manufacturers list held 3.5 s) | 0 IDs | PASSED |
+| 16 | Catalog part → Edit → Manufacturer | 7 loads 0 | 7 loads 0 | PASSED |
+| 17 | Unexported Items → Journal Entries → User, entry with no user | blank (SV-61769 after the staff member was deleted) | not buildable (QuickBooks not connected, 0 unexported items) | PASSED |
+| 18 | Punch Clock Activities link for a technician who doesn't exist | "Filter by Staff", no ID | same | PASSED |
+| 19 | Staff → Edit Staff Member → Location | "Staging Heavy Duty - 9919", 9 loads 0 | ID on 7/8 loads | PASSED |
+| 20 | Error pop-ups (every reachable one the fix rewords) | name / number / packing slip / "no longer exists" | ID | PASSED — table "Error messages" above |
+| 21 | Slow 3G / Slow 4G reloads | 0 IDs | IDs (Slow 4G) | PASSED |
+Extra pop-ups from the error table on screen: Pick from a stale tab "Part P550848 (FUEL/WATER SEPARATOR, …) is not available to pick." vs "Part request f6a70f99-… is not
+available to pick."; deleted catalog part "This catalog part no longer exists." vs "Catalogue part not found for ID: 199256dc-…"; manual return cancelled in tab B
+"A selected manual return no longer exists." vs "Manual return 99694ffa-… was not found."; authorizer on invoiced WO "…on work order S10928-17583 because it is invoiced
+or paid." vs "(`b2b35b74-…`)"; tax rate "Tax rate [ZZ Rate Two] not found." vs "Tax rate with ID [11351681-…] not found.".
+
+Observations on BOTH builds (not IDs, pre-existing — to ask the QA lead, Rule 97(d)):
+(a) Request IBS Approval dialog shows only "Request failed with status code 400" when the customer lookup fails; the real message appears only in the pop-up after Request Approval.
+(b) Opening a catalog part deleted in another tab also shows "There was an error fetching data. Please try again." and "Not found".

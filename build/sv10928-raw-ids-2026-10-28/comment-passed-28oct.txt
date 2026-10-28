@@ -1,0 +1,71 @@
+{panel:bgColor=#e3fcef}
+*OVERALL QA STATUS: PASSED*
+{panel}
+Tested on the QA branch [sv10928|https://sv10928.qa.shopview.com] (build v26.43.2-b517d96) on 28 October 2026, against the ticket description and [~accountid:712020:2713e405-8836-4dee-8802-255f15740bbe]'s list of places to check. Every place showed the record's name, or stayed blank, and never a raw ID. For comparison I repeated each check on production (build v26.43.2-537378f), where the same steps show the ID.
+
+How I checked: each screen was opened many times, normally, with each lookup made slow on purpose, and on Slow 3G / Slow 4G. A watcher recorded any ID that appeared on screen, even for a split second. Where the list says to create a record in another tab, I did that on screen in a second tab and then went back to the first tab without reloading.
+
+h3. Before and after
+
+!SV-10928-01-parts-tab-vendor.png|width=900,height=796!
+_Work order → Parts tab, after a vendor was created in a second tab. Production shows the vendor's ID; the branch shows the vendor's name._
+
+!SV-10928-02-staff-location.png|width=820,height=793!
+_Settings → Staff → Edit Staff Member. Production shows an ID in Location while it loads (7 of 8 opens); the branch never did (9 opens, including a slow network)._
+
+!SV-10928-03-new-part-sale-customer.png|width=820,height=796!
+_Customer with no contacts → Part Sales tab → New Part Sale. Production shows the customer's ID; the branch shows the name._
+
+h3. What I checked (Dusan's list)
+
+||#||Place||Branch||Production (for comparison)||Status||
+|1|Parts tab → Vendor and Category columns, on a work order and a part sale, including a vendor and a category created in another tab|Names only, no ID on any of 58 loads|Vendor ID on most loads; a vendor from another tab stays as an ID|PASSED|
+|2|Parts tab → Receive Parts window → vendor picker|No ID (24 loads)|ID on 1 of 7 loads|PASSED|
+|3|Lines → Edit Part → Vendor, including picking a catalog part whose vendor was created in another tab|No ID. After the pick the field is blank for about half a second, then shows the name|ID on every load; after the pick the ID stays for the whole 9 seconds I watched|PASSED|
+|4|Customer card → Change Customer window|Name kept while searching, no ID|Name kept|PASSED (see note 1)|
+|5|Timesheets → Edit Timesheet → Line and Department|No ID (8 loads)|ID on 8 of 8 loads|PASSED|
+|6|ShopCoach review, line fails to review|Pop-up: "Failed to review line 1 - Service - Starter connections"|Pop-up names the line by its ID|PASSED (see note 2)|
+|7|New Work Order from a customer or asset page, customer with no contacts|Can't be reached on screen (see note 1)|Same|Not reachable|
+|8|Part Sales tab → New Part Sale → Customer, customer with no contacts|Customer name|Customer ID|PASSED|
+|9|Edit Asset → Type|No ID (7 loads)|ID on 7 of 7 loads|PASSED|
+|10|Purchase order linked to a work order → Receive → Vendor picker, vendor created in another tab|Vendor name|Vendor ID|PASSED|
+|11|Bulk Receive → Vendor picker, vendor created in another tab|Vendor name|Vendor ID|PASSED|
+|12|Vendor Invoice page → Edit → Vendor|No ID (5 loads)|No ID either|PASSED|
+|13|Process Return → Vendor, vendor created in another tab|Vendor name|Vendor ID|PASSED|
+|14|Purchase order → Edit Order Item → Manufacturer|"Magnum" from the first moment, 3 of 3 opens and 10 loads incl. Slow 3G|ID for about half a second, then the name, on 3 of 3 opens|PASSED|
+|15|Inventory → Edit Inventory Part and New Inventory Part (after picking a catalog part) → Manufacturer|Name shown, no ID (17 loads, incl. the manufacturer list held back)|No ID either|PASSED|
+|16|Catalog part → Edit Catalog Part → Manufacturer|No ID (7 loads)|No ID either|PASSED|
+|17|Unexported Items → Journal Entries → User, entry with no user|User cell is blank (entry SV-61769, whose staff member I deleted)|Can't be built: production has no unexported items|PASSED|
+|18|Punch Clock Activities opened from a link for a technician who doesn't exist|Staff filter reads "Filter by Staff", no ID|Same|PASSED|
+|19|Staff → Edit Staff Member → Location|"Staging Heavy Duty - 9919", no ID|ID on 7 of 8 opens|PASSED|
+|20|Error pop-ups|Every one I could reach names the record or says it no longer exists (table below)|ID|PASSED|
+
+h3. Error pop-ups
+
+||Where||Branch||Production (for comparison)||
+|Edit Tax open in two tabs, a rate removed in one, Save in the other|Tax rate \[ZZ Rate Two\] not found.|Tax rate with ID \[11351681-…\] not found.|
+|Work order Pick in a tab that wasn't refreshed after picking in another|Part P550848 (FUEL/WATER SEPARATOR, …) is not available to pick.|Part request f6a70f99-… is not available to pick.|
+|Customer → Invoices → Issue Credit open in two tabs, credit issued in one, then Issue Credit in the other|Requested quantity exceeds available quantity for credit on part ZZCMV660470 (ZZAUTOTEST vendor part for credit): requested 2, available 0.|…for credit on line 596a203e-… (requested 2, available 0).|
+|Parts → Returns → Receive Credit for two manual returns, one moved to another vendor in a second tab|Manual return with packing slip ZZ58626 belongs to a different vendor than this return.|Manual return 221b66e5-… belongs to a different vendor than this return.|
+|Receive Credit after the manual return was cancelled in another tab|A selected manual return no longer exists.|Manual return 99694ffa-… was not found.|
+|Work order Finance tab → Request IBS Approval → Request Approval, location with no IBS Location ID|IBS Location ID is not configured for location "Staging Heavy Duty - 9919".|IBS Location ID not configured for workplace; b617914c-…|
+|Same, after the customer's IBS number was cleared in another tab|IBS Account Number is not configured for customer "4 Star Truck Repair".|IBS Account Number not configured for customer; beba5672-…|
+|Change the authorizer on an invoiced work order|The authorizer cannot be changed on work order S10928-17583 because it is invoiced or paid.|…on an invoiced or paid work order (b2b35b74-…).|
+|Open a catalog part that was deleted in another tab|This catalog part no longer exists.|Catalogue part not found for ID: 199256dc-…|
+|Change Priority / Sales Rep on a work order after switching location in another tab|This work order was not found in your current location.|Workorder with id df4d7f42-… not found|
+
+!SV-10928-04-popup-cm2tab.png|width=700,height=759!
+_Issue Credit in two tabs: production names the line by its ID, the branch names the part._
+
+!SV-10928-05-popup-mr2tab.png|width=700,height=736!
+_Manual return moved to another vendor: production shows the ID, the branch shows the packing slip._
+
+!SV-10928-06-popup-ibs.png|width=700,height=736!
+!SV-10928-07-popup-ibs2tab.png|width=700,height=736!
+_IBS approval: the branch names the location and the customer instead of their IDs._
+
+A few of the reworded messages can't be triggered from any screen, so I checked them by sending the same request the screen sends. They read correctly on the branch: a purchase order receive where nothing matches ("…on purchase order I-1391"), a part that isn't an inventory part ("Part ZZ10928-3442 (…)"), and a fee template from another location or one that isn't a processing fee ("Adjustment template "ZZAUTOTEST SV10928 plain fee" is not a processing-fee template."). Four can't happen at all through the app: the payment account, part-sale credit account and missing-line messages, and a bin removed during a pick (a bin that still holds parts can't be deleted).
+
+h3. Notes
+# *Customer with no contacts:* New Work Order is greyed out for such a customer ("You need to create at least one contact"), and a contact that still has assets can't be deleted, so items 4 and 7 couldn't be tried with a no-contact customer. Saving a New Part Sale for a customer with no contacts fails with "Customer not found" on both production and the branch. That's already covered by [SV-11256|https://shopview.atlassian.net/browse/SV-11256].
+# *ShopCoach:* to get a line to fail its review I blocked that one request in my own browser's developer tools. This is comparison only. It is not a ShopView feature and users can't do it.
