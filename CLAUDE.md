@@ -102,6 +102,7 @@
 >   `AUTOMATION: READY` · `AUTOMATION: READY - EXPECT FAIL (SV-xxxx)` · `AUTOMATION: HOLD - <reason>`.
 >   A tool flag NEVER justifies HOLD — only a genuinely unobtainable thing (a real physical device, an
 >   external account we do not have) does.**
+> - **NOTHING HALTS THE WORK (Standing Rule 116): never idle on a wait — background long runs and start the next independent check; one blocked item never stops the rest; fail small; no rediscovery; ask for access the moment it is needed.**
 > - **NOT A FULL PASS? TWO COMMENTS: PASSED FIRST, then WHAT IS STILL TO BE FIXED as the LAST comment (opening "everything that passed has been posted separately in the previous comment; what is still to be fixed is below"), written for a first-time reader (Standing Rule 115).**
 > - **BEFORE GIVING ANY ROLE TO ANY STAFF, RESET THAT ROLE TO TEMPLATE FIRST (Standing Rule 105).**
 > - **BEFORE CALLING A PERMISSION UNAVAILABLE, OPEN THE USER'S ROLE, SWITCH IT ON, SAVE, RE-CHECK (Standing Rule 114).**
@@ -5630,6 +5631,25 @@ deliver the 7-tab management report.
     table, plus a separate comment for a smaller point. The QA lead had them split; I first put the failures above the passes, and he
     corrected the order so the passes come first and the remaining work is the last thing on the ticket. Canonical example: SV-11631
     comments 79620 (passed) and 79621 (still to be fixed). Ties to Rules 7, 64, 65, 72, 83, 90, 97, 100 and 112.
+
+116. **NOTHING HALTS THE WORK, NOTHING WASTES TIME — keep moving, always (all projects).**
+    USER DIRECTIVE (2026-10-28, verbatim): *"Make sure that nothing should halt you or stop you or waste the time -> Make it a rule"*.
+    **THE RULE:** while any one thing is slow, blocked or waiting, the next independent piece of work is already running.
+    **(a) NEVER IDLE ON A WAIT.** A long run (a batch, a seed, a deploy, a slow page) goes in the background, and I start the
+    next independent check at once — on its own bridge dir (`/tmp/qaNN`) so runs don't collide. Wait on a process exit or a
+    condition, never on a fixed sleep or on an expected line of output.
+    **(b) ONE BLOCKED ITEM NEVER STOPS THE REST.** If one check is blocked (expired sign-in, missing data, a question for the
+    PO), record it, ask in ONE line, and carry on with everything that is not blocked — on the same ticket and on the next ticket.
+    Ask for access the moment it is needed, not after finishing everything else. Self-unblock first (seed, CRUD, UI↔API — Rules
+    87/88); only ask for what genuinely can't be self-served (fresh cookies, a ruling).
+    **(c) FAIL SMALL.** Every script has a timeout, every scenario in a batch is wrapped so one failure doesn't kill the run, and
+    a fixed script is re-run only for the part that failed — never the whole batch again.
+    **(d) NO REDISCOVERY.** Reuse the recorded recipes, tools and test-ids (Rule 27; playbook; saved scripts) before probing;
+    read the app's own code/request for a route instead of guessing endpoint after endpoint.
+    **(e) KEEP THE USER INFORMED WITHOUT STOPPING** — short progress lines while working (Rule 85b); a status message is not a
+    reason to pause.
+    **HONESTY CLAUSE:** speed never buys a skipped check, a sample, or a weaker verdict — Rules 50, 85 and 91 still bind. This rule
+    removes idle time and avoidable re-work; it never removes work.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
