@@ -1,0 +1,19 @@
+SV-11870 staging, build v26.43.2-f8698cb, 28 Oct 2026, Admin, location Staging Heavy Duty - 9919, customer 4 Star Truck Repair.
+Observed live on the Invoices import page (Settings > Data Import > Invoices). Page text + POST /api/imports/work-order-historical response.
+The screenshots of this run were lost when the container restarted; this text record was rebuilt from the live run's console output.
+Invoice numbers: ZZ11870-L1 and ZZ11870-<case>194324.
+
+labor-empty (Labor, *Line Title blank, desc "excessive play"): Failed Rows: row 2 "Line Title cannot be empty." Invoices Created 0, Failed 1. Toast "Some invoices have failed to import..."
+part-empty (Part, title blank, ZZP11870 Brake pad set): row 2 "Line Title cannot be empty." Created 0 / Failed 1
+labor-filled (title "Replace tie rod"): toast "All invoices have been imported successfully."  response {"duplicatedInvoices":[]}
+shop-supplies-empty (Labor + Shop Supplies row with blank title): imported successfully
+misc-empty (Labor + Misc row with blank title): imported successfully
+credit-memo-empty (Credit Memo row, blank title): imported successfully
+sublet-empty (Sublet, blank title): row 2 "Line Title cannot be empty." Created 0 / Failed 1  (S4-R8 does not list Sublet as a no-title row)
+old-header-empty (old column names, Labor blank title): row 2 "Line Title cannot be empty." Created 0 / Failed 1
+old-header-filled (old column names, title filled): imported successfully
+invoice-date-empty (blank Invoice Date): row 2 "InvoiceDate and InvoiceNumber cannot be empty." Created 0 / Failed 1
+lowercase-shop-supplies (Labor + "shop supplies" lowercase, blank title): row 3 "Line Title cannot be empty." Created 0 / Failed 1 (known difference listed by the developer)
+title-zero (title "0"): row 2 "Line Title cannot be empty." Created 0 / Failed 1 (known difference listed by the developer)
+
+Not yet done: confirm the "imported successfully" invoices exist on screen; production BEFORE ("Line name cannot be empty."); exhibits.
