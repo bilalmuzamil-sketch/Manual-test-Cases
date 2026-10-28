@@ -3280,3 +3280,15 @@ Done: 42 updates + C598326 new, run 498 = 272 (record `wo-board-tech-view/answer
   "not found", run 551 325 → 323, keys out of the library, S12-N1 and UFS-51 recorded as "No manual case".
 - Reminder set for 29 Oct 2026 17:47 UTC (QA lead "Remind me in 3 days"; trigger trig_015R6bxwxvpyXZ33RM7W7sEQ): Credit terms tech
   plan and QA environment.
+
+## Standing instructions from the QA lead, 28 Oct 2026 (stop reminders)
+- **Rule 65 / Vlad:** "NO need -> Do not remind me again about this." Never again remind the QA lead to tell Vlad about rewritten
+  automation-planned cases (What/Why, Parts Lifecycle or any other suite). Do not list it under OUTSTANDING.
+- **Credit terms QA environment:** "Yes only remind after 29th." Do not raise it in any report before the reminder of 29 Oct 2026
+  (trigger trig_015R6bxwxvpyXZ33RM7W7sEQ, 17:47 UTC), which now covers only the QA environment (the tech plan arrived 28 Oct).
+- **Story defects belong to the other session (QA lead, 28 Oct 2026, verbatim):** "going forward you ask me to forward such things which
+  includes creating the story defects to the other session which actually create them from the test cases, the other session which does
+  this and has all the rules to follow to create the story defects is \"Create defects from testrail.....\" Your lane is to create the test
+  cases, for creating the story defects its the job of the other session, but for now you can creatr the ticket." So: this lane writes test
+  cases only. A defect found or asked for (by Product or anyone) is written up as a hand-over for the "Create defects from testrail…" session
+  and the QA lead is asked to forward it; this lane does not file it. One-time exception: the four What/Why tickets of 28 Oct 2026.

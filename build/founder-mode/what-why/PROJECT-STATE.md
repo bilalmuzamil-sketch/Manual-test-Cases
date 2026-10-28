@@ -9,6 +9,20 @@ Title / Description and strip our field names from the text that reaches QuickBo
 **Branch:** `claude/slack-session-setup-7v5itm`
 **Build:** ❌ No QA branch yet → every case `AUTOMATION: HOLD`, source-verified only (Rule 85).
 
+## 🟢 UPDATE — 28 Oct 2026, afternoon — read this first
+- **Build-verified on staging by the build-verification session** (branch `claude/build-verification-setup-aieu36`, facts only, Rule 118):
+  all 68 cases edited in TestRail at 08:15 and 10:48 UTC (setup made concrete for Staging Heavy Duty - 9919, the build's labels, example
+  text capitalised, "Last checked against build v26.43.1-f2d183d (staging) on 10/28/2026"; markers READY 53, EXPECT FAIL 5, HOLD 10).
+  Its run 553 "What/Why - Execution" (68 untested). **Our library is now behind the live cases: never write from it without first
+  taking the live text in (apply.py's lock skipped all 68 on 28 Oct, correctly).**
+- **Tickets filed 28 Oct (QA lead's one-time go-ahead; Product-reported, not reproduced by QA):** SV-11868 (S1-R6, under SV-10130),
+  SV-11869 (S3-R8a, under SV-10132), SV-11870 (S4-R8, under SV-10133), SV-11871 (spaces-only tech story heading, under SV-9386, the QA
+  lead's choice). Story Defect, Medium, relates to the story. Case markers left to the build-verification session (QA lead: "Leave it to the
+  other session"): hand-over `defects-2026-10-28/HANDOVER-TO-BUILD-VERIFICATION-SESSION.md`.
+- From now on defects go to the "Create defects from testrail…" session (QA lead, 28 Oct; OUTSTANDING-ITEMS-REGISTER standing instructions).
+- New PO questions added by the build-verification session to Chris's What/Why Doc: 15 (New Line shows "Line Approved") and 16 (no way to
+  clear a picked canned line).
+
 ## 🟢 CURRENT STATE — 28 Oct 2026 (named-set update to PRD v16 WRITTEN) — read this first
 - Chris Ward answered Doc questions 9-14 on 27 Oct and folded them into **PRD v16** (27 Oct; `sources/CONFLUENCE-845348896-v16-2026-10-28.md`,
   verified paragraph by paragraph against the page). Answers saved word for word: `po-answers-2026-10-27/ANSWERS-Chris-Ward-2026-10-27.md`.
@@ -33,7 +47,7 @@ Title / Description and strip our field names from the text that reaches QuickBo
 - **Suite (live): 62 cases** = 37 rewritten in place (same C-ids) + 25 new (2 splits, 6 new story cases, 17 design cases in the new section **"Design — how it looks" 105855**). Map `testrail-id-map.csv` (62 rows). Every case in the QA lead's pattern; tester-readiness check 0 problems before the write (Rule 138); all 62 read back identical; design pictures attached (log `applied-2026-10-27/apply-log.jsonl`).
 - Markers: 56 HOLD (not yet build-verified), 5 EXPECT FAIL SV-11850 (S2-01 C154711, S2-02 C154712, S2-03 C549079, D-16, D-17), 1 held design-version case **D-15 C839525** (Doc question 12).
 - Runs: no dedicated run (QA lead 13 Oct); the automatic Nightly runs include every case, so the new cases join them.
-- **Rule 65:** C154707–C154725 were "automation planned" and are rewritten → the QA lead to tell Vlad.
+- Rule 65 / Vlad: QA lead 28 Oct 2026, "NO need -> Do not remind me again about this." Not to be raised again.
 - **Questions:** 9-14 added 27 Oct to the bottom of Chris's question Doc 1QcT7FRZ… (green headings, Chris tagged); see `build/PO-QUESTIONS-OPEN.md`. Q12 holds D-15; Q13 may remove S2-03's grey-italic words; Q9, Q10, Q11, Q14 have no case until answered (Rule 58).
 - **Design differences:** `DESIGN-DIVERGENCE-REGISTER.json` (Phase D's 12 rows merged 27 Oct); every one closed by a ruling or a sent question.
 - **Old per-case setup Docs:** 37 listed in `full-pass-2026-10-27/OLD-SETUP-DOCS.json`, no longer linked; trashed with a per-Doc log `full-pass-2026-10-27/old-setup-docs-trash-log.jsonl`.
