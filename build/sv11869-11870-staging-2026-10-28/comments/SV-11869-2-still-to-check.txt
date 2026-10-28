@@ -1,0 +1,17 @@
+{panel:bgColor=#fffae6}
+*OVERALL QA STATUS: PARTIALLY PASSED*
+{panel}
+Everything that passed has been posted separately in the previous comment. What is still to be checked is below:
+
+h3. QuickBooks gets the line text without the apostrophe — not checked yet (blocked)
+
+*What's needed:* someone who can sign in to the QuickBooks company connected to staging.
+
+*Why it couldn't be checked:* staging is connected to QuickBooks and invoice *INV-S2-38197* synced without an error (Accounting → QB Unexported is empty). But ShopView has no screen that shows what QuickBooks received, and we don't have a QuickBooks login.
+
+*Steps to check it (in QuickBooks):*
+# Sign in to the QuickBooks company connected to ShopView staging.
+# Open Sales → Invoices and find invoice *S2-38197* (customer 4 Star Truck Repair, 28 or 29 October 2026).
+# Look at the line descriptions.
+
+*What it should be:* the descriptions start exactly as typed, e.g. {{=Replace hose}}, {{+Top up coolant}}, {{-Brake check}}, {{@Alignment}}, with no apostrophe in front.

@@ -1,0 +1,37 @@
+{panel:bgColor=#e3fcef}
+*WHAT PASSED — everything that passed is listed in this comment. What is still to be checked is in the next comment below.*
+{panel}
+Tested on staging (build v26.43.2-f8698cb) on 28 October 2026, against Nemanja's test plan and Chris's comment. I made work order *S2-38197* (customer 4 Star Truck Repair) with line texts that start with =, +, -, @, a tab and a carriage return, a part whose number starts with "-", and a "-10% fleet" discount, then invoiced it (*INV-S2-38197*) and exported the Customer Invoice report from the screen.
+
+h3. The downloaded file
+
+!SV-11869-01-file-plain-text.png|width=1010,height=496!
+_The Customer Invoice file opened as plain text. Every line text that starts with = + - @, a tab or a carriage return now begins with one apostrophe (green boxes). Texts that start with a letter, or have "=" in the middle, are left alone (grey boxes)._
+
+!SV-11869-02-export-dialog.png|width=640,height=370!
+_Reports → Export Reports → Customer Invoice → Today → Export. This is the file checked above._
+
+h3. Opened in a spreadsheet
+
+!SV-11869-03-spreadsheet-vs-without.png|width=720,height=1028!
+_The same file opened in LibreOffice Calc with formulas switched on: every guarded cell shows as plain text. Comparison only: I also opened a copy with the apostrophes removed by hand (not a ShopView file); there "=Replace hose - Leaking" turns into a formula error. That shows what the apostrophe prevents._
+
+h3. What I checked
+
+||#||Check||Result||Status||
+|1|Labor line "=Replace hose"|{{'=Replace hose - Leaking}}|PASSED|
+|2|Labor line "+Top up coolant"|{{'+Top up coolant - Low level}}|PASSED|
+|3|Labor line "-Brake check"|{{'-Brake check - Front axle}}|PASSED|
+|4|Labor line "@Alignment"|{{'@Alignment - Pulls left}}|PASSED|
+|5|Line starting with a tab|One apostrophe before the tab|PASSED|
+|6|Line starting with a carriage return|One apostrophe before the carriage return|PASSED|
+|7|Part "-A12" (Hose clamp)|{{'-A12: Hose clamp}}|PASSED|
+|8|Discount "-10% fleet"|{{'-10% fleet}}; the rate and amount stay plain numbers (-2.50)|PASSED|
+|9|Texts that need no guard: "Rotate tires", "Replace = hose", "ZZ Tab line"|No apostrophe added|PASSED|
+|10|Exactly one apostrophe, never two|One each (checked in the raw file)|PASSED|
+|11|Opened in a spreadsheet with formulas on|Every guarded cell is plain text, nothing is calculated|PASSED|
+|12|Sales By Customer download (regression)|Same headings, same 10 columns and same layout as production; no apostrophes added|PASSED|
+
+Production can't show a like-for-like before: its New Line window still has the old "What Are You Doing?" fields, and its report writes the line text after "What are you doing?:", so a line text can't start with "=" there.
+
+The lines starting with a tab and a carriage return can't be typed in the New Line window (the Tab key moves to the next field), so I created those two lines with the same request the window sends. Every other line, the part and the discount were added on screen.
