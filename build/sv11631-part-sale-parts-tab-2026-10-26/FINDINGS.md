@@ -103,3 +103,19 @@ Washer M20 deleted (P2-109). Production: S2-889 part 1 category set to "ZZAUTOTE
   Description), Milomir mention intact.
 - Both carry a dated edit note at 23:56 CDT. Old comments 79529/79530 (26 Oct) untouched (Rule 112).
 - Learning check: Standing Rule 115, its index line, ticket standard §13 and the lessons row corrected to the new order.
+
+## Retest 28 Oct 2026 (after Dipesh turned QuickBooks off, 79622) — build v26.43.2-3ed5bdc
+QA lead: test against the description + Chris's comments; anything outside → follow-up ticket; be quick.
+- R10 shown half: part fee 5% + part discount −2% added on P2-162 on screen (row ⋮ → Add Part Fee / Discount). Column shows; removed on
+  screen (click fee in column → Fees & Discounts window → bin → Remove, one confirm only) → column gone; re-added.
+- Same 4 rows, no fee vs fee: 1024/768/390 every column identical width, table 1014 → 1102 px (PASS). **1440: Description 204.3 → 201 px,
+  "Fuel Filter, Kubota V2403" becomes cut (FAIL vs R10 "no other column gets narrower").** R14 scrollbar + shadow with column: PASS.
+- R3/R9 phone tap: still nothing (P2-162 Fuel... description, JJ avatar; two tap methods); mouse hover works. FAIL.
+- Outside scope → **SV-11904** (Bug, Medium, Work Orders, Relates SV-11631): fee name cut "ZZAUTO..." with no hover; heading wraps (row 38→48 px).
+- Unverified, not reported: on P2-109 phone view a "Center Tooth Holder" tooltip was already showing before any tap.
+- Branch had gone to sleep (API → sleep.qa.shopview.com); woken with the sleep page's own Wake Up request (~90 s).
+- Posted **79684** (PASSED first: 1 media, 4 rows) and **79685** (FAILED last: 2 media in order). Gate: build re-read v26.43.2-3ed5bdc,
+  ticket REJECTED FROM TESTING, newest comment 79622, wording scan clean.
+- Test data left: P2-162 ZZAUTOTEST Part Fee 5% + ZZAUTOTEST Part Discount −2%.
+- Learning check: (1) a QA branch can be asleep — `sv####api` 302 → sleep.qa.shopview.com; POST {"action":"wake","env":"sv####"} to the
+  sleep page's toggleQaEnv endpoint and poll until /api/auth/me = 401 (~90 s). (2) Part fee removal confirm is button_confirm_remove_adjustment.

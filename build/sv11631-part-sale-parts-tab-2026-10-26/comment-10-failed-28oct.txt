@@ -1,0 +1,40 @@
+{panel:bgColor=#ffebe6}
+*OVERALL QA STATUS: FAILED*
+{panel}
+I retested this on the QA branch [sv11631|https://sv11631.qa.shopview.com] (build v26.43.2-3ed5bdc) on 28 October 2026.
+Everything that passed has been posted separately in the previous comment. What is still to be fixed is below:
+
+h3. 1. FAILED: on a phone, tapping a shortened name or the avatar still shows nothing (R3, R9)
+When text in the parts table is too long, it ends in "...". The ticket asks that the full text shows when you point at it with a mouse, *or when you tap it on a phone*. With a mouse it works; on a phone, nothing appears. Same as on 27 October.
+
+!SV-11631-R3-R9-phone-tap-28oct.png|width=560,height=1423!
+_Pictures 1 and 2: on a phone, tapping the shortened description and the round avatar shows nothing. Picture 3: with a mouse, the same avatar shows "Requested by Jeffrey Jordan on Jul 24, 2026"._
+
+*Steps to see it*
+# On a phone, open [part sale P2-162|https://sv11631.qa.shopview.com/parts/part-sale/90a95f29-f405-4763-834d-6e3a237f8c33/part-requests]. A computer browser made 390 wide with touch turned on also works.
+# In the parts table, find the row whose {{Part Number}} is {{33397}}. Its {{Description}} box shows {{Fuel...}}.
+# Tap that {{Description}} box. *Nothing appears.* It should show "Fuel Filter, Kubota V2403".
+# Tap the round {{JJ}} avatar at the left end of the first row ({{AF25484}}). *Nothing appears.* It should show "Requested by Jeffrey Jordan on Jul 24, 2026".
+
+*What the ticket asks for*
+{quote}R3: A long name ends in "..." and shows in full on hover, or on tap on a touch screen.{quote}
+{quote}R9: The Requested At column is removed. Its date moves into the avatar hover: "Requested by {name} on {date}".{quote}
+The design adds for R9: "(tap on touch). Approved."
+
+h3. 2. FAILED: at 1440 wide, showing the Fees & Discounts column makes the Description column narrower (R10)
+
+!SV-11631-R10-1440-description-narrows.png|width=1134,height=684!
+_Picture 1: no fee or discount, Description is 204 px and "Fuel Filter, Kubota V2403" shows in full. Picture 2: same part sale with a fee and a discount, Description is 201 px and the name is cut to "Fuel Filter, Kubota V24..."._
+
+*Steps to see it*
+# Open [part sale P2-162|https://sv11631.qa.shopview.com/parts/part-sale/90a95f29-f405-4763-834d-6e3a237f8c33/part-requests] in a browser window 1440 wide, at 100% zoom. It has a part fee and a part discount, so the {{Fees & Discounts}} column is showing.
+# Look at the {{Description}} box on the row whose {{Part Number}} is {{33397}}: it reads {{Fuel Filter, Kubota V24...}}.
+# Scroll the parts table to the right and click {{ZZAUTOTEST Part Fee}} in the {{Fees & Discounts}} column. In the {{Fees & Discounts}} window that opens, click the red bin icon, then {{Remove}}. Do the same for {{ZZAUTOTEST Part Discount}} on the second row, so the column goes away.
+# Look at the same {{Description}} box again: it now reads {{Fuel Filter, Kubota V2403}} in full.
+# To put the column back: open the row's {{⋮}} menu, choose {{Add Part Fee / Discount}}, type a name and a percent, and click {{Add Fee}}.
+
+*What the ticket asks for*
+{quote}R10: The Fees & Discounts column shows only when at least one row has a fee or discount. When it shows, no other column gets narrower; the table scrolls sideways instead.{quote}
+At 1024, 768 and on a phone this works (see the previous comment). Only at 1440 does Description give up 3 px.
+
+Environment: [sv11631.qa.shopview.com|https://sv11631.qa.shopview.com/workorders], build v26.43.2-3ed5bdc, 28 October 2026, signed in as Admin. Test data left on the branch: P2-162 has a 5% part fee ({{ZZAUTOTEST Part Fee}}) and a −2% part discount ({{ZZAUTOTEST Part Discount}}).

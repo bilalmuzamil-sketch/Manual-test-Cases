@@ -1,0 +1,10 @@
+import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
+const s=await open({env:'branch',ticket:'11631',cookies:JSON.parse(fs.readFileSync('/tmp/qa11631/cookies.json')),quick:'admin',dir:'/tmp/qa26',vp:{width:1440,height:900}}); const p=s.page;
+await s.go('/parts/part-sale/90a95f29-f405-4763-834d-6e3a237f8c33/part-requests'); await p.waitForTimeout(7000);
+await p.locator('[data-test-id^="button_part_request_menu_"]').first().click(); await p.waitForTimeout(1200);
+console.log('menu',await p.evaluate(()=>[...document.querySelectorAll('.q-menu .q-item')].map(e=>(e.getAttribute('data-test-id')||'')+'|'+e.innerText.replace(/\s+/g,' ')).join(' ;; ')));
+await p.keyboard.press('Escape'); await p.waitForTimeout(600);
+await p.evaluate(()=>{const w=[...document.querySelectorAll('.q-table__middle')].sort((a,b)=>b.scrollWidth-a.scrollWidth)[0]; w.scrollLeft=w.scrollWidth;}); await p.waitForTimeout(600);
+await p.locator('[data-test-id^="cell_part_adjustments_"]').first().click(); await p.waitForTimeout(2000);
+console.log('after cell click',await p.evaluate(()=>[...document.querySelectorAll('.q-dialog [data-test-id], .q-menu [data-test-id]')].filter(e=>e.getBoundingClientRect().width>0).map(e=>e.getAttribute('data-test-id')+'|'+(e.innerText||'').replace(/\s+/g,' ').slice(0,30)).join(' ;; ')));
+await p.screenshot({path:'/tmp/s11631-rmprobe.png'}); await s.close(); process.exit(0);

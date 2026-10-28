@@ -1,0 +1,19 @@
+{panel:bgColor=#e3fcef}
+*WHAT PASSED — everything that passed is listed in this comment.*
+What is still to be fixed is in the next comment below.
+{panel}
+Retested on the QA branch [sv11631|https://sv11631.qa.shopview.com] (build v26.43.2-3ed5bdc) on 28 October 2026, against the ticket description and Chris's comments. Thanks [~accountid:712020:ae9c04d8-74e7-48c4-91fc-370caedf9615] for turning QuickBooks off; that let me finish the Fees & Discounts check (R10) that was blocked yesterday.
+
+h3. R10: the Fees & Discounts column
+!SV-11631-R10-column-shows-and-table-scrolls.png|width=720,height=1149!
+_Part sale P2-162. Picture 1: after adding a part fee and a part discount, the column shows. Pictures 2 and 3: at 1024 wide every column keeps its width and the table just scrolls further._
+
+||#||What the ticket asks for||What I saw||Status||
+|1|The Fees & Discounts column shows when at least one part has a fee or discount|On P2-162 I added a 5% part fee and a −2% part discount (row menu {{⋮}} → {{Add Part Fee / Discount}}). The column appeared and shows both|PASSED|
+|2|The column is hidden when no part has a fee or discount|I removed both: the column went away. I then added them back|PASSED|
+|3|When the column shows, no other column gets narrower; the table scrolls sideways instead (1024, 768 and phone)|At 1024, 768 and 390 (phone) every column kept exactly the same width, and the table grew from 1014 px to 1102 px and scrolls further. (At 1440 it is not quite right, see the next comment)|PASSED at 1024, 768 and phone|
+|4|R14: when the table scrolls sideways, a scrollbar and an edge shadow show it|With the column showing, the scrollbar and edge shadow show at 1440, 1024 and 768, and the edge shadow on a phone|PASSED|
+
+The other checks that passed in my comment of 27 October are on the same build (v26.43.2-3ed5bdc), so they still stand.
+
+Two things about the new column are not covered by this ticket (the fee name is cut with nothing on hover, and the column heading wraps onto two lines). I raised them separately as [SV-11904|https://shopview.atlassian.net/browse/SV-11904].

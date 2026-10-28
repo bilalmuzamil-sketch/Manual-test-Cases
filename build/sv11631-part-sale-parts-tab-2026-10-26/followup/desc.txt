@@ -1,0 +1,28 @@
+Found while testing [SV-11631|https://shopview.atlassian.net/browse/SV-11631]
+
+On a part sale's Parts tab, when a part has a fee or discount, the *Fees & Discounts* column cuts the fee name short (for example {{ZZAUTO...}}) and pointing at it shows nothing, so you can't read which fee it is. Its heading is also the only one that wraps onto two lines, which makes the whole heading row taller.
+
+h3. Steps to reproduce
+Open the QA branch to reproduce the issue: [https://sv11631.qa.shopview.com|https://sv11631.qa.shopview.com]
+# Use a browser window 1440 wide, at 100% zoom.
+# In the top menu click {{Parts}}, then {{Part Sales}}, and open part sale *P2-162* (customer *Bloomingdale Diesel Repair*). It already has a 5% part fee and a −2% part discount.
+# In the parts table, scroll sideways to the right until you see the {{Fees & Discounts}} column, just left of {{Actions}}.
+# Look at the first row (part {{AF25484}}): the fee shows as {{ZZAUTO... 5%}}.
+# Move the mouse over {{ZZAUTO...}} (don't click). *Nothing appears.* The full name is "ZZAUTOTEST Part Fee".
+# Look at the column headings: {{Fees & Discounts}} is on two lines; every other heading is on one line.
+
+*Fastest way to see it:* open [part sale P2-162|https://sv11631.qa.shopview.com/parts/part-sale/90a95f29-f405-4763-834d-6e3a237f8c33/part-requests], scroll the parts table to the right, and point at {{ZZAUTO...}} on the first row.
+
+!fees-column-name-cut-and-heading-wraps.png|width=720,height=394!
+_Box 1: the heading wraps onto two lines. Box 2: the fee name is cut and pointing at it shows nothing._
+
+h3. Expected behaviour
+The full fee or discount name can be read, for example shown in full on hover, the same way the table already treats the other cut-off text columns:
+{quote}R6: Category and Vendor show in full when they fit; otherwise they end in "..." with the full value on hover.{quote}
+(SV-11631 requirement R6; SV-11631 does not cover the Fees & Discounts column, so this needs the PO's confirmation.)
+The heading should sit on one line like the other headings, so the row height doesn't change when the column appears.
+
+h3. Current behaviour
+The fee name is cut to {{ZZAUTO...}} with nothing on hover, and the {{Fees & Discounts}} heading wraps onto two lines (the heading row grows from about 38 px to 48 px).
+
+Environment: QA branch sv11631, build v26.43.2-3ed5bdc, 28 October 2026, signed in as Admin.

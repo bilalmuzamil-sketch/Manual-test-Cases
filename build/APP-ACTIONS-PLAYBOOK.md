@@ -6307,3 +6307,12 @@ This is the same embed teammates use (SV-10996, SV-9958) — Jira stores it as a
 6. Before calling a changed behaviour a regression, read the deployed code for both environments (SV-11631 `scripts/bundle.mjs`:
    loads the page, fetches its own JS chunks, prints the code around a test id) — that settled the Return button in one step.
 7. Post a NEW comment (Rule 112) with before/after pictures of what got fixed and the steps for what still fails.
+
+### Part fee / discount on a part line — add and remove on screen (proven 2026-10-28, SV-11631)
+- Add: Parts tab row `button_part_request_menu_<id>` → `menu_item_add_part_adjustment_<partId>` "Add Part Fee / Discount" → dialog
+  `input_adjustment_name`, `select_adjustment_type` (Fee / Discount), `select_adjustment_calc_type` (default "% Of Parts Total"),
+  `input_adjustment_percent`, preview `adjustment_preview` → `button_add_adjustment` ("Add Fee") → toast "Fee added". Sends
+  `POST /api/work-orders/adjustments/add {kind, calculationType:"pct_parts", scope:"part_line", targetId:<partId>, ...}`. Needs no
+  QuickBooks item when QuickBooks is off for the organisation (with QuickBooks on but no fee item mapped it is refused).
+- Remove: scroll to the Fees & Discounts column, click the fee (`cell_part_adjustments_<partId>`) → "Fees & Discounts" window →
+  bin `button_remove_part_adjustment_<adjId>` → `button_confirm_remove_adjustment` "Remove" (one confirmation only).
