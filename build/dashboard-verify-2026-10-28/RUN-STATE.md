@@ -36,3 +36,14 @@ Earlier in the same thread: "I want everything in the dashboard to be correct ..
 - LAYER B (S3-R1 parity, paired reads, SAA paged): 2,592 checks, 2,592 PASS — every tile, chart total, advisor/technician/customer row and every report preset-by-name equals its report, 4 locations × 9 presets + 6 custom ranges.
 - Harness lessons: SAA returns ≤1000 rows/page (page it); open never-clocked-out timesheets grow between reads → pair dashboard+report reads seconds apart; dashboard needs localStorage `location` in the browser.
 - NEXT: LAYER C independent recompute from raw records (WO list + invoice view + clock records) vs PRD; LAYER D seeded edge cases; LAYER L1 screen = data.
+- LAYER L1 (screen = server, PRD wording/format, preset dates, empty-chart rule, tile independence, defaults): 1,184 checks, 1,184 PASS (4 locations × 5 tiles × 9 presets + At Risk × 5 windows).
+- LAYER C (independent recompute):
+  - C1 per-invoice: 8,036 invoices × 5 checks = 40,180; 40,176 PASS; 4 FAIL = 1-cent Parts rounding (S2-14085, S2-13807, S2-9398, S2-6653) — observation only.
+  - C2 population: 0 invoiced/paid service WOs missing from Sales (all 4 locations, 2 years). Parts-sale list only partial (80 of 258 parts WOs listed) — limit noted.
+  - C3 invoiced hours vs lines on the invoice: 8,035/8,036 MATCH; 1 = S2-38022 (a line added after the invoice was PAID is counted as invoiced hours) → candidate F3.
+  - C3b worked hours: 5,422/5,425 PASS (3 × ≤0.04 h rounding). Tech Efficiency: 72/87 → all tech-hour gaps = DECLINED lines counted → FINDING F2.
+  - C5 At Risk: 20/20 location×window exact (count, members, last date, lifetime count, 12-mo revenue).
+- FINDING F2 (reproduced on fresh data, DVI Test, build v26.43.2-f8698cb): WO S1-38195, customer "ZZAUTOTEST Dash A1", tech Esther Howard; line 1 complete 1.0 h, line 2 DECLINED (0.5 h clocked, 1.0 h tech time); invoice shows line 1 only ($135). Dashboard Technician Efficiency = 133.33% "2.00 Invoiced Tech Hrs / 1.50 Clocked"; PRD-correct 100.00% "1.00 / 1.00". Billing Efficiency on the same invoice correctly 100% (1.00/1.00).
+- Void path: "Reverse" DELETES the invoice (figures drop correctly). A real VOID arises only when a line is added via the New Line (Line/Create) path to a Complete/Invoiced WO with a PENDING invoice; the canned-line path instead ADDS the line to the pending invoice (subtotal $135→$270) — invoicing-side inconsistency, outside the dashboard PRD → observation.
+- SV-11688 (open, Ready to Fix) still live: Technician Utilization counts never-clocked-out timesheets (HD: Daniel Montoya, Jacqueline Calderon, Monica Brady ~24 h/day).
+- Harness lessons: report display dates use the SESSION timezone → always POST change-location before reading a location; technician-tasks/create wants `dd/mm/yyyy hh:mm` local + staff_id (ISO → HTTP 500, an unhandled-input observation); a clock with neither WO nor department is refused ("Department id is missing.").
