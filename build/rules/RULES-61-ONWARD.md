@@ -3363,6 +3363,17 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     does not block) · **70** (action-first, plain language, table form) · **98** (the five tables, and
     the amendment requiring the case numbers).
 
+    **⇒ AMENDMENT, 2026-10-28 (QA lead; proposed under Rule 72 and approved with "Yes").** His instruction, verbatim:
+    *"Give me the context and always vive the cintext with example aswell as with your recommendation."* — asked whether to
+    record it as standing: *"Yes"*. **EVERY ASK NOW CARRIES, IN ADDITION TO THE ITEMS ABOVE: (6) THE CONTEXT — what is on
+    screen or in the documents that raised it, in plain words; (7) A REAL EXAMPLE — one concrete case taken from this pass
+    (the record, the words a tester would see, what the test expects against what the build does); (8) MY RECOMMENDATION —
+    which option I would choose and why, stated plainly and placed before the options.** An ask that gives options without a
+    recommendation, or a context without an example, is incomplete. Worked example (28 Oct 2026, What/Why): the "Line
+    Approved" ask gave the context (tick box shown when "Require Approval for New Lines" is on; spec S1-R7 "same fields";
+    design silent), the example (C154710's list "… Estimated Time and Tech Time … nothing is added" while staging shows
+    "Line Approved" under Tech Time) and the recommendation (ask Chris to confirm it stays, then add it to the two tests).
+
 ---
 
 100. **AN INJECTED OR REMEMBERED COPY OF A FILE IS NOT EVIDENCE ABOUT THAT FILE — MEASURE IT ON DISK

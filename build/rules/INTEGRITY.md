@@ -505,3 +505,5 @@ real file it exited 0.
 (Rule 72). Fact measured the same day: staging build markers are `develop` commits (1493c63, edc8195, 72f4f3b, a5c4210); no
 branch named staging exists. Indexed in `CLAUDE.md` §2 and admitted to §1 as one bullet (the pre-commit hook measures §1).
 Rule count 116 → **117**.
+
+- **2026-10-28 — Rule 99 amended (QA lead, "Yes" under Rule 72):** every ask also carries the context, a real example and my recommendation. Full text appended to rule 99 in `RULES-61-ONWARD.md`; §1 bullet on reports extended by "· a real example · my recommendation". §1 size re-measured after the edit.

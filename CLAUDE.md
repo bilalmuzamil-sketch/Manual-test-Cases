@@ -186,7 +186,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   DONE · LEFT (how a different session finishes each item) · BLOCKED (and what it does NOT block, 68) ·
   HOW TO UNBLOCK · HANDOFF-READY (last row a bare YES/NO — NO unless every gate passed). Rows name C-ids, never
   only counts; completed-vs-left gives both numbers and the ids left. Every ask carries what it is · how it
-  came up · the question · options each saying what we would DO · the cost of silence (99). Say "nothing
+  came up · the question · options each saying what we would DO · the cost of silence · a real example · my recommendation (99). Say "nothing
   outstanding" if true; keep `build/OUTSTANDING-ITEMS-REGISTER.md` current. Everything he reads leads with
   what a user would see — no run numbers, case/test ids, ticket keys, API/HTTP/tool/DOM terms, "precondition/
   verdict/settled/not observed", no bare tallies; ids go after `---REFERENCE---` (8). Run
