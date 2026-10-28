@@ -48,5 +48,7 @@ export const SCEN={
       const x=(r.json?.data?.collection||[]).find(c=>c.manufacturer_id); return x?{path:`/parts-catalogue/${x.id}`,label:`Catalog part ${x.part_number} → Edit Catalog Part (Manufacturer ${x.manufacturer_name})`}:{skip:'no catalog part with a manufacturer'}; },
     action:(s)=>click(s,'button_edit_catalogue_part'), fields:['.q-dialog .q-field'] },
   poEditItem:{ async setup(s,env){ const po={branch:'7d1492a8-a395-4bc0-9413-a28f9721fc28',prod:'6549c267-041a-4da3-96ca-915b6cb83532'}[env]; return {path:`/order/${po}`,label:'Stock purchase order → Edit Order Item (Manufacturer)'}; },
-    action:(s)=>click(s,'button_edit_order_item_',{prefix:true}), fields:['[data-test-id="select_order_item_manufacturer"]'] },
+    action:async(s)=>{ for(let i=0;i<30;i++){ const ok=await s.page.evaluate(()=>{ let b=document.querySelector('[data-test-id^="button_edit_order_item_"]');
+        if(!b) b=[...document.querySelectorAll('table button, .q-table button')].find(x=>/edit_note/.test(x.innerText)&&x.getBoundingClientRect().width>0); if(!b) return false; b.click(); return true; }); if(ok) return; await s.page.waitForTimeout(1000); } throw new Error('Edit Item button not found'); },
+    fields:['[data-test-id="select_order_item_manufacturer"]','.q-dialog .q-field'] },
 };
