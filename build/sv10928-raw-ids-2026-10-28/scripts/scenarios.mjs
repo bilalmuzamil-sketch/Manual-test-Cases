@@ -28,15 +28,15 @@ export const SCEN={
     action:(s)=>click(s,'button_new_inventory_part'), fields:['.q-dialog .q-field__native,.q-dialog .q-field__control'] },
   inventoryEdit:{ async setup(s,env){ return {path:'/parts/inventory',label:'Inventory → open a part (edit)'}; },
     action:(s)=>click(s,'table_cell_name_',{prefix:true}), fields:['.q-dialog .q-field__native,.q-dialog .q-field__control'] },
-  timesheetEdit:{ async setup(s,env){ const cand={branch:['04ab678b-a2c2-4fd7-bcd9-76b6a23a419f'],prod:[]}[env];
+  timesheetEdit:{ async setup(s,env){ const cand={branch:[WO.branch,'04ab678b-a2c2-4fd7-bcd9-76b6a23a419f'],prod:[]}[env];
       if(env==='prod'){ const r=await s.api('/api/work-orders?'+q({'pagination[page]':1,'pagination[rowsPerPage]':60,'pagination[sortBy]':'companyName','pagination[descending]':false,search:'',showMyWorkOrders:0}));
         for(const w of (r.json?.data?.work_orders||[])) cand.push(w.id); }
-      for(const id of cand.slice(0,25)){ await s.page.goto(s.host.app+`/workorders/${id}/timesheets`,{waitUntil:'commit'}); await s.page.waitForTimeout(3500);
+      for(const id of cand.slice(0,25)){ await s.page.goto(s.host.app+`/workorders/${id}/timesheets`,{waitUntil:'commit'}); for(let k=0;k<16&&!(await s.page.evaluate(()=>!!document.querySelector('[data-test-id="button_edit_timesheet"]')));k++) await s.page.waitForTimeout(600);
         if(await s.page.evaluate(()=>!!document.querySelector('[data-test-id="button_edit_timesheet"]'))) return {path:`/workorders/${id}/timesheets`,label:'Work order Timesheets → Edit Timesheet'}; }
       return {skip:'no work order with a timesheet found in 25'}; },
     action:(s)=>click(s,'button_edit_timesheet'), fields:['[data-test-id="select_timesheet_line"]','[data-test-id="select_timesheet_department"]','[data-test-id="select_timesheet_staff"]'] },
   receiveParts:{ async setup(s,env){ return {path:`/workorders/${WO[env]}/lines`,label:'Work order Lines → Receive (part awaiting receipt)'}; },
-    action:async(s)=>{ const b=await s.page.evaluate(()=>{ const e=[...document.querySelectorAll('[data-test-id="button_part_request_action"]')].find(x=>/Receive/i.test(x.innerText)&&x.getBoundingClientRect().width>0); if(!e) return null; e.scrollIntoView({block:'center'}); const r=e.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2}; }); if(!b) throw new Error('no Receive button'); await s.page.mouse.click(b.x,b.y); },
+    action:async(s)=>{ let b=null; for(let i=0;i<20&&!b;i++){ if(i) await s.page.waitForTimeout(700); b=await s.page.evaluate(()=>{ const e=[...document.querySelectorAll('[data-test-id="button_part_request_action"]')].find(x=>/Receive/i.test(x.innerText)&&x.getBoundingClientRect().width>0); if(!e) return null; e.scrollIntoView({block:'center'}); const r=e.getBoundingClientRect(); return {x:r.x+r.width/2,y:r.y+r.height/2}; }); } if(!b) throw new Error('no Receive button'); await s.page.mouse.click(b.x,b.y); },
     fields:['.q-dialog .q-field'] },
   linesAddPart:{ async setup(s,env){ return {path:`/workorders/${WO[env]}/lines`,label:'Work order Lines → Add Part row'}; },
     action:(s)=>click(s,'button_add_part'), fields:['.q-dialog .q-field','tr .q-field'] },
@@ -44,4 +44,9 @@ export const SCEN={
     action:(s)=>click(s,'button_edit_part_',{prefix:true}), fields:['.q-dialog .q-field'] },
   vehicleEdit:{ async setup(s,env){ const S=seed(env); return {path:`/customers/vehicle/${S.vid}/work-orders?companyId=${S.cid}`,label:'Asset with a Type → Edit Asset'}; },
     action:(s)=>click(s,'button_edit_vehicle'), fields:['.q-dialog .q-field'] },
+  catalogEdit:{ async setup(s,env){ const r=await s.api('/api/parts-catalogue/catalogue-parts?pagination%5BrowsPerPage%5D=100&pagination%5Bpage%5D=1&search=');
+      const x=(r.json?.data?.collection||[]).find(c=>c.manufacturer_id); return x?{path:`/parts-catalogue/${x.id}`,label:`Catalog part ${x.part_number} → Edit Catalog Part (Manufacturer ${x.manufacturer_name})`}:{skip:'no catalog part with a manufacturer'}; },
+    action:(s)=>click(s,'button_edit_catalogue_part'), fields:['.q-dialog .q-field'] },
+  poEditItem:{ async setup(s,env){ const po={branch:'7d1492a8-a395-4bc0-9413-a28f9721fc28',prod:'6549c267-041a-4da3-96ca-915b6cb83532'}[env]; return {path:`/order/${po}`,label:'Stock purchase order → Edit Order Item (Manufacturer)'}; },
+    action:(s)=>click(s,'button_edit_order_item_',{prefix:true}), fields:['[data-test-id="select_order_item_manufacturer"]'] },
 };

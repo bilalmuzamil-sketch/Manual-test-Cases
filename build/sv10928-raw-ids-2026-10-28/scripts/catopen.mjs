@@ -1,0 +1,10 @@
+import {open} from '../../testing-tools/qa-session.mjs'; import fs from 'fs';
+const [env]=process.argv.slice(2);
+const s=await open({env,ticket:'10928',cookies:JSON.parse(fs.readFileSync('/tmp/qa11631/cookies.json','utf8')),dir:(process.env.QA_DIR||'/tmp/qa24'),user:'bilal.muzamil@shopview.com'}); const p=s.page;
+await s.go('/parts/parts-catalogue?search=170.V8AP'); await p.waitForTimeout(6000);
+const row=p.locator('tbody tr').first(); console.log('row',(await row.innerText()).replace(/\s+/g,' ').slice(0,150));
+await row.locator('td').nth(2).click(); await p.waitForTimeout(4000);
+console.log('URL',p.url());
+const T=()=>p.evaluate(()=>[...new Set([...document.querySelectorAll('[data-test-id]')].filter(e=>e.getBoundingClientRect().width>0).map(e=>e.getAttribute('data-test-id').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g,'<id>')))].filter(t=>!/nav|module_|global|clock|notif|profile/.test(t)).join(' ; '));
+console.log('tids',(await T()).slice(0,1500));
+await p.screenshot({path:'/tmp/s10928/catopen.png'}); await s.close(); process.exit(0);

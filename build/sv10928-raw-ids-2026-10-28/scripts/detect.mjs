@@ -41,3 +41,6 @@ export async function install(s, ctl){
 }
 export async function reset(p){ await p.evaluate(()=>{ for(const k in (window.__idHits||{})) delete window.__idHits[k]; }).catch(()=>{}); }
 export async function hits(p){ return p.evaluate(()=>Object.values(window.__idHits||{})).catch(()=>[]); }
+// Chrome DevTools "Slow 3G" preset (Dusan's QA note asks for Slow 3G)
+export async function slow3g(page){ const c=await page.context().newCDPSession(page);
+  await c.send('Network.enable'); await c.send('Network.emulateNetworkConditions',{offline:false,latency:2000,downloadThroughput:50000,uploadThroughput:50000}); return c; }

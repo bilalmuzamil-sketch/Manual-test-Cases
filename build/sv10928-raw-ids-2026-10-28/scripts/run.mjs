@@ -10,27 +10,28 @@ for(const name of names){ try { const sc=SCEN[name]; const ctx=await sc.setup(s,
   // page scenarios: the delay applies while the page loads; dialog scenarios: the page loads normally, then the delay
   // applies while the dialog opens (the lookups that label a dialog are fired by opening it)
   const pass=async(tag,delay,throttle)=>{ ctl.tag=`${name}-${tag}`; ctl.shotDir=out; ctl.shots=[]; ctl.seen=new Set();
-    const c=throttle?await D.slow4g(p):null;
+    const c=throttle==='3g'?await D.slow3g(p):throttle?await D.slow4g(p):null;
     ctl.delay=sc.action?null:delay;
     await p.goto(s.host.app+'/workorders',{waitUntil:'commit'}).catch(()=>{}); // leave the page so the next load is fresh
     await p.goto(s.host.app+ctx.path,{waitUntil:'commit',timeout:120000}).catch(()=>{});
     await D.reset(p);
-    await p.waitForTimeout(throttle?25000:(!sc.action&&delay&&delay.has('*'))?14000:(!sc.action&&delay)?ctl.ms+5000:7000);
+    await p.waitForTimeout(throttle==='3g'?45000:throttle?25000:(!sc.action&&delay&&delay.has('*'))?14000:(!sc.action&&delay)?ctl.ms+5000:7000);
     if(sc.action){ await D.reset(p); ctl.seen=new Set(); ctl.delay=delay; ctl.shots=[];
       await sc.action(s,ctx).catch(e=>process.stdout.write('   action error '+e.message.slice(0,120)+'\n'));
-      await p.waitForTimeout(throttle?20000:(delay&&delay.has('*'))?12000:delay?ctl.ms+4000:5000); }
+      await p.waitForTimeout(throttle==='3g'?40000:throttle?20000:(delay&&delay.has('*'))?12000:delay?ctl.ms+4000:5000); }
     await p.waitForTimeout(800); const h=(await D.hits(p)).filter(x=>!(sc.ignore&&sc.ignore(x,ctx)));
     const fin=sc.fields?await p.evaluate(sels=>sels.map(sel=>[...document.querySelectorAll(sel)].slice(0,4).map(e=>((e.closest('.q-field')||e).innerText||e.value||'').trim().replace(/\s+/g,' ').slice(0,50))),sc.fields).catch(()=>[]):[];
     await D.fast(p,c); const seen=[...ctl.seen]; ctl.delay=null;
     process.stdout.write(`  ${tag}${delay&&!delay.has('*')?' ['+([...delay][0]||'').slice(0,50)+']':''}: ${h.length} id(s)${fin.length?' | shown: '+JSON.stringify(fin).slice(0,160):''}\n`);
     return {tag,hits:h,shots:ctl.shots.map(x=>x.f),seen,fin}; };
   const base=await pass('base',null,false);
-  const look=base.seen.filter(x=>!SHELL.test(x));
+  const look=process.env.ONLY3G==='1'?[]:base.seen.filter(x=>!SHELL.test(x));
   const runs=[base];
   for(const pth of look) runs.push(await pass('delay'+(runs.length),new Set([pth]),false).then(r=>Object.assign(r,{delayed:pth})));
-  { const sh=base.seen.filter(x=>SHELL.test(x)); if(sh.length) runs.push(Object.assign(await pass('shell',new Set(sh),false),{delayed:'app-shell group'})); }
-  runs.push(Object.assign(await pass('all',new Set(['*']),false),{delayed:'every request'}));
-  for(let i=1;i<=3;i++) runs.push(Object.assign(await pass('slow4g'+i,null,true),{delayed:'Slow 4G'}));
+  if(process.env.ONLY3G!=='1'){ const sh=base.seen.filter(x=>SHELL.test(x)); if(sh.length) runs.push(Object.assign(await pass('shell',new Set(sh),false),{delayed:'app-shell group'})); }
+  if(process.env.ONLY3G!=='1') runs.push(Object.assign(await pass('all',new Set(['*']),false),{delayed:'every request'}));
+  if(process.env.ONLY3G!=='1') for(let i=1;i<=3;i++) runs.push(Object.assign(await pass('slow4g'+i,null,true),{delayed:'Slow 4G'}));
+  if(process.env.SLOW3G==='1'||process.env.ONLY3G==='1') for(let i=1;i<=2;i++) runs.push(Object.assign(await pass('slow3g'+i,null,'3g'),{delayed:'Slow 3G'}));
   if(sc.final){ await sc.final(s,ctx,out,name); }
   results[name]={path:ctx.path,label:ctx.label,passes:runs.length,
     shown:runs[0].fin,withHits:runs.filter(r=>r.hits.length).map(r=>({tag:r.tag,delayed:r.delayed,hits:r.hits.map(h=>({id:h.id,text:h.text,path:h.path,ms:[h.first,h.last]})),shots:r.shots}))};

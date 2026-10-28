@@ -1,8 +1,8 @@
 import {open} from '/home/user/Manual-test-Cases/build/testing-tools/qa-session.mjs'; import fs from 'fs';
 const [env,ps,tag]=process.argv.slice(2); const widths=(process.argv[5]||'1440,1024,768,390').split(',').map(Number);
 const OUT=`/tmp/qa11631/w/m-${env}-${tag}/`; fs.mkdirSync(OUT,{recursive:true});
-const s=env==='branch'?await open({env:'branch',ticket:'11631',cookies:JSON.parse(fs.readFileSync('/tmp/qa11631/cookies.json')),quick:'admin',dir:'/tmp/qa21',vp:{width:1440,height:900},dpr:2,scrollbars:true})
- : await open({env:'prod',user:'bilal.muzamil@shopview.com',dir:'/tmp/qa21',vp:{width:1440,height:900},dpr:2,scrollbars:true});
+const s=env==='branch'?await open({env:'branch',ticket:'11631',cookies:JSON.parse(fs.readFileSync('/tmp/qa11631/cookies.json')),quick:'admin',dir:(process.env.QA_DIR||'/tmp/qa21'),vp:{width:1440,height:900},dpr:2,scrollbars:true})
+ : await open({env:'prod',user:'bilal.muzamil@shopview.com',dir:(process.env.QA_DIR||'/tmp/qa21'),vp:{width:1440,height:900},dpr:2,scrollbars:true});
 const p=s.page; console.log('marker',JSON.stringify(await s.marker()));
 const res={};
 for(const w of widths){
