@@ -507,3 +507,5 @@ branch named staging exists. Indexed in `CLAUDE.md` §2 and admitted to §1 as o
 Rule count 116 → **117**.
 
 - **2026-10-28 — Rule 99 amended (QA lead, "Yes" under Rule 72):** every ask also carries the context, a real example and my recommendation. Full text appended to rule 99 in `RULES-61-ONWARD.md`; §1 bullet on reports extended by "· a real example · my recommendation". §1 size re-measured after the edit.
+
+- **2026-10-28 — QA lead's three instructions recorded:** Rule 99 second amendment (asks name the suite and every affected C-id with title and link inside the ask); Rule 107 amendment (shared-account workarounds, restore and read back); **Rule 118 added** (nothing halts, stops or wastes time). CLAUDE.md: count 117→118, index row 118, §1 bullets amended (not added). §1 size re-measured.

@@ -3373,6 +3373,12 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     Approved" ask gave the context (tick box shown when "Require Approval for New Lines" is on; spec S1-R7 "same fields";
     design silent), the example (C154710's list "… Estimated Time and Tech Time … nothing is added" while staging shows
     "Line Approved" under Tech Time) and the recommendation (ask Chris to confirm it stays, then add it to the two tests).
+    **⇒ SECOND AMENDMENT, 2026-10-28 (QA lead, verbatim):** *"For which Testing suite and which test case numbers? -> Always
+    give complete contect when asking questions"*. **EVERY ASK NAMES, INSIDE THE ASK ITSELF: (9) THE TEST SUITE by its name and
+    where it lives (e.g. "What/Why (Title and Description), Founder Mode, TestRail group 20437"), and (10) EVERY TEST CASE THE ASK
+    AFFECTS, each as its C-number with its title and link.** For asks this SUPERSEDES the Rule 103 placement "ids go after
+    ---REFERENCE---": the ids stay in plain context beside the words, never in place of them (the plain-words description still
+    leads). A `plain_check.py` warning about case ids inside an ask is expected and does not block sending.
 
 ---
 
@@ -3750,6 +3756,15 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     CALLED a blocker; 107 governs how hard you must work before the question arises. Learning L0041.
 
 ---
+
+    **⇒ AMENDMENT, 2026-10-28 (QA lead, verbatim):** *"I temporarily change the shared 'Tech' user's role. -> Always use such
+    work arounds for such blockers."* **A BLOCKER THAT A SHARED TEST ACCOUNT, SHARED SETTING OR SHARED RECORD CAN WORK AROUND IS
+    WORKED AROUND, WITHOUT ASKING:** e.g. a case needs a second user with a custom role and staging's quick sign-in offers only
+    Admin and Tech → create the ZZAUTOTEST role, give it to the shared Tech user (Settings → Staff → Search tech@shopview.com →
+    edit → Role → Save & Close), sign in as Tech, and **put the account back the moment the check is done, then read it back**
+    (worked example 28 Oct 2026, What/Why C549088: role "ZZAUTOTEST User B - no invoices"; Tech restored to Technician, 6
+    permissions read back). Guards: match the account by an exact cell (never "the first row"), never save another person's
+    record, and write the restore step into the case so the tester restores it too. Never applies to production or TestRail.
 
 108. **A SOURCE VERIFICATION READS THE WHOLE DOCUMENT AND EVERY LINK IT NAMES — NEVER JUST THE
     REQUIREMENT SECTION (all projects, permanent; QA lead, 2026-09-10).**
@@ -4248,3 +4263,19 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     and never from its code (57, 114, 109: "V2's code does it" is never a standard). Code that differs from the documents is
     a discrepancy for the PO sheet (116) or a three-outcomes deviation (62-b), never an edit to the Expected.
     **(5)** Record the commit checked out (branch + hash) in the pass's README beside the build marker.
+
+---
+
+118. **NOTHING HALTS, STOPS OR WASTES TIME — WORK AROUND, KEEP MOVING, AND ASK IN PARALLEL, NEVER INSTEAD (QA lead,
+    2026-10-28, permanent).**
+    USER DIRECTIVE (verbatim): *"Make sure that nothing should halt you or stop you or waste the time -> Make it a rule"*.
+    **THE RULE:** (1) a blocker is worked around the same turn it appears (107, including its 2026-10-28 amendment on shared
+    accounts), using the seven routes of 107 — a fresh sign-in, another location, a throwaway record, a shared account, the
+    product code as a finding aid (117), another screen; (2) a question to the QA lead or the PO never pauses the work: it is
+    put to him, and the session carries on with everything that does not depend on the answer (105); (3) a tool or script
+    that fails is fixed and re-run at once, never reported as the end of the task (68); (4) repeated slow loops are cut: after
+    two failed attempts on one selector, read the screenshot or the product code before the third; (5) only three things
+    may stop the work — the queue is empty, a decision only he can make has already been put to him AND nothing else remains,
+    or a blocker that passed the gate (104) and has no workaround. Never overrides 6 · 38 · 62 · 71 · 82 or the lane limit
+    (115); production is never a workaround. Ties to 68, 97, 104, 105, 107.
+

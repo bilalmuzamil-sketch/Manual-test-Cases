@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **117 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **118 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -140,9 +140,9 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   data, edit roles/permissions and assign them, switch workplace, use the screen or go behind it, walk a
   neighbouring feature, write tooling — tag `ZZAUTOTEST`, restore what is not the point (6). Try and NAME
   seven routes (search · read the refusal · other surface · seed · neighbouring feature · change the
-  role/data · prove the instrument) before "blocked". Never overrides 62 · 6 · 38 · 71 · 82; production is
+  role/data · prove the instrument) before "blocked"; a shared account (e.g. Tech's role) is used and restored. Never overrides 62 · 6 · 38 · 71 · 82; production is
   not a test environment. Full text: rules 97, 104, 107; learning L0036.
-- **STRATEGY FIRST, AND NEVER GO IDLE WHILE WORK REMAINS (79 · 105).** Plan the quota-efficient route,
+- **STRATEGY FIRST; NOTHING HALTS OR WASTES TIME (79 · 105 · 118).** Plan the quota-efficient route,
   then queue every remaining step in `build/testing-tools/run_queue.sh <queue> <tag>` (`--status <tag>` says
   what is running). The last action before any report is to START the next work and confirm it runs; every
   status names the step in flight. Only stops: queue empty · a decision only he can make, already put to
@@ -186,7 +186,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   DONE · LEFT (how a different session finishes each item) · BLOCKED (and what it does NOT block, 68) ·
   HOW TO UNBLOCK · HANDOFF-READY (last row a bare YES/NO — NO unless every gate passed). Rows name C-ids, never
   only counts; completed-vs-left gives both numbers and the ids left. Every ask carries what it is · how it
-  came up · the question · options each saying what we would DO · the cost of silence · a real example · my recommendation (99). Say "nothing
+  came up · the question · options each saying what we would DO · the cost of silence · a real example · my recommendation · the suite and every C-id it affects (99). Say "nothing
   outstanding" if true; keep `build/OUTSTANDING-ITEMS-REGISTER.md` current. Everything he reads leads with
   what a user would see — no run numbers, case/test ids, ticket keys, API/HTTP/tool/DOM terms, "precondition/
   verdict/settled/not observed", no bare tallies; ids go after `---REFERENCE---` (8). Run
@@ -222,7 +222,7 @@ safe. The **evidence** for each one lives in the rule or skill the bullet points
   changed** — check `created_by == 1` before the write; no general go-ahead reaches them and we do not re-ask.
   Automated cases still need his go-ahead (71). Full text: `build/rules/RULES-21-40.md` rule 38.
 
-## 2 · THE RULE INDEX — all 117 rules, and where each one lives
+## 2 · THE RULE INDEX — all 118 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -364,6 +364,7 @@ rule. Generated from the split files' own headers.
 | **115** | A BUILD-VERIFIED CASE IS **FULLY RUNNABLE AND FULLY UNDERSTANDABLE BY THE MANUAL TESTER** — this lane's definition of done is all three together (build-verified + layman-understandable + hand-runnable), never just stamp+marker. FORBIDDEN in a READY case: developer jargon in tester-facing text (codes/endpoint/API/p95/circuit-breaker/ms/req-ids → provenance only, 110) · a check not doable by hand marked READY (→ keep only the manual part, else HOLD "not manually testable") · PRECONDITIONS that don't let the tester reach the start state by hand — name the exact role+permissions, every gating setting, and concrete UI-buildable data (verify settings on the build, never guess), never a vague role or a bare state assertion (amendment 2026-10-05, 2nd tester complaint). Expected substance still the source's (57/114). Enforced by `check_tester_runnable.py`. A manual tester must NEVER again report a build-verified case as unclear/unrunnable. Amends 102/84 (QA lead, 2026-10-05) |
 | **116** | A DESIGN-vs-BUILD (or BUILD-vs-SOURCE) DISCREPANCY FOUND IN BUILD VERIFICATION → ASK whether a Product Owner question sheet exists for the feature and ask for it · design-vs-build questions in their own tab "Design vs Build discrepancy", each saying whether the PRD/sources are SILENT or SAY SOMETHING ELSE · build-vs-source questions in the sheet's existing tab (or a separate one) · every question short, plain and answerable by a layman or manual tester (QA lead, 2026-10-23) |
 | **117** | EVERY BUILD VERIFICATION CLONES THE PRODUCT CODE OF THE BUILD UNDER TEST — staging = `develop` at the build marker's commit, a QA site = that feature's branch at its marker's commit; never learn from any other/production branch (unavailable ⇒ screen only); code is a FINDING AID for labels/routes/conditions, labels still confirmed on screen, and NEVER the Expected (57/114) (QA lead, 2026-10-23) |
+| **118** | NOTHING HALTS, STOPS OR WASTES TIME — work around every blocker the same turn (107, incl. shared-account workarounds), ask in parallel never instead, fix failing tools at once; only an empty queue, a decision already put to him with nothing else left, or a gated blocker with no workaround may stop the work (QA lead, 2026-10-28) |
 
 **Operator forms** (the rule bodies are all in `build/rules/RULES-61-ONWARD.md`): **95** →
 `build/skills/TOKEN-DISCIPLINE-CHARTER.md` · **96** → `build/skills/17-REGRESSION-IMPACT-V1-TO-V2.md`

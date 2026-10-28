@@ -87,3 +87,17 @@ Unexported. The shared Admin's location was switched to 9919 once by API and put
   carrying both this change and its own working QuickBooks link.
 - Rule 99 amended (context, real example, recommendation in every ask); CLAUDE.md §1 19,756 B after the edit.
 - Final: READY 53 · READY - EXPECT FAIL 5 · HOLD 10 (QuickBooks 6, ShopCoach 1, second user 2, clear button 1).
+
+## Second follow-up, 28 Oct 2026 (QA lead: "Always give complete context" · "Always use such work arounds" · "Please tag him" · "nothing should halt you … Make it a rule")
+
+- Chris Ward tagged (person chip chris.w@shopview.com) on its own line under both new section headings, as on 27 Oct.
+- Shared Tech workaround (probes 23-29, 28f): role "ZZAUTOTEST User B - no invoices" (Page Access → Reports only) created;
+  Tech ShopView (tech@shopview.com, role Technician) given it via Settings → Staff → Search → edit → Role → Save & Close; Tech
+  quick sign-in then showed Dashboard + Reports and Export Reports listed Customer Invoice; Tech restored to Technician (6
+  permissions read back). Earlier attempts opened "Nebojsa Custom Tech" by mistake (unfiltered search) — Save never fired,
+  that row still reads Custom Tech. → C549088 READY with the recipe and a restore step (apply3.py).
+- Role editor: ticking Invoicing & payments View raises "Enable See Financial Data? Invoicing & Payments requires See Financial
+  Data." → the C154719 user cannot be built → HOLD with that reason; Q17 added to Chris's Doc (build vs page S3-R10 + Story 3).
+- Checks on C549088, C154719: tester-runnable 2/2, runnable 2/2, display 2/2 (served-2.json).
+- Rules: 99 second amendment (suite + C-ids in every ask), 107 amendment (shared-account workarounds), Rule 118 added.
+- Final: READY 54 · READY - EXPECT FAIL 5 · HOLD 9 (QuickBooks 6, ShopCoach 1, financial-data user 1, clear button 1).
