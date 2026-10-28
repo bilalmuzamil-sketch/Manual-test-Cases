@@ -69,3 +69,10 @@ Earlier in the same thread: "I want everything in the dashboard to be correct ..
 2. Closed tickets reviewed → `CLOSED-TICKETS-REVIEW-2026-10-28.md` (SV-8974, SV-8927 safe to reopen; SV-8926, SV-8930 not — asked Chris).
 3. Chris question doc in the other session's shape (format only, read-only from origin/claude/slack-session-setup-7v5itm): Google Doc 1mEcB4cpsOqZXeim0vzmlbam2xSB02YshnyYRY0dk9s8, 39 questions; Drive turned three $…$ phrases into equations — repaired in place (Q5, Q23, Q33) and re-read clean. Not shared.
 4. "Payments owner" item withdrawn — it was API-only (left out under 1).
+
+## 2026-10-28 late (3) — QA lead: filing under SV-11839; time-zone rule
+- Ruling (AskUserQuestion, Rule 63): defects in SV-11839 are type **Bug**, parent **SV-11839**, Medium, relates to the owning story; Product Area **Reports & Dashboards** (required for Bug). Overrides Rule 52 / Rule 73 item [1] for this epic only; Rule 73 one-at-a-time still applies.
+- Filed **SV-11922** (AP1). Pictures inline (attachments 63181, 63180), relates to SV-5654 / SV-5655.
+- QA lead: *"First make sure you test those tickets ensuring that the Location timezone and your machine timezone is the SAME."* → SV-11922 re-tested with the browser in Asia/Karachi (HD) and America/Edmonton (Lethbridge): still reproduces (SV10190-R3 0 vs -1; SV10190-ST1/ST2 -1 vs -2). Comment 79708 with 2 pictures.
+- `testing-tools/staging-boot2.mjs` now sets the browser `timezoneId` to the location's zone (opts.timezone). W2 evidence (SBR, TAX) already used the location zone; W3 PV-D1/PV-D2 screen runs did NOT → redo on America/Toronto before filing. IV recaptured on America/Toronto.
+- SV-8974 / SV-8927 re-created as drafts `filed-2026-10-28/drafts/SBR-ORDER.html`, `IV-COLUMNS.html` (QA lead: recreate, not reopen).

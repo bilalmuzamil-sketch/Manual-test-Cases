@@ -30,7 +30,10 @@ export async function boot2(roleKey = 'tech', opts = {}) {
   // parse sessCookie into browser cookies
   const cookies = t.sessCookie.split('; ').map(p => { const i = p.indexOf('='); const name = p.slice(0, i); const value = p.slice(i + 1); return { name, value, domain: '.staging.shopview.com', path: '/' }; });
   const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', headless: true, proxy: { server: process.env.HTTPS_PROXY }, args: ['--no-sandbox', '--ignore-certificate-errors', '--ssl-version-max=tls1.2'] });
-  const ctx = await browser.newContext({ viewport: { width: 1600, height: 1000 }, ignoreHTTPSErrors: true });
+  // The browser runs in the LOCATION's own time zone (QA lead, 2026-10-28: "make sure that the Location timezone and
+  // your machine timezone is the SAME"). opts.timezone is the location's zone; opts.contextOptions overrides anything.
+  const ctx = await browser.newContext({ viewport: { width: 1600, height: 1000 }, ignoreHTTPSErrors: true,
+    ...((opts.timezone || process.env.SV_TZ) ? { timezoneId: opts.timezone || process.env.SV_TZ } : {}), ...(opts.contextOptions || {}) });
   await ctx.addCookies(cookies);
   const page = await ctx.newPage();
   // land on app origin (a lightweight route) to be able to set localStorage
