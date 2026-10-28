@@ -1,4 +1,4 @@
-# Draft for Chris Ward's question Doc (not sent yet — Rule 66: sent last, after the open build checks)
+# SENT 28 Oct 2026 to Chris Ward's question Doc as Q15 (with Q16 on clearing a picked canned line) — see README follow-up
 
 Doc: "What/Why (Title and Description) – questions for Chris Ward" — https://docs.google.com/document/d/1QcT7FRZci6AhYcI33HUac-Oob03-gCnCOKn2NFHMLjA/edit
 Placed after question 14, under a new heading, in the Doc's own shape (What the page says / What the design says / Question).

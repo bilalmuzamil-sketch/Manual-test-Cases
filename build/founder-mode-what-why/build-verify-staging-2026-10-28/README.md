@@ -63,3 +63,27 @@ Seen in passing (no verdict, lane limit): the New Line window also shows "Line A
 
 Left on staging (ZZAUTOTEST, throwaway): work orders S2-38102 and S2-38103 (4 Star Truck Repair), invoiced; both sit in QB
 Unexported. The shared Admin's location was switched to 9919 once by API and put back to DVI Test (HTTP 200).
+
+## Follow-up, 28 Oct 2026 (QA lead: "Yes please" to the four screens; "Do what is scientifically correct and does not bite me" on QuickBooks; "Yes" to the ask rule)
+
+- Fresh sign-in supplied after the morning one expired (failed twice on staging and once on qb1 as control).
+- Walked on staging 9919 (probes 17-22, throwaway work orders S1-38104 at DVI Test and S2-38105 at 9919):
+  - Receiving a part: + Add Part (Part number, Description *, Qty *, Category, Cost, Sell price *) → Save → status
+    "Auth To Order" → Order → "Awaiting Receive" → Receive → "Receive parts" window (Assign vendor, Vendor Invoice Number,
+    Invoice Date, Delivery Note, Cost, tick, Receive Parts (1)); the button stays disabled until vendor, vendor invoice
+    number, part number and cost are filled; after reload the part no longer shows Awaiting Receive. → C154722 READY (apply2.py).
+  - Title clear (x) after a canned line: present in the page as a hidden "Clear" button, never shown (pointer over it; box
+    selected). → C154708 HOLD with that reason. Seen in passing: after a canned line is picked the New Line window shows only
+    Title, Line Approved, Save & Add Line, Save & Close.
+  - Second user: staging's quick sign-in offers only "Admin" and "Tech" (GET quick-login users). → C154719 C549088 HOLD with
+    that reason. New Staff Member window read, nothing saved.
+- Gates on the four: tester-runnable 4/4, runnable 4/4, display 4/4 (served-4.json).
+- PO questions added to Chris Ward's Doc (1QcT7FRZ…, read back, revision after write AHj4eMTXFYI1…): heading "Design vs Build
+  discrepancy, 28 October 2026" with Q15 (Line Approved: build shows it, page S1-R7 "same fields", design silent) and heading
+  "New questions, 28 October 2026" with Q16 (no way to clear a picked canned line: page S1-R4 implies empty again, design silent).
+- QuickBooks: left on HOLD and staging's QuickBooks setting NOT changed. Reason: qb1 is running SV-11275 ("QuickBooks default class
+  fallback"), the very behaviour behind staging's missing-class errors, so staging's broken class may be someone's test condition;
+  and a result measured on a link we repaired by hand would not show what the released change does. The correct test is on a site
+  carrying both this change and its own working QuickBooks link.
+- Rule 99 amended (context, real example, recommendation in every ask); CLAUDE.md §1 19,756 B after the edit.
+- Final: READY 53 · READY - EXPECT FAIL 5 · HOLD 10 (QuickBooks 6, ShopCoach 1, second user 2, clear button 1).
