@@ -1,0 +1,44 @@
+{panel:bgColor=#e3fcef}*OVERALL QA STATUS: PASSED*{panel}
+The fix is working:
+* When a credit-memo payment that covered several invoices is reversed, each invoice now gets back exactly its own share of the credit.
+* No invoice is left at "$0.00, Partially Paid", and New Payment works on the customer's open invoices afterwards.
+* Cash-only and deposit reversals still work as before.
+
+*Before (production) and after (QA branch), same steps:*
+!01-before-vs-after.png|width=1140,height=761!
+
+h3. What was checked
+Tested on the QA branch [sv11744|https://sv11744.qa.shopview.com] (build v26.43.2-b517d96) on 28 October 2026, following the QA checklist on this ticket. All payments and reversals were made on screen (Customer → Invoices → New Payment, and Customer → Payments → the bin icon → *Reverse*). The invoice amounts come from canned lines on the branch, so they are not the $1,000 / $300 in the checklist, but the shapes are the same.
+
+||#||Check||Status||
+|1|Checklist 1: S11744-17586 ($347.96, created first) part-paid with $100.00 cash; one credit-memo payment ($300.16) for the rest of it and all of S11744-17587 ($52.20); both Paid. Reversed: S11744-17586 owes $247.96 and shows Partially Paid; S11744-17587 owes $52.20 and shows Unpaid|PASSED|
+|2|No invoice shows "$0.00" with "Partially Paid" after the reversal|PASSED|
+|3|The credit memo has all its money available again (-$400.00, Unapplied)|PASSED|
+|4|Both work orders are back to Invoiced|PASSED|
+|5|With Open only on, both invoices selected → New Payment is available and opens with $247.96 and $52.20|PASSED|
+|6|Checklist 2: one payment with $100.16 cash + $300.00 credit memo over S11744-17588 ($347.96) and S11744-17589 ($52.20). Reversed: both owe their full amounts and show Unpaid, the credit memo has its $300.00 back, the cash is gone from the account|PASSED|
+|7|Checklist 3: a cash-only payment of $347.96 on one invoice, reversed: the invoice owes $347.96 again, Unpaid, work order back to Invoiced|PASSED|
+|8|Checklist 3: a payment that used a customer deposit ($387.80 left over from a deposit on another work order) + $12.36 cash, reversed: the deposit is back to $387.80 Held, and both invoices owe their full amounts again|PASSED|
+|9|Extra: a credit-memo payment that used only part of the memo ($152.36 of $300.00) over two invoices, reversed: both invoices Unpaid at their full amounts, memo back to $300.00|PASSED|
+|10|Extra, the shape from the customer's report with three invoices: the credit paid only part of S11744-17593 and a later $160.98 cash payment paid the rest. Reversing the credit payment: S11744-17593 owes exactly its $100.00 credit share, S11744-17592 owes $52.20, S11744-17591 owes $247.96 (its $100.00 cash still counts), memo back to $400.16, New Payment opens|PASSED|
+
+On production (app.shopview.com, build v26.43.2-537378f) the same steps still break the invoices:
+* S2-1771 ($149.95) was part-paid with $120.00 cash, and one credit-memo payment of $147.95 paid the rest of it and all of S2-1772 ($118.00).
+* After the reversal, S2-1771 owes $147.95 (it should owe $29.95), and S2-1772 shows "$0.00, Partially Paid".
+* With both selected, New Payment is greyed out: "Payments cannot be made on a Paid invoice."
+* On production this only happens when the invoice that was part-paid in cash is the one the system handles first, so the first production try came out right by chance. On the branch, checks 1 and 10 were set up so that invoice was handled first, which is the case that breaks on production.
+
+*After the reversal on the branch, New Payment opens:*
+!02-new-payment-opens.png|width=902,height=405!
+
+*Checklist 2, cash and credit memo together:*
+!03-cash-and-credit-reversed.png|width=1140,height=668!
+
+*Checklist 3, cash only and a payment that used a deposit:*
+!04-cash-only-and-deposit-reversed.png|width=1140,height=844!
+
+*The customer's shape with three invoices:*
+!05-three-invoices-reported-shape.png|width=1140,height=402!
+
+h3. Not tested
+* Reversing a batch (IBS) payment, and credit-memo payments made before this deploy: the developer listed both as out of scope.
