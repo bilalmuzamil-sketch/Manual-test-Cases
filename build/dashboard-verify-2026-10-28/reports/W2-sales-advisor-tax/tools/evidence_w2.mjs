@@ -7,8 +7,8 @@ import pw from '/opt/node22/lib/node_modules/playwright/index.js';
 import { login, api } from '/home/user/Manual-test-Cases/build/testing-tools/staging-admin.mjs';
 const APP = 'https://app.staging.shopview.com', OUT = '/tmp/cln/w2/ev2'; fs.mkdirSync(OUT, { recursive: true });
 const which = process.argv[2] || 'A';
-const LOC = { A: ['39522bc6-abca-4f67-bd12-2840043c2d68', 'America/Toronto'], B: ['b3c8c820-f815-4cf1-8938-10956c5ee71a', 'Asia/Karachi'], C: ['39522bc6-abca-4f67-bd12-2840043c2d68', 'America/Toronto'], D: ['f8a8b802-7780-4b16-bf10-343caeb616b2', 'America/Edmonton'] };
-const [WP, TZ] = LOC[which];
+const LOC = { A: ['39522bc6-abca-4f67-bd12-2840043c2d68', 'America/Toronto'], B: ['b3c8c820-f815-4cf1-8938-10956c5ee71a', 'Asia/Karachi'], C: ['39522bc6-abca-4f67-bd12-2840043c2d68', 'America/Toronto'], D: ['f8a8b802-7780-4b16-bf10-343caeb616b2', 'America/Edmonton'], E: ['39522bc6-abca-4f67-bd12-2840043c2d68', 'America/Toronto'] };
+const [WP, TZ] = LOC[which] || LOC.E;
 const t = await login('admin');
 await api(t.sessCookie, 'POST', '/api/iam/change-location', { workplace_id: WP, workplace_timezone: TZ });
 const fe = await api(t.sessCookie, 'GET', '/api/auth/me/fe-permissions');
@@ -69,6 +69,28 @@ if (which === 'D') {
   const cells = line.locator('td'); meta.cells = []; for (let i = 0; i < await cells.count(); i++) meta.cells.push({ t: (await cells.nth(i).innerText()).trim(), box: await box(cells.nth(i)) });
   meta.tech = { text: (await tech.innerText().catch(() => '')).replace(/\s+/g, ' '), box: await box(tech) };
   meta.chip = (await page.locator('[data-test-id="filter_chip_range"]').innerText()).replace(/\s+/g, ' ');
+}
+if (which === 'E' || which === 'F') {
+  // F = the same capture for the screen-made reproduction (S1-38214: deposit + invoice taken through the screen)
+  const SEEDF = which === 'F' ? '/tmp/cln/w2/seed_deposit_ui.json' : '/tmp/cln/w2/seed_deposit.json', NUM = which === 'F' ? 'S1-38214' : 'S1-38212';
+  const WO = JSON.parse(fs.readFileSync(SEEDF)).wo;
+  await page.goto(`${APP}/workorders/${WO}/finance`, { waitUntil: 'domcontentloaded', timeout: 90000 }); await page.waitForTimeout(10000);
+  await page.getByText('Balance', { exact: true }).first().scrollIntoViewIfNeeded().catch(() => {}); await page.waitForTimeout(1500);
+  await page.screenshot({ path: `${OUT}/${which}1-finance.png` });
+  meta.finance = (await page.locator('main').innerText().catch(() => '')).replace(/\n+/g, ' | ').slice(0, 1500);
+  for (const t of ['Balance', '(Deposit) Oct 28, 2026 - Cash', '$105.00', '$30.00', 'Subtotal', 'Total']) meta['f_' + t] = await box(page.getByText(t, { exact: false }));
+  await page.goto(`${APP}/reports/sales-tax/invoices`, { waitUntil: 'domcontentloaded', timeout: 90000 }); await page.waitForTimeout(8000);
+  await page.locator('[data-test-id="filter_chip_range"]').click(); await page.waitForTimeout(1200);
+  await page.locator('[data-test-id="filter_preset_range_today"]').click(); await page.waitForTimeout(800); await page.keyboard.press('Escape'); await page.waitForTimeout(7000);
+  await page.screenshot({ path: `${OUT}/${which}2-tax-today.png` });
+  const row = page.locator('tr').filter({ hasText: NUM }).first();
+  meta.row = { text: (await row.innerText().catch(() => '')).replace(/\s+/g, ' '), box: await box(row) };
+  const cells = row.locator('td'); meta.cells = []; for (let i = 0; i < await cells.count(); i++) meta.cells.push({ t: (await cells.nth(i).innerText()).trim().slice(0, 40), box: await box(cells.nth(i)) });
+  await page.locator('[data-test-id="filter_chip_statuses"]').click(); await page.waitForTimeout(1200);
+  await page.locator('.q-menu').last().getByText('Partially Paid', { exact: true }).click(); await page.waitForTimeout(800); await page.keyboard.press('Escape'); await page.waitForTimeout(7000);
+  await page.screenshot({ path: `${OUT}/${which}3-tax-partially-paid.png` });
+  meta.filtered = (await page.locator('main').innerText().catch(() => '')).replace(/\n+/g, ' | ').slice(0, 900);
+  meta.chips = (await page.locator('[data-test-id^="filter_chip_"]').allInnerTexts()).map(t => t.replace(/\s+/g, ' '));
 }
 meta.net = net; meta.appVersion = await page.locator('meta[name="app-version"]').getAttribute('content').catch(() => null);
 fs.writeFileSync(`${OUT}/${which}-meta.json`, JSON.stringify(meta, null, 1));

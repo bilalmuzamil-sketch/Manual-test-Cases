@@ -1,0 +1,34 @@
+# DEFECT CANDIDATE — Sales Tax Collected shows an invoice as "Paid" when a deposit has paid only part of it, and the "Partially Paid" filter leaves it out
+Project: Reports · Report: Sales Tax Collected (Reports > Finance > Sales Tax Collected) · Prepared: 2026-10-28 · Prepared by: W2
+TestRail case: none (nothing written to TestRail)
+
+## VERDICT: ADMISSIBLE — draft ticket `TICKET-W2-6-sales-tax-status-deposit-paid.wiki`. NOT FILED (Rule 62: the Jira creation hold is active, and every ticket needs its own go-ahead).
+
+| # | Check | Verdict | Evidence |
+|---|---|---|---|
+| A1 | Reproduced TWICE on the CURRENT build | ✅ | Build `v26.43.2-f8698cb` (read from the page's `app-version` meta on each capture), staging, location DVI Test, Admin. **(1)** S1-38212, seeded 21:32 UTC: $30.00 deposit on a $135.00 job, then invoiced. The invoice reads `partially_paid`, open balance $105.00. On screen at 21:36 UTC, Sales Tax Collected > Today lists it as **Paid**, and Invoice Status: Partially Paid shows "No record matches these filters". **(2)** S1-38214, made **through the screen** at 21:42–21:45 UTC: Finance tab > **Add Deposit** > $30.00 Cash > **Record Deposit** (DEP-4816), then **Create Invoice** (all clicked on screen; creating the work order, adding the $135.00 line and marking it Complete, which are ticket steps 2–4, were done through the app's own API calls to save time, with the same result as the screen). The invoice reads `partially_paid`, balance $105.00. On screen at 21:47:51 UTC the report again shows **Paid**, and the Partially Paid filter is empty (`pictures/TAX-1-step-add-deposit.png`, `TAX-1a…`, `TAX-1b…`, `TAX-1c…`). **(3) Existing data:** a full check of every Sales Tax row across 4 locations and 16 date ranges found **9 more invoices** in the same state (part-paid by a deposit, still owing, shown "Paid"): P2-2441, P2-2442, P2-2445, P2-2416, P2-2417, P2-2315, S2-37799, S2-32138, S3-16408 (`../results-tax-status.json`). |
+| A2 | Expectation quoted VERBATIM from the CURRENT source version | ✅ | **SV-4573** "BE/FE Sales Tax report view" (Done, last updated 2026-03-12), the story that built this report. Story: *"see a Sales Tax report for all invoices (Paid, Partially Paid, and Unpaid) so that I can quickly determine how much tax I need to pay based on the status of invoices."* Requirement 2: *"**Invoice Status** (, Partially Paid, Paid)"* and *"**Invoice Paid Date** … for partially paid invoices, show the date of the **latest payment**"*. Acceptance: *"Invoice Paid Date shows the latest payment date for partially paid invoices."* The source names "Partially Paid" as a status the column shows. An invoice with $105.00 still owing is partially paid by the invoice's own record (`partially_paid`) and by its own Finance tab (Balance $105.00). |
+| A3 | NOT an unfinished feature | ✅ | The Invoice Status column, its "Partially Paid" value and the Invoice Status filter are all built. A part-paid invoice paid by an ordinary payment shows "Partially Paid" correctly (the mismatch is only with deposits). |
+| A4 | NOT already reported (incl. CLOSED) | ✅ | JQL read live 2026-10-28 ~21:35 UTC: `project = SV AND (summary ~ "Sales Tax" OR summary ~ "tax report") AND (text ~ "status" OR text ~ "deposit" OR text ~ "partially")`. 30 issues, none about this (list in `../sources/jql-duplicates-2026-10-28.txt`). The open SV-11517 (accrual / cash basis) and SV-11465 (write-off status) are about other things. |
+| A5 | NOT by design | ✅ | The same invoice reads `partially_paid` on its own record and on the **Sales By Representative** report (`payment_status: partially_paid` for S1-38212, read 21:41 UTC). The SBR spec (585629698 v30 §3, S4-R4, S8-R2) writes down the rule the app uses elsewhere: *"`prepaid` → **Paid** when the invoice's balance owed is zero; **Partially Paid** when a balance is still owed."* No source says a deposit should make an invoice read "Paid" on this report. |
+| A6 | NOT environment / data / role | ✅ | Reproduced on fresh data made through the screen (A1-2), and seen on 9 existing invoices in 2 other locations (8 in Staging Heavy Duty - 9919, 1 in Staging Lethbridge - 4310), including parts sales (P2-…) as well as work orders. Admin role, full access. |
+| A7 | Correct parent | ✅ | `Story Defect`, parent **SV-4573** (the owning story), also linked `relates to` SV-4573. Priority Medium. |
+| A8 | Evidence complete | ✅ | 4 annotated pictures (deposit step, invoice balance, report row, empty filter). Page requests: `GET /api/reporting/sales-tax-report?…dateRange=today` (row reads "paid") and `…&statuses[0]=partially_paid` (empty). Build marker on every capture. |
+| A9 | Adversarial self-review | ✅ | The six refusals below are each answered. |
+| A10 | Rule 62 (no Jira write without permission) | ✅ | Not filed. Waiting for the QA lead's go-ahead for this one ticket. |
+
+## A9 — THE SIX REFUSALS
+1. **"It isn't built."** The column, the "Partially Paid" value and the filter are all built and work for ordinary part-payments.
+2. **"The spec changed / it's obsolete."** SV-4573 is the only story for this column, and nothing newer says otherwise. The CS training page (215941122) also lists *Invoice Status: Partially Paid / Paid*. The open SV-11517 changes the date basis, not the status.
+3. **"It works as designed."** The invoice's own record, its Finance tab and the SBR report all call it partially paid. Only this report says Paid. Nothing written says a deposit counts as full payment.
+4. **"We can't reproduce it."** It was reproduced twice on fresh data (once fully through the screen), and 9 more existing invoices show it.
+5. **"It's a duplicate."** The JQL search found none (A4).
+6. **"It's the environment or the data."** It shows on fresh data made through the normal screen flow, in three locations.
+
+## Why it matters (for the ticket)
+The report exists to tell the shop how much tax it has collected, and on what. A shop that filters by "Partially Paid" to see what is still owed will miss every invoice that had a deposit. It will also count the tax on those invoices as fully collected.
+
+## Related observations (not part of this ticket)
+- On the same deposit invoices, **Invoice Paid Date** shows the time the invoice was created, not the deposit date. That is 20 invoices, e.g. P2-2445: report 2026-10-22, deposit 2026-10-21. A deposit taken before invoicing is applied when the invoice is made, so which date counts is unclear. **PO question SQ-11.**
+- **$0.00 invoices** are listed as "Paid" with a paid date even though no payment exists: 643 invoices, 428 of them read `unpaid` on their own record. **PO question SQ-11** (the same question as SQ-3 for SBR).
+- 5 old invoices that are fully paid show as "Partially Paid" (S2-12942, S2-8142, S2-8869, S2-8789, S3-9151). A fresh two-payment test (S1-38210) was correct, so these look like old data. Observation only.

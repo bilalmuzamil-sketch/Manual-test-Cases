@@ -1,0 +1,4851 @@
+{
+ "full_rows_at": "/tmp/cln/w2/full/results-tax-status.json",
+ "rows": 89490,
+ "totals": {
+  "PASS": 83298,
+  "FAIL": 5666,
+  "DEPOSIT (applied at invoicing)": 334,
+  "INFO": 192
+ },
+ "checks": [
+  {
+   "report": "Sales Tax Collected",
+   "check": "Invoice Status = the invoice's own payment status (Paid / Partially Paid)",
+   "source": "SV-4573 \"Invoice Status (, Partially Paid, Paid)\"; CS 215941122 \u00a74A",
+   "counts": {
+    "PASS": 42748,
+    "FAIL": 1900
+   },
+   "non_pass": [
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "P2-2445 report paid | invoice partially_paid (work order partially_paid, open balance 182.5, total 282.50, payments [('2026-10-21 12:28:29', 100, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "P2-2442 report paid | invoice partially_paid (work order partially_paid, open balance 182.5, total 282.50, payments [('2026-10-21 10:57:30', 100, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "P2-2441 report paid | invoice partially_paid (work order partially_paid, open balance 182.5, total 282.50, payments [('2026-10-21 10:55:08', 100, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-37799 report paid | invoice partially_paid (work order partially_paid, open balance 48.01, total 58.01, payments [('2026-10-21 14:14:14', 10, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "P2-2417 report paid | invoice partially_paid (work order partially_paid, open balance 182.5, total 282.50, payments [('2026-10-20 13:17:23', 100, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "P2-2416 report paid | invoice partially_paid (work order partially_paid, open balance 182.5, total 282.50, payments [('2026-10-20 13:15:55', 100, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "P2-2315 report paid | invoice partially_paid (work order partially_paid, open balance 314.99, total 315.00, payments [('2026-10-14 14:11:58', 0.01, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-32138 report paid | invoice partially_paid (work order partially_paid, open balance 236.96, total 347.96, payments [('2026-09-07 08:38:07', 111, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14775 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14773 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14250 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-6953 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14309 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14476 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14505 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14263 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13454 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14284 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14234 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13885 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14236 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14041 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13922 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13888 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13549 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12733 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11926 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13201 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12984 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12816 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13200 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12942 report partially_paid | invoice paid (work order paid, open balance 0, total 11,465.36, payments [('2026-02-06 15:47:39', None, 'payment'), ('2026-02-27 15:44:19', None, 'payment')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12935 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12512 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12714 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12617 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12839 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11401 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11461 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12227 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11349 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11506 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11696 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11925 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12158 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11273 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11900 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11919 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11687 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11134 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11517 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11332 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11513 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11623 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11267 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11079 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11135 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-10325 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-10839 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-10187 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-10985 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-10179 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "P2-2445 report paid | invoice partially_paid (work order partially_paid, open balance 182.5, total 282.50, payments [('2026-10-21 12:28:29', 100, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "P2-2442 report paid | invoice partially_paid (work order partially_paid, open balance 182.5, total 282.50, payments [('2026-10-21 10:57:30', 100, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "P2-2441 report paid | invoice partially_paid (work order partially_paid, open balance 182.5, total 282.50, payments [('2026-10-21 10:55:08', 100, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-37799 report paid | invoice partially_paid (work order partially_paid, open balance 48.01, total 58.01, payments [('2026-10-21 14:14:14', 10, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "P2-2417 report paid | invoice partially_paid (work order partially_paid, open balance 182.5, total 282.50, payments [('2026-10-20 13:17:23', 100, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "P2-2416 report paid | invoice partially_paid (work order partially_paid, open balance 182.5, total 282.50, payments [('2026-10-20 13:15:55', 100, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "P2-2315 report paid | invoice partially_paid (work order partially_paid, open balance 314.99, total 315.00, payments [('2026-10-14 14:11:58', 0.01, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-32138 report paid | invoice partially_paid (work order partially_paid, open balance 236.96, total 347.96, payments [('2026-09-07 08:38:07', 111, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14775 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14773 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14250 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-6953 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14309 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14476 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14505 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14263 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13454 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14284 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14234 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13885 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14236 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14041 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13922 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13888 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13549 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12733 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11926 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13201 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12984 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12816 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13200 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12935 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12512 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12714 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12617 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12839 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11401 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11461 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12227 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11349 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11506 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11696 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11925 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12158 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11273 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11900 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11919 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11687 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11134 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11517 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11332 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11513 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11623 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11267 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11079 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11135 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-10325 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-10839 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-10187 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-10985 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-10179 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12942 report partially_paid | invoice paid (work order paid, open balance 0, total 11,465.36, payments [('2026-02-06 15:47:39', None, 'payment'), ('2026-02-27 15:44:19', None, 'payment')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "P2-2445 report paid | invoice partially_paid (work order partially_paid, open balance 182.5, total 282.50, payments [('2026-10-21 12:28:29', 100, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "P2-2442 report paid | invoice partially_paid (work order partially_paid, open balance 182.5, total 282.50, payments [('2026-10-21 10:57:30', 100, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "P2-2441 report paid | invoice partially_paid (work order partially_paid, open balance 182.5, total 282.50, payments [('2026-10-21 10:55:08', 100, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-37799 report paid | invoice partially_paid (work order partially_paid, open balance 48.01, total 58.01, payments [('2026-10-21 14:14:14', 10, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "P2-2417 report paid | invoice partially_paid (work order partially_paid, open balance 182.5, total 282.50, payments [('2026-10-20 13:17:23', 100, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "P2-2416 report paid | invoice partially_paid (work order partially_paid, open balance 182.5, total 282.50, payments [('2026-10-20 13:15:55', 100, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "P2-2315 report paid | invoice partially_paid (work order partially_paid, open balance 314.99, total 315.00, payments [('2026-10-14 14:11:58', 0.01, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-32138 report paid | invoice partially_paid (work order partially_paid, open balance 236.96, total 347.96, payments [('2026-09-07 08:38:07', 111, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-14775 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-14773 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-14250 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-6953 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-14309 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-14476 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-14505 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-14263 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-13454 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-14284 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-14234 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-13885 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-14236 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-14041 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-13922 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-13888 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-13549 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-12733 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-11926 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-13201 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-12984 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-12816 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-13200 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-12942 report partially_paid | invoice paid (work order paid, open balance 0, total 11,465.36, payments [('2026-02-06 15:47:39', None, 'payment'), ('2026-02-27 15:44:19', None, 'payment')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-12935 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-12512 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-12714 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-12617 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-12839 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-11401 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-11461 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-12227 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-11349 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-11506 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-11696 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-11925 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-12158 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "P2-2445 report paid | invoice partially_paid (work order partially_paid, open balance 182.5, total 282.50, payments [('2026-10-21 12:28:29', 100, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "P2-2442 report paid | invoice partially_paid (work order partially_paid, open balance 182.5, total 282.50, payments [('2026-10-21 10:57:30', 100, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "P2-2441 report paid | invoice partially_paid (work order partially_paid, open balance 182.5, total 282.50, payments [('2026-10-21 10:55:08', 100, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-37799 report paid | invoice partially_paid (work order partially_paid, open balance 48.01, total 58.01, payments [('2026-10-21 14:14:14', 10, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "P2-2417 report paid | invoice partially_paid (work order partially_paid, open balance 182.5, total 282.50, payments [('2026-10-20 13:17:23', 100, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "P2-2416 report paid | invoice partially_paid (work order partially_paid, open balance 182.5, total 282.50, payments [('2026-10-20 13:15:55', 100, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "P2-2315 report paid | invoice partially_paid (work order partially_paid, open balance 314.99, total 315.00, payments [('2026-10-14 14:11:58', 0.01, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-32138 report paid | invoice partially_paid (work order partially_paid, open balance 236.96, total 347.96, payments [('2026-09-07 08:38:07', 111, 'deposit')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-14775 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-14773 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-14250 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-6953 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-14309 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-14476 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-14505 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-14263 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-13454 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-14284 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-14234 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-13885 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-14236 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-14041 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-13922 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-13888 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-13549 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-12733 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-11926 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-13201 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-12984 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-12816 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-13200 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-12935 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-12512 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-12714 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-12617 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-12839 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-11401 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-11461 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-12227 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-11349 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-11506 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-11696 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-11925 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-12158 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "FAIL",
+     "detail": "S2-12942 report partially_paid | invoice paid (work order paid, open balance 0, total 11,465.36, payments [('2026-02-06 15:47:39', None, 'payment'), ('2026-02-27 15:44:19', None, 'payment')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-11273 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-11900 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-11919 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-11687 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-11134 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-11517 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-11332 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-11513 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-11623 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-11267 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-11079 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-11135 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-10325 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-10839 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-10187 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-10985 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-10179 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-10168 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-10914 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-9875 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-10915 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-10550 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-10030 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-10611 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-10184 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-10334 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-10656 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-10754 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-10107 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-10733 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-10288 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-10169 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-9651 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-10240 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-10248 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-7087 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-10129 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8557 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8840 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-9901 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-10149 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-9616 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-9675 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-7450 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-9713 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-9584 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-9718 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-9702 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-9666 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-9406 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-9040 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-9496 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-9534 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-9355 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-9553 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8638 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8683 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-9382 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-9337 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8142 report partially_paid | invoice paid (work order paid, open balance 0, total 83,308.83, payments [('2025-07-07 13:43:07', None, 'payment'), ('2025-08-19 17:26:21', None, 'payment'), ('2025-08-19 17:30:23', None, 'payment')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-9141 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-9213 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8555 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8869 report partially_paid | invoice paid (work order paid, open balance 0, total 5,626.15, payments [('2025-08-13 07:59:52', None, 'payment'), ('2025-08-26 16:09:24', None, 'payment'), ('2025-09-04 17:11:29', None, 'payment')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-9156 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-9122 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8275 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8304 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8953 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8892 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8688 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8534 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8931 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8928 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8962 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8789 report partially_paid | invoice paid (work order paid, open balance 0, total 275.48, payments [('2025-08-26 16:09:24', None, 'payment')])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8458 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8481 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8714 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8700 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8466 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8600 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8615 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-8573 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-7832 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-7581 report paid | invoice unpaid (work order sent, open balance 0, total 0.00, payments [])"
+    }
+   ],
+   "non_pass_total": 1900,
+   "non_pass_capped": true
+  },
+  {
+   "report": "Sales Tax Collected",
+   "check": "Invoice Paid Date = date of the latest payment on the invoice",
+   "source": "SV-4573 \"latest payment\"",
+   "counts": {
+    "FAIL": 3764,
+    "PASS": 40550,
+    "DEPOSIT (applied at invoicing)": 334
+   },
+   "non_pass": [
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-38102 report 2026-10-28 05:25:42 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "P2-2445 report 2026-10-22 12:28:34 vs latest payment 2026-10-21 12:28:29 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "P2-2442 report 2026-10-22 10:57:35 vs latest payment 2026-10-21 10:57:30 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "P2-2441 report 2026-10-22 10:55:13 vs latest payment 2026-10-21 10:55:08 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "S2-37939 report 2026-10-21 15:33:08 vs latest payment 2026-10-21 15:32:58 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "P2-2417 report 2026-10-21 13:17:29 vs latest payment 2026-10-20 13:17:23 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "P2-2416 report 2026-10-21 13:16:01 vs latest payment 2026-10-20 13:15:55 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-36365 report 2026-10-16 17:13:58 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "P2-2315 report 2026-10-14 14:16:17 vs latest payment 2026-10-14 14:11:58 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-34583 report 2026-10-01 14:57:28 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-33468 report 2026-09-23 09:29:05 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-33452 report 2026-09-22 14:46:19 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "S2-32980 report 2026-09-11 21:16:03 vs latest payment 2026-09-11 21:15:47 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "S2-32847 report 2026-09-11 11:16:40 vs latest payment 2026-09-11 08:07:34 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-32262 report 2026-09-07 14:17:04 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "S2-32224 report 2026-09-07 13:10:57 vs latest payment 2026-09-07 13:08:28 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "S2-32217 report 2026-09-07 11:38:24 vs latest payment 2026-09-01 11:38:16 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17510 report 2026-08-31 17:07:38 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16009 report 2026-08-31 17:00:46 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17346 report 2026-08-31 17:00:09 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17406 report 2026-08-31 16:23:41 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "S2-17183 report 2026-08-19 15:59:32 vs latest payment 2026-08-19 15:53:14 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17082 report 2026-08-18 16:02:55 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17318 report 2026-08-18 15:58:03 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17225 report 2026-08-13 15:40:31 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17215 report 2026-08-13 15:11:58 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17188 report 2026-08-12 14:15:23 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17168 report 2026-08-11 21:18:17 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17092 report 2026-08-11 18:15:13 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17173 report 2026-08-11 15:33:53 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17164 report 2026-08-11 14:50:47 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16396 report 2026-08-04 18:10:31 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15496 report 2026-08-04 16:25:31 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16700 report 2026-07-31 21:55:26 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16282 report 2026-07-31 20:02:24 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15847 report 2026-07-31 16:06:24 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16894 report 2026-07-31 16:05:24 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16491 report 2026-07-31 16:04:46 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16890 report 2026-07-31 14:50:13 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15673 report 2026-07-22 16:45:43 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-10786 report 2026-07-17 16:26:27 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16545 report 2026-07-14 15:49:56 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14638 report 2026-07-13 21:27:43 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16383 report 2026-07-08 21:16:05 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16355 report 2026-07-08 20:59:54 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15574 report 2026-06-30 18:56:29 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15520 report 2026-07-02 14:04:26 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15765 report 2026-07-07 17:01:04 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16025 report 2026-06-25 20:24:11 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16127 report 2026-06-24 17:45:55 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13014 report 2026-06-16 20:35:15 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15611 report 2026-06-10 17:25:13 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15580 report 2026-06-10 15:12:11 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15693 report 2026-06-08 22:14:29 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15575 report 2026-06-05 17:18:48 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14335 report 2026-06-05 15:29:46 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15657 report 2026-06-05 14:27:01 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15623 report 2026-06-03 15:32:42 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15380 report 2026-06-01 20:08:20 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14940 report 2026-05-31 13:44:29 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14808 report 2026-05-31 13:39:44 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13275 report 2026-05-31 13:33:27 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15448 report 2026-05-31 13:30:59 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15515 report 2026-05-29 22:32:30 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15385 report 2026-05-29 15:56:34 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15494 report 2026-05-29 14:29:45 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15481 report 2026-05-28 20:55:47 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15409 report 2026-05-27 15:03:30 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15112 report 2026-05-26 21:44:46 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14866 report 2026-05-26 21:05:37 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15348 report 2026-05-25 19:46:57 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12968 report 2026-05-25 19:19:30 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14687 report 2026-05-21 19:33:05 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15298 report 2026-05-20 22:54:19 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12939 report 2026-05-20 19:02:38 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14664 report 2026-05-20 18:08:41 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14556 report 2026-05-20 18:08:03 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14727 report 2026-05-20 18:07:42 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14560 report 2026-05-20 18:06:33 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14555 report 2026-05-20 18:05:17 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14663 report 2026-05-20 18:04:22 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14728 report 2026-05-20 18:03:37 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14559 report 2026-05-20 18:03:04 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14710 report 2026-05-20 18:01:47 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14665 report 2026-05-20 18:00:16 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14673 report 2026-05-19 14:24:05 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13987 report 2026-05-13 20:40:40 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15014 report 2026-05-08 20:24:05 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14782 report 2026-05-08 15:37:24 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14775 report 2026-05-08 15:34:23 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14773 report 2026-05-08 15:33:42 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14250 report 2026-04-30 22:49:19 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-6953 report 2026-04-27 17:34:36 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14309 report 2026-04-23 17:13:27 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14476 report 2026-04-20 22:16:19 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14505 report 2026-04-20 18:30:31 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14156 report 2026-04-20 18:29:47 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14389 report 2026-04-17 19:59:12 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14263 report 2026-04-13 14:57:29 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13454 report 2026-04-10 23:00:21 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14284 report 2026-04-10 19:34:45 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14234 report 2026-04-09 18:36:17 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13885 report 2026-04-07 15:40:06 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14236 report 2026-04-06 20:27:19 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14196 report 2026-04-02 16:38:10 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14047 report 2026-04-01 14:09:28 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13483 report 2026-03-31 20:34:05 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14041 report 2026-03-31 20:29:39 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13502 report 2026-04-01 14:10:03 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13922 report 2026-03-30 20:00:01 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13888 report 2026-03-30 17:32:19 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14044 report 2026-03-25 21:41:47 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12290 report 2026-03-25 19:56:03 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12106 report 2026-03-24 19:52:31 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13484 report 2026-03-20 22:42:03 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12442 report 2026-03-20 19:39:27 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12427 report 2026-03-17 21:04:44 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13225 report 2026-03-11 16:26:30 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13549 report 2026-03-03 18:31:15 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12733 report 2026-03-03 18:23:44 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11926 report 2026-03-03 18:13:50 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13201 report 2026-02-27 22:39:13 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12984 report 2026-02-27 22:23:47 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12816 report 2026-02-27 22:23:05 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12949 report 2026-02-27 19:00:21 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13200 report 2026-02-27 18:42:05 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12935 report 2026-02-27 14:22:53 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13149 report 2026-02-26 23:54:52 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13050 report 2026-02-05 21:55:23 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12339 report 2026-01-31 00:21:11 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12512 report 2026-01-31 00:03:39 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12714 report 2026-01-31 00:03:12 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12617 report 2026-01-31 00:02:46 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12839 report 2026-01-31 00:01:54 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12552 report 2026-01-31 00:01:16 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11401 report 2026-01-22 22:02:31 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11461 report 2026-01-22 22:00:23 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12227 report 2026-01-22 21:58:29 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11349 report 2026-01-22 21:56:53 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11506 report 2026-01-22 21:55:41 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12582 report 2026-01-15 20:03:45 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11991 report 2026-01-09 20:59:47 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11696 report 2025-12-31 22:33:06 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11925 report 2025-12-31 21:31:19 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12158 report 2025-12-31 21:30:46 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11273 report 2025-12-23 14:30:57 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11918 report 2025-12-23 14:28:36 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11900 report 2025-12-23 14:27:56 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11919 report 2025-12-23 14:27:26 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11687 report 2025-12-23 14:26:53 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11574 report 2025-12-09 21:57:32 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11134 report 2025-12-09 21:51:28 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11517 report 2025-12-03 14:41:14 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11332 report 2025-12-03 14:40:02 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11513 report 2025-12-03 14:39:07 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11623 report 2025-12-03 14:38:28 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11267 report 2025-12-03 14:37:57 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11079 report 2025-12-01 14:59:38 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11135 report 2025-11-25 17:55:13 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-10873 report 2025-11-20 17:11:46 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11271 report 2025-11-20 17:09:32 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-10823 report 2025-11-20 17:08:32 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11234 report 2025-11-20 17:07:17 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11162 report 2025-11-06 18:00:31 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-10537 report 2025-11-03 21:27:32 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-10325 report 2025-10-31 22:00:03 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-10839 report 2025-10-31 20:30:51 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-10187 report 2025-10-31 20:29:25 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-10985 report 2025-10-31 20:28:30 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-10179 report 2025-10-31 20:27:05 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-38102 report 2026-10-28 05:25:42 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "P2-2445 report 2026-10-22 12:28:34 vs latest payment 2026-10-21 12:28:29 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "P2-2442 report 2026-10-22 10:57:35 vs latest payment 2026-10-21 10:57:30 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "P2-2441 report 2026-10-22 10:55:13 vs latest payment 2026-10-21 10:55:08 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "S2-37939 report 2026-10-21 15:33:08 vs latest payment 2026-10-21 15:32:58 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "P2-2417 report 2026-10-21 13:17:29 vs latest payment 2026-10-20 13:17:23 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "P2-2416 report 2026-10-21 13:16:01 vs latest payment 2026-10-20 13:15:55 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-36365 report 2026-10-16 17:13:58 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "P2-2315 report 2026-10-14 14:16:17 vs latest payment 2026-10-14 14:11:58 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-34583 report 2026-10-01 14:57:28 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-33468 report 2026-09-23 09:29:05 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-33452 report 2026-09-22 14:46:19 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "S2-32980 report 2026-09-11 21:16:03 vs latest payment 2026-09-11 21:15:47 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "S2-32847 report 2026-09-11 11:16:40 vs latest payment 2026-09-11 08:07:34 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-32262 report 2026-09-07 14:17:04 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "S2-32224 report 2026-09-07 13:10:57 vs latest payment 2026-09-07 13:08:28 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "S2-32217 report 2026-09-07 11:38:24 vs latest payment 2026-09-01 11:38:16 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17510 report 2026-08-31 17:07:38 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16009 report 2026-08-31 17:00:46 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17346 report 2026-08-31 17:00:09 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17406 report 2026-08-31 16:23:41 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "DEPOSIT (applied at invoicing)",
+     "detail": "S2-17183 report 2026-08-19 15:59:32 vs latest payment 2026-08-19 15:53:14 deposit=True"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17082 report 2026-08-18 16:02:55 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17318 report 2026-08-18 15:58:03 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17225 report 2026-08-13 15:40:31 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17215 report 2026-08-13 15:11:58 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17188 report 2026-08-12 14:15:23 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17168 report 2026-08-11 21:18:17 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17092 report 2026-08-11 18:15:13 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17173 report 2026-08-11 15:33:53 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-17164 report 2026-08-11 14:50:47 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16396 report 2026-08-04 18:10:31 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15496 report 2026-08-04 16:25:31 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16700 report 2026-07-31 21:55:26 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16282 report 2026-07-31 20:02:24 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15847 report 2026-07-31 16:06:24 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16894 report 2026-07-31 16:05:24 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16491 report 2026-07-31 16:04:46 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16890 report 2026-07-31 14:50:13 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15673 report 2026-07-22 16:45:43 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-10786 report 2026-07-17 16:26:27 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16545 report 2026-07-14 15:49:56 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14638 report 2026-07-13 21:27:43 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16383 report 2026-07-08 21:16:05 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16355 report 2026-07-08 20:59:54 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15574 report 2026-06-30 18:56:29 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15520 report 2026-07-02 14:04:26 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15765 report 2026-07-07 17:01:04 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16025 report 2026-06-25 20:24:11 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-16127 report 2026-06-24 17:45:55 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13014 report 2026-06-16 20:35:15 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15611 report 2026-06-10 17:25:13 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15580 report 2026-06-10 15:12:11 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15693 report 2026-06-08 22:14:29 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15575 report 2026-06-05 17:18:48 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14335 report 2026-06-05 15:29:46 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15657 report 2026-06-05 14:27:01 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15623 report 2026-06-03 15:32:42 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15380 report 2026-06-01 20:08:20 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14940 report 2026-05-31 13:44:29 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14808 report 2026-05-31 13:39:44 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13275 report 2026-05-31 13:33:27 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15448 report 2026-05-31 13:30:59 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15515 report 2026-05-29 22:32:30 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15385 report 2026-05-29 15:56:34 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15494 report 2026-05-29 14:29:45 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15481 report 2026-05-28 20:55:47 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15409 report 2026-05-27 15:03:30 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15112 report 2026-05-26 21:44:46 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14866 report 2026-05-26 21:05:37 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15348 report 2026-05-25 19:46:57 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12968 report 2026-05-25 19:19:30 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14687 report 2026-05-21 19:33:05 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15298 report 2026-05-20 22:54:19 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12939 report 2026-05-20 19:02:38 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14664 report 2026-05-20 18:08:41 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14556 report 2026-05-20 18:08:03 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14727 report 2026-05-20 18:07:42 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14560 report 2026-05-20 18:06:33 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14555 report 2026-05-20 18:05:17 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14663 report 2026-05-20 18:04:22 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14728 report 2026-05-20 18:03:37 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14559 report 2026-05-20 18:03:04 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14710 report 2026-05-20 18:01:47 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14665 report 2026-05-20 18:00:16 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14673 report 2026-05-19 14:24:05 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13987 report 2026-05-13 20:40:40 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-15014 report 2026-05-08 20:24:05 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14782 report 2026-05-08 15:37:24 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14775 report 2026-05-08 15:34:23 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14773 report 2026-05-08 15:33:42 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14250 report 2026-04-30 22:49:19 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-6953 report 2026-04-27 17:34:36 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14309 report 2026-04-23 17:13:27 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14476 report 2026-04-20 22:16:19 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14505 report 2026-04-20 18:30:31 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14156 report 2026-04-20 18:29:47 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14389 report 2026-04-17 19:59:12 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14263 report 2026-04-13 14:57:29 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13454 report 2026-04-10 23:00:21 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14284 report 2026-04-10 19:34:45 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14234 report 2026-04-09 18:36:17 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13885 report 2026-04-07 15:40:06 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14236 report 2026-04-06 20:27:19 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14196 report 2026-04-02 16:38:10 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14047 report 2026-04-01 14:09:28 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13483 report 2026-03-31 20:34:05 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14041 report 2026-03-31 20:29:39 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13502 report 2026-04-01 14:10:03 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13922 report 2026-03-30 20:00:01 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13888 report 2026-03-30 17:32:19 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-14044 report 2026-03-25 21:41:47 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12290 report 2026-03-25 19:56:03 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12106 report 2026-03-24 19:52:31 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13484 report 2026-03-20 22:42:03 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12442 report 2026-03-20 19:39:27 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12427 report 2026-03-17 21:04:44 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13225 report 2026-03-11 16:26:30 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13549 report 2026-03-03 18:31:15 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12733 report 2026-03-03 18:23:44 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-11926 report 2026-03-03 18:13:50 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13201 report 2026-02-27 22:39:13 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12984 report 2026-02-27 22:23:47 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12816 report 2026-02-27 22:23:05 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12949 report 2026-02-27 19:00:21 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13200 report 2026-02-27 18:42:05 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12935 report 2026-02-27 14:22:53 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13149 report 2026-02-26 23:54:52 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-13050 report 2026-02-05 21:55:23 vs latest payment None deposit=False"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "FAIL",
+     "detail": "S2-12339 report 2026-01-31 00:21:11 vs latest payment None deposit=False"
+    }
+   ],
+   "non_pass_total": 4098,
+   "non_pass_capped": true
+  },
+  {
+   "report": "Sales Tax Collected",
+   "check": "Invoices listed vs invoices whose own status is ['paid', 'partially_paid'] and whose latest payment is in the dates (status filter default)",
+   "source": "SV-4233 (paid date) / CS \u00a75",
+   "counts": {
+    "INFO": 64
+   },
+   "non_pass": [
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "INFO",
+     "detail": "2025-11-01..2026-10-29 listed 1636; listed but invoice not in that status ['S2-10179', 'S2-10187', 'S2-10325', 'S2-10537', 'S2-10786', 'S2-10823']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "INFO",
+     "detail": "2026-01-01..2026-10-29 listed 1363; listed but invoice not in that status ['S2-10786', 'S2-11349', 'S2-11401', 'S2-11461', 'S2-11506', 'S2-11696']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "INFO",
+     "detail": "2025-01-01..2025-12-31 listed 1738; listed but invoice not in that status ['S2-10030', 'S2-10058', 'S2-10107', 'S2-10112', 'S2-10129', 'S2-10149']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_quarter",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-29 listed 63; listed but invoice not in that status ['S2-34583', 'S2-36365', 'S2-38102']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_quarter",
+     "result": "INFO",
+     "detail": "2026-07-01..2026-09-30 listed 399; listed but invoice not in that status ['S2-10786', 'S2-14638', 'S2-15496', 'S2-15520', 'S2-15673', 'S2-15765']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_month",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-29 listed 63; listed but invoice not in that status ['S2-34583', 'S2-36365', 'S2-38102']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_month",
+     "result": "INFO",
+     "detail": "2026-09-01..2026-09-30 listed 100; listed but invoice not in that status ['S2-32262', 'S2-33452', 'S2-33468']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_week",
+     "result": "INFO",
+     "detail": "2026-10-25..2026-10-29 listed 2; listed but invoice not in that status ['S2-38102']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_week",
+     "result": "INFO",
+     "detail": "2026-10-18..2026-10-24 listed 24; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "custom_1d",
+     "result": "INFO",
+     "detail": "2026-10-29..2026-10-29 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "custom_31d",
+     "result": "INFO",
+     "detail": "2026-09-29..2026-10-29 listed 65; listed but invoice not in that status ['S2-34583', 'S2-36365', 'S2-38102']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "custom_32d",
+     "result": "INFO",
+     "detail": "2026-09-28..2026-10-29 listed 65; listed but invoice not in that status ['S2-34583', 'S2-36365', 'S2-38102']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "custom_182d",
+     "result": "INFO",
+     "detail": "2026-05-01..2026-10-29 listed 793; listed but invoice not in that status ['S2-10786', 'S2-12939', 'S2-12968', 'S2-13014', 'S2-13275', 'S2-13987']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "custom_183d",
+     "result": "INFO",
+     "detail": "2026-04-30..2026-10-29 listed 795; listed but invoice not in that status ['S2-10786', 'S2-12939', 'S2-12968', 'S2-13014', 'S2-13275', 'S2-13987']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "custom_366d",
+     "result": "INFO",
+     "detail": "2025-10-29..2026-10-29 listed 1654; listed but invoice not in that status ['S2-10168', 'S2-10179', 'S2-10187', 'S2-10325', 'S2-10537', 'S2-10786']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "custom_367d",
+     "result": "INFO",
+     "detail": "2025-10-28..2026-10-29 listed 1656; listed but invoice not in that status ['S2-10168', 'S2-10179', 'S2-10187', 'S2-10325', 'S2-10537', 'S2-10786']"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "last_12_months",
+     "result": "INFO",
+     "detail": "2025-11-01..2026-10-28 listed 1968; listed but invoice not in that status ['S3-10310', 'S3-10312', 'S3-10880', 'S3-10926', 'S3-11061', 'S3-11069']"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "this_year",
+     "result": "INFO",
+     "detail": "2026-01-01..2026-10-28 listed 1609; listed but invoice not in that status ['S3-11111', 'S3-11518', 'S3-11736', 'S3-11903', 'S3-12042', 'S3-12230']"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "last_year",
+     "result": "INFO",
+     "detail": "2025-01-01..2025-12-31 listed 1989; listed but invoice not in that status ['S3-10004', 'S3-10310', 'S3-10312', 'S3-10335', 'S3-10368', 'S3-10382']"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "this_quarter",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "last_quarter",
+     "result": "INFO",
+     "detail": "2026-07-01..2026-09-30 listed 408; listed but invoice not in that status ['S3-15588', 'S3-15861', 'S3-16283', 'S3-16287', 'S3-16403', 'S3-16488']"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "this_month",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "last_month",
+     "result": "INFO",
+     "detail": "2026-09-01..2026-09-30 listed 3; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "this_week",
+     "result": "INFO",
+     "detail": "2026-10-25..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "last_week",
+     "result": "INFO",
+     "detail": "2026-10-18..2026-10-24 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "custom_1d",
+     "result": "INFO",
+     "detail": "2026-10-28..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "custom_31d",
+     "result": "INFO",
+     "detail": "2026-09-28..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "custom_32d",
+     "result": "INFO",
+     "detail": "2026-09-27..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "custom_182d",
+     "result": "INFO",
+     "detail": "2026-04-30..2026-10-28 listed 935; listed but invoice not in that status ['S3-13772', 'S3-13949', 'S3-13966', 'S3-14407', 'S3-14471', 'S3-14686']"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "custom_183d",
+     "result": "INFO",
+     "detail": "2026-04-29..2026-10-28 listed 939; listed but invoice not in that status ['S3-13772', 'S3-13949', 'S3-13966', 'S3-14407', 'S3-14471', 'S3-14686']"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "custom_366d",
+     "result": "INFO",
+     "detail": "2025-10-28..2026-10-28 listed 2002; listed but invoice not in that status ['S3-10310', 'S3-10312', 'S3-10490', 'S3-10511', 'S3-10541', 'S3-10710']"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "custom_367d",
+     "result": "INFO",
+     "detail": "2025-10-27..2026-10-28 listed 2015; listed but invoice not in that status ['S3-10310', 'S3-10312', 'S3-10490', 'S3-10511', 'S3-10541', 'S3-10710']"
+    },
+    {
+     "location": "QB Location",
+     "range": "last_12_months",
+     "result": "INFO",
+     "detail": "2025-11-01..2026-10-28 listed 1; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "this_year",
+     "result": "INFO",
+     "detail": "2026-01-01..2026-10-28 listed 1; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "last_year",
+     "result": "INFO",
+     "detail": "2025-01-01..2025-12-31 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "this_quarter",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "last_quarter",
+     "result": "INFO",
+     "detail": "2026-07-01..2026-09-30 listed 1; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "this_month",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "last_month",
+     "result": "INFO",
+     "detail": "2026-09-01..2026-09-30 listed 1; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "this_week",
+     "result": "INFO",
+     "detail": "2026-10-25..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "last_week",
+     "result": "INFO",
+     "detail": "2026-10-18..2026-10-24 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "custom_1d",
+     "result": "INFO",
+     "detail": "2026-10-28..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "custom_31d",
+     "result": "INFO",
+     "detail": "2026-09-28..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "custom_32d",
+     "result": "INFO",
+     "detail": "2026-09-27..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "custom_182d",
+     "result": "INFO",
+     "detail": "2026-04-30..2026-10-28 listed 1; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "custom_183d",
+     "result": "INFO",
+     "detail": "2026-04-29..2026-10-28 listed 1; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "custom_366d",
+     "result": "INFO",
+     "detail": "2025-10-28..2026-10-28 listed 1; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "custom_367d",
+     "result": "INFO",
+     "detail": "2025-10-27..2026-10-28 listed 1; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "last_12_months",
+     "result": "INFO",
+     "detail": "2025-11-01..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "this_year",
+     "result": "INFO",
+     "detail": "2026-01-01..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "last_year",
+     "result": "INFO",
+     "detail": "2025-01-01..2025-12-31 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "this_quarter",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "last_quarter",
+     "result": "INFO",
+     "detail": "2026-07-01..2026-09-30 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "this_month",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "last_month",
+     "result": "INFO",
+     "detail": "2026-09-01..2026-09-30 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "this_week",
+     "result": "INFO",
+     "detail": "2026-10-25..2026-10-28 listed 1; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "last_week",
+     "result": "INFO",
+     "detail": "2026-10-18..2026-10-24 listed 1; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "custom_1d",
+     "result": "INFO",
+     "detail": "2026-10-28..2026-10-28 listed 1; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "custom_31d",
+     "result": "INFO",
+     "detail": "2026-09-28..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "custom_32d",
+     "result": "INFO",
+     "detail": "2026-09-27..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "custom_182d",
+     "result": "INFO",
+     "detail": "2026-04-30..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "custom_183d",
+     "result": "INFO",
+     "detail": "2026-04-29..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "custom_366d",
+     "result": "INFO",
+     "detail": "2025-10-28..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "custom_367d",
+     "result": "INFO",
+     "detail": "2025-10-27..2026-10-28 listed 2; listed but invoice not in that status []"
+    }
+   ],
+   "non_pass_total": 64,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales Tax Collected",
+   "check": "Invoices listed vs invoices whose own status is ['paid'] and whose latest payment is in the dates (status filter paid)",
+   "source": "SV-4233 (paid date) / CS \u00a75",
+   "counts": {
+    "INFO": 64
+   },
+   "non_pass": [
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "INFO",
+     "detail": "2025-11-01..2026-10-29 listed 1620; listed but invoice not in that status ['P2-2315', 'P2-2416', 'P2-2417', 'P2-2441', 'P2-2442', 'P2-2445']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "INFO",
+     "detail": "2026-01-01..2026-10-29 listed 1347; listed but invoice not in that status ['P2-2315', 'P2-2416', 'P2-2417', 'P2-2441', 'P2-2442', 'P2-2445']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "INFO",
+     "detail": "2025-01-01..2025-12-31 listed 1735; listed but invoice not in that status ['S2-10030', 'S2-10058', 'S2-10107', 'S2-10112', 'S2-10129', 'S2-10149']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_quarter",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-29 listed 56; listed but invoice not in that status ['P2-2315', 'P2-2416', 'P2-2417', 'P2-2441', 'P2-2442', 'P2-2445']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_quarter",
+     "result": "INFO",
+     "detail": "2026-07-01..2026-09-30 listed 391; listed but invoice not in that status ['S2-10786', 'S2-14638', 'S2-15496', 'S2-15520', 'S2-15673', 'S2-15765']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_month",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-29 listed 56; listed but invoice not in that status ['P2-2315', 'P2-2416', 'P2-2417', 'P2-2441', 'P2-2442', 'P2-2445']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_month",
+     "result": "INFO",
+     "detail": "2026-09-01..2026-09-30 listed 93; listed but invoice not in that status ['S2-32138', 'S2-32262', 'S2-33452', 'S2-33468']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_week",
+     "result": "INFO",
+     "detail": "2026-10-25..2026-10-29 listed 2; listed but invoice not in that status ['S2-38102']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_week",
+     "result": "INFO",
+     "detail": "2026-10-18..2026-10-24 listed 23; listed but invoice not in that status ['P2-2416', 'P2-2417', 'P2-2441', 'P2-2442', 'P2-2445', 'S2-37799']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "custom_1d",
+     "result": "INFO",
+     "detail": "2026-10-29..2026-10-29 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "custom_31d",
+     "result": "INFO",
+     "detail": "2026-09-29..2026-10-29 listed 58; listed but invoice not in that status ['P2-2315', 'P2-2416', 'P2-2417', 'P2-2441', 'P2-2442', 'P2-2445']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "custom_32d",
+     "result": "INFO",
+     "detail": "2026-09-28..2026-10-29 listed 58; listed but invoice not in that status ['P2-2315', 'P2-2416', 'P2-2417', 'P2-2441', 'P2-2442', 'P2-2445']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "custom_182d",
+     "result": "INFO",
+     "detail": "2026-05-01..2026-10-29 listed 778; listed but invoice not in that status ['P2-2315', 'P2-2416', 'P2-2417', 'P2-2441', 'P2-2442', 'P2-2445']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "custom_183d",
+     "result": "INFO",
+     "detail": "2026-04-30..2026-10-29 listed 780; listed but invoice not in that status ['P2-2315', 'P2-2416', 'P2-2417', 'P2-2441', 'P2-2442', 'P2-2445']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "custom_366d",
+     "result": "INFO",
+     "detail": "2025-10-29..2026-10-29 listed 1638; listed but invoice not in that status ['P2-2315', 'P2-2416', 'P2-2417', 'P2-2441', 'P2-2442', 'P2-2445']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "custom_367d",
+     "result": "INFO",
+     "detail": "2025-10-28..2026-10-29 listed 1640; listed but invoice not in that status ['P2-2315', 'P2-2416', 'P2-2417', 'P2-2441', 'P2-2442', 'P2-2445']"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "last_12_months",
+     "result": "INFO",
+     "detail": "2025-11-01..2026-10-28 listed 1968; listed but invoice not in that status ['S3-10310', 'S3-10312', 'S3-10880', 'S3-10926', 'S3-11061', 'S3-11069']"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "this_year",
+     "result": "INFO",
+     "detail": "2026-01-01..2026-10-28 listed 1609; listed but invoice not in that status ['S3-11111', 'S3-11518', 'S3-11736', 'S3-11903', 'S3-12042', 'S3-12230']"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "last_year",
+     "result": "INFO",
+     "detail": "2025-01-01..2025-12-31 listed 1988; listed but invoice not in that status ['S3-10004', 'S3-10310', 'S3-10312', 'S3-10335', 'S3-10368', 'S3-10382']"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "this_quarter",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "last_quarter",
+     "result": "INFO",
+     "detail": "2026-07-01..2026-09-30 listed 408; listed but invoice not in that status ['S3-15588', 'S3-15861', 'S3-16283', 'S3-16287', 'S3-16403', 'S3-16408']"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "this_month",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "last_month",
+     "result": "INFO",
+     "detail": "2026-09-01..2026-09-30 listed 3; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "this_week",
+     "result": "INFO",
+     "detail": "2026-10-25..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "last_week",
+     "result": "INFO",
+     "detail": "2026-10-18..2026-10-24 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "custom_1d",
+     "result": "INFO",
+     "detail": "2026-10-28..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "custom_31d",
+     "result": "INFO",
+     "detail": "2026-09-28..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "custom_32d",
+     "result": "INFO",
+     "detail": "2026-09-27..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "custom_182d",
+     "result": "INFO",
+     "detail": "2026-04-30..2026-10-28 listed 935; listed but invoice not in that status ['S3-13772', 'S3-13949', 'S3-13966', 'S3-14407', 'S3-14471', 'S3-14686']"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "custom_183d",
+     "result": "INFO",
+     "detail": "2026-04-29..2026-10-28 listed 939; listed but invoice not in that status ['S3-13772', 'S3-13949', 'S3-13966', 'S3-14407', 'S3-14471', 'S3-14686']"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "custom_366d",
+     "result": "INFO",
+     "detail": "2025-10-28..2026-10-28 listed 2002; listed but invoice not in that status ['S3-10310', 'S3-10312', 'S3-10490', 'S3-10511', 'S3-10541', 'S3-10710']"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "custom_367d",
+     "result": "INFO",
+     "detail": "2025-10-27..2026-10-28 listed 2015; listed but invoice not in that status ['S3-10310', 'S3-10312', 'S3-10490', 'S3-10511', 'S3-10541', 'S3-10710']"
+    },
+    {
+     "location": "QB Location",
+     "range": "last_12_months",
+     "result": "INFO",
+     "detail": "2025-11-01..2026-10-28 listed 1; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "this_year",
+     "result": "INFO",
+     "detail": "2026-01-01..2026-10-28 listed 1; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "last_year",
+     "result": "INFO",
+     "detail": "2025-01-01..2025-12-31 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "this_quarter",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "last_quarter",
+     "result": "INFO",
+     "detail": "2026-07-01..2026-09-30 listed 1; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "this_month",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "last_month",
+     "result": "INFO",
+     "detail": "2026-09-01..2026-09-30 listed 1; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "this_week",
+     "result": "INFO",
+     "detail": "2026-10-25..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "last_week",
+     "result": "INFO",
+     "detail": "2026-10-18..2026-10-24 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "custom_1d",
+     "result": "INFO",
+     "detail": "2026-10-28..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "custom_31d",
+     "result": "INFO",
+     "detail": "2026-09-28..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "custom_32d",
+     "result": "INFO",
+     "detail": "2026-09-27..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "custom_182d",
+     "result": "INFO",
+     "detail": "2026-04-30..2026-10-28 listed 1; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "custom_183d",
+     "result": "INFO",
+     "detail": "2026-04-29..2026-10-28 listed 1; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "custom_366d",
+     "result": "INFO",
+     "detail": "2025-10-28..2026-10-28 listed 1; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "custom_367d",
+     "result": "INFO",
+     "detail": "2025-10-27..2026-10-28 listed 1; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "last_12_months",
+     "result": "INFO",
+     "detail": "2025-11-01..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "this_year",
+     "result": "INFO",
+     "detail": "2026-01-01..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "last_year",
+     "result": "INFO",
+     "detail": "2025-01-01..2025-12-31 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "this_quarter",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "last_quarter",
+     "result": "INFO",
+     "detail": "2026-07-01..2026-09-30 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "this_month",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "last_month",
+     "result": "INFO",
+     "detail": "2026-09-01..2026-09-30 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "this_week",
+     "result": "INFO",
+     "detail": "2026-10-25..2026-10-28 listed 1; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "last_week",
+     "result": "INFO",
+     "detail": "2026-10-18..2026-10-24 listed 1; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "custom_1d",
+     "result": "INFO",
+     "detail": "2026-10-28..2026-10-28 listed 1; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "custom_31d",
+     "result": "INFO",
+     "detail": "2026-09-28..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "custom_32d",
+     "result": "INFO",
+     "detail": "2026-09-27..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "custom_182d",
+     "result": "INFO",
+     "detail": "2026-04-30..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "custom_183d",
+     "result": "INFO",
+     "detail": "2026-04-29..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "custom_366d",
+     "result": "INFO",
+     "detail": "2025-10-28..2026-10-28 listed 2; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "custom_367d",
+     "result": "INFO",
+     "detail": "2025-10-27..2026-10-28 listed 2; listed but invoice not in that status []"
+    }
+   ],
+   "non_pass_total": 64,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales Tax Collected",
+   "check": "Invoices listed vs invoices whose own status is ['partially_paid'] and whose latest payment is in the dates (status filter partially_paid)",
+   "source": "SV-4233 (paid date) / CS \u00a75",
+   "counts": {
+    "INFO": 64
+   },
+   "non_pass": [
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_12_months",
+     "result": "INFO",
+     "detail": "2025-11-01..2026-10-29 listed 16; listed but invoice not in that status ['S2-12942']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_year",
+     "result": "INFO",
+     "detail": "2026-01-01..2026-10-29 listed 16; listed but invoice not in that status ['S2-12942']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "INFO",
+     "detail": "2025-01-01..2025-12-31 listed 3; listed but invoice not in that status ['S2-8142', 'S2-8789', 'S2-8869']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_quarter",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-29 listed 7; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_quarter",
+     "result": "INFO",
+     "detail": "2026-07-01..2026-09-30 listed 8; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_month",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-29 listed 7; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_month",
+     "result": "INFO",
+     "detail": "2026-09-01..2026-09-30 listed 7; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "this_week",
+     "result": "INFO",
+     "detail": "2026-10-25..2026-10-29 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_week",
+     "result": "INFO",
+     "detail": "2026-10-18..2026-10-24 listed 1; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "custom_1d",
+     "result": "INFO",
+     "detail": "2026-10-29..2026-10-29 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "custom_31d",
+     "result": "INFO",
+     "detail": "2026-09-29..2026-10-29 listed 7; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "custom_32d",
+     "result": "INFO",
+     "detail": "2026-09-28..2026-10-29 listed 7; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "custom_182d",
+     "result": "INFO",
+     "detail": "2026-05-01..2026-10-29 listed 15; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "custom_183d",
+     "result": "INFO",
+     "detail": "2026-04-30..2026-10-29 listed 15; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "custom_366d",
+     "result": "INFO",
+     "detail": "2025-10-29..2026-10-29 listed 16; listed but invoice not in that status ['S2-12942']"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "custom_367d",
+     "result": "INFO",
+     "detail": "2025-10-28..2026-10-29 listed 16; listed but invoice not in that status ['S2-12942']"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "last_12_months",
+     "result": "INFO",
+     "detail": "2025-11-01..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "this_year",
+     "result": "INFO",
+     "detail": "2026-01-01..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "last_year",
+     "result": "INFO",
+     "detail": "2025-01-01..2025-12-31 listed 1; listed but invoice not in that status ['S3-9151']"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "this_quarter",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "last_quarter",
+     "result": "INFO",
+     "detail": "2026-07-01..2026-09-30 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "this_month",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "last_month",
+     "result": "INFO",
+     "detail": "2026-09-01..2026-09-30 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "this_week",
+     "result": "INFO",
+     "detail": "2026-10-25..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "last_week",
+     "result": "INFO",
+     "detail": "2026-10-18..2026-10-24 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "custom_1d",
+     "result": "INFO",
+     "detail": "2026-10-28..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "custom_31d",
+     "result": "INFO",
+     "detail": "2026-09-28..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "custom_32d",
+     "result": "INFO",
+     "detail": "2026-09-27..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "custom_182d",
+     "result": "INFO",
+     "detail": "2026-04-30..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "custom_183d",
+     "result": "INFO",
+     "detail": "2026-04-29..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "custom_366d",
+     "result": "INFO",
+     "detail": "2025-10-28..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "Staging Lethbridge - 4310",
+     "range": "custom_367d",
+     "result": "INFO",
+     "detail": "2025-10-27..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "last_12_months",
+     "result": "INFO",
+     "detail": "2025-11-01..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "this_year",
+     "result": "INFO",
+     "detail": "2026-01-01..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "last_year",
+     "result": "INFO",
+     "detail": "2025-01-01..2025-12-31 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "this_quarter",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "last_quarter",
+     "result": "INFO",
+     "detail": "2026-07-01..2026-09-30 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "this_month",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "last_month",
+     "result": "INFO",
+     "detail": "2026-09-01..2026-09-30 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "this_week",
+     "result": "INFO",
+     "detail": "2026-10-25..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "last_week",
+     "result": "INFO",
+     "detail": "2026-10-18..2026-10-24 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "custom_1d",
+     "result": "INFO",
+     "detail": "2026-10-28..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "custom_31d",
+     "result": "INFO",
+     "detail": "2026-09-28..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "custom_32d",
+     "result": "INFO",
+     "detail": "2026-09-27..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "custom_182d",
+     "result": "INFO",
+     "detail": "2026-04-30..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "custom_183d",
+     "result": "INFO",
+     "detail": "2026-04-29..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "custom_366d",
+     "result": "INFO",
+     "detail": "2025-10-28..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "QB Location",
+     "range": "custom_367d",
+     "result": "INFO",
+     "detail": "2025-10-27..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "last_12_months",
+     "result": "INFO",
+     "detail": "2025-11-01..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "this_year",
+     "result": "INFO",
+     "detail": "2026-01-01..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "last_year",
+     "result": "INFO",
+     "detail": "2025-01-01..2025-12-31 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "this_quarter",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "last_quarter",
+     "result": "INFO",
+     "detail": "2026-07-01..2026-09-30 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "this_month",
+     "result": "INFO",
+     "detail": "2026-10-01..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "last_month",
+     "result": "INFO",
+     "detail": "2026-09-01..2026-09-30 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "this_week",
+     "result": "INFO",
+     "detail": "2026-10-25..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "last_week",
+     "result": "INFO",
+     "detail": "2026-10-18..2026-10-24 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "custom_1d",
+     "result": "INFO",
+     "detail": "2026-10-28..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "custom_31d",
+     "result": "INFO",
+     "detail": "2026-09-28..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "custom_32d",
+     "result": "INFO",
+     "detail": "2026-09-27..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "custom_182d",
+     "result": "INFO",
+     "detail": "2026-04-30..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "custom_183d",
+     "result": "INFO",
+     "detail": "2026-04-29..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "custom_366d",
+     "result": "INFO",
+     "detail": "2025-10-28..2026-10-28 listed 0; listed but invoice not in that status []"
+    },
+    {
+     "location": "DVI Test",
+     "range": "custom_367d",
+     "result": "INFO",
+     "detail": "2025-10-27..2026-10-28 listed 0; listed but invoice not in that status []"
+    }
+   ],
+   "non_pass_total": 64,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales Tax Collected",
+   "check": "Fresh oracle available for the row",
+   "source": "",
+   "counts": {
+    "FAIL": 2
+   },
+   "non_pass": [
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-4080"
+    },
+    {
+     "location": "Staging Heavy Duty - 9919",
+     "range": "last_year",
+     "result": "FAIL",
+     "detail": "S2-4080"
+    }
+   ],
+   "non_pass_total": 2,
+   "non_pass_capped": false
+  }
+ ]
+}

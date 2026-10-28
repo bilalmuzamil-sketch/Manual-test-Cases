@@ -1,0 +1,56 @@
+TITLE: Sales Tax Collected – An Invoice Partly Paid by a Deposit Shows as "Paid" and Is Missing from the "Partially Paid" Filter
+TYPE: Story Defect · PARENT: SV-4573 (also link "relates to" SV-4573) · PRIORITY: Medium
+STATUS: DRAFT — NOT FILED. Ready to file once the QA lead gives the go-ahead for this ticket (the Jira creation hold is active).
+ALREADY REPORTED: none (JQL read live 28 Oct 2026).
+BASIS: SV-4573, "Invoice Status (, Partially Paid, Paid)".
+REPRODUCED: twice on staging build v26.43.2-f8698cb, 28 Oct 2026, the second time entirely through the screen; 9 older invoices show the same thing.
+
+h2. Description
+
+*On the Sales Tax Collected report, an invoice that a deposit has only partly paid shows as "Paid".* The invoice itself still shows money owed, and other reports call it partially paid. Because the report calls it "Paid", choosing *Invoice Status: Partially Paid* leaves the invoice out, so the shop cannot see it among the invoices that still owe money.
+
+This only happens when part of the money came from a deposit. When part of the money comes from an ordinary payment, the report correctly shows "Partially Paid".
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin and choose the location *DVI Test* in the top bar.
+# Click *Work Orders*, then create a new work order for any customer.
+# On the *Lines* tab, add one labour line priced at *$135.00* and approve it.
+# Mark the line *Complete*.
+# Open the *Finance* tab.
+# Click *Add Deposit*.
+# Choose *Payment Method: Cash* and enter *Deposit Amount: 30.00*.
+# Click *Record Deposit*.
+# Click *Create Invoice*.
+# Check the Finance tab: *Payments* shows $30.00 and *Balance* shows *$105.00*.
+# Click *Reports*, then *Sales Tax Collected* (under Finance).
+# Click the date filter and choose *Today*.
+# Find the new invoice and look at its *Invoice Status*.
+# Click the *Invoice Status* filter and choose *Partially Paid*.
+
+*Actual Result:*
+* At step 13 the invoice's Invoice Status reads *Paid*, even though $105.00 is still owed.
+* At step 14 the table says *"No record matches these filters"*. The invoice is not listed.
+
+*Expected Result:*
+* At step 13 the invoice's Invoice Status reads *Partially Paid*, because $105.00 of the $135.00 is still owed.
+* At step 14 the invoice is listed under *Partially Paid*.
+
+h2. Screenshots
+
+!TAX-1-step-add-deposit.png|width=1000!
+!TAX-1a-invoice-part-paid-by-deposit.png|width=1000!
+!TAX-1b-report-says-paid.png|width=1000!
+!TAX-1c-partially-paid-filter-empty.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.43.2-f8698cb}} on [staging|https://app.staging.shopview.com/reports/sales-tax/invoices], 28 Oct 2026
+* *Location:* DVI Test (also seen in Staging Heavy Duty - 9919 and Staging Lethbridge - 4310)
+* *User:* Admin
+* *Examples:* S1-38214 and S1-38212 (made for this test); older invoices P2-2441, P2-2442, P2-2445, P2-2416, P2-2417, P2-2315, S2-37799, S2-32138 (Staging Heavy Duty - 9919), S3-16408 (Staging Lethbridge - 4310)
+* For the developer: the invoice record reads {{partially_paid}} with an open balance of 105.00, and Sales By Representative returns {{payment_status: partially_paid}} for the same invoice. {{GET /api/reporting/sales-tax-report?dateRange=today}} returns the row as paid, and {{…&statuses[0]=partially_paid}} returns no rows.
+
+h2. Sources
+
+* SV-4573, "BE/FE Sales Tax report view": "*Invoice Status* (, Partially Paid, Paid)"; the story covers "all invoices (Paid, Partially Paid, and Unpaid) so that I can quickly determine how much tax I need to pay based on the status of invoices".

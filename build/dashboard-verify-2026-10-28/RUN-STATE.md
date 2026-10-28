@@ -56,3 +56,10 @@ Earlier in the same thread: "I want everything in the dashboard to be correct ..
   W3 `reports/W3-parts/` Parts Velocity, Inventory Value.
   W4 `reports/W4-finance-accounting-comms/` A/R ×3, A/P ×3, IBS Batches, QB Unexported, Export Reports, Notes, Reminders.
   On return: verify each worker's key claims against its committed evidence (Rule 86) before consolidating; then one consolidated report + workbook.
+
+## 2026-10-28 late — reports phase complete, consolidated
+- Container restarted mid-W2; /tmp survived; W2 resumed from its transcript (not re-run). QA lead supplied fresh cookies (stored /tmp only, chmod 600); session re-minted 21:31 UTC; build still v26.43.2-f8698cb.
+- Coordinator verification (Rule 86): W3 PV-D1/PV-D2 re-read live (see earlier entry); W4 AP1 482/482 at Lethbridge; W2 TAX1 re-read live — S1-38214 own record `invoice_status partially_paid`, `open_balance 105`; Sales Tax row `paid`; `statuses[0]=partially_paid` → 0 rows; SV-4573 quote "Invoice Status (, Partially Paid, Paid)" re-read verbatim; SV-8974 confirmed OBSOLETE (updated 2026-08-09).
+- W2 question ids renamed RQ-n → SQ-n (clash with W4's RQ-n).
+- Consolidated: `ShopView-Dashboard-and-Reports-Full-Check-2026-10-28.md` + `…-Findings-2026-10-28.xlsx` (built by tools/build_workbook.py + build_report_md.py from tools/findings_data.py). 4 ready to file · 16 held for PO · 8 already reported · 4 QA-lead reopen decisions · 4 not tickets · 43 PO questions.
+- Nothing filed in Jira; nothing written to TestRail. Waiting on the QA lead.

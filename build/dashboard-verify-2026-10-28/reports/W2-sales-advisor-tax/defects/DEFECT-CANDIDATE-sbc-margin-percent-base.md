@@ -2,7 +2,7 @@
 Project: Report Suite (epic SV-8582) · Report: Sales By Customer · Prepared: 2026-10-28 · Prepared by: W2 (reports phase, independent pass)
 TestRail case: none — independent pass, no TestRail writes
 
-## VERDICT: HELD — fails A2/A5: two current written sources disagree. PO question **RQ-1**. Ticket fully drafted in `TICKET-W2-1-sbc-margin-percent-base.wiki`, to be filed unchanged only if the PO answers "Margin ÷ Subtotal".
+## VERDICT: HELD — fails A2/A5: two current written sources disagree. PO question **SQ-1**. Ticket fully drafted in `TICKET-W2-1-sbc-margin-percent-base.wiki`, to be filed unchanged only if the PO answers "Margin ÷ Subtotal".
 
 | # | Check | Verdict | Evidence |
 |---|---|---|---|
@@ -26,4 +26,4 @@ TestRail case: none — independent pass, no TestRail writes
 6. "Environment." → Not environment.
 
 ## IF NOT ADMISSIBLE
-A PO decision: RQ-1. If the PO keeps the Margin base, the SBC spec S7-R11 / Terminology need the same wording as SBR §3; no ticket.
+A PO decision: SQ-1. If the PO keeps the Margin base, the SBC spec S7-R11 / Terminology need the same wording as SBR §3; no ticket.

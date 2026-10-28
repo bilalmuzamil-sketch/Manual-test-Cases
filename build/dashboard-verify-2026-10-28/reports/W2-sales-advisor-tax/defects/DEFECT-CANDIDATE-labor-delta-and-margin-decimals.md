@@ -1,7 +1,7 @@
 # DEFECT CANDIDATE — Labor Delta (SBC, SBR) and Margin % (SBC) show two decimals where the specs say one
 Project: Report Suite (epic SV-8582) · Reports: Sales By Customer, Sales By Representative · Prepared: 2026-10-28 · Prepared by: W2
 
-## VERDICT: HELD — written sources disagree. PO question **RQ-2**.
+## VERDICT: HELD — written sources disagree. PO question **SQ-2**.
 
 | # | Check | Verdict | Evidence |
 |---|---|---|---|

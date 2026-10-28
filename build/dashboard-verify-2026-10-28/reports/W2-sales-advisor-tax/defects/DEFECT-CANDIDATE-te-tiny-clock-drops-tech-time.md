@@ -2,7 +2,7 @@
 Project: Reports · Technician Efficiency (Invoiced and Completed tabs) · Prepared: 2026-10-28 · Prepared by: W2
 TestRail case: none — no TestRail writes
 
-## VERDICT: HELD — fails A2/A5: the stories say tech time is shared in proportion to clocked time, but the Completed-tab story also says to keep the Invoiced tab's existing calculation, and the 0.01-hour cut-off is part of that existing calculation; no document mentions the cut-off either way. PO question **RQ-6**. No ticket text yet beyond this file; it is a one-paragraph change once the PO answers.
+## VERDICT: HELD — fails A2/A5: the stories say tech time is shared in proportion to clocked time, but the Completed-tab story also says to keep the Invoiced tab's existing calculation, and the 0.01-hour cut-off is part of that existing calculation; no document mentions the cut-off either way. PO question **SQ-6**. No ticket text yet beyond this file; it is a one-paragraph change once the PO answers.
 
 | # | Check | Verdict | Evidence |
 |---|---|---|---|
@@ -26,4 +26,4 @@ TestRail case: none — no TestRail writes
 6. "Environment." → Real location data.
 
 ## IF NOT ADMISSIBLE
-PO decision RQ-6. Impact if the PO wants the share credited: the technician's Tech Hrs and the Totals rise by the lost tech time; the line's Efficiency would need its own display rule (it would be thousands of %).
+PO decision SQ-6. Impact if the PO wants the share credited: the technician's Tech Hrs and the Totals rise by the lost tech time; the line's Efficiency would need its own display rule (it would be thousands of %).

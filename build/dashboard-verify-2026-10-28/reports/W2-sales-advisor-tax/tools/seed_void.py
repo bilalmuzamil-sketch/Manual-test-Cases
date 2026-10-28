@@ -7,7 +7,7 @@ import json, os, sys, subprocess, datetime as dt
 sys.path.insert(0, os.path.dirname(__file__))
 from common import *
 WID_ = WID['DVI Test']; H = {'X-Location-ID': WID_}
-ST = '/tmp/cln/w2/seed_void.json'
+ST = os.environ.get('SEED_STATE', '/tmp/cln/w2/seed_void.json')
 S = json.load(open(ST)) if os.path.exists(ST) else {}
 def save(): json.dump(S, open(ST, 'w'), indent=1)
 def call(m, p, body=None):

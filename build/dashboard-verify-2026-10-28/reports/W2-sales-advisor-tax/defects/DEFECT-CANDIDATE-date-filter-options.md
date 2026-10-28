@@ -1,7 +1,7 @@
 # DEFECT CANDIDATE — Sales By Customer / Sales By Representative date options differ from their specs
 Project: Report Suite (epic SV-8582) · Prepared: 2026-10-28 · Prepared by: W2
 
-## VERDICT: HELD — both reports use the suite-wide filter bar; which list governs is a PO call. PO question **RQ-7**. Every date window the options produce is correct (checked below), so no figure is wrong.
+## VERDICT: HELD — both reports use the suite-wide filter bar; which list governs is a PO call. PO question **SQ-7**. Every date window the options produce is correct (checked below), so no figure is wrong.
 
 | # | Check | Verdict | Evidence |
 |---|---|---|---|

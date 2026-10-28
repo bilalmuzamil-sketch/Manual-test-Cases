@@ -2,7 +2,7 @@
 Project: Reports (no epic — legacy report, not in the menu) · Report: Follow Up (/reports/sales-follow-up) · Prepared: 2026-10-28 · Prepared by: W2
 TestRail case: none — no TestRail writes
 
-## VERDICT: HELD — fails A2 (no written source for this report exists) and A5 (it is switched off in the menu, so it may be retired on purpose). PO question **RQ-5**. Ticket drafted in `TICKET-W2-5-follow-up-report-server-error.wiki`, to be filed only if the PO says the report is still supported.
+## VERDICT: HELD — fails A2 (no written source for this report exists) and A5 (it is switched off in the menu, so it may be retired on purpose). PO question **SQ-5**. Ticket drafted in `TICKET-W2-5-follow-up-report-server-error.wiki`, to be filed only if the PO says the report is still supported.
 
 | # | Check | Verdict | Evidence |
 |---|---|---|---|
