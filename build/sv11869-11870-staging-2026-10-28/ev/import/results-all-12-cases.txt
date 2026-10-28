@@ -1,0 +1,36 @@
+== labor-empty
+TOASTS []
+200 /api/imports/work-order-historical => {"errors":[{"rowNumber":2,"message":"Line Title cannot be empty."}],"invoicesCreated":0,"invoicesFailed":1,"duplicatedInvoices":[]}
+== part-empty
+TOASTS []
+200 /api/imports/work-order-historical => {"errors":[{"rowNumber":2,"message":"Line Title cannot be empty."}],"invoicesCreated":0,"invoicesFailed":1,"duplicatedInvoices":[]}
+== labor-filled
+TOASTS ["check_circle All invoices have been imported successfully. Close"]
+200 /api/imports/work-order-historical => {"duplicatedInvoices":[]}
+== shop-supplies-empty
+TOASTS ["check_circle All invoices have been imported successfully. Close"]
+200 /api/imports/work-order-historical => {"duplicatedInvoices":[]}
+== misc-empty
+TOASTS ["check_circle All invoices have been imported successfully. Close"]
+200 /api/imports/work-order-historical => {"duplicatedInvoices":[]}
+== credit-memo-empty
+TOASTS ["check_circle All invoices have been imported successfully. Close"]
+200 /api/imports/work-order-historical => {"duplicatedInvoices":[]}
+== sublet-empty
+TOASTS []
+200 /api/imports/work-order-historical => {"errors":[{"rowNumber":2,"message":"Line Title cannot be empty."}],"invoicesCreated":0,"invoicesFailed":1,"duplicatedInvoices":[]}
+== old-header-empty
+TOASTS []
+200 /api/imports/work-order-historical => {"errors":[{"rowNumber":2,"message":"Line Title cannot be empty."}],"invoicesCreated":0,"invoicesFailed":1,"duplicatedInvoices":[]}
+== old-header-filled
+TOASTS ["check_circle All invoices have been imported successfully. Close"]
+200 /api/imports/work-order-historical => {"duplicatedInvoices":[]}
+== invoice-date-empty
+TOASTS []
+200 /api/imports/work-order-historical => {"errors":[{"rowNumber":2,"message":"InvoiceDate and InvoiceNumber cannot be empty."}],"invoicesCreated":0,"invoicesFailed":1,"duplicatedInvoices":[]}
+== lowercase-shop-supplies
+TOASTS []
+200 /api/imports/work-order-historical => {"errors":[{"rowNumber":3,"message":"Line Title cannot be empty."}],"invoicesCreated":0,"invoicesFailed":1,"duplicatedInvoices":[]}
+== title-zero
+TOASTS []
+200 /api/imports/work-order-historical => {"errors":[{"rowNumber":2,"message":"Line Title cannot be empty."}],"invoicesCreated":0,"invoicesFailed":1,"duplicatedInvoices":[]}

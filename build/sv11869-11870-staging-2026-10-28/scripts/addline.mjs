@@ -2,7 +2,7 @@
 // Usage: node addline.mjs <woId> <title> <description>
 import {open} from '../../testing-tools/qa-session.mjs'; import fs from 'fs';
 const [wo,title,desc]=process.argv.slice(2);
-const s=await open({env:'staging',ticket:'staging',cookies:JSON.parse(fs.readFileSync('/tmp/qa11631/cookies.json','utf8')),dir:'/tmp/qa30',user:'bilal.muzamil@shopview.com',quick:'admin',vp:{width:1440,height:900}});
+const s=await open({env:'staging',ticket:'staging',cookies:JSON.parse(fs.readFileSync('/tmp/qa11631/cookies.json','utf8')),dir:process.env.QA_DIR||'/tmp/qa30',user:'bilal.muzamil@shopview.com',quick:'admin',vp:{width:1440,height:900}});
 const p=s.page; await s.go('/workorders'); await p.evaluate(()=>localStorage.setItem('location',JSON.stringify('b3c8c820-f815-4cf1-8938-10956c5ee71a'))); await s.go(`/workorders/${wo}/lines`); await p.waitForTimeout(4000);
 if(!(await p.locator('.q-dialog [data-test-id="select_line_canned_line"]').count())){ const nb=p.locator('[data-test-id="button_new_line"], [data-test-id="button_add_line"]'); console.log('new line btns',await nb.count(), JSON.stringify(await p.evaluate(()=>[...document.querySelectorAll('button')].filter(e=>/New Line/.test(e.innerText)).map(e=>e.getAttribute('data-test-id'))))); await (await nb.count()?nb.first():p.getByRole('button',{name:'New Line'}).first()).click(); await p.waitForTimeout(1500); }
 await p.locator('.q-dialog [data-test-id="select_line_canned_line"]').click(); await p.waitForTimeout(400);

@@ -21,5 +21,5 @@ cases=(
  "title-zero|$(mk title-zero "$NEW" "$(row ZZ11870-Z$T Labor 0 'excessive play' '' '')")"
 )
 OUT=ev/import/results${ENVX:+-$ENVX}.txt; : > $OUT
-for c in "${cases[@]}"; do n=${c%%|*}; f=${c#*|}; echo "== $n" | tee -a $OUT
+for c in "${cases[@]}"; do n=${c%%|*}; f=${c#*|}; [ -n "$ONLY" ] && ! echo ",$ONLY," | grep -q ",$n," && continue; echo "== $n" | tee -a $OUT
   timeout 200 node scripts/imp.mjs $f ev/import/${ENVX:-staging}-$n 2>&1 | grep -E 'api/imports|TOASTS|AFTER IMPORT' | cut -c1-400 | tee -a $OUT; done

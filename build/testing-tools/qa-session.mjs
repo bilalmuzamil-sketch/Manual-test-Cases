@@ -12,7 +12,7 @@ import {spawnSync} from 'child_process';
 import pkg from '/opt/node22/lib/node_modules/playwright/index.js'; const {chromium}=pkg;
 import fs from 'fs';
 
-const CHROME='/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
+const CHROME=(()=>{ for(const c of ['/opt/pw-browsers/chromium','/opt/pw-browsers/chromium-1243/chrome-linux/chrome','/opt/pw-browsers/chromium-1194/chrome-linux/chrome']){ try{ if(fs.statSync(c).isFile()) return c; }catch(e){} } return undefined; })();
 const PROD={app:'https://app.shopview.com', api:'https://api.shopview.com'};
 const STAGING={app:'https://app.staging.shopview.com', api:'https://api.staging.shopview.com'};
 const branch=t=>({app:`https://sv${t}.qa.shopview.com`, api:`https://sv${t}api.qa.shopview.com`});
@@ -42,6 +42,7 @@ export async function open({env='prod', ticket=null, dir='/tmp/qa', user=null, p
   // quick: which dev quick-login button to press on staging/branches ('admin' | 'tech'). Added 2026-10-08:
   // the option was being passed by callers but silently ignored, so a 'tech' run was really an admin run.
   // record: a folder path -> the whole session is filmed (see recording.mjs: finishRecording()).
+  tz = tz || process.env.SV_TZ_BROWSER || null;
   const H = env==='prod' ? PROD : env==='staging' ? STAGING : branch(ticket);
   const b = await chromium.launch({executablePath:CHROME, args:[
     '--proxy-server=http://127.0.0.1:'+port(dir),'--ignore-certificate-errors','--no-sandbox','--ssl-version-max=tls1.2'],

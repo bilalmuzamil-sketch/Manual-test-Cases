@@ -1,0 +1,16 @@
+== labor-empty
+TOASTS []
+AFTER IMPORT Invoices Import Preview cloud_upload Select CSV File cloud_download Download Template Import Invoices Failed Rows Failed Row Number Failure Reason 2 Line Title cannot be empty. Invoices Created: 0Invoices Failed: 1
+200 /api/imports/work-order-historical => {"errors":[{"rowNumber":2,"message":"Line Title cannot be empty."}],"invoicesCreated":0,"invoicesFailed":1,"duplicatedInvoices":[]}
+== part-empty
+TOASTS []
+AFTER IMPORT Invoices Import Preview cloud_upload Select CSV File cloud_download Download Template Import Invoices Failed Rows Failed Row Number Failure Reason 2 Line Title cannot be empty. Invoices Created: 0Invoices Failed: 1
+200 /api/imports/work-order-historical => {"errors":[{"rowNumber":2,"message":"Line Title cannot be empty."}],"invoicesCreated":0,"invoicesFailed":1,"duplicatedInvoices":[]}
+== shop-supplies-empty
+TOASTS ["check_circle All invoices have been imported successfully. Close"]
+AFTER IMPORT Invoices Import Preview cloud_upload Select CSV File cloud_download Download Template Import Invoices To do a invoices import you need to have a csv file with following columns: Shop Location, Customer, VIN, Year, Make, Model, Unit #, Unit Type, Mileage, Hours, Invoice Number, Invoice Date, PO, Service Advisor, Item, Line Title, Line Description, Tech Story, Part #, Part Description, 
+200 /api/imports/work-order-historical => {"duplicatedInvoices":[]}
+== old-header-empty
+TOASTS []
+AFTER IMPORT Invoices Import Preview cloud_upload Select CSV File cloud_download Download Template Import Invoices Failed Rows Failed Row Number Failure Reason 2 Line Title cannot be empty. Invoices Created: 0Invoices Failed: 1
+200 /api/imports/work-order-historical => {"errors":[{"rowNumber":2,"message":"Line Title cannot be empty."}],"invoicesCreated":0,"invoicesFailed":1,"duplicatedInvoices":[]}

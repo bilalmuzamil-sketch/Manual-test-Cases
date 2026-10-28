@@ -8,8 +8,10 @@ await s.go('/administration/settings'); await p.evaluate(L=>localStorage.setItem
 await p.locator('input[type=file]').first().setInputFiles(file); await p.waitForTimeout(3000);
 const txt=()=>p.evaluate(()=>document.querySelector('main, .q-page')?.innerText.replace(/\s+/g,' ').slice(0,1500));
 const toasts=()=>p.evaluate(()=>[...document.querySelectorAll('.q-notification')].map(e=>e.innerText.replace(/\s+/g,' ')));
-console.log('AFTER SELECT',await txt()); await p.screenshot({path:shot+'-1-selected.png',fullPage:true});
+const boxes=async()=>p.evaluate(()=>{ const out=[]; const want=/Line Title cannot be empty|InvoiceDate and InvoiceNumber cannot be empty|Invoices Created|Invoices Failed|imported successfully|failed to import|^(Labor|Part|Shop Supplies|Misc|Credit Memo|Sublet|shop supplies)$|Line Title|What are you doing/;
+  for(const e of document.querySelectorAll('td,th,div,span,p')){ const t=(e.innerText||'').trim(); if(!t||t.length>90||!want.test(t)) continue; if([...e.children].some(c=>want.test((c.innerText||'').trim()))) continue; const r=e.getBoundingClientRect(); if(r.width<2||r.height<2) continue; out.push({t,x:Math.round(r.x+scrollX),y:Math.round(r.y+scrollY),w:Math.round(r.width),h:Math.round(r.height)}); } return out; });
+console.log('AFTER SELECT',await txt()); fs.writeFileSync(shot+'-1-boxes.json',JSON.stringify(await boxes())); await p.screenshot({path:shot+'-1-selected.png',fullPage:true});
 const ib=p.locator('[data-test-id="button_import_invoices"]'); console.log('import enabled',await ib.isEnabled());
-if(await ib.isEnabled()){ await ib.click(); await p.waitForTimeout(6000); const d=await p.evaluate(()=>[...document.querySelectorAll('.q-dialog')].map(e=>e.innerText.replace(/\s+/g,' ').slice(0,800))); console.log('DIALOG',JSON.stringify(d)); console.log('TOASTS',JSON.stringify(await toasts())); console.log('AFTER IMPORT',await txt()); await p.screenshot({path:shot+'-2-after-import.png',fullPage:true}); }
+if(await ib.isEnabled()){ await ib.click(); await p.waitForTimeout(6000); const d=await p.evaluate(()=>[...document.querySelectorAll('.q-dialog')].map(e=>e.innerText.replace(/\s+/g,' ').slice(0,800))); console.log('DIALOG',JSON.stringify(d)); console.log('TOASTS',JSON.stringify(await toasts())); console.log('AFTER IMPORT',await txt()); await p.screenshot({path:shot+'-2-after-import.png',fullPage:true}); fs.writeFileSync(shot+'-2-boxes.json',JSON.stringify(await boxes())); }
 console.log('REQUESTS\n'+resp.join('\n'));
 await s.close(); process.exit(0);

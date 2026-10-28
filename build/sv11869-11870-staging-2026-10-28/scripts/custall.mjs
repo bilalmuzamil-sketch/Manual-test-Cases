@@ -1,0 +1,6 @@
+import {open} from '../../testing-tools/qa-session.mjs'; import fs from 'fs';
+const s=await open({env:'staging',ticket:'x',cookies:JSON.parse(fs.readFileSync('/tmp/qa11631/cookies.json','utf8')),dir:process.env.QA_DIR||'/tmp/qa30',user:'bilal.muzamil@shopview.com',quick:'admin'});
+const LOC='b3c8c820-f815-4cf1-8938-10956c5ee71a'; await s.go('/workorders'); await s.page.evaluate(L=>localStorage.setItem('location',JSON.stringify(L)),LOC); const H={headers:{'x-location-id':LOC}};
+for(const c of ['6a7b6afc-084d-4584-aacb-773bcd71cbcd','b3406baf-3b85-424a-a2c8-c3ed5f4da4b0']){ let all=[]; for(let pg=1;pg<=10;pg++){ const w=await s.api(`/api/work-orders?pagination%5BrowsPerPage%5D=100&pagination%5Bpage%5D=${pg}&pagination%5BsortBy%5D=rawNumber&pagination%5Bdescending%5D=true&filters%5B0%5D%5Bfield%5D=company_id&filters%5B0%5D%5Bvalue%5D=${c}&search=`,H); const ws=w.json?.data?.work_orders||[]; all=all.concat(ws); if(ws.length<100) break; }
+  const nums=all.map(x=>x.number||x.displayNumber||x.display_number||''); console.log(c,'total',all.length,'non-S2:',JSON.stringify(nums.filter(n=>!/^S2-/.test(n)).slice(0,20)), 'keys', Object.keys(all[0]||{}).filter(k=>/num|invoice|import|histor/i.test(k)).join(',')); }
+await s.close(); process.exit(0);

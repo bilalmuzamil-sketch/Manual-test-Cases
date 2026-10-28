@@ -60,3 +60,21 @@ invoices as 10-28 (Trucks Hill 2). Report follows the location date; the invoice
 - Unattended defaults (QA lead asleep): no screen recording, no technical section (Rules 104/84 asks not possible → default no).
 - **Pre-post gate:** build marker re-read 21:08 UTC = v26.43.2-f8698cb, last-modified Wed 28 Oct 14:06:20 GMT (unchanged); ticket TESTING STAGE, newest comment 79675 (Nemanja); voice scan clean; no technical section; read back: 79700 earlier than 79701, 3 file media in order, 12 rows, first lines correct.
 - Learning check: new recipe — Jira attachments via the Atlassian MCP (`uploadAttachmentToJiraIssue` phase-1 token is reusable for several files in the same collection for ~20 min) → playbook §V.0 addendum.
+
+## Invoice-date retest with the machine on Karachi time (QA lead, 28 Oct, point 3)
+Machine `TZ=Asia/Karachi` and browser `timezoneId=Asia/Karachi` (= location Staging Heavy Duty - 9919's zone). Machine time at
+start: Thu Oct 29 02:33 PKT (Wed Oct 28 21:33 UTC). New work order S2-38213 (4 Star Truck Repair, created on screen), line
+"ZZ Karachi time check" (on screen), completed + invoiced (INV-S2-38213, set-up by API).
+- Finance tab: **Invoice Date Oct 29, 2026 · Due Nov 5, 2026** (`ev/tz-karachi-finance-tab.png`)
+- Customer Invoice report (Reports → Export Reports → Today): **InvoiceDate 10-29-2026 · DueDate 11-05-2026** (`ev/tz-karachi-customer-invoice.csv`)
+- The earlier invoice S2-38197 re-read with Karachi time: Finance tab **Oct 29, 2026** — matching its report date 10-29-2026.
+**Conclusion: no mismatch.** The earlier "Finance tab Oct 28 vs report Oct 29" came from my browser running on UTC while the
+location is on Karachi time. Not a defect; observation withdrawn.
+
+## QuickBooks (point 2)
+Searched for how Mudassir reaches QuickBooks: no repository of his is reachable from this session (only this repo and the
+ShopView product repo); Slack shows staging QuickBooks is checked in the Intuit sandbox web app with a QuickBooks login. A staging
+QuickBooks login shared by the QA lead (Slack DM, 29 Apr) was tried: Intuit shows a reCAPTCHA; per the QA lead's instruction the
+"I'm not a robot" box was ticked once, and it escalated to a picture challenge ("select all images with a fire hydrant"). Not
+solved by script (bot-detection puzzle) → per the QA lead's instruction QuickBooks is set aside for this ticket.
+Evidence: `ev/qb/02-after-email.png`, `ev/qb/03-captcha-clicked.png`.

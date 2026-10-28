@@ -1,7 +1,7 @@
 // Work Orders → New → customer (typed) + first asset → Save (+Create on the confirmation) ; prints the new WO id and New Line dialog fields.
 import {open} from '../../testing-tools/qa-session.mjs'; import fs from 'fs';
 const cust=process.argv[2]||'ZZAUTOTEST';
-const s=await open({env:'staging',ticket:'staging',cookies:JSON.parse(fs.readFileSync('/tmp/qa11631/cookies.json','utf8')),dir:'/tmp/qa30',user:'bilal.muzamil@shopview.com',quick:'admin',vp:{width:1440,height:900}});
+const s=await open({env:'staging',ticket:'staging',cookies:JSON.parse(fs.readFileSync('/tmp/qa11631/cookies.json','utf8')),dir:process.env.QA_DIR||'/tmp/qa30',user:'bilal.muzamil@shopview.com',quick:'admin',vp:{width:1440,height:900}});
 const p=s.page; await s.go('/workorders'); await p.waitForTimeout(4000);
 const ids=()=>p.evaluate(()=>[...new Set([...document.querySelectorAll('.q-dialog [data-test-id]')].filter(e=>e.getBoundingClientRect().width>0).map(e=>e.getAttribute('data-test-id').replace(/[0-9a-f]{8}-[0-9a-f-]{27}/g,'<id>')))].join(' ; '));
 await p.locator('[data-test-id="button_new_work_order"]').click(); await p.waitForTimeout(2000); console.log('dialog ids',await ids());

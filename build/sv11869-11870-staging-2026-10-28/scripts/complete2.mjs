@@ -1,7 +1,7 @@
 // Completes every line + the work order and creates the invoice (set-up). Prints each status.
 import {open} from '../../testing-tools/qa-session.mjs'; import fs from 'fs';
-const WO='99e6423d-3b81-4a2a-803f-5b22d7b04f86', LOC='b3c8c820-f815-4cf1-8938-10956c5ee71a';
-const s=await open({env:'staging',ticket:'staging',cookies:JSON.parse(fs.readFileSync('/tmp/qa11631/cookies.json','utf8')),dir:'/tmp/qa30',user:'bilal.muzamil@shopview.com',quick:'admin'});
+const WO=process.argv[2]||'99e6423d-3b81-4a2a-803f-5b22d7b04f86', LOC='b3c8c820-f815-4cf1-8938-10956c5ee71a';
+const s=await open({env:'staging',ticket:'staging',cookies:JSON.parse(fs.readFileSync('/tmp/qa11631/cookies.json','utf8')),dir:process.env.QA_DIR||'/tmp/qa30',user:'bilal.muzamil@shopview.com',quick:'admin'});
 await s.go('/workorders'); await s.page.evaluate(L=>localStorage.setItem('location',JSON.stringify(L)),LOC);
 const H={'x-location-id':LOC}; const get=u=>s.api(u,{headers:H}); const post=(u,b)=>s.api(u,{method:'POST',headers:Object.assign({'Content-Type':'application/json'},H),body:JSON.stringify(b)});
 const L=(await get(`/api/work-orders/lines/${WO}`)).json; const arr=(L?.data?.lines||L?.data||[]); const lines=(Array.isArray(arr)?arr:Object.values(arr).find(Array.isArray)||[]);
