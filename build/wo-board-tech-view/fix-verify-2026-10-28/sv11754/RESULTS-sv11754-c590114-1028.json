@@ -1,0 +1,21 @@
+{
+ "pass_meta": {"env": "QA branch sv11754", "build": "v26.43.2-539491f", "date": "28 October 2026", "note": "SV-11754 (padlock tooltip) verified on its QA branch; C590114 run in full there"},
+ "results": {
+  "C590114": {
+   "verdict": "Passed",
+   "observed": [
+    "Passed on the QA branch sv11754 (fix for SV-11754), every step as written, Staging Heavy Duty - 9919.",
+    "Step 1: the number is the link blue (#175CD3), not black.",
+    "Step 2: a thin rounded bar with 0% beside it in small grey text.",
+    "Step 3: Status, Waiting On Parts and Progress sit at the left of their columns.",
+    "Step 4: a small round avatar sits before the advisor's name.",
+    "Steps 5 and 6: overlapping round avatars, the lead first; hovering the first opens a name bubble with the lead's name above it.",
+    "Step 7: Waiting On Parts shows a dash, not a blank; Total price sits at the right of its column.",
+    "Steps 8 and 9: a small padlock sits after the Invoiced work order's number, and resting the mouse on it opens the app's dark tooltip above it reading Invoiced · can't be reassigned (picture). Board View's card padlock does the same.",
+    "Step 10: List's Clocked In cell shows the same technician name in the same style.",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11754 (TESTING QA) - passed on its QA branch; QA Passed comment posted on the ticket."
+   ],
+   "pictures": ["/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-28/sv11754/SV-11754-fixed.png"]
+  }
+ }
+}

@@ -1,0 +1,11 @@
+11:28:27 trying the saved session
+11:28:33 saved session check -> 200
+11:28:33 reused the saved session
+/home/user/Manual-test-Cases/build/wo-board-tech-view/run498-2026-10-08/sv11754-hovers-1028.mts:13
+const ls = ((d: any) => Array.isArray(d) ? d : d?.collection ?? [])((await a.get(`/api/work-orders/lines/${w1.id}`)).body?.data); o.lines = ls.length;
+                                                                                                              ^
+
+TypeError: Cannot read properties of undefined (reading 'id')
+    at <anonymous> (/home/user/Manual-test-Cases/build/wo-board-tech-view/run498-2026-10-08/sv11754-hovers-1028.mts:13:111)
+
+Node.js v22.22.0
