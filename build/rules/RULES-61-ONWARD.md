@@ -5238,3 +5238,17 @@ Verbatim: *"make a permanent rule that whenever you test the tickets against the
 (6b) **When the PRD changes a rule, find the tests by TOPIC as well as by rule id.** The 27 Oct read-through found five analytics tests still doing density in Board View six days after PRD v73/v75 moved density to Tech View only — the earlier sweep had gone by the cases citing S3-R11/S6-R1, and these five cite S12 rules while saying "density". Search titles, set-up, steps and expected for the topic's own words (here: density, Compact, Comfortable, Regular) and the screen it now lives on.
 
 **Worked example:** `build/wo-board-tech-view/source-verify-2026-10-27-analytics-logic/ANALYTICS-LOGIC-READ.md`.
+
+## RULE 138 — WHENEVER I ASK FOR A NEW SIGN-IN, I GIVE THE FULL WEB ADDRESS TO SIGN IN AT (QA lead 2026-10-28, permanent)
+
+**His words, 28 Oct 2026:** *"Whenever you ask for a new sign in give the full URL -> Save it as a rule"*.
+
+Every ask for a fresh sign-in (a QA branch, staging or production session) names the **full, clickable web address** he should open to sign in — the exact site the test will run on (e.g. `https://sv11567.qa.shopview.com/`), never "the test site" or a branch name alone — plus, in plain words, what to send back once signed in. Where more than one site needs the same sign-in, list each full address. Applies to every message, reminder and scheduled check-in that asks for a sign-in (Rule 134: a reminder repeats the whole ask, address included).
+
+## RULE 130 — AMENDMENT 2026-10-28: THE ANSWER IS "ALWAYS" — ATTACH THE ANNOTATED SCREENSHOTS TO EVERY RESULT, DO NOT ASK AGAIN
+
+**His words, 28 Oct 2026, answering "Do you want the annotated screenshots added with the result comments?":** *"ALWAYS"*. From now on every result written to a run carries its annotated screenshots (`push_results_to_run.py --screenshots yes`); the per-batch question is no longer asked. The pictures are still made for every Passed/Failed as before.
+
+## RULE 136 — AMENDMENT 2026-10-28: A FAST-FOLLOW TEST THAT IS IN NO RUN GOES INTO THE RUN ONCE ITS TICKET AND TESTS PASS
+
+**His words, 28 Oct 2026:** *"Once the ticket and tests pass then move it to the test run and mark it as passed."* — asked where the results of the SV-11567 Undo tests should go, since the Fast-follow folder's tests sit in no run. When a ticket passes QA and its linked tests pass on its branch, add those tests to the project's current run (Work Orders board: run 498, union-only — Rule 34) and record them Passed with the usual comment and annotated screenshots. Before they pass, they stay out of the run (results and pictures are kept in the evidence folder).

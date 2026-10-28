@@ -705,3 +705,8 @@
 - **New C847734** (Fast-follow section 87347): "Undo puts each line back to the technician it had; an empty line stays empty" — the v78 rule had no test (Rule 137(6b)). Set-up copied from C368140 (Automated — not touched); positive control = a second drag without Undo moves Line 1. Script `run498-2026-10-08/sv11567-undo-1028.mts` (`ONLY=C682424,…,C847734`).
 - The saved QA sign-in still answers `401 sso_required` (expired 27 Oct); a fresh one is needed from the QA lead before any branch test.
 #undo #sv11567 #prd-v81 #qa-branch #sign-in → L0586, L0590
+
+## L0592 — 2026-10-28 — QA lead's three standing answers: sign-in asks carry the full URL (Rule 138); screenshots ALWAYS (Rule 130 amendment); Fast-follow tests go into the run once they pass (Rule 136 amendment)
+- Also 28 Oct: "Follow your recommendation" on Slavcho's asks → C682426 reshaped to his automation (Board View drag + Undo + reload; Tech View "Assign lead technician" + Undo + reload; Audit Log kept as step 8, his quote recorded); C682427/C682428 keep the tester check with his "Dev-layer" quote and the QA lead's dated line. Script `sv11567-undo-1028.mts` C682426 block follows the new steps.
+- SV-11594 (TESTING QA, branch https://sv11594.qa.shopview.com, up): no test referenced it; new C847743 ("The Technician filter lists "Deleted technician" last, only where that column exists") quotes PRD v81 S1-R15's v73 sentence + S3-R20e; script `sv11594-deleted-filter-1028.mts` (deletes a fresh ZZAUTOTEST tech by API, reads the list END by scrolling the menu, Tech View + Board View + location 2).
+#rules #sign-in #screenshots #fast-follow #sv11594 → L0591

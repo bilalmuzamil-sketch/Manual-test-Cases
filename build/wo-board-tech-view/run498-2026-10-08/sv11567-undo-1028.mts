@@ -212,18 +212,22 @@ await run('C682425', async (o) => {
 });
 
 await run('C682426', async (o) => {
+  // 28 Oct 2026: steps reshaped to Slavcho's automation (QA lead "follow your recommendation"): Board View drag + Undo, reload;
+  // Tech View "Assign lead technician" dialog + Undo, reload; Audit Log kept as step 8.
   const A1 = await T('C682426', 'Ana'), B1 = await T('C682426', 'Ben'); const set = await mkSet('ZZAUTOTEST C682426 Undo Place', [{ co: 'W1', lead: A1 }, { co: 'W2', lead: A1 }, { co: 'W3', lead: A1 }, { co: 'W4', lead: null }]); o.data = set.w;
   await pins([A1.staff_id, B1.staff_id]); await go('Board View', set.q); o.before = await col(A1.staff_id, set);
-  await dragTo(card(set, 'W2'), `[data-test-id="board_column_${B1.staff_id}"]`, 'x'); o.s1 = { prompt: await shiftPrompt(p, 'Keep shifts'), toast: await waitToast() };
-  o.s2_clicked = await clickUndo(); o.s2 = await waitToast(p, 3000); const pr = await shiftPrompt(p, null); o.s2.shiftQuestion = pr; await p.waitForTimeout(2000); await shotC('C682426-v-s3-after-undo'); o.s3 = await col(A1.staff_id, set);
+  await dragTo(card(set, 'W2'), `[data-test-id="board_column_${B1.staff_id}"]`, 'x'); o.s1 = { prompt: await shiftPrompt(p, 'Keep shifts'), toast: await waitToast() }; await shotC('C682426-v-s1-moved');
+  o.s2_clicked = await clickUndo(); o.s2 = await waitToast(p, 3000); const pr = await shiftPrompt(p, null); o.s2.shiftQuestion = pr; await shotC('C682426-v-s2-undone'); await p.waitForTimeout(2000); o.s3 = await col(A1.staff_id, set);
   await watchGone(p, 6000);
-  await dragTo(card(set, 'W4'), `[data-test-id="board_column_${A1.staff_id}"]`, 'x'); o.s4 = { prompt: await shiftPrompt(p, 'Keep shifts'), toast: await waitToast() };
-  o.s5_clicked = await clickUndo(); o.s5 = await waitToast(p, 3000); await p.waitForTimeout(2000); o.s5.col = await colOf(set, 'W4');
-  o.s6_lead = await leadName(set.w.W2.id);
+  await go('Board View', set.q); o.s4_afterReload = await col(A1.staff_id, set); await shotC('C682426-v-s4-after-reload');
+  await go('Tech View', set.q); o.s5_menu = await openLeadAction(row(set, 'W4')); await pickInDialog(/C682426 Ana/); o.s5 = { prompt: await shiftPrompt(p, 'Keep shifts'), toast: await waitToast() }; o.s5.group = await grpOf(set, 'W4'); await shotC('C682426-v-s5-assigned');
+  o.s6_clicked = await clickUndo(); o.s6 = await waitToast(p, 3000); await shotC('C682426-v-s6-undone'); await p.waitForTimeout(2500); o.s6.group = await grpOf(set, 'W4');
+  await go('Tech View', set.q); o.s7_group = await grpOf(set, 'W4'); o.s7_lead = await leadName(set.w.W4.id); await shotC('C682426-v-s7-after-reload');
+  o.w2_lead = await leadName(set.w.W2.id);
   await p.goto(APP + `/workorders/${set.w.W2.id}/lines`, { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(6000);
   const more = p.locator('button').filter({ has: p.locator('i:text-is("more_vert")') }).last(); await more.click().catch(() => {}); await p.waitForTimeout(1000);
   await p.locator('.q-menu .q-item').filter({ hasText: /Audit Log/i }).first().click().catch(() => {}); await p.waitForTimeout(3000);
-  o.s7_8 = await p.evaluate(`(() => { const d = [...document.querySelectorAll('.q-dialog')].filter(e => e.getBoundingClientRect().width > 0).pop(); return d ? d.innerText.replace(/\\s+/g, ' ').slice(0, 900) : null; })()`); await shotC('C682426-v-s8-audit-log'); await p.keyboard.press('Escape');
+  o.s8 = await p.evaluate(`(() => { const d = [...document.querySelectorAll('.q-dialog')].filter(e => e.getBoundingClientRect().width > 0).pop(); return d ? d.innerText.replace(/\\s+/g, ' ').slice(0, 900) : null; })()`); await shotC('C682426-v-s8-audit-log'); await p.keyboard.press('Escape');
 });
 
 await run('C682427', async (o) => {
