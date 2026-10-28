@@ -7,6 +7,13 @@ NO_MANUAL: a behaviour a manual tester cannot set up or reach (a request sent ou
 It is listed for the developers' own checks and reported to the QA lead; it never becomes a manual case."""
 
 NO_MANUAL = {
+    'S5-R7': "Product answer 14 (27 Oct 2026): no screen leaves a part with no bin location; only a developer's direct system request makes one. S5-01 (C154770) deleted 28 Oct with the QA lead's go-ahead. Developers' check.",
+    'S2-R17': "Its core half needs the core seen on screen; Product answer 13 (27 Oct) and PRD v35 S9-R18a: global search never lists a core, and S5-E3: the core's Part History page has no link on screen. S2-19 (C425603) and S2-19b (C839419) deleted 28 Oct with the QA lead's go-ahead; the part side is covered by S10-35 (counts exclude cores) and S5-17 (no core row). Developers' check.",
+    'S5-R9': "As S2-R17: a core's tracking state shows on no screen this release (answer 13, S5-E3, S9-R18a). S5-08 (C425634) and S5-09 (C425635) deleted 28 Oct with the QA lead's go-ahead. Developers' check.",
+    'S10-R19': "Its only check is on the core's own Part History page, which has no link on screen this release (answer 13, S5-E3). S10-22 (C425769) deleted 28 Oct with the QA lead's go-ahead. Developers' check.",
+    'S10-R26': "As S10-R19: checked only on the core's Part History page (answer 13, S5-E3). S5-18 (C573677), S10-29 (C425777) and S13-03b (C839442) deleted 28 Oct with the QA lead's go-ahead. Developers' check.",
+    'S13-R15': "As S10-R19: the core's new name shows only on its Part History page (answer 13, S5-E3). Covered cases S5-18 and S10-29 deleted 28 Oct with the QA lead's go-ahead. Developers' check.",
+
     # ---- Phase A (Stories 1-5)
     "S2-N3": "The refusal comes only from a request sent outside the screens: a core has no row of its own, so no screen can ask for a "
              "core's status on its own (S5-E3). Developers' check (tech plan Phase 1 PartTest, Phase 2 PartStatusChangePlanTest).",

@@ -76,15 +76,8 @@ C("S13-03", "S13", "Saving a new part number renames the part in place",
   ["S13-R18", "S10-R23", "FO-9", "KD-2"],
   design=dict(boards=["2.2", "2.3", "2.4", "2.5"], words=[note("The same part is renamed in place."), note("At Lethbridge the same part now reads")]))
 
-C("S13-03b", "S13", "A renamed part's core takes the same part number",
-  [ADMIN, "Create a part, part A, for this test with a Core Charge of $15.00, so it has a core.", NEWNUM_X, START_A],
-  [ROW_A, REPLACE_NEW, SAVE, "Open the core's own Part History page."],
-  [["Edit Inventory Part opens for part A."], ["Part Number shows the new number."], ["The window closes and part A's row shows the new number."],
-   ["The core's own Part History page shows the new number as its part number.",
-    "Its newest entry reads \"Part number updated | Original number:\" with the old number, then \"| New number:\" with the new number: the core took the same number."]],
-  ["S13-R18", "S10-R26", "S5-E3"], part_of="S13-03",
-  marker=PO_HOLD("Q1", "how a core's own Part History page is opened"),
-  design=dict(note="no board draws a core; the expected results above come from the quotes above."))
+# S13-03b (C839442) deleted 28 Oct 2026 with the QA lead's go-ahead ("Delete all 9"): a manual tester can no longer run it after
+# Product answers 13/14 of 27 Oct (PRD v35 S5-E3, S9-R18a); see full-pass-2026-10-27/NO-MANUAL-PROPOSAL.json.
 
 C("S13-04", "S13", "Changing the part number warns how many other locations it changes",
   [ADMIN_THREE, "Have a part, part A, at the test location, at location B (active there) and at location C (inactive there), under the same part number.", START],

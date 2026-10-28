@@ -341,36 +341,11 @@ C("S2-18", "S2", "When every ticked part fails, nothing changes and the ticks st
   ["S2-R15", "S10-N2", "S10-R13a", "UFS-31", "UFS-37"],
   design=dict(boards=["4.4"]))
 
-C("S2-19", "S2", "Deactivating a part that has a core charge also deactivates its core",
-  [ADMIN, "Create an active part, part A, for this test, with a Core Charge above $0, so it has a core.", GLOBAL,
-   "Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box."],
-  [MENU, "Click Deactivate parts.", "Click the part A row.", "Click Deactivate on the dark bar.", "Click Deactivate in the confirmation.",
-   "Click the Search box in the top bar.", "Type Core for followed by part A's description."],
-  [["The menu opens."],
-   ["Bulk mode turns on and one row is listed, for part A: its core has no row of its own, so it cannot be ticked."],
-   ["The bar reads 1 selected."],
-   ["The \"Deactivate parts?\" confirmation opens."],
-   ["A green message reads \"1 part updated.\": only the part you ticked is counted, not its core, and no failure is listed.",
-    "Part A leaves the Active tab."],
-   ["The global search opens."],
-   ["The result for part A's core (\"Core for\" and part A's description) carries the grey \"Inactive\" tag: the core became inactive together with part A."]],
-  ["S2-R17", "S10-R12a", "S5-E3", "FO-10", "S9-R18"],
-  design=dict(note="no board draws a core; the expected results above come from the quotes above."))
+# S2-19 (C425603) deleted 28 Oct 2026 with the QA lead's go-ahead ("Delete all 9"): a manual tester can no longer run it after
+# Product answers 13/14 of 27 Oct (PRD v35 S5-E3, S9-R18a); see full-pass-2026-10-27/NO-MANUAL-PROPOSAL.json.
 
-C("S2-19b", "S2", "Activating a part that has a core charge also activates its core",
-  [ADMIN, "Create a part, part A, for this test, with a Core Charge above $0, so it has a core, and set it inactive.", GLOBAL,
-   "Start on the Inventory page, on the Inactive tab, with part A's part number typed in the Search box."],
-  [MENU, "Click Activate parts.", "Click the part A row.", "Click Activate on the dark bar.", "Click Activate in the confirmation.",
-   "Click the Search box in the top bar.", "Type Core for followed by part A's description."],
-  [["The menu opens."],
-   ["Bulk mode turns on and one row is listed, for part A, with no separate row for its core."],
-   ["The bar reads 1 selected."],
-   ["The \"Activate parts?\" confirmation opens."],
-   ["A green message reads \"1 part updated.\" and part A leaves the Inactive tab."],
-   ["The global search opens."],
-   ["The result for part A's core no longer carries the grey \"Inactive\" tag: the core became active together with part A."]],
-  ["S3-R3", "S2-R17", "S10-R12a", "FO-10", "S9-R18"], part_of="S2-19",
-  design=dict(note="no board draws a core; the expected results above come from the quotes above."))
+# S2-19b (C839419) deleted 28 Oct 2026 with the QA lead's go-ahead ("Delete all 9"): a manual tester can no longer run it after
+# Product answers 13/14 of 27 Oct (PRD v35 S5-E3, S9-R18a); see full-pass-2026-10-27/NO-MANUAL-PROPOSAL.json.
 
 C("S2-20", "S2", "The work order lines bulk bar is unchanged and its X shows Clear selection",
   [ADMIN, "Create an open work order for this test, with two lines.",

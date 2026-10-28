@@ -13,7 +13,7 @@ with the QA lead's explicit go-ahead (Rule 6). Without --apply it only prints th
     3. upload each case's design pictures (idempotent, read back).
   Held cases (marker other than the standard HOLD) are written like the others (they are in the suite) but are NOT added to a run.
   Runs: the cases live in the automatic Nightly runs (QA lead, 13 Oct: no dedicated run); any run sync is union only (Rule 34)."""
-import sys, os, json, csv, subprocess
+import datetime, sys, os, json, csv, subprocess
 D = os.path.dirname(os.path.abspath(__file__)); P = os.path.dirname(D)
 PROP = json.load(open(f"{D}/proposals.json")); MAP = {r["key"]: r for r in csv.DictReader(open(f"{P}/testrail-id-map.csv"))}
 upd = [k for k in PROP if k in MAP]; new = [k for k in PROP if k not in MAP]
@@ -60,7 +60,9 @@ for k in upd:
         L({"op": "already", "key": k, "case": f"C{cid}"}); continue
     if live["updated_on"] != prev["updated_on"]:
         L({"op": "skip", "key": k, "case": f"C{cid}", "why": "changed since our 14 Oct read-back: ask the QA lead (Rule 123)"}); continue
-    json.dump(live, open(f"{OUT}/before/C{cid}.json", "w"), indent=1, ensure_ascii=False)
+    # 28 Oct 2026: before-copies go to a folder per write day, so a later write never overwrites an earlier day's before-copy
+    BD = f"{P}/applied-{datetime.date.today().isoformat()}/before"; os.makedirs(BD, exist_ok=True)
+    json.dump(live, open(f"{BD}/C{cid}.json", "w"), indent=1, ensure_ascii=False)
     f = PROP[k]["fields"]; api(f"update_case/{cid}", f); st = LAST["status"]; a = api(f"get_case/{cid}")
     json.dump(a, open(f"{OUT}/C{cid}-after.json", "w"), indent=1, ensure_ascii=False)
     L({"op": "update_case", "key": k, "case": f"C{cid}", "http": st, "readback_ok": not diff(a, f), "bad": diff(a, f)})

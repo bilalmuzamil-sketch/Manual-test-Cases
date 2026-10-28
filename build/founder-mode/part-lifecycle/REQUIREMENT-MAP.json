@@ -2,10 +2,19 @@
  "prd": "Confluence 829227015 version 35",
  "built": "by authoring/build.py",
  "counts": {
-  "COVERED": 300,
-  "NO MANUAL CASE": 17
+  "COVERED": 294,
+  "NO MANUAL CASE": 23
  },
  "deleted_cases": {
+  "C154770": "S5-01, deleted 28 Oct 2026 (QA lead: Delete all 9): not runnable by hand after Product answers 13/14 (PRD v35)",
+  "C573677": "S5-18, deleted 28 Oct 2026 (QA lead: Delete all 9): not runnable by hand after Product answers 13/14 (PRD v35)",
+  "C425769": "S10-22, deleted 28 Oct 2026 (QA lead: Delete all 9): not runnable by hand after Product answers 13/14 (PRD v35)",
+  "C425777": "S10-29, deleted 28 Oct 2026 (QA lead: Delete all 9): not runnable by hand after Product answers 13/14 (PRD v35)",
+  "C839442": "S13-03b, deleted 28 Oct 2026 (QA lead: Delete all 9): not runnable by hand after Product answers 13/14 (PRD v35)",
+  "C425603": "S2-19, deleted 28 Oct 2026 (QA lead: Delete all 9): not runnable by hand after Product answers 13/14 (PRD v35)",
+  "C839419": "S2-19b, deleted 28 Oct 2026 (QA lead: Delete all 9): not runnable by hand after Product answers 13/14 (PRD v35)",
+  "C425634": "S5-08, deleted 28 Oct 2026 (QA lead: Delete all 9): not runnable by hand after Product answers 13/14 (PRD v35)",
+  "C425635": "S5-09, deleted 28 Oct 2026 (QA lead: Delete all 9): not runnable by hand after Product answers 13/14 (PRD v35)",
   "C425659": "dashboard inventory figure (removed in PRD v29, Product answer 7 of 14 Oct)",
   "C425758": "dashboard inventory figure (removed in PRD v29, Product answer 7 of 14 Oct)",
   "C425639": "dashboard Critical Reorder list (S5-R14 removed in PRD v27, Product answer 13 of 9 Oct)",
@@ -636,17 +645,8 @@
    "story": 2,
    "jira": "SV-10815",
    "text": "A part's core becomes inactive together with the part, in the same change.",
-   "status": "COVERED",
-   "keys": [
-    "S10-22",
-    "S2-19",
-    "S2-19b"
-   ],
-   "case_ids": [
-    "425769",
-    "425603",
-    "839419"
-   ]
+   "status": "NO MANUAL CASE",
+   "reason": "Its core half needs the core seen on screen; Product answer 13 (27 Oct) and PRD v35 S9-R18a: global search never lists a core, and S5-E3: the core's Part History page has no link on screen. S2-19 (C425603) and S2-19b (C839419) deleted 28 Oct with the QA lead's go-ahead; the part side is covered by S10-35 (counts exclude cores) and S5-17 (no core row). Developers' check."
   },
   "S2-N1": {
    "story": 2,
@@ -768,7 +768,6 @@
    "status": "COVERED",
    "keys": [
     "S2-13b",
-    "S2-19b",
     "S3-03",
     "S3-04",
     "S3-04b",
@@ -777,7 +776,6 @@
    ],
    "case_ids": [
     "839418",
-    "839419",
     "425605",
     "425606",
     "839420",
@@ -1117,13 +1115,8 @@
    "story": 5,
    "jira": "SV-10818",
    "text": "In the part dialog, when the user turns tracking on and the part has no bin location, the dialog gives it the location's default bin location, with a quantity of zero, marked as the default.",
-   "status": "COVERED",
-   "keys": [
-    "S5-01"
-   ],
-   "case_ids": [
-    "154770"
-   ]
+   "status": "NO MANUAL CASE",
+   "reason": "Product answer 14 (27 Oct 2026): no screen leaves a part with no bin location; only a developer's direct system request makes one. S5-01 (C154770) deleted 28 Oct with the QA lead's go-ahead. Developers' check."
   },
   "S5-R8": {
    "story": 5,
@@ -1143,15 +1136,8 @@
    "story": 5,
    "jira": "SV-10818",
    "text": "The part's core is tracked or untracked together with the part, in the same save. A core added to the part later, or in the same save, takes the part's tracking state.",
-   "status": "COVERED",
-   "keys": [
-    "S5-08",
-    "S5-09"
-   ],
-   "case_ids": [
-    "425634",
-    "425635"
-   ]
+   "status": "NO MANUAL CASE",
+   "reason": "As S2-R17: a core's tracking state shows on no screen this release (answer 13, S5-E3, S9-R18a). S5-08 (C425634) and S5-09 (C425635) deleted 28 Oct with the QA lead's go-ahead. Developers' check."
   },
   "S5-R12": {
    "story": 5,
@@ -1235,7 +1221,7 @@
    "case_ids": [
     "425773",
     "425640",
-    null
+    "847727"
    ]
   },
   "S5-E1a": {
@@ -1266,23 +1252,13 @@
    "status": "COVERED",
    "keys": [
     "S10-19",
-    "S10-22",
-    "S10-29",
-    "S13-03b",
-    "S2-19",
     "S5-17",
-    "S5-17b",
-    "S5-18"
+    "S5-17b"
    ],
    "case_ids": [
     "425766",
-    "425769",
-    "425777",
-    "839442",
-    "425603",
     "573676",
-    "839423",
-    "573677"
+    "839423"
    ]
   },
   "S6-R1": {
@@ -1728,7 +1704,7 @@
    ],
    "case_ids": [
     "425678",
-    null
+    "847726"
    ]
   },
   "S7-N5": {
@@ -1750,7 +1726,7 @@
     "425678",
     "425679",
     "425681",
-    null
+    "847726"
    ]
   },
   "S7-N5a": {
@@ -1781,7 +1757,7 @@
     "425694",
     "425680",
     "425681",
-    null,
+    "847726",
     "540880"
    ]
   },
@@ -1873,7 +1849,7 @@
    ],
    "case_ids": [
     "573682",
-    null
+    "847727"
    ]
   },
   "S8-R1": {
@@ -2449,18 +2425,14 @@
    "text": "Global search lists inactive parts at the current location. Each carries the grey \"Inactive\" tag.",
    "status": "COVERED",
    "keys": [
-    "S2-19",
-    "S2-19b",
     "S9-24",
     "S9-25",
     "S9-49"
    ],
    "case_ids": [
-    "425603",
-    "839419",
     "425742",
     "425743",
-    null
+    "847728"
    ]
   },
   "S9-R18a": {
@@ -2472,7 +2444,7 @@
     "S9-49"
    ],
    "case_ids": [
-    null
+    "847728"
    ]
   },
   "S9-R19": {
@@ -2493,18 +2465,14 @@
    "text": "Global search shows \"Not Tracked\" for an untracked part, in place of its \"{n} available\" badge.",
    "status": "COVERED",
    "keys": [
-    "S5-08",
-    "S5-09",
     "S6-08",
     "S9-26",
     "S9-49"
    ],
    "case_ids": [
-    "425634",
-    "425635",
     "425656",
     "425744",
-    null
+    "847728"
    ]
   },
   "S9-R21": {
@@ -2838,7 +2806,7 @@
     "154794",
     "154796",
     "425760",
-    null,
+    "847729",
     "154759",
     "839417",
     "425596"
@@ -2981,7 +2949,7 @@
    ],
    "case_ids": [
     "839502",
-    null
+    "847729"
    ]
   },
   "S10-R12": {
@@ -3010,14 +2978,10 @@
    "text": "The counts include only the parts the user selected. A core that changes with its part is not counted, so changing 2 parts that both have a core reads \"2 parts updated.\"",
    "status": "COVERED",
    "keys": [
-    "S10-35",
-    "S2-19",
-    "S2-19b"
+    "S10-35"
    ],
    "case_ids": [
-    "540883",
-    "425603",
-    "839419"
+    "540883"
    ]
   },
   "S10-R13": {
@@ -3138,13 +3102,8 @@
    "story": 10,
    "jira": "SV-10823",
    "text": "A core's status change writes its own Part History entry on the core.",
-   "status": "COVERED",
-   "keys": [
-    "S10-22"
-   ],
-   "case_ids": [
-    "425769"
-   ]
+   "status": "NO MANUAL CASE",
+   "reason": "Its only check is on the core's own Part History page, which has no link on screen this release (answer 13, S5-E3). S10-22 (C425769) deleted 28 Oct with the QA lead's go-ahead. Developers' check."
   },
   "S10-R20": {
    "story": 10,
@@ -3231,13 +3190,11 @@
    "status": "COVERED",
    "keys": [
     "S10-28",
-    "S11-09",
-    "S5-18"
+    "S11-09"
    ],
    "case_ids": [
     "425775",
-    "425611",
-    "573677"
+    "425611"
    ]
   },
   "S10-R25": {
@@ -3271,17 +3228,8 @@
    "story": 10,
    "jira": "SV-10823",
    "text": "When the part has a core, the core gets the same number or description entry. The core's description entries read its own description, \"Core for {description}\".",
-   "status": "COVERED",
-   "keys": [
-    "S10-29",
-    "S13-03b",
-    "S5-18"
-   ],
-   "case_ids": [
-    "425777",
-    "839442",
-    "573677"
-   ]
+   "status": "NO MANUAL CASE",
+   "reason": "As S10-R19: checked only on the core's Part History page (answer 13, S5-E3). S5-18 (C573677), S10-29 (C425777) and S13-03b (C839442) deleted 28 Oct with the QA lead's go-ahead. Developers' check."
   },
   "S10-R27": {
    "story": 10,
@@ -3345,7 +3293,7 @@
     "154800",
     "425760",
     "425761",
-    null,
+    "847729",
     "425709"
    ]
   },
@@ -3441,7 +3389,7 @@
    "case_ids": [
     "154829",
     "573671",
-    null,
+    "847730",
     "425620"
    ]
   },
@@ -3468,7 +3416,7 @@
     "425612",
     "425613",
     "425614",
-    null
+    "847733"
    ]
   },
   "S11-R3b": {
@@ -3658,7 +3606,7 @@
     "S12-06"
    ],
    "case_ids": [
-    null,
+    "847730",
     "425620"
    ]
   },
@@ -3735,7 +3683,7 @@
    "case_ids": [
     "154833",
     "425621",
-    null
+    "847731"
    ]
   },
   "S12-R6": {
@@ -3819,7 +3767,7 @@
    "case_ids": [
     "425620",
     "425621",
-    null
+    "847731"
    ]
   },
   "S12-R11a": {
@@ -3833,7 +3781,7 @@
    ],
    "case_ids": [
     "425620",
-    null
+    "847731"
    ]
   },
   "S12-R12": {
@@ -3865,7 +3813,7 @@
     "573671",
     "154833",
     "425620",
-    null
+    "847731"
    ]
   },
   "S12-R14": {
@@ -4216,15 +4164,8 @@
    "story": 13,
    "jira": "SV-10826",
    "text": "A changed description also renames the part's core, which reads \"Core for {description}\".",
-   "status": "COVERED",
-   "keys": [
-    "S10-29",
-    "S5-18"
-   ],
-   "case_ids": [
-    "425777",
-    "573677"
-   ]
+   "status": "NO MANUAL CASE",
+   "reason": "As S10-R19: the core's new name shows only on its Part History page (answer 13, S5-E3). Covered cases S5-18 and S10-29 deleted 28 Oct with the QA lead's go-ahead. Developers' check."
   },
   "S13-R16": {
    "story": 13,
@@ -4266,17 +4207,13 @@
    "text": "Saving a changed number renames the part in place. The part keeps its identity, its history, and every line that holds it. Its Part Library entry is renamed with it, and its core takes the same number. No new Part Library entry is created.",
    "status": "COVERED",
    "keys": [
-    "S10-29",
     "S11-08",
     "S13-03",
-    "S13-03b",
     "S13-47"
    ],
    "case_ids": [
-    "425777",
     "425610",
     "154838",
-    "839442",
     "839450"
    ]
   },
@@ -4360,7 +4297,7 @@
    ],
    "case_ids": [
     "425697",
-    null
+    "847732"
    ]
   },
   "S13-R20": {
@@ -4439,7 +4376,7 @@
     "839477",
     "839502",
     "154800",
-    null,
+    "847729",
     "425709"
    ]
   },
@@ -4538,9 +4475,9 @@
    ],
    "case_ids": [
     "839448",
-    null,
+    "847733",
     "425681",
-    null
+    "847726"
    ]
   },
   "S13-N1b": {

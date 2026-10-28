@@ -1,6 +1,6 @@
 # Parts Lifecycle — setup file for Claude sessions (a tester does not need it)
 
-Built by `authoring/render_setup.py` from the case library (364 cases written so far). Sources: PRD "Parts Lifecycle Update", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026; tech plan of 7 Oct 2026; Jira epic SV-10647 read 27 Oct 2026; design canvas https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE (13 Oct copy, unchanged 27 Oct).
+Built by `authoring/render_setup.py` from the case library (363 cases written so far). Sources: PRD "Parts Lifecycle Update", Confluence 829227015, version 33 (23 Oct 2026, owner Chris Ward), read 27 Oct 2026; tech plan of 7 Oct 2026; Jira epic SV-10647 read 27 Oct 2026; design canvas https://claude.ai/artifact/Vz6rprcWyP16tYxzM1kdeE (13 Oct copy, unchanged 27 Oct).
 No environment address, credential, cookie or session data is written here.
 
 ## 1 · Accounts and places (slots)
@@ -65,7 +65,7 @@ Example values: part A = ZZAUTOTEST-PL-S1-02-A; part B = ZZAUTOTEST-PL-S1-02-B; 
 - Parts A, B, C: any three parts created before the Part Lifecycle build reached the environment (check their Part History: no entry after the deploy date).
 Quotes: S1-R5, S1-R5a, CN-S1-1, S13-R3, S13-R20, S4-R8. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S1-02b · new case (split from S1-02) · No setting turns part status or tracking on or off
+### S1-02b · C839413 (split from S1-02) · No setting turns part status or tracking on or off
 State the tester sets up:
 - Sign in as an Admin who can switch between two locations: the test location and location B.
 - Start on the Settings page of the test location.
@@ -171,7 +171,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S1-12-A; part B = ZZAUTOTEST-PL-S1-12-B.
 Quotes: S1-R9b. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S1-12b · new case (split from S1-12) · Export follows the Supply filter and leaves out an untracked part
+### S1-12b · C839414 (split from S1-12) · Export follows the Supply filter and leaves out an untracked part
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an active tracked part, part A, holding 1, with Min 5 and Max 10, so it is under-supplied.
@@ -189,7 +189,7 @@ State the tester sets up:
 - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
 Quotes: S1-R9b. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S1-14 · new case · Switching tabs during a cycle count drops the counts typed so far
+### S1-14 · C839415 · Switching tabs during a cycle count drops the counts typed so far
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create an active tracked part, part A, for this test with 5 in its bin.
@@ -239,7 +239,7 @@ State the tester sets up:
 - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
 Quotes: S2-R9. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S2-05b · new case (split from S2-05) · The X on the bulk bar leaves bulk mode and clears the ticks
+### S2-05b · C839416 (split from S2-05) · The X on the bulk bar leaves bulk mode and clears the ticks
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have two active parts, part A and part B.
@@ -257,7 +257,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S2-06-A; part B = ZZAUTOTEST-PL-S2-06-B; part C = ZZAUTOTEST-PL-S2-06-C.
 Quotes: S2-R11, S2-R12, S2-R13, S2-R14, S10-R3, S10-R4, S10-R12, UFS-28. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S2-06b · new case (split from S2-06) · Deactivating one part says 1 part selected and 1 part updated
+### S2-06b · C839417 (split from S2-06) · Deactivating one part says 1 part selected and 1 part updated
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create an active part, part A, for this test.
@@ -326,7 +326,7 @@ State the tester sets up:
 - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
 Quotes: S2-R8a, UFS-34, S2-R6, S10-R4. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S2-13b · new case (split from S2-13) · More than 200 ticked parts disables Activate on the Inactive tab
+### S2-13b · C839418 (split from S2-13) · More than 200 ticked parts disables Activate on the Inactive tab
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create 201 parts for this test whose part numbers start with the same text, so one search lists all 201, and set all 201 inactive.
@@ -379,24 +379,6 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S2-18-A; part B = ZZAUTOTEST-PL-S2-18-B.
 Quotes: S2-R15, S10-N2, S10-R13a, UFS-31, UFS-37. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S2-19 · C425603 · Deactivating a part that has a core charge also deactivates its core
-State the tester sets up:
-- Sign in as an Admin at the test location.
-- Create an active part, part A, for this test, with a Core Charge above $0, so it has a core.
-- Make sure the Search box in the top bar is the global search, which lists inventory parts.
-- Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box.
-Example values: part A = ZZAUTOTEST-PL-S2-19-A.
-Quotes: S2-R17, S10-R12a, S5-E3, FO-10, S9-R18. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
-
-### S2-19b · new case (split from S2-19) · Activating a part that has a core charge also activates its core
-State the tester sets up:
-- Sign in as an Admin at the test location.
-- Create a part, part A, for this test, with a Core Charge above $0, so it has a core, and set it inactive.
-- Make sure the Search box in the top bar is the global search, which lists inventory parts.
-- Start on the Inventory page, on the Inactive tab, with part A's part number typed in the Search box.
-Example values: part A = ZZAUTOTEST-PL-S2-19b-A.
-Quotes: S3-R3, S2-R17, S10-R12a, FO-10, S9-R18. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
-
 ### S2-20 · C425604 · The work order lines bulk bar is unchanged and its X shows Clear selection
 State the tester sets up:
 - Sign in as an Admin at the test location.
@@ -441,7 +423,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S3-04-A; part B = ZZAUTOTEST-PL-S3-04-B; part C = ZZAUTOTEST-PL-S3-04-C.
 Quotes: S3-R3, S2-R3, S2-R5, S2-R6. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S3-04b · new case (split from S3-04) · On the Inactive tab a new search or filter clears the ticks, sorting keeps them
+### S3-04b · C839420 (split from S3-04) · On the Inactive tab a new search or filter clears the ticks, sorting keeps them
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have three inactive parts: part A and part B in category A, and part C in category B, so the category A filter leaves part C out.
@@ -451,14 +433,14 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S3-04b-A; part B = ZZAUTOTEST-PL-S3-04b-B; part C = ZZAUTOTEST-PL-S3-04b-C.
 Quotes: S3-R3, S2-R10a, S2-R10b. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S3-04c · new case (split from S3-04) · On the Inactive tab the bulk bar's X shows Clear selection and leaves the mode
+### S3-04c · C839421 (split from S3-04) · On the Inactive tab the bulk bar's X shows Clear selection and leaves the mode
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an inactive part at the test location, so the Inactive tab lists a row.
 - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Inactive tab.
 Quotes: S3-R3, S2-R9, S2-R9a. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S3-04d · new case (split from S3-04) · On the Inactive tab only the parts that failed to activate stay ticked
+### S3-04d · C839422 (split from S3-04) · On the Inactive tab only the parts that failed to activate stay ticked
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create two parts for this test, part A and part B, and set both inactive.
@@ -518,14 +500,6 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S4-07-A; part B = ZZAUTOTEST-PL-S4-07-B.
 Quotes: S4-R9, ACC-2. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S5-01 · C154770 · Turning tracking on gives a part with no bin the default bin at zero
-State the tester sets up:
-- Sign in as an Admin at the test location.
-- Create an untracked part, part A, for this test with no bin location: its only bin location was deleted in Bin Locations (under Settings) while part A held 0 there, so its window shows no bin row.
-- Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box.
-Example values: part A = ZZAUTOTEST-PL-S5-01-A.
-Quotes: S5-R7. Marker: AUTOMATION: HOLD - waiting on the PO (question Q2: how a part with no bin location is made).
-
 ### S5-02 · C154771 · Turning tracking off and back on keeps Min and Max
 State the tester sets up:
 - Sign in as an Admin at the test location.
@@ -553,6 +527,7 @@ Quotes: S5-R3, S5-R3a. Marker: AUTOMATION: HOLD - not yet build-verified (no bui
 ### S5-05 · C425631 · Turning tracking on marks the first bin as default when none is
 State the tester sets up:
 - Sign in as an Admin at the test location.
+- Have two bin locations at the test location, bin location A and bin location B.
 - Create an untracked part, part A, for this test with 2 in bin location A (the first bin row) and 5 in bin location B, saved with neither bin marked Default.
 - Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box.
 Example values: part A = ZZAUTOTEST-PL-S5-05-A.
@@ -573,24 +548,6 @@ State the tester sets up:
 - Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box.
 Example values: part A = ZZAUTOTEST-PL-S5-07-A.
 Quotes: S5-R6, KD-7. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
-
-### S5-08 · C425634 · A part's core turns untracked and tracked together with the part
-State the tester sets up:
-- Sign in as an Admin at the test location.
-- Create an active tracked part, part A, for this test with 2 in its bin and a Core Charge of $25.00, so it has a core.
-- Make sure the Search box in the top bar is the global search, which lists inventory parts.
-- Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box.
-Example values: part A = ZZAUTOTEST-PL-S5-08-A.
-Quotes: S5-R9, S9-R20, FO-10, KD-8. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
-
-### S5-09 · C425635 · A core charge added to an untracked part gives it an untracked core
-State the tester sets up:
-- Sign in as an Admin at the test location.
-- Create an untracked part, part A, for this test with 2 in its bin and no Core Charge, so it has no core yet.
-- Make sure the Search box in the top bar is the global search, which lists inventory parts.
-- Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box.
-Example values: part A = ZZAUTOTEST-PL-S5-09-A.
-Quotes: S5-R9, S9-R20. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
 ### S5-10 · C425636 · Cycle count shows Not Tracked for an untracked part and never counts it
 State the tester sets up:
@@ -652,10 +609,10 @@ State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create two bin locations for this test, bin location A and bin location B, at the test location.
 - Create an untracked part, part A, for this test with 0 in bin location A, marked Default, and 5 in bin location B.
-- Delete bin location A in Bin Locations (under Settings) while part A holds 0 there.
+- Delete bin location A in Bin Locations (Settings, then Parts, then Bin Locations) while part A holds 0 there.
 - Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box.
 Example values: part A = ZZAUTOTEST-PL-S5-16-A.
-Quotes: S5-E2, S5-R8, Chris Ward, 14 Oct 2026, answer 5. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+Quotes: S5-E2, S5-R8, Chris Ward, 27 Oct 2026, answer 17. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
 ### S5-17 · C573676 · A part's core has no row of its own on the Inventory list or in Export
 State the tester sets up:
@@ -666,21 +623,13 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S5-17-A.
 Quotes: S5-E3, S1-R9b, S2-R6. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S5-17b · new case (split from S5-17) · A part's core has no row of its own on the Part Library list
+### S5-17b · C839423 (split from S5-17) · A part's core has no row of its own on the Part Library list
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create a part, part A, for this test with a Core Charge of $25.00, so it has a core.
 - Start on the Part Library page (Parts in the top bar, then Part Library in the left menu).
 Example values: part A = ZZAUTOTEST-PL-S5-17b-A.
 Quotes: S5-E3. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
-
-### S5-18 · C573677 · A core's own Part History page shows its name and its own history
-State the tester sets up:
-- Sign in as an Admin at the test location.
-- Create an active part, part A, for this test with a Core Charge of $25.00, so it has a core, then change part A's description once in its Edit Inventory Part window, from description 1 to description 2.
-- Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box.
-Example values: part A = ZZAUTOTEST-PL-S5-18-A.
-Quotes: S5-E3, S13-R15, S10-R24, S10-R26. Marker: AUTOMATION: HOLD - waiting on the PO (question Q1: how a core's own Part History page is opened).
 
 ### S6-01 · C154774 · Searching not tracked lists untracked parts and normal matches
 State the tester sets up:
@@ -768,7 +717,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S6-08-A; part B = ZZAUTOTEST-PL-S6-08-B.
 Quotes: UFS-42, S9-R20, QA lead's answer of 9 Oct 2026, situation 3. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S6-09 · new case · On a vendor return, searching not tracked also lists untracked parts
+### S6-09 · C839424 · On a vendor return, searching not tracked also lists untracked parts
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have a vendor, vendor A.
@@ -779,7 +728,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S6-09-A; part B = ZZAUTOTEST-PL-S6-09-B; part C = ZZAUTOTEST-PL-S6-09-C.
 Quotes: S6-R1a, S6-R1, SV-10819, Chris Ward, 23 Oct 2026. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S6-10 · new case · On a vendor credit, searching tracked also lists untracked parts
+### S6-10 · C839425 · On a vendor credit, searching tracked also lists untracked parts
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have a vendor, vendor A.
@@ -866,7 +815,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S7-09-A.
 Quotes: S7-R6c, SV-10820, Chris Ward, 23 Oct 2026. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S7-09b · new case (split from S7-09) · A linked entry with no category takes the category picked
+### S7-09b · C839426 (split from S7-09) · A linked entry with no category takes the category picked
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Use a Part Library entry that has no category and that no part at the test location uses (such entries come from data saved before this release); call its part number number 1.
@@ -933,14 +882,23 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S7-16-A; part B = ZZAUTOTEST-PL-S7-16-B.
 Quotes: S7-N5b, KD-5, CN-S7-3. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S7-17 · C425681 · Changing a part's number to one already stocked here is refused
+### S7-17 · C425681 · Changing a part's number to a look-alike of one stocked here is refused
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create two active parts for this test at the test location, part A and part B, with a hyphen in part A's part number.
 - Use a number to type, number 1: part A's number in lower case with spaces in place of its hyphens, which no Part Library entry has exactly.
 - Start on the Inventory page, on the Active tab, with part B's part number typed in the Search box.
 Example values: part A = ZZAUTOTEST-PL-S7-17-A; part B = ZZAUTOTEST-PL-S7-17-B.
-Quotes: S7-N5b, S7-N3, S7-N5, UFS-08, CN-S13-3. Marker: AUTOMATION: HOLD - waiting on the PO (question Q12: a rename to a look-alike of a part at this same location: S7-N3's message or S13-N1a's).
+Quotes: S7-N5b, S7-N3, S7-N5, UFS-08, S13-N1a, CN-S13-3, Chris Ward, 27 Oct 2026, answer 23. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+
+### S7-17b · C847726 (split from S7-17) · Changing a number to a look-alike of an inactive part here is refused
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Create two parts for this test at the test location: part A, set inactive, with a hyphen in its part number, and part B, active.
+- Use a number to type, number 1: part A's number in lower case with spaces in place of its hyphens, which no Part Library entry has exactly.
+- Start on the Inventory page, on the Active tab, with part B's part number typed in the Search box.
+Example values: part A = ZZAUTOTEST-PL-S7-17b-A; part B = ZZAUTOTEST-PL-S7-17b-B.
+Quotes: S7-N4, S7-N5b, S7-N5, UFS-09, S13-N1a, CN-S13-3, Chris Ward, 27 Oct 2026, answer 23. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
 ### S7-18 · C425682 · A description or part number of only spaces is refused on its own
 State the tester sets up:
@@ -976,7 +934,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S7-21-A.
 Quotes: S7-N7, S13-N9a. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S7-21b · new case (split from S7-21) · An import row whose number differs only in case and punctuation updates the part
+### S7-21b · C839427 (split from S7-21) · An import row whose number differs only in case and punctuation updates the part
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create a part, part A, for this test at the test location, with a hyphen in its part number and Min 1 and Max 5.
@@ -1022,7 +980,19 @@ State the tester sets up:
 - Have a parts import file with two rows that add part A and part B, each with quantity 0 and an empty bin location cell.
 - Start on that location's Inventory data import page (Settings, then Data Import, then Inventory).
 Example values: part A = ZZAUTOTEST-PL-S7-25-A; part B = ZZAUTOTEST-PL-S7-25-B.
-Quotes: S7-N10, Chris Ward's answer 3 a) of 14 Oct 2026. Marker: AUTOMATION: HOLD - waiting on the PO (question Q4: is a part the import adds tracked or untracked).
+Quotes: S7-N10, S7-N11, Chris Ward's answer 3 a) of 14 Oct 2026, Chris Ward, 27 Oct 2026, answer 16, Chris Ward, 27 Oct 2026, answer 17. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+
+### S7-27 · C847727 · An imported part is tracked and takes its description from the name column
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Use a part number for a new part, part A, that no part or Part Library entry uses yet.
+- Use a description, description 1, that no part or Part Library entry has.
+- Create an untracked part, part B, for this test at the test location, with 4 in one bin location, bin location A.
+- Have a parts import file made from the Inventory import template with two rows: one that adds part A, with description 1 in the name column, quantity 2 and bin location A, and one for part B with quantity 6 in bin location A.
+- Start on the Inventory data import page (Settings, then Data Import, then Inventory).
+Example values: part A = ZZAUTOTEST-PL-S7-27-A; part B = ZZAUTOTEST-PL-S7-27-B.
+- Template columns: the description is the name column (answer 16(b), 27 Oct 2026); the part number is the part_number column.
+Quotes: S7-N11, S5-E1, Chris Ward, 27 Oct 2026, answer 16. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
 ### S7-26 · C573683 · A linked entry whose manufacturer no longer exists takes the one picked
 State the tester sets up:
@@ -1062,7 +1032,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S8-03-A.
 Quotes: S8-R14, KD-14, CN-S8-2. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S8-03b · new case (split from S8-03) · The Parts Manager role sees the status, tracking and delete controls
+### S8-03b · C839428 (split from S8-03) · The Parts Manager role sees the status, tracking and delete controls
 State the tester sets up:
 - Make sure the Parts Manager role is at its default permissions: reset it to its template, so earlier edits do not change the result.
 - Sign in as a staff member with the default Parts Manager role at the test location.
@@ -1071,7 +1041,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S8-03b-A.
 Quotes: S8-R14, KD-14, CN-S8-2. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S8-03c · new case (split from S8-03) · The Service Advisor role has no status, tracking or delete controls
+### S8-03c · C839429 (split from S8-03) · The Service Advisor role has no status, tracking or delete controls
 State the tester sets up:
 - Make sure the Service Advisor role is at its default permissions: reset it to its template, so earlier edits do not change the result.
 - Sign in as a staff member with the default Service Advisor role at the test location.
@@ -1080,18 +1050,17 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S8-03c-A.
 Quotes: S8-R14, KD-14, S8-R12. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S8-04 · C154783 · A status change is refused once the user can no longer delete parts
+### S8-04 · C154783 · A role change signs the user out before a status change goes through
 State the tester sets up:
 - Sign in as an Admin at the test location.
-- Create a custom role for this test, role D, with Part Library & Inventory — View, Part Library & Inventory — Create & Edit, Part Library & Inventory — Delete and See Financial Data, so user D starts with the right to delete parts.
+- Create a custom role for this test, role D, with Part Library & Inventory — View, Part Library & Inventory — Create & Edit, Part Library & Inventory — Delete and See Financial Data, and with no Vendor Order Management, Part Sales or Settings permission, so user D starts with the right to delete parts.
 - Create a staff member for this test, user D, at the test location with role D.
 - Use two browser windows: window 1 signed in as the Admin, window 2 (a private window) signed in as user D.
-- Create two active parts for this test, part A and part B, that sit on no work order and no return.
-- Give parts A and B part numbers that start with the same text, so one search lists both.
+- Create an active part, part A, for this test.
 - Start window 1 on role D's Edit Role page (Roles & Permissions), with nothing changed yet.
-- Start window 2 on the Inventory page, on the Active tab, with the shared start of the part numbers typed in the Search box.
-Example values: part A = ZZAUTOTEST-PL-S8-04-A; part B = ZZAUTOTEST-PL-S8-04-B.
-Quotes: S8-N3, S8-R15, CN-S8-1, CN-S8-2. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+- Start window 2 on the Inventory page, on the Active tab, with part A's part number typed in the Search box.
+Example values: part A = ZZAUTOTEST-PL-S8-04-A.
+Quotes: Chris Ward, 27 Oct 2026, answer 27, Chris Ward, 27 Oct 2026, answer 27, S8-R15, S8-R3, S8-R5. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
 ### S8-05 · C425646 · A user with only View sees no Inventory actions menu
 State the tester sets up:
@@ -1184,29 +1153,29 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S8-12-A.
 Quotes: S8-N1a. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S8-13 · C425654 · A tracking change is refused once the user can no longer delete parts
+### S8-13 · C425654 · A role change signs the user out before a tracking change is saved
 State the tester sets up:
 - Sign in as an Admin at the test location.
-- Create a custom role for this test, role D, with Part Library & Inventory — View, Part Library & Inventory — Create & Edit, Part Library & Inventory — Delete and See Financial Data, so user D starts with the right to delete parts.
+- Create a custom role for this test, role D, with Part Library & Inventory — View, Part Library & Inventory — Create & Edit, Part Library & Inventory — Delete and See Financial Data, and with no Vendor Order Management, Part Sales or Settings permission, so user D starts with the right to delete parts.
 - Create a staff member for this test, user D, at the test location with role D.
 - Use two browser windows: window 1 signed in as the Admin, window 2 (a private window) signed in as user D.
 - Create an active, tracked part, part A, for this test, with 2 on hand.
 - Start window 1 on role D's Edit Role page (Roles & Permissions), with nothing changed yet.
 - Start window 2 on the Inventory page, on the Active tab, with part A's part number typed in the Search box.
 Example values: part A = ZZAUTOTEST-PL-S8-13-A.
-Quotes: S8-N2, S8-R15, CN-S8-1. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+Quotes: Chris Ward, 27 Oct 2026, answer 27, Chris Ward, 27 Oct 2026, answer 27, S8-R15, S8-R8, S8-R5. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S8-14 · C425655 · Creating an untracked part is refused once the user can no longer delete
+### S8-14 · C425655 · A role change signs the user out before an untracked part is created
 State the tester sets up:
 - Sign in as an Admin at the test location.
-- Create a custom role for this test, role D, with Part Library & Inventory — View, Part Library & Inventory — Create & Edit, Part Library & Inventory — Delete and See Financial Data, so user D starts with the right to delete parts.
+- Create a custom role for this test, role D, with Part Library & Inventory — View, Part Library & Inventory — Create & Edit, Part Library & Inventory — Delete and See Financial Data, and with no Vendor Order Management, Part Sales or Settings permission, so user D starts with the right to delete parts.
 - Create a staff member for this test, user D, at the test location with role D.
 - Use two browser windows: window 1 signed in as the Admin, window 2 (a private window) signed in as user D.
 - Use a part number for a new part, part A, that no part or Part Library entry uses yet.
 - Start window 1 on role D's Edit Role page (Roles & Permissions), with nothing changed yet.
 - Start window 2 on the Inventory page, on the Active tab.
 Example values: part A = ZZAUTOTEST-PL-S8-14-A.
-Quotes: S8-N1, S8-R15, CN-S8-1. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+Quotes: Chris Ward, 27 Oct 2026, answer 27, Chris Ward, 27 Oct 2026, answer 27, S8-R15, S8-R7, S8-R5. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
 ### S9-01 · C154784 · Work order part lookup no longer offers a part once it is inactive
 State the tester sets up:
@@ -1499,7 +1468,7 @@ State the tester sets up:
 - Use a second browser window (a private window) signed in as user B.
 - Have a vendor, vendor A, and an inactive part, part A, with vendor A.
 Example values: part A = ZZAUTOTEST-PL-S9-28-A.
-Quotes: S9-N3a, S9-N3, S12-N1, SV-10822, Chris Ward, 23 Oct 2026. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+Quotes: S9-N3a, S9-N3, S12-N1, Chris Ward, 27 Oct 2026, answer 22, SV-10822, Chris Ward, 23 Oct 2026. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
 ### S9-29 · C425747 · A completed part sale with an inactive part keeps its totals
 State the tester sets up:
@@ -1619,25 +1588,27 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S9-40-A; part B = ZZAUTOTEST-PL-S9-40-B; part C = ZZAUTOTEST-PL-S9-40-C; part D = ZZAUTOTEST-PL-S9-40-D.
 Quotes: S9-R10c, S9-R10, S9-R10b, S9-R9, UFS-43, Chris Ward's answer 9 of 14 Oct 2026. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S9-41 · C573685 · Without Vendor Order Management, Returns access is the same as today
+### S9-41 · C573685 · Without Vendor Order Management, Returns is hidden and cannot be opened
 State the tester sets up:
 - Sign in as an Admin at the test location.
-- Have a ShopView account on production (app.shopview.com, which does not have this release yet) where you can create a role and a staff member, so today's access can be seen beside the build's.
-- Create the same custom role for this test on the build and on production, role B, with Part Library & Inventory — View and no Vendor Order Management permission, so the two can be compared.
-- Create a staff member, user B, with role B on the build and on production, so the steps run with role B's permissions on both.
-- Use window 1 signed in as user B on the build and window 2 signed in as user B on production.
-Quotes: S9-N3a, S12-N1, KD-14. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+- Create a custom role for this test, role B, with Part Library & Inventory — View and no Vendor Order Management permission, so user B can see parts but not vendor orders.
+- Create a staff member for this test, user B, at the test location with role B, so the steps run with role B's permissions.
+- Use a second browser window (a private window) signed in as user B.
+- Write down the address of the Returns list: as the Admin, open Parts, then Returns, and copy the address from the browser's address bar.
+Quotes: S9-N3a, S12-N1, Chris Ward, 27 Oct 2026, answer 22. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S9-42 · C573686 · With Vendor Order Management View only, starting a return is as today
+### S9-42 · C573686 · With Vendor Order Management View only, a return's part search is refused
 State the tester sets up:
 - Sign in as an Admin at the test location.
-- Have a ShopView account on production (app.shopview.com, which does not have this release yet) where you can create a role and a staff member, so today's access can be seen beside the build's.
-- Create the same custom role for this test on the build and on production, role B, with Vendor Order Management — View, without Vendor Order Management — Create & Edit, and with Part Library & Inventory — View, so the two can be compared.
-- Create a staff member, user B, with role B on the build and on production, so the steps run with role B's permissions on both.
-- Use window 1 signed in as user B on the build and window 2 signed in as user B on production.
-Quotes: S9-N3a, S12-N1, KD-14. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+- Create a custom role for this test, role B, with Vendor Order Management — View only: no Vendor Order Management — Create & Edit, no Part Library & Inventory box, no Part Sales — Create & Edit, no work order permission to pick parts, no Settings permission and no See Financial Data, so no setting gives user B part search access.
+- Create a staff member for this test, user B, at the test location with role B, so the steps run with role B's permissions.
+- Use a second browser window (a private window) signed in as user B.
+- Have a vendor, vendor A, and an active part, part A, with vendor A.
+- Write down the address of the Create Return page: as the Admin, open Parts, then Returns, click Create Return, and copy the address from the browser's address bar.
+Example values: part A = ZZAUTOTEST-PL-S9-42-A.
+Quotes: S9-N3, S9-N3a, S12-N1, Chris Ward, 27 Oct 2026, answer 22, Chris Ward, 27 Oct 2026, answer 22. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S9-43 · new case · The work order part lookup shows Not Tracked for an untracked part
+### S9-43 · C839430 · The work order part lookup shows Not Tracked for an untracked part
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an untracked part, part A, with 3 in one bin location, bin location A.
@@ -1648,7 +1619,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S9-43-A; part B = ZZAUTOTEST-PL-S9-43-B.
 Quotes: S9-R21, FO-7. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S9-44 · new case · The estimate part lookup shows Not Tracked for an untracked part
+### S9-44 · C839431 · The estimate part lookup shows Not Tracked for an untracked part
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an untracked part, part A, with 3 in one bin location, bin location A.
@@ -1659,7 +1630,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S9-44-A; part B = ZZAUTOTEST-PL-S9-44-B.
 Quotes: S9-R21, FO-7. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S9-45 · new case · The part sale part lookup shows Not Tracked for an untracked part
+### S9-45 · C839432 · The part sale part lookup shows Not Tracked for an untracked part
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an untracked part, part A, with 3 in one bin location, bin location A.
@@ -1670,7 +1641,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S9-45-A; part B = ZZAUTOTEST-PL-S9-45-B.
 Quotes: S9-R21, FO-7. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S9-46 · new case · The purchase order part lookup shows Not Tracked for an untracked part
+### S9-46 · C839433 · The purchase order part lookup shows Not Tracked for an untracked part
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an untracked part, part A, with 3 in one bin location, bin location A.
@@ -1681,7 +1652,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S9-46-A; part B = ZZAUTOTEST-PL-S9-46-B.
 Quotes: S9-R21, FO-7. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S9-47 · new case · On a work order, an untracked part with nothing on hand shows In Stock
+### S9-47 · C839434 · On a work order, an untracked part with nothing on hand shows In Stock
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create an untracked part, part A, for this test, with 0 on its shelf.
@@ -1690,7 +1661,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S9-47-A.
 Quotes: S9-R22, FO-7. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S9-48 · new case · On a part sale, an untracked part with nothing on hand shows In Stock
+### S9-48 · C839435 · On a part sale, an untracked part with nothing on hand shows In Stock
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create an untracked part, part A, for this test, with 0 on its shelf.
@@ -1698,6 +1669,15 @@ State the tester sets up:
 - Start on part sale A's Parts tab.
 Example values: part A = ZZAUTOTEST-PL-S9-48-A.
 Quotes: S9-R22, FO-7. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+
+### S9-49 · C847728 · Global search never lists a part's core
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Create an active, tracked part, part A, for this test with a Core Charge of $25.00, so it has a core described Core for followed by part A's description.
+- Create a part, part B, for this test with a Core Charge of $25.00, then set it inactive and turn its tracking off, so its core is inactive and untracked too.
+- Make sure the Search box in the top bar is the global search, which lists inventory parts.
+Example values: part A = ZZAUTOTEST-PL-S9-49-A; part B = ZZAUTOTEST-PL-S9-49-B.
+Quotes: S9-R18a, S9-R18, S9-R20, FO-10, Chris Ward, 27 Oct 2026, answer 13. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
 ### S10-01 · C154789 · Saving a different Part Status asks to confirm first
 State the tester sets up:
@@ -1886,14 +1866,6 @@ State the tester sets up:
 - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
 Quotes: S10-R18, UFS-28, S2-R6. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S10-22 · C425769 · A core's status change writes its own Part History entry
-State the tester sets up:
-- Sign in as an Admin at the test location.
-- Create an active part, part A, for this test, with a Core Charge above $0, so it has a core described Core for followed by part A's description.
-- Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box.
-Example values: part A = ZZAUTOTEST-PL-S10-22-A.
-Quotes: S10-R19, S2-R17, S5-E3. Marker: AUTOMATION: HOLD - waiting on the PO (question Q1: how a core's own Part History page is opened).
-
 ### S10-23 · C425770 · A status entry has Staff, Date and Time and can be searched
 State the tester sets up:
 - Sign in as an Admin at the test location.
@@ -1918,7 +1890,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S10-25-A.
 Quotes: S10-R22a, SV-10823, Chris Ward, 23 Oct 2026. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S10-25b · new case (split from S10-25) · Changing only Max writes only the Max pair, and no change writes nothing
+### S10-25b · C839436 (split from S10-25) · Changing only Max writes only the Max pair, and no change writes nothing
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create a tracked part, part A, for this test, with Min 2, Max 6 and Sell Price $20.00.
@@ -1952,15 +1924,6 @@ State the tester sets up:
 - Start at the test location on the Inventory page, on the Active tab, with part A's part number typed in the Search box.
 Example values: part A = ZZAUTOTEST-PL-S10-28-A.
 Quotes: S10-R24, S10-R25, UFS-11. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
-
-### S10-29 · C425777 · A core gets the same number and description history entries
-State the tester sets up:
-- Sign in as an Admin at the test location.
-- Create a part, part A, for this test, with a description, description 1, and a Core Charge above $0, so it has a core described Core for followed by description 1.
-- Use a new part number, number 2, and a new description, description 2, that no part uses.
-- Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box.
-Example values: part A = ZZAUTOTEST-PL-S10-29-A.
-Quotes: S10-R26, S13-R15, S13-R18, S5-E3. Marker: AUTOMATION: HOLD - waiting on the PO (question Q1: how a core's own Part History page is opened).
 
 ### S10-30 · C425778 · Part History search finds entries by their text or staff name, in any case
 State the tester sets up:
@@ -2016,6 +1979,16 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S10-35-A; part B = ZZAUTOTEST-PL-S10-35-B.
 Quotes: S10-R12, S10-R12a, UFS-28, SV-10823 acceptance criteria. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
+### S10-36 · C847729 · Pressing Esc or clicking outside does not close a status confirmation
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Create two active parts for this test, part A and part B.
+- Give parts A and B part numbers that start with the same text, so one search lists both.
+- Make sure no Cycle count is running on the Inventory list.
+- Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+Example values: part A = ZZAUTOTEST-PL-S10-36-A; part B = ZZAUTOTEST-PL-S10-36-B.
+Quotes: S10-R11a, S13-R23, S10-N1, S10-R4, Chris Ward, 27 Oct 2026, answer 19. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+
 ### S11-01 · C154828 · The Part Library page has no button that creates an entry
 State the tester sets up:
 - Sign in as an Admin at the test location.
@@ -2030,7 +2003,7 @@ State the tester sets up:
 - Create a part, part A, for this test at the test location only, so its entry's detail page lists one location and one part.
 - Start on the Part Library page (Parts in the top bar, then Part Library in the left menu).
 Example values: part A = ZZAUTOTEST-PL-S11-02-A.
-Quotes: S11-R3, S11-R3c, S12-R3, Chris Ward, 14 Oct 2026, answer 12. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+Quotes: S11-R3, S11-R3c, S12-R3, Chris Ward, 14 Oct 2026, answer 12, Chris Ward, 27 Oct 2026, answer 20. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
 ### S11-03 · C154830 · Creating a part with a new number adds one Part Library entry
 State the tester sets up:
@@ -2039,7 +2012,7 @@ State the tester sets up:
 - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
 Quotes: S11-R6, S7-R7, S7-R10, S11-N1, KD-17. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S11-03b · new case (split from S11-03) · The parts import adds a Part Library entry for a new part number
+### S11-03b · C839437 (split from S11-03) · The parts import adds a Part Library entry for a new part number
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Use a new part number that no Part Library entry has yet.
@@ -2091,7 +2064,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S11-08-A.
 Quotes: S11-R3a, S13-R16, S13-R18, S10-R23, S10-R25, UFS-12. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S11-08b · new case (split from S11-08) · The Part Library window warns while a new number differs from the saved one
+### S11-08b · C839438 (split from S11-08) · The Part Library window warns while a new number differs from the saved one
 State the tester sets up:
 - Sign in as an Admin who can switch between two locations: the test location and location B.
 - Have a part, part A, at the test location and at location B under the same part number, so its entry is shared with one other location.
@@ -2108,7 +2081,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S11-09-A.
 Quotes: S11-R3a, S13-R14, S10-R24, S10-R25, OOS-5. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S11-09b · new case (split from S11-09) · The description warning counts a location where the part is inactive
+### S11-09b · C839439 (split from S11-09) · The description warning counts a location where the part is inactive
 State the tester sets up:
 - Sign in as an Admin who can switch between two locations: the test location and location B.
 - Have a part, part A, active at the test location and inactive at location B under the same part number, so the only other location that stocks it has it inactive.
@@ -2194,9 +2167,9 @@ State the tester sets up:
 - Create a part, part A, for this test at the test location only, on no work order and with no open return or credit, so it can be deleted later in the test.
 - Start on the Part Library page (Parts in the top bar, then Part Library in the left menu).
 Example values: part A = ZZAUTOTEST-PL-S11-18-A.
-Quotes: S11-R3c, S11-R3, S12-R13, UFS-01, Chris Ward, 14 Oct 2026, answer 12, QA lead, 9 Oct 2026, set-up answer 4. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+Quotes: S11-R3c, S11-R3, S12-R13, UFS-01, Chris Ward, 14 Oct 2026, answer 12, QA lead, 9 Oct 2026, set-up answer 4, Chris Ward, 27 Oct 2026, answer 20. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S11-19 · new case · The entry's Parts table shows Not Tracked for a location that does not count it
+### S11-19 · C839440 · The entry's Parts table shows Not Tracked for a location that does not count it
 State the tester sets up:
 - Sign in as an Admin who can switch between two locations: the test location and location B.
 - Have a part, part A, stocked at the test location and at location B under the same part number: tracked at the test location with 4 in its bin, and untracked at location B with 3 in its bin.
@@ -2204,13 +2177,22 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S11-19-A.
 Quotes: S11-R8. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S11-20 · new case · The entry's Parts table tags a location where the part is inactive
+### S11-20 · C839441 · The entry's Parts table tags a location where the part is inactive
 State the tester sets up:
 - Sign in as an Admin who can switch between two locations: the test location and location B.
 - Have a part, part A, tracked at the test location and at location B under the same part number: active at the test location with 4 in its bin, and inactive at location B with 2 in its bin.
 - Start on the Part Library page (Parts in the top bar, then Part Library in the left menu).
 Example values: part A = ZZAUTOTEST-PL-S11-20-A.
 Quotes: S11-R9. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+
+### S11-21 · C847730 · Delete in Edit Library Part is enabled only after the page is reloaded
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Create a part, part A, for this test at the test location only, on no work order and with no open return, credit or part request, so it can be deleted later in the test.
+- Use a desktop browser that can open a second tab on the same ShopView address, signed in as the same user.
+- Start in browser tab 1 on the Part Library page (Parts in the top bar, then Part Library in the left menu).
+Example values: part A = ZZAUTOTEST-PL-S11-21-A.
+Quotes: S11-E5, S11-R3c, UFS-01, Chris Ward, 27 Oct 2026, answer 15. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
 ### S12-01 · C154832 · The Parts menu, page title and browser tab read Part Library
 State the tester sets up:
@@ -2255,7 +2237,7 @@ State the tester sets up:
 - Create a Part Library entry with no part behind it for this test, entry A: create a part at the test location, then delete it, so the entry stays with "Total parts" 0.
 - Use a desktop browser that can open a second tab on the same ShopView address, signed in as the same user.
 - Start in browser tab 1 on the Part Library page (Parts in the top bar, then Part Library in the left menu).
-Quotes: S12-R11, S12-R13, UFS-46, CN-S13-3, S11-R3c, §1 Clarifications, Q9 S12-R11 copy. Marker: AUTOMATION: HOLD - waiting on the PO (question Q3: whether an open Edit Library Part window updates its Delete button without a reload).
+Quotes: S12-R11, S12-R11a, S12-R13, UFS-46, CN-S13-3, S11-R3c, S11-E5, §1 Clarifications, Q9 S12-R11 copy, Chris Ward, 27 Oct 2026, answer 15, Chris Ward, 27 Oct 2026, answer 24. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
 ### S12-07 · C425621 · Saving a Part Library entry deleted in another tab is refused
 State the tester sets up:
@@ -2332,6 +2314,13 @@ State the tester sets up:
 - Where the cost shows is our reading of S12-R14b ("uses that delivery's cost"): the picked result fills Cost. Question Q14 asks Product to confirm.
 Quotes: S12-R14b, S12-R14a, S12-R14, Chris Ward, 14 Oct 2026, answer 2. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
+### S12-15 · C847731 · Opening the address of a deleted Part Library entry says it is not found
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Create a Part Library entry with no part behind it for this test, entry A: create a part at the test location, then delete it, so the entry stays with "Total parts" 0.
+- Start on the Part Library page (Parts in the top bar, then Part Library in the left menu).
+Quotes: S12-R11a, S12-R11, UFS-47, CN-S13-3, S12-R5, S12-R13, Chris Ward, 27 Oct 2026, answer 24. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+
 ### S13-01 · C154836 · The part window title row shows Active or Inactive beside the close X
 State the tester sets up:
 - Sign in as an Admin at the test location.
@@ -2358,15 +2347,6 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S13-03-A.
 Quotes: S13-R18, S10-R23, FO-9, KD-2. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S13-03b · new case (split from S13-03) · A renamed part's core takes the same part number
-State the tester sets up:
-- Sign in as an Admin at the test location.
-- Create a part, part A, for this test with a Core Charge of $15.00, so it has a core.
-- Use a new part number that no part and no Part Library entry has yet, and that does not contain part A's number.
-- Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box.
-Example values: part A = ZZAUTOTEST-PL-S13-03b-A.
-Quotes: S13-R18, S10-R26, S5-E3. Marker: AUTOMATION: HOLD - waiting on the PO (question Q1: how a core's own Part History page is opened).
-
 ### S13-04 · C154839 · Changing the part number warns how many other locations it changes
 State the tester sets up:
 - Sign in as an Admin who can switch between three locations: the test location, location B and location C.
@@ -2375,7 +2355,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S13-04-A.
 Quotes: S13-R16, S13-R17, UFS-12. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S13-04b · new case (split from S13-04) · The part number warning says 1 other location, or nothing for one location
+### S13-04b · C839443 (split from S13-04) · The part number warning says 1 other location, or nothing for one location
 State the tester sets up:
 - Sign in as an Admin who can switch between two locations: the test location and location B.
 - Have a part, part B, at the test location and at location B under the same part number.
@@ -2450,7 +2430,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S13-12-A.
 Quotes: S13-R12, S13-R13, UFS-11, Chris Ward, 9 Oct 2026, answer 5. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S13-12b · new case (split from S13-12) · The description warning says 1 other location, or nothing for one location
+### S13-12b · C839444 (split from S13-12) · The description warning says 1 other location, or nothing for one location
 State the tester sets up:
 - Sign in as an Admin who can switch between two locations: the test location and location B.
 - Have a part, part B, at the test location and at location B under the same part number.
@@ -2513,7 +2493,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S13-18-A.
 Quotes: S13-R19, KD-16, TERM-6. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S13-18b · new case (split from S13-18) · Received purchase order lines and accepted vendor bills keep the old number
+### S13-18b · C839445 (split from S13-18) · Received purchase order lines and accepted vendor bills keep the old number
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create a part, part A, for this test.
@@ -2523,7 +2503,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S13-18b-A.
 Quotes: S13-R19b, CN-S13-2, KD-16. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S13-18c · new case (split from S13-18) · A purchase order line typed by hand with the old number keeps its number
+### S13-18c · C839446 (split from S13-18) · A purchase order line typed by hand with the old number keeps its number
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create a part, part A, for this test.
@@ -2533,7 +2513,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S13-18c-A.
 Quotes: S13-R19a, S13-R19. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S13-19 · C425697 · A rename carries over to open part requests
+### S13-19 · C425697 · A rename carries over to open part requests but not to received ones
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create a part, part A, for this test with 5 on hand.
@@ -2541,7 +2521,7 @@ State the tester sets up:
 - Use a new part number that no part and no Part Library entry has yet, and that does not contain part A's number.
 - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
 Example values: part A = ZZAUTOTEST-PL-S13-19-A.
-Quotes: S13-R19, TERM-6, CN-S13-2. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+Quotes: S13-R19, S13-R19e, TERM-6, CN-S13-2, Chris Ward, 27 Oct 2026, answer 26. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
 ### S13-20 · C425698 · A rename carries over to canned jobs that hold the part
 State the tester sets up:
@@ -2576,7 +2556,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S13-22-A.
 Quotes: S13-R19c, §3 Technical Decisions, D30. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S13-22b · new case (split from S13-22) · A hand-typed purchase order line is received under its own number
+### S13-22b · C839447 (split from S13-22) · A hand-typed purchase order line is received under its own number
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create a part, part A, for this test.
@@ -2781,7 +2761,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S13-44-A.
 Quotes: S13-R4a, S13-R4, SV-10826, acceptance criteria, Chris Ward, 9 Oct 2026, answer 6. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S13-45 · new case · A new number that looks like a part at another location is refused
+### S13-45 · C839448 · A new number that looks like a part at another location is refused
 State the tester sets up:
 - Sign in as an Admin who can switch between two locations: the test location and location B.
 - Create a part, part A, for this test at the test location and at location B under the same part number, so a rename reaches location B too.
@@ -2790,9 +2770,9 @@ State the tester sets up:
 - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
 Example values: part A = ZZAUTOTEST-PL-S13-45-A; part B = ZZAUTOTEST-PL-S13-45-B.
 - Example (the SV-10939 shape from the Jira comment): part A ZZPL-S13-45-1, part B ZZPLS13451 at location B, look-alike number ZZPL.S13.45.1.
-Quotes: S13-N1a, UFS-14, CN-S13-3, SV-10826, comment, Chris Ward, 23 Oct 2026. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+Quotes: S13-N1a, UFS-14, CN-S13-3, SV-10826, comment, Chris Ward, 23 Oct 2026, Chris Ward, 27 Oct 2026, answer 23. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S13-46 · new case · An activation refused after the save keeps the confirmation open
+### S13-46 · C839449 · An activation refused after the save keeps the confirmation open
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create a part, part A, for this test with a Sell Price of $20.00, and set it inactive.
@@ -2801,7 +2781,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-S13-46-A.
 Quotes: S13-N4, S10-R13a, UFS-26. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### S13-47 · new case · Inventory Value for a date before a rename shows the old part number
+### S13-47 · C839450 · Inventory Value for a date before a rename shows the old part number
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create a tracked part, part A, for this test on an earlier day, date A, with 4 in its bin at a cost of $10.00, so the Inventory Value report saved a figure for it on date A.
@@ -2809,6 +2789,26 @@ State the tester sets up:
 - Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box.
 Example values: part A = ZZAUTOTEST-PL-S13-47-A.
 Quotes: CN-S13-2, S13-R18, ACC-3. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+
+### S13-48 · C847732 · A rename leaves the old number on part sale lines that hold the part
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Create a part, part A, for this test with 5 on hand.
+- Create an open part sale for this test, part sale A, with a line holding 1 of part A picked from stock.
+- Create a part sale for this test, part sale B, with a line holding 1 of part A picked from stock, and invoice it so it is completed.
+- Use a new part number that no part and no Part Library entry has yet, and that does not contain part A's number.
+- Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
+Example values: part A = ZZAUTOTEST-PL-S13-48-A.
+Quotes: S13-R19e, CN-S13-2, Chris Ward, 27 Oct 2026, answer 26. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+
+### S13-49 · C847733 · A look-alike rename on the Part Library page names the location it clashes with
+State the tester sets up:
+- Sign in as an Admin at the test location.
+- Create two parts for this test at the test location, part A and part B, with a hyphen in part B's part number.
+- Use a number to type, number 1: part B's number in lower case with spaces in place of its hyphens, which no Part Library entry has exactly.
+- Start on the Part Library page (Parts in the top bar, then Part Library in the left menu).
+Example values: part A = ZZAUTOTEST-PL-S13-49-A; part B = ZZAUTOTEST-PL-S13-49-B.
+Quotes: S13-N1a, S11-R3a, UFS-14, CN-S13-3, Chris Ward, 27 Oct 2026, answer 23. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
 ### IV-01 · C425660 · Bins of +5 and -2 show quantity 3 and $30 in Inventory Value
 State the tester sets up:
@@ -2886,7 +2886,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-IV-08-A; part B = ZZAUTOTEST-PL-IV-08-B.
 Quotes: ACC-4, SV-10380, description, Acceptance criteria, SV-10380, description, Expected behavior. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### IV-08b · new case (split from IV-08) · The Inventory Value PDF download shows the same net figures as the screen
+### IV-08b · C839451 (split from IV-08) · The Inventory Value PDF download shows the same net figures as the screen
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create two tracked parts for this test at a cost of $10.00: part A with 5 in bin location A and 0 in bin location B, and part B with 0 in its only bin, so part A has two bins to add up.
@@ -2927,7 +2927,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-IV-11-A.
 Quotes: ACC-4, SV-10380, description, Acceptance criteria, SV-10380, description, Acceptance criteria, SV-10380, description, Reproduction table. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### IV-12 · new case · The Totals row's Margin % stays the true total and can go above 100%
+### IV-12 · C839452 · The Totals row's Margin % stays the true total and can go above 100%
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create two tracked parts for this test: part A at a cost of $10.00 and a Sell Price of $100.00 with 1 in its bin, and part B at a cost of $50.00 and a Sell Price of $60.00 with 0 in its bin.
@@ -2937,7 +2937,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-IV-12-A; part B = ZZAUTOTEST-PL-IV-12-B.
 Quotes: ACC-4, SV-10380, comment, Chris Ward, 23 Oct 2026, SV-10380, comment, Nemanja Djuric, 23 Oct 2026, SV-10380, comment, Nemanja Djuric, 23 Oct 2026, SV-10380, description, Expected behavior. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### IV-13 · new case · The Totals row's Margin % stays the true total and can go below zero
+### IV-13 · C839453 · The Totals row's Margin % stays the true total and can go below zero
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create two tracked parts for this test: part A at a cost of $10.00 and a Sell Price of $20.00 with 3 in its bin, and part B at a cost of $5.00 and a Sell Price of $40.00 with 0 in its bin.
@@ -2947,7 +2947,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-IV-13-A; part B = ZZAUTOTEST-PL-IV-13-B.
 Quotes: ACC-4, SV-10380, comment, Chris Ward, 23 Oct 2026, SV-10380, comment, Nemanja Djuric, 23 Oct 2026, SV-10380, description, Expected behavior. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-01 · new case · Design: Inventory list page looks as in the design
+### D-01 · C839454 · Design: Inventory list page looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an active part, part A, with Part History entries, two or more tags and stock in one bin, so its row shows the history icon, tag chips and a bin chip.
@@ -2959,7 +2959,7 @@ Example values: part A = ZZAUTOTEST-PL-D-01-A.
 - Part A: any active part with history, 2+ tags and one bin with stock (a ZZAUTOTEST part made for the suite is fine).
 Quotes: S1-R1, S1-R8, S2-R3, S4-R8, S12-R1. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-02 · new case · Design: Inactive tab selected looks as in the design
+### D-02 · C839455 · Design: Inactive tab selected looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an inactive part, part A, and an active part, part B.
@@ -2971,7 +2971,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-02-A; part B = ZZAUTOTEST-PL-D-02-B.
 Quotes: S1-R4, S1-R7, CN-S9-4. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-03 · new case · Design: Empty Inactive tab message looks as in the design
+### D-03 · C839456 · Design: Empty Inactive tab message looks as in the design
 State the tester sets up:
 - Sign in as an Admin at a location that has no inactive parts.
 - Make sure no search text and no filter is set on the Inventory list.
@@ -2981,7 +2981,7 @@ State the tester sets up:
 - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
 Quotes: S1-N1, UFS-40. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-04 · new case · Design: Search with no matching part looks as in the design
+### D-04 · C839457 · Design: Search with no matching part looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Make sure the app is in the Light theme.
@@ -2990,7 +2990,7 @@ State the tester sets up:
 - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
 Quotes: S1-N2, S1-N1. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-05 · new case · Design: Actions menu with Deactivate parts looks as in the design
+### D-05 · C839458 · Design: Actions menu with Deactivate parts looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Make sure no Cycle count is running on the Inventory list.
@@ -3000,7 +3000,7 @@ State the tester sets up:
 - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
 Quotes: S2-R1, S2-R2. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-06 · new case · Design: Actions menu in bulk mode shows only Export
+### D-06 · C839459 · Design: Actions menu in bulk mode shows only Export
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Make sure no Cycle count is running on the Inventory list.
@@ -3010,7 +3010,7 @@ State the tester sets up:
 - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
 Quotes: S2-R10b, S2-R9a. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-07 · new case · Design: Bulk bar with nothing ticked looks as in the design
+### D-07 · C839460 · Design: Bulk bar with nothing ticked looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an active part, part A.
@@ -3022,7 +3022,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-07-A.
 Quotes: S2-R4, S2-R7, S2-R7a, S2-R7b, S2-R8, S2-R9, Tech plan, §3 Technical Decisions, D24. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-08 · new case · Design: Two ticked rows in bulk mode look as in the design
+### D-08 · C839461 · Design: Two ticked rows in bulk mode look as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have two active parts, part A and part B.
@@ -3036,7 +3036,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-08-A; part B = ZZAUTOTEST-PL-D-08-B.
 Quotes: S2-R5, S2-R7b, Tech plan, §3 Technical Decisions, D24. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-09 · new case · Design: Every row ticked on the Inactive tab looks as in the design
+### D-09 · C839462 · Design: Every row ticked on the Inactive tab looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have two inactive parts, part A and part B.
@@ -3049,7 +3049,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-09-A; part B = ZZAUTOTEST-PL-D-09-B.
 Quotes: S3-R1, S3-R2, S2-R6, Tech plan, §3 Technical Decisions, D24. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-10 · new case · Design: Over 200 ticked shows its hover text below Deactivate
+### D-10 · C839463 · Design: Over 200 ticked shows its hover text below Deactivate
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have 201 active parts whose part numbers start with the same text, so one search lists all 201.
@@ -3060,7 +3060,7 @@ State the tester sets up:
 - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
 Quotes: S2-R8a, UFS-34, S2-R6. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-11 · new case · Design: Bulk deactivation confirmation looks as in the design
+### D-11 · C839464 · Design: Bulk deactivation confirmation looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create two active parts for this test, part A and part B.
@@ -3073,7 +3073,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-11-A; part B = ZZAUTOTEST-PL-D-11-B.
 Quotes: S10-R2, S10-R3, S10-R4, S10-R5, S10-R9, S10-R10, S10-R11, S10-N1. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-12 · new case · Design: Bulk reactivation confirmation looks as in the design
+### D-12 · C839465 · Design: Bulk reactivation confirmation looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create two inactive parts for this test, part A and part B.
@@ -3086,7 +3086,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-12-A; part B = ZZAUTOTEST-PL-D-12-B.
 Quotes: S10-R3, S10-R4, S10-R8, S10-R9, S10-R10, S10-R11, S10-N1. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-13 · new case · Design: Bulk change success message looks as in the design
+### D-13 · C839466 · Design: Bulk change success message looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create two active parts for this test, part A and part B.
@@ -3099,7 +3099,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-13-A; part B = ZZAUTOTEST-PL-D-13-B.
 Quotes: S10-R12, S2-R12, S2-R14, UFS-28. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-14 · new case · Design: New Inventory Part window looks as in the design
+### D-14 · C839467 · Design: New Inventory Part window looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Make sure the test location has a default bin location, so the new part's bin row is filled in.
@@ -3109,7 +3109,7 @@ State the tester sets up:
 - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
 Quotes: S13-R1, S13-R2, S13-R4, S13-R5, S13-R6, S13-R8, S13-R9, S13-R10, S4-R1, S4-R2, S4-R3, S4-R4, S7-R1. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-15 · new case · Design: Typed values in New Inventory Part look as in the design
+### D-15 · C839468 · Design: Typed values in New Inventory Part look as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Make sure the app is in the Light theme.
@@ -3118,7 +3118,7 @@ State the tester sets up:
 - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
 Quotes: S7-R1, S13-R4. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-16 · new case · Design: Required-field errors in the part window look as drawn
+### D-16 · C839469 · Design: Required-field errors in the part window look as drawn
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Make sure the app is in the Light theme.
@@ -3127,7 +3127,7 @@ State the tester sets up:
 - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
 Quotes: S7-N1, S7-N2, UFS-04, UFS-05. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-17 · new case · Design: New part with tracking off looks as in the design
+### D-17 · C839470 · Design: New part with tracking off looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Make sure the app is in the Light theme.
@@ -3136,7 +3136,7 @@ State the tester sets up:
 - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
 Quotes: S4-R5, S4-R6. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-18 · new case · Design: Part created and linked message looks as in the design
+### D-18 · C839471 · Design: Part created and linked message looks as in the design
 State the tester sets up:
 - Sign in as an Admin who can switch between two locations: the test location and location B.
 - Create part A for this test at location B only, so its Part Library entry exists and the test location does not stock it.
@@ -3148,7 +3148,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-18-A.
 Quotes: S7-R9, UFS-10. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-19 · new case · Design: Duplicate part number error looks as in the design
+### D-19 · C839472 · Design: Duplicate part number error looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create part A for this test at the test location, with a part number that has capital letters.
@@ -3159,7 +3159,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-19-A.
 Quotes: S7-N3, S7-N5, UFS-08, CN-S13-3. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-20 · new case · Design: Edit Inventory Part window looks as in the design
+### D-20 · C839473 · Design: Edit Inventory Part window looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an active, tracked part, part A, with two or more tags, so the tags show as chips.
@@ -3170,7 +3170,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-20-A.
 Quotes: S13-R1, S13-R2, S13-R3, S13-R4, S13-R6, S13-R7, S13-R8, S13-R9, S13-R20. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-21 · new case · Design: Inactive part's window shows a grey Inactive pill
+### D-21 · C839474 · Design: Inactive part's window shows a grey Inactive pill
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an inactive part, part A.
@@ -3181,7 +3181,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-21-A.
 Quotes: S13-R3, S9-R14. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-22 · new case · Design: Picked status leaves the green Active pill in place
+### D-22 · C839475 · Design: Picked status leaves the green Active pill in place
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an active part, part A.
@@ -3192,7 +3192,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-22-A.
 Quotes: S13-R21, S13-R25. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-23 · new case · Design: Other-locations warnings look as in the design
+### D-23 · C839476 · Design: Other-locations warnings look as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have part A stocked at the test location and at one other location, so a change to it reaches one other location.
@@ -3203,7 +3203,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-23-A.
 Quotes: S13-R12, S13-R16, UFS-11, UFS-12. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-24 · new case · Design: Deactivate part confirmation looks as in the design
+### D-24 · C839477 · Design: Deactivate part confirmation looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create an active part for this test, part A.
@@ -3214,7 +3214,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-24-A.
 Quotes: S10-R3, S10-R4, S10-R6, S10-R9, S10-R10, S10-R11, S13-R23. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-25 · new case · Design: Activate part confirmation looks as in the design
+### D-25 · C839478 · Design: Activate part confirmation looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create an inactive part for this test, part A.
@@ -3225,7 +3225,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-25-A.
 Quotes: S10-R3, S10-R4, S10-R7, S10-R10, S10-R11, S13-R25. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-26 · new case · Design: Part deactivated message looks as in the design
+### D-26 · C839479 · Design: Part deactivated message looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create an active part for this test, part A.
@@ -3236,7 +3236,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-26-A.
 Quotes: S13-R22, UFS-24, S1-N2. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-27 · new case · Design: Inventory Tracking hover text opens below its info icon
+### D-27 · C839480 · Design: Inventory Tracking hover text opens below its info icon
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an active, tracked part, part A.
@@ -3247,7 +3247,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-27-A.
 Quotes: S4-R3. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-28 · new case · Design: Tracking switched off on a part looks as in the design
+### D-28 · C839481 · Design: Tracking switched off on a part looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an active, tracked part, part A, with stock in one bin and a saved Min and Max.
@@ -3258,7 +3258,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-28-A.
 Quotes: S5-R3, S5-R3a, S5-R5. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-29 · new case · Design: Tracking switched back on shows Min and Max again
+### D-29 · C839482 · Design: Tracking switched back on shows Min and Max again
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an untracked part, part A, that had Min 2 and Max 6 saved before tracking was turned off.
@@ -3269,7 +3269,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-29-A.
 Quotes: S5-R4. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-30 · new case · Design: Not Tracked in the Inventory list looks as in the design
+### D-30 · C839483 · Design: Not Tracked in the Inventory list looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an untracked part, part A, with stock in one bin and a saved Min and Max.
@@ -3282,7 +3282,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-30-A; part B = ZZAUTOTEST-PL-D-30-B.
 Quotes: S4-R8, S4-R8a, S4-R8b, S6-R1. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-31 · new case · Design: Cycle count with an untracked part looks as in the design
+### D-31 · C839484 · Design: Cycle count with an untracked part looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an untracked part, part A, and a tracked part, part B, with stock.
@@ -3295,7 +3295,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-31-A; part B = ZZAUTOTEST-PL-D-31-B.
 Quotes: S5-R12, S1-E1, UFS-41. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-32 · new case · Design: Part History page looks as in the design
+### D-32 · C839485 · Design: Part History page looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an active part, part A, whose tracking was turned off and back on, so its Part History has entries.
@@ -3306,7 +3306,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-32-A.
 Quotes: S10-R20, S10-R22. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-33 · new case · Design: Part History keeps column widths when events are long
+### D-33 · C839486 · Design: Part History keeps column widths when events are long
 State the tester sets up:
 - Sign in as an Admin who can switch between two locations: the test location and location B.
 - Create part A for this test at the test location and at location B, and change its part number once at the test location, so location B's Part History has a long entry ending with Changed at.
@@ -3315,9 +3315,9 @@ State the tester sets up:
 - Open the attached design pictures of boards 2.4 and 2.6 at 100% zoom, so you can compare the screen with them.
 - Start on the test location's Inventory page, on the Active tab.
 Example values: part A = ZZAUTOTEST-PL-D-33-A.
-Quotes: S10-R21, S10-R25, Tech plan, Phase 8, PartHistory.vue. Marker: AUTOMATION: HOLD - waiting on the PO (question Q10: the design wraps long Part History entries, the tech plan cuts them off; not run until answered).
+Quotes: S10-R21, S10-R25, Chris Ward, 27 Oct 2026, answer 21. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-34 · new case · Design: Part History search with a term looks as in the design
+### D-34 · C839487 · Design: Part History search with a term looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an inactive part, part A, deactivated with the note Superseded by a newer part, so its Part History has a Deactivated entry with a reason.
@@ -3328,7 +3328,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-34-A.
 Quotes: S10-R27, S10-R17. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-35 · new case · Design: Part lookup results look as in the design
+### D-35 · C839488 · Design: Part lookup results look as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an active part, part A, with stock in one bin.
@@ -3342,7 +3342,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-35-A; part B = ZZAUTOTEST-PL-D-35-B.
 Quotes: S12-R10, S9-R1. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-36 · new case · Design: Lookup with no match shows No results
+### D-36 · C839489 · Design: Lookup with no match shows No results
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an inactive part, part A, and an active part, part B.
@@ -3354,7 +3354,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-36-A; part B = ZZAUTOTEST-PL-D-36-B.
 Quotes: S9-R1. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-37 · new case · Design: Retired number typed in a lookup shows the inactive line
+### D-37 · C839490 · Design: Retired number typed in a lookup shows the inactive line
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an inactive part, part A, whose part number has capital letters.
@@ -3366,7 +3366,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-37-A.
 Quotes: S9-R16, UFS-44. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-38 · new case · Design: Canned job warning looks as in the design
+### D-38 · C839491 · Design: Canned job warning looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create an inactive part for this test, part A, and an active part for this test, part B.
@@ -3379,7 +3379,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-38-A; part B = ZZAUTOTEST-PL-D-38-B.
 Quotes: S9-R9, S9-R10, UFS-43. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-39 · new case · Design: Inactive tag in the vendor return lookup looks as drawn
+### D-39 · C839492 · Design: Inactive tag in the vendor return lookup looks as drawn
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an inactive part, part A, and an active part, part B, both with stock.
@@ -3391,7 +3391,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-39-A; part B = ZZAUTOTEST-PL-D-39-B.
 Quotes: S9-R11, S9-R12. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-40 · new case · Design: Inactive tag in the Issue Credit list looks as in the design
+### D-40 · C839493 · Design: Inactive tag in the Issue Credit list looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have a paid part sale, part sale 1, that sold part A and part B, with part A set inactive after the sale and part B still active.
@@ -3402,7 +3402,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-40-A; part B = ZZAUTOTEST-PL-D-40-B.
 Quotes: S9-R13. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-41 · new case · Design: Part Library page looks as in the design
+### D-41 · C839494 · Design: Part Library page looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Make sure the app is in the Light theme.
@@ -3411,7 +3411,7 @@ State the tester sets up:
 - Start on the Inventory page.
 Quotes: S11-R1, S11-R4, S11-R5, S12-R1, S12-R2. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-42 · new case · Design: Part Library entry page looks as in the design
+### D-42 · C839495 · Design: Part Library entry page looks as in the design
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have a Part Library entry, part A, stocked at the test location.
@@ -3420,9 +3420,9 @@ State the tester sets up:
 - Open the attached design picture of board 7.2 at 100% zoom, so you can compare the screen with it.
 - Start on the Part Library page.
 Example values: part A = ZZAUTOTEST-PL-D-42-A.
-Quotes: S11-R3, S12-R12. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
+Quotes: S11-R3, S12-R12, Chris Ward, 27 Oct 2026, answer 20. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-43 · new case · Design: Inventory list and bulk bar fit a 1440 px wide window
+### D-43 · C839496 · Design: Inventory list and bulk bar fit a 1440 px wide window
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have two active parts, part A and part B.
@@ -3435,7 +3435,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-43-A; part B = ZZAUTOTEST-PL-D-43-B.
 Quotes: FF-1, S1-R8, S2-R7. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-44 · new case · Design: Inventory list and bulk bar fit a 1536 px wide window
+### D-44 · C839497 · Design: Inventory list and bulk bar fit a 1536 px wide window
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have two active parts, part A and part B.
@@ -3448,7 +3448,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-44-A; part B = ZZAUTOTEST-PL-D-44-B.
 Quotes: FF-1, S1-R8, S2-R7. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-45 · new case · Design: Part window and confirmation fit a 1440 px wide window
+### D-45 · C839498 · Design: Part window and confirmation fit a 1440 px wide window
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create an active part for this test, part A, with two or more tags.
@@ -3459,7 +3459,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-45-A.
 Quotes: FF-1, S13-R2, S13-R3, S10-R11. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-46 · new case · Design: Part window and confirmation fit a 1536 px wide window
+### D-46 · C839499 · Design: Part window and confirmation fit a 1536 px wide window
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create an active part for this test, part A, with two or more tags.
@@ -3470,7 +3470,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-46-A.
 Quotes: FF-1, S13-R2, S13-R3, S10-R11. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-47 · new case · Design: Inactive tag on the Part Library entry page sits before the quantity
+### D-47 · C839500 · Design: Inactive tag on the Part Library entry page sits before the quantity
 State the tester sets up:
 - Sign in as an Admin who can switch between two locations: the test location and location B.
 - Have part A stocked at the test location and at location B, active here and inactive at location B.
@@ -3482,7 +3482,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-47-A; part B = ZZAUTOTEST-PL-D-47-B.
 Quotes: S11-R8, S11-R9. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-48 · new case · Design: Not Tracked replaces the stock line in a part lookup
+### D-48 · C839501 · Design: Not Tracked replaces the stock line in a part lookup
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Have an untracked part, part A, with stock in one bin, and a tracked part, part B, with stock.
@@ -3495,7 +3495,7 @@ State the tester sets up:
 Example values: part A = ZZAUTOTEST-PL-D-48-A; part B = ZZAUTOTEST-PL-D-48-B.
 Quotes: S9-R21. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).
 
-### D-49 · new case · Design: Status confirmation has a close X in its title row
+### D-49 · C839502 · Design: Status confirmation has a close X in its title row
 State the tester sets up:
 - Sign in as an Admin at the test location.
 - Create two active parts for this test, part A and part B.
@@ -3506,4 +3506,4 @@ State the tester sets up:
 - Open the attached design pictures of boards 3.3, 3.7, 4.4 and 4.7 at 100% zoom, so you can compare the screen with them.
 - Start on the Inventory page (Parts in the top bar, then Inventory in the left menu), on the Active tab.
 Example values: part A = ZZAUTOTEST-PL-D-49-A; part B = ZZAUTOTEST-PL-D-49-B.
-Quotes: KD-11, S10-R2, S13-R23, S10-N1. Marker: AUTOMATION: HOLD - the design differs from the PRD, waiting on the PO.
+Quotes: KD-11, S10-R11a, S10-R2, S13-R23, S10-N1, Chris Ward, 27 Oct 2026, answer 19. Marker: AUTOMATION: HOLD - not yet build-verified (no build yet).

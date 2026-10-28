@@ -14,16 +14,8 @@ WRITTEN = True
 START_A = "Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box."
 PO5a = ("PO", "Chris Ward, 14 Oct 2026, answer 5", "Save an untracked part with bins and none marked default, then turn tracking on.")
 
-C("S5-01", "S5", "Turning tracking on gives a part with no bin the default bin at zero",
-  [ADMIN, "Create an untracked part, part A, for this test with no bin location: its only bin location was deleted in Bin Locations (under Settings) while part A held 0 there, so its window shows no bin row.",
-   START_A],
-  ["Click the part A row.", "Click the Track quantities and cost of goods switch.", "Click Save.", "Click the part A row again."],
-  [["Edit Inventory Part opens with the switch off and no bin row in the Inventory section."],
-   ["The switch turns on and the Min and Max fields appear.", "The Inventory section now holds one bin row: the location's default bin, Quantity 0, marked Default."],
-   ["The window closes with no bin error.", "Part A's Total Qty cell shows 0 Available (a number, not \"Not Tracked\"), and Bin Location / Quantity shows the default bin with 0."],
-   ["The saved part keeps that one bin, Quantity 0, marked Default."]],
-  ["S5-R7"], marker=PO_HOLD("Q2", "how a part with no bin location is made"),
-  design=dict(boards=["5.6"]))
+# S5-01 (C154770) deleted 28 Oct 2026 with the QA lead's go-ahead ("Delete all 9"): a manual tester can no longer run it after
+# Product answers 13/14 of 27 Oct (PRD v35 S5-E3, S9-R18a); see full-pass-2026-10-27/NO-MANUAL-PROPOSAL.json.
 
 C("S5-02", "S5", "Turning tracking off and back on keeps Min and Max",
   [ADMIN, "Create an active tracked part, part A, for this test with Min 2, Max 6 and 4 in its bin.", START_A],
@@ -91,35 +83,11 @@ C("S5-07", "S5", "Turning tracking back on shows the count as it stands now",
   ["S5-R6", "KD-7"],
   design=dict(boards=["5.6"]))
 
-C("S5-08", "S5", "A part's core turns untracked and tracked together with the part",
-  [ADMIN, "Create an active tracked part, part A, for this test with 2 in its bin and a Core Charge of $25.00, so it has a core.", GLOBAL, START_A],
-  ["Click the part A row.", "Click the Track quantities and cost of goods switch.", "Click Save.", "Click the Search box in the top bar.",
-   "Type Core for followed by part A's description.", "Press Escape.", "Click the part A row.", "Click the Track quantities and cost of goods switch.",
-   "Click Save.", "Click the Search box in the top bar.", "Type Core for followed by part A's description again."],
-  [["Edit Inventory Part opens with the switch on."],
-   ["The switch turns off."],
-   ["Part A reads \"Not Tracked\" in Total Qty, and its Core column still reads $25.00."],
-   ["The global search opens."],
-   ["The result for part A's core shows \"Not Tracked\" in place of its available badge: it changed with the same save as part A, and you did not edit the core."],
-   ["The global search closes."],
-   ["Edit Inventory Part opens with the switch off."],
-   ["The switch turns on."],
-   ["Part A shows a quantity again in Total Qty."],
-   ["The global search opens."],
-   ["The result for part A's core shows an available badge again (a number, not \"Not Tracked\"), changed by the same save that turned part A back on."]],
-  ["S5-R9", "S9-R20", "FO-10", "KD-8"],
-  design=dict(note="no board draws a core; the expected results above come from the quotes above."))
+# S5-08 (C425634) deleted 28 Oct 2026 with the QA lead's go-ahead ("Delete all 9"): a manual tester can no longer run it after
+# Product answers 13/14 of 27 Oct (PRD v35 S5-E3, S9-R18a); see full-pass-2026-10-27/NO-MANUAL-PROPOSAL.json.
 
-C("S5-09", "S5", "A core charge added to an untracked part gives it an untracked core",
-  [ADMIN, "Create an untracked part, part A, for this test with 2 in its bin and no Core Charge, so it has no core yet.", GLOBAL, START_A],
-  ["Click the part A row.", "Type 30.00 in Core Charge.", "Click Save.", "Click the Search box in the top bar.", "Type Core for followed by part A's description."],
-  [["Edit Inventory Part opens with the switch off and Core Charge empty or 0."],
-   ["Core Charge shows 30.00."],
-   ["The window closes.", "Part A's Core column reads $30.00, and its Total Qty still reads \"Not Tracked\"."],
-   ["The global search opens."],
-   ["The result for part A's new core shows \"Not Tracked\" in place of an available badge: the new core took part A's untracked state."]],
-  ["S5-R9", "S9-R20"],
-  design=dict(note="no board draws a core; the expected results above come from the quotes above."))
+# S5-09 (C425635) deleted 28 Oct 2026 with the QA lead's go-ahead ("Delete all 9"): a manual tester can no longer run it after
+# Product answers 13/14 of 27 Oct (PRD v35 S5-E3, S9-R18a); see full-pass-2026-10-27/NO-MANUAL-PROPOSAL.json.
 
 C("S5-10", "S5", "Cycle count shows Not Tracked for an untracked part and never counts it",
   [ADMIN, "Create two parts for this test: part A, active and tracked, with 5 in its bin, and part B, active and untracked, with 3 in its bin.",
@@ -238,15 +206,5 @@ C("S5-17b", "S5", "A part's core has no row of its own on the Part Library list"
   ["S5-E3"], part_of="S5-17",
   design=dict(boards=["7.1"]), prd=35)
 
-C("S5-18", "S5", "A core's own Part History page shows its name and its own history",
-  [ADMIN, "Create an active part, part A, for this test with a Core Charge of $25.00, so it has a core, then change part A's description once in its Edit Inventory Part window, from description 1 to description 2.",
-   "Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box."],
-  ["Open the core's own Part History page.", "Click Inventory in the left menu.", "Type part A's part number in the Search box.",
-   "Click the clock icon (Part History) at the left of the part A row."],
-  [["A Part History page opens for the core, not for part A.", "Its Part details panel names the core \"Core for\" followed by description 2: the core was renamed with its part.",
-    "Its newest entry reads \"Description updated | Original description: Core for\" description 1 \"| New description: Core for\" description 2, with your name under Staff and today's date and time."],
-   ["The Inventory page opens."],
-   ["Part A is listed."],
-   ["Part A's own newest entry reads \"Description updated | Original description:\" description 1 \"| New description:\" description 2: the core keeps a history of its own."]],
-  ["S5-E3", "S13-R15", "S10-R24", "S10-R26"], marker=PO_HOLD("Q1", "how a core's own Part History page is opened"),
-  design=dict(note="no board draws a core; the expected results above come from the quotes above."))
+# S5-18 (C573677) deleted 28 Oct 2026 with the QA lead's go-ahead ("Delete all 9"): a manual tester can no longer run it after
+# Product answers 13/14 of 27 Oct (PRD v35 S5-E3, S9-R18a); see full-pass-2026-10-27/NO-MANUAL-PROPOSAL.json.

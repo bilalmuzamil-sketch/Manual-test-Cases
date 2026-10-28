@@ -258,14 +258,8 @@ C("S10-21", "S10", "A bulk change of forty parts writes forty Part History entri
    ["Each of the forty parts has exactly one new entry \"Deactivated | Reason: Bulk forty\": 40 parts × 1 entry = 40 entries, all with the same note."]],
   ["S10-R18", "UFS-28", "S2-R6"], design=D45)
 
-C("S10-22", "S10", "A core's status change writes its own Part History entry",
-  [ADMIN, "Create an active part, part A, for this test, with a Core Charge above $0, so it has a core described Core for followed by part A's description.",
-   "Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box."],
-  [ROW_A, PICK_IN, SAVE, "Type Core follows in the Note (Optional) field.", DEACT_CONF, "Open the core's own Part History page."],
-  [["Edit Inventory Part opens."], ["Inactive is picked."], ["The confirmation opens."], ["The note reads Core follows."], ["Part A leaves the Active tab."],
-   ["The page is the core's own: its part details name it Core for followed by part A's description, and its newest entry is \"Deactivated | Reason: Core follows\"."]],
-  ["S10-R19", "S2-R17", "S5-E3"], marker=PO_HOLD("Q1", "how a core's own Part History page is opened"),
-  design=dict(note="no board draws a core; the expected results above come from the quotes above."))
+# S10-22 (C425769) deleted 28 Oct 2026 with the QA lead's go-ahead ("Delete all 9"): a manual tester can no longer run it after
+# Product answers 13/14 of 27 Oct (PRD v35 S5-E3, S9-R18a); see full-pass-2026-10-27/NO-MANUAL-PROPOSAL.json.
 
 C("S10-23", "S10", "A status entry has Staff, Date and Time and can be searched",
   [ADMIN, "Create an active part, part A, for this test, so its Part History already holds its creation entries.",
@@ -335,16 +329,8 @@ for key, field, title, quote, ufs in (
        [f"The newest entry reads {entry}, followed by \"| Changed at:\" and the test location's name: it names the location where the change was made."]],
       [quote, "S10-R25", ufs], stories=[10, 13], design=dict(boards=["2.4", "2.6"], words=[note("The entries are written at Lethbridge too")]))
 
-C("S10-29", "S10", "A core gets the same number and description history entries",
-  [ADMIN, "Create a part, part A, for this test, with a description, description 1, and a Core Charge above $0, so it has a core described Core for followed by description 1.",
-   "Use a new part number, number 2, and a new description, description 2, that no part uses.",
-   "Start on the Inventory page, on the Active tab, with part A's part number typed in the Search box."],
-  [ROW_A, "Replace the Part Number with number 2.", "Replace the Description with description 2.", SAVE, "Open the core's own Part History page."],
-  [["Edit Inventory Part opens."], ["Part Number reads number 2."], ["Description reads description 2."], ["The save goes through."],
-   ["The page is the core's own: its details name it Core for followed by description 2, with part number number 2.",
-    "Its newest entries are \"Part number updated | Original number:\" with part A's old number and \"| New number:\" number 2, and \"Description updated | Original description: Core for\" description 1 \"| New description: Core for\" description 2."]],
-  ["S10-R26", "S13-R15", "S13-R18", "S5-E3"], stories=[10, 13], marker=PO_HOLD("Q1", "how a core's own Part History page is opened"),
-  design=dict(note="no board draws a core; the expected results above come from the quotes above."))
+# S10-29 (C425777) deleted 28 Oct 2026 with the QA lead's go-ahead ("Delete all 9"): a manual tester can no longer run it after
+# Product answers 13/14 of 27 Oct (PRD v35 S5-E3, S9-R18a); see full-pass-2026-10-27/NO-MANUAL-PROPOSAL.json.
 
 C("S10-30", "S10", "Part History search finds entries by their text or staff name, in any case",
   [ADMIN, "Create a part, part A, for this test, then deactivate it with the note Superseded Kit, reactivate it with no note and turn its tracking off, so its Part History holds those three entries from you.",

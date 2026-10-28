@@ -10,14 +10,30 @@ Catalog→Part Library rename, editable part number.
 **Build:** ❌ No QA branch yet. **PROVISIONAL — the spec is in review**; every case is
 `AUTOMATION: HOLD` naming the in-review status (Rules 49/85).
 
-## 🟡 IN PROGRESS — 27 Oct 2026 full pass against PRD v33 (draft, nothing written to TestRail yet)
+## 🟢 CURRENT STATE — 28 Oct 2026 (named-set update to PRD v35 WRITTEN) — read this first
+- Chris Ward answered Doc questions 13-27 on 27 Oct and folded them into **PRD v34/v35** (27 Oct; `sources/CONFLUENCE-829227015-2026-10-28.md`).
+  Answers saved word for word: `full-pass-2026-10-27/ANSWERS-13-27-2026-10-27.md`.
+- QA lead 28 Oct: "Named set" (Rule 122 amendment) and "Delete all 9" (the cases a manual tester can no longer run).
+- **Written 28 Oct:** 28 cases rewritten to v35 (S5-05, S5-16, S5-17, S5-17b, S9-28, S9-41, S9-42, S10-01, S10-19, S11-02, S11-18,
+  S12-03, S12-10, S13-45; released from hold S7-17, S7-25, S12-06, D-33, D-49; S8-04, S8-13, S8-14 (answer 27: a role change signs the
+  user out); S13-19; D-11, D-12, D-24, D-25, D-42); 8 new: S7-17b C847726, S7-27 C847727, S9-49 C847728, S10-36 C847729, S11-21 C847730,
+  S12-15 C847731, S13-48 C847732, S13-49 C847733. The other 336 cases unchanged (page quotes word for word in v35).
+- **Deleted 28 Oct (QA lead "Delete all 9"):** S5-01 C154770, S5-18 C573677, S10-22 C425769, S10-29 C425777, S13-03b C839442, S2-19
+  C425603, S2-19b C839419, S5-08 C425634, S5-09 C425635 (no results in any open run; snapshots and log in
+  `full-pass-2026-10-27/deleted-2026-10-28/`). Their codes are "No manual case" (developers' checks): S5-R7, S2-R17, S5-R9, S10-R19,
+  S10-R26, S13-R15; and S8-N1 to S8-N3 (answer 27).
+- **No open PO question.** Design-divergence register: every row closed (DV-01..DV-03 ruled by answers 19-21).
+- Old per-case setup Docs: all 324 trashed (`full-pass-2026-10-27/old-setup-docs-trash-log.jsonl`).
+- Build verification: no Parts Lifecycle QA environment named yet.
+
+## (HISTORY) 27 Oct 2026 full pass against PRD v33 (was in progress)
 - QA lead: "Full pass" and "Delete all 12" (the "Retire OR retest" cases; the coordinator deletes them). Brief: `full-pass-2026-10-27/WORKER-BRIEF.md`.
 - Phase A done (27 Oct): library `authoring/` (pllib, gates, quote parser from the v33 requirement lines), `testrail-id-map.csv` (274 live cases → keys),
   `REQUIREMENT-MAP.json` (311 codes), `TICKET-LEDGER.json` (24 tickets), `DESIGN-DIVERGENCE-REGISTER.json` (6 carried rows, 0 open),
   `full-pass-2026-10-27/QUESTIONS.json` (Q1-Q7), Stories 1-5 written: 73 cases (62 rewritten keeping C-ids, 10 split parts, 1 new). Handoff for
   Phases B, C, D: `PHASE-A-HANDOFF.md`. Pass record: `full-pass-2026-10-27/PASS-REPORT-PHASE-A.md`.
 
-## 🟢 CURRENT STATE — 27 Oct 2026 (full pass: PRD v33, design look, QA lead's pattern) — read this first
+## (HISTORY) STATE — 27 Oct 2026 (full pass: PRD v33, design look, QA lead's pattern) — read this first
 - **QA lead, 27 Oct:** "Parts lifecycle is the next, we need to make sure it is fully covered with the test cases and design";
   chose **Full pass** and **Delete all 12** ("Retire OR retest").
 - **Sources:** PRD Confluence 829227015 **v33** (23 Oct; 311 codes, v29 → v33: 9 new, 4 changed), re-checked just before the writes;

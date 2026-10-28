@@ -478,8 +478,8 @@
   "added": "27 Oct 2026, Phase D design drive (merged by the integration step)"
  },
  "DV-01|Boards 3.3, 3.7, 4.4, 4.7 (every status confirmation)": {
-  "outcome": "QUESTION-READY",
-  "where": "question Q8 drafted 27 Oct 2026, NOT sent (Phase D draft; no Google writes)",
+  "outcome": "PO-RULED",
+  "where": "Sent 27 Oct as Doc question 19 (our Q8). Chris Ward, answer 19, 27 Oct 2026: the X stays, it is part of the standard dialog and does exactly what Cancel does; Esc and clicking outside don't close it (PRD v34 S10-R11a).",
   "design": "Each confirmation has a grey close X at the right of its title row.",
   "prd": "§4 Key decisions: \"Every confirmation is the application's standard dialog. A title, a message, an optional note, Cancel and a confirm button. There is no confirmation word to type.\" (S10-R2: \"The confirmation is the application's standard confirmation dialog.\")",
   "cases": [
@@ -491,11 +491,17 @@
   ],
   "held_case": "D-49",
   "added": "27 Oct 2026, Phase D design drive (merged by the integration step)",
-  "question": "Q8"
+  "question": "Q8",
+  "ruled": "2026-10-27",
+  "cases_after_ruling": [
+   "D-49 C839502 released",
+   "S10-01 C154789",
+   "S10-36 C847729 new"
+  ]
  },
  "DV-02|Board 7.2 canvas note": {
-  "outcome": "QUESTION-READY",
-  "where": "question Q9 drafted 27 Oct 2026, NOT sent (Phase D draft; no Google writes)",
+  "outcome": "PO-RULED",
+  "where": "Sent 27 Oct as Doc question 20 (our Q9). Chris Ward, answer 20, 27 Oct 2026: the board 7.2 note is out of date; follow the page: the detail page has no Delete; Delete is in the \"Edit Library Part\" window (S11-R3).",
   "design": "Note: \"Clicking a row opens the entry, where it can be edited and deleted (S11-R3).\" (the board itself shows no Delete button)",
   "prd": "S11-R3: \"Clicking a row opens that entry's detail page. The pencil beside the entry's name opens the \\\"Edit Library Part\\\" window, where the entry is edited and where its Delete button sits, bottom left. The detail page itself has no Delete button.\"",
   "cases": [
@@ -505,11 +511,16 @@
   ],
   "held_case": null,
   "added": "27 Oct 2026, Phase D design drive (merged by the integration step)",
-  "question": "Q9"
+  "question": "Q9",
+  "ruled": "2026-10-27",
+  "cases_after_ruling": [
+   "S11-02 C154829",
+   "S11-18 C573671"
+  ]
  },
  "DV-03|Board 2.6 (redrawn table) and its note; tech plan Phase 8": {
-  "outcome": "QUESTION-READY",
-  "where": "question Q10 drafted 27 Oct 2026, NOT sent (Phase D draft; no Google writes)",
+  "outcome": "PO-RULED",
+  "where": "Sent 27 Oct as Doc question 21 (our Q10). Chris Ward, answer 21, 27 Oct 2026: a long entry wraps onto more lines, as on board 2.6; the full entry always shows (PRD v34 S10-R21).",
   "design": "Note: \"Staff, Date and Time keep their production widths; a long Event wraps onto a second line.\" The board's table wraps long events.",
   "prd": "S10-R21: \"The Part History table keeps its column layout whatever an entry says. A short entry does not widen the Staff, Date or Time columns.\" (silent on wrap or cut-off). Tech plan Phase 8 (PartHistory.vue): \"fixed headerStyle widths on Staff/Date/Time, Event elastic, table-layout: fixed + ellipsis\" (cuts a long event off).",
   "cases": [
@@ -519,6 +530,10 @@
   ],
   "held_case": "D-33",
   "added": "27 Oct 2026, Phase D design drive (merged by the integration step)",
-  "question": "Q10"
+  "question": "Q10",
+  "ruled": "2026-10-27",
+  "cases_after_ruling": [
+   "D-33 C839486 released"
+  ]
  }
 }
