@@ -8,7 +8,7 @@ from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(__file__))
 from common import *
 from records import wo_lines, prefetch, invoice
-OUTF = os.path.join(os.path.dirname(__file__), '..', 'results-te.json')
+OUTF = os.path.join('/tmp/cln/w2/full', 'results-te.json')
 rows = []
 def add(loc, rng, tab, check, ok, detail, src, level='line', key=''):
     rows.append({'report': f'Technician Efficiency ({tab})', 'location': loc, 'range': rng, 'level': level, 'key': key, 'check': check,
@@ -65,6 +65,17 @@ for wid, name, tz in WORKPLACES:
                 if tab == 'cmp':
                     add(name, lab, T, 'Completed tab lists only lines whose status is Complete', L['status'] == 'complete', f'{num} {L["line_name"]} status {L["status"]}', 'SV-5450 Inclusion Rules')
                     add(name, lab, T, 'Completed tab: the technician has clocked time on the line', mine > 0, f'{num} {tid[:8]} {round(mine,2)} min', 'SV-5450 "Tech has clocked time on that line"')
+    for p in ('last_12_months', 'this_year', 'last_year', 'this_quarter', 'last_quarter', 'this_month', 'last_month', 'this_week', 'last_week'):
+        for tab in ('inv', 'cmp'):
+            pp = os.path.join(d, f'te_{tab}_preset__{p}.json')
+            if not os.path.exists(pp) or (tab, p) not in data: continue
+            a = json.load(open(pp)); b = data[(tab, p)]
+            thk = 'technicianTechHours' if tab == 'inv' else 'technicianCompletedTechHours'
+            A = {r['technicianId']: (r['technicianClockedHours'], r[thk]) for r in (a['summary'] or {}).get('data', {}).get('collection', [])}
+            Bm = {r['technicianId']: (r['technicianClockedHours'], r[thk]) for r in b['summary']['data']['collection']}
+            ok = a['status'] == 200 and set(A) == set(Bm) and all(abs(A[k][0] - Bm[k][0]) < 0.06 and abs(A[k][1] - Bm[k][1]) < 0.011 for k in A)
+            add(name, p, 'Invoiced' if tab == 'inv' else 'Completed', 'Preset by name = the same technicians and hours as the custom window of those dates (location time zone, weeks from Sunday)', ok,
+                f'preset {len(A)} techs vs custom {len(Bm)}; diff {[k for k in set(A)|set(Bm) if A.get(k)!=Bm.get(k)][:3]}', 'SV-2115 date filter; SV-5450 location time zone', 'range')
     # ---- population (every location): Invoiced tab = clocked lines of work orders invoiced in the dates (SV-2115);
     #      Completed tab = every Complete, clocked line of a work order invoiced since 2025-01-01 appears in the
     #      two-year union of Completed windows (a line is completed before its invoice is made)

@@ -7,7 +7,7 @@ import json, os, sys, math, collections, datetime as dt
 sys.path.insert(0, os.path.dirname(__file__))
 from common import *
 from records import stats, stat_totals, prefetch, invoice, money
-OUTF = os.path.join(os.path.dirname(__file__), '..', 'results-saa.json')
+OUTF = os.path.join('/tmp/cln/w2/full', 'results-saa.json')
 rows = []
 def add(loc, rng, check, ok, detail, src, level='row', key=''):
     rows.append({'report': 'Advisor Analysis', 'location': loc, 'range': rng, 'level': level, 'key': key, 'check': check,

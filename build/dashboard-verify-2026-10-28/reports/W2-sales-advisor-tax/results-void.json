@@ -1,128 +1,86 @@
-[
 {
-"report": "Sales",
-"location": "DVI Test",
-"range": "custom_1d",
-"check": "Seeded VOID invoice S1-38207 is excluded",
-"result": "PASS",
-"detail": "invoice status now void; listed=False",
-"source": "SBC S7-R7 / SBR \u00a73 Reversed / Dashboard PRD S3-E2 / SV-2115 / SV-5450"
-},
-{
-"report": "Advisor Analysis",
-"location": "DVI Test",
-"range": "custom_1d",
-"check": "Seeded VOID invoice S1-38207 is excluded",
-"result": "PASS",
-"detail": "invoice status now void; listed=False",
-"source": "SBC S7-R7 / SBR \u00a73 Reversed / Dashboard PRD S3-E2 / SV-2115 / SV-5450"
-},
-{
-"report": "Sales By Customer",
-"location": "DVI Test",
-"range": "custom_1d",
-"check": "Seeded VOID invoice S1-38207 is excluded",
-"result": "PASS",
-"detail": "invoice status now void; listed=False",
-"source": "SBC S7-R7 / SBR \u00a73 Reversed / Dashboard PRD S3-E2 / SV-2115 / SV-5450"
-},
-{
-"report": "Sales By Representative",
-"location": "DVI Test",
-"range": "custom_1d",
-"check": "Seeded VOID invoice S1-38207 is excluded",
-"result": "PASS",
-"detail": "invoice status now void; listed=False",
-"source": "SBC S7-R7 / SBR \u00a73 Reversed / Dashboard PRD S3-E2 / SV-2115 / SV-5450"
-},
-{
-"report": "Technician Efficiency (Invoiced)",
-"location": "DVI Test",
-"range": "custom_1d",
-"check": "Seeded VOID invoice S1-38207 is excluded",
-"result": "PASS",
-"detail": "invoice status now void; listed=False",
-"source": "SBC S7-R7 / SBR \u00a73 Reversed / Dashboard PRD S3-E2 / SV-2115 / SV-5450"
-},
-{
-"report": "Technician Efficiency (Completed) \u2014 line 1",
-"location": "DVI Test",
-"range": "custom_1d",
-"check": "Seeded VOID invoice S1-38207 line still counted (completion, not invoice, decides \u2014 SV-5450)",
-"result": "PASS",
-"detail": "invoice status now void; listed=True",
-"source": "SBC S7-R7 / SBR \u00a73 Reversed / Dashboard PRD S3-E2 / SV-2115 / SV-5450"
-},
-{
-"report": "Sales Tax Collected",
-"location": "DVI Test",
-"range": "custom_1d",
-"check": "Seeded VOID invoice S1-38207 is excluded",
-"result": "PASS",
-"detail": "invoice status now void; listed=False",
-"source": "SBC S7-R7 / SBR \u00a73 Reversed / Dashboard PRD S3-E2 / SV-2115 / SV-5450"
-},
-{
-"report": "Sales",
-"location": "DVI Test",
-"range": "this_month",
-"check": "Seeded VOID invoice S1-38207 is excluded",
-"result": "PASS",
-"detail": "invoice status now void; listed=False",
-"source": "SBC S7-R7 / SBR \u00a73 Reversed / Dashboard PRD S3-E2 / SV-2115 / SV-5450"
-},
-{
-"report": "Advisor Analysis",
-"location": "DVI Test",
-"range": "this_month",
-"check": "Seeded VOID invoice S1-38207 is excluded",
-"result": "PASS",
-"detail": "invoice status now void; listed=False",
-"source": "SBC S7-R7 / SBR \u00a73 Reversed / Dashboard PRD S3-E2 / SV-2115 / SV-5450"
-},
-{
-"report": "Sales By Customer",
-"location": "DVI Test",
-"range": "this_month",
-"check": "Seeded VOID invoice S1-38207 is excluded",
-"result": "PASS",
-"detail": "invoice status now void; listed=False",
-"source": "SBC S7-R7 / SBR \u00a73 Reversed / Dashboard PRD S3-E2 / SV-2115 / SV-5450"
-},
-{
-"report": "Sales By Representative",
-"location": "DVI Test",
-"range": "this_month",
-"check": "Seeded VOID invoice S1-38207 is excluded",
-"result": "PASS",
-"detail": "invoice status now void; listed=False",
-"source": "SBC S7-R7 / SBR \u00a73 Reversed / Dashboard PRD S3-E2 / SV-2115 / SV-5450"
-},
-{
-"report": "Technician Efficiency (Invoiced)",
-"location": "DVI Test",
-"range": "this_month",
-"check": "Seeded VOID invoice S1-38207 is excluded",
-"result": "PASS",
-"detail": "invoice status now void; listed=False",
-"source": "SBC S7-R7 / SBR \u00a73 Reversed / Dashboard PRD S3-E2 / SV-2115 / SV-5450"
-},
-{
-"report": "Technician Efficiency (Completed) \u2014 line 1",
-"location": "DVI Test",
-"range": "this_month",
-"check": "Seeded VOID invoice S1-38207 line still counted (completion, not invoice, decides \u2014 SV-5450)",
-"result": "PASS",
-"detail": "invoice status now void; listed=True",
-"source": "SBC S7-R7 / SBR \u00a73 Reversed / Dashboard PRD S3-E2 / SV-2115 / SV-5450"
-},
-{
-"report": "Sales Tax Collected",
-"location": "DVI Test",
-"range": "this_month",
-"check": "Seeded VOID invoice S1-38207 is excluded",
-"result": "PASS",
-"detail": "invoice status now void; listed=False",
-"source": "SBC S7-R7 / SBR \u00a73 Reversed / Dashboard PRD S3-E2 / SV-2115 / SV-5450"
+ "full_rows_at": "/tmp/cln/w2/full/results-void.json",
+ "rows": 14,
+ "totals": {
+  "PASS": 14
+ },
+ "checks": [
+  {
+   "report": "Sales",
+   "check": "Seeded VOID invoice S1-38207 is excluded",
+   "source": "SBC S7-R7 / SBR \u00a73 Reversed / Dashboard PRD S3-E2 / SV-2115 / SV-5450",
+   "counts": {
+    "PASS": 2
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Advisor Analysis",
+   "check": "Seeded VOID invoice S1-38207 is excluded",
+   "source": "SBC S7-R7 / SBR \u00a73 Reversed / Dashboard PRD S3-E2 / SV-2115 / SV-5450",
+   "counts": {
+    "PASS": 2
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Customer",
+   "check": "Seeded VOID invoice S1-38207 is excluded",
+   "source": "SBC S7-R7 / SBR \u00a73 Reversed / Dashboard PRD S3-E2 / SV-2115 / SV-5450",
+   "counts": {
+    "PASS": 2
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales By Representative",
+   "check": "Seeded VOID invoice S1-38207 is excluded",
+   "source": "SBC S7-R7 / SBR \u00a73 Reversed / Dashboard PRD S3-E2 / SV-2115 / SV-5450",
+   "counts": {
+    "PASS": 2
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Invoiced)",
+   "check": "Seeded VOID invoice S1-38207 is excluded",
+   "source": "SBC S7-R7 / SBR \u00a73 Reversed / Dashboard PRD S3-E2 / SV-2115 / SV-5450",
+   "counts": {
+    "PASS": 2
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Technician Efficiency (Completed) \u2014 line 1",
+   "check": "Seeded VOID invoice S1-38207 line still counted (completion, not invoice, decides \u2014 SV-5450)",
+   "source": "SBC S7-R7 / SBR \u00a73 Reversed / Dashboard PRD S3-E2 / SV-2115 / SV-5450",
+   "counts": {
+    "PASS": 2
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  },
+  {
+   "report": "Sales Tax Collected",
+   "check": "Seeded VOID invoice S1-38207 is excluded",
+   "source": "SBC S7-R7 / SBR \u00a73 Reversed / Dashboard PRD S3-E2 / SV-2115 / SV-5450",
+   "counts": {
+    "PASS": 2
+   },
+   "non_pass": [],
+   "non_pass_total": 0,
+   "non_pass_capped": false
+  }
+ ]
 }
-]

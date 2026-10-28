@@ -21,6 +21,6 @@ for wid, name, tz in WORKPLACES:
             ok = got == exp and abs((tot.get('total_invoiced') or 0) - round(sum(r['total_invoiced'] for r in b['data']['collection']), 2)) < 0.02
             rows.append({'report': 'Sales', 'location': name, 'range': 'last_12_months', 'check': 'Customer filter: only that customer\'s invoices and credit memos; Totals = those rows', 'result': 'PASS' if ok else 'FAIL',
                          'detail': f'{cu["customer_name"]}: filtered {len(got or [])} vs unfiltered {len(exp)}; diff {sorted(set(got or [])^set(exp))[:4]}', 'source': 'SV-6025 / Sales screen Customer filter (no written rule beyond its label)'})
-json.dump(rows, open(os.path.join(os.path.dirname(__file__), '..', 'results-sales-customer-filter.json'), 'w'), indent=0)
+json.dump(rows, open(os.path.join('/tmp/cln/w2/full', 'results-sales-customer-filter.json'), 'w'), indent=0)
 print(collections.Counter((r['location'], r['result']) for r in rows))
 for r in [r for r in rows if r['result'] == 'FAIL'][:8]: print(r['detail'])

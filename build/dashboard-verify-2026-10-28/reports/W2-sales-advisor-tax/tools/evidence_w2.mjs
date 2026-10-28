@@ -7,7 +7,7 @@ import pw from '/opt/node22/lib/node_modules/playwright/index.js';
 import { login, api } from '/home/user/Manual-test-Cases/build/testing-tools/staging-admin.mjs';
 const APP = 'https://app.staging.shopview.com', OUT = '/tmp/cln/w2/ev2'; fs.mkdirSync(OUT, { recursive: true });
 const which = process.argv[2] || 'A';
-const LOC = { A: ['39522bc6-abca-4f67-bd12-2840043c2d68', 'America/Toronto'], B: ['b3c8c820-f815-4cf1-8938-10956c5ee71a', 'Asia/Karachi'], C: ['39522bc6-abca-4f67-bd12-2840043c2d68', 'America/Toronto'] };
+const LOC = { A: ['39522bc6-abca-4f67-bd12-2840043c2d68', 'America/Toronto'], B: ['b3c8c820-f815-4cf1-8938-10956c5ee71a', 'Asia/Karachi'], C: ['39522bc6-abca-4f67-bd12-2840043c2d68', 'America/Toronto'], D: ['f8a8b802-7780-4b16-bf10-343caeb616b2', 'America/Edmonton'] };
 const [WP, TZ] = LOC[which];
 const t = await login('admin');
 await api(t.sessCookie, 'POST', '/api/iam/change-location', { workplace_id: WP, workplace_timezone: TZ });
@@ -55,6 +55,20 @@ if (which === 'C') {
   meta.toast = (await page.locator('.q-notification').allInnerTexts().catch(() => [])).join(' | ');
   meta.toastBox = await box(page.locator('.q-notification'));
   meta.mainBox = await box(page.locator('main'));
+}
+if (which === 'D') {
+  await page.goto(APP + '/reports/technician-efficiency', { waitUntil: 'domcontentloaded', timeout: 90000 }); await page.waitForTimeout(8000);
+  await page.locator('[data-test-id="filter_chip_range"]').click(); await page.waitForTimeout(1200);
+  await page.locator('[data-test-id="filter_preset_range_last_quarter"]').click(); await page.waitForTimeout(1000); await page.keyboard.press('Escape'); await page.waitForTimeout(8000);
+  const tech = page.locator('tr').filter({ hasText: 'Joseph Nelson' }).first();
+  await tech.locator('[data-test-id^="toggle_row_btn_"]').click(); await page.waitForTimeout(8000);
+  const line = page.locator('tr').filter({ hasText: 'Replace cabin air filter' }).filter({ hasText: 'S3-17383' }).first();
+  await line.scrollIntoViewIfNeeded(); await page.evaluate(() => window.scrollBy(0, -300)); await page.waitForTimeout(1000);
+  await page.screenshot({ path: `${OUT}/D-te-tiny-clock.png` });
+  meta.line = { text: (await line.innerText().catch(() => '')).replace(/\s+/g, ' '), box: await box(line) };
+  const cells = line.locator('td'); meta.cells = []; for (let i = 0; i < await cells.count(); i++) meta.cells.push({ t: (await cells.nth(i).innerText()).trim(), box: await box(cells.nth(i)) });
+  meta.tech = { text: (await tech.innerText().catch(() => '')).replace(/\s+/g, ' '), box: await box(tech) };
+  meta.chip = (await page.locator('[data-test-id="filter_chip_range"]').innerText()).replace(/\s+/g, ' ');
 }
 meta.net = net; meta.appVersion = await page.locator('meta[name="app-version"]').getAttribute('content').catch(() => null);
 fs.writeFileSync(`${OUT}/${which}-meta.json`, JSON.stringify(meta, null, 1));

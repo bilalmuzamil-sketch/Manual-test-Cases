@@ -4,6 +4,8 @@ import json, os, sys, datetime as dt
 from urllib.parse import urlencode
 from zoneinfo import ZoneInfo
 sys.path.insert(0, '/home/user/Manual-test-Cases/build/dashboard-verify-2026-10-28/tools')
+import collect_dashboard
+collect_dashboard.COOKIE = open('/tmp/cln/w2/sess-w2.txt').read().strip()   # this worker's own session (never printed)
 from collect_dashboard import curl, WORKPLACES, ranges
 from collect_reports import instants
 RAW = '/tmp/cln/w2'

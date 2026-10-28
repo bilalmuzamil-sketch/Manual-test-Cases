@@ -1,0 +1,59 @@
+TITLE: Sales By Customer – "Margin %" Divides by Subtotal Without Shop Supplies Instead of by Subtotal
+TYPE: Story Defect · PARENT: SV-8605 (SBC - Story 7 - View customer summary rows; Done, read live 28 Oct 2026) · PRIORITY: Medium · LINK: relates to SV-8605
+STATUS: HELD — NOT FILED. Waiting for the product owner's answer to RQ-1. File unchanged only if the answer is "Margin % = Margin ÷ Subtotal". If the PO keeps the current figure, do not file; the SBC spec needs its wording changed instead.
+ALREADY REPORTED: none (JQL read live 28 Oct 2026).
+BASIS: SBC spec version 22 (19 Oct 2026). Conflicts with SBR spec version 30 (21 Oct 2026) §3 — see Sources.
+REPRODUCED: on screen and in every location's data, staging build v26.43.2-f8698cb, 28 Oct 2026.
+STEPS PROVEN: steps 12–15 (reading the report) walked on screen 28 Oct 2026 with the existing invoices of TestVT1. Steps 1–11 (creating the invoice) follow the work-order recipe already proven on screen for the dashboard tickets; walk them once more before filing.
+
+h2. Description
+
+*On Sales By Customer the Margin % is worked out without the shop supplies.* The spec says Margin % is the Margin divided by the Subtotal. The report instead divides the Margin by the Subtotal minus the Shop Supplies, so every customer, asset and invoice that was charged shop supplies shows a higher Margin % than the spec describes.
+
+Example (Staging Heavy Duty - 9919, This month, customer TestVT1): Margin $21,960.81, Subtotal $28,569.41 → the spec gives *76.87%*; the screen shows *82.81%* (= $21,960.81 ÷ $26,518.43, the Subtotal without the $2,050.98 of shop supplies).
+
+*What is NOT affected:* rows with no shop supplies (the two readings agree); every money column; the Totals money figures.
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin. In the top bar choose the location *Staging Heavy Duty - 9919* (this location charges shop supplies on invoices).
+# Open *Work Orders* and click *New*. Choose any customer and asset, for example customer *ZZAUTOTEST SBC Margin* (create it on the *Customers* page first if it does not exist), and click *Save*.
+# On the *Lines* tab click *New Line*, pick any canned line with labor, click *Save & Close*.
+# On the line click *Complete*. If a *Missing Details* window opens, fill the field it asks for and click *Finish Work Order*.
+# Open the *Finance* tab and click *Create Invoice*. Close the payment window without paying.
+#* The invoice shows a *Shop Supplies* line.
+# Write down the invoice's *Labor Total*, *Shop Supplies* and *Subtotal*.
+# Open *Reports* > *Sales By Customer*.
+# Click *Date* and choose *This month*.
+# Click *Customer*, type the customer's name, tick it, and close the list.
+# Read the customer row: *Margin*, *Shop Supplies*, *Subtotal* and *Margin %*.
+# Work out Margin ÷ Subtotal × 100 yourself.
+# Compare it with *Margin %* on the screen.
+#* The screen shows a higher figure: Margin ÷ (Subtotal − Shop Supplies) × 100.
+# Same check with existing data: location *Staging Heavy Duty - 9919*, *Date: This month*, *Customer: TestVT1*.
+#* Margin $21,960.81, Shop Supplies $2,050.98, Subtotal $28,569.41, Margin % *82.81%*.
+
+*Actual Result:*
+* Margin % = Margin ÷ (Subtotal − Shop Supplies) × 100 — 82.81% for TestVT1.
+
+*Expected Result:*
+* Margin % = Margin ÷ Subtotal × 100 — 76.87% for TestVT1, "because Subtotal includes Shop Supplies but Margin does not, Margin % is profit measured against total sales" (SBC spec, Terminology).
+
+h2. Screenshots
+
+!SBC-1-margin-percent.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.43.2-f8698cb}} on [staging|https://app.staging.shopview.com/reports/sales-by-customer], 28 Oct 2026
+* *Example:* Staging Heavy Duty - 9919, customer TestVT1, This month (84 invoices)
+* *User:* Admin
+
+h2. Sources
+
+* SBC spec, [Confluence 577634305|https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/577634305/SBC+Sales+By+Customer+Report], version 22 (19 Oct 2026), read 28 Oct 2026, S7-R11:
+{quote}The Margin % column shows the row's Margin divided by its Subtotal, times 100, to one decimal with a percent sign — for example, 64.7%.{quote}
+* Same spec, §4 Terminology:
+{quote}Margin % — Margin divided by the row's Subtotal, times 100. Because Subtotal includes Shop Supplies but Margin does not, Margin % is profit measured against total sales.{quote}
+* Why this is held: SBR spec, [Confluence 585629698|https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/585629698/SBR+Sales+By+Representative+Report], version 30 (21 Oct 2026), §3 context note:
+{quote}Sales By Customer computes Margin % from the same Margin base, so both reports report the same Margin % for the same invoice.{quote}

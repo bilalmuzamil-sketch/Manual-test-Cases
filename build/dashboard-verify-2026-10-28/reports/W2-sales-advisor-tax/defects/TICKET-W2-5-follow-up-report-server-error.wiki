@@ -1,0 +1,39 @@
+TITLE: Reports – The Follow Up Report (Sales Follow Up) Shows a Blank Page Because the Server Returns an Error
+TYPE: Bug · PARENT: none found · PRIORITY: Medium
+STATUS: HELD — NOT FILED. Waiting for the product owner's answer to RQ-5 ("Is the hidden Follow Up report still supported?"). File only if "Yes".
+ALREADY REPORTED: none (JQL read live 28 Oct 2026).
+BASIS: no written specification exists for this report; the expectation is that a reachable report page loads.
+REPRODUCED: on screen twice and by 12 direct reads, staging build v26.43.2-f8698cb, 28 Oct 2026.
+
+h2. Description
+
+*The Follow Up report (titled "Sales Follow Up") never loads.* It is not in the Reports menu, but its page still opens at /reports/sales-follow-up. The page stays completely empty — no title, no filters, no table and no message — because every request the page makes for its data fails on the server.
+
+It fails for every location and every period it offers (last 3, 6 and 12 months).
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin. In the top bar choose the location *DVI Test* (any location shows the same).
+# In the browser address bar open https://app.staging.shopview.com/reports/sales-follow-up
+# Wait ten seconds.
+
+*Actual Result:*
+* The content area of the page is blank: no "Sales Follow Up" title, no filter, no table, no error message.
+
+*Expected Result:*
+* The Sales Follow Up report loads with its table, or, if the report has been retired, the page is no longer reachable.
+
+h2. Screenshots
+
+!FOLLOWUP-1-blank-page.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.43.2-f8698cb}} on [staging|https://app.staging.shopview.com/reports/sales-follow-up], 28 Oct 2026
+* *Locations tried:* Staging Heavy Duty - 9919, Staging Lethbridge - 4310, QB Location, DVI Test
+* *User:* Admin
+* For the developer: the page's request {{GET /api/reporting/sales-follow-up/last_3_months}} returns HTTP 500 (also last_6_months and last_12_months).
+
+h2. Sources
+
+* No specification page or story was found for this report (searches listed in DEFECT-CANDIDATE-follow-up-report-server-error.md, A2).

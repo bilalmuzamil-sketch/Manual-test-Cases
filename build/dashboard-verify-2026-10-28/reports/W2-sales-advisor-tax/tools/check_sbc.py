@@ -10,7 +10,7 @@ from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(__file__))
 from common import *
 from records import invoice, stats, stat_totals, prefetch, money, wo_view
-OUTF = os.path.join(os.path.dirname(__file__), '..', 'results-sbc.json')
+OUTF = os.path.join('/tmp/cln/w2/full', 'results-sbc.json')
 MONEY = ['labor_invoiced', 'labor_margin', 'parts_invoiced', 'parts_margin', 'shop_supplies', 'adjustments', 'margin', 'subtotal']
 rows = []
 def add(loc, rng, check, ok, detail, ref='', level='invoice', key=''):
@@ -74,11 +74,14 @@ for wid, name, tz in WORKPLACES:
         add(name, '2y', 'Invoice date on the row = invoice created date', r['created_on'][:19] == dt.datetime.fromisoformat(v['created_on']).astimezone(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%S'), f'{num} row {r["created_on"]} record {v["created_on"]}', 'S8-R12')
         lab_sell = round(sum(l.get('labour_cost') or 0 for l in v['work_order']['lines']) * 100)
         prt_sell = round(sum(l.get('parts_cost') or 0 for l in v['work_order']['lines']) * 100)
+        _adj = (stat_totals(sts[iid]) or {}).get('adjustments') or []          # line-level fees/discounts fold into their line (S7-R17 / S5-R11)
+        lab_sell += round(sum(a['resolvedAmount'] for a in _adj if a.get('scope') == 'labor_line') * 100)
+        prt_sell += round(sum(a['resolvedAmount'] for a in _adj if a.get('scope') == 'part_line') * 100)
         sup = round(money(v.get('shop_supplies_cost')) * 100)
         sub = round((money(v['sub_total_with_tax']) - float(v['tax'].get('amountTotal') or 0)) * 100)
         adj = sub - lab_sell - prt_sell - sup
-        add(name, '2y', 'Labor Invoiced = labor on the invoice lines', abs(r['labor_invoiced'] - lab_sell) <= 1, f'{num} report {r["labor_invoiced"]} vs invoice {lab_sell} (cents)', 'S4 Terminology')
-        add(name, '2y', 'Parts Invoiced = parts on the invoice lines', abs(r['parts_invoiced'] - prt_sell) <= 1, f'{num} report {r["parts_invoiced"]} vs invoice {prt_sell}', 'S4 Terminology')
+        add(name, '2y', 'Labor Invoiced = labor on the invoice lines (+ labor-line fees/discounts)', abs(r['labor_invoiced'] - lab_sell) <= 1, f'{num} report {r["labor_invoiced"]} vs invoice {lab_sell} (cents)', 'S4 Terminology')
+        add(name, '2y', 'Parts Invoiced = parts on the invoice lines (+ part-line fees/discounts)', abs(r['parts_invoiced'] - prt_sell) <= 1, f'{num} report {r["parts_invoiced"]} vs invoice {prt_sell}', 'S4 Terminology')
         add(name, '2y', 'Shop Supplies = shop supplies charged on the invoice', abs(r['shop_supplies'] - sup) <= 1, f'{num} report {r["shop_supplies"]} vs invoice {sup}', 'S4 Terminology')
         add(name, '2y', 'Subtotal = invoice pre-tax total (after invoice-level fees/discounts)', abs(r['subtotal'] - sub) <= 1, f'{num} report {r["subtotal"]} vs invoice {sub} (with-tax {v["sub_total_with_tax"]} tax {v["tax"].get("amountTotal")})', 'S4 Subtotal')
         add(name, '2y', 'Adjustments = invoice-level fees minus discounts (S7-R17)', abs(r['adjustments'] - adj) <= 2, f'{num} report {r["adjustments"]} vs invoice {adj} (WO adjustments {[(a["kind"], a["resolvedAmount"]) for a in (st or {}).get("adjustments") or []]}, old % discount {v.get("discount")})', 'S7-R17')

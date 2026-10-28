@@ -32,5 +32,5 @@ add('Sales By Customer', f'Customer filter with one customer shows only that cus
 c2, b2 = R['two_customers']
 keys = [c['key'] for c in b2['data']['collection']]
 add('Sales By Customer', 'Customer filter with two customers shows exactly those two; Totals = their sum', c2 == 200 and len(keys) == 2 and all(b2['data']['totals'][m] == sum(c[m] for c in b2['data']['collection']) for m in MONEY), str(keys), 'S18-R6')
-json.dump(rows, open(os.path.join(os.path.dirname(__file__), '..', 'results-multi.json'), 'w'), indent=0)
+json.dump(rows, open(os.path.join('/tmp/cln/w2/full', 'results-multi.json'), 'w'), indent=0)
 for r in rows: print(r['result'], r['report'], '|', r['check'], '|', r['detail'][:200])

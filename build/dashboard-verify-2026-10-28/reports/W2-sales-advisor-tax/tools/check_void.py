@@ -39,5 +39,5 @@ for lab in ('custom_1d', 'this_month'):
         expect_present = k.startswith('Technician Efficiency (Completed)')
         out.append({'report': k, 'location': 'DVI Test', 'range': lab, 'check': 'Seeded VOID invoice S1-38207 ' + ('line still counted (completion, not invoice, decides — SV-5450)' if expect_present else 'is excluded'),
                     'result': 'PASS' if v == expect_present else 'FAIL', 'detail': f'invoice status now {st}; listed={v}', 'source': 'SBC S7-R7 / SBR §3 Reversed / Dashboard PRD S3-E2 / SV-2115 / SV-5450'})
-json.dump(out, open(os.path.join(os.path.dirname(__file__), '..', 'results-void.json'), 'w'), indent=0)
+json.dump(out, open(os.path.join('/tmp/cln/w2/full', 'results-void.json'), 'w'), indent=0)
 for r in out: print(r['result'], r['range'], r['report'], r['detail'])

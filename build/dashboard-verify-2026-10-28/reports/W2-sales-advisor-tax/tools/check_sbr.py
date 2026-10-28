@@ -8,7 +8,7 @@ from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(__file__))
 from common import *
 from records import invoice, stats, stat_totals, prefetch, money, wo_view, customer_view
-OUTF = os.path.join(os.path.dirname(__file__), '..', 'results-sbr.json')
+OUTF = os.path.join('/tmp/cln/w2/full', 'results-sbr.json')
 MONEY = ['labor_invoiced', 'labor_margin', 'parts_invoiced', 'parts_margin', 'shop_supplies', 'adjustments', 'margin', 'subtotal']
 rows = []
 def add(loc, rng, check, ok, detail, ref='', level='invoice', key=''):
@@ -66,10 +66,13 @@ for wid, name, tz in WORKPLACES:
         add(name, '2y', 'Listed invoice is not void / reversed', v['status'] != 'void', f'{num} {v["status"]}', '§3 Reversed')
         lab_sell = round(sum(l.get('labour_cost') or 0 for l in v['work_order']['lines']) * 100)
         prt_sell = round(sum(l.get('parts_cost') or 0 for l in v['work_order']['lines']) * 100)
+        _adj = (stat_totals(sts[iid]) or {}).get('adjustments') or []          # line-level fees/discounts fold into their line (S7-R17 / S5-R11)
+        lab_sell += round(sum(a['resolvedAmount'] for a in _adj if a.get('scope') == 'labor_line') * 100)
+        prt_sell += round(sum(a['resolvedAmount'] for a in _adj if a.get('scope') == 'part_line') * 100)
         sup = round(money(v.get('shop_supplies_cost')) * 100)
         sub = round((money(v['sub_total_with_tax']) - float(v['tax'].get('amountTotal') or 0)) * 100)
-        add(name, '2y', 'Labor Invoiced = labor on the invoice', abs(r['labor_invoiced'] - lab_sell) <= 1, f'{num} {r["labor_invoiced"]} vs {lab_sell}', '§3')
-        add(name, '2y', 'Parts Invoiced = parts on the invoice', abs(r['parts_invoiced'] - prt_sell) <= 1, f'{num} {r["parts_invoiced"]} vs {prt_sell}', '§3')
+        add(name, '2y', 'Labor Invoiced = labor on the invoice (+ labor-line fees/discounts)', abs(r['labor_invoiced'] - lab_sell) <= 1, f'{num} {r["labor_invoiced"]} vs {lab_sell}', '§3')
+        add(name, '2y', 'Parts Invoiced = parts on the invoice (+ part-line fees/discounts)', abs(r['parts_invoiced'] - prt_sell) <= 1, f'{num} {r["parts_invoiced"]} vs {prt_sell}', '§3')
         add(name, '2y', 'Shop Supplies = the invoice shop-supply charge (S5-R13)', abs(r['shop_supplies'] - sup) <= 1, f'{num} {r["shop_supplies"]} vs {sup}', 'S5-R13')
         add(name, '2y', 'Subtotal = invoice pre-tax total', abs(r['subtotal'] - sub) <= 1, f'{num} {r["subtotal"]} vs {sub}', '§3 Subtotal')
         add(name, '2y', 'Adjustments = invoice-level fees minus discounts (S5-R11)', abs(r['adjustments'] - (sub - lab_sell - prt_sell - sup)) <= 2, f'{num} {r["adjustments"]} vs {sub-lab_sell-prt_sell-sup}', 'S5-R11')
