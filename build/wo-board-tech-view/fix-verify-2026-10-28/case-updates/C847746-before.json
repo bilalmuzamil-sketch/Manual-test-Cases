@@ -1,0 +1,47 @@
+{
+ "case": {
+  "id": 847746,
+  "title": "Board View's minimap stays small, fits many technicians and is read out",
+  "section_id": 87347,
+  "template_id": 1,
+  "type_id": 7,
+  "priority_id": 2,
+  "milestone_id": null,
+  "refs": "SV-11835,SV-10046",
+  "created_by": 3,
+  "created_on": 1793189651,
+  "updated_by": 3,
+  "updated_on": 1793189651,
+  "estimate": null,
+  "estimate_forecast": null,
+  "suite_id": 1,
+  "display_order": 54,
+  "is_deleted": 0,
+  "is_ai_generated": false,
+  "is_ai_automated": false,
+  "custom_ai_type": null,
+  "custom_ai_model": null,
+  "custom_automation_type": 2,
+  "custom_atmstatus": 1,
+  "custom_preconds": "<p>Needs: 1 user \u00b7 1 browser \u00b7 about 15 minutes \u00b7 no new records</p><ul><li>Sign in as an Owner/Admin user (on staging or a QA branch: the Admin quick-login button on the sign-in page; you appear as \"Admin ShopView\"). Browser zoom 100%, window full screen and at least 1024 pixels wide.</li><li>Location A: a location with more technicians than fit across the screen, so the last technician columns are off the right edge in Board View (e.g. on staging \"Staging Heavy Duty - 9919\"; on a QA branch any location where Board View is wider than the window \u2014 if none is, add active technicians with Time Clock on in Settings &gt; Staff until it is).</li><li>Location B: a location where every technician column fits on the screen (e.g. on staging \"DVI Test\", 8 technicians; on a QA branch a location with only 1 or 2 technicians).</li><li>To change location: click your initials at the top right &gt; Change Location.</li></ul>",
+  "custom_steps": "<ol><li>At location A, click Work Orders in the top menu, then the All tab, then Board View. Look at the minimap at the bottom right and note its width (with the browser's developer tools: right-click the minimap &gt; Inspect, and read its width).</li><li>Make the window 1024 pixels wide and read the minimap's width again.</li><li>On staging, change to \"Staging Heavy Duty - 9919\" (about 280 technician columns) and look at the minimap.</li><li>Turn on a screen reader (VoiceOver on a Mac: Cmd+F5; NVDA on Windows), press Tab until the minimap is focused, and listen. Press the Right arrow once and listen again. Turn the screen reader off.</li></ol>",
+  "custom_testrail_bdd_scenario": null,
+  "custom_expected": "<p>Expected results</p><ul><li>Steps 1 and 2: the minimap is never wider than 360 pixels.</li><li>Step 3: every technician column has its own tile; the tiles are narrower so they all fit in the minimap.</li><li>Step 4: the screen reader says \"Board columns\" and \"Columns {first} to {last} of {total}\" with the numbers of the columns on screen and the total (e.g. \"Columns 1 to 4 of 12\"); after the Right arrow the numbers move on by one.</li></ul><p>Note: at 1024 pixels and wider, 40% of the window is always more than 360 pixels, so the 360-pixel limit is the one a tester can see.</p><p>Known problem (SV-11835, in Code Review on 28 Oct 2026, fast follow; reported on staging by Branko Cicovic on 27 Oct 2026): Board View has no minimap. (1) If you see exactly that, mark this test Failed and raise nothing new. (2) If it fails in a different way, that is a new problem: report it. (3) If it behaves as the expected results say, the minimap has shipped: mark it Passed and tell the QA lead.</p><p>Exact quotes from the source (for reproducibility)</p><p>From: PRD \"Work Orders \u2014 Board View &amp; Tech View Display Options\", Confluence 845185030, version 81 (27 Oct 2026, Chris Ward), read 28 Oct 2026 \u00b7 Epic SV-10043, story SV-10046 (Story 3, Board View); fast-follow ticket SV-11835</p><ul><li>S3-E2a: &ldquo;When the technician columns are wider than the screen, Board View shows the design\u2019s minimap, fixed at the bottom right: one tile per technician column in board order (Unassigned, which is always on screen, has none) and a thumb over the columns currently in view. It shows whenever the board is wider than the screen, not only while it scrolls, and hides when every column fits. Dragging the thumb scrolls the board; clicking a tile scrolls to that column; with the minimap focused, Left and Right arrows move one column and Home and End go to the first and last. The minimap is at most 360px wide or 40% of the screen width, whichever is smaller; at a location with many technicians the tiles shrink so every column still has one. While it shows, the chat launcher at the bottom right moves up so it never covers the minimap, as on the work order page. Screen readers announce it as \"Board columns\" with \"Columns {first} to {last} of {total}\".&rdquo;</li></ul><p>Not yet checked against a build.</p><p>AUTOMATION: READY - EXPECT FAIL (SV-11835)</p>",
+  "custom_steps_separated": null,
+  "custom_mission": null,
+  "custom_goals": null,
+  "ai_automated_test": null,
+  "labels": [],
+  "version": 1
+ },
+ "history": {
+  "offset": 0,
+  "limit": 250,
+  "size": 0,
+  "_links": {
+   "next": null,
+   "prev": null
+  },
+  "history": []
+ }
+}

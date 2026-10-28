@@ -1,0 +1,29 @@
+{
+ "pass_meta": {
+  "env": "QA branch sv11835",
+  "build": "v26.43.2-5edf9c2",
+  "date": "28 October 2026",
+  "note": "C682419 rewritten for the minimap (PRD v81 S3-E2/S3-E2a, SV-11835 passed QA); one step needs a hand check"
+ },
+ "results": {
+  "C682419": {
+   "verdict": "Blocked",
+   "failed_steps": "Blocked at step 8: the chat bubble does not load on the test machine",
+   "bold_steps": [
+    8
+   ],
+   "observed": [
+    "This test was rewritten today for the minimap that replaces the sideways scroll bar (SV-11835 passed QA on its QA branch sv11835).",
+    "Step 8: not checked - the chat bubble does not load on the test machine (its network blocks the chat service). Open Board View at a location wider than the screen, look at the bottom right and check the chat bubble sits above the minimap, then mark this Passed.",
+    "Steps 1 to 7 and 9 match the test: no sideways scroll bar, the minimap at the bottom right with 55 tiles for 55 technicians, drag, tile clicks, arrow keys, Home, End and Shift with the mouse wheel all move the board, and with one technician there is no minimap (pictures).",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11835 (TESTING QA) - passed on its QA branch."
+   ],
+   "pictures": [
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-28/sv11835/SV-11835-minimap.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-28/sv11835/C682419-pic-2.png",
+    "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-28/sv11835/SV-11835-fits.png"
+   ],
+   "todo": "What needs to be done: on a computer where the chat bubble shows, open Work Orders > All > Board View at a location wider than the screen and check the chat bubble sits above the minimap without covering it; if it does, mark this test Passed."
+  }
+ }
+}

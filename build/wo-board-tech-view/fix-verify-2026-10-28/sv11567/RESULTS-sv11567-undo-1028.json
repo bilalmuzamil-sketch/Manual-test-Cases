@@ -1,0 +1,49 @@
+{
+ "pass_meta": {"env": "QA branch sv11567", "build": "v26.43.2-539491f", "date": "28 October 2026", "note": "SV-11567 (Undo a lead technician change) verified on its QA branch; tests added to the run on passing (QA lead, 28 Oct)"},
+ "results": {
+  "C682424": {"verdict": "Passed", "observed": [
+    "Passed on the QA branch sv11567 (fix for SV-11567), every step as written, Staging Heavy Duty - 9919.",
+    "Step 2: dragging a card onto a technician shows the white message with a green tick, 'assigned to', Undo and a close button (picture 1).",
+    "Step 5: Unassign shows 'moved to Unassigned' with Undo.",
+    "Step 10: the Reassign lead technician dialog shows 'assigned to' with Undo.",
+    "Step 12: when the technician is already on a line of the work order, the message reads 'lead technician set to', with Undo (picture 2).",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11567 (TESTING QA) - passed on its QA branch; QA Passed comment posted on the ticket."],
+   "pictures": ["/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-28/sv11567/C682424-pic-1.png", "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-28/sv11567/C682424-pic-2.png"]},
+  "C682425": {"verdict": "Passed", "observed": [
+    "Passed on the QA branch sv11567 (fix for SV-11567), every step as written.",
+    "Step 2: the message closed on its own about 5 seconds after letting go.",
+    "Step 4: with the pointer on it, the message stayed open for the whole 15 seconds (picture).",
+    "Step 5: it closed on its own after the pointer moved away.",
+    "Step 7: Undo closed the message at once and the work order went back.",
+    "Step 8: 'Assignment undone' closed on its own about 3 seconds after it appeared.",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11567 (TESTING QA) - passed on its QA branch."],
+   "pictures": ["/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-28/sv11567/C682425-pic-1.png"]},
+  "C682426": {"verdict": "Passed", "observed": [
+    "Passed on the QA branch sv11567 (fix for SV-11567), every step as written.",
+    "Steps 2 to 4: after Undo the work order went back to its first technician in the same place (second of three), also after a refresh; the message read 'Assignment undone' with only a close button (picture 1).",
+    "Steps 5 to 7: in Tech View, Undo after 'Assign lead technician' put the work order back in Unassigned, also after a refresh.",
+    "Step 8: the Work Order Log shows the Undo as the newest 'Lead tech changed' entry and the change before it, each with the user and time (picture 2).",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11567 (TESTING QA) - passed on its QA branch."],
+   "pictures": ["/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-28/sv11567/SV-11567-undo-1.png", "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-28/sv11567/C682426-pic-2.png"]},
+  "C682427": {"verdict": "Passed", "observed": [
+    "Passed on the QA branch sv11567 (fix for SV-11567), every step as written.",
+    "Step 1: the question to clear the first technician's scheduled shifts opened; Clear Shifts removed both shifts.",
+    "Step 3: Undo put the work order back with the first technician, with no shift question (picture).",
+    "Steps 5 and 7: both shifts came back with their original times (today's and tomorrow's).",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11567 (TESTING QA) - passed on its QA branch."],
+   "pictures": ["/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-28/sv11567/C682427-pic-1.png"]},
+  "C682428": {"verdict": "Passed", "observed": [
+    "Passed on the QA branch sv11567 (fix for SV-11567), every step as written.",
+    "Step 2: the work order was invoiced after the drag, before Undo.",
+    "Step 3: Undo was refused: the work order stayed with its new technician and the alert read 'Couldn't undo the change. Move the work order back by hand.' (picture).",
+    "Step 5: after a refresh the work order is still with the new technician.",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11567 (TESTING QA) - passed on its QA branch."],
+   "pictures": ["/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-28/sv11567/SV-11567-undo-2-invoiced.png"]},
+  "C847734": {"verdict": "Passed", "observed": [
+    "Passed on the QA branch sv11567 (fix for SV-11567), every step as written.",
+    "After Undo, each labor line went back to what it had: the line with no technician has none, the line with a technician keeps it, the complete line is unchanged (picture).",
+    "Check that the test can catch a fault: the same drag without Undo moved the empty line to the new lead.",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11567 (TESTING QA) - passed on its QA branch."],
+   "pictures": ["/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-28/sv11567/C847734-pic-1.png"]}
+ }
+}

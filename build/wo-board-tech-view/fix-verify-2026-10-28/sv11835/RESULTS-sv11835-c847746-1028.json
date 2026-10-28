@@ -1,0 +1,12 @@
+{
+ "pass_meta": {"env": "QA branch sv11835", "build": "v26.43.2-5edf9c2", "date": "28 October 2026", "note": "SV-11835 (Board View minimap) verified on its QA branch; new test C847746 added to the run on passing (QA lead, 28 Oct)"},
+ "results": {
+  "C847746": {"verdict": "Passed", "observed": [
+    "Passed on the QA branch sv11835 (fix for SV-11835), Staging Heavy Duty - 9919 (55 technician columns).",
+    "Steps 1 and 2: the minimap is 360 pixels wide with the window at 1600 and at 1024 pixels (pictures 1 and 2).",
+    "Step 3: every technician column has its own tile (55 tiles for 55 columns; 49 for 49 at the second location); the tiles are narrow so all fit.",
+    "Step 4: the minimap's screen-reader name is 'Board columns' and it reads 'Columns 1 to 5 of 55'; after the Right arrow it reads 'Columns 2 to 6 of 55'. Read from the label a screen reader announces.",
+    "Ticket: https://shopview.atlassian.net/browse/SV-11835 (TESTING QA) - passed on its QA branch; QA Passed comment posted on the ticket."],
+   "pictures": ["/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-28/sv11835/SV-11835-minimap.png", "/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-28/sv11835/C847746-pic-2.png"]}
+ }
+}

@@ -21,11 +21,13 @@ const o: any = { at: new Date().toISOString() }; const PREF = '/api/users/me/pre
 const save = () => fs.writeFileSync(path.join(EV, 'sv11835-minimap-1028.json'), JSON.stringify(o, null, 1));
 const shot = (n: string, clip?: any) => p.screenshot({ path: path.join(EV, `SV11835-${n}.png`), ...(clip ? { clip } : {}) }).catch(() => {});
 o.version = await p.evaluate(`(document.querySelector('meta[name="app-version"]')||{}).content || (document.body.innerText.match(/v26\\.[0-9.]+-[0-9a-f]+/)||[])[0] || null`);
-const SC = `document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller')`;
+// 28 Oct: on sv11835 (v26.43.2-5edf9c2) the old scroller id may be gone with the scroll bar — fall back to the nearest ancestor of a
+// column header that is wider inside than out (overflow-x not visible)
+const SC = `(document.querySelector('[data-test-id="board_view_scroller"], .board-view__scroller') || (() => { let e = document.querySelector('[data-test-id^="board_column_header_"]'); while (e && e !== document.body) { const cs = getComputedStyle(e); if (cs.overflowX !== 'visible' && e.scrollWidth > e.clientWidth + 4) return e; e = e.parentElement; } return null; })())`;
 const scroller = () => p.evaluate(`(() => { const h = ${SC}; if (!h) return null; const cs = getComputedStyle(h);
   return { scrollLeft: Math.round(h.scrollLeft), scrollWidth: h.scrollWidth, clientWidth: h.clientWidth, barH: h.offsetHeight - h.clientHeight, overflowX: cs.overflowX, scrollbarWidth: cs.scrollbarWidth }; })()`) as Promise<any>;
 const colBar = () => p.evaluate(`(() => { const c = [...document.querySelectorAll('[data-test-id^="board_column_"]')].map(e => [...e.querySelectorAll('*')].find(x => x.scrollHeight > x.clientHeight + 4 && /auto|scroll/.test(getComputedStyle(x).overflowY))).find(Boolean);
-  return c ? { barW: c.offsetWidth - c.clientWidth, scrollable: c.scrollHeight - c.clientHeight } : null; })()`);
+  return c ? { barW: c.offsetWidth - c.clientWidth, scrollable: c.scrollHeight - c.clientHeight, sbw: getComputedStyle(c).scrollbarWidth, sbc: getComputedStyle(c).scrollbarColor, cls: String(c.className).slice(0, 100) } : null; })()`);
 const onScreen = () => p.evaluate(`[...document.querySelectorAll('[data-test-id^="board_column_header_"]')].filter(h => { const r = h.getBoundingClientRect(); return r.right > 0 && r.left < innerWidth && r.width > 0; }).map(h => h.innerText.replace(/\\s+/g, ' ').trim().slice(0, 30))`);
 const MM = `(document.querySelector('[aria-label="Board columns"]') || document.querySelector('[data-test-id*="minimap"], [class*="minimap"], [class*="mini-map"]'))`;
 const mini = () => p.evaluate(`(() => { const m = ${MM}; if (!m) return null; const r = m.getBoundingClientRect(); const cs = getComputedStyle(m);
@@ -43,7 +45,10 @@ const mini = () => p.evaluate(`(() => { const m = ${MM}; if (!m) return null; co
 const fixedBR = () => p.evaluate(`[...document.querySelectorAll('body *')].filter(e => { const cs = getComputedStyle(e); if (cs.position !== 'fixed') return false; const r = e.getBoundingClientRect(); return r.width > 20 && r.height > 20 && r.right > innerWidth * 0.6 && r.bottom > innerHeight * 0.6; })
   .map(e => { const r = e.getBoundingClientRect(); return { tag: e.tagName, id: e.id, tid: e.getAttribute('data-test-id'), cls: String(e.className).slice(0, 80), title: e.getAttribute('title'), aria: e.getAttribute('aria-label'), x: Math.round(r.x), y: Math.round(r.y), w: Math.round(r.width), h: Math.round(r.height), z: getComputedStyle(e).zIndex }; })`);
 const overlap = (b: any, s: any) => b && s && !(b.x + b.w <= s.x || s.x + s.w <= b.x || b.y + b.h <= s.y || s.y + s.h <= b.y);
-const toBoard = async () => { await p.goto(process.env.GS_APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await W(5000); await tab(p, 'All').catch(() => {}); await display(p, 'Board View'); await W(3000); };
+const toBoard = async () => { await p.goto(process.env.GS_APP + '/workorders?tab=all', { waitUntil: 'domcontentloaded' }); await W(5000); await tab(p, 'All').catch(() => {}); await display(p, 'Board View');
+  // 28 Oct: the first run measured a blank board 3 s after the click; wait for the columns (up to 60 s) and record how long it took
+  const t0 = Date.now(); o.boardWaitMs = await p.locator('[data-test-id^="board_column_header_"]').first().waitFor({ timeout: 60_000 }).then(() => Date.now() - t0).catch(() => 'no columns after 60 s'); await W(2000);
+  o.scrollerInfo = await p.evaluate(`(() => { const h = ${SC}; return h ? { tid: h.getAttribute('data-test-id'), cls: String(h.className).slice(0, 120) } : null; })()`); };
 try {
   o.pinOff = (await a.put(PREF, { value: { ...ORIGINAL, pinnedTechnicianIds: [] } })).status;
   await toBoard(); await p.mouse.move(700, 400); await W(800);
@@ -52,7 +57,7 @@ try {
   const sc0 = o.s1.scroller; o.s1.boardWider = sc0 ? sc0.scrollWidth > sc0.clientWidth + 4 : null; o.s1.sidewaysBarDrawn = sc0 ? sc0.barH > 0 : null;
   const m0 = o.s1.mini; if (m0) await shot('s1-minimap', { x: Math.max(0, m0.x - 120), y: Math.max(0, m0.y - 160), width: Math.min(m0.w + 240, 1400), height: m0.h + 260 });
   // ---- S2: tiles vs technician columns (whole board walked), Unassigned on screen
-  const cols = await allBoardCols(p); o.s2 = { boardCols: cols.length, techCols: cols.filter((c: any) => !/unassigned/i.test(c.name ?? c.title ?? '')).length, names: cols.slice(0, 3).map((c: any) => c.name ?? c.title), tiles: (await mini())?.tiles ?? null };
+  const cols: any[] = await allBoardCols(p).catch((e: any) => { o.s2err = String(e?.message || e).slice(0, 200); return []; }); o.s2 = { boardCols: cols.length, techCols: cols.filter((c: any) => !/unassigned/i.test(c.name ?? c.title ?? '')).length, names: cols.slice(0, 3).map((c: any) => c.name ?? c.title), tiles: (await mini())?.tiles ?? null };
   // ---- S3: a column's own scrollbar unchanged (drawn)
   o.s3 = await colBar();
   // ---- S4: drag the thumb right then left
@@ -65,12 +70,13 @@ try {
     m = await mini(); const th2 = m?.thumb ?? th; await p.mouse.move(th2.x + th2.w / 2, th2.y + th2.h / 2); await p.mouse.down(); await p.mouse.move(m.x - 40, th2.y + th2.h / 2, { steps: 12 }); await p.mouse.up(); await W(1000);
     o.s4.afterLeft = (await scroller())?.scrollLeft; o.s4.onScreenLeft = await onScreen();
     // ---- S5/S6: click last tile, first tile, keys
-    m = await mini(); await p.mouse.click(m.x + m.w - 3, m.y + m.h / 2); await W(1000); o.s5 = { scrollLeft: (await scroller())?.scrollLeft, onScreen: await onScreen() };
-    await p.mouse.click(m.x + 3, m.y + m.h / 2); await W(1000); o.s6 = { afterFirstTile: (await scroller())?.scrollLeft, focused: await p.evaluate(`(() => { const m = ${MM}; return !!m && (m === document.activeElement || m.contains(document.activeElement)); })()`), keys: [] as any[] };
+    m = await mini(); const lt = m.tileBoxes[m.tileBoxes.length - 1], ft = m.tileBoxes[0]; o.s5_tile = lt;
+    await p.mouse.click(lt[0] + lt[2] / 2, lt[1] + lt[3] / 2); await W(1200); o.s5 = { scrollLeft: (await scroller())?.scrollLeft, onScreen: await onScreen() }; await shot('s5-last-tile');
+    await p.mouse.click(ft[0] + ft[2] / 2, ft[1] + ft[3] / 2); await W(1200); o.s6 = { afterFirstTile: (await scroller())?.scrollLeft, focused: await p.evaluate(`(() => { const m = ${MM}; return !!m && (m === document.activeElement || m.contains(document.activeElement)); })()`), keys: [] as any[] };
     for (const k of ['ArrowRight', 'ArrowRight', 'ArrowLeft', 'End', 'Home']) { await p.keyboard.press(k); await W(800); const s = await scroller(); o.s6.keys.push({ k, scrollLeft: s?.scrollLeft, first: (await onScreen())[0], live: (await mini())?.live, valuetext: (await mini())?.valuetext }); }
   }
   // ---- S7: Shift + mouse wheel over the board (and plain sideways wheel = trackpad)
-  await p.evaluate(`${SC}.scrollLeft = 0`); await W(500); await p.mouse.move(700, 400);
+  await p.evaluate(`(() => { const h = ${SC}; if (h) h.scrollLeft = 0; })()`); await W(500); await p.mouse.move(700, 400);
   await p.keyboard.down('Shift'); await p.mouse.wheel(0, 600); await p.keyboard.up('Shift'); await W(800); o.s7 = { shiftWheel: (await scroller())?.scrollLeft };
   await p.mouse.wheel(600, 0); await W(800); o.s7.trackpadSideways = (await scroller())?.scrollLeft;
   // ---- S8: chat launcher vs minimap; size at 1600 and at 1024
@@ -81,8 +87,10 @@ try {
   await p.setViewportSize({ width: 1600, height: 1000 }); await W(1500);
   // ---- S9: every column fits — Technician filter narrowed to one technician
   await p.locator('[data-test-id^="filter_chip_"]').filter({ hasText: /Technician/ }).first().click(); await W(1500);
-  const firstTech = p.locator('.q-menu').last().locator('.q-checkbox').nth(1); o.s9 = { picked: await firstTech.evaluate((c) => ((c.closest('.q-item, label') || c.parentElement) as HTMLElement)?.innerText.trim()).catch(() => null) };
-  await firstTech.click().catch(() => {}); await W(1200); await p.keyboard.press('Escape'); await W(2500);
+  const box9 = p.locator('.q-menu').last().locator('input:not([type=checkbox])').first(); await box9.fill('Allison'); await W(1500);
+  const opt9 = p.locator('.q-menu').last().getByText('Allison Hughes', { exact: false }).first(); o.s9 = { picked: (await opt9.count()) ? 'Allison Hughes' : null };
+  await opt9.click().catch(() => {}); await W(1200); await p.keyboard.press('Escape'); await W(3000);
+  o.s9.cols = await onScreen();
   o.s9.scroller = await scroller(); o.s9.mini = await mini(); await shot('s9-one-technician');
   await p.locator('[data-test-id^="filter_chip_"]').filter({ hasText: /Technician/ }).first().click(); await W(1200); const clr = p.locator('.q-menu').last().getByText(/Clear selection/i).first(); if (await clr.count()) await clr.click(); await p.keyboard.press('Escape'); await W(1500);
   // ---- location 2
