@@ -1,0 +1,16 @@
+# Not filed — and why (dashboard pass, 28 Oct 2026, build v26.43.2-f8698cb)
+
+| # | What was found | Why it is not a ticket | Where it lives |
+|---|---|---|---|
+| F1 | Technician Utilization counts timesheets that were never clocked out as 24 h a day (Heavy Duty: Daniel Montoya, Jacqueline Calderon, Monica Brady ≈ 670 h this month each; idle days show 33.33 %) | **Already reported: SV-11688** (Ready to Fix). Still reproduces today. | — |
+| F2 | Technician Efficiency counts declined lines | Held: PRD wording open (DQ-1) | `TICKET-F2-…wiki` |
+| F3 | A line added to a **Paid** work order after invoicing is counted as invoiced hours on Billing Efficiency / Service Advisor Analysis / Sales "Inv. Hrs" (seeded: S1-38195 went 2.00 → 3.00 invoiced hours, invoice unchanged; existing: S2-38022) | **The screen cannot do it**: a Paid or Invoiced work order has no *New Line* button. Only the server's API allows it → screen blocks + server allows = **PASS under Rule 24**. Reported to the QA lead as an API-hardening note. | this file |
+| F5 | Adding a canned line to an Invoiced work order whose invoice is still pending **changes the pending invoice** ($135.00 → $270.00) but the customer account still holds $135.00; paying $135.00 then marks the $270.00 invoice **Paid** (S1-38195). A line added by the other route instead **voids** the pending invoice | Same as F3: only reachable through the API (no *New Line* on Invoiced work orders) → Rule 24. Also outside the dashboard PRD. Serious if any client path ever exposes it. | this file |
+| O1 | 1-cent difference between the Sales report "Parts Invoiced" and the invoice's own part lines on 4 invoices (S2-14085, S2-13807, S2-9398, S2-6653) | Rounding; changes Revenue by $0.00 (Revenue uses the invoice subtotal, which matches). No source sets the rounding rule. | results/oracle-invoices |
+| O2 | `GET /api/invoices/{work order id}/details` answers **HTTP 500** | Not used by any screen tested; not user-facing | this file |
+| O3 | `POST /api/technician-tasks/create` with an ISO date answers **HTTP 500** instead of a validation message | The screen always sends `dd/mm/yyyy hh:mm`; not user-facing | this file |
+| O4 | Technician Utilization divides by ALL clocked time; the PRD says work-order hours ÷ (work-order + internal) | No current screen or API path can create a clock that is neither on a work order nor a department ("Department id is missing."), and in all staging data WO + Internal = Total, so the two formulas give the same figure everywhere. Latent only. | PO sheet note |
+| O5 | The custom-range API accepts 367 inclusive days (dashboard and reports alike) | The date picker shows "Range: 367 days (max 366)" and disables *Apply* → Rule 24 PASS | this file |
+| O6 | A no-company sale (PRD S5-E3) cannot be created — work orders and parts sales require a customer | Not testable; matches the PRD's own note that none exists | this file |
+| O7 | The date picker reads "Range: 1 days" | Copy only; no source defines the wording | this file |
+| O8 | Sales By Customer "Subtotal" (after discount, no credit memos) ≠ Revenue (credit memos taken off) | Documented definition difference, not a dashboard figure the PRD defines (the Sales by Customer tile is a count) | PO sheet note |

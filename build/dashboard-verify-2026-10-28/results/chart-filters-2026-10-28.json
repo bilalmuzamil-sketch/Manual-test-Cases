@@ -1,0 +1,237 @@
+{
+ "observed_at_utc": "2026-10-28T18:58:15.396Z",
+ "out": [
+  {
+   "key": "techEfficiencyKpi",
+   "kind": "Technician",
+   "tileBefore": "102.02%",
+   "tileAfter": "102.02%",
+   "options": [
+    "Select all",
+    "5 selected",
+    "Admin Shopview",
+    "Haley Brown",
+    "Katherine Collins",
+    "Nebojsa Custom Tech",
+    "Wes Hover",
+    "Clear selection"
+   ],
+   "choice": "Admin Shopview",
+   "before": {
+    "filterLabel": "person Technician: All technicians keyboard_arrow_down cancel",
+    "chartCount": 1,
+    "legend": "",
+    "rows": [
+     "Admin Shopview",
+     "Nebojsa Custom Tech",
+     "Wes Hover",
+     "Haley Brown",
+     "Katherine Collins"
+    ],
+    "text": "Technician Efficiency\nperson\nTechnician: All technicians\nkeyboard_arrow_down\ncancel\nTechnician Efficiency\nTecharrow_drop_up\tarrow_drop_upClocked Hrs\tarrow_drop_upInvoiced Tech Hrs\tarrow_drop_upEfficiency\n\nAdmin Shopview\t0.61\t3.00\t491.80%\nNebojsa Custom Tech\t30.00\t30.00\t100.00%\nWes Hover\t4.50\t4.50\t10"
+   },
+   "afterOne": {
+    "filterLabel": "person Technician: 4 technicians keyboard_arrow_down cancel",
+    "chartCount": 1,
+    "legend": "",
+    "rows": [
+     "Nebojsa Custom Tech",
+     "Wes Hover",
+     "Haley Brown",
+     "Katherine Collins"
+    ],
+    "text": "Technician Efficiency\nperson\nTechnician: 4 technicians\nkeyboard_arrow_down\ncancel\nTechnician Efficiency\nTecharrow_drop_up\tarrow_drop_upClocked Hrs\tarrow_drop_upInvoiced Tech Hrs\tarrow_drop_upEfficiency\n\nNebojsa Custom Tech\t30.00\t30.00\t100.00%\nWes Hover\t4.50\t4.50\t100.00%\nHaley Brown\t8.00\t6.93\t86.63%\n"
+   },
+   "requests": [
+    "/api/dashboard/reports?reports[]=techEfficiencySeries&reports[]=techEfficiencyByTechSeries&from=2026-10-01&to=2026-10-28&group=day&tech[]=d6ce228e-da73-45c5-830a-50e915c0c3c2&tech[]=eba4be23-e3ae-4477-89c9-97b6701ed9e0&tech[]=c99a76f9-c888-4872-8891-00c2083aa7ac&tech[]=d1879db8-30dd-47b4-b8ad-97e9cf1d4c67"
+   ],
+   "afterNone": {
+    "filterLabel": "person Technician: No technicians keyboard_arrow_down",
+    "chartCount": 0,
+    "legend": "",
+    "rows": [],
+    "text": "Technician Efficiency\nperson\nTechnician: No technicians\nkeyboard_arrow_down"
+   }
+  },
+  {
+   "key": "techUtilizationKpi",
+   "kind": "Technician",
+   "tileBefore": "35.30%",
+   "tileAfter": "35.30%",
+   "options": [
+    "search",
+    "Select all",
+    "19 selected",
+    "Aaron Zed",
+    "Admin Shopview",
+    "Ahtsham Service Manager",
+    "Ayesha Khan",
+    "Branko Cicovic",
+    "Cameron Johnston",
+    "Carol Ramos",
+    "Dana Ortiz",
+    "Daniel Montoya",
+    "David Combs",
+    "Esther Howard",
+    "Fabian Bonjean",
+    "Jacqueline Calderon",
+    "Jeffrey Wiley",
+    "Kenneth Oconnor",
+    "Monica Brady",
+    "Nebojsa Custom Tech",
+    "QA Technician",
+    "Ralph Edwards",
+    "Clear selection"
+   ],
+   "choice": "Aaron Zed",
+   "before": {
+    "filterLabel": "person Technician: All technicians keyboard_arrow_down cancel",
+    "chartCount": 1,
+    "legend": "",
+    "rows": [
+     "Ayesha Khan",
+     "Dana Ortiz",
+     "Esther Howard",
+     "Fabian Bonjean",
+     "Monica Brady",
+     "Nebojsa Custom Tech",
+     "Ralph Edwards",
+     "Aaron Zed",
+     "Ahtsham Service Manager",
+     "Branko Cicovic"
+    ],
+    "text": "Technician Utilization\nperson\nTechnician: All technicians\nkeyboard_arrow_down\ncancel\nTechnician Utilization\nTecharrow_drop_up\tWO Hoursarrow_drop_up\tInternal Hoursarrow_drop_up\tTotal Hoursarrow_drop_up\tUtilization %arrow_drop_up\n\nAyesha Khan\t3.00\t0.00\t3.00\t100.00%\nDana Ortiz\t5.18\t0.00\t5.18\t100.00%\nEs"
+   },
+   "afterOne": {
+    "filterLabel": "person Technician: 18 technicians keyboard_arrow_down cancel",
+    "chartCount": 1,
+    "legend": "",
+    "rows": [
+     "Ayesha Khan",
+     "Dana Ortiz",
+     "Esther Howard",
+     "Fabian Bonjean",
+     "Monica Brady",
+     "Nebojsa Custom Tech",
+     "Ralph Edwards",
+     "Ahtsham Service Manager",
+     "Branko Cicovic",
+     "Cameron Johnston"
+    ],
+    "text": "Technician Utilization\nperson\nTechnician: 18 technicians\nkeyboard_arrow_down\ncancel\nTechnician Utilization\nTecharrow_drop_up\tWO Hoursarrow_drop_up\tInternal Hoursarrow_drop_up\tTotal Hoursarrow_drop_up\tUtilization %arrow_drop_up\n\nAyesha Khan\t3.00\t0.00\t3.00\t100.00%\nDana Ortiz\t5.18\t0.00\t5.18\t100.00%\nEst"
+   },
+   "requests": [
+    "/api/dashboard/reports?reports[]=techUtilizationSeries&reports[]=techUtilizationByTechSeries&from=2026-10-01&to=2026-10-28&group=day&tech[]=7f85bc58-9ff5-4b50-b3f3-d85821069066&tech[]=1bc0e956-f70e-44fc-84a3-eb191112b8ce&tech[]=ac802dc7-e45f-479b-a7d3-8e999e27770b&tech[]=10958026-04a2-4e02-9dfa-46f27f59a941&tech[]=0aac76eb-0de3-4ef9-8163-89424c7a20b9&tech[]=bd9a5aa1-75d8-4b99-a9f4-0a7e47e43cd1&tech[]=96b2ca3b-ba85-404e-a60d-b6dabe5b89e6&tech[]=b4f8b308-b0c5-4e5e-b734-d76175757be9&tech[]=4d18c4ef-6dd4-450a-a797-496c81601a59&tech[]=b669608e-a897-4f21-a510-8ced9d9fa982&tech[]=6f6e02d6-d9c9-4650-917a-3478e4b12873&tech[]=776696c4-5351-4fcc-a27b-99cdbfe2cacf&tech[]=6568a5da-dec1-4885-b9cb-0ab9d2428367&tech[]=740249f3-6e80-4e64-a8af-f24bb1838f7e&tech[]=9b02b43f-fb05-4789-9290-a86460597a25&tech[]=c99a76f9-c888-4872-8891-00c2083aa7ac&tech[]=ca899083-7c3c-4e97-bec7-536e9c1ef155&tech[]=b51a80a5-2d2a-488a-87cd-747e8798d8ee"
+   ],
+   "afterNone": {
+    "filterLabel": "person Technician: No technicians keyboard_arrow_down",
+    "chartCount": 0,
+    "legend": "",
+    "rows": [],
+    "text": "Technician Utilization\nperson\nTechnician: No technicians\nkeyboard_arrow_down"
+   }
+  },
+  {
+   "key": "billingEfficiencyKpi",
+   "kind": "Advisor",
+   "tileBefore": "445.05%",
+   "tileAfter": "445.05%",
+   "options": [
+    "search",
+    "Admin Shopview",
+    "Advisor WipBravo",
+    "Advisor KpiY",
+    "Advisor ReportChart",
+    "Advisor KpiX",
+    "Advisor Analysis",
+    "Advisor ReportChart",
+    "Ahtasham Service Advisor",
+    "Ahtasham Admin",
+    "Ahtsham Service Manager",
+    "Ahtsham Foreman",
+    "Ahtsham Parts Manger",
+    "Alexis Anderson",
+    "Ammar Mughamis",
+    "Amy James",
+    "Amy Nichols",
+    "Amy Medina",
+    "Anthony Park",
+    "Ashlee Thomas",
+    "Ashley Schultz",
+    "Ayesha Khan",
+    "Barry Johnson",
+    "Bilal Muzamil",
+    "BIlal Muzamil",
+    "Bradley Sanford",
+    "Brandon Jarvis",
+    "Branko Cicovic",
+    "Brian Hunt",
+    "Candace Taylor"
+   ],
+   "choice": "Admin Shopview",
+   "before": {
+    "filterLabel": "person Advisor keyboard_arrow_down",
+    "chartCount": 1,
+    "legend": "",
+    "rows": [
+     "Admin Shopview",
+     "Vladimir Tomovic",
+     "Nebojsa Glavinic",
+     "Ayesha Khan",
+     "Advisor Analysis",
+     "Mudassir Qamar",
+     "Viktoria Videnovic",
+     "ZZ WOB Runner"
+    ],
+    "text": "Billing Efficiency\nperson\nAdvisor\nkeyboard_arrow_down\nAdvisor Analysis\nAdvisorarrow_drop_up\tarrow_drop_upWorked Hours\tarrow_drop_upInvoiced Hrs\tarrow_drop_upBilling Efficiency\tarrow_drop_upELR\n\nAdmin Shopview\t0.61\t58.65\t9614.75%\t$15,397.56\nVladimir Tomovic\t23.50\t41.00\t174.47%\t$261.62\nNebojsa Glavini"
+   },
+   "afterOne": {
+    "filterLabel": "person Advisor: Admin Shopview keyboard_arrow_down cancel",
+    "chartCount": 1,
+    "legend": "",
+    "rows": [
+     "Admin Shopview"
+    ],
+    "text": "Billing Efficiency\nperson\nAdvisor: Admin Shopview\nkeyboard_arrow_down\ncancel\nAdvisor Analysis\nAdvisorarrow_drop_up\tarrow_drop_upWorked Hours\tarrow_drop_upInvoiced Hrs\tarrow_drop_upBilling Efficiency\tarrow_drop_upELR\n\nAdmin Shopview\t0.61\t58.65\t9614.75%\t$15,397.56\n"
+   },
+   "requests": [
+    "/api/dashboard/reports?reports[]=invoicingEfficiencySeries&reports[]=invoicingEfficiencyByAdvisorSeries&from=2026-10-01&to=2026-10-28&group=day&service_advisor[]=7f85bc58-9ff5-4b50-b3f3-d85821069066"
+   ],
+   "afterNone": null
+  }
+ ],
+ "remembered": [
+  {
+   "key": "techEfficiencyKpi",
+   "state": {
+    "filterLabel": "person Technician: No technicians keyboard_arrow_down",
+    "chartCount": 0,
+    "legend": "",
+    "rows": [],
+    "text": "Technician Efficiency\nperson\nTechnician: No technicians\nkeyboard_arrow_down"
+   }
+  },
+  {
+   "key": "techUtilizationKpi",
+   "state": {
+    "filterLabel": "person Technician: No technicians keyboard_arrow_down",
+    "chartCount": 0,
+    "legend": "",
+    "rows": [],
+    "text": "Technician Utilization\nperson\nTechnician: No technicians\nkeyboard_arrow_down"
+   }
+  },
+  {
+   "key": "billingEfficiencyKpi",
+   "state": {
+    "filterLabel": "person Advisor: Admin Shopview keyboard_arrow_down cancel",
+    "chartCount": 1,
+    "legend": "",
+    "rows": [
+     "Admin Shopview"
+    ],
+    "text": "Billing Efficiency\nperson\nAdvisor: Admin Shopview\nkeyboard_arrow_down\ncancel\nAdvisor Analysis\nAdvisorarrow_drop_up\tarrow_drop_upWorked Hours\tarrow_drop_upInvoiced Hrs\tarrow_drop_upBilling Efficiency\tarrow_drop_upELR\n\nAdmin Shopview\t0.61\t58.65\t9614.75%\t$15,397.56\n"
+   }
+  }
+ ]
+}

@@ -1,0 +1,57 @@
+TITLE: Dashboard Revenue and Sales report – A Work Order Discount Lowers Revenue, but the PRD Says Revenue Is Taken "Before Any Discount"
+TYPE: Story Defect · PARENT: SV-9575 (Dashboard v1 - Story 3 - Measure Formulas & Report Parity; Done) · PRIORITY: Medium · LINK: relates to SV-9575
+STATUS: HELD — NOT FILED. Waiting for the product owner's answer to DQ-2. File unchanged only if the answer is "Revenue is before the discount".
+ALREADY REPORTED: none (DUPLICATE-SEARCH.md, F4).
+BASIS: Dashboard PRD version 53 (22 Oct 2026), read 28 Oct 2026.
+REPRODUCED: twice on v26.43.2-f8698cb, 28 Oct 2026 (once entirely through the screen).
+
+h2. Description
+
+*When a work order has a discount (added with "Add Work Order Fee / Discount"), the Revenue tile on the Dashboard and the Sales report count the invoice after the discount.* The PRD defines Revenue as invoice subtotals "before any discount and before tax".
+
+For example, invoice S1-38200 has $135.00 of labor and a $20.00 discount. Revenue counts $115.00. Before the discount it would be $135.00.
+
+*Impact:* any shop that uses work-order discounts sees Revenue lower by the total of those discounts, and the Revenue split can show a negative "Other" share (DVI Test, This Month: "Parts -28% · Labor 130% · Other -2%").
+
+*What is NOT affected:* invoices without a discount; fees (they add to Revenue under "Other", as the PRD says); credit memos (taken off, as the PRD says); tax (left out, as the PRD says).
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin. In the top bar, choose *DVI Test*.
+# Open *Work Orders* and create a work order for customer *ZZAUTOTEST Dash F2*, asset *ZZ-F2*.
+# The *New Line* window opens by itself. Choose the canned line *3x inspection* and click *Save & Close*.
+# If the line shows *Needs Approval*, click *Approve*.
+# Click the work order's *⋮* menu (top right) and choose *Add Work Order Fee / Discount*.
+# Set *Type* to *Discount*, *Calculation Type* to *Flat Amount*, type *20* in *Amount*, set *Taxable* to *No*, type a *Name* (e.g. ZZAUTOTEST $20 discount).
+#* The window shows: Work-order subtotal $135.00 · Discount -$20.00 · New work-order subtotal $115.00.
+# Click *Add Discount*.
+# On the line click *Complete* (if asked for a VIN, type ZZTESTVINF2000001 and click *Finish Work Order*).
+# Open *Finance* and click *Create Invoice*. Close the payment window without paying.
+#* The invoice reads Labor $135.00, Adjustments ($20.00), Subtotal $115.00.
+# Open *Reports* > *Sales*, set the date to today, find the invoice.
+#* *Subtotal* reads *$115.00*; *Labor Invoiced* reads *$135.00*.
+# Open *Dashboard*. On the *Revenue* tile click the date button, click *Today*, click *Apply*.
+#* Revenue includes this invoice as $115.00.
+
+*Actual Result:*
+* Revenue counts the invoice at $115.00, after the $20.00 discount.
+
+*Expected Result:*
+* The PRD says: *"Sum of invoice subtotals in the selected range, before any discount and before tax, minus credit memos."* — so this invoice would count as $135.00.
+
+h2. Screenshots
+
+!F4-1-invoice-with-discount.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.43.2-f8698cb}} on [staging|https://app.staging.shopview.com/dashboard] (DVI Test), 28 Oct 2026
+* *Example records:* S1-38200 (screen-made), S1-38196 (customer "ZZAUTOTEST Dash A1")
+* *User:* Admin
+
+h2. Sources
+
+* Dashboard PRD, [Confluence 788430850|https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/788430850/Dashboard], version 53 (22 Oct 2026, Chris Ward), Story 3, S3-R2 table, row "Revenue":
+{quote}Sum of invoice subtotals in the selected range, before any discount and before tax, minus credit memos. Shown to the cent.{quote}
+* Same PRD, S5-R15 (the same wording reused for At Risk):
+{quote}measured the way the Revenue tile measures revenue: invoice subtotals before any discount and before tax, minus credit memos.{quote}

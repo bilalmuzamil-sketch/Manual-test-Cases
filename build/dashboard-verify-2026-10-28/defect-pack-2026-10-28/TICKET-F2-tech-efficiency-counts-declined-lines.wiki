@@ -1,0 +1,68 @@
+TITLE: Dashboard and Technician Efficiency report – A Line the Customer Declined Is Counted in "Invoiced Tech Hrs" and Efficiency
+TYPE: Story Defect · PARENT: SV-9575 (Dashboard v1 - Story 3 - Measure Formulas & Report Parity; Done, read live 28 Oct 2026) · PRIORITY: Medium · LINK: relates to SV-9575
+STATUS: HELD — NOT FILED. Waiting for the product owner's answer to PO question DQ-1 ("Should a declined line count towards Technician Efficiency?"). If the answer is "No", file this text unchanged. If "Yes", do not file; record the ruling.
+ALREADY REPORTED: none. JQL read live 28 Oct 2026 — see DEFECT-CANDIDATE-tech-efficiency-counts-declined-lines.md (A4).
+BASIS: Dashboard PRD version 53 (22 Oct 2026, Chris Ward), read live 28 Oct 2026.
+REPRODUCED: 3 times on staging build v26.43.2-f8698cb, 28 Oct 2026 (twice with entered timesheets, once entirely through the screen).
+
+h2. Description
+
+*When the customer declines a line, that line is not billed — it does not appear on the invoice. But the Technician Efficiency tile on the Dashboard, its table, and the Technician Efficiency report still add the declined line's technician time to "Invoiced Tech Hrs", and add its clocked time to "Clocked".* So the shop's Technician Efficiency is higher than what was actually invoiced.
+
+For example, on work order S1-38198 only line 1 (1 hour) was billed, yet the technician is shown with 2.00 Invoiced Tech Hrs and 133.33%. The same invoice on the Billing Efficiency tile correctly leaves the declined line out (1.00 Invoiced / 1.00 Clocked, 100.00%).
+
+*Impact:* every technician who clocked time on a line the customer later declined looks more efficient than they were. In the staging data this affects at least 10 declined lines at Staging Heavy Duty - 9919 and Staging Lethbridge - 4310 (for example S2-12614 "Replace - Hydraulic pump feed line": 2.5 tech hours counted, never billed).
+
+*What is NOT affected:* lines that are billed are counted correctly (checked on 8,035 invoiced work orders). The Billing Efficiency tile and the Service Advisor Analysis report already leave declined lines out. Technician Utilization is not affected.
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin. In the top bar, choose the location *DVI Test*.
+# Open *Work Orders* and create a work order for customer *ZZAUTOTEST Dash F2*, asset *ZZ-F2* (or any customer with an asset).
+# On the work order's *Lines* tab click *New Line*, choose the canned line *3x inspection*, click *Save & Close*. The line *Test DVI Line* appears with status *Approved*.
+# Click *New Line* again, choose *3x inspection* again, click *Save & Close*. A second *Test DVI Line* appears with status *Needs Approval*.
+# On line 2 click *Approve*.
+# On line 1, in its *Labor* row, click *Start*. Wait one minute. Click *Stop*, then in the *Stop working on …* window click *Clock Out*.
+# On line 2, in its *Labor* row, click *Start*. Wait one minute. Click *Stop*, then click *Clock Out*.
+# On line 2 click its *⋮* menu and choose *Decline*.
+#* Line 2's status reads *Declined*.
+# On line 1 click *Complete*. If the *Missing Details* window asks for a *VIN*, type any VIN (for example ZZTESTVINF2000001) and click *Finish Work Order*.
+# Open the *Finance* tab and click *Create Invoice*. Close the *New Customer Payment* window without paying.
+#* The invoice lists only line 1, Test DVI Line, *Labor Total $135.00*.
+# Open *Dashboard*. On the *Technician Efficiency* tile click the date button, click *Today*, click *Apply*, then click *View details*.
+# Find your own name in the table under the chart.
+#* *Invoiced Tech Hrs* reads *2.00*.
+# Open *Reports* > *Technician Efficiency* > *Invoiced*, set *Date* to today, and expand your name.
+#* Two rows are listed: line 1 and line 2. Line 2 is the declined line, yet it adds 1 invoiced tech hour.
+
+*Actual Result:*
+* Invoiced Tech Hrs = 2.00 — the declined line 2's technician time (1 hour) is counted, and its clocked time is added to Clocked. The Technician Efficiency report lists the declined line under the technician.
+
+*Expected Result:*
+* Invoiced Tech Hrs = 1.00 — only line 1 was invoiced. The declined line adds nothing to Invoiced Tech Hrs or to Clocked, the same way the Billing Efficiency tile already leaves it out.
+* The PRD says: *"Invoiced technician hours divided by clocked hours, times 100, for the selected range."* (Story 3, S3-R2) — and a declined line is not invoiced.
+
+h2. Screenshots
+
+!F2-1-dashboard-tile-and-table.png|width=1000!
+
+!F2-2-work-order-lines.png|width=1000!
+
+!F2-3-invoice.png|width=1000!
+
+!F2-4-technician-efficiency-report.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.43.2-f8698cb}} on [staging|https://app.staging.shopview.com/dashboard] (DVI Test), 28 Oct 2026
+* *Example records:* S1-38198 (customer "ZZAUTOTEST Dash F2", technician Fabian Bonjean — line 1 Complete 1.00/1.00, line 2 Declined 0.50/1.00); S1-38199 (same customer, made entirely through the screen as in the steps above); S1-38195 (customer "ZZAUTOTEST Dash A1", technician Esther Howard)
+* *User:* Admin
+
+h2. Sources
+
+* Dashboard PRD, [Confluence 788430850|https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/788430850/Dashboard], version 53 (22 Oct 2026, Chris Ward), read 28 Oct 2026, Story 3, S3-R2 table, row "Technician Efficiency":
+{quote}Invoiced technician hours divided by clocked hours, times 100, for the selected range. Each work order line's technician time is split across the technicians who worked it, in proportion to each technician's share of the clocked time on that line.{quote}
+* Same PRD, S3-E2:
+{quote}A voided invoice is excluded from every figure the dashboard shows. It contributes nothing to Revenue or to the parts-versus-labor split, nothing to invoiced hours or invoiced technician hours …{quote}
+* Same PRD, §4 Terminology (why this is held for the PO — the term is defined as time *recorded*, not *billed*):
+{quote}Invoiced technician hours — the technician time recorded on work order lines. Used by Technician Efficiency. This is a different figure from invoiced hours.{quote}
