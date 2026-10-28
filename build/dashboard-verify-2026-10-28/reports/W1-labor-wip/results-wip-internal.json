@@ -1,0 +1,499 @@
+{
+"note": "Compacted: every PASS row is counted in \"tally\" (full row-level file kept outside git at /tmp/cln/w1/full/results-wip-internal.json); every FAIL/INFO row is kept verbatim below.",
+"tally": [
+{
+"check": "A0-no-snapshot",
+"result": "PASS",
+"count": 6
+},
+{
+"check": "A1-tab-count",
+"result": "PASS",
+"count": 76
+},
+{
+"check": "A1b-tab-counts-same-in-every-response",
+"result": "PASS",
+"count": 76
+},
+{
+"check": "A1c-summary-same-in-every-response",
+"result": "PASS",
+"count": 76
+},
+{
+"check": "A2-totals-row-adjustments",
+"result": "PASS",
+"count": 76
+},
+{
+"check": "A2-totals-row-earned",
+"result": "PASS",
+"count": 76
+},
+{
+"check": "A2-totals-row-labor-delta",
+"result": "PASS",
+"count": 76
+},
+{
+"check": "A2-totals-row-labor_earned",
+"result": "PASS",
+"count": 76
+},
+{
+"check": "A2-totals-row-labor_remaining",
+"result": "PASS",
+"count": 76
+},
+{
+"check": "A2-totals-row-parts_earned",
+"result": "PASS",
+"count": 76
+},
+{
+"check": "A2-totals-row-parts_remaining",
+"result": "PASS",
+"count": 76
+},
+{
+"check": "A2-totals-row-remaining",
+"result": "PASS",
+"count": 76
+},
+{
+"check": "A2-totals-row-total",
+"result": "PASS",
+"count": 76
+},
+{
+"check": "A3-earned=LE+PE",
+"result": "PASS",
+"count": 34120
+},
+{
+"check": "A3-open-status",
+"result": "PASS",
+"count": 34120
+},
+{
+"check": "A3-remaining=LR+PR",
+"result": "PASS",
+"count": 34120
+},
+{
+"check": "A3-row-tab-field",
+"result": "PASS",
+"count": 34120
+},
+{
+"check": "A3-total=E+R+Adj",
+"result": "PASS",
+"count": 34120
+},
+{
+"check": "A4-completed-no-remaining",
+"result": "PASS",
+"count": 6790
+},
+{
+"check": "A5-status-tab-placement",
+"result": "PASS",
+"count": 23036
+},
+{
+"check": "A5b-estimates-second-row-no-adjustments",
+"result": "PASS",
+"count": 722
+},
+{
+"check": "A5c-estimates-row-earned-zero",
+"result": "PASS",
+"count": 11084
+},
+{
+"check": "A6-wo-at-most-status-tab-plus-estimates",
+"result": "PASS",
+"count": 33398
+},
+{
+"check": "A7-summary-estimates",
+"result": "PASS",
+"count": 19
+},
+{
+"check": "A7-summary-not_started",
+"result": "PASS",
+"count": 19
+},
+{
+"check": "A7-summary-ready_to_invoice",
+"result": "PASS",
+"count": 19
+},
+{
+"check": "A7-summary-started_earned",
+"result": "PASS",
+"count": 19
+},
+{
+"check": "A7-summary-started_remaining",
+"result": "PASS",
+"count": 19
+},
+{
+"check": "A8-days-open-calendar-vs-elapsed",
+"result": "INFO",
+"count": 19
+}
+],
+"non_pass_rows": [
+{
+"check": "A8-days-open-calendar-vs-elapsed",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"asof": "2026-09-28",
+"result": "INFO",
+"detail": {
+"rows": 9,
+"differ": 0,
+"examples": []
+},
+"spec": "S4-R12 elapsed/24h floored"
+},
+{
+"check": "A8-days-open-calendar-vs-elapsed",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"asof": "2026-10-21",
+"result": "INFO",
+"detail": {
+"rows": 25,
+"differ": 0,
+"examples": []
+},
+"spec": "S4-R12 elapsed/24h floored"
+},
+{
+"check": "A8-days-open-calendar-vs-elapsed",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"asof": "2026-10-27",
+"result": "INFO",
+"detail": {
+"rows": 25,
+"differ": 0,
+"examples": []
+},
+"spec": "S4-R12 elapsed/24h floored"
+},
+{
+"check": "A8-days-open-calendar-vs-elapsed",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"asof": "2026-10-28",
+"result": "INFO",
+"detail": {
+"rows": 25,
+"differ": 2,
+"examples": [
+[
+"SMQ1-36720",
+"2026-10-16T21:29:20Z",
+12,
+11
+],
+[
+"SMQ1-35792",
+"2026-10-15T01:35:38Z",
+14,
+13
+]
+]
+},
+"spec": "S4-R12 elapsed/24h floored"
+},
+{
+"check": "A8-days-open-calendar-vs-elapsed",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"asof": "2026-10-21",
+"result": "INFO",
+"detail": {
+"rows": 83,
+"differ": 0,
+"examples": []
+},
+"spec": "S4-R12 elapsed/24h floored"
+},
+{
+"check": "A8-days-open-calendar-vs-elapsed",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"asof": "2026-10-27",
+"result": "INFO",
+"detail": {
+"rows": 89,
+"differ": 0,
+"examples": []
+},
+"spec": "S4-R12 elapsed/24h floored"
+},
+{
+"check": "A8-days-open-calendar-vs-elapsed",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"asof": "2026-10-28",
+"result": "INFO",
+"detail": {
+"rows": 93,
+"differ": 2,
+"examples": [
+[
+"S1-38100",
+"2026-10-27T20:28:43Z",
+1,
+0
+],
+[
+"S1-38099",
+"2026-10-27T20:25:00Z",
+1,
+0
+]
+]
+},
+"spec": "S4-R12 elapsed/24h floored"
+},
+{
+"check": "A8-days-open-calendar-vs-elapsed",
+"scope": "ALL",
+"asof": "2026-09-29",
+"result": "INFO",
+"detail": {
+"rows": 2357,
+"differ": 0,
+"examples": []
+},
+"spec": "S4-R12 elapsed/24h floored"
+},
+{
+"check": "A8-days-open-calendar-vs-elapsed",
+"scope": "ALL",
+"asof": "2026-10-22",
+"result": "INFO",
+"detail": {
+"rows": 4886,
+"differ": 0,
+"examples": []
+},
+"spec": "S4-R12 elapsed/24h floored"
+},
+{
+"check": "A8-days-open-calendar-vs-elapsed",
+"scope": "ALL",
+"asof": "2026-10-28",
+"result": "INFO",
+"detail": {
+"rows": 4907,
+"differ": 0,
+"examples": []
+},
+"spec": "S4-R12 elapsed/24h floored"
+},
+{
+"check": "A8-days-open-calendar-vs-elapsed",
+"scope": "ALL",
+"asof": "2026-10-29",
+"result": "INFO",
+"detail": {
+"rows": 4910,
+"differ": 4769,
+"examples": [
+[
+"S2-38105",
+"2026-10-28T10:19:21Z",
+1,
+0
+],
+[
+"S2-38096",
+"2026-10-27T04:14:55Z",
+2,
+1
+],
+[
+"S3-38078",
+"2026-10-22T18:23:35Z",
+7,
+6
+],
+[
+"S2-38054",
+"2026-10-22T12:40:21Z",
+7,
+6
+],
+[
+"S2-38040",
+"2026-10-22T12:21:06Z",
+7,
+6
+]
+]
+},
+"spec": "S4-R12 elapsed/24h floored"
+},
+{
+"check": "A8-days-open-calendar-vs-elapsed",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"asof": "2026-09-29",
+"result": "INFO",
+"detail": {
+"rows": 1778,
+"differ": 0,
+"examples": []
+},
+"spec": "S4-R12 elapsed/24h floored"
+},
+{
+"check": "A8-days-open-calendar-vs-elapsed",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"asof": "2026-10-22",
+"result": "INFO",
+"detail": {
+"rows": 4048,
+"differ": 0,
+"examples": []
+},
+"spec": "S4-R12 elapsed/24h floored"
+},
+{
+"check": "A8-days-open-calendar-vs-elapsed",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"asof": "2026-10-28",
+"result": "INFO",
+"detail": {
+"rows": 4062,
+"differ": 0,
+"examples": []
+},
+"spec": "S4-R12 elapsed/24h floored"
+},
+{
+"check": "A8-days-open-calendar-vs-elapsed",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"asof": "2026-10-29",
+"result": "INFO",
+"detail": {
+"rows": 4061,
+"differ": 3973,
+"examples": [
+[
+"S2-38105",
+"2026-10-28T10:19:21Z",
+1,
+0
+],
+[
+"S2-38096",
+"2026-10-27T04:14:55Z",
+2,
+1
+],
+[
+"S2-38054",
+"2026-10-22T12:40:21Z",
+7,
+6
+],
+[
+"S2-38040",
+"2026-10-22T12:21:06Z",
+7,
+6
+],
+[
+"S2-38039",
+"2026-10-22T12:20:37Z",
+7,
+6
+]
+]
+},
+"spec": "S4-R12 elapsed/24h floored"
+},
+{
+"check": "A8-days-open-calendar-vs-elapsed",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"asof": "2026-09-28",
+"result": "INFO",
+"detail": {
+"rows": 570,
+"differ": 0,
+"examples": []
+},
+"spec": "S4-R12 elapsed/24h floored"
+},
+{
+"check": "A8-days-open-calendar-vs-elapsed",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"asof": "2026-10-21",
+"result": "INFO",
+"detail": {
+"rows": 730,
+"differ": 0,
+"examples": []
+},
+"spec": "S4-R12 elapsed/24h floored"
+},
+{
+"check": "A8-days-open-calendar-vs-elapsed",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"asof": "2026-10-27",
+"result": "INFO",
+"detail": {
+"rows": 731,
+"differ": 0,
+"examples": []
+},
+"spec": "S4-R12 elapsed/24h floored"
+},
+{
+"check": "A8-days-open-calendar-vs-elapsed",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"asof": "2026-10-28",
+"result": "INFO",
+"detail": {
+"rows": 731,
+"differ": 66,
+"examples": [
+[
+"S3-34508",
+"2026-10-01T03:52:48Z",
+28,
+27
+],
+[
+"S3-34507",
+"2026-10-01T03:15:58Z",
+28,
+27
+],
+[
+"S3-34506",
+"2026-10-01T03:15:09Z",
+28,
+27
+],
+[
+"S3-34501",
+"2026-10-01T03:03:22Z",
+28,
+27
+],
+[
+"S3-31627",
+"2026-09-02T22:14:23Z",
+56,
+55
+]
+]
+},
+"spec": "S4-R12 elapsed/24h floored"
+}
+]
+}

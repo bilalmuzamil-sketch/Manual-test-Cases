@@ -1,0 +1,122 @@
+{
+"summary": {
+"rowsNumber = rows": {
+"pass": 50,
+"fail": 0
+},
+"as_of_date = requested day (snapshot exists or today live)": {
+"pass": 45,
+"fail": 0
+},
+"S2-R2/R3 one row per part per location": {
+"pass": 50,
+"fail": 0
+},
+"S9-R1 default sort Total Cost desc": {
+"pass": 50,
+"fail": 0
+},
+"S2-R1 qty > 0": {
+"pass": 134310,
+"fail": 0
+},
+"S3-R7 Total Cost = Qty x Unit Cost": {
+"pass": 134310,
+"fail": 0
+},
+"S3-R6 Total Sell = Qty x Unit Sell": {
+"pass": 134310,
+"fail": 0
+},
+"S3-R8 Margin = Total Sell - Total Cost": {
+"pass": 134310,
+"fail": 0
+},
+"S3-R9 Margin % = Margin / Total Sell": {
+"pass": 133940,
+"fail": 0
+},
+"S7-R7 Location names the row location": {
+"pass": 67161,
+"fail": 0
+},
+"S4-R2 totals qty = sum of rows": {
+"pass": 31,
+"fail": 0
+},
+"S4-R2 totals total_cost = sum of rows": {
+"pass": 31,
+"fail": 0
+},
+"S4-R2 totals total_sell = sum of rows": {
+"pass": 31,
+"fail": 0
+},
+"S4-R2 totals margin = sum of rows": {
+"pass": 31,
+"fail": 0
+},
+"S4-R3 totals Margin % = total Margin / total Total Sell": {
+"pass": 31,
+"fail": 0
+},
+"S4-N1/S5-N1 empty -> zero totals, Margin % null": {
+"pass": 19,
+"fail": 0
+},
+"S5-R1 future day is capped at today": {
+"pass": 5,
+"fail": 0
+},
+"S3-E3 Margin % blank when Total Sell <= 0": {
+"pass": 370,
+"fail": 0
+},
+"S7-R3 All locations = union of each location (same day)": {
+"pass": 1,
+"fail": 0
+},
+"S2-R1 row present iff non-core and on-hand > 0 (parts list)": {
+"pass": 11306,
+"fail": 0
+},
+"S3-R3 Qty = parts-list on-hand": {
+"pass": 9666,
+"fail": 0
+},
+"S3-R4 Unit Cost = part cost (parts list)": {
+"pass": 9666,
+"fail": 0
+},
+"S3-R5 Unit Sell = parts-list sell price (\"resolved the same way the parts list resolves it\")": {
+"pass": 9666,
+"fail": 0
+},
+"S3-R5 Unit Sell = fixed price, else matrix markup on cost, else cost (recomputed)": {
+"pass": 9665,
+"fail": 1
+},
+"S3-R14 Category / Vendor names": {
+"pass": 9666,
+"fail": 0
+},
+"B every IV row exists in the parts list": {
+"pass": 4,
+"fail": 0
+}
+},
+"failed_rows": [
+{
+"check": "S3-R5 Unit Sell = fixed price, else matrix markup on cost, else cost (recomputed)",
+"ok": false,
+"loc": "Staging Lethbridge - 4310",
+"part": "2599273C92",
+"key": "9b9f0a2c-6c05-421a-9f1a-808e2393c8e8",
+"got": 75244,
+"exp": 86341.931,
+"how": "default-matrix",
+"cost": 526.7
+}
+],
+"note": "Full per-row PASS rows omitted to keep the file small; re-run tools/iv_check.py to regenerate them."
+}

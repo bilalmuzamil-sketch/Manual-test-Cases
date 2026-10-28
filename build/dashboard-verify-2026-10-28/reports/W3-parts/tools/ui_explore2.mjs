@@ -1,0 +1,18 @@
+import fs from 'fs';
+import { open2, APP } from './ctx2.mjs';
+const S = JSON.parse(fs.readFileSync('/tmp/cln/w3/seed.json'));
+const { browser, page } = await open2('39522bc6-abca-4f67-bd12-2840043c2d68', 'America/Toronto', 1);
+await page.goto(`${APP}/workorders/${S.wo3}/lines`, { waitUntil: 'domcontentloaded', timeout: 90000 }); await page.waitForTimeout(10000);
+await page.locator('[data-test-id="button_add_part"]').first().click(); await page.waitForTimeout(3000);
+await page.screenshot({ path: '/tmp/cln/w3/shots/ui-02-addpart.png' });
+const ids = await page.evaluate(() => [...document.querySelectorAll('[data-test-id]')].map(e => e.getAttribute('data-test-id') + ':' + e.tagName + ':' + (e.innerText || e.value || '').slice(0, 30).replace(/\n/g, ' ')).filter(x => !/^(profile|item_|link_|line_|badge|table_|checkbox|button_line|text_parts)/.test(x)));
+console.log([...new Set(ids)].slice(-60).join('\n'));
+const inp = page.locator('[data-test-id="select_part"] input, input[data-test-id="select_part"]').first();
+console.log('select_part count', await page.locator('[data-test-id="select_part"]').count(), 'input', await inp.count());
+await page.locator('[data-test-id="select_part"]').first().click().catch(e => console.log('clickerr', e.message.split('\n')[0]));
+await page.keyboard.type('ZZAUTOTEST-SO1', { delay: 50 }); await page.waitForTimeout(4000);
+console.log('OPTIONS', (await page.locator('.q-menu .q-item').allInnerTexts()).map(t => t.replace(/\n/g, ' / ')).join(' || '));
+const optIds = await page.evaluate(() => [...document.querySelectorAll('.q-menu [data-test-id]')].map(e => e.getAttribute('data-test-id')));
+console.log('OPTIDS', optIds.join(' '));
+await page.screenshot({ path: '/tmp/cln/w3/shots/ui-03-search.png' });
+await browser.close();

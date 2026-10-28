@@ -1,0 +1,53 @@
+TITLE: Work In Progress report – "Days Open" Shows "1 days" for a Work Order Created Less Than 24 Hours Ago
+TYPE: Story Defect · PARENT: SV-8660 (WIP - Story 4 - Columns and Calculations; Done, read live 28 Oct 2026) · PRIORITY: Medium · LINK: relates to SV-8660
+STATUS: HELD — NOT FILED. Waiting for the product owner's answer to WQ-1 ("Days Open: calendar dates or whole 24-hour periods?"). If the answer is "whole 24-hour periods", file this text unchanged. If "calendar dates", do not file; the spec S4-R12 needs rewording instead.
+ALREADY REPORTED: none. JQL read live 28 Oct 2026 — see DEFECT-CANDIDATE-wip-days-open-counts-calendar-days.md (A4).
+BASIS: Work In Progress specification, Confluence 703660034, version 28 (24 Aug 2026, Chris Ward), read live 28 Oct 2026.
+REPRODUCED: twice on staging build v26.43.2-f8698cb, 28 Oct 2026 (report data and on screen), at three locations.
+
+h2. Description
+
+*The Days Open column counts how many calendar dates have passed since the work order was created, not how many whole 24-hour periods.* So a work order created yesterday evening already shows "1 days" this morning, although less than a day has passed, and every work order shows one day more than the specification asks for during the part of each day that is earlier than the time it was created.
+
+For example, at Staging Heavy Duty - 9919 work order S2-38105 was created on 28 Oct 2026 at 3:19 PM. At 1:37 AM on 29 Oct (about 10 hours later) the report shows *1 days*. The specification says it should show *0 days*.
+
+*Impact:* the default sort is Days Open, longest first, so the order of work orders and every aging figure is off by one day for much of each day. At Staging Heavy Duty - 9919, 3,977 of 4,061 rows showed one day more than the specification's count at 00:45 local time.
+
+*What is NOT affected:* the money columns, the tabs, the totals and the summary strip.
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin. In the top bar, choose the location *DVI Test*.
+# In the evening (for example at 7:00 PM), open *Work Orders* and click *New*.
+# Choose the customer *ZZAUTOTEST WIP FX1* and the asset *ZZ-WIP-FX1*, then click *Create*.
+#* Write down the work order number and the time you created it.
+# The next morning, before 7:00 PM (for example at 9:00 AM), open *Reports* > *Work In Progress*.
+# Click the *Estimates* tab.
+# Find your work order.
+#* *Days Open* reads *1 days*.
+
+_Faster check with existing data:_ choose *Staging Heavy Duty - 9919*, open *Reports* > *Work In Progress*, tab *Approved - Partially Completed*, and find *S2-38105* (created 28 Oct 2026, 3:19 PM). Until 3:19 PM on 29 Oct it reads *1 days*.
+
+*Actual Result:*
+* Days Open = *1 days* although fewer than 24 hours have passed since the work order was created.
+
+*Expected Result:*
+* Days Open = *0 days* until 24 full hours have passed, then *1 days*.
+* The specification says: *"elapsed time divided by 24 hours, floored, never negative ... a same-day work order shows "0 days" and a one-day-old work order shows "1 days"."* (S4-R12)
+
+h2. Screenshots
+
+!W1-WIP-1-days-open-counts-calendar-days.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.43.2-f8698cb}} on [staging|https://app.staging.shopview.com/reports/work-in-progress], 28 Oct 2026
+* *Example records:* S2-38105 (Staging Heavy Duty - 9919, created 28 Oct 2026 15:19 local); S3-34508 (Staging Lethbridge - 4310, created 30 Sep 2026 21:52 local, shows 28 days on 28 Oct before 21:52; the specification's count is 27); S1-38100 (DVI Test)
+* *User:* Admin
+
+h2. Sources
+
+* Work In Progress specification, [Confluence 703660034|https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/703660034/WIP+Work+In+Progress+Report], version 28 (24 Aug 2026, Chris Ward), read 28 Oct 2026, S4-R12:
+{quote}Days Open shows the whole number of days since the work order was created — elapsed time divided by 24 hours, floored, never negative — rendered as "X days". The value is not grammatically pluralized: a same-day work order shows "0 days" and a one-day-old work order shows "1 days".{quote}
+* Same page, §4 Terminology:
+{quote}Days Open → Whole days since the work order was created: elapsed time divided by 24 hours, floored (never negative).{quote}

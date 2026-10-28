@@ -1,0 +1,2986 @@
+{
+"note": "Compacted: every PASS row is counted in \"tally\" (full row-level file kept outside git at /tmp/cln/w1/full/results-tu.json); every FAIL/INFO row is kept verbatim below.",
+"tally": [
+{
+"check": "T1-summary-internal_seconds",
+"result": "PASS",
+"count": 45
+},
+{
+"check": "T1-summary-lost-labor",
+"result": "PASS",
+"count": 45
+},
+{
+"check": "T1-summary-total_seconds",
+"result": "PASS",
+"count": 45
+},
+{
+"check": "T1-summary-wo_seconds",
+"result": "PASS",
+"count": 45
+},
+{
+"check": "T2-total=wo+internal",
+"result": "PASS",
+"count": 316
+},
+{
+"check": "T2b-row-has-time",
+"result": "FAIL",
+"count": 11
+},
+{
+"check": "T2b-row-has-time",
+"result": "PASS",
+"count": 305
+},
+{
+"check": "T3-daily-ascending-in-range",
+"result": "PASS",
+"count": 214
+},
+{
+"check": "T3-daily-lost-labor-sum",
+"result": "FAIL",
+"count": 6
+},
+{
+"check": "T3-daily-lost-labor-sum",
+"result": "PASS",
+"count": 208
+},
+{
+"check": "T3-daily-no-empty-day",
+"result": "FAIL",
+"count": 15
+},
+{
+"check": "T3-daily-no-empty-day",
+"result": "PASS",
+"count": 199
+},
+{
+"check": "T3-daily-sum-internal_seconds",
+"result": "FAIL",
+"count": 6
+},
+{
+"check": "T3-daily-sum-internal_seconds",
+"result": "PASS",
+"count": 208
+},
+{
+"check": "T3-daily-sum-total_seconds",
+"result": "FAIL",
+"count": 21
+},
+{
+"check": "T3-daily-sum-total_seconds",
+"result": "PASS",
+"count": 193
+},
+{
+"check": "T3-daily-sum-wo_seconds",
+"result": "FAIL",
+"count": 19
+},
+{
+"check": "T3-daily-sum-wo_seconds",
+"result": "PASS",
+"count": 195
+},
+{
+"check": "T5-wo-seconds-vs-raw-clocks(per-record 0.01h)",
+"result": "FAIL",
+"count": 19
+},
+{
+"check": "T5-wo-seconds-vs-raw-clocks(per-record 0.01h)",
+"result": "PASS",
+"count": 131
+},
+{
+"check": "T5a-non-billable-staff-not-listed",
+"result": "PASS",
+"count": 80
+},
+{
+"check": "T5x-exact-vs-report-info",
+"result": "INFO",
+"count": 150
+},
+{
+"check": "T8-est-lost-labor=rate*internal",
+"result": "PASS",
+"count": 169
+}
+],
+"non_pass_rows": [
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"tech": "Esther Howard",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"tech": "Fabian Bonjean",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"tech": "Admin Shopview",
+"diff_s": 10
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_week",
+"result": "INFO",
+"detail": {
+"tech": "Esther Howard",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_week",
+"result": "INFO",
+"detail": {
+"tech": "Fabian Bonjean",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_week",
+"result": "INFO",
+"detail": {
+"tech": "Admin Shopview",
+"diff_s": 10
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Esther Howard",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Fabian Bonjean",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Admin Shopview",
+"diff_s": 10
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "today",
+"result": "INFO",
+"detail": {
+"tech": "Admin Shopview",
+"diff_s": 10
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "today",
+"result": "INFO",
+"detail": {
+"tech": "Esther Howard",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "yesterday",
+"result": "INFO",
+"detail": {
+"tech": "Fabian Bonjean",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "yesterday",
+"result": "INFO",
+"detail": {
+"tech": "Esther Howard",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T3-daily-no-empty-day",
+"scope": "ALL",
+"range": "custom_0915_1014",
+"result": "FAIL",
+"detail": {
+"tech": "Admin Shopview"
+},
+"spec": "S4-N1"
+},
+{
+"check": "T2b-row-has-time",
+"scope": "ALL",
+"range": "custom_0915_1014",
+"result": "FAIL",
+"detail": {
+"tech": "Nebojsa Custom-Admin"
+},
+"spec": "S1-R2"
+},
+{
+"check": "T3-daily-no-empty-day",
+"scope": "ALL",
+"range": "custom_0915_1014",
+"result": "FAIL",
+"detail": {
+"tech": "Nebojsa Custom-Admin"
+},
+"spec": "S4-N1"
+},
+{
+"check": "T2b-row-has-time",
+"scope": "ALL",
+"range": "custom_0915_1014",
+"result": "FAIL",
+"detail": {
+"tech": "QA Technician"
+},
+"spec": "S1-R2"
+},
+{
+"check": "T3-daily-no-empty-day",
+"scope": "ALL",
+"range": "custom_0915_1014",
+"result": "FAIL",
+"detail": {
+"tech": "QA Technician"
+},
+"spec": "S4-N1"
+},
+{
+"check": "T3-daily-sum-total_seconds",
+"scope": "ALL",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Cameron Johnston",
+"daily": 209592,
+"row": 209520
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-wo_seconds",
+"scope": "ALL",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Cameron Johnston",
+"daily": 209592,
+"row": 209520
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-total_seconds",
+"scope": "ALL",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Carol Ramos",
+"daily": 338256,
+"row": 338292
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-internal_seconds",
+"scope": "ALL",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Carol Ramos",
+"daily": 338256,
+"row": 338292
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-lost-labor-sum",
+"scope": "ALL",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Carol Ramos",
+"daily": 1408931,
+"row": 1409080
+},
+"spec": "S4-R3 (per day rounded)"
+},
+{
+"check": "T3-daily-sum-wo_seconds",
+"scope": "ALL",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Daniel Montoya",
+"daily": 253944,
+"row": 253980
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-internal_seconds",
+"scope": "ALL",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Daniel Montoya",
+"daily": 178956,
+"row": 178920
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-lost-labor-sum",
+"scope": "ALL",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Daniel Montoya",
+"daily": 745401,
+"row": 745252
+},
+"spec": "S4-R3 (per day rounded)"
+},
+{
+"check": "T3-daily-sum-total_seconds",
+"scope": "ALL",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Kenneth Oconnor",
+"daily": 284580,
+"row": 284544
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-wo_seconds",
+"scope": "ALL",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Kenneth Oconnor",
+"daily": 284184,
+"row": 284148
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-total_seconds",
+"scope": "ALL",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Kristy Johnson",
+"daily": 314424,
+"row": 314388
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-wo_seconds",
+"scope": "ALL",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Kristy Johnson",
+"daily": 314424,
+"row": 314388
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-total_seconds",
+"scope": "ALL",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Lauren Miller",
+"daily": 379404,
+"row": 379368
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-wo_seconds",
+"scope": "ALL",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Lauren Miller",
+"daily": 379404,
+"row": 379368
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-total_seconds",
+"scope": "ALL",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Melanie Garner",
+"daily": 344160,
+"row": 344196
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-wo_seconds",
+"scope": "ALL",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Melanie Garner",
+"daily": 344160,
+"row": 344196
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-total_seconds",
+"scope": "ALL",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Monique Turner",
+"daily": 273024,
+"row": 273060
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-wo_seconds",
+"scope": "ALL",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Monique Turner",
+"daily": 273024,
+"row": 273060
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-total_seconds",
+"scope": "ALL",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Stacey Pratt",
+"daily": 306180,
+"row": 306072
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-wo_seconds",
+"scope": "ALL",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Stacey Pratt",
+"daily": 306180,
+"row": 306072
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-no-empty-day",
+"scope": "ALL",
+"range": "last_month",
+"result": "FAIL",
+"detail": {
+"tech": "Admin Shopview"
+},
+"spec": "S4-N1"
+},
+{
+"check": "T2b-row-has-time",
+"scope": "ALL",
+"range": "last_month",
+"result": "FAIL",
+"detail": {
+"tech": "Nebojsa Custom-Admin"
+},
+"spec": "S1-R2"
+},
+{
+"check": "T3-daily-no-empty-day",
+"scope": "ALL",
+"range": "last_month",
+"result": "FAIL",
+"detail": {
+"tech": "Nebojsa Custom-Admin"
+},
+"spec": "S4-N1"
+},
+{
+"check": "T3-daily-no-empty-day",
+"scope": "ALL",
+"range": "last_week",
+"result": "FAIL",
+"detail": {
+"tech": "QA Technician"
+},
+"spec": "S4-N1"
+},
+{
+"check": "T3-daily-sum-total_seconds",
+"scope": "ALL",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"tech": "Admin Shopview",
+"daily": 274680,
+"row": 274644
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-wo_seconds",
+"scope": "ALL",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"tech": "Admin Shopview",
+"daily": 158220,
+"row": 158184
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-no-empty-day",
+"scope": "ALL",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"tech": "QA Technician"
+},
+"spec": "S4-N1"
+},
+{
+"check": "T3-daily-sum-total_seconds",
+"scope": "ALL",
+"range": "this_week",
+"result": "FAIL",
+"detail": {
+"tech": "Admin Shopview",
+"daily": 141660,
+"row": 141624
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-wo_seconds",
+"scope": "ALL",
+"range": "this_week",
+"result": "FAIL",
+"detail": {
+"tech": "Admin Shopview",
+"daily": 79704,
+"row": 79668
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T2b-row-has-time",
+"scope": "ALL",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"tech": "Nebojsa Custom-Admin"
+},
+"spec": "S1-R2"
+},
+{
+"check": "T3-daily-no-empty-day",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_0915_1014",
+"result": "FAIL",
+"detail": {
+"tech": "Admin Shopview"
+},
+"spec": "S4-N1"
+},
+{
+"check": "T2b-row-has-time",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_0915_1014",
+"result": "FAIL",
+"detail": {
+"tech": "Nebojsa Custom-Admin"
+},
+"spec": "S1-R2"
+},
+{
+"check": "T3-daily-no-empty-day",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_0915_1014",
+"result": "FAIL",
+"detail": {
+"tech": "Nebojsa Custom-Admin"
+},
+"spec": "S4-N1"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_0915_1014",
+"result": "INFO",
+"detail": {
+"tech": "Nebojsa Custom Tech",
+"diff_s": -27
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_0915_1014",
+"result": "INFO",
+"detail": {
+"tech": "Esther Howard",
+"diff_s": 22
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_0915_1014",
+"result": "INFO",
+"detail": {
+"tech": "Monica Brady",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_0915_1014",
+"result": "INFO",
+"detail": {
+"tech": "Admin Shopview",
+"diff_s": -52
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5-wo-seconds-vs-raw-clocks(per-record 0.01h)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_0915_1014",
+"result": "FAIL",
+"detail": {
+"tech": "3ff0914b-49a3-4d80-b07d-92a10e1a89f8",
+"report_s": null,
+"raw_rounded_s": 2592000,
+"raw_exact_s": 2592000,
+"diff_h": -720.0,
+"open_clocks": [
+[
+"2026-08-31 17:03:02",
+1395.0
+]
+]
+},
+"spec": "S2-R3 + S1-E1 / SV-11688 ruling"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_0915_1014",
+"result": "INFO",
+"detail": {
+"tech": "3ff0914b-49a3-4d80-b07d-92a10e1a89f8",
+"diff_s": -2592000
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_0915_1014",
+"result": "INFO",
+"detail": {
+"tech": "Nebojsa Custom-Admin",
+"diff_s": -41
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_0915_1014",
+"result": "INFO",
+"detail": {
+"tech": "Parth Fadadu",
+"diff_s": -2
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T3-daily-sum-total_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Cameron Johnston",
+"daily": 209592,
+"row": 209520
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-wo_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Cameron Johnston",
+"daily": 209592,
+"row": 209520
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-total_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Carol Ramos",
+"daily": 338256,
+"row": 338292
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-internal_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Carol Ramos",
+"daily": 338256,
+"row": 338292
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-lost-labor-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Carol Ramos",
+"daily": 1408931,
+"row": 1409080
+},
+"spec": "S4-R3 (per day rounded)"
+},
+{
+"check": "T3-daily-sum-wo_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Daniel Montoya",
+"daily": 253944,
+"row": 253980
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-internal_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Daniel Montoya",
+"daily": 178956,
+"row": 178920
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-lost-labor-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Daniel Montoya",
+"daily": 745401,
+"row": 745252
+},
+"spec": "S4-R3 (per day rounded)"
+},
+{
+"check": "T3-daily-sum-total_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Kenneth Oconnor",
+"daily": 284580,
+"row": 284544
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-wo_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Kenneth Oconnor",
+"daily": 284184,
+"row": 284148
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-total_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Melanie Garner",
+"daily": 344160,
+"row": 344196
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-wo_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Melanie Garner",
+"daily": 344160,
+"row": 344196
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-total_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Monique Turner",
+"daily": 273024,
+"row": 273060
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-wo_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Monique Turner",
+"daily": 273024,
+"row": 273060
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-total_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Stacey Pratt",
+"daily": 306180,
+"row": 306072
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-wo_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Stacey Pratt",
+"daily": 306180,
+"row": 306072
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T5-wo-seconds-vs-raw-clocks(per-record 0.01h)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Stacey Pratt",
+"report_s": 306072,
+"raw_rounded_s": 306180,
+"raw_exact_s": 305966,
+"diff_h": -0.03,
+"open_clocks": []
+},
+"spec": "S2-R3 + S1-E1 / SV-11688 ruling"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "INFO",
+"detail": {
+"tech": "Stacey Pratt",
+"diff_s": 106
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "INFO",
+"detail": {
+"tech": "Monica Brady",
+"diff_s": 18
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "INFO",
+"detail": {
+"tech": "Monique Turner",
+"diff_s": -60
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "INFO",
+"detail": {
+"tech": "David Combs",
+"diff_s": -60
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5-wo-seconds-vs-raw-clocks(per-record 0.01h)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"tech": "Cameron Johnston",
+"report_s": 209520,
+"raw_rounded_s": 209592,
+"raw_exact_s": 209606,
+"diff_h": -0.02,
+"open_clocks": []
+},
+"spec": "S2-R3 + S1-E1 / SV-11688 ruling"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "INFO",
+"detail": {
+"tech": "Cameron Johnston",
+"diff_s": -86
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "INFO",
+"detail": {
+"tech": "Jacqueline Calderon",
+"diff_s": 53
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "INFO",
+"detail": {
+"tech": "Kenneth Oconnor",
+"diff_s": -114
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "INFO",
+"detail": {
+"tech": "Melanie Garner",
+"diff_s": 47
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "INFO",
+"detail": {
+"tech": "Daniel Montoya",
+"diff_s": 29
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "INFO",
+"detail": {
+"tech": "Darrell Martinez",
+"diff_s": -53
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T3-daily-no-empty-day",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"result": "FAIL",
+"detail": {
+"tech": "Admin Shopview"
+},
+"spec": "S4-N1"
+},
+{
+"check": "T2b-row-has-time",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"result": "FAIL",
+"detail": {
+"tech": "Nebojsa Custom-Admin"
+},
+"spec": "S1-R2"
+},
+{
+"check": "T3-daily-no-empty-day",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"result": "FAIL",
+"detail": {
+"tech": "Nebojsa Custom-Admin"
+},
+"spec": "S4-N1"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"result": "INFO",
+"detail": {
+"tech": "Nebojsa Custom Tech",
+"diff_s": -27
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"result": "INFO",
+"detail": {
+"tech": "Monica Brady",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"result": "INFO",
+"detail": {
+"tech": "Admin Shopview",
+"diff_s": -69
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5-wo-seconds-vs-raw-clocks(per-record 0.01h)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"result": "FAIL",
+"detail": {
+"tech": "3ff0914b-49a3-4d80-b07d-92a10e1a89f8",
+"report_s": null,
+"raw_rounded_s": 2592000,
+"raw_exact_s": 2592000,
+"diff_h": -720.0,
+"open_clocks": [
+[
+"2026-08-31 17:03:02",
+1395.0
+]
+]
+},
+"spec": "S2-R3 + S1-E1 / SV-11688 ruling"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"result": "INFO",
+"detail": {
+"tech": "3ff0914b-49a3-4d80-b07d-92a10e1a89f8",
+"diff_s": -2592000
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"result": "INFO",
+"detail": {
+"tech": "Nebojsa Custom-Admin",
+"diff_s": -41
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"result": "INFO",
+"detail": {
+"tech": "Parth Fadadu",
+"diff_s": -2
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"result": "INFO",
+"detail": {
+"tech": "Viktoria Videnovic",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"result": "INFO",
+"detail": {
+"tech": "Vladimir Tomovic",
+"diff_s": -25
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5-wo-seconds-vs-raw-clocks(per-record 0.01h)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"result": "FAIL",
+"detail": {
+"tech": "d2cb20a6-90a8-4884-ac50-022ff2fb9313",
+"report_s": null,
+"raw_rounded_s": 180,
+"raw_exact_s": 152,
+"diff_h": -0.05,
+"open_clocks": []
+},
+"spec": "S2-R3 + S1-E1 / SV-11688 ruling"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"result": "INFO",
+"detail": {
+"tech": "d2cb20a6-90a8-4884-ac50-022ff2fb9313",
+"diff_s": -152
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T2b-row-has-time",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_week",
+"result": "FAIL",
+"detail": {
+"tech": "QA Technician"
+},
+"spec": "S1-R2"
+},
+{
+"check": "T3-daily-no-empty-day",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_week",
+"result": "FAIL",
+"detail": {
+"tech": "QA Technician"
+},
+"spec": "S4-N1"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_week",
+"result": "INFO",
+"detail": {
+"tech": "Aaron Zed",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_week",
+"result": "INFO",
+"detail": {
+"tech": "Monica Brady",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_week",
+"result": "INFO",
+"detail": {
+"tech": "Fabian Bonjean",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5-wo-seconds-vs-raw-clocks(per-record 0.01h)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_week",
+"result": "FAIL",
+"detail": {
+"tech": "3ff0914b-49a3-4d80-b07d-92a10e1a89f8",
+"report_s": null,
+"raw_rounded_s": 604800,
+"raw_exact_s": 604800,
+"diff_h": -168.0,
+"open_clocks": [
+[
+"2026-08-31 17:03:02",
+1395.0
+]
+]
+},
+"spec": "S2-R3 + S1-E1 / SV-11688 ruling"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_week",
+"result": "INFO",
+"detail": {
+"tech": "3ff0914b-49a3-4d80-b07d-92a10e1a89f8",
+"diff_s": -604800
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_week",
+"result": "INFO",
+"detail": {
+"tech": "Admin Shopview",
+"diff_s": 1
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_week",
+"result": "INFO",
+"detail": {
+"tech": "Ahtsham Service Manager",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_week",
+"result": "INFO",
+"detail": {
+"tech": "Cameron Johnston",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_week",
+"result": "INFO",
+"detail": {
+"tech": "Carol Ramos",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_week",
+"result": "INFO",
+"detail": {
+"tech": "Ayesha Khan",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_week",
+"result": "INFO",
+"detail": {
+"tech": "Kenneth Oconnor",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_week",
+"result": "INFO",
+"detail": {
+"tech": "Branko Cicovic",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_week",
+"result": "INFO",
+"detail": {
+"tech": "QA Technician",
+"diff_s": -4
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T3-daily-sum-total_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"tech": "Admin Shopview",
+"daily": 274464,
+"row": 274428
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-wo_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"tech": "Admin Shopview",
+"daily": 158004,
+"row": 157968
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T2b-row-has-time",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"tech": "QA Technician"
+},
+"spec": "S1-R2"
+},
+{
+"check": "T3-daily-no-empty-day",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"tech": "QA Technician"
+},
+"spec": "S4-N1"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"tech": "Esther Howard",
+"diff_s": 187
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"tech": "Monica Brady",
+"diff_s": 5
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5-wo-seconds-vs-raw-clocks(per-record 0.01h)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"tech": "3ff0914b-49a3-4d80-b07d-92a10e1a89f8",
+"report_s": null,
+"raw_rounded_s": 2422908,
+"raw_exact_s": 2422903,
+"diff_h": -673.03,
+"open_clocks": [
+[
+"2026-08-31 17:03:02",
+1395.0
+]
+]
+},
+"spec": "S2-R3 + S1-E1 / SV-11688 ruling"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"tech": "3ff0914b-49a3-4d80-b07d-92a10e1a89f8",
+"diff_s": -2422903
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"tech": "Admin Shopview",
+"diff_s": 26
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"tech": "Cameron Johnston",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"tech": "QA Technician",
+"diff_s": -4
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"tech": "Ayesha Khan",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"tech": "Kenneth Oconnor",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"tech": "Nebojsa Custom Tech",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"tech": "Aaron Zed",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"tech": "Ralph Edwards",
+"diff_s": 16
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"tech": "Fabian Bonjean",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"tech": "Carol Ramos",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"tech": "Branko Cicovic",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"tech": "Dana Ortiz",
+"diff_s": 24
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"tech": "Ahtsham Service Manager",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T3-daily-sum-total_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_week",
+"result": "FAIL",
+"detail": {
+"tech": "Admin Shopview",
+"daily": 141444,
+"row": 141408
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-wo_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_week",
+"result": "FAIL",
+"detail": {
+"tech": "Admin Shopview",
+"daily": 79488,
+"row": 79452
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T5-wo-seconds-vs-raw-clocks(per-record 0.01h)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_week",
+"result": "FAIL",
+"detail": {
+"tech": "3ff0914b-49a3-4d80-b07d-92a10e1a89f8",
+"report_s": null,
+"raw_rounded_s": 349308,
+"raw_exact_s": 349294,
+"diff_h": -97.03,
+"open_clocks": [
+[
+"2026-08-31 17:03:02",
+1395.0
+]
+]
+},
+"spec": "S2-R3 + S1-E1 / SV-11688 ruling"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_week",
+"result": "INFO",
+"detail": {
+"tech": "3ff0914b-49a3-4d80-b07d-92a10e1a89f8",
+"diff_s": -349294
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_week",
+"result": "INFO",
+"detail": {
+"tech": "Monica Brady",
+"diff_s": 14
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_week",
+"result": "INFO",
+"detail": {
+"tech": "Admin Shopview",
+"diff_s": -44
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T2b-row-has-time",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"tech": "Nebojsa Custom-Admin"
+},
+"spec": "S1-R2"
+},
+{
+"check": "T2b-row-has-time",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"tech": "QA Technician"
+},
+"spec": "S1-R2"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Esther Howard",
+"diff_s": 187
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5-wo-seconds-vs-raw-clocks(per-record 0.01h)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"tech": "3ff0914b-49a3-4d80-b07d-92a10e1a89f8",
+"report_s": null,
+"raw_rounded_s": 5519880,
+"raw_exact_s": 5519781,
+"diff_h": -1533.3,
+"open_clocks": [
+[
+"2026-08-31 17:03:02",
+1395.0
+]
+]
+},
+"spec": "S2-R3 + S1-E1 / SV-11688 ruling"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "3ff0914b-49a3-4d80-b07d-92a10e1a89f8",
+"diff_s": -5519781
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5-wo-seconds-vs-raw-clocks(per-record 0.01h)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"tech": "Monique Turner",
+"report_s": 4639500,
+"raw_rounded_s": 4635684,
+"raw_exact_s": 4636124,
+"diff_h": 1.06,
+"open_clocks": []
+},
+"spec": "S2-R3 + S1-E1 / SV-11688 ruling"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Monique Turner",
+"diff_s": 3376
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5-wo-seconds-vs-raw-clocks(per-record 0.01h)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"tech": "David Combs",
+"report_s": 6060456,
+"raw_rounded_s": 6060600,
+"raw_exact_s": 6059860,
+"diff_h": -0.04,
+"open_clocks": []
+},
+"spec": "S2-R3 + S1-E1 / SV-11688 ruling"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "David Combs",
+"diff_s": 596
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Parth Fadadu",
+"diff_s": -2
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Allison Hughes",
+"diff_s": 4
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Nebojsa Custom Tech",
+"diff_s": -27
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Stacey Pratt",
+"diff_s": 936
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Ralph Edwards",
+"diff_s": 16
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Fabian Bonjean",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Nebojsa Custom-Admin",
+"diff_s": -41
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "QA Technician",
+"diff_s": -4
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Ahtsham Service Manager",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5-wo-seconds-vs-raw-clocks(per-record 0.01h)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"tech": "Monica Brady",
+"report_s": 10129932,
+"raw_rounded_s": 10130112,
+"raw_exact_s": 10128847,
+"diff_h": -0.05,
+"open_clocks": [
+[
+"2026-08-31 16:12:37",
+1395.8
+]
+]
+},
+"spec": "S2-R3 + S1-E1 / SV-11688 ruling"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Monica Brady",
+"diff_s": 1085
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Admin Shopview",
+"diff_s": -43
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Michael Newman",
+"diff_s": -27
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5-wo-seconds-vs-raw-clocks(per-record 0.01h)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"tech": "Cameron Johnston",
+"report_s": 3254400,
+"raw_rounded_s": 3254508,
+"raw_exact_s": 3253724,
+"diff_h": -0.03,
+"open_clocks": []
+},
+"spec": "S2-R3 + S1-E1 / SV-11688 ruling"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Cameron Johnston",
+"diff_s": 676
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Jacqueline Calderon",
+"diff_s": 274
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Mary Parker",
+"diff_s": 33
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Ayesha Khan",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5-wo-seconds-vs-raw-clocks(per-record 0.01h)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"tech": "Kenneth Oconnor",
+"report_s": 3541176,
+"raw_rounded_s": 3540564,
+"raw_exact_s": 3540003,
+"diff_h": 0.17,
+"open_clocks": []
+},
+"spec": "S2-R3 + S1-E1 / SV-11688 ruling"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Kenneth Oconnor",
+"diff_s": 1173
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5-wo-seconds-vs-raw-clocks(per-record 0.01h)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"tech": "Melanie Garner",
+"report_s": 5307264,
+"raw_rounded_s": 5304528,
+"raw_exact_s": 5304230,
+"diff_h": 0.76,
+"open_clocks": []
+},
+"spec": "S2-R3 + S1-E1 / SV-11688 ruling"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Melanie Garner",
+"diff_s": 3034
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Viktoria Videnovic",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5-wo-seconds-vs-raw-clocks(per-record 0.01h)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"tech": "Darrell Martinez",
+"report_s": 4157892,
+"raw_rounded_s": 4158072,
+"raw_exact_s": 4157374,
+"diff_h": -0.05,
+"open_clocks": []
+},
+"spec": "S2-R3 + S1-E1 / SV-11688 ruling"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Darrell Martinez",
+"diff_s": 518
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Vladimir Tomovic",
+"diff_s": -25
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Aaron Zed",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Carol Ramos",
+"diff_s": 132
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5-wo-seconds-vs-raw-clocks(per-record 0.01h)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"tech": "Daniel Montoya",
+"report_s": 5582304,
+"raw_rounded_s": 5581800,
+"raw_exact_s": 5581010,
+"diff_h": 0.14,
+"open_clocks": []
+},
+"spec": "S2-R3 + S1-E1 / SV-11688 ruling"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Daniel Montoya",
+"diff_s": 1294
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Branko Cicovic",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Dana Ortiz",
+"diff_s": 24
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T3-daily-sum-total_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"tech": "Daniel Montoya",
+"daily": 3708,
+"row": 3672
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-internal_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"tech": "Daniel Montoya",
+"daily": 3708,
+"row": 3672
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-lost-labor-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"tech": "Daniel Montoya",
+"daily": 15445,
+"row": 15295
+},
+"spec": "S4-R3 (per day rounded)"
+},
+{
+"check": "T3-daily-sum-total_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"tech": "Jacqueline Calderon",
+"daily": 3708,
+"row": 3672
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-internal_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"tech": "Jacqueline Calderon",
+"daily": 3708,
+"row": 3672
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-lost-labor-sum",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"tech": "Jacqueline Calderon",
+"daily": 15445,
+"row": 15295
+},
+"spec": "S4-R3 (per day rounded)"
+},
+{
+"check": "T3-daily-sum-total_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"tech": "Monica Brady",
+"daily": 3708,
+"row": 3672
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T3-daily-sum-wo_seconds",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"tech": "Monica Brady",
+"daily": 3708,
+"row": 3672
+},
+"spec": "S4-R2/S4-R3"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "INFO",
+"detail": {
+"tech": "Monica Brady",
+"diff_s": -17
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5-wo-seconds-vs-raw-clocks(per-record 0.01h)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"tech": "3ff0914b-49a3-4d80-b07d-92a10e1a89f8",
+"report_s": null,
+"raw_rounded_s": 3672,
+"raw_exact_s": 3689,
+"diff_h": -1.02,
+"open_clocks": [
+[
+"2026-08-31 17:03:02",
+1395.0
+]
+]
+},
+"spec": "S2-R3 + S1-E1 / SV-11688 ruling"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "INFO",
+"detail": {
+"tech": "3ff0914b-49a3-4d80-b07d-92a10e1a89f8",
+"diff_s": -3689
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5-wo-seconds-vs-raw-clocks(per-record 0.01h)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "yesterday",
+"result": "FAIL",
+"detail": {
+"tech": "3ff0914b-49a3-4d80-b07d-92a10e1a89f8",
+"report_s": null,
+"raw_rounded_s": 86400,
+"raw_exact_s": 86400,
+"diff_h": -24.0,
+"open_clocks": [
+[
+"2026-08-31 17:03:02",
+1395.0
+]
+]
+},
+"spec": "S2-R3 + S1-E1 / SV-11688 ruling"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "yesterday",
+"result": "INFO",
+"detail": {
+"tech": "3ff0914b-49a3-4d80-b07d-92a10e1a89f8",
+"diff_s": -86400
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "yesterday",
+"result": "INFO",
+"detail": {
+"tech": "Monica Brady",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "yesterday",
+"result": "INFO",
+"detail": {
+"tech": "Admin Shopview",
+"diff_s": -2
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T2b-row-has-time",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_0915_1014",
+"result": "FAIL",
+"detail": {
+"tech": "QA Technician"
+},
+"spec": "S1-R2"
+},
+{
+"check": "T3-daily-no-empty-day",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_0915_1014",
+"result": "FAIL",
+"detail": {
+"tech": "QA Technician"
+},
+"spec": "S4-N1"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_0915_1014",
+"result": "INFO",
+"detail": {
+"tech": "Nebojsa Custom Tech",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_0915_1014",
+"result": "INFO",
+"detail": {
+"tech": "Ahtasham Admin",
+"diff_s": -32
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_0915_1014",
+"result": "INFO",
+"detail": {
+"tech": "Admin Shopview",
+"diff_s": -1
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_0915_1014",
+"result": "INFO",
+"detail": {
+"tech": "Grace Smith",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_0915_1014",
+"result": "INFO",
+"detail": {
+"tech": "QA Technician",
+"diff_s": -4
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_dst_0301_0314",
+"result": "INFO",
+"detail": {
+"tech": "Aaron Jennings",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_dst_0301_0314",
+"result": "INFO",
+"detail": {
+"tech": "Kristy Johnson",
+"diff_s": 41
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_dst_0301_0314",
+"result": "INFO",
+"detail": {
+"tech": "Lauren Miller",
+"diff_s": -8
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_dst_0301_0314",
+"result": "INFO",
+"detail": {
+"tech": "Grace Smith",
+"diff_s": 1
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_dst_0301_0314",
+"result": "INFO",
+"detail": {
+"tech": "Joseph Nelson",
+"diff_s": 72
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_month",
+"result": "INFO",
+"detail": {
+"tech": "Nebojsa Custom Tech",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_month",
+"result": "INFO",
+"detail": {
+"tech": "TUDROP TechMTMUDJ4WUVX",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_month",
+"result": "INFO",
+"detail": {
+"tech": "TUDROP TechMTMUT1CP1JX",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_month",
+"result": "INFO",
+"detail": {
+"tech": "Admin Shopview",
+"diff_s": -1
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_month",
+"result": "INFO",
+"detail": {
+"tech": "TUKEEP TechMTMUDG1BH2B",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_month",
+"result": "INFO",
+"detail": {
+"tech": "Grace Smith",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_month",
+"result": "INFO",
+"detail": {
+"tech": "TUKEEP TechMTMUSYCSNIH",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_week",
+"result": "INFO",
+"detail": {
+"tech": "QA Technician",
+"diff_s": 13
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_week",
+"result": "INFO",
+"detail": {
+"tech": "Grace Smith",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T3-daily-no-empty-day",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"tech": "QA Technician"
+},
+"spec": "S4-N1"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"tech": "Nebojsa Custom Tech",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"tech": "Ahtasham Admin",
+"diff_s": -32
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"tech": "Grace Smith",
+"diff_s": -11
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"tech": "QA Technician",
+"diff_s": 9
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_week",
+"result": "INFO",
+"detail": {
+"tech": "Grace Smith",
+"diff_s": -8
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "TUDROP TechMTMUDJ4WUVX",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "TUDROP TechMTMUT1CP1JX",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Admin Shopview",
+"diff_s": -1
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Darrell Thomas",
+"diff_s": -17
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Richard Mcclain",
+"diff_s": 309
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Aaron Jennings",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Ahtasham Admin",
+"diff_s": -32
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "TUKEEP TechMTMUSYCSNIH",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Joseph Nelson",
+"diff_s": 750
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Nebojsa Custom Tech",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Katherine Reilly",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Mary Brown",
+"diff_s": 23
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Kristy Johnson",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Lauren Miller",
+"diff_s": 167
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "TUKEEP TechMTMUDG1BH2B",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Grace Smith",
+"diff_s": 462
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "Amanda Hall",
+"diff_s": -74
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "William Watson",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"tech": "QA Technician",
+"diff_s": 9
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "today",
+"result": "INFO",
+"detail": {
+"tech": "Grace Smith",
+"diff_s": -4
+},
+"spec": "\u00a73 compute from unrounded"
+},
+{
+"check": "T5x-exact-vs-report-info",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "yesterday",
+"result": "INFO",
+"detail": {
+"tech": "Grace Smith",
+"diff_s": 0
+},
+"spec": "\u00a73 compute from unrounded"
+}
+]
+}

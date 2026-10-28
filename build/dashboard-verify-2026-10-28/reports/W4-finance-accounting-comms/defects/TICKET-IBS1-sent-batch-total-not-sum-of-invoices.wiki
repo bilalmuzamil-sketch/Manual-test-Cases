@@ -1,0 +1,36 @@
+TITLE: IBS Batches – A Sent Batch Shows a Total $290.06 Higher Than the Invoices Inside It
+TYPE: Story Defect · PARENT: SV-2144 (to confirm) · PRIORITY: Medium
+STATUS: HELD — NOT FILED. Waiting for RQ-3 (does the batch Total have to equal its invoices?) and for the cause; file only after the PO answers "Yes".
+REPRODUCED: the same batch, twice, on staging build v26.43.2-f8698cb, 28 Oct 2026. Not re-created on fresh data (removing an invoice from a batch updates the total correctly).
+
+h2. Description
+
+*On Reports > IBS Batches > Sent at Staging Lethbridge - 4310, the batch dated Oct 2, 2026 shows Total $9,473.35 and Balance $9,473.35, but the nine invoices listed inside it add up to $9,183.29.* The batch's own IBS export file also says "Invoices $9183.29". When this batch is paid, the payment window works from a total that is $290.06 too high.
+
+*What is NOT affected:* the other Sent batches add up; the export file's invoice lines and amounts are right; Ready to Send lists only invoices of customers with an IBS number.
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin. In the top bar, choose *Staging Lethbridge - 4310*.
+# Open *Reports*. Under *Accounting* click *IBS Batches*.
+# Click the *Sent* tab.
+# Find the batch dated *Oct 2, 2026*. Note *Total* *$9,473.35*.
+# Click its arrow to open it and add up the *Total* of the nine invoices.
+#* They add up to *$9,183.29*.
+
+*Actual Result:* the batch row says $9,473.35.
+
+*Expected Result:* the batch row equals the invoices inside it: $9,183.29.
+
+h2. Screenshots
+
+!IBS1-1-sent-batch-total-not-sum-of-invoices.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.43.2-f8698cb}}, staging, 28 Oct 2026 20:30 UTC · *Location:* Staging Lethbridge - 4310 · *User:* Admin
+
+h2. Technical details for developers
+
+* {{GET /api/customers/ibs/list-batches}} → batch {{7af04085-eff9-4e3b-bd0c-88559223b3d5}}: {{amount}} 9473.35, {{balance}} 9473.35, 9 transactions summing to 9183.29, no credits. {{GET /api/customers/ibs/batch-export/7af04085…}} → "Invoices,$9183.29 · S/C,$174.48 · Net Total,$9008.81".
+* Not caused by {{POST /api/customers/ibs/remove-from-batch}} (tested 28 Oct 2026: create batch of 2 → remove 1 → amount updated correctly). Possibly an invoice edited, voided or reversed after it was batched.

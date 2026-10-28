@@ -1,0 +1,586 @@
+{
+ "summary": {
+  "Staging Heavy Duty - 9919": {
+   "ready_to_send": 8,
+   "count_field": 6,
+   "batches": 2,
+   "payments": 1
+  },
+  "Staging Lethbridge - 4310": {
+   "ready_to_send": 0,
+   "count_field": 0,
+   "batches": 2,
+   "payments": 0
+  },
+  "QB Location": {
+   "ready_to_send": 0,
+   "count_field": 0,
+   "batches": 0,
+   "payments": 0
+  },
+  "DVI Test": {
+   "ready_to_send": 0,
+   "count_field": 0,
+   "batches": 0,
+   "payments": 0
+  }
+ },
+ "checks": [
+  {
+   "check": "I1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Ready to Send count field = rows listed",
+   "result": "FAIL",
+   "observed": 6,
+   "expected": 8,
+   "ref": "SV-2144 \"full listing of all invoices waiting\""
+  },
+  {
+   "check": "I2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Ready to Send lists only open invoices",
+   "result": "FAIL",
+   "observed": [
+    "S2-16924"
+   ],
+   "expected": [],
+   "ref": "SV-2144 \"waiting to be sent\""
+  },
+  {
+   "check": "I3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Ready to Send lists only invoices of customers with an IBS number",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "SV-2144 \"only for IBS customers with an IBS number populated\"; SV-2441"
+  },
+  {
+   "check": "I4",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Ready to Send Total = the invoice's own total",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "invoice record"
+  },
+  {
+   "check": "I5",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Ready to Send lists only this location's invoices",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "location-scoped list"
+  },
+  {
+   "check": "I6",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Each Sent batch: amount and balance = sum of its invoices/credits; status follows the balance",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "SV-2144 Sent tab grouping"
+  },
+  {
+   "check": "I7",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "An invoice is never both Ready to Send and in a Sent batch",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "SV-2144 \"cleared from this listing and moved to Sent\""
+  },
+  {
+   "check": "I8",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Each IBS payment amount = sum of the invoices it pays",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "SV-2144 New Payment"
+  },
+  {
+   "check": "I11",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "IBS export \"Invoices\" line = sum of the batch invoices (batch d6142f2d)",
+   "result": "PASS",
+   "observed": {
+    "Dealer#": "",
+    "Invoices": "$11219.63",
+    "S/C": "$213.17",
+    "Credits": "$0.00",
+    "Net Total": "$11006.46"
+   },
+   "expected": 11219.63,
+   "ref": "internal"
+  },
+  {
+   "check": "I9",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "IBS export CSV headers = Acct#, Ref#, Amount, PO, Invoice Date (batch d6142f2d)",
+   "result": "PASS",
+   "observed": [
+    "Acct#",
+    "Ref#",
+    "Amount",
+    "PO",
+    "Invoice Date"
+   ],
+   "expected": [
+    "Acct#",
+    "Ref#",
+    "Amount",
+    "PO",
+    "Invoice Date"
+   ],
+   "ref": "SV-11065 AC1/AC2"
+  },
+  {
+   "check": "I10",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "IBS export CSV: one row per batch invoice with its amount (batch d6142f2d)",
+   "result": "PASS",
+   "observed": {
+    "rows": 3,
+    "mismatch": [],
+    "sample_line": [
+     [
+      "865260",
+      "INV-S2-17276",
+      "$3541.07",
+      "1892",
+      "2026-08-31"
+     ],
+     [
+      "841337",
+      "INV-S2-17407",
+      "$6564.73",
+      "ED",
+      "2026-08-31"
+     ]
+    ]
+   },
+   "expected": 3,
+   "ref": "SV-11065 AC3 \"retains all existing invoice data\""
+  },
+  {
+   "check": "I11",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "IBS export \"Invoices\" line = sum of the batch invoices (batch a982384d)",
+   "result": "PASS",
+   "observed": {
+    "Dealer#": "",
+    "Invoices": "$9465.17",
+    "S/C": "$179.84",
+    "Credits": "$0.00",
+    "Net Total": "$9285.33"
+   },
+   "expected": 9465.17,
+   "ref": "internal"
+  },
+  {
+   "check": "I9",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "IBS export CSV headers = Acct#, Ref#, Amount, PO, Invoice Date (batch a982384d)",
+   "result": "PASS",
+   "observed": [
+    "Acct#",
+    "Ref#",
+    "Amount",
+    "PO",
+    "Invoice Date"
+   ],
+   "expected": [
+    "Acct#",
+    "Ref#",
+    "Amount",
+    "PO",
+    "Invoice Date"
+   ],
+   "ref": "SV-11065 AC1/AC2"
+  },
+  {
+   "check": "I10",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "IBS export CSV: one row per batch invoice with its amount (batch a982384d)",
+   "result": "PASS",
+   "observed": {
+    "rows": 3,
+    "mismatch": [],
+    "sample_line": [
+     [
+      "838930",
+      "INV-S2-17292",
+      "$3205.72",
+      "Randy",
+      "2026-08-31"
+     ],
+     [
+      "838930",
+      "INV-S2-16913",
+      "$1211.85",
+      "Randy",
+      "2026-08-31"
+     ]
+    ]
+   },
+   "expected": 3,
+   "ref": "SV-11065 AC3 \"retains all existing invoice data\""
+  },
+  {
+   "check": "I1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Ready to Send count field = rows listed",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0,
+   "ref": "SV-2144 \"full listing of all invoices waiting\""
+  },
+  {
+   "check": "I2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Ready to Send lists only open invoices",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "SV-2144 \"waiting to be sent\""
+  },
+  {
+   "check": "I3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Ready to Send lists only invoices of customers with an IBS number",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "SV-2144 \"only for IBS customers with an IBS number populated\"; SV-2441"
+  },
+  {
+   "check": "I4",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Ready to Send Total = the invoice's own total",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "invoice record"
+  },
+  {
+   "check": "I5",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Ready to Send lists only this location's invoices",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "location-scoped list"
+  },
+  {
+   "check": "I6",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Each Sent batch: amount and balance = sum of its invoices/credits; status follows the balance",
+   "result": "FAIL",
+   "observed": [
+    {
+     "batch": "7af04085-eff9-4e3b-bd0c-88559223b3d5",
+     "amount": 9473.35,
+     "sum_amount": 9183.29,
+     "balance": 9473.35,
+     "sum_balance": 9183.29,
+     "status": "unpaid",
+     "derived": "unpaid"
+    }
+   ],
+   "expected": [],
+   "ref": "SV-2144 Sent tab grouping"
+  },
+  {
+   "check": "I7",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "An invoice is never both Ready to Send and in a Sent batch",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "SV-2144 \"cleared from this listing and moved to Sent\""
+  },
+  {
+   "check": "I8",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Each IBS payment amount = sum of the invoices it pays",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "SV-2144 New Payment"
+  },
+  {
+   "check": "I11",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "IBS export \"Invoices\" line = sum of the batch invoices (batch 23671cfe)",
+   "result": "PASS",
+   "observed": {
+    "Dealer#": "",
+    "Invoices": "$7934.93",
+    "S/C": "$149.33",
+    "Credits": "$75.20",
+    "Net Total": "$7710.40"
+   },
+   "expected": 7934.93,
+   "ref": "internal"
+  },
+  {
+   "check": "I9",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "IBS export CSV headers = Acct#, Ref#, Amount, PO, Invoice Date (batch 23671cfe)",
+   "result": "PASS",
+   "observed": [
+    "Acct#",
+    "Ref#",
+    "Amount",
+    "PO",
+    "Invoice Date"
+   ],
+   "expected": [
+    "Acct#",
+    "Ref#",
+    "Amount",
+    "PO",
+    "Invoice Date"
+   ],
+   "ref": "SV-11065 AC1/AC2"
+  },
+  {
+   "check": "I10",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "IBS export CSV: one row per batch invoice with its amount (batch 23671cfe)",
+   "result": "FAIL",
+   "observed": {
+    "rows": 4,
+    "mismatch": [],
+    "sample_line": [
+     [
+      "797362",
+      "INV-P3-188",
+      "$528.95",
+      "EP730724",
+      "2026-07-23"
+     ],
+     [
+      "826010",
+      "INV-S3-16213",
+      "$7136.13",
+      "718004",
+      "2026-08-27"
+     ]
+    ]
+   },
+   "expected": 3,
+   "ref": "SV-11065 AC3 \"retains all existing invoice data\""
+  },
+  {
+   "check": "I11",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "IBS export \"Invoices\" line = sum of the batch invoices (batch 7af04085)",
+   "result": "PASS",
+   "observed": {
+    "Dealer#": "",
+    "Invoices": "$9183.29",
+    "S/C": "$174.48",
+    "Credits": "$0.00",
+    "Net Total": "$9008.81"
+   },
+   "expected": 9183.29,
+   "ref": "internal"
+  },
+  {
+   "check": "I9",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "IBS export CSV headers = Acct#, Ref#, Amount, PO, Invoice Date (batch 7af04085)",
+   "result": "PASS",
+   "observed": [
+    "Acct#",
+    "Ref#",
+    "Amount",
+    "PO",
+    "Invoice Date"
+   ],
+   "expected": [
+    "Acct#",
+    "Ref#",
+    "Amount",
+    "PO",
+    "Invoice Date"
+   ],
+   "ref": "SV-11065 AC1/AC2"
+  },
+  {
+   "check": "I10",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "IBS export CSV: one row per batch invoice with its amount (batch 7af04085)",
+   "result": "PASS",
+   "observed": {
+    "rows": 9,
+    "mismatch": [],
+    "sample_line": [
+     [
+      "862652",
+      "INV-S3-17479",
+      "$503.39",
+      "WO#S1118",
+      "2026-08-27"
+     ],
+     [
+      "860180",
+      "INV-S3-17447",
+      "$659.76",
+      "2101",
+      "2026-08-27"
+     ]
+    ]
+   },
+   "expected": 9,
+   "ref": "SV-11065 AC3 \"retains all existing invoice data\""
+  },
+  {
+   "check": "I1",
+   "location": "QB Location",
+   "desc": "Ready to Send count field = rows listed",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0,
+   "ref": "SV-2144 \"full listing of all invoices waiting\""
+  },
+  {
+   "check": "I2",
+   "location": "QB Location",
+   "desc": "Ready to Send lists only open invoices",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "SV-2144 \"waiting to be sent\""
+  },
+  {
+   "check": "I3",
+   "location": "QB Location",
+   "desc": "Ready to Send lists only invoices of customers with an IBS number",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "SV-2144 \"only for IBS customers with an IBS number populated\"; SV-2441"
+  },
+  {
+   "check": "I4",
+   "location": "QB Location",
+   "desc": "Ready to Send Total = the invoice's own total",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "invoice record"
+  },
+  {
+   "check": "I5",
+   "location": "QB Location",
+   "desc": "Ready to Send lists only this location's invoices",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "location-scoped list"
+  },
+  {
+   "check": "I6",
+   "location": "QB Location",
+   "desc": "Each Sent batch: amount and balance = sum of its invoices/credits; status follows the balance",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "SV-2144 Sent tab grouping"
+  },
+  {
+   "check": "I7",
+   "location": "QB Location",
+   "desc": "An invoice is never both Ready to Send and in a Sent batch",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "SV-2144 \"cleared from this listing and moved to Sent\""
+  },
+  {
+   "check": "I8",
+   "location": "QB Location",
+   "desc": "Each IBS payment amount = sum of the invoices it pays",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "SV-2144 New Payment"
+  },
+  {
+   "check": "I1",
+   "location": "DVI Test",
+   "desc": "Ready to Send count field = rows listed",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0,
+   "ref": "SV-2144 \"full listing of all invoices waiting\""
+  },
+  {
+   "check": "I2",
+   "location": "DVI Test",
+   "desc": "Ready to Send lists only open invoices",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "SV-2144 \"waiting to be sent\""
+  },
+  {
+   "check": "I3",
+   "location": "DVI Test",
+   "desc": "Ready to Send lists only invoices of customers with an IBS number",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "SV-2144 \"only for IBS customers with an IBS number populated\"; SV-2441"
+  },
+  {
+   "check": "I4",
+   "location": "DVI Test",
+   "desc": "Ready to Send Total = the invoice's own total",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "invoice record"
+  },
+  {
+   "check": "I5",
+   "location": "DVI Test",
+   "desc": "Ready to Send lists only this location's invoices",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "location-scoped list"
+  },
+  {
+   "check": "I6",
+   "location": "DVI Test",
+   "desc": "Each Sent batch: amount and balance = sum of its invoices/credits; status follows the balance",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "SV-2144 Sent tab grouping"
+  },
+  {
+   "check": "I7",
+   "location": "DVI Test",
+   "desc": "An invoice is never both Ready to Send and in a Sent batch",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "SV-2144 \"cleared from this listing and moved to Sent\""
+  },
+  {
+   "check": "I8",
+   "location": "DVI Test",
+   "desc": "Each IBS payment amount = sum of the invoices it pays",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "SV-2144 New Payment"
+  }
+ ]
+}

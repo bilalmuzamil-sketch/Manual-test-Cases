@@ -1,0 +1,2826 @@
+{
+ "summary": {
+  "Staging Heavy Duty - 9919": {
+   "notes_total": 2545,
+   "notes_with_reminder": 20
+  },
+  "Staging Lethbridge - 4310": {
+   "notes_total": 2545,
+   "notes_with_reminder": 20
+  },
+  "QB Location": {
+   "notes_total": 2545,
+   "notes_with_reminder": 20
+  },
+  "DVI Test": {
+   "notes_total": 2545,
+   "notes_with_reminder": 20
+  }
+ },
+ "checks": [
+  {
+   "check": "N1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"all\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"all\" (newest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "in_range": 2545,
+    "server_says_more": true
+   },
+   "expected": 2545
+  },
+  {
+   "check": "N3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"all\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"all\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"all\" (oldest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 82,
+    "in_range": 2545,
+    "server_says_more": true
+   },
+   "expected": 2545
+  },
+  {
+   "check": "N3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"all\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"today\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"today\" (newest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "in_range": 0,
+    "server_says_more": false
+   },
+   "expected": 0
+  },
+  {
+   "check": "N3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"today\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"today\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"today\" (oldest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "in_range": 0,
+    "server_says_more": false
+   },
+   "expected": 0
+  },
+  {
+   "check": "N3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"today\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"this_week\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"this_week\" (newest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 9,
+    "in_range": 9,
+    "server_says_more": false
+   },
+   "expected": 9
+  },
+  {
+   "check": "N3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"this_week\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"this_week\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"this_week\" (oldest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 9,
+    "in_range": 9,
+    "server_says_more": false
+   },
+   "expected": 9
+  },
+  {
+   "check": "N3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"this_week\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"last_week\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"last_week\" (newest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "in_range": 255,
+    "server_says_more": true
+   },
+   "expected": 255
+  },
+  {
+   "check": "N3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"last_week\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"last_week\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"last_week\" (oldest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "in_range": 255,
+    "server_says_more": true
+   },
+   "expected": 255
+  },
+  {
+   "check": "N3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"last_week\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"this_month\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"this_month\" (newest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "in_range": 326,
+    "server_says_more": true
+   },
+   "expected": 326
+  },
+  {
+   "check": "N3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"this_month\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"this_month\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"this_month\" (oldest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "in_range": 326,
+    "server_says_more": true
+   },
+   "expected": 326
+  },
+  {
+   "check": "N3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"this_month\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"last_month\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"last_month\" (newest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 33,
+    "in_range": 33,
+    "server_says_more": false
+   },
+   "expected": 33
+  },
+  {
+   "check": "N3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"last_month\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"last_month\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"last_month\" (oldest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 33,
+    "in_range": 33,
+    "server_says_more": false
+   },
+   "expected": 33
+  },
+  {
+   "check": "N3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"last_month\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"custom_sep\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"custom_sep\" (newest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 33,
+    "in_range": 33,
+    "server_says_more": false
+   },
+   "expected": 33
+  },
+  {
+   "check": "N3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"custom_sep\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"custom_sep\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"custom_sep\" (oldest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 33,
+    "in_range": 33,
+    "server_says_more": false
+   },
+   "expected": 33
+  },
+  {
+   "check": "N3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"custom_sep\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N4",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"Filter by Author\": every listed note is by that author",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N5",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"Filter by Author\": every note by that author is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "by_author": 1105
+   },
+   "expected": 1105
+  },
+  {
+   "check": "N6",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"Filter by Mention\": every listed note mentions that person",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N7",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Notes Report \"Filter by Mention\": every note mentioning that person is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "mentioning": 110
+   },
+   "expected": 110
+  },
+  {
+   "check": "R1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Reminders Report \"all\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Reminders Report \"all\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "in_range": 1
+   },
+   "expected": 1
+  },
+  {
+   "check": "R1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Reminders Report \"today\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Reminders Report \"today\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "should": 0,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-10-29",
+     "2026-10-30"
+    ]
+   },
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Reminders Report \"today\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "in_range": 0
+   },
+   "expected": 0
+  },
+  {
+   "check": "R1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Reminders Report \"this_week\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Reminders Report \"this_week\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "should": 0,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-10-25",
+     "2026-11-01"
+    ]
+   },
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Reminders Report \"this_week\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "in_range": 0
+   },
+   "expected": 0
+  },
+  {
+   "check": "R1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Reminders Report \"next_week\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Reminders Report \"next_week\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "should": 0,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-11-01",
+     "2026-11-08"
+    ]
+   },
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Reminders Report \"next_week\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "in_range": 0
+   },
+   "expected": 0
+  },
+  {
+   "check": "R1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Reminders Report \"last_week\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Reminders Report \"last_week\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "should": 1,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-10-18",
+     "2026-10-25"
+    ]
+   },
+   "expected": 1
+  },
+  {
+   "check": "R2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Reminders Report \"last_week\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "in_range": 1
+   },
+   "expected": 1
+  },
+  {
+   "check": "R1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Reminders Report \"this_month\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Reminders Report \"this_month\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "should": 1,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-10-01",
+     "2026-11-01"
+    ]
+   },
+   "expected": 1
+  },
+  {
+   "check": "R2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Reminders Report \"this_month\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "in_range": 1
+   },
+   "expected": 1
+  },
+  {
+   "check": "R1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Reminders Report \"next_month\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Reminders Report \"next_month\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "should": 0,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-11-01",
+     "2026-12-01"
+    ]
+   },
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Reminders Report \"next_month\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "in_range": 0
+   },
+   "expected": 0
+  },
+  {
+   "check": "R1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Reminders Report \"last_month\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Reminders Report \"last_month\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "should": 0,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-09-01",
+     "2026-10-01"
+    ]
+   },
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Reminders Report \"last_month\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "in_range": 0
+   },
+   "expected": 0
+  },
+  {
+   "check": "N1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"all\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"all\" (newest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "in_range": 2545,
+    "server_says_more": true
+   },
+   "expected": 2545
+  },
+  {
+   "check": "N3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"all\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"all\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"all\" (oldest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 82,
+    "in_range": 2545,
+    "server_says_more": true
+   },
+   "expected": 2545
+  },
+  {
+   "check": "N3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"all\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"today\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"today\" (newest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "in_range": 1,
+    "server_says_more": false
+   },
+   "expected": 1
+  },
+  {
+   "check": "N3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"today\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"today\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"today\" (oldest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "in_range": 1,
+    "server_says_more": false
+   },
+   "expected": 1
+  },
+  {
+   "check": "N3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"today\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"this_week\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"this_week\" (newest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 9,
+    "in_range": 9,
+    "server_says_more": false
+   },
+   "expected": 9
+  },
+  {
+   "check": "N3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"this_week\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"this_week\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"this_week\" (oldest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 9,
+    "in_range": 9,
+    "server_says_more": false
+   },
+   "expected": 9
+  },
+  {
+   "check": "N3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"this_week\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"last_week\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"last_week\" (newest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "in_range": 255,
+    "server_says_more": true
+   },
+   "expected": 255
+  },
+  {
+   "check": "N3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"last_week\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"last_week\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"last_week\" (oldest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "in_range": 255,
+    "server_says_more": true
+   },
+   "expected": 255
+  },
+  {
+   "check": "N3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"last_week\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"this_month\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"this_month\" (newest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "in_range": 326,
+    "server_says_more": true
+   },
+   "expected": 326
+  },
+  {
+   "check": "N3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"this_month\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"this_month\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"this_month\" (oldest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "in_range": 326,
+    "server_says_more": true
+   },
+   "expected": 326
+  },
+  {
+   "check": "N3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"this_month\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"last_month\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"last_month\" (newest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 33,
+    "in_range": 33,
+    "server_says_more": false
+   },
+   "expected": 33
+  },
+  {
+   "check": "N3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"last_month\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"last_month\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"last_month\" (oldest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 33,
+    "in_range": 33,
+    "server_says_more": false
+   },
+   "expected": 33
+  },
+  {
+   "check": "N3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"last_month\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"custom_sep\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"custom_sep\" (newest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 33,
+    "in_range": 33,
+    "server_says_more": false
+   },
+   "expected": 33
+  },
+  {
+   "check": "N3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"custom_sep\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"custom_sep\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"custom_sep\" (oldest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 33,
+    "in_range": 33,
+    "server_says_more": false
+   },
+   "expected": 33
+  },
+  {
+   "check": "N3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"custom_sep\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N4",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"Filter by Author\": every listed note is by that author",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N5",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"Filter by Author\": every note by that author is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "by_author": 1105
+   },
+   "expected": 1105
+  },
+  {
+   "check": "N6",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"Filter by Mention\": every listed note mentions that person",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N7",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Notes Report \"Filter by Mention\": every note mentioning that person is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "mentioning": 110
+   },
+   "expected": 110
+  },
+  {
+   "check": "R1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Reminders Report \"all\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Reminders Report \"all\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "in_range": 1
+   },
+   "expected": 1
+  },
+  {
+   "check": "R1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Reminders Report \"today\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Reminders Report \"today\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "should": 0,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-10-28",
+     "2026-10-29"
+    ]
+   },
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Reminders Report \"today\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "in_range": 0
+   },
+   "expected": 0
+  },
+  {
+   "check": "R1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Reminders Report \"this_week\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Reminders Report \"this_week\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "should": 0,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-10-25",
+     "2026-11-01"
+    ]
+   },
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Reminders Report \"this_week\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "in_range": 0
+   },
+   "expected": 0
+  },
+  {
+   "check": "R1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Reminders Report \"next_week\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Reminders Report \"next_week\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "should": 0,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-11-01",
+     "2026-11-08"
+    ]
+   },
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Reminders Report \"next_week\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "in_range": 0
+   },
+   "expected": 0
+  },
+  {
+   "check": "R1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Reminders Report \"last_week\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Reminders Report \"last_week\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "should": 1,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-10-18",
+     "2026-10-25"
+    ]
+   },
+   "expected": 1
+  },
+  {
+   "check": "R2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Reminders Report \"last_week\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "in_range": 1
+   },
+   "expected": 1
+  },
+  {
+   "check": "R1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Reminders Report \"this_month\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Reminders Report \"this_month\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "should": 1,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-10-01",
+     "2026-11-01"
+    ]
+   },
+   "expected": 1
+  },
+  {
+   "check": "R2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Reminders Report \"this_month\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "in_range": 1
+   },
+   "expected": 1
+  },
+  {
+   "check": "R1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Reminders Report \"next_month\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Reminders Report \"next_month\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "should": 0,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-11-01",
+     "2026-12-01"
+    ]
+   },
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Reminders Report \"next_month\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "in_range": 0
+   },
+   "expected": 0
+  },
+  {
+   "check": "R1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Reminders Report \"last_month\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Reminders Report \"last_month\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "should": 0,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-09-01",
+     "2026-10-01"
+    ]
+   },
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Reminders Report \"last_month\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "in_range": 0
+   },
+   "expected": 0
+  },
+  {
+   "check": "N1",
+   "location": "QB Location",
+   "desc": "Notes Report \"all\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "QB Location",
+   "desc": "Notes Report \"all\" (newest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "in_range": 2545,
+    "server_says_more": true
+   },
+   "expected": 2545
+  },
+  {
+   "check": "N3",
+   "location": "QB Location",
+   "desc": "Notes Report \"all\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "QB Location",
+   "desc": "Notes Report \"all\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "QB Location",
+   "desc": "Notes Report \"all\" (oldest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 82,
+    "in_range": 2545,
+    "server_says_more": true
+   },
+   "expected": 2545
+  },
+  {
+   "check": "N3",
+   "location": "QB Location",
+   "desc": "Notes Report \"all\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "QB Location",
+   "desc": "Notes Report \"today\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "QB Location",
+   "desc": "Notes Report \"today\" (newest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "in_range": 1,
+    "server_says_more": false
+   },
+   "expected": 1
+  },
+  {
+   "check": "N3",
+   "location": "QB Location",
+   "desc": "Notes Report \"today\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "QB Location",
+   "desc": "Notes Report \"today\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "QB Location",
+   "desc": "Notes Report \"today\" (oldest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "in_range": 1,
+    "server_says_more": false
+   },
+   "expected": 1
+  },
+  {
+   "check": "N3",
+   "location": "QB Location",
+   "desc": "Notes Report \"today\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "QB Location",
+   "desc": "Notes Report \"this_week\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "QB Location",
+   "desc": "Notes Report \"this_week\" (newest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 9,
+    "in_range": 9,
+    "server_says_more": false
+   },
+   "expected": 9
+  },
+  {
+   "check": "N3",
+   "location": "QB Location",
+   "desc": "Notes Report \"this_week\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "QB Location",
+   "desc": "Notes Report \"this_week\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "QB Location",
+   "desc": "Notes Report \"this_week\" (oldest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 9,
+    "in_range": 9,
+    "server_says_more": false
+   },
+   "expected": 9
+  },
+  {
+   "check": "N3",
+   "location": "QB Location",
+   "desc": "Notes Report \"this_week\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "QB Location",
+   "desc": "Notes Report \"last_week\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "QB Location",
+   "desc": "Notes Report \"last_week\" (newest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "in_range": 255,
+    "server_says_more": true
+   },
+   "expected": 255
+  },
+  {
+   "check": "N3",
+   "location": "QB Location",
+   "desc": "Notes Report \"last_week\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "QB Location",
+   "desc": "Notes Report \"last_week\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "QB Location",
+   "desc": "Notes Report \"last_week\" (oldest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "in_range": 255,
+    "server_says_more": true
+   },
+   "expected": 255
+  },
+  {
+   "check": "N3",
+   "location": "QB Location",
+   "desc": "Notes Report \"last_week\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "QB Location",
+   "desc": "Notes Report \"this_month\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "QB Location",
+   "desc": "Notes Report \"this_month\" (newest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "in_range": 326,
+    "server_says_more": true
+   },
+   "expected": 326
+  },
+  {
+   "check": "N3",
+   "location": "QB Location",
+   "desc": "Notes Report \"this_month\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "QB Location",
+   "desc": "Notes Report \"this_month\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "QB Location",
+   "desc": "Notes Report \"this_month\" (oldest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "in_range": 326,
+    "server_says_more": true
+   },
+   "expected": 326
+  },
+  {
+   "check": "N3",
+   "location": "QB Location",
+   "desc": "Notes Report \"this_month\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "QB Location",
+   "desc": "Notes Report \"last_month\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "QB Location",
+   "desc": "Notes Report \"last_month\" (newest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 33,
+    "in_range": 33,
+    "server_says_more": false
+   },
+   "expected": 33
+  },
+  {
+   "check": "N3",
+   "location": "QB Location",
+   "desc": "Notes Report \"last_month\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "QB Location",
+   "desc": "Notes Report \"last_month\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "QB Location",
+   "desc": "Notes Report \"last_month\" (oldest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 33,
+    "in_range": 33,
+    "server_says_more": false
+   },
+   "expected": 33
+  },
+  {
+   "check": "N3",
+   "location": "QB Location",
+   "desc": "Notes Report \"last_month\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "QB Location",
+   "desc": "Notes Report \"custom_sep\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "QB Location",
+   "desc": "Notes Report \"custom_sep\" (newest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 33,
+    "in_range": 33,
+    "server_says_more": false
+   },
+   "expected": 33
+  },
+  {
+   "check": "N3",
+   "location": "QB Location",
+   "desc": "Notes Report \"custom_sep\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "QB Location",
+   "desc": "Notes Report \"custom_sep\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "QB Location",
+   "desc": "Notes Report \"custom_sep\" (oldest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 33,
+    "in_range": 33,
+    "server_says_more": false
+   },
+   "expected": 33
+  },
+  {
+   "check": "N3",
+   "location": "QB Location",
+   "desc": "Notes Report \"custom_sep\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N4",
+   "location": "QB Location",
+   "desc": "Notes Report \"Filter by Author\": every listed note is by that author",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N5",
+   "location": "QB Location",
+   "desc": "Notes Report \"Filter by Author\": every note by that author is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "by_author": 1105
+   },
+   "expected": 1105
+  },
+  {
+   "check": "N6",
+   "location": "QB Location",
+   "desc": "Notes Report \"Filter by Mention\": every listed note mentions that person",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N7",
+   "location": "QB Location",
+   "desc": "Notes Report \"Filter by Mention\": every note mentioning that person is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "mentioning": 110
+   },
+   "expected": 110
+  },
+  {
+   "check": "R1",
+   "location": "QB Location",
+   "desc": "Reminders Report \"all\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "QB Location",
+   "desc": "Reminders Report \"all\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "in_range": 1
+   },
+   "expected": 1
+  },
+  {
+   "check": "R1",
+   "location": "QB Location",
+   "desc": "Reminders Report \"today\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "QB Location",
+   "desc": "Reminders Report \"today\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "should": 0,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-10-28",
+     "2026-10-29"
+    ]
+   },
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "QB Location",
+   "desc": "Reminders Report \"today\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "in_range": 0
+   },
+   "expected": 0
+  },
+  {
+   "check": "R1",
+   "location": "QB Location",
+   "desc": "Reminders Report \"this_week\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "QB Location",
+   "desc": "Reminders Report \"this_week\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "should": 0,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-10-25",
+     "2026-11-01"
+    ]
+   },
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "QB Location",
+   "desc": "Reminders Report \"this_week\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "in_range": 0
+   },
+   "expected": 0
+  },
+  {
+   "check": "R1",
+   "location": "QB Location",
+   "desc": "Reminders Report \"next_week\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "QB Location",
+   "desc": "Reminders Report \"next_week\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "should": 0,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-11-01",
+     "2026-11-08"
+    ]
+   },
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "QB Location",
+   "desc": "Reminders Report \"next_week\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "in_range": 0
+   },
+   "expected": 0
+  },
+  {
+   "check": "R1",
+   "location": "QB Location",
+   "desc": "Reminders Report \"last_week\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "QB Location",
+   "desc": "Reminders Report \"last_week\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "should": 1,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-10-18",
+     "2026-10-25"
+    ]
+   },
+   "expected": 1
+  },
+  {
+   "check": "R2",
+   "location": "QB Location",
+   "desc": "Reminders Report \"last_week\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "in_range": 1
+   },
+   "expected": 1
+  },
+  {
+   "check": "R1",
+   "location": "QB Location",
+   "desc": "Reminders Report \"this_month\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "QB Location",
+   "desc": "Reminders Report \"this_month\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "should": 1,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-10-01",
+     "2026-11-01"
+    ]
+   },
+   "expected": 1
+  },
+  {
+   "check": "R2",
+   "location": "QB Location",
+   "desc": "Reminders Report \"this_month\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "in_range": 1
+   },
+   "expected": 1
+  },
+  {
+   "check": "R1",
+   "location": "QB Location",
+   "desc": "Reminders Report \"next_month\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "QB Location",
+   "desc": "Reminders Report \"next_month\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "should": 0,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-11-01",
+     "2026-12-01"
+    ]
+   },
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "QB Location",
+   "desc": "Reminders Report \"next_month\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "in_range": 0
+   },
+   "expected": 0
+  },
+  {
+   "check": "R1",
+   "location": "QB Location",
+   "desc": "Reminders Report \"last_month\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "QB Location",
+   "desc": "Reminders Report \"last_month\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "should": 0,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-09-01",
+     "2026-10-01"
+    ]
+   },
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "QB Location",
+   "desc": "Reminders Report \"last_month\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "in_range": 0
+   },
+   "expected": 0
+  },
+  {
+   "check": "N1",
+   "location": "DVI Test",
+   "desc": "Notes Report \"all\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "DVI Test",
+   "desc": "Notes Report \"all\" (newest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "in_range": 2545,
+    "server_says_more": true
+   },
+   "expected": 2545
+  },
+  {
+   "check": "N3",
+   "location": "DVI Test",
+   "desc": "Notes Report \"all\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "DVI Test",
+   "desc": "Notes Report \"all\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "DVI Test",
+   "desc": "Notes Report \"all\" (oldest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 82,
+    "in_range": 2545,
+    "server_says_more": true
+   },
+   "expected": 2545
+  },
+  {
+   "check": "N3",
+   "location": "DVI Test",
+   "desc": "Notes Report \"all\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "DVI Test",
+   "desc": "Notes Report \"today\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "DVI Test",
+   "desc": "Notes Report \"today\" (newest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "in_range": 1,
+    "server_says_more": false
+   },
+   "expected": 1
+  },
+  {
+   "check": "N3",
+   "location": "DVI Test",
+   "desc": "Notes Report \"today\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "DVI Test",
+   "desc": "Notes Report \"today\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "DVI Test",
+   "desc": "Notes Report \"today\" (oldest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "in_range": 1,
+    "server_says_more": false
+   },
+   "expected": 1
+  },
+  {
+   "check": "N3",
+   "location": "DVI Test",
+   "desc": "Notes Report \"today\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "DVI Test",
+   "desc": "Notes Report \"this_week\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "DVI Test",
+   "desc": "Notes Report \"this_week\" (newest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 9,
+    "in_range": 9,
+    "server_says_more": false
+   },
+   "expected": 9
+  },
+  {
+   "check": "N3",
+   "location": "DVI Test",
+   "desc": "Notes Report \"this_week\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "DVI Test",
+   "desc": "Notes Report \"this_week\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "DVI Test",
+   "desc": "Notes Report \"this_week\" (oldest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 9,
+    "in_range": 9,
+    "server_says_more": false
+   },
+   "expected": 9
+  },
+  {
+   "check": "N3",
+   "location": "DVI Test",
+   "desc": "Notes Report \"this_week\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "DVI Test",
+   "desc": "Notes Report \"last_week\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "DVI Test",
+   "desc": "Notes Report \"last_week\" (newest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "in_range": 255,
+    "server_says_more": true
+   },
+   "expected": 255
+  },
+  {
+   "check": "N3",
+   "location": "DVI Test",
+   "desc": "Notes Report \"last_week\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "DVI Test",
+   "desc": "Notes Report \"last_week\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "DVI Test",
+   "desc": "Notes Report \"last_week\" (oldest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "in_range": 255,
+    "server_says_more": true
+   },
+   "expected": 255
+  },
+  {
+   "check": "N3",
+   "location": "DVI Test",
+   "desc": "Notes Report \"last_week\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "DVI Test",
+   "desc": "Notes Report \"this_month\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "DVI Test",
+   "desc": "Notes Report \"this_month\" (newest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "in_range": 326,
+    "server_says_more": true
+   },
+   "expected": 326
+  },
+  {
+   "check": "N3",
+   "location": "DVI Test",
+   "desc": "Notes Report \"this_month\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "DVI Test",
+   "desc": "Notes Report \"this_month\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "DVI Test",
+   "desc": "Notes Report \"this_month\" (oldest): every note in the date range is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "in_range": 326,
+    "server_says_more": true
+   },
+   "expected": 326
+  },
+  {
+   "check": "N3",
+   "location": "DVI Test",
+   "desc": "Notes Report \"this_month\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "DVI Test",
+   "desc": "Notes Report \"last_month\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "DVI Test",
+   "desc": "Notes Report \"last_month\" (newest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 33,
+    "in_range": 33,
+    "server_says_more": false
+   },
+   "expected": 33
+  },
+  {
+   "check": "N3",
+   "location": "DVI Test",
+   "desc": "Notes Report \"last_month\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "DVI Test",
+   "desc": "Notes Report \"last_month\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "DVI Test",
+   "desc": "Notes Report \"last_month\" (oldest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 33,
+    "in_range": 33,
+    "server_says_more": false
+   },
+   "expected": 33
+  },
+  {
+   "check": "N3",
+   "location": "DVI Test",
+   "desc": "Notes Report \"last_month\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "DVI Test",
+   "desc": "Notes Report \"custom_sep\" (newest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "DVI Test",
+   "desc": "Notes Report \"custom_sep\" (newest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 33,
+    "in_range": 33,
+    "server_says_more": false
+   },
+   "expected": 33
+  },
+  {
+   "check": "N3",
+   "location": "DVI Test",
+   "desc": "Notes Report \"custom_sep\": \"Newest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N1",
+   "location": "DVI Test",
+   "desc": "Notes Report \"custom_sep\" (oldest): every listed note is inside the date range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N2",
+   "location": "DVI Test",
+   "desc": "Notes Report \"custom_sep\" (oldest): every note in the date range is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 33,
+    "in_range": 33,
+    "server_says_more": false
+   },
+   "expected": 33
+  },
+  {
+   "check": "N3",
+   "location": "DVI Test",
+   "desc": "Notes Report \"custom_sep\": \"Oldest First\" order",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N4",
+   "location": "DVI Test",
+   "desc": "Notes Report \"Filter by Author\": every listed note is by that author",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "N5",
+   "location": "DVI Test",
+   "desc": "Notes Report \"Filter by Author\": every note by that author is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "by_author": 1105
+   },
+   "expected": 1105
+  },
+  {
+   "check": "N6",
+   "location": "DVI Test",
+   "desc": "Notes Report \"Filter by Mention\": every listed note mentions that person",
+   "result": "PASS",
+   "observed": null,
+   "expected": null
+  },
+  {
+   "check": "N7",
+   "location": "DVI Test",
+   "desc": "Notes Report \"Filter by Mention\": every note mentioning that person is listed",
+   "result": "FAIL",
+   "observed": {
+    "listed": 100,
+    "mentioning": 110
+   },
+   "expected": 110
+  },
+  {
+   "check": "R1",
+   "location": "DVI Test",
+   "desc": "Reminders Report \"all\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "DVI Test",
+   "desc": "Reminders Report \"all\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "in_range": 1
+   },
+   "expected": 1
+  },
+  {
+   "check": "R1",
+   "location": "DVI Test",
+   "desc": "Reminders Report \"today\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "DVI Test",
+   "desc": "Reminders Report \"today\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "should": 0,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-10-28",
+     "2026-10-29"
+    ]
+   },
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "DVI Test",
+   "desc": "Reminders Report \"today\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "in_range": 0
+   },
+   "expected": 0
+  },
+  {
+   "check": "R1",
+   "location": "DVI Test",
+   "desc": "Reminders Report \"this_week\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "DVI Test",
+   "desc": "Reminders Report \"this_week\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "should": 0,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-10-25",
+     "2026-11-01"
+    ]
+   },
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "DVI Test",
+   "desc": "Reminders Report \"this_week\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "in_range": 0
+   },
+   "expected": 0
+  },
+  {
+   "check": "R1",
+   "location": "DVI Test",
+   "desc": "Reminders Report \"next_week\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "DVI Test",
+   "desc": "Reminders Report \"next_week\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "should": 0,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-11-01",
+     "2026-11-08"
+    ]
+   },
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "DVI Test",
+   "desc": "Reminders Report \"next_week\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "in_range": 0
+   },
+   "expected": 0
+  },
+  {
+   "check": "R1",
+   "location": "DVI Test",
+   "desc": "Reminders Report \"last_week\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "DVI Test",
+   "desc": "Reminders Report \"last_week\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "should": 1,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-10-18",
+     "2026-10-25"
+    ]
+   },
+   "expected": 1
+  },
+  {
+   "check": "R2",
+   "location": "DVI Test",
+   "desc": "Reminders Report \"last_week\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "in_range": 1
+   },
+   "expected": 1
+  },
+  {
+   "check": "R1",
+   "location": "DVI Test",
+   "desc": "Reminders Report \"this_month\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "DVI Test",
+   "desc": "Reminders Report \"this_month\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "should": 1,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-10-01",
+     "2026-11-01"
+    ]
+   },
+   "expected": 1
+  },
+  {
+   "check": "R2",
+   "location": "DVI Test",
+   "desc": "Reminders Report \"this_month\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 1,
+    "in_range": 1
+   },
+   "expected": 1
+  },
+  {
+   "check": "R1",
+   "location": "DVI Test",
+   "desc": "Reminders Report \"next_month\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "DVI Test",
+   "desc": "Reminders Report \"next_month\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "should": 0,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-11-01",
+     "2026-12-01"
+    ]
+   },
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "DVI Test",
+   "desc": "Reminders Report \"next_month\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "in_range": 0
+   },
+   "expected": 0
+  },
+  {
+   "check": "R1",
+   "location": "DVI Test",
+   "desc": "Reminders Report \"last_month\": every listed note has a reminder inside the range",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "R3",
+   "location": "DVI Test",
+   "desc": "Reminders Report \"last_month\": lists exactly the reminders whose reminder DATE is inside the chosen days",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "should": 0,
+    "extra": [],
+    "missing": [],
+    "window_days": [
+     "2026-09-01",
+     "2026-10-01"
+    ]
+   },
+   "expected": 0
+  },
+  {
+   "check": "R2",
+   "location": "DVI Test",
+   "desc": "Reminders Report \"last_month\" (mentioning me): every note with a reminder in the range that mentions me is listed",
+   "result": "PASS",
+   "observed": {
+    "listed": 0,
+    "in_range": 0
+   },
+   "expected": 0
+  }
+ ]
+}

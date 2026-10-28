@@ -1,0 +1,1775 @@
+{
+"summary": {
+"rowsNumber=rows": {
+"pass": 144,
+"fail": 0
+},
+"no-duplicate-rows": {
+"pass": 144,
+"fail": 0
+},
+"S3-R2 demand-desc, inventory-before-SO on ties": {
+"pass": 144,
+"fail": 0
+},
+"S5-R5 counts never null": {
+"pass": 255114,
+"fail": 0
+},
+"S5-R4a Avg Sell = Revenue / billed units": {
+"pass": 37726,
+"fail": 0
+},
+"S5-R4a Avg Cost = COGS / billed units": {
+"pass": 37726,
+"fail": 0
+},
+"S5-R4a Margin % = Margin / Revenue": {
+"pass": 36408,
+"fail": 0
+},
+"SO On Hand/Min/Max/Turns null": {
+"pass": 19040,
+"fail": 0
+},
+"S5-R7 SO Units Sold = Sold(WO)+Sold(PS)": {
+"pass": 19040,
+"fail": 0
+},
+"SO Last Sale present": {
+"pass": 18872,
+"fail": 168
+},
+"Last Sale <= days since window start when Demand > 0 in window": {
+"pass": 39236,
+"fail": 0
+},
+"Location shows own location (single location)": {
+"pass": 255114,
+"fail": 0
+},
+"S5-R4a Avg Sell null when billed<=0": {
+"pass": 217388,
+"fail": 0
+},
+"S5-R4a Avg Cost null when billed<=0": {
+"pass": 217388,
+"fail": 0
+},
+"S5-R4a Margin % null when Revenue<=0": {
+"pass": 218706,
+"fail": 0
+},
+"S3-N1 kept only with movement/stock>=1/revenue": {
+"pass": 236074,
+"fail": 0
+},
+"S5-R4 Turns/Yr = (Units Sold / Window x 365) / On Hand": {
+"pass": 231840,
+"fail": 0
+},
+"Type filter returns only that type": {
+"pass": 127557,
+"fail": 0
+},
+"Demand >= 1 when stock moved out (net Units Sold > 0)": {
+"pass": 20034,
+"fail": 0
+},
+"S5-R4 Turns/Yr = 0.00 when On Hand 0": {
+"pass": 4234,
+"fail": 0
+},
+"S2-R1 Both = Inventory + Special Order (same rows)": {
+"pass": 48,
+"fail": 0
+},
+"S2-R1 Both rows carry same values as per-type reads": {
+"pass": 48,
+"fail": 0
+}
+},
+"failed_rows": [
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "both",
+"part": "10",
+"rtype": "special_order",
+"key": "cdb246a9-275f-4481-878e-87819ef54328"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "both",
+"part": "12105",
+"rtype": "special_order",
+"key": "068f25f9-50f2-43e1-a0be-2203557827c2"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "both",
+"part": "132",
+"rtype": "special_order",
+"key": "5f08eacb-eef9-46cd-bfa2-7894c253499a"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "both",
+"part": "179.1001",
+"rtype": "special_order",
+"key": "2779913b-4ae5-4f7c-82f1-d65b5ac670f9"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "both",
+"part": "179.1002",
+"rtype": "special_order",
+"key": "e2ec73d9-fe6a-4aca-8e3e-f0adba8c473a"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "both",
+"part": "2120",
+"rtype": "special_order",
+"key": "802e86a8-f325-4042-b8e1-1aa8d2c36a27"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "both",
+"part": "213",
+"rtype": "special_order",
+"key": "1eab4bfc-5f22-4c89-a9f8-10a266c07399"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "both",
+"part": "21321",
+"rtype": "special_order",
+"key": "4b45e598-d3a6-442b-b809-8f66e0ffef71"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "both",
+"part": "2351",
+"rtype": "special_order",
+"key": "0e3f3e77-cc43-41b8-a778-b5c87ff89523"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "both",
+"part": "313",
+"rtype": "special_order",
+"key": "d629faac-8053-400d-a075-caa7b2b8755b"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "both",
+"part": "4545",
+"rtype": "special_order",
+"key": "e56ea80a-9f6a-4c5b-ad52-7642e30d2556"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "both",
+"part": "46",
+"rtype": "special_order",
+"key": "15ba02a0-857f-403b-8f45-24cc90beb0ce"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "both",
+"part": "4645",
+"rtype": "special_order",
+"key": "3c0e91ed-2dba-4342-91ab-b711d2c0411f"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "both",
+"part": "5345",
+"rtype": "special_order",
+"key": "e0935d26-e4df-4c04-8fb4-710cbb3cf2ca"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "both",
+"part": "56546",
+"rtype": "special_order",
+"key": "19a2a206-3ac2-4c6a-8d41-97d7ede26dc8"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "both",
+"part": "N9535001",
+"rtype": "special_order",
+"key": "f562af40-fb9b-409e-88d6-a1bba236fa3e"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "special_order",
+"part": "10",
+"rtype": "special_order",
+"key": "cdb246a9-275f-4481-878e-87819ef54328"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "special_order",
+"part": "12105",
+"rtype": "special_order",
+"key": "068f25f9-50f2-43e1-a0be-2203557827c2"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "special_order",
+"part": "132",
+"rtype": "special_order",
+"key": "5f08eacb-eef9-46cd-bfa2-7894c253499a"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "special_order",
+"part": "179.1001",
+"rtype": "special_order",
+"key": "2779913b-4ae5-4f7c-82f1-d65b5ac670f9"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "special_order",
+"part": "179.1002",
+"rtype": "special_order",
+"key": "e2ec73d9-fe6a-4aca-8e3e-f0adba8c473a"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "special_order",
+"part": "2120",
+"rtype": "special_order",
+"key": "802e86a8-f325-4042-b8e1-1aa8d2c36a27"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "special_order",
+"part": "213",
+"rtype": "special_order",
+"key": "1eab4bfc-5f22-4c89-a9f8-10a266c07399"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "special_order",
+"part": "21321",
+"rtype": "special_order",
+"key": "4b45e598-d3a6-442b-b809-8f66e0ffef71"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "special_order",
+"part": "2351",
+"rtype": "special_order",
+"key": "0e3f3e77-cc43-41b8-a778-b5c87ff89523"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "special_order",
+"part": "313",
+"rtype": "special_order",
+"key": "d629faac-8053-400d-a075-caa7b2b8755b"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "special_order",
+"part": "4545",
+"rtype": "special_order",
+"key": "e56ea80a-9f6a-4c5b-ad52-7642e30d2556"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "special_order",
+"part": "46",
+"rtype": "special_order",
+"key": "15ba02a0-857f-403b-8f45-24cc90beb0ce"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "special_order",
+"part": "4645",
+"rtype": "special_order",
+"key": "3c0e91ed-2dba-4342-91ab-b711d2c0411f"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "special_order",
+"part": "5345",
+"rtype": "special_order",
+"key": "e0935d26-e4df-4c04-8fb4-710cbb3cf2ca"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "special_order",
+"part": "56546",
+"rtype": "special_order",
+"key": "19a2a206-3ac2-4c6a-8d41-97d7ede26dc8"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_366",
+"type": "special_order",
+"part": "N9535001",
+"rtype": "special_order",
+"key": "f562af40-fb9b-409e-88d6-a1bba236fa3e"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "both",
+"part": "10",
+"rtype": "special_order",
+"key": "cdb246a9-275f-4481-878e-87819ef54328"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "both",
+"part": "132",
+"rtype": "special_order",
+"key": "5f08eacb-eef9-46cd-bfa2-7894c253499a"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "both",
+"part": "2120",
+"rtype": "special_order",
+"key": "802e86a8-f325-4042-b8e1-1aa8d2c36a27"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "both",
+"part": "213",
+"rtype": "special_order",
+"key": "1eab4bfc-5f22-4c89-a9f8-10a266c07399"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "both",
+"part": "21321",
+"rtype": "special_order",
+"key": "4b45e598-d3a6-442b-b809-8f66e0ffef71"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "both",
+"part": "2351",
+"rtype": "special_order",
+"key": "0e3f3e77-cc43-41b8-a778-b5c87ff89523"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "both",
+"part": "313",
+"rtype": "special_order",
+"key": "d629faac-8053-400d-a075-caa7b2b8755b"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "both",
+"part": "4545",
+"rtype": "special_order",
+"key": "e56ea80a-9f6a-4c5b-ad52-7642e30d2556"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "both",
+"part": "46",
+"rtype": "special_order",
+"key": "15ba02a0-857f-403b-8f45-24cc90beb0ce"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "both",
+"part": "4645",
+"rtype": "special_order",
+"key": "3c0e91ed-2dba-4342-91ab-b711d2c0411f"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "both",
+"part": "5345",
+"rtype": "special_order",
+"key": "e0935d26-e4df-4c04-8fb4-710cbb3cf2ca"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "both",
+"part": "56546",
+"rtype": "special_order",
+"key": "19a2a206-3ac2-4c6a-8d41-97d7ede26dc8"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "both",
+"part": "N9535001",
+"rtype": "special_order",
+"key": "f562af40-fb9b-409e-88d6-a1bba236fa3e"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "special_order",
+"part": "10",
+"rtype": "special_order",
+"key": "cdb246a9-275f-4481-878e-87819ef54328"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "special_order",
+"part": "132",
+"rtype": "special_order",
+"key": "5f08eacb-eef9-46cd-bfa2-7894c253499a"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "special_order",
+"part": "2120",
+"rtype": "special_order",
+"key": "802e86a8-f325-4042-b8e1-1aa8d2c36a27"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "special_order",
+"part": "213",
+"rtype": "special_order",
+"key": "1eab4bfc-5f22-4c89-a9f8-10a266c07399"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "special_order",
+"part": "21321",
+"rtype": "special_order",
+"key": "4b45e598-d3a6-442b-b809-8f66e0ffef71"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "special_order",
+"part": "2351",
+"rtype": "special_order",
+"key": "0e3f3e77-cc43-41b8-a778-b5c87ff89523"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "special_order",
+"part": "313",
+"rtype": "special_order",
+"key": "d629faac-8053-400d-a075-caa7b2b8755b"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "special_order",
+"part": "4545",
+"rtype": "special_order",
+"key": "e56ea80a-9f6a-4c5b-ad52-7642e30d2556"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "special_order",
+"part": "46",
+"rtype": "special_order",
+"key": "15ba02a0-857f-403b-8f45-24cc90beb0ce"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "special_order",
+"part": "4645",
+"rtype": "special_order",
+"key": "3c0e91ed-2dba-4342-91ab-b711d2c0411f"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "special_order",
+"part": "5345",
+"rtype": "special_order",
+"key": "e0935d26-e4df-4c04-8fb4-710cbb3cf2ca"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "special_order",
+"part": "56546",
+"rtype": "special_order",
+"key": "19a2a206-3ac2-4c6a-8d41-97d7ede26dc8"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_90_days",
+"type": "special_order",
+"part": "N9535001",
+"rtype": "special_order",
+"key": "f562af40-fb9b-409e-88d6-a1bba236fa3e"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "both",
+"part": "10",
+"rtype": "special_order",
+"key": "cdb246a9-275f-4481-878e-87819ef54328"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "both",
+"part": "132",
+"rtype": "special_order",
+"key": "5f08eacb-eef9-46cd-bfa2-7894c253499a"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "both",
+"part": "2120",
+"rtype": "special_order",
+"key": "802e86a8-f325-4042-b8e1-1aa8d2c36a27"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "both",
+"part": "213",
+"rtype": "special_order",
+"key": "1eab4bfc-5f22-4c89-a9f8-10a266c07399"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "both",
+"part": "21321",
+"rtype": "special_order",
+"key": "4b45e598-d3a6-442b-b809-8f66e0ffef71"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "both",
+"part": "2351",
+"rtype": "special_order",
+"key": "0e3f3e77-cc43-41b8-a778-b5c87ff89523"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "both",
+"part": "313",
+"rtype": "special_order",
+"key": "d629faac-8053-400d-a075-caa7b2b8755b"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "both",
+"part": "4545",
+"rtype": "special_order",
+"key": "e56ea80a-9f6a-4c5b-ad52-7642e30d2556"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "both",
+"part": "46",
+"rtype": "special_order",
+"key": "15ba02a0-857f-403b-8f45-24cc90beb0ce"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "both",
+"part": "4645",
+"rtype": "special_order",
+"key": "3c0e91ed-2dba-4342-91ab-b711d2c0411f"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "both",
+"part": "5345",
+"rtype": "special_order",
+"key": "e0935d26-e4df-4c04-8fb4-710cbb3cf2ca"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "both",
+"part": "56546",
+"rtype": "special_order",
+"key": "19a2a206-3ac2-4c6a-8d41-97d7ede26dc8"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "special_order",
+"part": "10",
+"rtype": "special_order",
+"key": "cdb246a9-275f-4481-878e-87819ef54328"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "special_order",
+"part": "132",
+"rtype": "special_order",
+"key": "5f08eacb-eef9-46cd-bfa2-7894c253499a"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "special_order",
+"part": "2120",
+"rtype": "special_order",
+"key": "802e86a8-f325-4042-b8e1-1aa8d2c36a27"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "special_order",
+"part": "213",
+"rtype": "special_order",
+"key": "1eab4bfc-5f22-4c89-a9f8-10a266c07399"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "special_order",
+"part": "21321",
+"rtype": "special_order",
+"key": "4b45e598-d3a6-442b-b809-8f66e0ffef71"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "special_order",
+"part": "2351",
+"rtype": "special_order",
+"key": "0e3f3e77-cc43-41b8-a778-b5c87ff89523"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "special_order",
+"part": "313",
+"rtype": "special_order",
+"key": "d629faac-8053-400d-a075-caa7b2b8755b"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "special_order",
+"part": "4545",
+"rtype": "special_order",
+"key": "e56ea80a-9f6a-4c5b-ad52-7642e30d2556"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "special_order",
+"part": "46",
+"rtype": "special_order",
+"key": "15ba02a0-857f-403b-8f45-24cc90beb0ce"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "special_order",
+"part": "4645",
+"rtype": "special_order",
+"key": "3c0e91ed-2dba-4342-91ab-b711d2c0411f"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "special_order",
+"part": "5345",
+"rtype": "special_order",
+"key": "e0935d26-e4df-4c04-8fb4-710cbb3cf2ca"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"type": "special_order",
+"part": "56546",
+"rtype": "special_order",
+"key": "19a2a206-3ac2-4c6a-8d41-97d7ede26dc8"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "both",
+"part": "10",
+"rtype": "special_order",
+"key": "cdb246a9-275f-4481-878e-87819ef54328"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "both",
+"part": "12105",
+"rtype": "special_order",
+"key": "068f25f9-50f2-43e1-a0be-2203557827c2"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "both",
+"part": "132",
+"rtype": "special_order",
+"key": "5f08eacb-eef9-46cd-bfa2-7894c253499a"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "both",
+"part": "179.1001",
+"rtype": "special_order",
+"key": "2779913b-4ae5-4f7c-82f1-d65b5ac670f9"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "both",
+"part": "179.1002",
+"rtype": "special_order",
+"key": "e2ec73d9-fe6a-4aca-8e3e-f0adba8c473a"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "both",
+"part": "2120",
+"rtype": "special_order",
+"key": "802e86a8-f325-4042-b8e1-1aa8d2c36a27"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "both",
+"part": "213",
+"rtype": "special_order",
+"key": "1eab4bfc-5f22-4c89-a9f8-10a266c07399"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "both",
+"part": "21321",
+"rtype": "special_order",
+"key": "4b45e598-d3a6-442b-b809-8f66e0ffef71"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "both",
+"part": "2351",
+"rtype": "special_order",
+"key": "0e3f3e77-cc43-41b8-a778-b5c87ff89523"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "both",
+"part": "313",
+"rtype": "special_order",
+"key": "d629faac-8053-400d-a075-caa7b2b8755b"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "both",
+"part": "4545",
+"rtype": "special_order",
+"key": "e56ea80a-9f6a-4c5b-ad52-7642e30d2556"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "both",
+"part": "46",
+"rtype": "special_order",
+"key": "15ba02a0-857f-403b-8f45-24cc90beb0ce"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "both",
+"part": "4645",
+"rtype": "special_order",
+"key": "3c0e91ed-2dba-4342-91ab-b711d2c0411f"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "both",
+"part": "5345",
+"rtype": "special_order",
+"key": "e0935d26-e4df-4c04-8fb4-710cbb3cf2ca"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "both",
+"part": "56546",
+"rtype": "special_order",
+"key": "19a2a206-3ac2-4c6a-8d41-97d7ede26dc8"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "both",
+"part": "N9535001",
+"rtype": "special_order",
+"key": "f562af40-fb9b-409e-88d6-a1bba236fa3e"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "special_order",
+"part": "10",
+"rtype": "special_order",
+"key": "cdb246a9-275f-4481-878e-87819ef54328"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "special_order",
+"part": "12105",
+"rtype": "special_order",
+"key": "068f25f9-50f2-43e1-a0be-2203557827c2"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "special_order",
+"part": "132",
+"rtype": "special_order",
+"key": "5f08eacb-eef9-46cd-bfa2-7894c253499a"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "special_order",
+"part": "179.1001",
+"rtype": "special_order",
+"key": "2779913b-4ae5-4f7c-82f1-d65b5ac670f9"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "special_order",
+"part": "179.1002",
+"rtype": "special_order",
+"key": "e2ec73d9-fe6a-4aca-8e3e-f0adba8c473a"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "special_order",
+"part": "2120",
+"rtype": "special_order",
+"key": "802e86a8-f325-4042-b8e1-1aa8d2c36a27"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "special_order",
+"part": "213",
+"rtype": "special_order",
+"key": "1eab4bfc-5f22-4c89-a9f8-10a266c07399"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "special_order",
+"part": "21321",
+"rtype": "special_order",
+"key": "4b45e598-d3a6-442b-b809-8f66e0ffef71"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "special_order",
+"part": "2351",
+"rtype": "special_order",
+"key": "0e3f3e77-cc43-41b8-a778-b5c87ff89523"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "special_order",
+"part": "313",
+"rtype": "special_order",
+"key": "d629faac-8053-400d-a075-caa7b2b8755b"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "special_order",
+"part": "4545",
+"rtype": "special_order",
+"key": "e56ea80a-9f6a-4c5b-ad52-7642e30d2556"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "special_order",
+"part": "46",
+"rtype": "special_order",
+"key": "15ba02a0-857f-403b-8f45-24cc90beb0ce"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "special_order",
+"part": "4645",
+"rtype": "special_order",
+"key": "3c0e91ed-2dba-4342-91ab-b711d2c0411f"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "special_order",
+"part": "5345",
+"rtype": "special_order",
+"key": "e0935d26-e4df-4c04-8fb4-710cbb3cf2ca"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "special_order",
+"part": "56546",
+"rtype": "special_order",
+"key": "19a2a206-3ac2-4c6a-8d41-97d7ede26dc8"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_quarter",
+"type": "special_order",
+"part": "N9535001",
+"rtype": "special_order",
+"key": "f562af40-fb9b-409e-88d6-a1bba236fa3e"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "both",
+"part": "10",
+"rtype": "special_order",
+"key": "cdb246a9-275f-4481-878e-87819ef54328"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "both",
+"part": "12105",
+"rtype": "special_order",
+"key": "068f25f9-50f2-43e1-a0be-2203557827c2"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "both",
+"part": "132",
+"rtype": "special_order",
+"key": "5f08eacb-eef9-46cd-bfa2-7894c253499a"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "both",
+"part": "179.1001",
+"rtype": "special_order",
+"key": "2779913b-4ae5-4f7c-82f1-d65b5ac670f9"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "both",
+"part": "179.1002",
+"rtype": "special_order",
+"key": "e2ec73d9-fe6a-4aca-8e3e-f0adba8c473a"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "both",
+"part": "2120",
+"rtype": "special_order",
+"key": "802e86a8-f325-4042-b8e1-1aa8d2c36a27"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "both",
+"part": "213",
+"rtype": "special_order",
+"key": "1eab4bfc-5f22-4c89-a9f8-10a266c07399"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "both",
+"part": "21321",
+"rtype": "special_order",
+"key": "4b45e598-d3a6-442b-b809-8f66e0ffef71"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "both",
+"part": "2351",
+"rtype": "special_order",
+"key": "0e3f3e77-cc43-41b8-a778-b5c87ff89523"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "both",
+"part": "313",
+"rtype": "special_order",
+"key": "d629faac-8053-400d-a075-caa7b2b8755b"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "both",
+"part": "4545",
+"rtype": "special_order",
+"key": "e56ea80a-9f6a-4c5b-ad52-7642e30d2556"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "both",
+"part": "46",
+"rtype": "special_order",
+"key": "15ba02a0-857f-403b-8f45-24cc90beb0ce"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "both",
+"part": "4645",
+"rtype": "special_order",
+"key": "3c0e91ed-2dba-4342-91ab-b711d2c0411f"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "both",
+"part": "5345",
+"rtype": "special_order",
+"key": "e0935d26-e4df-4c04-8fb4-710cbb3cf2ca"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "both",
+"part": "56546",
+"rtype": "special_order",
+"key": "19a2a206-3ac2-4c6a-8d41-97d7ede26dc8"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "both",
+"part": "N9535001",
+"rtype": "special_order",
+"key": "f562af40-fb9b-409e-88d6-a1bba236fa3e"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "special_order",
+"part": "10",
+"rtype": "special_order",
+"key": "cdb246a9-275f-4481-878e-87819ef54328"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "special_order",
+"part": "12105",
+"rtype": "special_order",
+"key": "068f25f9-50f2-43e1-a0be-2203557827c2"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "special_order",
+"part": "132",
+"rtype": "special_order",
+"key": "5f08eacb-eef9-46cd-bfa2-7894c253499a"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "special_order",
+"part": "179.1001",
+"rtype": "special_order",
+"key": "2779913b-4ae5-4f7c-82f1-d65b5ac670f9"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "special_order",
+"part": "179.1002",
+"rtype": "special_order",
+"key": "e2ec73d9-fe6a-4aca-8e3e-f0adba8c473a"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "special_order",
+"part": "2120",
+"rtype": "special_order",
+"key": "802e86a8-f325-4042-b8e1-1aa8d2c36a27"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "special_order",
+"part": "213",
+"rtype": "special_order",
+"key": "1eab4bfc-5f22-4c89-a9f8-10a266c07399"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "special_order",
+"part": "21321",
+"rtype": "special_order",
+"key": "4b45e598-d3a6-442b-b809-8f66e0ffef71"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "special_order",
+"part": "2351",
+"rtype": "special_order",
+"key": "0e3f3e77-cc43-41b8-a778-b5c87ff89523"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "special_order",
+"part": "313",
+"rtype": "special_order",
+"key": "d629faac-8053-400d-a075-caa7b2b8755b"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "special_order",
+"part": "4545",
+"rtype": "special_order",
+"key": "e56ea80a-9f6a-4c5b-ad52-7642e30d2556"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "special_order",
+"part": "46",
+"rtype": "special_order",
+"key": "15ba02a0-857f-403b-8f45-24cc90beb0ce"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "special_order",
+"part": "4645",
+"rtype": "special_order",
+"key": "3c0e91ed-2dba-4342-91ab-b711d2c0411f"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "special_order",
+"part": "5345",
+"rtype": "special_order",
+"key": "e0935d26-e4df-4c04-8fb4-710cbb3cf2ca"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "special_order",
+"part": "56546",
+"rtype": "special_order",
+"key": "19a2a206-3ac2-4c6a-8d41-97d7ede26dc8"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"type": "special_order",
+"part": "N9535001",
+"rtype": "special_order",
+"key": "f562af40-fb9b-409e-88d6-a1bba236fa3e"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_366",
+"type": "both",
+"part": "577.CB1005",
+"rtype": "special_order",
+"key": "e7c994a0-abae-4b8a-9660-19bb747d3340"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_366",
+"type": "both",
+"part": "6712572C91",
+"rtype": "special_order",
+"key": "ca63e828-eb9e-4d5d-91c0-f650b4cc3df1"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_366",
+"type": "both",
+"part": "A22-45194-001",
+"rtype": "special_order",
+"key": "e44cd295-3da8-42b3-92b0-c54584432a9c"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_366",
+"type": "both",
+"part": "HC3Z 18A984 B",
+"rtype": "special_order",
+"key": "c70bdabc-36ad-4a2e-9349-362e5d590eff"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_366",
+"type": "special_order",
+"part": "577.CB1005",
+"rtype": "special_order",
+"key": "e7c994a0-abae-4b8a-9660-19bb747d3340"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_366",
+"type": "special_order",
+"part": "6712572C91",
+"rtype": "special_order",
+"key": "ca63e828-eb9e-4d5d-91c0-f650b4cc3df1"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_366",
+"type": "special_order",
+"part": "A22-45194-001",
+"rtype": "special_order",
+"key": "e44cd295-3da8-42b3-92b0-c54584432a9c"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_366",
+"type": "special_order",
+"part": "HC3Z 18A984 B",
+"rtype": "special_order",
+"key": "c70bdabc-36ad-4a2e-9349-362e5d590eff"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_quarter",
+"type": "both",
+"part": "577.CB1005",
+"rtype": "special_order",
+"key": "e7c994a0-abae-4b8a-9660-19bb747d3340"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_quarter",
+"type": "both",
+"part": "6712572C91",
+"rtype": "special_order",
+"key": "ca63e828-eb9e-4d5d-91c0-f650b4cc3df1"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_quarter",
+"type": "both",
+"part": "HC3Z 18A984 B",
+"rtype": "special_order",
+"key": "c70bdabc-36ad-4a2e-9349-362e5d590eff"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_quarter",
+"type": "special_order",
+"part": "577.CB1005",
+"rtype": "special_order",
+"key": "e7c994a0-abae-4b8a-9660-19bb747d3340"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_quarter",
+"type": "special_order",
+"part": "6712572C91",
+"rtype": "special_order",
+"key": "ca63e828-eb9e-4d5d-91c0-f650b4cc3df1"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_quarter",
+"type": "special_order",
+"part": "HC3Z 18A984 B",
+"rtype": "special_order",
+"key": "c70bdabc-36ad-4a2e-9349-362e5d590eff"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"type": "both",
+"part": "577.CB1005",
+"rtype": "special_order",
+"key": "e7c994a0-abae-4b8a-9660-19bb747d3340"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"type": "both",
+"part": "6712572C91",
+"rtype": "special_order",
+"key": "ca63e828-eb9e-4d5d-91c0-f650b4cc3df1"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"type": "both",
+"part": "A22-45194-001",
+"rtype": "special_order",
+"key": "e44cd295-3da8-42b3-92b0-c54584432a9c"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"type": "both",
+"part": "HC3Z 18A984 B",
+"rtype": "special_order",
+"key": "c70bdabc-36ad-4a2e-9349-362e5d590eff"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"type": "special_order",
+"part": "577.CB1005",
+"rtype": "special_order",
+"key": "e7c994a0-abae-4b8a-9660-19bb747d3340"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"type": "special_order",
+"part": "6712572C91",
+"rtype": "special_order",
+"key": "ca63e828-eb9e-4d5d-91c0-f650b4cc3df1"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"type": "special_order",
+"part": "A22-45194-001",
+"rtype": "special_order",
+"key": "e44cd295-3da8-42b3-92b0-c54584432a9c"
+},
+{
+"check": "SO Last Sale present",
+"ok": false,
+"wid": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"type": "special_order",
+"part": "HC3Z 18A984 B",
+"rtype": "special_order",
+"key": "c70bdabc-36ad-4a2e-9349-362e5d590eff"
+}
+],
+"note": "Full per-row PASS rows omitted to keep the file small; re-run tools/pv_internal.py to regenerate them."
+}

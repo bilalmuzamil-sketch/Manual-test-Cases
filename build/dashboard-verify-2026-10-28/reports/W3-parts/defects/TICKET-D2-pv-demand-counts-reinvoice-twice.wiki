@@ -1,0 +1,65 @@
+TITLE: Parts Velocity – Demand Counts a Work Order Twice When Its Invoice Is Reversed and Created Again
+TYPE: Story Defect · PARENT: SV-8645 (Velocity - Story 5 - Metric Calculations; Done, read live 28 Oct 2026) · PRIORITY: Medium · LINK: relates to SV-8645
+STATUS: ADMISSIBLE — NOT FILED. Waiting for the QA lead's per-ticket go-ahead (Jira creation hold H1).
+ALREADY REPORTED: none. JQL read live 28 Oct 2026 — see DEFECT-CANDIDATE-pv-demand-counts-reinvoice-twice.md (A4).
+BASIS: Parts Velocity Report spec, Confluence 620888066, version 12 (14 Sep 2026, Chris Ward), read live 28 Oct 2026.
+REPRODUCED: 2 times on staging build v26.43.2-f8698cb, 28 Oct 2026 (once entirely through the screen).
+
+h2. Description
+
+*Demand is meant to count each work order (or parts sale) once. When an invoice is reversed and then created again on the same work order, Parts Velocity counts that work order twice.* Every reverse-and-reinvoice adds one more.
+
+For example, the stocked part ZZAUTOTEST-PV1-10282011 was sold on 3 work orders today (S1-38203, S1-38204, S1-38206). Two of them had their invoice reversed and created again. Parts Velocity shows *Demand 5* instead of *3*.
+
+*Impact:* Demand is the report's default sort, so any part whose invoices get corrected (reversed and re-issued) moves up the list above parts that genuinely sell more often — the exact problem the spec owner called out when he set this rule on 20 Aug 2026.
+
+*What is NOT affected:* Units Sold, Revenue, Avg Cost, Avg Sell, Margin and Margin % are right after the reversal and after the new invoice (6.00 sold, $180.00, $20.00, $30.00, $60.00, 33.3%). A reversed invoice that is NOT re-created correctly keeps Demand 1 with Units Sold 0.00. Two different work orders correctly add 1 each.
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin. In the top bar, choose the location *DVI Test*.
+# Open *Reports* > *Parts Velocity* (Date: *Last 90 days*, Location: *DVI Test*). Note the *Demand* of the row *Inventory* · *ZZAUTOTEST-PV1-10282011*.
+# Open *Work Orders* and create a work order for customer *ZZAUTOTEST PV Customer*, asset *ZZ-PV1*.
+# On the *Lines* tab click *New Line*, choose any labor line (for example the canned line *3x inspection*) and click *Save & Close*.
+# On that line click *+ Add Part*. In *Part number* type *ZZAUTOTEST-PV1-10282011* and choose the option that reads *Inventory Qty: …*.
+# In *Qty* type *1*. Click *Save*.
+# On the part row click *Pick*.
+# On the line click *Complete*. If the *Missing Details* window asks for a *VIN*, type any VIN (for example *ZZTESTVINPV300001*) and click *Finish Work Order*.
+# Open the *Finance* tab and click *Create Invoice*. Close the *New Customer Payment* window without paying.
+# Open *Reports* > *Parts Velocity* again.
+#* Demand for *ZZAUTOTEST-PV1-10282011* has gone up by *1* (correct).
+# Go back to the work order's *Finance* tab. Click the *⋮* menu next to the invoice and choose *Reverse*. In the *Warning* window click *Reverse*.
+# Click *Create Invoice* again. Close the *New Customer Payment* window without paying.
+# Open *Reports* > *Parts Velocity* again.
+
+*Actual Result:*
+* Demand has gone up by *1 more* — the same work order is now counted twice. (On staging today: Demand 5 for 3 work orders.)
+
+*Expected Result:*
+* Demand stays where it was after step 10 — the work order is one transaction however many times it is invoiced, reversed or re-invoiced. (On staging today it should read 3.)
+* The spec says Demand is the *"Count of distinct in-window transactions (work orders or parts sales) with at least one invoicing event that decremented stock. A transaction counts once however many times it is invoiced, reversed or re-invoiced."*
+
+h2. Screenshots
+
+!D2-1-parts-velocity-demand.png|width=1000!
+
+!D2-2-reverse-invoice.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.43.2-f8698cb}} on [staging|https://app.staging.shopview.com/reports/parts-velocity] (DVI Test), 28 Oct 2026, 20:13–20:40 UTC
+* *Example records:* part ZZAUTOTEST-PV1-10282011 (DVI Test); work orders S1-38203 (invoiced, reversed, invoiced again), S1-38204 (invoiced once), S1-38206 (invoiced, reversed and invoiced again through the screen) — customer "ZZAUTOTEST PV Customer"
+* *User:* Admin
+
+h2. Sources
+
+* Parts Velocity Report, [Confluence 620888066|https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report], version 12 (14 Sep 2026, Chris Ward), read 28 Oct 2026, S5-R4 table, Demand, Inventory part:
+{quote}Count of distinct in-window transactions (work orders or parts sales) with at least one invoicing event that decremented stock. A transaction counts once however many times it is invoiced, reversed or re-invoiced. A reversal neither adds to nor subtracts from the count, so a fully-reversed in-window sale keeps Demand 1 while Units Sold nets to 0.00.{quote}
+* Same spec, change log 20 Aug 2026:
+{quote}S5-R4: Demand counts distinct transactions, not invoicing events. … Decisive factor: Demand is the default sort (S3-R2), so counting events pushed any reversed and re-invoiced part above parts that genuinely move. Demand 1 is confirmed correct and the build needs no change; Units Sold 70 also confirmed. QA to confirm the same part on two different work orders still shows Demand 2.{quote}
+
+h2. Technical details for developers
+
+* {{DbalPartsVelocityFetcher::movementAndLastSaleAggregate()}}: Demand counts distinct invoices among the in-window {{WorkOrderInvoiceCreate}} stock rows. A reversal deletes the invoice and the re-invoice creates a new invoice id with new Create rows, so one work order yields two distinct invoices. Counting distinct work orders (or parts sales) instead matches S5-R4.
+* Readings of the row (API {{GET /api/reporting/reports/parts-velocity}}, DVI Test, Last 90 days): after S1-38203 invoiced → demand 1; reversed → demand 1, units 0; re-invoiced → demand 2; after S1-38204 → 3; after S1-38206 → 4; S1-38206 reversed + re-invoiced on screen → 5. Raw snapshots: build/dashboard-verify-2026-10-28/reports/W3-parts/results-seeded-reads.json.
+* Inventory part 5871f791-e4b0-4fdb-a6d1-26d3600b2844; WOs b1b353e7-90e9-4c31-ad96-d7bef9609ad7, 19504c20-8617-48ef-ace7-5f68a58c9c5e, 25b08188-f428-41fc-be61-ee6e7f2753ae.

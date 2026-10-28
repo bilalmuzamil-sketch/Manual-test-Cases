@@ -1,0 +1,50 @@
+TITLE: A/R Aging Collection – A Credit Created on the Chosen Date Is Listed as 1 Day Past Due
+TYPE: Story Defect · PARENT: SV-5027 (BE A/R collections report; Done) · PRIORITY: Medium · LINK: relates to SV-5027, SV-5606, SV-11441
+STATUS: HELD — NOT FILED. Waiting for the product owner's answer to RQ-1 (SV-5606 asked for the current behaviour; the PRD says the opposite). File unchanged only if the answer is "the PRD stands".
+ALREADY REPORTED: SV-5606 (Done) discussed this case and chose "1"; see DEFECT-CANDIDATE-ar-collection-same-day-credit.md.
+BASIS: Confluence page 82083852 version 25 (19 Feb 2026), read live 28 Oct 2026.
+REPRODUCED: on staging build v26.43.2-f8698cb, 28 Oct 2026 (through the screen and at two locations).
+
+h2. Description
+
+*A credit memo created on the date the A/R Aging Collection report is set to is listed as "1" day past due. It is 0 days old, so by the PRD it is not past due and should not be on the Collection report at all.* The A/P Aging Detail report shows a vendor credit created on the chosen date the same way (Past Due 1 instead of 0).
+
+*Impact:* a collector working the Collection list sees brand-new credits as overdue items, and the customer's Collection total is lowered by credits that are not past due.
+
+*What is NOT affected:* credits created one or more days before the chosen date show the correct number of days; invoices are correct; the Summary and Detail reports put such credits in 1–30, which the PRD allows ("credits never appear in Current").
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin. In the top bar, choose the location *Staging Heavy Duty - 9919*.
+# Open *Reports* > *Accounts Receivable* > *A/R Aging Collection*.
+# Click *Customer* and choose *E2E Credits Customer*.
+# Click *Date:* and in the calendar go to *September 2026*, click *30*.
+# Open the *E2E Credits Customer* group and scroll to the end of it.
+#* Credits *CM2-4462* and *CM2-4463* — Date *Sep 30, 2026* — are listed with *Past Due 1*.
+#* Credit *CM2-4460* — Date *Sep 29, 2026* — is listed with *Past Due 1* (this one is correct).
+
+*Actual Result:* a credit dated on the chosen date is listed, with Past Due 1.
+
+*Expected Result:* a credit dated on the chosen date is 0 days old, so it is not shown on the Collection report. (If it were shown, its Past Due would be 0.)
+
+The PRD says: *"Credits (unapplied portions) — Days aged = Selected Date – Credit Creation Date. If the calculated days are ≤ 0, the transaction is not past due and it's not shown on the report."*
+
+h2. Screenshots
+
+!AR1-1-ar-collection-same-day-credit-past-due-1.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.43.2-f8698cb}}, staging, 28 Oct 2026 20:18 UTC · *Location:* Staging Heavy Duty - 9919 · *User:* Admin
+* *Other examples:* CM1-4535 (ZZAUTOTEST Dash A1, DVI Test) on 28 Oct 2026; A/P Aging Detail: C-10617 / C-10450 as of 30 Jun 2026, C-5297 / C-5294 / C-5320 as of 31 Dec 2025
+
+h2. Sources
+
+* [AR aging summary report, detail report and collections report|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/82083852], version 25 (19 Feb 2026), A/R collections report §6:
+{quote}Credits (unapplied portions) — Days aged = Selected Date – Credit Creation Date. If the calculated days are ≤ 0, the transaction is not past due and it's not shown on the report.{quote}
+* Conflicting later statement — SV-5606 (Done), Expected result: {quote}Today's Credits are displayed with 1 as a Past Due; Invoices should NOT be displayed since those are not past due.{quote}
+
+h2. Technical details for developers
+
+* {{GET /api/reporting/account-receivable/collections-report}} → credit rows with {{pastDue: 1}} where date = as-of date. The collections customer filter keeps credits with {{TIMESTAMPDIFF(DAY, created, asOf) >= 0}} ("legacy semantics" comment), and the credit's day count is one higher than the calendar difference.
+* A/P: {{GET /api/reporting/account-payable/aging-detail-report}} → {{daysPastDue: 1}} on credits created on the as-of date.

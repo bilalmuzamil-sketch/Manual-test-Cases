@@ -1,0 +1,1976 @@
+{
+ "summary": {
+  "Staging Heavy Duty - 9919": {
+   "Customers": {
+    "badge": 2419,
+    "rows": 2419,
+    "types": {
+     "customer_invoice_create": 1705,
+     "credit_memo_create": 255,
+     "deposit_create": 93,
+     "customer_payment_create": 207,
+     "deposit_application": 31,
+     "credit_memo_apply": 88,
+     "credit_memo_refund": 40
+    }
+   },
+   "Vendors": {
+    "badge": 819,
+    "rows": 819,
+    "types": {
+     "vendor_parts_receive": 728,
+     "vendor_payment": 81,
+     "vendor_payment_reverse": 2,
+     "vendor_credit": 8
+    }
+   },
+   "Journal Entries": {
+    "badge": 84,
+    "rows": 84,
+    "types": {
+     "journal_entry_work_order_reverse": 75,
+     "journal_entry_manual_adjustment": 9
+    }
+   }
+  },
+  "Staging Lethbridge - 4310": {
+   "Customers": {
+    "badge": 444,
+    "rows": 444,
+    "types": {
+     "customer_invoice_create": 407,
+     "credit_memo_create": 28,
+     "customer_payment_create": 9
+    }
+   },
+   "Vendors": {
+    "badge": 248,
+    "rows": 248,
+    "types": {
+     "vendor_parts_receive": 221,
+     "vendor_payment": 27
+    }
+   },
+   "Journal Entries": {
+    "badge": 1,
+    "rows": 1,
+    "types": {
+     "journal_entry_work_order_reverse": 1
+    }
+   }
+  },
+  "QB Location": {
+   "Customers": {
+    "badge": 0,
+    "rows": 0,
+    "types": {}
+   },
+   "Vendors": {
+    "badge": 1,
+    "rows": 1,
+    "types": {
+     "vendor_parts_receive": 1
+    }
+   },
+   "Journal Entries": {
+    "badge": 0,
+    "rows": 0,
+    "types": {}
+   }
+  },
+  "DVI Test": {
+   "Customers": {
+    "badge": 0,
+    "rows": 0,
+    "types": {}
+   },
+   "Vendors": {
+    "badge": 0,
+    "rows": 0,
+    "types": {}
+   },
+   "Journal Entries": {
+    "badge": 0,
+    "rows": 0,
+    "types": {}
+   }
+  }
+ },
+ "checks": [
+  {
+   "check": "Q1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Customers tab: count in the tab label = rows listed",
+   "result": "PASS",
+   "observed": 2419,
+   "expected": 2419
+  },
+  {
+   "check": "Q2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Customers tab: every row belongs to that tab",
+   "result": "PASS",
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "Q3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Customers tab: every row shows its document number and customer name",
+   "result": "FAIL",
+   "observed": {
+    "n": 548,
+    "sample": [
+     [
+      "credit_memo_create",
+      "",
+      "DashFresh Alpha MQ",
+      "A product or service on this transaction no longer exists in"
+     ],
+     [
+      "customer_payment_create",
+      "",
+      "SV-9087 Credit Term 1792672496992-997672",
+      "The account mapped for this transaction is the wrong type. U"
+     ],
+     [
+      "customer_payment_create",
+      "",
+      "TestVT1",
+      "The account mapped for this transaction is the wrong type. U"
+     ],
+     [
+      "credit_memo_create",
+      "",
+      "TestVT1",
+      "The Class mapped in your Bookkeeping settings no longer exis"
+     ],
+     [
+      "credit_memo_create",
+      "",
+      "TestVT1",
+      "Originating Invoice 243f42ff-a31c-42d7-b69c-c046eee34cf3 has"
+     ]
+    ]
+   },
+   "expected": 0
+  },
+  {
+   "check": "Q4",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Customers tab: no document listed twice",
+   "result": "FAIL",
+   "observed": [
+    [
+     "credit_memo_create",
+     "87891177-b95f-46a6-98e6-d3a9ad3d8e44"
+    ],
+    [
+     "deposit_application",
+     "3e491065-2a93-4889-aa77-baa8bee5f1c6"
+    ],
+    [
+     "credit_memo_apply",
+     "0dc47fda-3ae1-4312-9fa7-3afdd5c3382b"
+    ],
+    [
+     "deposit_application",
+     "0dc47fda-3ae1-4312-9fa7-3afdd5c3382b"
+    ],
+    [
+     "credit_memo_apply",
+     "d4072d42-e2f7-4829-8bbb-df7bb863c3c3"
+    ]
+   ],
+   "expected": []
+  },
+  {
+   "check": "Q5",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Customers tab: every row says why it did not export",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "Q1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Vendors tab: count in the tab label = rows listed",
+   "result": "PASS",
+   "observed": 819,
+   "expected": 819
+  },
+  {
+   "check": "Q2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Vendors tab: every row belongs to that tab",
+   "result": "PASS",
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "Q3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Vendors tab: every row shows its document number",
+   "result": "FAIL",
+   "observed": {
+    "n": 26,
+    "sample": [
+     [
+      "vendor_payment",
+      "",
+      "4Refuel",
+      "Vendor Payment cannot be exported to QuickBooks because none"
+     ],
+     [
+      "vendor_payment",
+      "",
+      "4Refuel",
+      "Vendor Payment cannot be exported to QuickBooks because none"
+     ],
+     [
+      "vendor_payment",
+      "",
+      "123 Cannabis Forestlawn",
+      "Vendor Payment cannot be exported to QuickBooks because none"
+     ],
+     [
+      "vendor_payment",
+      "",
+      "4Refuel",
+      "Vendor Payment cannot be exported to QuickBooks because none"
+     ],
+     [
+      "vendor_payment",
+      "",
+      "4Refuel",
+      "Vendor Payment cannot be exported to QuickBooks because none"
+     ]
+    ]
+   },
+   "expected": 0
+  },
+  {
+   "check": "Q4",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Vendors tab: no document listed twice",
+   "result": "PASS",
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "Q5",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Vendors tab: every row says why it did not export",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "Q1",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Journal Entries tab: count in the tab label = rows listed",
+   "result": "PASS",
+   "observed": 84,
+   "expected": 84
+  },
+  {
+   "check": "Q2",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Journal Entries tab: every row belongs to that tab",
+   "result": "PASS",
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "Q3",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Journal Entries tab: every row shows its document number",
+   "result": "PASS",
+   "observed": {
+    "n": 0,
+    "sample": []
+   },
+   "expected": 0
+  },
+  {
+   "check": "Q4",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Journal Entries tab: no document listed twice",
+   "result": "PASS",
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "Q5",
+   "location": "Staging Heavy Duty - 9919",
+   "desc": "Journal Entries tab: every row says why it did not export",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "Q1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Customers tab: count in the tab label = rows listed",
+   "result": "PASS",
+   "observed": 444,
+   "expected": 444
+  },
+  {
+   "check": "Q2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Customers tab: every row belongs to that tab",
+   "result": "PASS",
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "Q3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Customers tab: every row shows its document number and customer name",
+   "result": "FAIL",
+   "observed": {
+    "n": 33,
+    "sample": [
+     [
+      "credit_memo_create",
+      "",
+      "E2E Credits Customer",
+      "QuickBooks needs to be reconnected. Go to Settings \u2192 Integra"
+     ],
+     [
+      "credit_memo_create",
+      "",
+      "E2E Credits Customer",
+      "QuickBooks needs to be reconnected. Go to Settings \u2192 Integra"
+     ],
+     [
+      "customer_payment_create",
+      "",
+      "TestVT1",
+      "QuickBooks needs to be reconnected. Go to Settings \u2192 Integra"
+     ],
+     [
+      "customer_payment_create",
+      "",
+      "TestVT1",
+      "QuickBooks needs to be reconnected. Go to Settings \u2192 Integra"
+     ],
+     [
+      "customer_payment_create",
+      "",
+      "TestVT1",
+      "QuickBooks needs to be reconnected. Go to Settings \u2192 Integra"
+     ]
+    ]
+   },
+   "expected": 0
+  },
+  {
+   "check": "Q4",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Customers tab: no document listed twice",
+   "result": "PASS",
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "Q5",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Customers tab: every row says why it did not export",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "Q1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Vendors tab: count in the tab label = rows listed",
+   "result": "PASS",
+   "observed": 248,
+   "expected": 248
+  },
+  {
+   "check": "Q2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Vendors tab: every row belongs to that tab",
+   "result": "PASS",
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "Q3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Vendors tab: every row shows its document number",
+   "result": "PASS",
+   "observed": {
+    "n": 0,
+    "sample": []
+   },
+   "expected": 0
+  },
+  {
+   "check": "Q4",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Vendors tab: no document listed twice",
+   "result": "PASS",
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "Q5",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Vendors tab: every row says why it did not export",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "Q1",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Journal Entries tab: count in the tab label = rows listed",
+   "result": "PASS",
+   "observed": 1,
+   "expected": 1
+  },
+  {
+   "check": "Q2",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Journal Entries tab: every row belongs to that tab",
+   "result": "PASS",
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "Q3",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Journal Entries tab: every row shows its document number",
+   "result": "PASS",
+   "observed": {
+    "n": 0,
+    "sample": []
+   },
+   "expected": 0
+  },
+  {
+   "check": "Q4",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Journal Entries tab: no document listed twice",
+   "result": "PASS",
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "Q5",
+   "location": "Staging Lethbridge - 4310",
+   "desc": "Journal Entries tab: every row says why it did not export",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "Q1",
+   "location": "QB Location",
+   "desc": "Customers tab: count in the tab label = rows listed",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "Q2",
+   "location": "QB Location",
+   "desc": "Customers tab: every row belongs to that tab",
+   "result": "PASS",
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "Q3",
+   "location": "QB Location",
+   "desc": "Customers tab: every row shows its document number and customer name",
+   "result": "PASS",
+   "observed": {
+    "n": 0,
+    "sample": []
+   },
+   "expected": 0
+  },
+  {
+   "check": "Q4",
+   "location": "QB Location",
+   "desc": "Customers tab: no document listed twice",
+   "result": "PASS",
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "Q5",
+   "location": "QB Location",
+   "desc": "Customers tab: every row says why it did not export",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "Q1",
+   "location": "QB Location",
+   "desc": "Vendors tab: count in the tab label = rows listed",
+   "result": "PASS",
+   "observed": 1,
+   "expected": 1
+  },
+  {
+   "check": "Q2",
+   "location": "QB Location",
+   "desc": "Vendors tab: every row belongs to that tab",
+   "result": "PASS",
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "Q3",
+   "location": "QB Location",
+   "desc": "Vendors tab: every row shows its document number",
+   "result": "PASS",
+   "observed": {
+    "n": 0,
+    "sample": []
+   },
+   "expected": 0
+  },
+  {
+   "check": "Q4",
+   "location": "QB Location",
+   "desc": "Vendors tab: no document listed twice",
+   "result": "PASS",
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "Q5",
+   "location": "QB Location",
+   "desc": "Vendors tab: every row says why it did not export",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "Q1",
+   "location": "QB Location",
+   "desc": "Journal Entries tab: count in the tab label = rows listed",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "Q2",
+   "location": "QB Location",
+   "desc": "Journal Entries tab: every row belongs to that tab",
+   "result": "PASS",
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "Q3",
+   "location": "QB Location",
+   "desc": "Journal Entries tab: every row shows its document number",
+   "result": "PASS",
+   "observed": {
+    "n": 0,
+    "sample": []
+   },
+   "expected": 0
+  },
+  {
+   "check": "Q4",
+   "location": "QB Location",
+   "desc": "Journal Entries tab: no document listed twice",
+   "result": "PASS",
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "Q5",
+   "location": "QB Location",
+   "desc": "Journal Entries tab: every row says why it did not export",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "Q1",
+   "location": "DVI Test",
+   "desc": "Customers tab: count in the tab label = rows listed",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "Q2",
+   "location": "DVI Test",
+   "desc": "Customers tab: every row belongs to that tab",
+   "result": "PASS",
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "Q3",
+   "location": "DVI Test",
+   "desc": "Customers tab: every row shows its document number and customer name",
+   "result": "PASS",
+   "observed": {
+    "n": 0,
+    "sample": []
+   },
+   "expected": 0
+  },
+  {
+   "check": "Q4",
+   "location": "DVI Test",
+   "desc": "Customers tab: no document listed twice",
+   "result": "PASS",
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "Q5",
+   "location": "DVI Test",
+   "desc": "Customers tab: every row says why it did not export",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "Q1",
+   "location": "DVI Test",
+   "desc": "Vendors tab: count in the tab label = rows listed",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "Q2",
+   "location": "DVI Test",
+   "desc": "Vendors tab: every row belongs to that tab",
+   "result": "PASS",
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "Q3",
+   "location": "DVI Test",
+   "desc": "Vendors tab: every row shows its document number",
+   "result": "PASS",
+   "observed": {
+    "n": 0,
+    "sample": []
+   },
+   "expected": 0
+  },
+  {
+   "check": "Q4",
+   "location": "DVI Test",
+   "desc": "Vendors tab: no document listed twice",
+   "result": "PASS",
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "Q5",
+   "location": "DVI Test",
+   "desc": "Vendors tab: every row says why it did not export",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "Q1",
+   "location": "DVI Test",
+   "desc": "Journal Entries tab: count in the tab label = rows listed",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  },
+  {
+   "check": "Q2",
+   "location": "DVI Test",
+   "desc": "Journal Entries tab: every row belongs to that tab",
+   "result": "PASS",
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "Q3",
+   "location": "DVI Test",
+   "desc": "Journal Entries tab: every row shows its document number",
+   "result": "PASS",
+   "observed": {
+    "n": 0,
+    "sample": []
+   },
+   "expected": 0
+  },
+  {
+   "check": "Q4",
+   "location": "DVI Test",
+   "desc": "Journal Entries tab: no document listed twice",
+   "result": "PASS",
+   "observed": [],
+   "expected": []
+  },
+  {
+   "check": "Q5",
+   "location": "DVI Test",
+   "desc": "Journal Entries tab: every row says why it did not export",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0
+  }
+ ],
+ "raw_sample": {
+  "Staging Heavy Duty - 9919|Customers": [
+   {
+    "id": "3310cf0c-0da3-4918-8a0f-f60b4313da59",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S2-38197",
+    "customer": "4 Star Truck Repair",
+    "referenceId": "2ebae06f-5602-4945-8ca4-d1a22740610c",
+    "errorMessage": "The Class mapped in your Bookkeeping settings no longer exists in QuickBooks. Please re-select it in Bookkeeping settings.",
+    "link": "link",
+    "date": "2026-10-28 19:14:28"
+   },
+   {
+    "id": "b9698a48-32c1-4a24-a210-b2ce6b48fe10",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S2-5750",
+    "customer": "Orchard City Truck & Trailer Repair",
+    "referenceId": "9445ada4-cde4-4d51-a3da-974b2998a90c",
+    "errorMessage": "The Class mapped in your Bookkeeping settings no longer exists in QuickBooks. Please re-select it in Bookkeeping settings.",
+    "link": "link",
+    "date": "2026-10-28 12:38:27"
+   },
+   {
+    "id": "69a55ddd-2d06-4621-bb6b-0e44ee9cfc1e",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S2-38107",
+    "customer": "ZZAUTOTEST C614719 Keyboard A",
+    "referenceId": "0462f4e1-fa18-4b71-a2c1-72f060151b7d",
+    "errorMessage": "The Class mapped in your Bookkeeping settings no longer exists in QuickBooks. Please re-select it in Bookkeeping settings.",
+    "link": "link",
+    "date": "2026-10-28 12:37:05"
+   },
+   {
+    "id": "6cf95991-37ec-4f62-bcee-ffcb72decdef",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S2-38103",
+    "customer": "4 Star Truck Repair",
+    "referenceId": "77128fa1-b117-484b-b054-9949f397b5bb",
+    "errorMessage": "The Class mapped in your Bookkeeping settings no longer exists in QuickBooks. Please re-select it in Bookkeeping settings.",
+    "link": "link",
+    "date": "2026-10-28 05:27:41"
+   },
+   {
+    "id": "d2e1e942-1338-4a8d-a97e-39848c13c421",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S2-38102",
+    "customer": "4 Star Truck Repair",
+    "referenceId": "5d8cdd3b-7c08-4dd7-bbb8-31793aa51324",
+    "errorMessage": "The Class mapped in your Bookkeeping settings no longer exists in QuickBooks. Please re-select it in Bookkeeping settings.",
+    "link": "link",
+    "date": "2026-10-28 05:25:45"
+   },
+   {
+    "id": "55c39903-dce7-4415-bc53-3abc709a2d58",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S2-35163",
+    "customer": "Alpha",
+    "referenceId": "3f76d265-39d1-4ee8-9c22-6e6d6ce9d138",
+    "errorMessage": "The Class mapped in your Bookkeeping settings no longer exists in QuickBooks. Please re-select it in Bookkeeping settings.",
+    "link": "link",
+    "date": "2026-10-27 20:07:55"
+   },
+   {
+    "id": "01a54a90-da1d-4a47-9e07-f408b26e3ea7",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S2-38098",
+    "customer": "DashFresh Alpha MQ",
+    "referenceId": "b9219b9b-538e-44ad-a9d1-fc93663dd2fb",
+    "errorMessage": "The Class mapped in your Bookkeeping settings no longer exists in QuickBooks. Please re-select it in Bookkeeping settings.",
+    "link": "link",
+    "date": "2026-10-27 08:43:10"
+   },
+   {
+    "id": "563f80e6-e18d-4300-a6b4-129c911c9f4b",
+    "type": "credit_memo_create",
+    "typeLabel": "Credit Memo Create",
+    "group": "customer",
+    "number": "",
+    "customer": "DashFresh Alpha MQ",
+    "referenceId": "10cffa04-0335-46b5-9415-ec972681ab6a",
+    "errorMessage": "A product or service on this transaction no longer exists in QuickBooks. Please re-sync or re-map the item.",
+    "link": "link",
+    "date": "2026-10-27 08:41:23"
+   },
+   {
+    "id": "8314175e-c2ca-42ca-907f-3ae50a9f9ea3",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S2-38098",
+    "customer": "DashFresh Alpha MQ",
+    "referenceId": "afa7889f-812d-4ec3-a781-47e64df17f4e",
+    "errorMessage": "The Class mapped in your Bookkeeping settings no longer exists in QuickBooks. Please re-select it in Bookkeeping settings.",
+    "link": "link",
+    "date": "2026-10-27 08:40:17"
+   },
+   {
+    "id": "90f06dd8-b12b-44ce-83cc-88483a2d8280",
+    "type": "deposit_create",
+    "typeLabel": "Deposit Create",
+    "group": "customer",
+    "number": "DEP-4813",
+    "customer": "Bravo Mechanical Services",
+    "referenceId": "7fbde7e9-61cc-4db8-9fe9-1c0a47a75e78",
+    "errorMessage": "A business validation error has occurred while processing your request : Business Validation Error: Please choose an account of type Bank or Other Current Assets.",
+    "link": "link",
+    "date": "2026-10-27 08:22:43"
+   },
+   {
+    "id": "edf2b2fb-45e5-4b0f-8634-123ed120a615",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S2-38094",
+    "customer": "4 Star Truck Repair",
+    "referenceId": "760069a1-fae0-41b5-9e56-eeaeffe6ba3e",
+    "errorMessage": "The Class mapped in your Bookkeeping settings no longer exists in QuickBooks. Please re-select it in Bookkeeping settings.",
+    "link": "link",
+    "date": "2026-10-26 21:59:41"
+   },
+   {
+    "id": "45b77ed6-1deb-4bc4-bf8e-0b8edd14c00f",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S2-33690",
+    "customer": "4 Star Truck Repair",
+    "referenceId": "c8ecd0c0-fea6-4285-89d0-7f8eeb5bce10",
+    "errorMessage": "The Class mapped in your Bookkeeping settings no longer exists in QuickBooks. Please re-select it in Bookkeeping settings.",
+    "link": "link",
+    "date": "2026-10-26 20:46:23"
+   },
+   {
+    "id": "4ada62e2-5318-4c0a-8d66-88f323511469",
+    "type": "customer_payment_create",
+    "typeLabel": "Payment Create",
+    "group": "customer",
+    "number": "dtgjtghne",
+    "customer": "7 Star Truck Repair",
+    "referenceId": "e9c79c8f-6a3b-4996-8598-1d9061764771",
+    "errorMessage": "The account mapped for this transaction is the wrong type. Update the account mapping in Bookkeeping settings \u2014 make sure it matches the expected type.",
+    "link": "link",
+    "date": "2026-10-26 20:34:54"
+   },
+   {
+    "id": "e910984c-b8fa-415c-b92c-fb879fdabcb7",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S2-38058",
+    "customer": "TestVT1",
+    "referenceId": "53bc5332-790b-4944-b730-674f8b93a889",
+    "errorMessage": "The Class mapped in your Bookkeeping settings no longer exists in QuickBooks. Please re-select it in Bookkeeping settings.",
+    "link": "link",
+    "date": "2026-10-22 12:46:54"
+   },
+   {
+    "id": "bbb3e843-e64f-4f45-9f52-a641572fcecc",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S2-38058",
+    "customer": "TestVT1",
+    "referenceId": "994ac79d-5dc3-4395-b35e-f24e9a6fb33f",
+    "errorMessage": "The Class mapped in your Bookkeeping settings no longer exists in QuickBooks. Please re-select it in Bookkeeping settings.",
+    "link": "link",
+    "date": "2026-10-22 12:46:46"
+   },
+   {
+    "id": "ca4fcd2f-b3e4-4a96-8e8b-9b1596fe643c",
+    "type": "customer_payment_create",
+    "typeLabel": "Payment Create",
+    "group": "customer",
+    "number": "658899",
+    "customer": "TestVT1",
+    "referenceId": "05db23e6-336a-40cc-a05a-993a44da5f56",
+    "errorMessage": "The account mapped for this transaction is the wrong type. Update the account mapping in Bookkeeping settings \u2014 make sure it matches the expected type.",
+    "link": "link",
+    "date": "2026-10-22 12:45:11"
+   },
+   {
+    "id": "ba7c81af-0066-40ef-bb2b-a83c05aa367b",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S2-38057",
+    "customer": "TestVT1",
+    "referenceId": "90b3815a-affc-4941-849f-8dbfb42347b5",
+    "errorMessage": "The Class mapped in your Bookkeeping settings no longer exists in QuickBooks. Please re-select it in Bookkeeping settings.",
+    "link": "link",
+    "date": "2026-10-22 12:44:55"
+   },
+   {
+    "id": "2a796e0e-6a10-460e-92eb-3a9cb349c2cb",
+    "type": "customer_payment_create",
+    "typeLabel": "Payment Create",
+    "group": "customer",
+    "number": "948964",
+    "customer": "TestVT1",
+    "referenceId": "b109577a-c52f-44ab-87e6-168cf05e3e18",
+    "errorMessage": "The account mapped for this transaction is the wrong type. Update the account mapping in Bookkeeping settings \u2014 make sure it matches the expected type.",
+    "link": "link",
+    "date": "2026-10-22 12:42:56"
+   },
+   {
+    "id": "212e5217-1fea-4933-b8a9-0bed9aa68adf",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S2-38056",
+    "customer": "TestVT1",
+    "referenceId": "82cefd31-cdf5-4a47-8935-0d109bda1bb4",
+    "errorMessage": "The Class mapped in your Bookkeeping settings no longer exists in QuickBooks. Please re-select it in Bookkeeping settings.",
+    "link": "link",
+    "date": "2026-10-22 12:42:39"
+   },
+   {
+    "id": "1bf074d0-8613-4af4-8015-ba26941fcd6f",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S2-38055",
+    "customer": "TestVT1",
+    "referenceId": "919ca32d-adb7-453c-8f88-4e68b646e576",
+    "errorMessage": "The Class mapped in your Bookkeeping settings no longer exists in QuickBooks. Please re-select it in Bookkeeping settings.",
+    "link": "link",
+    "date": "2026-10-22 12:41:40"
+   }
+  ],
+  "Staging Heavy Duty - 9919|Vendors": [
+   {
+    "id": "a9c005ef-8ddb-4186-9429-7f7099ee8302",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "ZZAUTOTEST-INV1",
+    "customer": "123 Cannabis Forestlawn",
+    "referenceId": "24d810f1-d8f4-48f1-a816-da1a5ea032b5",
+    "errorMessage": "Tax configuration is missing. Please ensure vendor tax rate are properly mapped in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-28 10:46:23"
+   },
+   {
+    "id": "4e0c59c3-d572-4026-8ec3-a5f925b6d952",
+    "type": "vendor_payment",
+    "typeLabel": "Payment",
+    "group": "vendor",
+    "number": "26102026",
+    "customer": "Adams Diesel Repair",
+    "referenceId": "efb6d71a-cd11-4779-84c2-ab1b4fbcd594",
+    "errorMessage": "Vendor Payment cannot be exported to QuickBooks because none of the 1 bill(s) and 0 credit(s) being paid have matching records in QuickBooks. Re-export the underlying Bills and Credits first, then retry this payment.",
+    "link": "link",
+    "date": "2026-10-26 22:14:57"
+   },
+   {
+    "id": "5efeb26d-de20-4722-b0a2-fc044e3229cc",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "654897",
+    "customer": "Adams Diesel Repair",
+    "referenceId": "ee91c717-b505-4d9c-8b2a-99f90775f1c4",
+    "errorMessage": "Something on this transaction is inactive in QuickBooks (an account, customer, item, or vendor). Reactivate it in QuickBooks, then retry.",
+    "link": "link",
+    "date": "2026-10-26 22:05:11"
+   },
+   {
+    "id": "94e6179e-91a8-40cb-ab3c-1ae745ce09d3",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "12365",
+    "customer": "4Refuel",
+    "referenceId": "a546f768-7fc5-435f-9a94-b3264985ba4f",
+    "errorMessage": "Tax configuration is missing. Please ensure vendor tax rate are properly mapped in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-26 21:59:30"
+   },
+   {
+    "id": "617ed63c-9138-4ac0-9675-e05e3797f79a",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "123123112",
+    "customer": "AC Truck Repair - Branford",
+    "referenceId": "68aa8388-11b1-4e0c-9a20-0568a9b02bd9",
+    "errorMessage": "Something on this transaction is inactive in QuickBooks (an account, customer, item, or vendor). Reactivate it in QuickBooks, then retry.",
+    "link": "link",
+    "date": "2026-10-22 20:02:59"
+   },
+   {
+    "id": "737b5625-4b83-4409-b0fa-c5a92a0dc518",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "740632",
+    "customer": "4Refuel",
+    "referenceId": "0219a245-3491-425c-b914-c2015b753a27",
+    "errorMessage": "Tax configuration is missing. Please ensure vendor tax rate are properly mapped in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 12:41:26"
+   },
+   {
+    "id": "66ee4b3f-a2b3-455e-b977-d838ecf7ee2c",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "984095",
+    "customer": "4Refuel",
+    "referenceId": "50ca3e12-9a7f-48c8-807c-02a8eca9ff74",
+    "errorMessage": "Tax configuration is missing. Please ensure vendor tax rate are properly mapped in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 12:40:49"
+   },
+   {
+    "id": "91856ce7-9249-460a-b014-ed28e4c88877",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "450996",
+    "customer": "4Refuel",
+    "referenceId": "83b5a8a8-f97c-48ad-8812-fb8754993736",
+    "errorMessage": "Tax configuration is missing. Please ensure vendor tax rate are properly mapped in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 12:39:55"
+   },
+   {
+    "id": "2ead2aa5-c16d-4243-b933-fd4eef3d7c9b",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "E2E-INV-1792672294897",
+    "customer": "C22330 PS Vendor",
+    "referenceId": "67e6847f-8301-4a09-b201-9bece4c1c075",
+    "errorMessage": "Tax configuration is missing. Please ensure vendor tax rate are properly mapped in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 12:31:36"
+   },
+   {
+    "id": "37cc6ecf-2643-4496-9b9a-01ef93d56750",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "E2E-INV-1792672258206",
+    "customer": "C22329 PS Vendor",
+    "referenceId": "3f9681d5-be2f-421b-9f58-614db8731798",
+    "errorMessage": "Tax configuration is missing. Please ensure vendor tax rate are properly mapped in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 12:31:00"
+   },
+   {
+    "id": "655b5f0f-8138-407d-bc13-a4b935ee8d70",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "E2E-INV-1792672222800",
+    "customer": "C22327 PS Vendor",
+    "referenceId": "1f4733fe-4d0f-43a7-ac3b-182063f8196f",
+    "errorMessage": "Tax configuration is missing. Please ensure vendor tax rate are properly mapped in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 12:30:24"
+   },
+   {
+    "id": "48b48644-9e5b-4bd1-a4c0-06b2c340fcd8",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "E2E-INV-1792672174638",
+    "customer": "C2618 Regression Vendor",
+    "referenceId": "3f9ba5db-f1b9-499d-be83-5d27dbe44298",
+    "errorMessage": "Tax configuration is missing. Please ensure vendor tax rate are properly mapped in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 12:29:36"
+   },
+   {
+    "id": "3b5e8e54-876e-483b-b8f0-ca4667ab210b",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "E2E-INV-1792672139984",
+    "customer": "C146393 PS Vendor",
+    "referenceId": "f2c4eb77-5cde-4520-b893-a24e47e3c613",
+    "errorMessage": "Tax configuration is missing. Please ensure vendor tax rate are properly mapped in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 12:29:01"
+   },
+   {
+    "id": "dd96b25b-5d22-4b9b-850d-ffeba619aa1b",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "E2E-INV-1792672097971",
+    "customer": "C146394 PS Vendor",
+    "referenceId": "3ce7cd3e-e048-4b4b-a931-588310bef113",
+    "errorMessage": "Tax configuration is missing. Please ensure vendor tax rate are properly mapped in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 12:28:19"
+   },
+   {
+    "id": "f285c090-edf4-4acc-ba2a-065019f2734e",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "E2E-INV-1792672064679",
+    "customer": "C146391 Core Vendor",
+    "referenceId": "bf6e414e-0b78-4409-881b-b60bebc0cda5",
+    "errorMessage": "Tax configuration is missing. Please ensure vendor tax rate are properly mapped in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 12:27:46"
+   },
+   {
+    "id": "c0ad8606-955e-4611-99fe-e86295eae707",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "SF-DEFER-mvjifoob",
+    "customer": "E2E Defer-A Vendor 1792671667853-864",
+    "referenceId": "c19ba9c3-c8dd-4c09-97ec-20802c33b7a5",
+    "errorMessage": "Tax configuration is missing. Please ensure vendor tax rate are properly mapped in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 12:21:28"
+   },
+   {
+    "id": "5f9ba9af-3a25-49c7-9e50-f5fc4f206c12",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "SF-MARGIN-mvjiew1x",
+    "customer": "E2E Receive Vendor 1792671635968",
+    "referenceId": "63ab8f37-b562-4065-8b63-45a57618b2ca",
+    "errorMessage": "Tax configuration is missing. Please ensure vendor tax rate are properly mapped in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 12:20:51"
+   },
+   {
+    "id": "fc94e201-3a3c-4ed7-acf9-0477c299ad5c",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "SF-CORE-1792671620555",
+    "customer": "E2E Receive Vendor 1792671608014",
+    "referenceId": "0dab49f7-87e4-469e-b847-9d1344b38369",
+    "errorMessage": "Tax configuration is missing. Please ensure vendor tax rate are properly mapped in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 12:20:24"
+   },
+   {
+    "id": "212f8fe1-2914-4c7a-83b0-a8c9fe049ded",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "E2E-INV-1792671540078",
+    "customer": "ZZAUTOTEST Staged Delete Vendor",
+    "referenceId": "31a0d082-7be9-4a48-be7f-d2c8ab3ea50c",
+    "errorMessage": "Tax configuration is missing. Please ensure vendor tax rate are properly mapped in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 12:19:02"
+   },
+   {
+    "id": "62cc338f-5c18-4553-8139-1ccf94aca3a4",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "819237",
+    "customer": "4Refuel",
+    "referenceId": "6e0c1327-acc8-41b2-8bf0-1c9a0529913d",
+    "errorMessage": "Tax configuration is missing. Please ensure vendor tax rate are properly mapped in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 11:51:38"
+   }
+  ],
+  "Staging Heavy Duty - 9919|Journal Entries": [
+   {
+    "id": "52313be1-ffb3-43d8-ae15-906aee5b217e",
+    "type": "journal_entry_work_order_reverse",
+    "typeLabel": "Work Order Reverse",
+    "group": "journal_entry",
+    "number": "SV-62344",
+    "customer": "Admin Shopview",
+    "referenceId": "5ff6068b-6c81-49a2-bb54-8be3b4198aaa",
+    "errorMessage": "A QuickBooks account referenced by this transaction no longer exists. Update the chart-of-accounts mapping in Bookkeeping settings or restore the account in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-26 20:46:44"
+   },
+   {
+    "id": "6d4dc602-33dc-429f-8bc5-b8cb5d3adadd",
+    "type": "journal_entry_work_order_reverse",
+    "typeLabel": "Work Order Reverse",
+    "group": "journal_entry",
+    "number": "SV-62342",
+    "customer": "Mudassir Qamar",
+    "referenceId": "ccd24585-2d0a-41b7-a447-9318c66d1234",
+    "errorMessage": "A QuickBooks account referenced by this transaction no longer exists. Update the chart-of-accounts mapping in Bookkeeping settings or restore the account in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 12:46:58"
+   },
+   {
+    "id": "44901e3e-00eb-478d-8e21-970766512d04",
+    "type": "journal_entry_work_order_reverse",
+    "typeLabel": "Work Order Reverse",
+    "group": "journal_entry",
+    "number": "SV-62340",
+    "customer": "Mudassir Qamar",
+    "referenceId": "23fd6c4a-22c7-499e-a839-edb3da6923db",
+    "errorMessage": "A QuickBooks account referenced by this transaction no longer exists. Update the chart-of-accounts mapping in Bookkeeping settings or restore the account in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 12:46:50"
+   },
+   {
+    "id": "e8cf8ec4-e683-48af-b6ad-70a5f51d0c89",
+    "type": "journal_entry_work_order_reverse",
+    "typeLabel": "Work Order Reverse",
+    "group": "journal_entry",
+    "number": "SV-62336",
+    "customer": "Mudassir Qamar",
+    "referenceId": "f9b4e506-b317-437b-a8a9-f78ac262f4ae",
+    "errorMessage": "A QuickBooks account referenced by this transaction no longer exists. Update the chart-of-accounts mapping in Bookkeeping settings or restore the account in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 12:39:06"
+   },
+   {
+    "id": "e371bbd0-058a-4db1-89fd-8826d626eb6d",
+    "type": "journal_entry_work_order_reverse",
+    "typeLabel": "Work Order Reverse",
+    "group": "journal_entry",
+    "number": "SV-62332",
+    "customer": "Mudassir Qamar",
+    "referenceId": "58a0e951-7f18-4d69-9537-0777d7906883",
+    "errorMessage": "A QuickBooks account referenced by this transaction no longer exists. Update the chart-of-accounts mapping in Bookkeeping settings or restore the account in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 12:38:39"
+   },
+   {
+    "id": "14d5ceb9-49ef-420f-80b9-b4582de2ee9f",
+    "type": "journal_entry_work_order_reverse",
+    "typeLabel": "Work Order Reverse",
+    "group": "journal_entry",
+    "number": "SV-62322",
+    "customer": "Mudassir Qamar",
+    "referenceId": "c157e860-c222-4e41-a0a3-bbc5deffb769",
+    "errorMessage": "A QuickBooks account referenced by this transaction no longer exists. Update the chart-of-accounts mapping in Bookkeeping settings or restore the account in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 11:28:35"
+   },
+   {
+    "id": "e44d1eb5-4e13-47d4-a485-5db7a2682674",
+    "type": "journal_entry_work_order_reverse",
+    "typeLabel": "Work Order Reverse",
+    "group": "journal_entry",
+    "number": "SV-62320",
+    "customer": "Mudassir Qamar",
+    "referenceId": "a6408d9f-cc08-44fa-a0f1-12faeb3cb765",
+    "errorMessage": "A QuickBooks account referenced by this transaction no longer exists. Update the chart-of-accounts mapping in Bookkeeping settings or restore the account in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 11:28:28"
+   },
+   {
+    "id": "fb00c741-99cc-438d-95e8-7f52bad3aefa",
+    "type": "journal_entry_work_order_reverse",
+    "typeLabel": "Work Order Reverse",
+    "group": "journal_entry",
+    "number": "SV-62316",
+    "customer": "Mudassir Qamar",
+    "referenceId": "8a446ba8-6c05-4320-ac97-e58f01a18f02",
+    "errorMessage": "A QuickBooks account referenced by this transaction no longer exists. Update the chart-of-accounts mapping in Bookkeeping settings or restore the account in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 11:27:31"
+   },
+   {
+    "id": "2af2230b-d04c-45a3-b60a-f1ab79cafb68",
+    "type": "journal_entry_work_order_reverse",
+    "typeLabel": "Work Order Reverse",
+    "group": "journal_entry",
+    "number": "SV-62314",
+    "customer": "Mudassir Qamar",
+    "referenceId": "91e2261e-7336-4bcb-a5b8-f3c5e63272f8",
+    "errorMessage": "A QuickBooks account referenced by this transaction no longer exists. Update the chart-of-accounts mapping in Bookkeeping settings or restore the account in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 11:27:23"
+   },
+   {
+    "id": "2b3988ff-f023-431c-a0d4-94567c985969",
+    "type": "journal_entry_work_order_reverse",
+    "typeLabel": "Work Order Reverse",
+    "group": "journal_entry",
+    "number": "SV-62310",
+    "customer": "Mudassir Qamar",
+    "referenceId": "24062e59-93bb-499a-add0-5750fe627ae9",
+    "errorMessage": "A QuickBooks account referenced by this transaction no longer exists. Update the chart-of-accounts mapping in Bookkeeping settings or restore the account in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 11:26:53"
+   },
+   {
+    "id": "18815f8e-2e89-42c2-bba3-a8bbcec2551f",
+    "type": "journal_entry_work_order_reverse",
+    "typeLabel": "Work Order Reverse",
+    "group": "journal_entry",
+    "number": "SV-62306",
+    "customer": "Mudassir Qamar",
+    "referenceId": "a0936b20-dc8b-4189-b244-3ab694f2fb12",
+    "errorMessage": "A QuickBooks account referenced by this transaction no longer exists. Update the chart-of-accounts mapping in Bookkeeping settings or restore the account in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-22 11:26:23"
+   },
+   {
+    "id": "1dcb577f-5043-46ea-bf31-f10f3c465068",
+    "type": "journal_entry_manual_adjustment",
+    "typeLabel": "Manual Adjustment",
+    "group": "journal_entry",
+    "number": "SV-62278",
+    "customer": "Admin Shopview",
+    "referenceId": "a4848b95-f6c1-430c-b812-074080e96f62",
+    "errorMessage": "A QuickBooks account referenced by this transaction no longer exists. Update the chart-of-accounts mapping in Bookkeeping settings or restore the account in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-14 14:32:20"
+   },
+   {
+    "id": "5025ce2b-6ca6-4439-a21d-dc8ecfa0e01b",
+    "type": "journal_entry_manual_adjustment",
+    "typeLabel": "Manual Adjustment",
+    "group": "journal_entry",
+    "number": "SV-62277",
+    "customer": "Admin Shopview",
+    "referenceId": "2f70047a-c92e-46a8-a277-fd59687ff314",
+    "errorMessage": "A QuickBooks account referenced by this transaction no longer exists. Update the chart-of-accounts mapping in Bookkeeping settings or restore the account in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-14 14:21:57"
+   },
+   {
+    "id": "62e0dcd5-4f49-4f20-a18b-53c9021377c6",
+    "type": "journal_entry_manual_adjustment",
+    "typeLabel": "Manual Adjustment",
+    "group": "journal_entry",
+    "number": "SV-62276",
+    "customer": "Admin Shopview",
+    "referenceId": "526ba978-255d-4b09-a07c-eca7bca7d97b",
+    "errorMessage": "A QuickBooks account referenced by this transaction no longer exists. Update the chart-of-accounts mapping in Bookkeeping settings or restore the account in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-14 14:21:55"
+   },
+   {
+    "id": "7dd0682e-b98a-48d3-8fa7-cf34e13abb81",
+    "type": "journal_entry_manual_adjustment",
+    "typeLabel": "Manual Adjustment",
+    "group": "journal_entry",
+    "number": "SV-62275",
+    "customer": "Admin Shopview",
+    "referenceId": "e7717b55-f60e-4e69-88b4-917663f79e4c",
+    "errorMessage": "A QuickBooks account referenced by this transaction no longer exists. Update the chart-of-accounts mapping in Bookkeeping settings or restore the account in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-14 14:21:54"
+   },
+   {
+    "id": "72497cbc-2570-4755-b4ae-ff045f916c15",
+    "type": "journal_entry_manual_adjustment",
+    "typeLabel": "Manual Adjustment",
+    "group": "journal_entry",
+    "number": "SV-62274",
+    "customer": "Admin Shopview",
+    "referenceId": "7676f771-aebb-4a8a-82da-686ce5c98f1d",
+    "errorMessage": "A QuickBooks account referenced by this transaction no longer exists. Update the chart-of-accounts mapping in Bookkeeping settings or restore the account in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-14 14:21:52"
+   },
+   {
+    "id": "0d07f5cd-bcf2-49f9-838a-d4ff40bd9ec3",
+    "type": "journal_entry_manual_adjustment",
+    "typeLabel": "Manual Adjustment",
+    "group": "journal_entry",
+    "number": "SV-62273",
+    "customer": "Admin Shopview",
+    "referenceId": "9578cdf1-6dff-4b5d-ac83-685e737fb0ae",
+    "errorMessage": "A QuickBooks account referenced by this transaction no longer exists. Update the chart-of-accounts mapping in Bookkeeping settings or restore the account in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-14 14:21:50"
+   },
+   {
+    "id": "64a06a44-bea0-4510-b326-2d55c2515c48",
+    "type": "journal_entry_work_order_reverse",
+    "typeLabel": "Work Order Reverse",
+    "group": "journal_entry",
+    "number": "SV-62271",
+    "customer": "Admin Shopview",
+    "referenceId": "a24e843e-d076-4088-95c2-617e2e5a4e9a",
+    "errorMessage": "A QuickBooks account referenced by this transaction no longer exists. Update the chart-of-accounts mapping in Bookkeeping settings or restore the account in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-13 09:09:07"
+   },
+   {
+    "id": "a0287c24-0cd9-4012-bbe8-6050f90e1107",
+    "type": "journal_entry_work_order_reverse",
+    "typeLabel": "Work Order Reverse",
+    "group": "journal_entry",
+    "number": "SV-62264",
+    "customer": "Admin Shopview",
+    "referenceId": "0373719c-6b1a-4b2a-a37a-7573d5b6a953",
+    "errorMessage": "A QuickBooks account referenced by this transaction no longer exists. Update the chart-of-accounts mapping in Bookkeeping settings or restore the account in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-11 05:14:26"
+   },
+   {
+    "id": "da42efeb-79da-42a2-b724-fe8ec6c7ab43",
+    "type": "journal_entry_work_order_reverse",
+    "typeLabel": "Work Order Reverse",
+    "group": "journal_entry",
+    "number": "SV-62254",
+    "customer": "Admin Shopview",
+    "referenceId": "79e61bba-479a-4deb-8d09-e05ffd888559",
+    "errorMessage": "A QuickBooks account referenced by this transaction no longer exists. Update the chart-of-accounts mapping in Bookkeeping settings or restore the account in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-08 13:58:51"
+   }
+  ],
+  "Staging Lethbridge - 4310|Customers": [
+   {
+    "id": "9446c12a-7fa1-4e6e-b1b0-45cf32e12ae5",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S3-37741",
+    "customer": "E2E Term Customer",
+    "referenceId": "d4192ebc-aa2a-406c-9af9-13ddcf13a7e1",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-21 13:08:33"
+   },
+   {
+    "id": "e15432cf-b976-4eb5-a96c-ca256bdd989e",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S3-37741",
+    "customer": "E2E Term Customer",
+    "referenceId": "86c9ce66-1748-4040-9cb0-b0b8186fc087",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-21 13:08:31"
+   },
+   {
+    "id": "dc378463-f9cb-4f15-bfc0-806c8cec68c2",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S3-37733",
+    "customer": "E2E Term Customer",
+    "referenceId": "4ede6ba7-f51d-4541-9142-a626151c2719",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-21 13:08:08"
+   },
+   {
+    "id": "fd869cf5-e829-40c1-87ea-6c46d7534f1c",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S3-35094",
+    "customer": "TestVT1",
+    "referenceId": "3410aeb1-5595-421b-9cb9-30c8a01155ca",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:36:20"
+   },
+   {
+    "id": "19a6b2d6-8dfe-474a-93d6-49b72dc3c0ce",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S3-35093",
+    "customer": "TestVT1",
+    "referenceId": "aabee3dc-aa37-4ad6-b934-36b886d70a89",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:36:14"
+   },
+   {
+    "id": "00c7366f-ccdc-452a-ac3b-ea869b6c2df2",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S3-35092",
+    "customer": "TestVT1",
+    "referenceId": "4375965f-e0a4-4dd2-8c70-804863737e8d",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:36:08"
+   },
+   {
+    "id": "bdb3269d-2461-43e5-b67a-f58ac6ae3aef",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S3-35091",
+    "customer": "TestVT1",
+    "referenceId": "af52a5b4-9267-497d-8eeb-82a96b29a943",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:36:03"
+   },
+   {
+    "id": "697b8a43-fa72-43a5-8a63-87a9cd510a77",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S3-35090",
+    "customer": "TestVT1",
+    "referenceId": "67d9823f-6285-4489-9a2e-8d29f7935842",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:35:57"
+   },
+   {
+    "id": "b723407a-93ba-4dc9-a323-f8889e7fa041",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S3-35089",
+    "customer": "E2E Credits Customer",
+    "referenceId": "40185cc0-adc8-46a1-9a43-e1958dab4e53",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:35:17"
+   },
+   {
+    "id": "ac5170fb-6bc9-446d-8eb8-85abd0883d78",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S3-35088",
+    "customer": "E2E Credits Customer",
+    "referenceId": "9eb92ac0-855c-4f91-9ab4-d9487ae90629",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:35:13"
+   },
+   {
+    "id": "52640e38-2a0d-4c1f-a997-2a103fa4b629",
+    "type": "credit_memo_create",
+    "typeLabel": "Credit Memo Create",
+    "group": "customer",
+    "number": "",
+    "customer": "E2E Credits Customer",
+    "referenceId": "4b815728-8d9b-4622-b913-db93dba6dddb",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:35:08"
+   },
+   {
+    "id": "c5964804-5fb4-4b30-a1f2-99805d496320",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S3-35085",
+    "customer": "E2E Term Customer",
+    "referenceId": "840c906a-eaa7-4279-ab32-45f785caae27",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:34:38"
+   },
+   {
+    "id": "af5931eb-9c42-437c-884e-c5bb68d60a20",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S3-35085",
+    "customer": "E2E Term Customer",
+    "referenceId": "5b04041b-c4e1-4f96-844b-2f4d79aba59c",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:34:35"
+   },
+   {
+    "id": "41a76671-879a-49b2-b77c-4138077d6c62",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "P3-2314",
+    "customer": "E2E COD Customer",
+    "referenceId": "dde3192b-45c3-4eb7-a457-12195b960a64",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:34:25"
+   },
+   {
+    "id": "a443b95e-36dc-4486-86d5-4b946aa1e420",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "P3-2313",
+    "customer": "E2E Credits Customer",
+    "referenceId": "078c5181-c15e-4b14-97e6-e60ba780d988",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:34:17"
+   },
+   {
+    "id": "5c9d34d5-44aa-4b2c-8917-1867b3a9c136",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "P3-2312",
+    "customer": "E2E Credits Customer",
+    "referenceId": "15c9b111-8091-4428-8eef-1370b23da438",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:34:08"
+   },
+   {
+    "id": "c7e8a636-51e9-41d4-bd1d-38038841fc04",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S3-35078",
+    "customer": "E2E Term Customer",
+    "referenceId": "f0a480d7-7d62-46d9-a04f-5cadea81d073",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:33:51"
+   },
+   {
+    "id": "6554015e-a6c7-446e-b107-ce8a44d07064",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S3-34900",
+    "customer": "TestVT1",
+    "referenceId": "c9625cd1-2270-4e4c-b73f-f2521ebf9376",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-05 09:03:10"
+   },
+   {
+    "id": "4e9fae68-bd2c-422c-88fb-95c58b194aa7",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S3-34899",
+    "customer": "TestVT1",
+    "referenceId": "6c716b5a-ca0e-425d-9ba5-8a4e4edc94f1",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-05 09:03:04"
+   },
+   {
+    "id": "1b31aac9-5399-407c-a226-77febd1c63a9",
+    "type": "customer_invoice_create",
+    "typeLabel": "Invoice Create",
+    "group": "customer",
+    "number": "S3-34898",
+    "customer": "TestVT1",
+    "referenceId": "d80fe475-fe21-4e08-9bb3-bbfc95bfc6f7",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-05 09:02:58"
+   }
+  ],
+  "Staging Lethbridge - 4310|Vendors": [
+   {
+    "id": "e72b3ba8-a8ca-4e0d-ba5f-5b4b185b743a",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "E2E-INV-1792595001041",
+    "customer": "ZZAUTOTEST Staged Parts Vendor",
+    "referenceId": "eb622afe-a837-44e3-b947-dc39c1352334",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-21 15:03:22"
+   },
+   {
+    "id": "7a144e39-7c6c-423e-9432-aecffad878dc",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "E2E-INV-1792594999770",
+    "customer": "ZZAUTOTEST Staged Parts Vendor",
+    "referenceId": "f82391cb-fdcf-4bde-a3b8-6d677bf7a652",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-21 15:03:21"
+   },
+   {
+    "id": "6b84452f-0664-4f8c-8c8b-1f1983b25699",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "E2E-INV-1792588118708",
+    "customer": "ZZAUTOTEST Staged Parts Vendor",
+    "referenceId": "89cb0bb9-3d0c-461c-900b-347296b5a514",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-21 13:08:39"
+   },
+   {
+    "id": "43cc3cad-3819-4aad-a365-4a3e957c9a9c",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "E2E-INV-1792588117753",
+    "customer": "ZZAUTOTEST Staged Parts Vendor",
+    "referenceId": "ae757ee2-ba6a-44a0-a96a-fa58bd41ca3a",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-21 13:08:38"
+   },
+   {
+    "id": "16789082-cf37-4eed-846a-3988c7639484",
+    "type": "vendor_payment",
+    "typeLabel": "Payment",
+    "group": "vendor",
+    "number": "E2E-PAY-1791977703823",
+    "customer": "4Refuel",
+    "referenceId": "c2395ff6-d60e-454f-aeaf-a1b3dcf9831a",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:35:04"
+   },
+   {
+    "id": "92111df3-e4a7-45f5-b19a-7e2f0115954f",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "E2E-P8197vr",
+    "customer": "4Refuel",
+    "referenceId": "16f298e6-6fa3-4a5b-a16d-81e96c3c04db",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:35:03"
+   },
+   {
+    "id": "7070da30-cdf7-4bcd-931d-c7cd74b2c73f",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "E2E-INV-1791977684397",
+    "customer": "ZZAUTOTEST Staged Parts Vendor",
+    "referenceId": "ba6be07d-b450-425e-81cf-57964c740ffa",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:34:45"
+   },
+   {
+    "id": "aebf4f13-05fe-49b9-b96a-329e7db92b5c",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "E2E-INV-1791977683465",
+    "customer": "ZZAUTOTEST Staged Parts Vendor",
+    "referenceId": "b33ab566-145f-4c42-b723-e5374cdfe4a3",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:34:44"
+   },
+   {
+    "id": "5b4bb754-7e54-4e8f-8947-ed9e6eb7c696",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "E2E-INV-1791977663355",
+    "customer": "4Refuel",
+    "referenceId": "bb8d0d27-4dd0-4806-a61b-bf163ddf8f57",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:34:24"
+   },
+   {
+    "id": "365f8d25-b7ff-43e4-93a0-83e6ec20dbf7",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "E2E-INV-1791977662450",
+    "customer": "4Refuel",
+    "referenceId": "7b9b94e6-86c1-4849-a74a-46ae3106c0d1",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:34:23"
+   },
+   {
+    "id": "71426802-3f39-425e-b47a-6282f1c2b52f",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "E2E-INV-1791977655132",
+    "customer": "4Refuel",
+    "referenceId": "429af591-8f9a-44ca-a6a1-631c3700c335",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:34:16"
+   },
+   {
+    "id": "2a3aaa9a-026a-4893-a93f-654baadf542e",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "E2E-INV-1791977654121",
+    "customer": "4Refuel",
+    "referenceId": "cdd16800-a013-4ccf-8f62-4cd4ebe3dfd5",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:34:15"
+   },
+   {
+    "id": "2394d14f-ba9c-4e0a-bcfa-d2da404bf71f",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "E2E-INV-1791977646671",
+    "customer": "4Refuel",
+    "referenceId": "37070023-1a8c-4bda-8eef-60bd65b4d063",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:34:07"
+   },
+   {
+    "id": "9cebd492-3295-4852-8e8d-a9879a63a819",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "E2E-INV-1791977645410",
+    "customer": "4Refuel",
+    "referenceId": "4cdaa082-5aec-4d25-a9b4-44e8eb0a1013",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-14 11:34:06"
+   },
+   {
+    "id": "62cc21f3-e38a-4f76-a871-afaef3d9ddf9",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "827330",
+    "customer": "4Refuel",
+    "referenceId": "bc9a9362-d542-423c-b2ee-08f12ac62484",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-05 15:02:43"
+   },
+   {
+    "id": "6ffbba81-882e-40b0-9a92-ce1165af4800",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "741173",
+    "customer": "4Refuel",
+    "referenceId": "04c25bb1-4e96-4717-941b-5efd59957c64",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-05 15:02:09"
+   },
+   {
+    "id": "a195fc85-95ec-4376-bfc4-1582448fa1f0",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "555435",
+    "customer": "4Refuel",
+    "referenceId": "b3f29e82-4818-4815-90e7-0ebf17699e39",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-05 15:01:33"
+   },
+   {
+    "id": "6c0b9eff-d478-4423-a085-8b108cc06ec7",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "435927",
+    "customer": "4Refuel",
+    "referenceId": "aac632c3-d088-4d97-8623-ea3036a2f197",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-05 15:00:53"
+   },
+   {
+    "id": "2fdcface-884a-4034-b674-b5ee4f83a81c",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "817713",
+    "customer": "4Refuel",
+    "referenceId": "42d7d531-347a-476f-b465-51f461166096",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-05 15:00:15"
+   },
+   {
+    "id": "1630eb57-f0c3-4f02-80e8-0876dc2e796a",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "356089",
+    "customer": "4Refuel",
+    "referenceId": "7464c9ce-18e7-4539-9469-cca94888ae1a",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-10-05 10:36:35"
+   }
+  ],
+  "Staging Lethbridge - 4310|Journal Entries": [
+   {
+    "id": "bce169f3-2c26-4c12-b126-a7fd1c7e82f5",
+    "type": "journal_entry_work_order_reverse",
+    "typeLabel": "Work Order Reverse",
+    "group": "journal_entry",
+    "number": "SV-61874",
+    "customer": "Admin Shopview",
+    "referenceId": "6b8f6eff-f27b-4188-b179-08d17be984d5",
+    "errorMessage": "QuickBooks needs to be reconnected. Go to Settings \u2192 Integrations \u2192 QuickBooks, reconnect, then retry.",
+    "link": "link",
+    "date": "2026-09-16 22:41:41"
+   }
+  ],
+  "QB Location|Customers": [],
+  "QB Location|Vendors": [
+   {
+    "id": "5fb0e3d0-3835-4f5c-bbe9-4e359baad514",
+    "type": "vendor_parts_receive",
+    "typeLabel": "Parts Receive",
+    "group": "vendor",
+    "number": "E2E-INV-1790945518751",
+    "customer": "Carolina Truck & Trailer Repair",
+    "referenceId": "725bb113-08b2-4f4b-9ef5-a391cda62b64",
+    "errorMessage": "Tax configuration is missing. Please ensure vendor tax rate are properly mapped in QuickBooks.",
+    "link": "link",
+    "date": "2026-10-02 12:52:03"
+   }
+  ],
+  "QB Location|Journal Entries": [],
+  "DVI Test|Customers": [],
+  "DVI Test|Vendors": [],
+  "DVI Test|Journal Entries": []
+ }
+}

@@ -1,0 +1,44 @@
+TITLE: Technician Utilization report – "Utilization %" Shows Two Decimal Places Instead of One
+TYPE: Story Defect · PARENT: SV-8649 (Tech Util - Story 2 - Columns and Calculations; Done) · PRIORITY: Medium · LINK: relates to SV-8649, relates to SV-9059, relates to SV-9407
+STATUS: HELD — NOT FILED. Waiting for the product owner's answer to WQ-2. SV-9059 (Done) asked for two decimals and SV-9407 (same symptom as this ticket) was closed OBSOLETE without a comment, while the specification still says one decimal. File only if the PO confirms "one decimal".
+BASIS: Technician Utilization specification, Confluence 641400833, version 9 (13 Aug 2026), read live 28 Oct 2026.
+REPRODUCED: twice on staging build v26.43.2-f8698cb, 28 Oct 2026 (DVI Test and Staging Heavy Duty - 9919).
+
+h2. Description
+
+*Every value in the Utilization % column, and the Summary row, is shown with two decimal places (for example 85.71%). The specification asks for one decimal place (85.7%).*
+
+*Impact:* display only; the underlying percentage is correct (WO hours ÷ Total hours, checked on every row).
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin. In the top bar, choose the location *DVI Test*.
+# Open *Reports* > *Technician Utilization*.
+# Leave *Date* on *This month*.
+# Find the row *Esther Howard*.
+#* *Utilization %* reads *85.71%* (Total Hours 3.50, WO Hours 3.00).
+# Look at the *Summary* row at the bottom.
+#* *Utilization %* reads *90.12%*.
+
+*Actual Result:*
+* Utilization % is shown with two decimals: 85.71%, 90.12%.
+
+*Expected Result:*
+* Utilization % is shown with one decimal, rounded half up: 85.7%, 90.1%.
+
+h2. Screenshots
+
+!W1-TU-1-utilization-two-decimals-DVI.png|width=1000!
+
+!W1-TU-2-utilization-two-decimals-HD.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.43.2-f8698cb}} on [staging|https://app.staging.shopview.com/reports/technician-utilization], 28 Oct 2026
+* *Example records:* DVI Test, This month — Esther Howard 3.50 / 3.00 / 0.50 h; Staging Heavy Duty - 9919 — Admin Shopview 76.23 / 43.88 / 32.35 h (57.56%)
+* *User:* Admin
+
+h2. Sources
+
+* Technician Utilization specification, [Confluence 641400833|https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/641400833/Technician+Utilization+Report], version 9 (13 Aug 2026), read 28 Oct 2026, S2-R7:
+{quote}Utilization % shows one decimal place followed by a percent sign, rounded round-half-up (e.g., 66.65% → 66.7%).{quote}

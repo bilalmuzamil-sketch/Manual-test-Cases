@@ -1,0 +1,71 @@
+TITLE: A/P Aging Detail and A/P Unpaid Invoices – "Past Due" Is One Day Short for Every Bill Not Yet Due
+TYPE: Story Defect · PARENT: SV-5654 (BE A/P Aging detail report; Done, read live 28 Oct 2026 — QA lead to confirm, the epic SV-4732 has only Task children) · PRIORITY: Medium · LINK: relates to SV-5654, SV-5655
+STATUS: ADMISSIBLE — NOT FILED. Waiting for the QA lead's go-ahead (Jira creation hold H1, per-ticket permission).
+ALREADY REPORTED: none. JQL read live 28 Oct 2026 — see DEFECT-CANDIDATE-ap-past-due-one-day-short.md (A4).
+BASIS: Confluence "AP reports" version 13 (18 Mar 2026), read live 28 Oct 2026.
+REPRODUCED: 3 times on staging build v26.43.2-f8698cb, 28 Oct 2026 (twice through the screen, at two locations in two time zones).
+
+h2. Description
+
+*On the A/P Aging Detail and A/P Unpaid Invoices reports, the "Past Due" number for a bill that is not yet due is always one day closer to zero than it should be.* A bill due tomorrow shows *0* — exactly like a bill due today — and a bill due in 10 days shows *-9*.
+
+For example, with the report set to 29 Oct 2026, bill SV10190-R3 (vendor 123 Cannabis Forestlawn, due 30 Oct 2026) shows Past Due *0*; it should show *-1*.
+
+*Impact:* anyone planning vendor payments from these reports sees bills as due a day earlier than they are, and cannot tell "due today" from "due tomorrow". It affects every bill that is not yet due on the chosen date — on staging, all 481 such bills as of 29 Oct 2026, and the same on every other date checked.
+
+*What is NOT affected:* bills that are already past due show the correct number of days. The aging sections (Current, 1-30, …), the Amount and Open Balance columns and all totals are correct — 14,315 bills were checked against each vendor's own Unpaid Invoices page and agree. The A/R reports are not affected.
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin. In the top bar, choose the location *Staging Heavy Duty - 9919*.
+# Open *Reports*. In the left menu, under *Accounts Payable*, click *A/P Aging Detail*.
+# Click the *Date:* button at the top right.
+# In the calendar, make sure *October 2026* is shown and click *29*.
+#* The button now reads *Date: 2026-10-29*.
+# Click the arrow next to *Current* to open that section.
+# Find bill *SV10190-R3* (vendor *123 Cannabis Forestlawn*, Due Date *Oct 30, 2026*).
+#* *Past Due* reads *0*.
+# In the same section find a bill whose Due Date is *Oct 29, 2026*, for example *E2E-INV-1790684747987* (vendor *4Refuel*).
+#* *Past Due* also reads *0* — the bill due tomorrow and the bill due today look the same.
+# In the left menu click *A/P Unpaid Invoices*.
+# Click *Vendor* and choose *123 Cannabis Forestlawn*. Click *Date:* and click *20* (October 2026).
+# Open the *123 Cannabis Forestlawn* group.
+#* Bill *5363* (Due Date *Oct 23, 2026*) reads *-2*; bill *SV10190-R3* (Due Date *Oct 30, 2026*) reads *-9*.
+
+The bills above already exist on staging and keep reproducing because the report can be set to a past date. Any bill whose due date is after the chosen date shows the same problem, at any location (also seen at *Staging Lethbridge - 4310*).
+
+*Actual Result:*
+* A bill due 1 day after the chosen date shows 0; due 3 days after shows -2; due 10 days after shows -9.
+
+*Expected Result:*
+* Past Due = the chosen date minus the due date: 29 Oct − 30 Oct = *-1*; 20 Oct − 23 Oct = *-3*; 20 Oct − 30 Oct = *-10*. Only a bill due ON the chosen date shows 0.
+
+The PRD says, for A/P Aging Detail: *"Days past due = Selected Date – Invoice Due Date"*, and for A/P Unpaid Invoices: *"Days past due = Selected Date – invoice Due Date · both invoices past due with negative or positive value will be shown"*.
+
+h2. Screenshots
+
+!AP1-1-ap-aging-detail-due-tomorrow-shows-0.png|width=1000!
+
+!AP1-2-ap-unpaid-invoices-lethbridge-one-day-short.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.43.2-f8698cb}} on [staging|https://app.staging.shopview.com/reports/ap-aging-detail], 28 Oct 2026, 20:15–20:30 UTC
+* *Locations:* Staging Heavy Duty - 9919 and Staging Lethbridge - 4310
+* *Example records:* SV10190-R3 and 5363 (123 Cannabis Forestlawn), E2E-INV-1790684747987 (4Refuel)
+* *User:* Admin
+
+h2. Sources
+
+* Confluence [AP reports|https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/265093124/AP+reports], version 13 (18 Mar 2026), read 28 Oct 2026 — A/P Aging detail report, §6 Aging Logic:
+{quote}Vendor Invoices — Days past due = Selected Date – Invoice Due Date{quote}
+* Same page, §5 column table, Past Due:
+{quote}days past (positive number) or before due date (positive or negative number){quote}
+* Same page, A/P Unpaid invoices Report, §6:
+{quote}Days past due = Selected Date – invoice Due Date — both invoices past due with negative or positive value will be shown{quote}
+
+h2. Technical details for developers
+
+* Endpoints: {{GET /api/reporting/account-payable/aging-detail-report?asOfDate=…}} (field {{daysPastDue}}) and {{GET /api/reporting/account-payable/unpaid-invoices-report?asOfDate=…}} (field {{pastDue}}). {{asOfDate}} is the location's 23:59:59.999 as UTC (e.g. {{2026-10-29T18:59:59.999Z}} for Asia/Karachi).
+* The count looks like a whole-day difference between two timestamps, truncated toward zero: a bill due 30 Oct 06:00 UTC against an as-of of 29 Oct 18:59 UTC is −11 h → 0 days. Comparing calendar dates in the location's time zone gives the PRD figure. (The A/R Collection report had the same class of problem fixed in SV-5605 / SV-5630.)
+* Scale observed: 29 Oct 2026 481/481 not-yet-due bills short by one; 30 Sep 2026 985/985; 30 Jun 2026 1,098/1,098; 31 Dec 2025 906/906; Lethbridge 28 Oct 2026 449/491. Raw rows: {{results-ap-*.json}} checks PD6a / PU4.

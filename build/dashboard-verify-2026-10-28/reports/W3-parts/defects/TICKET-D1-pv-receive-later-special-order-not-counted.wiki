@@ -1,0 +1,75 @@
+TITLE: Parts Velocity – A Special-Order Part Billed Before It Is Received ("Receive Later") Shows 0 Sold and $0.00 Revenue
+TYPE: Story Defect · PARENT: SV-8645 (Velocity - Story 5 - Metric Calculations; Done, read live 28 Oct 2026) · PRIORITY: Medium · LINK: relates to SV-8645
+STATUS: ADMISSIBLE — NOT FILED. Waiting for the QA lead's per-ticket go-ahead (Jira creation hold H1).
+ALREADY REPORTED: none. JQL read live 28 Oct 2026 — see DEFECT-CANDIDATE-pv-receive-later-special-order-not-counted.md (A4).
+BASIS: Parts Velocity Report spec, Confluence 620888066, version 12 (14 Sep 2026, Chris Ward), read live 28 Oct 2026.
+REPRODUCED: 2 times on staging build v26.43.2-f8698cb, 28 Oct 2026 (once entirely through the screen).
+
+h2. Description
+
+*When a special-order part is marked "Receive later" and the work order is invoiced, the customer is billed for the part — but Parts Velocity shows that part with Units Sold 0.00, Revenue $0.00, Demand 0 and Last Sale "—".* The sale is missing from every column of the report, although the report does list the part.
+
+For example, ZZAUTOTEST-SO1-10282011 was billed twice today (invoice S1-38203, $60.00, and invoice INV-S1-38206, $68.96). Parts Velocity still shows it as never sold.
+
+*Impact:* shops that invoice before the vendor delivers (a normal "Receive later" workflow) see those parts as not moving and their revenue and margin understated. In the staging data at Staging Heavy Duty - 9919 there are 57 invoiced "Receive later" parts ($11,123.20 billed) and 24 more still "Awaiting" on invoiced work orders ($1,029.97 billed); 16 special-order rows in This Year read all zeros.
+
+*What is NOT affected:* a special-order part that is received before invoicing is counted correctly (ZZAUTOTEST-SO2-10282011 on the same invoice: 1.00 sold, $80.00 revenue, $50.00 Avg Cost, 37.5%, Demand 1). Stocked (inventory) parts are counted correctly (Revenue, Margin, Sold (WO) and Sold (Parts Sale) matched the invoices for all 10,159 part rows checked at four locations).
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin. In the top bar, choose the location *DVI Test*.
+# Open *Work Orders* and create a work order for customer *ZZAUTOTEST PV Customer*, asset *ZZ-PV1*.
+# On the work order's *Lines* tab click *New Line*, choose any labor line (for example the canned line *3x inspection*) and click *Save & Close*.
+# On that line click *+ Add Part*.
+# In *Part number* type *ZZAUTOTEST-SO1-10282011* and choose the option that reads *Inventory Qty: 0 EA*.
+# In *Qty* type *1*. Click *Save*.
+# On the new part row click the pencil (edit) button. The *Edit Part Request* window opens.
+# Set *Source* to *Vendor*, *Category* to *HD-Filters*, *Vendor* to *123 Cannabis Forestlawn*. Click *Save & Close*.
+#* The part reads *Auth To Order*, sell price *$68.96*.
+# On the part row click *Order*.
+#* The part reads *Awaiting*.
+# Click the arrow next to *Receive* and choose *Receive later*.
+#* The part reads *Receive Later*.
+# On the line click *Complete*. If the *Missing Details* window asks for a *VIN*, type *ZZTESTVINPV300001* and click *Finish Work Order*.
+# Open the *Finance* tab and click *Create Invoice*. Close the *New Customer Payment* window without paying.
+#* The invoice lists *ZZAUTOTEST-SO1-10282011 – ZZAUTOTEST PV special order receive later*, quantity *1*, *$68.96*.
+# Open *Reports* > *Parts Velocity*. Leave *Date: Last 90 days* and *Location: DVI Test*.
+# Find the row *Special Order* · *ZZAUTOTEST-SO1-10282011*.
+
+*Actual Result:*
+* Units Sold *0.00*, Avg Cost *—*, Avg Sell *—*, Revenue *$0.00*, Margin *$0.00*, Margin % *—*, Demand *0*, Last Sale *—*.
+
+*Expected Result:*
+* The part counts as sold: Units Sold *1.00*, Revenue *$68.96*, Avg Cost *$40.00*, Avg Sell *$68.96*, Margin *$28.96*, Margin % *42.0%*, Demand *1*, Last Sale *0 days* (plus any earlier sale of the same part in the range — on staging today it was also billed on S1-38203 for $60.00, so the row should read 2.00 sold, $128.96 revenue, Demand 2).
+* The spec says special-order figures come from the vendor part requests on invoiced or paid work orders — Units Sold is *"Total quantity across the special-order part's in-window vendor requests"*, Demand is *"Count of in-window vendor part requests"*, and Revenue is *"the summed billed sell amount"*.
+
+h2. Screenshots
+
+!D1-1-work-order-part-receive-later.png|width=1000!
+
+!D1-2-invoice-bills-the-part.png|width=1000!
+
+!D1-3-parts-velocity-shows-zero.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.43.2-f8698cb}} on [staging|https://app.staging.shopview.com/reports/parts-velocity] (DVI Test), 28 Oct 2026, 20:13–20:40 UTC
+* *Example records:* work order S1-38206 (made through the screen as above) and S1-38203, customer "ZZAUTOTEST PV Customer"; parts ZZAUTOTEST-SO1-10282011 (Receive later — not counted) and ZZAUTOTEST-SO2-10282011 (received — counted)
+* *User:* Admin
+
+h2. Sources
+
+* Parts Velocity Report, [Confluence 620888066|https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/620888066/Parts+Velocity+Report], version 12 (14 Sep 2026, Chris Ward), read 28 Oct 2026, S5-R2:
+{quote}Special-order metrics are derived from vendor-sourced part requests (carrying a catalogue part reference, and not a core) on work orders with status Invoiced or Paid whose work-order date falls within the window — grouped so each special-order part is one row (summed across the selected locations, S3-R1a).{quote}
+* Same spec, S5-R4 table, Special Order column:
+{quote}Units Sold — Total quantity across the special-order part's in-window vendor requests (summed across selected locations), net of reversed/voided sales (S5-R4b). … Demand — Count of in-window vendor part requests.{quote}
+* Same spec, S5-R4a:
+{quote}All five are derived from the billed part lines in the window — for inventory, the part lines on invoiced/paid Service- and Parts-type work orders (windowed by work-order date); for special-order, the vendor part requests. … Let Revenue = the summed billed sell amount (each line's stored sell price × quantity){quote}
+* Same spec, S3-N1 (why a row that reads all zeros is wrong either way):
+{quote}special-order rows come only from actual in-window vendor requests, so a never-sold special-order part simply produces no row.{quote}
+
+h2. Technical details for developers
+
+* {{DbalPartsVelocityFetcher}}: the Special-Order row source ({{catalogueBase()}}) is built from {{work_order_part_request}} on invoiced/paid work orders, but every money/units/demand/last-sale figure for the row comes from {{billedCatalogueAndLastSaleAggregate()}}, which joins invoice → statement → statement item → {{work_order_part}} (via {{wop.part_request_id}}). A request in status {{received_later}} (or {{waiting_to_receive}}) has no {{work_order_part}} yet, although the invoice bills it, so the row gets zeros.
+* Seeded ids (DVI Test 39522bc6-…-2840043c2d68): request 95b7fa59-080d-4e90-9a88-7658c9d86c76 on WO 25b08188-f428-41fc-be61-ee6e7f2753ae (S1-38206), request 4ca59349-1813-4b01-868e-7e0953472e65 on WO b1b353e7-90e9-4c31-ad96-d7bef9609ad7 (S1-38203); catalogue part b537f81c-f6e0-4d6e-a76b-236261fdd0ec.
+* API read: {{GET /api/reporting/reports/parts-velocity?type=both&range=custom&start_date=2026-07-30T04:00:00.000Z&end_date=2026-10-29T03:59:59.999Z&locations=39522bc6-abca-4f67-bd12-2840043c2d68}} → row key b537f81c-…: units_sold 0, revenue 0, demand 0, last_sale null.

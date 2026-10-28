@@ -1,0 +1,10 @@
+import fs from 'fs';
+import { open2, APP } from './ctx2.mjs';
+const S = JSON.parse(fs.readFileSync('/tmp/cln/w3/seed.json'));
+const { browser, page } = await open2('39522bc6-abca-4f67-bd12-2840043c2d68', 'America/Toronto', 1);
+await page.goto(`${APP}/workorders/${S.wo3}/lines`, { waitUntil: 'domcontentloaded', timeout: 90000 }); await page.waitForTimeout(10000);
+await page.screenshot({ path: '/tmp/cln/w3/shots/ui-01-lines.png' });
+const ids = await page.evaluate(() => [...document.querySelectorAll('[data-test-id]')].map(e => e.getAttribute('data-test-id')).filter(x => /part|line|request|add|menu|new/i.test(x)));
+console.log([...new Set(ids)].slice(0, 120).join('\n'));
+console.log('BUTTONS', (await page.locator('button').allInnerTexts()).map(t => t.trim()).filter(Boolean).join(' | '));
+await browser.close();

@@ -1,0 +1,418 @@
+{
+ "snapshot": "hd_2026-10-29",
+ "asOf_utc": "2026-10-29T18:59:59.999Z",
+ "asOf_local": "2026-10-29",
+ "tz": "Asia/Karachi",
+ "counts": {
+  "summary_rows": 215,
+  "detail_rows": 1465,
+  "collection_customers": 209
+ },
+ "checks": [
+  {
+   "check": "S1",
+   "desc": "Summary Totals row current = sum of customer rows",
+   "result": "PASS",
+   "observed": 66997.36,
+   "expected": 66997.36,
+   "ref": "PRD \u00a74 Totals Row"
+  },
+  {
+   "check": "S1",
+   "desc": "Summary Totals row days1to30 = sum of customer rows",
+   "result": "PASS",
+   "observed": 280265.09,
+   "expected": 280265.09,
+   "ref": "PRD \u00a74 Totals Row"
+  },
+  {
+   "check": "S1",
+   "desc": "Summary Totals row days31to60 = sum of customer rows",
+   "result": "PASS",
+   "observed": 194634.3,
+   "expected": 194634.3,
+   "ref": "PRD \u00a74 Totals Row"
+  },
+  {
+   "check": "S1",
+   "desc": "Summary Totals row days61to90 = sum of customer rows",
+   "result": "PASS",
+   "observed": 106812.62,
+   "expected": 106812.62,
+   "ref": "PRD \u00a74 Totals Row"
+  },
+  {
+   "check": "S1",
+   "desc": "Summary Totals row days91Plus = sum of customer rows",
+   "result": "PASS",
+   "observed": 50358.83,
+   "expected": 50358.83,
+   "ref": "PRD \u00a74 Totals Row"
+  },
+  {
+   "check": "S1",
+   "desc": "Summary Totals row total = sum of customer rows",
+   "result": "PASS",
+   "observed": 699068.2,
+   "expected": 699068.2,
+   "ref": "PRD \u00a74 Totals Row"
+  },
+  {
+   "check": "S2",
+   "desc": "Every Summary row Total = Current+1\u201330+31\u201360+61\u201390+91+",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0,
+   "ref": "PRD \u00a73 Total Column"
+  },
+  {
+   "check": "S3",
+   "desc": "No customer repeated across the Summary rows",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "PRD \u00a72 one row per customer"
+  },
+  {
+   "check": "D1",
+   "desc": "Detail section current total Amount = sum of rows",
+   "result": "PASS",
+   "observed": 67793.36,
+   "expected": 67793.36,
+   "ref": "PRD Detail \u00a77 Per-Section Totals"
+  },
+  {
+   "check": "D2",
+   "desc": "Detail section current total Open Balance = sum of rows",
+   "result": "PASS",
+   "observed": 66997.36,
+   "expected": 66997.36,
+   "ref": "PRD Detail \u00a77"
+  },
+  {
+   "check": "D1",
+   "desc": "Detail section days1to30 total Amount = sum of rows",
+   "result": "PASS",
+   "observed": 281475.67,
+   "expected": 281475.67,
+   "ref": "PRD Detail \u00a77 Per-Section Totals"
+  },
+  {
+   "check": "D2",
+   "desc": "Detail section days1to30 total Open Balance = sum of rows",
+   "result": "PASS",
+   "observed": 280265.09,
+   "expected": 280265.09,
+   "ref": "PRD Detail \u00a77"
+  },
+  {
+   "check": "D1",
+   "desc": "Detail section days31to60 total Amount = sum of rows",
+   "result": "PASS",
+   "observed": 207497.02,
+   "expected": 207497.02,
+   "ref": "PRD Detail \u00a77 Per-Section Totals"
+  },
+  {
+   "check": "D2",
+   "desc": "Detail section days31to60 total Open Balance = sum of rows",
+   "result": "PASS",
+   "observed": 194634.3,
+   "expected": 194634.3,
+   "ref": "PRD Detail \u00a77"
+  },
+  {
+   "check": "D1",
+   "desc": "Detail section days61to90 total Amount = sum of rows",
+   "result": "PASS",
+   "observed": 134259.95,
+   "expected": 134259.95,
+   "ref": "PRD Detail \u00a77 Per-Section Totals"
+  },
+  {
+   "check": "D2",
+   "desc": "Detail section days61to90 total Open Balance = sum of rows",
+   "result": "PASS",
+   "observed": 106812.62,
+   "expected": 106812.62,
+   "ref": "PRD Detail \u00a77"
+  },
+  {
+   "check": "D1",
+   "desc": "Detail section days91Plus total Amount = sum of rows",
+   "result": "PASS",
+   "observed": 50847.82,
+   "expected": 50847.82,
+   "ref": "PRD Detail \u00a77 Per-Section Totals"
+  },
+  {
+   "check": "D2",
+   "desc": "Detail section days91Plus total Open Balance = sum of rows",
+   "result": "PASS",
+   "observed": 50358.83,
+   "expected": 50358.83,
+   "ref": "PRD Detail \u00a77"
+  },
+  {
+   "check": "D3",
+   "desc": "Detail grand total Amount = sum of section totals",
+   "result": "PASS",
+   "observed": 741873.82,
+   "expected": 741873.82,
+   "ref": "PRD Detail \u00a77 Grand Totals"
+  },
+  {
+   "check": "D4",
+   "desc": "Detail grand total Open Balance = sum of section totals",
+   "result": "PASS",
+   "observed": 699068.2,
+   "expected": 699068.2,
+   "ref": "PRD Detail \u00a77 Grand Totals"
+  },
+  {
+   "check": "D5",
+   "desc": "Every Detail row sits in the aging section its days-past-due (invoices) / days-aged (credits) give",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0,
+   "ref": "PRD Detail \u00a76 Aging Logic"
+  },
+  {
+   "check": "D6",
+   "desc": "No credit in the Current section",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "PRD Detail \u00a76 \"Credits must never appear in Current\""
+  },
+  {
+   "check": "D7",
+   "desc": "Credit rows: Due Date = creation date",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "PRD Detail \u00a75 Due Date"
+  },
+  {
+   "check": "D8",
+   "desc": "Every Detail row names its location",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "PRD Detail \u00a75 Location Name"
+  },
+  {
+   "check": "D9",
+   "desc": "Invoice rows: 0 < Open Balance <= Amount",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "PRD Detail \u00a75 Open Balance"
+  },
+  {
+   "check": "D10",
+   "desc": "No transaction listed twice in Detail",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "PRD Detail \u00a73"
+  },
+  {
+   "check": "X1",
+   "desc": "Summary row per bucket = sum of that customer's Detail Open Balances in that section",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0,
+   "ref": "PRD Summary \u00a73 / Detail \u00a76 (same aging rules)"
+  },
+  {
+   "check": "X2",
+   "desc": "Every customer in Detail is on the Summary",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "PRD Summary \u00a73 Customer column"
+  },
+  {
+   "check": "X3",
+   "desc": "Summary Totals current = Detail section Open Balance total",
+   "result": "PASS",
+   "observed": 66997.36,
+   "expected": 66997.36,
+   "ref": "same population, same as-of date"
+  },
+  {
+   "check": "X3",
+   "desc": "Summary Totals days1to30 = Detail section Open Balance total",
+   "result": "PASS",
+   "observed": 280265.09,
+   "expected": 280265.09,
+   "ref": "same population, same as-of date"
+  },
+  {
+   "check": "X3",
+   "desc": "Summary Totals days31to60 = Detail section Open Balance total",
+   "result": "PASS",
+   "observed": 194634.3,
+   "expected": 194634.3,
+   "ref": "same population, same as-of date"
+  },
+  {
+   "check": "X3",
+   "desc": "Summary Totals days61to90 = Detail section Open Balance total",
+   "result": "PASS",
+   "observed": 106812.62,
+   "expected": 106812.62,
+   "ref": "same population, same as-of date"
+  },
+  {
+   "check": "X3",
+   "desc": "Summary Totals days91Plus = Detail section Open Balance total",
+   "result": "PASS",
+   "observed": 50358.83,
+   "expected": 50358.83,
+   "ref": "same population, same as-of date"
+  },
+  {
+   "check": "X3",
+   "desc": "Summary Totals total = Detail section Open Balance total",
+   "result": "PASS",
+   "observed": 699068.2,
+   "expected": 699068.2,
+   "ref": "same population, same as-of date"
+  },
+  {
+   "check": "C1",
+   "desc": "Every Collection customer total = sum of its rows (Amount and Open Balance)",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "PRD Collections \u00a77 Per-Customer Totals"
+  },
+  {
+   "check": "C2",
+   "desc": "Collection Grand Total Amount = sum of customer totals",
+   "result": "PASS",
+   "observed": 674080.46,
+   "expected": 674080.46,
+   "ref": "PRD Collections \u00a77 Grand Totals"
+  },
+  {
+   "check": "C3",
+   "desc": "Collection Grand Total Open Balance = sum of customer totals",
+   "result": "PASS",
+   "observed": 632070.84,
+   "expected": 632070.84,
+   "ref": "PRD Collections \u00a77 Grand Totals"
+  },
+  {
+   "check": "C4",
+   "desc": "Collection lists only items with Past Due > 0 days",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0,
+   "ref": "PRD Collections \u00a76 \"If the calculated days are \u2264 0 \u2026 not shown\""
+  },
+  {
+   "check": "C5",
+   "desc": "Collection Past Due days = as-of date \u2212 due date (invoices) / creation date (credits)",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0,
+   "ref": "PRD Collections \u00a76"
+  },
+  {
+   "check": "X4",
+   "desc": "Collection holds exactly the past-due Detail rows (no more, no fewer)",
+   "result": "PASS",
+   "observed": {
+    "missing": 0,
+    "extra": 0,
+    "missing_sample": [],
+    "extra_sample": []
+   },
+   "expected": 0,
+   "ref": "PRD Collections \u00a74 + Detail \u00a74"
+  },
+  {
+   "check": "C6",
+   "desc": "No customer repeated in Collection",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "PRD Collections \u00a73"
+  },
+  {
+   "check": "L1",
+   "desc": "Every open invoice on a customer's own account (stored balance) appears in A/R Detail",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0,
+   "ref": "PRD Detail \u00a74 Transaction Types Included"
+  },
+  {
+   "check": "L2",
+   "desc": "Every invoice in A/R Detail is open on the customer's own account",
+   "result": "FAIL",
+   "observed": 4,
+   "expected": 0,
+   "ref": "PRD Detail \u00a74"
+  },
+  {
+   "check": "L3",
+   "desc": "Open Balance in A/R Detail = the invoice's balance on the customer account",
+   "result": "FAIL",
+   "observed": 2,
+   "expected": 0,
+   "ref": "PRD Detail \u00a75 Open Balance"
+  }
+ ],
+ "misbucketed": [],
+ "summary_vs_detail": [],
+ "collection_not_past_due": [],
+ "collection_pastdue_wrong": [],
+ "ledger": {
+  "customers": 215,
+  "diff_customers": [
+   {
+    "customer": "TestVT1",
+    "no": "P2-2352",
+    "report": 543.43,
+    "ledger": 443.43
+   },
+   {
+    "customer": "Bravo Mechanical Services",
+    "no": "P2-2439",
+    "report": 21,
+    "ledger": 16
+   }
+  ],
+  "missing_in_report": [],
+  "extra_in_report": [
+   {
+    "customer": "Inland Heavy Duty Truck Repair",
+    "no": "S2-8771",
+    "report_balance": 870.85
+   },
+   {
+    "customer": "Inland Heavy Duty Truck Repair",
+    "no": "S2-8092",
+    "report_balance": 6427.39
+   },
+   {
+    "customer": "Wellington Truck Repair",
+    "no": "S2-8650",
+    "report_balance": 1867.94
+   },
+   {
+    "customer": "Oakland City Truck & Trailer Repair",
+    "no": "S3-8848",
+    "report_balance": 98.26
+   }
+  ],
+  "amount_vs_full": [],
+  "missing_in_report_n": 0,
+  "extra_in_report_n": 4,
+  "diff_customers_n": 2
+ }
+}

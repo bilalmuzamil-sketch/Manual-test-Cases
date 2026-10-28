@@ -1,0 +1,1290 @@
+{
+"note": "Compacted: every PASS row is counted in \"tally\" (full row-level file kept outside git at /tmp/cln/w1/full/results-ta.json); every FAIL/INFO row is kept verbatim below.",
+"tally": [
+{
+"check": "TA1-footer=sum-of-rows(open clock present)-Internal",
+"result": "FAIL",
+"count": 4
+},
+{
+"check": "TA1-footer=sum-of-rows(open clock present)-Internal",
+"result": "PASS",
+"count": 4
+},
+{
+"check": "TA1-footer=sum-of-rows(open clock present)-WO",
+"result": "FAIL",
+"count": 6
+},
+{
+"check": "TA1-footer=sum-of-rows(open clock present)-WO",
+"result": "PASS",
+"count": 2
+},
+{
+"check": "TA1-footer=sum-of-rows-Internal",
+"result": "FAIL",
+"count": 1
+},
+{
+"check": "TA1-footer=sum-of-rows-Internal",
+"result": "PASS",
+"count": 27
+},
+{
+"check": "TA1-footer=sum-of-rows-WO",
+"result": "PASS",
+"count": 28
+},
+{
+"check": "TA2-hours=wo+internal",
+"result": "PASS",
+"count": 23971
+},
+{
+"check": "TA3-wo-or-department",
+"result": "FAIL",
+"count": 5
+},
+{
+"check": "TA3-wo-or-department",
+"result": "PASS",
+"count": 23966
+},
+{
+"check": "TA4-row-date-in-range",
+"result": "FAIL",
+"count": 15
+},
+{
+"check": "TA4-row-date-in-range",
+"result": "PASS",
+"count": 23956
+},
+{
+"check": "TA6-hours-match-clock-in/out-columns",
+"result": "PASS",
+"count": 23951
+},
+{
+"check": "TA7-row-hours<=24",
+"result": "FAIL",
+"count": 20
+},
+{
+"check": "TA7-row-hours<=24",
+"result": "PASS",
+"count": 23951
+},
+{
+"check": "TA8-every-raw-WO-clock-listed",
+"result": "PASS",
+"count": 36
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"result": "INFO",
+"count": 36
+}
+],
+"non_pass_rows": [
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "custom_0915_1014",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "custom_dst_0301_0314",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "last_month",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "last_week",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "this_week",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "today",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "yesterday",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "custom_0915_1014",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "custom_dst_0301_0314",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "last_month",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "last_week",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_week",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "today",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "yesterday",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_0915_1014",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_dst_0301_0314",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_week",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA1-footer=sum-of-rows(open clock present)-WO",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"rows": 2913.04,
+"footer": 1468.29,
+"n": 155
+},
+"spec": "SV-3239 / SV-10698"
+},
+{
+"check": "TA1-footer=sum-of-rows(open clock present)-Internal",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"rows": 2830.84,
+"footer": 1389.41,
+"n": 155
+},
+"spec": "SV-3239 / SV-10698"
+},
+{
+"check": "TA4-row-date-in-range",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"row": [
+"Daniel Montoya",
+"Aug 31 2026",
+"11:27 PM",
+"Foreman Duties (Calgary HD)"
+]
+},
+"spec": "SV-2030 (Fabian 2024-02-21: only that day's records)"
+},
+{
+"check": "TA7-row-hours<=24",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"row": [
+"Daniel Montoya",
+"Aug 31 2026",
+"11:27 PM",
+"Foreman Duties (Calgary HD)"
+],
+"hours": 1393.57,
+"open": true
+},
+"spec": "SV-2662"
+},
+{
+"check": "TA4-row-date-in-range",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"row": [
+"Jacqueline Calderon",
+"Aug 31 2026",
+"11:06 PM",
+"Foreman Duties (Calgary HD)"
+]
+},
+"spec": "SV-2030 (Fabian 2024-02-21: only that day's records)"
+},
+{
+"check": "TA7-row-hours<=24",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"row": [
+"Jacqueline Calderon",
+"Aug 31 2026",
+"11:06 PM",
+"Foreman Duties (Calgary HD)"
+],
+"hours": 1393.92,
+"open": true
+},
+"spec": "SV-2662"
+},
+{
+"check": "TA4-row-date-in-range",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"row": [
+"Brandi Smith",
+"Aug 31 2026",
+"10:03 PM",
+"S2-17528"
+]
+},
+"spec": "SV-2030 (Fabian 2024-02-21: only that day's records)"
+},
+{
+"check": "TA7-row-hours<=24",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"row": [
+"Brandi Smith",
+"Aug 31 2026",
+"10:03 PM",
+"S2-17528"
+],
+"hours": 1394.98,
+"open": true
+},
+"spec": "SV-2662"
+},
+{
+"check": "TA4-row-date-in-range",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"row": [
+"Monica Brady",
+"Aug 31 2026",
+"09:12 PM",
+"S2-15658"
+]
+},
+"spec": "SV-2030 (Fabian 2024-02-21: only that day's records)"
+},
+{
+"check": "TA7-row-hours<=24",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"row": [
+"Monica Brady",
+"Aug 31 2026",
+"09:12 PM",
+"S2-15658"
+],
+"hours": 1395.82,
+"open": true
+},
+"spec": "SV-2662"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"n": 2,
+"ex": [
+"966a64ff-0470-439b-a11e-56d723c0f4bf",
+"a35845f0-807e-4185-9754-1d9a348c2b45"
+]
+},
+"spec": "-"
+},
+{
+"check": "TA1-footer=sum-of-rows(open clock present)-WO",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_week",
+"result": "FAIL",
+"detail": {
+"rows": 2812.88,
+"footer": 216.13,
+"n": 12
+},
+"spec": "SV-3239 / SV-10698"
+},
+{
+"check": "TA1-footer=sum-of-rows(open clock present)-Internal",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_week",
+"result": "FAIL",
+"detail": {
+"rows": 2804.7,
+"footer": 211.27,
+"n": 12
+},
+"spec": "SV-3239 / SV-10698"
+},
+{
+"check": "TA4-row-date-in-range",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_week",
+"result": "FAIL",
+"detail": {
+"row": [
+"Daniel Montoya",
+"Aug 31 2026",
+"11:27 PM",
+"Foreman Duties (Calgary HD)"
+]
+},
+"spec": "SV-2030 (Fabian 2024-02-21: only that day's records)"
+},
+{
+"check": "TA7-row-hours<=24",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_week",
+"result": "FAIL",
+"detail": {
+"row": [
+"Daniel Montoya",
+"Aug 31 2026",
+"11:27 PM",
+"Foreman Duties (Calgary HD)"
+],
+"hours": 1393.57,
+"open": true
+},
+"spec": "SV-2662"
+},
+{
+"check": "TA4-row-date-in-range",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_week",
+"result": "FAIL",
+"detail": {
+"row": [
+"Jacqueline Calderon",
+"Aug 31 2026",
+"11:06 PM",
+"Foreman Duties (Calgary HD)"
+]
+},
+"spec": "SV-2030 (Fabian 2024-02-21: only that day's records)"
+},
+{
+"check": "TA7-row-hours<=24",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_week",
+"result": "FAIL",
+"detail": {
+"row": [
+"Jacqueline Calderon",
+"Aug 31 2026",
+"11:06 PM",
+"Foreman Duties (Calgary HD)"
+],
+"hours": 1393.92,
+"open": true
+},
+"spec": "SV-2662"
+},
+{
+"check": "TA4-row-date-in-range",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_week",
+"result": "FAIL",
+"detail": {
+"row": [
+"Brandi Smith",
+"Aug 31 2026",
+"10:03 PM",
+"S2-17528"
+]
+},
+"spec": "SV-2030 (Fabian 2024-02-21: only that day's records)"
+},
+{
+"check": "TA7-row-hours<=24",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_week",
+"result": "FAIL",
+"detail": {
+"row": [
+"Brandi Smith",
+"Aug 31 2026",
+"10:03 PM",
+"S2-17528"
+],
+"hours": 1394.98,
+"open": true
+},
+"spec": "SV-2662"
+},
+{
+"check": "TA4-row-date-in-range",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_week",
+"result": "FAIL",
+"detail": {
+"row": [
+"Monica Brady",
+"Aug 31 2026",
+"09:12 PM",
+"S2-15658"
+]
+},
+"spec": "SV-2030 (Fabian 2024-02-21: only that day's records)"
+},
+{
+"check": "TA7-row-hours<=24",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_week",
+"result": "FAIL",
+"detail": {
+"row": [
+"Monica Brady",
+"Aug 31 2026",
+"09:12 PM",
+"S2-15658"
+],
+"hours": 1395.82,
+"open": true
+},
+"spec": "SV-2662"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_week",
+"result": "INFO",
+"detail": {
+"n": 2,
+"ex": [
+"966a64ff-0470-439b-a11e-56d723c0f4bf",
+"a35845f0-807e-4185-9754-1d9a348c2b45"
+]
+},
+"spec": "-"
+},
+{
+"check": "TA7-row-hours<=24",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"row": [
+"Daniel Montoya",
+"Aug 31 2026",
+"11:27 PM",
+"Foreman Duties (Calgary HD)"
+],
+"hours": 1393.58,
+"open": true
+},
+"spec": "SV-2662"
+},
+{
+"check": "TA7-row-hours<=24",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"row": [
+"Jacqueline Calderon",
+"Aug 31 2026",
+"11:06 PM",
+"Foreman Duties (Calgary HD)"
+],
+"hours": 1393.93,
+"open": true
+},
+"spec": "SV-2662"
+},
+{
+"check": "TA7-row-hours<=24",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"row": [
+"Brandi Smith",
+"Aug 31 2026",
+"10:03 PM",
+"S2-17528"
+],
+"hours": 1394.99,
+"open": true
+},
+"spec": "SV-2662"
+},
+{
+"check": "TA7-row-hours<=24",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"row": [
+"Monica Brady",
+"Aug 31 2026",
+"09:12 PM",
+"S2-15658"
+],
+"hours": 1395.83,
+"open": true
+},
+"spec": "SV-2662"
+},
+{
+"check": "TA3-wo-or-department",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"row": [
+"Melanie Garner",
+"Jun 03 2026",
+"09:13 PM",
+null
+],
+"wo": null,
+"dept": null
+},
+"spec": "SV-2030"
+},
+{
+"check": "TA3-wo-or-department",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"row": [
+"Kenneth Oconnor",
+"May 20 2026",
+"06:18 PM",
+null
+],
+"wo": null,
+"dept": null
+},
+"spec": "SV-2030"
+},
+{
+"check": "TA3-wo-or-department",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"row": [
+"Kenneth Oconnor",
+"May 19 2026",
+"08:21 PM",
+null
+],
+"wo": null,
+"dept": null
+},
+"spec": "SV-2030"
+},
+{
+"check": "TA3-wo-or-department",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"row": [
+"Monique Turner",
+"May 13 2026",
+"09:52 PM",
+null
+],
+"wo": null,
+"dept": null
+},
+"spec": "SV-2030"
+},
+{
+"check": "TA3-wo-or-department",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"row": [
+"Daniel Montoya",
+"Apr 08 2026",
+"09:22 PM",
+null
+],
+"wo": null,
+"dept": null
+},
+"spec": "SV-2030"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"n": 2,
+"ex": [
+"966a64ff-0470-439b-a11e-56d723c0f4bf",
+"a35845f0-807e-4185-9754-1d9a348c2b45"
+]
+},
+"spec": "-"
+},
+{
+"check": "TA1-footer=sum-of-rows(open clock present)-WO",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"rows": 2790.78,
+"footer": 2.06,
+"n": 4
+},
+"spec": "SV-3239 / SV-10698"
+},
+{
+"check": "TA1-footer=sum-of-rows(open clock present)-Internal",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"rows": 2787.49,
+"footer": 2.06,
+"n": 4
+},
+"spec": "SV-3239 / SV-10698"
+},
+{
+"check": "TA4-row-date-in-range",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"row": [
+"Daniel Montoya",
+"Aug 31 2026",
+"11:27 PM",
+"Foreman Duties (Calgary HD)"
+]
+},
+"spec": "SV-2030 (Fabian 2024-02-21: only that day's records)"
+},
+{
+"check": "TA7-row-hours<=24",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"row": [
+"Daniel Montoya",
+"Aug 31 2026",
+"11:27 PM",
+"Foreman Duties (Calgary HD)"
+],
+"hours": 1393.57,
+"open": true
+},
+"spec": "SV-2662"
+},
+{
+"check": "TA4-row-date-in-range",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"row": [
+"Jacqueline Calderon",
+"Aug 31 2026",
+"11:06 PM",
+"Foreman Duties (Calgary HD)"
+]
+},
+"spec": "SV-2030 (Fabian 2024-02-21: only that day's records)"
+},
+{
+"check": "TA7-row-hours<=24",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"row": [
+"Jacqueline Calderon",
+"Aug 31 2026",
+"11:06 PM",
+"Foreman Duties (Calgary HD)"
+],
+"hours": 1393.92,
+"open": true
+},
+"spec": "SV-2662"
+},
+{
+"check": "TA4-row-date-in-range",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"row": [
+"Brandi Smith",
+"Aug 31 2026",
+"10:03 PM",
+"S2-17528"
+]
+},
+"spec": "SV-2030 (Fabian 2024-02-21: only that day's records)"
+},
+{
+"check": "TA7-row-hours<=24",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"row": [
+"Brandi Smith",
+"Aug 31 2026",
+"10:03 PM",
+"S2-17528"
+],
+"hours": 1394.97,
+"open": true
+},
+"spec": "SV-2662"
+},
+{
+"check": "TA4-row-date-in-range",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"row": [
+"Monica Brady",
+"Aug 31 2026",
+"09:12 PM",
+"S2-15658"
+]
+},
+"spec": "SV-2030 (Fabian 2024-02-21: only that day's records)"
+},
+{
+"check": "TA7-row-hours<=24",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"row": [
+"Monica Brady",
+"Aug 31 2026",
+"09:12 PM",
+"S2-15658"
+],
+"hours": 1395.81,
+"open": true
+},
+"spec": "SV-2662"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "INFO",
+"detail": {
+"n": 2,
+"ex": [
+"966a64ff-0470-439b-a11e-56d723c0f4bf",
+"a35845f0-807e-4185-9754-1d9a348c2b45"
+]
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "yesterday",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_0915_1014",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA1-footer=sum-of-rows-Internal",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_dst_0301_0314",
+"result": "FAIL",
+"detail": {
+"rows": 120.02,
+"footer": 119.02,
+"n": 407
+},
+"spec": "SV-3239 / SV-10698"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_dst_0301_0314",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_month",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_week",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+},
+{
+"check": "TA1-footer=sum-of-rows(open clock present)-WO",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"rows": 1414.18,
+"footer": 682.6,
+"n": 45
+},
+"spec": "SV-3239 / SV-10698"
+},
+{
+"check": "TA4-row-date-in-range",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"row": [
+"Grace Smith",
+"Aug 31 2026",
+"12:25 PM",
+"S3-17548"
+]
+},
+"spec": "SV-2030 (Fabian 2024-02-21: only that day's records)"
+},
+{
+"check": "TA7-row-hours<=24",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"row": [
+"Grace Smith",
+"Aug 31 2026",
+"12:25 PM",
+"S3-17548"
+],
+"hours": 1393.62,
+"open": true
+},
+"spec": "SV-2662"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_month",
+"result": "INFO",
+"detail": {
+"n": 1,
+"ex": [
+"55aa7557-5dec-482f-b761-06e4a9540751"
+]
+},
+"spec": "-"
+},
+{
+"check": "TA1-footer=sum-of-rows(open clock present)-WO",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_week",
+"result": "FAIL",
+"detail": {
+"rows": 1393.62,
+"footer": 86.04,
+"n": 1
+},
+"spec": "SV-3239 / SV-10698"
+},
+{
+"check": "TA4-row-date-in-range",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_week",
+"result": "FAIL",
+"detail": {
+"row": [
+"Grace Smith",
+"Aug 31 2026",
+"12:25 PM",
+"S3-17548"
+]
+},
+"spec": "SV-2030 (Fabian 2024-02-21: only that day's records)"
+},
+{
+"check": "TA7-row-hours<=24",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_week",
+"result": "FAIL",
+"detail": {
+"row": [
+"Grace Smith",
+"Aug 31 2026",
+"12:25 PM",
+"S3-17548"
+],
+"hours": 1393.62,
+"open": true
+},
+"spec": "SV-2662"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_week",
+"result": "INFO",
+"detail": {
+"n": 1,
+"ex": [
+"55aa7557-5dec-482f-b761-06e4a9540751"
+]
+},
+"spec": "-"
+},
+{
+"check": "TA1-footer=sum-of-rows(open clock present)-Internal",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"rows": 1703.91,
+"footer": 1702.93,
+"n": 7170
+},
+"spec": "SV-3239 / SV-10698"
+},
+{
+"check": "TA7-row-hours<=24",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"row": [
+"Grace Smith",
+"Aug 31 2026",
+"12:25 PM",
+"S3-17548"
+],
+"hours": 1393.63,
+"open": true
+},
+"spec": "SV-2662"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "INFO",
+"detail": {
+"n": 1,
+"ex": [
+"55aa7557-5dec-482f-b761-06e4a9540751"
+]
+},
+"spec": "-"
+},
+{
+"check": "TA1-footer=sum-of-rows(open clock present)-WO",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"rows": 1393.62,
+"footer": 14.04,
+"n": 1
+},
+"spec": "SV-3239 / SV-10698"
+},
+{
+"check": "TA4-row-date-in-range",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"row": [
+"Grace Smith",
+"Aug 31 2026",
+"12:25 PM",
+"S3-17548"
+]
+},
+"spec": "SV-2030 (Fabian 2024-02-21: only that day's records)"
+},
+{
+"check": "TA7-row-hours<=24",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"row": [
+"Grace Smith",
+"Aug 31 2026",
+"12:25 PM",
+"S3-17548"
+],
+"hours": 1393.62,
+"open": true
+},
+"spec": "SV-2662"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "today",
+"result": "INFO",
+"detail": {
+"n": 1,
+"ex": [
+"55aa7557-5dec-482f-b761-06e4a9540751"
+]
+},
+"spec": "-"
+},
+{
+"check": "TA8b-listed-not-in-raw-INFO",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "yesterday",
+"result": "INFO",
+"detail": {
+"n": 0,
+"ex": []
+},
+"spec": "-"
+}
+]
+}

@@ -1,0 +1,37 @@
+TITLE: Notes Report – Only the First 100 Notes Are Shown; the Rest of the Date Range Cannot Be Seen
+TYPE: Story Defect · PARENT: (no owning story found — QA lead to choose) · PRIORITY: Medium
+STATUS: HELD — NOT FILED. Waiting for the PO's answer to RQ-4. File unchanged if the answer is "every note in the range must be reachable".
+REPRODUCED: on staging build v26.43.2-f8698cb, 28 Oct 2026, through the screen and at all four locations.
+
+h2. Description
+
+*The Notes Report never shows more than 100 notes. With "Date Range: All" it stops at 100 although the shop has 2,545 notes; with "Last Week" it shows 100 of 255.* Scrolling to the bottom loads nothing more and there is no "load more" or page control, so the older notes in the range cannot be seen. "Filter by Author" (100 of 1,105) and "Filter by Mention" (100 of 110) are cut the same way. With "Oldest First" and "All", only 82 are shown.
+
+*What is NOT affected:* every note that IS shown belongs to the chosen range and filter; ranges with fewer than 100 notes ("Last Month": 33) are complete; the Reminders Report is complete today (it has fewer than 100 reminders).
+
+h2. Steps to Reproduce
+
+# Sign in to staging as an Admin. In the top bar, choose *Staging Heavy Duty - 9919*.
+# Open *Reports*. Under *Communications* click *Notes Report*.
+# Click *Date Range* and choose *All*.
+# Scroll to the very bottom of the list and count the notes.
+#* There are 100 notes and the list ends.
+# Click *Date Range* and choose *Last Month*. Scroll to the bottom.
+#* There are 33 notes — this range has fewer than 100, so it is complete. Any range with more than 100 notes (for example *Last Week* on 28 Oct 2026: 255 notes) stops at 100.
+
+*Actual Result:* the list ends at 100 notes.
+
+*Expected Result:* every note in the chosen range can be seen (2,545 for All; 255 for Last Week on 28 Oct 2026).
+
+h2. Screenshots
+
+!NOTES1-1-notes-report-all-ends-at-100.png|width=1000!
+
+h2. Environment
+
+* *Build:* {{v26.43.2-f8698cb}}, staging, 28 Oct 2026 20:21 UTC · *Location:* Staging Heavy Duty - 9919 (same at every location) · *User:* Admin
+
+h2. Technical details for developers
+
+* The page sends one {{GET /api/notes?filters…&pagination[sortBy]=created_at&pagination[descending]=true}} with no page number; the answer has {{rowsPerPage: 100, hasMore: true}}. The page has no next-page fetch (the inbox query has one).
+* Counts: All 100/2,545 (newest) and 82/2,545 (oldest — unreadable rows are dropped after paging); Last Week 100/255; This Month 100/326; Author 100/1,105; Mention 100/110.

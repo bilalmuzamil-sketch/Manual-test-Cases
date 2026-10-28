@@ -1,0 +1,74 @@
+[
+{
+"report": "Sales By Customer",
+"location": "All locations",
+"range": "last_12_months (Heavy Duty time zone)",
+"check": "All locations = the same rows as each location added together (every money column and the count)",
+"result": "PASS",
+"detail": "736 rows vs 736; differing []",
+"source": "SBC S4-R6 / SBR S21-R3,R4"
+},
+{
+"report": "Sales By Customer",
+"location": "All locations",
+"range": "last_12_months (Heavy Duty time zone)",
+"check": "Location column reads \"Multiple\" exactly when the row spans more than one location, else the location name",
+"result": "PASS",
+"detail": "[]",
+"source": "SBC S4-R12a / SBR S21-R8"
+},
+{
+"report": "Sales By Customer",
+"location": "All locations",
+"range": "last_12_months (Heavy Duty time zone)",
+"check": "All-locations Totals = sum of the rows",
+"result": "PASS",
+"detail": "",
+"source": "SBC S18-R6 / SBR S10-R5"
+},
+{
+"report": "Sales By Representative",
+"location": "All locations",
+"range": "last_12_months (Heavy Duty time zone)",
+"check": "All locations = the same rows as each location added together (every money column and the count)",
+"result": "PASS",
+"detail": "18 rows vs 18; differing []",
+"source": "SBC S4-R6 / SBR S21-R3,R4"
+},
+{
+"report": "Sales By Representative",
+"location": "All locations",
+"range": "last_12_months (Heavy Duty time zone)",
+"check": "Location column reads \"Multiple\" exactly when the row spans more than one location, else the location name",
+"result": "PASS",
+"detail": "[]",
+"source": "SBC S4-R12a / SBR S21-R8"
+},
+{
+"report": "Sales By Representative",
+"location": "All locations",
+"range": "last_12_months (Heavy Duty time zone)",
+"check": "All-locations Totals = sum of the rows",
+"result": "PASS",
+"detail": "",
+"source": "SBC S18-R6 / SBR S10-R5"
+},
+{
+"report": "Sales By Customer",
+"location": "All locations",
+"range": "last_12_months (Heavy Duty time zone)",
+"check": "Customer filter with one customer shows only that customer, same figures, Totals = that customer (425 customers)",
+"result": "PASS",
+"detail": "[]",
+"source": "S18-R5, S18-R6, S18-R11"
+},
+{
+"report": "Sales By Customer",
+"location": "All locations",
+"range": "last_12_months (Heavy Duty time zone)",
+"check": "Customer filter with two customers shows exactly those two; Totals = their sum",
+"result": "PASS",
+"detail": "['70ccb9ae-a766-4572-a083-3fcf2a718a15', '6a7b6afc-084d-4584-aacb-773bcd71cbcd']",
+"source": "S18-R6"
+}
+]

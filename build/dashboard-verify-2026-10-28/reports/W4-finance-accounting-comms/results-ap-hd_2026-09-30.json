@@ -1,0 +1,771 @@
+{
+ "snapshot": "hd_2026-09-30",
+ "asOf_local": "2026-09-30",
+ "tz": "Asia/Karachi",
+ "counts": {
+  "summary_vendors": 452,
+  "detail_rows": 14093,
+  "unpaid_vendors": 452
+ },
+ "checks": [
+  {
+   "check": "PS1",
+   "desc": "A/P Summary Totals row current = sum of vendor rows",
+   "result": "PASS",
+   "observed": 215063.26,
+   "expected": 215063.26,
+   "ref": "AP PRD Summary \"Totals Row\""
+  },
+  {
+   "check": "PS1",
+   "desc": "A/P Summary Totals row days1to30 = sum of vendor rows",
+   "result": "PASS",
+   "observed": 307129.69,
+   "expected": 307129.69,
+   "ref": "AP PRD Summary \"Totals Row\""
+  },
+  {
+   "check": "PS1",
+   "desc": "A/P Summary Totals row days31to60 = sum of vendor rows",
+   "result": "PASS",
+   "observed": 340157.43,
+   "expected": 340157.43,
+   "ref": "AP PRD Summary \"Totals Row\""
+  },
+  {
+   "check": "PS1",
+   "desc": "A/P Summary Totals row days61to90 = sum of vendor rows",
+   "result": "PASS",
+   "observed": 212539.95,
+   "expected": 212539.95,
+   "ref": "AP PRD Summary \"Totals Row\""
+  },
+  {
+   "check": "PS1",
+   "desc": "A/P Summary Totals row days91Plus = sum of vendor rows",
+   "result": "PASS",
+   "observed": 3709262.86,
+   "expected": 3709262.86,
+   "ref": "AP PRD Summary \"Totals Row\""
+  },
+  {
+   "check": "PS1",
+   "desc": "A/P Summary Totals row total = sum of vendor rows",
+   "result": "PASS",
+   "observed": 4784153.19,
+   "expected": 4784153.19,
+   "ref": "AP PRD Summary \"Totals Row\""
+  },
+  {
+   "check": "PS2",
+   "desc": "Every A/P Summary row Total = sum of its buckets",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "AP PRD Summary \"Total column is the sum of all aging buckets\""
+  },
+  {
+   "check": "PS3",
+   "desc": "No vendor repeated on A/P Summary",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "AP PRD Summary \"Each row represents a vendor\""
+  },
+  {
+   "check": "PD1",
+   "desc": "A/P Detail section current Amount total = sum of rows",
+   "result": "PASS",
+   "observed": 215179.1,
+   "expected": 215179.1,
+   "ref": "AP PRD Detail \u00a77 Per-Section Totals"
+  },
+  {
+   "check": "PD2",
+   "desc": "A/P Detail section current Open Balance total = sum of rows",
+   "result": "PASS",
+   "observed": 215063.26,
+   "expected": 215063.26,
+   "ref": "AP PRD Detail \u00a77"
+  },
+  {
+   "check": "PD1",
+   "desc": "A/P Detail section days1to30 Amount total = sum of rows",
+   "result": "PASS",
+   "observed": 307129.69,
+   "expected": 307129.69,
+   "ref": "AP PRD Detail \u00a77 Per-Section Totals"
+  },
+  {
+   "check": "PD2",
+   "desc": "A/P Detail section days1to30 Open Balance total = sum of rows",
+   "result": "PASS",
+   "observed": 307129.69,
+   "expected": 307129.69,
+   "ref": "AP PRD Detail \u00a77"
+  },
+  {
+   "check": "PD1",
+   "desc": "A/P Detail section days31to60 Amount total = sum of rows",
+   "result": "PASS",
+   "observed": 340157.43,
+   "expected": 340157.43,
+   "ref": "AP PRD Detail \u00a77 Per-Section Totals"
+  },
+  {
+   "check": "PD2",
+   "desc": "A/P Detail section days31to60 Open Balance total = sum of rows",
+   "result": "PASS",
+   "observed": 340157.43,
+   "expected": 340157.43,
+   "ref": "AP PRD Detail \u00a77"
+  },
+  {
+   "check": "PD1",
+   "desc": "A/P Detail section days61to90 Amount total = sum of rows",
+   "result": "PASS",
+   "observed": 212539.95,
+   "expected": 212539.95,
+   "ref": "AP PRD Detail \u00a77 Per-Section Totals"
+  },
+  {
+   "check": "PD2",
+   "desc": "A/P Detail section days61to90 Open Balance total = sum of rows",
+   "result": "PASS",
+   "observed": 212539.95,
+   "expected": 212539.95,
+   "ref": "AP PRD Detail \u00a77"
+  },
+  {
+   "check": "PD1",
+   "desc": "A/P Detail section days91Plus Amount total = sum of rows",
+   "result": "PASS",
+   "observed": 3709262.86,
+   "expected": 3709262.86,
+   "ref": "AP PRD Detail \u00a77 Per-Section Totals"
+  },
+  {
+   "check": "PD2",
+   "desc": "A/P Detail section days91Plus Open Balance total = sum of rows",
+   "result": "PASS",
+   "observed": 3709262.86,
+   "expected": 3709262.86,
+   "ref": "AP PRD Detail \u00a77"
+  },
+  {
+   "check": "PD3",
+   "desc": "A/P Detail grand Amount = sum of sections",
+   "result": "PASS",
+   "observed": 4784269.03,
+   "expected": 4784269.03,
+   "ref": "AP PRD Detail \u00a77 Grand Totals"
+  },
+  {
+   "check": "PD4",
+   "desc": "A/P Detail grand Open Balance = sum of sections",
+   "result": "PASS",
+   "observed": 4784153.19,
+   "expected": 4784153.19,
+   "ref": "AP PRD Detail \u00a77"
+  },
+  {
+   "check": "PD5",
+   "desc": "Every A/P Detail row sits in the section its days give",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0,
+   "ref": "AP PRD Detail \u00a76"
+  },
+  {
+   "check": "PD6a",
+   "desc": "A/P Detail Past Due = Selected Date \u2212 Due Date for not-yet-due bills (negative number)",
+   "result": "FAIL",
+   "observed": 985,
+   "expected": 0,
+   "ref": "AP PRD Detail \u00a75 Past Due + \u00a76 \"Days past due = Selected Date \u2013 Invoice Due Date\""
+  },
+  {
+   "check": "PD6b",
+   "desc": "A/P Detail Past Due = Selected Date \u2212 Due Date (bills due today or earlier) / \u2212 creation date (credits)",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0,
+   "ref": "AP PRD Detail \u00a76"
+  },
+  {
+   "check": "PD7",
+   "desc": "No vendor credit in A/P Detail Current",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "AP PRD Detail \u00a76 \"Vendor credits must never appear in Current\""
+  },
+  {
+   "check": "PD8",
+   "desc": "A/P Detail credit rows: Due Date = creation date",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "AP PRD Detail \u00a75 Due Date"
+  },
+  {
+   "check": "PD9",
+   "desc": "A/P Detail bill rows: 0 < Open Balance <= Amount",
+   "result": "PASS",
+   "observed": {
+    "n": 0,
+    "sample": []
+   },
+   "expected": 0,
+   "ref": "AP PRD Detail \u00a75 Open Balance \"Remaining unpaid\""
+  },
+  {
+   "check": "PD10",
+   "desc": "Every A/P Detail row names its location",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "AP PRD Detail \u00a75 Location Name"
+  },
+  {
+   "check": "PD11",
+   "desc": "No A/P Detail row listed twice",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "AP PRD Detail \u00a73"
+  },
+  {
+   "check": "PS4",
+   "desc": "Every A/P Summary vendor has at least one open document in A/P Detail (a $0 row = items that net to zero)",
+   "result": "PASS",
+   "observed": {
+    "zero_rows": 3,
+    "without_open_docs": []
+   },
+   "expected": 0,
+   "ref": "AP PRD Summary \"Only vendors with at least one open transaction should appear\""
+  },
+  {
+   "check": "PX1",
+   "desc": "A/P Summary per bucket = that vendor's A/P Detail Open Balances in the section",
+   "result": "PASS",
+   "observed": 0,
+   "expected": 0,
+   "ref": "AP PRD Summary/Detail same aging rules"
+  },
+  {
+   "check": "PX2",
+   "desc": "A/P Summary Totals current = A/P Detail section total",
+   "result": "PASS",
+   "observed": 215063.26,
+   "expected": 215063.26,
+   "ref": "same population"
+  },
+  {
+   "check": "PX2",
+   "desc": "A/P Summary Totals days1to30 = A/P Detail section total",
+   "result": "PASS",
+   "observed": 307129.69,
+   "expected": 307129.69,
+   "ref": "same population"
+  },
+  {
+   "check": "PX2",
+   "desc": "A/P Summary Totals days31to60 = A/P Detail section total",
+   "result": "PASS",
+   "observed": 340157.43,
+   "expected": 340157.43,
+   "ref": "same population"
+  },
+  {
+   "check": "PX2",
+   "desc": "A/P Summary Totals days61to90 = A/P Detail section total",
+   "result": "PASS",
+   "observed": 212539.95,
+   "expected": 212539.95,
+   "ref": "same population"
+  },
+  {
+   "check": "PX2",
+   "desc": "A/P Summary Totals days91Plus = A/P Detail section total",
+   "result": "PASS",
+   "observed": 3709262.86,
+   "expected": 3709262.86,
+   "ref": "same population"
+  },
+  {
+   "check": "PU1",
+   "desc": "A/P Unpaid Invoices per-vendor totals = sum of rows",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "AP PRD Unpaid \u00a77 Per-Vendor Totals"
+  },
+  {
+   "check": "PU2",
+   "desc": "A/P Unpaid Invoices Grand Total Amount = sum of vendors",
+   "result": "PASS",
+   "observed": 4784269.03,
+   "expected": 4784269.03,
+   "ref": "AP PRD Unpaid \u00a77 Grand Totals"
+  },
+  {
+   "check": "PU3",
+   "desc": "A/P Unpaid Invoices Grand Total Open Balance = sum of vendors",
+   "result": "PASS",
+   "observed": 4784153.19,
+   "expected": 4784153.19,
+   "ref": "AP PRD Unpaid \u00a77"
+  },
+  {
+   "check": "PU4",
+   "desc": "A/P Unpaid Invoices Past Due = Selected Date \u2212 Due Date, negative values shown for bills not yet due",
+   "result": "FAIL",
+   "observed": {
+    "n": 985,
+    "sample": [
+     {
+      "no": "ZZ9807-1",
+      "shown": -9,
+      "expected": -10
+     },
+     {
+      "no": "ZZ9807-2",
+      "shown": -9,
+      "expected": -10
+     },
+     {
+      "no": "rererer",
+      "shown": -9,
+      "expected": -10
+     },
+     {
+      "no": "646556",
+      "shown": -10,
+      "expected": -11
+     },
+     {
+      "no": "254254",
+      "shown": -10,
+      "expected": -11
+     },
+     {
+      "no": "263",
+      "shown": -10,
+      "expected": -11
+     }
+    ]
+   },
+   "expected": 0,
+   "ref": "AP PRD Unpaid \u00a76 \"both invoices past due with negative or positive value will be shown\""
+  },
+  {
+   "check": "PU5",
+   "desc": "A/P Unpaid Invoices credit rows leave Due Date and Past Due empty",
+   "result": "PASS",
+   "observed": [],
+   "expected": [],
+   "ref": "AP PRD Unpaid \u00a75"
+  },
+  {
+   "check": "PX3",
+   "desc": "A/P Unpaid Invoices holds exactly the same documents as A/P Detail",
+   "result": "PASS",
+   "observed": {
+    "only_unpaid": 0,
+    "only_detail": 0
+   },
+   "expected": 0,
+   "ref": "both list every open bill and unapplied credit as of the date"
+  },
+  {
+   "check": "PX4",
+   "desc": "A/P Unpaid Invoices Grand Open Balance = A/P Detail grand Open Balance",
+   "result": "PASS",
+   "observed": 4784153.19,
+   "expected": 4784153.19,
+   "ref": "same population"
+  },
+  {
+   "check": "PX5",
+   "desc": "Same vendors on A/P Summary and A/P Unpaid Invoices",
+   "result": "PASS",
+   "observed": {
+    "only_summary": 0,
+    "only_unpaid": 0
+   },
+   "expected": 0,
+   "ref": "both: vendors with at least one open transaction"
+  }
+ ],
+ "misbucketed": [],
+ "detail_pastdue_wrong_sample": [
+  {
+   "no": "E2E-INV-1788259183417",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788267755427",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788260907422",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788260916081",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788261578444",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788269907724",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788267744777",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788267057031",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788275929625",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788265998572",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788275939657",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788271353235",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788254799279",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788259184546",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788267037759",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788276875471",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788267047047",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788269918539",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-Pij11ur",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788254814357",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788261579382",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-Pikelqi",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788271344459",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-Pitx4hs",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788276895753",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788269897506",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788254768600",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-INV-1788267046092",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-Pio23ya",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  },
+  {
+   "no": "E2E-Pioh24c",
+   "type": "invoice",
+   "shown": 0,
+   "expected": -1,
+   "bucket": "current"
+  }
+ ],
+ "detail_pastdue_wrong_nonneg": [],
+ "detail_pastdue_wrong_n": 985,
+ "unpaid_pastdue_wrong_sample": [
+  {
+   "no": "ZZ9807-1",
+   "shown": -9,
+   "expected": -10
+  },
+  {
+   "no": "ZZ9807-2",
+   "shown": -9,
+   "expected": -10
+  },
+  {
+   "no": "rererer",
+   "shown": -9,
+   "expected": -10
+  },
+  {
+   "no": "646556",
+   "shown": -10,
+   "expected": -11
+  },
+  {
+   "no": "254254",
+   "shown": -10,
+   "expected": -11
+  },
+  {
+   "no": "263",
+   "shown": -10,
+   "expected": -11
+  },
+  {
+   "no": "2313",
+   "shown": -10,
+   "expected": -11
+  },
+  {
+   "no": "12111",
+   "shown": -13,
+   "expected": -14
+  },
+  {
+   "no": "213213123",
+   "shown": -16,
+   "expected": -17
+  },
+  {
+   "no": "23423423",
+   "shown": -16,
+   "expected": -17
+  },
+  {
+   "no": "1231231",
+   "shown": -16,
+   "expected": -17
+  },
+  {
+   "no": "123123133333",
+   "shown": -16,
+   "expected": -17
+  },
+  {
+   "no": "INV-RA-001",
+   "shown": -17,
+   "expected": -18
+  },
+  {
+   "no": "INV-RA-002",
+   "shown": -17,
+   "expected": -18
+  },
+  {
+   "no": "65",
+   "shown": -21,
+   "expected": -22
+  },
+  {
+   "no": "31d1",
+   "shown": -22,
+   "expected": -23
+  },
+  {
+   "no": "5363",
+   "shown": -22,
+   "expected": -23
+  },
+  {
+   "no": "131d1",
+   "shown": -23,
+   "expected": -24
+  },
+  {
+   "no": "c232",
+   "shown": -27,
+   "expected": -28
+  },
+  {
+   "no": "456456456",
+   "shown": -27,
+   "expected": -28
+  },
+  {
+   "no": "SV10190-R3",
+   "shown": -29,
+   "expected": -30
+  },
+  {
+   "no": "SV10190-Y3",
+   "shown": -29,
+   "expected": -30
+  },
+  {
+   "no": "SV10190-CLK",
+   "shown": -29,
+   "expected": -30
+  },
+  {
+   "no": "SV10190-R1",
+   "shown": -29,
+   "expected": -30
+  },
+  {
+   "no": "SV10190-Y2",
+   "shown": -29,
+   "expected": -30
+  },
+  {
+   "no": "SV10190-R4",
+   "shown": -29,
+   "expected": -30
+  },
+  {
+   "no": "SV10190-R5",
+   "shown": -29,
+   "expected": -30
+  },
+  {
+   "no": "SV10190-Y4",
+   "shown": -29,
+   "expected": -30
+  },
+  {
+   "no": "SV10190-Y1",
+   "shown": -29,
+   "expected": -30
+  },
+  {
+   "no": "SV10190-R2",
+   "shown": -29,
+   "expected": -30
+  }
+ ],
+ "summary_vs_detail": [],
+ "bad_invoice_balance": []
+}

@@ -1,0 +1,1694 @@
+[
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "PASS",
+"detail": {
+"diff": 0,
+"inv": 0,
+"clocked": 0
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "PASS",
+"detail": {
+"eff": null,
+"expected": null
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"Sales": 0,
+"Sales_rows": 0,
+"invoices": 1
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"SE": 0,
+"TU": 4.14
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "yesterday",
+"result": "PASS",
+"detail": {
+"diff": -18.26,
+"inv": 0,
+"clocked": 18.26
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "yesterday",
+"result": "PASS",
+"detail": {
+"eff": 0,
+"expected": 0.0
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "yesterday",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"Sales": 0,
+"Sales_rows": 0,
+"invoices": 1
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "yesterday",
+"result": "FAIL",
+"detail": {
+"SE": 18.26,
+"TU": 90.26
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_week",
+"result": "PASS",
+"detail": {
+"diff": -39.3,
+"inv": 0,
+"clocked": 39.3
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_week",
+"result": "PASS",
+"detail": {
+"eff": 0,
+"expected": 0.0
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_week",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"Sales": 0,
+"Sales_rows": 0,
+"invoices": 3
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_week",
+"result": "FAIL",
+"detail": {
+"SE": 39.3,
+"TU": 331.45
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_week",
+"result": "PASS",
+"detail": {
+"diff": 68.85,
+"inv": 106.62,
+"clocked": 37.77
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_week",
+"result": "PASS",
+"detail": {
+"eff": 282.29,
+"expected": 282.29
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_week",
+"result": "FAIL",
+"detail": {
+"SE": 106.62,
+"Sales": 106.64,
+"Sales_rows": 106.64,
+"invoices": 105
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_week",
+"result": "FAIL",
+"detail": {
+"SE": 37.77,
+"TU": 541.77
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "PASS",
+"detail": {
+"diff": 142.1,
+"inv": 270.37,
+"clocked": 128.27
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "PASS",
+"detail": {
+"eff": 210.78,
+"expected": 210.78
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"SE": 270.37,
+"Sales": 270.39,
+"Sales_rows": 270.39,
+"invoices": 316
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"SE": 128.27,
+"TU": 2148.5
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"result": "PASS",
+"detail": {
+"diff": 718.17,
+"inv": 1010.13,
+"clocked": 291.96
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"result": "PASS",
+"detail": {
+"eff": 345.98,
+"expected": 345.98
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"result": "PASS",
+"detail": {
+"SE": 1010.13,
+"Sales": 1010.14,
+"Sales_rows": 1010.14,
+"invoices": 744
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_month",
+"result": "FAIL",
+"detail": {
+"SE": 291.96,
+"TU": 2451.87
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_0915_1014",
+"result": "PASS",
+"detail": {
+"diff": 239.18,
+"inv": 414.88,
+"clocked": 175.7
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_0915_1014",
+"result": "PASS",
+"detail": {
+"eff": 236.13,
+"expected": 236.13
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_0915_1014",
+"result": "PASS",
+"detail": {
+"SE": 414.88,
+"Sales": 414.89,
+"Sales_rows": 414.89,
+"invoices": 316
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "custom_0915_1014",
+"result": "FAIL",
+"detail": {
+"SE": 175.7,
+"TU": 2335.63
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "PASS",
+"detail": {
+"diff": -323.58,
+"inv": 14670.45,
+"clocked": 14994.03
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "PASS",
+"detail": {
+"eff": 97.84,
+"expected": 97.84
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"SE": 14670.45,
+"Sales": 14670.48,
+"Sales_rows": 14670.48,
+"invoices": 2359
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"SE": 14994.03,
+"TU": 19949.23
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_year",
+"result": "PASS",
+"detail": {
+"diff": -3430.29,
+"inv": 19564.32,
+"clocked": 22994.61
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_year",
+"result": "PASS",
+"detail": {
+"eff": 85.08,
+"expected": 85.08
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_year",
+"result": "PASS",
+"detail": {
+"SE": 19564.32,
+"Sales": 19564.32,
+"Sales_rows": 19564.32,
+"invoices": 1770
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "b3c8c820-f815-4cf1-8938-10956c5ee71a",
+"range": "last_year",
+"result": "FAIL",
+"detail": {
+"SE": 22994.61,
+"TU": 24982.17
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "today",
+"result": "PASS",
+"detail": {
+"diff": 0,
+"inv": 0,
+"clocked": 0
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "today",
+"result": "PASS",
+"detail": {
+"eff": null,
+"expected": null
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "today",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"Sales": 0,
+"Sales_rows": 0,
+"invoices": 0
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"SE": 0,
+"TU": 14.39
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "yesterday",
+"result": "PASS",
+"detail": {
+"diff": 0,
+"inv": 0,
+"clocked": 0
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "yesterday",
+"result": "PASS",
+"detail": {
+"eff": null,
+"expected": null
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "yesterday",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"Sales": 0,
+"Sales_rows": 0,
+"invoices": 0
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "yesterday",
+"result": "FAIL",
+"detail": {
+"SE": 0,
+"TU": 24.0
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_week",
+"result": "PASS",
+"detail": {
+"diff": 0,
+"inv": 0,
+"clocked": 0
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_week",
+"result": "PASS",
+"detail": {
+"eff": null,
+"expected": null
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_week",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"Sales": 0,
+"Sales_rows": 0,
+"invoices": 0
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_week",
+"result": "FAIL",
+"detail": {
+"SE": 0,
+"TU": 86.39
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_week",
+"result": "PASS",
+"detail": {
+"diff": 2.99,
+"inv": 3,
+"clocked": 0.01
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_week",
+"result": "PASS",
+"detail": {
+"eff": 30000,
+"expected": 30000.0
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_week",
+"result": "PASS",
+"detail": {
+"SE": 3,
+"Sales": 3,
+"Sales_rows": 3,
+"invoices": 2
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_week",
+"result": "FAIL",
+"detail": {
+"SE": 0.01,
+"TU": 168.01
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_month",
+"result": "PASS",
+"detail": {
+"diff": 89.54,
+"inv": 96,
+"clocked": 6.46
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_month",
+"result": "PASS",
+"detail": {
+"eff": 1486.07,
+"expected": 1486.07
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_month",
+"result": "PASS",
+"detail": {
+"SE": 96,
+"Sales": 96,
+"Sales_rows": 96.0,
+"invoices": 82
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"SE": 6.46,
+"TU": 668.85
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_month",
+"result": "PASS",
+"detail": {
+"diff": 288.97,
+"inv": 342,
+"clocked": 53.03
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_month",
+"result": "PASS",
+"detail": {
+"eff": 644.92,
+"expected": 644.92
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_month",
+"result": "PASS",
+"detail": {
+"SE": 342,
+"Sales": 342,
+"Sales_rows": 342.0,
+"invoices": 299
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_month",
+"result": "FAIL",
+"detail": {
+"SE": 53.03,
+"TU": 773.03
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_0915_1014",
+"result": "PASS",
+"detail": {
+"diff": 62.01,
+"inv": 100,
+"clocked": 37.99
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_0915_1014",
+"result": "PASS",
+"detail": {
+"eff": 263.23,
+"expected": 263.23
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_0915_1014",
+"result": "PASS",
+"detail": {
+"SE": 100,
+"Sales": 100,
+"Sales_rows": 100.0,
+"invoices": 84
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "custom_0915_1014",
+"result": "FAIL",
+"detail": {
+"SE": 37.99,
+"TU": 757.98
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "PASS",
+"detail": {
+"diff": 831.96,
+"inv": 7110.38,
+"clocked": 6278.42
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "PASS",
+"detail": {
+"eff": 113.25,
+"expected": 113.25
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "PASS",
+"detail": {
+"SE": 7110.38,
+"Sales": 7110.38,
+"Sales_rows": 7110.38,
+"invoices": 2044
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"SE": 6278.42,
+"TU": 7672.99
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_year",
+"result": "PASS",
+"detail": {
+"diff": -194,
+"inv": 10568.85,
+"clocked": 10762.85
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_year",
+"result": "PASS",
+"detail": {
+"eff": 98.2,
+"expected": 98.2
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_year",
+"result": "PASS",
+"detail": {
+"SE": 10568.85,
+"Sales": 10568.85,
+"Sales_rows": 10568.85,
+"invoices": 2006
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "f8a8b802-7780-4b16-bf10-343caeb616b2",
+"range": "last_year",
+"result": "FAIL",
+"detail": {
+"SE": 10762.85,
+"TU": 8709.03
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "today",
+"result": "PASS",
+"detail": {
+"diff": 0,
+"inv": 0,
+"clocked": 0
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "today",
+"result": "PASS",
+"detail": {
+"eff": null,
+"expected": null
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "today",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"Sales": 0,
+"Sales_rows": 0,
+"invoices": 0
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "today",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"TU": 0.0
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "yesterday",
+"result": "PASS",
+"detail": {
+"diff": 0,
+"inv": 0,
+"clocked": 0
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "yesterday",
+"result": "PASS",
+"detail": {
+"eff": null,
+"expected": null
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "yesterday",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"Sales": 0,
+"Sales_rows": 0,
+"invoices": 0
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "yesterday",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"TU": 0.0
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "this_week",
+"result": "PASS",
+"detail": {
+"diff": 0,
+"inv": 0,
+"clocked": 0
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "this_week",
+"result": "PASS",
+"detail": {
+"eff": null,
+"expected": null
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "this_week",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"Sales": 0,
+"Sales_rows": 0,
+"invoices": 0
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "this_week",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"TU": 0.0
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "last_week",
+"result": "PASS",
+"detail": {
+"diff": 0,
+"inv": 0,
+"clocked": 0
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "last_week",
+"result": "PASS",
+"detail": {
+"eff": null,
+"expected": null
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "last_week",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"Sales": 0,
+"Sales_rows": 0,
+"invoices": 0
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "last_week",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"TU": 0.0
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "this_month",
+"result": "PASS",
+"detail": {
+"diff": 1,
+"inv": 1,
+"clocked": 0
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "this_month",
+"result": "PASS",
+"detail": {
+"eff": null,
+"expected": null
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "this_month",
+"result": "PASS",
+"detail": {
+"SE": 1,
+"Sales": 1,
+"Sales_rows": 1,
+"invoices": 1
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "this_month",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"TU": 0.0
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "last_month",
+"result": "PASS",
+"detail": {
+"diff": 0.29,
+"inv": 4,
+"clocked": 3.71
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "last_month",
+"result": "PASS",
+"detail": {
+"eff": 107.82,
+"expected": 107.82
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "last_month",
+"result": "PASS",
+"detail": {
+"SE": 4,
+"Sales": 4,
+"Sales_rows": 4,
+"invoices": 9
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "last_month",
+"result": "PASS",
+"detail": {
+"SE": 3.71,
+"TU": 3.71
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "custom_0915_1014",
+"result": "PASS",
+"detail": {
+"diff": 2,
+"inv": 2,
+"clocked": 0
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "custom_0915_1014",
+"result": "PASS",
+"detail": {
+"eff": null,
+"expected": null
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "custom_0915_1014",
+"result": "PASS",
+"detail": {
+"SE": 2,
+"Sales": 2,
+"Sales_rows": 2,
+"invoices": 2
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "custom_0915_1014",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"TU": 0.0
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "this_year",
+"result": "PASS",
+"detail": {
+"diff": 1.29,
+"inv": 5,
+"clocked": 3.71
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "this_year",
+"result": "PASS",
+"detail": {
+"eff": 134.77,
+"expected": 134.77
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "this_year",
+"result": "PASS",
+"detail": {
+"SE": 5,
+"Sales": 5,
+"Sales_rows": 5,
+"invoices": 10
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "this_year",
+"result": "PASS",
+"detail": {
+"SE": 3.71,
+"TU": 3.71
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "last_year",
+"result": "PASS",
+"detail": {
+"diff": 0,
+"inv": 0,
+"clocked": 0
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "last_year",
+"result": "PASS",
+"detail": {
+"eff": null,
+"expected": null
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "last_year",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"Sales": 0,
+"Sales_rows": 0,
+"invoices": 0
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "25a0d576-b371-4b82-bef4-41ba977f31c2",
+"range": "last_year",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"TU": 0.0
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "today",
+"result": "PASS",
+"detail": {
+"diff": 6.94,
+"inv": 8,
+"clocked": 1.06
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "today",
+"result": "PASS",
+"detail": {
+"eff": 754.72,
+"expected": 754.72
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "today",
+"result": "FAIL",
+"detail": {
+"SE": 8,
+"Sales": 9,
+"Sales_rows": 9,
+"invoices": 8
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "today",
+"result": "PASS",
+"detail": {
+"SE": 1.06,
+"TU": 1.06
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "yesterday",
+"result": "PASS",
+"detail": {
+"diff": -3.5,
+"inv": 0,
+"clocked": 3.5
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "yesterday",
+"result": "PASS",
+"detail": {
+"eff": 0,
+"expected": 0.0
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "yesterday",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"Sales": 0,
+"Sales_rows": 0,
+"invoices": 0
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "yesterday",
+"result": "PASS",
+"detail": {
+"SE": 3.5,
+"TU": 3.5
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_week",
+"result": "PASS",
+"detail": {
+"diff": 3.44,
+"inv": 8,
+"clocked": 4.56
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_week",
+"result": "PASS",
+"detail": {
+"eff": 175.44,
+"expected": 175.44
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_week",
+"result": "FAIL",
+"detail": {
+"SE": 8,
+"Sales": 9,
+"Sales_rows": 9,
+"invoices": 8
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_week",
+"result": "PASS",
+"detail": {
+"SE": 4.56,
+"TU": 4.56
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "last_week",
+"result": "PASS",
+"detail": {
+"diff": 3,
+"inv": 3,
+"clocked": 0
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "last_week",
+"result": "PASS",
+"detail": {
+"eff": null,
+"expected": null
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "last_week",
+"result": "PASS",
+"detail": {
+"SE": 3,
+"Sales": 3,
+"Sales_rows": 3,
+"invoices": 1
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "last_week",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"TU": 0.0
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_month",
+"result": "PASS",
+"detail": {
+"diff": 10.44,
+"inv": 15,
+"clocked": 4.56
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_month",
+"result": "PASS",
+"detail": {
+"eff": 328.95,
+"expected": 328.95
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_month",
+"result": "FAIL",
+"detail": {
+"SE": 15,
+"Sales": 16,
+"Sales_rows": 16,
+"invoices": 12
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_month",
+"result": "PASS",
+"detail": {
+"SE": 4.56,
+"TU": 4.56
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "last_month",
+"result": "PASS",
+"detail": {
+"diff": 0,
+"inv": 0,
+"clocked": 0
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "last_month",
+"result": "PASS",
+"detail": {
+"eff": null,
+"expected": null
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "last_month",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"Sales": 0,
+"Sales_rows": 0,
+"invoices": 0
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "last_month",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"TU": 0.0
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "custom_0915_1014",
+"result": "PASS",
+"detail": {
+"diff": 3,
+"inv": 3,
+"clocked": 0
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "custom_0915_1014",
+"result": "PASS",
+"detail": {
+"eff": null,
+"expected": null
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "custom_0915_1014",
+"result": "PASS",
+"detail": {
+"SE": 3,
+"Sales": 3,
+"Sales_rows": 3,
+"invoices": 2
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "custom_0915_1014",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"TU": 0.0
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_year",
+"result": "PASS",
+"detail": {
+"diff": 10.44,
+"inv": 15,
+"clocked": 4.56
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_year",
+"result": "PASS",
+"detail": {
+"eff": 328.95,
+"expected": 328.95
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_year",
+"result": "FAIL",
+"detail": {
+"SE": 15,
+"Sales": 16,
+"Sales_rows": 16,
+"invoices": 12
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "this_year",
+"result": "PASS",
+"detail": {
+"SE": 4.56,
+"TU": 4.56
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+},
+{
+"check": "S1-difference=invoiced-clocked",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "last_year",
+"result": "PASS",
+"detail": {
+"diff": 0,
+"inv": 0,
+"clocked": 0
+},
+"spec": "SV-2116 spreadsheet (Difference)"
+},
+{
+"check": "S1-efficiency=invoiced/clocked*100",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "last_year",
+"result": "PASS",
+"detail": {
+"eff": null,
+"expected": null
+},
+"spec": "SV-2116 \"Efficiency = Hours invoiced divided by hours clocked * 100\""
+},
+{
+"check": "S2-invoiced=Sales-total-invoiced-hours",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "last_year",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"Sales": 0,
+"Sales_rows": 0,
+"invoices": 0
+},
+"spec": "SV-2881 \"These numbers should be the same\""
+},
+{
+"check": "S3-clocked=TU-total(billable)",
+"scope": "39522bc6-abca-4f67-bd12-2840043c2d68",
+"range": "last_year",
+"result": "PASS",
+"detail": {
+"SE": 0,
+"TU": 0.0
+},
+"spec": "SV-2116 \"total hours clocked ... (on all work orders, and department jobs)\"; billable only"
+}
+]
