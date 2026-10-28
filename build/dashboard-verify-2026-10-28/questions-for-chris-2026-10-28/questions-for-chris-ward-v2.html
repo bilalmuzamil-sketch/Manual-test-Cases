@@ -1,0 +1,239 @@
+<html><head><meta charset="utf-8"><title>Dashboard and Reports – questions for Chris Ward</title></head><body>
+<h1>Dashboard and Reports – questions for Chris Ward</h1>
+<p>Dear Sir,</p>
+<p>We have checked every figure on the Dashboard and on the reports against your pages and tickets. Below are the points where we would like your confirmation of the expected result. Each one decides what a tester marks as pass or fail. Could you please write your answer under each question? A short answer is perfect.</p>
+<p><b>Where we checked:</b> Staging (https://app.staging.shopview.com), build v26.43.2-f8698cb, on 28 October 2026, signed in as an Admin. Each question names the location and the report to open. We have not checked these on Production or on a QA branch.</p>
+<p><b>Pages:</b> Dashboard (version 53, 22 October), Work In Progress (version 28, 24 August), Technician Utilization (version 9, 13 August), Parts Velocity (version 12, 14 September), Inventory Value (13 August), Sales By Customer (version 22, 19 October), Sales By Representative (version 30, 21 October). The codes in brackets point to the line in your page.</p>
+<h1>Section 1: Dashboard</h1>
+<h2>1. Technician Efficiency: a line the customer declined</h2>
+<p><b>What the page says:</b> &quot;Invoiced technician hours&quot; is &quot;the technician time recorded on work order lines&quot; (section 4), and &quot;Invoiced hours&quot; is &quot;the labor time billed on work order lines&quot;. A voided invoice adds nothing to either (S3-E2).</p>
+<p><b>What we see on screen:</b> on work order S1-38198 only line 1 was billed; the customer declined line 2. The technician shows 2.00 Invoiced Tech Hrs and 133.33 %. The Billing Efficiency tile does not count the declined line.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location DVI Test, Dashboard, This week.</p>
+<p><b>Question:</b> should the technician time on a declined line count in Technician Efficiency? (a) Yes, as today. (b) No, only lines that were billed count.</p>
+<p><b>Answer:</b></p>
+<h2>2. Revenue: a discount on the work order</h2>
+<p><b>What the page says:</b> Revenue is the &quot;sum of invoice subtotals in the selected range, before any discount and before tax, minus credit memos&quot; (S3-R2).</p>
+<p><b>What we see on screen:</b> work order S1-38200 has $135.00 of labor and a $20.00 discount. The invoice prints Subtotal $115.00, and Revenue counts $115.00.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location DVI Test, Dashboard, This week.</p>
+<p><b>Question:</b> should Revenue count (a) $115.00, the invoice subtotal after the discount, as today, or (b) $135.00, the amount before the discount?</p>
+<p><b>Answer:</b></p>
+<h2>3. Revenue split when a share is negative</h2>
+<p><b>What we see on screen:</b> when credit memos or discounts are larger than one part of the sales, the line under Revenue reads, for example, &quot;Parts -28% · Labor 130% · Other -2%&quot;. The three add up to 100.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location DVI Test, Dashboard, This month (a $400.00 credit memo, CM1-4535, is in the range).</p>
+<p><b>Question:</b> is this how the split should read? If not, how should it read?</p>
+<p><b>Answer:</b></p>
+<h1>Section 2: Reports</h1>
+<h2>4. Work In Progress: Days Open</h2>
+<p><b>What the page says:</b> &quot;Days Open shows the whole number of days since the work order was created — elapsed time divided by 24 hours, floored … a same-day work order shows &#x27;0 days&#x27;&quot; (S4-R12).</p>
+<p><b>What we see on screen:</b> Days Open counts calendar dates. S2-38105, created on 28 October at 3:19 PM, shows &quot;1 days&quot; ten hours later.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, Work In Progress.</p>
+<p><b>Question:</b> should testers expect whole 24-hour periods, as on the page, or calendar dates, as on screen?</p>
+<p><b>Answer:</b></p>
+<h2>5. Work In Progress: how a negative amount is written</h2>
+<p><b>What the page says:</b> a negative value shows a leading minus before the &quot;$&quot;, for example &quot;-$1,234.56&quot; (S4-R14), and the Totals row uses the same formats (S6-R5).</p>
+<p><b>What we see on screen:</b> the Totals row shows a negative amount as &quot;(-$3.13)&quot;, with brackets and a minus sign.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, Work In Progress, Totals row.</p>
+<p><b>Question:</b> which should testers expect: &quot;-$3.13&quot; or &quot;(-$3.13)&quot;?</p>
+<p><b>Answer:</b></p>
+<h2>6. Work In Progress: a part marked &quot;received later&quot;</h2>
+<p><b>What the page says:</b> a received part counts as earned, and a part &quot;ordered but not yet received&quot; counts as remaining (S4-R18).</p>
+<p><b>What we see on screen:</b> a part request marked &quot;received later&quot; counts in Parts Remaining.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, Work In Progress.</p>
+<p><b>Question:</b> is Parts Remaining the right place for a part marked &quot;received later&quot;? If not, where should it count?</p>
+<p><b>Answer:</b></p>
+<h2>7. Work In Progress: an in-stock part not yet picked</h2>
+<p><b>What the page says:</b> Parts Remaining is parts &quot;ordered but not yet received&quot; (S4-R18).</p>
+<p><b>What we see on screen:</b> a part that is in stock but not yet picked for the job also counts in Parts Remaining.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, Work In Progress.</p>
+<p><b>Question:</b> is Parts Remaining the right place for such a part? If not, where should it count?</p>
+<p><b>Answer:</b></p>
+<h2>8. Work In Progress: an estimate with nothing approved</h2>
+<p><b>What the page says:</b> S4-E1 and S2-R4 describe an open estimate with nothing approved as &quot;$0.00 for every money column, including Total&quot;. S3-R5, S5-R8 and your ruling on SV-9027 (10 August) value the Estimates row at its unapproved lines.</p>
+<p><b>What we see on screen:</b> the Estimates row is valued at its unapproved lines, as in S3-R5 and SV-9027.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, Work In Progress, Estimates tab.</p>
+<p><b>Question:</b> can testers follow S3-R5 and SV-9027 for this case?</p>
+<p><b>Answer:</b></p>
+<h2>9. Technician Utilization: decimal places</h2>
+<p><b>What the page says:</b> &quot;Utilization % shows one decimal place followed by a percent sign, rounded round-half-up (e.g., 66.65% → 66.7%)&quot; (S2-R7).</p>
+<p><b>What the ticket says:</b> SV-9059 asked for two decimals.</p>
+<p><b>What we see on screen:</b> two decimals, for example 85.71%.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, locations Staging Heavy Duty - 9919 and DVI Test, Technician Utilization.</p>
+<p><b>Question:</b> should testers expect (a) one decimal or (b) two decimals?</p>
+<p><b>Answer:</b></p>
+<h2>10. Technician Utilization: a technician with only a few seconds clocked</h2>
+<p><b>What we see on screen:</b> a technician whose only clocks are a few seconds long is listed with 0.00 hours and Utilization &quot;—&quot;.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, Technician Utilization.</p>
+<p><b>Question:</b> should such a technician be listed, or left off the report?</p>
+<p><b>Answer:</b></p>
+<h2>11. Technician Utilization and Timesheet Activities: time on a deleted work order</h2>
+<p><b>What we see on screen:</b> time clocked on a work order that was later deleted still counts as WO Hours, and Timesheet Activities shows it with a blank Work Order. There are 5 such clocks this year.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, This year.</p>
+<p><b>Question:</b> should that time still count as WO Hours?</p>
+<p><b>Answer:</b></p>
+<h2>12. Shop Efficiency: a shift that is still running</h2>
+<p><b>What the ticket says:</b> your ruling on SV-11688 (22 October): a running shift under 24 hours counts on Technician Utilization and Timesheet Activities.</p>
+<p><b>What we see on screen:</b> Shop Efficiency leaves every running clock out of Total Clocked Hours.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, Shop Efficiency, Today.</p>
+<p><b>Question:</b> should Shop Efficiency count a running shift under 24 hours too?</p>
+<p><b>Answer:</b></p>
+<h2>13. Parts Velocity: how long &quot;Last 90 days&quot; is</h2>
+<p><b>What the ticket says:</b> SV-11514: &quot;The default range is Last 90 Days.&quot;</p>
+<p><b>What we see on screen:</b> on 28 October, Last 90 days runs from 30 July to 28 October, which is 91 days.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location DVI Test, Parts Velocity.</p>
+<p><b>Question:</b> should Last 90 days cover exactly 90 days, today and the 89 days before it?</p>
+<p><b>Answer:</b></p>
+<h2>14. Parts Velocity: which date a sale is counted on</h2>
+<p><b>What the page says:</b> sales are dated by the work order&#x27;s end date (Story 5, &quot;Work-order date&quot;).</p>
+<p><b>What we see on screen:</b> work orders have no end date (it is empty on paid work order S2-17193), and the report dates each sale by its invoice date.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, Parts Velocity.</p>
+<p><b>Question:</b> should testers expect sales to be dated by the invoice date?</p>
+<p><b>Answer:</b></p>
+<h2>15. Parts Velocity: a return to the vendor</h2>
+<p><b>What the page says:</b> Units Returned counts &quot;a work-order part return or a parts-sale credit&quot;.</p>
+<p><b>What we see on screen:</b> a return to the vendor made from Parts → Returns also counts. Returning 1 unit of ZZAUTOTEST-PV1-10282011 raised Units Returned from 0 to 1, and cancelling it put it back to 0.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location DVI Test, Parts Velocity, part ZZAUTOTEST-PV1-10282011.</p>
+<p><b>Question:</b> should a return to the vendor count in Units Returned?</p>
+<p><b>Answer:</b></p>
+<h2>16. Parts Velocity: the Location column with one location picked</h2>
+<p><b>What the page says:</b> S2-R12: the column is hidden &quot;when a single location is in scope&quot;. S3-R10 and the Key Decisions: &quot;shown by default … regardless of how many locations are currently selected&quot;.</p>
+<p><b>What we see on screen:</b> with one location picked the column is hidden. Inventory Value shows its Location column with one location picked.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location DVI Test, Parts Velocity, signed in as a user with several locations.</p>
+<p><b>Question:</b> when a user with several locations picks one, should the Location column be hidden?</p>
+<p><b>Answer:</b></p>
+<h2>17. Parts Velocity: the list of date options</h2>
+<p><b>What the page says:</b> S2-R2 lists Today and Yesterday, and not Last 12 months.</p>
+<p><b>What we see on screen:</b> This week, Last week, This month, Last month, This quarter, Last quarter, This year, Last year, Last 90 days, Last 12 months, Custom. This matches your answer of 5 August and SV-11514. Every option covers the right dates.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location DVI Test, Parts Velocity, date menu.</p>
+<p><b>Question:</b> is the list on screen the one testers should expect?</p>
+<p><b>Answer:</b></p>
+<h2>18. Parts Velocity: Last Sale for a sale with no stock movement</h2>
+<p><b>What the page says:</b> Last Sale is &quot;the part&#x27;s most recent sale&quot;. S3-N1 calls a billed sale without stock movement &quot;a drop-ship sale&quot;.</p>
+<p><b>What we see on screen:</b> N000000001069 was billed on S2-16621 on 30 July, and Last Sale reads 160 days, which is its sale before that.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, Parts Velocity, part N000000001069.</p>
+<p><b>Question:</b> should Last Sale include a billed sale that moved no stock?</p>
+<p><b>Answer:</b></p>
+<h2>19. Inventory Value: a cost above the highest price band</h2>
+<p><b>What the page says:</b> Unit Sell uses &quot;the shop&#x27;s pricing-matrix markup on cost for that part&#x27;s category&quot; (S3-R5).</p>
+<p><b>What we see on screen:</b> when the cost is above the highest band, the highest band&#x27;s markup is used, the same as on the parts list. Example: 2599273C92, cost $526.70, category HD-Filters with bands up to $500, Unit Sell $752.44.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Lethbridge - 4310, Inventory Value, part 2599273C92.</p>
+<p><b>Question:</b> is the highest band&#x27;s markup the one testers should expect?</p>
+<p><b>Answer:</b></p>
+<h2>20. Inventory Value: the words &quot;Total&quot; and &quot;Qty&quot;</h2>
+<p><b>What the page says:</b> the totals row has &quot;the literal label &#x27;Total&#x27;&quot; (S4-R1); the downloads say &quot;Totals&quot; (S10-R6). The column is called &quot;Qty on Hand&quot; (S3-R1).</p>
+<p><b>What we see on screen:</b> the totals row reads &quot;Totals&quot;, as on the other reports, and the column heading reads &quot;Qty&quot;.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location DVI Test, Inventory Value.</p>
+<p><b>Question:</b> (a) Should testers expect &quot;Total&quot; or &quot;Totals&quot; on the totals row? (b) &quot;Qty on Hand&quot; or &quot;Qty&quot; as the column heading?</p>
+<p><b>Answer:</b></p>
+<h2>21. Inventory Value: the message when nothing matches</h2>
+<p><b>What the page says:</b> the message is &quot;Empty bays, endless possibilities. Get Going!&quot;, &quot;the application&#x27;s standard reports no-data label&quot; (section 7).</p>
+<p><b>What we see on screen:</b> Inventory Value shows &quot;No record matches these filters&quot; with &quot;Try changing filters to widen your results.&quot; Work In Progress, Technician Utilization and the A/R and A/P reports show the same words.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location DVI Test, Inventory Value, search for a part number that does not exist.</p>
+<p><b>Question:</b> is &quot;No record matches these filters&quot; the message testers should expect on reports?</p>
+<p><b>Answer:</b></p>
+<h2>22. Sales By Customer: what Margin % is divided by</h2>
+<p><b>What the page says:</b> the Sales By Customer page: Margin % is &quot;the row&#x27;s Margin divided by its Subtotal, times 100&quot; (S7-R11). The Sales By Representative page (section 3): &quot;Sales By Customer computes Margin % from the same Margin base&quot;, which is the Subtotal minus Shop Supplies.</p>
+<p><b>What we see on screen:</b> the Subtotal minus Shop Supplies. Example: TestVT1, this month: Margin $21,960.81, Subtotal $28,569.41, Shop Supplies $2,050.98. The screen shows 82.81 %; Margin ÷ Subtotal would be 76.87 %.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, Sales By Customer, This month, customer TestVT1.</p>
+<p><b>Question:</b> should Margin % on Sales By Customer be divided by (a) the Subtotal, or (b) the Subtotal minus Shop Supplies, as today?</p>
+<p><b>Answer:</b></p>
+<h2>23. Sales By Customer and Sales By Representative: decimals and negative amounts</h2>
+<p><b>What the page says:</b> Labor Delta is &quot;rounded to one decimal&quot; on both pages (SBC S12-R2, SBR S9-R2), and Margin % on Sales By Customer is &quot;to one decimal&quot; (S7-R11). Your tickets SV-9199 and SV-9200 (12 August) keep &quot;the signed one-decimal format (+2.0 / -14.0 / 0.0)&quot;. SV-9068 and SV-9069 (10 August, &quot;SV standard is 2&quot;) asked for two decimals. The Sales By Representative page writes a negative amount as &quot;($1,234.56)&quot;.</p>
+<p><b>What we see on screen:</b> two decimals on both reports (+112.64, +1.00, 82.81 %), and a negative margin as &quot;(-$2.50)&quot;, with brackets and a minus sign.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, both reports, This month.</p>
+<p><b>Question:</b> (a) Should testers expect one decimal or two for Labor Delta and Margin %? (b) &quot;($2.50)&quot; or &quot;(-$2.50)&quot; for a negative amount?</p>
+<p><b>Answer:</b></p>
+<h2>24. Sales By Representative: a $0.00 invoice nobody paid</h2>
+<p><b>What the page says:</b> &quot;A zero-total invoice with no payment applied is unpaid and maps to Unpaid&quot; (section 3).</p>
+<p><b>What the ticket says:</b> SV-9217 (Done, 26 August) shows such an invoice as Paid.</p>
+<p><b>What we see on screen:</b> Paid.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, Sales By Representative, Last 12 months.</p>
+<p><b>Question:</b> should testers expect Unpaid or Paid for a $0.00 invoice with no payment?</p>
+<p><b>Answer:</b></p>
+<h2>25. Sales By Customer: the asset name</h2>
+<p><b>What the page says:</b> &quot;The asset label is the vehicle&#x27;s VIN&quot;, then the unit number, then the plate (S8-R7 to S8-R10).</p>
+<p><b>What the ticket says:</b> your ticket SV-9459 (Done, 10 September): &quot;Unit # - Year Make Model&quot;, with the VIN only when there is nothing else.</p>
+<p><b>What we see on screen:</b> the asset name follows SV-9459.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, Sales By Customer, any customer expanded.</p>
+<p><b>Question:</b> can testers follow SV-9459 for the asset name?</p>
+<p><b>Answer:</b></p>
+<h2>26. Sales By Customer and Sales By Representative: the list of date options</h2>
+<p><b>What the page says:</b> Sales By Customer offers nine options, &quot;Last 12 Months, This Year, Last Year, This Quarter, Last Quarter, This Month, Last Month, This Week, Last Week&quot;, with no Custom (S2-R2). Sales By Representative offers &quot;Today, Yesterday, This Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom&quot; (S2-R2).</p>
+<p><b>What we see on screen:</b> both reports show This week, Last week, This month, Last month, This quarter, Last quarter, This year, Last year, Last 12 months, Custom. Every option covers the right dates.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, any location, both reports, date menu.</p>
+<p><b>Question:</b> which list should testers expect on these two reports?</p>
+<p><b>Answer:</b></p>
+<h2>27. Sales By Customer and Sales By Representative: time clocked or parts credited after invoicing</h2>
+<p><b>What the page says:</b> Labor Delta is &quot;hours invoiced minus hours worked&quot;, and hours worked are &quot;the technician clocked (timesheet) hours recorded against that work order&quot;.</p>
+<p><b>What we see on screen:</b> the reports keep the figures from when the invoice was made. On about 370 of 8,000 invoices this differs from the work order&#x27;s Stats tab today, because time was clocked or parts were credited later. Example: S2-38022 shows Labor Delta +1.00; its Stats tab today shows 2.00 invoiced and 0.00 worked.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, both reports, This month, invoice S2-38022.</p>
+<p><b>Question:</b> should these reports keep the figures from when the invoice was made, as today, or show the figures as they are now?</p>
+<p><b>Answer:</b></p>
+<h2>28. Technician Efficiency: a clock shorter than 36 seconds</h2>
+<p><b>What the ticket says:</b> SV-5450: tech time is &quot;allocated proportionally&quot; and &quot;Each technician receives a proportional share&quot;, and the calculation &quot;must follow the existing behavior&quot;.</p>
+<p><b>What we see on screen:</b> when a technician&#x27;s clocks on a line add up to less than 0.01 hours, the line&#x27;s whole tech time is dropped. Example: S3-15255, &quot;Recommend Axle 3 right tires&quot;: 30 minutes of tech time, one technician clocked 12 seconds, and the report shows 0.00 instead of 0.50.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Lethbridge - 4310, Technician Efficiency, invoice S3-15255.</p>
+<p><b>Question:</b> should that technician still get the line&#x27;s tech time?</p>
+<p><b>Answer:</b></p>
+<h2>29. Sales Tax Collected: unpaid invoices</h2>
+<p><b>What the page says:</b> the draft page (Confluence 50200592): a report for &quot;all invoices, Paid, Partially Paid and Unpaid&quot;. The training page (15 January 2026) and SV-4233: &quot;Should not show any invoices that are &#x27;Invoiced&#x27;&quot;.</p>
+<p><b>What we see on screen:</b> only Paid and Partially Paid invoices are listed.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, Sales Tax Collected, This month.</p>
+<p><b>Question:</b> should unpaid invoices be listed on Sales Tax Collected?</p>
+<p><b>Answer:</b></p>
+<h2>30. Sales Tax Collected: tax on credit memos</h2>
+<p><b>What we see on screen:</b> the tax totals add up the listed invoices only. Credit memos (returns) made in the same dates do not appear and do not lower the totals.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, Sales Tax Collected, This month.</p>
+<p><b>Question:</b> should the tax totals take off the tax on credit memos made in the same dates?</p>
+<p><b>Answer:</b></p>
+<h2>31. Sales Tax Collected: $0.00 invoices and deposit dates</h2>
+<p><b>What the ticket says:</b> SV-4573: &quot;for partially paid invoices, show the date of the latest payment&quot;.</p>
+<p><b>What we see on screen:</b> 643 invoices of $0.00 are listed as Paid, with a paid date, and no payment exists on them. On 20 invoices paid partly by a deposit, Invoice Paid Date is the day the invoice was made, not the deposit day (P2-2445: deposit 21 October, report 22 October).</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, Sales Tax Collected, This month and Last 12 months.</p>
+<p><b>Question:</b> (a) Should a $0.00 invoice with no payment be listed as Paid, with a paid date? (b) When a deposit pays part of an invoice, should Invoice Paid Date be the deposit&#x27;s date?</p>
+<p><b>Answer:</b></p>
+<h2>32. A/R Aging Collection: a credit made on the chosen day</h2>
+<p><b>What the page says:</b> the A/R page: &quot;If the calculated days are ≤ 0, the transaction is not past due and it&#x27;s not shown on the report&quot;.</p>
+<p><b>What the ticket says:</b> SV-5606 (Done, January 2026): &quot;Today&#x27;s Credits … displayed with 1 as a Past Due&quot;.</p>
+<p><b>What we see on screen:</b> credit CM2-4462 (E2E Credits Customer), made on 30 September 2026, is listed as 1 day past due on 30 September.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, A/R Aging Collection, date 30 September 2026.</p>
+<p><b>Question:</b> should testers expect a credit made on the chosen day to be (a) left off, or (b) listed with Past Due 1, as today?</p>
+<p><b>Answer:</b></p>
+<h2>33. A/R Aging: a deposit on a part sale</h2>
+<p><b>What the ticket says:</b> SV-11690: A/R agrees with the customer&#x27;s Invoices tab, and a held deposit is not taken off aged A/R.</p>
+<p><b>What we see on screen:</b> part sale P2-2352 (TestVT1) shows $443.43 on the Invoices tab and $543.43 on A/R Aging, and its $100 deposit DEP-4763 shows &quot;Held&quot;. P2-2439 is the same ($21 against $16).</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, A/R Aging Detail, customer TestVT1.</p>
+<p><b>Question:</b> once a part sale is invoiced, should its deposit lower its balance on A/R Aging, as it does on the Invoices tab?</p>
+<p><b>Answer:</b></p>
+<h2>34. IBS Batches: the total of a sent batch</h2>
+<p><b>What we see on screen:</b> the batch of 2 October 2026 shows a Total of $9,473.35. Its 9 invoices add up to $9,183.29, and its own IBS file also says $9,183.29.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Lethbridge - 4310, IBS Batches, Sent tab.</p>
+<p><b>Question:</b> should a sent batch&#x27;s Total always equal the sum of the invoices and credits in it?</p>
+<p><b>Answer:</b></p>
+<h2>35. IBS Batches: a $0.00 invoice</h2>
+<p><b>What we see on screen:</b> S2-16924 (Fort Mohave Diesel Repair) is listed in Ready to Send with Total $0.00 and Balance $0.00.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, IBS Batches, Ready to Send.</p>
+<p><b>Question:</b> should a $0.00 invoice be listed in Ready to Send?</p>
+<p><b>Answer:</b></p>
+<h2>36. Notes Report: more than 100 notes</h2>
+<p><b>What we see on screen:</b> the report shows up to 100 notes, with no way to see more. &quot;All&quot; shows 100 of 2,545 notes, &quot;Last Week&quot; 100 of 255, and &quot;Filter by Author&quot; 100 of 1,105.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, Notes Report.</p>
+<p><b>Question:</b> should the user be able to see every note in the chosen dates? If not, should the screen say that only 100 are shown?</p>
+<p><b>Answer:</b></p>
+<h2>37. QB Unexported: the No. column</h2>
+<p><b>What we see on screen:</b> the 283 credit memo rows on the Customers tab (Heavy Duty 255, Lethbridge 28) have a blank No.; payment and application rows are blank too. 111 documents appear twice, each with a different error.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, locations Staging Heavy Duty - 9919 and Staging Lethbridge - 4310, QB Unexported, Customers tab.</p>
+<p><b>Question:</b> (a) Should every credit memo row show its number, for example CM2-4476? (b) Should each document appear only once?</p>
+<p><b>Answer:</b></p>
+<h2>38. Export Reports: Terms on the Customer Invoice export</h2>
+<p><b>What we see on screen:</b> 7 invoices from September 2026 show Terms &quot;Net 30&quot;, &quot;Net 50&quot; or &quot;Net 60&quot; in the file, while the invoice and its customer both say COD and the due date is the invoice date (for example S2-31597).</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, Export Reports, Customer Invoice, Last month.</p>
+<p><b>Question:</b> should the Terms column show the invoice&#x27;s own term?</p>
+<p><b>Answer:</b></p>
+<h2>39. Export Reports: more than 24 hours in a day on the Payroll Timesheet export</h2>
+<p><b>What we see on screen:</b> in September 2026, Admin Shopview has 40.70 Total Hours on 10 September and 32.34 on 17 September, and Haley Brown 28.50 on 6 September, from clocks that overlap.</p>
+<p><b>Where to see it:</b> Staging, build v26.43.2-f8698cb, location Staging Heavy Duty - 9919, Export Reports, Payroll Timesheet, September 2026.</p>
+<p><b>Question:</b> can one employee&#x27;s day show more than 24 Total Hours?</p>
+<p><b>Answer:</b></p>
+<p>Thank you very much, Sir.</p>
+<p>Bilal Muzamil</p>
+</body></html>
