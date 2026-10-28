@@ -11,11 +11,13 @@ def jira(m, p, body=None):
     out = subprocess.run(['bash', J, m, p] + ([f] if f else []), capture_output=True, text=True).stdout
     txt, _, code = out.rpartition('\n__HTTP:'); return int(code or 0), txt
 KEY, TESTED, NOTE, PICS = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4:]
+# 28 Oct: QA_STATUS=Failed posts the same short comment as "→ QA Status: Failed" (default Passed, unchanged)
+STATUS = os.environ.get('QA_STATUS', 'Passed')
 assert PICS and all(os.path.isfile(p) for p in PICS), 'pictures missing'
 log = {'key': KEY, 'attach': []}
 s, t = jira('GET', f'/rest/api/2/issue/{KEY}?fields=status,attachment,comment')
 f = json.loads(t)['fields']; log['status_before'] = f['status']['name']
-if any('QA Status: Passed' in (c.get('body') or '') and TESTED.split(',')[0] in c.get('body', '') for c in f['comment']['comments']): sys.exit('already posted for this branch')
+if any(f'QA Status: {STATUS}' in (c.get('body') or '') and TESTED.split(',')[0] in c.get('body', '') for c in f['comment']['comments']): sys.exit('already posted for this branch')
 have = {a['filename'] for a in f['attachment']}
 for pth in PICS:
     name = os.path.basename(pth)
@@ -25,9 +27,9 @@ for pth in PICS:
         '-F', f'file=@{pth}', f'https://shopview.atlassian.net/rest/api/3/issue/{KEY}/attachments'], capture_output=True, text=True).stdout
     body, _, code = out.rpartition('\n__HTTP:'); a = json.loads(body)[0]
     log['attach'].append({'file': name, 'http': code, 'sizeOk': a['size'] == os.path.getsize(pth)})
-lines = ['→ *QA Status: Passed*', '', TESTED] + ([NOTE] if NOTE else []) + [''] + [f'!{os.path.basename(p)}|width=1000!' for p in PICS]
+lines = [f'→ *QA Status: {STATUS}*', '', TESTED] + ([NOTE] if NOTE else []) + [''] + [f'!{os.path.basename(p)}|width=1000!' for p in PICS]
 s, t = jira('POST', f'/rest/api/2/issue/{KEY}/comment', {'body': '\n'.join(lines)}); log['comment_http'] = s; cid = json.loads(t).get('id'); log['comment_id'] = cid
 s, t = jira('GET', f'/rest/api/2/issue/{KEY}/comment/{cid}?expand=renderedBody'); c = json.loads(t)
-log['readback'] = {'hasPassed': 'QA Status: Passed' in c['body'], 'imgsRendered': len(re.findall(r'<img ', c.get('renderedBody', ''))), 'pics': len(PICS)}
+log['readback'] = {'hasStatus': f'QA Status: {STATUS}' in c['body'], 'imgsRendered': len(re.findall(r'<img ', c.get('renderedBody', ''))), 'pics': len(PICS)}
 s, t = jira('GET', f'/rest/api/2/issue/{KEY}?fields=status'); log['status_after'] = json.loads(t)['fields']['status']['name']
-json.dump(log, open(f'{HERE}/{KEY}-qa-passed.json', 'w'), indent=1); print(json.dumps(log))
+json.dump(log, open(f'{HERE}/{KEY}-qa-{STATUS.lower()}.json', 'w'), indent=1); print(json.dumps(log))

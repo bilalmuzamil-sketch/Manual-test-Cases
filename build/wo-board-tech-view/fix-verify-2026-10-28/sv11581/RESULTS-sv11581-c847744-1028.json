@@ -1,0 +1,17 @@
+{
+ "pass_meta": {"env": "QA branch sv11581", "build": "v26.43.2-539491f", "date": "28 October 2026", "note": "SV-11581 Card size re-tested 13:50 UTC; fails only on VIN/serial showing on Compact"},
+ "results": {
+  "C847744": {"verdict": "Failed",
+   "failed_steps": "Failed at step 4: VIN/serial shows on the Compact card",
+   "bold_steps": [4],
+   "source": "PRD Work Orders - Board View & Tech View Display Options (Confluence 845185030) version 81, S3-R11a: \"Compact keeps only the first two blocks: rank, work order number, status badge, assign button, customer and asset. It hides the hours, created date, progress bar, details row, crew avatars and total.\" and \"A field picked while Compact is on shows on the card once the user switches to Detailed.\" Confirmed by Chris Ward on SV-11581, 27 Oct 2026: Compact \"hides everything else, including the details row\".",
+   "observed": [
+    "Step 4: with the card on Compact, turn VIN/Serial on in Column Selection.",
+    "Step 4: the VIN line (for example VIN ZZWOB179319539276) appears on the Compact card straight away.",
+    "Step 4: Created Date, turned on the same way, stays hidden, as the test expects (picture, left).",
+    "The test expects the card to stay Compact, showing only number, status, assign button, customer and asset."],
+   "todo": "What needs to be done: nothing new to raise - the fault is reported on SV-11581. When a new build of SV-11581 is ready, run this test again.",
+   "ticket": "https://shopview.atlassian.net/browse/SV-11581 (TESTING QA)",
+   "pictures": ["/home/user/Manual-test-Cases/build/wo-board-tech-view/fix-verify-2026-10-28/sv11581/SV-11581-vin-on-compact-1350.png"]}
+ }
+}
