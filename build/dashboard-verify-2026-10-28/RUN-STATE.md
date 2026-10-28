@@ -50,3 +50,9 @@ Earlier in the same thread: "I want everything in the dashboard to be correct ..
 - 2026-10-28 ~22:30 UTC — DASHBOARD PASS COMPLETE. Expanded panels 121/121, chart filters 9/9, 366 picker cap ✅ (Apply disabled, "Range: 367 days (max 366)"), negative revenue "-$15.00" ✅, Today button ✅.
 - Defect pack: `defect-pack-2026-10-28/` — F2 (declined lines in Technician Efficiency) and F4 (Revenue after work-order discount) DRAFTED + HELD for PO (A2 fails: PRD wording open) → PO-QUESTIONS DQ-1/DQ-2. F1 = SV-11688 (already filed). F3/F5 API-only (Rule 24). Observations O1–O8 in NOT-FILED.md.
 - NEXT: REPORTS PHASE — every report recomputed independently against its own source (Report Suite PRDs for WIP / TU / SBC / SBR / PV / IV; other reports: find written sources first).
+- 2026-10-28 ~22:45 UTC — REPORTS PHASE launched: 4 workers, shared brief `reports/WORKER-BRIEF.md`.
+  W1 `reports/W1-labor-wip/` WIP, Technician Utilization, Shop Efficiency, Timesheet Activities, Timesheets.
+  W2 `reports/W2-sales-advisor-tax/` Sales By Customer, Sales By Representative, Sales (remaining columns), Service Advisor Analysis, Technician Efficiency (both tabs), Sales Tax Collected, Follow Up.
+  W3 `reports/W3-parts/` Parts Velocity, Inventory Value.
+  W4 `reports/W4-finance-accounting-comms/` A/R ×3, A/P ×3, IBS Batches, QB Unexported, Export Reports, Notes, Reminders.
+  On return: verify each worker's key claims against its committed evidence (Rule 86) before consolidating; then one consolidated report + workbook.
