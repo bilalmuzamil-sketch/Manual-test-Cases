@@ -382,3 +382,8 @@
 - Script ready: `run498-2026-10-08/sv11835-minimap-1028.mts` (scroller barH = offsetHeight−clientHeight with scrollWidth>clientWidth as the positive control; minimap by aria-label "Board columns" else *minimap*; dumps every fixed bottom-right element so a wrong selector shows as a list; session viewport is 1600×1000, not 1920).
 - `served_page_scan.mjs` lives at `build/inline-add-edit-parts/build-verify-2026-09-01/tools/` (not testing-tools) and needs `OUT/evidence` to exist. `tr_client.get` returns `(status, body)`.
 #sv11835 #minimap #scrollbar #topic-search → L0594
+
+## L0596 — 2026-10-28 — QA-branch site states seen by curl: 000 = not created; S3 "AccessDenied" 403 + api 503 = being deployed; the SSO session from another branch works
+- 12:43 UTC: https://sv11567.qa.shopview.com → 200 (up). https://sv11835.qa.shopview.com → HTTP 403 from CloudFront/AmazonS3 (`<Code>AccessDenied</Code>`) and `sv11835api.qa.shopview.com` → 503: the site is half-deployed (bucket exists, no page yet) — treat as "not up yet", re-check later; not a sign-in problem.
+- The SV_SSO_SESSION the QA lead sent for sv11594 (10:41) still worked on sv11567 two hours later: quick-login 200 → copy `/tmp/shopview/sv11594.env` to `<branch>.env` before asking him for a new one.
+#qa-branch #site-state #sign-in → L0595
