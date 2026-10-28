@@ -3324,3 +3324,9 @@ branch fails, it is the per-branch session and the recipe applies. Distinguish a
 from an expired SSO session by the **shape of the refusal**: a Cloudflare block returns a challenge page,
 whereas an application-level JSON `{"error":"sso_required", …}` means the request **reached the app** and
 `cf_clearance` is still good.
+
+- **⏰ TIME ZONE — the test machine must match the location (Rule 99, 2026-10-28).** Three places, all set to the location's
+  zone and all recorded: the session (`change-location` → `workplace_timezone`), the browser (`newContext({ timezoneId })` —
+  `testing-tools/staging-boot2.mjs` sets it from `opts.timezone`), and the process (`TZ=<zone> node …`). Read the browser's zone
+  back with `Intl.DateTimeFormat().resolvedOptions().timeZone` and keep it in the evidence JSON. Staging zones: Heavy Duty
+  Asia/Karachi · Lethbridge America/Edmonton · QB Location America/Vancouver · DVI Test America/Toronto. Origin: SV-11922.

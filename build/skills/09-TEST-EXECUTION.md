@@ -327,3 +327,12 @@ non-technical QA can act on — **never a bare status** (Rule 7).
 | Put the results in the completion report | **[`05-PROJECT-REPORT`](05-PROJECT-REPORT.md)** |
 | Ask the PO whether the behaviour is even wrong | **[`07-PO-QUESTIONS`](07-PO-QUESTIONS.md)** |
 | Establish what a killed pass actually landed | **[`08-RECOVER`](08-RECOVER.md)** |
+
+## 🔴 Rule 99 — test in the location's own time zone (added 2026-10-28)
+QA lead: *"make sure you test those tickets ensuring that the Location timezone and your machine timezone is the SAME."*
+Before any check, reproduction, screenshot or ticket: (1) `POST /api/iam/change-location` with `workplace_timezone` = the
+location's zone; (2) browser context `timezoneId` = that zone (`staging-boot2.mjs` takes it from `opts.timezone`); (3) start the
+script with `TZ=<zone>`; (4) record location zone, live browser zone and process `TZ` in the evidence JSON, and write
+*"browser and test machine set to the location's time zone (<zone>)"* in the ticket's Environment. A result seen with the zones
+unmatched or unrecorded is NOT VERIFIED and is never filed. Staging zones: Heavy Duty Asia/Karachi · Lethbridge America/Edmonton ·
+QB Location America/Vancouver · DVI Test America/Toronto. Full text: `build/rules/RULES-61-97.md` Rule 99.

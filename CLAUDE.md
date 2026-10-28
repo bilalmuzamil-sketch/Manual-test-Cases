@@ -20,7 +20,7 @@ The previous CLAUDE.md was **738 KB / roughly 183,000 tokens**, and it was **TRU
 AT RULE 62**. Sessions were therefore running with **Rules 63–88 SILENTLY ABSENT** while believing
 they had read the whole file. A rule you have never seen is a rule you will break.
 
-**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **98 numbered Standing Rules**.
+**THEREFORE: NEVER ASSUME YOU HAVE SEEN ALL THE RULES.** There are **99 numbered Standing Rules**.
 Count them in the index below. If you are
 about to apply a rule, open its file and read it. **NEVER read
 `build/rules/CLAUDE-FULL-ARCHIVE-2026-08-21.md` whole** — it will exhaust your context exactly as the
@@ -43,6 +43,10 @@ These are stated here **in full** because a session that gets only this far must
   named after my branch can hold another session's content** (proven 2026-10-06) — before acting, confirm
   local `HEAD` is my own pushed branch, restore it if not, and **never rebase or merge onto another
   session's branch**.
+- **🔴 TEST IN THE LOCATION'S OWN TIME ZONE (99).** QA lead, 2026-10-28: *"make sure you test those tickets ensuring that the
+  Location timezone and your machine timezone is the SAME."* Before any check, reproduction, screenshot or ticket: session
+  `change-location` with the location's zone, browser `timezoneId` = that zone, process `TZ=<zone>`, and all three RECORDED in
+  the evidence and the ticket. A result seen with the zones unmatched or unrecorded is NOT VERIFIED and is never filed.
 - **NO TESTRAIL WRITE WITHOUT EXPLICIT PERMISSION (6).** TestRail is the only real production system.
   No `add_case` / `update_case` / `delete_case` / run write / result write without the QA lead's
   explicit go-ahead. Everything else (staging, QA, prod test orgs, QuickBooks) is disposable — act
@@ -136,7 +140,7 @@ These are stated here **in full** because a session that gets only this far must
 
 ---
 
-## 2 · THE RULE INDEX — all 98 rules, and where each one lives
+## 2 · THE RULE INDEX — all 99 rules, and where each one lives
 
 **Read the rule in its file before applying it.** One line per rule; the line is a locator, not the
 rule. Generated from the split files' own headers.
@@ -217,7 +221,7 @@ rule. Generated from the split files' own headers.
 | **59** | RE-READ THE SOURCES IMMEDIATELY BEFORE THE WRITES BEGIN — a second currency check, not only the |
 | **60** | THE BUILD WILL NEVER BE DECLARED FINAL — SEPARATE WHAT DEPENDS ON THE BUILD FROM WHAT DOES NOT |
 
-### `build/rules/RULES-61-97.md` — rules 61–98 (Rule 98 is appended at the end of this file)
+### `build/rules/RULES-61-97.md` — rules 61–99 (Rules 98 and 99 are appended at the end of this file)
 
 | # | Rule (short title) |
 |---|---|
@@ -259,6 +263,7 @@ rule. Generated from the split files' own headers.
 | **96** | A V2 / UPGRADE PROJECT MUST DERIVE AND TEST THE INVARIANT SET — WHAT THE SPEC DOES NOT MENTION IS STILL A REQUIREMENT |
 | **97** | NEVER DECLARE A BLOCKER WITHOUT SEARCHING THE REPO FIRST — THE ANSWER IS USUALLY ALREADY WRITTEN DOWN |
 | **98** | FOLLOW ONLY YOUR OWN RULE BOOK — FACTS MAY BE SHARED BETWEEN SESSIONS, RULES MAY NOT |
+| **99** | THE TEST MACHINE RUNS IN THE LOCATION'S OWN TIME ZONE — every check, reproduction, screenshot and defect |
 
 **Rule 95 (the Token-Discipline Charter)** was added 2026-08-26 in `build/rules/RULES-61-97.md`. Its
 canonical one-page operator form is **`build/skills/TOKEN-DISCIPLINE-CHARTER.md`** — twelve clauses

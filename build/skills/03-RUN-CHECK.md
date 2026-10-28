@@ -903,3 +903,12 @@ name — that is why it is usable evidence rather than a list of edits) ·
 | Ask the PO about an unsourced behaviour | **[`07-PO-QUESTIONS`](07-PO-QUESTIONS.md)** |
 
 **And it never marks a case Passed or Failed** — that verdict is the manual tester's.
+
+## 🔴 Rule 99 — test in the location's own time zone (added 2026-10-28)
+QA lead: *"make sure you test those tickets ensuring that the Location timezone and your machine timezone is the SAME."*
+Before any check, reproduction, screenshot or ticket: (1) `POST /api/iam/change-location` with `workplace_timezone` = the
+location's zone; (2) browser context `timezoneId` = that zone (`staging-boot2.mjs` takes it from `opts.timezone`); (3) start the
+script with `TZ=<zone>`; (4) record location zone, live browser zone and process `TZ` in the evidence JSON, and write
+*"browser and test machine set to the location's time zone (<zone>)"* in the ticket's Environment. A result seen with the zones
+unmatched or unrecorded is NOT VERIFIED and is never filed. Staging zones: Heavy Duty Asia/Karachi · Lethbridge America/Edmonton ·
+QB Location America/Vancouver · DVI Test America/Toronto. Full text: `build/rules/RULES-61-97.md` Rule 99.

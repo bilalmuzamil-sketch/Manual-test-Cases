@@ -2338,3 +2338,36 @@ Index: CLAUDE.md (rule index table). Other rule files: build/rules/RULES-01-20.m
     Ties to Standing Rules 72 (record only on approval — granted), 86 (cross-session trust: verify facts
     from committed evidence), 92 (other sessions' project state is reference, not a backlog) and 97
     (search for facts before declaring a blocker).
+
+99. **THE TEST MACHINE RUNS IN THE LOCATION'S OWN TIME ZONE — EVERY CHECK, REPRODUCTION, SCREENSHOT AND
+    DEFECT (all projects, permanent).**
+    **THE QA LEAD'S WORDS (2026-10-28, verbatim):** *"First make sure you test those tickets ensuring that the
+    Location timezone and your machine timezone is the SAME."* · *"And save the timezone thing in your
+    permanent learning so that you never make a mistake."* · *"for now I am marking this ticket as obsolete,
+    until we verify it."*
+    **THE RULE.** Before any screen check, reproduction, evidence capture, re-test or defect filing, the
+    machine I test from must be in **the same time zone as the location being tested**:
+    **(a)** switch the session to the location with `POST /api/iam/change-location` and
+    `workplace_timezone` = the location's zone (the report windows follow the SESSION's zone);
+    **(b)** the browser context runs with `timezoneId` = the location's zone (`staging-boot2.mjs` does this
+    from `opts.timezone`; any script that builds its own context must pass `timezoneId` itself);
+    **(c)** the process itself runs with the environment variable `TZ=<location zone>` (start node/python as
+    `TZ=America/Edmonton node …`), so every date my own scripts compute matches the location's calendar;
+    **(d)** RECORD it: the evidence JSON carries the location zone, the browser zone read live
+    (`Intl.DateTimeFormat().resolvedOptions().timeZone`) and the process `TZ`, and the ticket's Environment
+    section says *"browser and test machine set to the location's time zone (<zone>)"*;
+    **(e)** a result seen with the zones NOT matched, or with the zone not recorded, is **NOT VERIFIED** — it
+    is never filed, and an already-filed ticket resting on it is re-verified before anything else (Rule 12);
+    **(f)** if a result changes when the zones are matched, it was a test artefact, not a defect — unless a
+    written source says the viewer's own zone applies, in which case it is a PO question (Rule 58).
+    **Staging location zones (fact, 28 Oct 2026):** Staging Heavy Duty - 9919 = Asia/Karachi · Staging
+    Lethbridge - 4310 = America/Edmonton · QB Location = America/Vancouver · DVI Test = America/Toronto.
+    **WHY (the evidence for the rule).** SV-11922 (A/P "Past Due" one day short) was filed on 28 Oct 2026 from
+    screen runs whose browser zone was not recorded. A re-test with the browser on each location's zone
+    still reproduced it, but the QA lead marked the ticket Obsolete until it is verified properly — the
+    cost of an unrecorded zone is a ticket nobody can trust. Several of that day's screen captures (W3
+    Parts Velocity) had run on UTC.
+    **TIES:** Rules 12 (verified means observed), 50, 52 item (4) (build marker and environment), 57, 73,
+    and the session-timezone fact in `build/APP-ACTIONS-PLAYBOOK.md`.
+    **RECORDED 2026-10-28 on the QA lead's instruction in the same message** (*"save the timezone thing in
+    your permanent learning"*), which satisfies Rule 72 for this rule.
