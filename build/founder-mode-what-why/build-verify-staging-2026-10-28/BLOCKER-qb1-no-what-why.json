@@ -1,0 +1,33 @@
+{
+ "claim": "qb1.qa.shopview.com (v26.43.2-27bb6a2) does not carry the What/Why (Title and Description) change, so the QuickBooks cases cannot be build-checked there",
+ "proofs": {
+  "positive_control": {
+   "passed": true,
+   "evidence": "build/founder-mode-what-why/build-verify-staging-2026-10-28/probe/05-probe.json + 05-d-edit-line.png: the same Edit Line read on staging v26.43.1-f2d183d shows field labels 'Title' and 'Description'"
+  },
+  "tried_through_the_screen": {
+   "passed": true,
+   "evidence": "build/founder-mode-what-why/build-verify-staging-2026-10-28/probe/q3-probe.json, q4-probe.json + q3-b-new-line.png, q4-b-new-line.png: signed in through qb1's own quick-login as admin (template administrator, 57 permissions), opened work orders S2-4219 and S2-4963, clicked a line title; Edit Line labels read 'What are you doing?' / 'Why are you doing it?'"
+  },
+  "waited_and_retried": {
+   "passed": true,
+   "evidence": "two readings on two work orders (q3, q4), q4 after settle(); both identical"
+  },
+  "checked_for_navigation": {
+   "passed": true,
+   "evidence": "q4 urlBefore = .../workorders/d431ef43.../lines; the click opened the Edit Line dialog on that page (dialog text captured, then closed by X: 'closed')"
+  },
+  "precondition_read_back": {
+   "passed": true,
+   "evidence": "q4: app-version meta v26.43.2-27bb6a2 read on the page; location 'Staging Heavy Duty - 9919'; admin template read back from fe_permissions"
+  },
+  "searched_the_repo": {
+   "passed": true,
+   "evidence": "product code: branch qb1 (27bb6a2) Customer Invoice export api/src/Reporting/Export/.../InvoiceData.php still builds 'What are you doing?:' text, and qb1 lacks the SV-10130 LineDialog 'Title is a required field' tests; qb1's script calls sv11275api.qa.shopview.com (scratchpad qb1js/index.js); git merge-base: SV-10130 tip 2d0c857 not in qb1. Playbook/BLOCKED files hold no qb1 entry."
+  },
+  "asked_what_would_make_this_my_fault": {
+   "passed": true,
+   "evidence": "Most likely self-fault: reading a cached/old front end or the wrong site. Ruled out: marker read live on the page is v26.43.2-27bb6a2 = branch qb1 head; the code of that exact commit carries the old labels; staging read by the same method shows the new labels."
+  }
+ }
+}
