@@ -64,7 +64,7 @@ production by label for New Part Sale / Inventory · exhibits, comment, gate, po
 Dusan's list is the checklist now (it adds manufacturer fields, ShopCoach, two Reports checks, Category column, Slow 3G).
 | Check | Branch (v26.43.2-b517d96) | Production (v26.43.2-537378f) |
 |---|---|---|
-| Purchase order (stock PO) → Edit Order Item → Manufacturer | "Magnum" from the first frame, 3 of 3 opens; detector 10 loads (incl. manufacturers list held 3.5 s, everything held, Slow 4G ×3, Slow 3G ×2): 0 IDs | **`26aa6e80-7406-4318-9abb-6a63d13ca50c` for 0.42–0.67 s on 3 of 3 opens** (then the field goes blank); detector 9 of 9 loads with the ID |
+| Purchase order (stock PO) → Edit Order Item → Manufacturer | "Magnum" from the first frame, 3 of 3 opens; detector 10 loads (incl. manufacturers list held 3.5 s, everything held, Slow 4G ×3, Slow 3G ×2): 0 IDs | **`380e53e4-6e69-416b-9615-937e18349b57` for 0.40–0.62 s on 3 of 3 opens, then "Dayco"** (re-run with a named manufacturer; the first production run used `26aa6e80…`, which has no name on production, so after the ID it went blank); detector 9 of 9 loads with the ID |
 | Catalog part → Edit Catalog Part → Manufacturer | 7 loads incl. Slow 3G ×2: 0 IDs | 7 loads: 0 IDs (catalog part "1122" given a manufacturer on screen first) |
 | ShopCoach AI Analyze, line review forced to fail in this browser only (diagnostic; not a product feature) | pop-up "Failed to review line 1 - Service - Starter connections" | pop-up "Failed to review line 4b84c81b-650d-4a85-b616-0fadfcbad4a3" |
 | Punch Clock Activities opened from a link for a technician who does not exist (`?technicianId=0badf00d-…`) | Staff filter reads "Filter by Staff", no ID | same — no ID on production either |
@@ -75,3 +75,6 @@ Lesson: running two production scripts at once logs the earlier one out (one ses
 | Lines → + Add Part → More options → pick an inventory part whose vendor was created in a 2nd tab after tab 1 loaded its vendor list (no reload) | Vendor field blank for ~0.6 s, then "ZZAUTOTEST V10928 Branch P145943"; 0 IDs | **Vendor field shows `805039eb-Ebeb-4b91-85ca-Be93c24ef7d6` for the whole 9 s watched** |
 | New Work Order opened from an asset page for a customer with no contacts | not buildable on screen: deleting a contact that still has assets is refused ("Please remove all of customer vehicles first."), so a no-contact customer can't own an asset | — |
 Set-up for the pick check: vendor created on screen in tab 2; catalog part + inventory part (5 in stock) with that vendor via the back end (ZZPV590814 branch, ZZPV737915 production).
+| Inventory → New Inventory Part → pick a catalog part whose manufacturer is listed | "Magnum" immediately, also with the manufacturers list held 3.5 s; 0 IDs | "Dayco" immediately (same) — no flash on production either |
+| Same, catalog part whose manufacturer is NOT in the organisation's list (170.V8AP) | blank (the record isn't there — expected per Dusan) | — |
+| Unexported Items → Journal Entries | a stock count creates one ("Manual Adjustment", User = "Admin ShopView"); an entry with NO user not yet produced | production has QuickBooks unconnected: 0 unexported items |
