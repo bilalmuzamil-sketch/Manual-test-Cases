@@ -208,3 +208,21 @@ Key holder: the QA lead's own key (TMS user **id 4**, role `user`). Stored only 
   so each comment names the real tester and TMS timestamp. **This overrides, by the QA lead's explicit
   instruction, the older playbook §J line "Log ONLY Passed cases to a run"** — that line is TestRail-era
   guidance and should be reviewed under the TMS changeover (Rule 72 proposal pending).
+
+## 10 · 2026-10-28 — What/Why (20437), Part Lifecycle (20439), and the What/Why run
+
+- **What/Why:** 37 cases updated TestRail → TMS, re-check 37/37 SAME. **Waiting on the QA lead:** 31 TestRail-only
+  cases, 17 of them in the TestRail-only folder **105855 "Design — how it looks"**.
+- **Part Lifecycle:** 267 updates (running at time of writing). **Waiting:** 96 TestRail-only cases, 49 in the
+  TestRail-only folder **105854 "Design — how it looks"**; **19 TMS-only cases** (each checked with `get_case`:
+  none exists anywhere in TestRail) and the **TMS-only folder 54275 "Retire OR retest"** (12 of the 19).
+- **Run: TMS run 10 "What/Why - Execution"** in milestone 5, 37 items (the 31 TestRail-only cases join once created).
+  **Not yet assigned:** TMS answered `422 "User 6 can't be assigned: only active, real users can."`
+- **🛑 TRAP — imported people are PLACEHOLDERS until they sign in.** TMS created users from TestRail history
+  (`is_placeholder: true`, `is_active: false`) — e.g. **Mudassir Qamar = TMS user 6** (TestRail user 6).
+  A placeholder **cannot be assigned** a run or run item. Fix: the person signs in to TMS once with Google,
+  then a TMS **admin** merges the placeholder into the real account (`POST /users/{id}/merge`, admins only —
+  our key's user is role `user`). Only then assign.
+- **No What/Why run exists in TestRail.** Creating one there was NOT done — it was outside the instruction
+  (TMS), and the write was stopped by the session's permission guard. Asked the QA lead.
+- **tms_sync.py** now walks **both** folder trees (a folder missing on either side is reported, never skipped).
