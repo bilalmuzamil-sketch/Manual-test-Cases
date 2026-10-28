@@ -59,3 +59,16 @@ v26.43.2-b517d96), so the branch half of batch 3 (timesheet, Receive Parts, Line
 Batch 3 on the branch · bulk Pick two-tab · catalog part deleted · manual returns · other reachable error messages · Bulk Receive and
 Process Return (second-tab vendor) · PO Edit Order Item / Catalog Part manufacturer · ShopCoach run-assistant blocked · Reports guards ·
 production by label for New Part Sale / Inventory · exhibits, comment, gate, post.
+
+## 28 Oct, after Dusan's QA list (comment 79648) — fresh sign-in
+Dusan's list is the checklist now (it adds manufacturer fields, ShopCoach, two Reports checks, Category column, Slow 3G).
+| Check | Branch (v26.43.2-b517d96) | Production (v26.43.2-537378f) |
+|---|---|---|
+| Purchase order (stock PO) → Edit Order Item → Manufacturer | "Magnum" from the first frame, 3 of 3 opens; detector 10 loads (incl. manufacturers list held 3.5 s, everything held, Slow 4G ×3, Slow 3G ×2): 0 IDs | **`26aa6e80-7406-4318-9abb-6a63d13ca50c` for 0.42–0.67 s on 3 of 3 opens** (then the field goes blank); detector 9 of 9 loads with the ID |
+| Catalog part → Edit Catalog Part → Manufacturer | 7 loads incl. Slow 3G ×2: 0 IDs | 7 loads: 0 IDs (catalog part "1122" given a manufacturer on screen first) |
+| ShopCoach AI Analyze, line review forced to fail in this browser only (diagnostic; not a product feature) | pop-up "Failed to review line 1 - Service - Starter connections" | pop-up "Failed to review line 4b84c81b-650d-4a85-b616-0fadfcbad4a3" |
+| Punch Clock Activities opened from a link for a technician who does not exist (`?technicianId=0badf00d-…`) | Staff filter reads "Filter by Staff", no ID | same — no ID on production either |
+| Unexported Items → Journal Entries → User column | no unexported journal entries exist on the branch (0) or production (0); the PR changes the User column for every tab to `customer || ''` (was `customer || referenceId`) | — |
+| Slow 3G on earlier screens (branch) | Parts tab, part sale grid, timesheet: 0 IDs | (production Slow 4G results above) |
+Set-up (left in place): branch PO I-1392 item CS-RB-268 manufacturer Magnum; production PO I2-37 item ZZFIELDPN-7781 and catalog part 1122 given a manufacturer — all via Edit dialogs on screen.
+Lesson: running two production scripts at once logs the earlier one out (one session per user) — run production one at a time.
